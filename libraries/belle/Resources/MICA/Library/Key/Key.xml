@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <identifier lang="en">Key</identifier>
+      <definition lang="en" name="Key"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">CIonian</identifier>
+      <definition lang="en" name="C Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CMajor</identifier>
+      <definition lang="en" name="C Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CDorian</identifier>
+      <definition lang="en" name="C Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CPhrygian</identifier>
+      <definition lang="en" name="C Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CLydian</identifier>
+      <definition lang="en" name="C Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CMixolydian</identifier>
+      <definition lang="en" name="C Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CAeolian</identifier>
+      <definition lang="en" name="C Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CMinor</identifier>
+      <definition lang="en" name="C Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CLocrian</identifier>
+      <definition lang="en" name="C Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">CSharpIonian</identifier>
+      <definition lang="en" name="C Sharp Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CSharpMajor</identifier>
+      <definition lang="en" name="C Sharp Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CSharpDorian</identifier>
+      <definition lang="en" name="C Sharp Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CSharpPhrygian</identifier>
+      <definition lang="en" name="C Sharp Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CSharpMixolydian</identifier>
+      <definition lang="en" name="C Sharp Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CSharpAeolian</identifier>
+      <definition lang="en" name="C Sharp Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CSharpMinor</identifier>
+      <definition lang="en" name="C Sharp Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CSharpLocrian</identifier>
+      <definition lang="en" name="C Sharp Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">DFlatIonian</identifier>
+      <definition lang="en" name="D Flat Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DFlatMajor</identifier>
+      <definition lang="en" name="D Flat Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DFlatDorian</identifier>
+      <definition lang="en" name="D Flat Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DFlatLydian</identifier>
+      <definition lang="en" name="D Flat Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DFlatMixolydian</identifier>
+      <definition lang="en" name="D Flat Mixolydian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">DIonian</identifier>
+      <definition lang="en" name="D Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DMajor</identifier>
+      <definition lang="en" name="D Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DDorian</identifier>
+      <definition lang="en" name="D Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DPhrygian</identifier>
+      <definition lang="en" name="D Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DLydian</identifier>
+      <definition lang="en" name="D Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DMixolydian</identifier>
+      <definition lang="en" name="D Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DAeolian</identifier>
+      <definition lang="en" name="D Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DMinor</identifier>
+      <definition lang="en" name="D Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DLocrian</identifier>
+      <definition lang="en" name="D Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">DSharpDorian</identifier>
+      <definition lang="en" name="D Sharp Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DSharpPhrygian</identifier>
+      <definition lang="en" name="D Sharp Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DSharpAeolian</identifier>
+      <definition lang="en" name="D Sharp Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DSharpMinor</identifier>
+      <definition lang="en" name="D Sharp Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DSharpLocrian</identifier>
+      <definition lang="en" name="D Sharp Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">EFlatIonian</identifier>
+      <definition lang="en" name="E Flat Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EFlatMajor</identifier>
+      <definition lang="en" name="E Flat Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EFlatDorian</identifier>
+      <definition lang="en" name="E Flat Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EFlatPhrygian</identifier>
+      <definition lang="en" name="E Flat Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EFlatLydian</identifier>
+      <definition lang="en" name="E Flat Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EFlatMixolydian</identifier>
+      <definition lang="en" name="E Flat Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EFlatAeolian</identifier>
+      <definition lang="en" name="E Flat Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EFlatMinor</identifier>
+      <definition lang="en" name="E Flat Minor"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">EIonian</identifier>
+      <definition lang="en" name="E Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EMajor</identifier>
+      <definition lang="en" name="E Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EDorian</identifier>
+      <definition lang="en" name="E Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EPhrygian</identifier>
+      <definition lang="en" name="E Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ELydian</identifier>
+      <definition lang="en" name="E Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EMixolydian</identifier>
+      <definition lang="en" name="E Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EAeolian</identifier>
+      <definition lang="en" name="E Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EMinor</identifier>
+      <definition lang="en" name="E Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ELocrian</identifier>
+      <definition lang="en" name="E Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">FIonian</identifier>
+      <definition lang="en" name="F Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FMajor</identifier>
+      <definition lang="en" name="F Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FDorian</identifier>
+      <definition lang="en" name="F Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FPhrygian</identifier>
+      <definition lang="en" name="F Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FLydian</identifier>
+      <definition lang="en" name="F Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FMixolydian</identifier>
+      <definition lang="en" name="F Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FAeolian</identifier>
+      <definition lang="en" name="F Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FMinor</identifier>
+      <definition lang="en" name="F Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FLocrian</identifier>
+      <definition lang="en" name="F Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">FSharpIonian</identifier>
+      <definition lang="en" name="F Sharp Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FSharpMajor</identifier>
+      <definition lang="en" name="F Sharp Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FSharpDorian</identifier>
+      <definition lang="en" name="F Sharp Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FSharpPhrygian</identifier>
+      <definition lang="en" name="F Sharp Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FSharpLydian</identifier>
+      <definition lang="en" name="F Sharp Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FSharpMixolydian</identifier>
+      <definition lang="en" name="F Sharp Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FSharpAeolian</identifier>
+      <definition lang="en" name="F Sharp Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FSharpMinor</identifier>
+      <definition lang="en" name="F Sharp Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FSharpLocrian</identifier>
+      <definition lang="en" name="F Sharp Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">GFlatIonian</identifier>
+      <definition lang="en" name="G Flat Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GFlatMajor</identifier>
+      <definition lang="en" name="G Flat Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GFlatLydian</identifier>
+      <definition lang="en" name="G Flat Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GFlatMixolydian</identifier>
+      <definition lang="en" name="G Flat Mixolydian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">GIonian</identifier>
+      <definition lang="en" name="G Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GMajor</identifier>
+      <definition lang="en" name="G Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GDorian</identifier>
+      <definition lang="en" name="G Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GPhrygian</identifier>
+      <definition lang="en" name="G Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GLydian</identifier>
+      <definition lang="en" name="G Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GMixolydian</identifier>
+      <definition lang="en" name="G Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GAeolian</identifier>
+      <definition lang="en" name="G Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GMinor</identifier>
+      <definition lang="en" name="G Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GLocrian</identifier>
+      <definition lang="en" name="G Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">GSharpDorian</identifier>
+      <definition lang="en" name="G Sharp Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GSharpPhrygian</identifier>
+      <definition lang="en" name="G Sharp Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GSharpMixolydian</identifier>
+      <definition lang="en" name="G Sharp Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GSharpAeolian</identifier>
+      <definition lang="en" name="G Sharp Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GSharpMinor</identifier>
+      <definition lang="en" name="G Sharp Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GSharpLocrian</identifier>
+      <definition lang="en" name="G Sharp Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">AFlatIonian</identifier>
+      <definition lang="en" name="A Flat Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AFlatMajor</identifier>
+      <definition lang="en" name="A Flat Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AFlatDorian</identifier>
+      <definition lang="en" name="A Flat Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AFlatLydian</identifier>
+      <definition lang="en" name="A Flat Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AFlatMixolydian</identifier>
+      <definition lang="en" name="A Flat Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AFlatAeolian</identifier>
+      <definition lang="en" name="A Flat Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AFlatMinor</identifier>
+      <definition lang="en" name="A Flat Minor"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">AIonian</identifier>
+      <definition lang="en" name="A Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AMajor</identifier>
+      <definition lang="en" name="A Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ADorian</identifier>
+      <definition lang="en" name="A Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">APhrygian</identifier>
+      <definition lang="en" name="A Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ALydian</identifier>
+      <definition lang="en" name="A Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AMixolydian</identifier>
+      <definition lang="en" name="A Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AAeolian</identifier>
+      <definition lang="en" name="A Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AMinor</identifier>
+      <definition lang="en" name="A Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ALocrian</identifier>
+      <definition lang="en" name="A Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">ASharpPhrygian</identifier>
+      <definition lang="en" name="A Sharp Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ASharpAeolian</identifier>
+      <definition lang="en" name="A Sharp Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ASharpMinor</identifier>
+      <definition lang="en" name="A Sharp Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ASharpLocrian</identifier>
+      <definition lang="en" name="A Sharp Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">BFlatIonian</identifier>
+      <definition lang="en" name="B Flat Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BFlatMajor</identifier>
+      <definition lang="en" name="B Flat Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BFlatDorian</identifier>
+      <definition lang="en" name="B Flat Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BFlatPhrygian</identifier>
+      <definition lang="en" name="B Flat Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BFlatLydian</identifier>
+      <definition lang="en" name="B Flat Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BFlatMixolydian</identifier>
+      <definition lang="en" name="B Flat Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BFlatAeolian</identifier>
+      <definition lang="en" name="B Flat Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BFlatMinor</identifier>
+      <definition lang="en" name="B Flat Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BFlatLocrian</identifier>
+      <definition lang="en" name="B Flat Locrian"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">BIonian</identifier>
+      <definition lang="en" name="B Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BMajor</identifier>
+      <definition lang="en" name="B Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BDorian</identifier>
+      <definition lang="en" name="B Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BPhrygian</identifier>
+      <definition lang="en" name="B Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BLydian</identifier>
+      <definition lang="en" name="B Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BMixolydian</identifier>
+      <definition lang="en" name="B Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BAeolian</identifier>
+      <definition lang="en" name="B Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BMinor</identifier>
+      <definition lang="en" name="B Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BLocrian</identifier>
+      <definition lang="en" name="B Locrian"/>
+    </concept>
+    
+  </category>
+</mica>

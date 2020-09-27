@@ -1,0 +1,17 @@
+#N canvas 821 152 300 275 12;
+#X obj 36 132 sig~;
+#X obj 36 180 snapshot~ 0;
+#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
+#X obj -60 12 freeze;
+#X text 24 24 sig~;
+#X text 12 72 Convert numbers to audio signal.;
+#X floatatom 36 108 5 0 0 1 - - -;
+#X f 5;
+#X floatatom 36 204 5 0 0 1 - - -;
+#X f 5;
+#X obj 84 240 osc~;
+#X text 12 240 See also:;
+#X connect 0 0 1 0;
+#X connect 1 0 7 0;
+#X connect 6 0 0 0;
+#X coords 0 0 1 1 250 175 0 0 0;

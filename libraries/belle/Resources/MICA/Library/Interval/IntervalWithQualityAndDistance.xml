@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+
+  <map>en:QuadruplyDiminished en:Unison en:QuadruplyDiminishedUnison</map>
+  <map>en:TriplyDiminished en:Unison en:TriplyDiminishedUnison</map>
+  <map>en:DoublyDiminished en:Unison en:DoublyDiminishedUnison</map>
+  <map>en:Diminished en:Unison en:DiminishedUnison</map>
+  <map>en:Perfect en:Unison en:PerfectUnison</map>
+  <map>en:Augmented en:Unison en:AugmentedUnison</map>
+  <map>en:DoublyAugmented en:Unison en:DoublyAugmentedUnison</map>
+  <map>en:TriplyAugmented en:Unison en:TriplyAugmentedUnison</map>
+  <map>en:QuadruplyAugmented en:Unison en:QuadruplyAugmentedUnison</map>
+  
+  <map>en:QuadruplyDiminished en:Second en:QuadruplyDiminishedSecond</map>
+  <map>en:TriplyDiminished en:Second en:TriplyDiminishedSecond</map>
+  <map>en:DoublyDiminished en:Second en:DoublyDiminishedSecond</map>
+  <map>en:Diminished en:Second en:DiminishedSecond</map>
+  <map>en:Minor en:Second en:MinorSecond</map>
+  <map>en:Major en:Second en:MajorSecond</map>
+  <map>en:Augmented en:Second en:AugmentedSecond</map>
+  <map>en:DoublyAugmented en:Second en:DoublyAugmentedSecond</map>
+  <map>en:TriplyAugmented en:Second en:TriplyAugmentedSecond</map>
+  <map>en:QuadruplyAugmented en:Second en:QuadruplyAugmentedSecond</map>
+  
+  <map>en:QuadruplyDiminished en:Third en:QuadruplyDiminishedThird</map>
+  <map>en:TriplyDiminished en:Third en:TriplyDiminishedThird</map>
+  <map>en:DoublyDiminished en:Third en:DoublyDiminishedThird</map>
+  <map>en:Diminished en:Third en:DiminishedThird</map>
+  <map>en:Minor en:Third en:MinorThird</map>
+  <map>en:Major en:Third en:MajorThird</map>
+  <map>en:Augmented en:Third en:AugmentedThird</map>
+  <map>en:DoublyAugmented en:Third en:DoublyAugmentedThird</map>
+  <map>en:TriplyAugmented en:Third en:TriplyAugmentedThird</map>
+  <map>en:QuadruplyAugmented en:Third en:QuadruplyAugmentedThird</map>
+  
+  <map>en:QuadruplyDiminished en:Fourth en:QuadruplyDiminishedFourth</map>
+  <map>en:TriplyDiminished en:Fourth en:TriplyDiminishedFourth</map>
+  <map>en:DoublyDiminished en:Fourth en:DoublyDiminishedFourth</map>
+  <map>en:Diminished en:Fourth en:DiminishedFourth</map>
+  <map>en:Perfect en:Fourth en:PerfectFourth</map>
+  <map>en:Augmented en:Fourth en:AugmentedFourth</map>
+  <map>en:DoublyAugmented en:Fourth en:DoublyAugmentedFourth</map>
+  <map>en:TriplyAugmented en:Fourth en:TriplyAugmentedFourth</map>
+  <map>en:QuadruplyAugmented en:Fourth en:QuadruplyAugmentedFourth</map>
+  
+  <map>en:QuadruplyDiminished en:Fifth en:QuadruplyDiminishedFifth</map>
+  <map>en:TriplyDiminished en:Fifth en:TriplyDiminishedFifth</map>
+  <map>en:DoublyDiminished en:Fifth en:DoublyDiminishedFifth</map>
+  <map>en:Diminished en:Fifth en:DiminishedFifth</map>
+  <map>en:Perfect en:Fifth en:PerfectFifth</map>
+  <map>en:Augmented en:Fifth en:AugmentedFifth</map>
+  <map>en:DoublyAugmented en:Fifth en:DoublyAugmentedFifth</map>
+  <map>en:TriplyAugmented en:Fifth en:TriplyAugmentedFifth</map>
+  <map>en:QuadruplyAugmented en:Fifth en:QuadruplyAugmentedFifth</map>
+  
+  <map>en:QuadruplyDiminished en:Sixth en:QuadruplyDiminishedSixth</map>
+  <map>en:TriplyDiminished en:Sixth en:TriplyDiminishedSixth</map>
+  <map>en:DoublyDiminished en:Sixth en:DoublyDiminishedSixth</map>
+  <map>en:Diminished en:Sixth en:DiminishedSixth</map>
+  <map>en:Minor en:Sixth en:MinorSixth</map>
+  <map>en:Major en:Sixth en:MajorSixth</map>
+  <map>en:Augmented en:Sixth en:AugmentedSixth</map>
+  <map>en:DoublyAugmented en:Sixth en:DoublyAugmentedSixth</map>
+  <map>en:TriplyAugmented en:Sixth en:TriplyAugmentedSixth</map>
+  <map>en:QuadruplyAugmented en:Sixth en:QuadruplyAugmentedSixth</map>
+  
+  <map>en:QuadruplyDiminished en:Seventh en:QuadruplyDiminishedSeventh</map>
+  <map>en:TriplyDiminished en:Seventh en:TriplyDiminishedSeventh</map>
+  <map>en:DoublyDiminished en:Seventh en:DoublyDiminishedSeventh</map>
+  <map>en:Diminished en:Seventh en:DiminishedSeventh</map>
+  <map>en:Minor en:Seventh en:MinorSeventh</map>
+  <map>en:Major en:Seventh en:MajorSeventh</map>
+  <map>en:Augmented en:Seventh en:AugmentedSeventh</map>
+  <map>en:DoublyAugmented en:Seventh en:DoublyAugmentedSeventh</map>
+  <map>en:TriplyAugmented en:Seventh en:TriplyAugmentedSeventh</map>
+  <map>en:QuadruplyAugmented en:Seventh en:QuadruplyAugmentedSeventh</map>
+  
+  <map>en:QuadruplyDiminished en:Octave en:QuadruplyDiminishedOctave</map>
+  <map>en:TriplyDiminished en:Octave en:TriplyDiminishedOctave</map>
+  <map>en:DoublyDiminished en:Octave en:DoublyDiminishedOctave</map>
+  <map>en:Diminished en:Octave en:DiminishedOctave</map>
+  <map>en:Perfect en:Octave en:PerfectOctave</map>
+  <map>en:Augmented en:Octave en:AugmentedOctave</map>
+  <map>en:DoublyAugmented en:Octave en:DoublyAugmentedOctave</map>
+  <map>en:TriplyAugmented en:Octave en:TriplyAugmentedOctave</map>
+  <map>en:QuadruplyAugmented en:Octave en:QuadruplyAugmentedOctave</map>
+
+</mica>

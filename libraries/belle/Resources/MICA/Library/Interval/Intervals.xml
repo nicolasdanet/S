@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+  
+    <concept>
+      <sequence>
+        en:QuadruplyDiminishedUnison en:TriplyDiminishedUnison en:DoublyDiminishedUnison en:DiminishedUnison en:PerfectUnison en:AugmentedUnison en:DoublyAugmentedUnison en:TriplyAugmentedUnison en:QuadruplyAugmentedUnison en:QuadruplyDiminishedSecond en:TriplyDiminishedSecond en:DoublyDiminishedSecond en:DiminishedSecond en:MinorSecond en:MajorSecond en:AugmentedSecond en:DoublyAugmentedSecond en:TriplyAugmentedSecond en:QuadruplyAugmentedSecond en:QuadruplyDiminishedThird en:TriplyDiminishedThird en:DoublyDiminishedThird en:DiminishedThird en:MinorThird en:MajorThird en:AugmentedThird en:DoublyAugmentedThird en:TriplyAugmentedThird en:QuadruplyAugmentedThird en:QuadruplyDiminishedFourth en:TriplyDiminishedFourth en:DoublyDiminishedFourth en:DiminishedFourth en:PerfectFourth en:AugmentedFourth en:DoublyAugmentedFourth en:TriplyAugmentedFourth en:QuadruplyAugmentedFourth en:QuadruplyDiminishedFifth en:TriplyDiminishedFifth en:DoublyDiminishedFifth en:DiminishedFifth en:PerfectFifth en:AugmentedFifth en:DoublyAugmentedFifth en:TriplyAugmentedFifth en:QuadruplyAugmentedFifth en:QuadruplyDiminishedSixth en:TriplyDiminishedSixth en:DoublyDiminishedSixth en:DiminishedSixth en:MinorSixth en:MajorSixth en:AugmentedSixth en:DoublyAugmentedSixth en:TriplyAugmentedSixth en:QuadruplyAugmentedSixth en:QuadruplyDiminishedSeventh en:TriplyDiminishedSeventh en:DoublyDiminishedSeventh en:DiminishedSeventh en:MinorSeventh en:MajorSeventh en:AugmentedSeventh en:DoublyAugmentedSeventh en:TriplyAugmentedSeventh en:QuadruplyAugmentedSeventh en:QuadruplyDiminishedOctave en:TriplyDiminishedOctave en:DoublyDiminishedOctave en:DiminishedOctave en:PerfectOctave en:AugmentedOctave en:DoublyAugmentedOctave en:TriplyAugmentedOctave en:QuadruplyAugmentedOctave
+      </sequence>
+      <identifier lang="en">Intervals</identifier>
+      <definition lang="en" name="Intervals"/>
+    </concept>
+
+  </category>
+</mica>

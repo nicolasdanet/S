@@ -1,0 +1,33 @@
+
+# Copyright
+
+    Copyright (c) 1997-2020 Miller Puckette and others.
+    
+    Copyright (c) 2017-2020 Nicolas Danet.
+    
+Excluding:
+
+    x_tinyexpr.c
+    
+        Copyright (c) 2015-2019 Lewis Van Winkle.
+        
+    d_fftsg.c
+
+        Copyright (c) 1996-2001 Takuya OOURA.
+
+    s_MT_32.c
+
+        Copyright (c) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura, All rights reserved.
+
+    s_MT_64.c
+
+        Copyright (c) 2004, Makoto Matsumoto and Takuji Nishimura, All rights reserved.
+
+    d_sigmund.c
+
+        Copyright (c) 2005 Miller Puckette. BSD licensed. No warranties.
+
+    belle.cpp
+
+        Copyright (c) 2007-2013 William Andrew Burnson.
+

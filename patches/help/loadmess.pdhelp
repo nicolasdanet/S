@@ -1,0 +1,12 @@
+#N spaghettis 0 9 0;
+#N canvas 707 119 300 254 12;
+#X obj 12 12 panel 275 45;
+#X obj -60 12 freeze;
+#X obj 36 180 print;
+#X text 12 216 See also:;
+#X obj 156 216 closebang;
+#X text 24 24 loadmess;
+#X text 12 72 Send a message at load.;
+#X obj 84 216 loadbang;
+#X obj 36 108 loadmess hello 1 2 3 \$0-foo;
+#X connect 8 0 2 0;

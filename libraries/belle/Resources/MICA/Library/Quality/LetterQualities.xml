@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">LetterQualities</identifier>
+      <definition lang="en" name="Letter Qualities"/>
+    </concept>
+
+<!--
+
+https://en.wikipedia.org/wiki/Interval_%28music%29#Quality
+
+-->
+
+    <concept>
+      <sequence>
+        en:Perfect en:Major en:Minor en:Perfect en:Perfect en:Minor en:Minor en:Perfect
+      </sequence>
+      <identifier lang="en">AQualities</identifier>
+      <definition lang="en" name="A Qualities"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:Perfect en:Minor en:Minor en:Perfect en:Diminished en:Minor en:Minor en:Perfect
+      </sequence>
+      <identifier lang="en">BQualities</identifier>
+      <definition lang="en" name="B Qualities"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:Perfect en:Major en:Major en:Perfect en:Perfect en:Major en:Major en:Perfect
+      </sequence>
+      <identifier lang="en">CQualities</identifier>
+      <definition lang="en" name="C Qualities"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:Perfect en:Major en:Minor en:Perfect en:Perfect en:Major en:Minor en:Perfect
+      </sequence>
+      <identifier lang="en">DQualities</identifier>
+      <definition lang="en" name="D Qualities"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:Perfect en:Minor en:Minor en:Perfect en:Perfect en:Minor en:Minor en:Perfect
+      </sequence>
+      <identifier lang="en">EQualities</identifier>
+      <definition lang="en" name="E Qualities"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:Perfect en:Major en:Major en:Augmented en:Perfect en:Major en:Major en:Perfect
+      </sequence>
+      <identifier lang="en">FQualities</identifier>
+      <definition lang="en" name="F Qualities"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:Perfect en:Major en:Major en:Perfect en:Perfect en:Major en:Minor en:Perfect
+      </sequence>
+      <identifier lang="en">GQualities</identifier>
+      <definition lang="en" name="G Qualities"/>
+    </concept>
+
+  </category>
+</mica>

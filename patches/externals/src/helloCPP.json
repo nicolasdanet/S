@@ -1,0 +1,4 @@
+{
+    "warnings": "-Wall -Wextra -Wshadow -Wno-unused-parameter -Wno-deprecated",
+    "optimisation": "-Os"
+}

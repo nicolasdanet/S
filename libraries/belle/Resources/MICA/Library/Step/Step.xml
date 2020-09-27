@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <identifier lang="en">Step</identifier>
+      <definition lang="en" name="Step"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">NoStep</identifier>
+      <definition lang="en" name="No Step"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">HalfStep</identifier>
+      <definition lang="en" name="Half Step"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">WholeStep</identifier>
+      <definition lang="en" name="Whole Step"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:NoStep en:HalfStep en:WholeStep
+      </sequence>
+      <identifier lang="en">Steps</identifier>
+      <definition lang="en" name="Steps"/>
+    </concept>
+    
+  </category>
+</mica>

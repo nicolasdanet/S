@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <identifier lang="en">Beginning</identifier>
+      <definition lang="en" name="Beginning"/>
+    </concept> 
+    
+    <concept>
+      <identifier lang="en">Middle</identifier>
+      <definition lang="en" name="Middle"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">End</identifier>
+      <definition lang="en" name="End"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Up</identifier>
+      <definition lang="en" name="Up"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Down</identifier>
+      <definition lang="en" name="Down"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Above</identifier>
+      <definition lang="en" name="Above"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Below</identifier>
+      <definition lang="en" name="Below"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Size</identifier>
+      <definition lang="en" name="Size"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Large</identifier>
+      <definition lang="en" name="Large"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Extra</identifier>
+      <definition lang="en" name="Extra"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">True</identifier>
+      <definition lang="en" name="True"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">False</identifier>
+      <definition lang="en" name="False"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Integer</identifier>
+      <definition lang="en" name="Integer"/>
+    </concept> 
+    
+  </category>
+</mica>

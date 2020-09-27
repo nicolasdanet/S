@@ -1,0 +1,7 @@
+#N canvas 712 215 363 107 12;
+#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
+#X obj -60 12 freeze;
+#X text 24 24 comment;
+#X text 12 72 To avoid artefacts quote numbers (e.g. '3.14').;
+#X f 48;
+#X coords 0 0 1 1 250 175 0 0 0;

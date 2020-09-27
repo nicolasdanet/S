@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  
+  <map>en:TrebleClef en:Flat en:TrebleClefFlats</map>
+  <map>en:Treble8vaClef en:Flat en:Treble8vaClefFlats</map>
+  <map>en:Treble15maClef en:Flat en:Treble15maClefFlats</map>
+  <map>en:BassClef en:Flat en:BassClefFlats</map>
+  <map>en:Bass8vaClef en:Flat en:Bass8vaClefFlats</map>
+  <map>en:Bass15maClef en:Flat en:Bass15maClefFlats</map>
+  <map>en:AltoClef en:Flat en:AltoClefFlats</map>
+  <map>en:TenorClef en:Flat en:TenorClefFlats</map>
+  
+  <map>en:TrebleClef en:Sharp en:TrebleClefSharps</map>
+  <map>en:Treble8vaClef en:Sharp en:Treble8vaClefSharps</map>
+  <map>en:Treble15maClef en:Sharp en:Treble15maClefSharps</map>
+  <map>en:BassClef en:Sharp en:BassClefSharps</map>
+  <map>en:Bass8vaClef en:Sharp en:Bass8vaClefSharps</map>
+  <map>en:Bass15maClef en:Sharp en:Bass15maClefSharps</map>
+  <map>en:AltoClef en:Sharp en:AltoClefSharps</map>
+  <map>en:TenorClef en:Sharp en:TenorClefSharps</map>
+  
+</mica>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  
+  <map>en:C en:Ionian en:CIonian</map>
+  <map>en:C en:Major en:CMajor</map>
+  <map>en:C en:Dorian en:CDorian</map>
+  <map>en:C en:Phrygian en:CPhrygian</map>
+  <map>en:C en:Lydian en:CLydian</map>
+  <map>en:C en:Mixolydian en:CMixolydian</map>
+  <map>en:C en:Aeolian en:CAeolian</map>
+  <map>en:C en:Minor en:CMinor</map>
+  <map>en:C en:Locrian en:CLocrian</map>
+
+  <map>en:CSharp en:Ionian en:CSharpIonian</map>
+  <map>en:CSharp en:Major en:CSharpMajor</map>
+  <map>en:CSharp en:Dorian en:CSharpDorian</map>
+  <map>en:CSharp en:Phrygian en:CSharpPhrygian</map>
+  <map>en:CSharp en:Mixolydian en:CSharpMixolydian</map>
+  <map>en:CSharp en:Aeolian en:CSharpAeolian</map>
+  <map>en:CSharp en:Minor en:CSharpMinor</map>
+  <map>en:CSharp en:Locrian en:CSharpLocrian</map>
+  
+  <map>en:DFlat en:Ionian en:DFlatIonian</map>
+  <map>en:DFlat en:Major en:DFlatMajor</map>
+  <map>en:DFlat en:Dorian en:DFlatDorian</map>
+  <map>en:DFlat en:Lydian en:DFlatLydian</map>
+  <map>en:DFlat en:Mixolydian en:DFlatMixolydian</map>
+  
+  <map>en:D en:Ionian en:DIonian</map>
+  <map>en:D en:Major en:DMajor</map>
+  <map>en:D en:Dorian en:DDorian</map>
+  <map>en:D en:Phrygian en:DPhrygian</map>
+  <map>en:D en:Lydian en:DLydian</map>
+  <map>en:D en:Mixolydian en:DMixolydian</map>
+  <map>en:D en:Aeolian en:DAeolian</map>
+  <map>en:D en:Minor en:DMinor</map>
+  <map>en:D en:Locrian en:DLocrian</map>
+  
+  <map>en:DSharp en:Dorian en:DSharpDorian</map>
+  <map>en:DSharp en:Phrygian en:DSharpPhrygian</map>
+  <map>en:DSharp en:Aeolian en:DSharpAeolian</map>
+  <map>en:DSharp en:Minor en:DSharpMinor</map>
+  <map>en:DSharp en:Locrian en:DSharpLocrian</map>
+  
+  <map>en:EFlat en:Ionian en:EFlatIonian</map>
+  <map>en:EFlat en:Major en:EFlatMajor</map>
+  <map>en:EFlat en:Dorian en:EFlatDorian</map>
+  <map>en:EFlat en:Phrygian en:EFlatPhrygian</map>
+  <map>en:EFlat en:Lydian en:EFlatLydian</map>
+  <map>en:EFlat en:Mixolydian en:EFlatMixolydian</map>
+  <map>en:EFlat en:Aeolian en:EFlatAeolian</map>
+  <map>en:EFlat en:Minor en:EFlatMinor</map>
+  
+  <map>en:E en:Ionian en:EIonian</map>
+  <map>en:E en:Major en:EMajor</map>
+  <map>en:E en:Dorian en:EDorian</map>
+  <map>en:E en:Phrygian en:EPhrygian</map>
+  <map>en:E en:Lydian en:ELydian</map>
+  <map>en:E en:Mixolydian en:EMixolydian</map>
+  <map>en:E en:Aeolian en:EAeolian</map>
+  <map>en:E en:Minor en:EMinor</map>
+  <map>en:E en:Locrian en:ELocrian</map>
+  
+  <map>en:F en:Ionian en:FIonian</map>
+  <map>en:F en:Major en:FMajor</map>
+  <map>en:F en:Dorian en:FDorian</map>
+  <map>en:F en:Phrygian en:FPhrygian</map>
+  <map>en:F en:Lydian en:FLydian</map>
+  <map>en:F en:Mixolydian en:FMixolydian</map>
+  <map>en:F en:Aeolian en:FAeolian</map>
+  <map>en:F en:Minor en:FMinor</map>
+  <map>en:F en:Locrian en:FLocrian</map>
+  
+  <map>en:FSharp en:Ionian en:FSharpIonian</map>
+  <map>en:FSharp en:Major en:FSharpMajor</map>
+  <map>en:FSharp en:Dorian en:FSharpDorian</map>
+  <map>en:FSharp en:Phrygian en:FSharpPhrygian</map>
+  <map>en:FSharp en:Lydian en:FSharpLydian</map>
+  <map>en:FSharp en:Mixolydian en:FSharpMixolydian</map>
+  <map>en:FSharp en:Aeolian en:FSharpAeolian</map>
+  <map>en:FSharp en:Minor en:FSharpMinor</map>
+  <map>en:FSharp en:Locrian en:FSharpLocrian</map>
+  
+  <map>en:GFlat en:Ionian en:GFlatIonian</map>
+  <map>en:GFlat en:Major en:GFlatMajor</map>
+  <map>en:GFlat en:Lydian en:GFlatLydian</map>
+  <map>en:GFlat en:Mixolydian en:GFlatMixolydian</map>
+  
+  <map>en:G en:Ionian en:GIonian</map>
+  <map>en:G en:Major en:GMajor</map>
+  <map>en:G en:Dorian en:GDorian</map>
+  <map>en:G en:Phrygian en:GPhrygian</map>
+  <map>en:G en:Lydian en:GLydian</map>
+  <map>en:G en:Mixolydian en:GMixolydian</map>
+  <map>en:G en:Aeolian en:GAeolian</map>
+  <map>en:G en:Minor en:GMinor</map>
+  <map>en:G en:Locrian en:GLocrian</map>
+  
+  <map>en:GSharp en:Dorian en:GSharpDorian</map>
+  <map>en:GSharp en:Phrygian en:GSharpPhrygian</map>
+  <map>en:GSharp en:Mixolydian en:GSharpMixolydian</map>
+  <map>en:GSharp en:Aeolian en:GSharpAeolian</map>
+  <map>en:GSharp en:Minor en:GSharpMinor</map>
+  <map>en:GSharp en:Locrian en:GSharpLocrian</map>
+  
+  <map>en:AFlat en:Ionian en:AFlatIonian</map>
+  <map>en:AFlat en:Major en:AFlatMajor</map>
+  <map>en:AFlat en:Dorian en:AFlatDorian</map>
+  <map>en:AFlat en:Lydian en:AFlatLydian</map>
+  <map>en:AFlat en:Mixolydian en:AFlatMixolydian</map>
+  <map>en:AFlat en:Aeolian en:AFlatAeolian</map>
+  <map>en:AFlat en:Minor en:AFlatMinor</map>
+  
+  <map>en:A en:Ionian en:AIonian</map>
+  <map>en:A en:Major en:AMajor</map>
+  <map>en:A en:Dorian en:ADorian</map>
+  <map>en:A en:Phrygian en:APhrygian</map>
+  <map>en:A en:Lydian en:ALydian</map>
+  <map>en:A en:Mixolydian en:AMixolydian</map>
+  <map>en:A en:Aeolian en:AAeolian</map>
+  <map>en:A en:Minor en:AMinor</map>
+  <map>en:A en:Locrian en:ALocrian</map>
+  
+  <map>en:ASharp en:Phrygian en:ASharpPhrygian</map>
+  <map>en:ASharp en:Aeolian en:ASharpAeolian</map>
+  <map>en:ASharp en:Minor en:ASharpMinor</map>
+  <map>en:ASharp en:Locrian en:ASharpLocrian</map>
+  
+  <map>en:BFlat en:Ionian en:BFlatIonian</map>
+  <map>en:BFlat en:Major en:BFlatMajor</map>
+  <map>en:BFlat en:Dorian en:BFlatDorian</map>
+  <map>en:BFlat en:Phrygian en:BFlatPhrygian</map>
+  <map>en:BFlat en:Lydian en:BFlatLydian</map>
+  <map>en:BFlat en:Mixolydian en:BFlatMixolydian</map>
+  <map>en:BFlat en:Aeolian en:BFlatAeolian</map>
+  <map>en:BFlat en:Minor en:BFlatMinor</map>
+  <map>en:BFlat en:Locrian en:BFlatLocrian</map>
+  
+  <map>en:B en:Ionian en:BIonian</map>
+  <map>en:B en:Major en:BMajor</map>
+  <map>en:B en:Dorian en:BDorian</map>
+  <map>en:B en:Phrygian en:BPhrygian</map>
+  <map>en:B en:Lydian en:BLydian</map>
+  <map>en:B en:Mixolydian en:BMixolydian</map>
+  <map>en:B en:Aeolian en:BAeolian</map>
+  <map>en:B en:Minor en:BMinor</map>
+  <map>en:B en:Locrian en:BLocrian</map>
+  
+</mica>

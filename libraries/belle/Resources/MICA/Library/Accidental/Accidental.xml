@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">Accidental</identifier>
+      <definition lang="en" name="Accidental"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TripleFlat</identifier>
+      <definition lang="en" name="Triple Flat"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">DoubleFlat</identifier>
+      <definition lang="en" name="Double Flat"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">Flat</identifier>
+      <definition lang="en" name="Flat"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">Natural</identifier>
+      <definition lang="en" name="Natural"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">Sharp</identifier>
+      <definition lang="en" name="Sharp"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">DoubleSharp</identifier>
+      <definition lang="en" name="Double Sharp"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">TripleSharp</identifier>
+      <definition lang="en" name="Triple Sharp"/>
+    </concept>
+
+    <concept>
+      <sequence>
+        en:TripleFlat en:DoubleFlat en:Flat en:Natural en:Sharp en:DoubleSharp en:TripleSharp
+      </sequence>
+      <identifier lang="en">Accidentals</identifier>
+      <definition lang="en" name="Accidentals"/>
+    </concept>
+    
+  </category>
+</mica>

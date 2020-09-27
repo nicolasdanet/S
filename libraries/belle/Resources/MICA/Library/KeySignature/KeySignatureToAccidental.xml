@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+
+  <map>en:Accidental en:SevenFlats en:Flat</map>
+  <map>en:Accidental en:SixFlats en:Flat</map>
+  <map>en:Accidental en:FiveFlats en:Flat</map>
+  <map>en:Accidental en:FourFlats en:Flat</map>
+  <map>en:Accidental en:ThreeFlats en:Flat</map>
+  <map>en:Accidental en:TwoFlats en:Flat</map>
+  <map>en:Accidental en:OneFlat en:Flat</map>
+  <map>en:Accidental en:OneSharp en:Sharp</map>
+  <map>en:Accidental en:TwoSharps en:Sharp</map>
+  <map>en:Accidental en:ThreeSharps en:Sharp</map>
+  <map>en:Accidental en:FourSharps en:Sharp</map>
+  <map>en:Accidental en:FiveSharps en:Sharp</map>
+  <map>en:Accidental en:SixSharps en:Sharp</map>
+  <map>en:Accidental en:SevenSharps en:Sharp</map>
+
+</mica>

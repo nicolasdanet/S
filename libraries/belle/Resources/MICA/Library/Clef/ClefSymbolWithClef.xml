@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+
+  <map>en:Symbol en:TrebleClef en:GClef</map>
+  <map>en:Symbol en:BassClef en:FClef</map>
+  <map>en:Symbol en:AltoClef en:CClef</map>
+  <map>en:Symbol en:TenorClef en:CClef</map>
+  <map>en:Symbol en:Treble8vaClef en:GSuper8Clef</map>
+  <map>en:Symbol en:Treble15maClef en:GSuper15Clef</map>
+  <map>en:Symbol en:Bass8vaClef en:FSub8Clef</map>
+  <map>en:Symbol en:Bass15maClef en:FSub15Clef</map>
+  <map>en:Symbol en:PercussionClef en:BarredNeutralClef</map>
+  <map>en:Symbol en:SopranoClef en:CClef</map>
+  <map>en:Symbol en:MezzoSopranoClef en:CClef</map>
+  <map>en:Symbol en:TenorVoiceClef en:GSub8Clef</map>
+  <map>en:Symbol en:BaritoneCClef en:CClef</map>
+  <map>en:Symbol en:BaritoneFClef en:FClef</map>
+  <map>en:Symbol en:SubBassClef en:FClef</map>
+  <map>en:Symbol en:FrenchViolinClef en:GClef</map>
+
+</mica>

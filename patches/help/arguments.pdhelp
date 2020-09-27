@@ -1,0 +1,18 @@
+#N canvas 565 111 337 292 12;
+#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
+#X obj -60 12 freeze;
+#X text 12 252 See also:;
+#X obj 36 204 print;
+#X obj 36 108 bng 15 250 50 0 empty empty empty 17 7 0 10 #ffffff #000000 #000000;
+#X obj 168 252 dspstatus;
+#X obj 84 252 samplerate;
+#X text 24 24 arguments;
+#X obj 36 144 arguments;
+#X text 12 72 Get arguments (and name) of an abstraction.;
+#X obj 144 144 foo 1 2 three;
+#X obj 252 252 title;
+#X f 5;
+#X connect 4 0 8 0;
+#X connect 8 0 3 0;
+#X connect 8 1 3 0;
+#X coords 0 0 1 1 250 175 0 0 0;

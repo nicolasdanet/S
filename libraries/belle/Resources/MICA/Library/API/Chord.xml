@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">Chord</identifier>
+      <definition lang="en" name="Chord"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Note</identifier>
+      <definition lang="en" name="Note"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Rest</identifier>
+      <definition lang="en" name="Rest"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Stem</identifier>
+      <definition lang="en" name="Stem"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Tie</identifier>
+      <definition lang="en" name="Tie"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">Beam</identifier>
+      <definition lang="en" name="Beam"/>
+    </concept>
+    
+  </category>
+</mica>

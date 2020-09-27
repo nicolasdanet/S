@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <sequence>
+        en:QuadruplyDiminished en:TriplyDiminished en:DoublyDiminished en:Diminished en:Minor en:Major en:Augmented en:DoublyAugmented en:TriplyAugmented en:QuadruplyAugmented
+      </sequence>
+      <identifier lang="en">MajorMinorQualities</identifier>
+      <definition lang="en" name="Major Minor Qualities"/>
+    </concept>
+
+  </category>
+</mica>

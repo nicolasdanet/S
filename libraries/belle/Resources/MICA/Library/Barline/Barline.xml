@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">Barline</identifier>
+      <definition lang="en" name="Barline"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">StandardBarline</identifier>
+      <definition lang="en" name="Standard Barline"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">DoubleBarline</identifier>
+      <definition lang="en" name="Double Barline"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">BeginBarline</identifier>
+      <definition lang="en" name="Begin Barline"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">EndBarline</identifier>
+      <definition lang="en" name="End Barline"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">BeginRepeatBarline</identifier>
+      <definition lang="en" name="Begin Repeat Barline"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EndRepeatBarline</identifier>
+      <definition lang="en" name="End Repeat Barline"/>    
+    </concept>
+
+    <concept>
+      <identifier lang="en">BeginAndEndRepeatBarline</identifier>
+      <definition lang="en" name="Begin And End Repeat Barline"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">ShortBarline</identifier>
+      <definition lang="en" name="Short Barline"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">StyledBarline</identifier>
+      <definition lang="en" name="Styled Barline"/>
+    </concept>
+      
+  </category>
+</mica>

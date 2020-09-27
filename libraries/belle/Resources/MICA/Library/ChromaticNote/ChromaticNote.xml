@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">ATripleFlat</identifier>
+      <definition lang="en" name="A Triple Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ADoubleFlat</identifier>
+      <definition lang="en" name="A Double Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AFlat</identifier>
+      <definition lang="en" name="A Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ASharp</identifier>
+      <definition lang="en" name="A Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ADoubleSharp</identifier>
+      <definition lang="en" name="A Double Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ATripleSharp</identifier>
+      <definition lang="en" name="A Triple Sharp"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">BTripleFlat</identifier>
+      <definition lang="en" name="B Triple Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BDoubleFlat</identifier>
+      <definition lang="en" name="B Double Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BFlat</identifier>
+      <definition lang="en" name="B Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BSharp</identifier>
+      <definition lang="en" name="B Sharp"/>
+    </concept>
+      
+    <concept>
+      <identifier lang="en">BDoubleSharp</identifier>
+      <definition lang="en" name="B Double Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">BTripleSharp</identifier>
+      <definition lang="en" name="B Triple Sharp"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">CTripleFlat</identifier>
+      <definition lang="en" name="C Triple Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CDoubleFlat</identifier>
+      <definition lang="en" name="C Double Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CFlat</identifier>
+      <definition lang="en" name="C Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CSharp</identifier>
+      <definition lang="en" name="C Sharp"/>  
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CDoubleSharp</identifier>
+      <definition lang="en" name="C Double Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CTripleSharp</identifier>
+      <definition lang="en" name="C Triple Sharp"/>    
+    </concept>
+
+    <concept>
+      <identifier lang="en">DTripleFlat</identifier>
+      <definition lang="en" name="D Triple Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DDoubleFlat</identifier>
+      <definition lang="en" name="D Double Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DFlat</identifier>
+      <definition lang="en" name="D Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DSharp</identifier>
+      <definition lang="en" name="D Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DDoubleSharp</identifier>
+      <definition lang="en" name="D Double Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DTripleSharp</identifier>
+      <definition lang="en" name="D Triple Sharp"/>    
+    </concept>
+
+    <concept>
+      <identifier lang="en">ETripleFlat</identifier>
+      <definition lang="en" name="E Triple Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EDoubleFlat</identifier>
+      <definition lang="en" name="E Double Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EFlat</identifier>
+      <definition lang="en" name="E Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ESharp</identifier>
+      <definition lang="en" name="E Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EDoubleSharp</identifier>
+      <definition lang="en" name="E Double Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ETripleSharp</identifier>
+      <definition lang="en" name="E Triple Sharp"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">FTripleFlat</identifier>
+      <definition lang="en" name="F Triple Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FDoubleFlat</identifier>
+      <definition lang="en" name="F Double Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FFlat</identifier>
+      <definition lang="en" name="F Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FSharp</identifier>
+      <definition lang="en" name="F Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FDoubleSharp</identifier>
+      <definition lang="en" name="F Double Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">FTripleSharp</identifier>
+      <definition lang="en" name="F Triple Sharp"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">GTripleFlat</identifier>
+      <definition lang="en" name="G Triple Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GDoubleFlat</identifier>
+      <definition lang="en" name="G Double Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GFlat</identifier>
+      <definition lang="en" name="G Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GSharp</identifier>
+      <definition lang="en" name="G Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GDoubleSharp</identifier>
+      <definition lang="en" name="G Double Sharp"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">GTripleSharp</identifier>
+      <definition lang="en" name="G Triple Sharp"/>
+    </concept>
+    
+  </category>
+</mica>

@@ -1,0 +1,9 @@
+#N canvas 576 193 300 162 12;
+#X obj 36 24 loadbang;
+#X obj 36 48 dspstatus;
+#X obj 36 84 tgl 15 0 empty empty empty 0 0 0 10 #ffffff #000000 #000000 0 1;
+#X obj 36 120 outlet;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X coords 0 0 1 1 250 175 0 0 0;

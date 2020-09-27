@@ -1,0 +1,17 @@
+#N canvas 566 111 300 286 12;
+#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
+#X obj -60 12 freeze;
+#X text 12 252 See also:;
+#X obj 36 216 print;
+#X obj 36 108 bng 15 250 50 0 empty empty empty 17 7 0 10 #ffffff #000000 #000000;
+#X text 24 24 directories;
+#X obj 36 180 directories;
+#X obj 84 252 arguments;
+#X obj 168 252 makefilename;
+#X f 12;
+#X msg 72 108 support;
+#X text 12 72 Get useful directories.;
+#X connect 4 0 6 0;
+#X connect 6 0 3 0;
+#X connect 9 0 6 0;
+#X coords 0 0 1 1 250 175 0 0 0;

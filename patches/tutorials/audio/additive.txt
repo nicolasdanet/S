@@ -1,0 +1,54 @@
+
+# First an arpeggio.;
+
+$0-pitch1 89; $0-amplitude1 80 30;
+100 $0-pitch2 72; $0-amplitude2 80 30;
+100 $0-pitch3 57; $0-amplitude3 90 30;
+100 $0-pitch4 84; $0-amplitude4 78 30;
+100 $0-pitch5 74; $0-amplitude5 74 30;
+100 $0-pitch6 73; $0-amplitude6 74 30;
+100 $0-pitch7 100; $0-amplitude7 78 30;
+100 $0-pitch8 37; $0-amplitude8 95 30;
+
+# Gliss four of the oscillators to new frequencies.;
+
+600 $0-pitch1 70 1000;
+300 $0-pitch8 40 1000;
+300 $0-pitch4 89 1000;
+300 $0-pitch7 95 1000;
+
+# Turn them off with decay time 1500;
+
+1000
+$0-amplitude1 0 1500;
+$0-amplitude2 0 1500;
+$0-amplitude3 0 1500;
+$0-amplitude4 0 1500;
+$0-amplitude5 0 1500;
+$0-amplitude6 0 1500;
+$0-amplitude7 0 1500;
+$0-amplitude8 0 1500;
+
+# And re-attack them...;
+
+1000
+$0-amplitude1 85 5;
+$0-amplitude2 85 5;
+$0-amplitude3 85 5;
+$0-amplitude4 90 5;
+$0-amplitude5 85 5;
+$0-amplitude6 85 5;
+$0-amplitude7 90 5;
+$0-amplitude8 85 5;
+
+# Try varying decay times.;
+
+10
+$0-amplitude1 0 2000;
+$0-amplitude2 0 2000;
+$0-amplitude3 0 2000;
+$0-amplitude4 0 500;
+$0-amplitude5 0 1000;
+$0-amplitude6 0 1000;
+$0-amplitude7 0 500;
+$0-amplitude8 0 4000;

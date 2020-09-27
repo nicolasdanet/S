@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <identifier lang="en">Mode</identifier>
+      <definition lang="en" name="Mode"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">Ionian</identifier>
+      <definition lang="en" name="Ionian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Dorian</identifier>
+      <definition lang="en" name="Dorian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Phrygian</identifier>
+      <definition lang="en" name="Phrygian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Lydian</identifier>
+      <definition lang="en" name="Lydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Mixolydian</identifier>
+      <definition lang="en" name="Mixolydian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Aeolian</identifier>
+      <definition lang="en" name="Aeolian"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Locrian</identifier>
+      <definition lang="en" name="Locrian"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:Ionian en:Dorian en:Phrygian en:Lydian en:Mixolydian en:Aeolian en:Locrian
+      </sequence>
+      <identifier lang="en">Modes</identifier>
+      <definition lang="en" name="Modes"/>
+    </concept>
+    
+  </category>
+</mica>

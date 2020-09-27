@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">Letter</identifier>
+      <definition lang="en" name="Letter"/>
+    </concept>
+    
+    <concept>
+      <sequence cyclic="true">
+        en:A en:B en:C en:D en:E en:F en:G
+      </sequence>
+      <identifier lang="en">A</identifier>
+      <definition lang="en" name="A"/>
+    </concept>
+    
+    <concept>
+      <sequence cyclic="true">
+        en:B en:C en:D en:E en:F en:G en:A
+      </sequence>
+      <identifier lang="en">B</identifier>
+      <definition lang="en" name="B"/>
+    </concept>
+    
+    <concept>
+      <sequence cyclic="true">
+        en:C en:D en:E en:F en:G en:A en:B
+      </sequence>
+      <identifier lang="en">C</identifier>
+      <definition lang="en" name="C"/>
+    </concept>
+    
+    <concept>
+      <sequence cyclic="true">
+        en:D en:E en:F en:G en:A en:B en:C
+      </sequence>
+      <identifier lang="en">D</identifier>
+      <definition lang="en" name="D"/>
+    </concept>
+    
+    <concept>
+      <sequence cyclic="true">
+        en:E en:F en:G en:A en:B en:C en:D
+      </sequence>
+      <identifier lang="en">E</identifier>
+      <definition lang="en" name="E"/>
+    </concept>
+    
+    <concept>
+      <sequence cyclic="true">
+        en:F en:G en:A en:B en:C en:D en:E
+      </sequence>
+      <identifier lang="en">F</identifier>
+      <definition lang="en" name="F"/>
+    </concept>
+    
+    <concept>
+      <sequence cyclic="true">
+        en:G en:A en:B en:C en:D en:E en:F
+      </sequence>
+      <identifier lang="en">G</identifier>
+      <definition lang="en" name="G"/>
+    </concept>
+
+    <concept>
+      <sequence cyclic="true">
+        en:A en:B en:C en:D en:E en:F en:G
+      </sequence>
+      <identifier lang="en">Letters</identifier>
+      <definition lang="en" name="Letters"/>
+    </concept>
+    
+  </category>
+</mica>

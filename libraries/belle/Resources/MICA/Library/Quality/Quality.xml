@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <identifier lang="en">Quality</identifier>
+      <definition lang="en" name="Quality"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyAugmented</identifier>
+      <definition lang="en" name="Quadruply Augmented"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyAugmented</identifier>
+      <definition lang="en" name="Triply Augmented"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyAugmented</identifier>
+      <definition lang="en" name="Doubly Augmented"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Augmented</identifier>
+      <definition lang="en" name="Augmented"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Major</identifier>
+      <definition lang="en" name="Major"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Perfect</identifier>
+      <definition lang="en" name="Perfect"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Minor</identifier>
+      <definition lang="en" name="Minor"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Diminished</identifier>
+      <definition lang="en" name="Diminished"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyDiminished</identifier>
+      <definition lang="en" name="Doubly Diminished"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyDiminished</identifier>
+      <definition lang="en" name="Triply Diminished"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyDiminished</identifier>
+      <definition lang="en" name="Quadruply Diminished"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:QuadruplyAugmented en:TriplyAugmented en:DoublyAugmented en:Augmented en:Major en:Perfect en:Minor en:Diminished en:DoublyDiminished en:TriplyDiminished en:QuadruplyDiminished
+      </sequence>
+      <identifier lang="en">Qualities</identifier>
+      <definition lang="en" name="Qualities"/>
+    </concept>
+    
+  </category>
+</mica>

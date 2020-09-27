@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <identifier lang="en">Interval</identifier>
+      <definition lang="en" name="Interval"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Ascending</identifier>
+      <definition lang="en" name="Ascending"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Descending</identifier>
+      <definition lang="en" name="Descending"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyDiminishedUnison</identifier>
+      <definition lang="en" name="Quadruply Diminished Unison"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyDiminishedUnison</identifier>
+      <definition lang="en" name="Triply Diminished Unison"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyDiminishedUnison</identifier>
+      <definition lang="en" name="Doubly Diminished Unison"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DiminishedUnison</identifier>
+      <definition lang="en" name="Diminished Unison"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">PerfectUnison</identifier>
+      <definition lang="en" name="Perfect Unison"/> 
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AugmentedUnison</identifier>
+      <definition lang="en" name="Augmented Unison"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyAugmentedUnison</identifier>
+      <definition lang="en" name="Doubly Augmented Unison"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyAugmentedUnison</identifier>
+      <definition lang="en" name="Triply Augmented Unison"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyAugmentedUnison</identifier>
+      <definition lang="en" name="Quadruply Augmented Unison"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyDiminishedSecond</identifier>
+      <definition lang="en" name="Quadruply Diminished Second"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyDiminishedSecond</identifier>
+      <definition lang="en" name="Triply Diminished Second"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyDiminishedSecond</identifier>
+      <definition lang="en" name="Doubly Diminished Second"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DiminishedSecond</identifier>
+      <definition lang="en" name="Diminished Second"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">MinorSecond</identifier>
+      <definition lang="en" name="Minor Second"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">MajorSecond</identifier>
+      <definition lang="en" name="Major Second"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AugmentedSecond</identifier>
+      <definition lang="en" name="Augmented Second"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyAugmentedSecond</identifier>
+      <definition lang="en" name="Doubly Augmented Second"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyAugmentedSecond</identifier>
+      <definition lang="en" name="Triply Augmented Second"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyAugmentedSecond</identifier>
+      <definition lang="en" name="Quadruply Augmented Second"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyDiminishedThird</identifier>
+      <definition lang="en" name="Quadruply Diminished Third"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyDiminishedThird</identifier>
+      <definition lang="en" name="Triply Diminished Third"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyDiminishedThird</identifier>
+      <definition lang="en" name="Doubly Diminished Third"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DiminishedThird</identifier>
+      <definition lang="en" name="Diminished Third"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">MinorThird</identifier>
+      <definition lang="en" name="Minor Third"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">MajorThird</identifier>
+      <definition lang="en" name="Major Third"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AugmentedThird</identifier>
+      <definition lang="en" name="Augmented Third"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyAugmentedThird</identifier>
+      <definition lang="en" name="Doubly Augmented Third"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyAugmentedThird</identifier>
+      <definition lang="en" name="Triply Augmented Third"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyAugmentedThird</identifier>
+      <definition lang="en" name="Quadruply Augmented Third"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyDiminishedFourth</identifier>
+      <definition lang="en" name="Quadruply Diminished Fourth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyDiminishedFourth</identifier>
+      <definition lang="en" name="Triply Diminished Fourth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyDiminishedFourth</identifier>
+      <definition lang="en" name="Doubly Diminished Fourth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DiminishedFourth</identifier>
+      <definition lang="en" name="Diminished Fourth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">PerfectFourth</identifier>
+      <definition lang="en" name="Perfect Fourth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AugmentedFourth</identifier>
+      <definition lang="en" name="Augmented Fourth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyAugmentedFourth</identifier>
+      <definition lang="en" name="Doubly Augmented Fourth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyAugmentedFourth</identifier>
+      <definition lang="en" name="Triply Augmented Fourth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyAugmentedFourth</identifier>
+      <definition lang="en" name="Quadruply Augmented Fourth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyDiminishedFifth</identifier>
+      <definition lang="en" name="Quadruply Diminished Fifth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyDiminishedFifth</identifier>
+      <definition lang="en" name="Triply Diminished Fifth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyDiminishedFifth</identifier>
+      <definition lang="en" name="Doubly Diminished Fifth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DiminishedFifth</identifier>
+      <definition lang="en" name="Diminished Fifth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">PerfectFifth</identifier>
+      <definition lang="en" name="Perfect Fifth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AugmentedFifth</identifier>
+      <definition lang="en" name="Augmented Fifth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyAugmentedFifth</identifier>
+      <definition lang="en" name="Doubly Augmented Fifth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyAugmentedFifth</identifier>
+      <definition lang="en" name="Triply Augmented Fifth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyAugmentedFifth</identifier>
+      <definition lang="en" name="Quadruply Augmented Fifth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyDiminishedSixth</identifier>
+      <definition lang="en" name="Quadruply Diminished Sixth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyDiminishedSixth</identifier>
+      <definition lang="en" name="Triply Diminished Sixth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyDiminishedSixth</identifier>
+      <definition lang="en" name="Doubly Diminished Sixth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DiminishedSixth</identifier>
+      <definition lang="en" name="Diminished Sixth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">MinorSixth</identifier>
+      <definition lang="en" name="Minor Sixth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">MajorSixth</identifier>
+      <definition lang="en" name="Major Sixth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AugmentedSixth</identifier>
+      <definition lang="en" name="Augmented Sixth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyAugmentedSixth</identifier>
+      <definition lang="en" name="Doubly Augmented Sixth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyAugmentedSixth</identifier>
+      <definition lang="en" name="Triply Augmented Sixth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyAugmentedSixth</identifier>
+      <definition lang="en" name="Quadruply Augmented Sixth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyDiminishedSeventh</identifier>
+      <definition lang="en" name="Quadruply Diminished Seventh"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyDiminishedSeventh</identifier>
+      <definition lang="en" name="Triply Diminished Seventh"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyDiminishedSeventh</identifier>
+      <definition lang="en" name="Doubly Diminished Seventh"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DiminishedSeventh</identifier>
+      <definition lang="en" name="Diminished Seventh"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">MinorSeventh</identifier>
+      <definition lang="en" name="Minor Seventh"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">MajorSeventh</identifier>
+      <definition lang="en" name="Major Seventh"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AugmentedSeventh</identifier>
+      <definition lang="en" name="Augmented Seventh"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyAugmentedSeventh</identifier>
+      <definition lang="en" name="Doubly Augmented Seventh"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyAugmentedSeventh</identifier>
+      <definition lang="en" name="Triply Augmented Seventh"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyAugmentedSeventh</identifier>
+      <definition lang="en" name="Quadruply Augmented Seventh"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyDiminishedOctave</identifier>
+      <definition lang="en" name="Quadruply Diminished Octave"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyDiminishedOctave</identifier>
+      <definition lang="en" name="Triply Diminished Octave"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyDiminishedOctave</identifier>
+      <definition lang="en" name="Doubly Diminished Octave"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DiminishedOctave</identifier>
+      <definition lang="en" name="Diminished Octave"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">PerfectOctave</identifier>
+      <definition lang="en" name="Perfect Octave"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">AugmentedOctave</identifier>
+      <definition lang="en" name="Augmented Octave"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoublyAugmentedOctave</identifier>
+      <definition lang="en" name="Doubly Augmented Octave"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TriplyAugmentedOctave</identifier>
+      <definition lang="en" name="Triply Augmented Octave"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuadruplyAugmentedOctave</identifier>
+      <definition lang="en" name="Quadruply Augmented Octave"/>
+    </concept>
+    
+  </category>
+</mica>

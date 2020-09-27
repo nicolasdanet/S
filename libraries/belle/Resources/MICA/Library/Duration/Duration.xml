@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">Duration</identifier>
+      <definition lang="en" name="Duration"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">HundredTwentyEighthNote</identifier>
+      <definition lang="en" name="Hundred Twenty-Eighth Note"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">SixtyFourthNote</identifier>
+      <definition lang="en" name="Sixty-Fourth Note"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ThirtySecondNote</identifier>
+      <definition lang="en" name="Thirty-Second Note"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">SixteenthNote</identifier>
+      <definition lang="en" name="Sixteenth Note"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">EighthNote</identifier>
+      <definition lang="en" name="Eighth Note"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">QuarterNote</identifier>
+      <definition lang="en" name="Quarter Note"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">HalfNote</identifier>
+      <definition lang="en" name="Half Note"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">WholeNote</identifier>
+      <definition lang="en" name="Whole Note"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DoubleWholeNote</identifier>
+      <definition lang="en" name="Double Whole Note"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Longa</identifier>
+      <definition lang="en" name="Longa"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:HundredTwentyEighthNote en:SixtyFourthNote en:ThirtySecondNote en:SixteenthNote en:EighthNote en:QuarterNote en:HalfNote en:WholeNote en:DoubleWholeNote en:Longa
+      </sequence>
+      <identifier lang="en">Durations</identifier>
+      <definition lang="en" name="Durations"/>
+    </concept>
+    
+  </category>
+</mica>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">Clef</identifier>
+      <definition lang="en" name="Clef"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TrebleClef</identifier>
+      <definition lang="en" name="Treble Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">BassClef</identifier>
+      <definition lang="en" name="Bass Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">AltoClef</identifier>
+      <definition lang="en" name="Alto Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">TenorClef</identifier>
+      <definition lang="en" name="Tenor Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">Treble8vaClef</identifier>
+      <definition lang="en" name="Treble Octave Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">Treble15maClef</identifier>
+      <definition lang="en" name="Treble Double Octave Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">Bass8vaClef</identifier>
+      <definition lang="en" name="Bass Octave Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">Bass15maClef</identifier>
+      <definition lang="en" name="Bass Double Octave Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">PercussionClef</identifier>
+      <definition lang="en" name="Percussion Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">SopranoClef</identifier>
+      <definition lang="en" name="Soprano Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">MezzoSopranoClef</identifier>
+      <definition lang="en" name="Mezzo-Soprano Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">TenorVoiceClef</identifier>
+      <definition lang="en" name="Tenor Voice Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">BaritoneCClef</identifier>
+      <definition lang="en" name="Baritone C Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">BaritoneFClef</identifier>
+      <definition lang="en" name="Baritone F Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">SubBassClef</identifier>
+      <definition lang="en" name="Sub-Bass Clef"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">FrenchViolinClef</identifier>
+      <definition lang="en" name="French Violin Clef"/>
+    </concept>
+
+    <concept>
+      <sequence>
+        en:TrebleClef en:BassClef en:AltoClef en:TenorClef en:Treble8vaClef en:Treble15maClef en:Bass8vaClef en:Bass15maClef en:PercussionClef en:SopranoClef en:MezzoSopranoClef en:TenorVoiceClef en:BaritoneCClef en:BaritoneFClef en:SubBassClef en:FrenchViolinClef
+      </sequence>
+      <identifier lang="en">Clefs</identifier>
+      <definition lang="en" name="Clefs"/>
+    </concept>
+    
+  </category>
+</mica>

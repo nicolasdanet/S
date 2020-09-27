@@ -1,0 +1,9 @@
+_SLOT_ @1234 32;
+scalar 5;
+$0-template 126.898 196.035 28.2539;
+scalar 5;
+$0-template 190.957 154.135 1.06341;
+scalar 5;
+$0-template 124.297 123.466 73.1565;
+scalar 5;
+$0-template 136.3 110.769 21.8213;

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <identifier lang="en">KeySignature</identifier>
+      <definition lang="en" name="Key Signature"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:B en:E en:A en:D en:G en:C en:F
+      </sequence>
+      <identifier lang="en">SevenFlats</identifier>
+      <definition lang="en" name="Seven Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:B en:E en:A en:D en:G en:C
+      </sequence>
+      <identifier lang="en">SixFlats</identifier>
+      <definition lang="en" name="Six Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:B en:E en:A en:D en:G
+      </sequence>
+      <identifier lang="en">FiveFlats</identifier>
+      <definition lang="en" name="Five Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:B en:E en:A en:D
+      </sequence>
+      <identifier lang="en">FourFlats</identifier>
+      <definition lang="en" name="Four Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:B en:E en:A
+      </sequence>
+      <identifier lang="en">ThreeFlats</identifier>
+      <definition lang="en" name="Three Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:B en:E
+      </sequence>
+      <identifier lang="en">TwoFlats</identifier>
+      <definition lang="en" name="Two Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:B
+      </sequence>
+      <identifier lang="en">OneFlat</identifier>
+      <definition lang="en" name="One Flat"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">NoAccidentals</identifier>
+      <definition lang="en" name="No Accidentals"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:F
+      </sequence>
+      <identifier lang="en">OneSharp</identifier>
+      <definition lang="en" name="One Sharp"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:F en:C
+      </sequence>
+      <identifier lang="en">TwoSharps</identifier>
+      <definition lang="en" name="Two Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:F en:C en:G
+      </sequence>
+      <identifier lang="en">ThreeSharps</identifier>
+      <definition lang="en" name="Three Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:F en:C en:G en:D
+      </sequence>
+      <identifier lang="en">FourSharps</identifier>
+      <definition lang="en" name="Four Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:F en:C en:G en:D en:A
+      </sequence>
+      <identifier lang="en">FiveSharps</identifier>
+      <definition lang="en" name="Five Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:F en:C en:G en:D en:A en:E
+      </sequence>
+      <identifier lang="en">SixSharps</identifier>
+      <definition lang="en" name="Six Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:F en:C en:G en:D en:A en:E en:B
+      </sequence>
+      <identifier lang="en">SevenSharps</identifier>
+      <definition lang="en" name="Seven Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:SevenFlats en:SixFlats en:FiveFlats en:FourFlats en:ThreeFlats en:TwoFlats en:OneFlat en:NoAccidentals en:OneSharp en:TwoSharps en:ThreeSharps en:FourSharps en:FiveSharps en:SixSharps en:SevenSharps
+      </sequence>
+      <identifier lang="en">KeySignatures</identifier>
+      <definition lang="en" name="Key Signatures"/>
+    </concept>
+    
+  </category>
+</mica>

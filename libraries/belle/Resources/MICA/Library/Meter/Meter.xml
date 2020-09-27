@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <identifier lang="en">SimpleMeter</identifier>
+      <definition lang="en" name="Simple Meter"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">CompoundMeter</identifier>
+      <definition lang="en" name="Compound Meter"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">PerfectMeter</identifier>
+      <definition lang="en" name="Perfect Meter"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">ImperfectMeter</identifier>
+      <definition lang="en" name="Imperfect Meter"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">IrrationalMeter</identifier>
+      <definition lang="en" name="Irrational Meter"/>
+    </concept>
+
+  </category>
+</mica>

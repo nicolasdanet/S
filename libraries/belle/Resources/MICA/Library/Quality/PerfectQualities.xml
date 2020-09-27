@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <sequence>
+        en:QuadruplyDiminished en:TriplyDiminished en:DoublyDiminished en:Diminished en:Perfect en:Augmented en:DoublyAugmented en:TriplyAugmented en:QuadruplyAugmented
+      </sequence>
+      <identifier lang="en">PerfectQualities</identifier>
+      <definition lang="en" name="Perfect Qualities"/>
+    </concept>
+    
+  </category>
+</mica>

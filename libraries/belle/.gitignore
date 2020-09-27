@@ -1,0 +1,8 @@
+.DS_Store
+Builds/
+*.mode2v3
+*.pbxuser
+xcuserdata/
+xcshareddata/
+Belle
+Resources/MICA/MicaData*.hpp

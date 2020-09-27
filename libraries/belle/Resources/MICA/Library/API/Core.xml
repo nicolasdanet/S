@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">Partwise</identifier>
+      <definition lang="en" name="Partwise"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Instantwise</identifier>
+      <definition lang="en" name="Instantwise"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Type</identifier>
+      <definition lang="en" name="Type"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Island</identifier>
+      <definition lang="en" name="Island"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Token</identifier>
+      <definition lang="en" name="Token"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Kind</identifier>
+      <definition lang="en" name="Kind"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Value</identifier>
+      <definition lang="en" name="Value"/>
+    </concept>
+    
+  </category>
+</mica>

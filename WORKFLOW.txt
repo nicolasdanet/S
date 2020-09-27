@@ -1,0 +1,49 @@
+
+# Workflow
+
+First fork the repository on GitHub.
+
+Clone:
+
+    git clone https://github.com/YOURNAME/Spaghettis
+    git remote add upstream https://github.com/Spaghettis/Spaghettis.git
+
+Branch:
+
+    git branch dev
+    git checkout dev
+
+Work:
+    git commit -am "Do ... 1"
+    git commit -am "Do ... 2"
+    git commit -am "Do ... 3"
+    git commit -am "Do ... 4"
+    git commit -am "Do ... 5"
+
+    git push origin dev
+
+Rebase:
+
+    [ git pull --rebase upstream master ]
+    [ git rebase master ]
+
+Clean:
+
+    [ git rebase -i HEAD~5 ]
+    [ git push --force origin dev ]
+
+Ask:
+
+    PULL REQUEST
+
+    MERGED
+
+Synchronize:
+
+    git checkout master
+    git pull --rebase upstream master
+    git push origin master
+
+    [ git branch -d dev ]
+    [ git push --delete origin dev ]
+

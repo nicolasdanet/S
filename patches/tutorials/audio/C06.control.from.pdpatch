@@ -1,0 +1,15 @@
+#N canvas 648 188 300 319 12;
+#X obj 36 240 snapshot~;
+#X obj 36 108 phasor~ 1;
+#X obj 84 192 metro 100;
+#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
+#X text 24 24 control (from signal);
+#X text 12 72 Converting signals to controls.;
+#X floatatom 36 276 5 0 0 1 - - -;
+#X f 5;
+#X obj 84 144 dspstart;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 7 0 2 0;
+#X coords 0 0 1 1 250 175 0 0 0;

@@ -1,0 +1,11 @@
+#N canvas 593 195 300 226 12;
+#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
+#X obj -60 12 freeze;
+#X obj 36 108 bng 15 250 50 0 empty empty empty 17 7 0 10 #ffffff #000000 #000000;
+#X text 24 24 hello (clock);
+#X obj 36 144 helloClock;
+#X obj 36 180 print;
+#X text 12 72 Schedule a task in time.;
+#X connect 2 0 4 0;
+#X connect 4 0 5 0;
+#X coords 0 0 1 1 250 175 0 0 0;

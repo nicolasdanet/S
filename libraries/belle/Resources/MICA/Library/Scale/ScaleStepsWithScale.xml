@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+
+  <map>en:Steps en:Major en:IonianSteps</map>
+  <map>en:Steps en:Minor en:AeolianSteps</map>
+  <map>en:Steps en:Ionian en:IonianSteps</map>
+  <map>en:Steps en:Dorian en:DorianSteps</map>
+  <map>en:Steps en:Phrygian en:PhrygianSteps</map>
+  <map>en:Steps en:Lydian en:LydianSteps</map>
+  <map>en:Steps en:Mixolydian en:MixolydianSteps</map>
+  <map>en:Steps en:Aeolian en:AeolianSteps</map>
+  <map>en:Steps en:Locrian en:LocrianSteps</map>
+
+</mica>

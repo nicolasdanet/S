@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">DiatonicPitch</identifier>
+      <definition lang="en" name="Diatonic Pitch"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">ChromaticPitch</identifier>
+      <definition lang="en" name="Chromatic Pitch"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">DiatonicNote</identifier>
+      <definition lang="en" name="Diatonic Note"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">ChromaticNote</identifier>
+      <definition lang="en" name="Chromatic Note"/>
+    </concept>
+    
+  </category>
+</mica>

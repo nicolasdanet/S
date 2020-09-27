@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">TimeSignature</identifier>
+      <definition lang="en" name="Time Signature"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Beats</identifier>
+      <definition lang="en" name="Beats"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">NoteValue</identifier>
+      <definition lang="en" name="Note Value"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">CommonTime</identifier>
+      <definition lang="en" name="Common Time"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">CutTime</identifier>
+      <definition lang="en" name="Cut Time"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">RegularTimeSignature</identifier>
+      <definition lang="en" name="Regular Time Signature"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">AdditiveTimeSignature</identifier>
+      <definition lang="en" name="Additive Time Signature"/>
+    </concept>
+
+    <concept>
+      <identifier lang="en">FractionalTimeSignature</identifier>
+      <definition lang="en" name="Fractional Time Signature"/>
+    </concept>
+
+  </category>
+</mica>

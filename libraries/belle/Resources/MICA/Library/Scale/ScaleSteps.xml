@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <sequence>
+        2 2 1 2 2 2 1
+      </sequence>
+      <identifier lang="en">IonianSteps</identifier>
+      <definition lang="en" name="Ionian Steps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        2 1 2 2 2 1 2
+      </sequence>
+      <identifier lang="en">DorianSteps</identifier>
+      <definition lang="en" name="Dorian Steps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        1 2 2 2 1 2 2
+      </sequence>
+      <identifier lang="en">PhrygianSteps</identifier>
+      <definition lang="en" name="Phrygian Steps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        2 2 2 1 2 2 1
+      </sequence>
+      <identifier lang="en">LydianSteps</identifier>
+      <definition lang="en" name="Lydian Steps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        2 2 1 2 2 1 2
+      </sequence>
+      <identifier lang="en">MixolydianSteps</identifier>
+      <definition lang="en" name="Mixolydian Steps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        2 1 2 2 1 2 2
+      </sequence>
+      <identifier lang="en">AeolianSteps</identifier>
+      <definition lang="en" name="Aeolian Steps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        1 2 2 1 2 2 2
+      </sequence>
+      <identifier lang="en">LocrianSteps</identifier>
+      <definition lang="en" name="Locrian Steps"/>
+    </concept>
+    
+  </category>
+</mica>

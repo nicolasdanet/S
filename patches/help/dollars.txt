@@ -1,0 +1,2 @@
+$0-this ding $0;
+$0-that dong $0;

@@ -1,0 +1,45 @@
+
+/* Copyright (c) 1997-2020 Miller Puckette and others. */
+
+/* < https://opensource.org/licenses/BSD-3-Clause > */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#ifndef S_SYSTEM_H_
+#define S_SYSTEM_H_
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#include "system/memory/s_memory.h"
+#include "system/scheduler/s_monitor.h"
+#include "system/scheduler/s_clock.h"
+#include "system/scheduler/s_scheduler.h"
+#include "system/preferences/s_preferences.h"
+#include "system/log/s_logger.h"
+#include "system/files/s_file.h"
+#include "system/files/s_recentfiles.h"
+#include "system/files/s_searchpath.h"
+#include "system/policy/s_denormal.h"
+#include "system/policy/s_privilege.h"
+#include "system/audio/s_audio.h"
+#include "system/MIDI/s_midi.h"
+#include "system/devices/s_devices.h"
+#include "system/devices/s_deviceslist.h"
+#include "system/API/s_API.h"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if PD_WITH_DEBUG
+
+PD_LOCAL int sys_isMainThread (void);
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+#endif // S_SYSTEM_H_

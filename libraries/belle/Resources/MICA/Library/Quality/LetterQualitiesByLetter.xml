@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+
+  <map>en:A en:LetterQualities en:AQualities</map>
+  <map>en:B en:LetterQualities en:BQualities</map>
+  <map>en:C en:LetterQualities en:CQualities</map>
+  <map>en:D en:LetterQualities en:DQualities</map>
+  <map>en:E en:LetterQualities en:EQualities</map>
+  <map>en:F en:LetterQualities en:FQualities</map>
+  <map>en:G en:LetterQualities en:GQualities</map>
+  
+</mica>

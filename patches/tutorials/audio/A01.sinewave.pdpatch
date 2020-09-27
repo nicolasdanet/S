@@ -1,0 +1,11 @@
+#N canvas 539 198 443 225 12;
+#X obj 36 108 osc~ 440;
+#X obj 36 180 dac~;
+#X obj 36 144 *~ 0.05;
+#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
+#X text 24 24 sinewave;
+#X text 12 72 This patch makes a small tone whose pitch is A ('440' Hz).;
+#X f 58;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X coords 0 0 1 1 250 175 0 0 0;

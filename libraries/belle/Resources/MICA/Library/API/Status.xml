@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">Status</identifier>
+      <definition lang="en" name="Status"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Selected</identifier>
+      <definition lang="en" name="Selected"/>
+    </concept> 
+    
+  </category>
+</mica>

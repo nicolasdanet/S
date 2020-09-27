@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+
+  <map>en:QuadruplyDiminishedUnison en:Distance en:Unison</map>
+  <map>en:TriplyDiminishedUnison en:Distance en:Unison</map>
+  <map>en:DoublyDiminishedUnison en:Distance en:Unison</map>
+  <map>en:DiminishedUnison en:Distance en:Unison</map>
+  <map>en:PerfectUnison en:Distance en:Unison</map>
+  <map>en:AugmentedUnison en:Distance en:Unison</map>
+  <map>en:DoublyAugmentedUnison en:Distance en:Unison</map>
+  <map>en:TriplyAugmentedUnison en:Distance en:Unison</map>
+  <map>en:QuadruplyAugmentedUnison en:Distance en:Unison</map>
+  
+  <map>en:QuadruplyDiminishedSecond en:Distance en:Second</map>
+  <map>en:TriplyDiminishedSecond en:Distance en:Second</map>
+  <map>en:DoublyDiminishedSecond en:Distance en:Second</map>
+  <map>en:DiminishedSecond en:Distance en:Second</map>
+  <map>en:MinorSecond en:Distance en:Second</map>
+  <map>en:MajorSecond en:Distance en:Second</map>
+  <map>en:AugmentedSecond en:Distance en:Second</map>
+  <map>en:DoublyAugmentedSecond en:Distance en:Second</map>
+  <map>en:TriplyAugmentedSecond en:Distance en:Second</map>
+  <map>en:QuadruplyAugmentedSecond en:Distance en:Second</map>
+  
+  <map>en:QuadruplyDiminishedThird en:Distance en:Third</map>
+  <map>en:TriplyDiminishedThird en:Distance en:Third</map>
+  <map>en:DoublyDiminishedThird en:Distance en:Third</map>
+  <map>en:DiminishedThird en:Distance en:Third</map>
+  <map>en:MinorThird en:Distance en:Third</map>
+  <map>en:MajorThird en:Distance en:Third</map>
+  <map>en:AugmentedThird en:Distance en:Third</map>
+  <map>en:DoublyAugmentedThird en:Distance en:Third</map>
+  <map>en:TriplyAugmentedThird en:Distance en:Third</map>
+  <map>en:QuadruplyAugmentedThird en:Distance en:Third</map>
+  
+  <map>en:QuadruplyDiminishedFourth en:Distance en:Fourth</map>
+  <map>en:TriplyDiminishedFourth en:Distance en:Fourth</map>
+  <map>en:DoublyDiminishedFourth en:Distance en:Fourth</map>
+  <map>en:DiminishedFourth en:Distance en:Fourth</map>
+  <map>en:PerfectFourth en:Distance en:Fourth</map>
+  <map>en:AugmentedFourth en:Distance en:Fourth</map>
+  <map>en:DoublyAugmentedFourth en:Distance en:Fourth</map>
+  <map>en:TriplyAugmentedFourth en:Distance en:Fourth</map>
+  <map>en:QuadruplyAugmentedFourth en:Distance en:Fourth</map>
+  
+  <map>en:QuadruplyDiminishedFifth en:Distance en:Fifth</map>
+  <map>en:TriplyDiminishedFifth en:Distance en:Fifth</map>
+  <map>en:DoublyDiminishedFifth en:Distance en:Fifth</map>
+  <map>en:DiminishedFifth en:Distance en:Fifth</map>
+  <map>en:PerfectFifth en:Distance en:Fifth</map>
+  <map>en:AugmentedFifth en:Distance en:Fifth</map>
+  <map>en:DoublyAugmentedFifth en:Distance en:Fifth</map>
+  <map>en:TriplyAugmentedFifth en:Distance en:Fifth</map>
+  <map>en:QuadruplyAugmentedFifth en:Distance en:Fifth</map>
+  
+  <map>en:QuadruplyDiminishedSixth en:Distance en:Sixth</map>
+  <map>en:TriplyDiminishedSixth en:Distance en:Sixth</map>
+  <map>en:DoublyDiminishedSixth en:Distance en:Sixth</map>
+  <map>en:DiminishedSixth en:Distance en:Sixth</map>
+  <map>en:MinorSixth en:Distance en:Sixth</map>
+  <map>en:MajorSixth en:Distance en:Sixth</map>
+  <map>en:AugmentedSixth en:Distance en:Sixth</map>
+  <map>en:DoublyAugmentedSixth en:Distance en:Sixth</map>
+  <map>en:TriplyAugmentedSixth en:Distance en:Sixth</map>
+  <map>en:QuadruplyAugmentedSixth en:Distance en:Sixth</map>
+  
+  <map>en:QuadruplyDiminishedSeventh en:Distance en:Seventh</map>
+  <map>en:TriplyDiminishedSeventh en:Distance en:Seventh</map>
+  <map>en:DoublyDiminishedSeventh en:Distance en:Seventh</map>
+  <map>en:DiminishedSeventh en:Distance en:Seventh</map>
+  <map>en:MinorSeventh en:Distance en:Seventh</map>
+  <map>en:MajorSeventh en:Distance en:Seventh</map>
+  <map>en:AugmentedSeventh en:Distance en:Seventh</map>
+  <map>en:DoublyAugmentedSeventh en:Distance en:Seventh</map>
+  <map>en:TriplyAugmentedSeventh en:Distance en:Seventh</map>
+  <map>en:QuadruplyAugmentedSeventh en:Distance en:Seventh</map>
+  
+  <map>en:QuadruplyDiminishedOctave en:Distance en:Octave</map>
+  <map>en:TriplyDiminishedOctave en:Distance en:Octave</map>
+  <map>en:DoublyDiminishedOctave en:Distance en:Octave</map>
+  <map>en:DiminishedOctave en:Distance en:Octave</map>
+  <map>en:PerfectOctave en:Distance en:Octave</map>
+  <map>en:AugmentedOctave en:Distance en:Octave</map>
+  <map>en:DoublyAugmentedOctave en:Distance en:Octave</map>
+  <map>en:TriplyAugmentedOctave en:Distance en:Octave</map>
+  <map>en:QuadruplyAugmentedOctave en:Distance en:Octave</map>
+  
+</mica>

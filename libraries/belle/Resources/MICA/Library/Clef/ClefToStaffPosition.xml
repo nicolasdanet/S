@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+
+  <map>en:StaffPosition en:TrebleClef -2</map>
+  <map>en:StaffPosition en:BassClef 2</map>
+  <map>en:StaffPosition en:AltoClef 0</map>
+  <map>en:StaffPosition en:TenorClef 2</map>
+  <map>en:StaffPosition en:Treble8vaClef -2</map>
+  <map>en:StaffPosition en:Treble15maClef -2</map>
+  <map>en:StaffPosition en:Bass8vaClef 2</map>
+  <map>en:StaffPosition en:Bass15maClef 2</map>
+  <map>en:StaffPosition en:PercussionClef 0</map>
+  <map>en:StaffPosition en:SopranoClef -4</map>
+  <map>en:StaffPosition en:MezzoSopranoClef -2</map>
+  <map>en:StaffPosition en:TenorVoiceClef -2</map>
+  <map>en:StaffPosition en:BaritoneCClef 4</map>
+  <map>en:StaffPosition en:BaritoneFClef 0</map>
+  <map>en:StaffPosition en:SubBassClef 4</map>
+  <map>en:StaffPosition en:FrenchViolinClef -4</map>
+
+</mica>

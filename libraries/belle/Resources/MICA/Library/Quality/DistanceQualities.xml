@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <sequence>
+        en:PerfectQualities en:MajorMinorQualities en:MajorMinorQualities en:PerfectQualities en:PerfectQualities en:MajorMinorQualities en:MajorMinorQualities en:PerfectQualities
+      </sequence>
+      <identifier lang="en">DistanceQualities</identifier>
+      <definition lang="en" name="Distance Qualities"/>
+    </concept>
+    
+  </category>
+</mica>

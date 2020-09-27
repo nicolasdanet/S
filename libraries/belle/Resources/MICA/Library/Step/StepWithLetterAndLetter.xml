@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  
+  <map>en:A en:B en:WholeStep</map>
+  <map>en:B en:C en:HalfStep</map>
+  <map>en:C en:D en:WholeStep</map>
+  <map>en:D en:E en:WholeStep</map>
+  <map>en:E en:F en:HalfStep</map>
+  <map>en:F en:G en:WholeStep</map>
+  <map>en:G en:A en:WholeStep</map>
+  
+</mica>

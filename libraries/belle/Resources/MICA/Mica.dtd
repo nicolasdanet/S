@@ -1,0 +1,16 @@
+
+<!ELEMENT mica (map | category)*>
+
+<!ELEMENT map (#PCDATA)>
+<!ELEMENT category (concept)+>
+
+<!ELEMENT concept (sequence?, identifier+, definition*)>
+
+<!ELEMENT identifier (#PCDATA)>
+<!ATTLIST identifier lang CDATA #REQUIRED>
+
+<!ELEMENT definition EMPTY>
+<!ATTLIST definition lang CDATA #REQUIRED name CDATA #REQUIRED >
+
+<!ELEMENT sequence (#PCDATA)>
+<!ATTLIST sequence cyclic (true | false) "false">

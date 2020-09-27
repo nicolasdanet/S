@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+
+    <concept>
+      <identifier lang="en">Scale</identifier>
+      <definition lang="en" name="Scale"/>
+    </concept>
+
+    <concept>
+      <sequence>
+        en:Major en:Minor en:Ionian en:Dorian en:Phrygian en:Lydian en:Mixolydian en:Aeolian en:Locrian
+      </sequence>
+      <identifier lang="en">Scales</identifier>
+      <definition lang="en" name="Scales"/>
+    </concept>
+    
+  </category>
+</mica>

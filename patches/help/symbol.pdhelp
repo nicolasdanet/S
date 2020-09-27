@@ -1,0 +1,18 @@
+#N canvas 771 100 275 316 12;
+#X obj 36 204 symbol foo;
+#X msg 36 132 zorglub;
+#X text 12 276 See also:;
+#X obj 84 276 int;
+#X obj 120 276 float;
+#X obj 36 108 bng 15 250 50 0 empty empty empty 17 7 0 10 #ffffff #000000 #000000;
+#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
+#X obj -60 12 freeze;
+#X text 24 24 symbol;
+#X msg 36 156 zorkons;
+#X obj 36 240 print;
+#X text 12 72 Store a symbol.;
+#X connect 0 0 10 0;
+#X connect 1 0 0 0;
+#X connect 5 0 0 0;
+#X connect 9 0 0 0;
+#X coords 0 0 1 1 250 175 0 0 0;

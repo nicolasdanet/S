@@ -1,0 +1,22 @@
+pd dsp 1;
+$0-signal 0;
+$0-apply 0;
+$0-noise 85;
+
+# Start;
+
+4000 $0-compute bang;
+
+# Compute the mask with noise only;
+
+4000 $0-signal 100;
+
+# Play the noisy signal;
+
+4000 $0-apply bang;
+
+# Apply the mask;
+
+4000;
+
+# End;

@@ -1,0 +1,62 @@
+
+# Prelude.
+
+SHELL = /bin/sh
+
+# Make paths.
+
+BELLE_DIR = ../libraries/belle
+BIN_DIR   = ./bin
+
+# Flags.
+
+WARNINGS = -Wall -Wextra -Wshadow -Wno-unused-parameter
+LIB      = -ldl -lpthread -lm -lasound -ljack
+LDFLAGS  = -rdynamic
+CPPFLAGS = -DNDEBUG -DPD_BUILDING_APPLICATION -I$(BELLE_DIR)/Source
+CFLAGS   = -ggdb -O3 -ffast-math $(CPUFLAGS) -fvisibility=hidden $(WARNINGS)
+CXXFLAGS = -std=c++11 $(CFLAGS)
+
+# Sources amalgamated.
+
+SRC = ../src/amalgam.cpp
+
+# Objects.
+
+OBJ_CPP = $(SRC:.cpp=.o)
+
+# Targets.
+
+.PHONY: all
+
+all: $(BIN_DIR)/spaghettis
+
+$(BIN_DIR):
+	@test -d $(BIN_DIR) || mkdir -p $(BIN_DIR)
+
+$(OBJ_CPP): %.o : %.cpp
+	@echo "Build CPP $@ ..."
+	@echo "Build $(CPUFLAGS) ..."
+	@$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+$(BIN_DIR)/spaghettis: $(OBJ_CPP) | $(BIN_DIR)
+	@echo "Build spaghettis ..."
+	@$(CXX) $(LDFLAGS) -o $(BIN_DIR)/spaghettis $(OBJ_CPP) $(LIB)
+
+depend: makefile.dependencies
+
+makefile.dependencies:
+	@echo "Build makefile.dependencies ..."
+	@$(CXX) $(CPPFLAGS) $(CXXFLAGS) -M $(SRC) > makefile.dependencies
+
+clean:
+	@echo "Remove makefile.dependencies ..."
+	@-rm -f makefile.dependencies
+	@echo "Remove objects ..."
+	@-rm -f $(OBJ_CPP)
+	@echo "Remove binaries ..."
+	@-rm -f $(BIN_DIR)/spaghettis
+	@echo "Remove bin directory ..."
+	@-rmdir $(BIN_DIR)
+
+include makefile.dependencies

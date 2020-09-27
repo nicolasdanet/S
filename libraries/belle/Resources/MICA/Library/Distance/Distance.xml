@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+    
+    <concept>
+      <identifier lang="en">Distance</identifier>
+      <definition lang="en" name="Distance"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Unison</identifier>
+      <definition lang="en" name="Unison"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Second</identifier>
+      <definition lang="en" name="Second"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Third</identifier>
+      <definition lang="en" name="Third"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Fourth</identifier>
+      <definition lang="en" name="Fourth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Fifth</identifier>
+      <definition lang="en" name="Fifth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Sixth</identifier>
+      <definition lang="en" name="Sixth"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Seventh</identifier>
+      <definition lang="en" name="Seventh"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">Octave</identifier>
+      <definition lang="en" name="Octave"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        en:Unison en:Second en:Third en:Fourth en:Fifth en:Sixth en:Seventh en:Octave
+      </sequence>
+      <identifier lang="en">Distances</identifier>
+      <definition lang="en" name="Distances"/>
+    </concept>
+    
+  </category>
+</mica>

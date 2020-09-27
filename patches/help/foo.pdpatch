@@ -1,0 +1,9 @@
+#N canvas 750 320 289 166 12;
+#X obj -60 12 freeze;
+#X obj 36 120 print;
+#X obj 36 24 bng 15 250 50 0 empty empty empty 17 7 0 10 #ffffff #000000 #000000;
+#X obj 36 60 arguments;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 3 1 1 0;
+#X coords 0 0 1 1 250 175 0 0 0;

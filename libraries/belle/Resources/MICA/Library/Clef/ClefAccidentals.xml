@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+  
+    <concept>
+      <sequence>
+        0 3 -1 2 -2 1 -3
+      </sequence>
+      <identifier lang="en">TrebleClefFlats</identifier>
+      <definition lang="en" name="Treble Clef Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        0 3 -1 2 -2 1 -3
+      </sequence>
+      <identifier lang="en">Treble8vaClefFlats</identifier>
+      <definition lang="en" name="Treble Octave Clef Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        0 3 -1 2 -2 1 -3
+      </sequence>
+      <identifier lang="en">Treble15maClefFlats</identifier>
+      <definition lang="en" name="Treble Double Octave Clef Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        -2 1 -3 0 -4 -1 -5
+      </sequence>
+      <identifier lang="en">BassClefFlats</identifier>
+      <definition lang="en" name="Bass Clef Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        -2 1 -3 0 -4 -1 -5
+      </sequence>
+      <identifier lang="en">Bass8vaClefFlats</identifier>
+      <definition lang="en" name="Bass Octave Clef Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        -2 1 -3 0 -4 -1 -5
+      </sequence>
+      <identifier lang="en">Bass15maClefFlats</identifier>
+      <definition lang="en" name="Bass Double Octave Clef Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        -1 2 -2 1 -3 0 -4
+      </sequence>
+      <identifier lang="en">AltoClefFlats</identifier>
+      <definition lang="en" name="Alto Clef Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        1 4 0 3 -1 2 -2
+      </sequence>
+      <identifier lang="en">TenorClefFlats</identifier>
+      <definition lang="en" name="Tenor Clef Flats"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        4 1 5 2 -1 3 0
+      </sequence>
+      <identifier lang="en">TrebleClefSharps</identifier>
+      <definition lang="en" name="Treble Clef Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        4 1 5 2 -1 3 0
+      </sequence>
+      <identifier lang="en">Treble8vaClefSharps</identifier>
+      <definition lang="en" name="Treble Octave Clef Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        4 1 5 2 -1 3 0
+      </sequence>
+      <identifier lang="en">Treble15maClefSharps</identifier>
+      <definition lang="en" name="Treble Double Octave Clef Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        2 -1 3 0 -3 1 -2
+      </sequence>
+      <identifier lang="en">BassClefSharps</identifier>
+      <definition lang="en" name="Bass Clef Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        2 -1 3 0 -3 1 -2
+      </sequence>
+      <identifier lang="en">Bass8vaClefSharps</identifier>
+      <definition lang="en" name="Bass Octave Clef Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        2 -1 3 0 -3 1 -2
+      </sequence>
+      <identifier lang="en">Bass15maClefSharps</identifier>
+      <definition lang="en" name="Bass Double Octave Clef Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        3 0 4 1 -2 2 -1
+      </sequence>
+      <identifier lang="en">AltoClefSharps</identifier>
+      <definition lang="en" name="Alto Clef Sharps"/>
+    </concept>
+    
+    <concept>
+      <sequence>
+        -2 2 -1 3 0 4 1
+      </sequence>
+      <identifier lang="en">TenorClefSharps</identifier>
+      <definition lang="en" name="Tenor Clef Sharps"/>
+    </concept>
+    
+  </category>
+</mica>

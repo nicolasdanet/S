@@ -1,0 +1,15 @@
+#N canvas 541 215 301 264 12;
+#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
+#X obj -60 12 freeze;
+#X obj 36 180 snapshot~ 0;
+#X floatatom 36 216 5 0 0 1 - - -;
+#X f 5;
+#X text 24 24 hello~ (data);
+#X text 12 72 Survive to encapsulation.;
+#X obj 36 144 helloData~;
+#X floatatom 36 108 5 0 0 1 - - -;
+#X f 5;
+#X connect 2 0 3 0;
+#X connect 6 0 2 0;
+#X connect 7 0 6 0;
+#X coords 0 0 1 1 250 175 0 0 0;

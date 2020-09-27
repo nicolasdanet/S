@@ -1,0 +1,16 @@
+#N canvas 617 128 300 301 12;
+#X msg 36 108 45;
+#X obj 36 192 bang;
+#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
+#X obj -60 12 freeze;
+#X text 24 24 bang;
+#X text 12 264 See also:;
+#X obj 84 264 trigger;
+#X obj 36 228 print;
+#X msg 36 132 Launch the GBU-43/B MOAB.;
+#X obj 144 264 int;
+#X text 12 72 Bang whatever it receives.;
+#X connect 0 0 1 0;
+#X connect 1 0 7 0;
+#X connect 8 0 1 0;
+#X coords 0 0 1 1 250 175 0 0 0;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mica>
+<mica>
+  <category>
+  
+    <concept>
+      <identifier lang="en">Tuplet</identifier>
+      <definition lang="en" name="Tuplet"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">TupletNumber</identifier>
+      <definition lang="en" name="Tuplet Number"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">NestedTuplet</identifier>
+      <definition lang="en" name="Nested Tuplet"/>
+    </concept>
+    
+    <concept>
+      <identifier lang="en">NestedTupletNumber</identifier>
+      <definition lang="en" name="Nested Tuplet Number"/>
+    </concept>
+    
+  </category>
+</mica>
