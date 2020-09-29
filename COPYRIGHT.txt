@@ -23,10 +23,6 @@ Excluding:
 
         Copyright (c) 2004, Makoto Matsumoto and Takuji Nishimura, All rights reserved.
 
-    d_sigmund.c
-
-        Copyright (c) 2005 Miller Puckette. BSD licensed. No warranties.
-
     belle.cpp
 
         Copyright (c) 2007-2013 William Andrew Burnson.

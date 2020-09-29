@@ -31,10 +31,12 @@ Residual:
 Credits:
 
     Miller Puckette & others < http://msp.ucsd.edu/Software/pd-README.txt >
-    William Andrew Burnson < https://github.com/burnson >
     Lewis Van Winkle < https://github.com/codeplea/tinyexpr >
     T. Nishimura & M. Matsumoto < http://www.math.sci.hiroshima-u.ac.jp/~m-mat >
     Takuya Ooura < http://www.kurims.kyoto-u.ac.jp/~ooura/fft.html >
+    William Andrew Burnson < https://github.com/burnson >
+    FreeType < http://www.freetype.org >
+    Gentium < http://scripts.sil.org/Gentium >
     
 License:
     
