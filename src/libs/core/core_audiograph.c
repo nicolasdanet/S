@@ -12,8 +12,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void audio_vectorShrinkIn   (int);
-PD_LOCAL void audio_vectorShrinkOut  (int);
+PD_LOCAL void audio_vectorShrinkIn  (int);
+PD_LOCAL void audio_vectorShrinkOut (int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -120,6 +120,14 @@ PD_LOCAL t_error audiograph_check (t_audiograph *graph, int close)
     return PD_ERROR_NONE;
 }
 
+static void audiograph_invalid (int sampleRate, int i, int o)
+{
+    post_error (PD_TRANSLATE ("audio: invalid sampling rate"));                                 // --
+    
+    if (sampleRate != i) { post_error (PD_TRANSLATE ("audio: invalid input / %d Hz"), i);  }    // --
+    if (sampleRate != o) { post_error (PD_TRANSLATE ("audio: invalid output / %d Hz"), o); }    // --
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -152,10 +160,13 @@ static t_error audiograph_openSimple (t_audiograph *graph,
     if (!hasInput || !hasOutput) { return PD_ERROR; }
     else {
     //
-    err |= (audiodevice_getSampleRate (&graph->g_deviceIn)  != sampleRate);
-    err |= (audiodevice_getSampleRate (&graph->g_deviceOut) != sampleRate);
+    int t0 = audiodevice_getSampleRate (&graph->g_deviceIn);
+    int t1 = audiodevice_getSampleRate (&graph->g_deviceOut);
     
-    if (err) { error_invalid (sym_audio, sym_samplerate); }
+    err |= (t0 != sampleRate);
+    err |= (t1 != sampleRate);
+    
+    if (err) { audiograph_invalid (sampleRate, t0, t1); }
     else {
     //
     audio_vectorShrinkIn (channelsIn);
@@ -222,9 +233,11 @@ static t_error audiograph_openDuplex (t_audiograph *graph,
     if (!hasIO) { return PD_ERROR; }
     else {
     //
-    err |= (audiodevice_getSampleRate (&graph->g_deviceDuplex) != sampleRate);
+    int t = audiodevice_getSampleRate (&graph->g_deviceDuplex);
     
-    if (err) { error_invalid (sym_audio, sym_samplerate); }
+    err |= (t != sampleRate);
+    
+    if (err) { audiograph_invalid (sampleRate, t, t); }
     else {
     //
     audio_vectorShrinkIn (channelsIn);
