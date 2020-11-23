@@ -5,11 +5,8 @@ preferences.txt
 bin/
 makefile.dependencies
 Builds/
-*.mode2v3
-*.pbxuser
 *.sublime-workspace
 xcuserdata/
-xcshareddata/
 tests/tests
 libraries/belle/Belle
 libraries/belle/Resources/MICA/MicaData*.hpp
