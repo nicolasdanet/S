@@ -3,7 +3,7 @@
 
     Copyright (c) 1997-2020 Miller Puckette and others.
     
-    Copyright (c) 2017-2020 Nicolas Danet.
+    Copyright (c) 2013-2020 Nicolas Danet.
     
 Excluding:
 
@@ -15,15 +15,10 @@ Excluding:
 
         Copyright (c) 1996-2001 Takuya OOURA.
 
-    s_MT_32.c
+    s_MT.c
 
-        Copyright (c) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura, All rights reserved.
-
-    s_MT_64.c
-
-        Copyright (c) 2004, Makoto Matsumoto and Takuji Nishimura, All rights reserved.
+        Copyright (c) 1997-2004, Makoto Matsumoto and Takuji Nishimura, All rights reserved.
 
     belle.cpp
 
         Copyright (c) 2007-2013 William Andrew Burnson.
-
