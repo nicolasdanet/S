@@ -138,7 +138,6 @@
 #include "system/preferences/s_preferences.c"
 
 #include "system/files/s_file.c"
-#include "system/files/s_recentfiles.c"
 #include "system/files/s_searchpath.c"
 
 #include "system/log/s_post.c"

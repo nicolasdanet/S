@@ -203,10 +203,6 @@ PD_LOCAL void glist_close (t_glist *glist)
 {
     if (glist_isRoot (glist)) {
     //
-    t_environment *e = glist_getEnvironment (glist);
-    
-    recentfiles_add (environment_getFileName (e), environment_getDirectory (e), 1);
-    
     glist_closebang (glist); pd_free (cast_pd (glist));
     //
     } else { PD_BUG; }

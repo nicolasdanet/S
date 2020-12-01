@@ -32,7 +32,6 @@ PD_LOCAL void fn_release                (void);
 PD_LOCAL void instance_release          (void);
 PD_LOCAL void loader_release            (void);
 PD_LOCAL void monitor_release           (void);
-PD_LOCAL void recentfiles_release       (void);
 PD_LOCAL void searchpath_release        (void);
 
 // -----------------------------------------------------------------------------------------------------------
@@ -1070,7 +1069,6 @@ PD_LOCAL void setup_release (void)
     /* Various cleaning (reverse order). */
     
     searchpath_release();
-    recentfiles_release();
     monitor_release();
     fn_release();
     fft_release();

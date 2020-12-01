@@ -56,7 +56,6 @@
 		1781A369200655AB00AFBD2F /* d_sfthread.c in Sources */ = {isa = PBXBuildFile; fileRef = 1781A368200655AB00AFBD2F /* d_sfthread.c */; };
 		17859E0E22FF14120038A414 /* s_devicesfetch.c in Sources */ = {isa = PBXBuildFile; fileRef = 17859E0D22FF14120038A414 /* s_devicesfetch.c */; };
 		1786BAF320C4364E009CE75A /* d_soundinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 1786BAF220C4364E009CE75A /* d_soundinfo.c */; };
-		17871B1D20AF20B900447902 /* s_recentfiles.c in Sources */ = {isa = PBXBuildFile; fileRef = 17871B1C20AF20B900447902 /* s_recentfiles.c */; };
 		1789CA702166667B0037527F /* m_deencapsulate.c in Sources */ = {isa = PBXBuildFile; fileRef = 1789CA6F2166667A0037527F /* m_deencapsulate.c */; };
 		17936C8222C21DC300A63C73 /* x_vexpr.c in Sources */ = {isa = PBXBuildFile; fileRef = 17936C7F22C2190A00A63C73 /* x_vexpr.c */; };
 		179453A5233B509400050581 /* x_midisystemin.c in Sources */ = {isa = PBXBuildFile; fileRef = 179453A3233B509400050581 /* x_midisystemin.c */; };
@@ -423,7 +422,6 @@
 		17262FF92487870E00803F0F /* s_privilege.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_privilege.h; sourceTree = "<group>"; };
 		17262FFA2487870E00803F0F /* s_denormal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_denormal.h; sourceTree = "<group>"; };
 		17262FFB2487890400803F0F /* m_path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_path.h; sourceTree = "<group>"; };
-		17262FFD24878C4F00803F0F /* s_recentfiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_recentfiles.h; sourceTree = "<group>"; };
 		17262FFE24878C4F00803F0F /* s_searchpath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_searchpath.h; sourceTree = "<group>"; };
 		17262FFF24878C4F00803F0F /* s_file.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_file.h; sourceTree = "<group>"; };
 		1726300124879A3300803F0F /* s_scheduler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_scheduler.h; sourceTree = "<group>"; };
@@ -489,7 +487,6 @@
 		1781A36A2006563200AFBD2F /* d_sfthread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = d_sfthread.h; sourceTree = "<group>"; };
 		17859E0D22FF14120038A414 /* s_devicesfetch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_devicesfetch.c; sourceTree = "<group>"; };
 		1786BAF220C4364E009CE75A /* d_soundinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_soundinfo.c; sourceTree = "<group>"; };
-		17871B1C20AF20B900447902 /* s_recentfiles.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_recentfiles.c; sourceTree = "<group>"; };
 		1789CA6F2166667A0037527F /* m_deencapsulate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_deencapsulate.c; sourceTree = "<group>"; };
 		178CB8A1201F566300F9B8E1 /* d_block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = d_block.h; sourceTree = "<group>"; };
 		17936C7F22C2190A00A63C73 /* x_vexpr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_vexpr.c; sourceTree = "<group>"; };
@@ -1022,10 +1019,8 @@
 			isa = PBXGroup;
 			children = (
 				17262FFF24878C4F00803F0F /* s_file.h */,
-				17262FFD24878C4F00803F0F /* s_recentfiles.h */,
 				17262FFE24878C4F00803F0F /* s_searchpath.h */,
 				378B47381C6C660B004099AA /* s_file.c */,
-				17871B1C20AF20B900447902 /* s_recentfiles.c */,
 				17981E141F0618A10029AD87 /* s_searchpath.c */,
 			);
 			path = files;
@@ -2054,7 +2049,6 @@
 				17A97EC322992756007539AC /* x_liststream.c in Sources */,
 				3720EBB61D239650001675BD /* g_vinlet.c in Sources */,
 				3720EBB71D239650001675BD /* g_voutlet.c in Sources */,
-				17871B1D20AF20B900447902 /* s_recentfiles.c in Sources */,
 				17F6BD3C1F110686001E602C /* m_snap.c in Sources */,
 				17039C6D20597DE000C86496 /* x_mica.c in Sources */,
 				1759313121DCAD4000510735 /* m_clocks.c in Sources */,

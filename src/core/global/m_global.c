@@ -27,7 +27,7 @@ static t_class *global_class;       /* Shared. */
 
 static void global_open (void *dummy, t_symbol *name, t_symbol *directory)
 {
-    if (!instance_patchOpen (name, directory)) { recentfiles_add (name, directory, 0); }
+    instance_patchOpen (name, directory);
 }
 
 static void global_scan (void *dummy, t_symbol *s, int argc, t_atom *argv)

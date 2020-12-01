@@ -20,7 +20,6 @@
 #include "system/preferences/s_preferences.h"
 #include "system/log/s_logger.h"
 #include "system/files/s_file.h"
-#include "system/files/s_recentfiles.h"
 #include "system/files/s_searchpath.h"
 #include "system/policy/s_denormal.h"
 #include "system/policy/s_privilege.h"
