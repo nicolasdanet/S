@@ -243,7 +243,7 @@ PD_LOCAL void       instance_pendingRelease         (void);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       instance_snapSet                (int n);
+PD_FORCE void       instance_snapSet                (int n);
 PD_LOCAL int        instance_snapIsSet              (void);
 
 PD_LOCAL void       instance_snapSetGrid            (int n);
@@ -256,7 +256,7 @@ PD_LOCAL int        instance_snapGetSnapped         (int n);
 // MARK: -
 
 PD_LOCAL int        instance_fontGetDefaultSize     (void);
-PD_LOCAL void       instance_fontSetDefaultSize     (int n);
+PD_FORCE void       instance_fontSetDefaultSize     (int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -19,7 +19,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_fontSetDefaultSize (int n)
+PD_FORCE void instance_fontSetDefaultSize (int n)
 {
     instance_get()->pd_fontSize = n;
 }

@@ -19,7 +19,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_snapSet (int n)
+PD_FORCE void instance_snapSet (int n)
 {
     instance_get()->pd_hasGrid = (n != 0);
 }

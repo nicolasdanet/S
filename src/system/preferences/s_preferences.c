@@ -53,20 +53,6 @@ PD_LOCAL void preferences_load (void)
     
     #endif
     
-    /* GUI settings. */
-    
-    if (properties_getKey ("SnapToGrid", v, PD_STRING)) {
-        if (sscanf (v, "%d", &t) == 1) { instance_snapSet ((t != 0)); }
-    }
-    
-    if (properties_getKey ("GridSize", v, PD_STRING)) {
-        if (sscanf (v, "%d", &t) == 1) { instance_snapSetGrid (t); }
-    }
-    
-    if (properties_getKey ("FontDefaultSize", v, PD_STRING)) {
-        if (sscanf (v, "%d", &t) == 1) { instance_fontSetDefaultSize (t); }
-    }
-    
     /* Search paths. */
     
     for (i = 0; 1; i++) {
@@ -186,17 +172,6 @@ PD_LOCAL void preferences_save (void)
     properties_setKey ("VectorSize", v);
     
     #endif
-    
-    /* GUI settings. */
-    
-    string_sprintf (v, PD_STRING, "%d", instance_snapIsSet());
-    properties_setKey ("SnapToGrid", v);
-    
-    string_sprintf (v, PD_STRING, "%d", instance_snapGetGrid());
-    properties_setKey ("GridSize", v);
-    
-    string_sprintf (v, PD_STRING, "%d", instance_fontGetDefaultSize());
-    properties_setKey ("FontDefaultSize", v);
     
     /* Search paths. */
     
