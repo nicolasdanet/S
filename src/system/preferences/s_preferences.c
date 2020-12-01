@@ -53,17 +53,6 @@ PD_LOCAL void preferences_load (void)
     
     #endif
     
-    /* Search paths. */
-    
-    for (i = 0; 1; i++) {
-
-        string_sprintf (k, PD_STRING, "Path%d", i + 1);
-        if (!properties_getKey (k, v, PD_STRING)) { break; }
-        else {
-            searchpath_appendRoot (v);
-        }
-    }
-    
     /* Audio devices. */
     
     for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
@@ -142,7 +131,6 @@ PD_FORCE void preferences_save (void)
     if (properties_saveBegin() == PD_ERROR_NONE) {
     //
     int i;
-    t_pathlist *l = NULL;
     
     char k[PD_STRING] = { 0 };
     char v[PD_STRING] = { 0 };
@@ -161,21 +149,6 @@ PD_FORCE void preferences_save (void)
     properties_setKey ("VectorSize", v);
     
     #endif
-    
-    /* Search paths. */
-    
-    l = searchpath_getRoots();
-    
-    for (i = 0; 1; i++) {
-
-        if (!pathlist_getPath (l)) { break; }
-        else {
-            string_sprintf (k, PD_STRING, "Path%d", i + 1);
-            properties_setKey (k, pathlist_getPath (l));
-        }
-        
-        l = pathlist_getNext (l);
-    }
     
     /* Audio devices. */
     

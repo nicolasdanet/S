@@ -275,9 +275,7 @@ PD_LOCAL int main_entry (int argc, char **argv)
     midi_initialize();
     setup_initialize();     /* Instance initialized. */
     preferences_load();
-    
-    if (searchpath_scan() != PD_ERROR_NONE) { PD_BUG; }
-    
+        
     if (!(err |= main_start())) { err |= scheduler_main(); }
     
     setup_release();        /* Instance released. */
