@@ -154,24 +154,7 @@
 
 #define PD_PATCH                    ".pdpatch"
 #define PD_HELP                     ".pdhelp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if PD_LINUX
-    #if PD_64BIT
-        #define PD_PLUGIN           ".pdobject64"
-    #else
-        #define PD_PLUGIN           ".pdobject32"
-    #endif
-#elif PD_APPLE
-    #if PD_64BIT
-        #define PD_PLUGIN           ".pdbundle64"
-    #else
-        #define PD_PLUGIN           ".pdbundle32"
-    #endif
-#endif
+#define PD_PLUGIN                   ".pdobject"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -958,16 +941,16 @@ def manifestParse(path):
     global manifest
     manifest["source"]       = str(path)
     manifest["visibility"]   = "-fvisibility=hidden"
+    manifest["product"]      = str(path.with_suffix(".pdobject"))
+
     if path.match('*.cpp'):
         manifest["compiler"] = "g++"
     else:
         manifest["compiler"] = "gcc"
     if sys.platform.startswith('linux'):
         manifest["plugin"]   = "-shared -fpic"
-        manifest["product"]  = str(path.with_suffix(".pdobject"))
     elif sys.platform.startswith('darwin'):
         manifest["plugin"]   = "-bundle -undefined dynamic_lookup -bind_at_load"
-        manifest["product"]  = str(path.with_suffix(".pdbundle"))
 
 def manifestParseJSON(path):
     if path.exists():
@@ -977,6 +960,15 @@ def manifestParseJSON(path):
                 options = json.load(f)
             except:
                 print("Invalid JSON file: " + str(path))
+
+def buildReport():
+    global manifest
+    object = Path(manifest["product"])
+    ret = subprocess.run(["file", str(object)], stdout=subprocess.PIPE)
+    if any(x in str(ret.stdout) for x in ['x86_64', '64-bit']):
+        print ('64-bit' + ' - ' + str(object))
+    elif any(x in str(ret.stdout) for x in ['i386', '32-bit']):
+        print ('32-bit' + ' - ' + str(object))
 
 def buildPlugin():
     global manifest
@@ -991,14 +983,6 @@ def buildPlugin():
     command.append("-o")
     command.append(manifest["product"])
     os.system(' '.join(command))
-    object = Path(manifest["product"])
-    ret = subprocess.run(["file", str(object)], stdout=subprocess.PIPE)
-    if any(x in str(ret.stdout) for x in ['x86_64', '64-bit']):
-        object.rename(str(object) + '64')
-        print (str(object) + '64')
-    elif any(x in str(ret.stdout) for x in ['i386', '32-bit']):
-        object.rename(str(object) + '32')
-        print (str(object) + '32')
 
 if __name__ == "__main__":
     header = Path(sys.argv.pop(0))
@@ -1011,6 +995,7 @@ if __name__ == "__main__":
             o = p.with_suffix('.json')
             manifestParseJSON(o)
             buildPlugin()
+            buildReport()
         else:
             print("No such file: " + file)
 

@@ -11,7 +11,4 @@ tests/tests
 libraries/belle/Belle
 libraries/belle/Resources/MICA/MicaData*.hpp
 libraries/T/foo
-*.pdbundle32
-*.pdbundle64
-*.pdobject32
-*.pdobject64
+*.pdobject
