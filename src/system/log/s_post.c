@@ -54,7 +54,7 @@ PD_EXPORT void post (const char *fmt, ...)
     char t[PD_STRING] = { 0 };
     va_list ap;
     
-    PD_ASSERT (sys_isMainThread());
+    PD_ASSERT (sys_isControlThread());
     
     va_start (ap, fmt);
     k = vsnprintf (t, PD_STRING, fmt, ap);
@@ -69,7 +69,7 @@ PD_EXPORT void post_warning (const char *fmt, ...)
     char t[PD_STRING] = { 0 };
     va_list ap;
     
-    PD_ASSERT (sys_isMainThread());
+    PD_ASSERT (sys_isControlThread());
     
     va_start (ap, fmt);
     k = vsnprintf (t, PD_STRING, fmt, ap);
@@ -84,7 +84,7 @@ PD_EXPORT void post_error (const char *fmt, ...)
     char t[PD_STRING] = { 0 };
     va_list ap;
     
-    PD_ASSERT (sys_isMainThread());
+    PD_ASSERT (sys_isControlThread());
     
     va_start (ap, fmt);
     k = vsnprintf (t, PD_STRING, fmt, ap);

@@ -380,7 +380,7 @@ PD_LOCAL void garray_resize (t_garray *x, t_float f)
     int dspState = 0;
     int dspSuspended = 0;
     
-    PD_ASSERT (sys_isMainThread());
+    PD_ASSERT (sys_isControlThread());
     
     if (garray_isUsedInDSP (x)) { dspState = dsp_suspend(); dspSuspended = 1; }
     

@@ -21,7 +21,7 @@ PD_LOCAL int main_entry (int, char **);
 
 #if PD_WITH_DEBUG
 
-PD_LOCAL int sys_isMainThread (void)
+PD_LOCAL int sys_isControlThread (void)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
@@ -56,7 +56,7 @@ static_assert (sizeof (int) >= 4, "");      /* Just in case. */
 
 PD_EXPORT int main (int argc, char **argv)
 {
-    PD_ASSERT (sys_isMainThread()); return main_entry (argc, argv);
+    PD_ASSERT (sys_isControlThread()); return main_entry (argc, argv);
 }
 
 #endif

@@ -18,7 +18,7 @@ static uid_t privilege_euid;     /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* < https://www.securecoding.cert.org/confluence/x/WIAAAQ > */
+/* < https://wiki.sei.cmu.edu/confluence/pages/viewpage.action?pageId=87152405 > */
 
 PD_LOCAL t_error privilege_start (void)
 {

@@ -43,7 +43,7 @@ static void leak_report (void)
 {
     int i;
     
-    PD_ASSERT (sys_isMainThread());
+    PD_ASSERT (sys_isControlThread());
     
     pthread_mutex_lock (&leak_mutex);
     
@@ -149,7 +149,7 @@ PD_LOCAL void *leak_getMemoryChecked (size_t n, const char *f, int line)
 {
     void *t = memory_get (n);
     
-    PD_ASSERT (sys_isMainThread());
+    PD_ASSERT (sys_isControlThread());
     
     pthread_mutex_lock (&leak_mutex);
     
@@ -168,7 +168,7 @@ PD_LOCAL void *leak_getMemoryResizeChecked (void *ptr,
 {
     void *t = memory_getResize (ptr, oldSize, newSize);
     
-    PD_ASSERT (sys_isMainThread());
+    PD_ASSERT (sys_isControlThread());
     
     pthread_mutex_lock (&leak_mutex);
     
@@ -181,7 +181,7 @@ PD_LOCAL void *leak_getMemoryResizeChecked (void *ptr,
 
 PD_LOCAL void leak_freeMemoryChecked (void *ptr, const char *f, int line)
 {
-    PD_ASSERT (sys_isMainThread());
+    PD_ASSERT (sys_isControlThread());
     
     if (ptr) {
     //

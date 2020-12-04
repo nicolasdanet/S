@@ -35,7 +35,7 @@
 
 #if PD_WITH_DEBUG
 
-PD_LOCAL int sys_isMainThread (void);
+PD_LOCAL int sys_isControlThread (void);
 
 #endif
 

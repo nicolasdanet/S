@@ -249,14 +249,14 @@ PD_LOCAL void instance_clocksRemove (t_clock *c)
 
 PD_LOCAL void instance_clocksDestroy (t_clock *c)
 {
-    PD_ASSERT (sys_isMainThread());
+    PD_ASSERT (sys_isControlThread());
     
     clocks_destroy (instance_get()->pd_clocks, c);
 }
 
 PD_LOCAL void instance_clocksTick (t_systime t)
 {
-    PD_ASSERT (sys_isMainThread());
+    PD_ASSERT (sys_isControlThread());
     
     clocks_tick (instance_get()->pd_clocks, t);
 }
