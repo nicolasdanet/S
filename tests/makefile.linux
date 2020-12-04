@@ -13,7 +13,7 @@ BIN_DIR   = ./bin
 WARNINGS = -Wall -Wextra -Wshadow -Wno-unused-parameter
 LIB      = -ldl -lpthread -lm -lasound -ljack
 LDFLAGS  = -rdynamic
-CPPFLAGS = -DNDEBUG -DPD_BUILDING_APPLICATION -I$(BELLE_DIR)/Source
+CPPFLAGS = -DNDEBUG -DPD_BUILDING_APPLICATION -DPD_WITH_MAIN -I$(BELLE_DIR)/Source
 CFLAGS   = -ggdb -O3 -ffast-math $(CPUFLAGS) -fvisibility=hidden $(WARNINGS)
 CXXFLAGS = -std=c++11 $(CFLAGS)
 

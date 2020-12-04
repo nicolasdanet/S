@@ -2327,6 +2327,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					PD_BUILDING_APPLICATION,
 					PD_WITH_DEBUG,
+					PD_WITH_MAIN,
 				);
 				HEADER_SEARCH_PATHS = ../libraries/belle/Source/;
 				OTHER_CFLAGS = (
@@ -2357,6 +2358,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					PD_BUILDING_APPLICATION,
 					PD_WITH_DEBUG,
+					PD_WITH_MAIN,
 				);
 				HEADER_SEARCH_PATHS = ../libraries/belle/Source/;
 				OTHER_CFLAGS = (

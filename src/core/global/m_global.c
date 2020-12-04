@@ -55,7 +55,11 @@ static void global_metadata (void *dummy, t_symbol *s, int argc, t_atom *argv)
 
 static void global_quit (void *dummy)
 {
+    #if PD_WITH_MAIN
+    
     main_exit();
+    
+    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------
