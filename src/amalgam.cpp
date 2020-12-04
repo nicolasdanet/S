@@ -130,9 +130,9 @@
 #include "system/scheduler/s_monitor.c"
 #include "system/scheduler/s_clock.c"
 #include "system/scheduler/s_scheduler.c"
-#include "system/scheduler/s_entry.c"
 #include "system/scheduler/s_startup.c"
 #include "system/scheduler/s_main.c"
+#include "system/scheduler/s_entry.c"
 
 #include "system/preferences/s_properties.c"
 #include "system/preferences/s_preferences.c"

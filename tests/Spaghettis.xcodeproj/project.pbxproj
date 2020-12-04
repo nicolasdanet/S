@@ -1035,9 +1035,9 @@
 				37329A691E4631D5008AA5E4 /* s_monitor.c */,
 				37C76E111C5CF93000AE4CBF /* s_clock.c */,
 				378971E41C4F716700263434 /* s_scheduler.c */,
-				378971F21C4F716700263434 /* s_entry.c */,
 				1753EF4E22C7B11300E7C9D9 /* s_startup.c */,
 				378971F61C4F716700263434 /* s_main.c */,
+				378971F21C4F716700263434 /* s_entry.c */,
 			);
 			path = scheduler;
 			sourceTree = "<group>";

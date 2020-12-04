@@ -232,7 +232,7 @@ static t_error main_start (void)
 
 /* Note that order of calls below may be critical. */
 
-PD_LOCAL int main_entry (int argc, char **argv)
+PD_LOCAL int main_create (int argc, char **argv)
 {
     t_error err = privilege_start();
     
