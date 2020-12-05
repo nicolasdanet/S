@@ -26,6 +26,13 @@ static int  main_version;                       /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+int  main_argc;                                 /* Static. */
+
+char **main_argv;                               /* Static. */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 PD_LOCAL t_error    audio_initialize            (void);
 PD_LOCAL void       audio_release               (void);
 PD_LOCAL void       message_initialize          (void);
@@ -182,6 +189,8 @@ static t_error main_parseArguments (int argc, char **argv)
 {
     t_error err = PD_ERROR_NONE;
     
+    if (argc < 0) { argc = 0; }     /* Not launched from the terminal. */
+    
     while (!err && (argc > 0) && (**argv == '-')) {
     //
     if (!strcmp (*argv, "--version")) { main_version = 1; argc--; argv++; }
@@ -232,7 +241,7 @@ static t_error main_create (void)
 
 /* Note that order of calls below may be critical. */
 
-PD_LOCAL int main_start (int argc, char **argv)
+PD_LOCAL int main_start (void)
 {
     t_error err = privilege_start();
     
@@ -250,7 +259,7 @@ PD_LOCAL int main_start (int argc, char **argv)
     
     err |= main_setPathExecutable();
     err |= main_setPathSupport();
-    err |= main_parseArguments (argc - 1, argv + 1);
+    err |= main_parseArguments (main_argc - 1, main_argv + 1);
 
     PD_ASSERT (main_directoryExecutable != NULL);
     // PD_ASSERT (main_directoryHelp    != NULL);
