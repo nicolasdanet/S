@@ -249,7 +249,9 @@ PD_LOCAL int main_start (void)
     //
     denormal_setPolicy();
     
-    sys_setSignalHandlers();
+    #if PD_WITH_MAIN
+        sys_setSignalHandlers();
+    #endif
     
     #if PD_WITH_DEBUG
         leak_initialize();

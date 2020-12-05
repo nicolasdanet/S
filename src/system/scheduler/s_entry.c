@@ -60,7 +60,8 @@ static_assert (sizeof (int) >= 4, "");      /* Just in case. */
 // MARK: -
 
 #if defined ( PD_BUILDING_APPLICATION )
-#if defined ( PD_WITH_MAIN )
+
+#if PD_WITH_MAIN
 
 PD_EXPORT int main (int argc, char **argv)
 {
@@ -71,6 +72,7 @@ PD_EXPORT int main (int argc, char **argv)
 }
 
 #endif
+
 #endif
 
 // -----------------------------------------------------------------------------------------------------------
