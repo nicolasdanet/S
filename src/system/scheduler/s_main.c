@@ -212,7 +212,7 @@ static t_error main_parseArguments (int argc, char **argv)
 
 /* Create and start the DSP thread. */
 
-static t_error main_start (void)
+static t_error main_create (void)
 {
     t_error err = PD_ERROR_NONE;
     
@@ -232,7 +232,7 @@ static t_error main_start (void)
 
 /* Note that order of calls below may be critical. */
 
-PD_LOCAL int main_create (int argc, char **argv)
+PD_LOCAL int main_start (int argc, char **argv)
 {
     t_error err = privilege_start();
     
@@ -276,7 +276,7 @@ PD_LOCAL int main_create (int argc, char **argv)
     setup_initialize();     /* Instance initialized. */
     preferences_load();
         
-    if (!(err |= main_start())) { err |= scheduler_main(); }
+    if (!(err |= main_create())) { err |= scheduler_main(); }
     
     setup_release();        /* Instance released. */
     midi_release();

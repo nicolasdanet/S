@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int main_create (int, char **);
+PD_LOCAL int main_start (int, char **);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ static_assert (sizeof (int) >= 4, "");      /* Just in case. */
 
 PD_EXPORT int main (int argc, char **argv)
 {
-    PD_ASSERT (sys_isControlThread()); return main_create (argc, argv);
+    PD_ASSERT (sys_isControlThread()); return main_start (argc, argv);
 }
 
 #endif
