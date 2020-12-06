@@ -13,7 +13,7 @@ BIN_DIR   = ./bin
 WARNINGS  = -Wall -Wextra -Wshadow -Wno-unused-parameter
 LIB       = -ldl -lpthread
 LDFLAGS   = -framework Carbon -framework CoreMIDI -framework CoreAudio -framework AudioUnit
-CPPFLAGS  = -DNDEBUG -DPD_BUILDING_APPLICATION -DPD_WITH_MAIN -I$(BELLE_DIR)/Source
+CPPFLAGS  = -DNDEBUG -DPD_BUILDING_TERMINAL -I$(BELLE_DIR)/Source
 CFLAGS    = -g -O3 -ffast-math $(CPUFLAGS) -fvisibility=hidden $(WARNINGS)
 CXXFLAGS  = -std=c++11 $(CFLAGS)
 

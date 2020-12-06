@@ -179,7 +179,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TESTS )
+#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL ) || defined ( PD_BUILDING_TESTS )
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -226,10 +226,6 @@
 
 #ifndef PD_WITH_DEBUG
 #define PD_WITH_DEBUG               0                   /* Debug mode. */
-#endif
-
-#ifndef PD_WITH_MAIN
-#define PD_WITH_MAIN                0                   /* Use main entry. */
 #endif
 
 // -----------------------------------------------------------------------------------------------------------
@@ -366,7 +362,7 @@ enum {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TESTS )
+#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL ) || defined ( PD_BUILDING_TESTS )
 
 struct _abstractions;
 struct _clocks;
@@ -391,7 +387,7 @@ struct _inlet;
 struct _outlet;
 struct _space;
 
-#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TESTS )
+#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL ) || defined ( PD_BUILDING_TESTS )
 
 #define t_abstractions              struct _abstractions
 #define t_clocks                    struct _clocks
@@ -507,7 +503,7 @@ typedef void        (*t_initializerfn)  (void *dest, void *src);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
+#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL )
 
 #if PD_WITH_DEBUG
 
@@ -910,7 +906,7 @@ PD_DLL void     space_setFloat7                 (t_space *space, t_float f);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TESTS )
+#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL ) || defined ( PD_BUILDING_TESTS )
 
 #define class_addDSP(c, m) class_addMethod ((c), (t_method)(m), sym__dsp, A_CANT, A_NULL)
 

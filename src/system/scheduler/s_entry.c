@@ -30,7 +30,7 @@ extern char **main_argv;
 
 PD_LOCAL int sys_isControlThread (void)
 {
-    #if defined ( PD_BUILDING_APPLICATION )
+    #if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL )
     
     static pthread_t main; static int once = 0;
     
@@ -59,9 +59,7 @@ static_assert (sizeof (int) >= 4, "");      /* Just in case. */
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-#if PD_WITH_MAIN
+#if defined ( PD_BUILDING_TERMINAL )
 
 PD_EXPORT int main (int argc, char **argv)
 {
@@ -70,8 +68,6 @@ PD_EXPORT int main (int argc, char **argv)
     
     PD_ASSERT (sys_isControlThread()); return main_start();
 }
-
-#endif
 
 #endif
 

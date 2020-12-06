@@ -2325,9 +2325,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					PD_BUILDING_APPLICATION,
+					PD_BUILDING_TERMINAL,
 					PD_WITH_DEBUG,
-					PD_WITH_MAIN,
 				);
 				HEADER_SEARCH_PATHS = ../libraries/belle/Source/;
 				OTHER_CFLAGS = (
@@ -2356,9 +2355,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					PD_BUILDING_APPLICATION,
+					PD_BUILDING_TERMINAL,
 					PD_WITH_DEBUG,
-					PD_WITH_MAIN,
 				);
 				HEADER_SEARCH_PATHS = ../libraries/belle/Source/;
 				OTHER_CFLAGS = (

@@ -249,7 +249,7 @@ PD_LOCAL int main_start (void)
     //
     denormal_setPolicy();
     
-    #if PD_WITH_MAIN
+    #if defined ( PD_BUILDING_TERMINAL )
         sys_setSignalHandlers();
     #endif
     

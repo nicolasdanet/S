@@ -3,7 +3,7 @@
 
     Copyright (c) 1997-2020 Miller Puckette and others.
     
-    Copyright (c) 2013-2020 Nicolas Danet.
+    Copyright (c) Nicolas Danet.
     
 Excluding:
 
