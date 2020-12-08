@@ -54,7 +54,7 @@ make -f "${receipe}" clean                                          || exit 1
 
 echo "Build tests ..."
 
-g++ -std=c++11 main.cpp -I../libraries/belle/Source -O3 -ffast-math ${CPUFLAGS} -ldl -lpthread -lm -o tests
+g++ -std=c++11 main.cpp -I../Belle/Source -O3 -ffast-math ${CPUFLAGS} -ldl -lpthread -lm -o tests
 
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------

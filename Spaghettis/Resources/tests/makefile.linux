@@ -5,7 +5,7 @@ SHELL = /bin/sh
 
 # Make paths.
 
-BELLE_DIR = ../libraries/belle
+BELLE_DIR = ../Belle
 BIN_DIR   = ./bin
 
 # Flags.
@@ -19,7 +19,7 @@ CXXFLAGS = -std=c++11 $(CFLAGS)
 
 # Sources amalgamated.
 
-SRC = ../src/amalgam.cpp
+SRC = ../Core/amalgam.cpp
 
 # Objects.
 

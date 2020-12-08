@@ -1339,7 +1339,7 @@
 				37961C251CAD85DB00859402 /* libs */,
 			);
 			name = src;
-			path = ../src;
+			path = ../Core;
 			sourceTree = SOURCE_ROOT;
 		};
 		3722C5331C4F920B00D2BF6F /* core */ = {
@@ -2328,7 +2328,7 @@
 					PD_BUILDING_TERMINAL,
 					PD_WITH_DEBUG,
 				);
-				HEADER_SEARCH_PATHS = ../libraries/belle/Source/;
+				HEADER_SEARCH_PATHS = ../Belle/Source/;
 				OTHER_CFLAGS = (
 					"-ffast-math",
 					"-march=native",
@@ -2358,7 +2358,7 @@
 					PD_BUILDING_TERMINAL,
 					PD_WITH_DEBUG,
 				);
-				HEADER_SEARCH_PATHS = ../libraries/belle/Source/;
+				HEADER_SEARCH_PATHS = ../Belle/Source/;
 				OTHER_CFLAGS = (
 					"-ffast-math",
 					"-march=native",
