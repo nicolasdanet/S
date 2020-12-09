@@ -5,7 +5,6 @@ SHELL = /bin/sh
 
 # Make paths.
 
-BELLE_DIR = ../Belle
 BIN_DIR   = ./bin
 
 # Flags.
@@ -13,7 +12,7 @@ BIN_DIR   = ./bin
 WARNINGS  = -Wall -Wextra -Wshadow -Wno-unused-parameter
 LIB       = -ldl -lpthread
 LDFLAGS   = -framework Carbon -framework CoreMIDI -framework CoreAudio -framework AudioUnit
-CPPFLAGS  = -DNDEBUG -DPD_BUILDING_TERMINAL -I$(BELLE_DIR)/Source
+CPPFLAGS  = -DNDEBUG -DPD_BUILDING_TERMINAL
 CFLAGS    = -g -O3 -ffast-math $(CPUFLAGS) -fvisibility=hidden $(WARNINGS)
 CXXFLAGS  = -std=c++11 $(CFLAGS)
 

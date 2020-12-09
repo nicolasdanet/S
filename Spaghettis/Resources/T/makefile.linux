@@ -5,15 +5,14 @@ SHELL = /bin/sh
 
 # Make paths.
 
-BELLE_DIR = ../Belle
-BIN_DIR   = ./bin
+BIN_DIR  = ./bin
 
 # Flags.
 
 WARNINGS = -Wall -Wextra -Wshadow -Wno-unused-parameter
 LIB      = -ldl -lpthread -lm -lasound -ljack
 LDFLAGS  = -rdynamic
-CPPFLAGS = -DNDEBUG -DPD_BUILDING_TERMINAL -I$(BELLE_DIR)/Source
+CPPFLAGS = -DNDEBUG -DPD_BUILDING_TERMINAL
 CFLAGS   = -ggdb -O3 -ffast-math $(CPUFLAGS) -fvisibility=hidden $(WARNINGS)
 CXXFLAGS = -std=c++11 $(CFLAGS)
 

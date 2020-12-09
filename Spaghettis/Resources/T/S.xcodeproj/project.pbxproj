@@ -2328,7 +2328,6 @@
 					PD_BUILDING_TERMINAL,
 					PD_WITH_DEBUG,
 				);
-				HEADER_SEARCH_PATHS = ../Belle/Source/;
 				OTHER_CFLAGS = (
 					"-ffast-math",
 					"-march=native",
@@ -2358,7 +2357,6 @@
 					PD_BUILDING_TERMINAL,
 					PD_WITH_DEBUG,
 				);
-				HEADER_SEARCH_PATHS = ../Belle/Source/;
 				OTHER_CFLAGS = (
 					"-ffast-math",
 					"-march=native",
