@@ -1,9 +1,9 @@
 .DS_Store
 bin/
 makefile.dependencies
-Spaghettis/Resources/Tests/tests
-Spaghettis/Resources/Tests/spaghettis
-Spaghettis/Resources/Tests/spaghettis.dSym
+Spaghettis/Resources/T/tests
+Spaghettis/Resources/T/spaghettis
+Spaghettis/Resources/T/spaghettis.dSym
 Spaghettis/Resources/Belle/Belle
 Spaghettis/Resources/Belle/Resources/MICA/MicaData*.hpp
 Spaghettis/Resources/Belle/Tools/Builds/Tools/
