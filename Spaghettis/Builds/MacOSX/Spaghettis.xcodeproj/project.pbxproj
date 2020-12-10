@@ -9,6 +9,10 @@
 			isa = PBXBuildFile;
 			fileRef = 60D8A2DF65E5C0796EA99CB1;
 		};
+		4471F6CC4D584796C5728278 = {
+			isa = PBXBuildFile;
+			fileRef = 721D2F47AAC0470E9F2AA340;
+		};
 		E6EF992661E0BCC0594EF123 = {
 			isa = PBXBuildFile;
 			fileRef = 275F8E522693FC248DD886E3;
@@ -16,6 +20,14 @@
 		013CE1E9DA9FD7E645F73D2E = {
 			isa = PBXBuildFile;
 			fileRef = FAC1F52DAB4CF87E5E85196F;
+		};
+		58E8530BC898BF294D7C8A13 = {
+			isa = PBXBuildFile;
+			fileRef = CC31058899835B55FEC293F9;
+		};
+		5B5691F2F80C1D02F0AA9D7B = {
+			isa = PBXBuildFile;
+			fileRef = C9C6B2655C8D889351519A5B;
 		};
 		F49611C8B5492263E100A1D2 = {
 			isa = PBXBuildFile;
@@ -145,6 +157,13 @@
 			path = "~/JUCE/modules/juce_graphics";
 			sourceTree = "<absolute>";
 		};
+		721D2F47AAC0470E9F2AA340 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = AudioUnit.framework;
+			path = System/Library/Frameworks/AudioUnit.framework;
+			sourceTree = SDKROOT;
+		};
 		A1056AE48F0DFF9EC3445D0E = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -186,6 +205,20 @@
 			name = "Info-App.plist";
 			path = "Info-App.plist";
 			sourceTree = "SOURCE_ROOT";
+		};
+		C9C6B2655C8D889351519A5B = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = CoreMIDI.framework;
+			path = System/Library/Frameworks/CoreMIDI.framework;
+			sourceTree = SDKROOT;
+		};
+		CC31058899835B55FEC293F9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = CoreAudio.framework;
+			path = System/Library/Frameworks/CoreAudio.framework;
+			sourceTree = SDKROOT;
 		};
 		D31E9A678ACB0B6E5AA55846 = {
 			isa = PBXFileReference;
@@ -270,8 +303,11 @@
 		7682EB6F7FE3D78360EABF29 = {
 			isa = PBXGroup;
 			children = (
+				721D2F47AAC0470E9F2AA340,
 				275F8E522693FC248DD886E3,
 				FAC1F52DAB4CF87E5E85196F,
+				CC31058899835B55FEC293F9,
+				C9C6B2655C8D889351519A5B,
 				A3A861B41BD91C2AFB7F1175,
 				E256EE56D3F74E547832FB86,
 				A56CB13A5C065878D9CCD781,
@@ -303,6 +339,7 @@
 		B612E6C824610F330F246CE9 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
@@ -326,6 +363,7 @@
 					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
 					"JUCE_STRICT_REFCOUNTEDPOINTER=1",
 					"JUCE_STANDALONE_APPLICATION=1",
+					"PD_BUILDING_APPLICATION",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
 					"JUCE_APP_VERSION=0.9",
 					"JUCE_APP_VERSION_HEX=0x900",
@@ -352,16 +390,19 @@
 					"../../JuceLibraryCode",
 					"$(HOME)/JUCE/modules",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Spaghettis.Spaghettis;
+				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
+				OTHER_LDFLAGS = "-ldl -lpthread";
+				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
 				PRODUCT_NAME = "Spaghettis";
 				USE_HEADERMAP = NO;
-				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
+				VALID_ARCHS = "arm64 i386 x86_64";
 			};
 			name = Debug;
 		};
 		C58212389768C1E9E29EC1F5 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
@@ -385,6 +426,7 @@
 					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
 					"JUCE_STRICT_REFCOUNTEDPOINTER=1",
 					"JUCE_STANDALONE_APPLICATION=1",
+					"PD_BUILDING_APPLICATION",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
 					"JUCE_APP_VERSION=0.9",
 					"JUCE_APP_VERSION_HEX=0x900",
@@ -412,10 +454,12 @@
 					"../../JuceLibraryCode",
 					"$(HOME)/JUCE/modules",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Spaghettis.Spaghettis;
+				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
+				OTHER_LDFLAGS = "-ldl -lpthread";
+				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
 				PRODUCT_NAME = "Spaghettis";
 				USE_HEADERMAP = NO;
-				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
+				VALID_ARCHS = "arm64 i386 x86_64";
 			};
 			name = Release;
 		};
@@ -460,7 +504,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Spaghettis";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wreorder";
@@ -560,13 +603,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4471F6CC4D584796C5728278,
 				E6EF992661E0BCC0594EF123,
 				013CE1E9DA9FD7E645F73D2E,
+				58E8530BC898BF294D7C8A13,
+				5B5691F2F80C1D02F0AA9D7B,
 				F49611C8B5492263E100A1D2,
 				5BFCA5F5B994AFE79CC658DD,
 				D8751DBF49BECD65C7A0923A,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE01C252CCC94B89DC9AD52C = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = ( );
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Post-build script";
+			shellPath = /bin/sh;
+			shellScript = "rep=\"${SOURCE_ROOT}/../..\"\napp=\"${BUILT_PRODUCTS_DIR}/Spaghettis.app\"\nentitlements=\"${rep}/Resources/Spaghettis.entitlements\"\n\ncodesign --options runtime --entitlements \"${entitlements}\" --deep -s \"-\" \"${app}\"  || exit 1\n";
 		};
 		291A2F99755AE10335EBB572 = {
 			isa = PBXNativeTarget;
@@ -575,6 +630,7 @@
 				029CAC25570528B715111602,
 				2A743EF3FDCAE3CAF59429D6,
 				711B1F4E20620A026352D1D6,
+				EE01C252CCC94B89DC9AD52C,
 			);
 			buildRules = ( );
 			dependencies = ( );

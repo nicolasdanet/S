@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist>
+<plist version="1.0">
   <dict>
+    <key>CFBundleDocumentTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleTypeExtensions</key>
+        <array>
+          <string>pdpatch</string>
+        </array>
+        <key>CFBundleTypeName</key>
+        <string>Spaghettis Patch</string>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+      </dict>
+      <dict>
+        <key>CFBundleTypeExtensions</key>
+        <array>
+          <string>pdhelp</string>
+        </array>
+        <key>CFBundleTypeName</key>
+        <string>Spaghettis Help</string>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+      </dict>
+      <dict>
+        <key>CFBundleTypeExtensions</key>
+        <array>
+          <string>pdobject</string>
+        </array>
+        <key>CFBundleTypeName</key>
+        <string>Spaghettis Object</string>
+        <key>CFBundleTypeRole</key>
+        <string>None</string>
+      </dict>
+    </array>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Spaghettis requires access to the Microphone.</string>
     <key>CFBundleExecutable</key>
     <string>${EXECUTABLE_NAME}</string>
     <key>CFBundleIconFile</key>
     <string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.Spaghettis.Spaghettis</string>
+    <string>org.puredata.spaghettis</string>
     <key>CFBundleName</key>
     <string>Spaghettis</string>
     <key>CFBundleDisplayName</key>
@@ -22,7 +57,7 @@
     <key>CFBundleVersion</key>
     <string>0.9</string>
     <key>NSHumanReadableCopyright</key>
-    <string></string>
+    <string>Copyright (c) 1997-2020 Miller Puckette and others.</string>
     <key>NSHighResolutionCapable</key>
     <true/>
   </dict>
