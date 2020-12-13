@@ -1,5 +1,5 @@
 
-/* Copyright (c) 1997-2020 Miller Puckette and others. */
+/* Copyright (c) 1997 Miller Puckette and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 

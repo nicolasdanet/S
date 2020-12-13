@@ -57,7 +57,7 @@
     <key>CFBundleVersion</key>
     <string>0.9</string>
     <key>NSHumanReadableCopyright</key>
-    <string>Copyright (c) 1997-2020 Miller Puckette and others.</string>
+    <string>Copyright (c) 1997 Miller Puckette and others.</string>
     <key>NSHighResolutionCapable</key>
     <true/>
   </dict>

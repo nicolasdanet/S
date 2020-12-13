@@ -1,7 +1,7 @@
 
 # Copyright
 
-    Copyright (c) 1997-2020 Miller Puckette and others.
+    Copyright (c) 1997 Miller Puckette and others.
     
     Copyright (c) Nicolas Danet.
     
