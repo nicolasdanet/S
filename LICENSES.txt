@@ -1,5 +1,5 @@
 
-# License
+# Licenses
 
     All source files under BSD-3-Clause license unless explicitly disclaimed.
 

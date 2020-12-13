@@ -1,11 +1,4 @@
 
 # Authors
 
-Authors (thanks to):
-
     < http://msp.ucsd.edu/Software/pd-README.txt >
-
-Contributors since original fork:
-
-    < https://github.com/Spaghettis/Spaghettis/graphs/contributors >
-
