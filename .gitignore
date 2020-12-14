@@ -10,4 +10,5 @@ Spaghettis/Resources/Belle/Tools/Builds/Tools/
 *.pdobject
 *.sublime-workspace
 xcuserdata/
-Spaghettis/Builds/
+Spaghettis/Builds/MacOSX/build/
+Spaghettis/Builds/LinuxMakefile/build/
