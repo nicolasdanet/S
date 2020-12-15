@@ -15,7 +15,8 @@ rep=$(pwd); [ "${0%/*}" = "." ] || exit 1
 if [[ $OSTYPE =~ linux-gnueabihf ]]; then
     CPUTYPE="`lscpu`"
     if [[ $CPUTYPE =~ "Cortex-A72" ]]; then
-        echo "RPI4"
+        cd Spaghettis/Builds/LinuxMakefile
+        make CONFIG=Release TARGET_ARCH="-mcpu=cortex-a72 -mtune=cortex-a72 -mfpu=neon-fp-armv8"
         exit 0
     fi
 fi
@@ -29,12 +30,10 @@ case "$OSTYPE"  in
     darwin*)    cd Spaghettis/Builds/MacOSX ;
                 xcodebuild -configuration Release ;
                 rm -r build/Spaghettis.build ;;
-    linux*)     echo "Linux" ;;
+    linux*)     cd Spaghettis/Builds/LinuxMakefile ;
+                make CONFIG=Release ;;
     *)          exit 1 ;;
 esac
-
-# make CONFIG=Release TARGET_ARCH="-mcpu=cortex-a72 -mtune=cortex-a72 -mfpu=neon-fp-armv8"
-# xcodebuild -configuration Release
 
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
