@@ -25,9 +25,10 @@ fi
 
 # Basic platform handler.
 
-case "$OSTYPE" in
+case "$OSTYPE"  in
     darwin*)    cd Spaghettis/Builds/MacOSX ;
-                xcodebuild -configuration Release ;;
+                xcodebuild -configuration Release ;
+                rm -r build/Spaghettis.build ;;
     linux*)     echo "Linux" ;;
     *)          exit 1 ;;
 esac
