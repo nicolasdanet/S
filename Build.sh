@@ -22,6 +22,7 @@ if [[ $OSTYPE =~ linux-gnueabihf ]]; then
     if [[ $CPUTYPE =~ "Cortex-A72" ]]; then
         cd Spaghettis/Builds/LinuxMakefile
         make -j4 CXX=clang++ CONFIG=Release TARGET_ARCH="${rpi4}"
+        rm -r build/intermediate
         exit 0
     fi
 fi
@@ -36,7 +37,8 @@ case "$OSTYPE"  in
                 xcodebuild -configuration Release ;
                 rm -r build/Spaghettis.build ;;
     linux*)     cd Spaghettis/Builds/LinuxMakefile ;
-                make CONFIG=Release ;;
+                make CONFIG=Release ;
+                rm -r build/intermediate ;;
     *)          exit 1 ;;
 esac
 
