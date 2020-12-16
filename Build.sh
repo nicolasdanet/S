@@ -10,13 +10,18 @@ rep=$(pwd); [ "${0%/*}" = "." ] || exit 1
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
 
+rpi4="-mcpu=cortex-a72 -mtune=cortex-a72 -mfpu=neon-fp-armv8"
+
+# ------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
+
 # Raspberry Pi 4 Model B.
 
 if [[ $OSTYPE =~ linux-gnueabihf ]]; then
     CPUTYPE="`lscpu`"
     if [[ $CPUTYPE =~ "Cortex-A72" ]]; then
         cd Spaghettis/Builds/LinuxMakefile
-        make CONFIG=Release TARGET_ARCH="-mcpu=cortex-a72 -mtune=cortex-a72 -mfpu=neon-fp-armv8"
+        make -j4 CXX=clang++ CONFIG=Release TARGET_ARCH="${rpi4}"
         exit 0
     fi
 fi
