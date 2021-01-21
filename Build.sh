@@ -35,6 +35,7 @@ fi
 case "$OSTYPE"  in
     darwin*)    cd Spaghettis/Builds/MacOSX ;
                 xcodebuild -configuration Release ;
+                rm -r build/XCBuildData ;
                 rm -r build/Spaghettis.build ;;
     linux*)     cd Spaghettis/Builds/LinuxMakefile ;
                 make CONFIG=Release ;
@@ -44,3 +45,4 @@ esac
 
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
+

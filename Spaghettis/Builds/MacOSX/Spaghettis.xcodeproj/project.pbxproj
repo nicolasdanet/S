@@ -354,7 +354,7 @@
 					"DEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60005",
+					"JUCE_PROJUCER_VERSION=0x60007",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
@@ -378,7 +378,7 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"../../JuceLibraryCode",
+					"$(SRCROOT)/../../JuceLibraryCode",
 					"$(HOME)/JUCE/modules",
 					"$(inherited)",
 				);
@@ -387,7 +387,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = (
-					"../../JuceLibraryCode",
+					"$(SRCROOT)/../../JuceLibraryCode",
 					"$(HOME)/JUCE/modules",
 				);
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
@@ -417,7 +417,7 @@
 					"NDEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60005",
+					"JUCE_PROJUCER_VERSION=0x60007",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
@@ -441,7 +441,7 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"../../JuceLibraryCode",
+					"$(SRCROOT)/../../JuceLibraryCode",
 					"$(HOME)/JUCE/modules",
 					"$(inherited)",
 				);
@@ -451,7 +451,7 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = (
-					"../../JuceLibraryCode",
+					"$(SRCROOT)/../../JuceLibraryCode",
 					"$(HOME)/JUCE/modules",
 				);
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
@@ -642,7 +642,7 @@
 		44418211D062CE90F46F056C = {
 			isa = PBXProject;
 			buildConfigurationList = 5A911D9AE6D1EBDB50F1D820;
-			attributes = { LastUpgradeCheck = 1200; ORGANIZATIONNAME = "Spaghettis"; TargetAttributes = { 291A2F99755AE10335EBB572 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
+			attributes = { LastUpgradeCheck = 1230; ORGANIZATIONNAME = "Spaghettis"; TargetAttributes = { 291A2F99755AE10335EBB572 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
 			mainGroup = DCC4E94DFFB04939593BC8A8;
