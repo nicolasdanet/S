@@ -27,7 +27,7 @@
 
 # Requires Python (>= 3.4) installed.
 
-python3 ../Spaghettis/Resources/Core/m_spaghettis.h Examples/*.c Examples/*.cpp
+python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/*.c Examples/*.cpp
 
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
