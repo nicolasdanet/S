@@ -9,10 +9,6 @@
 			isa = PBXBuildFile;
 			fileRef = 60D8A2DF65E5C0796EA99CB1;
 		};
-		4471F6CC4D584796C5728278 = {
-			isa = PBXBuildFile;
-			fileRef = 721D2F47AAC0470E9F2AA340;
-		};
 		E6EF992661E0BCC0594EF123 = {
 			isa = PBXBuildFile;
 			fileRef = 275F8E522693FC248DD886E3;
@@ -20,14 +16,6 @@
 		013CE1E9DA9FD7E645F73D2E = {
 			isa = PBXBuildFile;
 			fileRef = FAC1F52DAB4CF87E5E85196F;
-		};
-		58E8530BC898BF294D7C8A13 = {
-			isa = PBXBuildFile;
-			fileRef = CC31058899835B55FEC293F9;
-		};
-		5B5691F2F80C1D02F0AA9D7B = {
-			isa = PBXBuildFile;
-			fileRef = C9C6B2655C8D889351519A5B;
 		};
 		F49611C8B5492263E100A1D2 = {
 			isa = PBXBuildFile;
@@ -157,13 +145,6 @@
 			path = "~/JUCE/modules/juce_graphics";
 			sourceTree = "<absolute>";
 		};
-		721D2F47AAC0470E9F2AA340 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = AudioUnit.framework;
-			path = System/Library/Frameworks/AudioUnit.framework;
-			sourceTree = SDKROOT;
-		};
 		A1056AE48F0DFF9EC3445D0E = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -205,20 +186,6 @@
 			name = "Info-App.plist";
 			path = "Info-App.plist";
 			sourceTree = "SOURCE_ROOT";
-		};
-		C9C6B2655C8D889351519A5B = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = CoreMIDI.framework;
-			path = System/Library/Frameworks/CoreMIDI.framework;
-			sourceTree = SDKROOT;
-		};
-		CC31058899835B55FEC293F9 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = CoreAudio.framework;
-			path = System/Library/Frameworks/CoreAudio.framework;
-			sourceTree = SDKROOT;
 		};
 		D31E9A678ACB0B6E5AA55846 = {
 			isa = PBXFileReference;
@@ -303,11 +270,8 @@
 		7682EB6F7FE3D78360EABF29 = {
 			isa = PBXGroup;
 			children = (
-				721D2F47AAC0470E9F2AA340,
 				275F8E522693FC248DD886E3,
 				FAC1F52DAB4CF87E5E85196F,
-				CC31058899835B55FEC293F9,
-				C9C6B2655C8D889351519A5B,
 				A3A861B41BD91C2AFB7F1175,
 				E256EE56D3F74E547832FB86,
 				A56CB13A5C065878D9CCD781,
@@ -390,7 +354,6 @@
 					"$(HOME)/JUCE/modules",
 				);
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
-				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
 				PRODUCT_NAME = "Spaghettis";
 				USE_HEADERMAP = NO;
@@ -453,7 +416,6 @@
 					"$(HOME)/JUCE/modules",
 				);
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
-				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
 				PRODUCT_NAME = "Spaghettis";
 				USE_HEADERMAP = NO;
@@ -601,11 +563,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4471F6CC4D584796C5728278,
 				E6EF992661E0BCC0594EF123,
 				013CE1E9DA9FD7E645F73D2E,
-				58E8530BC898BF294D7C8A13,
-				5B5691F2F80C1D02F0AA9D7B,
 				F49611C8B5492263E100A1D2,
 				5BFCA5F5B994AFE79CC658DD,
 				D8751DBF49BECD65C7A0923A,
