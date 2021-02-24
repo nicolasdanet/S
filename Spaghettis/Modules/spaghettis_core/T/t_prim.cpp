@@ -253,6 +253,20 @@ TTT_BEGIN (PrimMemory, 101, "Prim - Memory")
     
     {
     //
+    prim::int32 original = 0xaabbccdd;
+    
+    prim::byte raw[4] = { 0xaa, 0xbb, 0xcc, 0xdd };
+    prim::Endian::swapIfLittleEndian (reinterpret_cast < prim::int32& > (raw));
+    
+    void* a = static_cast < void* > (&original);
+    void* b = static_cast < void* > (raw);
+    
+    TTT_EXPECT (std::memcmp (a, b, sizeof (prim::int32)) == 0);
+    //
+    }
+    
+    {
+    //
     const int size = 16;
     
     for (int i = 0; i < kAgain; ++i) {
