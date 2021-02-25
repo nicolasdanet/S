@@ -391,7 +391,7 @@ private:
     template < class T > static T nextRead (const byte*& p)      /* Bellefont is little-endian. */
     {
         T v; 
-        Memory::copy (&v, reinterpret_cast < const T* > (p));
+        std::memcpy (&v, p, sizeof (T));
         Endian::swapIfBigEndian (v);
         p += sizeof (T);
         return v;
@@ -404,7 +404,7 @@ private:
         data.resize (static_cast < int > (data.size() + sizeof (T)));
         byte* d = &data.getLast();
         d -= (sizeof (T) - 1);
-        Memory::copy (reinterpret_cast < T* > (d), &v);
+        std::memcpy (d, &v, sizeof (T));
     }
 
 // -----------------------------------------------------------------------------------------------------------
