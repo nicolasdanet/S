@@ -48,9 +48,9 @@ template < class T > static void swap (T* a, T* b, int items)
     while (size > 0) {
     //
     int n = size < bufferSize ? size : bufferSize;
-    copy (buffer, ptrA, n);
-    copy (ptrA, ptrB, n);
-    copy (ptrB, buffer, n);
+    std::memcpy (buffer, ptrA, n);
+    std::memcpy (ptrA, ptrB, n);
+    std::memcpy (ptrB, buffer, n);
     ptrA += n;
     ptrB += n;
     size -= n;
