@@ -60,22 +60,22 @@ public:
 public:
     bool operator < (const String& o) const
     {
-        const char *s1 = reinterpret_cast < const char* > (&data_[0]);
-        const char *s2 = reinterpret_cast < const char* > (&o.data_[0]);
+        const char *s1 = &data_[0]; const char *s2 = &o.data_[0];
+        
         return std::strcmp (s1, s2) < 0;
     }
 
     bool operator > (const String& o) const
     {
-        const char *s1 = reinterpret_cast < const char* > (&data_[0]);
-        const char *s2 = reinterpret_cast < const char* > (&o.data_[0]);
+        const char *s1 = &data_[0]; const char *s2 = &o.data_[0];
+        
         return std::strcmp (s1, s2) > 0;
     }
     
     bool operator == (const String& o) const
     {
-        const char *s1 = reinterpret_cast < const char* > (&data_[0]);
-        const char *s2 = reinterpret_cast < const char* > (&o.data_[0]);
+        const char *s1 = &data_[0]; const char *s2 = &o.data_[0];
+        
         return std::strcmp (s1, s2) == 0;
     }
     
