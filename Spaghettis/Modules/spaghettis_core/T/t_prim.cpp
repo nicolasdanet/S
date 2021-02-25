@@ -241,7 +241,7 @@ TTT_BEGIN (PrimMemory, 101, "Prim - Memory")
     //
     prim::int32 original = 0xaabbccdd;
     
-    prim::byte raw[4] = { 0xdd, 0xcc, 0xbb, 0xaa };
+    alignas (alignof (prim::int32)) prim::byte raw[4] = { 0xdd, 0xcc, 0xbb, 0xaa };
     prim::Endian::swapIfBigEndian (reinterpret_cast < prim::int32& > (raw));
     
     void* a = static_cast < void* > (&original);
@@ -255,7 +255,7 @@ TTT_BEGIN (PrimMemory, 101, "Prim - Memory")
     //
     prim::int32 original = 0xaabbccdd;
     
-    prim::byte raw[4] = { 0xaa, 0xbb, 0xcc, 0xdd };
+    alignas (alignof (prim::int32)) prim::byte raw[4] = { 0xaa, 0xbb, 0xcc, 0xdd };
     prim::Endian::swapIfLittleEndian (reinterpret_cast < prim::int32& > (raw));
     
     void* a = static_cast < void* > (&original);
