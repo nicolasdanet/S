@@ -69,12 +69,12 @@ template < class T > bool isPowerOfTwo (T v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T > static T min (const T& a, const T& b)
+template < class T > T min (const T& a, const T& b)
 {
     return (a < b ? a : b);
 }
 
-template < class T > static T max (const T& a, const T& b)
+template < class T > T max (const T& a, const T& b)
 {
     return (a > b ? a : b);
 }
@@ -83,14 +83,14 @@ template < class T > static T max (const T& a, const T& b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T > static void ascending (T& a, T& b)
+template < class T > void ascending (T& a, T& b)
 {
     using std::swap;
     
     if (a > b) { swap (a, b); }
 }
 
-template < class T > static void descending (T& a, T& b)
+template < class T > void descending (T& a, T& b)
 {
     using std::swap;
     
@@ -101,7 +101,7 @@ template < class T > static void descending (T& a, T& b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T > static bool isBetween (const T& c, const T& a, const T& b)     /* Included. */
+template < class T > bool isBetween (const T& c, const T& a, const T& b)    /* Included. */
 {
     return ((b >= a && c >= a && c <= b) || (a > b && c >= b && c <= a));
 }
