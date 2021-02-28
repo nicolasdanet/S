@@ -209,6 +209,9 @@ private:
 private:
     PointerOwner* reference_;
     T* pointer_;
+
+private:
+    PRIM_LEAK_DETECTOR (Pointer)
 };
 
 // -----------------------------------------------------------------------------------------------------------
