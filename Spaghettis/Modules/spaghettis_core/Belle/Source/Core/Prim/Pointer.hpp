@@ -177,10 +177,9 @@ public:
 private:
     void share (const Pointer < T > & toShare)
     {
-        unshare();
+        unshare(); PRIM_ASSERT (pointer_ == nullptr);
       
         reference_ = toShare.reference_;
-        pointer_   = nullptr;
         
         if (reference_) {
             pointer_ = toShare.pointer_; 
