@@ -26,9 +26,9 @@ namespace prim {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T, int N > int sizeOfArray (T (&array)[N])
+template < class T, int N > constexpr int sizeOfArray (T (&)[N])
 {
-    (void)array; return N;
+    return N;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -285,7 +285,7 @@ public:
     {
         using std::swap;
         
-        for (int i = 0; i < (size_ / 2); ++i) { swap (data_[i], data_[size_ - 1 - i]); }
+        int m = size_ / 2; for (int i = 0; i < m; ++i) { swap (data_[i], data_[size_ - 1 - i]); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
