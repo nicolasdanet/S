@@ -2604,35 +2604,6 @@ TTT_BEGIN (PrimSort, 115, "Prim - Sort")
     //
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::List < int > a;
-    prim::Array < int > b;
-    prim::List < int > c;
-    
-    for (int j = 0; j < 100; ++j) { a.add (getRandomInteger()); }
-    
-    prim::ListToArray (a, b);
-    prim::ArrayToList (b, c);
-    
-    TTT_EXPECT (b.size() == a.size());
-    TTT_EXPECT (c.size() == a.size());
-    
-    for (int j = 0; j < b.size(); ++j)  { TTT_EXPECT (b[j] == a[j]); }
-    for (int j = 0; j < c.size(); ++j)  { TTT_EXPECT (c[j] == a[j]); }
-    
-    prim::ListToArray (a, b, true);
-    prim::ArrayToList (b, c, true);
-    
-    for (int j = 0; j < b.size(); ++j)  { TTT_EXPECT (b[j] == a[a.size() - 1 - j]); }
-    for (int j = 0; j < c.size(); ++j)  { TTT_EXPECT (c[j] == a[j]); }
-    //
-    }
-    //
-    }
-    
-    {
-    //
-    for (int i = 0; i < kAgain; ++i) {
-    //
     prim::Array < int > a;
     prim::Array < int > b;
         
@@ -2690,25 +2661,6 @@ TTT_BEGIN (PrimSort, 115, "Prim - Sort")
     
     TTT_EXPECT (a.indexOfSorted (0) != -1);
     TTT_EXPECT (a[a.indexOfSorted (0)] == 0);
-    //
-    }
-    //
-    }
-    
-    {
-    //
-    for (int i = 0; i < kAgain; ++i) {
-    //
-    prim::List < double > a;
-    prim::List < double > b;
-    
-    for (int j = 0; j < 100; ++j) { a.add (getRandomDouble()); b.add (getRandomDouble()); }
-    
-    a.sort();
-    b.sort (false);
-    
-    for (int j = 0; j < a.size() - 1; ++j) { TTT_EXPECT (a[j] <= a[j + 1]); }
-    for (int j = 0; j < b.size() - 1; ++j) { TTT_EXPECT (b[j] >= b[j + 1]); }
     //
     }
     //

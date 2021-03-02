@@ -151,7 +151,6 @@
 		37B5F46D1AFD0C3B00BF4351 /* Assert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Assert.hpp; sourceTree = "<group>"; };
 		37B5F46E1AFD0C3B00BF4351 /* Bezier.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bezier.hpp; sourceTree = "<group>"; };
 		37B5F46F1AFD0C3B00BF4351 /* Complex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Complex.hpp; sourceTree = "<group>"; };
-		37B5F4701AFD0C3B00BF4351 /* Copy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Copy.hpp; sourceTree = "<group>"; };
 		37B5F4711AFD0C3B00BF4351 /* Define.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Define.hpp; sourceTree = "<group>"; };
 		37B5F4721AFD0C3B00BF4351 /* Endian.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Endian.hpp; sourceTree = "<group>"; };
 		37B5F4731AFD0C3B00BF4351 /* File.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = File.hpp; sourceTree = "<group>"; };
@@ -452,7 +451,6 @@
 				37B5F46F1AFD0C3B00BF4351 /* Complex.hpp */,
 				37B5F46C1AFD0C3B00BF4351 /* Array.hpp */,
 				37B5F4771AFD0C3B00BF4351 /* List.hpp */,
-				37B5F4701AFD0C3B00BF4351 /* Copy.hpp */,
 				17F82D3A2058FDA0004FB77A /* Utils.hpp */,
 				37B5F4821AFD0C3B00BF4351 /* String.hpp */,
 				37B5F47A1AFD0C3B00BF4351 /* NewLine.hpp */,

@@ -10,7 +10,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* Element must be defaut constructible and assignable. */
+/* Doubly linked list optimized for traversal by index. */
+/* Element must be default constructible and assignable. */
 /* Copy constructors and comparaison may also be needed to sort items. */
 /* Consider to implement an efficient swap in that case. */
 
@@ -208,14 +209,6 @@ public:
         }
 
         delete p; size_--;
-    }
-    
-    void sort (bool up = true)
-    {
-        Array < T > temp;
-        ListToArray (*this, temp);
-        temp.sort();
-        ArrayToList (temp, *this, (up == false));
     }
     
 // -----------------------------------------------------------------------------------------------------------

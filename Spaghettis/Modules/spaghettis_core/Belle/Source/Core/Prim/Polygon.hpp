@@ -186,65 +186,6 @@ public:
         }
     }
     
-#if 0   /* Alernative using List instead of Array (benchmark needed). */
-
-    void convertToConvexHull (Array < Point > * removed = nullptr)
-    {
-        if (points_.size() > 2)   {
-        //
-        if (points_.size() > 100) { quickElimination (removed); }
-        
-        int j = 0;
-        double x = points_.getFirst().getX();
-        double y = points_.getFirst().getY();
-        
-        for (int i = 1; i < points_.size(); ++i) { 
-            if ((points_[i].getY() < y) || (points_[i].getY() == y && points_[i].getX() < x)) { 
-                y = points_[i].getY(); 
-                x = points_[i].getX();
-                j = i; 
-            }
-        }
-        
-        List < SortablePoint > l1;
-        
-        l1.add (SortablePoint (points_[j], 0.0, 0.0));
-        
-        for (int i = 0; i < points_.size(); ++i) {
-        //
-        if (i != j) { 
-            Vector v (points_[i] - points_[j]);
-            l1.add (SortablePoint (points_[i], v.angle(), v.magnitude())); 
-        }
-        //
-        }
-        
-        l1.sort();
-        
-        List < Point > l2;
-        
-        l2.add (l1[0].toPoint());
-        l2.add (l1[1].toPoint());
-        
-        for (int i = 2; i < l1.size(); ++i) {
-        //
-        Point pt = l1[i].toPoint();
-        while (l2.size() > 1 && clockwiseOrder (l2[l2.size() - 2], l2[l2.size() - 1], pt) != -1) {
-            if (removed) { removed->add (l2[l2.size() - 1]); }
-            l2.remove (l2.size() - 1);
-        }
-        
-        l2.add (pt);
-        //
-        }
-   
-        ListToArray (l2, points_);
-        //
-        }
-    }
-    
-#endif
-
     void quickElimination (Array < Point > * removed)
     {
         Point t[4]; t[0] = t[1] = t[2] = t[3] = points_.getFirst();
