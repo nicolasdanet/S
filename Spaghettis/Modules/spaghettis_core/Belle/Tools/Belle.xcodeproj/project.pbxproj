@@ -157,7 +157,6 @@
 		37B5F4741AFD0C3B00BF4351 /* Graph.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Graph.hpp; sourceTree = "<group>"; };
 		37B5F4751AFD0C3B00BF4351 /* Leaks.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Leaks.hpp; sourceTree = "<group>"; };
 		37B5F4761AFD0C3B00BF4351 /* Line.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
-		37B5F4771AFD0C3B00BF4351 /* List.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = List.hpp; sourceTree = "<group>"; };
 		37B5F4781AFD0C3B00BF4351 /* Math.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Math.hpp; sourceTree = "<group>"; };
 		37B5F4791AFD0C3B00BF4351 /* Memory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Memory.hpp; sourceTree = "<group>"; };
 		37B5F47A1AFD0C3B00BF4351 /* NewLine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NewLine.hpp; sourceTree = "<group>"; };
@@ -450,7 +449,6 @@
 				37B5F47B1AFD0C3B00BF4351 /* Pointer.hpp */,
 				37B5F46F1AFD0C3B00BF4351 /* Complex.hpp */,
 				37B5F46C1AFD0C3B00BF4351 /* Array.hpp */,
-				37B5F4771AFD0C3B00BF4351 /* List.hpp */,
 				17F82D3A2058FDA0004FB77A /* Utils.hpp */,
 				37B5F4821AFD0C3B00BF4351 /* String.hpp */,
 				37B5F47A1AFD0C3B00BF4351 /* NewLine.hpp */,
