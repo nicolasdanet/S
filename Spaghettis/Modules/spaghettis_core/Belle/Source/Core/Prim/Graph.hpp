@@ -228,24 +228,23 @@ public:
             }
         }
         
-        List < Pointer < Node > > queue;
+        std::queue < Pointer < Node > > queue;
         
         for (int i = 0; i < nodes_.size(); ++i) { 
             Pointer < Node > p = nodes_.getAtIndex (i).getKey();
-            if (p->incoming_ == 0) { queue.add (p); }
+            if (p->incoming_ == 0) { queue.push (std::move (p)); }
         }
         
-        while (queue.size()) {
+        while (!queue.empty()) {
         //
-        Pointer < Node > p = queue.getFirst();
-        queue.remove (0);
+        Pointer < Node > p = queue.front(); queue.pop();
         sorted.add (p);
         
         for (int i = 0; i < p->edges_.size(); ++i) {
             Pointer < Node > e = p->edges_.getAtIndex (i).getKey();
             if (e->from_ == p) { 
                 e->to_->incoming_--;
-                if (e->to_->incoming_ == 0) { queue.add (e->to_); }
+                if (e->to_->incoming_ == 0) { queue.push (e->to_); }
             }
         }
         //

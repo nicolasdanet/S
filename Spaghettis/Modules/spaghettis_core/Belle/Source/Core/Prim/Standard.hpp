@@ -21,6 +21,7 @@
 #include <iostream>
 #include <limits>
 #include <map>
+#include <queue>
 #include <sstream>
 #include <stdexcept>
 #include <unistd.h>
