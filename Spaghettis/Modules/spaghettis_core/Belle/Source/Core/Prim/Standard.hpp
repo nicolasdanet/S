@@ -22,6 +22,7 @@
 #include <limits>
 #include <map>
 #include <queue>
+#include <random>
 #include <sstream>
 #include <stdexcept>
 #include <unistd.h>

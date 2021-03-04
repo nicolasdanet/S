@@ -336,8 +336,7 @@ private:
         for (int i = 0; i < pages_.size(); ++i)    { output << pages_[i]->getOffset() << newLine;    }
         for (int i = 0; i < contents_.size(); ++i) { output << contents_[i]->getOffset() << newLine; }
       
-        Random rand (filename_);
-        std::string unique = rand.nextID();
+        std::string unique = prim::Utils::nextID();
         
         output << newLine;
         output << "trailer" << newLine;

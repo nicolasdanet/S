@@ -62,6 +62,14 @@ public:
     {
         std::istringstream converter (s); uint64 v; converter >> std::hex >> v; return v;
     }
+    
+    static std::string nextID()
+    {
+        static std::mt19937 prng (std::random_device{}());      // --
+        static std::uniform_int_distribution < uint64 > d;
+        
+        return asHex (d (prng));
+    }
 };
 
 // -----------------------------------------------------------------------------------------------------------
