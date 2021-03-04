@@ -57,16 +57,16 @@ template < class T > class Pointer {
 // MARK: -
 
 public:
-    Pointer() : reference_ (nullptr), pointer_ (nullptr) 
+    Pointer() : reference_ (nullptr)
     { 
     }
     
-    explicit Pointer (T* toOwn) : reference_ (nullptr), pointer_ (toOwn)
+    explicit Pointer (T* toOwn) : reference_ (nullptr)
     {
         if (toOwn) { reference_ = new PointerOwner (static_cast < void* > (toOwn)); }
     }
 
-    Pointer (const Pointer < T > & toShare) : reference_ (nullptr), pointer_ (nullptr)
+    Pointer (const Pointer < T > & toShare) : reference_ (nullptr)
     {
         share (toShare);
     }
@@ -82,19 +82,15 @@ public:
     {
         unshare();
         
-        if (toOwn) {
-            reference_ = new PointerOwner (static_cast < void* > (toOwn));
-            pointer_   = toOwn;
-        }
+        if (toOwn) { reference_ = new PointerOwner (static_cast < void* > (toOwn)); }
         
         return *this;
     }
 
 public:
-    Pointer (Pointer < T > && toMove) : reference_ (toMove.reference_), pointer_ (toMove.pointer_)
+    Pointer (Pointer < T > && toMove) : reference_ (toMove.reference_)
     {
         toMove.reference_ = nullptr;
-        toMove.pointer_   = nullptr;
     }
     
     Pointer < T > & operator = (Pointer < T > && toMove)
@@ -120,7 +116,6 @@ public:
         using std::swap;
         
         swap (reference_, o.reference_);
-        swap (pointer_, o.pointer_);
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -130,7 +125,7 @@ public:
 public:
     T* get() const
     {
-        if (reference_) { return pointer_; } else { return nullptr; }
+        if (reference_) { return static_cast < T* > (reference_->raw_); } else { return nullptr; }
     }
     
     T* operator ->() const
@@ -177,20 +172,17 @@ public:
 private:
     void share (const Pointer < T > & toShare)
     {
-        unshare(); PRIM_ASSERT (pointer_ == nullptr);
+        unshare();
       
         reference_ = toShare.reference_;
         
         if (reference_) {
-            pointer_ = toShare.pointer_; 
             reference_->count_++;
         }
     }
     
     void unshare()
     {
-        pointer_ = nullptr;
-      
         if (reference_) {
         //
         if ((--reference_->count_) == 0) {
@@ -208,7 +200,6 @@ private:
     
 private:
     PointerOwner* reference_;
-    T* pointer_;
 
 private:
     PRIM_LEAK_DETECTOR (Pointer)
