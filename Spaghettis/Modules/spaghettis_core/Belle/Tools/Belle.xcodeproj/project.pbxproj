@@ -163,7 +163,6 @@
 		37B5F47B1AFD0C3B00BF4351 /* Pointer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Pointer.hpp; sourceTree = "<group>"; };
 		37B5F47C1AFD0C3B00BF4351 /* Polygon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Polygon.hpp; sourceTree = "<group>"; };
 		37B5F47D1AFD0C3B00BF4351 /* Prim.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Prim.hpp; sourceTree = "<group>"; };
-		37B5F47E1AFD0C3B00BF4351 /* Random.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Random.hpp; sourceTree = "<group>"; };
 		37B5F47F1AFD0C3B00BF4351 /* Rational.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Rational.hpp; sourceTree = "<group>"; };
 		37B5F4801AFD0C3B00BF4351 /* Rectangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Rectangle.hpp; sourceTree = "<group>"; };
 		37B5F4811AFD0C3B00BF4351 /* Standard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Standard.hpp; sourceTree = "<group>"; };
@@ -452,7 +451,6 @@
 				17F82D3A2058FDA0004FB77A /* Utils.hpp */,
 				37B5F4821AFD0C3B00BF4351 /* String.hpp */,
 				37B5F47A1AFD0C3B00BF4351 /* NewLine.hpp */,
-				37B5F47E1AFD0C3B00BF4351 /* Random.hpp */,
 				37B5F4731AFD0C3B00BF4351 /* File.hpp */,
 				37B5F4831AFD0C3B00BF4351 /* Table.hpp */,
 				37B5F47F1AFD0C3B00BF4351 /* Rational.hpp */,
