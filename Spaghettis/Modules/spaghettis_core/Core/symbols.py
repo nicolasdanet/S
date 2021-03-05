@@ -42,7 +42,7 @@ def findOrphanCount(file, name):
 def findOrphan(name):
     global result
     count = 0
-    files = glob.glob("../src/**/*.c", recursive=True) + glob.glob("../src/**/*.h", recursive=True)
+    files = glob.glob("./**/*.c", recursive=True) + glob.glob("./**/*.h", recursive=True)
     for file in files:
         count += findOrphanCount(file, name)
     if count < 4:
@@ -73,7 +73,7 @@ def sortSymbols():
     
 def fetchSymbols():
     global symbols
-    with open("../src/core/m_symbols.h", "r") as f:
+    with open("./core/m_symbols.h", "r") as f:
         for line in f:
             if line.startswith("extern t_symbol *"):
                 symbols.append(line[17:-2])
