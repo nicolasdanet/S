@@ -39,6 +39,8 @@ esac
 
 # Build and copy the executable.
 
+echo "Build spaghettis ..."
+
 from="${rep}/bin/spaghettis"
 dest="${rep}/spaghettis"
 
@@ -46,6 +48,17 @@ make -f "${receipe}"                                                || exit 1
 cp "${from}" "${dest}"                                              || exit 1
 [[ -e "${from}.dSym" ]] && cp -R "${from}.dSym" "${dest}.dSym"
 make -f "${receipe}" clean                                          || exit 1
+
+# ------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
+
+# Build the test suite.
+
+echo "Build tests ..."
+
+belle="-I../spaghettis_belle/Belle/Source"
+
+g++ -std=c++11 main.cpp ${belle} -O3 -ffast-math ${CPUFLAGS} -ldl -lpthread -lm -o tests    || exit 1
 
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
