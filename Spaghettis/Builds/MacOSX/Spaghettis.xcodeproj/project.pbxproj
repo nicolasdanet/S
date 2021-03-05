@@ -73,6 +73,10 @@
 			isa = PBXBuildFile;
 			fileRef = A7D9C0FA0907BC5117638CCC;
 		};
+		3E501BFBC2DC9D6FE1AD2FA0 = {
+			isa = PBXBuildFile;
+			fileRef = C0B552E448017A4C8C013F63;
+		};
 		E8E93D5E1626F0A68486AAD9 = {
 			isa = PBXBuildFile;
 			fileRef = 051678F45F5E88F07EA77717;
@@ -224,6 +228,20 @@
 			path = "Info-App.plist";
 			sourceTree = "SOURCE_ROOT";
 		};
+		BB93B2ED5224711CFA528F76 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "spaghettis_belle";
+			path = "../../Modules/spaghettis_belle";
+			sourceTree = "SOURCE_ROOT";
+		};
+		C0B552E448017A4C8C013F63 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_spaghettis_belle.mm";
+			path = "../../JuceLibraryCode/include_spaghettis_belle.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
 		C9C6B2655C8D889351519A5B = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -292,6 +310,7 @@
 				47B902E51FA1D26D812A2D55,
 				6BABF3016D73C66D88F37770,
 				DD376E055A3C1DAE5AD681FE,
+				BB93B2ED5224711CFA528F76,
 				B4DAE1C42FD0579475CBE2CD,
 			);
 			name = "JUCE Modules";
@@ -305,6 +324,7 @@
 				4BD2FF29EDDE1ABAC27A7822,
 				16458E769BBE629739926E6D,
 				A7D9C0FA0907BC5117638CCC,
+				C0B552E448017A4C8C013F63,
 				051678F45F5E88F07EA77717,
 				1BAEF33E789FBE91AAC83446,
 			);
@@ -380,6 +400,7 @@
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
 					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
 					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
+					"JUCE_MODULE_AVAILABLE_spaghettis_belle=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_core=1",
 					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
 					"JUCE_STRICT_REFCOUNTEDPOINTER=1",
@@ -445,6 +466,7 @@
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
 					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
 					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
+					"JUCE_MODULE_AVAILABLE_spaghettis_belle=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_core=1",
 					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
 					"JUCE_STRICT_REFCOUNTEDPOINTER=1",
@@ -620,6 +642,7 @@
 				E056A29494362A6384E4D8CB,
 				D0B4049BC7214518D88FC403,
 				6E1BA5A7EDAB97C5EA635131,
+				3E501BFBC2DC9D6FE1AD2FA0,
 				E8E93D5E1626F0A68486AAD9,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

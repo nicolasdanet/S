@@ -15,12 +15,12 @@
   ID:                 spaghettis_core
   vendor:             Spaghettis
   version:            0.9
-  name:               Spaghettis core
-  description:        Implementation of the control and DSP engines.
+  name:               Core
+  description:        The control and DSP engines of Spaghettis.
   website:            https://github.com/Spaghettis
   license:            BSD
 
-  dependencies:
+  dependencies:       spaghettis_belle
   OSXFrameworks:      Carbon CoreMIDI CoreAudio AudioUnit
   OSXLibs:            dl pthread
   linuxLibs:          dl pthread m asound jack
