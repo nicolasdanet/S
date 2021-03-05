@@ -47,11 +47,17 @@
 
 /* Is there a better approach with ffast-math flag set? */
 
+#if defined ( __cplusplus )
+
 #define TE_NAN              std::numeric_limits < double >::quiet_NaN()
 #define TE_INFINITY         std::numeric_limits < double >::infinity()
 
-// #define TE_NAN           (0.0 / 0.0)
-// #define TE_INFINITY      (1.0 / 0.0)
+#else
+
+#define TE_NAN              (0.0 / 0.0)
+#define TE_INFINITY         (1.0 / 0.0)
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -279,7 +279,9 @@ PD_EXPORT char *atom_atomsToString (int argc, t_atom *argv)
 
 PD_LOCAL void atom_shuffle (int argc, t_atom *argv)
 {
-    static t_rand48 seed = PD_RAND48_SEED;   /* Static. */
+    static int once = 0; static t_rand48 seed = 0;         /* Static. */
+    
+    if (!once) { once = 1; seed = PD_RAND48_SEED; }
     
     int i;
     

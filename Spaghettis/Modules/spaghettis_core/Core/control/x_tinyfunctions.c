@@ -229,7 +229,9 @@ static double fn_pow (double f, double g)
 
 static double fn_rand (void)
 {
-    static t_rand48 seed = PD_RAND48_SEED;      /* Static. */
+    static int once = 0; static t_rand48 seed = 0;      /* Static. */
+    
+    if (!once) { once = 1; seed = PD_RAND48_SEED; }
     
     return PD_RAND48_DOUBLE (seed);
 }

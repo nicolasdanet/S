@@ -337,7 +337,7 @@ PD_LOCAL void legacy_convert (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void legacy_dummy (void *, t_symbol *, int, t_atom *)
+PD_LOCAL void legacy_dummy (void *dummy, t_symbol *s, int argc, t_atom *argv)
 {
 
 }

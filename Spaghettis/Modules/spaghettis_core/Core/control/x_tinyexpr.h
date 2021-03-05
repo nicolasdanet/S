@@ -52,7 +52,7 @@ typedef struct te_expr {
     double              te_value;
     const double        *te_bound;
     const void          *te_fn;
-    te_expr             *te_parameters[TE_PARAMETERS];
+    struct te_expr      *te_parameters[TE_PARAMETERS];
     } te_expr;
 
 typedef struct te_variable {

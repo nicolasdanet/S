@@ -80,9 +80,12 @@ static uint64_t time_makeSeed (void)
 
 PD_LOCAL t_seed time_makeRandomSeed (void)
 {
-    static uint64_t base = getpid();    /* Static. */
-    static uint64_t seed = 0;           /* Static. */
-        
+    static int once = 0;
+    static uint64_t base = 0;   /* Static. */
+    static uint64_t seed = 0;   /* Static. */
+    
+    if (!once) { once = 1; base = getpid(); }
+    
     seed ^= base;
     
     PD_RAND48_NEXT (seed);

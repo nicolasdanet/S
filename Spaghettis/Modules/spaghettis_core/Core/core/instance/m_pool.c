@@ -21,7 +21,9 @@
 
 static t_symbol *pool_generate (void)
 {
-    static t_rand48 seed = PD_RAND48_SEED;  /* Static. */
+    static int once = 0; static t_rand48 seed = 0;  /* Static. */
+    
+    if (!once) { once = 1; seed = PD_RAND48_SEED; }
     
     const char hex[] = "0123456789abcdef";
     
