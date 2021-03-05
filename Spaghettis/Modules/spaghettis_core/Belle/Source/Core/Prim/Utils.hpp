@@ -68,7 +68,8 @@ public:
         static const char hex[] = "0123456789abcdef";
         const int size = 32;
         
-        static std::mt19937 prng (std::random_device{}());          // --
+        static std::random_device rnd;
+        static std::mt19937 prng (rnd());
         static std::uniform_int_distribution < int > d (0, 15);
         
         std::string s;
