@@ -25,7 +25,6 @@
 		1723FBD12302F23600C0F975 /* core_audiograph.c in Sources */ = {isa = PBXBuildFile; fileRef = 1723FBC72302F1E000C0F975 /* core_audiograph.c */; };
 		17289D0422A152E0000C4D9B /* x_directories.c in Sources */ = {isa = PBXBuildFile; fileRef = 17289D0322A152E0000C4D9B /* x_directories.c */; };
 		172ACDDA2439D2B7008F56DE /* m_fileproperties.c in Sources */ = {isa = PBXBuildFile; fileRef = 172ACDD92439D2B7008F56DE /* m_fileproperties.c */; };
-		172BB35F2078C7DD00874B8F /* belle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172BB35E2078C7DD00874B8F /* belle.cpp */; };
 		172E0EC12483A7D000D0E711 /* m_polling.c in Sources */ = {isa = PBXBuildFile; fileRef = 172E0EC02483A7D000D0E711 /* m_polling.c */; };
 		172E0EC52483E72000D0E711 /* m_load.c in Sources */ = {isa = PBXBuildFile; fileRef = 172E0EC42483E72000D0E711 /* m_load.c */; };
 		172EBDFD1F273EC9003C0B66 /* x_prepend.c in Sources */ = {isa = PBXBuildFile; fileRef = 172EBDFC1F273EC9003C0B66 /* x_prepend.c */; };
@@ -438,7 +437,6 @@
 		17271FA3247D529A00BCEB4C /* m_undoactions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_undoactions.h; sourceTree = "<group>"; };
 		17289D0322A152E0000C4D9B /* x_directories.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_directories.c; sourceTree = "<group>"; };
 		172ACDD92439D2B7008F56DE /* m_fileproperties.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_fileproperties.c; sourceTree = "<group>"; };
-		172BB35E2078C7DD00874B8F /* belle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = belle.cpp; sourceTree = "<group>"; };
 		172E0EC02483A7D000D0E711 /* m_polling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_polling.c; sourceTree = "<group>"; };
 		172E0EC42483E72000D0E711 /* m_load.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_load.c; sourceTree = "<group>"; };
 		172EBDFC1F273EC9003C0B66 /* x_prepend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_prepend.c; sourceTree = "<group>"; };
@@ -1215,14 +1213,6 @@
 			path = tab;
 			sourceTree = "<group>";
 		};
-		17D35C0C2047008600B1763C /* belle */ = {
-			isa = PBXGroup;
-			children = (
-				172BB35E2078C7DD00874B8F /* belle.cpp */,
-			);
-			path = belle;
-			sourceTree = "<group>";
-		};
 		17EFE790248143BF003D3F13 /* helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1625,7 +1615,6 @@
 		37961C251CAD85DB00859402 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				17D35C0C2047008600B1763C /* belle */,
 				1723FBC62302F1E000C0F975 /* core */,
 			);
 			path = libs;
@@ -2028,7 +2017,6 @@
 				17D74F3A2132E01A00D12F8B /* m_undodeencapsulate.c in Sources */,
 				172EF5A92477B3AA00166A96 /* g_undo.c in Sources */,
 				370939461CC92BF300827F75 /* g_glist.c in Sources */,
-				172BB35F2078C7DD00874B8F /* belle.cpp in Sources */,
 				379920481CD2649B00750527 /* g_arrange.c in Sources */,
 				3791F2E21CDF064000F7481C /* m_symbols.c in Sources */,
 				17E9CE3F238A7CDA00751166 /* s_denormal.c in Sources */,
