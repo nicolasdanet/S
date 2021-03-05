@@ -1329,7 +1329,7 @@
 				37961C251CAD85DB00859402 /* libs */,
 			);
 			name = src;
-			path = ../Core;
+			path = ../spaghettis_core/Core;
 			sourceTree = SOURCE_ROOT;
 		};
 		3722C5331C4F920B00D2BF6F /* core */ = {
