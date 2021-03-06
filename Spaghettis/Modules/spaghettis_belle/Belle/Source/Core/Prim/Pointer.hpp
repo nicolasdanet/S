@@ -111,7 +111,7 @@ public:
 // MARK: -
 
 public:
-    void swapWith (Pointer < T > & o)
+    void swapWith (Pointer < T > & o) noexcept
     {
         using std::swap;
         
@@ -209,7 +209,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T > void swap (Pointer < T > & a, Pointer < T > & b)
+template < class T > void swap (Pointer < T > & a, Pointer < T > & b) noexcept
 {
     a.swapWith (b);
 }
