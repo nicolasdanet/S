@@ -1101,53 +1101,8 @@ TTT_END
 // -----------------------------------------------------------------------------------------------------------
 
 #if 0
-void test106__utils() {
-#endif 
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-TTT_BEGIN (PrimUtils, 107, "Prim - Utils")
-
-    std::string s;
-    
-    s = prim::Utils::asHex (0);
-    TTT_EXPECT (s == std::string ("0"));
-    TTT_EXPECT (prim::Utils::withHex (s) == 0);
-    s = prim::Utils::asHex (1234);
-    TTT_EXPECT (s == std::string ("4d2"));
-    TTT_EXPECT (prim::Utils::withHex (s) == 1234);
-    s = prim::Utils::asHex (-1234);
-    TTT_EXPECT (s == std::string ("fffffffffffffb2e"));
-    TTT_EXPECT (prim::Utils::withHex (s) == -1234);
-    s = prim::Utils::asHex (65535);
-    TTT_EXPECT (s == std::string ("ffff"));
-    TTT_EXPECT (prim::Utils::withHex (s) == 65535);
-    
-    s = prim::Utils::paddedLeft ("7", 10);
-    TTT_EXPECT (s == std::string ("         7"));
-    s = prim::Utils::paddedLeft ("o", 10, 'x');
-    TTT_EXPECT (s == std::string ("xxxxxxxxxo"));
-    s = prim::Utils::paddedLeft ("123456789", 4, '?');
-    TTT_EXPECT (s == std::string ("123456789"));
-    s = prim::Utils::paddedLeft ("123456789", -1234, '?');
-    TTT_EXPECT (s == std::string ("123456789"));
-    
-TTT_END
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if 0
-}
+void test106__table() {
 #endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if 0
-void test107__table() {
-#endif 
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -1445,6 +1400,112 @@ TTT_BEGIN (PrimTable, 109, "Prim - Table")
     //
     }
             
+TTT_END
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if 0
+}
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if 0
+void test114__string() {
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+TTT_BEGIN (PrimString, 116, "Prim - String")
+
+    /* Default string. */
+    
+    {
+    //
+    prim::String s1 = prim::String ("");
+    prim::String s2;
+    
+    TTT_EXPECT (s2 == s1);
+    
+    s2 = prim::String ("Cailloux");
+    
+    TTT_EXPECT (s2 != s1);
+    
+    s1 = s2;
+    
+    TTT_EXPECT (s1 == s2);
+    //
+    }
+    
+    /* Comparaison operations. */
+    
+    {
+    //
+    TTT_EXPECT (prim::String ("salade") > prim::String ("carottes"));
+    TTT_EXPECT (prim::String ("Salade") < prim::String ("carottes"));
+    
+    TTT_EXPECT (prim::String ("") == prim::String (""));
+    
+    TTT_EXPECT (prim::String ("ABCDEFGH") == prim::String ("ABCDEFGH"));
+    TTT_EXPECT (prim::String ("ABCDEFGH") != prim::String ("ABCDEFG"));
+    TTT_EXPECT (prim::String ("ABCDEFGH") != prim::String ("abcDEFGH"));
+    TTT_EXPECT (prim::String ("ABCDEFGH") != prim::String (""));
+    
+    TTT_EXPECT (prim::String ("Chocolat") != prim::String ("Chocolaterie"));
+    TTT_EXPECT (prim::String ("trombone") != prim::String ("trombose"));
+    TTT_EXPECT (prim::String ("trombone") != prim::String ("trombose"));
+    TTT_EXPECT (prim::String ("lucioles") != prim::String ("couilles"));
+    //
+    }
+    
+TTT_END
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if 0
+}
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if 0
+void test107__utils() {
+#endif 
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+TTT_BEGIN (PrimUtils, 107, "Prim - Utils")
+
+    std::string s;
+    
+    s = prim::Utils::asHex (0);
+    TTT_EXPECT (s == std::string ("0"));
+    TTT_EXPECT (prim::Utils::withHex (s) == 0);
+    s = prim::Utils::asHex (1234);
+    TTT_EXPECT (s == std::string ("4d2"));
+    TTT_EXPECT (prim::Utils::withHex (s) == 1234);
+    s = prim::Utils::asHex (-1234);
+    TTT_EXPECT (s == std::string ("fffffffffffffb2e"));
+    TTT_EXPECT (prim::Utils::withHex (s) == -1234);
+    s = prim::Utils::asHex (65535);
+    TTT_EXPECT (s == std::string ("ffff"));
+    TTT_EXPECT (prim::Utils::withHex (s) == 65535);
+    
+    s = prim::Utils::paddedLeft ("7", 10);
+    TTT_EXPECT (s == std::string ("         7"));
+    s = prim::Utils::paddedLeft ("o", 10, 'x');
+    TTT_EXPECT (s == std::string ("xxxxxxxxxo"));
+    s = prim::Utils::paddedLeft ("123456789", 4, '?');
+    TTT_EXPECT (s == std::string ("123456789"));
+    s = prim::Utils::paddedLeft ("123456789", -1234, '?');
+    TTT_EXPECT (s == std::string ("123456789"));
+    
 TTT_END
 
 // -----------------------------------------------------------------------------------------------------------
@@ -2480,67 +2541,6 @@ TTT_BEGIN (PrimSort, 115, "Prim - Sort")
     //
     }
             
-TTT_END
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if 0
-}
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if 0
-void test114__string() {
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-TTT_BEGIN (PrimString, 116, "Prim - String")
-
-    /* Default string. */
-    
-    {
-    //
-    prim::String s1 = prim::String ("");
-    prim::String s2;
-    
-    TTT_EXPECT (s2 == s1);
-    
-    s2 = prim::String ("Cailloux");
-    
-    TTT_EXPECT (s2 != s1);
-    
-    s1 = s2;
-    
-    TTT_EXPECT (s1 == s2);
-    //
-    }
-    
-    /* Comparaison operations. */
-    
-    {
-    //
-    TTT_EXPECT (prim::String ("salade") > prim::String ("carottes"));
-    TTT_EXPECT (prim::String ("Salade") < prim::String ("carottes"));
-    
-    TTT_EXPECT (prim::String ("") == prim::String (""));
-    
-    TTT_EXPECT (prim::String ("ABCDEFGH") == prim::String ("ABCDEFGH"));
-    TTT_EXPECT (prim::String ("ABCDEFGH") != prim::String ("ABCDEFG"));
-    TTT_EXPECT (prim::String ("ABCDEFGH") != prim::String ("abcDEFGH"));
-    TTT_EXPECT (prim::String ("ABCDEFGH") != prim::String (""));
-    
-    TTT_EXPECT (prim::String ("Chocolat") != prim::String ("Chocolaterie"));
-    TTT_EXPECT (prim::String ("trombone") != prim::String ("trombose"));
-    TTT_EXPECT (prim::String ("trombone") != prim::String ("trombose"));
-    TTT_EXPECT (prim::String ("lucioles") != prim::String ("couilles"));
-    //
-    }
-    
 TTT_END
 
 // -----------------------------------------------------------------------------------------------------------
