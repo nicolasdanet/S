@@ -28,18 +28,18 @@
 #include "Math.hpp"
 #include "Pointer.hpp"
 #include "Complex.hpp"
+#include "Rational.hpp"
 #include "Array.hpp"
 #include "Table.hpp"
 #include "String.hpp"
+#include "Graph.hpp"
 #include "Utils.hpp"
 #include "NewLine.hpp"
 #include "File.hpp"
-#include "Rational.hpp"
 #include "Rectangle.hpp"
 #include "Line.hpp"
 #include "Bezier.hpp"
 #include "Polygon.hpp"
-#include "Graph.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

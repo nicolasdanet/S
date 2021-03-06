@@ -13,6 +13,7 @@
 /* Key must be sortable. */ 
 /* A Key set to undefined value is deleted. */
 /* Key and Value must be trivially copyable (see Array). */
+/* Key and Value should have an efficient swap. */
 /* Note that no exception safety is guaranteed if Key and/or Value throw in copy constructors. */
 /* Key addition is NOT efficient in large tables. */
 

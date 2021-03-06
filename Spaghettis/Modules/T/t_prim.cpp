@@ -745,13 +745,155 @@ TTT_END
 // -----------------------------------------------------------------------------------------------------------
 
 #if 0
-void test105__array() {
+void test105__rational() {
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+TTT_BEGIN (PrimRational, 105, "Prim - Rational")
+
+    /* Basic. */
+    
+    {
+    //
+    prim::Ratio a (3, 9);
+    
+    TTT_EXPECT (a.getNumerator()   == 1);
+    TTT_EXPECT (a.getDenominator() == 3);
+    
+    a = prim::Ratio (221, 782);
+    
+    TTT_EXPECT (a.getNumerator()   == 13);
+    TTT_EXPECT (a.getDenominator() == 46);
+    TTT_EXPECT (a.isNegative()     == false);
+    
+    a = prim::Ratio (30, -100);
+
+    TTT_EXPECT (a.getNumerator()   == -3);
+    TTT_EXPECT (a.getDenominator() == 10);
+    TTT_EXPECT (a.isNegative()     == true);
+    
+    a = prim::Ratio (-2, -4);
+    
+    TTT_EXPECT (a.getNumerator()   == 1);
+    TTT_EXPECT (a.getDenominator() == 2);
+    TTT_EXPECT (a.isNegative()     == false);
+    //
+    }
+    
+    /* More with random. */
+    
+    {
+    //
+    for (int i = 0; i < kAgain; ++i) {
+    //
+    prim::int64 numerator   = kPrime1[getRandomInteger (prim::sizeOfArray (kPrime1))];
+    prim::int64 denominator = kPrime2[getRandomInteger (prim::sizeOfArray (kPrime2))];
+    prim::int64 n           = getRandomInteger();
+    
+    prim::Ratio a (numerator * n, denominator * n);
+    
+    TTT_EXPECT (a.getNumerator()   == numerator);
+    TTT_EXPECT (a.getDenominator() == denominator);
+    //
+    }
+    //
+    }
+    
+    /* Zero / Undefined. */
+    
+    {
+    //
+    prim::Ratio a;
+    
+    TTT_EXPECT (a.isZero() == true);
+    
+    a = prim::Ratio (0, 0);
+    
+    TTT_EXPECT (PD_FLOAT64_IS_INVALID_OR_ZERO (a.asDouble()));
+    
+    a = prim::Ratio (0, -1234);
+
+    TTT_EXPECT (a.getNumerator()   == 0);
+    TTT_EXPECT (a.getDenominator() == 1);
+    TTT_EXPECT (a.isUndefined()    == false);
+    TTT_EXPECT (a.isZero()         == true);
+    
+    a = prim::Ratio (4, 0);
+
+    TTT_EXPECT (a.getNumerator()   == 0);
+    TTT_EXPECT (a.getDenominator() == 0);
+    TTT_EXPECT (a.isUndefined()    == true);
+    TTT_EXPECT (a.isZero()         == false);
+    
+    a = 7;
+    
+    TTT_EXPECT (a.getNumerator()   == 7);
+    TTT_EXPECT (a.getDenominator() == 1);
+    //
+    }
+    
+    /* Math operations. */
+    
+    {
+    //
+    prim::Ratio a;
+    
+    a = 2 + prim::Ratio (1, 2);
+    
+    TTT_EXPECT (a.getNumerator()   == 5);
+    TTT_EXPECT (a.getDenominator() == 2);
+    
+    a = prim::Ratio (1, 4) - 1;
+    
+    TTT_EXPECT (a.getNumerator()   == -3);
+    TTT_EXPECT (a.getDenominator() == 4);
+    
+    a *= prim::Ratio (-2, 5);
+    
+    TTT_EXPECT (a.getNumerator()   == 3);
+    TTT_EXPECT (a.getDenominator() == 10);
+    
+    a /= prim::Ratio (-6, 7);
+    
+    TTT_EXPECT (a.getNumerator()   == -7);
+    TTT_EXPECT (a.getDenominator() == 20);
+    //
+    }
+    
+    {
+    //
+    prim::Ratio a (1, 2);
+    prim::Ratio b (3, 10);
+    prim::Ratio c (2, 3);
+    
+    TTT_EXPECT (b < a && a < c);
+    TTT_EXPECT (c > a && a > b);
+    TTT_EXPECT (b != c);
+    //
+    }
+    
+TTT_END
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if 0
+}
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if 0
+void test106__array() {
 #endif 
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-TTT_BEGIN (PrimArray, 105, "Prim - Array")
+TTT_BEGIN (PrimArray, 106, "Prim - Array")
 
     /* Default constructed / Autoreleased. */
     
@@ -1101,13 +1243,13 @@ TTT_END
 // -----------------------------------------------------------------------------------------------------------
 
 #if 0
-void test106__table() {
+void test107__table() {
 #endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-TTT_BEGIN (PrimTable, 109, "Prim - Table")
+TTT_BEGIN (PrimTable, 107, "Prim - Table")
 
     /* Basic / Empty. */
     
@@ -1413,13 +1555,13 @@ TTT_END
 // -----------------------------------------------------------------------------------------------------------
 
 #if 0
-void test114__string() {
+void test108__string() {
 #endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-TTT_BEGIN (PrimString, 116, "Prim - String")
+TTT_BEGIN (PrimString, 108, "Prim - String")
 
     /* Default string. */
     
@@ -1474,13 +1616,315 @@ TTT_END
 // -----------------------------------------------------------------------------------------------------------
 
 #if 0
-void test107__utils() {
+void test109__graph() {
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+TTT_BEGIN (PrimGraph, 109, "Prim - Graph")
+
+    /* Add. */
+    
+    {
+    //
+    Graph graph;
+    
+    prim::Pointer < Node > a (new Node());
+    prim::Pointer < Node > b (new Node());
+    prim::Pointer < Node > c (new Node());
+    prim::Pointer < Node > z (nullptr);
+    
+    a->getObject().setValue (1234);
+    b->getObject().setValue (1234);
+    c->getObject().setValue (1234);
+    
+    graph.add (a);
+    graph.add (b); graph.add (b); graph.add (z);
+    graph.add (c);
+    
+    TTT_EXPECT (graph.size() == 3);
+    TTT_EXPECT (graph.getRoot() == a);
+    TTT_EXPECT (graph.getRoot()->getObject().getValue() == 1234);
+    TTT_EXPECT (graph.getAllNodes().size() == 3);
+    TTT_EXPECT (graph.getAllNodes().getLast()->getObject().getValue() == 1234);
+    //
+    }
+    
+    /* Connect / Next. */
+    
+    {
+    //
+    Graph graph;
+    
+    prim::Pointer < Node > a (new Node());
+    prim::Pointer < Node > b (new Node());
+    prim::Pointer < Node > c (new Node());
+    prim::Pointer < Node > d (new Node());
+    prim::Pointer < Node > e (new Node());
+    prim::Pointer < Node > f (new Node());
+    prim::Pointer < Node > g (new Node());
+    
+    a->getObject().setValue (0);
+    b->getObject().setValue (10);
+    c->getObject().setValue (11);
+    d->getObject().setValue (12);
+    e->getObject().setValue (20);
+    f->getObject().setValue (21);
+    g->getObject().setValue (22);
+    
+    graph.add (a);
+    graph.add (b);
+    graph.add (c);
+    graph.add (d);
+    graph.add (e);
+    graph.add (f);
+    graph.add (g);
+    
+    graph.connect (a, b)->getObject().setValue (-1);
+    graph.connect (a, c)->getObject().setValue (-2);
+    graph.connect (a, d)->getObject().setValue (-3);
+    
+    graph.connect (c, e)->getObject().setValue (-1);
+    graph.connect (c, f)->getObject().setValue (-2);
+    graph.connect (c, g)->getObject().setValue (-3);
+    
+    a = nullptr;
+    b = nullptr;
+    c = nullptr;
+    d = nullptr;
+    e = nullptr;
+    f = nullptr;
+    g = nullptr;
+    
+    prim::Pointer < Node > root = graph.getRoot();
+    prim::Pointer < Node > t = graph.nextByEdge (root, -2);
+    
+    TTT_EXPECT (t != nullptr);
+    TTT_EXPECT (t->getObject().getValue() == 11);
+    
+    t = graph.nextByEdge (t, -2);
+    
+    TTT_EXPECT (t != nullptr);
+    TTT_EXPECT (t->getObject().getValue() == 21);
+    
+    t = graph.previousByEdge (t, -2);
+    
+    TTT_EXPECT (t != nullptr);
+    TTT_EXPECT (t->getObject().getValue() == 11);
+    
+    t = graph.previousByEdge (t, -2);
+    
+    TTT_EXPECT (t != nullptr);
+    TTT_EXPECT (t->getObject().getValue() == 0);
+    //
+    }
+    
+    /* Connect / All next.*/
+    
+    {
+    //
+    Graph graph;
+        
+    prim::Pointer < Node > a (new Node());
+    prim::Pointer < Node > b (new Node());
+    prim::Pointer < Node > c (new Node());
+    prim::Pointer < Node > d (new Node());
+    prim::Pointer < Node > e (new Node());
+    
+    a->getObject().setValue (0);
+    b->getObject().setValue (10);
+    c->getObject().setValue (11);
+    d->getObject().setValue (12);
+    e->getObject().setValue (20);
+    
+    graph.add (a);
+    graph.add (b);
+    graph.add (c);
+    graph.add (d);
+    graph.add (e);
+    
+    graph.connect (a, b)->getObject().setValue (1);
+    graph.connect (a, c)->getObject().setValue (1);
+    graph.connect (a, d)->getObject().setValue (0);
+    
+    graph.connect (b, e)->getObject().setValue (0);
+    graph.connect (c, e)->getObject().setValue (1);
+    graph.connect (d, e)->getObject().setValue (1);
+    
+    prim::Array < prim::Pointer < Node > > next (graph.allNextByEdge (a, 1));
+    prim::Array < prim::Pointer < Node > > previous (graph.allPreviousByEdge (e, 1));
+    
+    TTT_EXPECT (next.size() == 2);
+    TTT_EXPECT (previous.size() == 2);
+    
+    TTT_EXPECT (graph.nextByEdge (a, 1) == nullptr);
+    TTT_EXPECT (graph.previousByEdge (e, 1) == nullptr);
+    //
+    }
+    
+    /* Topologic sort. */
+    
+    {
+    //
+    Graph graph;
+
+    prim::Pointer < Node > a (new Node());
+    prim::Pointer < Node > b (new Node());
+    prim::Pointer < Node > c (new Node());
+    prim::Pointer < Node > d (new Node());
+    prim::Pointer < Node > e (new Node());
+    prim::Pointer < Node > f (new Node());
+    prim::Pointer < Node > g (new Node());
+    
+    a->getObject().setValue (0);
+    b->getObject().setValue (1);
+    c->getObject().setValue (2);
+    d->getObject().setValue (3);
+    e->getObject().setValue (4);
+    f->getObject().setValue (5);
+    g->getObject().setValue (6);
+    
+    graph.add (a);
+    graph.add (b);
+    graph.add (c);
+    graph.add (d);
+    graph.add (e);
+    graph.add (f);
+    graph.add (g);
+    
+    graph.connect (a, b);
+    graph.connect (a, c);
+    graph.connect (b, d);
+    graph.connect (c, d);
+    graph.connect (e, c);
+    graph.connect (e, f);
+    graph.connect (d, g);
+    graph.connect (f, g);
+    
+    TTT_EXPECT (graph.getAllNodesSorted().size() == graph.size());
+    
+    graph.connect (a, e);
+    graph.connect (c, a);
+    
+    TTT_EXPECT (graph.getAllNodesSorted().size() == 0);
+    //
+    }
+    
+    /* Drain. */
+    
+    {
+    //
+    Graph graph1;
+    Graph graph2;
+    Graph graph3;
+    
+    prim::Pointer < Node > a (new Node());
+    prim::Pointer < Node > b (new Node());
+    prim::Pointer < Node > c (new Node());
+    
+    prim::Pointer < Node > d (new Node());
+    prim::Pointer < Node > e (new Node());
+    prim::Pointer < Node > f (new Node());
+    
+    graph1.add (a);
+    graph1.add (b);
+    graph1.add (c);
+    
+    graph2.add (d);
+    graph2.add (e);
+    graph2.add (f);
+    
+    graph1.connect (a, b);
+    graph1.connect (a, c);
+    
+    graph2.connect (d, e);
+    graph2.connect (d, f);
+    
+    graph1.drain (graph2);
+    
+    TTT_EXPECT (graph1.size() == 6);
+    TTT_EXPECT (graph2.size() == 0);
+    
+    graph3.drain (graph1);
+    
+    TTT_EXPECT (graph3.size() == 6);
+    TTT_EXPECT (graph1.size() == 0);
+    //
+    }
+    
+    /* More with random. */
+    
+    for (int i = 0; i < kAgain; ++i) {
+    //
+    Graph graph;
+    
+    /* Create a randomly connected small graph. */
+    
+    prim::Array < prim::Pointer < Node > > array;
+    array.resize (6);
+    
+    for (int j = 0; j < array.size(); ++j) {
+        array[j] = new Node();
+        array[j]->getObject().setValue (j);
+        graph.add (array[j]);
+    }
+    
+    for (int j = 0; j < array.size(); ++j) {
+    //
+    int a, b;
+    
+    do {
+    //
+    a = getRandomInteger (graph.size());
+    b = getRandomInteger (graph.size());
+    //
+    } while (b == a);
+    
+    graph.connect (array[a], array[b])->getObject().setValue (0);
+    //
+    }
+    
+    /* < https://en.wikipedia.org/wiki/Topological_sorting > */
+    
+    prim::Array < prim::Pointer < Node > > topo = graph.getAllNodesSorted();
+    
+    if (topo.size() == 0) { /* Find strongly connected components if cyclic? */ }
+    else {
+    //
+    /* Test the topologic sort. */
+    
+    TTT_EXPECT (topo.size() == graph.size());
+    for (int j = 0; j < topo.size(); ++j) {
+        prim::Array < prim::Pointer < Node > > childs = graph.allNextByEdge (topo[j], 0);
+        for (int t = 0; t < childs.size(); ++t) {
+            TTT_EXPECT (topo.indexOf (childs[t]) > j);
+        }
+    }
+    //
+    }
+    //
+    }
+            
+TTT_END
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if 0
+}
+#endif
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if 0
+void test110__utils() {
 #endif 
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-TTT_BEGIN (PrimUtils, 107, "Prim - Utils")
+TTT_BEGIN (PrimUtils, 110, "Prim - Utils")
 
     std::string s;
     
@@ -1519,149 +1963,7 @@ TTT_END
 // -----------------------------------------------------------------------------------------------------------
 
 #if 0
-void test108__rational() {
-#endif 
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-TTT_BEGIN (PrimRational, 110, "Prim - Rational")
-
-    /* Basic. */
-    
-    {
-    //
-    prim::Ratio a (3, 9);
-    
-    TTT_EXPECT (a.getNumerator()   == 1);
-    TTT_EXPECT (a.getDenominator() == 3);
-    
-    a = prim::Ratio (221, 782);
-    
-    TTT_EXPECT (a.getNumerator()   == 13);
-    TTT_EXPECT (a.getDenominator() == 46);
-    TTT_EXPECT (a.isNegative()     == false);
-    
-    a = prim::Ratio (30, -100);
-
-    TTT_EXPECT (a.getNumerator()   == -3);
-    TTT_EXPECT (a.getDenominator() == 10);
-    TTT_EXPECT (a.isNegative()     == true);
-    
-    a = prim::Ratio (-2, -4);
-    
-    TTT_EXPECT (a.getNumerator()   == 1);
-    TTT_EXPECT (a.getDenominator() == 2);
-    TTT_EXPECT (a.isNegative()     == false);
-    //
-    }
-    
-    /* More with random. */
-    
-    {
-    //
-    for (int i = 0; i < kAgain; ++i) {
-    //
-    prim::int64 numerator   = kPrime1[getRandomInteger (prim::sizeOfArray (kPrime1))];
-    prim::int64 denominator = kPrime2[getRandomInteger (prim::sizeOfArray (kPrime2))];
-    prim::int64 n           = getRandomInteger();
-    
-    prim::Ratio a (numerator * n, denominator * n);
-    
-    TTT_EXPECT (a.getNumerator()   == numerator);
-    TTT_EXPECT (a.getDenominator() == denominator);
-    //
-    }
-    //
-    }
-    
-    /* Zero / Undefined. */
-    
-    {
-    //
-    prim::Ratio a;
-    
-    TTT_EXPECT (a.isZero() == true);
-    
-    a = prim::Ratio (0, 0);
-    
-    TTT_EXPECT (PD_FLOAT64_IS_INVALID_OR_ZERO (a.asDouble()));
-    
-    a = prim::Ratio (0, -1234);
-
-    TTT_EXPECT (a.getNumerator()   == 0);
-    TTT_EXPECT (a.getDenominator() == 1);
-    TTT_EXPECT (a.isUndefined()    == false);
-    TTT_EXPECT (a.isZero()         == true);
-    
-    a = prim::Ratio (4, 0);
-
-    TTT_EXPECT (a.getNumerator()   == 0);
-    TTT_EXPECT (a.getDenominator() == 0);
-    TTT_EXPECT (a.isUndefined()    == true);
-    TTT_EXPECT (a.isZero()         == false);
-    
-    a = 7;
-    
-    TTT_EXPECT (a.getNumerator()   == 7);
-    TTT_EXPECT (a.getDenominator() == 1);
-    //
-    }
-    
-    /* Math operations. */
-    
-    {
-    //
-    prim::Ratio a;
-    
-    a = 2 + prim::Ratio (1, 2);
-    
-    TTT_EXPECT (a.getNumerator()   == 5);
-    TTT_EXPECT (a.getDenominator() == 2);
-    
-    a = prim::Ratio (1, 4) - 1;
-    
-    TTT_EXPECT (a.getNumerator()   == -3);
-    TTT_EXPECT (a.getDenominator() == 4);
-    
-    a *= prim::Ratio (-2, 5);
-    
-    TTT_EXPECT (a.getNumerator()   == 3);
-    TTT_EXPECT (a.getDenominator() == 10);
-    
-    a /= prim::Ratio (-6, 7);
-    
-    TTT_EXPECT (a.getNumerator()   == -7);
-    TTT_EXPECT (a.getDenominator() == 20);
-    //
-    }
-    
-    {
-    //
-    prim::Ratio a (1, 2);
-    prim::Ratio b (3, 10);
-    prim::Ratio c (2, 3);
-    
-    TTT_EXPECT (b < a && a < c);
-    TTT_EXPECT (c > a && a > b);
-    TTT_EXPECT (b != c);
-    //
-    }
-    
-TTT_END
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if 0
-}
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if 0
-void test109__rectangle() {
+void test111__rectangle() {
 #endif 
 
 // -----------------------------------------------------------------------------------------------------------
@@ -1769,7 +2071,7 @@ TTT_END
 // -----------------------------------------------------------------------------------------------------------
 
 #if 0
-void test110__line() {
+void test112__line() {
 #endif 
 
 // -----------------------------------------------------------------------------------------------------------
@@ -1999,7 +2301,7 @@ TTT_END
 // -----------------------------------------------------------------------------------------------------------
 
 #if 0
-void test111__polygon() {
+void test113__polygon() {
 #endif 
 
 // -----------------------------------------------------------------------------------------------------------
@@ -2164,316 +2466,13 @@ TTT_END
 // -----------------------------------------------------------------------------------------------------------
 
 #if 0
-void test112__graph() {
+void test114__sort() {
 #endif 
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-TTT_BEGIN (PrimGraph, 114, "Prim - Graph")
-
-    /* Add. */
-    
-    {
-    //
-    Graph graph;
-    
-    prim::Pointer < Node > a (new Node());
-    prim::Pointer < Node > b (new Node());
-    prim::Pointer < Node > c (new Node());
-    prim::Pointer < Node > z (nullptr);
-    
-    a->getObject().setValue (1234);
-    b->getObject().setValue (1234);
-    c->getObject().setValue (1234);
-    
-    graph.add (a); 
-    graph.add (b); graph.add (b); graph.add (z);
-    graph.add (c);
-    
-    TTT_EXPECT (graph.size() == 3);
-    TTT_EXPECT (graph.getRoot() == a);
-    TTT_EXPECT (graph.getRoot()->getObject().getValue() == 1234);
-    TTT_EXPECT (graph.getAllNodes().size() == 3);
-    TTT_EXPECT (graph.getAllNodes().getLast()->getObject().getValue() == 1234);
-    //
-    }
-    
-    /* Connect / Next. */
-    
-    {
-    //
-    Graph graph;
-    
-    prim::Pointer < Node > a (new Node());
-    prim::Pointer < Node > b (new Node());
-    prim::Pointer < Node > c (new Node());
-    prim::Pointer < Node > d (new Node());
-    prim::Pointer < Node > e (new Node());
-    prim::Pointer < Node > f (new Node());
-    prim::Pointer < Node > g (new Node());
-    
-    a->getObject().setValue (0);
-    b->getObject().setValue (10);
-    c->getObject().setValue (11);
-    d->getObject().setValue (12);
-    e->getObject().setValue (20);
-    f->getObject().setValue (21);
-    g->getObject().setValue (22);
-    
-    graph.add (a); 
-    graph.add (b);
-    graph.add (c);
-    graph.add (d);
-    graph.add (e);
-    graph.add (f);
-    graph.add (g);
-    
-    graph.connect (a, b)->getObject().setValue (-1);
-    graph.connect (a, c)->getObject().setValue (-2);
-    graph.connect (a, d)->getObject().setValue (-3);
-    
-    graph.connect (c, e)->getObject().setValue (-1);
-    graph.connect (c, f)->getObject().setValue (-2);
-    graph.connect (c, g)->getObject().setValue (-3);
-    
-    a = nullptr;
-    b = nullptr;
-    c = nullptr;
-    d = nullptr;
-    e = nullptr;
-    f = nullptr;
-    g = nullptr;
-    
-    prim::Pointer < Node > root = graph.getRoot();
-    prim::Pointer < Node > t = graph.nextByEdge (root, -2);
-    
-    TTT_EXPECT (t != nullptr);
-    TTT_EXPECT (t->getObject().getValue() == 11);
-    
-    t = graph.nextByEdge (t, -2);
-    
-    TTT_EXPECT (t != nullptr);
-    TTT_EXPECT (t->getObject().getValue() == 21);
-    
-    t = graph.previousByEdge (t, -2);
-    
-    TTT_EXPECT (t != nullptr);
-    TTT_EXPECT (t->getObject().getValue() == 11);
-    
-    t = graph.previousByEdge (t, -2);
-    
-    TTT_EXPECT (t != nullptr);
-    TTT_EXPECT (t->getObject().getValue() == 0);
-    //
-    }
-    
-    /* Connect / All next.*/
-    
-    {
-    //
-    Graph graph;
-        
-    prim::Pointer < Node > a (new Node());
-    prim::Pointer < Node > b (new Node());
-    prim::Pointer < Node > c (new Node());
-    prim::Pointer < Node > d (new Node());
-    prim::Pointer < Node > e (new Node());
-    
-    a->getObject().setValue (0);
-    b->getObject().setValue (10);
-    c->getObject().setValue (11);
-    d->getObject().setValue (12);
-    e->getObject().setValue (20);
-    
-    graph.add (a);
-    graph.add (b);
-    graph.add (c);
-    graph.add (d);
-    graph.add (e);
-    
-    graph.connect (a, b)->getObject().setValue (1);
-    graph.connect (a, c)->getObject().setValue (1);
-    graph.connect (a, d)->getObject().setValue (0);
-    
-    graph.connect (b, e)->getObject().setValue (0);
-    graph.connect (c, e)->getObject().setValue (1);
-    graph.connect (d, e)->getObject().setValue (1);
-    
-    prim::Array < prim::Pointer < Node > > next (graph.allNextByEdge (a, 1));
-    prim::Array < prim::Pointer < Node > > previous (graph.allPreviousByEdge (e, 1));
-    
-    TTT_EXPECT (next.size() == 2);
-    TTT_EXPECT (previous.size() == 2);
-    
-    TTT_EXPECT (graph.nextByEdge (a, 1) == nullptr);
-    TTT_EXPECT (graph.previousByEdge (e, 1) == nullptr);
-    //
-    }
-    
-    /* Topologic sort. */
-    
-    {
-    //
-    Graph graph;
-
-    prim::Pointer < Node > a (new Node());
-    prim::Pointer < Node > b (new Node());
-    prim::Pointer < Node > c (new Node());
-    prim::Pointer < Node > d (new Node());
-    prim::Pointer < Node > e (new Node());
-    prim::Pointer < Node > f (new Node());
-    prim::Pointer < Node > g (new Node());
-    
-    a->getObject().setValue (0);
-    b->getObject().setValue (1);
-    c->getObject().setValue (2);
-    d->getObject().setValue (3);
-    e->getObject().setValue (4);
-    f->getObject().setValue (5);
-    g->getObject().setValue (6);
-    
-    graph.add (a);
-    graph.add (b);
-    graph.add (c);
-    graph.add (d);
-    graph.add (e);
-    graph.add (f);
-    graph.add (g);
-    
-    graph.connect (a, b);
-    graph.connect (a, c);
-    graph.connect (b, d);
-    graph.connect (c, d);
-    graph.connect (e, c);
-    graph.connect (e, f);
-    graph.connect (d, g);
-    graph.connect (f, g);
-    
-    TTT_EXPECT (graph.getAllNodesSorted().size() == graph.size());
-    
-    graph.connect (a, e);
-    graph.connect (c, a);
-    
-    TTT_EXPECT (graph.getAllNodesSorted().size() == 0);
-    //
-    }
-    
-    /* Drain. */
-    
-    {
-    //
-    Graph graph1;
-    Graph graph2;
-    Graph graph3;
-    
-    prim::Pointer < Node > a (new Node());
-    prim::Pointer < Node > b (new Node());
-    prim::Pointer < Node > c (new Node());
-    
-    prim::Pointer < Node > d (new Node());
-    prim::Pointer < Node > e (new Node());
-    prim::Pointer < Node > f (new Node());
-    
-    graph1.add (a);
-    graph1.add (b);
-    graph1.add (c);
-    
-    graph2.add (d);
-    graph2.add (e);
-    graph2.add (f);
-    
-    graph1.connect (a, b);
-    graph1.connect (a, c);
-    
-    graph2.connect (d, e);
-    graph2.connect (d, f);
-    
-    graph1.drain (graph2);
-    
-    TTT_EXPECT (graph1.size() == 6);
-    TTT_EXPECT (graph2.size() == 0);
-    
-    graph3.drain (graph1);
-    
-    TTT_EXPECT (graph3.size() == 6);
-    TTT_EXPECT (graph1.size() == 0);
-    //
-    }
-    
-    /* More with random. */
-    
-    for (int i = 0; i < kAgain; ++i) {
-    //
-    Graph graph;
-    
-    /* Create a randomly connected small graph. */
-    
-    prim::Array < prim::Pointer < Node > > array; 
-    array.resize (6);
-    
-    for (int j = 0; j < array.size(); ++j) { 
-        array[j] = new Node(); 
-        array[j]->getObject().setValue (j);
-        graph.add (array[j]); 
-    }
-    
-    for (int j = 0; j < array.size(); ++j) {
-    //
-    int a, b;
-    
-    do { 
-    //
-    a = getRandomInteger (graph.size());
-    b = getRandomInteger (graph.size()); 
-    //
-    } while (b == a);
-    
-    graph.connect (array[a], array[b])->getObject().setValue (0);
-    //
-    }
-    
-    /* < https://en.wikipedia.org/wiki/Topological_sorting > */
-    
-    prim::Array < prim::Pointer < Node > > topo = graph.getAllNodesSorted();
-    
-    if (topo.size() == 0) { /* Find strongly connected components if cyclic? */ }
-    else {
-    //
-    /* Test the topologic sort. */
-    
-    TTT_EXPECT (topo.size() == graph.size());
-    for (int j = 0; j < topo.size(); ++j) {
-        prim::Array < prim::Pointer < Node > > childs = graph.allNextByEdge (topo[j], 0);
-        for (int t = 0; t < childs.size(); ++t) { 
-            TTT_EXPECT (topo.indexOf (childs[t]) > j);
-        }
-    }
-    //
-    }
-    //
-    }
-            
-TTT_END
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if 0
-}
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if 0
-void test113__sort() {
-#endif 
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-TTT_BEGIN (PrimSort, 115, "Prim - Sort")
+TTT_BEGIN (PrimSort, 114, "Prim - Sort")
     
     {
     //
