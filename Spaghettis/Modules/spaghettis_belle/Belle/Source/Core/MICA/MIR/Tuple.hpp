@@ -19,16 +19,16 @@ template < int N > class Tuple {        /* Concepts grouped in a basic tuple. */
 // MARK: -
 
 public:
-    Tuple()
+    Tuple() : tuple_()
     {
     }
     
-    Tuple (const Concept (&t)[N])
+    Tuple (const Concept (&t)[N]) : tuple_()
     {
         prim::Memory::copy (tuple_, t, N);
     }
 
-    template < class T > Tuple (const prim::Array < T > & a, int offset = 0) 
+    template < class T > Tuple (const prim::Array < T > & a, int offset = 0) : tuple_()
     { 
         int k = 0;
         for (int i = offset; i < offset + N; ++i) { if (i < a.size()) { tuple_[k++] = Concept (a[i]); } }
