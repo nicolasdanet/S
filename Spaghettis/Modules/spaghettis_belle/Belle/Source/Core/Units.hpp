@@ -60,7 +60,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    static double getConversionFactor (Unit unit)            /* Conversion ratio to the SI unit. */
+    static double getConversionFactor (Unit unit)           /* Conversion ratio to the SI unit. */
     {
         switch (unit) {
             case kMeter      : return 1.0;
@@ -79,7 +79,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < Unit T > class Measurement : public Vector {
+template < Unit T > class Measurement : public Vector {     /* Public for convenience. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -109,7 +109,7 @@ public:
     Measurement (Measurement < T > &&) = default;
     Measurement < T > & operator = (const Measurement < T > &) = default;
     Measurement < T > & operator = (Measurement < T > &&) = default;
-
+    
 };
 
 // -----------------------------------------------------------------------------------------------------------
