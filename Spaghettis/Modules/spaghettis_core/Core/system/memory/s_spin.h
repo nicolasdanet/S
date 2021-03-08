@@ -22,12 +22,12 @@ typedef struct _spin {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void    spin_init       (t_spin *s);
-void    spin_destroy    (t_spin *s);
+PD_LOCAL void   spin_init       (t_spin *s);
+PD_LOCAL void   spin_destroy    (t_spin *s);
 
-void    spin_lock       (t_spin *s);
-int     spin_trylock    (t_spin *s);
-void    spin_unlock     (t_spin *s);
+PD_LOCAL void   spin_lock       (t_spin *s);
+PD_LOCAL int    spin_trylock    (t_spin *s);
+PD_LOCAL void   spin_unlock     (t_spin *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
