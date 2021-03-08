@@ -121,6 +121,7 @@
 #include "system/memory/s_memory.c"
 #include "system/memory/s_leak.c"
 #include "system/memory/s_atomic.c"
+#include "system/memory/s_spin.c"
 
 #include "system/scheduler/s_monitor.c"
 #include "system/scheduler/s_clock.c"
