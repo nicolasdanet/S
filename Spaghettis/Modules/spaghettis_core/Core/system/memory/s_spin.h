@@ -7,41 +7,48 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#ifndef S_SYSTEM_H_
-#define S_SYSTEM_H_
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "system/memory/s_memory.h"
-#include "system/memory/s_spin.h"
-#include "system/memory/s_atomic.h"
-#include "system/scheduler/s_monitor.h"
-#include "system/scheduler/s_clock.h"
-#include "system/scheduler/s_time.h"
-#include "system/scheduler/s_scheduler.h"
-#include "system/preferences/s_preferences.h"
-#include "system/log/s_logger.h"
-#include "system/files/s_file.h"
-#include "system/files/s_searchpath.h"
-#include "system/policy/s_denormal.h"
-#include "system/policy/s_privilege.h"
-#include "system/audio/s_audio.h"
-#include "system/MIDI/s_midi.h"
-#include "system/devices/s_devices.h"
-#include "system/devices/s_deviceslist.h"
-#include "system/API/s_API.h"
+#ifndef S_SPIN_H_
+#define S_SPIN_H_
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if PD_WITH_DEBUG
-
-PD_LOCAL int sys_isControlThread (void);
-
-#endif
+typedef pthread_mutex_t t_spin;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-#endif // S_SYSTEM_H_
+// MARK: -
+
+static inline void spin_init (t_spin *mutex)
+{
+    pthread_mutex_init (mutex, NULL);
+}
+
+static inline void spin_destroy (t_spin *mutex)
+{
+    pthread_mutex_destroy (mutex);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static inline int spin_trylock (t_spin *mutex)
+{
+    return pthread_mutex_trylock (mutex);
+}
+
+static inline void spin_lock (t_spin *mutex)
+{
+    pthread_mutex_lock (mutex);
+}
+
+static inline void spin_unlock (t_spin *mutex)
+{
+    pthread_mutex_unlock (mutex);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+#endif // S_SPIN_H_
