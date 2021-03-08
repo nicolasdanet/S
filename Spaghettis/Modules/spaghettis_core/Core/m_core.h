@@ -70,8 +70,6 @@ typedef t_float64Atomic t_word;
 #include "core/utils/m_math.h"
 #include "core/utils/m_string.h"
 #include "core/utils/m_path.h"
-#include "core/utils/m_atomic.h"
-#include "core/utils/m_time.h"
 #include "undo/m_undo.h"
 #include "undo/m_undoactions.h"
 

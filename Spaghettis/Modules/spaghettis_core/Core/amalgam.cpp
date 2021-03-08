@@ -84,8 +84,6 @@
 #include "core/utils/m_math.c"
 #include "core/utils/m_string.c"
 #include "core/utils/m_path.c"
-#include "core/utils/m_atomic.c"
-#include "core/utils/m_time.c"
 
 /* Unique. */
 
@@ -122,9 +120,11 @@
 
 #include "system/memory/s_memory.c"
 #include "system/memory/s_leak.c"
+#include "system/memory/s_atomic.c"
 
 #include "system/scheduler/s_monitor.c"
 #include "system/scheduler/s_clock.c"
+#include "system/scheduler/s_time.c"
 #include "system/scheduler/s_scheduler.c"
 #include "system/scheduler/s_startup.c"
 #include "system/scheduler/s_main.c"
