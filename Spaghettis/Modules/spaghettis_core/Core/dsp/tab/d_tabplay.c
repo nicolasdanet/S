@@ -25,7 +25,7 @@ static t_class *tabplay_tilde_class;        /* Shared. */
 
 typedef struct _tabplay_tilde {
     t_object            x_obj;              /* Must be the first. */
-    t_spin              x_mutex;
+    t_trylock           x_mutex;
     int                 x_dismissed;
     int                 x_cachedPhase;
     int                 x_cachedEnd;
@@ -55,7 +55,7 @@ static void tabplay_tilde_task (t_tabplay_tilde *x)
 
 static void tabplay_tilde_setProceed (t_tabplay_tilde *x, t_symbol *s, int verbose)
 {
-    spin_lock (&x->x_mutex);
+    trylock_lock (&x->x_mutex);
     
         t_error err = tab_fetchArray ((x->x_name = s), &x->x_size, &x->x_vector);
     
@@ -63,7 +63,7 @@ static void tabplay_tilde_setProceed (t_tabplay_tilde *x, t_symbol *s, int verbo
         x->x_end    = 0;
         x->x_set    |= TAB_ARRAY;
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
     
     if (verbose && err) { tab_error (sym_tabplay__tilde__, s); }
 }
@@ -84,7 +84,7 @@ static void tabplay_tilde_restore (t_tabplay_tilde *x, t_symbol *s)
 
 static void tabplay_tilde_list (t_tabplay_tilde *x, t_symbol *s, int argc, t_atom *argv)
 {
-    spin_lock (&x->x_mutex);
+    trylock_lock (&x->x_mutex);
     
         int start   = (int)atom_getFloatAtIndex (0, argc, argv);
         int length  = (int)atom_getFloatAtIndex (1, argc, argv);
@@ -93,18 +93,18 @@ static void tabplay_tilde_list (t_tabplay_tilde *x, t_symbol *s, int argc, t_ato
         x->x_end    = (length > 0) ? x->x_start + length : PD_INT_MAX;
         x->x_set    |= TAB_PHASE;
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
 }
 
 static void tabplay_tilde_stop (t_tabplay_tilde *x)
 {
-    spin_lock (&x->x_mutex);
+    trylock_lock (&x->x_mutex);
     
         x->x_start  = PD_INT_MAX;
         x->x_end    = 0;
         x->x_set    |= TAB_PHASE;
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -134,7 +134,7 @@ static t_int *tabplay_tilde_perform (t_int *w)
     t_space *t         = (t_space *)(w[3]);
     int n = (int)(w[4]);
     
-    if (spin_trylock (&x->x_mutex) == 0) {
+    if (trylock_trylock (&x->x_mutex) == 0) {
     //
     if (x->x_set) {
     
@@ -143,7 +143,7 @@ static t_int *tabplay_tilde_perform (t_int *w)
         x->x_set = 0;
     }
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
     //
     }
     
@@ -260,7 +260,7 @@ static void *tabplay_tilde_new (t_symbol *s)
 {
     t_tabplay_tilde *x = (t_tabplay_tilde *)pd_new (tabplay_tilde_class);
     
-    spin_init (&x->x_mutex);
+    trylock_init (&x->x_mutex);
     
     x->x_cachedPhase = -1;
     x->x_cachedEnd   = 0;
@@ -276,7 +276,7 @@ static void tabplay_tilde_free (t_tabplay_tilde *x)
 {
     clock_free (x->x_clock);
     
-    spin_destroy (&x->x_mutex);
+    trylock_destroy (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------

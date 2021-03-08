@@ -14,18 +14,18 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-typedef pthread_mutex_t t_spin;
+typedef pthread_mutex_t t_trylock;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static inline void spin_init (t_spin *mutex)
+static inline void trylock_init (t_trylock *mutex)
 {
     pthread_mutex_init (mutex, NULL);
 }
 
-static inline void spin_destroy (t_spin *mutex)
+static inline void trylock_destroy (t_trylock *mutex)
 {
     pthread_mutex_destroy (mutex);
 }
@@ -34,17 +34,17 @@ static inline void spin_destroy (t_spin *mutex)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static inline int spin_trylock (t_spin *mutex)
+static inline int trylock_trylock (t_trylock *mutex)
 {
     return pthread_mutex_trylock (mutex);
 }
 
-static inline void spin_lock (t_spin *mutex)
+static inline void trylock_lock (t_trylock *mutex)
 {
     pthread_mutex_lock (mutex);
 }
 
-static inline void spin_unlock (t_spin *mutex)
+static inline void trylock_unlock (t_trylock *mutex)
 {
     pthread_mutex_unlock (mutex);
 }

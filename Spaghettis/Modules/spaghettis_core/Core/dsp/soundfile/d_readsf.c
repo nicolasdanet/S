@@ -34,7 +34,7 @@ static t_class *readsf_tilde_class;                                 /* Shared. *
 
 typedef struct _readsf_tilde {
     t_object            sf_obj;                                     /* Must be the first. */
-    t_spin              sf_mutex;
+    t_trylock           sf_mutex;
     int                 sf_numberOfChannels;
     int                 sf_bufferSize;
     int                 sf_run;
@@ -67,12 +67,12 @@ static void readsf_tilde_close (t_readsf_tilde *x)
 {
     t_sfthread *sfthread = x->sf_thread;
     
-    spin_lock (&x->sf_mutex);
+    trylock_lock (&x->sf_mutex);
     
         x->sf_thread = NULL;
         x->sf_run    = 0;
     
-    spin_unlock (&x->sf_mutex);
+    trylock_unlock (&x->sf_mutex);
     
     PD_MEMORY_BARRIER;
     
@@ -107,11 +107,11 @@ static void readsf_tilde_open (t_readsf_tilde *x, t_symbol *s, int argc, t_atom 
         
         PD_MEMORY_BARRIER;
         
-        spin_lock (&x->sf_mutex);
+        trylock_lock (&x->sf_mutex);
         
             x->sf_thread = sfthread;
         
-        spin_unlock (&x->sf_mutex);
+        trylock_unlock (&x->sf_mutex);
         
         PD_ASSERT (sfthread);
     }
@@ -133,11 +133,11 @@ static void readsf_tilde_start (t_readsf_tilde *x)
 {
     t_error err = PD_ERROR_NONE;
     
-    spin_lock (&x->sf_mutex);
+    trylock_lock (&x->sf_mutex);
     
         err = (x->sf_thread == NULL); if (!err) { x->sf_run = 1; }
     
-    spin_unlock (&x->sf_mutex);
+    trylock_unlock (&x->sf_mutex);
     
     if (err) { error_unexpected (sym_readsf__tilde__, sym_start); }
 }
@@ -168,7 +168,7 @@ static t_int *readsf_tilde_perform (t_int *w)
     int numberOfFramesRead = 0;
     int isEnd = 0;
     
-    if (spin_trylock (&x->sf_mutex) == 0) {
+    if (trylock_trylock (&x->sf_mutex) == 0) {
     //
     if (x->sf_run && x->sf_thread) {
     //
@@ -196,7 +196,7 @@ static t_int *readsf_tilde_perform (t_int *w)
     //
     }
     
-    spin_unlock (&x->sf_mutex);
+    trylock_unlock (&x->sf_mutex);
     //
     }
     
@@ -259,7 +259,7 @@ static void *readsf_tilde_new (t_float f1, t_float f2)
     
     if (!PD_IS_POWER_2 (size)) { size = (int)PD_NEXT_POWER_2 (size); }
     
-    spin_init (&x->sf_mutex);
+    trylock_init (&x->sf_mutex);
     
     x->sf_numberOfChannels  = n;
     x->sf_bufferSize        = size;
@@ -293,7 +293,7 @@ static void readsf_tilde_free (t_readsf_tilde *x)
     
     PD_MEMORY_FREE (x->sf_cached);
     
-    spin_destroy (&x->sf_mutex);
+    trylock_destroy (&x->sf_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------

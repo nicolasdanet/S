@@ -30,7 +30,7 @@ static t_class *biquad_tilde_class;             /* Shared. */
 
 typedef struct biquad_tilde {
     t_object            x_obj;                  /* Must be the first. */
-    t_spin              x_mutex;
+    t_trylock           x_mutex;
     t_sample            x_real1;
     t_sample            x_real2;
     t_float             x_a1;
@@ -48,7 +48,7 @@ typedef struct biquad_tilde {
 
 static void biquad_tilde_set (t_biquad_tilde *x, t_float a1, t_float a2, t_float b0, t_float b1, t_float b2)
 {
-    spin_lock (&x->x_mutex);
+    trylock_lock (&x->x_mutex);
     
         x->x_a1  = a1;
         x->x_a2  = a2;
@@ -57,7 +57,7 @@ static void biquad_tilde_set (t_biquad_tilde *x, t_float a1, t_float a2, t_float
         x->x_b2  = b2;
         x->x_set = 1;
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
 }
 
 static void biquad_tilde_list (t_biquad_tilde *x, t_symbol *s, int argc, t_atom *argv)
@@ -94,11 +94,11 @@ static t_int *biquad_tilde_perform (t_int *w)
     t_space *t        = (t_space *)(w[4]);
     int n = (int)(w[5]);
     
-    if (spin_trylock (&x->x_mutex) == 0) {
+    if (trylock_trylock (&x->x_mutex) == 0) {
     //
     if (x->x_set) { biquad_tilde_space (t, x->x_a1, x->x_a2, x->x_b0, x->x_b1, x->x_b2); x->x_set = 0; }
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
     //
     }
 
@@ -160,11 +160,11 @@ static void biquad_tilde_dsp (t_biquad_tilde *x, t_signal **sp)
     //
     t_space *t = space_new (cast_object (x));
     
-    // spin_lock (&x->x_mutex);
+    // trylock_lock (&x->x_mutex);
     
         biquad_tilde_space (t, x->x_a1, x->x_a2, x->x_b0, x->x_b1, x->x_b2);
     
-    // spin_unlock (&x->x_mutex);
+    // trylock_unlock (&x->x_mutex);
     
     PD_ASSERT (sp[0]->s_vector != sp[1]->s_vector);
     
@@ -184,7 +184,7 @@ static t_buffer *biquad_tilde_functionData (t_object *z, int flags)
     t_biquad_tilde *x = (t_biquad_tilde *)z;
     t_buffer *b = buffer_new();
     
-    // spin_lock (&x->x_mutex);
+    // trylock_lock (&x->x_mutex);
     
         t_float a1 = x->x_a1;
         t_float a2 = x->x_a2;
@@ -192,7 +192,7 @@ static t_buffer *biquad_tilde_functionData (t_object *z, int flags)
         t_float b1 = x->x_b1;
         t_float b2 = x->x_b2;
         
-    // spin_unlock (&x->x_mutex);
+    // trylock_unlock (&x->x_mutex);
     
     buffer_appendSymbol (b, &s_list);
     buffer_appendFloat (b,  a1);
@@ -218,7 +218,7 @@ static void *biquad_tilde_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_biquad_tilde *x = (t_biquad_tilde *)pd_new (biquad_tilde_class);
     
-    spin_init (&x->x_mutex);
+    trylock_init (&x->x_mutex);
     
     x->x_outlet = outlet_newSignal (cast_object (x));
     
@@ -229,7 +229,7 @@ static void *biquad_tilde_new (t_symbol *s, int argc, t_atom *argv)
 
 static void biquad_tilde_free (t_biquad_tilde *x)
 {
-    spin_destroy (&x->x_mutex);
+    trylock_destroy (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------

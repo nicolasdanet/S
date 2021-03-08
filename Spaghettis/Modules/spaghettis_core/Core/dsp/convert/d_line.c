@@ -20,7 +20,7 @@ static t_class *line_tilde_class;       /* Shared. */
 
 typedef struct _line_tilde {
     t_object            x_obj;          /* Must be the first. */
-    t_spin              x_mutex;
+    t_trylock           x_mutex;
     t_float             x_f;
     t_float             x_base;
     t_float             x_target;
@@ -48,11 +48,11 @@ static t_float line_tilde_getValueOfTarget (t_line_tilde *x)
 {
     t_float f = 0.0;
 
-    spin_lock (&x->x_mutex);
+    trylock_lock (&x->x_mutex);
 
         f = x->x_target;
 
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
 
     return f;
 }
@@ -63,7 +63,7 @@ static t_float line_tilde_getValueOfTarget (t_line_tilde *x)
 
 static void line_tilde_float (t_line_tilde *x, t_float f)
 {
-    spin_lock (&x->x_mutex);
+    trylock_lock (&x->x_mutex);
 
         x->x_target   = f;
         x->x_time     = PD_MAX (0.0, x->x_f);
@@ -73,17 +73,17 @@ static void line_tilde_float (t_line_tilde *x, t_float f)
     
         if (x->x_time == 0.0) { x->x_base = f; x->x_rebase = 1; }
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
 }
 
 static void line_tilde_stop (t_line_tilde *x)
 {
-    spin_lock (&x->x_mutex);
+    trylock_lock (&x->x_mutex);
     
         x->x_stop     = 1;
         x->x_retarget = 1;
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ static t_int *line_tilde_perform (t_int *w)
     
     while (n--) {
     //
-    if (x->x_retarget && spin_trylock (&x->x_mutex) == 0) {
+    if (x->x_retarget && trylock_trylock (&x->x_mutex) == 0) {
     //
     if (x->x_retarget) {
         x->x_dspCurrent = x->x_rebase ? x->x_base : x->x_dspCurrent;
@@ -116,7 +116,7 @@ static t_int *line_tilde_perform (t_int *w)
         x->x_retarget   = 0;
     }
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
     //
     }
     
@@ -199,7 +199,7 @@ static void *line_tilde_new (void)
 {
     t_line_tilde *x = (t_line_tilde *)pd_new (line_tilde_class);
     
-    spin_init (&x->x_mutex);
+    trylock_init (&x->x_mutex);
     
     x->x_outlet = outlet_newSignal (cast_object (x));
     
@@ -210,7 +210,7 @@ static void *line_tilde_new (void)
 
 static void line_tilde_free (t_line_tilde *x)
 {
-    spin_destroy (&x->x_mutex);
+    trylock_destroy (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------

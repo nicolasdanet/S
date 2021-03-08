@@ -30,7 +30,7 @@ static t_class *bp_tilde_class;                 /* Shared. */
 
 typedef struct _bp_tilde {
     t_object            x_obj;                  /* Must be the first. */
-    t_spin              x_mutex;
+    t_trylock           x_mutex;
     t_float             x_frequency;
     t_float             x_q;
     int                 x_set;
@@ -45,22 +45,22 @@ typedef struct _bp_tilde {
 
 static void bp_tilde_frequency (t_bp_tilde *x, t_float f)
 {
-    spin_lock (&x->x_mutex);
+    trylock_lock (&x->x_mutex);
     
         x->x_frequency  = (f < 0.001) ? (t_float)10.0 : f;
         x->x_set        = 1;
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
 }
 
 static void bp_tilde_q (t_bp_tilde *x, t_float q)
 {
-    spin_lock (&x->x_mutex);
+    trylock_lock (&x->x_mutex);
     
         x->x_q          = (t_float)PD_MAX (0.0, q);
         x->x_set        = 1;
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
 }
 
 static void bp_tilde_set (t_bp_tilde *x, t_float f, t_float q)
@@ -95,11 +95,11 @@ static t_int *bp_tilde_perform (t_int *w)
     t_space *t        = (t_space *)(w[4]);
     int n = (int)(w[5]);
 
-    if (spin_trylock (&x->x_mutex) == 0) {
+    if (trylock_trylock (&x->x_mutex) == 0) {
     //
     if (x->x_set) { bp_tilde_space (t, x->x_frequency, x->x_q); x->x_set = 0; }
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
     //
     }
     
@@ -157,11 +157,11 @@ static void bp_tilde_dsp (t_bp_tilde *x, t_signal **sp)
     //
     t_space *t = space_new (cast_object (x)); t->s_float0 = (t_float)(PD_TWO_PI / sp[0]->s_sampleRate);
 
-    // spin_lock (&x->x_mutex);
+    // trylock_lock (&x->x_mutex);
     
         bp_tilde_space (t, x->x_frequency, x->x_q);
     
-    // spin_unlock (&x->x_mutex);
+    // trylock_unlock (&x->x_mutex);
     
     PD_ASSERT (sp[0]->s_vector != sp[1]->s_vector);
     
@@ -181,12 +181,12 @@ static t_buffer *bp_tilde_functionData (t_object *z, int flags)
     t_bp_tilde *x = (t_bp_tilde *)z;
     t_buffer *b = buffer_new();
     
-    // spin_lock (&x->x_mutex);
+    // trylock_lock (&x->x_mutex);
     
         t_float f = x->x_frequency;
         t_float q = x->x_q;
     
-    // spin_unlock (&x->x_mutex);
+    // trylock_unlock (&x->x_mutex);
     
     buffer_appendSymbol (b, sym__restore);
     buffer_appendFloat (b, f);
@@ -217,7 +217,7 @@ static void *bp_tilde_new (t_float f, t_float q)
 {
     t_bp_tilde *x = (t_bp_tilde *)pd_new (bp_tilde_class);
     
-    spin_init (&x->x_mutex);
+    trylock_init (&x->x_mutex);
 
     x->x_outlet = outlet_newSignal (cast_object (x));
     
@@ -231,7 +231,7 @@ static void *bp_tilde_new (t_float f, t_float q)
 
 static void bp_tilde_free (t_bp_tilde *x)
 {
-    spin_destroy (&x->x_mutex);
+    trylock_destroy (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------

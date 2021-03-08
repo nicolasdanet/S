@@ -25,7 +25,7 @@ static t_class *tabosc4_tilde_class;        /* Shared. */
 
 typedef struct _tabosc4_tilde {
     t_object            x_obj;              /* Must be the first. */
-    t_spin              x_mutex;
+    t_trylock           x_mutex;
     t_float             x_phase;
     int                 x_set;
     int                 x_size;
@@ -40,7 +40,7 @@ typedef struct _tabosc4_tilde {
 
 static void tabosc4_tilde_setProceed (t_tabosc4_tilde *x, t_symbol *s, int verbose)
 {
-    spin_lock (&x->x_mutex);
+    trylock_lock (&x->x_mutex);
     
         int n, size;
     
@@ -56,7 +56,7 @@ static void tabosc4_tilde_setProceed (t_tabosc4_tilde *x, t_symbol *s, int verbo
     
         x->x_set = 1;
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
     
     if (verbose) { tab_errorProceed (sym_tabosc4__tilde__, s, err1, err2); }
 }
@@ -85,7 +85,7 @@ static t_int *tabosc4_tilde_perform (t_int *w)
     t_space *t         = (t_space *)(w[4]);
     int n = (int)(w[5]);
     
-    if (spin_trylock (&x->x_mutex) == 0) {
+    if (trylock_trylock (&x->x_mutex) == 0) {
     //
     if (x->x_set) {
         t->s_int0     = x->x_size;
@@ -93,7 +93,7 @@ static t_int *tabosc4_tilde_perform (t_int *w)
         x->x_set      = 0;
     }
     
-    spin_unlock (&x->x_mutex);
+    trylock_unlock (&x->x_mutex);
     //
     }
     
@@ -214,7 +214,7 @@ static void *tabosc4_tilde_new (t_symbol *s)
 {
     t_tabosc4_tilde *x = (t_tabosc4_tilde *)pd_new (tabosc4_tilde_class);
     
-    spin_init (&x->x_mutex);
+    trylock_init (&x->x_mutex);
     
     x->x_name   = s;
     x->x_outlet = outlet_newSignal (cast_object (x));
@@ -224,7 +224,7 @@ static void *tabosc4_tilde_new (t_symbol *s)
 
 static void tabosc4_tilde_free (t_tabosc4_tilde *x)
 {
-    spin_destroy (&x->x_mutex);
+    trylock_destroy (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------

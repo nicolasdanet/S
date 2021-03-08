@@ -34,7 +34,7 @@ static t_class *writesf_tilde_class;                /* Shared. */
 
 typedef struct _writesf_tilde {
     t_object            sf_obj;                     /* Must be the first. */
-    t_spin              sf_mutex;
+    t_trylock           sf_mutex;
     int                 sf_numberOfChannels;
     int                 sf_bufferSize;
     int                 sf_run;
@@ -64,12 +64,12 @@ static void writesf_tilde_close (t_writesf_tilde *x)
 {
     t_sfthread *sfthread = x->sf_thread;
     
-    spin_lock (&x->sf_mutex);
+    trylock_lock (&x->sf_mutex);
     
         x->sf_thread = NULL;
         x->sf_run    = 0;
     
-    spin_unlock (&x->sf_mutex);
+    trylock_unlock (&x->sf_mutex);
     
     PD_MEMORY_BARRIER;
     
@@ -100,11 +100,11 @@ static void writesf_tilde_open (t_writesf_tilde *x, t_symbol *s, int argc, t_ato
         
         PD_MEMORY_BARRIER;
         
-        spin_lock (&x->sf_mutex);
+        trylock_lock (&x->sf_mutex);
         
             x->sf_thread = sfthread;
         
-        spin_unlock (&x->sf_mutex);
+        trylock_unlock (&x->sf_mutex);
         
         PD_ASSERT (x->sf_thread);
     }
@@ -124,11 +124,11 @@ static void writesf_tilde_start (t_writesf_tilde *x)
 {
     t_error err = PD_ERROR_NONE;
     
-    spin_lock (&x->sf_mutex);
+    trylock_lock (&x->sf_mutex);
     
         err = (x->sf_thread == NULL); if (!err) { x->sf_run = 1; }
     
-    spin_unlock (&x->sf_mutex);
+    trylock_unlock (&x->sf_mutex);
     
     if (err) { error_unexpected (sym_writesf__tilde__, sym_start); }
 }
@@ -148,7 +148,7 @@ static t_int *writesf_tilde_perform (t_int *w)
     t_sfvectors *t     = (t_sfvectors *)(w[2]);
     int n = (int)(w[3]);
     
-    if (spin_trylock (&x->sf_mutex) == 0) {
+    if (trylock_trylock (&x->sf_mutex) == 0) {
     //
     if (x->sf_run && x->sf_thread && !sfthread_isEnd (x->sf_thread)) {
     //
@@ -180,7 +180,7 @@ static t_int *writesf_tilde_perform (t_int *w)
     //
     }
     
-    spin_unlock (&x->sf_mutex);
+    trylock_unlock (&x->sf_mutex);
     //
     }
     
@@ -220,7 +220,7 @@ static void *writesf_tilde_new (t_float f1, t_float f2)
 
     t_writesf_tilde *x = (t_writesf_tilde *)pd_new (writesf_tilde_class);
     
-    spin_init (&x->sf_mutex);
+    trylock_init (&x->sf_mutex);
     
     if (!PD_IS_POWER_2 (size)) { size = (int)PD_NEXT_POWER_2 (size); }
     
@@ -251,7 +251,7 @@ static void writesf_tilde_free (t_writesf_tilde *x)
     
     PD_MEMORY_FREE (x->sf_cached);
     
-    spin_destroy (&x->sf_mutex);
+    trylock_destroy (&x->sf_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------
