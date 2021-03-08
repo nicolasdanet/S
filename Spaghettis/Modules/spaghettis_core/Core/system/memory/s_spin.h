@@ -14,9 +14,19 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-typedef struct _spin {
-    atomic_flag spin_flag;
-    } t_spin;
+#if defined ( __cplusplus )
+
+    #include <atomic>
+    
+    typedef struct _spin { std::atomic_flag spin_flag; } t_spin;
+    
+#else
+
+    #include <stdatomic.h>
+    
+    typedef struct _spin { atomic_flag spin_flag; } t_spin;
+    
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
