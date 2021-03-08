@@ -25,7 +25,7 @@ static t_class *tabread_tilde_class;            /* Shared. */
 
 typedef struct _tabread_tilde {
     t_object            x_obj;                  /* Must be the first. */
-    pthread_mutex_t     x_mutex;
+    t_spin              x_mutex;
     int                 x_set;
     int                 x_size;
     t_word              *x_vector;
@@ -39,13 +39,13 @@ typedef struct _tabread_tilde {
 
 static void tabread_tilde_setProceed (t_tabread_tilde *x, t_symbol *s, int verbose)
 {
-    pthread_mutex_lock (&x->x_mutex);
+    spin_lock (&x->x_mutex);
     
         t_error err = tab_fetchArray ((x->x_name = s), &x->x_size, &x->x_vector);
     
         x->x_set = 1;
     
-    pthread_mutex_unlock (&x->x_mutex);
+    spin_unlock (&x->x_mutex);
     
     if (verbose && err) { tab_error (sym_tabread__tilde__, s); }
 }
@@ -74,7 +74,7 @@ static t_int *tabread_tilde_perform (t_int *w)
     t_space *t         = (t_space *)(w[4]);
     int n = (int)(w[5]);
     
-    if (pthread_mutex_trylock (&x->x_mutex) == 0) {
+    if (spin_trylock (&x->x_mutex) == 0) {
     //
     if (x->x_set) {
         t->s_int0     = x->x_size;
@@ -82,7 +82,7 @@ static t_int *tabread_tilde_perform (t_int *w)
         x->x_set      = 0;
     }
     
-    pthread_mutex_unlock (&x->x_mutex);
+    spin_unlock (&x->x_mutex);
     //
     }
     
@@ -168,7 +168,7 @@ static void *tabread_tilde_new (t_symbol *s)
 {
     t_tabread_tilde *x = (t_tabread_tilde *)pd_new (tabread_tilde_class);
     
-    pthread_mutex_init (&x->x_mutex, NULL);
+    spin_init (&x->x_mutex);
     
     x->x_name   = s;
     x->x_outlet = outlet_newSignal (cast_object (x));
@@ -178,7 +178,7 @@ static void *tabread_tilde_new (t_symbol *s)
 
 static void tabread_tilde_free (t_tabread_tilde *x)
 {
-    pthread_mutex_destroy (&x->x_mutex);
+    spin_destroy (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------

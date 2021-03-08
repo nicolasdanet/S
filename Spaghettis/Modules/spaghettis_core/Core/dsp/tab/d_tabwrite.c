@@ -25,7 +25,7 @@ static t_class *tabwrite_tilde_class;           /* Shared. */
 
 typedef struct _tabwrite_tilde {
     t_object            x_obj;                  /* Must be the first. */
-    pthread_mutex_t     x_mutex;
+    t_spin              x_mutex;
     t_int32Atomic       x_redraw;
     int                 x_dismissed;
     int                 x_time;
@@ -87,14 +87,14 @@ static void tabwrite_tilde_setProceed (t_tabwrite_tilde *x, t_symbol *s, int ver
 {
     tabwrite_tilde_polling (x);
     
-    pthread_mutex_lock (&x->x_mutex);
+    spin_lock (&x->x_mutex);
     
         t_error err = tab_fetchArray ((x->x_name = s), &x->x_size, &x->x_vector);
 
         x->x_phase = PD_INT_MAX;
         x->x_set   |= TAB_ARRAY;
     
-    pthread_mutex_unlock (&x->x_mutex);
+    spin_unlock (&x->x_mutex);
     
     if (verbose && err) { tab_error (sym_tabwrite__tilde__, s); }
 }
@@ -111,36 +111,36 @@ static void tabwrite_tilde_restore (t_tabwrite_tilde *x, t_symbol *s)
 
 static void tabwrite_tilde_bang (t_tabwrite_tilde *x)
 {
-    pthread_mutex_lock (&x->x_mutex);
+    spin_lock (&x->x_mutex);
     
         x->x_phase = 0;
         x->x_set   |= TAB_PHASE;
     
-    pthread_mutex_unlock (&x->x_mutex);
+    spin_unlock (&x->x_mutex);
     
     if (!x->x_dismissed && x->x_time > 0.0) { clock_delay (x->x_clock, x->x_time); }
 }
 
 static void tabwrite_tilde_start (t_tabwrite_tilde *x, t_float f)
 {
-    pthread_mutex_lock (&x->x_mutex);
+    spin_lock (&x->x_mutex);
     
         x->x_phase = (f > 0 ? f : 0);
         x->x_set   |= TAB_PHASE;
     
-    pthread_mutex_unlock (&x->x_mutex);
+    spin_unlock (&x->x_mutex);
 }
 
 static void tabwrite_tilde_stop (t_tabwrite_tilde *x)
 {
     PD_ATOMIC_INT32_INCREMENT (&x->x_redraw);
     
-    pthread_mutex_lock (&x->x_mutex);
+    spin_lock (&x->x_mutex);
     
         x->x_phase = PD_INT_MAX;
         x->x_set   |= TAB_PHASE;
     
-    pthread_mutex_unlock (&x->x_mutex);
+    spin_unlock (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -170,7 +170,7 @@ static t_int *tabwrite_tilde_perform (t_int *w)
     t_space *t          = (t_space *)(w[3]);
     int n = (int)(w[4]);
     
-    if (pthread_mutex_trylock (&x->x_mutex) == 0) {
+    if (spin_trylock (&x->x_mutex) == 0) {
     //
     if (x->x_set) {
     
@@ -179,7 +179,7 @@ static t_int *tabwrite_tilde_perform (t_int *w)
         x->x_set = 0;
     }
     
-    pthread_mutex_unlock (&x->x_mutex);
+    spin_unlock (&x->x_mutex);
     //
     }
     
@@ -306,7 +306,7 @@ static void *tabwrite_tilde_new (t_symbol *s, t_float f)
 {
     t_tabwrite_tilde *x = (t_tabwrite_tilde *)pd_new (tabwrite_tilde_class);
     
-    pthread_mutex_init (&x->x_mutex, NULL);
+    spin_init (&x->x_mutex);
     
     x->x_time   = PD_MAX (0.0, f);
     x->x_cached = -1;
@@ -335,7 +335,7 @@ static void tabwrite_tilde_free (t_tabwrite_tilde *x)
     
     clock_free (x->x_clock);
     
-    pthread_mutex_destroy (&x->x_mutex);
+    spin_destroy (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------

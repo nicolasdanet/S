@@ -20,7 +20,7 @@ static t_class *threshold_tilde_class;      /* Shared. */
 
 typedef struct _threshold_tilde {
     t_object            x_obj;              /* Must be the first. */
-    pthread_mutex_t     x_mutex;
+    t_spin              x_mutex;
     t_float             x_high;
     t_float             x_low;
     t_float             x_deadTimeHigh;
@@ -59,7 +59,7 @@ static void threshold_tilde_setProceed (t_threshold_tilde *x,
     t_float low,
     t_float lowDead)
 {
-    pthread_mutex_lock (&x->x_mutex);
+    spin_lock (&x->x_mutex);
     
         x->x_high         = high;
         x->x_low          = low;
@@ -67,7 +67,7 @@ static void threshold_tilde_setProceed (t_threshold_tilde *x,
         x->x_deadTimeLow  = lowDead;
         x->x_set          = 1;
     
-    pthread_mutex_unlock (&x->x_mutex);
+    spin_unlock (&x->x_mutex);
 }
 
 static void threshold_tilde_set (t_threshold_tilde *x, t_symbol *s, int argc, t_atom *argv)
@@ -93,7 +93,7 @@ static t_int *threshold_tilde_perform (t_int *w)
     t_space *t           = (t_space *)(w[3]);
     int n = (int)(w[4]);
     
-    if (pthread_mutex_trylock (&x->x_mutex) == 0) {
+    if (spin_trylock (&x->x_mutex) == 0) {
     //
     if (x->x_set) {
         t->s_float1 = x->x_high;
@@ -103,7 +103,7 @@ static t_int *threshold_tilde_perform (t_int *w)
         x->x_set    = 0;
     }
     
-    pthread_mutex_unlock (&x->x_mutex);
+    spin_unlock (&x->x_mutex);
     //
     }
     
@@ -169,14 +169,14 @@ static void threshold_tilde_dsp (t_threshold_tilde *x, t_signal **sp)
     //
     }
     
-    // pthread_mutex_lock (&x->x_mutex);
+    // spin_lock (&x->x_mutex);
     
         t->s_float1 = x->x_high;
         t->s_float2 = x->x_low;
         t->s_float3 = x->x_deadTimeHigh;
         t->s_float4 = x->x_deadTimeLow;
     
-    // pthread_mutex_unlock (&x->x_mutex);
+    // spin_unlock (&x->x_mutex);
     
     dsp_add4 (threshold_tilde_perform, x, sp[0]->s_vector, t, sp[0]->s_vectorSize);
 }
@@ -194,14 +194,14 @@ static t_buffer *threshold_tilde_functionData (t_object *z, int flags)
     
     t_float f1, f2, f3, f4;
     
-    // pthread_mutex_lock (&x->x_mutex);
+    // spin_lock (&x->x_mutex);
     
         f1 = x->x_high;
         f2 = x->x_deadTimeHigh;
         f3 = x->x_low;
         f4 = x->x_deadTimeLow;
     
-    // pthread_mutex_unlock (&x->x_mutex);
+    // spin_unlock (&x->x_mutex);
     
     buffer_appendSymbol (b, sym_set);
     buffer_appendFloat (b, f1);
@@ -232,7 +232,7 @@ static void *threshold_tilde_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_threshold_tilde *x = (t_threshold_tilde *)pd_new (threshold_tilde_class);
     
-    pthread_mutex_init (&x->x_mutex, NULL);
+    spin_init (&x->x_mutex);
     
     x->x_clockLeft   = clock_new ((void *)x, (t_method)threshold_tilde_taskLeft);
     x->x_clockRight  = clock_new ((void *)x, (t_method)threshold_tilde_taskRight);
@@ -249,7 +249,7 @@ static void threshold_tilde_free (t_threshold_tilde *x)
     clock_free (x->x_clockRight);
     clock_free (x->x_clockLeft);
     
-    pthread_mutex_destroy (&x->x_mutex);
+    spin_destroy (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------

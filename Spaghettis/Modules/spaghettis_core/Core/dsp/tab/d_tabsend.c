@@ -25,7 +25,7 @@ static t_class *tabsend_tilde_class;        /* Shared. */
 
 typedef struct _tabsend_tilde {
     t_object            x_obj;              /* Must be the first. */
-    pthread_mutex_t     x_mutex;
+    t_spin              x_mutex;
     t_int32Atomic       x_redraw;
     int                 x_dismissed;
     int                 x_set;
@@ -67,13 +67,13 @@ static void tabsend_tilde_setProceed (t_tabsend_tilde *x, t_symbol *s, int verbo
 {
     tabsend_tilde_polling (x);
     
-    pthread_mutex_lock (&x->x_mutex);
+    spin_lock (&x->x_mutex);
     
         t_error err = tab_fetchArray ((x->x_name = s), &x->x_size, &x->x_vector);
     
         x->x_set = 1;
     
-    pthread_mutex_unlock (&x->x_mutex);
+    spin_unlock (&x->x_mutex);
     
     if (verbose && err) { tab_error (sym_tabsend__tilde__, s); }
 }
@@ -101,7 +101,7 @@ static t_int *tabsend_tilde_perform (t_int *w)
     t_space *t         = (t_space *)(w[3]);
     int n = (int)w[4];
     
-    if (pthread_mutex_trylock (&x->x_mutex) == 0) {
+    if (spin_trylock (&x->x_mutex) == 0) {
     //
     if (x->x_set) {
         t->s_int0     = x->x_size;
@@ -109,7 +109,7 @@ static t_int *tabsend_tilde_perform (t_int *w)
         x->x_set      = 0;
     }
     
-    pthread_mutex_unlock (&x->x_mutex);
+    spin_unlock (&x->x_mutex);
     //
     }
     
@@ -204,7 +204,7 @@ static void *tabsend_tilde_new (t_symbol *s)
 {
     t_tabsend_tilde *x = (t_tabsend_tilde *)pd_new (tabsend_tilde_class);
     
-    pthread_mutex_init (&x->x_mutex, NULL);
+    spin_init (&x->x_mutex);
     
     x->x_name = s;
     
@@ -228,7 +228,7 @@ static void tabsend_tilde_free (t_tabsend_tilde *x)
 {
     tabsend_tilde_dismiss (x);
     
-    pthread_mutex_destroy (&x->x_mutex);
+    spin_destroy (&x->x_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------
