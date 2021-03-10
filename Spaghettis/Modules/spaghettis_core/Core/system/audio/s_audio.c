@@ -31,7 +31,7 @@ static t_float64Atomic  audio_sampleRate;           /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 
 static int              audio_state;                /* Static. */
-t_trylock               audio_mutex;                /* Static. */
+pthread_mutex_t         audio_mutex;                /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -99,7 +99,7 @@ PD_LOCAL t_error audio_open (void)
     
     if (audio_check (&audio) == PD_ERROR_NONE) {
     //
-    trylock_lock (&audio_mutex);
+    pthread_mutex_lock (&audio_mutex);
     
         if (devices_getInSize (&audio) || devices_getOutSize (&audio)) {
             int m = audio_getTotalOfChannelsIn();
@@ -110,7 +110,7 @@ PD_LOCAL t_error audio_open (void)
 
         audio_state = err ? 0 : 1;
     
-    trylock_unlock (&audio_mutex);
+    pthread_mutex_unlock (&audio_mutex);
     //
     }
 
@@ -121,22 +121,22 @@ PD_LOCAL t_error audio_open (void)
 
 PD_LOCAL void audio_close (void)
 {
-    trylock_lock (&audio_mutex);
+    pthread_mutex_lock (&audio_mutex);
     
     if (audio_isOpened()) { audio_closeNative(); } audio_state = 0;
     
-    trylock_unlock (&audio_mutex);
+    pthread_mutex_unlock (&audio_mutex);
 }
 
 PD_LOCAL int audio_poll (void)
 {
     int k = DACS_NO;
     
-    if (trylock_trylock (&audio_mutex) == 0) {
+    if (pthread_mutex_trylock (&audio_mutex) == 0) {
     //
     if (audio_isOpened()) { k = audio_pollNative(); }
     
-    trylock_unlock (&audio_mutex);
+    pthread_mutex_unlock (&audio_mutex);
     //
     }
     
@@ -231,7 +231,7 @@ PD_LOCAL void audio_vectorShrinkOut (int totalOfChannelsOut)
 
 PD_LOCAL t_error audio_initialize (void)
 {
-    trylock_init (&audio_mutex); return audio_initializeNative();
+    pthread_mutex_init (&audio_mutex, NULL); return audio_initializeNative();
 }
 
 PD_LOCAL void audio_release (void)
@@ -246,7 +246,7 @@ PD_LOCAL void audio_release (void)
         PD_MEMORY_FREE (audio_soundOut); audio_soundOut = NULL; 
     }
     
-    trylock_destroy (&audio_mutex);
+    pthread_mutex_destroy (&audio_mutex);
 }
 
 // -----------------------------------------------------------------------------------------------------------
