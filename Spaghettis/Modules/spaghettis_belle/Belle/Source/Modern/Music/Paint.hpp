@@ -117,7 +117,9 @@ void Music::paintStart (Painter& painter)
     Affine origin, flip, offset;
     
     if (painter.isPageable()) {
-        origin = Affine::translation (Vector (origin_.getX(), painter.getPageSize().getY() - origin_.getY()));
+        double w = origin_.width();
+        double h = painter.getPageSize().height() - origin_.height();
+        origin = Affine::translation (Vector (w, h));
         
     } else {
         origin = Affine::translation (origin_); flip = Affine::flipHorizontal();

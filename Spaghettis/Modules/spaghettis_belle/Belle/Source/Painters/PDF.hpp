@@ -293,8 +293,8 @@ private:
         
         for (int i = 0; i < n; ++i) {
         //
-        std::string sizeX = prim::Utils::paddedLeft (size_.getX());
-        std::string sizeY = prim::Utils::paddedLeft (size_.getY());
+        std::string sizeX = prim::Utils::paddedLeft (size_.width());
+        std::string sizeY = prim::Utils::paddedLeft (size_.height());
         
         pages_[i]->addToDictionary ("/Type /Page");
         pages_[i]->addToDictionary ("    " "/Parent " + headers_[tree].get()->asReference());

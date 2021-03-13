@@ -130,12 +130,12 @@ public:
 // MARK: -
 
 public:
-    double getX() const
+    double width() const
     {
         return v_.getX();
     }
     
-    double getY() const
+    double height() const
     {
         return v_.getY();
     }

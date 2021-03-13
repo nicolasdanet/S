@@ -30,12 +30,12 @@ class Paper {
 public:
     static Inches landscape (Inches size)
     {
-        return Inches (Math::max (size.getX(), size.getY()), Math::min (size.getX(), size.getY()));
+        return Inches (Math::max (size.width(), size.height()), Math::min (size.width(), size.height()));
     }
     
     static Inches portrait (Inches size)
     {
-        return Inches (Math::min (size.getX(), size.getY()), Math::max (size.getX(), size.getY()));
+        return Inches (Math::min (size.width(), size.height()), Math::max (size.width(), size.height()));
     }
 
 // -----------------------------------------------------------------------------------------------------------
