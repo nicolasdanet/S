@@ -79,7 +79,12 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < Unit T > class Measurement : public Vector {     /* Public for convenience. */
+template < Unit T > class Measurement {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+template < Unit F > friend class Measurement;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -90,18 +95,18 @@ public:
     {
     }
     
-    Measurement (double x, double y) : Vector (x, y)
+    Measurement (double x, double y) : v_ (x, y)
     {
-        PRIM_ASSERT (getX() >= 0.0);
-        PRIM_ASSERT (getY() >= 0.0);
+        PRIM_ASSERT (v_.getX() >= 0.0);
+        PRIM_ASSERT (v_.getY() >= 0.0);
     }
     
     template < Unit F > Measurement (const Measurement < F > & m)
     {
         double multiplier = Units::getConversionFactor (F) / Units::getConversionFactor (T);
 
-        getX() = m.getX() * multiplier;
-        getY() = m.getY() * multiplier;
+        v_.getX() = m.v_.getX() * multiplier;
+        v_.getY() = m.v_.getY() * multiplier;
     }
 
 public:
@@ -109,7 +114,34 @@ public:
     Measurement (Measurement < T > &&) = default;
     Measurement < T > & operator = (const Measurement < T > &) = default;
     Measurement < T > & operator = (Measurement < T > &&) = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    operator Vector() const
+    {
+        return v_;
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    double getX() const
+    {
+        return v_.getX();
+    }
     
+    double getY() const
+    {
+        return v_.getY();
+    }
+    
+private:
+    Vector v_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
