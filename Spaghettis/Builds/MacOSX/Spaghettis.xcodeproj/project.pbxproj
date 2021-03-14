@@ -81,6 +81,13 @@
 			isa = PBXBuildFile;
 			fileRef = 051678F45F5E88F07EA77717;
 		};
+		04C76275D5A438E8C793CEB6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MainComponent.hpp;
+			path = ../../Source/MainComponent.hpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		051678F45F5E88F07EA77717 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -107,13 +114,6 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = JuceHeader.h;
 			path = ../../JuceLibraryCode/JuceHeader.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		2508133931D06C0C270C768F = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = MainComponent.h;
-			path = ../../Source/MainComponent.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		2748188111FF8A9655940C34 = {
@@ -288,7 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				A1056AE48F0DFF9EC3445D0E,
-				2508133931D06C0C270C768F,
+				04C76275D5A438E8C793CEB6,
 				B3A60598ED147806FAA5224D,
 			);
 			name = Source;

@@ -11,7 +11,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "MainComponent.h"
+#include "MainComponent.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -23,49 +23,6 @@ class SpaghettisApplication : public juce::JUCEApplication {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    //==============================================================================
-    SpaghettisApplication() {}
-
-    const juce::String getApplicationName() override       { return ProjectInfo::projectName; }
-    const juce::String getApplicationVersion() override    { return ProjectInfo::versionString; }
-    bool moreThanOneInstanceAllowed() override             { return true; }
-
-    //==============================================================================
-    void initialise (const juce::String& commandLine) override
-    {
-        // This method is where you should put your application's initialisation code..
-
-        mainWindow.reset (new MainWindow (getApplicationName()));
-    }
-
-    void shutdown() override
-    {
-        // Add your application's shutdown code here..
-
-        mainWindow = nullptr; // (deletes our window)
-    }
-
-    //==============================================================================
-    void systemRequestedQuit() override
-    {
-        // This is called when the app is being asked to quit: you can ignore this
-        // request and let the app carry on running, or call quit() to allow the app to close.
-        quit();
-    }
-
-    void anotherInstanceStarted (const juce::String& commandLine) override
-    {
-        // When another instance of the app is launched while this one is running,
-        // this method is invoked, and the commandLine parameter tells you what
-        // the other instance's command-line arguments were.
-    }
-
-    //==============================================================================
-    /*
-        This class implements the desktop window that contains an instance of
-        our MainComponent class.
-    */
     class MainWindow    : public juce::DocumentWindow
     {
     public:
@@ -106,6 +63,61 @@ public:
     private:
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainWindow)
     };
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    SpaghettisApplication()
+    {
+    
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void initialise (const juce::String& commandLine) override
+    {
+        mainWindow.reset (new MainWindow (getApplicationName()));
+    }
+
+    void shutdown() override
+    {
+        mainWindow = nullptr;
+    }
+    
+    void systemRequestedQuit() override
+    {
+        quit();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    const juce::String getApplicationName() override
+    {
+        return ProjectInfo::projectName;
+    }
+    
+    const juce::String getApplicationVersion() override
+    {
+        return ProjectInfo::versionString;
+    }
+    
+    bool moreThanOneInstanceAllowed() override
+    {
+        return false;
+    }
+
+    void anotherInstanceStarted (const juce::String& commandLine) override
+    {
+
+    }
 
 private:
     std::unique_ptr<MainWindow> mainWindow;

@@ -8,7 +8,8 @@
   <MAINGROUP id="FJGwhe" name="Spaghettis">
     <GROUP id="{2CB25DBA-D987-3F32-EEE6-6B67653E37F3}" name="Source">
       <FILE id="LekPt7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
-      <FILE id="ge0W3B" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="zXnctq" name="MainComponent.hpp" compile="0" resource="0"
+            file="Source/MainComponent.hpp"/>
       <FILE id="w02Fym" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
     </GROUP>
