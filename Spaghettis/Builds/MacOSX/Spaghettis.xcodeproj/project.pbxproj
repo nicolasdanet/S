@@ -81,6 +81,10 @@
 			isa = PBXBuildFile;
 			fileRef = 051678F45F5E88F07EA77717;
 		};
+		D1156CB53965143E57684B78 = {
+			isa = PBXBuildFile;
+			fileRef = 872360D0C70C7B5CA52A5B1B;
+		};
 		04C76275D5A438E8C793CEB6 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -178,6 +182,13 @@
 			name = AudioUnit.framework;
 			path = System/Library/Frameworks/AudioUnit.framework;
 			sourceTree = SDKROOT;
+		};
+		872360D0C70C7B5CA52A5B1B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_spaghettis_gui.mm";
+			path = "../../JuceLibraryCode/include_spaghettis_gui.mm";
+			sourceTree = "SOURCE_ROOT";
 		};
 		A1056AE48F0DFF9EC3445D0E = {
 			isa = PBXFileReference;
@@ -277,6 +288,13 @@
 			path = System/Library/Frameworks/IOKit.framework;
 			sourceTree = SDKROOT;
 		};
+		E8CB080AF78BBE2F817E4F92 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "spaghettis_gui";
+			path = "../../Modules/spaghettis_gui";
+			sourceTree = "SOURCE_ROOT";
+		};
 		FAC1F52DAB4CF87E5E85196F = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -312,6 +330,7 @@
 				DD376E055A3C1DAE5AD681FE,
 				BB93B2ED5224711CFA528F76,
 				B4DAE1C42FD0579475CBE2CD,
+				E8CB080AF78BBE2F817E4F92,
 			);
 			name = "JUCE Modules";
 			sourceTree = "<group>";
@@ -326,6 +345,7 @@
 				A7D9C0FA0907BC5117638CCC,
 				C0B552E448017A4C8C013F63,
 				051678F45F5E88F07EA77717,
+				872360D0C70C7B5CA52A5B1B,
 				1BAEF33E789FBE91AAC83446,
 			);
 			name = "JUCE Library Code";
@@ -402,6 +422,7 @@
 					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_belle=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_core=1",
+					"JUCE_MODULE_AVAILABLE_spaghettis_gui=1",
 					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
 					"JUCE_STRICT_REFCOUNTEDPOINTER=1",
 					"JUCE_STANDALONE_APPLICATION=1",
@@ -468,6 +489,7 @@
 					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_belle=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_core=1",
+					"JUCE_MODULE_AVAILABLE_spaghettis_gui=1",
 					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
 					"JUCE_STRICT_REFCOUNTEDPOINTER=1",
 					"JUCE_STANDALONE_APPLICATION=1",
@@ -644,6 +666,7 @@
 				6E1BA5A7EDAB97C5EA635131,
 				3E501BFBC2DC9D6FE1AD2FA0,
 				E8E93D5E1626F0A68486AAD9,
+				D1156CB53965143E57684B78,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

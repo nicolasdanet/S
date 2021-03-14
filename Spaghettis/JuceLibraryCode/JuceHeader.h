@@ -20,6 +20,7 @@
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <spaghettis_belle/spaghettis_belle.hpp>
 #include <spaghettis_core/spaghettis_core.hpp>
+#include <spaghettis_gui/spaghettis_gui.hpp>
 
 
 #if defined (JUCE_PROJUCER_VERSION) && JUCE_PROJUCER_VERSION < JUCE_VERSION
