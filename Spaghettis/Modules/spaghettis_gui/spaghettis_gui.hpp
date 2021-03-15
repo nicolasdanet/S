@@ -44,8 +44,10 @@
 
 #include "GUI/Application/LookAndFeel.hpp"
 #include "GUI/Application/Window.hpp"
-#include "GUI/Application/Console.hpp"
 #include "GUI/Application/Spaghettis.hpp"
+
+#include "GUI/Console/ConsoleComponent.hpp"
+#include "GUI/Console/Console.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

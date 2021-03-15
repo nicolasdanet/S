@@ -29,16 +29,16 @@ public:
 // MARK: -
 
 public:
-    void initialise (const juce::String& commandLine) override
+    void initialise (const juce::String&) override
     {
         juce::LookAndFeel::setDefaultLookAndFeel (spaghettis_.getLookAndFeel());
         
-        mainWindow_.reset (new spaghettis::Console (getApplicationName()));
+        console_.reset (new spaghettis::Console (getApplicationName()));
     }
 
     void shutdown() override
     {
-        mainWindow_ = nullptr;
+        console_ = nullptr;
         
         juce::LookAndFeel::setDefaultLookAndFeel (nullptr);
     }
@@ -75,7 +75,7 @@ public:
 
 private:
     spaghettis::Spaghettis spaghettis_;
-    std::unique_ptr < spaghettis::Console > mainWindow_;
+    std::unique_ptr < spaghettis::Console > console_;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

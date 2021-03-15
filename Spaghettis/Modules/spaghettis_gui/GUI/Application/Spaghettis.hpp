@@ -20,10 +20,7 @@ class Spaghettis {
 public:
     Spaghettis() = default;
     ~Spaghettis() = default;
-    
-    Spaghettis (const Spaghettis&) = delete;
-    Spaghettis& operator = (const Spaghettis&) = delete;
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -36,6 +33,9 @@ public:
     
 public:
     juce::SharedResourcePointer < LookAndFeelShared > lookAndFeel_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Spaghettis)
 };
 
 // -----------------------------------------------------------------------------------------------------------
