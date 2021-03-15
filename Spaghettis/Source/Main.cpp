@@ -61,7 +61,7 @@ public:
 public:
     void initialise (const juce::String& commandLine) override
     {
-        juce::LookAndFeel::setDefaultLookAndFeel (&lookAndFeel_->lf_);
+        juce::LookAndFeel::setDefaultLookAndFeel (spaghettis_.getLookAndFeel());
         
         mainWindow_.reset (new MainWindow (getApplicationName()));
     }
@@ -104,7 +104,7 @@ public:
     }
 
 private:
-    juce::SharedResourcePointer < spaghettis::LookAndFeelShared > lookAndFeel_;
+    spaghettis::Spaghettis spaghettis_;
     std::unique_ptr < MainWindow > mainWindow_;
     
 // -----------------------------------------------------------------------------------------------------------
