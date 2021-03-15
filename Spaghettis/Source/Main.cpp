@@ -23,13 +23,10 @@ class SpaghettisApplication : public juce::JUCEApplication {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-    class MainWindow : public juce::DocumentWindow {
+    class MainWindow : public spaghettis::Window {
     
     public:
-        MainWindow (juce::String name) : DocumentWindow (name,
-            juce::Desktop::getInstance().getDefaultLookAndFeel()
-                                        .findColour (juce::ResizableWindow::backgroundColourId),
-            DocumentWindow::allButtons)
+        MainWindow (juce::String name) : spaghettis::Window (name)
         {
             setUsingNativeTitleBar (true);
             setContentOwned (new MainComponent(), true);
@@ -64,12 +61,16 @@ public:
 public:
     void initialise (const juce::String& commandLine) override
     {
-        mainWindow.reset (new MainWindow (getApplicationName()));
+        juce::LookAndFeel::setDefaultLookAndFeel (&lookAndFeel_->lf_);
+        
+        mainWindow_.reset (new MainWindow (getApplicationName()));
     }
 
     void shutdown() override
     {
-        mainWindow = nullptr;
+        mainWindow_ = nullptr;
+        
+        juce::LookAndFeel::setDefaultLookAndFeel (nullptr);
     }
     
     void systemRequestedQuit() override
@@ -103,7 +104,8 @@ public:
     }
 
 private:
-    std::unique_ptr < MainWindow > mainWindow;
+    juce::SharedResourcePointer < spaghettis::LookAndFeelShared > lookAndFeel_;
+    std::unique_ptr < MainWindow > mainWindow_;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
