@@ -23,7 +23,9 @@ public:
                                         Colors::find (juce::ResizableWindow::backgroundColourId),
                                         DocumentWindow::allButtons)
     {
-    
+        setUsingNativeTitleBar (true);
+        setResizable (true, true);
+        setVisible (true);
     }
 };
 

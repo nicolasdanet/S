@@ -10,40 +10,10 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-#include "MainComponent.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 class SpaghettisApplication : public juce::JUCEApplication {
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-    class MainWindow : public spaghettis::Window {
-    
-    public:
-        MainWindow (juce::String name) : spaghettis::Window (name)
-        {
-            setUsingNativeTitleBar (true);
-            setContentOwned (new MainComponent(), true);
-            setResizable (true, true);
-            centreWithSize (getWidth(), getHeight());
-            setVisible (true);
-        }
-
-        void closeButtonPressed() override
-        {
-            JUCEApplication::getInstance()->systemRequestedQuit();
-        }
-
-    private:
-        JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainWindow)
-    };
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -63,7 +33,7 @@ public:
     {
         juce::LookAndFeel::setDefaultLookAndFeel (spaghettis_.getLookAndFeel());
         
-        mainWindow_.reset (new MainWindow (getApplicationName()));
+        mainWindow_.reset (new spaghettis::Console (getApplicationName()));
     }
 
     void shutdown() override
@@ -98,14 +68,14 @@ public:
         return false;
     }
 
-    void anotherInstanceStarted (const juce::String& commandLine) override
+    void anotherInstanceStarted (const juce::String&) override
     {
-
+        jassertfalse;
     }
 
 private:
     spaghettis::Spaghettis spaghettis_;
-    std::unique_ptr < MainWindow > mainWindow_;
+    std::unique_ptr < spaghettis::Console > mainWindow_;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
