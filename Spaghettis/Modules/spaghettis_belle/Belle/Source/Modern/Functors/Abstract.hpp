@@ -41,7 +41,7 @@ public:
     {
     }
 
-protected:
+public:
     Engraver (const Engraver&) = default;
     Engraver (Engraver&&) = default;
     Engraver& operator = (const Engraver&) = default;

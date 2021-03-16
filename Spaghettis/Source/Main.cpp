@@ -21,7 +21,6 @@ class SpaghettisApplication : public juce::JUCEApplication {
 public:
     SpaghettisApplication()
     {
-    
     }
 
 // -----------------------------------------------------------------------------------------------------------

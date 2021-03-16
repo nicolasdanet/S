@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ConsoleComponent : public juce::Component {
+class ConsoleComponent : public juce::Component, public Logger, private juce::AsyncUpdater {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -43,17 +43,6 @@ public:
 // MARK: -
 
 public:
-    void logMessage (const juce::String& m)
-    {
-        text_.moveCaretToEnd();
-        text_.insertTextAtCaret (m + juce::newLine);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void paint (juce::Graphics& g) override
     {
         g.fillAll (Colors::find (juce::ResizableWindow::backgroundColourId));
@@ -64,8 +53,42 @@ public:
         text_.setBounds (getLocalBounds());
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void logMessage (const juce::String& m) override
+    {
+        {
+            const juce::ScopedLock lock (lock_); messages_.add (m);
+        }
+        
+        triggerAsyncUpdate();
+    }
+    
+private:
+    void handleAsyncUpdate() override
+    {
+        juce::StringArray scoped;
+        
+        {
+            const juce::ScopedLock lock (lock_); scoped.swapWith (messages_);
+        }
+        
+        for (const juce::String& s : scoped) { logMessageProceed (s); }
+    }
+    
+    void logMessageProceed (const juce::String& m)
+    {
+        text_.moveCaretToEnd();
+        text_.insertTextAtCaret (m + juce::newLine);
+    }
+    
 private:
     juce::TextEditor text_;
+    juce::StringArray messages_;
+    juce::CriticalSection lock_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)
