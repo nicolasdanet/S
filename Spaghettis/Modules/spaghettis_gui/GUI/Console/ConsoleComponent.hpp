@@ -21,6 +21,15 @@ class ConsoleComponent : public juce::Component {
 public:
     ConsoleComponent()
     {
+        addAndMakeVisible (text_);
+        
+        text_.setMultiLine (true);
+        text_.setReturnKeyStartsNewLine (true);
+        text_.setReadOnly (true);
+        text_.setScrollbarsShown (true);
+        text_.setCaretVisible (false);
+        text_.setPopupMenuEnabled (false);
+
         setSize (600, 400);
     }
     
@@ -34,6 +43,17 @@ public:
 // MARK: -
 
 public:
+    void logMessage (const juce::String& m)
+    {
+        text_.moveCaretToEnd();
+        text_.insertTextAtCaret (m + juce::newLine);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void paint (juce::Graphics& g) override
     {
         g.fillAll (Colors::find (juce::ResizableWindow::backgroundColourId));
@@ -41,9 +61,12 @@ public:
     
     void resized() override
     {
-    
+        text_.setBounds (getLocalBounds());
     }
 
+private:
+    juce::TextEditor text_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)
 };

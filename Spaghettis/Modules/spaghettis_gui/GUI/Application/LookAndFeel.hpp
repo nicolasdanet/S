@@ -15,7 +15,12 @@ namespace spaghettis {
 class LookAndFeel : public juce::LookAndFeel_V4 {
 
 public:
-    LookAndFeel() = default;
+    LookAndFeel()
+    {
+        setColour (juce::TextEditor::outlineColourId,   juce::Colours::transparentBlack);
+        setColour (juce::TextEditor::shadowColourId,    juce::Colours::transparentBlack);
+    }
+    
     ~LookAndFeel() = default;
 
 private:
