@@ -12,15 +12,24 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Spaghettis {
+class SpaghettisInstance {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
-    Spaghettis() = default;
-    ~Spaghettis() = default;
+    SpaghettisInstance()
+    {
+    }
+    
+    ~SpaghettisInstance()
+    {
+        clearSingletonInstance();
+    }
 
+    JUCE_DECLARE_SINGLETON (SpaghettisInstance, true)
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -30,12 +39,49 @@ public:
     {
         return &lookAndFeel_->lf_;
     }
-    
+
 public:
     juce::SharedResourcePointer < LookAndFeelShared > lookAndFeel_;
 
 private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpaghettisInstance)
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+class Spaghettis {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Spaghettis (bool ownership = false) : owned_ (ownership), spaghettis_ (SpaghettisInstance::getInstance())
+    {
+        jassert (spaghettis_ != nullptr);
+    }
+    
+    ~Spaghettis()
+    {
+        if (owned_) { SpaghettisInstance::deleteInstance(); } spaghettis_ = nullptr;
+    }
+    
+public:
+    SpaghettisInstance* operator ->() const
+    {
+        jassert (SpaghettisInstance::getInstanceWithoutCreating() != nullptr);
+        
+        return spaghettis_;
+    }
+
+private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Spaghettis)
+    
+private:
+    bool owned_;
+    SpaghettisInstance *spaghettis_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

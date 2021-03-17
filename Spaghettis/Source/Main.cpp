@@ -19,7 +19,7 @@ class SpaghettisApplication : public juce::JUCEApplication {
 // MARK: -
 
 public:
-    SpaghettisApplication()
+    SpaghettisApplication() : spaghettis_ (true)
     {
     }
 
@@ -30,7 +30,7 @@ public:
 public:
     void initialise (const juce::String&) override
     {
-        juce::LookAndFeel::setDefaultLookAndFeel (spaghettis_.getLookAndFeel());
+        juce::LookAndFeel::setDefaultLookAndFeel (spaghettis_->getLookAndFeel());
         
         console_.reset (new spaghettis::Console (getApplicationName()));
     }

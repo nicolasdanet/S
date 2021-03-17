@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ConsoleComponent : public juce::Component, public Logger, private juce::AsyncUpdater {
+class ConsoleComponent : public juce::Component, public spaghettis::Logger, private juce::AsyncUpdater {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
