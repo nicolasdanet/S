@@ -28,7 +28,7 @@ public:
         clearSingletonInstance();
     }
 
-    JUCE_DECLARE_SINGLETON (SpaghettisInstance, true)
+    JUCE_DECLARE_SINGLETON_SINGLETHREADED (SpaghettisInstance, true)
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
