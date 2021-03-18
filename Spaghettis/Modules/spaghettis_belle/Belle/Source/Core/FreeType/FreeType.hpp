@@ -65,7 +65,7 @@ public:
 
 static int moveTo (const FT_Vector* end, void* p)
 {
-    Data* data = reinterpret_cast < Data* > (p);
+    Data* data = reinterpret_cast<Data*> (p);
     Point pt (static_cast < double > (end->x), static_cast < double > (end->y));
     pt *= data->normalize_;
     data->glyph_->path_.add (Instruction::moveTo (pt));
@@ -74,7 +74,7 @@ static int moveTo (const FT_Vector* end, void* p)
 
 static int lineTo (const FT_Vector* end, void* p)
 {
-    Data* data = reinterpret_cast < Data* > (p);
+    Data* data = reinterpret_cast<Data*> (p);
     Point pt (static_cast < double > (end->x), static_cast < double > (end->y));
     pt *= data->normalize_;
     data->glyph_->path_.add (Instruction::lineTo (pt));
@@ -83,7 +83,7 @@ static int lineTo (const FT_Vector* end, void* p)
 
 static int conicTo (const FT_Vector* cp, const FT_Vector* end, void* p)
 {
-    Data* data = reinterpret_cast < Data* > (p);
+    Data* data = reinterpret_cast<Data*> (p);
   
     Point p0;
     Point p1 (static_cast < double > (cp->x), static_cast < double > (cp->y));
@@ -108,7 +108,7 @@ static int conicTo (const FT_Vector* cp, const FT_Vector* end, void* p)
 
 static int cubicTo (const FT_Vector* cp1, const FT_Vector* cp2, const FT_Vector* end, void* p)
 {
-    Data* data = reinterpret_cast < Data* > (p);
+    Data* data = reinterpret_cast<Data*> (p);
     
     Point p0 (static_cast < double > (cp1->x), static_cast < double > (cp1->y));
     Point p1 (static_cast < double > (cp2->x), static_cast < double > (cp2->y));
@@ -205,7 +205,7 @@ bool Typeface::importFont (const char* filename)
         
         /* Build path from outlines. */
         
-        FT_Outline *outline = &(reinterpret_cast < FT_OutlineGlyph > (glyph)->outline);
+        FT_Outline *outline = &(reinterpret_cast<FT_OutlineGlyph> (glyph)->outline);
         
         FTCallback::Data data;
         data.normalize_ = normalize;

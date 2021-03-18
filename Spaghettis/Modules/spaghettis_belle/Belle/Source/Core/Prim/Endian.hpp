@@ -50,8 +50,8 @@ private:
     {
         T v = 0;
         
-        byte* a = reinterpret_cast < byte* > (&data);
-        byte* b = reinterpret_cast < byte* > (&v);
+        byte* a = reinterpret_cast<byte*> (&data);
+        byte* b = reinterpret_cast<byte*> (&v);
       
         for (std::size_t i = 0; i < sizeof (T); ++i) { b[i] = a[sizeof (T) - i - 1]; }
         

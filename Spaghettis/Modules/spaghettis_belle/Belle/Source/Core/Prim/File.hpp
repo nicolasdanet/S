@@ -52,7 +52,7 @@ public:
 
     template <class T> static bool writeByArray (const char* filename, const Array < T > & data)
     {
-        return File::write (filename, reinterpret_cast < const char* > (&data[0]), data.size() * sizeof (T));
+        return File::write (filename, reinterpret_cast<const char*> (&data[0]), data.size() * sizeof (T));
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ public:
         
         data.resize (static_cast < int > (size / sizeof (T)));
         
-        stream.read (reinterpret_cast < char* > (&data[0]), size);
+        stream.read (reinterpret_cast<char*> (&data[0]), size);
         b = stream.good();
         stream.close();
         //

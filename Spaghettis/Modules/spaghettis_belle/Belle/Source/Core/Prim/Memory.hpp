@@ -41,8 +41,8 @@ template <class T> static void swap (T* a, T* b, int items)
     const int bufferSize = 1024;
     
     byte buffer[bufferSize];
-    byte* ptrA = reinterpret_cast < byte* > (a);
-    byte* ptrB = reinterpret_cast < byte* > (b);
+    byte* ptrA = reinterpret_cast<byte*> (a);
+    byte* ptrB = reinterpret_cast<byte*> (b);
     int size = static_cast < int > (sizeof (T) * items);
     
     while (size > 0) {
