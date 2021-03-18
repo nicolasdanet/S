@@ -50,17 +50,17 @@ template <class T> bool isPowerOfTwo (T v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> using EnableSigned = typename std::enable_if < std::is_signed < T >::value >::type*;
+template <class T> using EnableSigned = typename std::enable_if<std::is_signed<T>::value>::type*;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template < class T, EnableSigned < T > = nullptr > T abs (T m)
+template <class T, EnableSigned<T> = nullptr> T abs (T m)
 {
     return (m >= 0 ? m : -m);
 }
 
-template < class T, EnableSigned < T > = nullptr > T sign (T m)
+template <class T, EnableSigned<T> = nullptr> T sign (T m)
 {
     if (m > 0) { return 1; } else if (m < 0) { return -1; }
     else {
@@ -123,7 +123,7 @@ template <class T> T GCD (T a, T b)
 {
     if (a == 0 && b == 0) { return 0; }
     
-    if (a == std::numeric_limits < T >::min() || b == std::numeric_limits < T >::min()) { return 0; }
+    if (a == std::numeric_limits<T>::min() || b == std::numeric_limits<T>::min()) { return 0; }
     else {
         a = Math::abs (a);
         b = Math::abs (b);
