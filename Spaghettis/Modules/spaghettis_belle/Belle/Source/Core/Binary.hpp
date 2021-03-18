@@ -43,7 +43,7 @@ static std::string make (const std::string& name, const Array<byte> & data)
     for (int i = 0; i < data.size(); ++i) {
     //
     if ((i % 10) == 0) { s << newLine << "    " "    "; }
-    s << Utils::paddedLeft (static_cast < int > (data[i]), 4);
+    s << Utils::paddedLeft (static_cast<int> (data[i]), 4);
     if (i != (data.size() - 1)) { s << ","; }
     //
     }

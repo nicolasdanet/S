@@ -69,10 +69,10 @@ public:
         if (stream.is_open()) {
         //
         stream.seekg (0, std::ios_base::end);
-        int size = static_cast < int > (stream.tellg());
+        int size = static_cast<int> (stream.tellg());
         stream.seekg (0, std::ios_base::beg);
         
-        data.resize (static_cast < int > (size / sizeof (T)));
+        data.resize (static_cast<int> (size / sizeof (T)));
         
         stream.read (reinterpret_cast<char*> (&data[0]), size);
         b = stream.good();

@@ -26,12 +26,12 @@ struct Memory {
 
 template <class T> static void clear (T* a, int items)
 {
-    std::memset (static_cast < void* > (a), 0, sizeof (T) * items);
+    std::memset (static_cast<void*> (a), 0, sizeof (T) * items);
 }
 
 template <class T> static void copy (T* dest, const T* src, int items = 1)
 {
-    std::memcpy (static_cast < void* > (dest), static_cast < const void* > (src), sizeof (T) * items);
+    std::memcpy (static_cast<void*> (dest), static_cast<const void*> (src), sizeof (T) * items);
 }
 
 template <class T> static void swap (T* a, T* b, int items)
@@ -43,7 +43,7 @@ template <class T> static void swap (T* a, T* b, int items)
     byte buffer[bufferSize];
     byte* ptrA = reinterpret_cast<byte*> (a);
     byte* ptrB = reinterpret_cast<byte*> (b);
-    int size = static_cast < int > (sizeof (T) * items);
+    int size = static_cast<int> (sizeof (T) * items);
     
     while (size > 0) {
     //

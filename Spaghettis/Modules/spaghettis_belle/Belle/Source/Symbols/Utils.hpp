@@ -103,9 +103,9 @@ static double getPosition (int linespace)
 
 static int getLinespace (double position)
 {
-    if (position >= 0.0) { return static_cast < int > ((position / (House::kStaffSpaceWidth / 2.0)) + 0.5); } 
+    if (position >= 0.0) { return static_cast<int> ((position / (House::kStaffSpaceWidth / 2.0)) + 0.5); } 
     else {
-        return static_cast < int > ((position / (House::kStaffSpaceWidth / 2.0)) - 0.5);
+        return static_cast<int> ((position / (House::kStaffSpaceWidth / 2.0)) - 0.5);
     }
 }
 

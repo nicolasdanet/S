@@ -63,7 +63,7 @@ public:
     
     explicit Pointer (T* toOwn) : reference_ (nullptr)
     {
-        if (toOwn) { reference_ = new PointerOwner (static_cast < void* > (toOwn)); }
+        if (toOwn) { reference_ = new PointerOwner (static_cast<void*> (toOwn)); }
     }
 
     Pointer (const Pointer < T > & toShare) : reference_ (nullptr)
@@ -82,7 +82,7 @@ public:
     {
         unshare();
         
-        if (toOwn) { reference_ = new PointerOwner (static_cast < void* > (toOwn)); }
+        if (toOwn) { reference_ = new PointerOwner (static_cast<void*> (toOwn)); }
         
         return *this;
     }
@@ -140,7 +140,7 @@ public:
 
     operator const void*() const
     {
-        return static_cast < const void* > (get());
+        return static_cast<const void*> (get());
     }
 
 // -----------------------------------------------------------------------------------------------------------

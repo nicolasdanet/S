@@ -174,12 +174,12 @@ public:
 public:
     int getNumerator() const 
     {
-        return static_cast < int > (numerator());
+        return static_cast<int> (numerator());
     }
 
     int getDenominator() const 
     {
-        return static_cast < int > (denominator());
+        return static_cast<int> (denominator());
     }
     
 // -----------------------------------------------------------------------------------------------------------

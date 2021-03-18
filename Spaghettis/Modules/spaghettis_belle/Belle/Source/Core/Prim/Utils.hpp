@@ -31,7 +31,7 @@ public:
     
         std::string padded;
     
-        const int k = Math::max (n - static_cast < int > (s.str().length()), 0);
+        const int k = Math::max (n - static_cast<int> (s.str().length()), 0);
         
         for (int i = 0; i < k; ++i) { padded += c; }
     

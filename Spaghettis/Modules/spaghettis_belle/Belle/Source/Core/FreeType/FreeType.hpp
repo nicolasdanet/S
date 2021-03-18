@@ -211,7 +211,7 @@ bool Typeface::importFont (const char* filename)
         data.normalize_ = normalize;
         data.glyph_ = scoped.glyphs_.getLast().getRawPointer();
         
-        err |= (FT_Outline_Decompose (outline, &callbacks, static_cast < void* > (&data)) != 0);
+        err |= (FT_Outline_Decompose (outline, &callbacks, static_cast<void*> (&data)) != 0);
         
         FT_Done_Glyph (glyph);
         //

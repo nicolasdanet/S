@@ -344,7 +344,7 @@ private:
         //
         seed = (65539 * seed) & 0x7fffffff;
         double f = static_cast < double > (seed) * (1.0 / 2147483648.0);
-        int rand = static_cast < int > (f * static_cast < double > (i + 1));
+        int rand = static_cast<int> (f * static_cast < double > (i + 1));
         swap (data_[i], data_[rand]);
         //
         }

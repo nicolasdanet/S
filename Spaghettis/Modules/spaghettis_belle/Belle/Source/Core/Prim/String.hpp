@@ -30,7 +30,7 @@ class String {
 public:
     String (const char* s = nullptr)
     {
-        int size = s ? static_cast < int > (std::strlen (s)) : 0;
+        int size = s ? static_cast<int> (std::strlen (s)) : 0;
     
         data_.resize (size + 1); PRIM_ASSERT (data_.getLast() == 0);
     

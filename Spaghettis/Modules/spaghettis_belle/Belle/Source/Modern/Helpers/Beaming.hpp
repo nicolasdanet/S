@@ -129,7 +129,7 @@ private:
         
         if ((linespaces.size() % 2) == 0) {
         //
-        int iterate = Math::min (House::kBeamPatternMaximum, static_cast < int > ((linespaces.size() / 2)));
+        int iterate = Math::min (House::kBeamPatternMaximum, static_cast<int> ((linespaces.size() / 2)));
         for (int i = 2; i <= iterate; ++i) {
             if (hasRepeatedPattern (linespaces, i)) { repeated = true; break; }
         }

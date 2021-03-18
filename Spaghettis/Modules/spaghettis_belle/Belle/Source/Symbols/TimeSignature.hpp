@@ -123,7 +123,7 @@ protected:
         
         while (n > 0) {
             codes.add (static_cast < unicode > ((n % 10) + 0xf030));
-            n = static_cast < int > (n / 10.0);
+            n = static_cast<int> (n / 10.0);
         }
         
         codes.reverse();

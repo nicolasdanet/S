@@ -401,7 +401,7 @@ private:
     {
         T v (value);
         Endian::swapIfBigEndian (v);
-        data.resize (static_cast < int > (data.size() + sizeof (T)));
+        data.resize (static_cast<int> (data.size() + sizeof (T)));
         byte* d = &data.getLast();
         d -= (sizeof (T) - 1);
         std::memcpy (d, &v, sizeof (T));

@@ -88,7 +88,7 @@ Concept::Concept (const std::string& key)
 
 int Concept::length() const
 {
-    int n = static_cast < int > (ConceptToLength::find (*this));
+    int n = static_cast<int> (ConceptToLength::find (*this));
     
     return prim::Math::abs (n);
 }

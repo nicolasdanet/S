@@ -125,7 +125,7 @@ private:
         
         if (d < 0.0) {
         //
-        int y = static_cast < int > ((d / House::kStaffSpaceWidth) - 1.0);
+        int y = static_cast<int> ((d / House::kStaffSpaceWidth) - 1.0);
         
         if (below) { stamp->addContext (Affine::translation (Vector (0.0, y * House::kStaffSpaceWidth))); } 
         else {
