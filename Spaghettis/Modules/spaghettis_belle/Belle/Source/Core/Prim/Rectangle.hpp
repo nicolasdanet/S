@@ -33,11 +33,11 @@ public:
     { 
     }
     
-    Rectangle (Complex < T > pt) : isEmpty_ (false), a_ (pt), b_ (pt)
+    Rectangle (Complex<T> pt) : isEmpty_ (false), a_ (pt), b_ (pt)
     {
     }
     
-    Rectangle (Complex < T > bLeft, Complex < T > tRight) : isEmpty_ (false), a_ (bLeft), b_ (tRight) 
+    Rectangle (Complex<T> bLeft, Complex<T> tRight) : isEmpty_ (false), a_ (bLeft), b_ (tRight) 
     { 
         sortCoordinates();
     }
@@ -57,7 +57,7 @@ public:
         return isEmpty_;
     }
     
-    bool contains (const Complex < T > & pt) const
+    bool contains (const Complex<T>& pt) const
     {
         if (isEmpty() == false) {
             T x = pt.getX();
@@ -87,7 +87,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    Complex < T > getCenter() const
+    Complex<T> getCenter() const
     {
         return (a_ + b_) / 2.0;
     }
@@ -121,24 +121,24 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    Complex < T > getBottomLeft() const
+    Complex<T> getBottomLeft() const
     {
-        return Complex < T > (getLeft(), getBottom());
+        return Complex<T> (getLeft(), getBottom());
     }
     
-    Complex < T > getBottomRight() const
+    Complex<T> getBottomRight() const
     {
-        return Complex < T > (getRight(), getBottom());
+        return Complex<T> (getRight(), getBottom());
     }
     
-    Complex < T > getTopLeft() const
+    Complex<T> getTopLeft() const
     {
-        return Complex < T > (getLeft(), getTop());
+        return Complex<T> (getLeft(), getTop());
     }
     
-    Complex < T > getTopRight() const
+    Complex<T> getTopRight() const
     {
-        return Complex < T > (getRight(), getTop());
+        return Complex<T> (getRight(), getTop());
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -170,22 +170,22 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void setBottomLeft (const Complex < T > & pt)
+    void setBottomLeft (const Complex<T>& pt)
     {
         setLeft (pt.getX()); setBottom (pt.getY());
     }
     
-    void setBottomRight (const Complex < T > & pt)
+    void setBottomRight (const Complex<T>& pt)
     {
         setRight (pt.getX()); setBottom (pt.getY());
     }
     
-    void setTopLeft (const Complex < T > & pt)
+    void setTopLeft (const Complex<T>& pt)
     {
         setLeft (pt.getX()); setTop (pt.getY());
     }
     
-    void setTopRight (const Complex < T > & pt)
+    void setTopRight (const Complex<T>& pt)
     {
         setRight (pt.getX()); setTop (pt.getY());
     }
@@ -248,8 +248,8 @@ private:
         T ttry = rect1.b_.getY();
         T otry = rect2.b_.getY();
       
-        Complex < T > a (Math::min (tblx, oblx), Math::min (tbly, obly));
-        Complex < T > b (Math::max (ttrx, otrx), Math::max (ttry, otry));
+        Complex<T> a (Math::min (tblx, oblx), Math::min (tbly, obly));
+        Complex<T> b (Math::max (ttrx, otrx), Math::max (ttry, otry));
       
         return Rectangle (a, b);
     }
@@ -266,8 +266,8 @@ public:
     
 private:
     bool isEmpty_;
-    Complex < T > a_;
-    Complex < T > b_;
+    Complex<T> a_;
+    Complex<T> b_;
 
 private:
     PRIM_LEAK_DETECTOR (Rectangle)

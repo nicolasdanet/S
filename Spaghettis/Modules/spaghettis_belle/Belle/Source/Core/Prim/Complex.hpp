@@ -27,10 +27,10 @@ public:
     {
     }
 
-    Complex (const Complex < T > &) = default;
-    Complex (Complex < T > &&) = default;
-    Complex < T > & operator = (const Complex < T > &) = default;
-    Complex < T > & operator = (Complex < T > &&) = default;
+    Complex (const Complex<T>&) = default;
+    Complex (Complex<T>&&) = default;
+    Complex<T>& operator = (const Complex<T>&) = default;
+    Complex<T>& operator = (Complex<T>&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ public:
 // MARK: -
 
 public:
-    Complex < T > & operator += (const Complex < T > & c)
+    Complex<T>& operator += (const Complex<T>& c)
     {
         x_ += c.x_;
         y_ += c.y_;
@@ -70,7 +70,7 @@ public:
         return *this;
     }
 
-    Complex < T > & operator -= (const Complex < T > & c)
+    Complex<T>& operator -= (const Complex<T>& c)
     {
         x_ -= c.x_;
         y_ -= c.y_;
@@ -78,7 +78,7 @@ public:
         return *this;
     }
     
-    Complex < T > & operator *= (const Complex < T > & c)
+    Complex<T>& operator *= (const Complex<T>& c)
     {
         T x = (x_ * c.x_ - y_ * c.y_);
         T y = (x_ * c.y_ + c.x_ * y_);
@@ -89,7 +89,7 @@ public:
         return *this;
     }
     
-    Complex < T > & operator /= (const Complex < T > & c)
+    Complex<T>& operator /= (const Complex<T>& c)
     {
         double d = (c.x_ * c.x_) + (c.y_ * c.y_);
         
@@ -138,7 +138,7 @@ public:
 
     void setPolar (double a, double m)
     {
-        *this = Complex < T >::withPolar (a, m);
+        *this = Complex<T>::withPolar (a, m);
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -146,7 +146,7 @@ public:
 // MARK: -
 
 public:
-    const Complex < T > operator -()
+    const Complex<T> operator -()
     {
         return Complex (-x_, -y_);
     }
@@ -156,9 +156,9 @@ public:
 // MARK: -
 
 public:
-    static Complex < T > withPolar (double a, double m)
+    static Complex<T> withPolar (double a, double m)
     {
-        return Complex < T > (T (std::cos (a) * m), T (std::sin (a) * m));
+        return Complex<T> (T (std::cos (a) * m), T (std::sin (a) * m));
     }
 
 private:
@@ -172,12 +172,12 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-friend bool operator != (const Complex < T > & a, const Complex < T > & b)
+friend bool operator != (const Complex<T>& a, const Complex<T>& b)
 {
     return !(a == b);
 }
 
-friend bool operator == (const Complex < T > & a, const Complex < T > & b)
+friend bool operator == (const Complex<T>& a, const Complex<T>& b)
 {
     return (a.x_ == b.x_) && (a.y_ == b.y_);
 }
@@ -186,22 +186,22 @@ friend bool operator == (const Complex < T > & a, const Complex < T > & b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-friend Complex < T > operator + (Complex < T > a, const Complex < T > & b)
+friend Complex<T> operator + (Complex<T> a, const Complex<T>& b)
 {
     a += b; return a;
 }
 
-friend Complex < T > operator - (Complex < T > a, const Complex < T > & b)
+friend Complex<T> operator - (Complex<T> a, const Complex<T>& b)
 {
     a -= b; return a;
 }
 
-friend Complex < T > operator * (Complex < T > a, const Complex < T > & b)
+friend Complex<T> operator * (Complex<T> a, const Complex<T>& b)
 {
     a *= b; return a;
 }
 
-friend Complex < T > operator / (Complex < T > a, const Complex < T > & b)
+friend Complex<T> operator / (Complex<T> a, const Complex<T>& b)
 {
     a /= b; return a;
 }
@@ -215,7 +215,7 @@ friend Complex < T > operator / (Complex < T > a, const Complex < T > & b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-friend int clockwiseOrder (const Complex < T > & a, const Complex < T > & b, const Complex < T > & c)
+friend int clockwiseOrder (const Complex<T>& a, const Complex<T>& b, const Complex<T>& c)
 {
     double t1 = (static_cast<double> (b.x_) - static_cast<double> (a.x_));
     double t2 = (static_cast<double> (c.y_) - static_cast<double> (a.y_));
