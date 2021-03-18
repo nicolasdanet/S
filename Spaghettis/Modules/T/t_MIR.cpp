@@ -198,7 +198,7 @@ TTT_BEGIN (MicaTuple, 162, "MICA - Tuple")
     
         {
         //
-        mica::MIR::Tuple < 3 > tuple;
+        mica::MIR::Tuple<3> tuple;
         
         TTT_EXPECT (tuple[0] == mica::Undefined);
         TTT_EXPECT (tuple[1] == mica::Undefined);
@@ -208,7 +208,7 @@ TTT_BEGIN (MicaTuple, 162, "MICA - Tuple")
         
         TTT_EXPECT (tuple[0] == mica::Dorian);
         
-        tuple = mica::MIR::Tuple < 3 > ( { mica::Flat, mica::Natural, mica::Sharp } );
+        tuple = mica::MIR::Tuple<3> ( { mica::Flat, mica::Natural, mica::Sharp } );
         
         TTT_EXPECT (tuple[0] == mica::Flat);
         TTT_EXPECT (tuple[1] == mica::Natural);
@@ -222,13 +222,13 @@ TTT_BEGIN (MicaTuple, 162, "MICA - Tuple")
         //
         mica::Concept letters (mica::Letters);
         
-        prim::Array < mica::Concept > t;
+        prim::Array<mica::Concept> t;
         
         for (int i = 0; i < letters.length(); ++i) { t.add (item (letters, i)); }
         
         const int offset = 2;
         
-        mica::MIR::Tuple < 3 > tuple (t, offset);
+        mica::MIR::Tuple<3> tuple (t, offset);
         
         TTT_EXPECT (tuple[0] == mica::C);
         TTT_EXPECT (tuple[1] == mica::D);
@@ -240,10 +240,10 @@ TTT_BEGIN (MicaTuple, 162, "MICA - Tuple")
     
         {
         //
-        mica::MIR::Tuple < 3 > a ( { mica::A, mica::B, mica::C } );
-        mica::MIR::Tuple < 3 > b ( { mica::C, mica::A, mica::B } );
-        mica::MIR::Tuple < 2 > c ( { mica::A, mica::B } );
-        mica::MIR::Tuple < 2 > d ( { mica::B, mica::A } );
+        mica::MIR::Tuple<3> a ( { mica::A, mica::B, mica::C } );
+        mica::MIR::Tuple<3> b ( { mica::C, mica::A, mica::B } );
+        mica::MIR::Tuple<2> c ( { mica::A, mica::B } );
+        mica::MIR::Tuple<2> d ( { mica::B, mica::A } );
         
         TTT_EXPECT (a.hash() != b.hash());
         TTT_EXPECT (c.hash() != d.hash());
@@ -272,7 +272,7 @@ void test163__utils() {
 
 TTT_BEGIN (MicaUtils, 163, "MICA - Utils")
 
-    prim::Table < mica::Concept > accidentals;
+    prim::Table<mica::Concept> accidentals;
     
     accidentals = mica::MIR::Utils::getAccidentalsByLetters (mica::ThreeSharps);
     
@@ -378,11 +378,11 @@ TTT_BEGIN (MicaSpell, 164, "MICA - Spell")
             62 
         };
         
-    prim::Array < int > numbers;
+    prim::Array<int> numbers;
     
     for (int i = 0; i < prim::sizeOfArray (midi); ++i) { numbers.add (midi[i]); }
     
-    prim::Array < mica::Concept > result = (mica::MIR::Spell (mica::CMajor).getSpelling (numbers));
+    prim::Array<mica::Concept> result = (mica::MIR::Spell (mica::CMajor).getSpelling (numbers));
     
     TTT_EXPECT (result.size() == prim::sizeOfArray (midi));
     

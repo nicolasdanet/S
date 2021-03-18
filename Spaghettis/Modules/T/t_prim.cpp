@@ -168,8 +168,8 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using Graph = prim::Graph < Widget >;
-using Node  = prim::Graph < Widget >::Node;
+using Graph = prim::Graph<Widget>;
+using Node  = prim::Graph<Widget>::Node;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -189,9 +189,9 @@ static double getRandomDouble()
     return PD_RAND48_DOUBLE (rnd);
 }
 
-static int getRandomInteger (int n = std::numeric_limits < int >::max())
+static int getRandomInteger (int n = std::numeric_limits<int>::max())
 {
-    return static_cast < int > (getRandomDouble() * n);
+    return static_cast<int> (getRandomDouble() * n);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -242,10 +242,10 @@ TTT_BEGIN (PrimMemory, 101, "Prim - Memory")
     prim::int32 original = 0xaabbccdd;
     
     alignas (alignof (prim::int32)) prim::byte raw[4] = { 0xdd, 0xcc, 0xbb, 0xaa };
-    prim::Endian::swapIfBigEndian (reinterpret_cast < prim::int32& > (raw));
+    prim::Endian::swapIfBigEndian (reinterpret_cast<prim::int32&> (raw));
     
-    void* a = static_cast < void* > (&original);
-    void* b = static_cast < void* > (raw);
+    void* a = static_cast<void*> (&original);
+    void* b = static_cast<void*> (raw);
     
     TTT_EXPECT (std::memcmp (a, b, sizeof (prim::int32)) == 0);
     //
@@ -256,10 +256,10 @@ TTT_BEGIN (PrimMemory, 101, "Prim - Memory")
     prim::int32 original = 0xaabbccdd;
     
     alignas (alignof (prim::int32)) prim::byte raw[4] = { 0xaa, 0xbb, 0xcc, 0xdd };
-    prim::Endian::swapIfLittleEndian (reinterpret_cast < prim::int32& > (raw));
+    prim::Endian::swapIfLittleEndian (reinterpret_cast<prim::int32&> (raw));
     
-    void* a = static_cast < void* > (&original);
-    void* b = static_cast < void* > (raw);
+    void* a = static_cast<void*> (&original);
+    void* b = static_cast<void*> (raw);
     
     TTT_EXPECT (std::memcmp (a, b, sizeof (prim::int32)) == 0);
     //
@@ -453,7 +453,7 @@ TTT_BEGIN (PrimMath, 102, "Prim - Math")
     
     /* Substitution in the equation of an ellipse. */
     
-    pt /= prim::Complex < double >::withPolar (phi, 1.0);
+    pt /= prim::Complex<double>::withPolar (phi, 1.0);
     
     double x2 = pt.getX() * pt.getX();
     double y2 = pt.getY() * pt.getY();
@@ -493,8 +493,8 @@ TTT_BEGIN (PrimPointer, 103, "Prim - Pointer")
     
     {
     //
-    prim::Pointer < Base > a (new Base());
-    prim::Pointer < Base > b;
+    prim::Pointer<Base> a (new Base());
+    prim::Pointer<Base> b;
     
     TTT_EXPECT (a != nullptr);
     TTT_EXPECT (b == nullptr);
@@ -505,7 +505,7 @@ TTT_BEGIN (PrimPointer, 103, "Prim - Pointer")
     TTT_EXPECT (a->whoami() == std::string ("Base / 1"));
     TTT_EXPECT (b->whoami() == std::string ("Base / 1"));
     
-    prim::Pointer < Base > c (b);
+    prim::Pointer<Base> c (b);
     
     TTT_EXPECT (c != nullptr);
     TTT_EXPECT (c->whoami() == std::string ("Base / 1"));
@@ -537,8 +537,8 @@ TTT_BEGIN (PrimPointer, 103, "Prim - Pointer")
     
     {
     //
-    prim::Pointer < Base > a;
-    prim::Pointer < Base > b;
+    prim::Pointer<Base> a;
+    prim::Pointer<Base> b;
     
     a = new Base();
     b = new Derived();
@@ -557,17 +557,17 @@ TTT_BEGIN (PrimPointer, 103, "Prim - Pointer")
     
     {
     //
-    prim::Pointer < Base > t (new Base());
-    prim::Pointer < Base > a;
-    prim::Pointer < Base > b (std::move (t));
+    prim::Pointer<Base> t (new Base());
+    prim::Pointer<Base> a;
+    prim::Pointer<Base> b (std::move (t));
     
     TTT_EXPECT (b->whoami() == std::string ("Base / 1"));
     
-    a = prim::Pointer < Base > (new Base());
+    a = prim::Pointer<Base> (new Base());
     
     TTT_EXPECT (a->whoami() == std::string ("Base / 2"));
     
-    b = prim::Pointer < Base > (new Derived());
+    b = prim::Pointer<Base> (new Derived());
     
     TTT_EXPECT (a->whoami() == std::string ("Base / 2"));
     TTT_EXPECT (b->whoami() == std::string ("Derived / 1"));
@@ -597,8 +597,8 @@ TTT_BEGIN (PrimComplex, 104, "Prim - Complex")
 
     {
     //
-    prim::Complex < double > a;
-    prim::Complex < double > b;
+    prim::Complex<double> a;
+    prim::Complex<double> b;
     
     TTT_EXPECT (a.getX()      == 0.0);
     TTT_EXPECT (a.getY()      == 0.0);
@@ -608,7 +608,7 @@ TTT_BEGIN (PrimComplex, 104, "Prim - Complex")
     a.setPolar (prim::kHalfPi, 1.0);
     b.setPolar (0.0, 1.0);
     
-    prim::Complex < double > c;
+    prim::Complex<double> c;
                 
     c = a + b;
     
@@ -644,27 +644,27 @@ TTT_BEGIN (PrimComplex, 104, "Prim - Complex")
     //
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Complex < double > a (getRandomDouble(), getRandomDouble());
-    prim::Complex < double > b (a);
+    prim::Complex<double> a (getRandomDouble(), getRandomDouble());
+    prim::Complex<double> b (a);
     
     TTT_EXPECT (a == b);
     
-    b *= prim::Complex < double >::withPolar (prim::kPi, 1.0);
+    b *= prim::Complex<double>::withPolar (prim::kPi, 1.0);
     
     TTT_EXPECT (prim::Math::abs (a.getX() + b.getX()) < kEpsilon);
     TTT_EXPECT (prim::Math::abs (a.getY() + b.getY()) < kEpsilon);
     
-    b *= prim::Complex < double >::withPolar (prim::kPi, 1.0);
+    b *= prim::Complex<double>::withPolar (prim::kPi, 1.0);
     
     TTT_EXPECT (prim::Math::abs (a.getX() - b.getX()) < kEpsilon);
     TTT_EXPECT (prim::Math::abs (a.getY() - b.getY()) < kEpsilon);
     
-    b /= prim::Complex < double >::withPolar (prim::kHalfPi, 1.0);
+    b /= prim::Complex<double>::withPolar (prim::kHalfPi, 1.0);
     
     TTT_EXPECT (prim::Math::abs (a.getX() + b.getY()) < kEpsilon);
     TTT_EXPECT (prim::Math::abs (a.getY() - b.getX()) < kEpsilon);
     
-    b /= prim::Complex < double >::withPolar (prim::kPi, 1.0);
+    b /= prim::Complex<double>::withPolar (prim::kPi, 1.0);
     
     TTT_EXPECT (prim::Math::abs (a.getX() - b.getY()) < kEpsilon);
     TTT_EXPECT (prim::Math::abs (a.getY() + b.getX()) < kEpsilon);
@@ -673,10 +673,10 @@ TTT_BEGIN (PrimComplex, 104, "Prim - Complex")
     
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Complex < double > a (getRandomDouble(), getRandomDouble());
-    prim::Complex < double > b = -a;
+    prim::Complex<double> a (getRandomDouble(), getRandomDouble());
+    prim::Complex<double> b = -a;
     
-    a *= prim::Complex < double >::withPolar (prim::kPi, 1.0);
+    a *= prim::Complex<double>::withPolar (prim::kPi, 1.0);
     
     TTT_EXPECT (prim::Math::abs (a.getX() - b.getX()) < kEpsilon);
     TTT_EXPECT (prim::Math::abs (a.getY() - b.getY()) < kEpsilon);
@@ -692,10 +692,10 @@ TTT_BEGIN (PrimComplex, 104, "Prim - Complex")
     int x2 = getRandomInteger (10 + 1) - 5;
     int y2 = getRandomInteger (10 + 1) - 5;
     
-    prim::Complex < int > a (x1, y1);
-    prim::Complex < int > b (x2, y2);
-    prim::Complex < int > c;
-    prim::Complex < int > d;
+    prim::Complex<int> a (x1, y1);
+    prim::Complex<int> b (x2, y2);
+    prim::Complex<int> c;
+    prim::Complex<int> d;
     
     c = a + b;
     d = a - b;
@@ -714,10 +714,10 @@ TTT_BEGIN (PrimComplex, 104, "Prim - Complex")
     
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Complex < double > a (getRandomDouble(), getRandomDouble());
-    prim::Complex < double > b;
+    prim::Complex<double> a (getRandomDouble(), getRandomDouble());
+    prim::Complex<double> b;
     
-    double f, k = static_cast < double > (getRandomInteger (10) + 1);
+    double f, k = static_cast<double> (getRandomInteger (10) + 1);
     do { f = (getRandomDouble() * k) - (k / 2.0); } while (prim::Math::abs (f) < kEpsilon);
     
     b = a * f;   /* Multiply by a scalar. */
@@ -899,7 +899,7 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     
     {
     //
-    prim::Array < int > a;
+    prim::Array<int> a;
     
     a.resize (1024);
     
@@ -911,7 +911,7 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     //
     Dummy dummy;
     
-    prim::Array < Dummy > a;
+    prim::Array<Dummy> a;
     
     a.resize (4);
     TTT_EXPECT (a.getFirst().whoami() == std::string ("Dummy / 5"));
@@ -925,9 +925,9 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     //
     Dummy dummy;
     
-    prim::Array < prim::Pointer < Dummy > > a;
+    prim::Array<prim::Pointer<Dummy>> a;
     
-    a.add (prim::Pointer < Dummy > (new Dummy()));
+    a.add (prim::Pointer<Dummy> (new Dummy()));
     TTT_EXPECT (a.getFirst()->whoami() == std::string ("Dummy / 2"));
     
     a.getFirst() = new Dummy();
@@ -944,10 +944,10 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     
     {
     //
-    prim::Array < prim::Pointer < Base > > a;
-    prim::Array < prim::Pointer < Base > > b;
+    prim::Array<prim::Pointer<Base>> a;
+    prim::Array<prim::Pointer<Base>> b;
     
-    prim::Pointer < Base > p (new Base());
+    prim::Pointer<Base> p (new Base());
     
     b.add (p);
     b.add (p);
@@ -964,7 +964,7 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     for (int i = 0; i < 4; ++i) { a.add (p); }
     
     b = a;
-    prim::Array < prim::Pointer < Base > > c (b);
+    prim::Array<prim::Pointer<Base>> c (b);
     
     TTT_EXPECT (b.size() == a.size());
     TTT_EXPECT (c.size() == b.size());
@@ -984,8 +984,8 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
 
     {
     //
-    prim::Array < prim::Pointer < Base > > a;
-    prim::Array < prim::Pointer < Base > > b;
+    prim::Array<prim::Pointer<Base>> a;
+    prim::Array<prim::Pointer<Base>> b;
     
     a.resize (4);
     
@@ -1017,7 +1017,7 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     
     {
     //
-    prim::Array < prim::Pointer < Base > > a;
+    prim::Array<prim::Pointer<Base>> a;
     
     a.resize (4);
     
@@ -1044,12 +1044,12 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     
     {
     //
-    prim::Array < prim::Pointer < Base > > a;
+    prim::Array<prim::Pointer<Base>> a;
     
     a.sort();
     a.resize (6);
     
-    prim::Pointer < Base > p (new Derived());
+    prim::Pointer<Base> p (new Derived());
     
     a[1] = new Base();
     a[3] = p;
@@ -1077,7 +1077,7 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     //
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Array < int > a;
+    prim::Array<int> a;
     
     TTT_EXPECT (a.size() == 0);
     
@@ -1111,7 +1111,7 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     //
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Array < int > a;
+    prim::Array<int> a;
     
     int k = getRandomInteger();
     
@@ -1134,15 +1134,15 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     //
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Array < int > a;
+    prim::Array<int> a;
     
     a.resize (256);
     
     for (int j = 0; j < a.size(); ++j) { a[j] = getRandomInteger(); }
     
-    prim::Array < int > b (a);
-    prim::Array < int > c;
-    prim::Array < int > d;
+    prim::Array<int> b (a);
+    prim::Array<int> c;
+    prim::Array<int> d;
     
     c = b;
     d.swapWith (c);
@@ -1161,8 +1161,8 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     //
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Array < double > a;
-    prim::Array < double > b;
+    prim::Array<double> a;
+    prim::Array<double> b;
     
     a.resize (16);
     for (int j = 0; j < a.size(); ++j) { a[j] = getRandomDouble(); }
@@ -1184,8 +1184,8 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     //
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Array < double > a;
-    prim::Array < double > b;
+    prim::Array<double> a;
+    prim::Array<double> b;
     
     a.resize (getRandomInteger (30) + 2);
     
@@ -1209,8 +1209,8 @@ TTT_BEGIN (PrimArray, 106, "Prim - Array")
     //
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Array < double > a;
-    prim::Array < double > b;
+    prim::Array<double> a;
+    prim::Array<double> b;
     
     a.resize (getRandomInteger (32));
     
@@ -1255,7 +1255,7 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
     
     {
     //
-    prim::Table < prim::String, bool > a (false);
+    prim::Table<prim::String, bool> a (false);
     
     TTT_EXPECT (a.size()  == 0);
     TTT_EXPECT (a["Toto"] == false);
@@ -1280,7 +1280,7 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
     
     {
     //
-    prim::Table < prim::String, bool > a (false);
+    prim::Table<prim::String, bool> a (false);
     
     a["Toto"] = true;
     a["Momo"] = true;
@@ -1306,14 +1306,14 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
     a["Joujoux"]  = true;
     a["Poux"]     = true;
     
-    const prim::Table < prim::String, bool > b (a);
+    const prim::Table<prim::String, bool> b (a);
     
     a.clear();
     
     TTT_EXPECT (b["Cailloux"] == true);
     TTT_EXPECT (b["Zoulous"]  == false);
     
-    prim::Table < prim::String, bool > c (false);
+    prim::Table<prim::String, bool> c (false);
     
     c = b;
     
@@ -1333,7 +1333,7 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
     
     {
     //
-    prim::Table < int > a (-1);
+    prim::Table<int> a (-1);
     
     a[-10]  = 10;
     a[0]    = -10;
@@ -1370,7 +1370,7 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
     
     {
     //
-    prim::Table < prim::String, prim::Pointer < Base > > a ((prim::Pointer < Base > (nullptr)));
+    prim::Table<prim::String, prim::Pointer<Base>> a ((prim::Pointer<Base> (nullptr)));
     
     a["Toto"] = new Base();
     a["Momo"] = new Base();
@@ -1382,7 +1382,7 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
     
     TTT_EXPECT (a["Toto"]->whoami() == std::string ("Base / 2"));
     
-    prim::Table < prim::String, prim::Pointer < Base > > b (a);
+    prim::Table<prim::String, prim::Pointer<Base>> b (a);
     
     a.clear();
     
@@ -1390,7 +1390,7 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
 
     b.clear();
     
-    prim::Pointer < Base > p (new Derived());
+    prim::Pointer<Base> p (new Derived());
     
     a["Toto"] = p;
     a["Momo"] = p;
@@ -1411,12 +1411,12 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
      
     {
     //
-    prim::Table < prim::Pointer < Base >, int > a (0);
+    prim::Table<prim::Pointer<Base>, int> a (0);
     
-    prim::Pointer < Base > toto (new Base());
-    prim::Pointer < Base > jojo (new Derived());
-    prim::Pointer < Base > momo (new Base());
-    prim::Pointer < Base > zozo (nullptr);
+    prim::Pointer<Base> toto (new Base());
+    prim::Pointer<Base> jojo (new Derived());
+    prim::Pointer<Base> momo (new Base());
+    prim::Pointer<Base> zozo (nullptr);
     
     a[toto] = 1234;
     a[jojo] = -1;
@@ -1431,7 +1431,7 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
     /* Scratch you head. */
     
     {
-        prim::Pointer < Base > t (momo);
+        prim::Pointer<Base> t (momo);
     
         TTT_EXPECT (a[t] == 4321);
     
@@ -1461,7 +1461,7 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
     
     {
     //
-    prim::Table < int, prim::Box > a (prim::Box::empty());
+    prim::Table<int, prim::Box> a (prim::Box::empty());
     
     prim::Point pt1 (0.0, 0.0);
     prim::Point pt2 (2.0, 0.0);
@@ -1484,7 +1484,7 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
      
     {
     //
-    prim::Table < mica::MIR::Interval, int > t (-1);
+    prim::Table<mica::MIR::Interval, int> t (-1);
 
     t[mica::MIR::Interval::withNotes (mica::C5, mica::E4)] = 4;
     t[mica::MIR::Interval::withNotes (mica::B4, mica::C5)] = 3;
@@ -1509,36 +1509,36 @@ TTT_BEGIN (PrimTable, 107, "Prim - Table")
     
     {
     //
-    prim::Table < mica::MIR::Tuple < 3 >, int > t (-1);
+    prim::Table<mica::MIR::Tuple<3>, int> t (-1);
     
-    t[mica::MIR::Tuple < 3 > ( { 1, 2, 3 } )] = 123;
-    t[mica::MIR::Tuple < 3 > ( { 4, 5, 6 } )] = 456;
-    t[mica::MIR::Tuple < 3 > ( { 7, 8, 9 } )] = 789;
-    t[mica::MIR::Tuple < 3 > ( { 1, 5, 9 } )] = 159;
-    t[mica::MIR::Tuple < 3 > ( { 7, 5, 3 } )] = 753;
-    t[mica::MIR::Tuple < 3 > ( { 1, 4, 7 } )] = 147;
-    t[mica::MIR::Tuple < 3 > ( { 3, 6, 9 } )] = 369;
+    t[mica::MIR::Tuple<3> ( { 1, 2, 3 } )] = 123;
+    t[mica::MIR::Tuple<3> ( { 4, 5, 6 } )] = 456;
+    t[mica::MIR::Tuple<3> ( { 7, 8, 9 } )] = 789;
+    t[mica::MIR::Tuple<3> ( { 1, 5, 9 } )] = 159;
+    t[mica::MIR::Tuple<3> ( { 7, 5, 3 } )] = 753;
+    t[mica::MIR::Tuple<3> ( { 1, 4, 7 } )] = 147;
+    t[mica::MIR::Tuple<3> ( { 3, 6, 9 } )] = 369;
     
-    TTT_EXPECT (t[mica::MIR::Tuple < 3 > ( { 1, 2, 3 } )] == 123);
-    TTT_EXPECT (t[mica::MIR::Tuple < 3 > ( { 4, 5, 6 } )] == 456);
-    TTT_EXPECT (t[mica::MIR::Tuple < 3 > ( { 7, 8, 9 } )] == 789);
-    TTT_EXPECT (t[mica::MIR::Tuple < 3 > ( { 1, 5, 9 } )] == 159);
-    TTT_EXPECT (t[mica::MIR::Tuple < 3 > ( { 7, 5, 3 } )] == 753);
-    TTT_EXPECT (t[mica::MIR::Tuple < 3 > ( { 1, 4, 7 } )] == 147);
-    TTT_EXPECT (t[mica::MIR::Tuple < 3 > ( { 3, 6, 9 } )] == 369);
+    TTT_EXPECT (t[mica::MIR::Tuple<3> ( { 1, 2, 3 } )] == 123);
+    TTT_EXPECT (t[mica::MIR::Tuple<3> ( { 4, 5, 6 } )] == 456);
+    TTT_EXPECT (t[mica::MIR::Tuple<3> ( { 7, 8, 9 } )] == 789);
+    TTT_EXPECT (t[mica::MIR::Tuple<3> ( { 1, 5, 9 } )] == 159);
+    TTT_EXPECT (t[mica::MIR::Tuple<3> ( { 7, 5, 3 } )] == 753);
+    TTT_EXPECT (t[mica::MIR::Tuple<3> ( { 1, 4, 7 } )] == 147);
+    TTT_EXPECT (t[mica::MIR::Tuple<3> ( { 3, 6, 9 } )] == 369);
     
     TTT_EXPECT (t.size() == 7);
     
-    t[mica::MIR::Tuple < 3 > ( { 4, 5, 6 } )] = -1;
-    t[mica::MIR::Tuple < 3 > ( { 1, 5, 9 } )] = -1;
-    t[mica::MIR::Tuple < 3 > ( { 1, 4, 7 } )] = -1;
+    t[mica::MIR::Tuple<3> ( { 4, 5, 6 } )] = -1;
+    t[mica::MIR::Tuple<3> ( { 1, 5, 9 } )] = -1;
+    t[mica::MIR::Tuple<3> ( { 1, 4, 7 } )] = -1;
     
     TTT_EXPECT (t.size() == 4);
     
-    TTT_EXPECT (t[mica::MIR::Tuple < 3 > ( { 1, 2, 3 } )] == 123);
-    TTT_EXPECT (t[mica::MIR::Tuple < 3 > ( { 7, 8, 9 } )] == 789);
-    TTT_EXPECT (t[mica::MIR::Tuple < 3 > ( { 7, 5, 3 } )] == 753);
-    TTT_EXPECT (t[mica::MIR::Tuple < 3 > ( { 3, 6, 9 } )] == 369);
+    TTT_EXPECT (t[mica::MIR::Tuple<3> ( { 1, 2, 3 } )] == 123);
+    TTT_EXPECT (t[mica::MIR::Tuple<3> ( { 7, 8, 9 } )] == 789);
+    TTT_EXPECT (t[mica::MIR::Tuple<3> ( { 7, 5, 3 } )] == 753);
+    TTT_EXPECT (t[mica::MIR::Tuple<3> ( { 3, 6, 9 } )] == 369);
     //
     }
             
@@ -1630,10 +1630,10 @@ TTT_BEGIN (PrimGraph, 109, "Prim - Graph")
     //
     Graph graph;
     
-    prim::Pointer < Node > a (new Node());
-    prim::Pointer < Node > b (new Node());
-    prim::Pointer < Node > c (new Node());
-    prim::Pointer < Node > z (nullptr);
+    prim::Pointer<Node> a (new Node());
+    prim::Pointer<Node> b (new Node());
+    prim::Pointer<Node> c (new Node());
+    prim::Pointer<Node> z (nullptr);
     
     a->getObject().setValue (1234);
     b->getObject().setValue (1234);
@@ -1657,13 +1657,13 @@ TTT_BEGIN (PrimGraph, 109, "Prim - Graph")
     //
     Graph graph;
     
-    prim::Pointer < Node > a (new Node());
-    prim::Pointer < Node > b (new Node());
-    prim::Pointer < Node > c (new Node());
-    prim::Pointer < Node > d (new Node());
-    prim::Pointer < Node > e (new Node());
-    prim::Pointer < Node > f (new Node());
-    prim::Pointer < Node > g (new Node());
+    prim::Pointer<Node> a (new Node());
+    prim::Pointer<Node> b (new Node());
+    prim::Pointer<Node> c (new Node());
+    prim::Pointer<Node> d (new Node());
+    prim::Pointer<Node> e (new Node());
+    prim::Pointer<Node> f (new Node());
+    prim::Pointer<Node> g (new Node());
     
     a->getObject().setValue (0);
     b->getObject().setValue (10);
@@ -1697,8 +1697,8 @@ TTT_BEGIN (PrimGraph, 109, "Prim - Graph")
     f = nullptr;
     g = nullptr;
     
-    prim::Pointer < Node > root = graph.getRoot();
-    prim::Pointer < Node > t = graph.nextByEdge (root, -2);
+    prim::Pointer<Node> root = graph.getRoot();
+    prim::Pointer<Node> t = graph.nextByEdge (root, -2);
     
     TTT_EXPECT (t != nullptr);
     TTT_EXPECT (t->getObject().getValue() == 11);
@@ -1726,11 +1726,11 @@ TTT_BEGIN (PrimGraph, 109, "Prim - Graph")
     //
     Graph graph;
         
-    prim::Pointer < Node > a (new Node());
-    prim::Pointer < Node > b (new Node());
-    prim::Pointer < Node > c (new Node());
-    prim::Pointer < Node > d (new Node());
-    prim::Pointer < Node > e (new Node());
+    prim::Pointer<Node> a (new Node());
+    prim::Pointer<Node> b (new Node());
+    prim::Pointer<Node> c (new Node());
+    prim::Pointer<Node> d (new Node());
+    prim::Pointer<Node> e (new Node());
     
     a->getObject().setValue (0);
     b->getObject().setValue (10);
@@ -1752,8 +1752,8 @@ TTT_BEGIN (PrimGraph, 109, "Prim - Graph")
     graph.connect (c, e)->getObject().setValue (1);
     graph.connect (d, e)->getObject().setValue (1);
     
-    prim::Array < prim::Pointer < Node > > next (graph.allNextByEdge (a, 1));
-    prim::Array < prim::Pointer < Node > > previous (graph.allPreviousByEdge (e, 1));
+    prim::Array<prim::Pointer<Node>> next (graph.allNextByEdge (a, 1));
+    prim::Array<prim::Pointer<Node>> previous (graph.allPreviousByEdge (e, 1));
     
     TTT_EXPECT (next.size() == 2);
     TTT_EXPECT (previous.size() == 2);
@@ -1769,13 +1769,13 @@ TTT_BEGIN (PrimGraph, 109, "Prim - Graph")
     //
     Graph graph;
 
-    prim::Pointer < Node > a (new Node());
-    prim::Pointer < Node > b (new Node());
-    prim::Pointer < Node > c (new Node());
-    prim::Pointer < Node > d (new Node());
-    prim::Pointer < Node > e (new Node());
-    prim::Pointer < Node > f (new Node());
-    prim::Pointer < Node > g (new Node());
+    prim::Pointer<Node> a (new Node());
+    prim::Pointer<Node> b (new Node());
+    prim::Pointer<Node> c (new Node());
+    prim::Pointer<Node> d (new Node());
+    prim::Pointer<Node> e (new Node());
+    prim::Pointer<Node> f (new Node());
+    prim::Pointer<Node> g (new Node());
     
     a->getObject().setValue (0);
     b->getObject().setValue (1);
@@ -1819,13 +1819,13 @@ TTT_BEGIN (PrimGraph, 109, "Prim - Graph")
     Graph graph2;
     Graph graph3;
     
-    prim::Pointer < Node > a (new Node());
-    prim::Pointer < Node > b (new Node());
-    prim::Pointer < Node > c (new Node());
+    prim::Pointer<Node> a (new Node());
+    prim::Pointer<Node> b (new Node());
+    prim::Pointer<Node> c (new Node());
     
-    prim::Pointer < Node > d (new Node());
-    prim::Pointer < Node > e (new Node());
-    prim::Pointer < Node > f (new Node());
+    prim::Pointer<Node> d (new Node());
+    prim::Pointer<Node> e (new Node());
+    prim::Pointer<Node> f (new Node());
     
     graph1.add (a);
     graph1.add (b);
@@ -1861,7 +1861,7 @@ TTT_BEGIN (PrimGraph, 109, "Prim - Graph")
     
     /* Create a randomly connected small graph. */
     
-    prim::Array < prim::Pointer < Node > > array;
+    prim::Array<prim::Pointer<Node>> array;
     array.resize (6);
     
     for (int j = 0; j < array.size(); ++j) {
@@ -1887,7 +1887,7 @@ TTT_BEGIN (PrimGraph, 109, "Prim - Graph")
     
     /* < https://en.wikipedia.org/wiki/Topological_sorting > */
     
-    prim::Array < prim::Pointer < Node > > topo = graph.getAllNodesSorted();
+    prim::Array<prim::Pointer<Node>> topo = graph.getAllNodesSorted();
     
     if (topo.size() == 0) { /* Find strongly connected components if cyclic? */ }
     else {
@@ -1896,7 +1896,7 @@ TTT_BEGIN (PrimGraph, 109, "Prim - Graph")
     
     TTT_EXPECT (topo.size() == graph.size());
     for (int j = 0; j < topo.size(); ++j) {
-        prim::Array < prim::Pointer < Node > > childs = graph.allNextByEdge (topo[j], 0);
+        prim::Array<prim::Pointer<Node>> childs = graph.allNextByEdge (topo[j], 0);
         for (int t = 0; t < childs.size(); ++t) {
             TTT_EXPECT (topo.indexOf (childs[t]) > j);
         }
@@ -2410,7 +2410,7 @@ TTT_BEGIN (PrimPolygon, 113, "Prim - Polygon")
         a.add (prim::Point ((getRandomDouble() * 10.0) - 5.0, (getRandomDouble() * 10.0) - 5.0));
     }
     
-    prim::Array < prim::Point > removed; a.convertToConvexHull (&removed);
+    prim::Array<prim::Point> removed; a.convertToConvexHull (&removed);
     
     TTT_EXPECT (a.size() + removed.size() == 100);
     
@@ -2478,8 +2478,8 @@ TTT_BEGIN (PrimSort, 114, "Prim - Sort")
     //
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Array < int > a;
-    prim::Array < int > b;
+    prim::Array<int> a;
+    prim::Array<int> b;
         
     for (int j = 0; j < 100; ++j) { a.add (getRandomInteger()); }
         
@@ -2496,7 +2496,7 @@ TTT_BEGIN (PrimSort, 114, "Prim - Sort")
     //
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Array < int > a;
+    prim::Array<int> a;
     
     a.resize (100);
     
@@ -2522,7 +2522,7 @@ TTT_BEGIN (PrimSort, 114, "Prim - Sort")
     //
     for (int i = 0; i < kAgain; ++i) {
     //
-    prim::Array < int > a;
+    prim::Array<int> a;
     
     a.resize (100);
     
