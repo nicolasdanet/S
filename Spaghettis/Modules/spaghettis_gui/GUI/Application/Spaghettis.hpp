@@ -19,7 +19,7 @@ class Spaghettis {
 // MARK: -
 
 public:
-    Spaghettis()
+    Spaghettis() : lookAndFeel_ (std::make_unique < LookAndFeel >())
     {
     }
     
@@ -37,11 +37,16 @@ public:
 public:
     LookAndFeel* getLookAndFeel() const
     {
-        return &lookAndFeel_->lf_;
+        return lookAndFeel_.get();
     }
 
-public:
-    juce::SharedResourcePointer < LookAndFeelShared > lookAndFeel_;
+    juce::Colour findColor (int colourId) const
+    {
+        return lookAndFeel_->findColour (colourId);
+    }
+    
+private:
+    std::unique_ptr < LookAndFeel > lookAndFeel_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Spaghettis)
@@ -58,7 +63,7 @@ class SpaghettisPointer {
 // MARK: -
 
 public:
-    SpaghettisPointer (bool ownership = false) : owned_ (ownership), spaghettis_ (Spaghettis::getInstance())
+    SpaghettisPointer (bool owner = false) : owned_ (owner), spaghettis_ (Spaghettis::getInstance())
     {
         jassert (spaghettis_ != nullptr);
     }

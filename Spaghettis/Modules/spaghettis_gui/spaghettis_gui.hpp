@@ -44,9 +44,8 @@
 
 #include "GUI/Application/Logger.hpp"
 #include "GUI/Application/LookAndFeel.hpp"
-#include "GUI/Application/Colors.hpp"
-#include "GUI/Application/Window.hpp"
 #include "GUI/Application/Spaghettis.hpp"
+#include "GUI/Application/Window.hpp"
 
 #include "GUI/Console/ConsoleComponent.hpp"
 #include "GUI/Console/Console.hpp"
