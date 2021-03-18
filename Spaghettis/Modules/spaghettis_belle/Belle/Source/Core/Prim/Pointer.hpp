@@ -66,19 +66,19 @@ public:
         if (toOwn) { reference_ = new PointerOwner (static_cast<void*> (toOwn)); }
     }
 
-    Pointer (const Pointer < T > & toShare) : reference_ (nullptr)
+    Pointer (const Pointer<T>& toShare) : reference_ (nullptr)
     {
         share (toShare);
     }
     
-    Pointer < T > & operator = (const Pointer < T > & toShare)
+    Pointer<T>& operator = (const Pointer<T>& toShare)
     {
         if (this != &toShare) { share (toShare); }
         
         return *this;
     }
 
-    Pointer < T > & operator = (T* toOwn)
+    Pointer<T>& operator = (T* toOwn)
     {
         unshare();
         
@@ -88,12 +88,12 @@ public:
     }
 
 public:
-    Pointer (Pointer < T > && toMove) : reference_ (toMove.reference_)
+    Pointer (Pointer<T>&& toMove) : reference_ (toMove.reference_)
     {
         toMove.reference_ = nullptr;
     }
     
-    Pointer < T > & operator = (Pointer < T > && toMove)
+    Pointer<T>& operator = (Pointer<T>&& toMove)
     {
         if (this != &toMove) { unshare(); toMove.swapWith (*this); }
         
@@ -111,7 +111,7 @@ public:
 // MARK: -
 
 public:
-    void swapWith (Pointer < T > & o) noexcept
+    void swapWith (Pointer<T>& o) noexcept
     {
         using std::swap;
         
@@ -150,17 +150,17 @@ public:
 /* Make the Pointer class sortable. */
 
 public:
-    bool operator < (const Pointer < T > & o) const     
+    bool operator < (const Pointer<T>& o) const
     {
         return get() < o.get();
     }
     
-    bool operator > (const Pointer < T > & o) const
+    bool operator > (const Pointer<T>& o) const
     {
         return get() > o.get();
     }
 
-    bool operator == (const Pointer < T > & o) const
+    bool operator == (const Pointer<T>& o) const
     {
         return get() == o.get();
     }
@@ -170,7 +170,7 @@ public:
 // MARK: -
 
 private:
-    void share (const Pointer < T > & toShare)
+    void share (const Pointer<T>& toShare)
     {
         unshare();
       
@@ -209,7 +209,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> void swap (Pointer < T > & a, Pointer < T > & b) noexcept
+template <class T> void swap (Pointer<T>& a, Pointer<T>& b) noexcept
 {
     a.swapWith (b);
 }
