@@ -19,7 +19,7 @@ class Spaghettis {
 // MARK: -
 
 public:
-    Spaghettis() : lookAndFeel_ (std::make_unique < LookAndFeel >())
+    Spaghettis() : lookAndFeel_ (std::make_unique<LookAndFeel>())
     {
     }
     
@@ -39,14 +39,9 @@ public:
     {
         return lookAndFeel_.get();
     }
-
-    juce::Colour findColor (int colourId) const
-    {
-        return lookAndFeel_->findColour (colourId);
-    }
     
 private:
-    std::unique_ptr < LookAndFeel > lookAndFeel_;
+    std::unique_ptr<LookAndFeel> lookAndFeel_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Spaghettis)

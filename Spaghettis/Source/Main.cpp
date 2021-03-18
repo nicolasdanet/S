@@ -74,7 +74,7 @@ public:
 
 private:
     spaghettis::SpaghettisPointer spaghettis_;
-    std::unique_ptr < spaghettis::Console > console_;
+    std::unique_ptr<spaghettis::Console> console_;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
