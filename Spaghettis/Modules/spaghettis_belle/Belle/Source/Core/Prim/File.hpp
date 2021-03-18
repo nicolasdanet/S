@@ -50,7 +50,7 @@ public:
         return File::write (filename, data.c_str(), data.length());
     }
 
-    template < class T > static bool writeByArray (const char* filename, const Array < T > & data)
+    template <class T> static bool writeByArray (const char* filename, const Array < T > & data)
     {
         return File::write (filename, reinterpret_cast < const char* > (&data[0]), data.size() * sizeof (T));
     }
@@ -60,7 +60,7 @@ public:
 // MARK: -
 
 public:
-    template < class T > static bool readToArray (const char* filename, Array < T > & data)
+    template <class T> static bool readToArray (const char* filename, Array < T > & data)
     {
         bool b = false;
         

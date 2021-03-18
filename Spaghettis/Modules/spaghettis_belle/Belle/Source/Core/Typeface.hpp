@@ -388,7 +388,7 @@ public:
 // MARK: -
 
 private:
-    template < class T > static T nextRead (const byte*& p)      /* Bellefont is little-endian. */
+    template <class T> static T nextRead (const byte*& p)      /* Bellefont is little-endian. */
     {
         T v; 
         std::memcpy (&v, p, sizeof (T));
@@ -397,7 +397,7 @@ private:
         return v;
     }
     
-    template < class T > static void nextWrite (Array<byte> & data, const T& value)
+    template <class T> static void nextWrite (Array<byte> & data, const T& value)
     {
         T v (value);
         Endian::swapIfBigEndian (v);

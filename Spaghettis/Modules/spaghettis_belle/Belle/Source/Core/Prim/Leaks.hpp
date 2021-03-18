@@ -16,7 +16,7 @@ namespace prim {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template < class T > class LeakDetector {
+template <class T> class LeakDetector {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -99,9 +99,9 @@ private:
 
 #if BELLE_WITH_DEBUG
     #define PRIM_LEAK_DETECTOR(Owner) \
-        friend class prim::LeakDetector < Owner >; \
+        friend class prim::LeakDetector<Owner>; \
         static const char* getClassName() { return #Owner; } \
-        prim::LeakDetector < Owner > leakDetector ## __LINE__;
+        prim::LeakDetector<Owner> leakDetector ## __LINE__;
 #else
     #define PRIM_LEAK_DETECTOR(Owner)
 #endif

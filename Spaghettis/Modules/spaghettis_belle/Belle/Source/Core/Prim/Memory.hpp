@@ -24,17 +24,17 @@ struct Memory {
 
 /* Assume no aliasing for memory operations. */
 
-template < class T > static void clear (T* a, int items)
+template <class T> static void clear (T* a, int items)
 {
     std::memset (static_cast < void* > (a), 0, sizeof (T) * items);
 }
 
-template < class T > static void copy (T* dest, const T* src, int items = 1)
+template <class T> static void copy (T* dest, const T* src, int items = 1)
 {
     std::memcpy (static_cast < void* > (dest), static_cast < const void* > (src), sizeof (T) * items);
 }
 
-template < class T > static void swap (T* a, T* b, int items)
+template <class T> static void swap (T* a, T* b, int items)
 {
     if (a != b) {
     //

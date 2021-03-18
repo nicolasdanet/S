@@ -23,7 +23,7 @@ struct Utils {
 // MARK: -
 
 public:
-    template < class T > static std::string paddedLeft (T v, int n = 0, char c = ' ')
+    template <class T> static std::string paddedLeft (T v, int n = 0, char c = ' ')
     {
         std::ostringstream s; s.setf (std::ios::fixed, std::ios::floatfield);
     

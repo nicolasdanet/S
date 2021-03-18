@@ -226,7 +226,7 @@ namespace internal {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T > int64 search (const T* source, int64 size, const T& needle)
+template <class T> int64 search (const T* source, int64 size, const T& needle)
 {
     int64 low = 0;
     int64 high = size - 1;

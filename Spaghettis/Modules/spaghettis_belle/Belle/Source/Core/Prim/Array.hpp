@@ -401,7 +401,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T > void swap (Array < T > & a, Array < T > & b)
+template <class T> void swap (Array < T > & a, Array < T > & b)
 {
     a.swapWith (b);
 }

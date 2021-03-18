@@ -28,7 +28,7 @@ public:
         prim::Memory::copy (tuple_, t, N);
     }
 
-    template < class T > Tuple (const prim::Array < T > & a, int offset = 0) : tuple_()
+    template <class T> Tuple (const prim::Array < T > & a, int offset = 0) : tuple_()
     { 
         int k = 0;
         for (int i = offset; i < offset + N; ++i) { if (i < a.size()) { tuple_[k++] = Concept (a[i]); } }

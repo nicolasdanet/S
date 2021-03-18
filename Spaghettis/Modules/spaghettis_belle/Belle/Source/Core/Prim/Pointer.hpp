@@ -27,7 +27,7 @@ class PointerOwner {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T > friend class Pointer;
+template <class T> friend class Pointer;
 
 private:
     explicit PointerOwner (void* toOwn) : count_ (1), raw_ (toOwn) 
@@ -50,7 +50,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T > class Pointer {
+template <class T> class Pointer {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -209,7 +209,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T > void swap (Pointer < T > & a, Pointer < T > & b) noexcept
+template <class T> void swap (Pointer < T > & a, Pointer < T > & b) noexcept
 {
     a.swapWith (b);
 }

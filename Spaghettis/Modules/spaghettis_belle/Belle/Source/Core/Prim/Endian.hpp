@@ -23,7 +23,7 @@ struct Endian {
 // MARK: -
 
 public:
-    template < class T > static void swapIfBigEndian (T& data)
+    template <class T> static void swapIfBigEndian (T& data)
     {
         (void)data;
         
@@ -32,7 +32,7 @@ public:
         #endif
     }
 
-    template < class T > static void swapIfLittleEndian (T& data)
+    template <class T> static void swapIfLittleEndian (T& data)
     {
         (void)data;
         
@@ -46,7 +46,7 @@ public:
 // MARK: -
 
 private:
-    template < class T > static void swapByteOrder (T& data)
+    template <class T> static void swapByteOrder (T& data)
     {
         T v = 0;
         

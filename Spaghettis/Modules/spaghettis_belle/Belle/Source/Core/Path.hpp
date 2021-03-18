@@ -32,7 +32,7 @@ public:
     {
     }
     
-    template < class T > explicit Path (const T& shape)
+    template <class T> explicit Path (const T& shape)
     {
         Path scoped;
         shape.addToPath (scoped);
@@ -243,7 +243,7 @@ public:
         }
     }
     
-    template < class T > void addShape (const T& shape, const Affine& affine = Affine::identity())
+    template <class T> void addShape (const T& shape, const Affine& affine = Affine::identity())
     {
         Path temp;
         shape.addToPath (temp);
