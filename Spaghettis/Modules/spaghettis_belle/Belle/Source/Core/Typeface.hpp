@@ -270,9 +270,9 @@ public:
         }
     }
 
-    void exportBinary (Array < byte > & data)
+    void exportBinary (Array<byte> & data)
     {
-        Array < byte > scoped;
+        Array<byte> scoped;
         
         /* Magic number. */
         
@@ -397,7 +397,7 @@ private:
         return v;
     }
     
-    template < class T > static void nextWrite (Array < byte > & data, const T& value)
+    template < class T > static void nextWrite (Array<byte> & data, const T& value)
     {
         T v (value);
         Endian::swapIfBigEndian (v);

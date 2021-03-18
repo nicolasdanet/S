@@ -22,7 +22,7 @@ struct Binary {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static std::string make (const std::string& name, const Array < byte > & data)
+static std::string make (const std::string& name, const Array<byte> & data)
 {
     std::ostringstream s;
     

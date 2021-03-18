@@ -49,7 +49,7 @@ void convert (const std::string& name)
     Typeface typeface;
     
     if (typeface.importFont (filepath.c_str())) {
-        Array < byte > t;
+        Array<byte> t;
         typeface.exportBinary (t);
         File::writeByArray ((name + ".bellefont").c_str(), t);
     }

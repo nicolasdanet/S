@@ -139,7 +139,7 @@ static int cubicTo (const FT_Vector* cp1, const FT_Vector* cp2, const FT_Vector*
 
 bool Typeface::importFont (const char* filename)
 {
-    Array < byte > rawData;
+    Array<byte> rawData;
     bool err = (File::readToArray (filename, rawData) == false);
     
     if (!err) {

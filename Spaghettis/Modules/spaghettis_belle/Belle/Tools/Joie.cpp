@@ -43,7 +43,7 @@ int main()
     Typeface typeface;
     
     if (typeface.importFont ("../../../Resources/Joie/Joie.ttf")) {
-        Array < byte > t;
+        Array<byte> t;
         typeface.exportBinary (t);
         File::writeByArray ("Joie.bellefont", t);
     }

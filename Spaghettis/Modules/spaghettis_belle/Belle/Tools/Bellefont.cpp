@@ -51,13 +51,13 @@ void bellefont (const std::string& name, int first = 0, int last = -1)
     filepath += name;
     filepath += ".bellefont";
 
-    Array < byte > input;
+    Array<byte> input;
 
     if (File::readToArray (filepath.c_str(), input)) {
     //
     Typeface typeface;
 
-    Array < byte > output;
+    Array<byte> output;
     
     typeface.importBinary (&input[0]);
     typeface.crop (first, last);

@@ -43,7 +43,7 @@ int main()
     Typeface typeface;
     
     if (typeface.importFont ("../../../Resources/Petrucci/Petrucci.ttf")) {
-        Array < byte > t;
+        Array<byte> t;
         typeface.exportBinary (t);
         File::writeByArray ("Petrucci.bellefont", t);
     }
