@@ -50,10 +50,10 @@ public:
     {
     }
 
-    Rational (const Rational < T > &) = default;
-    Rational (Rational < T > &&) = default;
-    Rational < T > & operator = (const Rational < T > &) = default;
-    Rational < T > & operator = (Rational < T > &&) = default;
+    Rational (const Rational<T>&) = default;
+    Rational (Rational<T>&&) = default;
+    Rational<T>& operator = (const Rational<T>&) = default;
+    Rational<T>& operator = (Rational<T>&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ public:
 public:
     double asDouble() const
     {
-        if (isUndefined()) { return std::numeric_limits < double >::quiet_NaN(); }
+        if (isUndefined()) { return std::numeric_limits<double>::quiet_NaN(); }
         else {
             return static_cast<double> (getNumerator()) / static_cast<double> (getDenominator());
         }
@@ -108,7 +108,7 @@ public:
 // MARK: -
 
 public:
-    Rational < T > & operator += (const Rational < T > & r)
+    Rational<T>& operator += (const Rational<T>& r)
     {
         if ((*this).isUndefined() || r.isUndefined()) { throw std::domain_error ("rational undefined"); }
         
@@ -116,12 +116,12 @@ public:
         T d = lcm;
         T n = n_ * (lcm / d_) + r.n_ * (lcm / r.d_);
         
-        *this = Rational < T > (n, d);
+        *this = Rational<T> (n, d);
         
         return *this;
     }
 
-    Rational < T > & operator -= (const Rational < T > & r)
+    Rational<T>& operator -= (const Rational<T>& r)
     {
         if ((*this).isUndefined() || r.isUndefined()) { throw std::domain_error ("rational undefined"); }
         
@@ -129,31 +129,31 @@ public:
         T d = lcm;
         T n = n_ * (lcm / d_) - r.n_ * (lcm / r.d_);
         
-        *this = Rational < T > (n, d);
+        *this = Rational<T> (n, d);
         
         return *this;
     }
     
-    Rational < T > & operator *= (const Rational < T > & r)
+    Rational<T>& operator *= (const Rational<T>& r)
     {
         if ((*this).isUndefined() || r.isUndefined()) { throw std::domain_error ("rational undefined"); }
         
         T n = n_ * r.n_;
         T d = d_ * r.d_;
         
-        *this = Rational < T > (n, d);
+        *this = Rational<T> (n, d);
         
         return *this;
     }
     
-    Rational < T > & operator /= (const Rational < T > & r)
+    Rational<T>& operator /= (const Rational<T>& r)
     {
         if ((*this).isUndefined() || r.isUndefined()) { throw std::domain_error ("rational undefined"); }
         
         T n = n_ * r.d_;
         T d = d_ * r.n_;
         
-        *this = Rational < T > (n, d);
+        *this = Rational<T> (n, d);
         
         return *this;
     }
@@ -163,9 +163,9 @@ public:
 // MARK: -
 
 public:
-    static const Rational < T > undefined()
+    static const Rational<T> undefined()
     {
-        return Rational < T > (0, 0);
+        return Rational<T> (0, 0);
     }
     
 private:
@@ -179,12 +179,12 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-friend bool operator != (const Rational < T > & a, const Rational < T > & b)
+friend bool operator != (const Rational<T>& a, const Rational<T>& b)
 {
     return !(a == b);
 }
 
-friend bool operator == (const Rational < T > & a, const Rational < T > & b)
+friend bool operator == (const Rational<T>& a, const Rational<T>& b)
 {
     if (a.isUndefined() || b.isUndefined()) { throw std::domain_error ("rational undefined"); }
     
@@ -195,22 +195,22 @@ friend bool operator == (const Rational < T > & a, const Rational < T > & b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-friend bool operator > (const Rational < T > & a, const Rational < T > & b)
+friend bool operator > (const Rational<T>& a, const Rational<T>& b)
 {
     return ((a - b).n_ > 0);
 }
 
-friend bool operator >= (const Rational < T > & a, const Rational < T > & b)
+friend bool operator >= (const Rational<T>& a, const Rational<T>& b)
 {
     return ((a - b).n_ >= 0);
 }
     
-friend bool operator < (const Rational < T > & a, const Rational < T > & b)
+friend bool operator < (const Rational<T>& a, const Rational<T>& b)
 {
     return ((a - b).n_ < 0);
 }
 
-friend bool operator <= (const Rational < T > & a, const Rational < T > & b)
+friend bool operator <= (const Rational<T>& a, const Rational<T>& b)
 {
     return ((a - b).n_ <= 0);
 }
@@ -219,22 +219,22 @@ friend bool operator <= (const Rational < T > & a, const Rational < T > & b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-friend Rational < T > operator + (Rational < T > a, const Rational < T > & b)
+friend Rational<T> operator + (Rational<T> a, const Rational<T>& b)
 {
     a += b; return a;
 }
 
-friend Rational < T > operator - (Rational < T > a, const Rational < T > & b)
+friend Rational<T> operator - (Rational<T> a, const Rational<T>& b)
 {
     a -= b; return a;
 }
 
-friend Rational < T > operator * (Rational < T > a, const Rational < T > & b)
+friend Rational<T> operator * (Rational<T> a, const Rational<T>& b)
 {
     a *= b; return a;
 }
 
-friend Rational < T > operator / (Rational < T > a, const Rational < T > & b)
+friend Rational<T> operator / (Rational<T> a, const Rational<T>& b)
 {
     a /= b; return a;
 }
@@ -247,7 +247,7 @@ friend Rational < T > operator / (Rational < T > a, const Rational < T > & b)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using Ratio = Rational < int64 >;
+using Ratio = Rational<int64>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
