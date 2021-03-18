@@ -93,8 +93,8 @@ public:
     {
         double d = (c.x_ * c.x_) + (c.y_ * c.y_);
         
-        T x = static_cast < T > ((x_ * c.x_ + y_ * c.y_) / d);
-        T y = static_cast < T > ((c.x_ * y_ - x_ * c.y_) / d);
+        T x = static_cast<T> ((x_ * c.x_ + y_ * c.y_) / d);
+        T y = static_cast<T> ((c.x_ * y_ - x_ * c.y_) / d);
         
         x_ = x;
         y_ = y;
@@ -116,8 +116,8 @@ public:
     
     double magnitude() const
     {
-        double x = static_cast < double > (x_);
-        double y = static_cast < double > (y_);
+        double x = static_cast<double> (x_);
+        double y = static_cast<double> (y_);
         return sqrt (x * x + y * y);
     }
 
@@ -217,10 +217,10 @@ friend Complex < T > operator / (Complex < T > a, const Complex < T > & b)
 
 friend int clockwiseOrder (const Complex < T > & a, const Complex < T > & b, const Complex < T > & c)
 {
-    double t1 = (static_cast < double > (b.x_) - static_cast < double > (a.x_));
-    double t2 = (static_cast < double > (c.y_) - static_cast < double > (a.y_));
-    double t3 = (static_cast < double > (b.y_) - static_cast < double > (a.y_)); 
-    double t4 = (static_cast < double > (c.x_) - static_cast < double > (a.x_)); 
+    double t1 = (static_cast<double> (b.x_) - static_cast<double> (a.x_));
+    double t2 = (static_cast<double> (c.y_) - static_cast<double> (a.y_));
+    double t3 = (static_cast<double> (b.y_) - static_cast<double> (a.y_)); 
+    double t4 = (static_cast<double> (c.x_) - static_cast<double> (a.x_)); 
     
     double d = (t1 * t2) - (t3 * t4);
      

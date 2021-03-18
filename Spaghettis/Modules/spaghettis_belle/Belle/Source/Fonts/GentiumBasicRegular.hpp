@@ -7513,7 +7513,7 @@ static const prim::byte GentiumBasicRegularBellefontData[74994] =
            0,   0, 248,  61
     };
 
-const prim::byte* GentiumBasicRegularBellefont = static_cast < const prim::byte* > (GentiumBasicRegularBellefontData);
+const prim::byte* GentiumBasicRegularBellefont = static_cast<const prim::byte*> (GentiumBasicRegularBellefontData);
 
 #endif // BELLE_COMPILE_INLINE
 

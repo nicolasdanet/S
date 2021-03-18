@@ -140,13 +140,13 @@ public:
     
     Concept (prim::Ratio rational)      /* Rational is always in reduced form with a postive denominator. */
     {
-        high_ = static_cast < uint64 > (rational.getNumerator());       
-        low_  = static_cast < uint64 > (rational.getDenominator());
+        high_ = static_cast<uint64> (rational.getNumerator());
+        low_  = static_cast<uint64> (rational.getDenominator());
     }
     
     Concept (int64 n)
     {
-        high_ = static_cast < uint64 > (n);
+        high_ = static_cast<uint64> (n);
         low_  = 1ULL;
     }
 
@@ -164,7 +164,7 @@ public:
 public:
     std::size_t hash() const
     {
-        return static_cast < std::size_t > (UUID::merge (high_, low_));
+        return static_cast<std::size_t> (UUID::merge (high_, low_));
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -221,10 +221,10 @@ public:
         
     bool isNumber() const
     {
-        if (static_cast < int64 > (low_) > 0) {     /* MSB is always turned on in case of concept. */
+        if (static_cast<int64> (low_) > 0) {     /* MSB is always turned on in case of concept. */
         //
-        int64 n = static_cast < int64 > (high_);
-        int64 d = static_cast < int64 > (low_);
+        int64 n = static_cast<int64> (high_);
+        int64 d = static_cast<int64> (low_);
         prim::Ratio t (n, d);
         return ((t.getNumerator() == n) && (t.getDenominator() == d));
         //
@@ -250,12 +250,12 @@ public:
 public:
     int64 numerator() const
     {
-        return (isNumber() ? static_cast < int64 > (high_) : 0);
+        return (isNumber() ? static_cast<int64> (high_) : 0);
     }
 
     int64 denominator() const
     {
-        return (isNumber() ? static_cast < int64 > (low_) : 0);
+        return (isNumber() ? static_cast<int64> (low_) : 0);
     }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -99,7 +99,7 @@ public:
     {
         if (isUndefined()) { return std::numeric_limits < double >::quiet_NaN(); }
         else {
-            return static_cast < double > (getNumerator()) / static_cast < double > (getDenominator());
+            return static_cast<double> (getNumerator()) / static_cast<double> (getDenominator());
         }
     }
     

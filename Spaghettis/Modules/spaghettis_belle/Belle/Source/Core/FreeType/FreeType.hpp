@@ -66,7 +66,7 @@ public:
 static int moveTo (const FT_Vector* end, void* p)
 {
     Data* data = reinterpret_cast<Data*> (p);
-    Point pt (static_cast < double > (end->x), static_cast < double > (end->y));
+    Point pt (static_cast<double> (end->x), static_cast<double> (end->y));
     pt *= data->normalize_;
     data->glyph_->path_.add (Instruction::moveTo (pt));
     return 0;
@@ -75,7 +75,7 @@ static int moveTo (const FT_Vector* end, void* p)
 static int lineTo (const FT_Vector* end, void* p)
 {
     Data* data = reinterpret_cast<Data*> (p);
-    Point pt (static_cast < double > (end->x), static_cast < double > (end->y));
+    Point pt (static_cast<double> (end->x), static_cast<double> (end->y));
     pt *= data->normalize_;
     data->glyph_->path_.add (Instruction::lineTo (pt));
     return 0;
@@ -86,8 +86,8 @@ static int conicTo (const FT_Vector* cp, const FT_Vector* end, void* p)
     Data* data = reinterpret_cast<Data*> (p);
   
     Point p0;
-    Point p1 (static_cast < double > (cp->x), static_cast < double > (cp->y));
-    Point p2 (static_cast < double > (end->x), static_cast < double > (end->y));
+    Point p1 (static_cast<double> (cp->x), static_cast<double> (cp->y));
+    Point p2 (static_cast<double> (end->x), static_cast<double> (end->y));
     
     if (data->glyph_->path_.getInstructions().size()) { 
     //
@@ -110,9 +110,9 @@ static int cubicTo (const FT_Vector* cp1, const FT_Vector* cp2, const FT_Vector*
 {
     Data* data = reinterpret_cast<Data*> (p);
     
-    Point p0 (static_cast < double > (cp1->x), static_cast < double > (cp1->y));
-    Point p1 (static_cast < double > (cp2->x), static_cast < double > (cp2->y));
-    Point p2 (static_cast < double > (end->x), static_cast < double > (end->y));
+    Point p0 (static_cast<double> (cp1->x), static_cast<double> (cp1->y));
+    Point p1 (static_cast<double> (cp2->x), static_cast<double> (cp2->y));
+    Point p2 (static_cast<double> (end->x), static_cast<double> (end->y));
     
     p0 *= data->normalize_;
     p1 *= data->normalize_;
@@ -171,7 +171,7 @@ bool Typeface::importFont (const char* filename)
         
         double normalize = 1.0;
         
-        if (face->units_per_EM) { normalize /= static_cast < double > (face->units_per_EM); }
+        if (face->units_per_EM) { normalize /= static_cast<double> (face->units_per_EM); }
     
         scoped.height_    = normalize * face->height;
         scoped.ascender_  = normalize * face->ascender;
@@ -188,10 +188,10 @@ bool Typeface::importFont (const char* filename)
         //
         FT_Int32 flags = 0;
         
-        flags |= static_cast < FT_Int32 > (FT_LOAD_NO_SCALE);
-        flags |= static_cast < FT_Int32 > (FT_LOAD_NO_BITMAP);
-        flags |= static_cast < FT_Int32 > (FT_LOAD_IGNORE_TRANSFORM);
-        flags |= static_cast < FT_Int32 > (FT_LOAD_NO_HINTING);
+        flags |= static_cast<FT_Int32> (FT_LOAD_NO_SCALE);
+        flags |= static_cast<FT_Int32> (FT_LOAD_NO_BITMAP);
+        flags |= static_cast<FT_Int32> (FT_LOAD_IGNORE_TRANSFORM);
+        flags |= static_cast<FT_Int32> (FT_LOAD_NO_HINTING);
         
         if (!FT_Load_Glyph (face, index, flags) && (face->glyph->format == FT_GLYPH_FORMAT_OUTLINE)) {
         //
@@ -200,7 +200,7 @@ bool Typeface::importFont (const char* filename)
         
         if (!FT_Get_Advance (face, index, flags, &advance) && !FT_Get_Glyph (face->glyph, &glyph)) {
         //
-        scoped.glyphs_.add (GlyphPointer (static_cast < unicode > (code)));
+        scoped.glyphs_.add (GlyphPointer (static_cast<unicode> (code)));
         scoped.glyphs_.getLast().getRawPointer()->advance_ = advance * normalize;
         
         /* Build path from outlines. */
@@ -240,7 +240,7 @@ bool Typeface::importFont (const char* filename)
         
         if (kerning.x != 0) {
             unicode character = scoped.glyphs_[j].getRawPointer()->character_;
-            double advance = static_cast < double > (kerning.x) * normalize; 
+            double advance = static_cast<double> (kerning.x) * normalize; 
             scoped.glyphs_[i].getRawPointer()->kerning_.add (Glyph::Kerning (character, advance));
         }
         //

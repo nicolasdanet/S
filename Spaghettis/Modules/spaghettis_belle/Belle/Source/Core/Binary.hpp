@@ -52,7 +52,7 @@ static std::string make (const std::string& name, const Array<byte> & data)
     s << "    " "};" << newLine;
     s << newLine;
     s << "const prim::byte* " << name;
-    s << " = static_cast < const prim::byte* > (" << name << "Data);" << newLine;
+    s << " = static_cast<const prim::byte*> (" << name << "Data);" << newLine;
     s << newLine;
     s << "#endif // BELLE_COMPILE_INLINE" << newLine;
     s << newLine;

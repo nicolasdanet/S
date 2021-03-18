@@ -281,7 +281,7 @@ UUID SequenceConceptToIndex::find (UUID sequence, UUID concept)
     
     if (k < 0) { return UUID::Undefined; }
     else {
-        UUID uuid = { static_cast < uint64 > (sequenceConceptToIndexLookup[k].index_), 1ULL };
+        UUID uuid = { static_cast<uint64> (sequenceConceptToIndexLookup[k].index_), 1ULL };
         return uuid;
     }
 }

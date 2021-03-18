@@ -125,7 +125,7 @@ public:
 public:
     T* get() const
     {
-        if (reference_) { return static_cast < T* > (reference_->raw_); } else { return nullptr; }
+        if (reference_) { return static_cast<T*> (reference_->raw_); } else { return nullptr; }
     }
     
     T* operator ->() const
@@ -187,7 +187,7 @@ private:
         //
         if ((--reference_->count_) == 0) {
         //
-        delete static_cast < T* > (reference_->raw_);
+        delete static_cast<T*> (reference_->raw_);
         reference_->raw_ = nullptr;
         delete reference_;
         //

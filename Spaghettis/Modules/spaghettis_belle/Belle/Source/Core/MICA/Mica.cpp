@@ -156,7 +156,7 @@ Concept index (Concept sequence, Concept origin, Concept element)
     
     if (!o.isInteger() || !e.isInteger()) { return Concept(); }
     else {
-        UUID uuid = { static_cast < uint64 > (e.numerator() - o.numerator()), 1ULL };
+        UUID uuid = { static_cast<uint64> (e.numerator() - o.numerator()), 1ULL };
         return uuid;
     }
 }

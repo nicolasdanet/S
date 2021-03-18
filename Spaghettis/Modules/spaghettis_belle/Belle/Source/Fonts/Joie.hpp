@@ -5759,7 +5759,7 @@ static const prim::byte JoieBellefontData[57454] =
            0, 128, 149,  62
     };
 
-const prim::byte* JoieBellefont = static_cast < const prim::byte* > (JoieBellefontData);
+const prim::byte* JoieBellefont = static_cast<const prim::byte*> (JoieBellefontData);
 
 #endif // BELLE_COMPILE_INLINE
 

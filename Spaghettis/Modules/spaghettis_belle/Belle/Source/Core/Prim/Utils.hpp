@@ -50,7 +50,7 @@ public:
 
         do {
         //
-        buffer[--i] = hex[static_cast < std::size_t > (v & 15)];
+        buffer[--i] = hex[static_cast<std::size_t> (v & 15)];
         v >>= 4;
         //
         } while (v != 0);

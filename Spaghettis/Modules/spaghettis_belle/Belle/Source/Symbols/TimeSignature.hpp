@@ -122,7 +122,7 @@ protected:
         Array < unicode > codes;
         
         while (n > 0) {
-            codes.add (static_cast < unicode > ((n % 10) + 0xf030));
+            codes.add (static_cast<unicode> ((n % 10) + 0xf030));
             n = static_cast<int> (n / 10.0);
         }
         

@@ -49,7 +49,7 @@ private:
         if (size <= 0) { return 0; }
         else {
             std::size_t k = 1;
-            while (k < static_cast < std::size_t > (size)) { k <<= 1; }
+            while (k < static_cast<std::size_t> (size)) { k <<= 1; }
             return k;
         }
     }
@@ -226,7 +226,7 @@ public:
     {
         PRIM_ASSERT ((i >= 0) && (i < size_));
         
-        return static_cast < const T& > (data_[i]);
+        return static_cast<const T&> (data_[i]);
     }
     
     T& operator[] (int i)
@@ -343,8 +343,8 @@ private:
         for (int i = size_ - 1; i > 0; --i) {
         //
         seed = (65539 * seed) & 0x7fffffff;
-        double f = static_cast < double > (seed) * (1.0 / 2147483648.0);
-        int rand = static_cast<int> (f * static_cast < double > (i + 1));
+        double f = static_cast<double> (seed) * (1.0 / 2147483648.0);
+        int rand = static_cast<int> (f * static_cast<double> (i + 1));
         swap (data_[i], data_[rand]);
         //
         }

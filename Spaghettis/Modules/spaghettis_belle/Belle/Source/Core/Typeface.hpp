@@ -284,9 +284,9 @@ public:
         
         /* Typographic properties. */
         
-        nextWrite < float32 > (scoped, static_cast < float32 > (height_));
-        nextWrite < float32 > (scoped, static_cast < float32 > (ascender_));
-        nextWrite < float32 > (scoped, static_cast < float32 > (descender_));
+        nextWrite < float32 > (scoped, static_cast<float32> (height_));
+        nextWrite < float32 > (scoped, static_cast<float32> (ascender_));
+        nextWrite < float32 > (scoped, static_cast<float32> (descender_));
         
         for (int i = 0; i < glyphs_.size(); ++i) {
         //
@@ -294,44 +294,44 @@ public:
         
         /* Glyph values. */
         
-        nextWrite < unicode > (scoped, static_cast < unicode > (glyph->character_));
-        nextWrite < float32 > (scoped, static_cast < float32 > (glyph->advance_));
+        nextWrite < unicode > (scoped, static_cast<unicode> (glyph->character_));
+        nextWrite < float32 > (scoped, static_cast<float32> (glyph->advance_));
         
         /* Kerning array. */
         
-        int32 kSize = static_cast < int32 > (glyph->kerning_.size());
+        int32 kSize = static_cast<int32> (glyph->kerning_.size());
         nextWrite < int32 > (scoped, kSize);
         
         for (int j = 0; j < kSize; ++j) {
         //
-        nextWrite < unicode > (scoped, static_cast < unicode > (glyph->kerning_[j].next_));
-        nextWrite < float32 > (scoped, static_cast < float32 > (glyph->kerning_[j].horizontal_));
+        nextWrite < unicode > (scoped, static_cast<unicode> (glyph->kerning_[j].next_));
+        nextWrite < float32 > (scoped, static_cast<float32> (glyph->kerning_[j].horizontal_));
         //
         }
         
         /* Path instructions. */
         
-        int32 iSize = static_cast < int32 > (glyph->path_.getInstructions().size());
+        int32 iSize = static_cast<int32> (glyph->path_.getInstructions().size());
         nextWrite < int32 > (scoped, iSize);
         
         for (int j = 0; j < iSize; ++j) {
         //
         const Instruction& instruction = glyph->path_.getInstructions().get (j);
-        nextWrite < byte > (scoped, static_cast < byte > (instruction.getType()));
+        nextWrite < byte > (scoped, static_cast<byte> (instruction.getType()));
         
         if (instruction.hasEnd()) {
         //
-        nextWrite < float32 > (scoped, static_cast < float32 > (instruction.getEnd().getX()));
-        nextWrite < float32 > (scoped, static_cast < float32 > (instruction.getEnd().getY()));
+        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getEnd().getX()));
+        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getEnd().getY()));
         //
         }
       
         if (instruction.hasControls()) {
         //
-        nextWrite < float32 > (scoped, static_cast < float32 > (instruction.getControl1().getX()));
-        nextWrite < float32 > (scoped, static_cast < float32 > (instruction.getControl1().getY()));
-        nextWrite < float32 > (scoped, static_cast < float32 > (instruction.getControl2().getX()));
-        nextWrite < float32 > (scoped, static_cast < float32 > (instruction.getControl2().getY()));
+        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getControl1().getX()));
+        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getControl1().getY()));
+        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getControl2().getX()));
+        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getControl2().getY()));
         //
         }
         //

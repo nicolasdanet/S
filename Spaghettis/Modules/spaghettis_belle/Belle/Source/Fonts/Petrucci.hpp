@@ -15513,7 +15513,7 @@ static const prim::byte PetrucciBellefontData[154997] =
            0,   0,   0, 100,  71, 127,  62
     };
 
-const prim::byte* PetrucciBellefont = static_cast < const prim::byte* > (PetrucciBellefontData);
+const prim::byte* PetrucciBellefont = static_cast<const prim::byte*> (PetrucciBellefontData);
 
 #endif // BELLE_COMPILE_INLINE
 

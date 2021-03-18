@@ -9124,7 +9124,7 @@ static const prim::byte GentiumBasicBoldItalicBellefontData[91101] =
           62
     };
 
-const prim::byte* GentiumBasicBoldItalicBellefont = static_cast < const prim::byte* > (GentiumBasicBoldItalicBellefontData);
+const prim::byte* GentiumBasicBoldItalicBellefont = static_cast<const prim::byte*> (GentiumBasicBoldItalicBellefontData);
 
 #endif // BELLE_COMPILE_INLINE
 

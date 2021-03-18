@@ -238,7 +238,7 @@ private:
         int n2 = keyB.getNumerator();
         prim::Math::ascending (n1, n2);
         int d = n2 - n1;
-        int64 k = static_cast < int64 > (d / 12);
+        int64 k = static_cast<int64> (d / 12);
         if (d && (d % 12 == 0)) { return Concept (k - 1); }
         else {
             return Concept (k);
