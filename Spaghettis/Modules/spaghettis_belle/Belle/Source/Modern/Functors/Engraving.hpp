@@ -62,7 +62,7 @@ void Engravers::Chord::engrave (Music& music, NodePtr token, const Pointer<Stamp
     /* Engrave the shape. */
     
     Color color = isSelected() ? House::kColorSelected : House::kColorDefault;
-    stamp->add (Pointer < Graphic > (new Graphic (Path (shape), color)));
+    stamp->add (Pointer<Graphic> (new Graphic (Path (shape), color)));
     
     /* Update the stem direction. */
     
@@ -86,7 +86,7 @@ void Engravers::Chord::engrave (Music& music, NodePtr token, const Pointer<Stamp
         double unit = music.getInstants().get (instant).getUnit();
         double weight = Utils::getWeight (Tupletting::getNoteValue (token));
         Affine affine = Affine::translation (Vector ((weight * unit) - House::kNoteHeadWidth, 0.0));
-        stamp->add (Pointer < Graphic > (new Graphic (Path (Shapes::Extra (affine)), color)));
+        stamp->add (Pointer<Graphic> (new Graphic (Path (Shapes::Extra (affine)), color)));
     }
     //
     }
@@ -129,7 +129,7 @@ void Engravers::Flags::engrave (Music&, NodePtr token, const Pointer<Stamp>& sta
     
     Color color = isSelected() ? House::kColorSelected : House::kColorDefault;
     
-    stamp->add (Pointer < Graphic > (new Graphic (std::move (path), color)));
+    stamp->add (Pointer<Graphic> (new Graphic (std::move (path), color)));
     //
     }
     //
@@ -182,7 +182,7 @@ void Engravers::Tie::engrave (Music& music, NodePtr token, const Pointer<Stamp>&
     /* Engrave the shape. */
     
     Color color = isSelected() ? House::kColorSelected : House::kColorDefault;
-    stamp->add (Pointer < Graphic > (new Graphic (Path (tie), color)));
+    stamp->add (Pointer<Graphic> (new Graphic (Path (tie), color)));
     //
     }
 }
@@ -222,7 +222,7 @@ void Engravers::Barline::engrave (Music& music, NodePtr token, const Pointer<Sta
     
     Color color = isSelected() ? House::kColorSelected : House::kColorDefault;
     
-    stamp->add (Pointer < Graphic > (new Graphic (std::move (path), color)));
+    stamp->add (Pointer<Graphic> (new Graphic (std::move (path), color)));
     
     /* Set the weight for spacing. */
     
@@ -242,9 +242,9 @@ void Engravers::Clef::engrave (Music&, NodePtr token, const Pointer<Stamp>& stam
     Color color = isSelected() ? House::kColorSelected : House::kColorDefault;
     
     if (symbol == mica::GClef) { 
-        stamp->add (Pointer < Graphic > (new Graphic (Path (Shapes::GClef()), color)));
+        stamp->add (Pointer<Graphic> (new Graphic (Path (Shapes::GClef()), color)));
     } else { 
-        stamp->add (Pointer < Graphic > (new Graphic (Path (Shapes::FClef()), color)));
+        stamp->add (Pointer<Graphic> (new Graphic (Path (Shapes::FClef()), color)));
     }
 }
 
@@ -271,7 +271,7 @@ void Engravers::TimeSignature::engrave (Music&, NodePtr token, const Pointer<Sta
     
     Color color = isSelected() ? House::kColorSelected : House::kColorDefault;
     
-    stamp->add (Pointer < Graphic > (new Graphic (std::move (path), color)));
+    stamp->add (Pointer<Graphic> (new Graphic (std::move (path), color)));
     
     /* Set the weight for spacing. */
     
@@ -289,7 +289,7 @@ void Engravers::KeySignature::engrave (Music& music, NodePtr token, const Pointe
     /* Engrave the shape. */
     
     Color color = isSelected() ? House::kColorSelected : House::kColorDefault;
-    stamp->add (Pointer < Graphic > (new Graphic (Path (Shapes::KeySignature (key, clef)), color)));
+    stamp->add (Pointer<Graphic> (new Graphic (Path (Shapes::KeySignature (key, clef)), color)));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -314,8 +314,8 @@ void Engravers::Beam::engrave (Music& music, NodePtr token, const Pointer<Stamp>
     Shapes::Beam beam (stems, direction);
 
     Color color = isSelected() ? House::kColorSelected : House::kColorDefault;
-    stamp->add (Pointer < Graphic > (new Graphic (Path (beam.setSlant (slant)), color)));
-    stamp->add (Pointer < Graphic > (new Graphic (Path (beam.setFlags (flags)), color)));
+    stamp->add (Pointer<Graphic> (new Graphic (Path (beam.setSlant (slant)), color)));
+    stamp->add (Pointer<Graphic> (new Graphic (Path (beam.setFlags (flags)), color)));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -369,7 +369,7 @@ void Engravers::Tuplet::engrave (Music& music, NodePtr token, const Pointer<Stam
     
     if (!forceBracket) {
         Shapes::Tuplet::Numeral numeral (beam, direction, n);
-        stamp->add (Pointer < Graphic > (new Graphic (Path (numeral), color)));
+        stamp->add (Pointer<Graphic> (new Graphic (Path (numeral), color)));
     }    
     //
     }
@@ -409,7 +409,7 @@ void Engravers::Tuplet::engrave (Music& music, NodePtr token, const Pointer<Stam
     bracket.setPosition (position);
     bracket.setUnit (unit);
     bracket.setWeight (weight);
-    stamp->add (Pointer < Graphic > (new Graphic (Path (bracket), color)));
+    stamp->add (Pointer<Graphic> (new Graphic (Path (bracket), color)));
     //
     }
 }

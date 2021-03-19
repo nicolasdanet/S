@@ -166,7 +166,7 @@ public:
 // MARK: -
 
 public:
-    void add (const Pointer < Graphic > & graphic)
+    void add (const Pointer<Graphic>& graphic)
     {
         graphics_.add (graphic);
     }
@@ -194,7 +194,7 @@ private:
     int part_;
     int instant_;
     double weight_;
-    Array < Pointer < Graphic > > graphics_;
+    Array<Pointer<Graphic>> graphics_;
     Affine context_;
 
 private:
