@@ -20,7 +20,7 @@ class Instruction {
 
 friend class Path;
 
-template < class T, class GM > friend class prim::Array;
+template <class T, class GM> friend class prim::Array;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

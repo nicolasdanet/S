@@ -99,7 +99,7 @@ public:
 private:
     unicode character_;
     double advance_;
-    Array < Kerning > kerning_;
+    Array<Kerning> kerning_;
     Path path_;
 
 private:

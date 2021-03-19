@@ -75,7 +75,7 @@ private:
         }
     
     private:
-        Pointer < Glyph > glyph_;
+        Pointer<Glyph> glyph_;
     
     private:
         PRIM_LEAK_DETECTOR (GlyphPointer)
@@ -189,11 +189,11 @@ public:
         
         /* Magic number. */
         
-        if (nextRead < int32 > (p) != 49285378) { return; }     
+        if (nextRead<int32> (p) != 49285378) { return; }
         
         /* Number of glyphs. */
         
-        int length = nextRead < int32 > (p);
+        int length = nextRead<int32> (p);
         
         PRIM_ASSERT (length >= 0);
                 
@@ -201,9 +201,9 @@ public:
         
         /* Typographic properties. */
         
-        scoped.height_    = nextRead < float32 > (p);           
-        scoped.ascender_  = nextRead < float32 > (p);
-        scoped.descender_ = nextRead < float32 > (p);
+        scoped.height_    = nextRead<float32> (p);
+        scoped.ascender_  = nextRead<float32> (p);
+        scoped.descender_ = nextRead<float32> (p);
         
         for (int i = 0; i < length; ++i) {
         //
@@ -211,12 +211,12 @@ public:
         
         /* Glyph values. */
         
-        glyph->character_ = nextRead < unicode > (p);
-        glyph->advance_   = nextRead < float32 > (p);
+        glyph->character_ = nextRead<unicode> (p);
+        glyph->advance_   = nextRead<float32> (p);
         
         /* Kerning array. */
         
-        int kSize = nextRead < int32 > (p);
+        int kSize = nextRead<int32> (p);
         
         PRIM_ASSERT (kSize >= 0);
         
@@ -224,37 +224,37 @@ public:
         
         for (int j = 0; j < kSize; ++j) {
         //
-        glyph->kerning_[j].next_       = nextRead < unicode > (p);
-        glyph->kerning_[j].horizontal_ = nextRead < float32 > (p);
+        glyph->kerning_[j].next_       = nextRead<unicode> (p);
+        glyph->kerning_[j].horizontal_ = nextRead<float32> (p);
         //
         }
         
         /* Path instructions. */
         
-        int iSize = nextRead < int32 > (p);
+        int iSize = nextRead<int32> (p);
         
         PRIM_ASSERT (iSize >= 0);
         
         for (int j = 0; j < iSize; ++j) {
         //
-        byte type = nextRead < byte > (p);
+        byte type = nextRead<byte> (p);
         
         if (type == Instruction::ClosePath)   { glyph->path_.add (Instruction::closePath()); }
         else {
         //
         Point end;
-        end.getX() = nextRead < float32 > (p);
-        end.getY() = nextRead < float32 > (p);
+        end.getX() = nextRead<float32> (p);
+        end.getY() = nextRead<float32> (p);
         
         if (type == Instruction::MoveTo)      { glyph->path_.add (Instruction::moveTo (end)); }
         else if (type == Instruction::LineTo) { glyph->path_.add (Instruction::lineTo (end)); }
         else {
             Point cp1;
             Point cp2;
-            cp1.getX() = nextRead < float32 > (p);
-            cp1.getY() = nextRead < float32 > (p);
-            cp2.getX() = nextRead < float32 > (p);
-            cp2.getY() = nextRead < float32 > (p);
+            cp1.getX() = nextRead<float32> (p);
+            cp1.getY() = nextRead<float32> (p);
+            cp2.getX() = nextRead<float32> (p);
+            cp2.getY() = nextRead<float32> (p);
             
             glyph->path_.add (Instruction::cubicTo (cp1, cp2, end));
         }
@@ -276,17 +276,17 @@ public:
         
         /* Magic number. */
         
-        nextWrite < int32 > (scoped, 49285378);
+        nextWrite<int32> (scoped, 49285378);
         
         /* Number of glyphs. */
         
-        nextWrite < int32 > (scoped, glyphs_.size());
+        nextWrite<int32> (scoped, glyphs_.size());
         
         /* Typographic properties. */
         
-        nextWrite < float32 > (scoped, static_cast<float32> (height_));
-        nextWrite < float32 > (scoped, static_cast<float32> (ascender_));
-        nextWrite < float32 > (scoped, static_cast<float32> (descender_));
+        nextWrite<float32> (scoped, static_cast<float32> (height_));
+        nextWrite<float32> (scoped, static_cast<float32> (ascender_));
+        nextWrite<float32> (scoped, static_cast<float32> (descender_));
         
         for (int i = 0; i < glyphs_.size(); ++i) {
         //
@@ -294,44 +294,44 @@ public:
         
         /* Glyph values. */
         
-        nextWrite < unicode > (scoped, static_cast<unicode> (glyph->character_));
-        nextWrite < float32 > (scoped, static_cast<float32> (glyph->advance_));
+        nextWrite<unicode> (scoped, static_cast<unicode> (glyph->character_));
+        nextWrite<float32> (scoped, static_cast<float32> (glyph->advance_));
         
         /* Kerning array. */
         
         int32 kSize = static_cast<int32> (glyph->kerning_.size());
-        nextWrite < int32 > (scoped, kSize);
+        nextWrite<int32> (scoped, kSize);
         
         for (int j = 0; j < kSize; ++j) {
         //
-        nextWrite < unicode > (scoped, static_cast<unicode> (glyph->kerning_[j].next_));
-        nextWrite < float32 > (scoped, static_cast<float32> (glyph->kerning_[j].horizontal_));
+        nextWrite<unicode> (scoped, static_cast<unicode> (glyph->kerning_[j].next_));
+        nextWrite<float32> (scoped, static_cast<float32> (glyph->kerning_[j].horizontal_));
         //
         }
         
         /* Path instructions. */
         
         int32 iSize = static_cast<int32> (glyph->path_.getInstructions().size());
-        nextWrite < int32 > (scoped, iSize);
+        nextWrite<int32> (scoped, iSize);
         
         for (int j = 0; j < iSize; ++j) {
         //
         const Instruction& instruction = glyph->path_.getInstructions().get (j);
-        nextWrite < byte > (scoped, static_cast<byte> (instruction.getType()));
+        nextWrite<byte> (scoped, static_cast<byte> (instruction.getType()));
         
         if (instruction.hasEnd()) {
         //
-        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getEnd().getX()));
-        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getEnd().getY()));
+        nextWrite<float32> (scoped, static_cast<float32> (instruction.getEnd().getX()));
+        nextWrite<float32> (scoped, static_cast<float32> (instruction.getEnd().getY()));
         //
         }
       
         if (instruction.hasControls()) {
         //
-        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getControl1().getX()));
-        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getControl1().getY()));
-        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getControl2().getX()));
-        nextWrite < float32 > (scoped, static_cast<float32> (instruction.getControl2().getY()));
+        nextWrite<float32> (scoped, static_cast<float32> (instruction.getControl1().getX()));
+        nextWrite<float32> (scoped, static_cast<float32> (instruction.getControl1().getY()));
+        nextWrite<float32> (scoped, static_cast<float32> (instruction.getControl2().getX()));
+        nextWrite<float32> (scoped, static_cast<float32> (instruction.getControl2().getY()));
         //
         }
         //
@@ -355,7 +355,7 @@ public:
         Math::ascending (first, last);
         
         if (last < glyphs_.size()) {
-            Array < GlyphPointer > scoped;
+            Array<GlyphPointer> scoped;
             for (int i = first; i <= last; ++i) { scoped.add (glyphs_[i]); }
             scoped.swapWith (glyphs_);
         }
@@ -366,7 +366,7 @@ public:
         
         if (glyph->kerning_.size()) {
         //
-        Array < Glyph::Kerning > scoped;
+        Array<Glyph::Kerning> scoped;
         
         for (int j = 0; j < glyphs_.size(); ++j) { 
             unicode character = getGlyphAtIndex (j)->character_;
@@ -418,13 +418,13 @@ friend void swap (GlyphPointer&, GlyphPointer&);
 // MARK: -
 
 private:
-    Array < GlyphPointer > glyphs_;
+    Array<GlyphPointer> glyphs_;
     double height_;
     double ascender_;
     double descender_;
 
 private:
-    Pointer < Glyph > undefined_;
+    Pointer<Glyph> undefined_;
 
 private:
     PRIM_LEAK_DETECTOR (Typeface)
