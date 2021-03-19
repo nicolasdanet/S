@@ -79,12 +79,12 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < Unit T > class Measurement {
+template <Unit T> class Measurement {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template < Unit F > friend class Measurement;
+template <Unit F> friend class Measurement;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -101,7 +101,7 @@ public:
         PRIM_ASSERT (v_.getY() >= 0.0);
     }
     
-    template < Unit F > Measurement (const Measurement < F > & m)
+    template <Unit F> Measurement (const Measurement<F> & m)
     {
         double multiplier = Units::getConversionFactor (F) / Units::getConversionFactor (T);
 
@@ -110,10 +110,10 @@ public:
     }
 
 public:
-    Measurement (const Measurement < T > &) = default;
-    Measurement (Measurement < T > &&) = default;
-    Measurement < T > & operator = (const Measurement < T > &) = default;
-    Measurement < T > & operator = (Measurement < T > &&) = default;
+    Measurement (const Measurement<T>&) = default;
+    Measurement (Measurement<T>&&) = default;
+    Measurement<T>& operator = (const Measurement<T>&) = default;
+    Measurement<T>& operator = (Measurement<T>&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -147,12 +147,12 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using Meters        = Measurement < Units::kMeter >;
-using Millimeters   = Measurement < Units::kMillimeter >;
-using Centimeters   = Measurement < Units::kCentimeter >;
-using Inches        = Measurement < Units::kInch >;
-using Points        = Measurement < Units::kPoint >;
-using Pixels        = Measurement < Units::kPixel >;
+using Meters        = Measurement<Units::kMeter>;
+using Millimeters   = Measurement<Units::kMillimeter>;
+using Centimeters   = Measurement<Units::kCentimeter>;
+using Inches        = Measurement<Units::kInch>;
+using Points        = Measurement<Units::kPoint>;
+using Pixels        = Measurement<Units::kPixel>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
