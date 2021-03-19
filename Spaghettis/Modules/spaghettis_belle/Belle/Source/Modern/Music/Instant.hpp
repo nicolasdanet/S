@@ -179,7 +179,7 @@ public:
 private:
     double unit_;
     double position_;
-    Array < Pointer<Stamp> > stamps_;
+    Array<Pointer<Stamp>> stamps_;
 
 private:
     PRIM_LEAK_DETECTOR (Instant)

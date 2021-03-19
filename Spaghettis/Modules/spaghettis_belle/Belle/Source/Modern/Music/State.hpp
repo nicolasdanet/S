@@ -212,7 +212,7 @@ public:
     
 private:
     Table<mica::Concept> attributes_; 
-    Table < mica::Concept, Pointer<Stamp> > stamps_;     /* Stamps of active notes to determine ties. */ 
+    Table<mica::Concept, Pointer<Stamp>> stamps_;     /* Stamps of active notes to determine ties. */
 
 private:
     PRIM_LEAK_DETECTOR (Chord)
@@ -292,7 +292,7 @@ public:
     
 private:
     Array<NodePtr> group_;
-    Table < mica::Concept, Box > boxes_;
+    Table<mica::Concept, Box> boxes_;
 
 private:
     PRIM_LEAK_DETECTOR (Group)
