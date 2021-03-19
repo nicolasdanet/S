@@ -131,7 +131,7 @@ public:
 // MARK: -
 
 public:
-    void convertToConvexHull (Array < Point > * removed = nullptr)      /* The Graham scan algorithm. */
+    void convertToConvexHull (Array<Point>* removed = nullptr)      /* The Graham scan algorithm. */
     {
         if (points_.size() > 2)   {
         //
@@ -149,7 +149,7 @@ public:
             }
         }
         
-        Array < SortablePoint > l1;
+        Array<SortablePoint> l1;
         
         l1.add (SortablePoint (points_[j], 0.0, 0.0));
         
@@ -164,7 +164,7 @@ public:
         
         l1.sort();
         
-        Array < Point > l2;
+        Array<Point> l2;
         
         l2.add (l1[0].toPoint());
         l2.add (l1[1].toPoint());
@@ -186,7 +186,7 @@ public:
         }
     }
     
-    void quickElimination (Array < Point > * removed)
+    void quickElimination (Array<Point> * removed)
     {
         Point t[4]; t[0] = t[1] = t[2] = t[3] = points_.getFirst();
         
@@ -199,12 +199,12 @@ public:
         //
         }
         
-        Array < Point > pt;
+        Array<Point> pt;
         for (int i = 0; i < 4; ++i) { if (pt.contains (t[i]) == false) { pt.add (t[i]); } }
         
         if (pt.size() == 4) {   /* Must be 4 different points. */
         //
-        Array < Point > scoped;
+        Array<Point> scoped;
         
         for (int i = 0; i < points_.size(); ++i) {
         //
@@ -228,7 +228,7 @@ public:
     }
     
 private:
-    Array < Point > points_;
+    Array<Point> points_;
 
 private:
     PRIM_LEAK_DETECTOR (Polygon)

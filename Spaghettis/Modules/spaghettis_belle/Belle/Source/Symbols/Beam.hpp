@@ -315,7 +315,7 @@ private:
         
         /* Projections of the stems onto the baseline. */
         
-        Array < Point > intersections;
+        Array<Point> intersections;
         
         for (int i = 0; i < stems_.size(); ++i) {
         //
@@ -335,7 +335,7 @@ private:
         
         /* Bases of the stems. */
         
-        Array < Point > bases;
+        Array<Point> bases;
                 
         if (direction_ == mica::Down) {
         //
@@ -355,7 +355,7 @@ private:
         
         /* Merge to get the comb. */
         
-        Array < Point > scoped;
+        Array<Point> scoped;
         
         scoped.add (bases[0]);
         scoped.add (bases[1]);
@@ -392,7 +392,7 @@ private:
 
 private:
     mutable double angle_;
-    mutable Array < Point > comb_;
+    mutable Array<Point> comb_;
 
 private:
     PRIM_LEAK_DETECTOR (Beam)
