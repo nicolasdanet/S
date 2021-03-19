@@ -134,7 +134,7 @@ class Beam {
 // MARK: -
 
 public:
-    Beam (const Array < Box > & stems, mica::Concept direction) : stems_ (stems), direction_ (direction)
+    Beam (const Array<Box>& stems, mica::Concept direction) : stems_ (stems), direction_ (direction)
     {
         slant_ = 0.0;
         angle_ = 0.0;
@@ -385,7 +385,7 @@ private:
     }
     
 private:
-    Array < Box > stems_;
+    Array<Box> stems_;
     Array<int> flags_;
     mica::Concept direction_;
     double slant_;

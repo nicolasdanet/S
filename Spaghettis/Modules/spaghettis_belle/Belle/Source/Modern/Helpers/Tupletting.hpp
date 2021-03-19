@@ -46,7 +46,7 @@ static bool isMixed (const Array<NodePtr>& chords)
 
 /* Compute the angle according to the slant between the first and the last? */
 
-static double getAngle (const Array < Box > & stems, Array < mica::Concept > & directions)
+static double getAngle (const Array<Box>& stems, Array<mica::Concept>& directions)
 {
     double angle = 0.0;
     
@@ -84,7 +84,7 @@ static double getAngle (const Array < Box > & stems, Array < mica::Concept > & d
     return angle;
 }
 
-static mica::Concept getPosition (const Array<NodePtr>& chords, Array < mica::Concept > & directions)
+static mica::Concept getPosition (const Array<NodePtr>& chords, Array<mica::Concept>& directions)
 {
     /* According to majority of stem directions? */
     

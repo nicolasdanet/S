@@ -38,9 +38,9 @@ static Array<int> getFlags (const Array<NodePtr>& chords)
     return flags;
 }
 
-static Array < mica::Concept > getDirections (const Array<NodePtr>& chords)
+static Array<mica::Concept> getDirections (const Array<NodePtr>& chords)
 {
-    Array < mica::Concept > directions;
+    Array<mica::Concept> directions;
     
     for (int i = 0; i < chords.size(); ++i) {
         directions.add (chords[i]->getObject().getAttribute (mica::Stem));
@@ -51,9 +51,9 @@ static Array < mica::Concept > getDirections (const Array<NodePtr>& chords)
 
 /* Get stems bounds into another context (stamp bounds if no stem). */
 
-static Array < Box > getBoxes (Music& music, const Array<NodePtr>& chords, const Affine& context)
+static Array<Box> getBoxes (Music& music, const Array<NodePtr>& chords, const Affine& context)
 {
-    Array < Box > stems;
+    Array<Box> stems;
     
     for (int i = 0; i < chords.size(); ++i) { 
         NodePtr island = music.getIsland (chords[i]);

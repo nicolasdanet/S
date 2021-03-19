@@ -38,7 +38,7 @@ public:
         
         /* Define the default stem direction for each note. */
         
-        Array < mica::Concept > base;
+        Array<mica::Concept> base;
         
         for (int i = 0; i < chords.size(); ++i) { base.add (getDefault (music, chords[i])); }
         
@@ -111,7 +111,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    static mica::Concept getMajority (const Array < mica::Concept > & base) 
+    static mica::Concept getMajority (const Array<mica::Concept>& base) 
     {
         int up, down; up = down = 0;
         

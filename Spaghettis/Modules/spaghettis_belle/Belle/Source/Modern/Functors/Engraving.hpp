@@ -303,7 +303,7 @@ void Engravers::Beam::engrave (Music& music, NodePtr token, const Pointer<Stamp>
     
     mica::Concept direction = token->getObject().getAttribute (mica::Stem);
     double slant = Beaming::getSlant (music, beamed, direction);
-    Array < Box > stems (Stems::getBoxes (music, beamed, stamp->getContext()));
+    Array<Box> stems (Stems::getBoxes (music, beamed, stamp->getContext()));
     
     /* Consider secondary beams. */
     
@@ -378,8 +378,8 @@ void Engravers::Tuplet::engrave (Music& music, NodePtr token, const Pointer<Stam
     
     if (!hasBeam || hasRest || forceBracket) {
     //
-    Array < Box > stems (Stems::getBoxes (music, tupletted, stamp->getContext()));
-    Array < mica::Concept > directions (Stems::getDirections (tupletted));
+    Array<Box> stems (Stems::getBoxes (music, tupletted, stamp->getContext()));
+    Array<mica::Concept> directions (Stems::getDirections (tupletted));
     
     Polygon hull (Hull::getHull (music, tupletted, stamp->getContext()));
 

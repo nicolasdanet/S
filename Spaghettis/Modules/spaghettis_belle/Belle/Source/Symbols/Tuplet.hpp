@@ -118,7 +118,7 @@ class Bracket {
 // MARK: -
 
 public:
-    Bracket (const Array < Box > & stems, const Array < mica::Concept > & directions, const Polygon& h, int n)
+    Bracket (const Array<Box>& stems, const Array<mica::Concept>& directions, const Polygon& h, int n)
     {
         stems_      = stems;
         directions_ = directions;
@@ -304,8 +304,8 @@ private:
     }
     
 private:
-    Array < Box > stems_;
-    Array < mica::Concept > directions_;
+    Array<Box> stems_;
+    Array<mica::Concept> directions_;
     Polygon hull_;
     double angle_;
     double unit_;
