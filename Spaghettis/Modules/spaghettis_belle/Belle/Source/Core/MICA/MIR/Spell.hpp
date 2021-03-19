@@ -40,7 +40,7 @@ static const int kPenaltyClassD     = 2;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using Window = Tuple < kWindowSize >;               /* Cacheable group of concepts. */
+using Window = Tuple<kWindowSize>;                  /* Cacheable group of concepts. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -119,9 +119,9 @@ public:
 // MARK: -
 
 public:
-    prim::Array < Concept > getSpelling (const prim::Array < int > & numbers) const
+    prim::Array<Concept> getSpelling (const prim::Array<int>& numbers) const
     {
-        prim::Array < Concept > result; vectorCompute (numbers, result);
+        prim::Array<Concept> result; vectorCompute (numbers, result);
         
         return result;
     }
@@ -131,7 +131,7 @@ public:
 // MARK: -
 
 private:
-    void vectorCompute (const prim::Array < int > & numbers, prim::Array < Concept > & chromatics) const
+    void vectorCompute (const prim::Array<int>& numbers, prim::Array<Concept> & chromatics) const
     {
         chromatics.resize (numbers.size());
     
@@ -162,12 +162,12 @@ private:
         else {
             Window result (w);
             vectorCombineAndSet (result.getRaw());
-            windows_.insert (std::pair < Window, Window > (w, result));
+            windows_.insert (std::pair< Window, Window> (w, result));
             w = result;
         } 
     }
 
-    static bool vectorSetResult (prim::Array < Concept > & chromatics, const Window& w, int k = 0)
+    static bool vectorSetResult (prim::Array<Concept> & chromatics, const Window& w, int k = 0)
     {
         const int start = (k == 0) ? 0 : kOneThird;
         
@@ -193,7 +193,7 @@ private:
         
         Concept base[N];
         
-        prim::Array < int > turn;       /* Indexes of pitches modified during combination. */
+        prim::Array<int> turn;       /* Indexes of pitches modified during combination. */
         
         for (int i = N - 1; i >= 0; --i) { 
         //
@@ -287,7 +287,7 @@ public:
         if (iter != intervals_.end()) { return iter->second; }
         else {
             int penalty = intervalPenalty (interval);
-            intervals_.insert (std::pair < Interval, int > (interval, penalty));
+            intervals_.insert (std::pair<Interval, int> (interval, penalty));
             return penalty;
         }
     }
@@ -404,13 +404,13 @@ private:
 private:
     Concept keySignature_;
     Concept accidental_;
-    prim::Table < Concept > accidentals_;
+    prim::Table<Concept> accidentals_;
 
 /* Results are cached for efficiency. */
 
 private:
-    mutable std::unordered_map < Interval, int, HashInterval > intervals_;
-    mutable std::unordered_map < Window, Window, HashWindow > windows_;
+    mutable std::unordered_map<Interval, int, HashInterval> intervals_;
+    mutable std::unordered_map<Window, Window, HashWindow> windows_;
 
 private:
     PRIM_LEAK_DETECTOR (Spell)

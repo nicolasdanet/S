@@ -27,9 +27,9 @@ struct Stems {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Array < int > getFlags (const Array < NodePtr > & chords)
+static Array<int> getFlags (const Array < NodePtr > & chords)
 {
-    Array < int > flags;
+    Array<int> flags;
     
     for (int i = 0; i < chords.size(); ++i) {
         flags.add (Utils::countFlags (chords[i]->getObject().getAttribute (mica::Value).toRatio()));

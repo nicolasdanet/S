@@ -253,7 +253,7 @@ private:
         /* Determine the stem direction. */
         
         if (direction_ == mica::Undefined) {
-            Array < int > linespaces;
+            Array<int> linespaces;
             for (int i = 0; i < sorted_.size(); ++i) { linespaces.add (sorted_[i].getLinespace()); }
             direction_ = Utils::getDirection (linespaces);
         }
@@ -393,8 +393,8 @@ private:
         
         double x = collision.getBounds().getRight() + House::kRhythmicDotDistance;
         
-        Array < int > y;
-        Array < int > remains;
+        Array<int> y;
+        Array<int> remains;
         
         int previous = 1234;   /* Dummy. */
       
@@ -458,7 +458,7 @@ private:
         Path path;
         
         Array < Path > shape;
-        Array < int > order;
+        Array<int> order;
         Array < Vector > place;
       
         shape.resize (sorted_.size());

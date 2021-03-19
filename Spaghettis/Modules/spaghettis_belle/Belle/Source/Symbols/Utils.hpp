@@ -128,7 +128,7 @@ static double getWeight (Ratio noteValue)
     }
 }
 
-static mica::Concept getDirection (Array < int > & linespaces)
+static mica::Concept getDirection (Array<int>& linespaces)
 {
     mica::Concept direction = mica::Down;
     

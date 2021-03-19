@@ -18,9 +18,9 @@ struct Utils {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static prim::Table < Concept > getAccidentalsByLetters (Concept keySignature)
+static prim::Table<Concept> getAccidentalsByLetters (Concept keySignature)
 {
-    prim::Table < Concept > table;
+    prim::Table<Concept> table;
     
     if (!keySignature.isUndefined()) {
     //

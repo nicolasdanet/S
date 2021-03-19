@@ -35,10 +35,10 @@ public:
     }
 
 public:
-    Tuple (const Tuple < N > &) = default;
-    Tuple (Tuple < N > &&) = default;
-    Tuple < N > & operator = (const Tuple < N > &) = default;
-    Tuple < N > & operator = (Tuple < N > &&) = default;
+    Tuple (const Tuple<N>&) = default;
+    Tuple (Tuple<N>&&) = default;
+    Tuple<N>& operator = (const Tuple<N>&) = default;
+    Tuple<N>& operator = (Tuple<N>&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

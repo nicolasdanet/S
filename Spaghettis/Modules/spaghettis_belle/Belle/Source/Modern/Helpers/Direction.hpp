@@ -68,7 +68,7 @@ public:
 private:
     static mica::Concept getDefault (Music& music, NodePtr chord) 
     {
-        Array < int > linespaces;
+        Array<int> linespaces;
         Array < NodePtr > notes = music.getAllTokensNext (chord);
         
         for (int i = 0; i < notes.size(); ++i) {

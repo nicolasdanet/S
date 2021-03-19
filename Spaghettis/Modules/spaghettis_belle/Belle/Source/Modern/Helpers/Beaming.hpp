@@ -86,7 +86,7 @@ private:
         if (chords.size() <= 2) { return false; }
         else {
         //
-        Array < int > linespaces;
+        Array<int> linespaces;
         
         for (int i = 0; i < chords.size(); ++i) { 
             linespaces.add (getLinespace (music, chords[i], direction)); 
@@ -104,7 +104,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    static bool hasConcaveShape (const Array < int > & linespaces, mica::Concept direction)
+    static bool hasConcaveShape (const Array<int>& linespaces, mica::Concept direction)
     {
         bool concave = false;
         
@@ -123,7 +123,7 @@ private:
         return concave;
     }
     
-    static bool hasRepeatedPattern (const Array < int > & linespaces)
+    static bool hasRepeatedPattern (const Array<int>& linespaces)
     {
         bool repeated = false;
         
@@ -139,7 +139,7 @@ private:
         return repeated;
     }
     
-    static bool hasRepeatedPattern (const Array < int > & linespaces, int size)
+    static bool hasRepeatedPattern (const Array<int>& linespaces, int size)
     {
         bool repeated = false;
         
@@ -175,7 +175,7 @@ private:
         
         if (notes.size()) {
         //
-        Array < int > linespaces;
+        Array<int> linespaces;
         
         for (int i = 0; i < notes.size(); ++i) {
             mica::Concept chromatic = notes[i]->getObject().getAttribute (mica::Value);

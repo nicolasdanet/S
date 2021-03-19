@@ -156,7 +156,7 @@ public:
         slant_ = slant; return *this;
     }
     
-    Beam& setFlags (const Array < int > & flags)
+    Beam& setFlags (const Array<int>& flags)
     {
         flags_ = flags; return *this;
     }
@@ -386,7 +386,7 @@ private:
     
 private:
     Array < Box > stems_;
-    Array < int > flags_;
+    Array<int> flags_;
     mica::Concept direction_;
     double slant_;
 

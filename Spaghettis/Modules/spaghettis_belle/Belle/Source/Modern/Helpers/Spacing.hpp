@@ -27,14 +27,14 @@ struct Spacing {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static bool aligned (const Array < int > & state)
+static bool aligned (const Array<int>& state)
 {
     bool b = true;
     for (int i = 1; i < state.size(); ++i) { if (state[i] != state[i - 1]) { b = false; break; } }
     return b;
 }
 
-static void getPath (const Array < Instant > & instants, const Array < int > & state, int& last, Path& path)
+static void getPath (const Array < Instant > & instants, const Array<int>& state, int& last, Path& path)
 {
     double f = 0.0;
     
@@ -91,7 +91,7 @@ void Music::spacingVertical()
 
 void Music::spacingHorizontal()
 {
-    Array < int > state;            /* Contains the last instant position for each part. */
+    Array<int> state;            /* Contains the last instant position for each part. */
     state.resize (parts_.size());   
     
     /* Initialize with the first instant. */ 

@@ -307,7 +307,7 @@ void Engravers::Beam::engrave (Music& music, NodePtr token, const Pointer < Stam
     
     /* Consider secondary beams. */
     
-    Array < int > flags (Stems::getFlags (beamed));
+    Array<int> flags (Stems::getFlags (beamed));
     
     /* Due to path filling artifacts, the engraving needs two passes. */ 
     
