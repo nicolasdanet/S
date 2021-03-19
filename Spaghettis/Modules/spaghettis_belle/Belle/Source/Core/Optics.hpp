@@ -108,8 +108,8 @@ private:
         
         /* Get the sides of the polygons. */
         
-        Array < Line > aLines;
-        Array < Line > fLines;
+        Array<Line> aLines;
+        Array<Line> fLines;
           
         aLines.resize (a.size());
         fLines.resize (f.size());
