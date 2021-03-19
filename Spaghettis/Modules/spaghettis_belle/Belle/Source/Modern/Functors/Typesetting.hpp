@@ -116,7 +116,7 @@ void Typesetters::Allocate::endPart (Music&) const
 
 void Typesetters::Allocate::perform (Music&, NodePtr island) const
 {
-    island->getObject().setStamp (Pointer < Stamp > (new Stamp()));
+    island->getObject().setStamp (Pointer<Stamp> (new Stamp()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -285,7 +285,7 @@ void Typesetters::Engrave::endPart (Music&) const
 
 void Typesetters::Engrave::perform (Music& music, NodePtr island) const
 {
-    Pointer < Stamp > stamp = island->getObject().getStamp();
+    Pointer<Stamp> stamp = island->getObject().getStamp();
     NodePtr token = music.getToken (island);
     
     /* Requiered to determine accidentals in chords. */
@@ -308,7 +308,7 @@ void Typesetters::Engrave::perform (Music& music, NodePtr island) const
     
     /* Engrave the symbol associated with the token. */
     
-    Pointer < Engraver > engraver = token->getObject().getEngraver();
+    Pointer<Engraver> engraver = token->getObject().getEngraver();
     engraver->setSelected (Select::isSelected (island));
     engraver->engrave (music, token, stamp);
 }
@@ -331,7 +331,7 @@ void Typesetters::Flags::endPart (Music&) const
 
 void Typesetters::Flags::perform (Music& music, NodePtr island) const
 {
-    Pointer < Stamp > stamp = island->getObject().getStamp();
+    Pointer<Stamp> stamp = island->getObject().getStamp();
     NodePtr token = music.getToken (island);
     
     if (token->getObject().getAttribute (mica::Kind) == mica::Chord) {
@@ -361,7 +361,7 @@ void Typesetters::Beams::endPart (Music&) const
 
 void Typesetters::Beams::perform (Music& music, NodePtr island) const
 {
-    Pointer < Stamp > stamp = island->getObject().getStamp();
+    Pointer<Stamp> stamp = island->getObject().getStamp();
     NodePtr token = music.getToken (island);
     
     music.getClefState().parse (token);
@@ -405,7 +405,7 @@ void Typesetters::Ties::endPart (Music&) const
 
 void Typesetters::Ties::perform (Music& music, NodePtr island) const
 {
-    Pointer < Stamp > stamp = island->getObject().getStamp();
+    Pointer<Stamp> stamp = island->getObject().getStamp();
     NodePtr token = music.getToken (island);
     
     if (token->getObject().getAttribute (mica::Kind) == mica::Chord) {
@@ -448,7 +448,7 @@ void Typesetters::Enlarge::endPart (Music&) const
 
 void Typesetters::Enlarge::perform (Music& music, NodePtr island) const
 {
-    Pointer < Stamp > stamp = island->getObject().getStamp();
+    Pointer<Stamp> stamp = island->getObject().getStamp();
     NodePtr token = music.getToken (island);
     
     /* Enlarge barlines if needed. */
@@ -507,7 +507,7 @@ void Typesetters::Tuplets::endPart (Music&) const
 
 void Typesetters::Tuplets::perform (Music& music, NodePtr island) const
 {
-    Pointer < Stamp > stamp = island->getObject().getStamp();
+    Pointer<Stamp> stamp = island->getObject().getStamp();
     NodePtr token = music.getToken (island);
             
     if (token->getObject().getAttribute (mica::Kind) == mica::Chord) { 

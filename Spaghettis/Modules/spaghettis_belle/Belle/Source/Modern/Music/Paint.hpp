@@ -177,7 +177,7 @@ void Music::paintAll (Painter& painter)
     //
     for (int j = 0; j < parts_.size(); ++j) {
     //
-    if (Pointer < Stamp > stamp = instants_[i].getStampAtPart (j)) { stamp->paint (painter); }
+    if (Pointer<Stamp> stamp = instants_[i].getStampAtPart (j)) { stamp->paint (painter); }
     //
     }
     //

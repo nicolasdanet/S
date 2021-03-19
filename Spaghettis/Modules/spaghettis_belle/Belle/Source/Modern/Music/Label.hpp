@@ -69,17 +69,17 @@ public:
 // MARK: -
 
 public:
-    Pointer < Stamp > getStamp()
+    Pointer<Stamp> getStamp()
     {
         return stamp_;
     }
     
-    Pointer < Engraver > getEngraver()
+    Pointer<Engraver> getEngraver()
     {
         return engraver_;
     }
     
-    const Table < mica::Concept > & getAttributes() const
+    const Table<mica::Concept>& getAttributes() const
     {
         return attributes_;
     }
@@ -89,17 +89,17 @@ public:
 // MARK: -
 
 public:
-    void setStamp (const Pointer < Stamp > & stamp)
+    void setStamp (const Pointer<Stamp>& stamp)
     {
         stamp_ = stamp;
     }
     
-    void setEngraver (const Pointer < Engraver > & engraver)
+    void setEngraver (const Pointer<Engraver>& engraver)
     {
         engraver_ = engraver;
     }
 
-    void setAttributes (const Table < mica::Concept > & attributes) 
+    void setAttributes (const Table<mica::Concept>& attributes)
     {
         attributes_ = attributes;
     }
@@ -127,16 +127,16 @@ private:
     }
 
 private:
-    Table < mica::Concept > attributes_;
-    Pointer < Engraver > engraver_;
-    Pointer < Stamp > stamp_;
+    Table<mica::Concept> attributes_;
+    Pointer<Engraver> engraver_;
+    Pointer<Stamp> stamp_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using NodePtr    = Pointer < Graph < Label >::Node >;
-using MusicGraph = Graph < Label >;
+using NodePtr    = Pointer<Graph<Label>::Node>;
+using MusicGraph = Graph<Label>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

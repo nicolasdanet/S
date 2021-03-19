@@ -57,7 +57,7 @@ static Array < Box > getBoxes (Music& music, const Array<NodePtr>& chords, const
     
     for (int i = 0; i < chords.size(); ++i) { 
         NodePtr island = music.getIsland (chords[i]);
-        Pointer < Stamp > stamp = island->getObject().getStamp();
+        Pointer<Stamp> stamp = island->getObject().getStamp();
         Box box = stamp->getBox (mica::Stem, stamp->getContext());
         if (box.isEmpty()) { box = stamp->getContext().appliedTo (stamp->getPath().getBounds()); }
         stems.add (Affine::inversed (context).appliedTo (box));

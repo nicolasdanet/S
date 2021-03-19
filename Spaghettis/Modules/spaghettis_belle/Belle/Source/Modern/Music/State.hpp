@@ -116,9 +116,9 @@ private:
     }
 
 private:
-    Table < mica::Concept > attributes_;
-    Table < mica::Concept > actives_;           /* Active accidentals. */
-    Table < mica::Concept > keys_;              /* Key accidentals. */
+    Table<mica::Concept> attributes_;
+    Table<mica::Concept> actives_;           /* Active accidentals. */
+    Table<mica::Concept> keys_;              /* Key accidentals. */
 
 private:
     PRIM_LEAK_DETECTOR (Clef)
@@ -159,7 +159,7 @@ public:
 // MARK: -
 
 public:
-    void parse (NodePtr island, NodePtr token, const Pointer < Stamp > & stamp)
+    void parse (NodePtr island, NodePtr token, const Pointer<Stamp>& stamp)
     {
         mica::Concept kind  = token->getObject().getAttribute (mica::Kind);
         mica::Concept value = token->getObject().getAttribute (mica::Value);
@@ -211,8 +211,8 @@ public:
     }
     
 private:
-    Table < mica::Concept > attributes_; 
-    Table < mica::Concept, Pointer < Stamp > > stamps_;     /* Stamps of active notes to determine ties. */ 
+    Table<mica::Concept> attributes_; 
+    Table < mica::Concept, Pointer<Stamp> > stamps_;     /* Stamps of active notes to determine ties. */ 
 
 private:
     PRIM_LEAK_DETECTOR (Chord)

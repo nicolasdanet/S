@@ -25,13 +25,13 @@ struct Engravers {      /* Rely on implicit special member functions. */
 class Dummy : public Engraver {
 
 public:
-    Pointer < Engraver > clone() const override
+    Pointer<Engraver> clone() const override
     {
-        return Pointer < Engraver > (new Dummy (*this));
+        return Pointer<Engraver> (new Dummy (*this));
     }
     
 public:
-    void engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) override;
+    void engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) override;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -40,13 +40,13 @@ public:
 class Chord : public Engraver {
 
 public:
-    Pointer < Engraver > clone() const override
+    Pointer<Engraver> clone() const override
     {
-        return Pointer < Engraver > (new Chord (*this));
+        return Pointer<Engraver> (new Chord (*this));
     }
     
 public:
-    void engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) override;
+    void engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) override;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -55,13 +55,13 @@ public:
 class Flags : public Engraver {
 
 public:
-    Pointer < Engraver > clone() const override
+    Pointer<Engraver> clone() const override
     {
-        return Pointer < Engraver > (new Flags (*this));
+        return Pointer<Engraver> (new Flags (*this));
     }
     
 public:
-    void engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) override;
+    void engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) override;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -70,13 +70,13 @@ public:
 class Tie : public Engraver {
 
 public:
-    Pointer < Engraver > clone() const override
+    Pointer<Engraver> clone() const override
     {
-        return Pointer < Engraver > (new Tie (*this));
+        return Pointer<Engraver> (new Tie (*this));
     }
     
 public:
-    void engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) override;
+    void engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) override;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -85,13 +85,13 @@ public:
 class Clef : public Engraver {
 
 public:
-    Pointer < Engraver > clone() const override
+    Pointer<Engraver> clone() const override
     {
-        return Pointer < Engraver > (new Clef (*this));
+        return Pointer<Engraver> (new Clef (*this));
     }
     
 public:
-    void engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) override;
+    void engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) override;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -100,13 +100,13 @@ public:
 class KeySignature : public Engraver {
 
 public:
-    Pointer < Engraver > clone() const override
+    Pointer<Engraver> clone() const override
     {
-        return Pointer < Engraver > (new KeySignature (*this));
+        return Pointer<Engraver> (new KeySignature (*this));
     }
     
 public:
-    void engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) override;
+    void engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) override;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,13 +115,13 @@ public:
 class TimeSignature : public Engraver {
 
 public:
-    Pointer < Engraver > clone() const override
+    Pointer<Engraver> clone() const override
     {
-        return Pointer < Engraver > (new TimeSignature (*this));
+        return Pointer<Engraver> (new TimeSignature (*this));
     }
     
 public:
-    void engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) override;
+    void engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) override;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -130,13 +130,13 @@ public:
 class Barline : public Engraver {
 
 public:
-    Pointer < Engraver > clone() const override
+    Pointer<Engraver> clone() const override
     {
-        return Pointer < Engraver > (new Barline (*this));
+        return Pointer<Engraver> (new Barline (*this));
     }
     
 public:
-    void engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) override;
+    void engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) override;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -145,13 +145,13 @@ public:
 class Beam : public Engraver {
 
 public:
-    Pointer < Engraver > clone() const override
+    Pointer<Engraver> clone() const override
     {
-        return Pointer < Engraver > (new Beam (*this));
+        return Pointer<Engraver> (new Beam (*this));
     }
     
 public:
-    void engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) override;
+    void engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) override;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -160,13 +160,13 @@ public:
 class Tuplet : public Engraver {
 
 public:
-    Pointer < Engraver > clone() const override
+    Pointer<Engraver> clone() const override
     {
-        return Pointer < Engraver > (new Tuplet (*this));
+        return Pointer<Engraver> (new Tuplet (*this));
     }
     
 public:
-    void engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) override;
+    void engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) override;
 };
 
 // -----------------------------------------------------------------------------------------------------------

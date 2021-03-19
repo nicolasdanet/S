@@ -36,8 +36,8 @@ public:
         //
         NodePtr island1 = music.getIsland (chords.getFirst());
         NodePtr island2 = music.getIsland (chords.getLast());
-        Pointer < Stamp > stamp1 = island1->getObject().getStamp();
-        Pointer < Stamp > stamp2 = island2->getObject().getStamp();
+        Pointer<Stamp> stamp1 = island1->getObject().getStamp();
+        Pointer<Stamp> stamp2 = island2->getObject().getStamp();
         Box box1 = stamp1->getBox (mica::Stem, stamp1->getContext());
         Box box2 = stamp2->getBox (mica::Stem, stamp2->getContext());
         

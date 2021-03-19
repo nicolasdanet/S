@@ -82,7 +82,7 @@ void Music::spacingVertical()
     
     for (int i = 0; i < instants_.size(); ++i) {
         for (int j = 0; j < parts_.size(); ++j) {
-            if (Pointer < Stamp > stamp = instants_[i].getStampAtPart (j)) {
+            if (Pointer<Stamp> stamp = instants_[i].getStampAtPart (j)) {
                 stamp->addContext (Affine::translation (Vector (0.0, parts_[j].getPosition())));
             }
         }
@@ -141,7 +141,7 @@ void Music::spacingHorizontal()
     
     for (int i = 0; i < instants_.size(); ++i) {
         for (int j = 0; j < parts_.size(); ++j) {
-            if (Pointer < Stamp > stamp = instants_[i].getStampAtPart (j)) {
+            if (Pointer<Stamp> stamp = instants_[i].getStampAtPart (j)) {
                 stamp->addContext (Affine::translation (Vector (instants_[i].getPosition(), 0.0)));
             }
         }
@@ -156,7 +156,7 @@ bool Music::spacingEnlarge()
 {
     for (int i = 0; i < instants_.size(); ++i) {
         for (int j = 0; j < parts_.size(); ++j) {
-            if (Pointer < Stamp > stamp = instants_[i].getStampAtPart (j)) {
+            if (Pointer<Stamp> stamp = instants_[i].getStampAtPart (j)) {
                 parts_[stamp->getPart()].addSpacing (stamp->getPath (stamp->getContext()));
             }
         }
@@ -188,7 +188,7 @@ bool Music::spacingEnlarge()
     parts_[i].setSpacing (Path (parts_[i].getSpacing(), affine));
     
     for (int j = 0; j < instants_.size(); ++j) {
-        if (Pointer < Stamp > stamp = instants_[j].getStampAtPart (i)) { stamp->addContext (affine); }
+        if (Pointer<Stamp> stamp = instants_[j].getStampAtPart (i)) { stamp->addContext (affine); }
     }
     //
     }

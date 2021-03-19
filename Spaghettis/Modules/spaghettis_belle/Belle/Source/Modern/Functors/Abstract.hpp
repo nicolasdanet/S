@@ -66,10 +66,10 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    virtual Pointer < Engraver > clone() const = 0;
+    virtual Pointer<Engraver> clone() const = 0;
 
 public:
-    virtual void engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) = 0;
+    virtual void engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) = 0;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

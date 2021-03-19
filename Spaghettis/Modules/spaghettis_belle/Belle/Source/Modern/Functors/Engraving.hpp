@@ -26,14 +26,14 @@ namespace belle {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Engravers::Dummy::engrave (Music&, NodePtr, const Pointer < Stamp > &)
+void Engravers::Dummy::engrave (Music&, NodePtr, const Pointer<Stamp>&)
 {
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Engravers::Chord::engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp)
+void Engravers::Chord::engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp)
 {
     Shapes::Chord shape;
     
@@ -95,7 +95,7 @@ void Engravers::Chord::engrave (Music& music, NodePtr token, const Pointer < Sta
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Engravers::Flags::engrave (Music&, NodePtr token, const Pointer < Stamp > & stamp) 
+void Engravers::Flags::engrave (Music&, NodePtr token, const Pointer<Stamp>& stamp) 
 {
     Ratio duration = token->getObject().getAttribute (mica::Value).toRatio();
     
@@ -139,7 +139,7 @@ void Engravers::Flags::engrave (Music&, NodePtr token, const Pointer < Stamp > &
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Engravers::Tie::engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) 
+void Engravers::Tie::engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) 
 {
     /* The token parameter is the note. */
     
@@ -190,7 +190,7 @@ void Engravers::Tie::engrave (Music& music, NodePtr token, const Pointer < Stamp
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Engravers::Barline::engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp)
+void Engravers::Barline::engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp)
 {
     NodePtr tokenBelow = music.getToken (music.getIslandBelow (token));
     
@@ -232,7 +232,7 @@ void Engravers::Barline::engrave (Music& music, NodePtr token, const Pointer < S
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Engravers::Clef::engrave (Music&, NodePtr token, const Pointer < Stamp > & stamp)
+void Engravers::Clef::engrave (Music&, NodePtr token, const Pointer<Stamp>& stamp)
 {
     mica::Concept type = token->getObject().getAttribute (mica::Value);
     mica::Concept symbol = mica::map (type, mica::Symbol);
@@ -251,7 +251,7 @@ void Engravers::Clef::engrave (Music&, NodePtr token, const Pointer < Stamp > & 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Engravers::TimeSignature::engrave (Music&, NodePtr token, const Pointer < Stamp > & stamp)
+void Engravers::TimeSignature::engrave (Music&, NodePtr token, const Pointer<Stamp>& stamp)
 {
     mica::Concept type = token->getObject().getAttribute (mica::Value);
     
@@ -281,7 +281,7 @@ void Engravers::TimeSignature::engrave (Music&, NodePtr token, const Pointer < S
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Engravers::KeySignature::engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) 
+void Engravers::KeySignature::engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) 
 {
     mica::Concept key = token->getObject().getAttribute (mica::Value);
     mica::Concept clef = music.getClefState().getAttribute (mica::Clef);
@@ -295,7 +295,7 @@ void Engravers::KeySignature::engrave (Music& music, NodePtr token, const Pointe
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Engravers::Beam::engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) 
+void Engravers::Beam::engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) 
 {
     Array<NodePtr> beamed (music.getGroupState().reclaimTokens());
     
@@ -321,7 +321,7 @@ void Engravers::Beam::engrave (Music& music, NodePtr token, const Pointer < Stam
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Engravers::Tuplet::engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) 
+void Engravers::Tuplet::engrave (Music& music, NodePtr token, const Pointer<Stamp>& stamp) 
 {
     Array<NodePtr> tupletted (music.getGroupState().reclaimTokens());
     

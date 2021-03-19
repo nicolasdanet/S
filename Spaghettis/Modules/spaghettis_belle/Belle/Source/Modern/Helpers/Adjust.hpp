@@ -38,7 +38,7 @@ public:
         if (tokens.size() == 2)     { semibreve (music, tokens); } 
         else if (tokens.size() > 1) { collision (music, tokens); }
         
-        Pointer < Stamp > stamp = music.getIsland (tokens.getLast())->getObject().getStamp();
+        Pointer<Stamp> stamp = music.getIsland (tokens.getLast())->getObject().getStamp();
         music.getGroupState().setBox (mica::Barline, stamp->getBounds (stamp->getContext()));
     }
 
@@ -56,8 +56,8 @@ private:
         
         if (!barline.isEmpty()) {
         //
-        Pointer < Stamp > stamp1 = music.getIsland (tokens.getFirst())->getObject().getStamp();
-        Pointer < Stamp > stamp2 = music.getIsland (tokens.getLast())->getObject().getStamp();
+        Pointer<Stamp> stamp1 = music.getIsland (tokens.getFirst())->getObject().getStamp();
+        Pointer<Stamp> stamp2 = music.getIsland (tokens.getLast())->getObject().getStamp();
         Box box1 = stamp1->getBounds (stamp1->getContext());
         Box box2 = stamp2->getBounds (stamp2->getContext());
         double x1 = (box1.getCenter().getX() - barline.getLeft());
@@ -86,7 +86,7 @@ private:
             mica::Concept beam = tokens[i]->getObject().getAttribute (mica::Beam);
             beamed = ((beam == mica::Beginning) || (beam == mica::Middle));
             if (!beamed && rests.size()) {
-                Pointer < Stamp > stamp = music.getIsland (tokens[i])->getObject().getStamp();
+                Pointer<Stamp> stamp = music.getIsland (tokens[i])->getObject().getStamp();
                 Box bounds = stamp->getBox (mica::Beam, stamp->getContext());
                 mica::Concept direction = tokens[i]->getObject().getAttribute (mica::Stem);
                 arrange (music, rests, bounds, direction);
@@ -112,7 +112,7 @@ private:
          
         for (int i = 0; i < rests.size(); ++i) {
         //
-        Pointer < Stamp > stamp = music.getIsland (rests[i])->getObject().getStamp();
+        Pointer<Stamp> stamp = music.getIsland (rests[i])->getObject().getStamp();
         Path rest (stamp->getPath (stamp->getContext()));
         
         double d = 0.0;

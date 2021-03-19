@@ -62,7 +62,7 @@ public:
     {
         begin();
         
-        NodePtr t = makeToken (mica::Note, Pointer < Engraver > (new Engravers::Dummy()));
+        NodePtr t = makeToken (mica::Note, Pointer<Engraver> (new Engravers::Dummy()));
         t->getObject().setAttribute (mica::Value, chromatic);
         if (!tie.isUndefined()) { t->getObject().setAttribute (mica::Tie, tie); }
         add (t); connect (getRoot(), t)->getObject().setAttribute (mica::Type, mica::Token);
@@ -155,7 +155,7 @@ private:
     {
         if (getRoot() == nullptr) {
         //
-        NodePtr t = makeToken (mica::Chord, Pointer < Engraver > (new Engravers::Chord()));
+        NodePtr t = makeToken (mica::Chord, Pointer<Engraver> (new Engravers::Chord()));
         t->getObject().setAttribute (mica::Value, duration_);
         add (t);
         //
@@ -212,14 +212,14 @@ private:
 public:
     NodePtr addBarline (mica::Concept barlineType)
     {
-        NodePtr t = makeToken (mica::Barline, Pointer < Engraver > (new Engravers::Barline()));
+        NodePtr t = makeToken (mica::Barline, Pointer<Engraver> (new Engravers::Barline()));
         t->getObject().setAttribute (mica::Value, barlineType);
         return makeIsland (t);
     }
 
     NodePtr addClef (mica::Concept clefType)
     {
-        NodePtr t = makeToken (mica::Clef, Pointer < Engraver > (new Engravers::Clef()));
+        NodePtr t = makeToken (mica::Clef, Pointer<Engraver> (new Engravers::Clef()));
         t->getObject().setAttribute (mica::Value, clefType);
         return makeIsland (t);
     }
@@ -254,14 +254,14 @@ public:
 private:
     NodePtr addKeySignature (mica::Concept keySignature)    /* Argument could be mica::Undefined. */
     {   
-        NodePtr t = makeToken (mica::KeySignature, Pointer < Engraver > (new Engravers::KeySignature()));
+        NodePtr t = makeToken (mica::KeySignature, Pointer<Engraver> (new Engravers::KeySignature()));
         t->getObject().setAttribute (mica::Value, keySignature);
         return makeIsland (t);
     }
 
     NodePtr addRegularTimeSignature (int beats, int noteValue)
     {
-        NodePtr t = makeToken (mica::TimeSignature, Pointer < Engraver > (new Engravers::TimeSignature()));
+        NodePtr t = makeToken (mica::TimeSignature, Pointer<Engraver> (new Engravers::TimeSignature()));
         t->getObject().setAttribute (mica::Value, mica::RegularTimeSignature);
         t->getObject().setAttribute (mica::Beats, Ratio (beats, 1));
         t->getObject().setAttribute (mica::NoteValue, Ratio (1, noteValue));
@@ -270,14 +270,14 @@ private:
     
     NodePtr addCommonTimeSignature()
     {
-        NodePtr t = makeToken (mica::TimeSignature, Pointer < Engraver > (new Engravers::TimeSignature()));
+        NodePtr t = makeToken (mica::TimeSignature, Pointer<Engraver> (new Engravers::TimeSignature()));
         t->getObject().setAttribute (mica::Value, mica::CommonTime);
         return makeIsland (t);
     }
     
     NodePtr addCutTimeSignature()
     {
-        NodePtr t = makeToken (mica::TimeSignature, Pointer < Engraver > (new Engravers::TimeSignature()));
+        NodePtr t = makeToken (mica::TimeSignature, Pointer<Engraver> (new Engravers::TimeSignature()));
         t->getObject().setAttribute (mica::Value, mica::CutTime);
         return makeIsland (t);
     }
@@ -332,7 +332,7 @@ protected:
 // MARK: -
 
 private:
-    static NodePtr makeToken (mica::Concept kind, const Pointer < Engraver > & engraver)
+    static NodePtr makeToken (mica::Concept kind, const Pointer<Engraver>& engraver)
     {
         NodePtr t (new Graph < Label >::Node());
         t->getObject().setAttribute (mica::Type, mica::Token);

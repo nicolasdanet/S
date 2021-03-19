@@ -30,7 +30,7 @@ static Polygon getHull (Music& music, const Array<NodePtr>& tokens, const Affine
         
     for (int i = 0; i < tokens.size(); ++i) {
         NodePtr island (music.getIsland (tokens[i]));
-        Pointer < Stamp > stamp = island->getObject().getStamp();
+        Pointer<Stamp> stamp = island->getObject().getStamp();
         path.addPath (stamp->getPath (stamp->getContext()));
     }
 

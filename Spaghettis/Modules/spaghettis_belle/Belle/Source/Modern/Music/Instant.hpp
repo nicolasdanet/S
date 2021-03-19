@@ -66,15 +66,15 @@ public:
 // MARK: -
 
 public:
-    Pointer < Stamp > getStampAtPart (int part) const
+    Pointer<Stamp> getStampAtPart (int part) const
     {
         if (part < stamps_.size()) { return stamps_[part]; }
         else {
-            return Pointer < Stamp > (nullptr);
+            return Pointer<Stamp> (nullptr);
         }
     }
 
-    void addStamp (const Pointer < Stamp > & stamp)
+    void addStamp (const Pointer<Stamp>& stamp)
     {
         int i = stamp->getPart();
         if (stamps_.size() <= i) { stamps_.resize (i + 1); } stamps_[i] = stamp;
@@ -105,7 +105,7 @@ public:
 public:
     double getWeight (int part) const                           /* The weight for the spacing algorithm. */
     {   
-        Pointer < Stamp > stamp = getStampAtPart (part);
+        Pointer<Stamp> stamp = getStampAtPart (part);
         
         if (stamp) { return stamp->getWeight(); }
         else {
@@ -117,7 +117,7 @@ public:
     {
         Path path;
         
-        Pointer < Stamp > stamp = getStampAtPart (part);
+        Pointer<Stamp> stamp = getStampAtPart (part);
         
         if (stamp) {
         //
@@ -179,7 +179,7 @@ public:
 private:
     double unit_;
     double position_;
-    Array < Pointer < Stamp > > stamps_;
+    Array < Pointer<Stamp> > stamps_;
 
 private:
     PRIM_LEAK_DETECTOR (Instant)
