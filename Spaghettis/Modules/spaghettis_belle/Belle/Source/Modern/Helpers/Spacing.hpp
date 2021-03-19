@@ -34,7 +34,7 @@ static bool aligned (const Array<int>& state)
     return b;
 }
 
-static void getPath (const Array < Instant > & instants, const Array<int>& state, int& last, Path& path)
+static void getPath (const Array<Instant>& instants, const Array<int>& state, int& last, Path& path)
 {
     double f = 0.0;
     
