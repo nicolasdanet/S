@@ -70,7 +70,7 @@ public:
         
         static std::random_device rnd;
         static std::mt19937 prng (rnd());
-        static std::uniform_int_distribution < int > d (0, 15);
+        static std::uniform_int_distribution<int> d (0, 15);
         
         std::string s;
         

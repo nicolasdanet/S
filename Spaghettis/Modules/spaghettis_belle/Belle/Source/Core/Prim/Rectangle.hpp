@@ -16,8 +16,8 @@ namespace prim {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-using Point  = Complex < double >;
-using Vector = Complex < double >;
+using Point  = Complex<double>;
+using Vector = Complex<double>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -42,10 +42,10 @@ public:
         sortCoordinates();
     }
 
-    Rectangle (const Rectangle < T > &) = default;
-    Rectangle (Rectangle < T > &&) = default;
-    Rectangle < T > & operator = (const Rectangle < T > &) = default;
-    Rectangle < T > & operator = (Rectangle < T > &&) = default;
+    Rectangle (const Rectangle<T>&) = default;
+    Rectangle (Rectangle<T>&&) = default;
+    Rectangle<T>& operator = (const Rectangle<T>&) = default;
+    Rectangle<T>& operator = (Rectangle<T>&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -195,12 +195,12 @@ public:
 // MARK: -
 
 public:
-    bool operator != (const Rectangle < T > & rect) const
+    bool operator != (const Rectangle<T>& rect) const
     {
         return !(*this == rect);
     }
     
-    bool operator == (const Rectangle < T > & rect) const
+    bool operator == (const Rectangle<T>& rect) const
     {
         if (isEmpty_ && rect.isEmpty_)      { return true;  }
         else if (isEmpty_ != rect.isEmpty_) { return false; }
@@ -216,7 +216,7 @@ public:
 /* < https://en.wikipedia.org/wiki/Minimum_bounding_rectangle > */
 
 public:
-    Rectangle < T > & operator += (const Rectangle < T > & rect)
+    Rectangle<T>& operator += (const Rectangle<T>& rect)
     {
         *this = minimumBoundingRectangle (*this, rect);
         return *this;
@@ -233,7 +233,7 @@ private:
         Math::ascending (a_.getY(), b_.getY());
     }
 
-    static Rectangle < T > minimumBoundingRectangle (Rectangle < T > rect1, Rectangle < T > rect2)
+    static Rectangle<T> minimumBoundingRectangle (Rectangle<T> rect1, Rectangle<T> rect2)
     {
         if (rect1.isEmpty() && rect2.isEmpty()) { return Rectangle(); }
         else if (rect1.isEmpty()) { return rect2; }
@@ -259,9 +259,9 @@ private:
 // MARK: -
 
 public:
-    static const Rectangle < T > empty()
+    static const Rectangle<T> empty()
     {
-        return Rectangle < T >();
+        return Rectangle<T>();
     }
     
 private:
@@ -276,7 +276,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-friend const Rectangle < T > operator + (Rectangle < T > rect1, const Rectangle < T > & rect2)
+friend const Rectangle<T> operator + (Rectangle<T> rect1, const Rectangle<T>& rect2)
 {
     rect1 += rect2; return rect1;
 }
@@ -289,7 +289,7 @@ friend const Rectangle < T > operator + (Rectangle < T > rect1, const Rectangle 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using Box = Rectangle < double >;
+using Box = Rectangle<double>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
