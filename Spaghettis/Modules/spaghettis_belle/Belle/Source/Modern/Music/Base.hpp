@@ -334,7 +334,7 @@ protected:
 private:
     static NodePtr makeToken (mica::Concept kind, const Pointer<Engraver>& engraver)
     {
-        NodePtr t (new Graph < Label >::Node());
+        NodePtr t (new Graph<Label>::Node());
         t->getObject().setAttribute (mica::Type, mica::Token);
         t->getObject().setAttribute (mica::Kind, kind);
         t->getObject().setEngraver (engraver);
@@ -348,7 +348,7 @@ private:
 private:
     NodePtr makeIsland (NodePtr token)
     {
-        NodePtr i (new Graph < Label >::Node());
+        NodePtr i (new Graph<Label>::Node());
         i->getObject().setAttribute (mica::Type, mica::Island);
         graph_.add (i);
         graph_.add (token);
@@ -359,7 +359,7 @@ private:
     NodePtr makeIsland (MusicGraph& graph)
     {
         NodePtr token = graph.getRoot();
-        NodePtr i (new Graph < Label >::Node());
+        NodePtr i (new Graph<Label>::Node());
         i->getObject().setAttribute (mica::Type, mica::Island);
         graph_.add (i);
         graph_.drain (graph);
@@ -386,7 +386,7 @@ private:
     
     static NodePtr cloneToken (NodePtr token)
     {
-        NodePtr t (new Graph < Label >::Node());
+        NodePtr t (new Graph<Label>::Node());
         t->getObject().setAttributes (token->getObject().getAttributes());
         t->getObject().setEngraver (token->getObject().getEngraver()->clone());
         return t;

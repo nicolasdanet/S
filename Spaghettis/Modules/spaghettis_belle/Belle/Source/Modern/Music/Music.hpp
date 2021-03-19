@@ -130,12 +130,12 @@ private:
 // MARK: -
 
 private:
-    Array < Part > & getParts()
+    Array<Part>& getParts()
     {
         return parts_;
     }
     
-    Array < Instant > & getInstants()
+    Array<Instant>& getInstants()
     {
         return instants_;
     }
@@ -167,8 +167,8 @@ private:
     bool dirty_;
 
 private:
-    Array < Part > parts_;
-    Array < Instant > instants_;
+    Array<Part> parts_;
+    Array<Instant> instants_;
 
 private:
     State::Clef clef_;
