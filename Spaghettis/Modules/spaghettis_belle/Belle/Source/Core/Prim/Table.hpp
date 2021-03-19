@@ -26,7 +26,7 @@ namespace prim {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class K, class V > class KeyValue {
+template <class K, class V> class KeyValue {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ public:
     { 
     }
     
-    KeyValue < K, V > & operator = (const KeyValue < K, V > & o)
+    KeyValue<K, V>& operator = (const KeyValue<K, V>& o)
     {
         if (this != &o) {
             KeyValue scoped (o); scoped.swapWith (*this);
@@ -50,16 +50,16 @@ public:
         return *this;
     }
     
-    KeyValue (const KeyValue < K, V > &) = default;
-    KeyValue (KeyValue < K, V > &&) = default;
-    KeyValue < K, V > & operator = (KeyValue < K, V > &&) = default;
+    KeyValue (const KeyValue<K, V>&) = default;
+    KeyValue (KeyValue<K, V>&&) = default;
+    KeyValue<K, V>& operator = (KeyValue<K, V>&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void swapWith (KeyValue < K, V > & o)
+    void swapWith (KeyValue<K, V>& o)
     {
         using std::swap;
         
@@ -92,17 +92,17 @@ public:
 // MARK: -
 
 public:
-    bool operator < (const KeyValue < K, V > & kv) const 
+    bool operator < (const KeyValue<K, V>& kv) const
     {
         return key_ < kv.key_;
     }
     
-    bool operator > (const KeyValue < K, V > & kv) const 
+    bool operator > (const KeyValue<K, V>& kv) const
     {
         return key_ > kv.key_;
     }
     
-    bool operator == (const KeyValue < K, V > & kv) const 
+    bool operator == (const KeyValue<K, V>& kv) const
     { 
         return key_ == kv.key_;
     }
@@ -119,9 +119,9 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class K, class V = K > class Table {
+template <class K, class V = K> class Table {
 
-template < class U > friend class Graph;
+template <class U> friend class Graph;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -132,7 +132,7 @@ public:
     {
     }
 
-    Table < K, V > & operator = (const Table < K, V > & o)
+    Table<K, V>& operator = (const Table<K, V>& o)
     {
         if (this != &o) {
             Table scoped (o); scoped.swapWith (*this);
@@ -141,9 +141,9 @@ public:
         return *this;
     }
     
-    Table (const Table < K, V > &) = default;
-    Table (Table < K, V > &&) = default;
-    Table < K, V > & operator = (Table < K, V > &&) = default;
+    Table (const Table<K, V>&) = default;
+    Table (Table<K, V>&&) = default;
+    Table<K, V>& operator = (Table<K, V>&&) = default;
 
     ~Table()
     {
@@ -155,7 +155,7 @@ public:
 // MARK: -
 
 public:
-    void swapWith (Table < K, V > & o)
+    void swapWith (Table<K, V>& o)
     {
         using std::swap;
         
@@ -190,13 +190,13 @@ public:
     V& get (const K& key)
     {
         sortAndPruneNecessary();
-        int i = data_.indexOfSorted (KeyValue < K, V > (key));
+        int i = data_.indexOfSorted (KeyValue<K, V> (key));
         
         isPruned_ = false; 
         
         if (i >= 0) { return data_[i].getValue(); }
         else {
-            KeyValue < K, V > kv (key, undefined_);
+            KeyValue<K, V> kv (key, undefined_);
             data_.add (kv);
             isSorted_ = false;
             return data_.getLast().getValue();
@@ -206,7 +206,7 @@ public:
     const V& get (const K& key) const
     {
         sortAndPruneNecessary();
-        int i = data_.indexOfSorted (KeyValue < K, V > (key));
+        int i = data_.indexOfSorted (KeyValue<K, V> (key));
     
         if (i >= 0) { return data_[i].getValue(); }
         else {
@@ -229,7 +229,7 @@ public:
 // MARK: -
 
 public:
-    const KeyValue < K, V > & getAtIndex (int i) const
+    const KeyValue<K, V>& getAtIndex (int i) const
     {
         sortAndPruneNecessary(); return data_[i];
     }
@@ -261,7 +261,7 @@ private:
 private:
     mutable bool isSorted_;
     mutable bool isPruned_;
-    mutable Array < KeyValue < K, V > > data_;
+    mutable Array <KeyValue<K, V>> data_;
     V undefined_;
 
 private:
@@ -272,12 +272,12 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class K, class V > void swap (KeyValue < K, V > & a, KeyValue < K, V > & b)
+template <class K, class V> void swap (KeyValue<K, V>& a, KeyValue<K, V>& b)
 {
     a.swapWith (b);
 }
 
-template < class K, class V > void swap (Table < K, V > & a, Table < K, V > & b)
+template <class K, class V> void swap (Table<K, V>& a, Table<K, V>& b)
 {
     a.swapWith (b);
 }
