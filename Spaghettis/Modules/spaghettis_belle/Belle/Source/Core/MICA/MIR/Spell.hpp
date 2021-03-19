@@ -186,7 +186,7 @@ private:
 // MARK: -
 
 private:
-    template < int N > void vectorCombineAndSet (Concept (&a)[N]) const
+    template <int N> void vectorCombineAndSet (Concept (&a)[N]) const
     {
         /* Predefined chromatics pitch are retained. */
         /* Undefined concepts are ignored. */
@@ -256,7 +256,7 @@ private:
         prim::Memory::swap (result, a, N);
     }
     
-    template < int N > int vectorPenalty (Concept (&a)[N]) const
+    template <int N> int vectorPenalty (Concept (&a)[N]) const
     {
         int penalty = 0;
         
