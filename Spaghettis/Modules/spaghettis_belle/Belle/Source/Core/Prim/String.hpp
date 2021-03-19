@@ -88,7 +88,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    Array < char > data_;
+    Array<char> data_;
 
 private:
     PRIM_LEAK_DETECTOR (String)

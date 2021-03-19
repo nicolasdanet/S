@@ -42,7 +42,7 @@ template <class T> class Graph {
 public:
     class Node {
     
-    template < class U > friend class Graph;
+    template <class U> friend class Graph;
     
     public:
         Node() : incoming_ (0), edges_ (false), from_ (nullptr), to_ (nullptr)
@@ -66,10 +66,10 @@ public:
     
     private:
         T object_;
-        mutable int incoming_;                              /* For topologic sort. */
-        Table < Pointer < Node >, bool > edges_;
-        Pointer < Node > from_;                             /* Only when Node is an edge. */
-        Pointer < Node > to_;                               /* Ditto. */
+        mutable int incoming_;                  /* For topologic sort. */
+        Table<Pointer<Node>, bool> edges_;
+        Pointer<Node> from_;                    /* Only when Node is an edge. */
+        Pointer<Node> to_;                      /* Ditto. */
     
     private:
         PRIM_LEAK_DETECTOR (Node)
@@ -85,7 +85,7 @@ public:
     class Edge {
         
     public:
-        Edge (const Pointer < Node > & p) : ptr_ (p)
+        Edge (const Pointer<Node>& p) : ptr_ (p)
         {
         }
     
@@ -96,13 +96,13 @@ public:
         Edge& operator = (Edge&&) = default;
         
     public:
-        Pointer < Node > operator ->() const
+        Pointer<Node> operator ->() const
         {
             return ptr_;
         }
     
     private:
-        Pointer < Node > ptr_;
+        Pointer<Node> ptr_;
     
     private:
         PRIM_LEAK_DETECTOR (Edge)
@@ -123,8 +123,8 @@ public:
     }
 
 public:
-    Graph < T > (const Graph < T > &) = delete;
-    Graph < T > & operator = (const Graph < T > &) = delete;
+    Graph<T> (const Graph<T>&) = delete;
+    Graph<T> & operator = (const Graph<T>&) = delete;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -152,7 +152,7 @@ public:
 // MARK: -
 
 public:
-    void add (const Pointer < Node > & p)
+    void add (const Pointer<Node>& p)
     {
         if (p && (contains (p) == false)) {
         //
@@ -163,11 +163,11 @@ public:
         }
     }
 
-    Edge connect (const Pointer < Node > & a, const Pointer < Node > & b)
+    Edge connect (const Pointer<Node>& a, const Pointer<Node>& b)
     {
         if (contains (a) && contains (b)) {
         //
-        Pointer < Node > edge (new Node());
+        Pointer<Node> edge (new Node());
         edge->from_ = a;
         edge->to_ = b;
       
@@ -178,10 +178,10 @@ public:
         //
         }
         
-        return Pointer < Node > (nullptr);
+        return Pointer<Node> (nullptr);
     }
 
-    bool contains (const Pointer < Node > & p) const
+    bool contains (const Pointer<Node>& p) const
     {
         if (p) { return nodes_[p]; }
         else {
@@ -194,14 +194,14 @@ public:
 // MARK: -
 
 public:
-    Pointer < Node > getRoot() const 
+    Pointer<Node> getRoot() const
     {
         return root_;
     }
 
-    Array < Pointer < Node > > getAllNodes() const
+    Array<Pointer<Node>> getAllNodes() const
     {
-        Array < Pointer < Node > > nodes;
+        Array<Pointer<Node>> nodes;
         nodes.resize (nodes_.size());
         for (int i = 0; i < nodes.size(); ++i) { nodes[i] = nodes_.getAtIndex (i).getKey(); }
         return nodes;
@@ -216,32 +216,32 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    Array < Pointer < Node > > getAllNodesSorted() const
+    Array<Pointer<Node>> getAllNodesSorted() const
     {
-        Array < Pointer < Node > > sorted;
+        Array<Pointer<Node>> sorted;
         
         for (int i = 0; i < nodes_.size(); ++i) { 
-            Pointer < Node > p = nodes_.getAtIndex (i).getKey();
+            Pointer<Node> p = nodes_.getAtIndex (i).getKey();
             for (int j = 0; j < p->edges_.size(); ++j) {
-                Pointer < Node > e = p->edges_.getAtIndex (j).getKey();
+                Pointer<Node> e = p->edges_.getAtIndex (j).getKey();
                 if (e->to_ == p) { p->incoming_++; }
             }
         }
         
-        std::queue < Pointer < Node > > queue;
+        std::queue<Pointer<Node>> queue;
         
         for (int i = 0; i < nodes_.size(); ++i) { 
-            Pointer < Node > p = nodes_.getAtIndex (i).getKey();
+            Pointer<Node> p = nodes_.getAtIndex (i).getKey();
             if (p->incoming_ == 0) { queue.push (std::move (p)); }
         }
         
         while (!queue.empty()) {
         //
-        Pointer < Node > p = queue.front(); queue.pop();
+        Pointer<Node> p = queue.front(); queue.pop();
         sorted.add (p);
         
         for (int i = 0; i < p->edges_.size(); ++i) {
-            Pointer < Node > e = p->edges_.getAtIndex (i).getKey();
+            Pointer<Node> e = p->edges_.getAtIndex (i).getKey();
             if (e->from_ == p) { 
                 e->to_->incoming_--;
                 if (e->to_->incoming_ == 0) { queue.push (e->to_); }
@@ -270,14 +270,14 @@ public:
 // MARK: -
 
 public:
-    Array < Pointer < Node > > allNextByEdge (const Pointer < Node > & p, const T& v)
+    Array<Pointer<Node>> allNextByEdge (const Pointer<Node>& p, const T& v)
     {
-        Array < Pointer < Node > > t;
+        Array<Pointer<Node>> t;
       
         if (contains (p)) {
         //
         for (int i = 0; i < p->edges_.size(); ++i) {
-            Pointer < Node > edge = p->edges_.getAtIndex (i).getKey();
+            Pointer<Node> edge = p->edges_.getAtIndex (i).getKey();
             if ((edge->from_ == p) && (edge->object_ == v)) { t.add (edge->to_); }
         }
         //
@@ -286,14 +286,14 @@ public:
         return t;
     }
     
-    Array < Pointer < Node > > allPreviousByEdge (const Pointer < Node > & p, const T& v)
+    Array<Pointer<Node>> allPreviousByEdge (const Pointer<Node>& p, const T& v)
     {
-        Array < Pointer < Node > > t;
+        Array<Pointer<Node>> t;
       
         if (contains (p)) {
         //
         for (int i = 0; i < p->edges_.size(); ++i) {
-            Pointer < Node > edge = p->edges_.getAtIndex (i).getKey();
+            Pointer<Node> edge = p->edges_.getAtIndex (i).getKey();
             if ((edge->to_ == p) && (edge->object_ == v)) { t.add (edge->from_); }
         }
         //
@@ -302,23 +302,23 @@ public:
         return t;
     }
     
-    Pointer < Node > nextByEdge (const Pointer < Node > & p, const T& v)
+    Pointer<Node> nextByEdge (const Pointer<Node>& p, const T& v)
     {
-        Array < Pointer < Node > > next = allNextByEdge (p, v);
+        Array<Pointer<Node>> next = allNextByEdge (p, v);
         
         if (next.size() == 1) { return next.getFirst(); }
         else {
-            return Pointer < Node > (nullptr);
+            return Pointer<Node> (nullptr);
         }
     }
 
-    Pointer < Node > previousByEdge (const Pointer < Node > & p, const T& v)
+    Pointer<Node> previousByEdge (const Pointer<Node>& p, const T& v)
     {
-        Array < Pointer < Node > > previous = allPreviousByEdge (p, v);
+        Array<Pointer<Node>> previous = allPreviousByEdge (p, v);
         
         if (previous.size() == 1) { return previous.getFirst(); }
         else {
-            return Pointer < Node > (nullptr);
+            return Pointer<Node> (nullptr);
         }
     }
 
@@ -333,7 +333,7 @@ public:
         //
         if (nodes_.size()) { 
         //
-        Table < Pointer < Node >, bool > scoped (nodes_);
+        Table<Pointer<Node>, bool> scoped (nodes_);
         for (int i = 0; i < o.nodes_.size(); ++i) { scoped[o.nodes_.getAtIndex (i).getKey()] = true; }
         nodes_.swapWith (scoped);
         //
@@ -356,15 +356,15 @@ public:
 // MARK: -
 
 private:
-    void removeEdges (const Pointer < Node > & p)
+    void removeEdges (const Pointer<Node>& p)
     {
         if (contains (p)) {
         //
-        Table < Pointer < Node >, bool > scoped (p->edges_);
+        Table<Pointer<Node>, bool> scoped (p->edges_);
         
         for (int i = scoped.size() - 1; i >= 0; --i) {   
         //
-        Pointer < Node > e = scoped.getAtIndex (i).getKey();
+        Pointer<Node> e = scoped.getAtIndex (i).getKey();
         e->from_->edges_[e] = false;
         e->to_->edges_[e] = false;
         e->from_->edges_.sortAndPruneNecessary();
@@ -378,8 +378,8 @@ private:
     }
     
 private:
-    Pointer < Node > root_;
-    Table < Pointer < Node >, bool > nodes_;
+    Pointer<Node> root_;
+    Table<Pointer<Node>, bool> nodes_;
     bool hasOwnership_;
 
 private:

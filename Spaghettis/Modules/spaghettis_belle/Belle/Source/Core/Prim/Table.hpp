@@ -261,7 +261,7 @@ private:
 private:
     mutable bool isSorted_;
     mutable bool isPruned_;
-    mutable Array <KeyValue<K, V>> data_;
+    mutable Array<KeyValue<K, V>> data_;
     V undefined_;
 
 private:
