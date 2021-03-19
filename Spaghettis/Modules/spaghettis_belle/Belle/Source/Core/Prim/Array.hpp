@@ -26,7 +26,7 @@ namespace prim {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T, int N > constexpr int sizeOfArray (T (&)[N])
+template <class T, int N> constexpr int sizeOfArray (T (&)[N])
 {
     return N;
 }
@@ -41,7 +41,7 @@ class PowerOfTwoGrowth {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T, class GM > friend class Array;
+template <class T, class GM> friend class Array;
 
 private:
     static std::size_t getMemorySize (int size)
@@ -59,7 +59,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template < class T, class GM = PowerOfTwoGrowth > class Array {
+template <class T, class GM = PowerOfTwoGrowth> class Array {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -70,29 +70,29 @@ public:
     {
     }
 
-    Array (const Array < T > & o) : data_ (nullptr), size_ (0)
+    Array (const Array<T>& o) : data_ (nullptr), size_ (0)
     {
         resize (o.size_);
         
         for (int i = 0; i < size_; ++i) { data_[i] = o.data_[i]; }
     }
 
-    Array < T > & operator = (const Array < T > & o)
+    Array<T>& operator = (const Array<T>& o)
     {
         if (this != &o) {
-            Array < T > scoped (o); scoped.swapWith (*this);
+            Array<T> scoped (o); scoped.swapWith (*this);
         }
         
         return *this;
     }
 
-    Array (Array < T > && toMove) : data_ (toMove.data_), size_ (toMove.size_)
+    Array (Array<T>&& toMove) : data_ (toMove.data_), size_ (toMove.size_)
     {
         toMove.data_ = nullptr;
         toMove.size_ = 0;
     }
     
-    Array < T > & operator = (Array < T > && toMove)
+    Array<T>& operator = (Array<T>&& toMove)
     {
         if (this != &toMove) {
             resize(); toMove.swapWith (*this);
@@ -111,7 +111,7 @@ public:
 // MARK: -
 
 public:
-    void swapWith (Array < T > & o)
+    void swapWith (Array<T>& o)
     {
         using std::swap;
         
@@ -246,7 +246,7 @@ public:
 public:
     void add (const T& v)
     {
-        if (size_ < std::numeric_limits < int >::max()) { resize (size_ + 1); getLast() = v; }
+        if (size_ < std::numeric_limits<int>::max()) { resize (size_ + 1); getLast() = v; }
         else {
             throw std::length_error ("array overflow");       /* Throw something else? */
         }
@@ -401,7 +401,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> void swap (Array < T > & a, Array < T > & b)
+template <class T> void swap (Array<T>& a, Array<T>& b)
 {
     a.swapWith (b);
 }
