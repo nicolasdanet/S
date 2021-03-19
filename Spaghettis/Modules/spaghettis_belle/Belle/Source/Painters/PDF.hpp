@@ -271,12 +271,12 @@ private:
         int count = 1;
         int n = Math::max (toPaint.getNumberOfPages (*this), 1);
         
-        headers_.add (Pointer < Object > (new Object (count++)));
-        headers_.add (Pointer < Object > (new Object (count++)));
-        headers_.add (Pointer < Object > (new Object (count++)));
+        headers_.add (Pointer<Object> (new Object (count++)));
+        headers_.add (Pointer<Object> (new Object (count++)));
+        headers_.add (Pointer<Object> (new Object (count++)));
         
-        for (int i = 0; i < n; ++i) { pages_.add (Pointer < Object > (new Object (count++))); }
-        for (int i = 0; i < n; ++i) { contents_.add (Pointer < Object > (new Object (count++))); }
+        for (int i = 0; i < n; ++i) { pages_.add (Pointer<Object> (new Object (count++))); }
+        for (int i = 0; i < n; ++i) { contents_.add (Pointer<Object> (new Object (count++))); }
             
         headers_[catalog]->addToDictionary ("/Type /Catalog");
         headers_[catalog]->addToDictionary ("    " "/Pages " + headers_[tree].get()->asReference());
@@ -363,7 +363,7 @@ private:
 // MARK: -
 
 private:
-    static void writeObject (Pointer < Object > object, std::ostringstream& output)
+    static void writeObject (Pointer<Object> object, std::ostringstream& output)
     {
         object->setOffset (output.str().length());
 
@@ -388,10 +388,10 @@ private:
     std::string filename_;
     Points size_;
     Raster state_;
-    Pointer < Object > stream_;
-    Array < Pointer < Object > > headers_;
-    Array < Pointer < Object > > pages_;
-    Array < Pointer < Object > > contents_;
+    Pointer<Object> stream_;
+    Array<Pointer<Object>> headers_;
+    Array<Pointer<Object>> pages_;
+    Array<Pointer<Object>> contents_;
 
 private:
     PRIM_LEAK_DETECTOR (Pdf)
