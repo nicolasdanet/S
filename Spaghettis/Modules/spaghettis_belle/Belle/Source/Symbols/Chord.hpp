@@ -223,7 +223,7 @@ private:
         
         /* Sort and remove duplicated notes if any. */
         
-        Array < Note > temp (notes_);
+        Array<Note> temp (notes_);
         temp.sort();
         
         sorted_.add (temp.getFirst());
@@ -266,7 +266,7 @@ private:
         
         /* Group notes by clusters (consecutive staff lines and staff spaces). */
         
-        Array < Note > cluster;
+        Array<Note> cluster;
         cluster.add (sorted_.getFirst());
         clustered_.add (cluster);
       
@@ -274,7 +274,7 @@ private:
             if ((Math::abs ((sorted_[i].getLinespace() - sorted_[i - 1].getLinespace())) < 2)) {
                 clustered_.getLast().add (sorted_[i]);
             } else {
-                Array < Note > newCluster;
+                Array<Note> newCluster;
                 newCluster.add (sorted_[i]);
                 clustered_.add (newCluster);
             }
@@ -457,9 +457,9 @@ private:
     {
         Path path;
         
-        Array < Path > shape;
+        Array<Path> shape;
         Array<int> order;
-        Array < Vector > place;
+        Array<Vector> place;
       
         shape.resize (sorted_.size());
         order.resize (sorted_.size());
@@ -660,12 +660,12 @@ private:
     Ratio duration_;
     mutable mica::Concept direction_;
     mica::Concept beam_;
-    Array < Note > notes_;
+    Array<Note> notes_;
         
 private:
     mutable bool isStemUp_;
-    mutable Array < Note > sorted_;
-    mutable Array < Array < Note > > clustered_;
+    mutable Array<Note> sorted_;
+    mutable Array<Array<Note>> clustered_;
 
 private:
     PRIM_LEAK_DETECTOR (Chord)

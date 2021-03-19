@@ -96,7 +96,7 @@ private:
 // MARK: -
 
 private:
-    static Path getNumbers (const Array < unicode > & codes)
+    static Path getNumbers (const Array<unicode>& codes)
     {
         const Typeface& typeface (House::getInstance().getPetrucci());
         
@@ -117,9 +117,9 @@ private:
     }
     
 protected:
-    static Array < unicode > getUnicodes (int n)
+    static Array<unicode> getUnicodes (int n)
     {
-        Array < unicode > codes;
+        Array<unicode> codes;
         
         while (n > 0) {
             codes.add (static_cast<unicode> ((n % 10) + 0xf030));
@@ -133,8 +133,8 @@ protected:
 
 protected:
     unicode special_;
-    Array < unicode > beats_;
-    Array < unicode > value_;
+    Array<unicode> beats_;
+    Array<unicode> value_;
 
 private:
     PRIM_LEAK_DETECTOR (TimeSignature)
