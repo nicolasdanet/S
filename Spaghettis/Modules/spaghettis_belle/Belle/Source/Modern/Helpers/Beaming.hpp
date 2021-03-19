@@ -28,7 +28,7 @@ struct Beaming {
 // MARK: -
 
 public:
-    static double getSlant (Music& music, const Array < NodePtr > & chords, mica::Concept direction)
+    static double getSlant (Music& music, const Array<NodePtr>& chords, mica::Concept direction)
     {
         double slant = 0.0;
         
@@ -81,7 +81,7 @@ public:
 /* < http://www.behindbarsnotation.co.uk/contents/sample_pages.pdf > */
 
 private:
-    static bool hasHorizontalSlant (Music& music, const Array < NodePtr > & chords, mica::Concept direction)
+    static bool hasHorizontalSlant (Music& music, const Array<NodePtr>& chords, mica::Concept direction)
     {
         if (chords.size() <= 2) { return false; }
         else {
@@ -169,7 +169,7 @@ private:
 private:
     static int getLinespace (Music& music, NodePtr chord, mica::Concept direction)
     {
-        Array < NodePtr > notes = music.getAllTokensNext (chord);
+        Array<NodePtr> notes = music.getAllTokensNext (chord);
         
         int nearest = 0;
         

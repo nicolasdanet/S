@@ -30,7 +30,7 @@ struct Direction {
 public:
     static void setStems (Music& music)
     {
-        Array < NodePtr > chords (music.getGroupState().reclaimTokens());
+        Array<NodePtr> chords (music.getGroupState().reclaimTokens());
         
         if (chords.size()) {
         //
@@ -69,7 +69,7 @@ private:
     static mica::Concept getDefault (Music& music, NodePtr chord) 
     {
         Array<int> linespaces;
-        Array < NodePtr > notes = music.getAllTokensNext (chord);
+        Array<NodePtr> notes = music.getAllTokensNext (chord);
         
         for (int i = 0; i < notes.size(); ++i) {
             mica::Concept chromatic = notes[i]->getObject().getAttribute (mica::Value);
@@ -80,7 +80,7 @@ private:
         return Utils::getDirection (linespaces);
     }
     
-    static mica::Concept getMixed (Music& music, const Array < NodePtr > & chords, mica::Concept majority)
+    static mica::Concept getMixed (Music& music, const Array<NodePtr>& chords, mica::Concept majority)
     {
         /* Set the stems according to the majority if possible. */
         
@@ -127,7 +127,7 @@ private:
     
     static int getFurthest (Music& music, NodePtr chord) 
     {
-        Array < NodePtr > notes = music.getAllTokensNext (chord);
+        Array<NodePtr> notes = music.getAllTokensNext (chord);
         
         int furthest = 0;
         

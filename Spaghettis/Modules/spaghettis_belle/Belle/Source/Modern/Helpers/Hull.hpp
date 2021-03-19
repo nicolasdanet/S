@@ -24,7 +24,7 @@ struct Hull {
 
 /* Compute the convex hull of a group of stamps into another context. */
 
-static Polygon getHull (Music& music, const Array < NodePtr > & tokens, const Affine& context)
+static Polygon getHull (Music& music, const Array<NodePtr>& tokens, const Affine& context)
 {
     Path path;
         

@@ -50,7 +50,7 @@ void Music::proceed (const Typesetter::Instantwise& f)
 {
     f.start (*this);
     
-    Array < NodePtr > front (getAllIslandsByInstantwise (graph_.getRoot()));
+    Array<NodePtr> front (getAllIslandsByInstantwise (graph_.getRoot()));
     
     for (int i = 0; i < front.size(); ++i) { f.perform (*this, front[i]); }
     
@@ -63,8 +63,8 @@ void Music::proceed (const Typesetter::Instantwise& f)
     if (n == nullptr) { front.resize (front.size() - 1); }
     else {
     //
-    Array < NodePtr > beyond = getAllIslandsByInstantwise (n);
-    Array < NodePtr > previous;
+    Array<NodePtr> beyond = getAllIslandsByInstantwise (n);
+    Array<NodePtr> previous;
     
     for (int i = 0; i < beyond.size(); ++i) { 
         previous.add (graph_.previousByEdge (beyond[i], Labels::partwise()));
@@ -215,7 +215,7 @@ void Typesetters::Spacing::perform (Music& music, NodePtr island) const
     if (kind == mica::TimeSignature) { music.getGroupState().reset(); }
     else if (kind != mica::Barline)  { music.getGroupState().add (token); }
     else {
-        Array < NodePtr > events (music.getGroupState().reclaimTokens());
+        Array<NodePtr> events (music.getGroupState().reclaimTokens());
         if (Density::needExtraSpace (music, events)) {
             for (int i = 0; i < events.size(); ++i) {
                 int instant = music.getIsland (events[i])->getObject().getStamp()->getInstant();
@@ -412,7 +412,7 @@ void Typesetters::Ties::perform (Music& music, NodePtr island) const
     //
     if (token->getObject().getAttribute (mica::Size).getNumerator()) { 
     //
-    Array < NodePtr > notes = music.getAllTokensNext (token);
+    Array<NodePtr> notes = music.getAllTokensNext (token);
     
     for (int i = 0; i < notes.size(); ++i) {
         mica::Concept tie = notes[i]->getObject().getAttribute (mica::Tie);

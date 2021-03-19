@@ -25,8 +25,8 @@ struct Optics {
 public:
     static double nonCollidingByOutlines (const Path& p1, const Path& p2, Point pt, double angle)
     {
-        const Array < Polygon > & a = p1.getOutlines();
-        const Array < Polygon > & f = p2.getOutlines();
+        const Array<Polygon>& a = p1.getOutlines();
+        const Array<Polygon>& f = p2.getOutlines();
                   
         double distance = 0.0;
         

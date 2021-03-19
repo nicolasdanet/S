@@ -27,7 +27,7 @@ struct Stems {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Array<int> getFlags (const Array < NodePtr > & chords)
+static Array<int> getFlags (const Array<NodePtr>& chords)
 {
     Array<int> flags;
     
@@ -38,7 +38,7 @@ static Array<int> getFlags (const Array < NodePtr > & chords)
     return flags;
 }
 
-static Array < mica::Concept > getDirections (const Array < NodePtr > & chords)
+static Array < mica::Concept > getDirections (const Array<NodePtr>& chords)
 {
     Array < mica::Concept > directions;
     
@@ -51,7 +51,7 @@ static Array < mica::Concept > getDirections (const Array < NodePtr > & chords)
 
 /* Get stems bounds into another context (stamp bounds if no stem). */
 
-static Array < Box > getBoxes (Music& music, const Array < NodePtr > & chords, const Affine& context)
+static Array < Box > getBoxes (Music& music, const Array<NodePtr>& chords, const Affine& context)
 {
     Array < Box > stems;
     

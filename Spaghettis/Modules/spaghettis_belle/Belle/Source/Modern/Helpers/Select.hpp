@@ -34,7 +34,7 @@ static bool isSelected (const NodePtr& island)
 
 static bool isGroupSelected (Music& music)
 {
-    const Array < NodePtr > & tokens (music.getGroupState().getTokens());
+    const Array<NodePtr>& tokens (music.getGroupState().getTokens());
     
     /* The group is considered selected if all elements are selected. */
     

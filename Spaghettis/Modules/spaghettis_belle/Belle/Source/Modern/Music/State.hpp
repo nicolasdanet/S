@@ -278,20 +278,20 @@ public:
 // MARK: -
 
 public:
-    const Array < NodePtr > & getTokens() const
+    const Array<NodePtr>& getTokens() const
     {
         return group_;
     }
 
-    Array < NodePtr > reclaimTokens()
+    Array<NodePtr> reclaimTokens()
     {
-        Array < NodePtr > scoped;
+        Array<NodePtr> scoped;
         scoped.swapWith (group_);
         return scoped;
     }
     
 private:
-    Array < NodePtr > group_;
+    Array<NodePtr> group_;
     Table < mica::Concept, Box > boxes_;
 
 private:

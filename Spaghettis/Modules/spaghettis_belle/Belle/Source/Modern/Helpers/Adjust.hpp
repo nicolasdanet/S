@@ -30,7 +30,7 @@ struct Adjust {
 public:
     static void rests (Music& music)
     {
-        Array < NodePtr > tokens (music.getGroupState().reclaimTokens());
+        Array<NodePtr> tokens (music.getGroupState().reclaimTokens());
         
         /* Lonely semibreve must be at the middle place between barlines. */
         /* Avoid collision between rests and beams. */
@@ -46,7 +46,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    static void semibreve (Music& music, const Array < NodePtr > & tokens)
+    static void semibreve (Music& music, const Array<NodePtr>& tokens)
     {
         if (tokens.getFirst()->getObject().getAttribute (mica::Size).getNumerator() == 0) {
         //
@@ -71,11 +71,11 @@ private:
         }
     }
     
-    static void collision (Music& music, const Array < NodePtr > & tokens)
+    static void collision (Music& music, const Array<NodePtr>& tokens)
     {
         bool beamed = false;
         
-        Array < NodePtr > rests;
+        Array<NodePtr> rests;
         
         for (int i = 0; i < tokens.size() - 1; ++i) {
         //
@@ -101,7 +101,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    static void arrange (Music& music, const Array < NodePtr > & rests, Box bounds, mica::Concept direction)
+    static void arrange (Music& music, const Array<NodePtr>& rests, Box bounds, mica::Concept direction)
     {
         bool below = (direction == mica::Up);
         

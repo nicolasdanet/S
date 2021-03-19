@@ -366,7 +366,7 @@ public:
 // MARK: -
 
 public:
-    const Array < Polygon > & getOutlines() const
+    const Array<Polygon>& getOutlines() const
     {
         return outlines_;
     }
@@ -402,7 +402,7 @@ public:
         return box;
     }
 
-    const Array < Instruction > & getInstructions() const
+    const Array<Instruction>& getInstructions() const
     {
         return instructions_;
     }
@@ -442,10 +442,10 @@ public:
     }
     
 private:
-    Array < Instruction > instructions_;
-    Array < Polygon > outlines_;
-    Table < mica::Concept, Box > boxes_;
-    Table < mica::Concept > properties_;
+    Array<Instruction> instructions_;
+    Array<Polygon> outlines_;
+    Table<mica::Concept, Box> boxes_;
+    Table<mica::Concept> properties_;
     Box bounds_;
 
 private:

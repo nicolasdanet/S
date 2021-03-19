@@ -28,12 +28,12 @@ struct Density {
 // MARK: -
 
 public:
-    static bool needExtraSpace (Music& music, const Array < NodePtr > & events) 
+    static bool needExtraSpace (Music& music, const Array<NodePtr>& events) 
     {
         return (getValue (music, events)) > 0;
     }
 
-    static double getUnit (Music& music, const Array < NodePtr > & events)
+    static double getUnit (Music& music, const Array<NodePtr>& events)
     {   
         double k = House::kDensityUnit;
         
@@ -49,7 +49,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    static int getValue (Music& music, const Array < NodePtr > & events)
+    static int getValue (Music& music, const Array<NodePtr>& events)
     {
         /* One point per events superior to a threshold. */
         
@@ -62,7 +62,7 @@ private:
         
         if (events[i]->getObject().getAttribute (mica::Kind) == mica::Chord) {
             if (events[i]->getObject().getAttribute (mica::Size).getNumerator() > 3) { n += 1; }
-            Array < NodePtr > notes = music.getAllTokensNext (events[i]);
+            Array<NodePtr> notes = music.getAllTokensNext (events[i]);
             for (int j = 0; j < notes.size(); ++j) {
                 if (notes[j]->getObject().getAttribute (mica::Tie) != mica::Undefined) { n += 1; };
             }

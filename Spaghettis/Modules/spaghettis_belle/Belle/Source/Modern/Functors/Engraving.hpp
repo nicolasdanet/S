@@ -43,7 +43,7 @@ void Engravers::Chord::engrave (Music& music, NodePtr token, const Pointer < Sta
     
     /* Notes and accidentals. */
     
-    Array < NodePtr > notes = music.getAllTokensNext (token);
+    Array<NodePtr> notes = music.getAllTokensNext (token);
     
     for (int i = 0; i < notes.size(); ++i) {
     //
@@ -79,7 +79,7 @@ void Engravers::Chord::engrave (Music& music, NodePtr token, const Pointer < Sta
     
     if (tuplet == mica::End || nested == mica::End) { 
     //
-    Array < NodePtr > tupletted (music.getGroupState().reclaimTokens());
+    Array<NodePtr> tupletted (music.getGroupState().reclaimTokens());
     
     if (Tupletting::isMixed (tupletted)) {
         int instant = music.getIsland (tupletted.getFirst())->getObject().getStamp()->getInstant();
@@ -297,7 +297,7 @@ void Engravers::KeySignature::engrave (Music& music, NodePtr token, const Pointe
 
 void Engravers::Beam::engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) 
 {
-    Array < NodePtr > beamed (music.getGroupState().reclaimTokens());
+    Array<NodePtr> beamed (music.getGroupState().reclaimTokens());
     
     /* At this point all notes in the group must have stems in the same direction. */
     
@@ -323,7 +323,7 @@ void Engravers::Beam::engrave (Music& music, NodePtr token, const Pointer < Stam
 
 void Engravers::Tuplet::engrave (Music& music, NodePtr token, const Pointer < Stamp > & stamp) 
 {
-    Array < NodePtr > tupletted (music.getGroupState().reclaimTokens());
+    Array<NodePtr> tupletted (music.getGroupState().reclaimTokens());
     
     /* Get the tuplet value. */
     

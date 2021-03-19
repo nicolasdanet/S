@@ -22,7 +22,7 @@ struct Tupletting {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static bool isMixed (const Array < NodePtr > & chords)
+static bool isMixed (const Array<NodePtr>& chords)
 {
     if (chords.size() >= 2) {
     //
@@ -84,7 +84,7 @@ static double getAngle (const Array < Box > & stems, Array < mica::Concept > & d
     return angle;
 }
 
-static mica::Concept getPosition (const Array < NodePtr > & chords, Array < mica::Concept > & directions)
+static mica::Concept getPosition (const Array<NodePtr>& chords, Array < mica::Concept > & directions)
 {
     /* According to majority of stem directions? */
     
@@ -113,7 +113,7 @@ static mica::Concept getPosition (const Array < NodePtr > & chords, Array < mica
 /* The weight for mixed tuplet (e.g. with rest). */
 /* Notice that it returns zero when the tuplet isn't mixed. */
 
-static double getWeight (const Array < NodePtr > & chords) 
+static double getWeight (const Array<NodePtr>& chords) 
 {
     double weight = 0.0;
     

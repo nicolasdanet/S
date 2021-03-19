@@ -182,14 +182,14 @@ public:
 // MARK: -
 
 private:
-    void removeEmpty (Array < NodePtr > & part)
+    void removeEmpty (Array<NodePtr>& part)
     {
-        Array < NodePtr > scoped;
+        Array<NodePtr> scoped;
         for (int i = 0; i < part.size(); ++i) { if (part[i]) { scoped.add (part[i]); } }
         scoped.swapWith (part);
     }
     
-    void connectPartwise (Array < NodePtr > & part)
+    void connectPartwise (Array<NodePtr>& part)
     {
         if (part.size() > 1) {
             for (int i = 1; i < part.size(); ++i) { music_.connect (part[i - 1], part[i], mica::Partwise); }
@@ -198,8 +198,8 @@ private:
     
 private:
     MusicBase music_;
-    Array < NodePtr > upperClef_;
-    Array < NodePtr > lowerClef_;
+    Array<NodePtr> upperClef_;
+    Array<NodePtr> lowerClef_;
     mica::Concept key_;
     int beats_;
     int value_;

@@ -240,7 +240,7 @@ public:
     };
 
 private:
-    Array < Affine > stack_;
+    Array<Affine> stack_;
 
 private:
     PRIM_LEAK_DETECTOR (AffineStack)

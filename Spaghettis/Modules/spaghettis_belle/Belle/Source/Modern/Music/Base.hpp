@@ -317,7 +317,7 @@ protected:
         return graph_.nextByEdge (getIsland (token), Labels::instantwise());
     }
     
-    Array < NodePtr > getAllTokensNext (NodePtr token)
+    Array<NodePtr> getAllTokensNext (NodePtr token)
     {
         return graph_.allNextByEdge (token, Labels::token());
     }
@@ -394,7 +394,7 @@ private:
     
     void cloneTokenRecursive (MusicGraph& scoped, NodePtr cloned, NodePtr token)
     {
-        Array < NodePtr > tokens = graph_.allNextByEdge (token, Labels::token());
+        Array<NodePtr> tokens = graph_.allNextByEdge (token, Labels::token());
         
         for (int i = 0; i < tokens.size(); ++i) {
             NodePtr nextCloned = cloneToken (tokens[i]);
@@ -409,9 +409,9 @@ private:
 // MARK: -
 
 private:
-    Array < NodePtr > getAllIslandsByInstantwise (NodePtr island)
+    Array<NodePtr> getAllIslandsByInstantwise (NodePtr island)
     {
-        Array < NodePtr > nodes;
+        Array<NodePtr> nodes;
         
         NodePtr n (island);
         NodePtr previous (nullptr);
