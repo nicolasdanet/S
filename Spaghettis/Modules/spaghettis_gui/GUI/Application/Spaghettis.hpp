@@ -12,25 +12,25 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Spaghettis {
+class SpaghettisInstance {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Spaghettis() : lookAndFeel_ (std::make_unique<LookAndFeel>())
+    SpaghettisInstance() : lookAndFeel_ (std::make_unique<LookAndFeel>())
     {
     }
     
-    ~Spaghettis()
+    ~SpaghettisInstance()
     {
         jassert (logger_ == nullptr);
         
         clearSingletonInstance();
     }
 
-    JUCE_DECLARE_SINGLETON_SINGLETHREADED (Spaghettis, true)
+    JUCE_DECLARE_SINGLETON_SINGLETHREADED (SpaghettisInstance, true)
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -53,63 +53,63 @@ private:
     Logger *logger_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Spaghettis)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpaghettisInstance)
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Owner {
+class SpaghettisOwner {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Owner() : spaghettis_ (Spaghettis::getInstance())
+    SpaghettisOwner() : spaghettis_ (SpaghettisInstance::getInstance())
     {
         jassert (spaghettis_ != nullptr);
     }
     
-    ~Owner()
+    ~SpaghettisOwner()
     {
-        Spaghettis::deleteInstance();
+        SpaghettisInstance::deleteInstance();
     }
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Owner)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpaghettisOwner)
     
 private:
-    Spaghettis *spaghettis_;
+    SpaghettisInstance *spaghettis_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class SpaghettisPointer {
+class Spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    SpaghettisPointer() : spaghettis_ (Spaghettis::getInstance())
+    Spaghettis() : spaghettis_ (SpaghettisInstance::getInstance())
     {
         jassert (spaghettis_ != nullptr);
     }
-    
-    Spaghettis* operator ->() const
+
+    SpaghettisInstance* operator ->() const
     {
         return spaghettis_;
     }
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpaghettisPointer)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Spaghettis)
     
 private:
-    Spaghettis *spaghettis_;
+    SpaghettisInstance *spaghettis_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

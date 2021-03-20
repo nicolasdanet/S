@@ -32,12 +32,12 @@ public:
 
         setSize (600, 400);
         
-        SpaghettisPointer()->setLogger (this);
+        Spaghettis()->setLogger (this);
     }
     
     ~ConsoleComponent() override
     {
-        SpaghettisPointer()->setLogger (nullptr);
+        Spaghettis()->setLogger (nullptr);
     }
 
 // -----------------------------------------------------------------------------------------------------------

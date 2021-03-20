@@ -30,7 +30,7 @@ public:
 public:
     void initialise (const juce::String&) override
     {
-        juce::LookAndFeel::setDefaultLookAndFeel (spaghettis::SpaghettisPointer()->getLookAndFeel());
+        juce::LookAndFeel::setDefaultLookAndFeel (spaghettis::Spaghettis()->getLookAndFeel());
         
         console_.reset (new spaghettis::Console (getApplicationName()));
     }
@@ -73,7 +73,7 @@ public:
     }
 
 private:
-    spaghettis::Owner spaghettis_;
+    spaghettis::SpaghettisOwner spaghettis_;
     std::unique_ptr<spaghettis::Console> console_;
     
 // -----------------------------------------------------------------------------------------------------------
