@@ -20,9 +20,8 @@ class Window : public juce::DocumentWindow {
 
 public:
     Window (juce::String name) : juce::DocumentWindow (name,
-        juce::Desktop::getInstance().getDefaultLookAndFeel()
-                                    .findColour (ResizableWindow::backgroundColourId),
-        DocumentWindow::allButtons)
+                                    Spaghettis()->findColour (ResizableWindow::backgroundColourId),
+                                    DocumentWindow::allButtons)
     {
         setUsingNativeTitleBar (true);
         setResizable (true, true);

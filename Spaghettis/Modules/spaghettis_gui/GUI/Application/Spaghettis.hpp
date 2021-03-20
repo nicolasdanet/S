@@ -52,6 +52,16 @@ public:
     {
         return lookAndFeel_.get();
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::Colour findColour (int colourId) const
+    {
+        return lookAndFeel_->findColour (colourId);
+    }
     
 private:
     std::unique_ptr<LookAndFeel> lookAndFeel_;
