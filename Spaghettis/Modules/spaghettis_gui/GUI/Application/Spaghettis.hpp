@@ -17,6 +17,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+enum class MessageType { normal, warning, error };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class SpaghettisInstance {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -61,6 +67,12 @@ public:
     juce::Colour findColour (int colourId) const
     {
         return lookAndFeel_->findColour (colourId);
+    }
+
+public:
+    void post (const juce::String& m, MessageType type) const
+    {
+        if (logger_) { logger_->logMessage (m); }
     }
     
 private:
