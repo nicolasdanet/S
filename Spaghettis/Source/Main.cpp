@@ -19,7 +19,7 @@ class SpaghettisApplication : public juce::JUCEApplication {
 // MARK: -
 
 public:
-    SpaghettisApplication() : spaghettis_ (true)
+    SpaghettisApplication()
     {
     }
 
@@ -30,7 +30,7 @@ public:
 public:
     void initialise (const juce::String&) override
     {
-        juce::LookAndFeel::setDefaultLookAndFeel (spaghettis_->getLookAndFeel());
+        juce::LookAndFeel::setDefaultLookAndFeel (spaghettis::SpaghettisPointer()->getLookAndFeel());
         
         console_.reset (new spaghettis::Console (getApplicationName()));
     }
@@ -73,7 +73,7 @@ public:
     }
 
 private:
-    spaghettis::SpaghettisPointer spaghettis_;
+    spaghettis::Owner spaghettis_;
     std::unique_ptr<spaghettis::Console> console_;
     
 // -----------------------------------------------------------------------------------------------------------

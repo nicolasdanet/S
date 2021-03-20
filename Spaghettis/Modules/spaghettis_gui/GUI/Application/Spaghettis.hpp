@@ -25,6 +25,8 @@ public:
     
     ~Spaghettis()
     {
+        jassert (logger_ == nullptr);
+        
         clearSingletonInstance();
     }
 
@@ -58,6 +60,34 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class Owner {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Owner() : spaghettis_ (Spaghettis::getInstance())
+    {
+        jassert (spaghettis_ != nullptr);
+    }
+    
+    ~Owner()
+    {
+        Spaghettis::deleteInstance();
+    }
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Owner)
+    
+private:
+    Spaghettis *spaghettis_;
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class SpaghettisPointer {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -65,25 +95,13 @@ class SpaghettisPointer {
 // MARK: -
 
 public:
-    SpaghettisPointer (bool owner = false) : owned_ (owner), spaghettis_ (Spaghettis::getInstance())
+    SpaghettisPointer() : spaghettis_ (Spaghettis::getInstance())
     {
         jassert (spaghettis_ != nullptr);
     }
     
-    ~SpaghettisPointer()
-    {
-        if (owned_) { Spaghettis::deleteInstance(); } spaghettis_ = nullptr;
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     Spaghettis* operator ->() const
     {
-        jassert (Spaghettis::getInstanceWithoutCreating() != nullptr);
-        
         return spaghettis_;
     }
 
@@ -91,7 +109,6 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpaghettisPointer)
     
 private:
-    bool owned_;
     Spaghettis *spaghettis_;
 };
 
