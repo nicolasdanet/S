@@ -35,6 +35,12 @@ public:
 // MARK: -
 
 public:
+    void setLogger (Logger* logger)
+    {
+        logger_ = logger;
+    }
+    
+public:
     LookAndFeel* getLookAndFeel() const
     {
         return lookAndFeel_.get();
@@ -42,6 +48,7 @@ public:
     
 private:
     std::unique_ptr<LookAndFeel> lookAndFeel_;
+    Logger *logger_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Spaghettis)
@@ -68,6 +75,10 @@ public:
         if (owned_) { Spaghettis::deleteInstance(); } spaghettis_ = nullptr;
     }
     
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     Spaghettis* operator ->() const
     {

@@ -19,15 +19,13 @@ class Logger {
 // MARK: -
 
 public:
-    Logger()
-    {
-    }
-    
     virtual ~Logger()
     {
     }
 
-public:
+protected:
+    Logger() = default;
+    
     Logger (const Logger&) = default;
     Logger (Logger&&) = default;
     Logger& operator = (const Logger&) = default;

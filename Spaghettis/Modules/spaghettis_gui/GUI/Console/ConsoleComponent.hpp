@@ -31,11 +31,13 @@ public:
         text_.setPopupMenuEnabled (false);
 
         setSize (600, 400);
+        
+        SpaghettisPointer()->setLogger (this);
     }
     
     ~ConsoleComponent() override
     {
-    
+        SpaghettisPointer()->setLogger (nullptr);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -76,7 +78,7 @@ private:
             const juce::ScopedLock lock (lock_); scoped.swapWith (messages_);
         }
         
-        for (const juce::String& s : scoped) { logMessageProceed (s); }
+        for (const auto& s : scoped) { logMessageProceed (s); }
     }
     
     void logMessageProceed (const juce::String& m)
