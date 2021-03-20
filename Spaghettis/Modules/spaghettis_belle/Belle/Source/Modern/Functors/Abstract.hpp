@@ -33,15 +33,15 @@ class Engraver {
 // MARK: -
 
 public:
-    Engraver() : selected_ (false)
-    {
-    }
-    
     virtual ~Engraver()
     {
     }
 
-public:
+protected:
+    Engraver() : selected_ (false)
+    {
+    }
+    
     Engraver (const Engraver&) = default;
     Engraver (Engraver&&) = default;
     Engraver& operator = (const Engraver&) = default;
@@ -107,15 +107,13 @@ class Partwise {
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    Partwise()
-    {
-    }
-    
     virtual ~Partwise()
     {
     }
 
-public:
+protected:
+    Partwise() = default;
+    
     Partwise (const Partwise&) = default;
     Partwise (Partwise&&) = default;
     Partwise& operator = (const Partwise&) = default;
@@ -142,15 +140,13 @@ class Instantwise {
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    Instantwise()
-    {
-    }
-    
     virtual ~Instantwise()
     {
     }
 
-public:
+protected:
+    Instantwise() = default;
+    
     Instantwise (const Instantwise&) = default;
     Instantwise (Instantwise&&) = default;
     Instantwise& operator = (const Instantwise&) = default;
