@@ -70,7 +70,7 @@ public:
     }
 
 public:
-    void post (const juce::String& m, MessageType type) const
+    void post (const juce::String& m, MessageType type = MessageType::normal) const
     {
         if (logger_) { logger_->logMessage (m); }
     }
