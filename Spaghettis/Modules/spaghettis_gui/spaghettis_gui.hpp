@@ -20,7 +20,7 @@
   website:            https://github.com/Spaghettis
   license:            BSD
 
-  dependencies:       juce_gui_basics
+  dependencies:       spaghettis_core juce_gui_basics
   OSXFrameworks:
   OSXLibs:
   linuxLibs:

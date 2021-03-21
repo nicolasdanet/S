@@ -247,6 +247,8 @@ PD_LOCAL int main_start (void)
     
     if (!err && !(err = privilege_drop())) {
     //
+    PD_ASSERT (sys_isControlThread());
+    
     denormal_setPolicy();
     
     #if defined ( PD_BUILDING_TERMINAL )

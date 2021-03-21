@@ -50,22 +50,22 @@ PD_LOCAL void   rectangle_add               (t_rectangle *r, int x, int y);
 
 static inline int rectangle_getTopLeftX (t_rectangle *r)
 {
-    return r->rect_topLeftX;
+    return (int)r->rect_topLeftX;
 }
 
 static inline int rectangle_getTopLeftY (t_rectangle *r)
 {
-    return r->rect_topLeftY;
+    return (int)r->rect_topLeftY;
 }
 
 static inline int rectangle_getBottomRightX (t_rectangle *r)
 {
-    return r->rect_bottomRightX;
+    return (int)r->rect_bottomRightX;
 }
 
 static inline int rectangle_getBottomRightY (t_rectangle *r)
 {
-    return r->rect_bottomRightY;
+    return (int)r->rect_bottomRightY;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -74,12 +74,12 @@ static inline int rectangle_getBottomRightY (t_rectangle *r)
 
 static inline int rectangle_getMiddleX (t_rectangle *r)
 {
-    return (r->rect_topLeftX + r->rect_bottomRightX) / 2;
+    return (int)((r->rect_topLeftX + r->rect_bottomRightX) / 2);
 }
 
 static inline int rectangle_getMiddleY (t_rectangle *r)
 {
-    return (r->rect_topLeftY + r->rect_bottomRightY) / 2;
+    return (int)((r->rect_topLeftY + r->rect_bottomRightY) / 2);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -88,12 +88,12 @@ static inline int rectangle_getMiddleY (t_rectangle *r)
 
 static inline int rectangle_getWidth (t_rectangle *r)
 {
-    return r->rect_bottomRightX - r->rect_topLeftX;
+    return (int)(r->rect_bottomRightX - r->rect_topLeftX);
 }
 
 static inline int rectangle_getHeight (t_rectangle *r)
 {
-    return r->rect_bottomRightY - r->rect_topLeftY;
+    return (int)(r->rect_bottomRightY - r->rect_topLeftY);
 }
 
 // -----------------------------------------------------------------------------------------------------------

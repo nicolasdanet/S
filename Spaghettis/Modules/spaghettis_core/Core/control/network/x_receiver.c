@@ -116,7 +116,7 @@ static void receiver_readTextProceed (t_receiver *x, int k, char *t)
 
 static void receiver_readText (t_receiver *x, int fd)
 {
-    char t[RECEIVER_BUFFER_SIZE + 1] = { 0 }; ssize_t k = recv (fd, (void *)t, RECEIVER_BUFFER_SIZE, 0);
+    char t[RECEIVER_BUFFER_SIZE + 1] = { 0 }; int k = (int)recv (fd, (void *)t, RECEIVER_BUFFER_SIZE, 0);
     
     if (k <= 0) { receiver_close (x, fd); } else { receiver_readTextProceed (x, k, t); }
 }
@@ -138,7 +138,7 @@ static void receiver_readBinaryReceived (t_receiver *x, int k, char *t)
 
 static void receiver_readBinary (t_receiver *x, int fd)
 {
-    char t[RECEIVER_BUFFER_SIZE + 1] = { 0 }; ssize_t k = recv (fd, (void *)t, RECEIVER_BUFFER_SIZE, 0);
+    char t[RECEIVER_BUFFER_SIZE + 1] = { 0 }; int k = (int)recv (fd, (void *)t, RECEIVER_BUFFER_SIZE, 0);
     
     if (k <= 0) { receiver_close (x, fd); } else { receiver_readBinaryReceived (x, k, t); }
 }

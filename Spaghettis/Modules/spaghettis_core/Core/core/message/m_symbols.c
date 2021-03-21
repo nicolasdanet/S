@@ -774,7 +774,7 @@ PD_LOCAL void symbols_initialize (void)
     sym_acoustic                                = gensym ("acoustic");
     sym_acoustic__tilde__                       = gensym ("acoustic~");
     sym_activesense                             = gensym ("activesense");
-    sym_adc__tilde__                            = gensym ("adc~"),
+    sym_adc__tilde__                            = gensym ("adc~");
     sym_add                                     = gensym ("add");
     sym_addcomma                                = gensym ("addcomma");
     sym_adddollar                               = gensym ("adddollar");
