@@ -467,74 +467,6 @@ typedef void        (*t_initializerfn)  (void *dest, void *src);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-#if PD_WITH_DEBUG
-
-#define PD_MEMORY_GET(n)                leak_getMemoryChecked ((n), __FUNCTION__, __LINE__)
-#define PD_MEMORY_RESIZE(ptr, m, n)     leak_getMemoryResizeChecked ((ptr), (m), (n), __FUNCTION__, __LINE__)
-#define PD_MEMORY_FREE(ptr)             leak_freeMemoryChecked ((ptr), __FUNCTION__, __LINE__);
-
-#else
-
-#define PD_MEMORY_GET(n)                memory_get ((n))
-#define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResize ((ptr), (m), (n))
-#define PD_MEMORY_FREE(ptr)             memory_free ((ptr))
-
-#endif
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if defined ( PD_BUILDING_TERMINAL )
-
-#if PD_WITH_DEBUG
-
-#define PD_MEMORY_GET(n)                leak_getMemoryChecked ((n), __FUNCTION__, __LINE__)
-#define PD_MEMORY_RESIZE(ptr, m, n)     leak_getMemoryResizeChecked ((ptr), (m), (n), __FUNCTION__, __LINE__)
-#define PD_MEMORY_FREE(ptr)             leak_freeMemoryChecked ((ptr), __FUNCTION__, __LINE__);
-
-#else
-
-#define PD_MEMORY_GET(n)                memory_get ((n))
-#define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResize ((ptr), (m), (n))
-#define PD_MEMORY_FREE(ptr)             memory_free ((ptr))
-
-#endif
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if defined ( PD_BUILDING_TESTS )
-
-#define PD_MEMORY_GET(n)                memory_get ((n))
-#define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResize ((ptr), (m), (n))
-#define PD_MEMORY_FREE(ptr)             memory_free ((ptr))
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if PD_BUILDING_PLUGIN
-
-#define PD_MEMORY_GET(n)                memory_getForExternal ((n))
-#define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResizeForExternal ((ptr), (m), (n))
-#define PD_MEMORY_FREE(ptr)             memory_freeForExternal ((ptr))
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 typedef struct _signal {
     t_float             s_sampleRate;
     int                 s_vectorSize;
@@ -554,70 +486,6 @@ typedef struct _initializer {
     void                *s_rhs;
     t_initializerfn     s_fn;
     } t_initializer;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#define dsp_add1(fn, a)                         chain_append (instance_chainGetTemporary(), \
-                                                                (t_perform)(fn), 1, \
-                                                                (t_int)(a))
-
-#define dsp_add2(fn, a, b)                      chain_append (instance_chainGetTemporary(), \
-                                                                (t_perform)(fn), 2, \
-                                                                (t_int)(a), \
-                                                                (t_int)(b))
-
-#define dsp_add3(fn, a, b, c)                   chain_append (instance_chainGetTemporary(), \
-                                                                (t_perform)(fn), 3, \
-                                                                (t_int)(a), \
-                                                                (t_int)(b), \
-                                                                (t_int)(c))
-
-#define dsp_add4(fn, a, b, c, d)                chain_append (instance_chainGetTemporary(), \
-                                                                (t_perform)(fn), 4, \
-                                                                (t_int)(a), \
-                                                                (t_int)(b), \
-                                                                (t_int)(c), \
-                                                                (t_int)(d))
-
-#define dsp_add5(fn, a, b, c, d, e)             chain_append (instance_chainGetTemporary(), \
-                                                                (t_perform)(fn), 5, \
-                                                                (t_int)(a), \
-                                                                (t_int)(b), \
-                                                                (t_int)(c), \
-                                                                (t_int)(d), \
-                                                                (t_int)(e))
-
-#define dsp_add6(fn, a, b, c, d, e, f)          chain_append (instance_chainGetTemporary(), \
-                                                                (t_perform)(fn), 6, \
-                                                                (t_int)(a), \
-                                                                (t_int)(b), \
-                                                                (t_int)(c), \
-                                                                (t_int)(d), \
-                                                                (t_int)(e), \
-                                                                (t_int)(f))
-
-#define dsp_add7(fn, a, b, c, d, e, f, g)       chain_append (instance_chainGetTemporary(), \
-                                                                (t_perform)(fn), 7, \
-                                                                (t_int)(a), \
-                                                                (t_int)(b), \
-                                                                (t_int)(c), \
-                                                                (t_int)(d), \
-                                                                (t_int)(e), \
-                                                                (t_int)(f), \
-                                                                (t_int)(g))
-
-#define dsp_add8(fn, a, b, c, d, e, f, g, h)    chain_append (instance_chainGetTemporary(), \
-                                                                (t_perform)(fn), 8, \
-                                                                (t_int)(a), \
-                                                                (t_int)(b), \
-                                                                (t_int)(c), \
-                                                                (t_int)(d), \
-                                                                (t_int)(e), \
-                                                                (t_int)(f), \
-                                                                (t_int)(g), \
-                                                                (t_int)(h))
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -900,6 +768,138 @@ PD_DLL void     space_setFloat7                 (t_space *space, t_float f);
 
 #endif
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+#if PD_WITH_DEBUG
+
+#define PD_MEMORY_GET(n)                leak_getMemoryChecked ((n), __FUNCTION__, __LINE__)
+#define PD_MEMORY_RESIZE(ptr, m, n)     leak_getMemoryResizeChecked ((ptr), (m), (n), __FUNCTION__, __LINE__)
+#define PD_MEMORY_FREE(ptr)             leak_freeMemoryChecked ((ptr), __FUNCTION__, __LINE__);
+
+#else
+
+#define PD_MEMORY_GET(n)                memory_get ((n))
+#define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResize ((ptr), (m), (n))
+#define PD_MEMORY_FREE(ptr)             memory_free ((ptr))
+
+#endif
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_TERMINAL )
+
+#if PD_WITH_DEBUG
+
+#define PD_MEMORY_GET(n)                leak_getMemoryChecked ((n), __FUNCTION__, __LINE__)
+#define PD_MEMORY_RESIZE(ptr, m, n)     leak_getMemoryResizeChecked ((ptr), (m), (n), __FUNCTION__, __LINE__)
+#define PD_MEMORY_FREE(ptr)             leak_freeMemoryChecked ((ptr), __FUNCTION__, __LINE__);
+
+#else
+
+#define PD_MEMORY_GET(n)                memory_get ((n))
+#define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResize ((ptr), (m), (n))
+#define PD_MEMORY_FREE(ptr)             memory_free ((ptr))
+
+#endif
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_TESTS )
+
+#define PD_MEMORY_GET(n)                memory_get ((n))
+#define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResize ((ptr), (m), (n))
+#define PD_MEMORY_FREE(ptr)             memory_free ((ptr))
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if PD_BUILDING_PLUGIN
+
+#define PD_MEMORY_GET(n)                memory_getForExternal ((n))
+#define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResizeForExternal ((ptr), (m), (n))
+#define PD_MEMORY_FREE(ptr)             memory_freeForExternal ((ptr))
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#define dsp_add1(fn, a)                         chain_append (instance_chainGetTemporary(), \
+                                                                (t_perform)(fn), 1, \
+                                                                (t_int)(a))
+
+#define dsp_add2(fn, a, b)                      chain_append (instance_chainGetTemporary(), \
+                                                                (t_perform)(fn), 2, \
+                                                                (t_int)(a), \
+                                                                (t_int)(b))
+
+#define dsp_add3(fn, a, b, c)                   chain_append (instance_chainGetTemporary(), \
+                                                                (t_perform)(fn), 3, \
+                                                                (t_int)(a), \
+                                                                (t_int)(b), \
+                                                                (t_int)(c))
+
+#define dsp_add4(fn, a, b, c, d)                chain_append (instance_chainGetTemporary(), \
+                                                                (t_perform)(fn), 4, \
+                                                                (t_int)(a), \
+                                                                (t_int)(b), \
+                                                                (t_int)(c), \
+                                                                (t_int)(d))
+
+#define dsp_add5(fn, a, b, c, d, e)             chain_append (instance_chainGetTemporary(), \
+                                                                (t_perform)(fn), 5, \
+                                                                (t_int)(a), \
+                                                                (t_int)(b), \
+                                                                (t_int)(c), \
+                                                                (t_int)(d), \
+                                                                (t_int)(e))
+
+#define dsp_add6(fn, a, b, c, d, e, f)          chain_append (instance_chainGetTemporary(), \
+                                                                (t_perform)(fn), 6, \
+                                                                (t_int)(a), \
+                                                                (t_int)(b), \
+                                                                (t_int)(c), \
+                                                                (t_int)(d), \
+                                                                (t_int)(e), \
+                                                                (t_int)(f))
+
+#define dsp_add7(fn, a, b, c, d, e, f, g)       chain_append (instance_chainGetTemporary(), \
+                                                                (t_perform)(fn), 7, \
+                                                                (t_int)(a), \
+                                                                (t_int)(b), \
+                                                                (t_int)(c), \
+                                                                (t_int)(d), \
+                                                                (t_int)(e), \
+                                                                (t_int)(f), \
+                                                                (t_int)(g))
+
+#define dsp_add8(fn, a, b, c, d, e, f, g, h)    chain_append (instance_chainGetTemporary(), \
+                                                                (t_perform)(fn), 8, \
+                                                                (t_int)(a), \
+                                                                (t_int)(b), \
+                                                                (t_int)(c), \
+                                                                (t_int)(d), \
+                                                                (t_int)(e), \
+                                                                (t_int)(f), \
+                                                                (t_int)(g), \
+                                                                (t_int)(h))
+                                                                
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
