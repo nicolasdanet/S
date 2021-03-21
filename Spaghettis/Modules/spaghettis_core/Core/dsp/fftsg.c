@@ -641,7 +641,7 @@ void dfst(int n, double *a, double *t, int *ip, double *w)
 /* -------- initializing routines -------- */
 
 
-#include <math.h>
+// -- #include <math.h>
 
 void makewt(int nw, int *ip, double *w)
 {
@@ -754,9 +754,9 @@ void makect(int nc, int *ip, double *c)
 #ifndef CDFT_4THREADS_BEGIN_N
 #define CDFT_4THREADS_BEGIN_N 65536
 #endif
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
+// -- #include <pthread.h>
+// -- #include <stdio.h>
+// -- #include <stdlib.h>
 #define cdft_thread_t pthread_t
 #define cdft_thread_create(thp,func,argp) { \
     if (pthread_create(thp, NULL, func, (void *) argp) != 0) { \
@@ -781,9 +781,9 @@ void makect(int nc, int *ip, double *c)
 #ifndef CDFT_4THREADS_BEGIN_N
 #define CDFT_4THREADS_BEGIN_N 524288
 #endif
-#include <windows.h>
-#include <stdio.h>
-#include <stdlib.h>
+// -- #include <windows.h>
+// -- #include <stdio.h>
+// -- #include <stdlib.h>
 #define cdft_thread_t HANDLE
 #define cdft_thread_create(thp,func,argp) { \
     DWORD thid; \
