@@ -178,8 +178,29 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 #if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL ) || defined ( PD_BUILDING_TESTS )
+    #define PD_BUILDING_PLUGIN      0
+#else
+    #define PD_BUILDING_PLUGIN      1
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if PD_BUILDING_PLUGIN              /* Avoid namespace pollution. */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#include <stdint.h>
+#include <stdlib.h>
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#else
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -247,12 +268,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#else   /* Avoid namespace pollution. */
-
-#include <stdint.h>
-#include <stdlib.h>
-
-#endif
+#endif // PD_BUILDING_PLUGIN
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -494,7 +510,7 @@ typedef void        (*t_initializerfn)  (void *dest, void *src);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL )
+#if defined ( PD_BUILDING_APPLICATION )
 
 #if PD_WITH_DEBUG
 
@@ -508,15 +524,49 @@ typedef void        (*t_initializerfn)  (void *dest, void *src);
 #define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResize ((ptr), (m), (n))
 #define PD_MEMORY_FREE(ptr)             memory_free ((ptr))
 
-#endif // PD_WITH_DEBUG
+#endif
 
-#elif defined ( PD_BUILDING_TESTS )
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_TERMINAL )
+
+#if PD_WITH_DEBUG
+
+#define PD_MEMORY_GET(n)                leak_getMemoryChecked ((n), __FUNCTION__, __LINE__)
+#define PD_MEMORY_RESIZE(ptr, m, n)     leak_getMemoryResizeChecked ((ptr), (m), (n), __FUNCTION__, __LINE__)
+#define PD_MEMORY_FREE(ptr)             leak_freeMemoryChecked ((ptr), __FUNCTION__, __LINE__);
+
+#else
 
 #define PD_MEMORY_GET(n)                memory_get ((n))
 #define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResize ((ptr), (m), (n))
 #define PD_MEMORY_FREE(ptr)             memory_free ((ptr))
 
-#else
+#endif
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_TESTS )
+
+#define PD_MEMORY_GET(n)                memory_get ((n))
+#define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResize ((ptr), (m), (n))
+#define PD_MEMORY_FREE(ptr)             memory_free ((ptr))
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if PD_BUILDING_PLUGIN
 
 #define PD_MEMORY_GET(n)                memory_getForExternal ((n))
 #define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResizeForExternal ((ptr), (m), (n))
@@ -897,15 +947,15 @@ PD_DLL void     space_setFloat7                 (t_space *space, t_float f);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL ) || defined ( PD_BUILDING_TESTS )
-
-#define class_addDSP(c, m) class_addMethod ((c), (t_method)(m), sym__dsp, A_CANT, A_NULL)
-
-#else
+#if PD_BUILDING_PLUGIN
 
 #define class_addDSP(c, m) class_addMethod ((c), (t_method)(m), gensym ("_dsp"), A_CANT, A_NULL)
 
-#endif
+#else
+
+#define class_addDSP(c, m) class_addMethod ((c), (t_method)(m), sym__dsp, A_CANT, A_NULL)
+
+#endif // PD_BUILDING_PLUGIN
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
