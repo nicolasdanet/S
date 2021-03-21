@@ -361,8 +361,6 @@ enum {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL ) || defined ( PD_BUILDING_TESTS )
-
 struct _abstractions;
 struct _clocks;
 struct _dspcontext;
@@ -376,8 +374,6 @@ struct _sfthread;
 struct _vinlet;
 struct _voutlet;
 
-#endif
-
 struct _chain;
 struct _class;
 struct _clock;
@@ -385,8 +381,6 @@ struct _glist;
 struct _inlet;
 struct _outlet;
 struct _space;
-
-#if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL ) || defined ( PD_BUILDING_TESTS )
 
 #define t_abstractions              struct _abstractions
 #define t_clocks                    struct _clocks
@@ -400,8 +394,6 @@ struct _space;
 #define t_sfthread                  struct _sfthread
 #define t_vinlet                    struct _vinlet
 #define t_voutlet                   struct _voutlet
-
-#endif
 
 #define t_chain                     struct _chain
 #define t_class                     struct _class
