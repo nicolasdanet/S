@@ -26,7 +26,7 @@ public:
         text_.setMultiLine (true);
         text_.setReturnKeyStartsNewLine (true);
         text_.setReadOnly (true);
-        text_.setScrollbarsShown (true);
+        text_.setScrollbarsShown (false);
         text_.setCaretVisible (false);
         text_.setPopupMenuEnabled (false);
 
