@@ -453,6 +453,7 @@
 		1739F7431FFCE902004656C4 /* m_ringbuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_ringbuffer.c; sourceTree = "<group>"; };
 		1739F7441FFCE902004656C4 /* m_ringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_ringbuffer.h; sourceTree = "<group>"; };
 		173C807121908E230008BE10 /* d_sigmund.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_sigmund.c; sourceTree = "<group>"; };
+		173F7A7D2607896300ED0B78 /* m_includes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_includes.h; sourceTree = "<group>"; };
 		1746B40723BB36700019EC43 /* d_space.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_space.c; sourceTree = "<group>"; };
 		1747CB45205D4D0A005BE8D7 /* x_micainfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_micainfo.c; sourceTree = "<group>"; };
 		1749719B23FEC7B400627D27 /* m_legacy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_legacy.c; sourceTree = "<group>"; };
@@ -1316,6 +1317,7 @@
 			isa = PBXGroup;
 			children = (
 				378971E21C4F716700263434 /* m_spaghettis.h */,
+				173F7A7D2607896300ED0B78 /* m_includes.h */,
 				378971E31C4F716700263434 /* m_core.h */,
 				17BCAD1921451585001A9C8A /* m_unique.h */,
 				378972001C4F716700263434 /* s_system.h */,

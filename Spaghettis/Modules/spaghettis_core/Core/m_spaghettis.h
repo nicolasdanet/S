@@ -205,55 +205,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include <alloca.h>
-#include <dlfcn.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <float.h>
-#include <ftw.h>
-#include <limits.h>
-#include <math.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <netinet/tcp.h>
-#include <pthread.h>
-#include <sched.h>
-#include <signal.h>
-#include <stdarg.h>
-#include <stddef.h>
-#include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
-#include <syslog.h>
-#include <sys/socket.h>
-#include <sys/stat.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <unistd.h>
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if defined ( __cplusplus )
-
-#include <limits>
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if PD_APPLE
-
-#include <mach-o/dyld.h>
-
-#include <Carbon/Carbon.h>
-#include <CoreAudio/CoreAudio.h>
-#include <AudioUnit/AudioUnit.h>
-#include <CoreMIDI/CoreMIDI.h>
-
-#endif // PD_APPLE
+#include "m_includes.h"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

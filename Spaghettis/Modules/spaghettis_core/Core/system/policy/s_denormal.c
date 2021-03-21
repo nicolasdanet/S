@@ -15,9 +15,6 @@
 
 #if defined ( PD_INTEL ) && defined ( __SSE3__ )
 
-#include <pmmintrin.h>
-#include <xmmintrin.h>
-
 /* < https://www.carlh.net/plugins/denormals.php > */
 /* < https://en.wikipedia.org/wiki/Denormal_number > */
 
