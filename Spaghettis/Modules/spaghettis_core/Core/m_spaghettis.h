@@ -248,6 +248,11 @@
 
 #include <mach-o/dyld.h>
 
+#include <Carbon/Carbon.h>
+#include <CoreAudio/CoreAudio.h>
+#include <AudioUnit/AudioUnit.h>
+#include <CoreMIDI/CoreMIDI.h>
+
 #endif // PD_APPLE
 
 // -----------------------------------------------------------------------------------------------------------
