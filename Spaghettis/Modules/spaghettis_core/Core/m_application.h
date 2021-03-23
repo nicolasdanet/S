@@ -244,25 +244,7 @@ PD_LOCAL t_initializer  *initializer_new        (t_initializerfn fn, void *lhs, 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define class_addDSP(c, m)              class_addMethod ((c), (t_method)(m), sym__dsp, A_CANT, A_NULL)
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if PD_WITH_DEBUG
-
-#define PD_MEMORY_GET(n)                leak_getMemoryChecked ((n), __FUNCTION__, __LINE__)
-#define PD_MEMORY_RESIZE(ptr, m, n)     leak_getMemoryResizeChecked ((ptr), (m), (n), __FUNCTION__, __LINE__)
-#define PD_MEMORY_FREE(ptr)             leak_freeMemoryChecked ((ptr), __FUNCTION__, __LINE__);
-
-#else
-
-#define PD_MEMORY_GET(n)                memory_get ((n))
-#define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResize ((ptr), (m), (n))
-#define PD_MEMORY_FREE(ptr)             memory_free ((ptr))
-
-#endif
+#define class_addDSP(c, m)      class_addMethod ((c), (t_method)(m), sym__dsp, A_CANT, A_NULL)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

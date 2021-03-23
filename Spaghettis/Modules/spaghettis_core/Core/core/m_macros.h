@@ -14,7 +14,25 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define PD_SHORT_FILE       (strrchr (__FILE__, '/') ? strrchr (__FILE__, '/') + 1 : __FILE__)
+#if PD_WITH_DEBUG
+
+#define PD_MEMORY_GET(n)                leak_getMemoryChecked ((n), __FUNCTION__, __LINE__)
+#define PD_MEMORY_RESIZE(ptr, m, n)     leak_getMemoryResizeChecked ((ptr), (m), (n), __FUNCTION__, __LINE__)
+#define PD_MEMORY_FREE(ptr)             leak_freeMemoryChecked ((ptr), __FUNCTION__, __LINE__);
+
+#else
+
+#define PD_MEMORY_GET(n)                memory_get ((n))
+#define PD_MEMORY_RESIZE(ptr, m, n)     memory_getResize ((ptr), (m), (n))
+#define PD_MEMORY_FREE(ptr)             memory_free ((ptr))
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#define PD_SHORT_FILE                   (strrchr (__FILE__, '/') ? strrchr (__FILE__, '/') + 1 : __FILE__)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
