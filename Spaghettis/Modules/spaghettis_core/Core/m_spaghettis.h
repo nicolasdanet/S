@@ -235,8 +235,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#error "Unsupported for now!"
-
 #else
 
 #include "m_includes.h"
