@@ -81,32 +81,4 @@ PD_LOCAL void signal_borrow (t_signal *s, t_signal *toBeBorrowed)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-/* < https://lists.puredata.info/pipermail/pd-dev/2016-11/020878.html > */
-/* < https://lists.puredata.info/pipermail/pd-list/2005-07/029490.html > */
-/* < https://www.mail-archive.com/pd-list@iem.at/msg60031.html > */
-
-PD_EXPORT t_float signal_getSampleRate (t_signal *s)
-{
-    return s->s_sampleRate;
-}
-
-PD_EXPORT int signal_getVectorSize (t_signal *s)
-{
-    return s->s_vectorSize;
-}
-
-PD_EXPORT int signal_getOverlap (t_signal *s)
-{
-    return s->s_overlap;
-}
-
-PD_EXPORT t_sample *signal_getVector (t_signal *s)
-{
-    return s->s_vector;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 

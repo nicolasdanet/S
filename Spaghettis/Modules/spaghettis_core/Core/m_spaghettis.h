@@ -513,54 +513,58 @@ extern "C" {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_DLL const char   *spaghettis_symbolGetName       (t_symbol *s);
+PD_DLL const char   *spaghettis_symbolGetName           (t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_DLL void         *spaghettis_memoryGet           (size_t n);
-PD_DLL void         *spaghettis_memoryResize        (void *ptr, size_t oldSize, size_t newSize);
+PD_DLL void         *spaghettis_memoryGet               (size_t n);
+PD_DLL void         *spaghettis_memoryResize            (void *ptr, size_t oldSize, size_t newSize);
 
-PD_DLL void         spaghettis_memoryFree           (void *ptr);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-PD_DLL t_object     *spaghettis_objectGetTemporary  (t_object *x);
-PD_DLL t_space      *spaghettis_objectGetNewSpace   (t_object *x);
+PD_DLL void         spaghettis_memoryFree               (void *ptr);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_DLL int          spaghettis_isUndoOrEncaspulate  (t_object *x, int flags);
+PD_DLL t_object     *spaghettis_objectGetTemporary      (t_object *x);
+PD_DLL t_space      *spaghettis_objectGetNewSpace       (t_object *x);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+PD_DLL int          spaghettis_isUndoOrEncaspulate      (t_object *x, int flags);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_DLL t_sample *signal_getVector               (t_signal *s);
+PD_DLL t_sample     *spaghettis_signalGetVector         (t_signal *s);
 
-PD_DLL t_float  signal_getSampleRate            (t_signal *s);
-PD_DLL int      signal_getVectorSize            (t_signal *s);
-PD_DLL int      signal_getOverlap               (t_signal *s);
+PD_DLL t_float      spaghettis_signalGetSampleRate      (t_signal *s);
+PD_DLL int          spaghettis_signalGetVectorSize      (t_signal *s);
+PD_DLL int          spaghettis_signalGetOverlap         (t_signal *s);
 
-PD_DLL t_float  space_getFloat0                 (t_space *space);
-PD_DLL t_float  space_getFloat1                 (t_space *space);
-PD_DLL t_float  space_getFloat2                 (t_space *space);
-PD_DLL t_float  space_getFloat3                 (t_space *space);
-PD_DLL t_float  space_getFloat4                 (t_space *space);
-PD_DLL t_float  space_getFloat5                 (t_space *space);
-PD_DLL t_float  space_getFloat6                 (t_space *space);
-PD_DLL t_float  space_getFloat7                 (t_space *space);
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-PD_DLL void     space_setFloat0                 (t_space *space, t_float f);
-PD_DLL void     space_setFloat1                 (t_space *space, t_float f);
-PD_DLL void     space_setFloat2                 (t_space *space, t_float f);
-PD_DLL void     space_setFloat3                 (t_space *space, t_float f);
-PD_DLL void     space_setFloat4                 (t_space *space, t_float f);
-PD_DLL void     space_setFloat5                 (t_space *space, t_float f);
-PD_DLL void     space_setFloat6                 (t_space *space, t_float f);
-PD_DLL void     space_setFloat7                 (t_space *space, t_float f);
+PD_DLL t_float      spaghettis_spaceGetFloat0           (t_space *space);
+PD_DLL t_float      spaghettis_spaceGetFloat1           (t_space *space);
+PD_DLL t_float      spaghettis_spaceGetFloat2           (t_space *space);
+PD_DLL t_float      spaghettis_spaceGetFloat3           (t_space *space);
+PD_DLL t_float      spaghettis_spaceGetFloat4           (t_space *space);
+PD_DLL t_float      spaghettis_spaceGetFloat5           (t_space *space);
+PD_DLL t_float      spaghettis_spaceGetFloat6           (t_space *space);
+PD_DLL t_float      spaghettis_spaceGetFloat7           (t_space *space);
+
+PD_DLL void         spaghettis_spaceSetFloat0           (t_space *space, t_float f);
+PD_DLL void         spaghettis_spaceSetFloat1           (t_space *space, t_float f);
+PD_DLL void         spaghettis_spaceSetFloat2           (t_space *space, t_float f);
+PD_DLL void         spaghettis_spaceSetFloat3           (t_space *space, t_float f);
+PD_DLL void         spaghettis_spaceSetFloat4           (t_space *space, t_float f);
+PD_DLL void         spaghettis_spaceSetFloat5           (t_space *space, t_float f);
+PD_DLL void         spaghettis_spaceSetFloat6           (t_space *space, t_float f);
+PD_DLL void         spaghettis_spaceSetFloat7           (t_space *space, t_float f);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
