@@ -497,7 +497,8 @@ namespace spaghettis { namespace core {
 
 /* Exported for externals. */
 
-#include "libs/spaghettis_externals.c"
+#include "libs/externals/spaghettis_externals.c"
+#include "libs/externals/spaghettis_space.c"
 
 #endif
 
