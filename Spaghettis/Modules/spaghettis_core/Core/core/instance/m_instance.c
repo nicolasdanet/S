@@ -119,28 +119,6 @@ PD_LOCAL void instance_pendingEnd (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* For external objects. */
-
-PD_EXPORT t_object *instance_objectGetTemporary (t_object *x)
-{
-    t_object *old = NULL;
-    
-    if (class_hasDSP (pd_class (x))) {
-        old = garbage_fetch (x);
-    } else {
-        old = instance_pendingFetch (x);
-    }
-    
-    return old;
-}
-
-/* For external objects. */
-
-PD_EXPORT t_space *instance_objectGetNewSpace (t_object *x)
-{
-    return space_new (x);
-}
-
 PD_LOCAL t_pd *instance_objectGetNewest (void)
 {
     return instance_get()->pd_newest;

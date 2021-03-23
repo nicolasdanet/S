@@ -64,6 +64,8 @@ PD_LOCAL void   pd_message                      (t_pd *x, t_symbol *s, int argc,
 PD_LOCAL t_pd   *symbol_getThing                (t_symbol *s);
 PD_LOCAL t_pd   *symbol_getThingByClass         (t_symbol *s, t_class *c);
 
+PD_LOCAL const char *symbol_getName             (t_symbol *s);
+
 PD_LOCAL int    symbol_hasThing                 (t_symbol *s);
 PD_LOCAL int    symbol_hasThingQuiet            (t_symbol *s);
 

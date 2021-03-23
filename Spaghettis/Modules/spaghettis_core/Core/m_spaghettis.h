@@ -510,18 +510,29 @@ extern "C" {
 
 /* Note that NONE of those functions are considered thread-safe. */
 
-PD_DLL const char *symbol_getName           (t_symbol *s);
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
+PD_DLL const char   *spaghettis_symbolGetName       (t_symbol *s);
 
-PD_DLL void *memory_getForExternal          (size_t n);
-PD_DLL void *memory_getResizeForExternal    (void *ptr, size_t oldSize, size_t newSize);
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
-PD_DLL void memory_freeForExternal          (void *ptr);
+PD_DLL void         *spaghettis_memoryGet           (size_t n);
+PD_DLL void         *spaghettis_memoryResize        (void *ptr, size_t oldSize, size_t newSize);
 
-PD_DLL t_object *instance_objectGetTemporary  (t_object *x);
-PD_DLL t_space  *instance_objectGetNewSpace   (t_object *x);
+PD_DLL void         spaghettis_memoryFree           (void *ptr);
 
-PD_DLL int      object_isUndoOrEncaspulate    (t_object *x, int flags);
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+PD_DLL t_object     *spaghettis_objectGetTemporary  (t_object *x);
+PD_DLL t_space      *spaghettis_objectGetNewSpace   (t_object *x);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+PD_DLL int          spaghettis_isUndoOrEncaspulate  (t_object *x, int flags);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
