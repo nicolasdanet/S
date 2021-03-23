@@ -212,8 +212,6 @@
 
 #if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL ) || defined ( PD_BUILDING_TESTS )
 
-#define PD_BUILDING_PLUGIN          0
-    
 #else
 
 #define PD_BUILDING_PLUGIN          1
@@ -223,7 +221,16 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#if PD_BUILDING_PLUGIN
+#if defined ( PD_BUILDING_TESTS )
+#if PD_WITH_DEBUG
+    #error
+#endif
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if defined ( PD_BUILDING_PLUGIN )
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -558,7 +565,7 @@ PD_DLL void     space_setFloat7                 (t_space *space, t_float f);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-} }
+} } // namespace
 
 #endif
 

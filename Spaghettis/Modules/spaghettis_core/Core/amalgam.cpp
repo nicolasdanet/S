@@ -507,7 +507,7 @@ namespace spaghettis { namespace core {
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-} }
+} } // namespace
 
 #endif
 
