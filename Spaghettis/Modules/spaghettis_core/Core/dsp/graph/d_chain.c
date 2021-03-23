@@ -67,7 +67,7 @@ PD_LOCAL int chain_getSize (t_chain *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void chain_append (t_chain *x, t_perform f, int n, ...)
+PD_LOCAL void chain_append (t_chain *x, t_perform f, int n, ...)
 {
     int size = x->x_size + n + 1;
     

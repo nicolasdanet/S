@@ -20,7 +20,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void buffer_append (t_buffer *x, int argc, t_atom *argv)
+PD_LOCAL void buffer_append (t_buffer *x, int argc, t_atom *argv)
 {
     if (argc > 0) {
     //
@@ -45,52 +45,52 @@ PD_EXPORT void buffer_append (t_buffer *x, int argc, t_atom *argv)
     }
 }
 
-PD_EXPORT void buffer_appendAtom (t_buffer *x, t_atom *a)
+PD_LOCAL void buffer_appendAtom (t_buffer *x, t_atom *a)
 {
     buffer_append (x, 1, a);
 }
 
-PD_EXPORT void buffer_appendBuffer (t_buffer *x, t_buffer *y)
+PD_LOCAL void buffer_appendBuffer (t_buffer *x, t_buffer *y)
 {
     buffer_append (x, buffer_getSize (y), buffer_getAtoms (y));
 }
 
-PD_EXPORT void buffer_appendFloat (t_buffer *x, t_float f)
+PD_LOCAL void buffer_appendFloat (t_buffer *x, t_float f)
 {
     t_atom a;
     SET_FLOAT (&a, f);
     buffer_append (x, 1, &a);
 }
 
-PD_EXPORT void buffer_appendSymbol (t_buffer *x, t_symbol *s)
+PD_LOCAL void buffer_appendSymbol (t_buffer *x, t_symbol *s)
 {
     t_atom a;
     SET_SYMBOL (&a, s);
     buffer_append (x, 1, &a);
 }
 
-PD_EXPORT void buffer_appendDollar (t_buffer *x, int n)
+PD_LOCAL void buffer_appendDollar (t_buffer *x, int n)
 {
     t_atom a;
     SET_DOLLAR (&a, n);
     buffer_append (x, 1, &a);
 }
 
-PD_EXPORT void buffer_appendDollarSymbol (t_buffer *x, t_symbol *s)
+PD_LOCAL void buffer_appendDollarSymbol (t_buffer *x, t_symbol *s)
 {
     t_atom a;
     SET_DOLLARSYMBOL (&a, s);
     buffer_append (x, 1, &a);
 }
 
-PD_EXPORT void buffer_appendSemicolon (t_buffer *x)
+PD_LOCAL void buffer_appendSemicolon (t_buffer *x)
 {
     t_atom a;
     SET_SEMICOLON (&a);
     buffer_append (x, 1, &a);
 }
 
-PD_EXPORT void buffer_appendComma (t_buffer *x)
+PD_LOCAL void buffer_appendComma (t_buffer *x)
 {
     t_atom a;
     SET_COMMA (&a);

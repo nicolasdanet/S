@@ -496,6 +496,10 @@ namespace spaghettis { namespace core {
     #include "system/API/s_audio_linux.c"
 #endif
 
+/* Exported for externals. */
+
+#include "libs/spaghettis_externals.c"
+
 #endif
 
 // -----------------------------------------------------------------------------------------------------------

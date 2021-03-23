@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_pd *pd_new (t_class *c)
+PD_LOCAL t_pd *pd_new (t_class *c)
 {
     t_pd *x;
     
@@ -38,7 +38,7 @@ PD_EXPORT t_pd *pd_new (t_class *c)
     return x;
 }
 
-PD_EXPORT void pd_free (t_pd *x)
+PD_LOCAL void pd_free (t_pd *x)
 {
     t_class *c = pd_class (x);
 

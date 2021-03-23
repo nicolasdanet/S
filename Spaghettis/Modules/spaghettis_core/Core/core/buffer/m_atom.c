@@ -67,12 +67,12 @@ static t_error atom_symbolToBackslashedString (t_atom *a, char *s, int size)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void atom_setSymbol (t_atom *a, t_symbol *s)
+PD_LOCAL void atom_setSymbol (t_atom *a, t_symbol *s)
 {
     SET_SYMBOL (a, s);
 }
 
-PD_EXPORT void atom_setFloat (t_atom *a, t_float f)
+PD_LOCAL void atom_setFloat (t_atom *a, t_float f)
 {
     SET_FLOAT (a, f);
 }
@@ -81,7 +81,7 @@ PD_EXPORT void atom_setFloat (t_atom *a, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_float atom_getFloat (t_atom *a)
+PD_LOCAL t_float atom_getFloat (t_atom *a)
 {
     if (IS_FLOAT (a)) { return GET_FLOAT (a); }
     else {
@@ -89,7 +89,7 @@ PD_EXPORT t_float atom_getFloat (t_atom *a)
     }
 }
 
-PD_EXPORT t_float atom_getFloatAtIndex (int n, int argc, t_atom *argv)
+PD_LOCAL t_float atom_getFloatAtIndex (int n, int argc, t_atom *argv)
 {
     if (n >= 0 && n < argc) { return atom_getFloat (argv + n); }
     else {
@@ -97,7 +97,7 @@ PD_EXPORT t_float atom_getFloatAtIndex (int n, int argc, t_atom *argv)
     }
 }
 
-PD_EXPORT t_symbol *atom_getSymbol (t_atom *a)
+PD_LOCAL t_symbol *atom_getSymbol (t_atom *a)
 {
     if (IS_SYMBOL (a)) { return GET_SYMBOL (a); }
     else { 
@@ -105,7 +105,7 @@ PD_EXPORT t_symbol *atom_getSymbol (t_atom *a)
     }
 }
 
-PD_EXPORT t_symbol *atom_getSymbolAtIndex (int n, int argc, t_atom *argv)
+PD_LOCAL t_symbol *atom_getSymbolAtIndex (int n, int argc, t_atom *argv)
 {
     if (n >= 0 && n < argc) { return atom_getSymbol (argv + n); }
     else {
@@ -113,7 +113,7 @@ PD_EXPORT t_symbol *atom_getSymbolAtIndex (int n, int argc, t_atom *argv)
     }
 }
 
-PD_EXPORT t_symbol *atom_getSymbolOrDollarSymbol (t_atom *a)
+PD_LOCAL t_symbol *atom_getSymbolOrDollarSymbol (t_atom *a)
 {
     if ((IS_SYMBOL (a) || IS_DOLLARSYMBOL (a))) { return GET_SYMBOL (a); }
     else { 
@@ -121,7 +121,7 @@ PD_EXPORT t_symbol *atom_getSymbolOrDollarSymbol (t_atom *a)
     }
 }
 
-PD_EXPORT t_symbol *atom_getSymbolOrDollarSymbolAtIndex (int n, int argc, t_atom *argv)
+PD_LOCAL t_symbol *atom_getSymbolOrDollarSymbolAtIndex (int n, int argc, t_atom *argv)
 {
     if (n >= 0 && n < argc) { return atom_getSymbolOrDollarSymbol (argv + n); }
     else {
@@ -257,7 +257,7 @@ PD_LOCAL t_error atom_toString (t_atom *a, char *dest, int size)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT char *atom_atomsToString (int argc, t_atom *argv)
+PD_LOCAL char *atom_atomsToString (int argc, t_atom *argv)
 {
     char *s = NULL;
     t_buffer *t = buffer_new();

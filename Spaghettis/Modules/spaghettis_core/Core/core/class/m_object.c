@@ -493,7 +493,7 @@ static t_float object_getSignalValueAtIndex (t_object *x, int m)
     PD_BUG; return 0.0;
 }
 
-PD_EXPORT void object_getSignalValues (t_object *x, t_buffer *b)
+PD_LOCAL void object_getSignalValues (t_object *x, t_buffer *b)
 {
     int i, n = object_getNumberOfSignalInlets (x);
     
@@ -520,14 +520,14 @@ PD_LOCAL void object_setSignalValues (t_object *x, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void object_copySignalValues (t_object *x, t_object *old)
+PD_LOCAL void object_copySignalValues (t_object *x, t_object *old)
 {
     int i, n = object_getNumberOfSignalInlets (x);
     
     for (i = 0; i < n; i++) { object_setSignalValueAtIndex (x, i, object_getSignalValueAtIndex (old, i)); }
 }
 
-PD_EXPORT void object_fetchAndCopySignalValuesIfRequired (t_object *x)
+PD_LOCAL void object_fetchAndCopySignalValuesIfRequired (t_object *x)
 {
     if (object_dspNeedInitializer (x)) {
     //

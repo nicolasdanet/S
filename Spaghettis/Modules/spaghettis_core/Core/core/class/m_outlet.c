@@ -191,7 +191,7 @@ static void outlet_checkType (t_outlet *x, int match)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void outlet_bang (t_outlet *x)
+PD_LOCAL void outlet_bang (t_outlet *x)
 {
     outlet_checkType (x, outlet_isBang (x));
     
@@ -203,7 +203,7 @@ PD_EXPORT void outlet_bang (t_outlet *x)
     instance_overflowPop();
 }
 
-PD_EXPORT void outlet_float (t_outlet *x, t_float f)
+PD_LOCAL void outlet_float (t_outlet *x, t_float f)
 {
     outlet_checkType (x, outlet_isFloat (x));
         
@@ -215,7 +215,7 @@ PD_EXPORT void outlet_float (t_outlet *x, t_float f)
     instance_overflowPop();
 }
 
-PD_EXPORT void outlet_symbol (t_outlet *x, t_symbol *s)
+PD_LOCAL void outlet_symbol (t_outlet *x, t_symbol *s)
 {
     outlet_checkType (x, outlet_isSymbol (x));
         
@@ -227,7 +227,7 @@ PD_EXPORT void outlet_symbol (t_outlet *x, t_symbol *s)
     instance_overflowPop();
 }
 
-PD_EXPORT void outlet_list (t_outlet *x, int argc, t_atom *argv)
+PD_LOCAL void outlet_list (t_outlet *x, int argc, t_atom *argv)
 {
     outlet_checkType (x, outlet_isList (x));
         
@@ -239,7 +239,7 @@ PD_EXPORT void outlet_list (t_outlet *x, int argc, t_atom *argv)
     instance_overflowPop();
 }
 
-PD_EXPORT void outlet_anything (t_outlet *x, t_symbol *s, int argc, t_atom *argv)
+PD_LOCAL void outlet_anything (t_outlet *x, t_symbol *s, int argc, t_atom *argv)
 {
     outlet_checkType (x, outlet_isAnything (x));
         
@@ -300,37 +300,37 @@ PD_LOCAL t_outlet *outlet_newUndefined (t_object *owner)
     return outlet_new (owner, NULL);
 }
 
-PD_EXPORT t_outlet *outlet_newBang (t_object *owner)
+PD_LOCAL t_outlet *outlet_newBang (t_object *owner)
 {
     return outlet_new (owner, &s_bang);
 }
 
-PD_EXPORT t_outlet *outlet_newFloat (t_object *owner)
+PD_LOCAL t_outlet *outlet_newFloat (t_object *owner)
 {
     return outlet_new (owner, &s_float);
 }
 
-PD_EXPORT t_outlet *outlet_newSymbol (t_object *owner)
+PD_LOCAL t_outlet *outlet_newSymbol (t_object *owner)
 {
     return outlet_new (owner, &s_symbol);
 }
 
-PD_EXPORT t_outlet *outlet_newList (t_object *owner)
+PD_LOCAL t_outlet *outlet_newList (t_object *owner)
 {
     return outlet_new (owner, &s_list);
 }
 
-PD_EXPORT t_outlet *outlet_newAnything (t_object *owner)
+PD_LOCAL t_outlet *outlet_newAnything (t_object *owner)
 {
     return outlet_new (owner, &s_anything);
 }
 
-PD_EXPORT t_outlet *outlet_newMixed (t_object *owner)
+PD_LOCAL t_outlet *outlet_newMixed (t_object *owner)
 {
     return outlet_new (owner, sym_mixed);
 }
 
-PD_EXPORT t_outlet *outlet_newSignal (t_object *owner)
+PD_LOCAL t_outlet *outlet_newSignal (t_object *owner)
 {
     return outlet_new (owner, &s_signal);
 }

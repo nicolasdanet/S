@@ -72,7 +72,7 @@ static t_symbol *generateSymbol (const char *s, t_symbol *alreadyAllocatedSymbol
     return sym;
 }
 
-PD_EXPORT t_symbol *gensym (const char *s)
+PD_LOCAL t_symbol *gensym (const char *s)
 {
     return generateSymbol (s, NULL);
 }

@@ -28,7 +28,7 @@ PD_LOCAL void initializer_proceed (t_initializer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_initializer *initializer_new (t_initializerfn fn, void *lhs, void *rhs)
+PD_LOCAL t_initializer *initializer_new (t_initializerfn fn, void *lhs, void *rhs)
 {
     t_initializer *x = (t_initializer *)PD_MEMORY_GET (sizeof (t_initializer));
     

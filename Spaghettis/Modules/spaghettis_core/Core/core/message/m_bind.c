@@ -169,7 +169,7 @@ PD_LOCAL void bindlist_destroy (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void pd_bind (t_pd *x, t_symbol *s)
+PD_LOCAL void pd_bind (t_pd *x, t_symbol *s)
 {
     PD_ASSERT (s != &s__A);
     PD_ASSERT (s != &s__N);
@@ -240,7 +240,7 @@ PD_LOCAL void pd_unbindQuiet (t_pd *x, t_symbol *s)
     pd_unbindProceed (x, s);
 }
 
-PD_EXPORT void pd_unbind (t_pd *x, t_symbol *s)
+PD_LOCAL void pd_unbind (t_pd *x, t_symbol *s)
 {
     t_error err = pd_unbindProceed (x, s);
     
@@ -278,12 +278,12 @@ static int symbol_hasThingProceed (t_symbol *s, int withError)
     return k;
 }
 
-PD_EXPORT int symbol_hasThingQuiet (t_symbol *s)
+PD_LOCAL int symbol_hasThingQuiet (t_symbol *s)
 {
     return symbol_hasThingProceed (s, 0);
 }
 
-PD_EXPORT int symbol_hasThing (t_symbol *s)
+PD_LOCAL int symbol_hasThing (t_symbol *s)
 {
     return symbol_hasThingProceed (s, 1);
 }
@@ -292,7 +292,7 @@ PD_EXPORT int symbol_hasThing (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_pd *symbol_getThingByClass (t_symbol *s, t_class *c)
+PD_LOCAL t_pd *symbol_getThingByClass (t_symbol *s, t_class *c)
 {
     t_pd *x = NULL;
     
@@ -314,7 +314,7 @@ PD_EXPORT t_pd *symbol_getThingByClass (t_symbol *s, t_class *c)
     return x;
 }
 
-PD_EXPORT t_pd *symbol_getThing (t_symbol *s)
+PD_LOCAL t_pd *symbol_getThing (t_symbol *s)
 {
     if (symbol_hasThingQuiet (s)) { return s->s_thing; }
     else {
@@ -322,7 +322,7 @@ PD_EXPORT t_pd *symbol_getThing (t_symbol *s)
     }
 }
 
-PD_EXPORT const char *symbol_getName (t_symbol *s)
+PD_LOCAL const char *symbol_getName (t_symbol *s)
 {
     return s->s_name;
 }

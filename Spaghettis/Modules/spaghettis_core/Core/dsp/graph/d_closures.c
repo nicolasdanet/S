@@ -65,7 +65,7 @@ PD_LOCAL void fft_stateInitialize (t_FFTState *x, int n)
 
 /* Return if initialization is required (i.e. encapsulation). */
 
-PD_EXPORT int object_dspNeedInitializer (t_object *x)
+PD_LOCAL int object_dspNeedInitializer (t_object *x)
 {
     t_id u = object_getUnique (x);
     t_id s = object_getSource (x);

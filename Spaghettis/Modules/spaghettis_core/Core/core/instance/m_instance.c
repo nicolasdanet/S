@@ -38,7 +38,7 @@ PD_LOCAL void   *atomic_pointerSwap             (void *, t_pointerAtomic *);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_glist *instance_contextGetCurrent (void)
+PD_LOCAL t_glist *instance_contextGetCurrent (void)
 {
     return cast_glist (instance_getBoundX());
 }
@@ -290,7 +290,7 @@ static void instance_chainSetCurrent (t_chain *chain)
     if (oldChain) { chain_release (oldChain); }
 }
 
-PD_EXPORT t_chain *instance_chainGetTemporary (void)
+PD_LOCAL t_chain *instance_chainGetTemporary (void)
 {
     t_chain *chain = instance_get()->pd_build; PD_ASSERT (chain); return chain;
 }

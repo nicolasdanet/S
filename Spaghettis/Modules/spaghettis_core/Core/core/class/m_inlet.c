@@ -216,7 +216,7 @@ PD_LOCAL void inlet_setHot (t_inlet *x)
 
 /* Typed inlet that just store the incoming value. */
 
-PD_EXPORT t_inlet *inlet_newFloat (t_object *owner, t_float *fp)
+PD_LOCAL t_inlet *inlet_newFloat (t_object *owner, t_float *fp)
 {
     t_inlet *x = (t_inlet *)pd_new (floatinlet_class);
     
@@ -234,7 +234,7 @@ PD_EXPORT t_inlet *inlet_newFloat (t_object *owner, t_float *fp)
     return x;
 }
 
-PD_EXPORT t_inlet *inlet_newSymbol (t_object *owner, t_symbol **sp)
+PD_LOCAL t_inlet *inlet_newSymbol (t_object *owner, t_symbol **sp)
 {
     t_inlet *x = (t_inlet *)pd_new (symbolinlet_class);
     
@@ -255,7 +255,7 @@ PD_EXPORT t_inlet *inlet_newSymbol (t_object *owner, t_symbol **sp)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_EXPORT t_inlet *inlet_newSignal (t_object *owner)
+PD_LOCAL t_inlet *inlet_newSignal (t_object *owner)
 {
     t_inlet *x = inlet_new (owner, NULL, &s_signal, NULL);
     

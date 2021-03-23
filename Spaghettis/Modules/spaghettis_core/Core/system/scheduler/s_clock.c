@@ -182,7 +182,7 @@ PD_LOCAL void clock_execute (t_clock *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_clock *clock_new (void *owner, t_method fn)
+PD_LOCAL t_clock *clock_new (void *owner, t_method fn)
 {
     t_clock *x = (t_clock *)PD_MEMORY_GET (sizeof (t_clock));
     
@@ -194,7 +194,7 @@ PD_EXPORT t_clock *clock_new (void *owner, t_method fn)
     return x;
 }
 
-PD_EXPORT void clock_free (t_clock *x)
+PD_LOCAL void clock_free (t_clock *x)
 {
     instance_clocksDestroy (x);
 }
@@ -203,7 +203,7 @@ PD_EXPORT void clock_free (t_clock *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void clock_unset (t_clock *x)
+PD_LOCAL void clock_unset (t_clock *x)
 {
     instance_clocksRemove (x);
 }
@@ -236,7 +236,7 @@ static double clock_quantum (t_clock *x, double t)
     return d;
 }
 
-PD_EXPORT void clock_delay (t_clock *x, double delay)       /* Could be in milliseconds or in samples. */
+PD_LOCAL void clock_delay (t_clock *x, double delay)       /* Could be in milliseconds or in samples. */
 {
     clock_set (x, scheduler_getLogicalTimeAfter (clock_quantum (x, delay)));
 }

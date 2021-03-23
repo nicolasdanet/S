@@ -23,6 +23,7 @@
 		1723FBCF2302F23600C0F975 /* core_audiodevicelist.c in Sources */ = {isa = PBXBuildFile; fileRef = 1723FBC92302F1E000C0F975 /* core_audiodevicelist.c */; };
 		1723FBD02302F23600C0F975 /* core_audiostream.c in Sources */ = {isa = PBXBuildFile; fileRef = 1723FBC82302F1E000C0F975 /* core_audiostream.c */; };
 		1723FBD12302F23600C0F975 /* core_audiograph.c in Sources */ = {isa = PBXBuildFile; fileRef = 1723FBC72302F1E000C0F975 /* core_audiograph.c */; };
+		172457D92609D182008D5035 /* spaghettis_externals.c in Sources */ = {isa = PBXBuildFile; fileRef = 172457D82609D182008D5035 /* spaghettis_externals.c */; };
 		17289D0422A152E0000C4D9B /* x_directories.c in Sources */ = {isa = PBXBuildFile; fileRef = 17289D0322A152E0000C4D9B /* x_directories.c */; };
 		172ACDDA2439D2B7008F56DE /* m_fileproperties.c in Sources */ = {isa = PBXBuildFile; fileRef = 172ACDD92439D2B7008F56DE /* m_fileproperties.c */; };
 		172E0EC12483A7D000D0E711 /* m_polling.c in Sources */ = {isa = PBXBuildFile; fileRef = 172E0EC02483A7D000D0E711 /* m_polling.c */; };
@@ -419,6 +420,8 @@
 		1723FBCA2302F1E000C0F975 /* core_audiodevice.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = core_audiodevice.c; sourceTree = "<group>"; };
 		1723FBCB2302F1E000C0F975 /* core_audio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_audio.h; sourceTree = "<group>"; };
 		1723FBCC2302F20C00C0F975 /* s_audio_mac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_audio_mac.c; sourceTree = "<group>"; };
+		172457D82609D182008D5035 /* spaghettis_externals.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = spaghettis_externals.c; sourceTree = "<group>"; };
+		172457DB2609D2FE008D5035 /* m_application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_application.h; sourceTree = "<group>"; };
 		17262FF92487870E00803F0F /* s_privilege.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_privilege.h; sourceTree = "<group>"; };
 		17262FFA2487870E00803F0F /* s_denormal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_denormal.h; sourceTree = "<group>"; };
 		17262FFB2487890400803F0F /* m_path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_path.h; sourceTree = "<group>"; };
@@ -1319,6 +1322,7 @@
 				378971E21C4F716700263434 /* m_spaghettis.h */,
 				173F7A7D2607896300ED0B78 /* m_includes.h */,
 				378971E31C4F716700263434 /* m_core.h */,
+				172457DB2609D2FE008D5035 /* m_application.h */,
 				17BCAD1921451585001A9C8A /* m_unique.h */,
 				378972001C4F716700263434 /* s_system.h */,
 				378971C21C4F716700263434 /* g_graphic.h */,
@@ -1619,6 +1623,7 @@
 		37961C251CAD85DB00859402 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				172457D82609D182008D5035 /* spaghettis_externals.c */,
 				1723FBC62302F1E000C0F975 /* core */,
 			);
 			path = libs;
@@ -1942,6 +1947,7 @@
 				17A800BB228410B900AD0E4E /* x_oscbundle.c in Sources */,
 				1794F88422B68E0E00A91EEA /* m_abstractions.c in Sources */,
 				378972221C4F716800263434 /* d_ugen.c in Sources */,
+				172457D92609D182008D5035 /* spaghettis_externals.c in Sources */,
 				378972231C4F716800263434 /* g_garray.c in Sources */,
 				17A01DC11F70E74600BE34E2 /* x_listgroup.c in Sources */,
 				17C02C062015EDD100C7EDEE /* d_functions.c in Sources */,

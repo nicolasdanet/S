@@ -48,7 +48,7 @@ static void post_console (int k, const char *s)
 
 /* Note that it is NOT thread-safe. */
 
-PD_EXPORT void post (const char *fmt, ...)
+PD_LOCAL void post (const char *fmt, ...)
 {
     int k;
     char t[PD_STRING] = { 0 };
@@ -63,7 +63,7 @@ PD_EXPORT void post (const char *fmt, ...)
     post_console (k, t);
 }
 
-PD_EXPORT void post_warning (const char *fmt, ...)
+PD_LOCAL void post_warning (const char *fmt, ...)
 {
     int k;
     char t[PD_STRING] = { 0 };
@@ -78,7 +78,7 @@ PD_EXPORT void post_warning (const char *fmt, ...)
     post_console (k, t);
 }
 
-PD_EXPORT void post_error (const char *fmt, ...)
+PD_LOCAL void post_error (const char *fmt, ...)
 {
     int k;
     char t[PD_STRING] = { 0 };

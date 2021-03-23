@@ -6,43 +6,28 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "../../m_spaghettis.h"
-#include "../../m_core.h"
+#include "../m_spaghettis.h"
+#include "../m_core.h"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *memory_get (size_t n)
-{
-    void *r = calloc (n < 1 ? 1 : n, 1);
+/* In debug build memory leaks for externals are globally tracked. */
 
-    PD_ASSERT (r != NULL);
-    PD_ABORT  (r == NULL);
-    
-    return r;
+PD_EXPORT void *memory_getForExternal (size_t n)
+{
+    return PD_MEMORY_GET (n);
 }
 
-PD_LOCAL void *memory_getResize (void *ptr, size_t oldSize, size_t newSize)
+PD_EXPORT void *memory_getResizeForExternal (void *ptr, size_t oldSize, size_t newSize)
 {
-    void *r = NULL;
-    
-    if (oldSize < 1) { oldSize = 1; }
-    if (newSize < 1) { newSize = 1; }
-    
-    r = realloc (ptr, newSize);
-    
-    PD_ASSERT (r != NULL);
-    PD_ABORT  (r == NULL);
-    
-    if (newSize > oldSize) { memset (((char *)r) + oldSize, 0, newSize - oldSize); }
-    
-    return r;
+    return PD_MEMORY_RESIZE (ptr, oldSize, newSize);
 }
 
-PD_LOCAL void memory_free (void *ptr)
+PD_EXPORT void memory_freeForExternal (void *ptr)
 {
-    free (ptr);
+    PD_MEMORY_FREE (ptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------
