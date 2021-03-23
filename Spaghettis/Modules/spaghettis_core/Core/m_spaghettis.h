@@ -503,6 +503,9 @@ extern "C" {
 
 /* Note that NONE of those functions are considered thread-safe. */
 
+PD_DLL const char *symbol_getName           (t_symbol *s);
+
+
 PD_DLL void *memory_getForExternal          (size_t n);
 PD_DLL void *memory_getResizeForExternal    (void *ptr, size_t oldSize, size_t newSize);
 

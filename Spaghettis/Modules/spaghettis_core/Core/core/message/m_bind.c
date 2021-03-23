@@ -322,7 +322,7 @@ PD_LOCAL t_pd *symbol_getThing (t_symbol *s)
     }
 }
 
-PD_LOCAL const char *symbol_getName (t_symbol *s)
+PD_EXPORT const char *symbol_getName (t_symbol *s)
 {
     return s->s_name;
 }

@@ -64,8 +64,6 @@ PD_LOCAL void     pd_message                    (t_pd *x, t_symbol *s, int argc,
 PD_LOCAL t_pd     *symbol_getThing              (t_symbol *s);
 PD_LOCAL t_pd     *symbol_getThingByClass       (t_symbol *s, t_class *c);
 
-PD_LOCAL const char *symbol_getName             (t_symbol *s);
-
 PD_LOCAL int      symbol_hasThing               (t_symbol *s);
 PD_LOCAL int      symbol_hasThingQuiet          (t_symbol *s);
 
@@ -92,7 +90,7 @@ PD_LOCAL void     class_addList                 (t_class *c, t_method fn);
 PD_LOCAL void     class_addAnything             (t_class *c, t_method fn);
 
 PD_LOCAL void     class_setHelpName             (t_class *c, t_symbol *s);
-PD_LOCAL void     class_setHelpDirectory        (t_class *c, t_symbol *s);
+PD_FORCE void     class_setHelpDirectory        (t_class *c, t_symbol *s);
 
 PD_LOCAL void     class_setDataFunction         (t_class *c, t_datafn f);
 PD_LOCAL void     class_setDismissFunction      (t_class *c, t_dismissfn f);
@@ -144,8 +142,8 @@ PD_LOCAL void     outlet_anything               (t_outlet *x, t_symbol *s, int a
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void     atom_setSymbol                (t_atom *a, t_symbol *s);
-PD_LOCAL void     atom_setFloat                 (t_atom *a, t_float f);
+PD_FORCE void     atom_setSymbol                (t_atom *a, t_symbol *s);
+PD_FORCE void     atom_setFloat                 (t_atom *a, t_float f);
 
 PD_LOCAL t_float  atom_getFloat                 (t_atom *a);
 PD_LOCAL t_float  atom_getFloatAtIndex          (int n, int argc, t_atom *argv);
@@ -182,7 +180,7 @@ PD_LOCAL t_error  buffer_setAtIndex             (t_buffer *x, int n, t_atom *a);
 PD_LOCAL t_error  buffer_insertAtIndex          (t_buffer *x, int n, t_atom *a);
 PD_LOCAL t_error  buffer_pop                    (t_buffer *x, t_atom *a);
 
-PD_LOCAL t_error  buffer_setFloatAtIndex        (t_buffer *x, int n, t_float f);
+PD_FORCE t_error  buffer_setFloatAtIndex        (t_buffer *x, int n, t_float f);
 PD_LOCAL t_error  buffer_setSymbolAtIndex       (t_buffer *x, int n, t_symbol *s);
 
 PD_LOCAL t_float  buffer_getFloatAtIndex        (t_buffer *x, int n);
