@@ -30,6 +30,7 @@
 # python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/*.c Examples/*.cpp
 
 python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/hello.c
+python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloRoot.c
 
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------

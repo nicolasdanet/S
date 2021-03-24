@@ -52,6 +52,11 @@ PD_EXPORT void spaghettis_classAddAnything (t_class *c, t_method fn)
     class_addAnything (c, fn);
 }
 
+PD_EXPORT void spaghettis_classSetHelpDirectory (t_class *c, t_symbol *s)
+{
+    class_setHelpDirectory (c, s);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

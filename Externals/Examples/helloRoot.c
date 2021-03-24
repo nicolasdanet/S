@@ -31,12 +31,12 @@ static t_symbol *hello_path;
 
 static void hello_bang (t_hello *x)
 {
-    post ("%s", symbol_getName (hello_path));
+    spaghettis_post (spaghettis_symbolGetName (hello_path));
 }
 
 static void *hello_new (void)
 {
-    return pd_new (hello_class);
+    return spaghettis_objectNew (hello_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -49,16 +49,13 @@ PD_STUB void helloRoot_setup (t_symbol *s)
 {
     t_class *c = NULL;
     
-    c = class_new (gensym ("helloRoot"),
-            (t_newmethod)hello_new,
-            NULL,
-            sizeof (t_hello),
-            CLASS_BOX,
-            A_NULL);
+    t_symbol *name = spaghettis_makeSymbol ("helloRoot");
     
-    class_addBang (c, (t_method)hello_bang);
+    c = spaghettis_classNew (name, (t_newmethod)hello_new, NULL, sizeof (t_hello));
     
-    class_setHelpDirectory (c, s);          /* Use it to locate the depedencies for instance. */
+    spaghettis_classAddBang (c, (t_method)hello_bang);
+    
+    spaghettis_classSetHelpDirectory (c, s);    /* Use it to locate the depedencies for instance. */
     
     hello_class = c;
     hello_path  = s;
@@ -66,7 +63,7 @@ PD_STUB void helloRoot_setup (t_symbol *s)
 
 PD_STUB void helloRoot_destroy (void)
 {
-    class_free (hello_class);
+    spaghettis_classFree (hello_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------

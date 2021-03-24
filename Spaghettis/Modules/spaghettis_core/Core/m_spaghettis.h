@@ -524,6 +524,8 @@ PD_DLL void         spaghettis_classAddSymbol           (t_class *c, t_method fn
 PD_DLL void         spaghettis_classAddList             (t_class *c, t_method fn);
 PD_DLL void         spaghettis_classAddAnything         (t_class *c, t_method fn);
 
+PD_DLL void         spaghettis_classSetHelpDirectory    (t_class *c, t_symbol *s);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
