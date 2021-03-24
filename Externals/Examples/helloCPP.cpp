@@ -30,12 +30,12 @@ class Jojo {
     public:
         Jojo()
         {
-            post ("Jojo contructor...");
+            spaghettis_post ("Jojo contructor...");
         }
     
         ~Jojo()
         {
-            post ("Jojo destructor...");
+            spaghettis_post ("Jojo destructor...");
         }
 };
 
@@ -68,7 +68,7 @@ static t_class *hello_class;
 
 static void hello_bang (t_hello *x)
 {
-    post ("C++ spoken!");   // --
+    spaghettis_post ("CPP spoken!");
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ static void *hello_new (void)
 {
     t_hello *x = NULL;
 
-    if ((x = (t_hello *)pd_new (hello_class))) {
+    if ((x = (t_hello *)spaghettis_objectNew (hello_class))) {
     //
     t_error err = (x->x_error = PD_ERROR_NONE);
     
@@ -98,8 +98,7 @@ static void *hello_new (void)
     }
     
     if (err) {
-        pd_free ((t_pd *)x);
-        x = NULL;
+        spaghettis_objectFree ((t_object *)x); x = NULL;
     }
     //
     }
@@ -122,21 +121,20 @@ PD_STUB void helloCPP_setup (t_symbol *s)
 {
     t_class *c = NULL;
     
-    c = class_new (gensym ("helloCPP"),
+    c = spaghettis_classNew (spaghettis_makeSymbol ("helloCPP"),
             (t_newmethod)hello_new,
             (t_method)hello_free,
             sizeof (t_hello),
-            CLASS_BOX,
-            A_NULL);
+            CLASS_BOX);
     
-    class_addBang (c, (t_method)hello_bang);
+    spaghettis_classAddBang (c, (t_method)hello_bang);
     
     hello_class = c;
 }
 
 PD_STUB void helloCPP_destroy (void)
 {
-    class_free (hello_class);
+    spaghettis_classFree (hello_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------
