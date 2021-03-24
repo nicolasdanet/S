@@ -511,18 +511,47 @@ extern "C" {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+PD_DLL t_class      *spaghettis_classNew    (t_symbol *name, t_newmethod fnNew, t_method fnFree, size_t size);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+PD_DLL void         spaghettis_classFree                (t_class *c);
+
+PD_DLL void         spaghettis_classAddBang             (t_class *c, t_method fn);
+PD_DLL void         spaghettis_classAddFloat            (t_class *c, t_method fn);
+PD_DLL void         spaghettis_classAddSymbol           (t_class *c, t_method fn);
+PD_DLL void         spaghettis_classAddList             (t_class *c, t_method fn);
+PD_DLL void         spaghettis_classAddAnything         (t_class *c, t_method fn);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+PD_DLL void         spaghettis_post                     (const char *s);
+PD_DLL void         spaghettis_postWarning              (const char *s);
+PD_DLL void         spaghettis_postError                (const char *s);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+PD_DLL t_symbol     *spaghettis_makeSymbol              (const char *s);
+
 PD_DLL const char   *spaghettis_symbolGetName           (t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 PD_DLL void         *spaghettis_memoryGet               (size_t n);
-PD_DLL void         *spaghettis_memoryResize            (void *ptr, size_t oldSize, size_t newSize);
+PD_DLL void         *spaghettis_memoryResize            (void *m, size_t oldSize, size_t newSize);
 
-PD_DLL void         spaghettis_memoryFree               (void *ptr);
+PD_DLL void         spaghettis_memoryFree               (void *m);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+PD_DLL t_object     *spaghettis_objectNew               (t_class *c);
+
+PD_DLL void         spaghettis_objectFree               (t_object *x);
 
 PD_DLL t_object     *spaghettis_objectGetTemporary      (t_object *x);
 PD_DLL t_space      *spaghettis_objectGetNewSpace       (t_object *x);
@@ -530,7 +559,7 @@ PD_DLL t_space      *spaghettis_objectGetNewSpace       (t_object *x);
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_DLL int          spaghettis_isUndoOrEncaspulate      (t_object *x, int flags);
+PD_DLL int  spaghettis_objectFlagIsUndoOrEncaspulate    (t_object *x, int flags);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

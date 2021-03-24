@@ -13,6 +13,73 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_EXPORT t_class *spaghettis_classNew (t_symbol *name, t_newmethod fnNew, t_method fnFree, size_t size)
+{
+    return class_new (name, fnNew, fnFree, size, CLASS_BOX, A_NULL);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_EXPORT void spaghettis_classFree (t_class *c)
+{
+    class_free (c);
+}
+
+PD_EXPORT void spaghettis_classAddBang (t_class *c, t_method fn)
+{
+    class_addBang (c, fn);
+}
+
+PD_EXPORT void spaghettis_classAddFloat (t_class *c, t_method fn)
+{
+    class_addFloat (c, fn);
+}
+
+PD_EXPORT void spaghettis_classAddSymbol (t_class *c, t_method fn)
+{
+    class_addSymbol (c, fn);
+}
+
+PD_EXPORT void spaghettis_classAddList (t_class *c, t_method fn)
+{
+    class_addList (c, fn);
+}
+
+PD_EXPORT void spaghettis_classAddAnything (t_class *c, t_method fn)
+{
+    class_addAnything (c, fn);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_EXPORT void spaghettis_post (const char *s)
+{
+    post (s);
+}
+
+PD_EXPORT void spaghettis_postWarning (const char *s)
+{
+    post_warning (s);
+}
+
+PD_EXPORT void spaghettis_postError (const char *s)
+{
+    post_error (s);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_EXPORT t_symbol *spaghettis_makeSymbol (const char *s)
+{
+    return gensym (s);
+}
+
 PD_EXPORT const char *spaghettis_symbolGetName (t_symbol *s)
 {
     return symbol_getName (s);
@@ -29,19 +96,29 @@ PD_EXPORT void *spaghettis_memoryGet (size_t n)
     return PD_MEMORY_GET (n);
 }
 
-PD_EXPORT void *spaghettis_memoryResize (void *ptr, size_t oldSize, size_t newSize)
+PD_EXPORT void *spaghettis_memoryResize (void *m, size_t oldSize, size_t newSize)
 {
-    return PD_MEMORY_RESIZE (ptr, oldSize, newSize);
+    return PD_MEMORY_RESIZE (m, oldSize, newSize);
 }
 
-PD_EXPORT void spaghettis_memoryFree (void *ptr)
+PD_EXPORT void spaghettis_memoryFree (void *m)
 {
-    PD_MEMORY_FREE (ptr);
+    PD_MEMORY_FREE (m);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+PD_EXPORT t_object *spaghettis_objectNew (t_class *c)
+{
+    t_pd *x = pd_new (c); return cast_object (x);
+}
+
+PD_EXPORT void spaghettis_objectFree (t_object *x)
+{
+    pd_free (cast_pd (x));
+}
 
 PD_EXPORT t_object *spaghettis_objectGetTemporary (t_object *x)
 {
@@ -65,7 +142,7 @@ PD_EXPORT t_space *spaghettis_objectGetNewSpace (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT int spaghettis_isUndoOrEncaspulate (t_object *x, int flags)
+PD_EXPORT int spaghettis_objectFlagIsUndoOrEncaspulate (t_object *x, int flags)
 {
     return SAVED_DEEP (flags);
 }
