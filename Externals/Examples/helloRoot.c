@@ -47,11 +47,9 @@ static void *hello_new (void)
 
 PD_STUB void helloRoot_setup (t_symbol *s)
 {
-    t_class *c = NULL;
-    
     t_symbol *name = spaghettis_makeSymbol ("helloRoot");
     
-    c = spaghettis_classNew (name, (t_newmethod)hello_new, NULL, sizeof (t_hello), CLASS_BOX);
+    t_class *c = spaghettis_classNew (name, (t_newmethod)hello_new, NULL, sizeof (t_hello), CLASS_BOX);
     
     spaghettis_classAddBang (c, (t_method)hello_bang);
     

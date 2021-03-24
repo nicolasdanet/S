@@ -30,7 +30,7 @@ static t_class *hello_class;
 
 static void *hello_new (void)
 {
-    return pd_new (hello_class);
+    return spaghettis_objectNew (hello_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -39,14 +39,11 @@ static void *hello_new (void)
 
 PD_STUB void helloRelease_setup (t_symbol *s)
 {
-    t_class *c = NULL;
+    t_symbol *name = spaghettis_makeSymbol ("helloRelease");
     
-    c = class_new (gensym ("helloRelease"),
-            (t_newmethod)hello_new,
-            NULL,
-            sizeof (t_hello),
-            CLASS_BOX | CLASS_NOINLET,              /* Avoid the default inlet. */
-            A_NULL);
+    int flags = CLASS_BOX | CLASS_NOINLET;      /* Avoid the default inlet. */
+    
+    t_class *c = spaghettis_classNew (name, (t_newmethod)hello_new, NULL, sizeof (t_hello), flags);
     
     hello_class = c;
 }
@@ -62,7 +59,7 @@ PD_STUB void helloRelease_destroy (void)
 {
     /* Here you can release an external resource acquired. */
     
-    class_free (hello_class);   /* Required to track memory leaks. */
+    spaghettis_classFree (hello_class);         /* Required to track memory leaks. */
 }
 
 // -----------------------------------------------------------------------------------------------------------

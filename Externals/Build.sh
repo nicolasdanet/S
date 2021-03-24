@@ -27,10 +27,11 @@
 
 # Requires Python (>= 3.4) installed.
 
-# python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/*.c Examples/*.cpp
-
 python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/hello.c
 python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloRoot.c
+python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloRelease.c
+
+# python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/*.c Examples/*.cpp
 
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
