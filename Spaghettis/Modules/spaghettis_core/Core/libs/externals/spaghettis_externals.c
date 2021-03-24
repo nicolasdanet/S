@@ -13,9 +13,13 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_class *spaghettis_classNew (t_symbol *name, t_newmethod fnNew, t_method fnFree, size_t size)
+PD_EXPORT t_class *spaghettis_classNew (t_symbol *name,
+    t_newmethod fnNew,
+    t_method    fnFree,
+    size_t      size,
+    int         flags)
 {
-    return class_new (name, fnNew, fnFree, size, CLASS_BOX, A_NULL);
+    return class_new (name, fnNew, fnFree, size, flags, A_NULL);
 }
 
 // -----------------------------------------------------------------------------------------------------------

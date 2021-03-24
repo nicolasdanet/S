@@ -48,7 +48,9 @@ PD_STUB void hello_setup (t_symbol *s)          /* MUST be the name of the file 
     
     /* MUST contains (at least) a class with the file name. */
     
-    c = spaghettis_classNew (spaghettis_makeSymbol ("hello"), (t_newmethod)hello_new, NULL, sizeof (t_hello));
+    t_symbol *name = spaghettis_makeSymbol ("hello");
+    
+    c = spaghettis_classNew (name, (t_newmethod)hello_new, NULL, sizeof (t_hello), CLASS_BOX);
     
     spaghettis_classAddBang (c, (t_method)hello_bang);
     
