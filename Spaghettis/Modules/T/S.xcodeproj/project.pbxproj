@@ -36,6 +36,8 @@
 		17304EBD1F77DA3E00DCA7EC /* x_dspstatus.c in Sources */ = {isa = PBXBuildFile; fileRef = 17304EBC1F77DA3E00DCA7EC /* x_dspstatus.c */; };
 		173493FC2254B2AF00F6A387 /* m_identifiers.c in Sources */ = {isa = PBXBuildFile; fileRef = 173493FB2254B2AF00F6A387 /* m_identifiers.c */; };
 		173673BD205E9EE60078832A /* x_micaindex.c in Sources */ = {isa = PBXBuildFile; fileRef = 173673BC205E9EE60078832A /* x_micaindex.c */; };
+		1737C01B260B46FE009BC28B /* spaghettis_externals.c in Sources */ = {isa = PBXBuildFile; fileRef = 172457E0260A314E008D5035 /* spaghettis_externals.c */; };
+		1737C01D260B4702009BC28B /* spaghettis_space.c in Sources */ = {isa = PBXBuildFile; fileRef = 172457E1260A314E008D5035 /* spaghettis_space.c */; };
 		1739F7451FFCE902004656C4 /* m_ringbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 1739F7431FFCE902004656C4 /* m_ringbuffer.c */; };
 		1747CB46205D4D0A005BE8D7 /* x_micainfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 1747CB45205D4D0A005BE8D7 /* x_micainfo.c */; };
 		1749719C23FEC7B400627D27 /* m_legacy.c in Sources */ = {isa = PBXBuildFile; fileRef = 1749719B23FEC7B400627D27 /* m_legacy.c */; };
@@ -2020,6 +2022,7 @@
 				17B52BE52142B3DB0002F71A /* m_register.c in Sources */,
 				37A402681C77524D00001FD3 /* s_midi_API.c in Sources */,
 				373F78251C7E097A0083D316 /* s_audio_API.c in Sources */,
+				1737C01B260B46FE009BC28B /* spaghettis_externals.c in Sources */,
 				37F5138C1C9B0EA80076A0C4 /* s_logger.c in Sources */,
 				3770FAA61CB1036A007C7E66 /* g_radio.c in Sources */,
 				17F45C86213E843D005A8364 /* m_undocollapse.c in Sources */,
@@ -2176,6 +2179,7 @@
 				370793E71DBB55A700183F74 /* x_notein.c in Sources */,
 				176B06C822B77AE7001C45CD /* m_pool.c in Sources */,
 				17AFE92B22AE241D0035E4BE /* m_undotrigger.c in Sources */,
+				1737C01D260B4702009BC28B /* spaghettis_space.c in Sources */,
 				17DDB369232E798400D6D7AF /* core_midiport.c in Sources */,
 				1723FBD02302F23600C0F975 /* core_audiostream.c in Sources */,
 				1723FBCF2302F23600C0F975 /* core_audiodevicelist.c in Sources */,

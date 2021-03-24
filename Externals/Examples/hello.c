@@ -30,12 +30,12 @@ static t_class *hello_class;
 
 static void hello_bang (t_hello *x)
 {
-    post ("Hello world!");
+    spaghettis_post ("Hello world!");
 }
 
 static void *hello_new (void)
 {
-    return pd_new (hello_class);
+    return spaghettis_objectNew (hello_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -48,21 +48,16 @@ PD_STUB void hello_setup (t_symbol *s)          /* MUST be the name of the file 
     
     /* MUST contains (at least) a class with the file name. */
     
-    c = class_new (gensym ("hello"),
-            (t_newmethod)hello_new,
-            NULL,
-            sizeof (t_hello),
-            CLASS_BOX,
-            A_NULL);
+    c = spaghettis_classNew (spaghettis_makeSymbol ("hello"), (t_newmethod)hello_new, NULL, sizeof (t_hello));
     
-    class_addBang (c, (t_method)hello_bang); 
+    spaghettis_classAddBang (c, (t_method)hello_bang);
     
     hello_class = c;
 }
 
 PD_STUB void hello_destroy (void)               /* MUST be the name of the file with _destroy appended. */
 {
-    class_free (hello_class);
+    spaghettis_classFree (hello_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------
