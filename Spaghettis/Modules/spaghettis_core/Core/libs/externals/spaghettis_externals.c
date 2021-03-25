@@ -250,6 +250,10 @@ PD_EXPORT void spaghettis_objectFree (t_object *x)
     pd_free (cast_pd (x));
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_EXPORT t_object *spaghettis_objectGetTemporary (t_object *x)
 {
     t_object *old = NULL;
@@ -268,9 +272,25 @@ PD_EXPORT t_space *spaghettis_objectGetNewSpace (t_object *x)
     return space_new (x);
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
+PD_EXPORT int spaghettis_objectDspNeedInitializer (t_object *x)
+{
+    return object_dspNeedInitializer (x);
+}
+
+PD_EXPORT void spaghettis_objectCopySignalValues (t_object *x, t_object *old)
+{
+    object_copySignalValues (x, old);
+}
+
+PD_EXPORT void spaghettis_objectGetSignalValues (t_object *x, t_buffer *b)
+{
+    object_getSignalValues (x, b);
+}
+
+PD_EXPORT void spaghettis_objectFetchAndCopySignalValuesIfRequired (t_object *x)
+{
+    object_fetchAndCopySignalValuesIfRequired (x);
+}
 
 PD_EXPORT int spaghettis_objectFlagIsUndoOrEncaspulate (t_object *x, int flags)
 {
@@ -511,6 +531,15 @@ PD_EXPORT t_symbol *spaghettis_atomGetSymbol (t_atom *a)
 PD_EXPORT t_symbol *spaghettis_atomGetSymbolAtIndex (int n, int argc, t_atom *argv)
 {
     return atom_getSymbolAtIndex (n, argc, argv);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_EXPORT t_initializer *spaghettis_initializerNew (t_initializerfn fn, void *lhs, void *rhs)
+{
+    return initializer_new (fn, lhs, rhs);
 }
 
 // -----------------------------------------------------------------------------------------------------------
