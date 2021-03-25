@@ -67,12 +67,12 @@ static t_error atom_symbolToBackslashedString (t_atom *a, char *s, int size)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void atom_setSymbol (t_atom *a, t_symbol *s)
+PD_LOCAL void atom_setSymbol (t_atom *a, t_symbol *s)
 {
     SET_SYMBOL (a, s);
 }
 
-PD_FORCE void atom_setFloat (t_atom *a, t_float f)
+PD_LOCAL void atom_setFloat (t_atom *a, t_float f)
 {
     SET_FLOAT (a, f);
 }

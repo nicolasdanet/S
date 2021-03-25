@@ -165,6 +165,25 @@ PD_EXPORT int spaghettis_objectFlagIsUndoOrEncaspulate (t_object *x, int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_EXPORT t_inlet *spaghettis_objectInletNewFloat (t_object *x, t_float *fp)
+{
+    return inlet_newFloat (x, fp);
+}
+
+PD_EXPORT t_inlet *spaghettis_objectInletNewSymbol (t_object *x, t_symbol **sp)
+{
+    return inlet_newSymbol (x, sp);
+}
+
+PD_EXPORT t_inlet *spaghettis_objectInletNewSignal (t_object *x)
+{
+    return inlet_newSignal (x);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_EXPORT t_outlet *spaghettis_objectOutletNewBang (t_object *x)
 {
     return outlet_newBang (x);
@@ -308,6 +327,20 @@ PD_EXPORT void spaghettis_bufferAppendSymbol (t_buffer *x, t_symbol *s)
 PD_EXPORT char *spaghettis_atomsToString (int argc, t_atom *argv)
 {
     return atom_atomsToString (argc, argv);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_EXPORT void spaghettis_atomSetSymbol (t_atom *a, t_symbol *s)
+{
+    atom_setSymbol (a, s);
+}
+
+PD_EXPORT void spaghettis_atomSetFloat (t_atom *a, t_float f)
+{
+    atom_setFloat (a, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------

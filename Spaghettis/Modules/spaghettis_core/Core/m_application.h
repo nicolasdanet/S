@@ -144,8 +144,8 @@ PD_LOCAL void   outlet_anything                 (t_outlet *x, t_symbol *s, int a
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void       atom_setSymbol              (t_atom *a, t_symbol *s);
-PD_FORCE void       atom_setFloat               (t_atom *a, t_float f);
+PD_LOCAL void       atom_setSymbol              (t_atom *a, t_symbol *s);
+PD_LOCAL void       atom_setFloat               (t_atom *a, t_float f);
 
 PD_LOCAL t_float    atom_getFloat               (t_atom *a);
 PD_LOCAL t_float    atom_getFloatAtIndex        (int n, int argc, t_atom *argv);

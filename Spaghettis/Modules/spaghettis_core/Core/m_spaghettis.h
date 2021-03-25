@@ -580,6 +580,14 @@ PD_DLL int  spaghettis_objectFlagIsUndoOrEncaspulate    (t_object *x, int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_DLL t_inlet      *spaghettis_objectInletNewFloat     (t_object *x, t_float *fp);
+PD_DLL t_inlet      *spaghettis_objectInletNewSymbol    (t_object *x, t_symbol **sp);
+PD_DLL t_inlet      *spaghettis_objectInletNewSignal    (t_object *x);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_DLL t_outlet     *spaghettis_objectOutletNewBang     (t_object *x);
 PD_DLL t_outlet     *spaghettis_objectOutletNewFloat    (t_object *x);
 PD_DLL t_outlet     *spaghettis_objectOutletNewSymbol   (t_object *x);
@@ -628,6 +636,13 @@ PD_DLL void         spaghettis_bufferAppendSymbol       (t_buffer *x, t_symbol *
 // MARK: -
 
 PD_DLL char         *spaghettis_atomsToString   (int argc, t_atom *argv);   /* Caller acquires ownership. */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_DLL void         spaghettis_atomSetSymbol            (t_atom *a, t_symbol *s);
+PD_DLL void         spaghettis_atomSetFloat             (t_atom *a, t_float f);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
