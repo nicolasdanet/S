@@ -551,6 +551,7 @@ PD_DLL void         spaghettis_classAddFloat            (t_class *c, t_method fn
 PD_DLL void         spaghettis_classAddSymbol           (t_class *c, t_method fn);
 PD_DLL void         spaghettis_classAddList             (t_class *c, t_method fn);
 PD_DLL void         spaghettis_classAddAnything         (t_class *c, t_method fn);
+PD_DLL void         spaghettis_classAddDSP              (t_class *c, t_method fn);
 
 PD_DLL void         spaghettis_classSetHelpDirectory    (t_class *c, t_symbol *s);
 
@@ -651,6 +652,17 @@ PD_DLL void         spaghettis_outletFloat              (t_outlet *x, t_float f)
 PD_DLL void         spaghettis_outletSymbol             (t_outlet *x, t_symbol *s);
 PD_DLL void         spaghettis_outletList               (t_outlet *x, int argc, t_atom *argv);
 PD_DLL void         spaghettis_outletAnything           (t_outlet *x, t_symbol *s, int argc, t_atom *argv);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_DLL void spaghettis_dspAdd1  (t_perform fn, t_int a);
+PD_DLL void spaghettis_dspAdd2  (t_perform fn, t_int a, t_int b);
+PD_DLL void spaghettis_dspAdd3  (t_perform fn, t_int a, t_int b, t_int c);
+PD_DLL void spaghettis_dspAdd4  (t_perform fn, t_int a, t_int b, t_int c, t_int d);
+PD_DLL void spaghettis_dspAdd5  (t_perform fn, t_int a, t_int b, t_int c, t_int d, t_int e);
+PD_DLL void spaghettis_dspAdd6  (t_perform fn, t_int a, t_int b, t_int c, t_int d, t_int e, t_int f);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -99,6 +99,11 @@ PD_EXPORT void spaghettis_classAddAnything (t_class *c, t_method fn)
     class_addAnything (c, fn);
 }
 
+PD_EXPORT void spaghettis_classAddDSP (t_class *c, t_method fn)
+{
+    class_addDSP (c, fn);
+}
+
 PD_EXPORT void spaghettis_classSetHelpDirectory (t_class *c, t_symbol *s)
 {
     class_setHelpDirectory (c, s);
@@ -357,6 +362,40 @@ PD_EXPORT void spaghettis_outletList (t_outlet *x, int argc, t_atom *argv)
 PD_EXPORT void spaghettis_outletAnything (t_outlet *x, t_symbol *s, int argc, t_atom *argv)
 {
     outlet_anything (x, s, argc, argv);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_EXPORT void spaghettis_dspAdd1 (t_perform fn, t_int a)
+{
+    dsp_add1 (fn, a);
+}
+
+PD_EXPORT void spaghettis_dspAdd2 (t_perform fn, t_int a, t_int b)
+{
+    dsp_add2 (fn, a, b);
+}
+
+PD_EXPORT void spaghettis_dspAdd3 (t_perform fn, t_int a, t_int b, t_int c)
+{
+    dsp_add3 (fn, a, b, c);
+}
+
+PD_EXPORT void spaghettis_dspAdd4 (t_perform fn, t_int a, t_int b, t_int c, t_int d)
+{
+    dsp_add4 (fn, a, b, c, d);
+}
+
+PD_EXPORT void spaghettis_dspAdd5 (t_perform fn, t_int a, t_int b, t_int c, t_int d, t_int e)
+{
+    dsp_add5 (fn, a, b, c, d, e);
+}
+
+PD_EXPORT void spaghettis_dspAdd6 (t_perform fn, t_int a, t_int b, t_int c, t_int d, t_int e, t_int f)
+{
+    dsp_add6 (fn, a, b, c, d, e, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
