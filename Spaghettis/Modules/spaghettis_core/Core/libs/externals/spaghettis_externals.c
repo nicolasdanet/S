@@ -13,6 +13,30 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_DLL t_clock *spaghettis_clockNew (void *x, t_method fn)
+{
+    return clock_new (x, fn);
+}
+
+PD_DLL void spaghettis_clockFree (t_clock *x)
+{
+    clock_free (x);
+}
+
+PD_DLL void spaghettis_clockUnset (t_clock *x)
+{
+    clock_unset (x);
+}
+
+PD_DLL void spaghettis_clockDelay (t_clock *x, double delay)
+{
+    clock_delay (x, delay);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_EXPORT t_class *spaghettis_classNew (t_symbol *name,
     t_newmethod fnNew,
     t_method    fnFree,

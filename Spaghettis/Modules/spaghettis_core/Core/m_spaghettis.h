@@ -506,11 +506,24 @@ extern "C" {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Note that NONE of those functions are considered thread-safe. */
+/* Notice that unset and delay a clock MUST be done only in one (and always the same) thread. */
+/* It can be inside the DSP perform. */
+/* The new and free functions must be called NON-CONCURRENTLY in the main thread. */
+
+PD_DLL t_clock      *spaghettis_clockNew                (void *x, t_method fn);
+
+PD_DLL void         spaghettis_clockFree                (t_clock *x);
+PD_DLL void         spaghettis_clockUnset               (t_clock *x);                   /* Usable in DSP. */
+PD_DLL void         spaghettis_clockDelay               (t_clock *x, double delay);     /* Usable in DSP. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+/* Note that NONE of those functions are considered thread-safe. */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 PD_DLL t_class      *spaghettis_classNew                (t_symbol *name,
                                                             t_newmethod fnNew,

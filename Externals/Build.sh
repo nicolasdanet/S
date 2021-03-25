@@ -36,6 +36,7 @@ python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/hello
 python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloInlet.c
 python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloNew.c
 python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloBind.c
+python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloClock.c
 
 # python3 ../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/*.c Examples/*.cpp
 
