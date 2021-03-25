@@ -49,7 +49,7 @@ static t_symbol *hello__restore;        /* Pointers to symbols can be cached for
 
 static void hello_bang (t_hello *x)
 {
-    outlet_float (x->x_outlet, x->x_f);
+    spaghettis_outletFloat (x->x_outlet, x->x_f);
 }
 
 static void hello_float (t_hello *x, t_float f)
@@ -65,15 +65,16 @@ static t_buffer *hello_functionData (t_object *z, int flags)
 {
     t_hello *x = (t_hello *)z;
 
-    if (x->x_keep || object_isUndoOrEncaspulate (z, flags)) {
+    if (x->x_keep || spaghettis_objectFlagIsUndoOrEncaspulate (z, flags)) {
     //
-    t_buffer *b = buffer_new();
+    t_buffer *b = spaghettis_bufferNew();
     
     /* Must be labelled according to the method used for data recovery. */
     /* It can be a public method such as set or a private one (starting with an underscore). */
     /* In the private case to avoid to collide it must be "_restore". */
     
-    buffer_appendSymbol (b, hello__restore); buffer_appendFloat (b, x->x_f);
+    spaghettis_bufferAppendSymbol (b, hello__restore);
+    spaghettis_bufferAppendFloat (b, x->x_f);
     
     return b;       /* Must NOT be freed. */
     //
@@ -102,11 +103,11 @@ static void hello_restore (t_hello *x, t_symbol *s, int argc, t_atom *argv)
     /* Thus you don't need to cache anything. */
     /* You must NOT cache the returned pointer to be used later. */
     
-    t_hello *old = (t_hello *)instance_objectGetTemporary ((t_object *)x);
+    t_hello *old = (t_hello *)spaghettis_objectGetTemporary ((t_object *)x);
 
     /* Use value stored in data function in other cases. */
     
-    x->x_f = old ? old->x_f : atom_getFloatAtIndex (0, argc, argv);
+    x->x_f = old ? old->x_f : spaghettis_atomGetFloatAtIndex (0, argc, argv);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,11 +116,14 @@ static void hello_restore (t_hello *x, t_symbol *s, int argc, t_atom *argv)
 
 static void *hello_new (void)
 {
-    t_hello *x  = (t_hello *)pd_new (hello_class);
+    t_hello *x  = (t_hello *)spaghettis_objectNew (hello_class);
     
-    x->x_keep   = 1;                                    /* Always stored in patch in this example. */
-    x->x_outlet = outlet_newFloat ((t_object *)x);
+    x->x_outlet = spaghettis_objectOutletNewFloat ((t_object *)x);
     
+    /* Always stored in patch in this example. */
+    
+    x->x_keep = 1;
+        
     return x;
 }
 
@@ -131,36 +135,35 @@ PD_STUB void helloData_setup (t_symbol *s)
 {
     t_class *c = NULL;
     
-    c = class_new (gensym ("helloData"),
+    c = spaghettis_classNew (spaghettis_symbol ("helloData"),
             (t_newmethod)hello_new,
             NULL,
             sizeof (t_hello),
-            CLASS_BOX,
-            A_NULL);
+            CLASS_BOX);
     
-    hello__restore = gensym ("_restore");
+    hello__restore = spaghettis_symbol ("_restore");
 
-    class_addBang (c, (t_method)hello_bang);
-    class_addFloat (c, (t_method)hello_float);
+    spaghettis_classAddBang (c, (t_method)hello_bang);
+    spaghettis_classAddFloat (c, (t_method)hello_float);
     
-    class_addMethod (c, (t_method)hello_restore, hello__restore, A_GIMME, A_NULL);
+    spaghettis_classAddMethodWithArguments (c, (t_method)hello_restore, hello__restore);
 
-    class_setDataFunction (c, hello_functionData);
-    class_setDismissFunction (c, hello_functionDismiss);
+    spaghettis_classSetDataFunction (c, hello_functionData);
+    spaghettis_classSetDismissFunction (c, hello_functionDismiss);
     
     /* Indicate that an object need to be cached while encapsulated. */
     /* It is valid only for non DSP objects. */
     /* DSP objects use another mechanism. */
     /* Note that DSP objects are cached by default. */
     
-    class_requirePending (c);
+    spaghettis_classRequirePending (c);
     
     hello_class = c;
 }
 
 PD_STUB void helloData_destroy (void)
 {
-    class_free (hello_class);
+    spaghettis_classFree (hello_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------

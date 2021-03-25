@@ -104,6 +104,21 @@ PD_EXPORT void spaghettis_classSetHelpDirectory (t_class *c, t_symbol *s)
     class_setHelpDirectory (c, s);
 }
 
+PD_EXPORT void spaghettis_classSetDataFunction (t_class *c, t_datafn f)
+{
+    class_setDataFunction (c, f);
+}
+
+PD_EXPORT void spaghettis_classSetDismissFunction (t_class *c, t_dismissfn f)
+{
+    class_setDismissFunction (c, f);
+}
+
+PD_EXPORT void spaghettis_classRequirePending (t_class *c)
+{
+    class_requirePending (c);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -437,6 +452,26 @@ PD_EXPORT void spaghettis_atomSetSymbol (t_atom *a, t_symbol *s)
 PD_EXPORT void spaghettis_atomSetFloat (t_atom *a, t_float f)
 {
     atom_setFloat (a, f);
+}
+
+PD_EXPORT t_float spaghettis_atomGetFloat (t_atom *a)
+{
+    return atom_getFloat (a);
+}
+
+PD_EXPORT t_float spaghettis_atomGetFloatAtIndex (int n, int argc, t_atom *argv)
+{
+    return atom_getFloatAtIndex (n, argc, argv);
+}
+
+PD_EXPORT t_symbol *spaghettis_atomGetSymbol (t_atom *a)
+{
+    return atom_getSymbol (a);
+}
+
+PD_EXPORT t_symbol *spaghettis_atomGetSymbolAtIndex (int n, int argc, t_atom *argv)
+{
+    return atom_getSymbolAtIndex (n, argc, argv);
 }
 
 // -----------------------------------------------------------------------------------------------------------

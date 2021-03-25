@@ -554,6 +554,11 @@ PD_DLL void         spaghettis_classAddAnything         (t_class *c, t_method fn
 
 PD_DLL void         spaghettis_classSetHelpDirectory    (t_class *c, t_symbol *s);
 
+PD_DLL void         spaghettis_classSetDataFunction     (t_class *c, t_datafn f);
+PD_DLL void         spaghettis_classSetDismissFunction  (t_class *c, t_dismissfn f);
+
+PD_DLL void         spaghettis_classRequirePending      (t_class *c);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -684,6 +689,12 @@ PD_DLL char         *spaghettis_atomsToString   (int argc, t_atom *argv);   /* C
 
 PD_DLL void         spaghettis_atomSetSymbol            (t_atom *a, t_symbol *s);
 PD_DLL void         spaghettis_atomSetFloat             (t_atom *a, t_float f);
+
+PD_DLL t_float      spaghettis_atomGetFloat             (t_atom *a);
+PD_DLL t_float      spaghettis_atomGetFloatAtIndex      (int n, int argc, t_atom *argv);
+
+PD_DLL t_symbol     *spaghettis_atomGetSymbol           (t_atom *a);
+PD_DLL t_symbol     *spaghettis_atomGetSymbolAtIndex    (int n, int argc, t_atom *argv);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
