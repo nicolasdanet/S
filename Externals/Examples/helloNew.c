@@ -32,14 +32,14 @@ static t_class *hello_class;
 
 static void *hello_new (t_symbol *s, int argc, t_atom *argv)
 {
-    t_hello *x = (t_hello *)pd_new (hello_class);
+    t_hello *x = (t_hello *)spaghettis_objectNew (hello_class);
     
-    char *t = atom_atomsToString (argc, argv);
+    char *t = spaghettis_atomsToString (argc, argv);
     
-    post ("I'm the %s object!", symbol_getName (s));
-    post ("Arguments / %s", t);
+    spaghettis_post (spaghettis_symbolGetName (s));
+    spaghettis_post (t);
     
-    PD_MEMORY_FREE (t);
+    spaghettis_memoryFree (t);
     
     return x;
 }
@@ -52,20 +52,20 @@ PD_STUB void helloNew_setup (t_symbol *s)
 {
     t_class *c = NULL;
     
-    c = class_new (gensym ("helloNew"),
+    /* Allow arguments at creation. */
+    
+    c = spaghettis_classNewWithArguments (spaghettis_symbol ("helloNew"),
             (t_newmethod)hello_new,
             NULL,
             sizeof (t_hello),
-            CLASS_BOX | CLASS_NOINLET,
-            A_GIMME,                        /* The A_GIMME parameter triggers the signature above. */
-            A_NULL);
+            CLASS_BOX | CLASS_NOINLET);
     
     hello_class = c;
 }
 
 PD_STUB void helloNew_destroy (void)
 {
-    class_free (hello_class);
+    spaghettis_classFree (hello_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -518,6 +518,12 @@ PD_DLL t_class      *spaghettis_classNew                (t_symbol *name,
                                                             size_t size,
                                                             int flags);
 
+PD_DLL t_class      *spaghettis_classNewWithArguments   (t_symbol *name,
+                                                            t_newmethod fnNew,
+                                                            t_method fnFree,
+                                                            size_t size,
+                                                            int flags);
+                                                            
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
