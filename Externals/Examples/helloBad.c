@@ -58,7 +58,7 @@ static void hello_free (t_hello *x)
 
 PD_STUB void helloBad_setup (t_symbol *s)
 {
-    t_symbol *name = spaghettis_makeSymbol ("helloBad");
+    t_symbol *name = spaghettis_symbol ("helloBad");
     
     hello_class = spaghettis_classNew (name,
         (t_newmethod)hello_new,

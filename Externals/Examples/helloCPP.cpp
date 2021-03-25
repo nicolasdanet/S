@@ -121,7 +121,7 @@ PD_STUB void helloCPP_setup (t_symbol *s)
 {
     t_class *c = NULL;
     
-    c = spaghettis_classNew (spaghettis_makeSymbol ("helloCPP"),
+    c = spaghettis_classNew (spaghettis_symbol ("helloCPP"),
             (t_newmethod)hello_new,
             (t_method)hello_free,
             sizeof (t_hello),

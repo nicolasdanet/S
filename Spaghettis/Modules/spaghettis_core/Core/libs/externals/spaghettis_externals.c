@@ -31,6 +31,11 @@ PD_EXPORT void spaghettis_classFree (t_class *c)
     class_free (c);
 }
 
+PD_EXPORT void spaghettis_classAddMethod (t_class *c, t_method fn, t_symbol *s)
+{
+    class_addMethod (c, fn, s, A_NULL);
+}
+
 PD_EXPORT void spaghettis_classAddBang (t_class *c, t_method fn)
 {
     class_addBang (c, fn);
@@ -84,7 +89,7 @@ PD_EXPORT void spaghettis_postError (const char *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_symbol *spaghettis_makeSymbol (const char *s)
+PD_EXPORT t_symbol *spaghettis_symbol (const char *s)
 {
     return gensym (s);
 }
@@ -160,6 +165,74 @@ PD_EXPORT int spaghettis_objectFlagIsUndoOrEncaspulate (t_object *x, int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_EXPORT t_outlet *spaghettis_objectOutletNewBang (t_object *x)
+{
+    return outlet_newBang (x);
+}
+
+PD_EXPORT t_outlet *spaghettis_objectOutletNewFloat (t_object *x)
+{
+    return outlet_newFloat (x);
+}
+
+PD_EXPORT t_outlet *spaghettis_objectOutletNewSymbol (t_object *x)
+{
+    return outlet_newSymbol (x);
+}
+
+PD_EXPORT t_outlet *spaghettis_objectOutletNewList (t_object *x)
+{
+    return outlet_newList (x);
+}
+
+PD_EXPORT t_outlet *spaghettis_objectOutletNewAnything (t_object *x)
+{
+    return outlet_newAnything (x);
+}
+
+PD_EXPORT t_outlet *spaghettis_objectOutletNewMixed (t_object *x)
+{
+    return outlet_newMixed (x);
+}
+
+PD_EXPORT t_outlet *spaghettis_objectOutletNewSignal (t_object *x)
+{
+    return outlet_newSignal (x);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_EXPORT void spaghettis_outletBang (t_outlet *x)
+{
+    outlet_bang (x);
+}
+
+PD_EXPORT void spaghettis_outletFloat (t_outlet *x, t_float f)
+{
+    outlet_float (x, f);
+}
+
+PD_EXPORT void spaghettis_outletSymbol (t_outlet *x, t_symbol *s)
+{
+    outlet_symbol (x, s);
+}
+
+PD_EXPORT void spaghettis_outletList (t_outlet *x, int argc, t_atom *argv)
+{
+    outlet_list (x, argc, argv);
+}
+
+PD_EXPORT void spaghettis_outletAnything (t_outlet *x, t_symbol *s, int argc, t_atom *argv)
+{
+    outlet_anything (x, s, argc, argv);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 /* < https://lists.puredata.info/pipermail/pd-dev/2016-11/020878.html > */
 /* < https://lists.puredata.info/pipermail/pd-list/2005-07/029490.html > */
 /* < https://www.mail-archive.com/pd-list@iem.at/msg60031.html > */
@@ -182,6 +255,59 @@ PD_EXPORT int spaghettis_signalGetOverlap (t_signal *s)
 PD_EXPORT t_sample *spaghettis_signalGetVector (t_signal *s)
 {
     return s->s_vector;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_EXPORT t_buffer *spaghettis_bufferNew (void)
+{
+    return buffer_new();
+}
+
+PD_EXPORT t_atom *spaghettis_bufferGetAtoms (t_buffer *x)
+{
+    return buffer_getAtoms (x);
+}
+
+PD_EXPORT void spaghettis_bufferFree (t_buffer *x)
+{
+    buffer_free (x);
+}
+
+PD_EXPORT int spaghettis_bufferGetSize (t_buffer *x)
+{
+    return buffer_getSize (x);
+}
+
+PD_EXPORT void spaghettis_bufferClear (t_buffer *x)
+{
+    buffer_clear (x);
+}
+
+PD_EXPORT void spaghettis_bufferAppend (t_buffer *x, int argc, t_atom *argv)
+{
+    buffer_append (x, argc, argv);
+}
+
+PD_EXPORT void spaghettis_bufferAppendFloat (t_buffer *x, t_float f)
+{
+    buffer_appendFloat (x, f);
+}
+
+PD_EXPORT void spaghettis_bufferAppendSymbol (t_buffer *x, t_symbol *s)
+{
+    buffer_appendSymbol (x, s);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_EXPORT char *spaghettis_atomsToString (int argc, t_atom *argv)
+{
+    return atom_atomsToString (argc, argv);
 }
 
 // -----------------------------------------------------------------------------------------------------------

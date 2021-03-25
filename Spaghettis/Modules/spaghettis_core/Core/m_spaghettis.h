@@ -510,6 +510,7 @@ extern "C" {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 PD_DLL t_class      *spaghettis_classNew                (t_symbol *name,
                                                             t_newmethod fnNew,
@@ -519,8 +520,11 @@ PD_DLL t_class      *spaghettis_classNew                (t_symbol *name,
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 PD_DLL void         spaghettis_classFree                (t_class *c);
+
+PD_DLL void         spaghettis_classAddMethod           (t_class *c, t_method fn, t_symbol *s);
 
 PD_DLL void         spaghettis_classAddBang             (t_class *c, t_method fn);
 PD_DLL void         spaghettis_classAddFloat            (t_class *c, t_method fn);
@@ -532,6 +536,7 @@ PD_DLL void         spaghettis_classSetHelpDirectory    (t_class *c, t_symbol *s
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 PD_DLL void         spaghettis_post                     (const char *s);
 PD_DLL void         spaghettis_postWarning              (const char *s);
@@ -539,13 +544,15 @@ PD_DLL void         spaghettis_postError                (const char *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-PD_DLL t_symbol     *spaghettis_makeSymbol              (const char *s);
+PD_DLL t_symbol     *spaghettis_symbol                  (const char *s);
 
 PD_DLL const char   *spaghettis_symbolGetName           (t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 PD_DLL void         *spaghettis_memoryGet               (size_t n);
 PD_DLL void         *spaghettis_memoryResize            (void *m, size_t oldSize, size_t newSize);
@@ -554,6 +561,7 @@ PD_DLL void         spaghettis_memoryFree               (void *m);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 PD_DLL t_object     *spaghettis_objectNew               (t_class *c);
 
@@ -564,8 +572,31 @@ PD_DLL t_space      *spaghettis_objectGetNewSpace       (t_object *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 PD_DLL int  spaghettis_objectFlagIsUndoOrEncaspulate    (t_object *x, int flags);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_DLL t_outlet     *spaghettis_objectOutletNewBang     (t_object *x);
+PD_DLL t_outlet     *spaghettis_objectOutletNewFloat    (t_object *x);
+PD_DLL t_outlet     *spaghettis_objectOutletNewSymbol   (t_object *x);
+PD_DLL t_outlet     *spaghettis_objectOutletNewList     (t_object *x);
+PD_DLL t_outlet     *spaghettis_objectOutletNewAnything (t_object *x);
+PD_DLL t_outlet     *spaghettis_objectOutletNewMixed    (t_object *x);
+PD_DLL t_outlet     *spaghettis_objectOutletNewSignal   (t_object *x);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_DLL void         spaghettis_outletBang               (t_outlet *x);
+PD_DLL void         spaghettis_outletFloat              (t_outlet *x, t_float f);
+PD_DLL void         spaghettis_outletSymbol             (t_outlet *x, t_symbol *s);
+PD_DLL void         spaghettis_outletList               (t_outlet *x, int argc, t_atom *argv);
+PD_DLL void         spaghettis_outletAnything           (t_outlet *x, t_symbol *s, int argc, t_atom *argv);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -576,6 +607,27 @@ PD_DLL t_sample     *spaghettis_signalGetVector         (t_signal *s);
 PD_DLL t_float      spaghettis_signalGetSampleRate      (t_signal *s);
 PD_DLL int          spaghettis_signalGetVectorSize      (t_signal *s);
 PD_DLL int          spaghettis_signalGetOverlap         (t_signal *s);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_DLL t_buffer     *spaghettis_bufferNew               (void);
+PD_DLL t_atom       *spaghettis_bufferGetAtoms          (t_buffer *x);
+
+PD_DLL void         spaghettis_bufferFree               (t_buffer *x);
+PD_DLL int          spaghettis_bufferGetSize            (t_buffer *x);
+PD_DLL void         spaghettis_bufferClear              (t_buffer *x);
+
+PD_DLL void         spaghettis_bufferAppend             (t_buffer *x, int argc, t_atom *argv);
+PD_DLL void         spaghettis_bufferAppendFloat        (t_buffer *x, t_float f);
+PD_DLL void         spaghettis_bufferAppendSymbol       (t_buffer *x, t_symbol *s);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_DLL char         *spaghettis_atomsToString   (int argc, t_atom *argv);   /* Caller acquires ownership. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -39,7 +39,7 @@ static void *hello_new (void)
 
 PD_STUB void helloRelease_setup (t_symbol *s)
 {
-    t_symbol *name = spaghettis_makeSymbol ("helloRelease");
+    t_symbol *name = spaghettis_symbol ("helloRelease");
     
     int flags = CLASS_BOX | CLASS_NOINLET;      /* Avoid the default inlet. */
     
