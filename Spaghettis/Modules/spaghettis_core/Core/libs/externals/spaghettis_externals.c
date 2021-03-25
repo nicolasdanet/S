@@ -490,6 +490,16 @@ PD_EXPORT void spaghettis_bufferAppendSymbol (t_buffer *x, t_symbol *s)
     buffer_appendSymbol (x, s);
 }
 
+PD_EXPORT void spaghettis_bufferAppendSemicolon (t_buffer *x)
+{
+    buffer_appendSemicolon (x);
+}
+
+PD_EXPORT void spaghettis_bufferAppendComma (t_buffer *x)
+{
+    buffer_appendComma (x);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

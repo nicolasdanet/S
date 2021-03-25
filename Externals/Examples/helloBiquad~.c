@@ -77,11 +77,11 @@ static void biquad_set (t_biquad *x, t_float a1, t_float a2, t_float b0, t_float
 
 static void biquad_list (t_biquad *x, t_symbol *s, int argc, t_atom *argv)
 {
-    t_float a1 = atom_getFloatAtIndex (0, argc, argv);
-    t_float a2 = atom_getFloatAtIndex (1, argc, argv);
-    t_float b0 = atom_getFloatAtIndex (2, argc, argv);
-    t_float b1 = atom_getFloatAtIndex (3, argc, argv);
-    t_float b2 = atom_getFloatAtIndex (4, argc, argv);
+    t_float a1 = spaghettis_atomGetFloatAtIndex (0, argc, argv);
+    t_float a2 = spaghettis_atomGetFloatAtIndex (1, argc, argv);
+    t_float b0 = spaghettis_atomGetFloatAtIndex (2, argc, argv);
+    t_float b1 = spaghettis_atomGetFloatAtIndex (3, argc, argv);
+    t_float b2 = spaghettis_atomGetFloatAtIndex (4, argc, argv);
     
     biquad_set (x, a1, a2, b0, b1, b2);
 }
@@ -96,11 +96,11 @@ static void biquad_list (t_biquad *x, t_symbol *s, int argc, t_atom *argv)
 
 static void biquad_space (t_space *t, t_float a1, t_float a2, t_float b0, t_float b1, t_float b2)
 {
-    space_setFloat0 (t, a1);
-    space_setFloat1 (t, a2);
-    space_setFloat2 (t, b0);
-    space_setFloat3 (t, b1);
-    space_setFloat4 (t, b2);
+    spaghettis_spaceSetFloat0 (t, a1);
+    spaghettis_spaceSetFloat1 (t, a2);
+    spaghettis_spaceSetFloat2 (t, b0);
+    spaghettis_spaceSetFloat3 (t, b1);
+    spaghettis_spaceSetFloat4 (t, b2);
 }
 
 static t_int *biquad_perform (t_int *w)
@@ -127,11 +127,11 @@ static t_int *biquad_perform (t_int *w)
 
     /* Get the biquad paramaters (could/should be inlined in the future). */
     
-    t_sample a1 = (t_sample)space_getFloat0 (t);
-    t_sample a2 = (t_sample)space_getFloat1 (t);
-    t_sample b0 = (t_sample)space_getFloat2 (t);
-    t_sample b1 = (t_sample)space_getFloat3 (t);
-    t_sample b2 = (t_sample)space_getFloat4 (t);
+    t_sample a1 = (t_sample)spaghettis_spaceGetFloat0 (t);
+    t_sample a2 = (t_sample)spaghettis_spaceGetFloat1 (t);
+    t_sample b0 = (t_sample)spaghettis_spaceGetFloat2 (t);
+    t_sample b1 = (t_sample)spaghettis_spaceGetFloat3 (t);
+    t_sample b2 = (t_sample)spaghettis_spaceGetFloat4 (t);
     
     /* Biquad stuff. */
     
@@ -172,11 +172,11 @@ static void biquad_dsp (t_biquad *x, t_signal **sp)
 {
     /* Note that the old DSP thread is still running, while building the new one. */
         
-    if (object_dspNeedInitializer ((t_object *)x)) {
+    if (spaghettis_objectDspNeedInitializer ((t_object *)x)) {
     //
     /* In case of encapsulation, fetch the old object. */
 
-    t_biquad *old = (t_biquad *)instance_objectGetTemporary ((t_object *)x);
+    t_biquad *old = (t_biquad *)spaghettis_objectGetTemporary ((t_object *)x);
     
     /* Note that at this point the old object is still used by the old DSP thread. */
     
@@ -184,7 +184,7 @@ static void biquad_dsp (t_biquad *x, t_signal **sp)
     //
     /* Add an initializer in order to later copy/swap internal states before swapping the DSP chains. */
 
-    initializer_new (biquad_initialize, x, old);
+    spaghettis_initializerNew (biquad_initialize, x, old);
     
     /* Member variables is write only by the main thread. */
     /* Thus it is not required to lock the read in the main thread. */
@@ -193,7 +193,7 @@ static void biquad_dsp (t_biquad *x, t_signal **sp)
     
     /* Ditto for constant signal values. */
     
-    object_copySignalValues ((t_object *)x, (t_object *)old);
+    spaghettis_objectCopySignalValues ((t_object *)x, (t_object *)old);
     //
     }
     //
@@ -201,18 +201,18 @@ static void biquad_dsp (t_biquad *x, t_signal **sp)
     
     {
     //
-    t_space *t = instance_objectGetNewSpace ((t_object *)x);
+    t_space *t = spaghettis_objectGetNewSpace ((t_object *)x);
     
     /* Initialize values of the space. */
     
     biquad_space (t, x->x_a1, x->x_a2, x->x_b0, x->x_b1, x->x_b2);
     
-    dsp_add5 (biquad_perform,
-                x,
-                signal_getVector (sp[0]),
-                signal_getVector (sp[1]),
-                t,
-                signal_getVectorSize (sp[0]));
+    spaghettis_dspAdd5 (biquad_perform,
+                (t_int)x,
+                (t_int)spaghettis_signalGetVector (sp[0]),
+                (t_int)spaghettis_signalGetVector (sp[1]),
+                (t_int)t,
+                (t_int)spaghettis_signalGetVectorSize (sp[0]));
     //
     }
 }
@@ -225,24 +225,24 @@ static t_buffer *biquad_functionData (t_object *z, int flags)
 {
     /* Serialize biquad parameters (for undo/redo). */
     
-    if (object_isUndoOrEncaspulate (z, flags)) {
+    if (spaghettis_objectFlagIsUndoOrEncaspulate (z, flags)) {
     //
     t_biquad *x = (t_biquad *)z;
-    t_buffer *b = buffer_new();
+    t_buffer *b = spaghettis_bufferNew();
     t_float a1  = x->x_a1;
     t_float a2  = x->x_a2;
     t_float b0  = x->x_b0;
     t_float b1  = x->x_b1;
     t_float b2  = x->x_b2;
     
-    buffer_appendSymbol (b, gensym ("list"));
-    buffer_appendFloat (b,  a1);
-    buffer_appendFloat (b,  a2);
-    buffer_appendFloat (b,  b0);
-    buffer_appendFloat (b,  b1);
-    buffer_appendFloat (b,  b2);
-    buffer_appendComma (b);
-    object_getSignalValues ((t_object *)x, b);
+    spaghettis_bufferAppendSymbol (b, spaghettis_symbol ("list"));
+    spaghettis_bufferAppendFloat (b,  a1);
+    spaghettis_bufferAppendFloat (b,  a2);
+    spaghettis_bufferAppendFloat (b,  b0);
+    spaghettis_bufferAppendFloat (b,  b1);
+    spaghettis_bufferAppendFloat (b,  b2);
+    spaghettis_bufferAppendComma (b);
+    spaghettis_objectGetSignalValues ((t_object *)x, b);
     
     return b;
     //
@@ -257,11 +257,11 @@ static t_buffer *biquad_functionData (t_object *z, int flags)
 
 static void *biquad_new (t_symbol *s, int argc, t_atom *argv)
 {
-    t_biquad *x = (t_biquad *)pd_new (biquad_class);
+    t_biquad *x = (t_biquad *)spaghettis_objectNew (biquad_class);
     
     pthread_mutex_init (&x->x_mutex, NULL);
     
-    x->x_outlet = outlet_newSignal ((t_object *)x);
+    x->x_outlet = spaghettis_objectOutletNewSignal ((t_object *)x);
     
     biquad_list (x, s, argc, argv);
 
@@ -281,25 +281,23 @@ PD_STUB void helloBiquad_tilde_setup (void)
 {
     t_class *c = NULL;
 
-    c = class_new (gensym ("helloBiquad~"),
+    c = spaghettis_classNewWithArguments (spaghettis_symbol ("helloBiquad~"),
             (t_newmethod)biquad_new,
             (t_method)biquad_free,
             sizeof (t_biquad),
-            CLASS_BOX | CLASS_SIGNAL,
-            A_GIMME,
-            A_NULL);
+            CLASS_BOX | CLASS_SIGNAL);
             
-    class_addDSP (c, (t_method)biquad_dsp);
-    class_addList (c, (t_method)biquad_list);
+    spaghettis_classAddDSP (c, (t_method)biquad_dsp);
+    spaghettis_classAddList (c, (t_method)biquad_list);
     
-    class_setDataFunction (c, biquad_functionData);
+    spaghettis_classSetDataFunction (c, biquad_functionData);
     
     biquad_class = c;
 }
 
 PD_STUB void helloBiquad_tilde_destroy (void)
 {
-    class_free (biquad_class);
+    spaghettis_classFree (biquad_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------

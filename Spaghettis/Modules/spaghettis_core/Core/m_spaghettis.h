@@ -695,6 +695,8 @@ PD_DLL void         spaghettis_bufferClear              (t_buffer *x);
 PD_DLL void         spaghettis_bufferAppend             (t_buffer *x, int argc, t_atom *argv);
 PD_DLL void         spaghettis_bufferAppendFloat        (t_buffer *x, t_float f);
 PD_DLL void         spaghettis_bufferAppendSymbol       (t_buffer *x, t_symbol *s);
+PD_DLL void         spaghettis_bufferAppendSemicolon    (t_buffer *x);
+PD_DLL void         spaghettis_bufferAppendComma        (t_buffer *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
