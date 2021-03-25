@@ -530,7 +530,8 @@ PD_DLL t_class      *spaghettis_classNewWithArguments   (t_symbol *name,
 
 PD_DLL void         spaghettis_classFree                (t_class *c);
 
-PD_DLL void         spaghettis_classAddMethod           (t_class *c, t_method fn, t_symbol *s);
+PD_DLL void         spaghettis_classAddMethod               (t_class *c, t_method fn, t_symbol *s);
+PD_DLL void         spaghettis_classAddMethodWithArguments  (t_class *c, t_method fn, t_symbol *s);
 
 PD_DLL void         spaghettis_classAddBang             (t_class *c, t_method fn);
 PD_DLL void         spaghettis_classAddFloat            (t_class *c, t_method fn);
@@ -552,9 +553,30 @@ PD_DLL void         spaghettis_postError                (const char *s);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_DLL void         spaghettis_bind                     (t_pd *x, t_symbol *s);
+PD_DLL void         spaghettis_unbind                   (t_pd *x, t_symbol *s);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_DLL void         spaghettis_handleBang               (t_pd *x);
+PD_DLL void         spaghettis_handleFloat              (t_pd *x, t_float f);
+PD_DLL void         spaghettis_handleSymbol             (t_pd *x, t_symbol *s);
+PD_DLL void         spaghettis_handleList               (t_pd *x, int argc, t_atom *argv);
+PD_DLL void         spaghettis_handleMessage            (t_pd *x, t_symbol *s, int argc, t_atom *argv);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_DLL t_symbol     *spaghettis_symbol                  (const char *s);
 
 PD_DLL const char   *spaghettis_symbolGetName           (t_symbol *s);
+PD_DLL t_pd         *spaghettis_symbolGetThing          (t_symbol *s);
+
+PD_DLL int          spaghettis_symbolHasThing           (t_symbol *s);
+PD_DLL int          spaghettis_symbolHasThingQuiet      (t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

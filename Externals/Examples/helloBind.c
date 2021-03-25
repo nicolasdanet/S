@@ -43,20 +43,22 @@ static t_symbol *sym_Turlututu;
 
 static void hello_bang (t_hello *x)
 {
-    if (symbol_hasThingQuiet (sym_s)) {
+    if (spaghettis_symbolHasThingQuiet (sym_s)) {
     //
-    t_atom a; atom_setSymbol (&a, sym_Turlututu); pd_message (symbol_getThing (sym_s), sym_something, 1, &a);
+    t_atom a;
+    spaghettis_atomSetSymbol (&a, sym_Turlututu);
+    spaghettis_handleMessage (spaghettis_symbolGetThing (sym_s), sym_something, 1, &a);
     //
     }
 }
 
 static void hello_something (t_hello *x, t_symbol *s, int argc, t_atom *argv)
 {
-    char *t = atom_atomsToString (argc, argv);
+    char *t = spaghettis_atomsToString (argc, argv);
     
-    post ("%s!", t);
+    spaghettis_post (t);
     
-    PD_MEMORY_FREE (t);
+    spaghettis_memoryFree (t);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -65,16 +67,16 @@ static void hello_something (t_hello *x, t_symbol *s, int argc, t_atom *argv)
 
 static void *hello_new (void)
 {
-    t_hello *x = (t_hello *)pd_new (hello_class);
+    t_hello *x = (t_hello *)spaghettis_objectNew (hello_class);
     
-    pd_bind ((t_pd *)x, sym_s);             /* Attach the object to the symbol. */
+    spaghettis_bind ((t_pd *)x, sym_s);         /* Attach the object to the symbol. */
     
     return x;
 }
 
 static void hello_free (t_hello *x)
 {
-    pd_unbind ((t_pd *)x, sym_s);           /* Detach the object from the symbol. */
+    spaghettis_unbind ((t_pd *)x, sym_s);       /* Detach the object from the symbol. */
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -85,29 +87,28 @@ PD_STUB void helloBind_setup (t_symbol *s)
 {
     t_class *c = NULL;
     
-    sym_s         = gensym ("_something_unique_and_unlikely_to_collide");
-    sym_something = gensym ("something");
-    sym_Turlututu = gensym ("Turlututu");
+    sym_s         = spaghettis_symbol ("_something_unique_and_unlikely_to_collide");
+    sym_something = spaghettis_symbol ("something");
+    sym_Turlututu = spaghettis_symbol ("Turlututu");
     
-    c = class_new (gensym ("helloBind"),
+    c = spaghettis_classNew (spaghettis_symbol ("helloBind"),
             (t_newmethod)hello_new,
             (t_method)hello_free,
             sizeof (t_hello),
-            CLASS_BOX,
-            A_NULL);
+            CLASS_BOX);
     
-    class_addBang (c, (t_method)hello_bang);
+    spaghettis_classAddBang (c, (t_method)hello_bang);
     
     /* Register a method with variable parameters. */
     
-    class_addMethod (c, (t_method)hello_something, sym_something, A_GIMME, A_NULL);
+    spaghettis_classAddMethodWithArguments (c, (t_method)hello_something, sym_something);
     
     hello_class = c;
 }
 
 PD_STUB void helloBind_destroy (void)
 {
-    class_free (hello_class);
+    spaghettis_classFree (hello_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------

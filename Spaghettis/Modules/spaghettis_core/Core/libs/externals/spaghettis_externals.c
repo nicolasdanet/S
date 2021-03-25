@@ -40,6 +40,11 @@ PD_EXPORT void spaghettis_classFree (t_class *c)
     class_free (c);
 }
 
+PD_EXPORT void spaghettis_classAddMethodWithArguments (t_class *c, t_method fn, t_symbol *s)
+{
+    class_addMethod (c, fn, s, A_GIMME, A_NULL);
+}
+
 PD_EXPORT void spaghettis_classAddMethod (t_class *c, t_method fn, t_symbol *s)
 {
     class_addMethod (c, fn, s, A_NULL);
@@ -98,6 +103,49 @@ PD_EXPORT void spaghettis_postError (const char *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_EXPORT void spaghettis_bind (t_pd *x, t_symbol *s)
+{
+    pd_bind (x, s);
+}
+
+PD_EXPORT void spaghettis_unbind (t_pd *x, t_symbol *s)
+{
+    pd_unbind (x, s);
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_EXPORT void spaghettis_handleBang (t_pd *x)
+{
+    pd_bang (x);
+}
+
+PD_EXPORT void spaghettis_handleFloat (t_pd *x, t_float f)
+{
+    pd_float (x, f);
+}
+
+PD_EXPORT void spaghettis_handleSymbol (t_pd *x, t_symbol *s)
+{
+    pd_symbol (x, s);
+}
+
+PD_EXPORT void spaghettis_handleList (t_pd *x, int argc, t_atom *argv)
+{
+    pd_list (x, argc, argv);
+}
+
+PD_EXPORT void spaghettis_handleMessage (t_pd *x, t_symbol *s, int argc, t_atom *argv)
+{
+    pd_message (x, s, argc, argv);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_EXPORT t_symbol *spaghettis_symbol (const char *s)
 {
     return gensym (s);
@@ -106,6 +154,21 @@ PD_EXPORT t_symbol *spaghettis_symbol (const char *s)
 PD_EXPORT const char *spaghettis_symbolGetName (t_symbol *s)
 {
     return symbol_getName (s);
+}
+
+PD_EXPORT t_pd *spaghettis_symbolGetThing (t_symbol *s)
+{
+    return symbol_getThing (s);
+}
+
+PD_EXPORT int spaghettis_symbolHasThing (t_symbol *s)
+{
+    return symbol_hasThing (s);
+}
+
+PD_EXPORT int spaghettis_symbolHasThingQuiet (t_symbol *s)
+{
+    return symbol_hasThingQuiet (s);
 }
 
 // -----------------------------------------------------------------------------------------------------------
