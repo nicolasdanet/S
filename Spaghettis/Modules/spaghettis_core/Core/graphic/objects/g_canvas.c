@@ -265,7 +265,7 @@ PD_LOCAL void canvas_setup (void)
 
     class_addCreator ((t_newmethod)canvas_newSubpatch, sym_pd, A_DEFSYMBOL, A_NULL);
     
-    class_addDSP (c, (t_method)canvas_dsp);
+    class_addDsp (c, (t_method)canvas_dsp);
     class_addLoadbang (c, (t_method)canvas_loadbang);
     
     /* Used for encapsulation. */

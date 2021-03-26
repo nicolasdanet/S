@@ -157,7 +157,7 @@ PD_LOCAL void rpole_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
             
-    class_addDSP (c, (t_method)rpole_tilde_dsp);
+    class_addDsp (c, (t_method)rpole_tilde_dsp);
     
     class_setDataFunction (c, real_raw_functionData);
     

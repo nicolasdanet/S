@@ -247,7 +247,7 @@ PD_LOCAL void tabsend_tilde_setup (void)
             A_DEFSYMBOL,
             A_NULL);
             
-    class_addDSP (c, (t_method)tabsend_tilde_dsp);
+    class_addDsp (c, (t_method)tabsend_tilde_dsp);
     class_addPolling (c, (t_method)tabsend_tilde_polling);
     
     class_addMethod (c, (t_method)tabsend_tilde_set,        sym_set,        A_SYMBOL, A_NULL);

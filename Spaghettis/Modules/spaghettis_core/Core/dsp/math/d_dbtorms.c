@@ -81,7 +81,7 @@ PD_LOCAL void dbtorms_tilde_setup (void)
     
     class_addCreator ((t_newmethod)dbtorms_tilde_new, sym_dbtoamp__tilde__, A_NULL);
     
-    class_addDSP (c, (t_method)dbtorms_tilde_dsp);
+    class_addDsp (c, (t_method)dbtorms_tilde_dsp);
     
     class_setDataFunction (c, unop_tilde_functionData);
     class_setHelpName (c, sym_acoustic__tilde__);

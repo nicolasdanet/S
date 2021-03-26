@@ -88,7 +88,7 @@ PD_LOCAL void rmag_tilde_setup (void)
             A_GIMME,
             A_NULL);
     
-    class_addDSP (c, (t_method)rmag_tilde_dsp);
+    class_addDsp (c, (t_method)rmag_tilde_dsp);
         
     class_setDataFunction (c, rmag_tilde_functionData);
     

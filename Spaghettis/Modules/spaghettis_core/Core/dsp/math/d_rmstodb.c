@@ -81,7 +81,7 @@ PD_LOCAL void rmstodb_tilde_setup (void)
 
     class_addCreator ((t_newmethod)rmstodb_tilde_new, sym_amptodb__tilde__, A_NULL);
 
-    class_addDSP (c, (t_method)rmstodb_tilde_dsp);
+    class_addDsp (c, (t_method)rmstodb_tilde_dsp);
     
     class_setDataFunction (c, unop_tilde_functionData);
     class_setHelpName (c, sym_acoustic__tilde__);

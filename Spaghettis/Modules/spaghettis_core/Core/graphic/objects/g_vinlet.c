@@ -155,7 +155,7 @@ PD_LOCAL void vinlet_setup (void)
             
     class_addCreator ((t_newmethod)vinlet_newSignal, sym_inlet__tilde__, A_DEFSYMBOL, A_NULL);
     
-    class_addDSP (c, (t_method)vinlet_dsp);
+    class_addDsp (c, (t_method)vinlet_dsp);
     class_addBang (c, (t_method)vinlet_bang);
     class_addFloat (c, (t_method)vinlet_float);
     class_addSymbol (c, (t_method)vinlet_symbol);

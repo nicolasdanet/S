@@ -97,7 +97,7 @@ PD_LOCAL void log_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
                 
-    class_addDSP (c, (t_method)log_tilde_dsp);
+    class_addDsp (c, (t_method)log_tilde_dsp);
         
     class_setDataFunction (c, binop_tilde_functionData);
     class_setHelpName (c, sym_math__tilde__);

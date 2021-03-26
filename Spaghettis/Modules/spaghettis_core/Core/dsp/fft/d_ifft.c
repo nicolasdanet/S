@@ -123,7 +123,7 @@ PD_LOCAL void ifft_tilde_setup (void)
             CLASS_DEFAULT | CLASS_SIGNAL,
             A_NULL);
             
-    class_addDSP (c, (t_method)ifft_tilde_dsp);
+    class_addDsp (c, (t_method)ifft_tilde_dsp);
     
     class_setDataFunction (c, ifft_tilde_functionData);
     

@@ -141,7 +141,7 @@ PD_LOCAL void lrshift_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
             
-    class_addDSP (c, (t_method)lrshift_tilde_dsp);
+    class_addDsp (c, (t_method)lrshift_tilde_dsp);
     
     class_setDataFunction (c, lrshift_tilde_functionData);
     

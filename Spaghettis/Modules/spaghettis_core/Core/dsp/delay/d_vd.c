@@ -135,7 +135,7 @@ PD_LOCAL void vd_tilde_setup (void)
             A_DEFSYMBOL,
             A_NULL);
     
-    class_addDSP (c, (t_method)vd_tilde_dsp);
+    class_addDsp (c, (t_method)vd_tilde_dsp);
     
     class_setDataFunction (c, vd_tilde_functionData);
     

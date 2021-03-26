@@ -110,7 +110,7 @@ PD_LOCAL void rzero_rev_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
             
-    class_addDSP (c, (t_method)rzero_rev_tilde_dsp);
+    class_addDsp (c, (t_method)rzero_rev_tilde_dsp);
         
     class_setDataFunction (c, real_raw_functionData);
     

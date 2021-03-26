@@ -355,7 +355,7 @@ PD_LOCAL void tabwrite_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
             
-    class_addDSP (c, (t_method)tabwrite_tilde_dsp);
+    class_addDsp (c, (t_method)tabwrite_tilde_dsp);
     class_addBang (c, (t_method)tabwrite_tilde_bang);
     class_addPolling (c, (t_method)tabwrite_tilde_polling);
         

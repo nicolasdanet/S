@@ -163,7 +163,7 @@ PD_LOCAL void cos_tilde_setup (void)
             CLASS_DEFAULT | CLASS_SIGNAL,
             A_NULL);
             
-    class_addDSP (c, (t_method)cos_tilde_dsp);
+    class_addDsp (c, (t_method)cos_tilde_dsp);
     
     class_setDataFunction (c, cos_tilde_functionData);
     

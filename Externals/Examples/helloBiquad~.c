@@ -287,7 +287,7 @@ PD_STUB void helloBiquad_tilde_setup (void)
             sizeof (t_biquad),
             CLASS_BOX | CLASS_SIGNAL);
             
-    spaghettis_classAddDSP (c, (t_method)biquad_dsp);
+    spaghettis_classAddDsp (c, (t_method)biquad_dsp);
     spaghettis_classAddList (c, (t_method)biquad_list);
     
     spaghettis_classSetDataFunction (c, biquad_functionData);

@@ -146,7 +146,7 @@ PD_LOCAL void throw_tilde_setup (void)
             A_DEFSYMBOL,
             A_NULL);
     
-    class_addDSP (c, (t_method)throw_tilde_dsp);
+    class_addDsp (c, (t_method)throw_tilde_dsp);
     
     class_addMethod (c, (t_method)throw_tilde_set,      sym_set,        A_SYMBOL, A_NULL);
     class_addMethod (c, (t_method)throw_tilde_restore,  sym__restore,   A_SYMBOL, A_NULL);

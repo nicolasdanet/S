@@ -198,7 +198,7 @@ PD_LOCAL void block_tilde_setup (void)
             A_GIMME,
             A_NULL);
             
-    class_addDSP (c, (t_method)block_dsp);
+    class_addDsp (c, (t_method)block_dsp);
     
     block_class = c;
 }

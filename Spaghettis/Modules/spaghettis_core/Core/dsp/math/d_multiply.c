@@ -104,8 +104,8 @@ PD_LOCAL void multiply_tilde_setup (void)
                                     CLASS_DEFAULT | CLASS_SIGNAL,
                                     A_NULL);
             
-    class_addDSP (multiply_tilde_class, (t_method)multiply_tilde_dsp);
-    class_addDSP (multiplyScalar_tilde_class, (t_method)multiplyScalar_tilde_dsp);
+    class_addDsp (multiply_tilde_class, (t_method)multiply_tilde_dsp);
+    class_addDsp (multiplyScalar_tilde_class, (t_method)multiplyScalar_tilde_dsp);
     
     class_addMethod (multiplyScalar_tilde_class,
         (t_method)binopScalar_tilde_float,

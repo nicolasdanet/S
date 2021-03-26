@@ -295,7 +295,7 @@ PD_LOCAL void tabplay_tilde_setup (void)
             A_DEFSYMBOL,
             A_NULL);
             
-    class_addDSP (c, (t_method)tabplay_tilde_dsp);
+    class_addDsp (c, (t_method)tabplay_tilde_dsp);
     
     class_addList (c, (t_method)tabplay_tilde_list);
         

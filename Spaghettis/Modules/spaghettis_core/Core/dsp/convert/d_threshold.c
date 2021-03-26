@@ -268,7 +268,7 @@ PD_LOCAL void threshold_tilde_setup (void)
             A_GIMME,
             A_NULL);
             
-    class_addDSP (c, (t_method)threshold_tilde_dsp);
+    class_addDsp (c, (t_method)threshold_tilde_dsp);
         
     class_addMethod (c, (t_method)threshold_tilde_set, sym_set, A_GIMME, A_NULL);
 

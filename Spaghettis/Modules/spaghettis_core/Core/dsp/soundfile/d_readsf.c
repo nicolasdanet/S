@@ -313,7 +313,7 @@ PD_LOCAL void readsf_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
     
-    class_addDSP (c, (t_method)readsf_tilde_dsp);
+    class_addDsp (c, (t_method)readsf_tilde_dsp);
     class_addFloat (c, (t_method)readsf_tilde_float);
     
     class_addMethod (c, (t_method)readsf_tilde_start,   sym_start,  A_NULL);

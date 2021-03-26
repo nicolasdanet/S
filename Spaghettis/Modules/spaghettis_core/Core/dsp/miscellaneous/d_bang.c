@@ -98,7 +98,7 @@ PD_LOCAL void bang_tilde_setup (void)
             CLASS_DEFAULT | CLASS_NOINLET,
             A_NULL);
             
-    class_addDSP (c, (t_method)bang_tilde_dsp);
+    class_addDsp (c, (t_method)bang_tilde_dsp);
     
     class_setDismissFunction (c, bang_tilde_functionDismiss);
 

@@ -162,7 +162,7 @@ PD_LOCAL void samphold_tilde_setup (void)
             CLASS_DEFAULT | CLASS_SIGNAL,
             A_NULL);
                 
-    class_addDSP (c, (t_method)samphold_tilde_dsp);
+    class_addDsp (c, (t_method)samphold_tilde_dsp);
     
     class_addMethod (c, (t_method)samphold_tilde_restore, sym__restore, A_GIMME, A_NULL);
 

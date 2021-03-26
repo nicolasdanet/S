@@ -137,7 +137,7 @@ PD_LOCAL void rifft_tilde_setup (void)
             CLASS_DEFAULT | CLASS_SIGNAL,
             A_NULL);
             
-    class_addDSP (c, (t_method)rifft_tilde_dsp);
+    class_addDsp (c, (t_method)rifft_tilde_dsp);
         
     class_setDataFunction (c, rifft_tilde_functionData);
     

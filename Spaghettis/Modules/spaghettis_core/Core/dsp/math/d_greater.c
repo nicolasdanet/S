@@ -107,8 +107,8 @@ PD_LOCAL void greater_tilde_setup (void)
                                     CLASS_DEFAULT | CLASS_SIGNAL,
                                     A_NULL);
         
-    class_addDSP (greater_tilde_class, (t_method)greater_tilde_dsp);
-    class_addDSP (greaterScalar_tilde_class, (t_method)greaterScalar_tilde_dsp);
+    class_addDsp (greater_tilde_class, (t_method)greater_tilde_dsp);
+    class_addDsp (greaterScalar_tilde_class, (t_method)greaterScalar_tilde_dsp);
     
     class_addMethod (greaterScalar_tilde_class,
         (t_method)binopScalar_tilde_float,

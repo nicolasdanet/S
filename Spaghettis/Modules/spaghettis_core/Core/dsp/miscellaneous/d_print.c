@@ -171,7 +171,7 @@ PD_LOCAL void print_tilde_setup (void)
             A_DEFSYMBOL,
             A_NULL);
             
-    class_addDSP (c, (t_method)print_tilde_dsp);
+    class_addDsp (c, (t_method)print_tilde_dsp);
     class_addBang (c, (t_method)print_tilde_bang);
     class_addPolling (c, (t_method)print_tilde_polling);
     

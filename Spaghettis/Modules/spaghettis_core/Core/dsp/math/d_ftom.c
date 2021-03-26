@@ -79,7 +79,7 @@ PD_LOCAL void ftom_tilde_setup (void)
             CLASS_DEFAULT | CLASS_SIGNAL,
             A_NULL);
         
-    class_addDSP (c, (t_method)ftom_tilde_dsp);
+    class_addDsp (c, (t_method)ftom_tilde_dsp);
     
     class_setDataFunction (c, unop_tilde_functionData);
     class_setHelpName (c, sym_acoustic__tilde__);

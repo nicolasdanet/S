@@ -152,7 +152,7 @@ PD_LOCAL void clip_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
             
-    class_addDSP (c, (t_method)clip_tilde_dsp);
+    class_addDsp (c, (t_method)clip_tilde_dsp);
     
     class_addMethod (c, (t_method)clip_tilde_low,   sym__inlet2, A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)clip_tilde_high,  sym__inlet3, A_FLOAT, A_NULL);

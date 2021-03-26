@@ -157,7 +157,7 @@ PD_LOCAL void voutlet_setup (void)
             
     class_addCreator ((t_newmethod)voutlet_newSignal, sym_outlet__tilde__, A_DEFSYMBOL, A_NULL);
     
-    class_addDSP (c, (t_method)voutlet_dsp);
+    class_addDsp (c, (t_method)voutlet_dsp);
     class_addBang (c, (t_method)voutlet_bang);
     class_addFloat (c, (t_method)voutlet_float);
     class_addSymbol (c, (t_method)voutlet_symbol);

@@ -104,8 +104,8 @@ PD_LOCAL void divide_tilde_setup (void)
                                     CLASS_DEFAULT | CLASS_SIGNAL,
                                     A_NULL);
                                     
-    class_addDSP (divide_tilde_class, (t_method)divide_tilde_dsp);
-    class_addDSP (divideScalar_tilde_class, (t_method)divideScalar_tilde_dsp);
+    class_addDsp (divide_tilde_class, (t_method)divide_tilde_dsp);
+    class_addDsp (divideScalar_tilde_class, (t_method)divideScalar_tilde_dsp);
         
     class_addMethod (divideScalar_tilde_class,
         (t_method)binopScalar_tilde_float,

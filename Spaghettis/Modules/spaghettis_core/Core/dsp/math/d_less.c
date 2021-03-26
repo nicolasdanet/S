@@ -107,8 +107,8 @@ PD_LOCAL void less_tilde_setup (void)
                                 CLASS_DEFAULT | CLASS_SIGNAL,
                                 A_NULL);
                 
-    class_addDSP (less_tilde_class, (t_method)less_tilde_dsp);
-    class_addDSP (lessScalar_tilde_class, (t_method)lessScalar_tilde_dsp);
+    class_addDsp (less_tilde_class, (t_method)less_tilde_dsp);
+    class_addDsp (lessScalar_tilde_class, (t_method)lessScalar_tilde_dsp);
     
     class_addMethod (lessScalar_tilde_class,
         (t_method)binopScalar_tilde_float,

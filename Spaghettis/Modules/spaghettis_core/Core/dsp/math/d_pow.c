@@ -98,7 +98,7 @@ PD_LOCAL void pow_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
             
-    class_addDSP (c, (t_method)pow_tilde_dsp);
+    class_addDsp (c, (t_method)pow_tilde_dsp);
         
     class_setDataFunction (c, binop_tilde_functionData);
     class_setHelpName (c, sym_math__tilde__);

@@ -104,8 +104,8 @@ PD_LOCAL void min_tilde_setup (void)
                                     CLASS_DEFAULT | CLASS_SIGNAL,
                                     A_NULL);
         
-    class_addDSP (min_tilde_class, (t_method)min_tilde_dsp);
-    class_addDSP (minScalar_tilde_class, (t_method)minScalar_tilde_dsp);
+    class_addDsp (min_tilde_class, (t_method)min_tilde_dsp);
+    class_addDsp (minScalar_tilde_class, (t_method)minScalar_tilde_dsp);
     
     class_addMethod (minScalar_tilde_class,
         (t_method)binopScalar_tilde_float,

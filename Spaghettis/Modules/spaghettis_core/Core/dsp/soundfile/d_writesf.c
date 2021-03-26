@@ -271,7 +271,7 @@ PD_LOCAL void writesf_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
         
-    class_addDSP (c, (t_method)writesf_tilde_dsp);
+    class_addDsp (c, (t_method)writesf_tilde_dsp);
         
     class_addMethod (c, (t_method)writesf_tilde_start,  sym_start,  A_NULL);
     class_addMethod (c, (t_method)writesf_tilde_stop,   sym_stop,   A_NULL);

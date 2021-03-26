@@ -102,7 +102,7 @@ PD_STUB void helloSpace_tilde_setup (void)
             sizeof (t_hello),
             CLASS_BOX | CLASS_SIGNAL);
     
-    spaghettis_classAddDSP (c, (t_method)hello_dsp);
+    spaghettis_classAddDsp (c, (t_method)hello_dsp);
 
     hello_class = c;
 }

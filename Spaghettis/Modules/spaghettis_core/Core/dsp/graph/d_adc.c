@@ -107,7 +107,7 @@ PD_LOCAL void adc_tilde_setup (void)
             A_GIMME,
             A_NULL);
             
-    class_addDSP (c, (t_method)adc_tilde_dsp);
+    class_addDsp (c, (t_method)adc_tilde_dsp);
 
     class_setHelpName (c, sym_audio);
     

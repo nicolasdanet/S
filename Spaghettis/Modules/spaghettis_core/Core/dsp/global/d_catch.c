@@ -89,7 +89,7 @@ PD_LOCAL void catch_tilde_setup (void)
             A_DEFSYMBOL,
             A_NULL);
             
-    class_addDSP (c, (t_method)catch_tilde_dsp);
+    class_addDsp (c, (t_method)catch_tilde_dsp);
     
     class_setHelpName (c, sym_throw__tilde__);
     class_setDismissFunction (c, catch_tilde_functionDismiss);

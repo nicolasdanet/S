@@ -104,8 +104,8 @@ PD_LOCAL void subtract_tilde_setup (void)
                                     CLASS_DEFAULT | CLASS_SIGNAL,
                                     A_NULL);
             
-    class_addDSP (subtract_tilde_class, (t_method)subtract_tilde_dsp);
-    class_addDSP (subtractScalar_tilde_class, (t_method)subtractScalar_tilde_dsp);
+    class_addDsp (subtract_tilde_class, (t_method)subtract_tilde_dsp);
+    class_addDsp (subtractScalar_tilde_class, (t_method)subtractScalar_tilde_dsp);
 
     class_addMethod (subtractScalar_tilde_class,
         (t_method)binopScalar_tilde_float,

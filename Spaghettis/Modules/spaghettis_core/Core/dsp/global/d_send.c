@@ -110,7 +110,7 @@ PD_LOCAL void send_tilde_setup (void)
             
     class_addCreator ((t_newmethod)send_tilde_new, sym_s__tilde__, A_DEFSYMBOL, A_NULL);
     
-    class_addDSP (c, (t_method)send_tilde_dsp);
+    class_addDsp (c, (t_method)send_tilde_dsp);
     
     class_setDataFunction (c, send_tilde_functionData);
     class_setDismissFunction (c, send_tilde_functionDismiss);

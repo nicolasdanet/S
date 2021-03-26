@@ -63,7 +63,7 @@ PD_LOCAL void sqrt_tilde_setup (void)
             CLASS_DEFAULT | CLASS_SIGNAL,
             A_NULL);
     
-    class_addDSP (c, (t_method)sqrt_tilde_dsp);
+    class_addDsp (c, (t_method)sqrt_tilde_dsp);
     
     class_setDataFunction (c, unop_tilde_functionData);
     class_setHelpName (c, sym_math__tilde__);

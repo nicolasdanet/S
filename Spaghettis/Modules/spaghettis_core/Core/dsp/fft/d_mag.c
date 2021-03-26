@@ -88,7 +88,7 @@ PD_LOCAL void mag_tilde_setup (void)
             A_GIMME,
             A_NULL);
     
-    class_addDSP (c, (t_method)mag_tilde_dsp);
+    class_addDsp (c, (t_method)mag_tilde_dsp);
         
     class_setDataFunction (c, mag_tilde_functionData);
     

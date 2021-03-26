@@ -151,7 +151,7 @@ PD_LOCAL void receive_tilde_setup (void)
             
     class_addCreator ((t_newmethod)receive_tilde_new, sym_r__tilde__, A_DEFSYMBOL, A_NULL);
     
-    class_addDSP (c, (t_method)receive_tilde_dsp);
+    class_addDsp (c, (t_method)receive_tilde_dsp);
     
     class_addMethod (c, (t_method)receive_tilde_set,        sym_set,        A_SYMBOL, A_NULL);
     class_addMethod (c, (t_method)receive_tilde_restore,    sym__restore,   A_SYMBOL, A_NULL);

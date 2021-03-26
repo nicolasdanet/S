@@ -1243,7 +1243,7 @@ PD_LOCAL void sigmund_tilde_setup (void)
             A_GIMME,
             A_NULL);
     
-    class_addDSP (c, (t_method)sigmund_tilde_dsp);
+    class_addDsp (c, (t_method)sigmund_tilde_dsp);
     
     class_addList (c, (t_method)sigmund_tilde_list);
         

@@ -165,7 +165,7 @@ PD_LOCAL void lop_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
             
-    class_addDSP (c, (t_method)lop_tilde_dsp);
+    class_addDsp (c, (t_method)lop_tilde_dsp);
     
     class_addMethod (c, (t_method)lop_tilde_frequency, sym__inlet2, A_FLOAT, A_NULL);
     

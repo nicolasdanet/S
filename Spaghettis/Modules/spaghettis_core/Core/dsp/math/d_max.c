@@ -104,8 +104,8 @@ PD_LOCAL void max_tilde_setup (void)
                                     CLASS_DEFAULT | CLASS_SIGNAL,
                                     A_NULL);
                 
-    class_addDSP (max_tilde_class, (t_method)max_tilde_dsp);
-    class_addDSP (maxScalar_tilde_class, (t_method)maxScalar_tilde_dsp);
+    class_addDsp (max_tilde_class, (t_method)max_tilde_dsp);
+    class_addDsp (maxScalar_tilde_class, (t_method)maxScalar_tilde_dsp);
     
     class_addMethod (maxScalar_tilde_class,
         (t_method)binopScalar_tilde_float,

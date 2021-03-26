@@ -172,8 +172,8 @@ PD_LOCAL void add_tilde_setup (void)
                                 CLASS_DEFAULT | CLASS_SIGNAL,
                                 A_NULL);
     
-    class_addDSP (add_tilde_class, (t_method)add_tilde_dsp);
-    class_addDSP (addScalar_tilde_class, (t_method)addScalar_tilde_dsp);
+    class_addDsp (add_tilde_class, (t_method)add_tilde_dsp);
+    class_addDsp (addScalar_tilde_class, (t_method)addScalar_tilde_dsp);
     
     class_addMethod (addScalar_tilde_class,
         (t_method)binopScalar_tilde_float,

@@ -92,7 +92,7 @@ PD_STUB void hello_tilde_setup (void)       /* The "~" symbol is replaced by "_t
     
     /* Set the function called while constructing the DSP graph. */
     
-    spaghettis_classAddDSP (c, (t_method)hello_dsp);
+    spaghettis_classAddDsp (c, (t_method)hello_dsp);
     
     hello_class = c;
 }

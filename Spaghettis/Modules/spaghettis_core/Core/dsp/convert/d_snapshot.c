@@ -149,7 +149,7 @@ PD_LOCAL void snapshot_tilde_setup (void)
             A_GIMME,
             A_NULL);
     
-    class_addDSP (c, (t_method)snapshot_tilde_dsp);
+    class_addDsp (c, (t_method)snapshot_tilde_dsp);
     class_addBang (c, (t_method)snapshot_tilde_bang);
     class_addPolling (c, (t_method)snapshot_tilde_polling);
     

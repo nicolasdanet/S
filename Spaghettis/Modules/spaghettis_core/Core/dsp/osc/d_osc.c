@@ -163,7 +163,7 @@ PD_LOCAL void osc_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
             
-    class_addDSP (c, (t_method)osc_tilde_dsp);
+    class_addDsp (c, (t_method)osc_tilde_dsp);
     
     class_addMethod (c, (t_method)osc_tilde_phase,   sym__inlet2,  A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)osc_tilde_restore, sym__restore, A_FLOAT, A_NULL);

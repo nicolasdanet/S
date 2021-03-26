@@ -129,7 +129,7 @@ PD_LOCAL void dac_tilde_setup (void)
             A_GIMME,
             A_NULL);
         
-    class_addDSP (c, (t_method)dac_tilde_dsp);
+    class_addDsp (c, (t_method)dac_tilde_dsp);
     
     class_setDataFunction (c, dac_tilde_functionData);
     class_setHelpName (c, sym_audio);

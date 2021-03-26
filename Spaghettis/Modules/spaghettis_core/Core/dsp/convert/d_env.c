@@ -234,7 +234,7 @@ PD_LOCAL void env_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
             
-    class_addDSP (c, (t_method)env_tilde_dsp);
+    class_addDsp (c, (t_method)env_tilde_dsp);
     
     class_setDataFunction (c, env_tilde_functionData);
     class_setDismissFunction (c, env_tilde_functionDismiss);

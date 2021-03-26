@@ -99,9 +99,9 @@ PD_EXPORT void spaghettis_classAddAnything (t_class *c, t_method fn)
     class_addAnything (c, fn);
 }
 
-PD_EXPORT void spaghettis_classAddDSP (t_class *c, t_method fn)
+PD_EXPORT void spaghettis_classAddDsp (t_class *c, t_method fn)
 {
-    class_addDSP (c, fn);
+    class_addDsp (c, fn);
 }
 
 PD_EXPORT void spaghettis_classSetHelpDirectory (t_class *c, t_symbol *s)

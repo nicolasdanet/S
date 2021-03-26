@@ -214,7 +214,7 @@ PD_LOCAL void tabread4_tilde_setup (void)
             A_DEFSYMBOL,
             A_NULL);
             
-    class_addDSP (c, (t_method)tabread4_tilde_dsp);
+    class_addDsp (c, (t_method)tabread4_tilde_dsp);
     
     class_addMethod (c, (t_method)tabread4_tilde_set,       sym_set,        A_SYMBOL, A_NULL);
     class_addMethod (c, (t_method)tabread4_tilde_onset,     sym__inlet2,    A_FLOAT, A_NULL);

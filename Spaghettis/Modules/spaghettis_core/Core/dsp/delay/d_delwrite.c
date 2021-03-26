@@ -200,7 +200,7 @@ PD_LOCAL void delwrite_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
             
-    class_addDSP (c, (t_method)delwrite_tilde_dsp);
+    class_addDsp (c, (t_method)delwrite_tilde_dsp);
 
     class_setDataFunction (c, delwrite_tilde_functionData);
     class_setDismissFunction (c, delwrite_tilde_functionDismiss);

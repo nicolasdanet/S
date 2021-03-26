@@ -102,7 +102,7 @@ PD_LOCAL void sig_tilde_setup (void)
             A_DEFFLOAT,
             A_NULL);
     
-    class_addDSP (c, (t_method)sig_tilde_dsp);
+    class_addDsp (c, (t_method)sig_tilde_dsp);
     class_addFloat (c, (t_method)sig_tilde_float);
     
     class_setDataFunction (c, sig_tilde_functionData);

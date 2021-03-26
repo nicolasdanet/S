@@ -551,7 +551,7 @@ PD_DLL void         spaghettis_classAddFloat            (t_class *c, t_method fn
 PD_DLL void         spaghettis_classAddSymbol           (t_class *c, t_method fn);
 PD_DLL void         spaghettis_classAddList             (t_class *c, t_method fn);
 PD_DLL void         spaghettis_classAddAnything         (t_class *c, t_method fn);
-PD_DLL void         spaghettis_classAddDSP              (t_class *c, t_method fn);
+PD_DLL void         spaghettis_classAddDsp              (t_class *c, t_method fn);
 
 PD_DLL void         spaghettis_classSetHelpDirectory    (t_class *c, t_symbol *s);
 
