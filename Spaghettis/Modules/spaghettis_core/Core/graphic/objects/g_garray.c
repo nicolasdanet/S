@@ -20,7 +20,7 @@ t_class *garray_class;                  /* Shared. */
 
 struct _garray {
     t_object    x_obj;                  /* MUST be the first. */
-    int         x_isUsedInDSP;
+    int         x_isUsedInDsp;
     int         x_dismissed;
     int         x_embed;
     int         x_size;
@@ -168,18 +168,18 @@ static t_symbol *garray_getUnexpandedName (t_garray *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void garray_setAsUsedInDSP (t_garray *x, int usedInDSP)
+PD_LOCAL void garray_setAsUsedInDsp (t_garray *x, int usedInDsp)
 {
-    x->x_isUsedInDSP = (usedInDSP != 0);
+    x->x_isUsedInDsp = (usedInDsp != 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int garray_isUsedInDSP (t_garray *x)
+PD_LOCAL int garray_isUsedInDsp (t_garray *x)
 {
-    return (x->x_isUsedInDSP != 0);
+    return (x->x_isUsedInDsp != 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -361,7 +361,7 @@ static void garray_resizeProceed (t_garray *x, int n)
     
     t_word *t = x->x_data;
     
-    if (garray_isUsedInDSP (x)) {
+    if (garray_isUsedInDsp (x)) {
         x->x_data = (t_word *)PD_MEMORY_GET (newBytes);
         garray_copy (x->x_data, t, PD_MIN (oldSize, newSize));
         garbage_newRaw ((void *)t);
@@ -382,7 +382,7 @@ PD_LOCAL void garray_resize (t_garray *x, t_float f)
     
     PD_ASSERT (sys_isControlThread());
     
-    if (garray_isUsedInDSP (x)) { dspState = dsp_suspend(); dspSuspended = 1; }
+    if (garray_isUsedInDsp (x)) { dspState = dsp_suspend(); dspSuspended = 1; }
     
     garray_resizeProceed (x, (int)f);
     

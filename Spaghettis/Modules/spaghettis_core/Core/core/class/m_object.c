@@ -54,7 +54,7 @@ PD_FORCE int object_isAtom (t_object *x)
 
 static int object_hasDspProceed (t_object *x, int k)
 {
-    if (pd_class (x) == garray_class)       { return k ? 1 : garray_isUsedInDSP ((t_garray *)x); }
+    if (pd_class (x) == garray_class)       { return k ? 1 : garray_isUsedInDsp ((t_garray *)x); }
     else if (pd_class (x) == vinlet_class)  { return vinlet_isSignal ((t_vinlet *)x);   }
     else if (pd_class (x) == voutlet_class) { return voutlet_isSignal ((t_voutlet *)x); }
     else {

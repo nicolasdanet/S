@@ -55,7 +55,7 @@ PD_LOCAL t_error tab_fetchArray (t_symbol *s, int *size, t_word **data)
     (*size) = 0;
     (*data) = NULL;
     
-    if (a) { garray_setAsUsedInDSP (a, 1); garray_getData (a, size, data); return PD_ERROR_NONE; }
+    if (a) { garray_setAsUsedInDsp (a, 1); garray_getData (a, size, data); return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }
