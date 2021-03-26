@@ -237,7 +237,7 @@ PD_LOCAL void class_addMethod (t_class *c, t_method fn, t_symbol *s, t_atomtype 
     va_start (ap, type1);
     
     if (s == &s_signal) { PD_BUG; return;  }        /* Deprecated. */
-    if (s == sym__dsp)  { c->c_hasDSP = 1; }
+    if (s == sym__dsp)  { c->c_hasDsp = 1; }
     
     /* Don't override the anything method of the object factory. */
     
@@ -398,7 +398,7 @@ PD_FORCE int class_hasOverrideAnythingMethod (t_class *c)
 
 PD_LOCAL void class_requirePending (t_class *c)
 {
-    if (!class_hasDSP (c)) { c->c_requirePending = 1; }
+    if (!class_hasDsp (c)) { c->c_requirePending = 1; }
     else {
         PD_BUG;
     }

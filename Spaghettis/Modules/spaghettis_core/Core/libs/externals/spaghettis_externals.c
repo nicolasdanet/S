@@ -267,7 +267,7 @@ PD_EXPORT t_object *spaghettis_objectGetTemporary (t_object *x)
 {
     t_object *old = NULL;
     
-    if (class_hasDSP (pd_class (x))) {
+    if (class_hasDsp (pd_class (x))) {
         old = garbage_fetch (x);
     } else {
         old = instance_pendingFetch (x);

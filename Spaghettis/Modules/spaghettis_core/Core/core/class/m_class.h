@@ -77,7 +77,7 @@ struct _class {
     int                     c_requirePending;
     int                     c_hasSignal;
     int                     c_hasFirstInlet;
-    int                     c_hasDSP;
+    int                     c_hasDsp;
     int                     c_type;
     size_t                  c_size;
     };
@@ -131,9 +131,9 @@ static inline size_t class_getInstanceSize (t_class *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static inline int class_hasDSP (t_class *c)
+static inline int class_hasDsp (t_class *c)
 {
-    return (c->c_hasDSP != 0);
+    return (c->c_hasDsp != 0);
 }
 
 static inline int class_hasFirstInlet (t_class *c)

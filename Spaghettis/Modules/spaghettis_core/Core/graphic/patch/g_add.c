@@ -116,7 +116,7 @@ PD_LOCAL void glist_objectRemoveProceed (t_glist *glist, t_object *y)
 
 static void glist_objectRemoveFree (t_glist *glist, t_object *y)
 {
-    if (object_hasDSP (y) && !object_isCanvas (y)) {
+    if (object_hasDsp (y) && !object_isCanvas (y)) {
         if (garbage_newObject (y)) { return; }
     }
     
@@ -127,7 +127,7 @@ static void glist_objectRemoveFree (t_glist *glist, t_object *y)
 
 PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
 {
-    int needToRebuild = object_hasDSP (y);
+    int needToRebuild = object_hasDsp (y);
     int undoable      = glist_undoIsOk (glist);
     int state         = 0;
     
@@ -185,7 +185,7 @@ PD_LOCAL void glist_objectRemoveSelectedProceed (t_glist *glist)
     
     if (glist_objectIsSelected (glist, t1)) {
         if (!dspSuspended) {
-            if (object_hasDSP (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
+            if (object_hasDsp (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
         }
 
         glist_objectRemoveCacheInlets (glist, t1);
@@ -222,7 +222,7 @@ PD_LOCAL void glist_objectRemoveAll (t_glist *glist)
     t2 = t1->g_next;
     
     if (!dspSuspended) {
-        if (object_hasDSP (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
+        if (object_hasDsp (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
     }
 
     glist_objectRemoveCacheInlets (glist, t1);

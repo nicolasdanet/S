@@ -26,7 +26,7 @@ PD_LOCAL void canvas_dspProceed (t_glist *glist, int isTopLevel, t_signal **sp)
     
     for (y = glist->gl_graphics; y; y = y->g_next) {
     //
-    if (class_hasDSP (pd_class (y))) { ugen_graphAdd (context, y); }
+    if (class_hasDsp (pd_class (y))) { ugen_graphAdd (context, y); }
     //
     }
 

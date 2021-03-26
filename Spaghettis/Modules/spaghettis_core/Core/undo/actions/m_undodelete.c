@@ -27,7 +27,7 @@ typedef struct _undodelete {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    object_hasDSPOrIsGraphicArray   (t_object *);
+PD_LOCAL int    object_hasDspOrIsGraphicArray   (t_object *);
 PD_LOCAL void   undoaction_setInletsAndOutlets  (t_undoaction *, t_object *);
 
 // -----------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ PD_LOCAL t_undoaction *undodelete_new (t_object *o, t_undosnippet *snippet)
     
     // -- TODO: Consider if arrays always require to rebuild the graph?
     
-    int safe = (object_hasDSPOrIsGraphicArray (o) == 0);
+    int safe = (object_hasDspOrIsGraphicArray (o) == 0);
 
     x->ua_id    = object_getUnique (o);
     x->ua_type  = UNDO_DELETE;

@@ -52,24 +52,24 @@ PD_FORCE int object_isAtom (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static int object_hasDSPProceed (t_object *x, int k)
+static int object_hasDspProceed (t_object *x, int k)
 {
     if (pd_class (x) == garray_class)       { return k ? 1 : garray_isUsedInDSP ((t_garray *)x); }
     else if (pd_class (x) == vinlet_class)  { return vinlet_isSignal ((t_vinlet *)x);   }
     else if (pd_class (x) == voutlet_class) { return voutlet_isSignal ((t_voutlet *)x); }
     else {
-        return class_hasDSP (pd_class (x));
+        return class_hasDsp (pd_class (x));
     }
 }
 
-PD_LOCAL int object_hasDSPOrIsGraphicArray (t_object *x)
+PD_LOCAL int object_hasDspOrIsGraphicArray (t_object *x)
 {
-    return object_hasDSPProceed (x, 1);
+    return object_hasDspProceed (x, 1);
 }
 
-PD_LOCAL int object_hasDSP (t_object *x)
+PD_LOCAL int object_hasDsp (t_object *x)
 {
-    return object_hasDSPProceed (x, 0);
+    return object_hasDspProceed (x, 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
