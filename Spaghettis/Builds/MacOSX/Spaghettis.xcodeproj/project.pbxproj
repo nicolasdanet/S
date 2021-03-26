@@ -12,7 +12,6 @@
 		274D6BFB3E251A69841986B1 /* App */ = {isa = PBXBuildFile; fileRef = 60D8A2DF65E5C0796EA99CB1; };
 		2D23F4A7B71E5EE6AB602452 /* Main.cpp */ = {isa = PBXBuildFile; fileRef = A1056AE48F0DFF9EC3445D0E; };
 		2D9A95A4E54DC0D4312BC9F5 /* include_juce_data_structures.mm */ = {isa = PBXBuildFile; fileRef = D31E9A678ACB0B6E5AA55846; };
-		3E501BFBC2DC9D6FE1AD2FA0 /* include_spaghettis_belle.mm */ = {isa = PBXBuildFile; fileRef = C0B552E448017A4C8C013F63; };
 		4471F6CC4D584796C5728278 /* AudioUnit.framework */ = {isa = PBXBuildFile; fileRef = 721D2F47AAC0470E9F2AA340; };
 		58E8530BC898BF294D7C8A13 /* CoreAudio.framework */ = {isa = PBXBuildFile; fileRef = CC31058899835B55FEC293F9; };
 		5B5691F2F80C1D02F0AA9D7B /* CoreMIDI.framework */ = {isa = PBXBuildFile; fileRef = C9C6B2655C8D889351519A5B; };
@@ -49,8 +48,6 @@
 		A7D9C0FA0907BC5117638CCC /* include_juce_gui_basics.mm */ /* include_juce_gui_basics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_basics.mm; path = ../../JuceLibraryCode/include_juce_gui_basics.mm; sourceTree = SOURCE_ROOT; };
 		B4DAE1C42FD0579475CBE2CD /* spaghettis_core */ /* spaghettis_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_core; path = ../../Modules/spaghettis_core; sourceTree = SOURCE_ROOT; };
 		B7A6D4B166AFD6C1609FE05A /* Info-App.plist */ /* Info-App.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-App.plist"; path = "Info-App.plist"; sourceTree = SOURCE_ROOT; };
-		BB93B2ED5224711CFA528F76 /* spaghettis_belle */ /* spaghettis_belle */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_belle; path = ../../Modules/spaghettis_belle; sourceTree = SOURCE_ROOT; };
-		C0B552E448017A4C8C013F63 /* include_spaghettis_belle.mm */ /* include_spaghettis_belle.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_belle.mm; path = ../../JuceLibraryCode/include_spaghettis_belle.mm; sourceTree = SOURCE_ROOT; };
 		C9C6B2655C8D889351519A5B /* CoreMIDI.framework */ /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		CC31058899835B55FEC293F9 /* CoreAudio.framework */ /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		D31E9A678ACB0B6E5AA55846 /* include_juce_data_structures.mm */ /* include_juce_data_structures.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_data_structures.mm; path = ../../JuceLibraryCode/include_juce_data_structures.mm; sourceTree = SOURCE_ROOT; };
@@ -127,7 +124,6 @@
 				47B902E51FA1D26D812A2D55,
 				6BABF3016D73C66D88F37770,
 				DD376E055A3C1DAE5AD681FE,
-				BB93B2ED5224711CFA528F76,
 				B4DAE1C42FD0579475CBE2CD,
 				E8CB080AF78BBE2F817E4F92,
 			);
@@ -142,7 +138,6 @@
 				4BD2FF29EDDE1ABAC27A7822,
 				16458E769BBE629739926E6D,
 				A7D9C0FA0907BC5117638CCC,
-				C0B552E448017A4C8C013F63,
 				051678F45F5E88F07EA77717,
 				872360D0C70C7B5CA52A5B1B,
 				1BAEF33E789FBE91AAC83446,
@@ -276,7 +271,6 @@
 				E056A29494362A6384E4D8CB,
 				D0B4049BC7214518D88FC403,
 				6E1BA5A7EDAB97C5EA635131,
-				3E501BFBC2DC9D6FE1AD2FA0,
 				E8E93D5E1626F0A68486AAD9,
 				D1156CB53965143E57684B78,
 			);
@@ -357,7 +351,6 @@
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
 					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
 					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
-					"JUCE_MODULE_AVAILABLE_spaghettis_belle=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_core=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_gui=1",
 					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
@@ -420,7 +413,6 @@
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
 					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
 					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
-					"JUCE_MODULE_AVAILABLE_spaghettis_belle=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_core=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_gui=1",
 					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",

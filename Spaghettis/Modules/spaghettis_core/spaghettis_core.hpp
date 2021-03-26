@@ -20,7 +20,7 @@
   website:            https://github.com/Spaghettis
   license:            BSD
 
-  dependencies:       spaghettis_belle
+  dependencies:
   OSXFrameworks:      Carbon CoreMIDI CoreAudio AudioUnit
   OSXLibs:            dl pthread
   linuxLibs:          dl pthread m asound jack

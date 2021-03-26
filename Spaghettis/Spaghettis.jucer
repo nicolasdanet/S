@@ -29,7 +29,6 @@
         <MODULEPATH id="juce_graphics" path="../../../JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../../JUCE/modules"/>
         <MODULEPATH id="spaghettis_core" path="Modules"/>
-        <MODULEPATH id="spaghettis_belle" path="Modules"/>
         <MODULEPATH id="spaghettis_gui" path="Modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
@@ -46,7 +45,6 @@
         <MODULEPATH id="juce_data_structures"/>
         <MODULEPATH id="juce_core"/>
         <MODULEPATH id="spaghettis_core" path="Modules"/>
-        <MODULEPATH id="spaghettis_belle" path="Modules"/>
         <MODULEPATH id="spaghettis_gui" path="Modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
@@ -57,7 +55,6 @@
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="spaghettis_belle" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="spaghettis_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="spaghettis_gui" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
