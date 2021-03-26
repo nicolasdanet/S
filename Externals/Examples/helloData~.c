@@ -75,7 +75,7 @@ static void hello_dsp (t_hello *x, t_signal **s)
     
     spaghettis_initializerNew (hello_initialize, x, old);
     
-    /* Copy the signal values (i.e. constant floats provided to inlets). */
+    /* Copy the signal values (i.e. constant message floats provided to inlets). */
     
     spaghettis_objectCopySignalValues ((t_object *)x, (t_object *)old);
     //
@@ -119,7 +119,7 @@ static t_buffer *hello_functionData (t_object *z, int flags)
     t_hello *x  = (t_hello *)z;
     t_buffer *b = spaghettis_bufferNew();
         
-    /* Push the signal values (i.e. constant floats provided to inlets). */
+    /* Push the signal values (i.e. constant message floats provided to inlets). */
     /* Notice that so they will be automatically restored. */
     
     spaghettis_objectGetSignalValues ((t_object *)x, b);
