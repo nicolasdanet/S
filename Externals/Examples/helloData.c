@@ -18,7 +18,7 @@
 /* It is used for instance for saving and undoing. */
 /* During encapsulation objects are deleted then recreated. */
 /* It is similar to cut/paste operation. */
-/* Original objects (marked to require pending) are momentary stored. */
+/* Original objects (if marked to require pending) are momentary stored. */
 /* Thus you can grab (and swap) internal states before deletion. */
 
 // -----------------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ static t_class  *hello_class;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_symbol *hello__restore;        /* Pointers to symbols can be cached for efficiency. */
+static t_symbol *hello_s;       /* Pointers to symbols can be cached for efficiency. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -70,10 +70,10 @@ static t_buffer *hello_functionData (t_object *z, int flags)
     t_buffer *b = spaghettis_bufferNew();
     
     /* Must be labelled according to the method used for data recovery. */
-    /* It can be a public method such as set or a private one (starting with an underscore). */
-    /* In the private case to avoid to collide it must be "_restore". */
+    /* It can be a public method such as set or a private one. */
+    /* In the private case to avoid to collide it must be this one. */
     
-    spaghettis_bufferAppendSymbol (b, hello__restore);
+    spaghettis_bufferAppendSymbol (b, hello_s);
     spaghettis_bufferAppendFloat (b, x->x_f);
     
     return b;       /* Must NOT be freed. */
@@ -141,12 +141,12 @@ PD_STUB void helloData_setup (t_symbol *s)
             sizeof (t_hello),
             CLASS_BOX);
     
-    hello__restore = spaghettis_symbol ("_restore");
+    hello_s = spaghettis_getRestoreSymbol();
 
     spaghettis_classAddBang (c, (t_method)hello_bang);
     spaghettis_classAddFloat (c, (t_method)hello_float);
     
-    spaghettis_classAddMethodWithArguments (c, (t_method)hello_restore, hello__restore);
+    spaghettis_classAddMethodWithArguments (c, (t_method)hello_restore, hello_s);
 
     spaghettis_classSetDataFunction (c, hello_functionData);
     spaghettis_classSetDismissFunction (c, hello_functionDismiss);

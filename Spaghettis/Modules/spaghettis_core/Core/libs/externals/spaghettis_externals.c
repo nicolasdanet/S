@@ -219,6 +219,15 @@ PD_EXPORT int spaghettis_symbolHasThingQuiet (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_EXPORT t_symbol *spaghettis_getRestoreSymbol (void)
+{
+    return gensym ("_restore");
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 /* In debug build memory leaks for externals are globally tracked. */
 
 PD_EXPORT void *spaghettis_memoryGet (size_t n)

@@ -601,6 +601,12 @@ PD_DLL int          spaghettis_symbolHasThingQuiet      (t_symbol *s);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_DLL t_symbol     *spaghettis_getRestoreSymbol        (void);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_DLL void         *spaghettis_memoryGet               (size_t n);
 PD_DLL void         *spaghettis_memoryResize            (void *m, size_t oldSize, size_t newSize);
 
@@ -629,6 +635,7 @@ PD_DLL void         spaghettis_objectGetSignalValues                        (t_o
 PD_DLL void         spaghettis_objectCopySignalValues                       (t_object *x, t_object *old);
 PD_DLL void         spaghettis_objectFetchAndCopySignalValuesIfRequired     (t_object *x);
 PD_DLL int          spaghettis_objectFlagIsUndoOrEncaspulate                (t_object *x, int flags);
+
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
