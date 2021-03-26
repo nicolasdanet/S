@@ -5,294 +5,81 @@
 	};
 	objectVersion = 46;
 	objects = {
-		274D6BFB3E251A69841986B1 = {
-			isa = PBXBuildFile;
-			fileRef = 60D8A2DF65E5C0796EA99CB1;
-		};
-		4471F6CC4D584796C5728278 = {
-			isa = PBXBuildFile;
-			fileRef = 721D2F47AAC0470E9F2AA340;
-		};
-		E6EF992661E0BCC0594EF123 = {
-			isa = PBXBuildFile;
-			fileRef = 275F8E522693FC248DD886E3;
-		};
-		013CE1E9DA9FD7E645F73D2E = {
-			isa = PBXBuildFile;
-			fileRef = FAC1F52DAB4CF87E5E85196F;
-		};
-		58E8530BC898BF294D7C8A13 = {
-			isa = PBXBuildFile;
-			fileRef = CC31058899835B55FEC293F9;
-		};
-		5B5691F2F80C1D02F0AA9D7B = {
-			isa = PBXBuildFile;
-			fileRef = C9C6B2655C8D889351519A5B;
-		};
-		F49611C8B5492263E100A1D2 = {
-			isa = PBXBuildFile;
-			fileRef = A3A861B41BD91C2AFB7F1175;
-		};
-		5BFCA5F5B994AFE79CC658DD = {
-			isa = PBXBuildFile;
-			fileRef = E256EE56D3F74E547832FB86;
-		};
-		D8751DBF49BECD65C7A0923A = {
-			isa = PBXBuildFile;
-			fileRef = A56CB13A5C065878D9CCD781;
-		};
-		D3F5DE6E70FFA7E248044899 = {
-			isa = PBXBuildFile;
-			fileRef = 389D7927151AD7F53D9F79C3;
-		};
-		2D23F4A7B71E5EE6AB602452 = {
-			isa = PBXBuildFile;
-			fileRef = A1056AE48F0DFF9EC3445D0E;
-		};
-		24C7BCD200D4A0C85C119CF6 = {
-			isa = PBXBuildFile;
-			fileRef = 119BE2259F904F5D7E463AD0;
-		};
-		2D9A95A4E54DC0D4312BC9F5 = {
-			isa = PBXBuildFile;
-			fileRef = D31E9A678ACB0B6E5AA55846;
-		};
-		E056A29494362A6384E4D8CB = {
-			isa = PBXBuildFile;
-			fileRef = 4BD2FF29EDDE1ABAC27A7822;
-		};
-		D0B4049BC7214518D88FC403 = {
-			isa = PBXBuildFile;
-			fileRef = 16458E769BBE629739926E6D;
-		};
-		6E1BA5A7EDAB97C5EA635131 = {
-			isa = PBXBuildFile;
-			fileRef = A7D9C0FA0907BC5117638CCC;
-		};
-		3E501BFBC2DC9D6FE1AD2FA0 = {
-			isa = PBXBuildFile;
-			fileRef = C0B552E448017A4C8C013F63;
-		};
-		E8E93D5E1626F0A68486AAD9 = {
-			isa = PBXBuildFile;
-			fileRef = 051678F45F5E88F07EA77717;
-		};
-		D1156CB53965143E57684B78 = {
-			isa = PBXBuildFile;
-			fileRef = 872360D0C70C7B5CA52A5B1B;
-		};
-		051678F45F5E88F07EA77717 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_spaghettis_core.mm";
-			path = "../../JuceLibraryCode/include_spaghettis_core.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		119BE2259F904F5D7E463AD0 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_core.mm";
-			path = "../../JuceLibraryCode/include_juce_core.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		16458E769BBE629739926E6D = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_graphics.mm";
-			path = "../../JuceLibraryCode/include_juce_graphics.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		1BAEF33E789FBE91AAC83446 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = JuceHeader.h;
-			path = ../../JuceLibraryCode/JuceHeader.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		2748188111FF8A9655940C34 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_core";
-			path = "~/JUCE/modules/juce_core";
-			sourceTree = "<absolute>";
-		};
-		275F8E522693FC248DD886E3 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = Carbon.framework;
-			path = System/Library/Frameworks/Carbon.framework;
-			sourceTree = SDKROOT;
-		};
-		389D7927151AD7F53D9F79C3 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file.nib;
-			name = RecentFilesMenuTemplate.nib;
-			path = RecentFilesMenuTemplate.nib;
-			sourceTree = "SOURCE_ROOT";
-		};
-		47B902E51FA1D26D812A2D55 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_events";
-			path = "~/JUCE/modules/juce_events";
-			sourceTree = "<absolute>";
-		};
-		4BD2FF29EDDE1ABAC27A7822 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_events.mm";
-			path = "../../JuceLibraryCode/include_juce_events.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		60D8A2DF65E5C0796EA99CB1 = {
-			isa = PBXFileReference;
-			explicitFileType = wrapper.application;
-			includeInIndex = 0;
-			path = Spaghettis.app;
-			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
-		636759924C4B7A2A44012B75 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_data_structures";
-			path = "~/JUCE/modules/juce_data_structures";
-			sourceTree = "<absolute>";
-		};
-		6BABF3016D73C66D88F37770 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_graphics";
-			path = "~/JUCE/modules/juce_graphics";
-			sourceTree = "<absolute>";
-		};
-		721D2F47AAC0470E9F2AA340 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = AudioUnit.framework;
-			path = System/Library/Frameworks/AudioUnit.framework;
-			sourceTree = SDKROOT;
-		};
-		872360D0C70C7B5CA52A5B1B = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_spaghettis_gui.mm";
-			path = "../../JuceLibraryCode/include_spaghettis_gui.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		A1056AE48F0DFF9EC3445D0E = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = Main.cpp;
-			path = ../../Source/Main.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
-		A3A861B41BD91C2AFB7F1175 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = Foundation.framework;
-			path = System/Library/Frameworks/Foundation.framework;
-			sourceTree = SDKROOT;
-		};
-		A56CB13A5C065878D9CCD781 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = QuartzCore.framework;
-			path = System/Library/Frameworks/QuartzCore.framework;
-			sourceTree = SDKROOT;
-		};
-		A7D9C0FA0907BC5117638CCC = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_gui_basics.mm";
-			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		B4DAE1C42FD0579475CBE2CD = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "spaghettis_core";
-			path = "../../Modules/spaghettis_core";
-			sourceTree = "SOURCE_ROOT";
-		};
-		B7A6D4B166AFD6C1609FE05A = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
-			name = "Info-App.plist";
-			path = "Info-App.plist";
-			sourceTree = "SOURCE_ROOT";
-		};
-		BB93B2ED5224711CFA528F76 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "spaghettis_belle";
-			path = "../../Modules/spaghettis_belle";
-			sourceTree = "SOURCE_ROOT";
-		};
-		C0B552E448017A4C8C013F63 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_spaghettis_belle.mm";
-			path = "../../JuceLibraryCode/include_spaghettis_belle.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		C9C6B2655C8D889351519A5B = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = CoreMIDI.framework;
-			path = System/Library/Frameworks/CoreMIDI.framework;
-			sourceTree = SDKROOT;
-		};
-		CC31058899835B55FEC293F9 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = CoreAudio.framework;
-			path = System/Library/Frameworks/CoreAudio.framework;
-			sourceTree = SDKROOT;
-		};
-		D31E9A678ACB0B6E5AA55846 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_data_structures.mm";
-			path = "../../JuceLibraryCode/include_juce_data_structures.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		DD376E055A3C1DAE5AD681FE = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_gui_basics";
-			path = "~/JUCE/modules/juce_gui_basics";
-			sourceTree = "<absolute>";
-		};
-		E256EE56D3F74E547832FB86 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = IOKit.framework;
-			path = System/Library/Frameworks/IOKit.framework;
-			sourceTree = SDKROOT;
-		};
-		E8CB080AF78BBE2F817E4F92 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "spaghettis_gui";
-			path = "../../Modules/spaghettis_gui";
-			sourceTree = "SOURCE_ROOT";
-		};
-		FAC1F52DAB4CF87E5E85196F = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = Cocoa.framework;
-			path = System/Library/Frameworks/Cocoa.framework;
-			sourceTree = SDKROOT;
-		};
-		94ED99AA5B19B2C79C495BFB = {
-			isa = PBXGroup;
-			children = (
-				A1056AE48F0DFF9EC3445D0E,
+
+/* Begin PBXBuildFile section */
+		013CE1E9DA9FD7E645F73D2E /* Cocoa.framework */ = {isa = PBXBuildFile; fileRef = FAC1F52DAB4CF87E5E85196F; };
+		24C7BCD200D4A0C85C119CF6 /* include_juce_core.mm */ = {isa = PBXBuildFile; fileRef = 119BE2259F904F5D7E463AD0; };
+		274D6BFB3E251A69841986B1 /* App */ = {isa = PBXBuildFile; fileRef = 60D8A2DF65E5C0796EA99CB1; };
+		2D23F4A7B71E5EE6AB602452 /* Main.cpp */ = {isa = PBXBuildFile; fileRef = A1056AE48F0DFF9EC3445D0E; };
+		2D9A95A4E54DC0D4312BC9F5 /* include_juce_data_structures.mm */ = {isa = PBXBuildFile; fileRef = D31E9A678ACB0B6E5AA55846; };
+		3E501BFBC2DC9D6FE1AD2FA0 /* include_spaghettis_belle.mm */ = {isa = PBXBuildFile; fileRef = C0B552E448017A4C8C013F63; };
+		4471F6CC4D584796C5728278 /* AudioUnit.framework */ = {isa = PBXBuildFile; fileRef = 721D2F47AAC0470E9F2AA340; };
+		58E8530BC898BF294D7C8A13 /* CoreAudio.framework */ = {isa = PBXBuildFile; fileRef = CC31058899835B55FEC293F9; };
+		5B5691F2F80C1D02F0AA9D7B /* CoreMIDI.framework */ = {isa = PBXBuildFile; fileRef = C9C6B2655C8D889351519A5B; };
+		5BFCA5F5B994AFE79CC658DD /* IOKit.framework */ = {isa = PBXBuildFile; fileRef = E256EE56D3F74E547832FB86; };
+		6E1BA5A7EDAB97C5EA635131 /* include_juce_gui_basics.mm */ = {isa = PBXBuildFile; fileRef = A7D9C0FA0907BC5117638CCC; };
+		D0B4049BC7214518D88FC403 /* include_juce_graphics.mm */ = {isa = PBXBuildFile; fileRef = 16458E769BBE629739926E6D; };
+		D1156CB53965143E57684B78 /* include_spaghettis_gui.mm */ = {isa = PBXBuildFile; fileRef = 872360D0C70C7B5CA52A5B1B; };
+		D3F5DE6E70FFA7E248044899 /* RecentFilesMenuTemplate.nib */ = {isa = PBXBuildFile; fileRef = 389D7927151AD7F53D9F79C3; };
+		D8751DBF49BECD65C7A0923A /* QuartzCore.framework */ = {isa = PBXBuildFile; fileRef = A56CB13A5C065878D9CCD781; };
+		E056A29494362A6384E4D8CB /* include_juce_events.mm */ = {isa = PBXBuildFile; fileRef = 4BD2FF29EDDE1ABAC27A7822; };
+		E6EF992661E0BCC0594EF123 /* Carbon.framework */ = {isa = PBXBuildFile; fileRef = 275F8E522693FC248DD886E3; };
+		E8E93D5E1626F0A68486AAD9 /* include_spaghettis_core.mm */ = {isa = PBXBuildFile; fileRef = 051678F45F5E88F07EA77717; };
+		F49611C8B5492263E100A1D2 /* Foundation.framework */ = {isa = PBXBuildFile; fileRef = A3A861B41BD91C2AFB7F1175; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		051678F45F5E88F07EA77717 /* include_spaghettis_core.mm */ /* include_spaghettis_core.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_core.mm; path = ../../JuceLibraryCode/include_spaghettis_core.mm; sourceTree = SOURCE_ROOT; };
+		119BE2259F904F5D7E463AD0 /* include_juce_core.mm */ /* include_juce_core.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_core.mm; path = ../../JuceLibraryCode/include_juce_core.mm; sourceTree = SOURCE_ROOT; };
+		16458E769BBE629739926E6D /* include_juce_graphics.mm */ /* include_juce_graphics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_graphics.mm; path = ../../JuceLibraryCode/include_juce_graphics.mm; sourceTree = SOURCE_ROOT; };
+		1BAEF33E789FBE91AAC83446 /* JuceHeader.h */ /* JuceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = SOURCE_ROOT; };
+		2748188111FF8A9655940C34 /* juce_core */ /* juce_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_core; path = "~/JUCE/modules/juce_core"; sourceTree = "<absolute>"; };
+		275F8E522693FC248DD886E3 /* Carbon.framework */ /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		389D7927151AD7F53D9F79C3 /* RecentFilesMenuTemplate.nib */ /* RecentFilesMenuTemplate.nib */ = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = SOURCE_ROOT; };
+		47B902E51FA1D26D812A2D55 /* juce_events */ /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_events; path = "~/JUCE/modules/juce_events"; sourceTree = "<absolute>"; };
+		4BD2FF29EDDE1ABAC27A7822 /* include_juce_events.mm */ /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
+		60D8A2DF65E5C0796EA99CB1 /* App */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spaghettis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		636759924C4B7A2A44012B75 /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = "~/JUCE/modules/juce_data_structures"; sourceTree = "<absolute>"; };
+		6BABF3016D73C66D88F37770 /* juce_graphics */ /* juce_graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_graphics; path = "~/JUCE/modules/juce_graphics"; sourceTree = "<absolute>"; };
+		721D2F47AAC0470E9F2AA340 /* AudioUnit.framework */ /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		872360D0C70C7B5CA52A5B1B /* include_spaghettis_gui.mm */ /* include_spaghettis_gui.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_gui.mm; path = ../../JuceLibraryCode/include_spaghettis_gui.mm; sourceTree = SOURCE_ROOT; };
+		A1056AE48F0DFF9EC3445D0E /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
+		A3A861B41BD91C2AFB7F1175 /* Foundation.framework */ /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A56CB13A5C065878D9CCD781 /* QuartzCore.framework */ /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A7D9C0FA0907BC5117638CCC /* include_juce_gui_basics.mm */ /* include_juce_gui_basics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_basics.mm; path = ../../JuceLibraryCode/include_juce_gui_basics.mm; sourceTree = SOURCE_ROOT; };
+		B4DAE1C42FD0579475CBE2CD /* spaghettis_core */ /* spaghettis_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_core; path = ../../Modules/spaghettis_core; sourceTree = SOURCE_ROOT; };
+		B7A6D4B166AFD6C1609FE05A /* Info-App.plist */ /* Info-App.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-App.plist"; path = "Info-App.plist"; sourceTree = SOURCE_ROOT; };
+		BB93B2ED5224711CFA528F76 /* spaghettis_belle */ /* spaghettis_belle */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_belle; path = ../../Modules/spaghettis_belle; sourceTree = SOURCE_ROOT; };
+		C0B552E448017A4C8C013F63 /* include_spaghettis_belle.mm */ /* include_spaghettis_belle.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_belle.mm; path = ../../JuceLibraryCode/include_spaghettis_belle.mm; sourceTree = SOURCE_ROOT; };
+		C9C6B2655C8D889351519A5B /* CoreMIDI.framework */ /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		CC31058899835B55FEC293F9 /* CoreAudio.framework */ /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D31E9A678ACB0B6E5AA55846 /* include_juce_data_structures.mm */ /* include_juce_data_structures.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_data_structures.mm; path = ../../JuceLibraryCode/include_juce_data_structures.mm; sourceTree = SOURCE_ROOT; };
+		DD376E055A3C1DAE5AD681FE /* juce_gui_basics */ /* juce_gui_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_basics; path = "~/JUCE/modules/juce_gui_basics"; sourceTree = "<absolute>"; };
+		E256EE56D3F74E547832FB86 /* IOKit.framework */ /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		E8CB080AF78BBE2F817E4F92 /* spaghettis_gui */ /* spaghettis_gui */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_gui; path = ../../Modules/spaghettis_gui; sourceTree = SOURCE_ROOT; };
+		FAC1F52DAB4CF87E5E85196F /* Cocoa.framework */ /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		711B1F4E20620A026352D1D6 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4471F6CC4D584796C5728278,
+				E6EF992661E0BCC0594EF123,
+				013CE1E9DA9FD7E645F73D2E,
+				58E8530BC898BF294D7C8A13,
+				5B5691F2F80C1D02F0AA9D7B,
+				F49611C8B5492263E100A1D2,
+				5BFCA5F5B994AFE79CC658DD,
+				D8751DBF49BECD65C7A0923A,
 			);
-			name = Source;
-			sourceTree = "<group>";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		186EA76BFD057C376ED1FB74 = {
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		186EA76BFD057C376ED1FB74 /* Spaghettis */ = {
 			isa = PBXGroup;
 			children = (
 				94ED99AA5B19B2C79C495BFB,
@@ -300,7 +87,39 @@
 			name = Spaghettis;
 			sourceTree = "<group>";
 		};
-		97F29591EEBD3C3B5E7A1286 = {
+		5BC47495E9B251C60B2117AC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B7A6D4B166AFD6C1609FE05A,
+				389D7927151AD7F53D9F79C3,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7682EB6F7FE3D78360EABF29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				721D2F47AAC0470E9F2AA340,
+				275F8E522693FC248DD886E3,
+				FAC1F52DAB4CF87E5E85196F,
+				CC31058899835B55FEC293F9,
+				C9C6B2655C8D889351519A5B,
+				A3A861B41BD91C2AFB7F1175,
+				E256EE56D3F74E547832FB86,
+				A56CB13A5C065878D9CCD781,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94ED99AA5B19B2C79C495BFB /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				A1056AE48F0DFF9EC3445D0E,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		97F29591EEBD3C3B5E7A1286 /* JUCE Modules */ = {
 			isa = PBXGroup;
 			children = (
 				2748188111FF8A9655940C34,
@@ -315,7 +134,7 @@
 			name = "JUCE Modules";
 			sourceTree = "<group>";
 		};
-		AD7A193877DFB259696406E9 = {
+		AD7A193877DFB259696406E9 /* JUCE Library Code */ = {
 			isa = PBXGroup;
 			children = (
 				119BE2259F904F5D7E463AD0,
@@ -331,39 +150,7 @@
 			name = "JUCE Library Code";
 			sourceTree = "<group>";
 		};
-		5BC47495E9B251C60B2117AC = {
-			isa = PBXGroup;
-			children = (
-				B7A6D4B166AFD6C1609FE05A,
-				389D7927151AD7F53D9F79C3,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		7682EB6F7FE3D78360EABF29 = {
-			isa = PBXGroup;
-			children = (
-				721D2F47AAC0470E9F2AA340,
-				275F8E522693FC248DD886E3,
-				FAC1F52DAB4CF87E5E85196F,
-				CC31058899835B55FEC293F9,
-				C9C6B2655C8D889351519A5B,
-				A3A861B41BD91C2AFB7F1175,
-				E256EE56D3F74E547832FB86,
-				A56CB13A5C065878D9CCD781,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FB23FD0F6A9490E29427CDD2 = {
-			isa = PBXGroup;
-			children = (
-				60D8A2DF65E5C0796EA99CB1,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		DCC4E94DFFB04939593BC8A8 = {
+		DCC4E94DFFB04939593BC8A8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				186EA76BFD057C376ED1FB74,
@@ -376,7 +163,177 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
-		B612E6C824610F330F246CE9 = {
+		FB23FD0F6A9490E29427CDD2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60D8A2DF65E5C0796EA99CB1,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		291A2F99755AE10335EBB572 /* Spaghettis - App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F24134A328D6F67E5954E98B;
+			buildPhases = (
+				029CAC25570528B715111602,
+				2A743EF3FDCAE3CAF59429D6,
+				711B1F4E20620A026352D1D6,
+				EE01C252CCC94B89DC9AD52C,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Spaghettis - App";
+			productName = Spaghettis;
+			productReference = 60D8A2DF65E5C0796EA99CB1;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		44418211D062CE90F46F056C = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				ORGANIZATIONNAME = "Spaghettis";
+				TargetAttributes = {
+					291A2F99755AE10335EBB572 = {
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.HardenedRuntime = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 5A911D9AE6D1EBDB50F1D820;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DCC4E94DFFB04939593BC8A8;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				291A2F99755AE10335EBB572,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		029CAC25570528B715111602 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3F5DE6E70FFA7E248044899,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EE01C252CCC94B89DC9AD52C /* Post-build script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Post-build script";
+			shellPath = /bin/sh;
+			shellScript = "rep=\"${SOURCE_ROOT}/../..\"\napp=\"${BUILT_PRODUCTS_DIR}/Spaghettis.app\"\nentitlements=\"${rep}/Resources/Spaghettis.entitlements\"\n\ncodesign --options runtime --entitlements \"${entitlements}\" --deep -s \"-\" \"${app}\"  || exit 1\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2A743EF3FDCAE3CAF59429D6 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D23F4A7B71E5EE6AB602452,
+				24C7BCD200D4A0C85C119CF6,
+				2D9A95A4E54DC0D4312BC9F5,
+				E056A29494362A6384E4D8CB,
+				D0B4049BC7214518D88FC403,
+				6E1BA5A7EDAB97C5EA635131,
+				3E501BFBC2DC9D6FE1AD2FA0,
+				E8E93D5E1626F0A68486AAD9,
+				D1156CB53965143E57684B78,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		308E0AB4C0F85384F928370A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PRODUCT_NAME = "Spaghettis";
+				SDKROOT = macosx;
+				WARNING_CFLAGS = "-Wreorder";
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		B612E6C824610F330F246CE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
@@ -394,7 +351,7 @@
 					"DEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60007",
+					"JUCE_PROJUCER_VERSION=0x60008",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
@@ -429,11 +386,7 @@
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../JuceLibraryCode",
-					"$(HOME)/JUCE/modules",
-					"$(SRCROOT)/../../Modules",
-				);
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(SRCROOT)/../../Modules";
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
@@ -443,7 +396,7 @@
 			};
 			name = Debug;
 		};
-		C58212389768C1E9E29EC1F5 = {
+		C58212389768C1E9E29EC1F5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
@@ -461,7 +414,7 @@
 					"NDEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60007",
+					"JUCE_PROJUCER_VERSION=0x60008",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
@@ -497,11 +450,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../JuceLibraryCode",
-					"$(HOME)/JUCE/modules",
-					"$(SRCROOT)/../../Modules",
-				);
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(SRCROOT)/../../Modules";
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
@@ -511,55 +460,7 @@
 			};
 			name = Release;
 		};
-		308E0AB4C0F85384F928370A = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = NO;
-				GCC_C_LANGUAGE_STANDARD = c11;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				PRODUCT_NAME = "Spaghettis";
-				SDKROOT = macosx;
-				WARNING_CFLAGS = "-Wreorder";
-				ZERO_LINK = NO;
-			};
-			name = Debug;
-		};
-		DD732F5AD3CE239D33438D61 = {
+		DD732F5AD3CE239D33438D61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -607,6 +508,9 @@
 			};
 			name = Release;
 		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
 		5A911D9AE6D1EBDB50F1D820 = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -625,82 +529,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		029CAC25570528B715111602 = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D3F5DE6E70FFA7E248044899,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2A743EF3FDCAE3CAF59429D6 = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D23F4A7B71E5EE6AB602452,
-				24C7BCD200D4A0C85C119CF6,
-				2D9A95A4E54DC0D4312BC9F5,
-				E056A29494362A6384E4D8CB,
-				D0B4049BC7214518D88FC403,
-				6E1BA5A7EDAB97C5EA635131,
-				3E501BFBC2DC9D6FE1AD2FA0,
-				E8E93D5E1626F0A68486AAD9,
-				D1156CB53965143E57684B78,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		711B1F4E20620A026352D1D6 = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4471F6CC4D584796C5728278,
-				E6EF992661E0BCC0594EF123,
-				013CE1E9DA9FD7E645F73D2E,
-				58E8530BC898BF294D7C8A13,
-				5B5691F2F80C1D02F0AA9D7B,
-				F49611C8B5492263E100A1D2,
-				5BFCA5F5B994AFE79CC658DD,
-				D8751DBF49BECD65C7A0923A,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EE01C252CCC94B89DC9AD52C = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = ( );
-			runOnlyForDeploymentPostprocessing = 0;
-			name = "Post-build script";
-			shellPath = /bin/sh;
-			shellScript = "rep=\"${SOURCE_ROOT}/../..\"\napp=\"${BUILT_PRODUCTS_DIR}/Spaghettis.app\"\nentitlements=\"${rep}/Resources/Spaghettis.entitlements\"\n\ncodesign --options runtime --entitlements \"${entitlements}\" --deep -s \"-\" \"${app}\"  || exit 1\n";
-		};
-		291A2F99755AE10335EBB572 = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F24134A328D6F67E5954E98B;
-			buildPhases = (
-				029CAC25570528B715111602,
-				2A743EF3FDCAE3CAF59429D6,
-				711B1F4E20620A026352D1D6,
-				EE01C252CCC94B89DC9AD52C,
-			);
-			buildRules = ( );
-			dependencies = ( );
-			name = "Spaghettis - App";
-			productName = Spaghettis;
-			productReference = 60D8A2DF65E5C0796EA99CB1;
-			productType = "com.apple.product-type.application";
-		};
-		44418211D062CE90F46F056C = {
-			isa = PBXProject;
-			buildConfigurationList = 5A911D9AE6D1EBDB50F1D820;
-			attributes = { LastUpgradeCheck = 1230; ORGANIZATIONNAME = "Spaghettis"; TargetAttributes = { 291A2F99755AE10335EBB572 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
-			compatibilityVersion = "Xcode 3.2";
-			hasScannedForEncodings = 0;
-			mainGroup = DCC4E94DFFB04939593BC8A8;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (291A2F99755AE10335EBB572);
-			knownRegions = (en, Base);
-		};
+/* End XCConfigurationList section */
 	};
-	rootObject = 44418211D062CE90F46F056C;
+	rootObject = 44418211D062CE90F46F056C /* Project object */;
 }
