@@ -30,8 +30,6 @@ public:
     
     ~SpaghettisInstance()
     {
-        jassert (logger_ == nullptr);
-        
         clearSingletonInstance();
     }
 
@@ -44,7 +42,7 @@ public:
 public:
     void setLogger (Logger* logger)
     {
-        logger_ = logger;
+
     }
     
 public:
@@ -65,7 +63,6 @@ public:
 
 private:
     std::unique_ptr<LookAndFeel> lookAndFeel_;
-    Logger *logger_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpaghettisInstance)
@@ -93,12 +90,12 @@ private:
     {
         SpaghettisInstance::deleteInstance();
     }
+
+private:
+    SpaghettisInstance *spaghettis_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpaghettisOwner)
-    
-private:
-    SpaghettisInstance *spaghettis_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -123,10 +120,10 @@ public:
     }
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Spaghettis)
+    SpaghettisInstance *spaghettis_;
     
 private:
-    SpaghettisInstance *spaghettis_;
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Spaghettis)
 };
 
 // -----------------------------------------------------------------------------------------------------------
