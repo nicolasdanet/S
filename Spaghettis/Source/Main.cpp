@@ -38,10 +38,14 @@ public:
         juce::LookAndFeel::setDefaultLookAndFeel (spaghettis::Spaghettis()->getLookAndFeel());
         
         console_.reset (new spaghettis::Console (getApplicationName()));
+        
+        spaghettis::Spaghettis()->start();
     }
 
     void shutdown() override
     {
+        spaghettis::Spaghettis()->shutdown();
+        
         console_ = nullptr;
         
         juce::LookAndFeel::setDefaultLookAndFeel (nullptr);

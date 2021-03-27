@@ -24,7 +24,7 @@ class SpaghettisInstance {
 // MARK: -
 
 public:
-    SpaghettisInstance() : lookAndFeel_ (std::make_unique<LookAndFeel>())
+    SpaghettisInstance() : lookAndFeel_ (std::make_unique<LookAndFeel>()), core_ (std::make_unique<Wrapper>())
     {
     }
     
@@ -34,6 +34,21 @@ public:
     }
 
     JUCE_DECLARE_SINGLETON_SINGLETHREADED (SpaghettisInstance, true)
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void start()
+    {
+        core_->start (logger_);
+    }
+    
+    void shutdown()
+    {
+        core_->shutdown();
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -42,7 +57,7 @@ public:
 public:
     void setLogger (Logger* logger)
     {
-
+        logger_ = logger;
     }
     
 public:
@@ -63,6 +78,8 @@ public:
 
 private:
     std::unique_ptr<LookAndFeel> lookAndFeel_;
+    std::unique_ptr<Wrapper> core_;
+    Logger* logger_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpaghettisInstance)
