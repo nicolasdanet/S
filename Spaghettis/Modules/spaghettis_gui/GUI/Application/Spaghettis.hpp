@@ -42,7 +42,7 @@ public:
 public:
     void start()
     {
-        core_->start (logger_);
+        core_->start();
     }
     
     void shutdown()
@@ -57,7 +57,7 @@ public:
 public:
     void setLogger (Logger* logger)
     {
-        logger_ = logger;
+        core_->setLogger (logger);
     }
     
 public:
@@ -79,7 +79,6 @@ public:
 private:
     std::unique_ptr<LookAndFeel> lookAndFeel_;
     std::unique_ptr<Wrapper> core_;
-    Logger* logger_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpaghettisInstance)
