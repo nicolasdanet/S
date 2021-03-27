@@ -60,7 +60,7 @@ public:
 // MARK: -
 
 public:
-    void logMessage (const juce::String& m) override
+    void logMessage (const juce::String& m, MessageType) override
     {
         {
             const juce::ScopedLock lock (lock_); messages_.add (m);
