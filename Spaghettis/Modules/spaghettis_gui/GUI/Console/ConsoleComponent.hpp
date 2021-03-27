@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ConsoleComponent : public juce::Component, public spaghettis::Logger, private juce::AsyncUpdater {
+class ConsoleComponent : public juce::Component, public spaghettis::Logger {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -62,36 +62,13 @@ public:
 public:
     void logMessage (const juce::String& m, MessageType) override
     {
-        {
-            const juce::ScopedLock lock (lock_); messages_.add (m);
-        }
-        
-        triggerAsyncUpdate();
-    }
-    
-private:
-    void handleAsyncUpdate() override
-    {
-        juce::StringArray scoped;
-        
-        {
-            const juce::ScopedLock lock (lock_); scoped.swapWith (messages_);
-        }
-        
-        for (const auto& s : scoped) { logMessageProceed (s); }
-    }
-    
-    void logMessageProceed (const juce::String& m)
-    {
         text_.moveCaretToEnd();
         text_.insertTextAtCaret (m + juce::newLine);
     }
     
 private:
     juce::TextEditor text_;
-    juce::StringArray messages_;
-    juce::CriticalSection lock_;
-    
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)
 };

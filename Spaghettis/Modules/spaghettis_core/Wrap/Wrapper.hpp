@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Wrapper {
+class Wrapper : private juce::AsyncUpdater {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -36,12 +36,12 @@ public:
 public:
     void start ()
     {
-        DBG ("?");
+        post ("?");
     }
     
     void shutdown()
     {
-        DBG ("!");
+        // post ("!");
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -53,13 +53,45 @@ public:
     {
         logger_ = logger;
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void post (const juce::String& m, Logger::MessageType type = Logger::MessageType::normal)
+    {
+        {
+            const juce::ScopedLock lock (lock_); messages_.add (m);
+        }
+        
+        triggerAsyncUpdate();
+    }
+    
+private:
+    void handleAsyncUpdate() override
+    {
+        juce::StringArray scoped;
+        
+        {
+            const juce::ScopedLock lock (lock_); scoped.swapWith (messages_);
+        }
+        
+        if (logger_) {
+        //
+        for (const auto& s : scoped) { logger_->logMessage (s, Logger::MessageType::normal); }
+        //
+        }
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
     Logger *logger_;
-
+    juce::StringArray messages_;
+    juce::CriticalSection lock_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Wrapper)
 };
