@@ -90,12 +90,16 @@ PD_EXPORT int main (int argc, char **argv)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-void main_threadLoop()
+bool main_threadLoop (Wrapper *owner)
 {
+    main_wrapper = owner;
+    
     // main_argc = argc;
     // main_argv = argv;
     
-    jassert (sys_isControlThread());
+    PD_ASSERT (sys_isControlThread());
+    
+    return false;
 }
 
 void main_threadExit()

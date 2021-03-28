@@ -36,7 +36,16 @@ public:
 private:
     void run() override
     {
-        core::main_threadLoop();
+        bool error = false;
+        
+        try {
+            error = core::main_threadLoop (this);
+        }
+        catch (...) {
+            error = true;
+        }
+        
+        jassert (error == false);
     }
 
 // -----------------------------------------------------------------------------------------------------------
