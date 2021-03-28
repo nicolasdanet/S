@@ -13,6 +13,24 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+#define POST_NORMAL     Logger::MessageType::normal
+#define POST_WARNING    Logger::MessageType::warning
+#define POST_ERROR      Logger::MessageType::error
+
+#else
+
+#define POST_NORMAL     0
+#define POST_WARNING    1
+#define POST_ERROR      2
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 #if PD_WITH_DEBUG
     
 static void post_syslog (const char *s)
@@ -30,7 +48,27 @@ static void post_syslog (const char *s)
 
 #endif
 
-static void post_console (int k, const char *s)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+Wrapper *main_wrapper;
+
+static void post_console (int k, const char *s, Logger::MessageType type)
+{
+    jassert (main_wrapper != nullptr);
+    
+    if (k < 0 || k >= PD_STRING) { warning_tooManyCharacters (sym_console); }
+    else {
+        main_wrapper->post (juce::String (s), type);
+    }
+}
+
+#else
+
+static void post_console (int k, const char *s, int type)
 {
     #if PD_WITH_DEBUG
     
@@ -41,6 +79,8 @@ static void post_console (int k, const char *s)
     
     #endif
 }
+
+#endif // PD_BUILDING_APPLICATION
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -60,7 +100,7 @@ PD_LOCAL void post (const char *fmt, ...)
     k = vsnprintf (t, PD_STRING, fmt, ap);
     va_end (ap);
     
-    post_console (k, t);
+    post_console (k, t, POST_NORMAL);
 }
 
 PD_LOCAL void post_warning (const char *fmt, ...)
@@ -75,7 +115,7 @@ PD_LOCAL void post_warning (const char *fmt, ...)
     k = vsnprintf (t, PD_STRING, fmt, ap);
     va_end (ap);
     
-    post_console (k, t);
+    post_console (k, t, POST_WARNING);
 }
 
 PD_LOCAL void post_error (const char *fmt, ...)
@@ -90,7 +130,7 @@ PD_LOCAL void post_error (const char *fmt, ...)
     k = vsnprintf (t, PD_STRING, fmt, ap);
     va_end (ap);
     
-    post_console (k, t);
+    post_console (k, t, POST_ERROR);
 }
 
 // -----------------------------------------------------------------------------------------------------------
