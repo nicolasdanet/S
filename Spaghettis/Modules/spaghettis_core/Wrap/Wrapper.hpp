@@ -12,21 +12,31 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Wrapper : private juce::AsyncUpdater {
+class Wrapper : private juce::AsyncUpdater, private juce::Thread {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Wrapper()
+    Wrapper() : juce::Thread (juce::String ("Core"))
     {
     
     }
     
     ~Wrapper()
     {
+        jassert (isThreadRunning() == false);
+    }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void run() override
+    {
+        core::main_threadLoop();
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -36,11 +46,17 @@ public:
 public:
     void start ()
     {
-        post ("?");
+        startThread();
     }
     
     void shutdown()
     {
+        core::main_threadExit();
+        
+        bool good = stopThread (1000);
+        
+        jassert (good);
+        
         cancelPendingUpdate();
     }
 
