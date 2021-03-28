@@ -40,9 +40,9 @@ public:
 // MARK: -
 
 public:
-    void start()
+    void start (const juce::StringArray& commandLine)
     {
-        core_->start();
+        core_->start (commandLine);
     }
     
     void shutdown()

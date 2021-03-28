@@ -93,10 +93,7 @@ PD_EXPORT int main (int argc, char **argv)
 bool main_threadLoop (Wrapper *owner)
 {
     main_wrapper = owner;
-    
-    // main_argc = argc;
-    // main_argv = argv;
-    
+
     PD_ASSERT (sys_isControlThread());
     
     return false;

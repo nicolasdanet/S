@@ -39,7 +39,7 @@ public:
         
         console_.reset (new spaghettis::Console (getApplicationName()));
         
-        spaghettis::Spaghettis()->start();
+        spaghettis::Spaghettis()->start (getCommandLineParameterArray());
     }
 
     void shutdown() override

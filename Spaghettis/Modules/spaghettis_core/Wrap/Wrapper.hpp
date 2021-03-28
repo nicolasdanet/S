@@ -53,8 +53,10 @@ private:
 // MARK: -
 
 public:
-    void start ()
+    void start (const juce::StringArray& commandLine)
     {
+        commandLine_ = commandLine;
+        
         startThread();
     }
     
@@ -116,6 +118,7 @@ private:
     Logger *logger_;
     juce::StringArray messages_;
     juce::CriticalSection lock_;
+    juce::StringArray commandLine_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Wrapper)
