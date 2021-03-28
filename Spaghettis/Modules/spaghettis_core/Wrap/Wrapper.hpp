@@ -45,7 +45,7 @@ private:
             error = true;
         }
         
-        jassert (error == false);
+        jassert (error == false); (void)error;
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ public:
         
         bool good = stopThread (1000);
         
-        jassert (good);
+        jassert (good); (void)good;
         
         cancelPendingUpdate();
     }
