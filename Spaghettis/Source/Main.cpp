@@ -78,7 +78,6 @@ public:
 
     void anotherInstanceStarted (const juce::String&) override
     {
-        jassertfalse;
     }
 
 private:
