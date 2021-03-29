@@ -47,6 +47,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Application/Debug.hpp"
 #include "GUI/Application/LookAndFeel.hpp"
 #include "GUI/Application/Spaghettis.hpp"
 #include "GUI/Application/Window.hpp"

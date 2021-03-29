@@ -33,7 +33,7 @@
 
 #if PD_WITH_DEBUG
     
-static void post_syslog (const char *s)
+PD_FORCE void post_syslog (const char *s)
 {
     #if PD_APPLE
         openlog (PD_NAME, LOG_CONS | LOG_PID, LOG_USER);

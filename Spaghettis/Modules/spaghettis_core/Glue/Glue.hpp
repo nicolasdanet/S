@@ -22,6 +22,7 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void post_syslog (const char *s);
 bool main_threadLoop (Wrapper *owner);
 void main_threadExit();
 
