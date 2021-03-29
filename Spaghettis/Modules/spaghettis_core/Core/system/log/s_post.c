@@ -54,7 +54,7 @@ PD_FORCE void post_syslog (const char *s)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-Wrapper *main_wrapper;
+extern Wrapper *main_wrapper;
 
 static void post_console (int k, const char *s, Logger::Type type)
 {

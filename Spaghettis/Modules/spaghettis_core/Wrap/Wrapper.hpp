@@ -85,7 +85,12 @@ public:
 
     juce::StringArray getPendedFiles() const
     {
-        return commandLine_;
+        juce::StringArray t (commandLine_);
+        
+        // -NSDocumentRevisionsDebugMode
+        // YES
+        
+        return t;
     }
     
 // -----------------------------------------------------------------------------------------------------------

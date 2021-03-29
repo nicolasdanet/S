@@ -16,20 +16,42 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-extern Wrapper *main_wrapper;
+extern int  main_argc;
+
+extern char **main_argv;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+Wrapper *main_wrapper;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void main_threadLoopFakeCommandLine (const juce::StringArray& files)
+{
+    for (const auto& s : files) { main_wrapper->post (s); }
+}
+
+void main_threadLoopFakeCommandLineRelease()
+{
+    
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 bool main_threadLoop (Wrapper *owner)
 {
     main_wrapper = owner;
 
-    juce::StringArray files = main_wrapper->getPendedFiles();
-    
-    for (const auto& s : files) { main_wrapper->post (s); }
+    main_threadLoopFakeCommandLine (main_wrapper->getPendedFiles());
     
     PD_ASSERT (sys_isControlThread());
+    
+    main_threadLoopFakeCommandLineRelease();
     
     return true;
 }
