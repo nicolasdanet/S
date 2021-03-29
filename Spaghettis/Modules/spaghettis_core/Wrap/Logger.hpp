@@ -19,7 +19,7 @@ class Logger {
 // MARK: -
 
 public:
-    enum class MessageType { normal, warning, error };
+    enum class Type { normal, warning, error };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ protected:
     Logger& operator = (Logger&&) = default;
 
 public:
-    virtual void logMessage (const juce::String& m, MessageType type) = 0;
+    virtual void logMessage (const juce::String& m, Type type) = 0;
 };
 
 // -----------------------------------------------------------------------------------------------------------

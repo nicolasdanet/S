@@ -25,13 +25,13 @@ bool main_threadLoop (Wrapper *owner)
 {
     main_wrapper = owner;
 
-    juce::StringArray files = main_wrapper->getPendingFiles();
+    juce::StringArray files = main_wrapper->getPendedFiles();
     
     for (const auto& s : files) { main_wrapper->post (s); }
     
     PD_ASSERT (sys_isControlThread());
     
-    return false;
+    return true;
 }
 
 void main_threadExit()

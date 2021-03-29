@@ -21,6 +21,7 @@ class SpaghettisApplication : public juce::JUCEApplication {
 public:
     SpaghettisApplication()
     {
+        SPAGHETTIS_DEBUG ("Hello!");
     }
     
     ~SpaghettisApplication()
@@ -76,8 +77,9 @@ public:
         return false;
     }
 
-    void anotherInstanceStarted (const juce::String&) override
+    void anotherInstanceStarted (const juce::String& s) override
     {
+        SPAGHETTIS_DEBUG (s);
     }
 
 private:

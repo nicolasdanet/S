@@ -60,7 +60,7 @@ public:
 // MARK: -
 
 public:
-    void logMessage (const juce::String& m, MessageType) override
+    void logMessage (const juce::String& m, Type) override
     {
         text_.moveCaretToEnd();
         text_.insertTextAtCaret (m + juce::newLine);

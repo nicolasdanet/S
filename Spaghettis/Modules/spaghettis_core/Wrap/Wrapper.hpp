@@ -44,8 +44,10 @@ private:
         catch (...) {
             error = true;
         }
-        
-        jassert (error == false); (void)error;
+    
+        if (error) {
+            post (NEEDS_TRANS (juce::String ("spaghettis: core error")), Logger::Type::error);
+        }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -81,7 +83,7 @@ public:
         logger_ = logger;
     }
 
-    juce::StringArray getPendingFiles() const
+    juce::StringArray getPendedFiles() const
     {
         return commandLine_;
     }
@@ -91,7 +93,7 @@ public:
 // MARK: -
 
 public:
-    void post (const juce::String& m, Logger::MessageType type = Logger::MessageType::normal)
+    void post (const juce::String& m, Logger::Type type = Logger::Type::normal)
     {
         {
             const juce::ScopedLock lock (lock_); messages_.add (m);
@@ -111,7 +113,7 @@ private:
         
         if (logger_) {
         //
-        for (const auto& s : scoped) { logger_->logMessage (s, Logger::MessageType::normal); }
+        for (const auto& s : scoped) { logger_->logMessage (s, Logger::Type::normal); }
         //
         }
     }

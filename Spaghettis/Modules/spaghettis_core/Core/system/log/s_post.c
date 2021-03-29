@@ -15,9 +15,9 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-#define POST_NORMAL     Logger::MessageType::normal
-#define POST_WARNING    Logger::MessageType::warning
-#define POST_ERROR      Logger::MessageType::error
+#define POST_NORMAL     Logger::Type::normal
+#define POST_WARNING    Logger::Type::warning
+#define POST_ERROR      Logger::Type::error
 
 #else
 
@@ -56,7 +56,7 @@ PD_FORCE void post_syslog (const char *s)
 
 Wrapper *main_wrapper;
 
-static void post_console (int k, const char *s, Logger::MessageType type)
+static void post_console (int k, const char *s, Logger::Type type)
 {
     jassert (main_wrapper != nullptr);
     
