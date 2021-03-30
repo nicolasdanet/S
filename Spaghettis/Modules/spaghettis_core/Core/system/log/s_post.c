@@ -33,7 +33,7 @@
 
 #if PD_WITH_DEBUG
     
-PD_FORCE void post_syslog (const char *s)
+PD_LOCAL void post_syslog (const char *s)
 {
     #if PD_APPLE
         syslog (LOG_ERR, "%s", s);

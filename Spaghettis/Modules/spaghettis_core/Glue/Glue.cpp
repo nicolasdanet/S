@@ -65,8 +65,6 @@ bool main_threadLoop (Wrapper *owner)
 
     main_threadLoopFakeCommandLine (main_wrapper->getCommandLine());
     
-        jassert (sys_isControlThread());
-    
     main_threadLoopFakeCommandLineRelease();
     
     return true;
