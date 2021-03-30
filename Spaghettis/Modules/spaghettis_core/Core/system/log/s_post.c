@@ -82,15 +82,11 @@ static void post_console (int k, const char *s, int type)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Note that it is NOT thread-safe. */
-
 PD_LOCAL void post (const char *fmt, ...)
 {
     int k;
     char t[PD_STRING] = { 0 };
     va_list ap;
-    
-    PD_ASSERT (sys_isControlThread());
     
     va_start (ap, fmt);
     k = vsnprintf (t, PD_STRING, fmt, ap);
@@ -105,8 +101,6 @@ PD_LOCAL void post_warning (const char *fmt, ...)
     char t[PD_STRING] = { 0 };
     va_list ap;
     
-    PD_ASSERT (sys_isControlThread());
-    
     va_start (ap, fmt);
     k = vsnprintf (t, PD_STRING, fmt, ap);
     va_end (ap);
@@ -120,8 +114,6 @@ PD_LOCAL void post_error (const char *fmt, ...)
     char t[PD_STRING] = { 0 };
     va_list ap;
     
-    PD_ASSERT (sys_isControlThread());
-    
     va_start (ap, fmt);
     k = vsnprintf (t, PD_STRING, fmt, ap);
     va_end (ap);
@@ -132,8 +124,6 @@ PD_LOCAL void post_error (const char *fmt, ...)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-/* Note that it is NOT thread-safe. */
 
 #if PD_WITH_DEBUG
 
