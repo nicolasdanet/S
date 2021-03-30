@@ -35,15 +35,7 @@
     
 PD_FORCE void post_syslog (const char *s)
 {
-    #if PD_APPLE
-        openlog (PD_NAME, LOG_CONS | LOG_PID, LOG_USER);
-    #else
-        openlog (PD_NAME, LOG_CONS | LOG_PID | LOG_PERROR, LOG_USER);
-    #endif
-    
     syslog (LOG_ERR, "%s", s);
-    
-    closelog();
 }
 
 #endif

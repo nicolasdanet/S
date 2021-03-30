@@ -70,6 +70,8 @@ PD_EXPORT int main (int argc, char **argv)
     main_argc = argc;
     main_argv = argv;
     
+    post_log ("Hello!");
+    
     PD_ASSERT (sys_isControlThread()); return main_start();
 }
 
