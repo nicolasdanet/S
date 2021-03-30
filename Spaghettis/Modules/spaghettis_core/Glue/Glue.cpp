@@ -65,7 +65,11 @@ bool main_threadLoop (Wrapper *owner)
 
     main_threadLoopFakeCommandLine (main_wrapper->getCommandLine());
     
+    // int error = main_start();
+    
     main_threadLoopFakeCommandLineRelease();
+    
+    // return (error != 0);
     
     return true;
 }

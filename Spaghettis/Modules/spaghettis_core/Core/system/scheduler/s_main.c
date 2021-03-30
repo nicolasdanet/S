@@ -315,7 +315,7 @@ PD_LOCAL int main_start (void)
     message_release();
     
     #if PD_WITH_DEBUG
-        leak_release(); post_log ("Goodbye!");
+        leak_release(); post_log ("Shutdown");
     #endif
     //
     }
