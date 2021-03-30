@@ -47,7 +47,7 @@ bool main_threadLoop (Wrapper *owner)
 {
     main_wrapper = owner;
 
-    main_threadLoopFakeCommandLine (main_wrapper->getPendedFiles());
+    main_threadLoopFakeCommandLine (main_wrapper->getCommandLine());
     
     PD_ASSERT (sys_isControlThread());
     

@@ -34,21 +34,7 @@ public:
 // MARK: -
 
 private:
-    void run() override
-    {
-        bool error = false;
-        
-        try {
-            error = core::main_threadLoop (this);
-        }
-        catch (...) {
-            error = true;
-        }
-    
-        if (error) {
-            post (NEEDS_TRANS (juce::String ("spaghettis: core error")), Logger::Type::error);
-        }
-    }
+    void run() override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -83,15 +69,7 @@ public:
         logger_ = logger;
     }
 
-    juce::StringArray getPendedFiles() const
-    {
-        juce::StringArray t (commandLine_);
-        
-        // -NSDocumentRevisionsDebugMode
-        // YES
-        
-        return t;
-    }
+    juce::StringArray getCommandLine() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
