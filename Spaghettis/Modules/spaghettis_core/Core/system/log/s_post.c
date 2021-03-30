@@ -35,7 +35,11 @@
     
 PD_FORCE void post_syslog (const char *s)
 {
-    syslog (LOG_ERR, "%s", s);
+    #if PD_APPLE
+        syslog (LOG_ERR, "%s", s);
+    #else
+        puts (s);
+    #endif
 }
 
 #endif
