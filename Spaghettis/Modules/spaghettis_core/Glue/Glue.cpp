@@ -36,12 +36,12 @@ void main_threadLoopFakeCommandLine (const juce::StringArray& cmd)
     if (n) {
     //
     main_argc = n;
-    main_argv = static_cast<char**> (spaghettis_memoryGet (sizeof (char*) * n));
+    main_argv = static_cast<char**> (malloc (sizeof (char*) * n));
     
     for (int i = 0; i < n; ++i) {
         const juce::String& s = cmd[i];
         const size_t size = s.getNumBytesAsUTF8() + 1;
-        main_argv[i] = static_cast <char*> (spaghettis_memoryGet (size));
+        main_argv[i] = static_cast <char*> (malloc (size));
         s.copyToUTF8 (main_argv[i], size);
     }
     //
@@ -50,9 +50,9 @@ void main_threadLoopFakeCommandLine (const juce::StringArray& cmd)
 
 void main_threadLoopFakeCommandLineRelease()
 {
-    for (int i = 0; i < main_argc; ++i) { spaghettis_memoryFree (main_argv[i]); }
+    for (int i = 0; i < main_argc; ++i) { free (main_argv[i]); }
     
-    spaghettis_memoryFree (main_argv);
+    free (main_argv);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -65,13 +65,13 @@ bool main_threadLoop (Wrapper *owner)
 
     main_threadLoopFakeCommandLine (main_wrapper->getCommandLine());
     
-    // int error = main_start();
+    PD_ASSERT (sys_isControlThread());
+    
+    int error = main_start();
     
     main_threadLoopFakeCommandLineRelease();
     
-    // return (error != 0);
-    
-    return true;
+    return (error != 0);
 }
 
 void main_threadExit()
