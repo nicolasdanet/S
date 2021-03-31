@@ -79,7 +79,7 @@ public:
 
     void anotherInstanceStarted (const juce::String& s) override
     {
-        SPAGHETTIS_DEBUG (s);
+        // SPAGHETTIS_DEBUG (s);
     }
 
 private:
