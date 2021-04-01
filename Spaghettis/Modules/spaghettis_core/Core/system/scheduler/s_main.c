@@ -193,12 +193,16 @@ static t_error main_parseArguments (int argc, char **argv)
 {
     t_error err = PD_ERROR_NONE;
     
-    if (argc < 0) { argc = 0; }     /* Not launched from the terminal. */
+    if (argc < 0) { argc = 0; PD_BUG; }
     
     while (!err && (argc > 0) && (**argv == '-')) {
     //
-    if (!strcmp (*argv, "--version")) { main_version = 1; argc--; argv++; }
-    else {
+    if (!strcmp (*argv, "--version")) {
+        #if defined ( PD_BUILDING_TERMINAL )
+            main_version = 1;
+        #endif
+        argc--; argv++;
+    } else {
         err = PD_ERROR;
     }
     //
