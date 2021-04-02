@@ -110,11 +110,16 @@ static t_error main_getExecutablePathNative (char *dest, size_t length)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static t_error main_entryVersion (void)
+static t_error main_entryVersion (int sendToConsole)
 {
     char t[PD_STRING] = { 0 }; t_error err = utils_version (t, PD_STRING);
     
-    if (!err) { fprintf (stdout, "%s\n", t); }
+    if (!err) {
+        if (sendToConsole) { post ("%s", t); }
+        else {
+            fprintf (stdout, "%s\n", t);
+        }
+    }
     
     return err;
 }
@@ -280,9 +285,11 @@ PD_LOCAL int main_start (void)
     
     if (!err) {
     //
-    if (main_version) { err |= main_entryVersion(); }
+    if (main_version) { err |= main_entryVersion (0); }
     else {
     //
+    err |= main_entryVersion (1);
+    
     if (!err) {
     //
     err |= logger_initialize();

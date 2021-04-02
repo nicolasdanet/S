@@ -85,6 +85,11 @@ public:
     {
         return lookAndFeel_->findColour (colourId);
     }
+    
+    const juce::Font& getConsoleFont() const
+    {
+        return lookAndFeel_->getConsoleFont();
+    }
 
 private:
     std::unique_ptr<LookAndFeel> lookAndFeel_;

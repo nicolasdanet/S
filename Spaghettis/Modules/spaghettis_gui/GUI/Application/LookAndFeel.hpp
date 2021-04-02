@@ -19,7 +19,7 @@ class LookAndFeel : public juce::LookAndFeel_V4 {
 // MARK: -
 
 public:
-    LookAndFeel()
+    LookAndFeel() : consoleFont_ (18.0)
     {
         setColour (juce::TextEditor::outlineColourId,   juce::Colours::transparentBlack);
         setColour (juce::TextEditor::shadowColourId,    juce::Colours::transparentBlack);
@@ -27,6 +27,15 @@ public:
     
     ~LookAndFeel() = default;
 
+public:
+    const juce::Font& getConsoleFont() const
+    {
+        return consoleFont_;
+    }
+    
+private:
+    juce::Font consoleFont_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LookAndFeel)
 };

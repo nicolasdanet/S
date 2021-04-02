@@ -26,10 +26,10 @@ public:
         text_.setMultiLine (true);
         text_.setReturnKeyStartsNewLine (true);
         text_.setReadOnly (true);
-        text_.setScrollbarsShown (false);
+        text_.setScrollbarsShown (true);
         text_.setCaretVisible (false);
         text_.setPopupMenuEnabled (false);
-
+        text_.setFont (Spaghettis()->getConsoleFont());
         setSize (600, 400);
         
         Spaghettis()->setLogger (this);
@@ -47,7 +47,7 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
+        g.fillAll (Spaghettis()->findColour (juce::ResizableWindow::backgroundColourId));
     }
     
     void resized() override
