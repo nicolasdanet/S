@@ -19,7 +19,7 @@ class SpaghettisApplication : public juce::JUCEApplication {
 // MARK: -
 
 public:
-    SpaghettisApplication() : startedFromCommandLine_ (false)
+    SpaghettisApplication() : runningFromCommandLine_ (false)
     {
         SPAGHETTIS_DEBUG ("Hello!");
     }
@@ -41,6 +41,8 @@ public:
         console_.reset (new spaghettis::Console (getApplicationName()));
         
         spaghettis::Spaghettis()->start (getCommandLineParameterArray());
+        
+        runningFromCommandLine_ = spaghettis::Spaghettis()->isRunningFromCommandLine();
     }
 
     void shutdown() override
@@ -79,7 +81,7 @@ public:
 
     void anotherInstanceStarted (const juce::String& s) override
     {
-        if (!startedFromCommandLine_) {     /* Avoid startup files to be launched twice on macOS. */
+        if (!runningFromCommandLine_) {     /* Avoid startup files to be launched twice on macOS. */
         //
         juce::ArgumentList cmd (getApplicationName(), s);
 
@@ -94,7 +96,7 @@ public:
 private:
     spaghettis::SpaghettisOwner spaghettis_;
     std::unique_ptr<spaghettis::Console> console_;
-    bool startedFromCommandLine_;
+    bool runningFromCommandLine_;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
