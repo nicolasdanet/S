@@ -288,7 +288,9 @@ PD_LOCAL int main_start (void)
     if (main_version) { err |= main_entryVersion (0); }
     else {
     //
-    err |= main_entryVersion (1);
+    #if defined ( PD_BUILDING_APPLICATION )
+        err |= main_entryVersion (1);
+    #endif
     
     if (!err) {
     //
