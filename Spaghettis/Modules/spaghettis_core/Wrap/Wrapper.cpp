@@ -31,15 +31,13 @@ void Wrapper::run()
     }
 }
 
-juce::StringArray Wrapper::getCommandLine() const
+void Wrapper::setCommandLine (const juce::StringArray& commandLine)
 {
-    juce::StringArray t (commandLine_);
+    commandLine_ = commandLine;
     
-    t.removeString ("-NSDocumentRevisionsDebugMode");
-    t.removeString ("YES");
-    t.insert (0, PD_NAME);
-    
-    return t;
+    commandLine_.removeString ("-NSDocumentRevisionsDebugMode");
+    commandLine_.removeString ("YES");
+    commandLine_.insert (0, PD_NAME);
 }
     
 // -----------------------------------------------------------------------------------------------------------

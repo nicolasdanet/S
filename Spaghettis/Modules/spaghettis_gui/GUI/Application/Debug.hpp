@@ -38,7 +38,7 @@ static void logToConsole (const juce::String& s)
 {
     #if defined (JUCE_MAC) || defined (JUCE_IOS)
     
-    core::post_syslog (static_cast<const char*> (s.toUTF8()));
+    core::post_syslog (s.toRawUTF8());
     
     #else
     

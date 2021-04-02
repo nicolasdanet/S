@@ -43,7 +43,7 @@ private:
 public:
     void start (const juce::StringArray& commandLine)
     {
-        commandLine_ = commandLine;
+        setCommandLine (commandLine);
         
         startThread();
     }
@@ -69,7 +69,13 @@ public:
         logger_ = logger;
     }
 
-    juce::StringArray getCommandLine() const;
+    const juce::StringArray& getCommandLine() const
+    {
+        return commandLine_;
+    }
+
+private:
+    void setCommandLine (const juce::StringArray&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
