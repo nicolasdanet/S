@@ -21,6 +21,8 @@ class ConsoleComponent : public juce::Component, public spaghettis::Logger {
 public:
     ConsoleComponent()
     {
+        const int background = juce::TextEditor::backgroundColourId;
+        
         addAndMakeVisible (text_);
         
         text_.setMultiLine (true);
@@ -31,6 +33,8 @@ public:
         text_.setPopupMenuEnabled (false);
         text_.setFont (Spaghettis()->getConsoleFont());
         setSize (600, 400);
+        
+        text_.setColour (background, Spaghettis()->getColour (Colours::consoleBackground));
         
         Spaghettis()->setLogger (this);
     }
@@ -47,7 +51,7 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        g.fillAll (Spaghettis()->findColour (juce::ResizableWindow::backgroundColourId));
+        g.fillAll (Spaghettis()->getColour (juce::ResizableWindow::backgroundColourId));
     }
     
     void resized() override

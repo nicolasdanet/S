@@ -20,7 +20,7 @@ class Window : public juce::DocumentWindow {
 
 public:
     Window (juce::String name) : juce::DocumentWindow (name,
-                                    Spaghettis()->findColour (juce::ResizableWindow::backgroundColourId),
+                                    Spaghettis()->getColour (juce::ResizableWindow::backgroundColourId),
                                     DocumentWindow::allButtons)
     {
         setUsingNativeTitleBar (true);

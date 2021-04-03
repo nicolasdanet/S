@@ -81,7 +81,7 @@ public:
 // MARK: -
 
 public:
-    juce::Colour findColour (int colourId) const
+    juce::Colour getColour (int colourId) const
     {
         return lookAndFeel_->findColour (colourId);
     }
