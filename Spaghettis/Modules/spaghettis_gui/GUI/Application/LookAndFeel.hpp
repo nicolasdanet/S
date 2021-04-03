@@ -23,6 +23,16 @@ public:
     {
         setColour (juce::TextEditor::outlineColourId,   juce::Colours::transparentBlack);
         setColour (juce::TextEditor::shadowColourId,    juce::Colours::transparentBlack);
+        
+        jassert (isColourSpecified (Colours::consoleTextDefault)    == false);
+        jassert (isColourSpecified (Colours::consoleTextWarning)    == false);
+        jassert (isColourSpecified (Colours::consoleTextError)      == false);
+        jassert (isColourSpecified (Colours::consoleBackground)     == false);
+        
+        setColour (Colours::consoleTextDefault,         juce::Colours::white);
+        setColour (Colours::consoleTextWarning,         juce::Colours::orange);
+        setColour (Colours::consoleTextError,           juce::Colours::red);
+        setColour (Colours::consoleBackground,          juce::Colours::black);
     }
     
     ~LookAndFeel() = default;
