@@ -21,7 +21,7 @@ class ConsoleComponent : public juce::Component, public spaghettis::Logger {
 public:
     ConsoleComponent()
     {
-        const int background = juce::TextEditor::backgroundColourId;
+        const auto background = juce::TextEditor::backgroundColourId;
         
         addAndMakeVisible (text_);
         
@@ -63,9 +63,20 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    void logMessage (const juce::String& m, Type) override
+private:
+    juce::Colour colourWithType (Type type) const
     {
+        if (type == Type::normal)       { return Spaghettis()->getColour (Colours::consoleTextDefault); }
+        else if (type == Type::warning) { return Spaghettis()->getColour (Colours::consoleTextWarning); }
+        else {
+            return Spaghettis()->getColour (Colours::consoleTextError);
+        }
+    }
+    
+public:
+    void logMessage (const juce::String& m, Type type) override
+    {
+        text_.setColour (juce::TextEditor::textColourId, colourWithType (type));
         text_.moveCaretToEnd();
         text_.insertTextAtCaret (m + juce::newLine);
     }
