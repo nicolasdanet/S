@@ -16,6 +16,12 @@ class Wrapper : private juce::AsyncUpdater, private juce::Thread {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+using MessagesElement   = std::pair<juce::String, Logger::Type>;
+using MessagesContainer = std::vector<MessagesElement>;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
@@ -85,7 +91,7 @@ public:
     void post (const juce::String& m, Logger::Type type = Logger::Type::normal)
     {
         {
-            const juce::ScopedLock lock (lock_); messages_.add (m);
+            const juce::ScopedLock lock (lock_); messages_.emplace_back (m, type);
         }
         
         triggerAsyncUpdate();
@@ -94,15 +100,15 @@ public:
 private:
     void handleAsyncUpdate() override
     {
-        juce::StringArray scoped;
+        MessagesContainer scoped;
         
         {
-            const juce::ScopedLock lock (lock_); scoped.swapWith (messages_);
+            const juce::ScopedLock lock (lock_); scoped.swap (messages_);
         }
         
         if (logger_) {
         //
-        for (const auto& s : scoped) { logger_->logMessage (s, Logger::Type::normal); }
+        for (const auto& e : scoped) { logger_->logMessage (std::get<0> (e), std::get<1> (e)); }
         //
         }
     }
@@ -112,7 +118,7 @@ private:
 
 private:
     Logger *logger_;
-    juce::StringArray messages_;
+    MessagesContainer messages_;
     juce::CriticalSection lock_;
     juce::StringArray commandLine_;
     

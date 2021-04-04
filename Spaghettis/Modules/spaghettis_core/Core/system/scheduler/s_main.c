@@ -274,14 +274,13 @@ PD_LOCAL int main_start (void)
     
     message_initialize();   /* Preallocate symbols and binding mechanism first. */
     
-    err |= main_setPathExecutable();
-    err |= main_setPathSupport();
+    err |= main_setPathExecutable();    PD_ASSERT (main_directoryExecutable != NULL);
+    err |= main_setPathSupport();       PD_ASSERT (main_directorySupport    != NULL);
+    
     err |= main_parseArguments (main_argc - 1, main_argv + 1);
 
-    PD_ASSERT (main_directoryExecutable != NULL);
-    // PD_ASSERT (main_directoryHelp    != NULL);
-    PD_ASSERT (main_directorySupport    != NULL);
     PD_ASSERT (main_filePreferences     != NULL);
+    // PD_ASSERT (main_directoryHelp    != NULL);
     
     if (!err) {
     //
