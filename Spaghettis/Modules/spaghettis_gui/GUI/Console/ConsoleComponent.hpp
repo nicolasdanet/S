@@ -73,9 +73,19 @@ private:
         }
     }
     
+    void limitSize()
+    {
+        // -- TODO: Remove first lines to limit the size of the text logged.
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     void logMessage (const juce::String& m, Type type) override
     {
+        limitSize();
         text_.setColour (juce::TextEditor::textColourId, colourWithType (type));
         text_.moveCaretToEnd();
         text_.insertTextAtCaret (m + juce::newLine);
