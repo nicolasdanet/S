@@ -23,7 +23,8 @@ public:
     {
         setColour (juce::TextEditor::outlineColourId,   juce::Colours::transparentBlack);
         setColour (juce::TextEditor::shadowColourId,    juce::Colours::transparentBlack);
-        
+        setColour (juce::ScrollBar::thumbColourId,      juce::Colours::grey);
+    
         Colours::initialize (this);
     }
     

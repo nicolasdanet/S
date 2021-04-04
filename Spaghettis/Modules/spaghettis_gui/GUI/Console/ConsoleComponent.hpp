@@ -33,9 +33,9 @@ public:
         text_.setPopupMenuEnabled (false);
         text_.setFont (Spaghettis()->getConsoleFont());
         setSize (600, 400);
-        
+
         text_.setColour (background, Spaghettis()->getColour (Colours::consoleBackground));
-        
+
         Spaghettis()->setLogger (this);
     }
     
