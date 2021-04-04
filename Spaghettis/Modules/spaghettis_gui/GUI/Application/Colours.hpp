@@ -33,6 +33,23 @@ enum ColourIds {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void initialize (juce::LookAndFeel* lf)
+{
+    jassert (lf->isColourSpecified (consoleTextDefault) == false);
+    jassert (lf->isColourSpecified (consoleTextWarning) == false);
+    jassert (lf->isColourSpecified (consoleTextError)   == false);
+    jassert (lf->isColourSpecified (consoleBackground)  == false);
+        
+    lf->setColour (consoleTextDefault,  juce::Colours::whitesmoke);
+    lf->setColour (consoleTextWarning,  juce::Colours::orange);
+    lf->setColour (consoleTextError,    juce::Colours::red);
+    lf->setColour (consoleBackground,   juce::Colours::black);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 };
 
