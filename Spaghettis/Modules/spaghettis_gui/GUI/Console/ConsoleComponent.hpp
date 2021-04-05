@@ -77,21 +77,16 @@ private:
     {
         lines_++;
         
-        if (lines_ > maximumNumberOfLines_) {
+        if (lines_ % trimRate_ == 0) {
         //
-        const int numberOfLinesToRemove = (maximumNumberOfLines_ / 2) + 1;
-        
-        text_.moveCaretToTop (false);
-        
-        for (int i = 0; i < numberOfLinesToRemove; ++i) { text_.moveCaretDown (true); }
-        
+        text_.setCaretPosition (text_.getTotalNumChars() / 2);
+        text_.moveCaretToStartOfLine (false);
+        text_.moveCaretToTop (true);
         text_.insertTextAtCaret (juce::String());
-        
-        lines_ -= numberOfLinesToRemove;
         //
         }
     }
-
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -99,20 +94,20 @@ private:
 public:
     void logMessage (const juce::String& m, Type type) override
     {
+        removeLinesAtStartIfRequired();
+        
         text_.moveCaretToEnd();
         text_.setColour (juce::TextEditor::textColourId, colourWithType (type));
         text_.insertTextAtCaret (m + juce::newLine);
-        
-        removeLinesAtStartIfRequired();
     }
     
 private:
     juce::TextEditor text_;
-    int lines_;
+    unsigned int lines_;
 
 private:
     static const int maximumLengthOfLine_   = 2048;
-    static const int maximumNumberOfLines_  = 8;
+    static const int trimRate_              = 4096;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)
