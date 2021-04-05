@@ -22,6 +22,7 @@ public:
     ConsoleComponent() : lines_ (0)
     {
         const auto background = juce::TextEditor::backgroundColourId;
+        const auto highlight  = juce::TextEditor::highlightColourId;
         
         text_.setMultiLine (true);
         text_.setReturnKeyStartsNewLine (true);
@@ -32,7 +33,7 @@ public:
         text_.setFont (Spaghettis()->getConsoleFont());
         text_.setInputRestrictions (maximumLengthOfLine_);
         text_.setColour (background, Spaghettis()->getColour (Colours::consoleBackground));
-        
+        text_.setColour (highlight, Spaghettis()->getColour (Colours::consoleHighlight));
         addAndMakeVisible (text_);
         setSize (600, 400);
 
