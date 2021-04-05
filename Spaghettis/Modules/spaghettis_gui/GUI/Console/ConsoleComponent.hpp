@@ -75,14 +75,12 @@ private:
     
     void removeLinesAtStartIfRequired()
     {
-        lines_++;
-        
-        if (lines_ % trimRate_ == 0) {
+        if (++lines_ % trimRate_ == 0) {
         //
         text_.setCaretPosition (text_.getTotalNumChars() / 2);
         text_.moveCaretToStartOfLine (false);
         text_.moveCaretToTop (true);
-        text_.insertTextAtCaret (juce::String());
+        text_.insertTextAtCaret (juce::String ("...") + juce::newLine);
         //
         }
     }
