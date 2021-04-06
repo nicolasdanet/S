@@ -96,7 +96,7 @@ namespace spaghettis { namespace core {
 
 /* Unique. */
 
-#include "unique/m_unique.c"
+#include "wrap/w_unique.c"
 
 /* Undo. */
 
