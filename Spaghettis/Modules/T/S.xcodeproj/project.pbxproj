@@ -405,7 +405,6 @@
 		1707FBC224168B7300549B62 /* x_loadbang.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_loadbang.c; sourceTree = "<group>"; };
 		170C3B1B2484DB8D0009DBCF /* m_buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_buffer.h; sourceTree = "<group>"; };
 		170C3B1C2484DD960009DBCF /* m_append.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_append.c; sourceTree = "<group>"; };
-		1715F91E2485583400821EFC /* m_snippet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_snippet.h; sourceTree = "<group>"; };
 		1715F92024855A2A00821EFC /* m_encapsulate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_encapsulate.h; sourceTree = "<group>"; };
 		1715F92324855D4C00821EFC /* g_dollar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = g_dollar.h; sourceTree = "<group>"; };
 		171741431FCEB5240083B19B /* d_greater.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_greater.c; sourceTree = "<group>"; };
@@ -965,7 +964,6 @@
 		1715F91F2485593000821EFC /* global */ = {
 			isa = PBXGroup;
 			children = (
-				1715F91E2485583400821EFC /* m_snippet.h */,
 				1794C5D81F055A6400D78A38 /* m_clipboard.h */,
 				1715F92024855A2A00821EFC /* m_encapsulate.h */,
 				37D5E4271D746170004CB497 /* m_error.h */,

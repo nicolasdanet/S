@@ -33,7 +33,6 @@ typedef t_float64Atomic t_word;
 #include "core/helpers/m_items.h"
 #include "core/helpers/m_MT.h"
 #include "core/helpers/m_ringbuffer.h"
-#include "core/global/m_snippet.h"
 #include "core/global/m_clipboard.h"
 #include "core/global/m_encapsulate.h"
 #include "core/global/m_error.h"

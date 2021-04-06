@@ -20,6 +20,8 @@ PD_LOCAL t_undomanager  *glist_undoReplaceManager           (t_glist *, t_undoma
 PD_LOCAL void           glist_objectRemoveSelectedProceed   (t_glist *);
 PD_LOCAL t_rectangle    glist_getBoundingBoxOfSelected      (t_glist *);
 
+PD_LOCAL void           snippet_disposeObjects              (t_buffer *x, int offset);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

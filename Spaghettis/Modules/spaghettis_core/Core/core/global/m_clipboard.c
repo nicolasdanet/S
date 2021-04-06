@@ -23,6 +23,13 @@ PD_LOCAL t_rectangle glist_getBoundingBoxOfSelected (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+PD_LOCAL void snippet_renameArrays            (t_buffer *x, t_glist *glist);
+PD_LOCAL void snippet_addOffsetToLines        (t_buffer *x, int i);
+PD_LOCAL void snippet_substractOffsetToLines  (t_buffer *x, int i);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 PD_LOCAL t_buffer *clipboard_copyProceed (t_glist *glist, int copyAll, int isEncapsulate)
