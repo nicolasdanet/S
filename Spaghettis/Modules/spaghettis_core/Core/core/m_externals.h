@@ -21,17 +21,13 @@
 #endif
 
 #ifndef PD_FORCE
-#define PD_FORCE                                /* Unused static functions kept. */
-#endif
-
-#ifndef PD_EXPORT
-#define PD_EXPORT                               /* Exported functions for plugins. */
+#define PD_FORCE                                /* Unused functions kept for now. */
 #endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* Function exported (wrapped) for plugins. */
+/* Function exported (with wrapper functions) for plugins. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

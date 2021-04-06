@@ -37,7 +37,7 @@ PD_DLL void spaghettis_clockDelay (t_clock *x, double delay)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_class *spaghettis_classNew (t_symbol *name,
+PD_DLL t_class *spaghettis_classNew (t_symbol *name,
     t_newmethod fnNew,
     t_method    fnFree,
     size_t      size,
@@ -46,7 +46,7 @@ PD_EXPORT t_class *spaghettis_classNew (t_symbol *name,
     return class_new (name, fnNew, fnFree, size, flags, A_NULL);
 }
 
-PD_EXPORT t_class *spaghettis_classNewWithArguments (t_symbol *name,
+PD_DLL t_class *spaghettis_classNewWithArguments (t_symbol *name,
     t_newmethod fnNew,
     t_method    fnFree,
     size_t      size,
@@ -59,67 +59,67 @@ PD_EXPORT t_class *spaghettis_classNewWithArguments (t_symbol *name,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void spaghettis_classFree (t_class *c)
+PD_DLL void spaghettis_classFree (t_class *c)
 {
     class_free (c);
 }
 
-PD_EXPORT void spaghettis_classAddMethodWithArguments (t_class *c, t_method fn, t_symbol *s)
+PD_DLL void spaghettis_classAddMethodWithArguments (t_class *c, t_method fn, t_symbol *s)
 {
     class_addMethod (c, fn, s, A_GIMME, A_NULL);
 }
 
-PD_EXPORT void spaghettis_classAddMethod (t_class *c, t_method fn, t_symbol *s)
+PD_DLL void spaghettis_classAddMethod (t_class *c, t_method fn, t_symbol *s)
 {
     class_addMethod (c, fn, s, A_NULL);
 }
 
-PD_EXPORT void spaghettis_classAddBang (t_class *c, t_method fn)
+PD_DLL void spaghettis_classAddBang (t_class *c, t_method fn)
 {
     class_addBang (c, fn);
 }
 
-PD_EXPORT void spaghettis_classAddFloat (t_class *c, t_method fn)
+PD_DLL void spaghettis_classAddFloat (t_class *c, t_method fn)
 {
     class_addFloat (c, fn);
 }
 
-PD_EXPORT void spaghettis_classAddSymbol (t_class *c, t_method fn)
+PD_DLL void spaghettis_classAddSymbol (t_class *c, t_method fn)
 {
     class_addSymbol (c, fn);
 }
 
-PD_EXPORT void spaghettis_classAddList (t_class *c, t_method fn)
+PD_DLL void spaghettis_classAddList (t_class *c, t_method fn)
 {
     class_addList (c, fn);
 }
 
-PD_EXPORT void spaghettis_classAddAnything (t_class *c, t_method fn)
+PD_DLL void spaghettis_classAddAnything (t_class *c, t_method fn)
 {
     class_addAnything (c, fn);
 }
 
-PD_EXPORT void spaghettis_classAddDsp (t_class *c, t_method fn)
+PD_DLL void spaghettis_classAddDsp (t_class *c, t_method fn)
 {
     class_addDsp (c, fn);
 }
 
-PD_EXPORT void spaghettis_classSetHelpDirectory (t_class *c, t_symbol *s)
+PD_DLL void spaghettis_classSetHelpDirectory (t_class *c, t_symbol *s)
 {
     class_setHelpDirectory (c, s);
 }
 
-PD_EXPORT void spaghettis_classSetDataFunction (t_class *c, t_datafn f)
+PD_DLL void spaghettis_classSetDataFunction (t_class *c, t_datafn f)
 {
     class_setDataFunction (c, f);
 }
 
-PD_EXPORT void spaghettis_classSetDismissFunction (t_class *c, t_dismissfn f)
+PD_DLL void spaghettis_classSetDismissFunction (t_class *c, t_dismissfn f)
 {
     class_setDismissFunction (c, f);
 }
 
-PD_EXPORT void spaghettis_classRequirePending (t_class *c)
+PD_DLL void spaghettis_classRequirePending (t_class *c)
 {
     class_requirePending (c);
 }
@@ -128,17 +128,17 @@ PD_EXPORT void spaghettis_classRequirePending (t_class *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void spaghettis_post (const char *s)
+PD_DLL void spaghettis_post (const char *s)
 {
     post (s);
 }
 
-PD_EXPORT void spaghettis_postWarning (const char *s)
+PD_DLL void spaghettis_postWarning (const char *s)
 {
     post_warning (s);
 }
 
-PD_EXPORT void spaghettis_postError (const char *s)
+PD_DLL void spaghettis_postError (const char *s)
 {
     post_error (s);
 }
@@ -147,12 +147,12 @@ PD_EXPORT void spaghettis_postError (const char *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void spaghettis_bind (t_pd *x, t_symbol *s)
+PD_DLL void spaghettis_bind (t_pd *x, t_symbol *s)
 {
     pd_bind (x, s);
 }
 
-PD_EXPORT void spaghettis_unbind (t_pd *x, t_symbol *s)
+PD_DLL void spaghettis_unbind (t_pd *x, t_symbol *s)
 {
     pd_unbind (x, s);
 }
@@ -161,27 +161,27 @@ PD_EXPORT void spaghettis_unbind (t_pd *x, t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void spaghettis_handleBang (t_pd *x)
+PD_DLL void spaghettis_handleBang (t_pd *x)
 {
     pd_bang (x);
 }
 
-PD_EXPORT void spaghettis_handleFloat (t_pd *x, t_float f)
+PD_DLL void spaghettis_handleFloat (t_pd *x, t_float f)
 {
     pd_float (x, f);
 }
 
-PD_EXPORT void spaghettis_handleSymbol (t_pd *x, t_symbol *s)
+PD_DLL void spaghettis_handleSymbol (t_pd *x, t_symbol *s)
 {
     pd_symbol (x, s);
 }
 
-PD_EXPORT void spaghettis_handleList (t_pd *x, int argc, t_atom *argv)
+PD_DLL void spaghettis_handleList (t_pd *x, int argc, t_atom *argv)
 {
     pd_list (x, argc, argv);
 }
 
-PD_EXPORT void spaghettis_handleMessage (t_pd *x, t_symbol *s, int argc, t_atom *argv)
+PD_DLL void spaghettis_handleMessage (t_pd *x, t_symbol *s, int argc, t_atom *argv)
 {
     pd_message (x, s, argc, argv);
 }
@@ -190,27 +190,27 @@ PD_EXPORT void spaghettis_handleMessage (t_pd *x, t_symbol *s, int argc, t_atom 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_symbol *spaghettis_symbol (const char *s)
+PD_DLL t_symbol *spaghettis_symbol (const char *s)
 {
     return gensym (s);
 }
 
-PD_EXPORT const char *spaghettis_symbolGetName (t_symbol *s)
+PD_DLL const char *spaghettis_symbolGetName (t_symbol *s)
 {
     return symbol_getName (s);
 }
 
-PD_EXPORT t_pd *spaghettis_symbolGetThing (t_symbol *s)
+PD_DLL t_pd *spaghettis_symbolGetThing (t_symbol *s)
 {
     return symbol_getThing (s);
 }
 
-PD_EXPORT int spaghettis_symbolHasThing (t_symbol *s)
+PD_DLL int spaghettis_symbolHasThing (t_symbol *s)
 {
     return symbol_hasThing (s);
 }
 
-PD_EXPORT int spaghettis_symbolHasThingQuiet (t_symbol *s)
+PD_DLL int spaghettis_symbolHasThingQuiet (t_symbol *s)
 {
     return symbol_hasThingQuiet (s);
 }
@@ -219,7 +219,7 @@ PD_EXPORT int spaghettis_symbolHasThingQuiet (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_symbol *spaghettis_getRestoreSymbol (void)
+PD_DLL t_symbol *spaghettis_getRestoreSymbol (void)
 {
     return gensym ("_restore");
 }
@@ -230,17 +230,17 @@ PD_EXPORT t_symbol *spaghettis_getRestoreSymbol (void)
 
 /* In debug build memory leaks for externals are globally tracked. */
 
-PD_EXPORT void *spaghettis_memoryGet (size_t n)
+PD_DLL void *spaghettis_memoryGet (size_t n)
 {
     return PD_MEMORY_GET (n);
 }
 
-PD_EXPORT void *spaghettis_memoryResize (void *m, size_t oldSize, size_t newSize)
+PD_DLL void *spaghettis_memoryResize (void *m, size_t oldSize, size_t newSize)
 {
     return PD_MEMORY_RESIZE (m, oldSize, newSize);
 }
 
-PD_EXPORT void spaghettis_memoryFree (void *m)
+PD_DLL void spaghettis_memoryFree (void *m)
 {
     PD_MEMORY_FREE (m);
 }
@@ -249,12 +249,12 @@ PD_EXPORT void spaghettis_memoryFree (void *m)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_object *spaghettis_objectNew (t_class *c)
+PD_DLL t_object *spaghettis_objectNew (t_class *c)
 {
     t_pd *x = pd_new (c); return cast_object (x);
 }
 
-PD_EXPORT void spaghettis_objectFree (t_object *x)
+PD_DLL void spaghettis_objectFree (t_object *x)
 {
     pd_free (cast_pd (x));
 }
@@ -263,7 +263,7 @@ PD_EXPORT void spaghettis_objectFree (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_object *spaghettis_objectGetTemporary (t_object *x)
+PD_DLL t_object *spaghettis_objectGetTemporary (t_object *x)
 {
     t_object *old = NULL;
     
@@ -276,32 +276,32 @@ PD_EXPORT t_object *spaghettis_objectGetTemporary (t_object *x)
     return old;
 }
 
-PD_EXPORT t_space *spaghettis_objectGetNewSpace (t_object *x)
+PD_DLL t_space *spaghettis_objectGetNewSpace (t_object *x)
 {
     return space_new (x);
 }
 
-PD_EXPORT int spaghettis_objectDspNeedInitializer (t_object *x)
+PD_DLL int spaghettis_objectDspNeedInitializer (t_object *x)
 {
     return object_dspNeedInitializer (x);
 }
 
-PD_EXPORT void spaghettis_objectCopySignalValues (t_object *x, t_object *old)
+PD_DLL void spaghettis_objectCopySignalValues (t_object *x, t_object *old)
 {
     object_copySignalValues (x, old);
 }
 
-PD_EXPORT void spaghettis_objectGetSignalValues (t_object *x, t_buffer *b)
+PD_DLL void spaghettis_objectGetSignalValues (t_object *x, t_buffer *b)
 {
     object_getSignalValues (x, b);
 }
 
-PD_EXPORT void spaghettis_objectFetchAndCopySignalValuesIfRequired (t_object *x)
+PD_DLL void spaghettis_objectFetchAndCopySignalValuesIfRequired (t_object *x)
 {
     object_fetchAndCopySignalValuesIfRequired (x);
 }
 
-PD_EXPORT int spaghettis_objectFlagIsUndoOrEncaspulate (t_object *x, int flags)
+PD_DLL int spaghettis_objectFlagIsUndoOrEncaspulate (t_object *x, int flags)
 {
     return SAVED_DEEP (flags);
 }
@@ -310,17 +310,17 @@ PD_EXPORT int spaghettis_objectFlagIsUndoOrEncaspulate (t_object *x, int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_inlet *spaghettis_objectInletNewFloat (t_object *x, t_float *fp)
+PD_DLL t_inlet *spaghettis_objectInletNewFloat (t_object *x, t_float *fp)
 {
     return inlet_newFloat (x, fp);
 }
 
-PD_EXPORT t_inlet *spaghettis_objectInletNewSymbol (t_object *x, t_symbol **sp)
+PD_DLL t_inlet *spaghettis_objectInletNewSymbol (t_object *x, t_symbol **sp)
 {
     return inlet_newSymbol (x, sp);
 }
 
-PD_EXPORT t_inlet *spaghettis_objectInletNewSignal (t_object *x)
+PD_DLL t_inlet *spaghettis_objectInletNewSignal (t_object *x)
 {
     return inlet_newSignal (x);
 }
@@ -329,37 +329,37 @@ PD_EXPORT t_inlet *spaghettis_objectInletNewSignal (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_outlet *spaghettis_objectOutletNewBang (t_object *x)
+PD_DLL t_outlet *spaghettis_objectOutletNewBang (t_object *x)
 {
     return outlet_newBang (x);
 }
 
-PD_EXPORT t_outlet *spaghettis_objectOutletNewFloat (t_object *x)
+PD_DLL t_outlet *spaghettis_objectOutletNewFloat (t_object *x)
 {
     return outlet_newFloat (x);
 }
 
-PD_EXPORT t_outlet *spaghettis_objectOutletNewSymbol (t_object *x)
+PD_DLL t_outlet *spaghettis_objectOutletNewSymbol (t_object *x)
 {
     return outlet_newSymbol (x);
 }
 
-PD_EXPORT t_outlet *spaghettis_objectOutletNewList (t_object *x)
+PD_DLL t_outlet *spaghettis_objectOutletNewList (t_object *x)
 {
     return outlet_newList (x);
 }
 
-PD_EXPORT t_outlet *spaghettis_objectOutletNewAnything (t_object *x)
+PD_DLL t_outlet *spaghettis_objectOutletNewAnything (t_object *x)
 {
     return outlet_newAnything (x);
 }
 
-PD_EXPORT t_outlet *spaghettis_objectOutletNewMixed (t_object *x)
+PD_DLL t_outlet *spaghettis_objectOutletNewMixed (t_object *x)
 {
     return outlet_newMixed (x);
 }
 
-PD_EXPORT t_outlet *spaghettis_objectOutletNewSignal (t_object *x)
+PD_DLL t_outlet *spaghettis_objectOutletNewSignal (t_object *x)
 {
     return outlet_newSignal (x);
 }
@@ -368,27 +368,27 @@ PD_EXPORT t_outlet *spaghettis_objectOutletNewSignal (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void spaghettis_outletBang (t_outlet *x)
+PD_DLL void spaghettis_outletBang (t_outlet *x)
 {
     outlet_bang (x);
 }
 
-PD_EXPORT void spaghettis_outletFloat (t_outlet *x, t_float f)
+PD_DLL void spaghettis_outletFloat (t_outlet *x, t_float f)
 {
     outlet_float (x, f);
 }
 
-PD_EXPORT void spaghettis_outletSymbol (t_outlet *x, t_symbol *s)
+PD_DLL void spaghettis_outletSymbol (t_outlet *x, t_symbol *s)
 {
     outlet_symbol (x, s);
 }
 
-PD_EXPORT void spaghettis_outletList (t_outlet *x, int argc, t_atom *argv)
+PD_DLL void spaghettis_outletList (t_outlet *x, int argc, t_atom *argv)
 {
     outlet_list (x, argc, argv);
 }
 
-PD_EXPORT void spaghettis_outletAnything (t_outlet *x, t_symbol *s, int argc, t_atom *argv)
+PD_DLL void spaghettis_outletAnything (t_outlet *x, t_symbol *s, int argc, t_atom *argv)
 {
     outlet_anything (x, s, argc, argv);
 }
@@ -397,32 +397,32 @@ PD_EXPORT void spaghettis_outletAnything (t_outlet *x, t_symbol *s, int argc, t_
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void spaghettis_dspAdd1 (t_perform fn, t_int a)
+PD_DLL void spaghettis_dspAdd1 (t_perform fn, t_int a)
 {
     dsp_add1 (fn, a);
 }
 
-PD_EXPORT void spaghettis_dspAdd2 (t_perform fn, t_int a, t_int b)
+PD_DLL void spaghettis_dspAdd2 (t_perform fn, t_int a, t_int b)
 {
     dsp_add2 (fn, a, b);
 }
 
-PD_EXPORT void spaghettis_dspAdd3 (t_perform fn, t_int a, t_int b, t_int c)
+PD_DLL void spaghettis_dspAdd3 (t_perform fn, t_int a, t_int b, t_int c)
 {
     dsp_add3 (fn, a, b, c);
 }
 
-PD_EXPORT void spaghettis_dspAdd4 (t_perform fn, t_int a, t_int b, t_int c, t_int d)
+PD_DLL void spaghettis_dspAdd4 (t_perform fn, t_int a, t_int b, t_int c, t_int d)
 {
     dsp_add4 (fn, a, b, c, d);
 }
 
-PD_EXPORT void spaghettis_dspAdd5 (t_perform fn, t_int a, t_int b, t_int c, t_int d, t_int e)
+PD_DLL void spaghettis_dspAdd5 (t_perform fn, t_int a, t_int b, t_int c, t_int d, t_int e)
 {
     dsp_add5 (fn, a, b, c, d, e);
 }
 
-PD_EXPORT void spaghettis_dspAdd6 (t_perform fn, t_int a, t_int b, t_int c, t_int d, t_int e, t_int f)
+PD_DLL void spaghettis_dspAdd6 (t_perform fn, t_int a, t_int b, t_int c, t_int d, t_int e, t_int f)
 {
     dsp_add6 (fn, a, b, c, d, e, f);
 }
@@ -435,22 +435,22 @@ PD_EXPORT void spaghettis_dspAdd6 (t_perform fn, t_int a, t_int b, t_int c, t_in
 /* < https://lists.puredata.info/pipermail/pd-list/2005-07/029490.html > */
 /* < https://www.mail-archive.com/pd-list@iem.at/msg60031.html > */
 
-PD_EXPORT t_float spaghettis_signalGetSampleRate (t_signal *s)
+PD_DLL t_float spaghettis_signalGetSampleRate (t_signal *s)
 {
     return s->s_sampleRate;
 }
 
-PD_EXPORT int spaghettis_signalGetVectorSize (t_signal *s)
+PD_DLL int spaghettis_signalGetVectorSize (t_signal *s)
 {
     return s->s_vectorSize;
 }
 
-PD_EXPORT int spaghettis_signalGetOverlap (t_signal *s)
+PD_DLL int spaghettis_signalGetOverlap (t_signal *s)
 {
     return s->s_overlap;
 }
 
-PD_EXPORT t_sample *spaghettis_signalGetVector (t_signal *s)
+PD_DLL t_sample *spaghettis_signalGetVector (t_signal *s)
 {
     return s->s_vector;
 }
@@ -459,52 +459,52 @@ PD_EXPORT t_sample *spaghettis_signalGetVector (t_signal *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_buffer *spaghettis_bufferNew (void)
+PD_DLL t_buffer *spaghettis_bufferNew (void)
 {
     return buffer_new();
 }
 
-PD_EXPORT t_atom *spaghettis_bufferGetAtoms (t_buffer *x)
+PD_DLL t_atom *spaghettis_bufferGetAtoms (t_buffer *x)
 {
     return buffer_getAtoms (x);
 }
 
-PD_EXPORT void spaghettis_bufferFree (t_buffer *x)
+PD_DLL void spaghettis_bufferFree (t_buffer *x)
 {
     buffer_free (x);
 }
 
-PD_EXPORT int spaghettis_bufferGetSize (t_buffer *x)
+PD_DLL int spaghettis_bufferGetSize (t_buffer *x)
 {
     return buffer_getSize (x);
 }
 
-PD_EXPORT void spaghettis_bufferClear (t_buffer *x)
+PD_DLL void spaghettis_bufferClear (t_buffer *x)
 {
     buffer_clear (x);
 }
 
-PD_EXPORT void spaghettis_bufferAppend (t_buffer *x, int argc, t_atom *argv)
+PD_DLL void spaghettis_bufferAppend (t_buffer *x, int argc, t_atom *argv)
 {
     buffer_append (x, argc, argv);
 }
 
-PD_EXPORT void spaghettis_bufferAppendFloat (t_buffer *x, t_float f)
+PD_DLL void spaghettis_bufferAppendFloat (t_buffer *x, t_float f)
 {
     buffer_appendFloat (x, f);
 }
 
-PD_EXPORT void spaghettis_bufferAppendSymbol (t_buffer *x, t_symbol *s)
+PD_DLL void spaghettis_bufferAppendSymbol (t_buffer *x, t_symbol *s)
 {
     buffer_appendSymbol (x, s);
 }
 
-PD_EXPORT void spaghettis_bufferAppendSemicolon (t_buffer *x)
+PD_DLL void spaghettis_bufferAppendSemicolon (t_buffer *x)
 {
     buffer_appendSemicolon (x);
 }
 
-PD_EXPORT void spaghettis_bufferAppendComma (t_buffer *x)
+PD_DLL void spaghettis_bufferAppendComma (t_buffer *x)
 {
     buffer_appendComma (x);
 }
@@ -513,7 +513,7 @@ PD_EXPORT void spaghettis_bufferAppendComma (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT char *spaghettis_atomsToString (int argc, t_atom *argv)
+PD_DLL char *spaghettis_atomsToString (int argc, t_atom *argv)
 {
     return atom_atomsToString (argc, argv);
 }
@@ -522,32 +522,32 @@ PD_EXPORT char *spaghettis_atomsToString (int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT void spaghettis_atomSetSymbol (t_atom *a, t_symbol *s)
+PD_DLL void spaghettis_atomSetSymbol (t_atom *a, t_symbol *s)
 {
     atom_setSymbol (a, s);
 }
 
-PD_EXPORT void spaghettis_atomSetFloat (t_atom *a, t_float f)
+PD_DLL void spaghettis_atomSetFloat (t_atom *a, t_float f)
 {
     atom_setFloat (a, f);
 }
 
-PD_EXPORT t_float spaghettis_atomGetFloat (t_atom *a)
+PD_DLL t_float spaghettis_atomGetFloat (t_atom *a)
 {
     return atom_getFloat (a);
 }
 
-PD_EXPORT t_float spaghettis_atomGetFloatAtIndex (int n, int argc, t_atom *argv)
+PD_DLL t_float spaghettis_atomGetFloatAtIndex (int n, int argc, t_atom *argv)
 {
     return atom_getFloatAtIndex (n, argc, argv);
 }
 
-PD_EXPORT t_symbol *spaghettis_atomGetSymbol (t_atom *a)
+PD_DLL t_symbol *spaghettis_atomGetSymbol (t_atom *a)
 {
     return atom_getSymbol (a);
 }
 
-PD_EXPORT t_symbol *spaghettis_atomGetSymbolAtIndex (int n, int argc, t_atom *argv)
+PD_DLL t_symbol *spaghettis_atomGetSymbolAtIndex (int n, int argc, t_atom *argv)
 {
     return atom_getSymbolAtIndex (n, argc, argv);
 }
@@ -556,7 +556,7 @@ PD_EXPORT t_symbol *spaghettis_atomGetSymbolAtIndex (int n, int argc, t_atom *ar
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_EXPORT t_initializer *spaghettis_initializerNew (t_initializerfn fn, void *lhs, void *rhs)
+PD_DLL t_initializer *spaghettis_initializerNew (t_initializerfn fn, void *lhs, void *rhs)
 {
     return initializer_new (fn, lhs, rhs);
 }

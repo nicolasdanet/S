@@ -65,7 +65,7 @@ static_assert (sizeof (int) >= 4, "");      /* Just in case. */
 
 #if defined ( PD_BUILDING_TERMINAL )
 
-PD_EXPORT int main (int argc, char **argv)
+PD_DLL int main (int argc, char **argv)
 {
     main_argc = argc;
     main_argv = argv;
