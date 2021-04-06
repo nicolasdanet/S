@@ -36,10 +36,6 @@ namespace spaghettis { namespace core {
 #include "core/global/m_global.c"
 #include "core/global/m_setup.c"
 #include "core/global/m_legacy.c"
-#include "core/global/m_snippet.c"
-#include "core/global/m_clipboard.c"
-#include "core/global/m_encapsulate.c"
-#include "core/global/m_deencapsulate.c"
 
 #include "core/instance/m_pool.c"
 #include "core/instance/m_register.c"
@@ -75,6 +71,11 @@ namespace spaghettis { namespace core {
 #include "core/buffer/m_slot.c"
 #include "core/buffer/m_parse.c"
 #include "core/buffer/m_file.c"
+
+#include "core/clipboard/m_clipboard.c"
+#include "core/clipboard/m_encapsulate.c"
+#include "core/clipboard/m_deencapsulate.c"
+#include "core/clipboard/m_snippet.c"
 
 #include "core/helpers/m_rectangle.c"
 #include "core/helpers/m_fileproperties.c"
