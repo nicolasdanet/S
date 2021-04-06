@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void legacy_format (t_buffer *);
+PD_LOCAL void legacy_version (t_buffer *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -124,7 +124,7 @@ static void glist_saveProceed (t_glist *glist, t_symbol *name, t_symbol *directo
 {
     t_buffer *b = buffer_new();
     
-    legacy_format (b); glist_serialize (glist, b, SAVE_DEFAULT, 0);
+    legacy_version (b); glist_serialize (glist, b, SAVE_DEFAULT, 0);
     
     if (buffer_fileWrite (b, name, directory)) { error_failsToWrite (name); }
     else {

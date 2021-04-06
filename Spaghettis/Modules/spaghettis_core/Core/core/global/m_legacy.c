@@ -342,7 +342,7 @@ PD_LOCAL void legacy_dummy (void *dummy, t_symbol *s, int argc, t_atom *argv)
 
 }
 
-PD_LOCAL void legacy_format (t_buffer *x)
+PD_LOCAL void legacy_version (t_buffer *x)
 {
     buffer_appendSymbol (x, sym___hash__N);
     buffer_appendSymbol (x, sym_spaghettis);
