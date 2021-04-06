@@ -966,7 +966,6 @@
 			children = (
 				1794C5D81F055A6400D78A38 /* m_clipboard.h */,
 				1715F92024855A2A00821EFC /* m_encapsulate.h */,
-				37D5E4271D746170004CB497 /* m_error.h */,
 				378971DC1C4F716700263434 /* m_global.c */,
 				378971E51C4F716700263434 /* m_setup.c */,
 				1749719B23FEC7B400627D27 /* m_legacy.c */,
@@ -974,7 +973,6 @@
 				372C88E91E7FE48F00F2C23F /* m_clipboard.c */,
 				17B1B571215FB9AB0067D398 /* m_encapsulate.c */,
 				1789CA6F2166667A0037527F /* m_deencapsulate.c */,
-				37D5E3411D743889004CB497 /* m_error.c */,
 			);
 			path = global;
 			sourceTree = "<group>";
@@ -1165,11 +1163,13 @@
 				174AC8BC24824151004EE54C /* m_math.h */,
 				174AC8BA24824151004EE54C /* m_string.h */,
 				17262FFB2487890400803F0F /* m_path.h */,
+				37D5E4271D746170004CB497 /* m_error.h */,
 				378971E61C4F716700263434 /* m_utils.c */,
 				17BAF2FB1EFBF9E9002B8D90 /* m_symbol.c */,
 				374448191D66000B00E54A0D /* m_math.c */,
 				37A7BBF21D030B45000C7AB5 /* m_string.c */,
 				378971FC1C4F716700263434 /* m_path.c */,
+				37D5E3411D743889004CB497 /* m_error.c */,
 			);
 			path = utils;
 			sourceTree = "<group>";

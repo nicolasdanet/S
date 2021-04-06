@@ -35,7 +35,6 @@ typedef t_float64Atomic t_word;
 #include "core/helpers/m_ringbuffer.h"
 #include "core/global/m_clipboard.h"
 #include "core/global/m_encapsulate.h"
-#include "core/global/m_error.h"
 #include "core/instance/m_pool.h"
 #include "core/instance/m_environment.h"
 #include "core/instance/m_register.h"
@@ -52,6 +51,8 @@ typedef t_float64Atomic t_word;
 #include "core/utils/m_math.h"
 #include "core/utils/m_string.h"
 #include "core/utils/m_path.h"
+#include "core/utils/m_error.h"
+
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

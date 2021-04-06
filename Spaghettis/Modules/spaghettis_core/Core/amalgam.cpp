@@ -40,7 +40,6 @@ namespace spaghettis { namespace core {
 #include "core/global/m_clipboard.c"
 #include "core/global/m_encapsulate.c"
 #include "core/global/m_deencapsulate.c"
-#include "core/global/m_error.c"
 
 #include "core/instance/m_pool.c"
 #include "core/instance/m_register.c"
@@ -93,6 +92,7 @@ namespace spaghettis { namespace core {
 #include "core/utils/m_math.c"
 #include "core/utils/m_string.c"
 #include "core/utils/m_path.c"
+#include "core/utils/m_error.c"
 
 /* Unique. */
 
