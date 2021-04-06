@@ -1329,6 +1329,7 @@
 			isa = PBXGroup;
 			children = (
 				378971E21C4F716700263434 /* m_spaghettis.h */,
+				173F7A7D2607896300ED0B78 /* m_includes.h */,
 				378971E31C4F716700263434 /* m_core.h */,
 				17AE9214261C5AD2001B0FB6 /* w_unique.h */,
 				378972001C4F716700263434 /* s_system.h */,
@@ -1350,7 +1351,6 @@
 		3722C5331C4F920B00D2BF6F /* core */ = {
 			isa = PBXGroup;
 			children = (
-				173F7A7D2607896300ED0B78 /* m_includes.h */,
 				172457DB2609D2FE008D5035 /* m_externals.h */,
 				378971DD1C4F716700263434 /* m_macros.h */,
 				3791F2E11CDF064000F7481C /* m_symbols.h */,

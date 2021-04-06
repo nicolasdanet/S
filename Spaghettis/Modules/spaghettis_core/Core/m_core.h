@@ -21,7 +21,6 @@ typedef t_float64Atomic t_word;
 
 /* Order of inclusion matters. */
 
-#include "core/m_includes.h"
 #include "core/m_externals.h"
 #include "core/m_macros.h"
 #include "core/m_symbols.h"
