@@ -221,7 +221,7 @@ static void encapsulate_deencapsulateReconnect (t_connecthelper *h1, t_connecthe
     while (t2) {
     //
     if (t1->x_assigned == t2->x_assigned) {
-        unique_lineConnect (t1->x_id, t1->x_n, t2->x_id, t2->x_n);
+        unique_objectLineConnect (t1->x_id, t1->x_n, t2->x_id, t2->x_n);
     }
     
     t2 = t2->x_next;
@@ -248,7 +248,7 @@ static void encapsulate_deencapsulateDirect (t_connecthelper *h1, t_connecthelpe
     
         while (t2) {
         //
-        if (t2->x_assigned == t0->x_out) { unique_lineConnect (t1->x_id, t1->x_n, t2->x_id, t2->x_n); }
+        if (t2->x_assigned == t0->x_out) { unique_objectLineConnect (t1->x_id, t1->x_n, t2->x_id, t2->x_n); }
     
         t2 = t2->x_next;
         //

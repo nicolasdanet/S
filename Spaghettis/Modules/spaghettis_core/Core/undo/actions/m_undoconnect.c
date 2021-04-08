@@ -32,12 +32,12 @@ typedef struct _undoconnect {
 
 static void undoconnect_undo (t_undoconnect *z, t_symbol *s, int argc, t_atom *argv)
 {
-    unique_lineDisconnect (z->x_src, z->x_m, z->x_dest, z->x_n);
+    unique_objectLineDisconnect (z->x_src, z->x_m, z->x_dest, z->x_n);
 }
 
 static void undoconnect_redo (t_undoconnect *z, t_symbol *s, int argc, t_atom *argv)
 {
-    unique_lineConnect (z->x_src, z->x_m, z->x_dest, z->x_n);
+    unique_objectLineConnect (z->x_src, z->x_m, z->x_dest, z->x_n);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -50,12 +50,12 @@ PD_LOCAL int undodisconnect_match (t_undoaction *a, t_id u, t_items *i, t_items 
 
 static void undodisconnect_undo (t_undodisconnect *z, t_symbol *s, int argc, t_atom *argv)
 {
-    unique_lineConnect (z->x_src, z->x_m, z->x_dest, z->x_n);
+    unique_objectLineConnect (z->x_src, z->x_m, z->x_dest, z->x_n);
 }
 
 static void undodisconnect_redo (t_undodisconnect *z, t_symbol *s, int argc, t_atom *argv)
 {
-    unique_lineDisconnect (z->x_src, z->x_m, z->x_dest, z->x_n);
+    unique_objectLineDisconnect (z->x_src, z->x_m, z->x_dest, z->x_n);
 }
 
 // -----------------------------------------------------------------------------------------------------------

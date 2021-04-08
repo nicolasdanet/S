@@ -137,7 +137,7 @@ PD_LOCAL t_error unique_objectGetIndexOf (t_id u, int *n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error unique_lineConnect (t_id u, int indexOfOutlet, t_id v, int indexOfInlet)
+PD_LOCAL t_error unique_objectLineConnect (t_id u, int indexOfOutlet, t_id v, int indexOfInlet)
 {
     t_object *src  = instance_registerGetObject (u);
     t_object *dest = instance_registerGetObject (v);
@@ -156,7 +156,7 @@ PD_LOCAL t_error unique_lineConnect (t_id u, int indexOfOutlet, t_id v, int inde
     return PD_ERROR;
 }
 
-PD_LOCAL t_error unique_lineDisconnect (t_id u, int indexOfOutlet, t_id v, int indexOfInlet)
+PD_LOCAL t_error unique_objectLineDisconnect (t_id u, int indexOfOutlet, t_id v, int indexOfInlet)
 {
     t_glist *srcOwner  = instance_registerGetOwner (u);
     t_glist *destOwner = instance_registerGetOwner (v);

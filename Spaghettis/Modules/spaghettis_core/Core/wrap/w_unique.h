@@ -32,8 +32,8 @@ PD_LOCAL t_error    unique_objectGetIndexOf     (t_id u, int *n);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    unique_lineConnect          (t_id u, int m, t_id v, int n);
-PD_LOCAL t_error    unique_lineDisconnect       (t_id u, int m, t_id v, int n);
+PD_LOCAL t_error    unique_objectLineConnect    (t_id u, int m, t_id v, int n);
+PD_LOCAL t_error    unique_objectLineDisconnect (t_id u, int m, t_id v, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
