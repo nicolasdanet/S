@@ -83,7 +83,7 @@ PD_LOCAL void   glist_setDirty                          (t_glist *g, int n);
 PD_LOCAL void   glist_setFrozen                         (t_glist *g, int n);
 PD_LOCAL void   glist_setFontSize                       (t_glist *g, int n);
 PD_LOCAL void   glist_setWindow                         (t_glist *g, t_rectangle *r);
-PD_FORCE void   glist_setOpened                         (t_glist *g, int n);
+PD_LOCAL void   glist_setOpened                         (t_glist *g, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

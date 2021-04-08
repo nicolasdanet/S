@@ -126,7 +126,7 @@ PD_LOCAL void glist_setWindow (t_glist *glist, t_rectangle *r)
     rectangle_setCopy (glist_getWindow (glist), r);
 }
 
-PD_FORCE void glist_setOpened (t_glist *g, int n)
+PD_LOCAL void glist_setOpened (t_glist *g, int n)
 {
     g->gl_isOpened = (n != 0);
 }
