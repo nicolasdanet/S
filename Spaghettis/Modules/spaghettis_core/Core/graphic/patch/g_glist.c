@@ -47,7 +47,7 @@ static t_glist *glist_new (t_glist *owner, t_symbol *name, t_rectangle *window)
     
     glist_setFontSize (x, (owner ? glist_getFontSize (owner) : instance_fontGetDefaultSize()));
 
-    if (window) { rectangle_setCopy (&x->gl_window, window); }
+    if (window) { glist_setWindow (x, window); }
     
     if (glist_isRoot (x)) { x->gl_abstractions = abstractions_new(); instance_rootsAdd (x); }
         

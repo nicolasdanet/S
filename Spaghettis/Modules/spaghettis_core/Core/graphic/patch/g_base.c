@@ -121,7 +121,7 @@ PD_LOCAL void glist_setFontSize (t_glist *g, int n)
     if (n > 0) { g->gl_fontSize = n; }
 }
 
-PD_FORCE void glist_setWindow (t_glist *glist, t_rectangle *r)
+PD_LOCAL void glist_setWindow (t_glist *glist, t_rectangle *r)
 {
     rectangle_setCopy (glist_getWindow (glist), r);
 }
