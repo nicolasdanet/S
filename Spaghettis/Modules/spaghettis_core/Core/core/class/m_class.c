@@ -413,7 +413,7 @@ PD_LOCAL void class_setHelpName (t_class *c, t_symbol *s)
     c->c_helpName = s;
 }
 
-PD_FORCE void class_setHelpDirectory (t_class *c, t_symbol *s)
+PD_LOCAL void class_setHelpDirectory (t_class *c, t_symbol *s)
 {
     c->c_helpDirectory = s;
 }

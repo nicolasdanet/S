@@ -93,7 +93,7 @@ PD_LOCAL void   class_addList                   (t_class *c, t_method fn);
 PD_LOCAL void   class_addAnything               (t_class *c, t_method fn);
 
 PD_LOCAL void   class_setHelpName               (t_class *c, t_symbol *s);
-PD_FORCE void   class_setHelpDirectory          (t_class *c, t_symbol *s);
+PD_LOCAL void   class_setHelpDirectory          (t_class *c, t_symbol *s);
 
 PD_LOCAL void   class_setDataFunction           (t_class *c, t_datafn f);
 PD_LOCAL void   class_setDismissFunction        (t_class *c, t_dismissfn f);
