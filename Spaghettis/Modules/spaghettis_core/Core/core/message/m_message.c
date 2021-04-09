@@ -157,14 +157,6 @@ PD_LOCAL void message_release (void)
     //
     sym1 = sym2->s_next;
     
-    #if PD_WITH_BELLE
-    
-    if (symbol_hasThingQuiet (sym2)) {
-        t_pd *t = symbol_getThingByClass (sym2, concept_class); if (t) { pd_free (t); }
-    }
-    
-    #endif
-    
     if (sym2->s_thing) {
         if (pd_class (sym2->s_thing) == bindlist_class) { pd_free (sym2->s_thing); }
         else {

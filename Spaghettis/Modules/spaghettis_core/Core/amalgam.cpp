@@ -342,17 +342,6 @@ namespace spaghettis { namespace core {
 #include "control/midi/x_midisystemin.c"
 #include "control/midi/x_midisystemout.c"
 
-#include "control/mica/x_mica.c"
-#include "control/mica/x_micaset.c"
-#include "control/mica/x_micaget.c"
-#include "control/mica/x_micainfo.c"
-#include "control/mica/x_micasequence.c"
-#include "control/mica/x_micamap.c"
-#include "control/mica/x_micaindex.c"
-#include "control/mica/x_micaitem.c"
-#include "control/mica/x_micainterval.c"
-#include "control/mica/x_micaspell.c"
-
 /* DSP. */
 
 #include "dsp/graph/d_dsp.c"
