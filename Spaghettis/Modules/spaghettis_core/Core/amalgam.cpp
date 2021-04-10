@@ -95,8 +95,9 @@ namespace spaghettis { namespace core {
 #include "core/utils/m_path.c"
 #include "core/utils/m_error.c"
 
-/* Unique. */
+/* Wrapper. */
 
+#include "wrap/w_wrapper.c"
 #include "wrap/w_unique.c"
 
 /* Undo. */
