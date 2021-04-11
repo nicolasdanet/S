@@ -87,7 +87,6 @@ public:
 
         for (const auto& a : cmd.arguments) {
             juce::File f (a.resolveAsFile());
-            SPAGHETTIS_DEBUG ("?");
             spaghettis::Spaghettis()->handle (spaghettis::Inputs::openFile (f));
         }
         //
