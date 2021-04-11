@@ -55,6 +55,16 @@ public:
 // MARK: -
 
 public:
+    void handle (const std::function<void()>& f)
+    {
+        core_->handle (f);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     bool isRunningFromCommandLine() const
     {
         return (core_->getCommandLine().size() > 1);

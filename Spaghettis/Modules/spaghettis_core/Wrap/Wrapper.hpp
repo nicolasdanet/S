@@ -66,6 +66,11 @@ public:
 // MARK: -
 
 public:
+    void handle (const std::function<void()>& f)
+    {
+        input_.add (f);
+    }
+    
     void poll()
     {
         input_.poll();
