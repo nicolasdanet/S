@@ -34,18 +34,7 @@ struct Debug {
 
 #if JUCE_DEBUG
 
-static void logToConsole (const juce::String& s)
-{
-    #if defined (JUCE_MAC) || defined (JUCE_IOS)
-    
-    core::post_syslog (s.toRawUTF8());
-    
-    #else
-    
-    DBG (s);
-    
-    #endif
-}
+static void logToConsole (const juce::String& s);
 
 #endif
 

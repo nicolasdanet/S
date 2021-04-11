@@ -44,6 +44,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "Glue/Glue.hpp"
+#include "Wrap/Debug.hpp"
 #include "Wrap/Logger.hpp"
 #include "Wrap/Post.hpp"
 #include "Wrap/InputQueue.hpp"
