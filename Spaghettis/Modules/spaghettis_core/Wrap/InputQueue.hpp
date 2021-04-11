@@ -45,15 +45,15 @@ public:
     
     void clear()
     {
-        poll (true);
+        pollProceed (true);
     }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    void poll (bool fake = false)
+private:
+    void pollProceed (bool fake)
     {
         FunctorsContainer scoped;
         
@@ -62,6 +62,18 @@ public:
         }
         
         if (!fake) { for (auto f : scoped) { f(); } }
+    }
+
+public:
+    void poll (bool fake = false)
+    {
+        bool hasSometing = 0;
+        
+        {
+            const juce::ScopedLock lock (lock_); hasSometing = (queue_.empty() == false);
+        }
+        
+        if (hasSometing) { pollProceed (fake); }
     }
     
 // -----------------------------------------------------------------------------------------------------------
