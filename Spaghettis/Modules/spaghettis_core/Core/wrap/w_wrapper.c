@@ -23,7 +23,7 @@ void wrapper_patchOpen (const juce::File& f)
     // instance_patchOpen ( , &s_);
     // existsAsFile
     
-    post_syslog (f.getFullPathName().toRawUTF8());
+    // post_syslog (f.getFullPathName().toRawUTF8());
 }
 
 // -----------------------------------------------------------------------------------------------------------
