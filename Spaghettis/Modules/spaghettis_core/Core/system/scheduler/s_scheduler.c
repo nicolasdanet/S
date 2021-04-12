@@ -13,6 +13,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#define SCHEDULER_INPUTS    20                      /* Roughly 20ms period. */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 enum {
     SCHEDULER_RUN   = 0,
     SCHEDULER_QUIT  = 1,
@@ -141,6 +147,8 @@ static void scheduler_mainLoop (void)
     const double realStart       = clock_getRealTimeInSeconds();
     const t_systime logicalStart = scheduler_getLogicalTime();
     
+    uint64_t pollInputsCounter = 0;
+    
     while (!PD_ATOMIC_INT32_READ (&scheduler_quit)) {
     //
     double t = 0.0;
@@ -149,7 +157,7 @@ static void scheduler_mainLoop (void)
         scheduler_tick();
         midi_poll();
         monitor_nonBlocking();
-        wrapper_poll();
+        if (++pollInputsCounter % SCHEDULER_INPUTS == 0) { wrapper_poll(); }
     }
         
     if (!PD_ATOMIC_INT32_READ (&scheduler_quit)) { scheduler_clean(); }
