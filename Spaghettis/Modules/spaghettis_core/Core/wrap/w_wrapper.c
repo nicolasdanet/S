@@ -20,10 +20,11 @@
 
 void wrapper_patchOpen (const juce::File& f)
 {
-    // instance_patchOpen ( , &s_);
-    // existsAsFile
-    
-    // post_syslog (f.getFullPathName().toRawUTF8());
+    if (f.existsAsFile()) {
+        t_symbol *name = gensym (f.getFileName().toRawUTF8());
+        t_symbol *directory = gensym (f.getParentDirectory().getFullPathName().toRawUTF8());
+        instance_patchOpen (name, directory);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

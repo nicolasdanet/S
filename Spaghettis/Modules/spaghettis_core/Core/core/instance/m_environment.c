@@ -13,10 +13,22 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void instance_environmentSetFile (t_symbol *name, t_symbol *directory)
+static void instance_environmentSetFileProceed (t_symbol *name, t_symbol *directory)
 {
     instance_get()->pd_environment.env_directory = directory;
     instance_get()->pd_environment.env_fileName  = name;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void instance_environmentSetFile (t_symbol *name, t_symbol *directory)
+{
+    PD_ASSERT (name && name != &s_);
+    PD_ASSERT (directory && directory != &s_);
+    
+    instance_environmentSetFileProceed (name, directory);
 }
 
 PD_LOCAL void instance_environmentSetArguments (int argc, t_atom *argv)
@@ -33,7 +45,7 @@ PD_LOCAL void instance_environmentSetArguments (int argc, t_atom *argv)
 
 PD_LOCAL void instance_environmentResetFile (void)
 {
-    instance_environmentSetFile (&s_, &s_);
+    instance_environmentSetFileProceed (&s_, &s_);
 }
 
 PD_LOCAL void instance_environmentResetArguments (void)
