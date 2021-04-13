@@ -1,7 +1,7 @@
 
 # S
 
-This a WIP version of [Spaghettis](https://github.com/Spaghettis/Spaghettis) that aims to use JUCE for the GUI.
+This a WIP version of [Spaghettis](https://github.com/Spaghettis/Spaghettis) that aims to use [JUCE](https://github.com/juce-framework/JUCE) for the GUI.
 
 ## Platforms
 
