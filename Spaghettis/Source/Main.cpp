@@ -38,7 +38,22 @@ public:
     {
         juce::LookAndFeel::setDefaultLookAndFeel (spaghettis::Spaghettis()->getLookAndFeel());
         
+        commandManager_.reset (new juce::ApplicationCommandManager());
+        mainMenu_.reset (new spaghettis::MenuModel (commandManager_.get()));
         console_.reset (new spaghettis::Console (getApplicationName()));
+        
+        commandManager_->registerAllCommandsForTarget (this);
+        
+        // BasicTestView* c = dynamic_cast < BasicTestView* > (mainWindow_->getContentComponent());
+        // jassert (c != nullptr);
+        // commandManager_->registerAllCommandsForTarget (c);
+        // commandManager_->setFirstCommandTarget (c);
+        
+        #if defined ( JUCE_MAC )
+        
+        juce::MenuBarModel::setMacMainMenu (mainMenu_.get());
+        
+        #endif
         
         spaghettis::Spaghettis()->start (getCommandLineParameterArray());
         
@@ -49,7 +64,15 @@ public:
     {
         spaghettis::Spaghettis()->shutdown();
         
-        console_ = nullptr;
+        #if defined ( JUCE_MAC )
+        
+        juce::MenuBarModel::setMacMainMenu (nullptr);
+        
+        #endif
+        
+        console_        = nullptr;
+        mainMenu_       = nullptr;
+        commandManager_ = nullptr;
         
         juce::LookAndFeel::setDefaultLookAndFeel (nullptr);
     }
@@ -95,6 +118,8 @@ public:
 
 private:
     spaghettis::SpaghettisOwner spaghettis_;
+    std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
+    std::unique_ptr<spaghettis::MenuModel> mainMenu_;
     std::unique_ptr<spaghettis::Console> console_;
     bool runningFromCommandLine_;
     
