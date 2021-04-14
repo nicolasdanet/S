@@ -12,7 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ConsoleComponent : public juce::Component, public spaghettis::Logger {
+class ConsoleComponent :    public juce::Component,
+                            public juce::ApplicationCommandTarget,
+                            public spaghettis::Logger {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -99,7 +101,36 @@ public:
         text_.setColour (juce::TextEditor::textColourId, colourWithType (type));
         text_.insertTextAtCaret (m + juce::newLine);
     }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::ApplicationCommandTarget* getNextCommandTarget() override
+    {
+        return findFirstTargetParentComponent();
+    }
+
+    void getAllCommands (juce::Array<juce::CommandID>& c) override
+    {
+        c.add (Commands::fileOpen);
+    }
+
+    void getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r) override
+    {
+        if (c == static_cast<int> (Commands::fileOpen)) {
+            r.setInfo (NEEDS_TRANS ("Open..."), NEEDS_TRANS ("Open a Patch"), NEEDS_TRANS ("File"), 0);
+        }
+    }
+
+    bool perform (const juce::ApplicationCommandTarget::InvocationInfo& info) override
+    {
+        if (info.commandID == static_cast<int> (Commands::fileOpen)) { DBG ("?"); return true; }
+
+        return false;
+    }
+
 private:
     juce::TextEditor text_;
     unsigned int lines_;

@@ -40,7 +40,6 @@ public:
         
         if (menuName == NEEDS_TRANS ("File")) {
         //
-        
         menu.addCommandItem (commandManager_, Commands::fileOpen);
         
         #if ! defined ( JUCE_MAC )
