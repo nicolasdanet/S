@@ -19,7 +19,7 @@ class LookAndFeel : public juce::LookAndFeel_V4 {
 // MARK: -
 
 public:
-    LookAndFeel() : consoleFont_ (18.0, juce::Font::bold)
+    LookAndFeel() : consoleFont_ (18.0)
     {
         setColour (juce::TextEditor::outlineColourId,   juce::Colours::transparentBlack);
         setColour (juce::TextEditor::shadowColourId,    juce::Colours::transparentBlack);
