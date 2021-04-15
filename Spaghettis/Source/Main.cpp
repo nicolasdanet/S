@@ -36,26 +36,11 @@ public:
 public:
     void initialise (const juce::String&) override
     {
-        using spaghettis::ConsoleComponent;
-        
         juce::LookAndFeel::setDefaultLookAndFeel (spaghettis::Spaghettis()->getLookAndFeel());
         
-        commandManager_.reset (new juce::ApplicationCommandManager());
-        menu_.reset (new spaghettis::MenuModel (commandManager_.get()));
         console_.reset (new spaghettis::Console (getApplicationName()));
         
-        commandManager_->registerAllCommandsForTarget (this);
-        
-        ConsoleComponent* c = dynamic_cast<ConsoleComponent*> (console_->getContentComponent());
-        jassert (c != nullptr);
-        commandManager_->registerAllCommandsForTarget (c);
-        commandManager_->setFirstCommandTarget (c);
-        
-        #if defined ( JUCE_MAC )
-        
-        juce::MenuBarModel::setMacMainMenu (menu_.get());
-        
-        #endif
+        spaghettis::Spaghettis()->getCommandManager()->registerAllCommandsForTarget (this);
         
         spaghettis::Spaghettis()->start (getCommandLineParameterArray());
         
@@ -72,9 +57,7 @@ public:
         
         #endif
         
-        console_        = nullptr;
-        menu_           = nullptr;
-        commandManager_ = nullptr;
+        console_ = nullptr;
         
         juce::LookAndFeel::setDefaultLookAndFeel (nullptr);
     }
@@ -118,10 +101,20 @@ public:
         }
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static SpaghettisApplication* getApplication()
+    {
+        auto t = dynamic_cast<SpaghettisApplication*> (JUCEApplication::getInstance());
+        jassert (t != nullptr);
+        return t;
+    }
+        
 private:
     spaghettis::SpaghettisOwner spaghettis_;
-    std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
-    std::unique_ptr<spaghettis::MenuModel> menu_;
     std::unique_ptr<spaghettis::Console> console_;
     bool runningFromCommandLine_;
     

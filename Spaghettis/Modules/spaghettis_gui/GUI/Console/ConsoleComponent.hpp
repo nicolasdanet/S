@@ -36,14 +36,20 @@ public:
         text_.setInputRestrictions (maximumLengthOfLine_);
         text_.setColour (background, Spaghettis()->getColour (Colours::consoleBackground));
         text_.setColour (highlight, Spaghettis()->getColour (Colours::consoleHighlight));
+        
         addAndMakeVisible (text_);
         setSize (600, 400);
 
         Spaghettis()->setLogger (this);
+        
+        Spaghettis()->getCommandManager()->registerAllCommandsForTarget (this);
+        Spaghettis()->getCommandManager()->setFirstCommandTarget (this);
     }
     
     ~ConsoleComponent() override
     {
+        Spaghettis()->getCommandManager()->setFirstCommandTarget (nullptr);
+
         Spaghettis()->setLogger (nullptr);
     }
 

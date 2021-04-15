@@ -24,8 +24,16 @@ class SpaghettisInstance {
 // MARK: -
 
 public:
-    SpaghettisInstance() : lookAndFeel_ (std::make_unique<LookAndFeel>()), core_ (std::make_unique<Wrapper>())
+    SpaghettisInstance() :  lookAndFeel_ (std::make_unique<LookAndFeel>()),
+                            commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
+                            menu_ (std::make_unique<MenuModel>(commandManager_.get())),
+                            core_ (std::make_unique<Wrapper>())
     {
+        #if defined ( JUCE_MAC )
+        
+        juce::MenuBarModel::setMacMainMenu (menu_.get());
+        
+        #endif
     }
     
     ~SpaghettisInstance()
@@ -79,11 +87,20 @@ public:
     {
         core_->setLogger (logger);
     }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     LookAndFeel* getLookAndFeel() const
     {
         return lookAndFeel_.get();
+    }
+    
+    juce::ApplicationCommandManager* getCommandManager() const
+    {
+        return commandManager_.get();
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -103,6 +120,8 @@ public:
 
 private:
     std::unique_ptr<LookAndFeel> lookAndFeel_;
+    std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
+    std::unique_ptr<MenuModel> menu_;
     std::unique_ptr<Wrapper> core_;
 
 private:
