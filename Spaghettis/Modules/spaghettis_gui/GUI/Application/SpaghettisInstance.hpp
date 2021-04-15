@@ -94,19 +94,26 @@ public:
 // MARK: -
 
 public:
-    LookAndFeel* getLookAndFeel() const
-    {
-        return lookAndFeel_.get();
-    }
-    
     juce::ApplicationCommandManager* getCommandManager() const
     {
         return commandManager_.get();
     }
 
+    juce::MenuBarModel* getMenuBarModel() const
+    {
+        return menu_.get();
+    }
+    
+    LookAndFeel* getLookAndFeel() const
+    {
+        return lookAndFeel_.get();
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+/* Handy for less typing. */
 
 public:
     juce::Colour getColour (int colourId) const
@@ -117,6 +124,11 @@ public:
     const juce::Font& getConsoleFont() const
     {
         return lookAndFeel_->getConsoleFont();
+    }
+    
+    int getDefaultMenuBarHeight() const
+    {
+        return lookAndFeel_->getDefaultMenuBarHeight();
     }
 
 private:

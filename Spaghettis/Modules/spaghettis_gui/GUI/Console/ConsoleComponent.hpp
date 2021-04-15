@@ -26,6 +26,14 @@ public:
         const auto background = juce::TextEditor::backgroundColourId;
         const auto highlight  = juce::TextEditor::highlightColourId;
         
+        #if defined ( JUCE_LINUX )
+        
+        menuBar_.reset (new juce::MenuBarComponent (Spaghettis()->getMenuBarModel()));
+        
+        addAndMakeVisible (menuBar_.get());
+        
+        #endif
+        
         text_.setMultiLine (true);
         text_.setReturnKeyStartsNewLine (true);
         text_.setReadOnly (true);
@@ -38,18 +46,17 @@ public:
         text_.setColour (highlight, Spaghettis()->getColour (Colours::consoleHighlight));
         
         addAndMakeVisible (text_);
-        setSize (600, 400);
-
-        Spaghettis()->setLogger (this);
         
+        Spaghettis()->setLogger (this);
         Spaghettis()->getCommandManager()->registerAllCommandsForTarget (this);
         Spaghettis()->getCommandManager()->setFirstCommandTarget (this);
+        
+        setSize (600, 400);
     }
     
     ~ConsoleComponent() override
     {
         Spaghettis()->getCommandManager()->setFirstCommandTarget (nullptr);
-
         Spaghettis()->setLogger (nullptr);
     }
 
@@ -65,7 +72,15 @@ public:
     
     void resized() override
     {
-        text_.setBounds (getLocalBounds());
+        auto b = getLocalBounds();
+
+        #if defined ( JUCE_LINUX )
+        
+        menuBar_->setBounds (b.removeFromTop (Spaghettis()->getDefaultMenuBarHeight()));
+        
+        #endif
+        
+        text_.setBounds (b);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -140,6 +155,13 @@ public:
 private:
     juce::TextEditor text_;
     unsigned int lines_;
+
+#if defined ( JUCE_LINUX )
+
+private:
+    std::unique_ptr<juce::MenuBarComponent> menuBar_;
+
+#endif
 
 private:
     static const int maximumLengthOfLine_   = 2048;
