@@ -34,11 +34,11 @@ public:
         return juce::StringArray (NEEDS_TRANS ("File"));
     }
 
-    juce::PopupMenu getMenuForIndex (int, const juce::String& menuName) override
+    juce::PopupMenu getMenuForIndex (int n, const juce::String&) override
     {
         juce::PopupMenu menu;
         
-        if (menuName == NEEDS_TRANS ("File")) {
+        if (n == 0) {
         //
         menu.addCommandItem (commandManager_, Commands::fileOpen);
         

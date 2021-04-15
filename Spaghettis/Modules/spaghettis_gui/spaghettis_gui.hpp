@@ -47,7 +47,7 @@
 #include "GUI/Application/Colours.hpp"
 #include "GUI/Application/Commands.hpp"
 #include "GUI/Application/LookAndFeel.hpp"
-#include "GUI/Application/MenuBar.hpp"
+#include "GUI/Application/MenuModel.hpp"
 #include "GUI/Application/Spaghettis.hpp"
 #include "GUI/Application/Window.hpp"
 

@@ -46,7 +46,7 @@ public:
         
         commandManager_->registerAllCommandsForTarget (this);
         
-        ConsoleComponent* c = dynamic_cast<ConsoleComponent*>(console_->getContentComponent());
+        ConsoleComponent* c = dynamic_cast<ConsoleComponent*> (console_->getContentComponent());
         jassert (c != nullptr);
         commandManager_->registerAllCommandsForTarget (c);
         commandManager_->setFirstCommandTarget (c);
