@@ -33,6 +33,12 @@ public:
     
     ~SpaghettisInstance()
     {
+        #if defined ( JUCE_MAC )
+        
+        jassert (juce::MenuBarModel::getMacMainMenu() == nullptr);
+        
+        #endif
+        
         clearSingletonInstance();
     }
 
