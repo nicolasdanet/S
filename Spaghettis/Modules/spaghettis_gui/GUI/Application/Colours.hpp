@@ -44,7 +44,7 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (consoleBackground)  == false);
     jassert (lf->isColourSpecified (consoleHighlight)   == false);
        
-    lf->setColour (consoleTextDefault,  juce::Colours::whitesmoke);
+    lf->setColour (consoleTextDefault,  juce::Colours::white);
     lf->setColour (consoleTextWarning,  juce::Colours::orange);
     lf->setColour (consoleTextError,    juce::Colours::red);
     lf->setColour (consoleBackground,   juce::Colour (0xff323e44));
