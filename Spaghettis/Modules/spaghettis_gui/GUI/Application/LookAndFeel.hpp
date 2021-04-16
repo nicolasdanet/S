@@ -46,6 +46,11 @@ public:
         return 26;
     }
 
+    juce::Font getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&) override
+    {
+        return font_;
+    }
+
     const juce::Font& getConsoleFont() const
     {
         return font_;

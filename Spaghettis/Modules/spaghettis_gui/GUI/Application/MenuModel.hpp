@@ -42,7 +42,7 @@ public:
         //
         menu.addCommandItem (commandManager_, Commands::fileOpen);
         
-        #if ! defined ( JUCE_MAC )
+        #if SPAGHETTIS_MENUBAR
         
         menu.addSeparator();
         menu.addCommandItem (commandManager_, juce::StandardApplicationCommandIDs::quit);
