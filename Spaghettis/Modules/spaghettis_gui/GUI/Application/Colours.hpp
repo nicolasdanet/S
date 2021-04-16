@@ -47,7 +47,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (consoleTextDefault,  juce::Colours::whitesmoke);
     lf->setColour (consoleTextWarning,  juce::Colours::orange);
     lf->setColour (consoleTextError,    juce::Colours::red);
-    lf->setColour (consoleBackground,   juce::Colours::black);
+    lf->setColour (consoleBackground,   juce::Colour (0xff323e44));
     lf->setColour (consoleHighlight,    juce::Colours::transparentBlack);
 }
 
