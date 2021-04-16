@@ -28,6 +28,23 @@ enum CommandIDs { fileOpen = SPAGHETTIS_COMMAND (1) };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void getCommandInfo (const juce::CommandID c,
+    juce::ApplicationCommandInfo& r,
+    bool isActive = true,
+    bool isTicked = false)
+{
+    if (c == static_cast<int> (Commands::fileOpen)) {
+        r.setInfo (NEEDS_TRANS ("Open..."), NEEDS_TRANS ("Open a Patch"), NEEDS_TRANS ("File"), 0);
+        r.setActive (isActive);
+        r.setTicked (isTicked);
+        r.addDefaultKeypress ('o', juce::ModifierKeys::commandModifier);
+    }
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 };
 

@@ -144,10 +144,7 @@ public:
 
     void getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r) override
     {
-        if (c == static_cast<int> (Commands::fileOpen)) {
-            r.setInfo (NEEDS_TRANS ("Open..."), NEEDS_TRANS ("Open a Patch"), NEEDS_TRANS ("File"), 0);
-            r.addDefaultKeypress ('o', juce::ModifierKeys::commandModifier);
-        }
+        Commands::getCommandInfo (c, r);
     }
 
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo& info) override
