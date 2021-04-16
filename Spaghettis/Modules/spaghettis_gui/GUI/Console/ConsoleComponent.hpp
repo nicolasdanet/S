@@ -51,11 +51,15 @@ public:
         Spaghettis()->getCommandManager()->registerAllCommandsForTarget (this);
         Spaghettis()->getCommandManager()->setFirstCommandTarget (this);
         
+        addKeyListener (Spaghettis()->getCommandManager()->getKeyMappings());
+        
         setSize (600, 400);
     }
     
     ~ConsoleComponent() override
     {
+        removeKeyListener (Spaghettis()->getCommandManager()->getKeyMappings());
+        
         Spaghettis()->getCommandManager()->setFirstCommandTarget (nullptr);
         Spaghettis()->setLogger (nullptr);
     }
@@ -142,6 +146,7 @@ public:
     {
         if (c == static_cast<int> (Commands::fileOpen)) {
             r.setInfo (NEEDS_TRANS ("Open..."), NEEDS_TRANS ("Open a Patch"), NEEDS_TRANS ("File"), 0);
+            r.addDefaultKeypress ('o', juce::ModifierKeys::commandModifier);
         }
     }
 
