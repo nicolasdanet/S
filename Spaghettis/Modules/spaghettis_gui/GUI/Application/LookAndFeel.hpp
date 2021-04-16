@@ -51,6 +51,11 @@ public:
         return font_;
     }
 
+    void drawMenuBarBackground (juce::Graphics& g, int, int, bool, juce::MenuBarComponent& m) override
+    {
+        g.fillAll (m.findColour (Colours::menubarBackground));
+    }
+
     const juce::Font& getConsoleFont() const
     {
         return font_;
