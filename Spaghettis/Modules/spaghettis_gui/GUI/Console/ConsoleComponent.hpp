@@ -26,7 +26,7 @@ public:
         const auto background = juce::TextEditor::backgroundColourId;
         const auto highlight  = juce::TextEditor::highlightColourId;
         
-        #if defined ( JUCE_LINUX )
+        #if SPAGHETTIS_MENUBAR
         
         menuBar_.reset (new juce::MenuBarComponent (Spaghettis()->getMenuBarModel()));
         
@@ -78,7 +78,7 @@ public:
     {
         auto b = getLocalBounds();
 
-        #if defined ( JUCE_LINUX )
+        #if SPAGHETTIS_MENUBAR
         
         menuBar_->setBounds (b.removeFromTop (Spaghettis()->getDefaultMenuBarHeight()));
         
@@ -158,7 +158,7 @@ private:
     juce::TextEditor text_;
     unsigned int lines_;
 
-#if defined ( JUCE_LINUX )
+#if SPAGHETTIS_MENUBAR
 
 private:
     std::unique_ptr<juce::MenuBarComponent> menuBar_;

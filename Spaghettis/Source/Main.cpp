@@ -51,7 +51,7 @@ public:
     {
         spaghettis::Spaghettis()->shutdown();
         
-        #if defined ( JUCE_MAC )
+        #if ! ( SPAGHETTIS_MENUBAR )
         
         juce::MenuBarModel::setMacMainMenu (nullptr);
         

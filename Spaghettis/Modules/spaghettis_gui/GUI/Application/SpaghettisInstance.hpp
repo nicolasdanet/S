@@ -24,7 +24,7 @@ public:
                             menu_ (std::make_unique<MenuModel>(commandManager_.get())),
                             core_ (std::make_unique<Wrapper>())
     {
-        #if defined ( JUCE_MAC )
+        #if ! ( SPAGHETTIS_MENUBAR )
         
         juce::MenuBarModel::setMacMainMenu (menu_.get());
         
@@ -33,7 +33,7 @@ public:
     
     ~SpaghettisInstance()
     {
-        #if defined ( JUCE_MAC )
+        #if ! ( SPAGHETTIS_MENUBAR )
         
         jassert (juce::MenuBarModel::getMacMainMenu() == nullptr);
         
