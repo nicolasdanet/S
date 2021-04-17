@@ -86,8 +86,6 @@ public:
         return 0;
     }
     
-    #if 0
-    
     void drawPopupMenuItem (juce::Graphics& g,
         const juce::Rectangle<int>&,
         const bool,
@@ -99,8 +97,6 @@ public:
         const juce::String&,
         const juce::Drawable*,
         const juce::Colour* const) override;
-    
-    #endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

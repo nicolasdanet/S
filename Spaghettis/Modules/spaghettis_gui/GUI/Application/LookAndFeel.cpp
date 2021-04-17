@@ -10,16 +10,17 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
-        int width,
-        int height,
-        int itemIndex,
-        const juce::String& itemText,
-        bool isMouseOverItem,
-        bool isMenuOpen,
-        bool isMouseOverBar,
-        juce::MenuBarComponent& m)
+    int width,
+    int height,
+    int itemIndex,
+    const juce::String& itemText,
+    bool isMouseOverItem,
+    bool isMenuOpen,
+    bool isMouseOverBar,
+    juce::MenuBarComponent& m)
 {
     const bool highlighted = (isMenuOpen || isMouseOverItem) && m.isEnabled();
         
@@ -29,44 +30,51 @@ void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
     g.setFont (getMenuBarFont (m, itemIndex, itemText));
     g.drawFittedText (itemText, 0, 0, width, height, juce::Justification::centred, 1);
 }
-    
-#if 0
 
-void LookAndFeel::drawPopupMenuItem (Graphics& g, const Rectangle<int>& area,
-                                        const bool isSeparator, const bool isActive,
-                                        const bool isHighlighted, const bool isTicked,
-                                        const bool hasSubMenu, const String& text,
-                                        const String& shortcutKeyText,
-                                        const Drawable* icon, const Colour* const textColourToUse)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
+    const juce::Rectangle<int>& area,
+    const bool isSeparator,
+    const bool isActive,
+    const bool isHighlighted,
+    const bool isTicked,
+    const bool hasSubMenu,
+    const juce::String& text,
+    const juce::String& shortcutKeyText,
+    const juce::Drawable* icon,
+    const juce::Colour* const textColourToUse)
 {
     if (isSeparator)
     {
         auto r  = area.reduced (5, 0);
-        r.removeFromTop (roundToInt (((float) r.getHeight() * 0.5f) - 0.5f));
+        r.removeFromTop (juce::roundToInt (((float) r.getHeight() * 0.5f) - 0.5f));
 
-        g.setColour (findColour (PopupMenu::textColourId).withAlpha (0.3f));
+        g.setColour (findColour (juce::PopupMenu::textColourId).withAlpha (0.3f));
         g.fillRect (r.removeFromTop (1));
     }
     else
     {
-        auto textColour = (textColourToUse == nullptr ? findColour (PopupMenu::textColourId)
+        auto textColour = (textColourToUse == nullptr ? findColour (juce::PopupMenu::textColourId)
                                                       : *textColourToUse);
 
         auto r  = area.reduced (1);
 
         if (isHighlighted && isActive)
         {
-            g.setColour (findColour (PopupMenu::highlightedBackgroundColourId));
+            g.setColour (findColour (juce::PopupMenu::highlightedBackgroundColourId));
             g.fillRect (r);
 
-            g.setColour (findColour (PopupMenu::highlightedTextColourId));
+            g.setColour (findColour (juce::PopupMenu::highlightedTextColourId));
         }
         else
         {
             g.setColour (textColour.withMultipliedAlpha (isActive ? 1.0f : 0.5f));
         }
 
-        r.reduce (jmin (5, area.getWidth() / 20), 0);
+        r.reduce (juce::jmin (5, area.getWidth() / 20), 0);
 
         auto font = getPopupMenuFont();
 
@@ -77,12 +85,12 @@ void LookAndFeel::drawPopupMenuItem (Graphics& g, const Rectangle<int>& area,
 
         g.setFont (font);
 
-        auto iconArea = r.removeFromLeft (roundToInt (maxFontHeight)).toFloat();
+        auto iconArea = r.removeFromLeft (juce::roundToInt (maxFontHeight)).toFloat();
 
         if (icon != nullptr)
         {
-            icon->drawWithin (g, iconArea, RectanglePlacement::centred | RectanglePlacement::onlyReduceInSize, 1.0f);
-            r.removeFromLeft (roundToInt (maxFontHeight * 0.5f));
+            icon->drawWithin (g, iconArea, juce::RectanglePlacement::centred | juce::RectanglePlacement::onlyReduceInSize, 1.0f);
+            r.removeFromLeft (juce::roundToInt (maxFontHeight * 0.5f));
         }
         else if (isTicked)
         {
@@ -97,16 +105,16 @@ void LookAndFeel::drawPopupMenuItem (Graphics& g, const Rectangle<int>& area,
             auto x = static_cast<float> (r.removeFromRight ((int) arrowH).getX());
             auto halfH = static_cast<float> (r.getCentreY());
 
-            Path path;
+            juce::Path path;
             path.startNewSubPath (x, halfH - arrowH * 0.5f);
             path.lineTo (x + arrowH * 0.6f, halfH);
             path.lineTo (x, halfH + arrowH * 0.5f);
 
-            g.strokePath (path, PathStrokeType (2.0f));
+            g.strokePath (path, juce::PathStrokeType (2.0f));
         }
 
         r.removeFromRight (3);
-        g.drawFittedText (text, r, Justification::centredLeft, 1);
+        g.drawFittedText (text, r, juce::Justification::centredLeft, 1);
 
         if (shortcutKeyText.isNotEmpty())
         {
@@ -115,12 +123,10 @@ void LookAndFeel::drawPopupMenuItem (Graphics& g, const Rectangle<int>& area,
             f2.setHorizontalScale (0.95f);
             g.setFont (f2);
 
-            g.drawText (shortcutKeyText, r, Justification::centredRight, true);
+            g.drawText (shortcutKeyText, r, juce::Justification::centredRight, true);
         }
     }
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
