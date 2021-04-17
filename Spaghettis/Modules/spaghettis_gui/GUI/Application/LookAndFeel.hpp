@@ -36,6 +36,10 @@ public:
     
     ~LookAndFeel() = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     int getDefaultMenuBarHeight() override
     {
@@ -53,24 +57,20 @@ public:
     }
 
     void drawMenuBarItem (juce::Graphics& g,
-        int width,
-        int height,
-        int itemIndex,
-        const juce::String& itemText,
-        bool isMouseOverItem,
-        bool isMenuOpen,
-        bool /*isMouseOverBar*/,
-        juce::MenuBarComponent& m) override
-    {
-        const bool highlighted = (isMenuOpen || isMouseOverItem) && m.isEnabled();
-        
-        if (highlighted) { g.fillAll (findColour (Colours::menubarBackgroundHighlighted)); }
+        int,
+        int,
+        int,
+        const juce::String&,
+        bool,
+        bool,
+        bool,
+        juce::MenuBarComponent&) override;
 
-        g.setColour (findColour (Colours::menubarText));
-        g.setFont (getMenuBarFont (m, itemIndex, itemText));
-        g.drawFittedText (itemText, 0, 0, width, height, juce::Justification::centred, 1);
-    }
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
+public:
     juce::Font getPopupMenuFont() override
     {
         return font_;
@@ -86,6 +86,27 @@ public:
         return 0;
     }
     
+    #if 0
+    
+    void drawPopupMenuItem (juce::Graphics& g,
+        const juce::Rectangle<int>&,
+        const bool,
+        const bool,
+        const bool,
+        const bool,
+        const bool,
+        const juce::String&,
+        const juce::String&,
+        const juce::Drawable*,
+        const juce::Colour* const) override;
+    
+    #endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     const juce::Font& getConsoleFont() const
     {
         return font_;
