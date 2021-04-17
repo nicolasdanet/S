@@ -25,12 +25,14 @@ struct Colours {
 // MARK: -
 
 enum ColourIds {
-    consoleTextDefault  = SPAGHETTIS_COLOUR (1),
-    consoleTextWarning  = SPAGHETTIS_COLOUR (2),
-    consoleTextError    = SPAGHETTIS_COLOUR (3),
-    consoleBackground   = SPAGHETTIS_COLOUR (4),
-    consoleHighlight    = SPAGHETTIS_COLOUR (5),
-    menubarBackground   = SPAGHETTIS_COLOUR (6)
+    consoleTextDefault              = SPAGHETTIS_COLOUR (1),
+    consoleTextWarning              = SPAGHETTIS_COLOUR (2),
+    consoleTextError                = SPAGHETTIS_COLOUR (3),
+    consoleBackground               = SPAGHETTIS_COLOUR (4),
+    consoleHighlight                = SPAGHETTIS_COLOUR (5),
+    menubarBackground               = SPAGHETTIS_COLOUR (6),
+    menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (7),
+    menubarText                     = SPAGHETTIS_COLOUR (8)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -39,19 +41,23 @@ enum ColourIds {
 
 static void initialize (juce::LookAndFeel* lf)
 {
-    jassert (lf->isColourSpecified (consoleTextDefault) == false);
-    jassert (lf->isColourSpecified (consoleTextWarning) == false);
-    jassert (lf->isColourSpecified (consoleTextError)   == false);
-    jassert (lf->isColourSpecified (consoleBackground)  == false);
-    jassert (lf->isColourSpecified (consoleHighlight)   == false);
-    jassert (lf->isColourSpecified (menubarBackground)  == false);
+    jassert (lf->isColourSpecified (consoleTextDefault)             == false);
+    jassert (lf->isColourSpecified (consoleTextWarning)             == false);
+    jassert (lf->isColourSpecified (consoleTextError)               == false);
+    jassert (lf->isColourSpecified (consoleBackground)              == false);
+    jassert (lf->isColourSpecified (consoleHighlight)               == false);
+    jassert (lf->isColourSpecified (menubarBackground)              == false);
+    jassert (lf->isColourSpecified (menubarBackgroundHighlighted)   == false);
+    jassert (lf->isColourSpecified (menubarText)                    == false);
     
-    lf->setColour (consoleTextDefault,  juce::Colours::white);
-    lf->setColour (consoleTextWarning,  juce::Colours::orange);
-    lf->setColour (consoleTextError,    juce::Colours::red);
-    lf->setColour (consoleBackground,   juce::Colour (0xff323e44));
-    lf->setColour (consoleHighlight,    juce::Colours::transparentBlack);
-    lf->setColour (menubarBackground,   juce::Colour (0xff323e44).darker (0.50));
+    lf->setColour (consoleTextDefault,              juce::Colours::white);
+    lf->setColour (consoleTextWarning,              juce::Colours::orange);
+    lf->setColour (consoleTextError,                juce::Colours::red);
+    lf->setColour (consoleBackground,               juce::Colour (0xff323e44));
+    lf->setColour (consoleHighlight,                juce::Colours::transparentBlack);
+    lf->setColour (menubarBackground,               juce::Colour (0xff323e44).darker (0.50));
+    lf->setColour (menubarBackgroundHighlighted,    juce::Colour (0xff323e44).brighter (0.15));
+    lf->setColour (menubarText,                     juce::Colours::white);
 }
 
 // -----------------------------------------------------------------------------------------------------------

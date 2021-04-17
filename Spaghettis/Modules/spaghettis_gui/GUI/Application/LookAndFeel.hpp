@@ -56,6 +56,25 @@ public:
         g.fillAll (m.findColour (Colours::menubarBackground));
     }
 
+    void drawMenuBarItem (juce::Graphics& g,
+        int width,
+        int height,
+        int itemIndex,
+        const juce::String& itemText,
+        bool isMouseOverItem,
+        bool isMenuOpen,
+        bool /*isMouseOverBar*/,
+        juce::MenuBarComponent& m) override
+    {
+        const bool highlighted = (isMenuOpen || isMouseOverItem) && m.isEnabled();
+        
+        if (highlighted) { g.fillAll (m.findColour (Colours::menubarBackgroundHighlighted)); }
+
+        g.setColour (m.findColour (Colours::menubarText));
+        g.setFont (getMenuBarFont (m, itemIndex, itemText));
+        g.drawFittedText (itemText, 0, 0, width, height, juce::Justification::centred, 1);
+    }
+
     const juce::Font& getConsoleFont() const
     {
         return font_;
