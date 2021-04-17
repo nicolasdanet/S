@@ -31,10 +31,6 @@ public:
             
         #endif
         
-        setColour (juce::TextEditor::outlineColourId,   juce::Colours::transparentBlack);
-        setColour (juce::TextEditor::shadowColourId,    juce::Colours::transparentBlack);
-        setColour (juce::ScrollBar::thumbColourId,      juce::Colours::grey);
-    
         Colours::initialize (this);
     }
     
@@ -75,11 +71,11 @@ public:
         g.drawFittedText (itemText, 0, 0, width, height, juce::Justification::centred, 1);
     }
 
-    void drawPopupMenuBackground (juce::Graphics& g, int width, int height) override
+    juce::Font getPopupMenuFont() override
     {
-        g.fillAll (findColour (Colours::popupBackground));
+        return font_;
     }
-    
+
     const juce::Font& getConsoleFont() const
     {
         return font_;

@@ -32,8 +32,7 @@ enum ColourIds {
     consoleHighlight                = SPAGHETTIS_COLOUR (5),
     menubarBackground               = SPAGHETTIS_COLOUR (6),
     menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (7),
-    menubarText                     = SPAGHETTIS_COLOUR (8),
-    popupBackground                 = SPAGHETTIS_COLOUR (9)
+    menubarText                     = SPAGHETTIS_COLOUR (8)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -50,17 +49,25 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarBackground)              == false);
     jassert (lf->isColourSpecified (menubarBackgroundHighlighted)   == false);
     jassert (lf->isColourSpecified (menubarText)                    == false);
-    jassert (lf->isColourSpecified (popupBackground)                == false);
     
-    lf->setColour (consoleTextDefault,              juce::Colours::white);
-    lf->setColour (consoleTextWarning,              juce::Colours::orange);
-    lf->setColour (consoleTextError,                juce::Colours::red);
-    lf->setColour (consoleBackground,               juce::Colour (0xff323e44));
-    lf->setColour (consoleHighlight,                juce::Colours::transparentBlack);
-    lf->setColour (menubarBackground,               juce::Colour (0xff323e44).darker (0.50));
-    lf->setColour (menubarBackgroundHighlighted,    juce::Colour (0xff323e44).brighter (0.15));
-    lf->setColour (menubarText,                     juce::Colours::white);
-    lf->setColour (popupBackground,                 juce::Colour (0xff323e44).darker (0.50));
+    auto console = juce::Colour (0xff323e44);
+    
+    lf->setColour (consoleTextDefault,                  juce::Colours::white);
+    lf->setColour (consoleTextWarning,                  juce::Colours::orange);
+    lf->setColour (consoleTextError,                    juce::Colours::red);
+    lf->setColour (consoleBackground,                   console);
+    lf->setColour (consoleHighlight,                    juce::Colours::transparentBlack);
+    lf->setColour (menubarBackground,                   console.darker (0.50));
+    lf->setColour (menubarBackgroundHighlighted,        console.brighter (0.10));
+    lf->setColour (menubarText,                         juce::Colours::white);
+    
+    lf->setColour (juce::TextEditor::outlineColourId,               juce::Colours::transparentBlack);
+    lf->setColour (juce::TextEditor::shadowColourId,                juce::Colours::transparentBlack);
+    lf->setColour (juce::ScrollBar::thumbColourId,                  juce::Colours::grey);
+    lf->setColour (juce::PopupMenu::backgroundColourId,             console.darker (0.50));
+    lf->setColour (juce::PopupMenu::highlightedBackgroundColourId,  console.brighter (0.10));
+    lf->setColour (juce::PopupMenu::textColourId,                   juce::Colours::white);
+    lf->setColour (juce::PopupMenu::highlightedTextColourId,        juce::Colours::white);
 }
 
 // -----------------------------------------------------------------------------------------------------------
