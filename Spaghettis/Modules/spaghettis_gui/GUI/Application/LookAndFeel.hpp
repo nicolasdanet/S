@@ -75,7 +75,12 @@ public:
     {
         return font_;
     }
-
+    
+    int getPopupMenuBorderSize() override
+    {
+        return 0;
+    }
+    
     const juce::Font& getConsoleFont() const
     {
         return font_;
