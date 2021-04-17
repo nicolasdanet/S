@@ -58,14 +58,14 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (consoleBackground,                   console);
     lf->setColour (consoleHighlight,                    juce::Colours::transparentBlack);
     lf->setColour (menubarBackground,                   console.darker (0.50));
-    lf->setColour (menubarBackgroundHighlighted,        console.brighter (0.10));
+    lf->setColour (menubarBackgroundHighlighted,        console.brighter (0.05));
     lf->setColour (menubarText,                         juce::Colours::white);
     
     lf->setColour (juce::TextEditor::outlineColourId,               juce::Colours::transparentBlack);
     lf->setColour (juce::TextEditor::shadowColourId,                juce::Colours::transparentBlack);
     lf->setColour (juce::ScrollBar::thumbColourId,                  juce::Colours::grey);
     lf->setColour (juce::PopupMenu::backgroundColourId,             console.darker (0.50));
-    lf->setColour (juce::PopupMenu::highlightedBackgroundColourId,  console.brighter (0.10));
+    lf->setColour (juce::PopupMenu::highlightedBackgroundColourId,  console.brighter (0.05));
     lf->setColour (juce::PopupMenu::textColourId,                   juce::Colours::white);
     lf->setColour (juce::PopupMenu::highlightedTextColourId,        juce::Colours::white);
 }

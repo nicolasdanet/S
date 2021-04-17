@@ -76,6 +76,11 @@ public:
         return font_;
     }
     
+    void drawPopupMenuBackground (juce::Graphics& g, int, int) override
+    {
+        g.fillAll (findColour (juce::PopupMenu::backgroundColourId));
+    }
+
     int getPopupMenuBorderSize() override
     {
         return 0;
