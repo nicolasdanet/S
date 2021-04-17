@@ -32,7 +32,8 @@ enum ColourIds {
     consoleHighlight                = SPAGHETTIS_COLOUR (5),
     menubarBackground               = SPAGHETTIS_COLOUR (6),
     menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (7),
-    menubarText                     = SPAGHETTIS_COLOUR (8)
+    menubarText                     = SPAGHETTIS_COLOUR (8),
+    popupBackground                 = SPAGHETTIS_COLOUR (9)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -49,6 +50,7 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarBackground)              == false);
     jassert (lf->isColourSpecified (menubarBackgroundHighlighted)   == false);
     jassert (lf->isColourSpecified (menubarText)                    == false);
+    jassert (lf->isColourSpecified (popupBackground)                == false);
     
     lf->setColour (consoleTextDefault,              juce::Colours::white);
     lf->setColour (consoleTextWarning,              juce::Colours::orange);
@@ -58,6 +60,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarBackground,               juce::Colour (0xff323e44).darker (0.50));
     lf->setColour (menubarBackgroundHighlighted,    juce::Colour (0xff323e44).brighter (0.15));
     lf->setColour (menubarText,                     juce::Colours::white);
+    lf->setColour (popupBackground,                 juce::Colour (0xff323e44).darker (0.50));
 }
 
 // -----------------------------------------------------------------------------------------------------------

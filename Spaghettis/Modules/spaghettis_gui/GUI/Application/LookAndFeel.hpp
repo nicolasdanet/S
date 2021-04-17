@@ -51,9 +51,9 @@ public:
         return font_;
     }
 
-    void drawMenuBarBackground (juce::Graphics& g, int, int, bool, juce::MenuBarComponent& m) override
+    void drawMenuBarBackground (juce::Graphics& g, int, int, bool, juce::MenuBarComponent&) override
     {
-        g.fillAll (m.findColour (Colours::menubarBackground));
+        g.fillAll (findColour (Colours::menubarBackground));
     }
 
     void drawMenuBarItem (juce::Graphics& g,
@@ -68,13 +68,18 @@ public:
     {
         const bool highlighted = (isMenuOpen || isMouseOverItem) && m.isEnabled();
         
-        if (highlighted) { g.fillAll (m.findColour (Colours::menubarBackgroundHighlighted)); }
+        if (highlighted) { g.fillAll (findColour (Colours::menubarBackgroundHighlighted)); }
 
-        g.setColour (m.findColour (Colours::menubarText));
+        g.setColour (findColour (Colours::menubarText));
         g.setFont (getMenuBarFont (m, itemIndex, itemText));
         g.drawFittedText (itemText, 0, 0, width, height, juce::Justification::centred, 1);
     }
 
+    void drawPopupMenuBackground (juce::Graphics& g, int width, int height) override
+    {
+        g.fillAll (findColour (Colours::popupBackground));
+    }
+    
     const juce::Font& getConsoleFont() const
     {
         return font_;
