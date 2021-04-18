@@ -41,10 +41,10 @@ void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
     int& idealWidth,
     int& idealHeight)
 {
-    if (isSeparator) { idealWidth = 50; idealHeight = 4; }
+    if (isSeparator) { idealWidth = 50; idealHeight = 2; }
     else {
         auto font   = getPopupMenuFont();
-        idealHeight = static_cast<int>(font.getHeight() * 1.5);
+        idealHeight = static_cast<int>(font.getHeight() * 1.6);
         idealWidth  = static_cast<int>(font.getStringWidth (text) + idealHeight);
     }
 }
@@ -59,21 +59,14 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     const juce::String& text,
     const juce::String& shortcutKeyText,
     const juce::Drawable* icon,
-    const juce::Colour* const textColourToUse)
+    const juce::Colour* const)
 {
     if (isSeparator) {
-        //auto r = area.reduced (5, 0);
-        //r.removeFromTop (juce::roundToInt (((float) r.getHeight() * 0.5f) - 0.5f));
-
-        g.setColour (juce::Colours::green);
+        g.setColour (findColour (Colours::menubarSeparator).withAlpha (0.25f));
         g.fillRect (area);
-    }
-    else
-    {
-        auto textColour = (textColourToUse == nullptr ? findColour (juce::PopupMenu::textColourId)
-                                                      : *textColourToUse);
-
-        auto r  = area.reduced (1);
+        
+    } else {
+        auto r = area.reduced (1);
 
         if (isHighlighted && isActive)
         {
@@ -84,7 +77,7 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
         }
         else
         {
-            g.setColour (textColour.withMultipliedAlpha (isActive ? 1.0f : 0.5f));
+            g.setColour (findColour (juce::PopupMenu::textColourId).withMultipliedAlpha (isActive ? 1.0f : 0.5f));
         }
 
         r.reduce (juce::jmin (5, area.getWidth() / 20), 0);
