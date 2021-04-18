@@ -35,6 +35,20 @@ void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
+    const bool isSeparator,
+    int,
+    int& idealWidth,
+    int& idealHeight)
+{
+    if (isSeparator) { idealWidth = 50; idealHeight = 4; }
+    else {
+        auto font   = getPopupMenuFont();
+        idealHeight = static_cast<int>(font.getHeight() * 1.5);
+        idealWidth  = static_cast<int>(font.getStringWidth (text) + idealHeight);
+    }
+}
+
 void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     const juce::Rectangle<int>& area,
     const bool isSeparator,
@@ -47,13 +61,12 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     const juce::Drawable* icon,
     const juce::Colour* const textColourToUse)
 {
-    if (isSeparator)
-    {
-        auto r  = area.reduced (5, 0);
-        r.removeFromTop (juce::roundToInt (((float) r.getHeight() * 0.5f) - 0.5f));
+    if (isSeparator) {
+        //auto r = area.reduced (5, 0);
+        //r.removeFromTop (juce::roundToInt (((float) r.getHeight() * 0.5f) - 0.5f));
 
-        g.setColour (findColour (juce::PopupMenu::textColourId).withAlpha (0.3f));
-        g.fillRect (r.removeFromTop (1));
+        g.setColour (juce::Colours::green);
+        g.fillRect (area);
     }
     else
     {

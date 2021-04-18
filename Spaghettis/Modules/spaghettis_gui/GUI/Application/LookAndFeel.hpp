@@ -86,6 +86,12 @@ public:
         return 0;
     }
     
+    void getIdealPopupMenuItemSize (const juce::String&,
+        const bool,
+        int,
+        int&,
+        int&) override;
+    
     void drawPopupMenuItem (juce::Graphics& g,
         const juce::Rectangle<int>&,
         const bool,
