@@ -49,6 +49,12 @@ void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
     }
 }
 
+void LookAndFeel::drawPopupMenuItemSelector (juce::Graphics& g, const juce::Rectangle<int>& area)
+{
+    g.setColour (findColour (Colours::menubarSeparator).withAlpha (0.25f));
+    g.fillRect (area);
+}
+
 void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     const juce::Rectangle<int>& area,
     const bool isSeparator,
@@ -61,76 +67,70 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     const juce::Drawable* icon,
     const juce::Colour* const)
 {
-    if (isSeparator) {
-        g.setColour (findColour (Colours::menubarSeparator).withAlpha (0.25f));
-        g.fillRect (area);
-        
-    } else {
-        auto r = area.reduced (1);
+    if (isSeparator) { drawPopupMenuItemSelector (g, area); }
+    else {
+    //
+    auto r = area.reduced (1);
 
-        if (isHighlighted && isActive)
-        {
-            g.setColour (findColour (juce::PopupMenu::highlightedBackgroundColourId));
-            g.fillRect (r);
+    if (isHighlighted && isActive) {
+        g.setColour (findColour (Colours::menubarBackgroundHighlighted));
+        g.fillRect (r);
+    }
+    
+    g.setColour (findColour (Colours::menubarText).withMultipliedAlpha (isActive ? 1.0f : 0.5f));
+    
+    r.reduce (juce::jmin (5, area.getWidth() / 20), 0);
 
-            g.setColour (findColour (juce::PopupMenu::highlightedTextColourId));
-        }
-        else
-        {
-            g.setColour (findColour (juce::PopupMenu::textColourId).withMultipliedAlpha (isActive ? 1.0f : 0.5f));
-        }
+    auto font = getPopupMenuFont();
 
-        r.reduce (juce::jmin (5, area.getWidth() / 20), 0);
+    auto maxFontHeight = (float) r.getHeight() / 1.3f;
 
-        auto font = getPopupMenuFont();
+    if (font.getHeight() > maxFontHeight)
+        font.setHeight (maxFontHeight);
 
-        auto maxFontHeight = (float) r.getHeight() / 1.3f;
+    g.setFont (font);
 
-        if (font.getHeight() > maxFontHeight)
-            font.setHeight (maxFontHeight);
+    auto iconArea = r.removeFromLeft (juce::roundToInt (maxFontHeight)).toFloat();
 
-        g.setFont (font);
+    if (icon != nullptr)
+    {
+        icon->drawWithin (g, iconArea, juce::RectanglePlacement::centred | juce::RectanglePlacement::onlyReduceInSize, 1.0f);
+        r.removeFromLeft (juce::roundToInt (maxFontHeight * 0.5f));
+    }
+    else if (isTicked)
+    {
+        auto tick = getTickShape (1.0f);
+        g.fillPath (tick, tick.getTransformToScaleToFit (iconArea.reduced (iconArea.getWidth() / 5, 0).toFloat(), true));
+    }
 
-        auto iconArea = r.removeFromLeft (juce::roundToInt (maxFontHeight)).toFloat();
+    if (hasSubMenu)
+    {
+        auto arrowH = 0.6f * getPopupMenuFont().getAscent();
 
-        if (icon != nullptr)
-        {
-            icon->drawWithin (g, iconArea, juce::RectanglePlacement::centred | juce::RectanglePlacement::onlyReduceInSize, 1.0f);
-            r.removeFromLeft (juce::roundToInt (maxFontHeight * 0.5f));
-        }
-        else if (isTicked)
-        {
-            auto tick = getTickShape (1.0f);
-            g.fillPath (tick, tick.getTransformToScaleToFit (iconArea.reduced (iconArea.getWidth() / 5, 0).toFloat(), true));
-        }
+        auto x = static_cast<float> (r.removeFromRight ((int) arrowH).getX());
+        auto halfH = static_cast<float> (r.getCentreY());
 
-        if (hasSubMenu)
-        {
-            auto arrowH = 0.6f * getPopupMenuFont().getAscent();
+        juce::Path path;
+        path.startNewSubPath (x, halfH - arrowH * 0.5f);
+        path.lineTo (x + arrowH * 0.6f, halfH);
+        path.lineTo (x, halfH + arrowH * 0.5f);
 
-            auto x = static_cast<float> (r.removeFromRight ((int) arrowH).getX());
-            auto halfH = static_cast<float> (r.getCentreY());
+        g.strokePath (path, juce::PathStrokeType (2.0f));
+    }
 
-            juce::Path path;
-            path.startNewSubPath (x, halfH - arrowH * 0.5f);
-            path.lineTo (x + arrowH * 0.6f, halfH);
-            path.lineTo (x, halfH + arrowH * 0.5f);
+    r.removeFromRight (3);
+    g.drawFittedText (text, r, juce::Justification::centredLeft, 1);
 
-            g.strokePath (path, juce::PathStrokeType (2.0f));
-        }
+    if (shortcutKeyText.isNotEmpty())
+    {
+        auto f2 = font;
+        f2.setHeight (f2.getHeight() * 0.75f);
+        f2.setHorizontalScale (0.95f);
+        g.setFont (f2);
 
-        r.removeFromRight (3);
-        g.drawFittedText (text, r, juce::Justification::centredLeft, 1);
-
-        if (shortcutKeyText.isNotEmpty())
-        {
-            auto f2 = font;
-            f2.setHeight (f2.getHeight() * 0.75f);
-            f2.setHorizontalScale (0.95f);
-            g.setFont (f2);
-
-            g.drawText (shortcutKeyText, r, juce::Justification::centredRight, true);
-        }
+        g.drawText (shortcutKeyText, r, juce::Justification::centredRight, true);
+    }
+    //
     }
 }
 
