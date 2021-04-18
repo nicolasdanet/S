@@ -76,7 +76,7 @@ public:
     
     void resized() override
     {
-        auto b = getLocalBounds();
+        juce::Rectangle<int> b = getLocalBounds();
 
         #if SPAGHETTIS_MENUBAR
         

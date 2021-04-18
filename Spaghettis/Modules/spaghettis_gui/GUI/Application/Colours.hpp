@@ -52,7 +52,7 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarText)                    == false);
     jassert (lf->isColourSpecified (menubarSeparator)               == false);
     
-    auto console = juce::Colour (0xff323e44);
+    juce::Colour console = juce::Colour (0xff323e44);
     
     lf->setColour (consoleTextDefault,                  juce::Colours::white);
     lf->setColour (consoleTextWarning,                  juce::Colours::orange);

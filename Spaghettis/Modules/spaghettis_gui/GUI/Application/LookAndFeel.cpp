@@ -102,9 +102,8 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     //
     if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area); }
     
-    
-    auto r = area.reduced (juce::jmin (5, area.getWidth() / 20), 0);
-    auto t = r.removeFromLeft (r.getHeight() * 0.75);
+    juce::Rectangle<int> r = area.reduced (juce::jmin (5, area.getWidth() / 20), 0);
+    juce::Rectangle<int> t = r.removeFromLeft (r.getHeight() * 0.75);
     
     if (isTicked) { drawPopupMenuItemTick (g, t); }
     
@@ -118,7 +117,7 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
 
     if (shortcutKeyText.isNotEmpty())
     {
-        auto f2 = getPopupMenuFont();
+        juce::Font f2 = getPopupMenuFont();
         f2.setHeight (f2.getHeight() * 0.75f);
         f2.setHorizontalScale (0.95f);
         g.setFont (f2);
