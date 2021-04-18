@@ -46,7 +46,7 @@
 
 #if defined ( JUCE_MAC )
     
-#define SPAGHETTIS_MENUBAR      1
+#define SPAGHETTIS_MENUBAR      1   /* ??? */
 
 #else
 

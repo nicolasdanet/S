@@ -104,11 +104,12 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     
     g.setColour (findColour (Colours::menubarText).withMultipliedAlpha (isActive ? 1.0f : 0.5f));
 
-    juce::Rectangle<int> r = area.reduced (juce::jmin (5, area.getWidth() / 20), 0);
+    const int border = juce::jmin (5, area.getWidth() / 20);
+    
+    juce::Rectangle<int> r = area.reduced (border, 0);
     juce::Rectangle<int> t = r.removeFromLeft (r.getHeight() * 0.75);
     
-    if (isTicked) { drawPopupMenuItemTick (g, t); }
-    
+    if (isTicked)   { drawPopupMenuItemTick (g, t); }
     if (hasSubMenu) { drawPopupMenuItemSubMenu (g, r); }
 
     g.setFont (getPopupMenuFont());
