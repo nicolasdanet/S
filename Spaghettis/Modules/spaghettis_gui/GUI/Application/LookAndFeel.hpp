@@ -104,9 +104,16 @@ public:
         const juce::Drawable*,
         const juce::Colour* const) override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     void drawPopupMenuItemSelector (juce::Graphics&, const juce::Rectangle<int>&);
-
+    void drawPopupMenuItemBackground (juce::Graphics& , const juce::Rectangle<int>&);
+    void drawPopupMenuItemTick (juce::Graphics&, const juce::Rectangle<int>&);
+    void drawPopupMenuItemSubMenu (juce::Graphics&, juce::Rectangle<int>&);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

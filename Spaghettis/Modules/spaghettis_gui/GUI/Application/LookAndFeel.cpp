@@ -43,16 +43,46 @@ void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
 {
     if (isSeparator) { idealWidth = 50; idealHeight = 2; }
     else {
-        auto font   = getPopupMenuFont();
+        juce::Font font = getPopupMenuFont();
         idealHeight = static_cast<int>(font.getHeight() * 1.6);
         idealWidth  = static_cast<int>(font.getStringWidth (text) + idealHeight);
     }
 }
 
-void LookAndFeel::drawPopupMenuItemSelector (juce::Graphics& g, const juce::Rectangle<int>& area)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LookAndFeel::drawPopupMenuItemSelector (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
     g.setColour (findColour (Colours::menubarSeparator).withAlpha (0.25f));
-    g.fillRect (area);
+    g.fillRect (r);
+}
+
+void LookAndFeel::drawPopupMenuItemBackground (juce::Graphics& g, const juce::Rectangle<int>& r)
+{
+    g.setColour (findColour (Colours::menubarBackgroundHighlighted));
+    g.fillRect (r);
+}
+
+void LookAndFeel::drawPopupMenuItemTick (juce::Graphics& g, const juce::Rectangle<int>& r)
+{
+    juce::Path tick = getTickShape (1.0f);
+    g.fillPath (tick, tick.getTransformToScaleToFit (r.reduced (r.getWidth() / 5, 0).toFloat(), true));
+}
+
+void LookAndFeel::drawPopupMenuItemSubMenu (juce::Graphics& g, juce::Rectangle<int>& r)
+{
+    int arrowH  = static_cast<int> (0.6f * getPopupMenuFont().getAscent());
+    float x     = static_cast<float> (r.removeFromRight (arrowH).getX());
+    float halfH = static_cast<float> (r.getCentreY());
+
+    juce::Path path;
+    path.startNewSubPath (x, halfH - arrowH * 0.5f);
+    path.lineTo (x + arrowH * 0.6f, halfH);
+    path.lineTo (x, halfH + arrowH * 0.5f);
+
+    g.strokePath (path, juce::PathStrokeType (2.0f));
 }
 
 void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
@@ -64,66 +94,31 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     const bool hasSubMenu,
     const juce::String& text,
     const juce::String& shortcutKeyText,
-    const juce::Drawable* icon,
+    const juce::Drawable*,
     const juce::Colour* const)
 {
     if (isSeparator) { drawPopupMenuItemSelector (g, area); }
     else {
     //
-    auto r = area.reduced (1);
-
-    if (isHighlighted && isActive) {
-        g.setColour (findColour (Colours::menubarBackgroundHighlighted));
-        g.fillRect (r);
-    }
+    if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area); }
     
+    
+    auto r = area.reduced (juce::jmin (5, area.getWidth() / 20), 0);
+    auto t = r.removeFromLeft (r.getHeight() * 0.75);
+    
+    if (isTicked) { drawPopupMenuItemTick (g, t); }
+    
+    if (hasSubMenu) { drawPopupMenuItemSubMenu (g, r); }
+
+    g.setFont (getPopupMenuFont());
     g.setColour (findColour (Colours::menubarText).withMultipliedAlpha (isActive ? 1.0f : 0.5f));
     
-    r.reduce (juce::jmin (5, area.getWidth() / 20), 0);
-
-    auto font = getPopupMenuFont();
-
-    auto maxFontHeight = (float) r.getHeight() / 1.3f;
-
-    if (font.getHeight() > maxFontHeight)
-        font.setHeight (maxFontHeight);
-
-    g.setFont (font);
-
-    auto iconArea = r.removeFromLeft (juce::roundToInt (maxFontHeight)).toFloat();
-
-    if (icon != nullptr)
-    {
-        icon->drawWithin (g, iconArea, juce::RectanglePlacement::centred | juce::RectanglePlacement::onlyReduceInSize, 1.0f);
-        r.removeFromLeft (juce::roundToInt (maxFontHeight * 0.5f));
-    }
-    else if (isTicked)
-    {
-        auto tick = getTickShape (1.0f);
-        g.fillPath (tick, tick.getTransformToScaleToFit (iconArea.reduced (iconArea.getWidth() / 5, 0).toFloat(), true));
-    }
-
-    if (hasSubMenu)
-    {
-        auto arrowH = 0.6f * getPopupMenuFont().getAscent();
-
-        auto x = static_cast<float> (r.removeFromRight ((int) arrowH).getX());
-        auto halfH = static_cast<float> (r.getCentreY());
-
-        juce::Path path;
-        path.startNewSubPath (x, halfH - arrowH * 0.5f);
-        path.lineTo (x + arrowH * 0.6f, halfH);
-        path.lineTo (x, halfH + arrowH * 0.5f);
-
-        g.strokePath (path, juce::PathStrokeType (2.0f));
-    }
-
     r.removeFromRight (3);
     g.drawFittedText (text, r, juce::Justification::centredLeft, 1);
 
     if (shortcutKeyText.isNotEmpty())
     {
-        auto f2 = font;
+        auto f2 = getPopupMenuFont();
         f2.setHeight (f2.getHeight() * 0.75f);
         f2.setHorizontalScale (0.95f);
         g.setFont (f2);
