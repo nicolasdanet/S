@@ -15,11 +15,11 @@ namespace spaghettis {
 void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
     int width,
     int height,
-    int itemIndex,
-    const juce::String& itemText,
+    int index,
+    const juce::String& text,
     bool isMouseOverItem,
     bool isMenuOpen,
-    bool isMouseOverBar,
+    bool,
     juce::MenuBarComponent& m)
 {
     const bool highlighted = (isMenuOpen || isMouseOverItem) && m.isEnabled();
@@ -27,8 +27,8 @@ void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
     if (highlighted) { g.fillAll (findColour (Colours::menubarBackgroundHighlighted)); }
 
     g.setColour (findColour (Colours::menubarText));
-    g.setFont (getMenuBarFont (m, itemIndex, itemText));
-    g.drawFittedText (itemText, 0, 0, width, height, juce::Justification::centred, 1);
+    g.setFont (getMenuBarFont (m, index, text));
+    g.drawFittedText (text, 0, 0, width, height, juce::Justification::centred, 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -38,14 +38,14 @@ void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
 void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
     const bool isSeparator,
     int,
-    int& idealWidth,
-    int& idealHeight)
+    int& w,
+    int& h)
 {
-    if (isSeparator) { idealWidth = 50; idealHeight = 2; }
+    if (isSeparator) { w = 50; h = 2; }
     else {
         juce::Font font = getPopupMenuFont();
-        idealHeight = static_cast<int>(font.getHeight() * 1.6);
-        idealWidth  = static_cast<int>(font.getStringWidth (text) + idealHeight);
+        h = static_cast<int>(font.getHeight() * 1.6);
+        w = static_cast<int>(font.getStringWidth (text) + h);
     }
 }
 
@@ -102,6 +102,8 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     //
     if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area); }
     
+    g.setColour (findColour (Colours::menubarText).withMultipliedAlpha (isActive ? 1.0f : 0.5f));
+
     juce::Rectangle<int> r = area.reduced (juce::jmin (5, area.getWidth() / 20), 0);
     juce::Rectangle<int> t = r.removeFromLeft (r.getHeight() * 0.75);
     
@@ -110,7 +112,6 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     if (hasSubMenu) { drawPopupMenuItemSubMenu (g, r); }
 
     g.setFont (getPopupMenuFont());
-    g.setColour (findColour (Colours::menubarText).withMultipliedAlpha (isActive ? 1.0f : 0.5f));
     
     r.removeFromRight (3);
     g.drawFittedText (text, r, juce::Justification::centredLeft, 1);
