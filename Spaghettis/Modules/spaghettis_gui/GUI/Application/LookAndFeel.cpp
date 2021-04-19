@@ -88,6 +88,18 @@ void LookAndFeel::drawPopupMenuItemSubMenu (juce::Graphics& g, juce::Rectangle<i
     g.strokePath (path, juce::PathStrokeType (2.0f));
 }
 
+void LookAndFeel::drawPopupMenuItemShortcut (juce::Graphics& g,
+    const juce::Rectangle<int>& r,
+    const juce::String& shortcutKeyText)
+{
+    juce::Font f2 = getPopupMenuFont();
+    f2.setHeight (f2.getHeight() * 0.75f);
+    f2.setHorizontalScale (0.95f);
+    g.setFont (f2);
+
+    g.drawText (shortcutKeyText, r, juce::Justification::centredRight, true);
+}
+
 void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     const juce::Rectangle<int>& area,
     const bool isSeparator,
@@ -115,23 +127,17 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     
     if (isTicked) { drawPopupMenuItemTick (g, std::move (t)); }
     else if (hasSubMenu) {
-        drawPopupMenuItemSubMenu (g, r);
+    //
+    drawPopupMenuItemSubMenu (g, r);
+    //
     }
 
-    g.setColour (c); g.setFont (getPopupMenuFont());
-    
     r.removeFromRight (3);
+    g.setColour (c);
+    g.setFont (getPopupMenuFont());
     g.drawFittedText (text, r, juce::Justification::centredLeft, 1);
 
-    if (shortcutKeyText.isNotEmpty())
-    {
-        juce::Font f2 = getPopupMenuFont();
-        f2.setHeight (f2.getHeight() * 0.75f);
-        f2.setHorizontalScale (0.95f);
-        g.setFont (f2);
-
-        g.drawText (shortcutKeyText, r, juce::Justification::centredRight, true);
-    }
+    if (shortcutKeyText.isNotEmpty()) { drawPopupMenuItemShortcut (g, r, shortcutKeyText); }
     //
     }
 }
