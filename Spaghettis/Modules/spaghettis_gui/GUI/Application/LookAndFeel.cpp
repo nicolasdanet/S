@@ -53,22 +53,20 @@ void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawPopupMenuItemSelector (juce::Graphics& g, const juce::Rectangle<int>& r)
+void LookAndFeel::drawPopupMenuItemSelector (juce::Graphics& g, const juce::Rectangle<int>& area)
 {
-    g.setColour (findColour (Colours::menubarSeparator).withAlpha (0.25f));
-    g.fillRect (r);
+    g.setColour (findColour (Colours::menubarSeparator).withAlpha (0.25f)); g.fillRect (area);
 }
 
-void LookAndFeel::drawPopupMenuItemBackground (juce::Graphics& g, const juce::Rectangle<int>& r)
+void LookAndFeel::drawPopupMenuItemBackground (juce::Graphics& g, const juce::Rectangle<int>& area)
 {
-    g.setColour (findColour (Colours::menubarBackgroundHighlighted));
-    g.fillRect (r);
+    g.setColour (findColour (Colours::menubarBackgroundHighlighted)); g.fillRect (area);
 }
 
-void LookAndFeel::drawPopupMenuItemTick (juce::Graphics& g, const juce::Rectangle<int>& r)
+void LookAndFeel::drawPopupMenuItemTick (juce::Graphics& g, juce::Rectangle<int> t)
 {
-    juce::Path tick = getTickShape (1.0f);
-    g.fillPath (tick, tick.getTransformToScaleToFit (r.reduced (r.getWidth() / 5, 0).toFloat(), true));
+    juce::Path path = getTickShape (1.0f);
+    g.fillPath (path, path.getTransformToScaleToFit (t.reduced (5).toFloat(), true));
 }
 
 void LookAndFeel::drawPopupMenuItemSubMenu (juce::Graphics& g, juce::Rectangle<int>& r)
@@ -102,17 +100,20 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     //
     if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area); }
     
-    g.setColour (findColour (Colours::menubarText).withMultipliedAlpha (isActive ? 1.0f : 0.5f));
-
+    juce::Colour c   = findColour (Colours::menubarText).withMultipliedAlpha (isActive ? 1.0f : 0.5f);
     const int border = juce::jmin (5, area.getWidth() / 20);
+    
+    g.setColour (c);
     
     juce::Rectangle<int> r = area.reduced (border, 0);
     juce::Rectangle<int> t = r.removeFromLeft (r.getHeight() * 0.75);
     
-    if (isTicked)   { drawPopupMenuItemTick (g, t); }
-    if (hasSubMenu) { drawPopupMenuItemSubMenu (g, r); }
+    if (isTicked) { drawPopupMenuItemTick (g, std::move (t)); }
+    else if (hasSubMenu) {
+        drawPopupMenuItemSubMenu (g, r);
+    }
 
-    g.setFont (getPopupMenuFont());
+    g.setColour (c); g.setFont (getPopupMenuFont());
     
     r.removeFromRight (3);
     g.drawFittedText (text, r, juce::Justification::centredLeft, 1);
