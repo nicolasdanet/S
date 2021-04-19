@@ -90,14 +90,9 @@ void LookAndFeel::drawPopupMenuItemSubMenu (juce::Graphics& g, juce::Rectangle<i
 
 void LookAndFeel::drawPopupMenuItemShortcut (juce::Graphics& g,
     const juce::Rectangle<int>& r,
-    const juce::String& shortcutKeyText)
+    const juce::String& shortcutText)
 {
-    juce::Font f2 = getPopupMenuFont();
-    f2.setHeight (f2.getHeight() * 0.75f);
-    f2.setHorizontalScale (0.95f);
-    g.setFont (f2);
-
-    g.drawText (shortcutKeyText, r, juce::Justification::centredRight, true);
+    g.drawText (shortcutText, r, juce::Justification::centredRight, true);
 }
 
 void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
@@ -108,7 +103,7 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     const bool isTicked,
     const bool hasSubMenu,
     const juce::String& text,
-    const juce::String& shortcutKeyText,
+    const juce::String& shortcutText,
     const juce::Drawable*,
     const juce::Colour* const)
 {
@@ -117,10 +112,12 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     //
     if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area); }
     
-    juce::Colour c   = findColour (Colours::menubarText).withMultipliedAlpha (isActive ? 1.0f : 0.5f);
-    const int border = juce::jmin (5, area.getWidth() / 20);
+    juce::Colour c1 = findColour (Colours::menubarText);
+    juce::Colour c2 = c1.withMultipliedAlpha (0.5f);
     
-    g.setColour (c);
+    g.setColour (isActive ? c1 : c2);
+    
+    int border = juce::jmin (5, area.getWidth() / 20);
     
     juce::Rectangle<int> r = area.reduced (border, 0);
     juce::Rectangle<int> t = r.removeFromLeft (r.getHeight() * 0.75);
@@ -131,13 +128,12 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     drawPopupMenuItemSubMenu (g, r);
     //
     }
-
+    
     r.removeFromRight (3);
-    g.setColour (c);
     g.setFont (getPopupMenuFont());
     g.drawFittedText (text, r, juce::Justification::centredLeft, 1);
 
-    if (shortcutKeyText.isNotEmpty()) { drawPopupMenuItemShortcut (g, r, shortcutKeyText); }
+    if (shortcutText.isNotEmpty()) { g.setColour (c2); drawPopupMenuItemShortcut (g, r, shortcutText); }
     //
     }
 }
