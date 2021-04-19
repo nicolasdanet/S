@@ -41,11 +41,13 @@ void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
     int& w,
     int& h)
 {
-    if (isSeparator) { w = 50; h = 2; }
+    if (isSeparator) { w = 75; h = 2; }
     else {
         juce::Font font = getPopupMenuFont();
-        h = static_cast<int>(font.getHeight() * 1.6);
-        w = static_cast<int>(font.getStringWidth (text) + h);
+        float f = font.getHeight();
+        float extra = (f * 2.5);
+        h = static_cast<int>(f * 1.6);
+        w = static_cast<int>(font.getStringWidth (text) + extra);
     }
 }
 
