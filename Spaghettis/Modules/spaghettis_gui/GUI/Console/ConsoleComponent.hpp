@@ -144,7 +144,7 @@ public:
 
     void getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r) override
     {
-        Commands::getCommandInfo (c, r, 1, 1);  /* ??? */
+        Commands::getCommandInfo (c, r);
     }
 
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo& info) override

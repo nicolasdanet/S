@@ -42,10 +42,6 @@ public:
         //
         menu.addCommandItem (commandManager_, Commands::fileOpen);
         
-        juce::PopupMenu toto;
-        menu.addSeparator();
-        menu.addSubMenu (juce::String ("foo"), toto, false);  /* ??? */
-        
         #if SPAGHETTIS_MENUBAR
         
         menu.addSeparator();
