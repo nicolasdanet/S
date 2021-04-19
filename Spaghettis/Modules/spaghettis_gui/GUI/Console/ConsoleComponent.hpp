@@ -53,7 +53,7 @@ public:
         
         addKeyListener (Spaghettis()->getCommandManager()->getKeyMappings());
         
-        setSize (600, 400);
+        setSize (500, 300);
     }
     
     ~ConsoleComponent() override
