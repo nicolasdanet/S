@@ -71,14 +71,19 @@ void LookAndFeel::drawPopupMenuItemTick (juce::Graphics& g, juce::Rectangle<int>
 
 void LookAndFeel::drawPopupMenuItemSubMenu (juce::Graphics& g, juce::Rectangle<int>& r)
 {
-    int arrowH  = static_cast<int> (0.6f * getPopupMenuFont().getAscent());
-    float x     = static_cast<float> (r.removeFromRight (arrowH).getX());
-    float halfH = static_cast<float> (r.getCentreY());
-
+    int w = static_cast<int> (0.6f * getPopupMenuFont().getAscent());
+    
+    juce::Rectangle<int> t = r.removeFromRight (w);
+    
+    float x = static_cast<float> (t.getX());
+    float y = static_cast<float> (t.getCentreY());
+    float hArrow = w;
+    float wArrow = w * 0.6f;
+    
     juce::Path path;
-    path.startNewSubPath (x, halfH - arrowH * 0.5f);
-    path.lineTo (x + arrowH * 0.6f, halfH);
-    path.lineTo (x, halfH + arrowH * 0.5f);
+    path.startNewSubPath (x, y - (hArrow * 0.5f));
+    path.lineTo (x + wArrow, y);
+    path.lineTo (x, y + (hArrow * 0.5f));
 
     g.strokePath (path, juce::PathStrokeType (2.0f));
 }
