@@ -22,7 +22,9 @@ public:
     SpaghettisInstance() :  lookAndFeel_ (std::make_unique<LookAndFeel>()),
                             commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
                             menu_ (std::make_unique<MenuModel>(commandManager_.get())),
+                            chooser_ (std::make_unique<PatchChooser>()),
                             core_ (std::make_unique<Wrapper>())
+                            
     {
         #if ! ( SPAGHETTIS_MENUBAR )
         
@@ -63,10 +65,25 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     void handle (const std::function<void()>& f)
     {
         core_->handle (f);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void openPatch (const juce::File& file)
+    {
+        handle (Inputs::openFile (file));
+    }
+    
+    void openPatch()
+    {
+        DBG ("?");
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -135,6 +152,7 @@ private:
     std::unique_ptr<LookAndFeel> lookAndFeel_;
     std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
     std::unique_ptr<MenuModel> menu_;
+    std::unique_ptr<PatchChooser> chooser_;
     std::unique_ptr<Wrapper> core_;
 
 private:

@@ -94,8 +94,7 @@ public:
         juce::ArgumentList cmd (getApplicationName(), s);
 
         for (const auto& a : cmd.arguments) {
-            juce::File f (a.resolveAsFile());
-            spaghettis::Spaghettis()->handle (spaghettis::Inputs::openFile (f));
+            juce::File f (a.resolveAsFile()); spaghettis::Spaghettis()->openPatch (f);
         }
         //
         }

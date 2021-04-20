@@ -149,7 +149,12 @@ public:
 
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo& info) override
     {
-        if (info.commandID == static_cast<int> (Commands::fileOpen)) { DBG ("?"); return true; }
+        if (info.commandID == static_cast<int> (Commands::fileOpen)) {
+        //
+        spaghettis::Spaghettis()->openPatch();
+        return true;
+        //
+        }
 
         return false;
     }
