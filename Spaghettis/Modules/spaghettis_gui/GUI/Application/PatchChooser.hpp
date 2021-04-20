@@ -19,15 +19,40 @@ class PatchChooser {
 // MARK: -
 
 public:
-    PatchChooser() : openDirectory_ (juce::File::getCurrentWorkingDirectory())
+    PatchChooser() :    openText_ (NEEDS_TRANS ("Choose a Patch to open...")),
+                        openExtensions_ (spaghettis::core::getFileExtensions()),
+                        openDirectory_ (juce::File::getCurrentWorkingDirectory())
+                        
     {
-    
     }
     
     ~PatchChooser() = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void openPatch()
+    {
+        fileChooser_.reset (new juce::FileChooser (openText_, openDirectory_, openExtensions_));
+    
+        int flags = juce::FileBrowserComponent::canSelectMultipleItems
+                        | juce::FileBrowserComponent::openMode
+                        | juce::FileBrowserComponent::canSelectFiles;
+        
+        auto f = [] (const juce::FileChooser& fc)
+            {
+                auto files = fc.getResults(); for (auto f : files) { DBG (f.getFullPathName()); }
+            };
+                        
+        fileChooser_->launchAsync (flags, f);
+    }
+                                 
 private:
-    std::unique_ptr<juce::FileChooser> fc_;
+    std::unique_ptr<juce::FileChooser> fileChooser_;
+    juce::String openText_;
+    juce::String openExtensions_;
     juce::File openDirectory_;
     
 private:
