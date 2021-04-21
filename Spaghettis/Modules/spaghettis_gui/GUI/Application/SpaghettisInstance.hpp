@@ -22,7 +22,8 @@ public:
     SpaghettisInstance() :  lookAndFeel_ (std::make_unique<LookAndFeel>()),
                             commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
                             menu_ (std::make_unique<MenuModel>(commandManager_.get())),
-                            core_ (std::make_unique<Wrapper>())
+                            core_ (std::make_unique<Wrapper>()),
+                            currentOpenDirectory_ (juce::File::getCurrentWorkingDirectory())
                             
     {
         #if ! ( SPAGHETTIS_MENUBAR )
@@ -77,6 +78,15 @@ private:
 public:
     void openPatch (const juce::File& file)
     {
+        JUCE_ASSERT_MESSAGE_THREAD
+        
+        juce::File parent = file.getParentDirectory();
+        
+        if (parent.isDirectory()) { currentOpenDirectory_ = std::move (parent); }
+        else {
+            jassertfalse;
+        }
+        
         handle (Inputs::openFile (file));
     }
     
@@ -150,6 +160,7 @@ private:
     std::unique_ptr<MenuModel> menu_;
     std::unique_ptr<Wrapper> core_;
     std::unique_ptr<juce::FileChooser> fileChooser_;
+    juce::File currentOpenDirectory_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpaghettisInstance)
