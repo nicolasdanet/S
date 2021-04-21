@@ -24,7 +24,7 @@ void SpaghettisInstance::openPatch()
         
     auto f = [] (const juce::FileChooser& fc)
         {
-            auto files = fc.getResults(); for (auto f : files) { DBG (f.getFullPathName()); }
+            auto files = fc.getResults(); for (const auto& f : files) { Spaghettis()->openPatch (f); }
         };
                         
     fileChooser_->launchAsync (flags, f);
