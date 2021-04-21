@@ -22,12 +22,12 @@ void SpaghettisInstance::openPatch()
                         | juce::FileBrowserComponent::openMode
                         | juce::FileBrowserComponent::canSelectFiles;
         
-    auto f = [] (const juce::FileChooser& fc)
-        {
-            auto files = fc.getResults(); for (const auto& f : files) { Spaghettis()->openPatch (f); }
-        };
+    auto callback = [] (const juce::FileChooser& fileChooser)
+    {
+        auto files = fileChooser.getResults(); for (const auto& f : files) { Spaghettis()->openPatch (f); }
+    };
                         
-    fileChooser_->launchAsync (flags, f);
+    fileChooser_->launchAsync (flags, callback);
 }
 
 // -----------------------------------------------------------------------------------------------------------
