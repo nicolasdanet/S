@@ -10,6 +10,15 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+#if ! ( JUCE_MAC )
+#if ! ( JUCE_LINUX )
+    #error "Unsupported platform!"
+#endif
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 class SpaghettisApplication : public juce::JUCEApplication {
@@ -22,6 +31,28 @@ public:
     SpaghettisApplication() : runningFromCommandLine_ (false)
     {
         SPAGHETTIS_DEBUG ("Hello!");
+        
+        juce::PropertiesFile::Options options;
+        
+        #if ( JUCE_MAC )
+        
+        options.applicationName     = getApplicationName().toLowerCase();
+        options.filenameSuffix      = juce::String (".settings");
+        options.folderName          = getApplicationName();
+        options.osxLibrarySubFolder = juce::String ("Application Support");
+
+        preferences_.reset (new juce::PropertiesFile (options));
+        
+        #endif
+        
+        #if ( JUCE_LINUX )
+        
+        juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
+        juce::File file = home.getChildFile (".config/spaghettis/spaghettis.settings");
+        
+        preferences_.reset (new juce::PropertiesFile (file, options));
+        
+        #endif
     }
     
     ~SpaghettisApplication()
@@ -114,8 +145,10 @@ public:
         
 private:
     spaghettis::SpaghettisOwner spaghettis_;
+    std::unique_ptr<juce::PropertiesFile> preferences_;
     std::unique_ptr<spaghettis::Console> console_;
     bool runningFromCommandLine_;
+    
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
