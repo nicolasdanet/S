@@ -31,18 +31,6 @@ public:
     SpaghettisApplication() : runningFromCommandLine_ (false)
     {
         SPAGHETTIS_DEBUG ("Hello!");
-        
-        juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
-
-        #if ( JUCE_MAC )
-        juce::File file = home.getChildFile ("Library/Application Support/Spaghettis/spaghettis.settings");
-        #endif
-        
-        #if ( JUCE_LINUX )
-        juce::File file = home.getChildFile (".config/spaghettis/spaghettis.settings");
-        #endif
-        
-        preferences_.reset (new juce::PropertiesFile (file, juce::PropertiesFile::Options()));
     }
     
     ~SpaghettisApplication()
@@ -121,21 +109,8 @@ public:
         }
     }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static SpaghettisApplication* getApplication()
-    {
-        auto t = dynamic_cast<SpaghettisApplication*> (JUCEApplication::getInstance());
-        jassert (t != nullptr);
-        return t;
-    }
-        
 private:
     spaghettis::SpaghettisOwner spaghettis_;
-    std::unique_ptr<juce::PropertiesFile> preferences_;
     std::unique_ptr<spaghettis::Console> console_;
     bool runningFromCommandLine_;
     

@@ -24,7 +24,7 @@ public:
     
     }
     
-    ~Wrapper()
+    ~Wrapper() override
     {
         jassert (isThreadRunning() == false);
     }

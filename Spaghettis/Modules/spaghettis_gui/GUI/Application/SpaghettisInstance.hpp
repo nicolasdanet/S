@@ -26,6 +26,18 @@ public:
         core_ (std::make_unique<Wrapper>()),
         currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory))
     {
+        juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
+
+        #if ( JUCE_MAC )
+        juce::File file = home.getChildFile ("Library/Application Support/Spaghettis/spaghettis.settings");
+        #endif
+        
+        #if ( JUCE_LINUX )
+        juce::File file = home.getChildFile (".config/spaghettis/spaghettis.settings");
+        #endif
+        
+        preferences_.reset (new juce::PropertiesFile (file, juce::PropertiesFile::Options()));
+        
         #if ! ( SPAGHETTIS_MENUBAR )
         
         juce::MenuBarModel::setMacMainMenu (menu_.get());
@@ -117,6 +129,11 @@ public:
 // MARK: -
 
 public:
+    LookAndFeel* getLookAndFeel() const
+    {
+        return lookAndFeel_.get();
+    }
+    
     juce::ApplicationCommandManager* getCommandManager() const
     {
         return commandManager_.get();
@@ -127,9 +144,9 @@ public:
         return menu_.get();
     }
     
-    LookAndFeel* getLookAndFeel() const
+    juce::PropertiesFile* getPreferences() const
     {
-        return lookAndFeel_.get();
+        return preferences_.get();
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -159,8 +176,11 @@ private:
     std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
     std::unique_ptr<MenuModel> menu_;
     std::unique_ptr<Wrapper> core_;
-    std::unique_ptr<juce::FileChooser> fileChooser_;
     juce::File currentOpenDirectory_;
+
+private:
+    std::unique_ptr<juce::PropertiesFile> preferences_;
+    std::unique_ptr<juce::FileChooser> fileChooser_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpaghettisInstance)
