@@ -32,27 +32,17 @@ public:
     {
         SPAGHETTIS_DEBUG ("Hello!");
         
-        juce::PropertiesFile::Options options;
-        
-        #if ( JUCE_MAC )
-        
-        options.applicationName     = getApplicationName().toLowerCase();
-        options.filenameSuffix      = juce::String (".settings");
-        options.folderName          = getApplicationName();
-        options.osxLibrarySubFolder = juce::String ("Application Support");
+        juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
 
-        preferences_.reset (new juce::PropertiesFile (options));
-        
+        #if ( JUCE_MAC )
+        juce::File file = home.getChildFile ("Library/Application Support/Spaghettis/spaghettis.settings");
         #endif
         
         #if ( JUCE_LINUX )
-        
-        juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
         juce::File file = home.getChildFile (".config/spaghettis/spaghettis.settings");
-        
-        preferences_.reset (new juce::PropertiesFile (file, options));
-        
         #endif
+        
+        preferences_.reset (new juce::PropertiesFile (file, juce::PropertiesFile::Options()));
     }
     
     ~SpaghettisApplication()
