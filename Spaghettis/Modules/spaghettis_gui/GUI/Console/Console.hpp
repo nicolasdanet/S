@@ -28,6 +28,8 @@ public:
         juce::String s = preferences->getValue ("ConsoleWindowPosition");
         
         if (s.isNotEmpty()) { restoreWindowStateFromString (s); }
+        
+        makeVisible();
     }
 
     ~Console() override
