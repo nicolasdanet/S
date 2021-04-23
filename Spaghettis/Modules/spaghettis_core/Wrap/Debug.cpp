@@ -15,7 +15,7 @@ namespace spaghettis {
 
 void Debug::logToConsole (const juce::String& s)
 {
-    #if defined (JUCE_MAC) || defined (JUCE_IOS)
+    #if defined (JUCE_MAC)
     
     core::post_syslog (s.toRawUTF8());
     
