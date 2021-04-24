@@ -54,22 +54,20 @@ static void initialize (juce::LookAndFeel* lf)
     
     juce::Colour console = juce::Colour (0xff1f2029);
     
-    //lf->setColour (consoleTextDefault,                  juce::Colour (0xff746db0));
-     lf->setColour (consoleTextDefault,                  juce::Colour (0xff55747c));
-    // lf->setColour (consoleTextDefault,                  juce::Colour (0xff32cf72));
-    // lf->setColour (consoleTextDefault,                  juce::Colour (0xffe1e2e7));
-    lf->setColour (consoleTextWarning,                  juce::Colour (0xffc77a4b));
-    lf->setColour (consoleTextError,                    juce::Colour (0xffd3232e));
-    lf->setColour (consoleBackground,                   console);
-    lf->setColour (consoleHighlight,                    juce::Colours::transparentBlack);
-    lf->setColour (menubarBackground,                   console.darker (0.50));
-    lf->setColour (menubarBackgroundHighlighted,        console.brighter (0.05));
-    lf->setColour (menubarText,                         juce::Colours::white);
-    lf->setColour (menubarSeparator,                    juce::Colours::black);
+    lf->setColour (consoleTextDefault,                          juce::Colour (0xff55747c));
+    lf->setColour (consoleTextWarning,                          juce::Colour (0xffc77a4b));
+    lf->setColour (consoleTextError,                            juce::Colour (0xffd3232e));
+    lf->setColour (consoleBackground,                           console);
+    lf->setColour (consoleHighlight,                            juce::Colours::transparentBlack);
+    lf->setColour (menubarBackground,                           console.darker (0.50));
+    lf->setColour (menubarBackgroundHighlighted,                console.brighter (0.05));
+    lf->setColour (menubarText,                                 juce::Colours::white);
+    lf->setColour (menubarSeparator,                            juce::Colours::black);
     
-    lf->setColour (juce::TextEditor::outlineColourId,   juce::Colours::transparentBlack);
-    lf->setColour (juce::TextEditor::shadowColourId,    juce::Colours::transparentBlack);
-    lf->setColour (juce::ScrollBar::thumbColourId,      juce::Colours::grey);
+    lf->setColour (juce::TextEditor::highlightedTextColourId,   juce::Colour (0xff55747c));
+    lf->setColour (juce::TextEditor::outlineColourId,           juce::Colours::transparentBlack);
+    lf->setColour (juce::TextEditor::shadowColourId,            juce::Colours::transparentBlack);
+    lf->setColour (juce::ScrollBar::thumbColourId,              juce::Colours::grey);
 }
 
 // -----------------------------------------------------------------------------------------------------------
