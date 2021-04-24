@@ -52,11 +52,11 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarText)                    == false);
     jassert (lf->isColourSpecified (menubarSeparator)               == false);
     
-    juce::Colour console = juce::Colour (0xff323e44);
+    juce::Colour console = juce::Colour (0xff1f2029);
     
-    lf->setColour (consoleTextDefault,                  juce::Colours::white);
-    lf->setColour (consoleTextWarning,                  juce::Colours::orange);
-    lf->setColour (consoleTextError,                    juce::Colours::red);
+    lf->setColour (consoleTextDefault,                  juce::Colour (0xffe1e2e7));
+    lf->setColour (consoleTextWarning,                  juce::Colour (0xffc77a4b));
+    lf->setColour (consoleTextError,                    juce::Colour (0xffd3232e));
     lf->setColour (consoleBackground,                   console);
     lf->setColour (consoleHighlight,                    juce::Colours::transparentBlack);
     lf->setColour (menubarBackground,                   console.darker (0.50));
