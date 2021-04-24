@@ -18,6 +18,8 @@
 
 void wrapper_patchOpen (const juce::File& file);
 
+void wrapper_switchDsp();
+
 #endif
 
 // -----------------------------------------------------------------------------------------------------------

@@ -154,7 +154,7 @@ public:
         switch (info.commandID) {
         //
         case Commands::fileOpen     : spaghettis::Spaghettis()->openPatch();    return true;
-        case Commands::dspSwitch    : DBG ("?");                                return true;
+        case Commands::dspSwitch    : spaghettis::Spaghettis()->switchDsp();    return true;
         default : break;
         //
         }

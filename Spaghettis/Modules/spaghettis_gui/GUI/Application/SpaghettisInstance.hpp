@@ -88,6 +88,11 @@ private:
 // MARK: -
 
 public:
+    void switchDsp()
+    {
+        handle (Inputs::switchDsp());
+    }
+    
     void openPatch (const juce::File& file)
     {
         JUCE_ASSERT_MESSAGE_THREAD
