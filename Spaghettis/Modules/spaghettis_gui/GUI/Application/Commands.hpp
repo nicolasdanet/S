@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define SPAGHETTIS_COMMAND(c)   (c | 0xff000000)
+#define SPAGHETTIS_COMMAND(c)   (c | 0x7f000000)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -24,7 +24,10 @@ struct Commands {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-enum CommandIDs { fileOpen = SPAGHETTIS_COMMAND (1) };
+enum CommandIDs {
+    fileOpen    = SPAGHETTIS_COMMAND (1),
+    dspSwitch   = SPAGHETTIS_COMMAND (2)
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -35,12 +38,22 @@ static void getCommandInfo (const juce::CommandID c,
     bool isActive = true,
     bool isTicked = false)
 {
-    if (c == static_cast<int> (Commands::fileOpen)) {
+    switch (c) {
+    //
+    case Commands::fileOpen :
         r.setInfo (NEEDS_TRANS ("Open..."), NEEDS_TRANS ("Open a Patch"), NEEDS_TRANS ("File"), 0);
-        r.setActive (isActive);
-        r.setTicked (isTicked);
         r.addDefaultKeypress ('o', juce::ModifierKeys::commandModifier);
+        break;
+    case Commands::dspSwitch :
+        r.setInfo (NEEDS_TRANS ("Run DSP"), NEEDS_TRANS ("DSP On/Off"), NEEDS_TRANS ("Media"), 0);
+        r.addDefaultKeypress ('r', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
+        break;
+    default : break;
+    //
     }
+    
+    r.setActive (isActive);
+    r.setTicked (isTicked);
 }
     
 // -----------------------------------------------------------------------------------------------------------
