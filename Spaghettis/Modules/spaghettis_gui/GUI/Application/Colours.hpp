@@ -54,7 +54,10 @@ static void initialize (juce::LookAndFeel* lf)
     
     juce::Colour console = juce::Colour (0xff1f2029);
     
-    lf->setColour (consoleTextDefault,                  juce::Colour (0xffe1e2e7));
+    //lf->setColour (consoleTextDefault,                  juce::Colour (0xff746db0));
+     lf->setColour (consoleTextDefault,                  juce::Colour (0xff55747c));
+    // lf->setColour (consoleTextDefault,                  juce::Colour (0xff32cf72));
+    // lf->setColour (consoleTextDefault,                  juce::Colour (0xffe1e2e7));
     lf->setColour (consoleTextWarning,                  juce::Colour (0xffc77a4b));
     lf->setColour (consoleTextError,                    juce::Colour (0xffd3232e));
     lf->setColour (consoleBackground,                   console);
