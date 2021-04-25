@@ -42,6 +42,20 @@ enum ColourIds {
 
 static void initialize (juce::LookAndFeel* lf)
 {
+    /* < https://ethanschoonover.com/solarized/ > */
+    
+    const juce::Colour console  = juce::Colour (0xff1f2029);
+    const juce::Colour text     = juce::Colour (0xff93a1a1);
+    const juce::Colour yellow   = juce::Colour (0xffb58900);
+    const juce::Colour orange   = juce::Colour (0xffcb4b16);
+    const juce::Colour red      = juce::Colour (0xffdc322f);
+    const juce::Colour green    = juce::Colour (0xff859900);
+    
+    // const juce::Colour magenta  = juce::Colour (0xffd33682);
+    // const juce::Colour violet   = juce::Colour (0xff6c71c4);
+    // const juce::Colour blue     = juce::Colour (0xff268bd2);
+    // const juce::Colour cyan     = juce::Colour (0xff2aa198);
+
     jassert (lf->isColourSpecified (consoleTextDefault)             == false);
     jassert (lf->isColourSpecified (consoleTextWarning)             == false);
     jassert (lf->isColourSpecified (consoleTextError)               == false);
@@ -52,11 +66,9 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarText)                    == false);
     jassert (lf->isColourSpecified (menubarSeparator)               == false);
     
-    juce::Colour console = juce::Colour (0xff1f2029);
-    
-    lf->setColour (consoleTextDefault,                          juce::Colour (0xff55747c));
-    lf->setColour (consoleTextWarning,                          juce::Colour (0xffc77a4b));
-    lf->setColour (consoleTextError,                            juce::Colour (0xffd3232e));
+    lf->setColour (consoleTextDefault,                          text);
+    lf->setColour (consoleTextWarning,                          yellow);
+    lf->setColour (consoleTextError,                            orange);
     lf->setColour (consoleBackground,                           console);
     lf->setColour (consoleHighlight,                            juce::Colours::transparentBlack);
     lf->setColour (menubarBackground,                           console.darker (0.50));
@@ -64,7 +76,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarText,                                 juce::Colours::white);
     lf->setColour (menubarSeparator,                            juce::Colours::black);
     
-    lf->setColour (juce::TextEditor::highlightedTextColourId,   juce::Colour (0xff746DB0));
+    lf->setColour (juce::TextEditor::highlightedTextColourId,   green);
     lf->setColour (juce::TextEditor::outlineColourId,           juce::Colours::transparentBlack);
     lf->setColour (juce::TextEditor::shadowColourId,            juce::Colours::transparentBlack);
     lf->setColour (juce::ScrollBar::thumbColourId,              juce::Colours::grey);
