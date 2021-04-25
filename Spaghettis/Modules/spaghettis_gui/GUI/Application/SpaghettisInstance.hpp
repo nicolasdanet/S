@@ -80,7 +80,7 @@ public:
 private:
     void handle (const std::function<void()>& f)
     {
-        core_->handle (f);
+        core_->addInput (f);
     }
 
 // -----------------------------------------------------------------------------------------------------------

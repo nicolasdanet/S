@@ -47,7 +47,7 @@
 #include "Wrap/Debug.hpp"
 #include "Wrap/Logger.hpp"
 #include "Wrap/Post.hpp"
-#include "Wrap/InputQueue.hpp"
+#include "Wrap/MessageQueues.hpp"
 #include "Wrap/Inputs.hpp"
 #include "Wrap/Wrapper.hpp"
 

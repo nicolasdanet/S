@@ -47,7 +47,7 @@ extern Wrapper *main_wrapper;
 
 void wrapper_poll (void)
 {
-    main_wrapper->poll();
+    main_wrapper->pollInputs();
 }
 
 #else

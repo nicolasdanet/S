@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class InputQueue {
+class MessageQueues {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -24,13 +24,13 @@ using FunctorsContainer = std::vector<std::function<void()>>;
 // MARK: -
 
 public:
-    InputQueue()
+    MessageQueues()
     {
     }
     
-    ~InputQueue()
+    ~MessageQueues()
     {
-        jassert (queue_.empty());
+        jassert (inputs_.empty());
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -38,14 +38,14 @@ public:
 // MARK: -
 
 public:
-    void add (std::function<void()> f)
+    void addInput (std::function<void()> f)
     {
-        const juce::ScopedLock lock (lock_); queue_.push_back (std::move (f));
+        const juce::ScopedLock lock (lock_); inputs_.push_back (std::move (f));
     }
-    
+
     void clear()
     {
-        pollProceed (true);
+        pollInputsProceed (true);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -53,27 +53,27 @@ public:
 // MARK: -
 
 private:
-    void pollProceed (bool fake)
+    void pollInputsProceed (bool fake)
     {
         FunctorsContainer scoped;
         
         {
-            const juce::ScopedLock lock (lock_); scoped.swap (queue_);
+            const juce::ScopedLock lock (lock_); scoped.swap (inputs_);
         }
         
         if (!fake) { for (auto f : scoped) { f(); } }
     }
 
 public:
-    void poll (bool fake = false)
+    void pollInputs (bool fake = false)
     {
         bool hasSometing = 0;
         
         {
-            const juce::ScopedLock lock (lock_); hasSometing = (queue_.empty() == false);
+            const juce::ScopedLock lock (lock_); hasSometing = (inputs_.empty() == false);
         }
         
-        if (hasSometing) { pollProceed (fake); }
+        if (hasSometing) { pollInputsProceed (fake); }
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -81,11 +81,11 @@ public:
 // MARK: -
 
 private:
-    FunctorsContainer queue_;
+    FunctorsContainer inputs_;
     juce::CriticalSection lock_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InputQueue)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MessageQueues)
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

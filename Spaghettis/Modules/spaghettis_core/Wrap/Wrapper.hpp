@@ -58,7 +58,7 @@ public:
         
         cancelPendingUpdate();
         
-        input_.clear();
+        queues_.clear();
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -66,14 +66,14 @@ public:
 // MARK: -
 
 public:
-    void handle (const std::function<void()>& f)
+    void addInput (const std::function<void()>& f)
     {
-        input_.add (f);
+        queues_.addInput (f);
     }
     
-    void poll()
+    void pollInputs()
     {
-        input_.poll();
+        queues_.pollInputs();
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -117,7 +117,7 @@ private:
     Logger *logger_;
     Post post_;
     juce::StringArray commandLine_;
-    InputQueue input_;
+    MessageQueues queues_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Wrapper)
