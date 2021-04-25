@@ -16,9 +16,7 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-void wrapper_patchOpen (const juce::File& file);
-
-void wrapper_switchDsp();
+void wrapper_send (const std::function<void()>& f);
 
 #endif
 

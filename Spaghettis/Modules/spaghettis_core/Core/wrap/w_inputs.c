@@ -15,24 +15,25 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-extern Wrapper *main_wrapper;
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
-void wrapper_send (const std::function<void()>& f)
+void inputs_patchOpen (const juce::File& f)
 {
-    main_wrapper->addOutput (f);
+    if (f.existsAsFile()) {
+        t_symbol *name = gensym (f.getFileName().toRawUTF8());
+        t_symbol *directory = gensym (f.getParentDirectory().getFullPathName().toRawUTF8());
+        instance_patchOpen (name, directory);
+    }
 }
 
-void wrapper_poll (void)
+void inputs_switchDsp()
 {
-    main_wrapper->pollInputs();
+    dsp_setState (!dsp_getState());
 }
 
-#else
-
-void wrapper_poll (void)
-{
-
-}
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #endif // PD_BUILDING_APPLICATION
 

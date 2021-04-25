@@ -13,12 +13,12 @@ namespace spaghettis {
 
 std::function<void()> Inputs::openFile (juce::File file)
 {
-    return [f = std::move (file)]() { core::wrapper_patchOpen (f); };
+    return [f = std::move (file)]() { core::inputs_patchOpen (f); };
 }
 
 std::function<void()> Inputs::switchDsp()
 {
-    return []() { core::wrapper_switchDsp(); };
+    return []() { core::inputs_switchDsp(); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

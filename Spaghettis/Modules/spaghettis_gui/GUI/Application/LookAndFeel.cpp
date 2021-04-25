@@ -43,9 +43,9 @@ void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
 {
     if (isSeparator) { w = 75; h = 2; }
     else {
-        juce::Font font = getPopupMenuFont();
-        float f = font.getHeight();
-        float extra = (f * 2.5);
+        const juce::Font font = getPopupMenuFont();
+        const float f = font.getHeight();
+        const float extra = (f * 2.5);
         h = static_cast<int>(f * 1.6);
         w = static_cast<int>(font.getStringWidth (text) + extra);
     }
@@ -67,20 +67,20 @@ void LookAndFeel::drawPopupMenuItemBackground (juce::Graphics& g, const juce::Re
 
 void LookAndFeel::drawPopupMenuItemTick (juce::Graphics& g, juce::Rectangle<int> t)
 {
-    juce::Path path = getTickShape (1.0f);
+    const juce::Path path = getTickShape (1.0f);
     g.fillPath (path, path.getTransformToScaleToFit (t.reduced (5).toFloat(), true));
 }
 
 void LookAndFeel::drawPopupMenuItemSubMenu (juce::Graphics& g, juce::Rectangle<int>& r)
 {
-    int w = static_cast<int> (0.6f * getPopupMenuFont().getAscent());
+    const int w = static_cast<int> (0.6f * getPopupMenuFont().getAscent());
     
-    juce::Rectangle<int> t = r.removeFromRight (w);
+    const juce::Rectangle<int> t = r.removeFromRight (w);
     
-    float x = static_cast<float> (t.getX());
-    float y = static_cast<float> (t.getCentreY());
-    float hArrow = w;
-    float wArrow = w * 0.6f;
+    const float x = static_cast<float> (t.getX());
+    const float y = static_cast<float> (t.getCentreY());
+    const float hArrow = w;
+    const float wArrow = w * 0.6f;
     
     juce::Path path;
     path.startNewSubPath (x, y - (hArrow * 0.5f));
@@ -114,12 +114,12 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     //
     if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area); }
     
-    juce::Colour c1 = findColour (Colours::menubarText);
-    juce::Colour c2 = c1.withMultipliedAlpha (0.5f);
+    const juce::Colour c1 = findColour (Colours::menubarText);
+    const juce::Colour c2 = c1.withMultipliedAlpha (0.5f);
     
     g.setColour (isActive ? c1 : c2);
     
-    int border = juce::jmin (5, area.getWidth() / 20);
+    const int border = juce::jmin (5, area.getWidth() / 20);
     
     juce::Rectangle<int> r = area.reduced (border, 0);
     juce::Rectangle<int> t = r.removeFromLeft (r.getHeight() * 0.75);

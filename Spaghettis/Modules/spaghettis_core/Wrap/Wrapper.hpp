@@ -66,11 +66,21 @@ public:
 // MARK: -
 
 public:
+    void addOutput (const std::function<void()>& f)
+    {
+        queues_.addOutput (f);
+    }
+    
     void addInput (const std::function<void()>& f)
     {
         queues_.addInput (f);
     }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void pollInputs()
     {
         queues_.pollInputs();

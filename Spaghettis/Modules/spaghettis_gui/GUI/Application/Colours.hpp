@@ -48,9 +48,9 @@ static void initialize (juce::LookAndFeel* lf)
     const juce::Colour text     = juce::Colour (0xff93a1a1);
     const juce::Colour yellow   = juce::Colour (0xffb58900);
     const juce::Colour orange   = juce::Colour (0xffcb4b16);
-    const juce::Colour red      = juce::Colour (0xffdc322f);
     const juce::Colour green    = juce::Colour (0xff859900);
     
+    // const juce::Colour red      = juce::Colour (0xffdc322f);
     // const juce::Colour magenta  = juce::Colour (0xffd33682);
     // const juce::Colour violet   = juce::Colour (0xff6c71c4);
     // const juce::Colour blue     = juce::Colour (0xff268bd2);
