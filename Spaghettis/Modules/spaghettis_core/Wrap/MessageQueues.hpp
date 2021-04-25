@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class MessageQueues {
+class MessageQueues : private juce::AsyncUpdater {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -31,6 +31,7 @@ public:
     ~MessageQueues()
     {
         jassert (inputs_.empty());
+        jassert (outputs_.empty());
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -38,42 +39,62 @@ public:
 // MARK: -
 
 public:
-    void addInput (std::function<void()> f)
+    void addInput (const std::function<void()>& f)
     {
-        const juce::ScopedLock lock (lock_); inputs_.push_back (std::move (f));
+        add (inputs_, lockInputs_, f);
     }
 
-    void clear()
+    void addOutput (const std::function<void()>& f)
     {
-        pollInputsProceed (true);
+        add (outputs_, lockOutputs_, f); triggerAsyncUpdate();
     }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    void clear()
+    {
+        poll (inputs_,  lockInputs_,  true);
+        poll (outputs_, lockOutputs_, true);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void pollInputs()
+    {
+        poll (inputs_, lockInputs_, false);
+    }
+
 private:
-    void pollInputsProceed (bool fake)
+    void handleAsyncUpdate() override
+    {
+        poll (outputs_, lockOutputs_, false);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void poll (FunctorsContainer& c, juce::CriticalSection& lock, bool fake)
     {
         FunctorsContainer scoped;
         
         {
-            const juce::ScopedLock lock (lock_); scoped.swap (inputs_);
+            const juce::ScopedLock l (lock); scoped.swap (c);
         }
         
         if (!fake) { for (auto f : scoped) { f(); } }
     }
-
-public:
-    void pollInputs (bool fake = false)
+    
+    void add (FunctorsContainer& c, juce::CriticalSection& lock, std::function<void()> f)
     {
-        bool hasSometing = 0;
-        
-        {
-            const juce::ScopedLock lock (lock_); hasSometing = (inputs_.empty() == false);
-        }
-        
-        if (hasSometing) { pollInputsProceed (fake); }
+        const juce::ScopedLock l (lock); c.push_back (std::move (f));
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -82,8 +103,12 @@ public:
 
 private:
     FunctorsContainer inputs_;
-    juce::CriticalSection lock_;
+    juce::CriticalSection lockInputs_;
 
+private:
+    FunctorsContainer outputs_;
+    juce::CriticalSection lockOutputs_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MessageQueues)
     
