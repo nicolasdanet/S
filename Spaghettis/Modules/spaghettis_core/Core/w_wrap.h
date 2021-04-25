@@ -16,6 +16,7 @@
 
 #include "wrap/w_wrapper.h"
 #include "wrap/w_inputs.h"
+#include "wrap/w_outputs.h"
 #include "wrap/w_unique.h"
 
 // -----------------------------------------------------------------------------------------------------------

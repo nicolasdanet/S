@@ -99,6 +99,7 @@ namespace spaghettis { namespace core {
 
 #include "wrap/w_wrapper.c"
 #include "wrap/w_inputs.c"
+#include "wrap/w_outputs.c"
 #include "wrap/w_unique.c"
 
 /* Undo. */

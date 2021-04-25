@@ -27,6 +27,8 @@ static void dsp_report (void)
     pd_float (symbol_getThing (sym__dspstatus), (t_float)dsp_status);
     //
     }
+    
+    outputs_reportDsp (dsp_status);
 }
 
 // -----------------------------------------------------------------------------------------------------------
