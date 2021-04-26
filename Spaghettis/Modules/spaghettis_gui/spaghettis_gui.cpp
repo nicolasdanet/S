@@ -11,6 +11,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Application/Commands.cpp"
 #include "GUI/Application/LookAndFeel.cpp"
 #include "GUI/Application/SpaghettisInstance.cpp"
 #include "Wrap/Outputs.cpp"

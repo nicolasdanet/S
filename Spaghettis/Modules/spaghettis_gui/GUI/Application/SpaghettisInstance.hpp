@@ -127,7 +127,14 @@ public:
 public:
     void setDspState (bool isRunning)
     {
-        dspIsRunning_ = isRunning; DBG (juce::String (isRunning ? "ON" : "OFF"));
+        dspIsRunning_ = isRunning;
+        
+        getCommandManager()->commandStatusChanged();
+    }
+    
+    bool isDspRunning() const
+    {
+        return dspIsRunning_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
