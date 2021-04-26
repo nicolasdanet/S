@@ -52,7 +52,7 @@ public:
     {
         core::main_threadExit();
         
-        bool good = stopThread (1000);
+        const bool good = stopThread (1000);
         
         jassert (good); (void)good;
         

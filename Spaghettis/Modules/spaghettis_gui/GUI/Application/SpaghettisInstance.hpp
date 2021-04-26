@@ -26,7 +26,7 @@ public:
         core_ (std::make_unique<Wrapper>()),
         currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory))
     {
-        juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
+        const juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
 
         #if ( JUCE_MAC )
         juce::File file = home.getChildFile ("Library/Application Support/Spaghettis/spaghettis.settings");
@@ -97,7 +97,7 @@ public:
     {
         JUCE_ASSERT_MESSAGE_THREAD
         
-        juce::File parent = file.getParentDirectory();
+        const juce::File parent = file.getParentDirectory();
         
         if (parent.isDirectory()) { currentOpenDirectory_ = std::move (parent); }
         else {

@@ -28,7 +28,7 @@ public:
     {
     }
     
-    ~MessageQueues()
+    ~MessageQueues() override
     {
         jassert (inputs_.empty());
         jassert (outputs_.empty());

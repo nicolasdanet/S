@@ -34,18 +34,20 @@ public:
 public:
     void add (const juce::String& m, Logger::Type type)
     {
-        const juce::ScopedLock lock (lock_); messages_.emplace_back (m, type);
+        const juce::ScopedLock l (lock_); messages_.emplace_back (m, type);
     }
     
-    void log (Logger *l)
+    void log (Logger *logger)
     {
         MessagesContainer scoped;
         
         {
-            const juce::ScopedLock lock (lock_); scoped.swap (messages_);
+            const juce::ScopedLock l (lock_); scoped.swap (messages_);
         }
         
-        if (l) { for (const auto& e : scoped) { l->logMessage (std::get<0> (e), std::get<1> (e)); } }
+        if (logger) {
+            for (const auto& e : scoped) { logger->logMessage (std::get<0> (e), std::get<1> (e)); }
+        }
     }
     
 private:
