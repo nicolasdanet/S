@@ -33,10 +33,7 @@ enum CommandIDs {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void getCommandInfo (const juce::CommandID c,
-    juce::ApplicationCommandInfo& r,
-    bool isActive = true,
-    bool isTicked = false)
+static void getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r)
 {
     switch (c) {
     //
@@ -51,9 +48,6 @@ static void getCommandInfo (const juce::CommandID c,
     default : break;
     //
     }
-    
-    r.setActive (isActive);
-    r.setTicked (isTicked);
 }
     
 // -----------------------------------------------------------------------------------------------------------

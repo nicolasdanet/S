@@ -13,7 +13,7 @@ namespace spaghettis {
 
 std::function<void()> Outputs::reportDsp (bool state)
 {
-    return [state]() { DBG (juce::String (state ? "ON" : "OFF")); };
+    return [state]() { Spaghettis()->setDspState (state); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

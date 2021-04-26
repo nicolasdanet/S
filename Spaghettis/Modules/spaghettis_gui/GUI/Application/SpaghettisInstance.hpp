@@ -24,7 +24,8 @@ public:
         commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
         menu_ (std::make_unique<MenuModel>(commandManager_.get())),
         core_ (std::make_unique<Wrapper>()),
-        currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory))
+        currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory)),
+        dspIsRunning_ (false)
     {
         const juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
 
@@ -124,6 +125,16 @@ public:
 // MARK: -
 
 public:
+    void setDspState (bool isRunning)
+    {
+        dspIsRunning_ = isRunning; DBG (juce::String (isRunning ? "ON" : "OFF"));
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void setLogger (Logger* logger)
     {
         core_->setLogger (logger);
@@ -182,7 +193,8 @@ private:
     std::unique_ptr<MenuModel> menu_;
     std::unique_ptr<Wrapper> core_;
     juce::File currentOpenDirectory_;
-
+    bool dspIsRunning_;
+    
 private:
     std::unique_ptr<juce::PropertiesFile> preferences_;
     std::unique_ptr<juce::FileChooser> fileChooser_;
