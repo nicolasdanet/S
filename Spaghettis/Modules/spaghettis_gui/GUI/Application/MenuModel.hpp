@@ -41,6 +41,8 @@ public:
         if (n == 0) {
         //
         menu.addCommandItem (commandManager_, Commands::fileOpen);
+        menu.addSeparator();
+        menu.addCommandItem (commandManager_, Commands::rescan);
         
         #if SPAGHETTIS_MENUBAR
         

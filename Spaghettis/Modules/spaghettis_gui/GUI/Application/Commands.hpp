@@ -26,7 +26,9 @@ struct Commands {
 
 enum CommandIDs : juce::CommandID {
     fileOpen    = SPAGHETTIS_COMMAND (1),
-    dspSwitch   = SPAGHETTIS_COMMAND (2)
+    rescan      = SPAGHETTIS_COMMAND (2),
+    dspSwitch   = SPAGHETTIS_COMMAND (3)
+    
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -34,6 +36,8 @@ enum CommandIDs : juce::CommandID {
 // MARK: -
 
 static void getCommandInfo (const juce::CommandID, juce::ApplicationCommandInfo&);
+static void getAllCommands (juce::Array<juce::CommandID>&);
+static bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

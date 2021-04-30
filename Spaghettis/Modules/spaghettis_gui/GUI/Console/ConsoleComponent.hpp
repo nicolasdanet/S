@@ -139,9 +139,7 @@ public:
 
     void getAllCommands (juce::Array<juce::CommandID>& c) override
     {
-        juce::Array<juce::CommandID> commands { Commands::fileOpen, Commands::dspSwitch };
-        
-        c.addArray (commands);
+        Commands::getAllCommands (c);
     }
 
     void getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r) override
@@ -151,15 +149,7 @@ public:
 
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo& info) override
     {
-        switch (info.commandID) {
-        //
-        case Commands::fileOpen     : spaghettis::Spaghettis()->openPatch();    return true;
-        case Commands::dspSwitch    : spaghettis::Spaghettis()->switchDsp();    return true;
-        default : break;
-        //
-        }
-
-        return false;
+        return Commands::perform (info);
     }
 
 private:
