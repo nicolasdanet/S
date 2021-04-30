@@ -102,7 +102,7 @@ PD_LOCAL MIDIEndpointRef mididevicelist_fetchSource (t_symbol *name)
         //
         }
         
-        return (MIDIEndpointRef)NULL;
+        return 0;
     }
 }
 
@@ -121,7 +121,7 @@ PD_LOCAL MIDIEndpointRef mididevicelist_fetchDestination (t_symbol *name)
         //
         }
         
-        return (MIDIEndpointRef)NULL;
+        return 0;
     }
 }
 

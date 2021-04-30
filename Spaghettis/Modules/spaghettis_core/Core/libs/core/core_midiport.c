@@ -21,8 +21,8 @@
 
 static void midiport_init (t_midiport *midiport)
 {
-    midiport->mp_endpoint    = (MIDIEndpointRef)NULL;
-    midiport->mp_port        = (MIDIPortRef)NULL;
+    midiport->mp_endpoint    = 0;
+    midiport->mp_port        = 0;
     midiport->mp_hasConnect  = 0;
     midiport->mp_buffer      = NULL;
     midiport->mp_bufferSysex = NULL;
