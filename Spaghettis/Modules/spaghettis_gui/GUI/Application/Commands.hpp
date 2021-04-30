@@ -24,7 +24,7 @@ struct Commands {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-enum CommandIDs {
+enum CommandIDs : juce::CommandID {
     fileOpen    = SPAGHETTIS_COMMAND (1),
     dspSwitch   = SPAGHETTIS_COMMAND (2)
 };

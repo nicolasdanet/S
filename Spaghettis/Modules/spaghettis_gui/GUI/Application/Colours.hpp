@@ -24,7 +24,7 @@ struct Colours {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-enum ColourIds {
+enum ColourIds : int {
     consoleTextDefault              = SPAGHETTIS_COLOUR (1),
     consoleTextWarning              = SPAGHETTIS_COLOUR (2),
     consoleTextError                = SPAGHETTIS_COLOUR (3),
