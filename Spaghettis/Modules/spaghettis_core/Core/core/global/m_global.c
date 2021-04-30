@@ -34,15 +34,9 @@ static void global_open (void *dummy, t_symbol *name, t_symbol *directory)
 
 static void global_scan (void *dummy, t_symbol *s, int argc, t_atom *argv)
 {
-    t_error err = searchpath_scan();
+    int logged = (argc && atom_getSymbol (argv) == sym_logged) ? 1 : 0;
     
-    if (argc && atom_getSymbol (argv) == sym_logged) { searchpath_report(); }
-    
-    if (searchpath_hasDuplicates()) { warning_containsDuplicates(); }
-    if (err) { error_searchPathOverflow(); post ("scan: failed"); }  // --
-    else {
-        post ("scan: done");  // --
-    }
+    searchpath_rescan (logged);
 }
 
 static void global_dsp (void *dummy, t_symbol *s, int argc, t_atom *argv)

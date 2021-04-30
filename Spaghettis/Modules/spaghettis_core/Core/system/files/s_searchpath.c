@@ -181,6 +181,10 @@ PD_LOCAL void searchpath_report (void)
     }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL int searchpath_isExternalAvailable (t_symbol *s)
 {
     int available = 0; char t[PD_STRING] = { 0 };
@@ -208,6 +212,10 @@ PD_LOCAL int searchpath_hasDuplicates (void)
     return (pathlist_getSize (searchpath_duplicates) != 0);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void searchpath_extendedMatchedAtIndex (int n)
 {
     PD_ASSERT (searchpath_extended);
@@ -226,10 +234,6 @@ PD_FORCE void searchpath_appendRoot (const char *filepath)
     searchpath_roots = pathlist_newAppend (searchpath_roots, NULL, filepath);
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 PD_FORCE t_pathlist *searchpath_getRoots (void)
 {
     return searchpath_roots;
@@ -238,6 +242,23 @@ PD_FORCE t_pathlist *searchpath_getRoots (void)
 PD_LOCAL t_pathlist *searchpath_getExtended (void)
 {
     return searchpath_extended;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void searchpath_rescan (int logged)
+{
+    t_error err = searchpath_scan();
+    
+    if (logged) { searchpath_report(); }
+    
+    if (searchpath_hasDuplicates()) { warning_containsDuplicates(); }
+    if (err) { error_searchPathOverflow(); post ("scan: failed"); }  // --
+    else {
+        post ("scan: done");  // --
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
