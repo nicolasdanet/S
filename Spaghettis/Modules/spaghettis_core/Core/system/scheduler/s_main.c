@@ -115,7 +115,7 @@ static t_error main_entryVersion (int sendToConsole)
     char t[PD_STRING] = { 0 }; t_error err = utils_version (t, PD_STRING);
     
     if (!err) {
-        if (sendToConsole) { post ("%s", t); }
+        if (sendToConsole) { post_system ("%s", t); }
         else {
             fprintf (stdout, "%s\n", t);
         }

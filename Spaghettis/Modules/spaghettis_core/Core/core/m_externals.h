@@ -219,6 +219,7 @@ PD_LOCAL void       clock_delay                 (t_clock *x, double delay);     
 // MARK: -
 
 PD_LOCAL void   post                            (const char *fmt, ...);
+PD_LOCAL void   post_system                     (const char *fmt, ...);
 PD_LOCAL void   post_warning                    (const char *fmt, ...);
 PD_LOCAL void   post_error                      (const char *fmt, ...);
 

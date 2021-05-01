@@ -16,14 +16,16 @@
 #if defined ( PD_BUILDING_APPLICATION )
 
 #define POST_NORMAL     Logger::Type::normal
+#define POST_SYSTEM     Logger::Type::system
 #define POST_WARNING    Logger::Type::warning
 #define POST_ERROR      Logger::Type::error
 
 #else
 
 #define POST_NORMAL     0
-#define POST_WARNING    1
-#define POST_ERROR      2
+#define POST_SYSTEM     1
+#define POST_WARNING    2
+#define POST_ERROR      3
 
 #endif
 
@@ -93,6 +95,19 @@ PD_LOCAL void post (const char *fmt, ...)
     va_end (ap);
     
     post_console (k, t, POST_NORMAL);
+}
+
+PD_LOCAL void post_system (const char *fmt, ...)
+{
+    int k;
+    char t[PD_STRING] = { 0 };
+    va_list ap;
+    
+    va_start (ap, fmt);
+    k = vsnprintf (t, PD_STRING, fmt, ap);
+    va_end (ap);
+    
+    post_console (k, t, POST_SYSTEM);
 }
 
 PD_LOCAL void post_warning (const char *fmt, ...)

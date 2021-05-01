@@ -95,6 +95,7 @@ private:
     juce::Colour colourWithType (Type type) const
     {
         if (type == Type::normal)       { return Spaghettis()->getColour (Colours::consoleTextDefault); }
+        if (type == Type::system)       { return Spaghettis()->getColour (Colours::consoleTextSystem); }
         else if (type == Type::warning) { return Spaghettis()->getColour (Colours::consoleTextWarning); }
         else {
             return Spaghettis()->getColour (Colours::consoleTextError);

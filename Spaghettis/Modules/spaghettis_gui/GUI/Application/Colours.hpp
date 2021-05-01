@@ -26,14 +26,15 @@ struct Colours {
 
 enum ColourIds : int {
     consoleTextDefault              = SPAGHETTIS_COLOUR (1),
-    consoleTextWarning              = SPAGHETTIS_COLOUR (2),
-    consoleTextError                = SPAGHETTIS_COLOUR (3),
-    consoleBackground               = SPAGHETTIS_COLOUR (4),
-    consoleHighlight                = SPAGHETTIS_COLOUR (5),
-    menubarBackground               = SPAGHETTIS_COLOUR (6),
-    menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (7),
-    menubarText                     = SPAGHETTIS_COLOUR (8),
-    menubarSeparator                = SPAGHETTIS_COLOUR (9)
+    consoleTextSystem               = SPAGHETTIS_COLOUR (2),
+    consoleTextWarning              = SPAGHETTIS_COLOUR (3),
+    consoleTextError                = SPAGHETTIS_COLOUR (4),
+    consoleBackground               = SPAGHETTIS_COLOUR (5),
+    consoleHighlight                = SPAGHETTIS_COLOUR (6),
+    menubarBackground               = SPAGHETTIS_COLOUR (7),
+    menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (8),
+    menubarText                     = SPAGHETTIS_COLOUR (9),
+    menubarSeparator                = SPAGHETTIS_COLOUR (10)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -45,11 +46,13 @@ static void initialize (juce::LookAndFeel* lf)
     /* < https://ethanschoonover.com/solarized/ > */
     
     const juce::Colour console  = juce::Colour (0xff1f2029);
-    const juce::Colour text     = juce::Colour (0xff93a1a1);
+    const juce::Colour base01   = juce::Colour (0xff586e75);
+    const juce::Colour base1    = juce::Colour (0xff93a1a1);
     const juce::Colour yellow   = juce::Colour (0xffb58900);
     const juce::Colour orange   = juce::Colour (0xffcb4b16);
     const juce::Colour green    = juce::Colour (0xff859900);
     
+    // const juce::Colour base0    = juce::Colour (0xff839496);
     // const juce::Colour red      = juce::Colour (0xffdc322f);
     // const juce::Colour magenta  = juce::Colour (0xffd33682);
     // const juce::Colour violet   = juce::Colour (0xff6c71c4);
@@ -57,6 +60,7 @@ static void initialize (juce::LookAndFeel* lf)
     // const juce::Colour cyan     = juce::Colour (0xff2aa198);
 
     jassert (lf->isColourSpecified (consoleTextDefault)             == false);
+    jassert (lf->isColourSpecified (consoleTextSystem)              == false);
     jassert (lf->isColourSpecified (consoleTextWarning)             == false);
     jassert (lf->isColourSpecified (consoleTextError)               == false);
     jassert (lf->isColourSpecified (consoleBackground)              == false);
@@ -66,7 +70,8 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarText)                    == false);
     jassert (lf->isColourSpecified (menubarSeparator)               == false);
     
-    lf->setColour (consoleTextDefault,                          text);
+    lf->setColour (consoleTextDefault,                          base01);
+    lf->setColour (consoleTextSystem,                           base1);
     lf->setColour (consoleTextWarning,                          yellow);
     lf->setColour (consoleTextError,                            orange);
     lf->setColour (consoleBackground,                           console);
