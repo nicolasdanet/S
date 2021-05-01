@@ -54,13 +54,22 @@ PD_LOCAL void post_syslog (const char *s)
 
 extern Wrapper *main_wrapper;
 
-static void post_console (int k, const char *s, Logger::Type type)
+static void post_toUpperCase (int k, char *s, Logger::Type type)
+{
+    if (type != Logger::Type::normal) {
+    if (k) {
+    if (char_isAlphabeticLowercase (*s)) { *s = toupper (*s); }
+    }
+    }
+}
+
+static void post_console (int k, char *s, Logger::Type type)
 {
     jassert (main_wrapper != nullptr);
     
     if (k < 0 || k >= PD_STRING) { warning_tooManyCharacters (sym_console); }
     else {
-        main_wrapper->post (juce::String (s), type);
+        post_toUpperCase (k, s, type); main_wrapper->post (juce::String (s), type);
     }
 }
 

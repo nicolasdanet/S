@@ -198,7 +198,7 @@ static void *env_tilde_new (t_float f1, t_float f2)
     if ((int)f1 && x->x_window != (int)f1) { warning_invalid (sym_env__tilde__, sym_window); k = 1; }
     if ((int)f2 && x->x_period != (int)f2) { warning_invalid (sym_env__tilde__, sym_period); k = 1; }
     if (k) { 
-        post ("%s: window %d period %d", sym_env__tilde__->s_name, x->x_window, x->x_period);   // --
+        post_system ("%s: window %d period %d", sym_env__tilde__->s_name, x->x_window, x->x_period);    // --
     }
     
     /* Hanning window. */

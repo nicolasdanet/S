@@ -235,7 +235,7 @@ static void netreceive_close (t_netreceive *x)
     
     x->nr_fd = -1;
     
-    if (report) { post ("netreceive: closed"); }            // --
+    if (report) { post_system ("netreceive: closed"); }            // --
 }
 
 static void netreceive_listen (t_netreceive *x, t_float f)
@@ -255,7 +255,7 @@ static void netreceive_listen (t_netreceive *x, t_float f)
     
     struct sockaddr_in server;
 
-    post ("netreceive: listening on port %d", portNumber);  // --
+    post_system ("netreceive: listening on port %d", portNumber);  // --
     
     netreceive_socketOptions (x, fd);
     

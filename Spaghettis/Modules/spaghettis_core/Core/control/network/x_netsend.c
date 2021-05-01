@@ -64,7 +64,7 @@ static void netsend_socketOptions (t_netsend *x, int fd)
 
 static void netsend_socketClose (t_netsend *x)
 {
-    if (x->ns_fd >= 0) { close (x->ns_fd); x->ns_fd = -1; post ("netsend: closed"); }     // --
+    if (x->ns_fd >= 0) { close (x->ns_fd); x->ns_fd = -1; post_system ("netsend: closed"); }    // --
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -182,7 +182,7 @@ static void netsend_polling (t_netsend *x)
     timeOut.tv_sec  = 0;
     timeOut.tv_usec = 0;
     
-    post ("netsend: ...");  // --
+    post_system ("netsend: ...");  // --
     
     if (!err) {
     //
@@ -212,7 +212,7 @@ static void netsend_polling (t_netsend *x)
     x->ns_fd = fd;
     x->ns_pollingDescriptor = -1;
     netsend_pollingStop (x);
-    post ("netsend: connected");    // --
+    post_system ("netsend: connected");    // --
     outlet_float (x->ns_outlet, 1);
     //
     }
@@ -247,7 +247,7 @@ static void netsend_connect (t_netsend *x, t_symbol *hostName, t_float f)
     
     netsend_socketOptions (x, fd);
 
-    post ("netsend: connecting to port %d", portNumber);    // --
+    post_system ("netsend: connecting to port %d", portNumber);    // --
 
     if (h == NULL) { error_invalid (sym_netsend, hostName); }
     else {
