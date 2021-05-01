@@ -19,6 +19,7 @@ struct Inputs {
 // MARK: -
 
 static std::function<void()> openFile (juce::File file);
+static std::function<void()> rescan();
 static std::function<void()> switchDsp();
 
 // -----------------------------------------------------------------------------------------------------------

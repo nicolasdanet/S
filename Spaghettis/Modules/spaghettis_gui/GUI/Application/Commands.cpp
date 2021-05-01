@@ -45,7 +45,7 @@ bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& in
     switch (info.commandID) {
     //
     case Commands::fileOpen     : spaghettis::Spaghettis()->openPatch();    return true;
-    case Commands::rescan       : DBG ("?");                                return true;
+    case Commands::rescan       : spaghettis::Spaghettis()->rescan();       return true;
     case Commands::dspSwitch    : spaghettis::Spaghettis()->switchDsp();    return true;
     default : break;
     //

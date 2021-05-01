@@ -94,6 +94,11 @@ public:
         handle (Inputs::switchDsp());
     }
     
+    void rescan()
+    {
+        handle (Inputs::rescan());
+    }
+    
     void openPatch (const juce::File& file)
     {
         JUCE_ASSERT_MESSAGE_THREAD
