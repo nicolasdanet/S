@@ -136,7 +136,7 @@ PD_LOCAL void searchpath_report (void)
     //
     t_pathlist *l = searchpath_extended;
 
-    post ("scan: dump %s", t);  // --
+    post_system ("rescan: dump %s", t);    // --
     
     while (l) {
         const char *path = pathlist_getPath (l);
@@ -255,9 +255,9 @@ PD_LOCAL void searchpath_rescan (int logged)
     if (logged) { searchpath_report(); }
     
     if (searchpath_hasDuplicates()) { warning_containsDuplicates(); }
-    if (err) { error_searchPathOverflow(); post ("rescan: failed"); }   // --
+    if (err) { error_searchPathOverflow(); post_system ("rescan: failed"); }   // --
     else {
-        post ("rescan: done");  // --
+        post_system ("rescan: done");  // --
     }
 }
 

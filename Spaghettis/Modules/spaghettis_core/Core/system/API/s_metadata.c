@@ -50,7 +50,7 @@ PD_LOCAL void metadata_report (t_error err)
     
     int i;
     
-    void (*f)(const char *fmt, ...) = err ? post_error : post;
+    void (*f)(const char *fmt, ...) = err ? post_error : post_system;
 
     for (i = 0; i < DEVICES_MAXIMUM_CHANNELS; i++) {
         

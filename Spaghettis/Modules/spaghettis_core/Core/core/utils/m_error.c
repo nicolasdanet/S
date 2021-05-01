@@ -86,7 +86,7 @@ PD_LOCAL void error_stubNotFound (void)
 
 PD_LOCAL void error_searchPathOverflow (void)
 {
-    post_error (PD_TRANSLATE ("scan: search path overflow"));
+    post_error (PD_TRANSLATE ("rescan: search path overflow"));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -214,7 +214,7 @@ PD_LOCAL void error_invalidArguments (t_symbol *s, int argc, t_atom *argv)
 
 PD_LOCAL void warning_containsDuplicates (void)
 {
-    post_warning (PD_TRANSLATE ("scan: contains duplicates"));
+    post_warning (PD_TRANSLATE ("rescan: contains duplicates"));
 }
 
 // -----------------------------------------------------------------------------------------------------------

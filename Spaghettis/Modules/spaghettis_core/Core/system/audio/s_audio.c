@@ -67,7 +67,7 @@ static void audio_report (t_error err, t_devices *p)
     
     #endif
     
-    void (*f)(const char *fmt, ...) = err ? post_error : post;
+    void (*f)(const char *fmt, ...) = err ? post_error : post_system;
     
     (f) (PD_TRANSLATE ("dsp: %s / %d channels"), i->s_name, m);                 // --
     (f) (PD_TRANSLATE ("dsp: %s / %d channels"), o->s_name, n);                 // --
