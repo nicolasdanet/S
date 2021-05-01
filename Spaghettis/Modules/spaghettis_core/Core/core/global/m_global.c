@@ -32,7 +32,7 @@ static void global_open (void *dummy, t_symbol *name, t_symbol *directory)
     // instance_patchOpen (name, directory);
 }
 
-static void global_scan (void *dummy, t_symbol *s, int argc, t_atom *argv)
+static void global_rescan (void *dummy, t_symbol *s, int argc, t_atom *argv)
 {
     int logged = (argc && atom_getSymbol (argv) == sym_logged) ? 1 : 0;
     
@@ -83,7 +83,7 @@ PD_LOCAL void global_setup (void)
             A_NULL);
 
     class_addMethod (c, (t_method)global_open,      sym_open,       A_SYMBOL, A_SYMBOL, A_NULL);
-    class_addMethod (c, (t_method)global_scan,      sym_scan,       A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)global_rescan,    sym_rescan,     A_GIMME, A_NULL);
     class_addMethod (c, (t_method)global_dsp,       sym_dsp,        A_GIMME, A_NULL);
     class_addMethod (c, (t_method)global_metadata,  sym_metadata,   A_GIMME, A_NULL);
     class_addMethod (c, (t_method)global_quit,      sym_quit,       A_NULL);
