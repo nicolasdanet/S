@@ -95,9 +95,7 @@ static void post_console (int k, const char *s, int type)
 
 PD_LOCAL void post (const char *fmt, ...)
 {
-    int k;
-    char t[PD_STRING] = { 0 };
-    va_list ap;
+    int k; char t[PD_STRING] = { 0 }; va_list ap;
     
     va_start (ap, fmt);
     k = vsnprintf (t, PD_STRING, fmt, ap);
@@ -108,9 +106,7 @@ PD_LOCAL void post (const char *fmt, ...)
 
 PD_LOCAL void post_system (const char *fmt, ...)
 {
-    int k;
-    char t[PD_STRING] = { 0 };
-    va_list ap;
+    int k; char t[PD_STRING] = { 0 }; va_list ap;
     
     va_start (ap, fmt);
     k = vsnprintf (t, PD_STRING, fmt, ap);
@@ -121,9 +117,7 @@ PD_LOCAL void post_system (const char *fmt, ...)
 
 PD_LOCAL void post_warning (const char *fmt, ...)
 {
-    int k;
-    char t[PD_STRING] = { 0 };
-    va_list ap;
+    int k; char t[PD_STRING] = { 0 }; va_list ap;
     
     va_start (ap, fmt);
     k = vsnprintf (t, PD_STRING, fmt, ap);
@@ -134,9 +128,7 @@ PD_LOCAL void post_warning (const char *fmt, ...)
 
 PD_LOCAL void post_error (const char *fmt, ...)
 {
-    int k;
-    char t[PD_STRING] = { 0 };
-    va_list ap;
+    int k; char t[PD_STRING] = { 0 }; va_list ap;
     
     va_start (ap, fmt);
     k = vsnprintf (t, PD_STRING, fmt, ap);
