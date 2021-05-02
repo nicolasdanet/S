@@ -22,7 +22,7 @@ public:
     SpaghettisInstance() :
         lookAndFeel_ (std::make_unique<LookAndFeel>()),
         commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
-        menu_ (std::make_unique<MenuModel>(commandManager_.get())),
+        menu_ (std::make_unique<MenuModel> (commandManager_.get())),
         core_ (std::make_unique<Wrapper>()),
         currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory)),
         dspIsRunning_ (false)
