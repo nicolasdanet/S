@@ -27,7 +27,7 @@ void inputs_patchOpen (const juce::File& f)
     }
 }
 
-void inputs_switchDsp()
+void inputs_switchDsp (void)
 {
     dsp_setState (!dsp_getState());
 }

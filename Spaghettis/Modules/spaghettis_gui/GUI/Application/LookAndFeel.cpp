@@ -46,8 +46,8 @@ void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
         const juce::Font font = getPopupMenuFont();
         const float f = font.getHeight();
         const float extra = (f * 2.5);
-        h = static_cast<int>(f * 1.6);
-        w = static_cast<int>(font.getStringWidth (text) + extra);
+        h = static_cast<int> (f * 1.6);
+        w = static_cast<int> (font.getStringWidth (text) + extra);
     }
 }
 
