@@ -23,9 +23,9 @@ public:
     {
         setContentOwned (new ConsoleComponent(), true);
         
-        const juce::PropertiesFile* preferences = Spaghettis()->getPreferences();
+        juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
         
-        const juce::String s = preferences->getValue ("ConsoleWindowPosition");
+        const juce::String s = preferences.getValue ("ConsoleWindowPosition");
         
         if (s.isNotEmpty()) { restoreWindowStateFromString (s); }
         
@@ -34,9 +34,9 @@ public:
 
     ~Console() override
     {
-        juce::PropertiesFile* preferences = Spaghettis()->getPreferences();
+        juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
         
-        preferences->setValue ("ConsoleWindowPosition", juce::var (getWindowStateAsString()));
+        preferences.setValue ("ConsoleWindowPosition", juce::var (getWindowStateAsString()));
     }
     
 // -----------------------------------------------------------------------------------------------------------

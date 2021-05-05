@@ -172,9 +172,9 @@ public:
         return menu_.get();
     }
     
-    juce::PropertiesFile* getPreferences() const
+    juce::PropertiesFile& getPreferences() const
     {
-        return preferences_.get();
+        return *preferences_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
