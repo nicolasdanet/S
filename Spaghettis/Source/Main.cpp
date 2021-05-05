@@ -49,7 +49,7 @@ public:
         
         console_ = std::make_unique<spaghettis::Console> (getApplicationName());
         
-        spaghettis::Spaghettis()->getCommandManager()->registerAllCommandsForTarget (this);
+        spaghettis::Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
         
         spaghettis::Spaghettis()->start (getCommandLineParameterArray());
         

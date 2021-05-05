@@ -48,19 +48,19 @@ public:
         addAndMakeVisible (text_);
         
         Spaghettis()->setLogger (this);
-        Spaghettis()->getCommandManager()->registerAllCommandsForTarget (this);
-        Spaghettis()->getCommandManager()->setFirstCommandTarget (this);
+        Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
+        Spaghettis()->getCommandManager().setFirstCommandTarget (this);
         
-        addKeyListener (Spaghettis()->getCommandManager()->getKeyMappings());
+        addKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
         
         setSize (500, 300);
     }
     
     ~ConsoleComponent() override
     {
-        removeKeyListener (Spaghettis()->getCommandManager()->getKeyMappings());
+        removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
         
-        Spaghettis()->getCommandManager()->setFirstCommandTarget (nullptr);
+        Spaghettis()->getCommandManager().setFirstCommandTarget (nullptr);
         Spaghettis()->setLogger (nullptr);
     }
 

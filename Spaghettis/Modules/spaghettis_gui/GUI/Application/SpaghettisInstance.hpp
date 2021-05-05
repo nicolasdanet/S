@@ -134,7 +134,7 @@ public:
     {
         dspIsRunning_ = isRunning;
         
-        getCommandManager()->commandStatusChanged();
+        getCommandManager().commandStatusChanged();
     }
     
     bool isDspRunning() const
@@ -162,16 +162,17 @@ public:
         return lookAndFeel_.get();
     }
     
-    juce::ApplicationCommandManager* getCommandManager() const
-    {
-        return commandManager_.get();
-    }
-
     juce::MenuBarModel* getMenuBarModel() const
     {
         return menu_.get();
     }
-    
+
+public:
+    juce::ApplicationCommandManager& getCommandManager() const
+    {
+        return *commandManager_;
+    }
+
     juce::PropertiesFile& getPreferences() const
     {
         return *preferences_;
