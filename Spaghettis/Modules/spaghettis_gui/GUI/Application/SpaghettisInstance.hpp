@@ -168,12 +168,12 @@ public:
     }
 
 public:
-    juce::ApplicationCommandManager& getCommandManager() const
+    juce::ApplicationCommandManager& getCommandManager()
     {
         return *commandManager_;
     }
 
-    juce::PropertiesFile& getPreferences() const
+    juce::PropertiesFile& getPreferences()
     {
         return *preferences_;
     }
