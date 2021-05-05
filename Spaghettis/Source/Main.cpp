@@ -47,7 +47,7 @@ public:
     {
         juce::LookAndFeel::setDefaultLookAndFeel (spaghettis::Spaghettis()->getLookAndFeel());
         
-        console_.reset (new spaghettis::Console (getApplicationName()));
+        console_ = std::make_unique<spaghettis::Console> (getApplicationName());
         
         spaghettis::Spaghettis()->getCommandManager()->registerAllCommandsForTarget (this);
         

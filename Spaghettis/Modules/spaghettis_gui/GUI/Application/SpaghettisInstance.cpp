@@ -14,9 +14,9 @@ namespace spaghettis {
 
 void SpaghettisInstance::openPatch()
 {
-    fileChooser_.reset (new juce::FileChooser (NEEDS_TRANS ("Choose a Patch to open..."),
+    fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a Patch to open..."),
                                 currentOpenDirectory_,
-                                spaghettis::core::getFileExtensions()));
+                                spaghettis::core::getFileExtensions());
     
     int flags = juce::FileBrowserComponent::canSelectMultipleItems
                         | juce::FileBrowserComponent::openMode

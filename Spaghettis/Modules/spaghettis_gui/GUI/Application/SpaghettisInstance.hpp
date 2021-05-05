@@ -37,7 +37,7 @@ public:
         juce::File file = home.getChildFile (".config/spaghettis/spaghettis.settings");
         #endif
         
-        preferences_.reset (new juce::PropertiesFile (file, juce::PropertiesFile::Options()));
+        preferences_ = std::make_unique<juce::PropertiesFile> (file, juce::PropertiesFile::Options());
         
         #if ! ( SPAGHETTIS_MENUBAR )
         
