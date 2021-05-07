@@ -32,9 +32,10 @@ enum ColourIds : int {
     consoleBackground               = SPAGHETTIS_COLOUR (5),
     consoleHighlight                = SPAGHETTIS_COLOUR (6),
     menubarBackground               = SPAGHETTIS_COLOUR (7),
-    menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (8),
-    menubarText                     = SPAGHETTIS_COLOUR (9),
-    menubarSeparator                = SPAGHETTIS_COLOUR (10)
+    menubarBackgroundPopup          = SPAGHETTIS_COLOUR (8),
+    menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (9),
+    menubarText                     = SPAGHETTIS_COLOUR (10),
+    menubarSeparator                = SPAGHETTIS_COLOUR (11)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -71,6 +72,7 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (consoleBackground)              == false);
     jassert (lf->isColourSpecified (consoleHighlight)               == false);
     jassert (lf->isColourSpecified (menubarBackground)              == false);
+    jassert (lf->isColourSpecified (menubarBackgroundPopup)         == false);
     jassert (lf->isColourSpecified (menubarBackgroundHighlighted)   == false);
     jassert (lf->isColourSpecified (menubarText)                    == false);
     jassert (lf->isColourSpecified (menubarSeparator)               == false);
@@ -82,6 +84,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (consoleBackground,                           console);
     lf->setColour (consoleHighlight,                            juce::Colours::transparentBlack);
     lf->setColour (menubarBackground,                           console.darker (0.50));
+    lf->setColour (menubarBackgroundPopup,                      console.darker (0.50));
     lf->setColour (menubarBackgroundHighlighted,                console.brighter (0.05));
     lf->setColour (menubarText,                                 juce::Colours::white);
     lf->setColour (menubarSeparator,                            juce::Colours::black);

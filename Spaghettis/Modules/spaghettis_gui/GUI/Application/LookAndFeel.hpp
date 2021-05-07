@@ -78,7 +78,7 @@ public:
     
     void drawPopupMenuBackground (juce::Graphics& g, int, int) override
     {
-        g.fillAll (findColour (Colours::menubarBackground));
+        g.fillAll (findColour (Colours::menubarBackgroundPopup));
     }
 
     int getPopupMenuBorderSize() override
