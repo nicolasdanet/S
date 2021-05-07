@@ -85,7 +85,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (consoleHighlight,                            juce::Colours::transparentBlack);
     lf->setColour (menubarBackground,                           console.darker (0.50));
     lf->setColour (menubarBackgroundPopup,                      console.darker (1.00));
-    lf->setColour (menubarBackgroundHighlighted,                yellow);
+    lf->setColour (menubarBackgroundHighlighted,                orange);
     lf->setColour (menubarText,                                 juce::Colours::white);
     lf->setColour (menubarSeparator,                            juce::Colours::black);
     
