@@ -46,19 +46,24 @@ static void initialize (juce::LookAndFeel* lf)
     /* < https://ethanschoonover.com/solarized/ > */
     
     const juce::Colour console  = juce::Colour (0xff1f2029);
+    
+    const juce::Colour base03   = juce::Colour (0xff002b36);
+    const juce::Colour base02   = juce::Colour (0xff073642);
     const juce::Colour base01   = juce::Colour (0xff586e75);
+    const juce::Colour base00   = juce::Colour (0xff657b83);
+    const juce::Colour base0    = juce::Colour (0xff839496);
     const juce::Colour base1    = juce::Colour (0xff93a1a1);
+    const juce::Colour base2    = juce::Colour (0xffeee8d5);
+    const juce::Colour base3    = juce::Colour (0xfffdf6e3);
     const juce::Colour yellow   = juce::Colour (0xffb58900);
     const juce::Colour orange   = juce::Colour (0xffcb4b16);
+    const juce::Colour red      = juce::Colour (0xffdc322f);
+    const juce::Colour magenta  = juce::Colour (0xffd33682);
+    const juce::Colour violet   = juce::Colour (0xff6c71c4);
+    const juce::Colour blue     = juce::Colour (0xff268bd2);
+    const juce::Colour cyan     = juce::Colour (0xff2aa198);
     const juce::Colour green    = juce::Colour (0xff859900);
     
-    // const juce::Colour base0    = juce::Colour (0xff839496);
-    // const juce::Colour red      = juce::Colour (0xffdc322f);
-    // const juce::Colour magenta  = juce::Colour (0xffd33682);
-    // const juce::Colour violet   = juce::Colour (0xff6c71c4);
-    // const juce::Colour blue     = juce::Colour (0xff268bd2);
-    // const juce::Colour cyan     = juce::Colour (0xff2aa198);
-
     jassert (lf->isColourSpecified (consoleTextDefault)             == false);
     jassert (lf->isColourSpecified (consoleTextSystem)              == false);
     jassert (lf->isColourSpecified (consoleTextWarning)             == false);

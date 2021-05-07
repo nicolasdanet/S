@@ -28,7 +28,7 @@ public:
         
         #if SPAGHETTIS_MENUBAR
         
-        menuBar_ = make_unique<juce::MenuBarComponent> (Spaghettis()->getMenuBarModel());
+        menuBar_ = std::make_unique<juce::MenuBarComponent> (Spaghettis()->getMenuBarModel());
         
         addAndMakeVisible (menuBar_.get());
         
