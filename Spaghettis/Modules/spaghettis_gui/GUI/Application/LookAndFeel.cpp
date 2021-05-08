@@ -30,9 +30,12 @@ void LookAndFeel::fontInitialize()
 {
     juce::String font (fontInitializeBest());
     
-    if (font.isNotEmpty()) { setDefaultSansSerifTypefaceName (font); }
+    if (font.isEmpty()) { font_ = juce::Font (18.0); }
+    else {
+        setDefaultSansSerifTypefaceName (font); font_ = juce::Font (font, 18.0, juce::Font::plain);
+    }
     
-    font_ = juce::Font (18.0); DBG (font_.getTypeface()->getName());
+    DBG (font_.getTypeface()->getName());
 }
 
 // -----------------------------------------------------------------------------------------------------------
