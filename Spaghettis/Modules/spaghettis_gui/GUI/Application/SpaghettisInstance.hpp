@@ -29,11 +29,11 @@ public:
     {
         const juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
 
-        #if ( JUCE_MAC )
+        #if JUCE_MAC
         juce::File file = home.getChildFile ("Library/Application Support/Spaghettis/spaghettis.settings");
         #endif
         
-        #if ( JUCE_LINUX )
+        #if JUCE_LINUX
         juce::File file = home.getChildFile (".config/spaghettis/spaghettis.settings");
         #endif
         

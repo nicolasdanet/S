@@ -14,7 +14,7 @@ namespace spaghettis {
 
 juce::String LookAndFeel::fontInitializeBest()
 {
-    #if ( JUCE_LINUX )
+    #if JUCE_LINUX
     
     juce::StringArray check ("Ubuntu");
     juce::StringArray fonts (juce::Font::findAllTypefaceNames());
@@ -35,7 +35,7 @@ void LookAndFeel::fontInitialize()
         setDefaultSansSerifTypefaceName (font); font_ = juce::Font (font, 18.0, juce::Font::plain);
     }
     
-    DBG (font_.getTypeface()->getName());
+    SPAGHETTIS_DEBUG (font_.getTypeface()->getName());
 }
 
 // -----------------------------------------------------------------------------------------------------------
