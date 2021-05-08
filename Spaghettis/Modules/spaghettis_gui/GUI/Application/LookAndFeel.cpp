@@ -12,6 +12,33 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::String LookAndFeel::fontInitializeBest()
+{
+    #if ( JUCE_LINUX )
+    
+    juce::StringArray check ("Ubuntu");
+    juce::StringArray fonts (juce::Font::findAllTypefaceNames());
+    
+    for (const auto& f : check) { if (fonts.contains (f)) { return f; } }
+    
+    #endif
+    
+    return juce::String();
+}
+
+void LookAndFeel::fontInitialize()
+{
+    juce::String font (fontInitializeBest());
+    
+    if (font.isNotEmpty()) { setDefaultSansSerifTypefaceName (font); }
+    
+    font_ = juce::Font (18.0); DBG (font_.getTypeface()->getName());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
     int width,
     int height,

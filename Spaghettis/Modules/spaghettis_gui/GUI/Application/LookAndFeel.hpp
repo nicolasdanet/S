@@ -21,17 +21,9 @@ class LookAndFeel : public juce::LookAndFeel_V4 {
 public:
     LookAndFeel()
     {
-        #if defined ( JUCE_MAC )
-        
-            font_ = juce::Font (18.0);
-        
-        #else
-            
-            font_ = juce::Font (18.0, juce::Font::bold);
-            
-        #endif
-        
         Colours::initialize (this);
+        
+        fontInitialize();
     }
     
     ~LookAndFeel() = default;
@@ -114,6 +106,10 @@ private:
     void drawPopupMenuItemTick (juce::Graphics&, juce::Rectangle<int>);
     void drawPopupMenuItemSubMenu (juce::Graphics&, juce::Rectangle<int>&);
     void drawPopupMenuItemShortcut (juce::Graphics&, const juce::Rectangle<int>&, const juce::String&);
+
+private:
+    juce::String fontInitializeBest();
+    void fontInitialize();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
