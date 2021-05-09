@@ -19,7 +19,8 @@ class ApplicationWindow : public juce::DocumentWindow {
 // MARK: -
 
 public:
-    ApplicationWindow (juce::String name) : juce::DocumentWindow (name,
+    ApplicationWindow (const juce::String& name) :
+        juce::DocumentWindow (name,
             Spaghettis()->getColour (juce::ResizableWindow::backgroundColourId),
             DocumentWindow::allButtons,
             false)
@@ -28,11 +29,19 @@ public:
         setResizable (true, true);
     }
 
+    ~ApplicationWindow()
+    {
+    
+    }
+    
 public:
     void makeVisible()
     {
         setVisible (true); addToDesktop();
     }
+
+private:
+    juce::String keyName;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ApplicationWindow)
