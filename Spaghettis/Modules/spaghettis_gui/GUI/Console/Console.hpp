@@ -19,25 +19,14 @@ class Console : public ApplicationWindow {
 // MARK: -
 
 public:
-    Console (const juce::String& name) : ApplicationWindow (name)
+    Console (const juce::String& name) : ApplicationWindow (name, "ConsoleWindowPosition")
     {
         setContentOwned (new ConsoleComponent(), true);
-        
-        juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
-        
-        const juce::String s = preferences.getValue ("ConsoleWindowPosition");
-        
-        if (s.isNotEmpty()) { restoreWindowStateFromString (s); }
-        
+
         makeVisible();
     }
 
-    ~Console() override
-    {
-        juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
-        
-        preferences.setValue ("ConsoleWindowPosition", juce::var (getWindowStateAsString()));
-    }
+    ~Console() = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
