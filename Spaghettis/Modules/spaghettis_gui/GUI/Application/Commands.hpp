@@ -26,9 +26,9 @@ struct Commands {
 
 enum CommandIDs : juce::CommandID {
     fileOpen    = SPAGHETTIS_COMMAND (1),
-    rescan      = SPAGHETTIS_COMMAND (2),
-    dspSwitch   = SPAGHETTIS_COMMAND (3)
-    
+    paths       = SPAGHETTIS_COMMAND (2),
+    rescan      = SPAGHETTIS_COMMAND (3),
+    dspSwitch   = SPAGHETTIS_COMMAND (4)
 };
 
 // -----------------------------------------------------------------------------------------------------------

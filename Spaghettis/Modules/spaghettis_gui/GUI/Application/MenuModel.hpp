@@ -42,6 +42,8 @@ public:
         //
         menu.addCommandItem (commandManager_, Commands::fileOpen);
         menu.addSeparator();
+        menu.addCommandItem (commandManager_, Commands::paths);
+        menu.addSeparator();
         menu.addCommandItem (commandManager_, Commands::rescan);
         
         #if SPAGHETTIS_MENUBAR
