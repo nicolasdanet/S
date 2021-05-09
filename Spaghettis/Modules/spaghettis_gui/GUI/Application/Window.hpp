@@ -26,7 +26,6 @@ public:
     {
         setUsingNativeTitleBar (true);
         setResizable (true, true);
-        
     }
 
 public:
