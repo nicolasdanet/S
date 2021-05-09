@@ -12,14 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Console : public Window {
+class Console : public ApplicationWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Console (juce::String name) : Window (name)
+    Console (juce::String name) : ApplicationWindow (name)
     {
         setContentOwned (new ConsoleComponent(), true);
         

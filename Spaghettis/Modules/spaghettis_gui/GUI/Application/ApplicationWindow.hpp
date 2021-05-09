@@ -12,17 +12,17 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Window : public juce::DocumentWindow {
+class ApplicationWindow : public juce::DocumentWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Window (juce::String name) : juce::DocumentWindow (name,
-                                    Spaghettis()->getColour (juce::ResizableWindow::backgroundColourId),
-                                    DocumentWindow::allButtons,
-                                    false)
+    ApplicationWindow (juce::String name) : juce::DocumentWindow (name,
+            Spaghettis()->getColour (juce::ResizableWindow::backgroundColourId),
+            DocumentWindow::allButtons,
+            false)
     {
         setUsingNativeTitleBar (true);
         setResizable (true, true);
@@ -35,7 +35,7 @@ public:
     }
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Window)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ApplicationWindow)
 };
 
 // -----------------------------------------------------------------------------------------------------------

@@ -63,7 +63,7 @@
 #include "GUI/Application/MenuModel.hpp"
 #include "GUI/Application/SpaghettisInstance.hpp"
 #include "GUI/Application/Spaghettis.hpp"
-#include "GUI/Application/Window.hpp"
+#include "GUI/Application/ApplicationWindow.hpp"
 
 #include "GUI/Console/ConsoleComponent.hpp"
 #include "GUI/Console/Console.hpp"
