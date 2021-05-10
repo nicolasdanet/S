@@ -60,13 +60,13 @@ public:
     {
         spaghettis::Spaghettis()->shutdown();
         
+        console_ = nullptr;
+        
         #if ! ( SPAGHETTIS_MENUBAR )
         
         juce::MenuBarModel::setMacMainMenu (nullptr);
         
         #endif
-        
-        console_ = nullptr;
         
         juce::LookAndFeel::setDefaultLookAndFeel (nullptr);
     }
