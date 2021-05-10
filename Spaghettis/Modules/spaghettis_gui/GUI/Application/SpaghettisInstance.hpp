@@ -10,6 +10,11 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+class Console;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 class SpaghettisInstance {
@@ -64,16 +69,9 @@ public:
 // MARK: -
 
 public:
-    void start (const juce::StringArray& commandLine)
-    {
-        core_->start (commandLine);
-    }
+    void start (const juce::StringArray& commandLine);
+    void shutdown();
     
-    void shutdown()
-    {
-        core_->shutdown();
-    }
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -209,6 +207,7 @@ private:
     bool dspIsRunning_;
     
 private:
+    std::unique_ptr<Console> console_;
     std::unique_ptr<juce::PropertiesFile> preferences_;
     std::unique_ptr<juce::FileChooser> fileChooser_;
 

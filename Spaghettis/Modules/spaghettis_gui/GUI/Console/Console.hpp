@@ -19,7 +19,7 @@ class Console : public ApplicationWindow {
 // MARK: -
 
 public:
-    Console (const juce::String& name) : ApplicationWindow (name, "ConsoleWindowPosition")
+    Console() : ApplicationWindow ("Spaghettis", "ConsoleWindowPosition")
     {
         setContentOwned (new ConsoleComponent(), true);
 

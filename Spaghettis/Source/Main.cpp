@@ -47,8 +47,6 @@ public:
     {
         juce::LookAndFeel::setDefaultLookAndFeel (spaghettis::Spaghettis()->getLookAndFeel());
         
-        console_ = std::make_unique<spaghettis::Console> (getApplicationName());
-        
         spaghettis::Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
         
         spaghettis::Spaghettis()->start (getCommandLineParameterArray());
@@ -59,8 +57,6 @@ public:
     void shutdown() override
     {
         spaghettis::Spaghettis()->shutdown();
-        
-        console_ = nullptr;
         
         #if ! ( SPAGHETTIS_MENUBAR )
         
@@ -111,7 +107,6 @@ public:
 
 private:
     spaghettis::SpaghettisOwner spaghettis_;
-    std::unique_ptr<spaghettis::Console> console_;
     bool runningFromCommandLine_;
     
     

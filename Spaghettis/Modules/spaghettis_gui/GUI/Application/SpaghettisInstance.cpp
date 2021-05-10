@@ -12,6 +12,24 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void SpaghettisInstance::start (const juce::StringArray& commandLine)
+{
+    console_ = std::make_unique<Console>();
+
+    core_->start (commandLine);
+}
+    
+void SpaghettisInstance::shutdown()
+{
+    core_->shutdown();
+        
+    console_ = nullptr;
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void SpaghettisInstance::openPatch()
 {
     fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a Patch to open..."),
