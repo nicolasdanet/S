@@ -130,9 +130,7 @@ public:
 public:
     void setDspState (bool isRunning)
     {
-        dspIsRunning_ = isRunning;
-        
-        getCommandManager().commandStatusChanged();
+        dspIsRunning_ = isRunning; getCommandManager().commandStatusChanged();
     }
     
     bool isDspRunning() const
