@@ -6,69 +6,46 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-// ====================================
-
-/*************************************************************************************************************
-
- BEGIN_JUCE_MODULE_DECLARATION
-
-  ID:                 spaghettis_gui
-  vendor:             Spaghettis
-  version:            0.9
-  name:               GUI
-  description:        GUI of Spaghettis.
-  website:            https://github.com/Spaghettis
-  license:            BSD
-
-  dependencies:       spaghettis_core juce_gui_basics
-  OSXFrameworks:
-  OSXLibs:
-  linuxLibs:
-
- END_JUCE_MODULE_DECLARATION
-
-*************************************************************************************************************/
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-#pragma once
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "spaghettis_core/spaghettis_core.hpp"
-
-#include "juce_gui_basics/juce_gui_basics.h"
+class SearchPaths : public ApplicationWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-#if JUCE_MAC
+public:
+    SearchPaths() : ApplicationWindow ("Search Paths", "SearchPathsWindowPosition")
+    {
+        // setContentOwned (new SearchPathsComponent(), true);
+
+        makeVisible();
+    }
+
+    ~SearchPaths() = default;
     
-#define SPAGHETTIS_MENUBAR      0
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-#else
+public:
+    void closeButtonPressed() override
+    {
 
-#define SPAGHETTIS_MENUBAR      1
+    }
 
-#endif
-
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SearchPaths)
+};
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Colours.hpp"
-#include "GUI/Application/Commands.hpp"
-#include "GUI/Application/LookAndFeel.hpp"
-#include "GUI/Application/MenuModel.hpp"
-#include "GUI/Application/SpaghettisInstance.hpp"
-#include "GUI/Application/Spaghettis.hpp"
-#include "GUI/Application/ApplicationWindow.hpp"
-
-#include "GUI/Console/ConsoleComponent.hpp"
-#include "GUI/Console/Console.hpp"
-
-#include "GUI/SearchPaths/SearchPaths.hpp"
+} // namespace spaghettis
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
