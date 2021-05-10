@@ -46,7 +46,12 @@ public:
         
         if (s.isNotEmpty()) { restoreWindowStateFromString (s); }
         
-        setVisible (true); addToDesktop();
+        setVisible (true); addToDesktop(); bringToFront();
+    }
+    
+    void bringToFront()
+    {
+        toFront (true);
     }
 
 private:
