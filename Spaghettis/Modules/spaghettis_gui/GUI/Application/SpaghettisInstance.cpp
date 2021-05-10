@@ -22,8 +22,24 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
 void SpaghettisInstance::shutdown()
 {
     core_->shutdown();
-        
+    
+    searchPathsCloseWindow();
+    
     console_ = nullptr;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void SpaghettisInstance::searchPathsOpenWindow()
+{
+    if (searchPaths_ == nullptr) { searchPaths_ = std::make_unique<SearchPaths>(); }
+}
+
+void SpaghettisInstance::searchPathsCloseWindow()
+{
+    searchPaths_ = nullptr;
 }
     
 // -----------------------------------------------------------------------------------------------------------

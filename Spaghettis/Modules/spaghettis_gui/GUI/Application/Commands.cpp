@@ -53,10 +53,10 @@ bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& in
 {
     switch (info.commandID) {
     //
-    case Commands::fileOpen     : spaghettis::Spaghettis()->openPatch();    return true;
-    case Commands::paths        : SPAGHETTIS_DEBUG ("?");                   return true;
-    case Commands::rescan       : spaghettis::Spaghettis()->rescan();       return true;
-    case Commands::dspSwitch    : spaghettis::Spaghettis()->switchDsp();    return true;
+    case Commands::fileOpen     : spaghettis::Spaghettis()->openPatch();                return true;
+    case Commands::paths        : spaghettis::Spaghettis()->searchPathsOpenWindow();    return true;
+    case Commands::rescan       : spaghettis::Spaghettis()->rescan();                   return true;
+    case Commands::dspSwitch    : spaghettis::Spaghettis()->switchDsp();                return true;
     default : break;
     //
     }
