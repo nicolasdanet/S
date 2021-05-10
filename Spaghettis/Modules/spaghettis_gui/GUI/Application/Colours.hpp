@@ -35,7 +35,8 @@ enum ColourIds : int {
     menubarBackgroundPopup          = SPAGHETTIS_COLOUR (8),
     menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (9),
     menubarText                     = SPAGHETTIS_COLOUR (10),
-    menubarSeparator                = SPAGHETTIS_COLOUR (11)
+    menubarSeparator                = SPAGHETTIS_COLOUR (11),
+    searchpathsBackground           = SPAGHETTIS_COLOUR (12)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -46,7 +47,7 @@ static void initialize (juce::LookAndFeel* lf)
 {
     /* < https://ethanschoonover.com/solarized/ > */
     
-    const juce::Colour console  = juce::Colour (0xff1f2029);
+    const juce::Colour background  = juce::Colour (0xff1f2029);
     
     // const juce::Colour base03   = juce::Colour (0xff002b36);
     // const juce::Colour base02   = juce::Colour (0xff073642);
@@ -76,18 +77,20 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarBackgroundHighlighted)   == false);
     jassert (lf->isColourSpecified (menubarText)                    == false);
     jassert (lf->isColourSpecified (menubarSeparator)               == false);
+    jassert (lf->isColourSpecified (searchpathsBackground)          == false);
     
     lf->setColour (consoleTextDefault,                          base01);
     lf->setColour (consoleTextSystem,                           base1);
     lf->setColour (consoleTextWarning,                          yellow);
     lf->setColour (consoleTextError,                            orange);
-    lf->setColour (consoleBackground,                           console);
+    lf->setColour (consoleBackground,                           background);
     lf->setColour (consoleHighlight,                            juce::Colours::transparentBlack);
-    lf->setColour (menubarBackground,                           console.darker (0.50));
-    lf->setColour (menubarBackgroundPopup,                      console.darker (1.00));
+    lf->setColour (menubarBackground,                           background.darker (0.50));
+    lf->setColour (menubarBackgroundPopup,                      background.darker (1.00));
     lf->setColour (menubarBackgroundHighlighted,                orange);
     lf->setColour (menubarText,                                 juce::Colours::white);
     lf->setColour (menubarSeparator,                            juce::Colours::black);
+    lf->setColour (searchpathsBackground,                       background);
     
     lf->setColour (juce::TextEditor::highlightedTextColourId,   green);
     lf->setColour (juce::TextEditor::outlineColourId,           juce::Colours::transparentBlack);
