@@ -19,7 +19,7 @@ class Console : public ApplicationWindow {
 // MARK: -
 
 public:
-    Console() : ApplicationWindow ("Spaghettis", "ConsoleWindowPosition")
+    Console() : ApplicationWindow (core::getApplicationName(), "ConsoleWindowPosition")
     {
         setContentOwned (new ConsoleComponent(), true);
 

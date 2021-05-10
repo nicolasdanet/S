@@ -88,6 +88,11 @@ juce::String getFileExtensions()
     return juce::String ("*") + juce::String (PD_PATCH) + juce::String (";*") + juce::String (PD_HELP);
 }
 
+juce::String getApplicationName()
+{
+    return juce::String (PD_NAME);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
