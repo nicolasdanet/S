@@ -68,6 +68,7 @@
 #include "GUI/Console/ConsoleComponent.hpp"
 #include "GUI/Console/Console.hpp"
 
+#include "GUI/SearchPaths/SearchPathsComponent.hpp"
 #include "GUI/SearchPaths/SearchPaths.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
