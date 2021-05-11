@@ -25,8 +25,6 @@ public:
         Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
         
         addKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
-        
-        setSize (500, 300);
     }
     
     ~ApplicationComponent() override

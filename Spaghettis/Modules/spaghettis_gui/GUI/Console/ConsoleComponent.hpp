@@ -12,8 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ConsoleComponent :    public juce::Component,
-                            public juce::ApplicationCommandTarget,
+class ConsoleComponent :    public spaghettis::ApplicationComponent,
                             public spaghettis::Logger {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -48,18 +47,13 @@ public:
         addAndMakeVisible (text_);
         
         Spaghettis()->setLogger (this);
-        Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
         Spaghettis()->getCommandManager().setFirstCommandTarget (this);
-        
-        addKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
         
         setSize (500, 300);
     }
     
     ~ConsoleComponent() override
     {
-        removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
-        
         Spaghettis()->getCommandManager().setFirstCommandTarget (nullptr);
         Spaghettis()->setLogger (nullptr);
     }
@@ -126,31 +120,6 @@ public:
         text_.moveCaretToEnd();
         text_.setColour (juce::TextEditor::textColourId, colourWithType (type));
         text_.insertTextAtCaret (m + juce::newLine);
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    juce::ApplicationCommandTarget* getNextCommandTarget() override
-    {
-        return findFirstTargetParentComponent();
-    }
-
-    void getAllCommands (juce::Array<juce::CommandID>& c) override
-    {
-        Commands::getAllCommands (c);
-    }
-
-    void getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r) override
-    {
-        Commands::getCommandInfo (c, r);
-    }
-
-    bool perform (const juce::ApplicationCommandTarget::InvocationInfo& info) override
-    {
-        return Commands::perform (info);
     }
 
 private:

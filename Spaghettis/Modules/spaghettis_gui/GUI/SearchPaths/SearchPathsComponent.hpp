@@ -21,6 +21,7 @@ class SearchPathsComponent : public ApplicationComponent {
 public:
     SearchPathsComponent()
     {
+        setSize (500, 300);
     }
     
     ~SearchPathsComponent() override
