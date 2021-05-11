@@ -40,6 +40,7 @@ public:
     
     void resized() override
     {
+        getBoundsMenubarResized();
     }
 
 private:

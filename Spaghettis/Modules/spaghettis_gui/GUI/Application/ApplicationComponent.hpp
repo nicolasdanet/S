@@ -22,6 +22,14 @@ class ApplicationComponent :    public juce::Component,
 public:
     ApplicationComponent()
     {
+        #if SPAGHETTIS_MENUBAR
+        
+        menuBar_ = std::make_unique<juce::MenuBarComponent> (Spaghettis()->getMenuBarModel());
+        
+        addAndMakeVisible (menuBar_.get());
+        
+        #endif
+        
         Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
         
         addKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
@@ -30,6 +38,24 @@ public:
     ~ApplicationComponent() override
     {
         removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::Rectangle<int> getBoundsMenubarResized() const
+    {
+        juce::Rectangle<int> b = getLocalBounds();
+
+        #if SPAGHETTIS_MENUBAR
+        
+        menuBar_->setBounds (b.removeFromTop (Spaghettis()->getDefaultMenuBarHeight()));
+        
+        #endif
+        
+        return b;
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -56,6 +82,13 @@ public:
     {
         return Commands::perform (info);
     }
+
+#if SPAGHETTIS_MENUBAR
+
+private:
+    std::unique_ptr<juce::MenuBarComponent> menuBar_;
+
+#endif
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ApplicationComponent)

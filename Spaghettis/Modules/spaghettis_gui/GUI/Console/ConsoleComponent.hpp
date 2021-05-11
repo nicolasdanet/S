@@ -25,14 +25,6 @@ public:
         const auto background = juce::TextEditor::backgroundColourId;
         const auto highlight  = juce::TextEditor::highlightColourId;
         
-        #if SPAGHETTIS_MENUBAR
-        
-        menuBar_ = std::make_unique<juce::MenuBarComponent> (Spaghettis()->getMenuBarModel());
-        
-        addAndMakeVisible (menuBar_.get());
-        
-        #endif
-        
         text_.setMultiLine (true);
         text_.setReturnKeyStartsNewLine (true);
         text_.setReadOnly (true);
@@ -68,15 +60,7 @@ public:
     
     void resized() override
     {
-        juce::Rectangle<int> b = getLocalBounds();
-
-        #if SPAGHETTIS_MENUBAR
-        
-        menuBar_->setBounds (b.removeFromTop (Spaghettis()->getDefaultMenuBarHeight()));
-        
-        #endif
-        
-        text_.setBounds (b);
+        text_.setBounds (getBoundsMenubarResized());
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -123,13 +107,6 @@ public:
 private:
     juce::TextEditor text_;
     unsigned int lines_;
-
-#if SPAGHETTIS_MENUBAR
-
-private:
-    std::unique_ptr<juce::MenuBarComponent> menuBar_;
-
-#endif
 
 private:
     static const int maximumLengthOfLine_   = 2048;
