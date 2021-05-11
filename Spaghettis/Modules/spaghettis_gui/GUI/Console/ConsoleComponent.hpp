@@ -47,14 +47,12 @@ public:
         addAndMakeVisible (text_);
         
         Spaghettis()->setLogger (this);
-        Spaghettis()->getCommandManager().setFirstCommandTarget (this);
         
         setSize (500, 300);
     }
     
     ~ConsoleComponent() override
     {
-        Spaghettis()->getCommandManager().setFirstCommandTarget (nullptr);
         Spaghettis()->setLogger (nullptr);
     }
 
