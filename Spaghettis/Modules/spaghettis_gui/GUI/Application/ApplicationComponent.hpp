@@ -22,6 +22,10 @@ class ApplicationComponent :    public juce::Component,
 public:
     ApplicationComponent()
     {
+        Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
+        
+        addKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
+        
         #if SPAGHETTIS_MENUBAR
         
         menuBar_ = std::make_unique<juce::MenuBarComponent> (Spaghettis()->getMenuBarModel());
@@ -29,10 +33,6 @@ public:
         addAndMakeVisible (menuBar_.get());
         
         #endif
-        
-        Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
-        
-        addKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
     }
     
     ~ApplicationComponent() override
