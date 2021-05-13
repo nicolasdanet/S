@@ -16,6 +16,16 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
 {
     console_ = std::make_unique<Console>();
 
+    #if ! ( SPAGHETTIS_MENUBAR )
+        
+    juce::PopupMenu menu (createAppleMenu (commandManager_.get()));
+    
+    /* Must be done after the console creation to properly set the Apple menu. */
+    
+    juce::MenuBarModel::setMacMainMenu (menu_.get(), &menu);
+        
+    #endif
+        
     core_->start (commandLine);
 }
     
@@ -25,6 +35,12 @@ void SpaghettisInstance::shutdown()
     
     searchPathsCloseWindow();
     
+    #if ! ( SPAGHETTIS_MENUBAR )
+        
+    juce::MenuBarModel::setMacMainMenu (nullptr);
+        
+    #endif
+        
     console_ = nullptr;
 }
 
@@ -66,6 +82,23 @@ void SpaghettisInstance::openPatch()
                         
     fileChooser_->launchAsync (flags, callback);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if ! ( SPAGHETTIS_MENUBAR )
+
+juce::PopupMenu SpaghettisInstance::createAppleMenu (juce::ApplicationCommandManager* m)
+{
+    juce::PopupMenu menu;
+    
+    menu.addCommandItem (m, Commands::preferences);
+    
+    return menu;
+}
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

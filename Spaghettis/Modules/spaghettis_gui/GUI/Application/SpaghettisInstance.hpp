@@ -44,12 +44,6 @@ public:
         #endif
         
         preferences_ = std::make_unique<juce::PropertiesFile> (file, juce::PropertiesFile::Options());
-        
-        #if ! ( SPAGHETTIS_MENUBAR )
-        
-        juce::MenuBarModel::setMacMainMenu (menu_.get());
-        
-        #endif
     }
     
     ~SpaghettisInstance()
@@ -204,6 +198,17 @@ public:
     {
         return lookAndFeel_->getDefaultMenuBarHeight();
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if ! ( SPAGHETTIS_MENUBAR )
+
+private:
+    static juce::PopupMenu createAppleMenu (juce::ApplicationCommandManager *);
+
+#endif
 
 private:
     std::unique_ptr<LookAndFeel> lookAndFeel_;

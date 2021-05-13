@@ -16,6 +16,7 @@ void Commands::getAllCommands (juce::Array<juce::CommandID>& c)
 {
     juce::Array<juce::CommandID> commands
         {
+            Commands::preferences,
             Commands::fileOpen,
             Commands::paths,
             Commands::rescan,
@@ -27,20 +28,28 @@ void Commands::getAllCommands (juce::Array<juce::CommandID>& c)
 
 void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r)
 {
+    static const char* const general    = NEEDS_TRANS ("General");
+    static const char* const file       = NEEDS_TRANS ("File");
+    static const char* const media      = NEEDS_TRANS ("Media");
+
     switch (c) {
     //
+    case Commands::preferences :
+        r.setInfo (NEEDS_TRANS ("Preferences..."),  NEEDS_TRANS ("Set preferences"),        general, 0);
+        r.addDefaultKeypress (',', juce::ModifierKeys::commandModifier);
+        break;
     case Commands::fileOpen :
-        r.setInfo (NEEDS_TRANS ("Open..."), NEEDS_TRANS ("Open a patch"), NEEDS_TRANS ("File"), 0);
+        r.setInfo (NEEDS_TRANS ("Open..."),         NEEDS_TRANS ("Open a patch"),           file, 0);
         r.addDefaultKeypress ('o', juce::ModifierKeys::commandModifier);
         break;
     case Commands::paths :
-        r.setInfo (NEEDS_TRANS ("Paths..."), NEEDS_TRANS ("Set search paths"), NEEDS_TRANS ("File"), 0);
+        r.setInfo (NEEDS_TRANS ("Paths..."),        NEEDS_TRANS ("Set search paths"),       file, 0);
         break;
     case Commands::rescan :
-        r.setInfo (NEEDS_TRANS ("Rescan"), NEEDS_TRANS ("Rescan search paths"), NEEDS_TRANS ("File"), 0);
+        r.setInfo (NEEDS_TRANS ("Rescan"),          NEEDS_TRANS ("Rescan search paths"),    file, 0);
         break;
     case Commands::dspSwitch :
-        r.setInfo (NEEDS_TRANS ("Run DSP"), NEEDS_TRANS ("DSP On/Off"), NEEDS_TRANS ("Media"), 0);
+        r.setInfo (NEEDS_TRANS ("Run DSP"),         NEEDS_TRANS ("DSP On/Off"),             media, 0);
         r.addDefaultKeypress ('r', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
         r.setTicked (Spaghettis()->isDspRunning());
         break;
@@ -53,6 +62,7 @@ bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& in
 {
     switch (info.commandID) {
     //
+    case Commands::preferences  : DBG ("?");                                            return true;
     case Commands::fileOpen     : spaghettis::Spaghettis()->openPatch();                return true;
     case Commands::paths        : spaghettis::Spaghettis()->searchPathsOpenWindow();    return true;
     case Commands::rescan       : spaghettis::Spaghettis()->rescan();                   return true;

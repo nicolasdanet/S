@@ -48,21 +48,14 @@ public:
         juce::LookAndFeel::setDefaultLookAndFeel (spaghettis::Spaghettis()->getLookAndFeel());
         
         spaghettis::Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
-        
         spaghettis::Spaghettis()->start (getCommandLineParameterArray());
-        
+
         runningFromCommandLine_ = spaghettis::Spaghettis()->isRunningFromCommandLine();
     }
 
     void shutdown() override
     {
         spaghettis::Spaghettis()->shutdown();
-        
-        #if ! ( SPAGHETTIS_MENUBAR )
-        
-        juce::MenuBarModel::setMacMainMenu (nullptr);
-        
-        #endif
         
         juce::LookAndFeel::setDefaultLookAndFeel (nullptr);
     }
