@@ -18,7 +18,7 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
 
     #if ! ( SPAGHETTIS_MENUBAR )
         
-    juce::PopupMenu menu (createAppleMenu (commandManager_.get()));
+    juce::PopupMenu menu (MenuModel::createAppleMenu (commandManager_.get()));
     
     /* Must be done after the console creation to properly set the Apple menu. */
     
@@ -82,23 +82,6 @@ void SpaghettisInstance::openPatch()
                         
     fileChooser_->launchAsync (flags, callback);
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if ! ( SPAGHETTIS_MENUBAR )
-
-juce::PopupMenu SpaghettisInstance::createAppleMenu (juce::ApplicationCommandManager* m)
-{
-    juce::PopupMenu menu;
-    
-    menu.addCommandItem (m, Commands::preferences);
-    
-    return menu;
-}
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

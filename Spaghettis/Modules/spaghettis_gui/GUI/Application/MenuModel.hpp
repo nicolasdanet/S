@@ -68,7 +68,21 @@ public:
     void menuItemSelected (int, int) override
     {
     }
-    
+
+#if ! ( SPAGHETTIS_MENUBAR )
+
+public:
+    static juce::PopupMenu createAppleMenu (juce::ApplicationCommandManager* m)
+    {
+        juce::PopupMenu menu;
+        
+        menu.addCommandItem (m, Commands::preferences);
+        
+        return menu;
+    }
+
+#endif
+
 private:
     juce::ApplicationCommandManager* commandManager_;
 

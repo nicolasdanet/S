@@ -203,13 +203,6 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if ! ( SPAGHETTIS_MENUBAR )
-
-private:
-    static juce::PopupMenu createAppleMenu (juce::ApplicationCommandManager *);
-
-#endif
-
 private:
     std::unique_ptr<LookAndFeel> lookAndFeel_;
     std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
