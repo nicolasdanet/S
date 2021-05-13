@@ -43,14 +43,17 @@ public:
         menu.addCommandItem (commandManager_, Commands::fileOpen);
         menu.addSeparator();
         menu.addCommandItem (commandManager_, Commands::paths);
+        #if SPAGHETTIS_MENUBAR
+        menu.addCommandItem (commandManager_, Commands::preferences);
+        #endif
         menu.addSeparator();
         menu.addCommandItem (commandManager_, Commands::rescan);
         
         #if SPAGHETTIS_MENUBAR
-        
+        #if JUCE_LINUX
         menu.addSeparator();
         menu.addCommandItem (commandManager_, juce::StandardApplicationCommandIDs::quit);
-        
+        #endif
         #endif
         //
         } else if (n == 1) {
