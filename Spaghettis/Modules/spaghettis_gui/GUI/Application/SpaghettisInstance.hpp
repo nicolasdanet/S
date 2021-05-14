@@ -82,6 +82,11 @@ private:
 // MARK: -
 
 public:
+    void ping()
+    {
+        handle (Inputs::ping());
+    }
+    
     void switchDsp()
     {
         handle (Inputs::switchDsp());

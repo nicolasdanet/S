@@ -11,6 +11,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+std::function<void()> Inputs::ping()
+{
+    return []() { core::inputs_ping(); };
+}
+
 std::function<void()> Inputs::openFile (juce::File file)
 {
     return [f = std::move (file)]() { core::inputs_patchOpen (f); };

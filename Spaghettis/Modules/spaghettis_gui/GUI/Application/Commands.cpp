@@ -62,7 +62,7 @@ bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& in
 {
     switch (info.commandID) {
     //
-    case Commands::preferences  : DBG ("?");                                            return true;
+    case Commands::preferences  : spaghettis::Spaghettis()->ping();                     return true;
     case Commands::fileOpen     : spaghettis::Spaghettis()->openPatch();                return true;
     case Commands::paths        : spaghettis::Spaghettis()->searchPathsOpenWindow();    return true;
     case Commands::rescan       : spaghettis::Spaghettis()->rescan();                   return true;
