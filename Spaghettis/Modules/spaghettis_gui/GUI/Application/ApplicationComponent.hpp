@@ -44,7 +44,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+protected:
     juce::Rectangle<int> getBoundsMenubarResized() const
     {
         juce::Rectangle<int> b = getLocalBounds();
