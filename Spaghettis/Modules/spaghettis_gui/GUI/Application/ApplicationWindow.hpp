@@ -49,9 +49,17 @@ public:
         
         ApplicationComponent* c = dynamic_cast<ApplicationComponent*> (getContentComponent());
         
-        if (!c || c->tryGrabFocus()) { stopTimer(); }
+        timerCount_++; jassert (timerCount_ <= timerAttempts_);
+        
+        if (!c || c->tryGrabFocus() || timerCount_ > timerAttempts_) { stopTimer(); }
     }
 
+private:
+    void timerStart()
+    {
+        timerCount_ = 0; startTimer (timerInterval_);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -59,7 +67,7 @@ public:
 public:
     void activeWindowStatusChanged() override
     {
-        if (isActiveWindow()) { startTimer (timerInterval_); }
+        if (isActiveWindow()) { timerStart(); }
     }
 
     void makeVisible()
@@ -75,9 +83,11 @@ public:
 
 private:
     juce::String keyName_;
-
+    int timerCount_;
+    
 private:
     static const int timerInterval_ = 20;
+    static const int timerAttempts_ = 10;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ApplicationWindow)

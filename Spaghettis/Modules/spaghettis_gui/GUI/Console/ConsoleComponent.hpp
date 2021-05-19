@@ -55,7 +55,7 @@ public:
 public:
     bool tryGrabFocus() override
     {
-        return true;
+        text_.grabKeyboardFocus(); return text_.hasKeyboardFocus (true);
     }
     
 // -----------------------------------------------------------------------------------------------------------
