@@ -12,27 +12,34 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String LookAndFeel::fontInitializeBest()
+juce::String LookAndFeel::fontInitializeBest (const juce::StringArray& check)
 {
-    #if JUCE_LINUX
-    
-    juce::StringArray check ("Ubuntu");
+    if (check.isEmpty() == false) {
+    //
     juce::StringArray fonts (juce::Font::findAllTypefaceNames());
     
     for (const auto& f : check) { if (fonts.contains (f)) { return f; } }
-    
-    #endif
+    //
+    }
     
     return juce::String();
 }
 
 void LookAndFeel::fontInitialize()
 {
-    juce::String font (fontInitializeBest());
+    #if JUCE_LINUX
     
-    if (font.isEmpty()) { font_ = juce::Font (18.0); }
+    juce::String fontName (fontInitializeBest (juce::StringArray ("Ubuntu")));
+    
+    #else
+    
+    juce::String fontName (fontInitializeBest (juce::StringArray()));
+    
+    #endif
+    
+    if (fontName.isEmpty()) { font_ = juce::Font (18.0); }
     else {
-        setDefaultSansSerifTypefaceName (font); font_ = juce::Font (font, 18.0, juce::Font::plain);
+        setDefaultSansSerifTypefaceName (fontName); font_ = juce::Font (fontName, 18.0, juce::Font::plain);
     }
     
     SPAGHETTIS_DEBUG (font_.getTypeface()->getName());

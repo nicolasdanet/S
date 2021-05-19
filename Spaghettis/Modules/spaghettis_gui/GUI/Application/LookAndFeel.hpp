@@ -108,7 +108,7 @@ private:
     void drawPopupMenuItemShortcut (juce::Graphics&, const juce::Rectangle<int>&, const juce::String&);
 
 private:
-    juce::String fontInitializeBest();
+    juce::String fontInitializeBest (const juce::StringArray&);
     void fontInitialize();
     
 // -----------------------------------------------------------------------------------------------------------
@@ -123,6 +123,7 @@ public:
     
 private:
     juce::Font font_;
+    juce::Font fontMonospaced_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LookAndFeel)
