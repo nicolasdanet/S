@@ -49,7 +49,7 @@ public:
         
         timerCount_++; jassert (timerCount_ <= timerAttempts_);
         
-        DBG (getName() + " / " + juce::String (timerCount_));
+        SPAGHETTIS_DEBUG (getName() + " / " + juce::String (timerCount_));
         
         if (!c || c->tryGrabFocus() || timerCount_ > timerAttempts_) { stopTimer(); }
     }
