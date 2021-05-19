@@ -53,16 +53,6 @@ public:
 // MARK: -
 
 public:
-    bool tryGrabFocus() override
-    {
-        text_.grabKeyboardFocus(); return text_.hasKeyboardFocus (true);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void paint (juce::Graphics& g) override
     {
         g.fillAll (Spaghettis()->getColour (juce::ResizableWindow::backgroundColourId));

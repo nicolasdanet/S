@@ -45,11 +45,11 @@ public:
 public:
     void timerCallback() override
     {
-        DBG (getName());
-        
         ApplicationComponent* c = dynamic_cast<ApplicationComponent*> (getContentComponent());
         
         timerCount_++; jassert (timerCount_ <= timerAttempts_);
+        
+        DBG (getName() + " / " + juce::String (timerCount_));
         
         if (!c || c->tryGrabFocus() || timerCount_ > timerAttempts_) { stopTimer(); }
     }
