@@ -52,7 +52,7 @@ void SpaghettisInstance::searchPathsOpenWindow()
 {
     if (searchPaths_ == nullptr) { searchPaths_ = std::make_unique<SearchPaths>(); }
     else {
-        searchPaths_.get()->bringToFront();
+        searchPaths_.get()->toFront (true);
     }
 }
 

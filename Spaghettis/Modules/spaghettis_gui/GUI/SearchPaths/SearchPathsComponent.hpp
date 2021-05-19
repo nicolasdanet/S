@@ -33,6 +33,16 @@ public:
 // MARK: -
 
 public:
+    bool tryGrabFocus() override
+    {
+        return true;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void paint (juce::Graphics& g) override
     {
         g.fillAll (Spaghettis()->getColour (juce::ResizableWindow::backgroundColourId));

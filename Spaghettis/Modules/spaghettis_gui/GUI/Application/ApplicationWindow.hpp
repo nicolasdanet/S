@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ApplicationWindow : public juce::DocumentWindow {
+class ApplicationWindow :   public juce::DocumentWindow,
+                            public juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -42,6 +43,25 @@ public:
 // MARK: -
 
 public:
+    void timerCallback() override
+    {
+        DBG (getName());
+        
+        ApplicationComponent* c = dynamic_cast<ApplicationComponent*> (getContentComponent());
+        
+        if (!c || c->tryGrabFocus()) { stopTimer(); }
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void activeWindowStatusChanged() override
+    {
+        if (isActiveWindow()) { startTimer (timerInterval_); }
+    }
+
     void makeVisible()
     {
         juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
@@ -50,16 +70,14 @@ public:
         
         if (s.isNotEmpty()) { restoreWindowStateFromString (s); }
         
-        setVisible (true); addToDesktop(); bringToFront();
-    }
-    
-    void bringToFront()
-    {
-        toFront (true);
+        setVisible (true); addToDesktop(); toFront (true);
     }
 
 private:
     juce::String keyName_;
+
+private:
+    static const int timerInterval_ = 20;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ApplicationWindow)
