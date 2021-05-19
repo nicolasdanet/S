@@ -21,6 +21,8 @@ class SearchPathsComponent : public ApplicationComponent {
 public:
     SearchPathsComponent()
     {
+        setWantsKeyboardFocus (true);
+        
         setSize (500, 300);
     }
     
@@ -35,7 +37,7 @@ public:
 public:
     bool tryGrabFocus() override
     {
-        return true;
+        grabKeyboardFocus(); return hasKeyboardFocus (true);
     }
     
 // -----------------------------------------------------------------------------------------------------------
