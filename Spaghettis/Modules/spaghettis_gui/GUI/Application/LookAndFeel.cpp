@@ -30,7 +30,7 @@ void LookAndFeel::fontInitialize()
     #if JUCE_LINUX
     
     juce::String fontName (fontInitializeBest (juce::StringArray ("Ubuntu")));
-    juce::String fontMonospacedName (fontInitializeBest (juce::StringArray()));
+    juce::String fontMonospacedName (fontInitializeBest (juce::StringArray ("Ubuntu Mono")));
     
     #else
     
