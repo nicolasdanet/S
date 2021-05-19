@@ -30,19 +30,25 @@ void LookAndFeel::fontInitialize()
     #if JUCE_LINUX
     
     juce::String fontName (fontInitializeBest (juce::StringArray ("Ubuntu")));
+    juce::String fontMonospacedName (fontInitializeBest (juce::StringArray()));
     
     #else
     
     juce::String fontName (fontInitializeBest (juce::StringArray()));
+    juce::String fontMonospacedName (fontInitializeBest (juce::StringArray()));
     
     #endif
     
-    if (fontName.isEmpty()) { font_ = juce::Font (18.0); }
-    else {
-        setDefaultSansSerifTypefaceName (fontName); font_ = juce::Font (fontName, 18.0, juce::Font::plain);
-    }
+    if (fontName.isEmpty())           { fontName           = juce::Font::getDefaultSansSerifFontName();  }
+    if (fontMonospacedName.isEmpty()) { fontMonospacedName = juce::Font::getDefaultMonospacedFontName(); }
+    
+    font_           = juce::Font (fontName, 18.0, juce::Font::plain);
+    fontMonospaced_ = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
+    
+    setDefaultSansSerifTypefaceName (fontName);
     
     SPAGHETTIS_DEBUG (font_.getTypeface()->getName());
+    SPAGHETTIS_DEBUG (fontMonospaced_.getTypeface()->getName());
 }
 
 // -----------------------------------------------------------------------------------------------------------
