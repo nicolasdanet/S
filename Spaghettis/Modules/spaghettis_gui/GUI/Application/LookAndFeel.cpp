@@ -35,7 +35,7 @@ void LookAndFeel::fontInitialize()
     #else
     
     juce::String fontName (fontInitializeBest (juce::StringArray()));
-    juce::String fontMonospacedName (fontInitializeBest (juce::StringArray()));
+    juce::String fontMonospacedName (fontInitializeBest(juce::StringArray ()));
     
     #endif
     
