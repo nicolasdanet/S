@@ -68,6 +68,11 @@ public:
         return font_;
     }
     
+    juce::Font getPopupMenuShortcutFont()
+    {
+        return fontMonospaced_;
+    }
+    
     void drawPopupMenuBackground (juce::Graphics& g, int, int) override
     {
         g.fillAll (findColour (Colours::menubarBackgroundPopup));
