@@ -88,7 +88,7 @@ void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
     else {
         const juce::Font font = getPopupMenuFont();
         const float f = font.getHeight();
-        #if PD_LINUX
+        #if JUCE_LINUX
         const float extra = (f * 5.0);      /* Extra space for shortcuts (Ubuntu monospaced is larger). */
         #else
         const float extra = (f * 2.5);
