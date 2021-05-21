@@ -19,6 +19,33 @@ class ConsoleComponent :    public spaghettis::ApplicationComponent,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Avoid mouse interaction. */
+
+private:
+    class TextLogger : public juce::TextEditor {
+    
+    public:
+        TextLogger() = default;
+        ~TextLogger() = default;
+    
+    public:
+        void mouseDown (const juce::MouseEvent& e) override
+        {
+            setHighlightedRegion (juce::Range<int>());
+        }
+        
+        void mouseUp            (const juce::MouseEvent& e) override { }
+        void mouseDrag          (const juce::MouseEvent& e) override { }
+        void mouseDoubleClick   (const juce::MouseEvent& e) override { mouseDown (e); }
+    
+    private:
+        JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TextLogger)
+    };
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     ConsoleComponent() : lines_ (0)
     {
@@ -105,7 +132,7 @@ public:
     }
 
 private:
-    juce::TextEditor text_;
+    TextLogger text_;
     unsigned int lines_;
 
 private:
