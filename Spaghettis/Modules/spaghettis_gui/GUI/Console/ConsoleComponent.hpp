@@ -58,6 +58,7 @@ public:
         text_.setScrollbarsShown (true);
         text_.setCaretVisible (false);
         text_.setPopupMenuEnabled (false);
+        text_.setLineSpacing (1.1);
         text_.setFont (Spaghettis()->getConsoleFont());
         text_.setInputRestrictions (maximumLengthOfLine_);
         text_.setColour (background, Spaghettis()->getColour (Colours::consoleBackground));
