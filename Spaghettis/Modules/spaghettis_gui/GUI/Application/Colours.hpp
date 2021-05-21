@@ -36,7 +36,8 @@ enum ColourIds : int {
     menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (9),
     menubarText                     = SPAGHETTIS_COLOUR (10),
     menubarSeparator                = SPAGHETTIS_COLOUR (11),
-    searchpathsBackground           = SPAGHETTIS_COLOUR (12)
+    searchpathsBackground           = SPAGHETTIS_COLOUR (12),
+    searchpathsBackgroundAlternate  = SPAGHETTIS_COLOUR (13),
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -47,7 +48,7 @@ static void initialize (juce::LookAndFeel* lf)
 {
     /* < https://ethanschoonover.com/solarized/ > */
     
-    const juce::Colour background  = juce::Colour (0xff1f2029);
+    const juce::Colour background   = juce::Colour (0xff1f2029);
     
     const juce::Colour base01   = juce::Colour (0xff586e75);
     const juce::Colour base1    = juce::Colour (0xff93a1a1);
@@ -79,6 +80,7 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarText)                    == false);
     jassert (lf->isColourSpecified (menubarSeparator)               == false);
     jassert (lf->isColourSpecified (searchpathsBackground)          == false);
+    jassert (lf->isColourSpecified (searchpathsBackgroundAlternate) == false);
     
     lf->setColour (consoleTextDefault,                          base01);
     lf->setColour (consoleTextSystem,                           base1);
@@ -92,11 +94,15 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarText,                                 juce::Colours::white);
     lf->setColour (menubarSeparator,                            juce::Colours::black);
     lf->setColour (searchpathsBackground,                       background);
+    lf->setColour (searchpathsBackgroundAlternate,              background.darker (0.10));
     
     lf->setColour (juce::TextEditor::highlightedTextColourId,   green);
     lf->setColour (juce::TextEditor::outlineColourId,           juce::Colours::transparentBlack);
     lf->setColour (juce::TextEditor::shadowColourId,            juce::Colours::transparentBlack);
     lf->setColour (juce::ScrollBar::thumbColourId,              juce::Colours::grey);
+    lf->setColour (juce::ListBox::backgroundColourId,           background);
+    lf->setColour (juce::ListBox::outlineColourId,              juce::Colours::transparentBlack);
+    lf->setColour (juce::ListBox::textColourId,                 base01);
 }
 
 // -----------------------------------------------------------------------------------------------------------
