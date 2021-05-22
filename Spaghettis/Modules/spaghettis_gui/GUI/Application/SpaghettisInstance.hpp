@@ -185,24 +185,12 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Handy for less typing. */
-
 public:
     juce::Colour getColour (int colourId) const
     {
         return lookAndFeel_->findColour (colourId);
     }
     
-    const juce::Font& getConsoleFont() const
-    {
-        return lookAndFeel_->getConsoleFont();
-    }
-    
-    int getDefaultMenuBarHeight() const
-    {
-        return lookAndFeel_->getDefaultMenuBarHeight();
-    }
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

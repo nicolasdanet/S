@@ -63,7 +63,7 @@ protected:
 
         #if SPAGHETTIS_MENUBAR
         
-        menuBar_->setBounds (b.removeFromTop (Spaghettis()->getDefaultMenuBarHeight()));
+        menuBar_->setBounds (b.removeFromTop (Spaghettis()->getLookAndFeel().getDefaultMenuBarHeight()));
         
         #endif
         
