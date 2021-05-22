@@ -161,17 +161,16 @@ public:
 // MARK: -
 
 public:
-    LookAndFeel* getLookAndFeel() const
+    LookAndFeel& getLookAndFeel()
     {
-        return lookAndFeel_.get();
-    }
-    
-    juce::MenuBarModel* getMenuBarModel() const
-    {
-        return menu_.get();
+        return *lookAndFeel_;
     }
 
-public:
+    juce::MenuBarModel& getMenuBarModel()
+    {
+        return *menu_;
+    }
+
     juce::ApplicationCommandManager& getCommandManager()
     {
         return *commandManager_;
