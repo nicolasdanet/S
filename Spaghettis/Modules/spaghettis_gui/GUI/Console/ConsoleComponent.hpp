@@ -25,7 +25,11 @@ private:
     class TextLogger : public juce::TextEditor {
     
     public:
-        TextLogger() = default;
+        TextLogger()
+        {
+            setMouseCursor (juce::MouseCursor::NormalCursor);
+        }
+        
         ~TextLogger() = default;
     
     public:

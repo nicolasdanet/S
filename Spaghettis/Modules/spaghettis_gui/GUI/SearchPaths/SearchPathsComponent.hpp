@@ -20,9 +20,9 @@ class SearchPathsComponent :    public ApplicationComponent,
 // MARK: -
 
 public:
-    SearchPathsComponent()
+    SearchPathsComponent() : paths_ ( { "Toto", "Jojo" } )
     {
-        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getFontConsole().getHeight() * 1.25);
+        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getFontConsole().getHeight() * 1.5);
         
         listBox_.setModel (this);
         listBox_.setMultipleSelectionEnabled (true);
@@ -49,22 +49,31 @@ public:
         return rows_;
     }
 
-    void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool rowIsSelected) override
+    void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
     {
         if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::searchpathsBackgroundAlternate)); }
 
-        /*
-        if (rowIsSelected)
-                g.fillAll (Colours::lightblue);
-        if (juce::isPositiveAndBelow (row, oscLogList.size()))
-        {
-            g.setColour (juce::Colours::white);
-
-            g.drawText (oscLogList[row],
-                        juce::Rectangle<int> (width, height).reduced (4, 0),
-                        juce::Justification::centredLeft, true);
+        if (juce::isPositiveAndBelow (row, paths_.size())) {
+        //
+        const juce::Rectangle<int> r (width, height);
+        
+        g.setColour (isSelected ? Spaghettis()->getColour (Colours::searchpathsTextHighlighted)
+                                : Spaghettis()->getColour (Colours::searchpathsText));
+                                    
+        g.setFont (Spaghettis()->getLookAndFeel().getFontConsole());
+        g.drawText (paths_[row], r.reduced (4, 0), juce::Justification::centredLeft, true);
+        //
         }
-        */
+    }
+    
+    void listBoxItemClicked (int row, const juce::MouseEvent &e) override
+    {
+    
+    }
+    
+    void deleteKeyPressed (int row) override
+    {
+        
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -84,6 +93,7 @@ public:
 
 private:
     juce::ListBox listBox_;
+    juce::StringArray paths_;
 
 private:
     static int const rows_ = 64;

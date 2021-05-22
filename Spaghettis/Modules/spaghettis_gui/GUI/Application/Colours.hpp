@@ -38,6 +38,8 @@ enum ColourIds : int {
     menubarSeparator                = SPAGHETTIS_COLOUR (11),
     searchpathsBackground           = SPAGHETTIS_COLOUR (12),
     searchpathsBackgroundAlternate  = SPAGHETTIS_COLOUR (13),
+    searchpathsText                 = SPAGHETTIS_COLOUR (14),
+    searchpathsTextHighlighted      = SPAGHETTIS_COLOUR (15)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -81,6 +83,8 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarSeparator)               == false);
     jassert (lf->isColourSpecified (searchpathsBackground)          == false);
     jassert (lf->isColourSpecified (searchpathsBackgroundAlternate) == false);
+    jassert (lf->isColourSpecified (searchpathsText)                == false);
+    jassert (lf->isColourSpecified (searchpathsTextHighlighted)     == false);
     
     lf->setColour (consoleTextDefault,                          base01);
     lf->setColour (consoleTextSystem,                           base1);
@@ -95,6 +99,8 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarSeparator,                            juce::Colours::black);
     lf->setColour (searchpathsBackground,                       background);
     lf->setColour (searchpathsBackgroundAlternate,              background.darker (0.10));
+    lf->setColour (searchpathsText,                             base01);
+    lf->setColour (searchpathsTextHighlighted,                  green);
     
     lf->setColour (juce::TextEditor::highlightedTextColourId,   green);
     lf->setColour (juce::TextEditor::outlineColourId,           juce::Colours::transparentBlack);
