@@ -40,7 +40,7 @@ public:
 
     juce::Font getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&) override
     {
-        return font_;
+        return getFontConsole();
     }
 
     void drawMenuBarBackground (juce::Graphics& g, int, int, bool, juce::MenuBarComponent&) override
@@ -65,12 +65,7 @@ public:
 public:
     juce::Font getPopupMenuFont() override
     {
-        return font_;
-    }
-    
-    juce::Font getPopupMenuShortcutFont()
-    {
-        return fontMonospaced_;
+        return getFontConsole();
     }
     
     void drawPopupMenuBackground (juce::Graphics& g, int, int) override
@@ -121,14 +116,19 @@ private:
 // MARK: -
 
 public:
-    const juce::Font& getConsoleFont() const
+    const juce::Font& getFontConsole() const
     {
-        return font_;
+        return fontConsole_;
+    }
+    
+    const juce::Font& getFontShortcuts() const
+    {
+        return fontShortcuts_;
     }
     
 private:
-    juce::Font font_;
-    juce::Font fontMonospaced_;
+    juce::Font fontConsole_;
+    juce::Font fontShortcuts_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LookAndFeel)

@@ -22,13 +22,12 @@ class SearchPathsComponent :    public ApplicationComponent,
 public:
     SearchPathsComponent()
     {
+        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getFontConsole().getHeight() * 1.25);
+        
         listBox_.setModel (this);
         listBox_.setMultipleSelectionEnabled (true);
         listBox_.setClickingTogglesRowSelection (true);
-        
-        // listBox_.setRowHeight ();
-        // Spaghettis()->getConsoleFont();
-        
+        listBox_.setRowHeight (h);
         listBox_.getViewport()->setScrollBarsShown (false, false, true, true);
         
         addAndMakeVisible (listBox_);

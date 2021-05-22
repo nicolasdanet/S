@@ -42,13 +42,13 @@ void LookAndFeel::fontInitialize()
     if (fontName.isEmpty())           { fontName           = juce::Font::getDefaultSansSerifFontName();  }
     if (fontMonospacedName.isEmpty()) { fontMonospacedName = juce::Font::getDefaultMonospacedFontName(); }
     
-    font_           = juce::Font (fontName, 18.0, juce::Font::plain);
-    fontMonospaced_ = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
+    fontConsole_   = juce::Font (fontName, 18.0, juce::Font::plain);
+    fontShortcuts_ = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
     
     setDefaultSansSerifTypefaceName (fontName);
     
-    SPAGHETTIS_DEBUG (font_.getTypeface()->getName());
-    SPAGHETTIS_DEBUG (fontMonospaced_.getTypeface()->getName());
+    SPAGHETTIS_DEBUG (fontConsole_.getTypeface()->getName());
+    SPAGHETTIS_DEBUG (fontShortcuts_.getTypeface()->getName());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -141,7 +141,7 @@ void LookAndFeel::drawPopupMenuItemShortcut (juce::Graphics& g,
     const juce::Rectangle<int>& r,
     const juce::String& shortcutText)
 {
-    g.setFont (getPopupMenuShortcutFont());
+    g.setFont (getFontShortcuts());
     g.drawText (shortcutText, r, juce::Justification::centredRight, true);
 }
 
