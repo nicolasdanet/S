@@ -99,7 +99,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarSeparator,                            juce::Colours::black);
     lf->setColour (searchpathsBackground,                       background);
     lf->setColour (searchpathsBackgroundAlternate,              background.darker (0.10));
-    lf->setColour (searchpathsText,                             base01);
+    lf->setColour (searchpathsText,                             base1);
     lf->setColour (searchpathsTextHighlighted,                  green);
     
     lf->setColour (juce::TextEditor::highlightedTextColourId,   green);
