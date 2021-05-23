@@ -50,29 +50,30 @@ private:
         listBox_.repaint();
     }
     
-    void appendPath (const juce::String& filepath)
+    void appendFullPathName (const juce::String& filepath)
     {
         paths_.addIfNotAlreadyThere (filepath); updateSearchPaths();
     }
     
+    void appendFile (const juce::File& file)
+    {
+        if (file.isDirectory()) { appendFullPathName (file.getFullPathName()); }
+    }
+    
     void chooseAndAppendFolder()
     {
-        /*
         fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a folder to add..."),
-                                    currentOpenDirectory_,
-                                    spaghettis::core::getFileExtensions());
+                            Spaghettis()->getCurrentOpenDirectory());
         
         int flags = juce::FileBrowserComponent::canSelectMultipleItems
-                            | juce::FileBrowserComponent::openMode
-                            | juce::FileBrowserComponent::canSelectFiles;
+                            | juce::FileBrowserComponent::canSelectDirectories;
             
-        auto callback = [] (const juce::FileChooser& fileChooser)
+        auto callback = [this] (const juce::FileChooser& fileChooser)
         {
-            auto files = fileChooser.getResults(); for (const auto& f : files) { Spaghettis()->openPatch (f); }
+            auto files = fileChooser.getResults(); for (const auto& f : files) { appendFile (f); }
         };
                         
         fileChooser_->launchAsync (flags, callback);
-        */
     }
 
 // -----------------------------------------------------------------------------------------------------------
