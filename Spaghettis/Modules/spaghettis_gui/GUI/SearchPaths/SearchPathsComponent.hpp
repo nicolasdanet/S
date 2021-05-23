@@ -55,6 +55,26 @@ private:
         paths_.addIfNotAlreadyThere (filepath); updateSearchPaths();
     }
     
+    void chooseAndAppendFolder()
+    {
+        /*
+        fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a folder to add..."),
+                                    currentOpenDirectory_,
+                                    spaghettis::core::getFileExtensions());
+        
+        int flags = juce::FileBrowserComponent::canSelectMultipleItems
+                            | juce::FileBrowserComponent::openMode
+                            | juce::FileBrowserComponent::canSelectFiles;
+            
+        auto callback = [] (const juce::FileChooser& fileChooser)
+        {
+            auto files = fileChooser.getResults(); for (const auto& f : files) { Spaghettis()->openPatch (f); }
+        };
+                        
+        fileChooser_->launchAsync (flags, callback);
+        */
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -84,12 +104,10 @@ public:
     
     void listBoxItemClicked (int row, const juce::MouseEvent &) override
     {
-        static int toto = 0;
-        
         if (juce::isPositiveAndBelow (row, paths_.size()) == false) {
             if (listBox_.getNumSelectedRows() > 1) { updateSearchPaths(); }
             else {
-                appendPath (juce::String ("Foo ") + juce::String (toto++));
+                chooseAndAppendFolder();
             }
         }
     }
@@ -127,6 +145,9 @@ public:
 private:
     juce::ListBox listBox_;
     juce::StringArray paths_;
+
+private:
+    std::unique_ptr<juce::FileChooser> fileChooser_;
 
 private:
     static int const rows_ = 64;

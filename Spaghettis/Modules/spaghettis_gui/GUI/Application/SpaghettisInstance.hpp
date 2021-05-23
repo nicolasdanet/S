@@ -100,13 +100,8 @@ public:
     void openPatch (const juce::File& file)
     {
         JUCE_ASSERT_MESSAGE_THREAD
-        
-        const juce::File parent = file.getParentDirectory();
-        
-        if (parent.isDirectory()) { currentOpenDirectory_ = std::move (parent); }
-        else {
-            jassertfalse;
-        }
+                
+        setCurrentOpenDirectory (file.getParentDirectory());
         
         handle (Inputs::openFile (file));
     }
@@ -156,6 +151,24 @@ public:
         core_->setLogger (logger);
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void setCurrentOpenDirectory (const juce::File& file)
+    {
+        if (file.isDirectory()) { currentOpenDirectory_ = file; }
+        else {
+            jassertfalse;
+        }
+    }
+    
+    juce::File getCurrentOpenDirectory() const
+    {
+        return currentOpenDirectory_;
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
