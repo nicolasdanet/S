@@ -20,7 +20,7 @@ class SearchPathsComponent :    public ApplicationComponent,
 // MARK: -
 
 public:
-    SearchPathsComponent() : paths_ ( { "Toto", "Jojo" } )
+    SearchPathsComponent()
     {
         const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getFontConsole().getHeight() * 1.5);
         
@@ -39,6 +39,22 @@ public:
     {
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void updateSearchPaths()
+    {
+        listBox_.deselectAllRows();
+        listBox_.repaint();
+    }
+    
+    void appendPath (const juce::String& filepath)
+    {
+        paths_.addIfNotAlreadyThere (filepath); updateSearchPaths();
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -66,14 +82,31 @@ public:
         }
     }
     
-    void listBoxItemClicked (int row, const juce::MouseEvent &e) override
+    void listBoxItemClicked (int row, const juce::MouseEvent &) override
     {
-    
+        static int toto = 0;
+        
+        if (juce::isPositiveAndBelow (row, paths_.size()) == false) {
+            if (listBox_.getNumSelectedRows() > 1) { updateSearchPaths(); }
+            else {
+                appendPath (juce::String ("Foo ") + juce::String (toto++));
+            }
+        }
     }
     
-    void deleteKeyPressed (int row) override
+    void deleteKeyPressed (int) override
     {
+        for (int i = getNumRows() - 1; i >= 0; i--) {
+        //
+        if (listBox_.isRowSelected (i)) {
+        if (i < paths_.size()) {
+            paths_.remove (i);
+        }
+        }
+        //
+        }
         
+        updateSearchPaths();
     }
     
 // -----------------------------------------------------------------------------------------------------------
