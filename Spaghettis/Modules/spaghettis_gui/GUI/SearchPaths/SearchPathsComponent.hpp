@@ -71,7 +71,8 @@ private:
         fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a folder..."),
                             Spaghettis()->getCurrentOpenDirectory());
         
-        const int t = juce::FileBrowserComponent::openMode
+        const int t = juce::FileBrowserComponent::canSelectMultipleItems
+                            | juce::FileBrowserComponent::openMode
                             | juce::FileBrowserComponent::canSelectDirectories;
             
         auto callback = [this] (const juce::FileChooser& fileChooser)
