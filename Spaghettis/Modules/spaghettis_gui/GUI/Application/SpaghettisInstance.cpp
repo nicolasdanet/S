@@ -67,11 +67,11 @@ void SpaghettisInstance::searchPathsCloseWindow()
 
 void SpaghettisInstance::openPatch()
 {
-    fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a Patch to open..."),
+    fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a Patch..."),
                         getCurrentOpenDirectory(),
                         spaghettis::core::getFileExtensions());
     
-    int flags = juce::FileBrowserComponent::canSelectMultipleItems
+    const int t = juce::FileBrowserComponent::canSelectMultipleItems
                         | juce::FileBrowserComponent::openMode
                         | juce::FileBrowserComponent::canSelectFiles;
         
@@ -80,7 +80,7 @@ void SpaghettisInstance::openPatch()
         auto files = fileChooser.getResults(); for (const auto& f : files) { Spaghettis()->openPatch (f); }
     };
                         
-    fileChooser_->launchAsync (flags, callback);
+    fileChooser_->launchAsync (t, callback);
 }
 
 // -----------------------------------------------------------------------------------------------------------

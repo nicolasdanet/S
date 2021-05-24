@@ -62,10 +62,10 @@ private:
     
     void chooseAndAppendFolder()
     {
-        fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a folder to add..."),
+        fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a folder..."),
                             Spaghettis()->getCurrentOpenDirectory());
         
-        int flags = juce::FileBrowserComponent::canSelectMultipleItems
+        const int t = juce::FileBrowserComponent::openMode
                             | juce::FileBrowserComponent::canSelectDirectories;
             
         auto callback = [this] (const juce::FileChooser& fileChooser)
@@ -73,7 +73,7 @@ private:
             auto files = fileChooser.getResults(); for (const auto& f : files) { appendFile (f); }
         };
                         
-        fileChooser_->launchAsync (flags, callback);
+        fileChooser_->launchAsync (t, callback);
     }
 
 // -----------------------------------------------------------------------------------------------------------
