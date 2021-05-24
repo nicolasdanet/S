@@ -57,7 +57,13 @@ private:
     
     void appendFile (const juce::File& file)
     {
-        if (file.isDirectory()) { appendFullPathName (file.getFullPathName()); }
+        if (file.isDirectory()) {
+        //
+        appendFullPathName (file.getFullPathName());
+        
+        Spaghettis()->setCurrentOpenDirectory (file.getParentDirectory());
+        //
+        }
     }
     
     void chooseAndAppendFolder()
