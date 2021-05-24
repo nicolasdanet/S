@@ -113,8 +113,8 @@ public:
 // MARK: -
 
 public:
-    void searchPathsOpenWindow();
-    void searchPathsCloseWindow();
+    void openSearchPathsWindow();
+    void closeSearchPathsWindow();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

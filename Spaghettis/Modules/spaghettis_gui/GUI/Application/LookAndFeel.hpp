@@ -23,7 +23,7 @@ public:
     {
         Colours::initialize (this);
         
-        fontInitialize();
+        initializeFonts();
     }
     
     ~LookAndFeel() = default;
@@ -108,8 +108,8 @@ private:
     void drawPopupMenuItemShortcut (juce::Graphics&, const juce::Rectangle<int>&, const juce::String&);
 
 private:
-    juce::String fontInitializeBest (const juce::StringArray&);
-    void fontInitialize();
+    juce::String initializeFontsBest (const juce::StringArray&);
+    void initializeFonts();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

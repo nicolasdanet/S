@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String LookAndFeel::fontInitializeBest (const juce::StringArray& check)
+juce::String LookAndFeel::initializeFontsBest (const juce::StringArray& check)
 {
     if (check.isEmpty() == false) {
     //
@@ -25,17 +25,17 @@ juce::String LookAndFeel::fontInitializeBest (const juce::StringArray& check)
     return juce::String();
 }
 
-void LookAndFeel::fontInitialize()
+void LookAndFeel::initializeFonts()
 {
     #if JUCE_LINUX
     
-    juce::String fontName (fontInitializeBest (juce::StringArray ("Ubuntu")));
-    juce::String fontMonospacedName (fontInitializeBest (juce::StringArray ("Ubuntu Mono")));
+    juce::String fontName (initializeFontsBest (juce::StringArray ("Ubuntu")));
+    juce::String fontMonospacedName (initializeFontsBest (juce::StringArray ("Ubuntu Mono")));
     
     #else
     
-    juce::String fontName (fontInitializeBest (juce::StringArray()));
-    juce::String fontMonospacedName (fontInitializeBest(juce::StringArray ()));
+    juce::String fontName (initializeFontsBest (juce::StringArray()));
+    juce::String fontMonospacedName (initializeFontsBest (juce::StringArray ()));
     
     #endif
     

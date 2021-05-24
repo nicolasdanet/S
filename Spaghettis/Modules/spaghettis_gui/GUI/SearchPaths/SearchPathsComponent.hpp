@@ -44,7 +44,17 @@ public:
 // MARK: -
 
 private:
-    void updateSearchPaths()
+    void saveToPreferences()
+    {
+    
+    }
+    
+    void loadFromPreferences()
+    {
+    
+    }
+    
+    void updateView()
     {
         listBox_.deselectAllRows();
         listBox_.repaint();
@@ -52,7 +62,7 @@ private:
     
     void appendFullPathName (const juce::String& filepath)
     {
-        paths_.addIfNotAlreadyThere (filepath); updateSearchPaths();
+        paths_.addIfNotAlreadyThere (filepath); updateView();
     }
     
     void appendFile (const juce::File& file)
@@ -122,7 +132,7 @@ public:
     void listBoxItemClicked (int row, const juce::MouseEvent &) override
     {
         if (juce::isPositiveAndBelow (row, paths_.size()) == false) {
-            if (listBox_.getNumSelectedRows() > 1) { updateSearchPaths(); }
+            if (listBox_.getNumSelectedRows() > 1) { updateView(); }
             else {
                 chooseAndAppendFolder();
             }
@@ -141,7 +151,7 @@ public:
         //
         }
         
-        updateSearchPaths();
+        updateView();
     }
     
 // -----------------------------------------------------------------------------------------------------------

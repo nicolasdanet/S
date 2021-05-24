@@ -33,7 +33,7 @@ void SpaghettisInstance::shutdown()
 {
     core_->shutdown();
     
-    searchPathsCloseWindow();
+    closeSearchPathsWindow();
     
     #if ! ( SPAGHETTIS_MENUBAR )
         
@@ -48,7 +48,7 @@ void SpaghettisInstance::shutdown()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void SpaghettisInstance::searchPathsOpenWindow()
+void SpaghettisInstance::openSearchPathsWindow()
 {
     if (searchPaths_ == nullptr) { searchPaths_ = std::make_unique<SearchPaths>(); }
     else {
@@ -56,7 +56,7 @@ void SpaghettisInstance::searchPathsOpenWindow()
     }
 }
 
-void SpaghettisInstance::searchPathsCloseWindow()
+void SpaghettisInstance::closeSearchPathsWindow()
 {
     searchPaths_ = nullptr;
 }
