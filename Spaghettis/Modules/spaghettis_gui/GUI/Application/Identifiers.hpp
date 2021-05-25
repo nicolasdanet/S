@@ -6,72 +6,31 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-// ====================================
-
-/*************************************************************************************************************
-
- BEGIN_JUCE_MODULE_DECLARATION
-
-  ID:                 spaghettis_gui
-  vendor:             Spaghettis
-  version:            0.9
-  name:               GUI
-  description:        GUI of Spaghettis.
-  website:            https://github.com/Spaghettis
-  license:            BSD
-
-  dependencies:       spaghettis_core juce_gui_basics
-  OSXFrameworks:
-  OSXLibs:
-  linuxLibs:
-
- END_JUCE_MODULE_DECLARATION
-
-*************************************************************************************************************/
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#pragma once
+namespace Ids {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_core/spaghettis_core.hpp"
+#define DECLARE_ID(name)  static const juce::Identifier name (#name)
 
-#include "juce_gui_basics/juce_gui_basics.h"
+    DECLARE_ID (path);
+
+#undef DECLARE_ID
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#if JUCE_MAC
+} // namespace Ids
     
-#define SPAGHETTIS_MENUBAR      0
-
-#else
-
-#define SPAGHETTIS_MENUBAR      1
-
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Colours.hpp"
-#include "GUI/Application/Commands.hpp"
-#include "GUI/Application/Identifiers.hpp"
-#include "GUI/Application/LookAndFeel.hpp"
-#include "GUI/Application/MenuModel.hpp"
-#include "GUI/Application/SpaghettisInstance.hpp"
-#include "GUI/Application/Spaghettis.hpp"
-#include "GUI/Application/ApplicationComponent.hpp"
-#include "GUI/Application/ApplicationWindow.hpp"
-
-#include "GUI/Console/ConsoleComponent.hpp"
-#include "GUI/Console/Console.hpp"
-
-#include "GUI/SearchPaths/SearchPathsComponent.hpp"
-#include "GUI/SearchPaths/SearchPaths.hpp"
+} // namespace spaghettis
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

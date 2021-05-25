@@ -20,7 +20,7 @@ class SearchPathsComponent :    public ApplicationComponent,
 // MARK: -
 
 public:
-    SearchPathsComponent()
+    SearchPathsComponent() : keyName_ ("SearchPaths"), rootName_ ("SEARCHPATHS"), elementName_ ("SEARCHPATH")
     {
         const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getFontConsole().getHeight() * 1.5);
         
@@ -31,6 +31,8 @@ public:
         listBox_.getViewport()->setScrollBarsShown (false, false, true, true);
         
         addAndMakeVisible (listBox_);
+        
+        loadFromPreferences();
         
         setSize (500, 300);
     }
@@ -46,12 +48,29 @@ public:
 private:
     void saveToPreferences()
     {
-    
+        juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
+        
+        std::unique_ptr<juce::XmlElement> root = std::make_unique<juce::XmlElement> (rootName_);
+        
+        for (const auto& p : paths_) {
+            juce::XmlElement* e = root->createNewChildElement (elementName_);
+            e->setAttribute (Ids::path, p);
+        }
+        
+        preferences.setValue (keyName_, root.get());
     }
     
     void loadFromPreferences()
     {
-    
+        juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
+        
+        std::unique_ptr<juce::XmlElement> e = preferences.getXmlValue (keyName_);
+        
+        if (e) {
+        //
+        
+        //
+        }
     }
     
     void updateView()
@@ -62,7 +81,7 @@ private:
     
     void appendFullPathName (const juce::String& filepath)
     {
-        paths_.addIfNotAlreadyThere (filepath); updateView();
+        paths_.addIfNotAlreadyThere (filepath); updateView(); saveToPreferences();
     }
     
     void appendFile (const juce::File& file)
@@ -151,7 +170,7 @@ public:
         //
         }
         
-        updateView();
+        updateView(); saveToPreferences();
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -172,7 +191,10 @@ public:
 private:
     juce::ListBox listBox_;
     juce::StringArray paths_;
-
+    juce::String keyName_;
+    juce::String rootName_;
+    juce::String elementName_;
+    
 private:
     std::unique_ptr<juce::FileChooser> fileChooser_;
 
