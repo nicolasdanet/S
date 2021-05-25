@@ -72,7 +72,7 @@ public:
         
         Spaghettis()->setLogger (this);
         
-        setSize (500, 300);
+        setSize (600, 300);
     }
     
     ~ConsoleComponent() override

@@ -12,8 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class SearchPathsComponent :    public ApplicationComponent,
-                                public juce::ListBoxModel {
+class SearchPathsComponent :    public  ApplicationComponent,
+                                public  juce::ListBoxModel,
+                                private juce::AsyncUpdater  {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -34,7 +35,7 @@ public:
         
         loadFromPreferences();
         
-        setSize (500, 300);
+        setSize (400, 500);
     }
     
     ~SearchPathsComponent() override
@@ -46,7 +47,7 @@ public:
 // MARK: -
 
 private:
-    void saveToPreferences()
+    void handleAsyncUpdate() override
     {
         juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
         
@@ -60,15 +61,25 @@ private:
         preferences.setValue (keyName_, root.get());
     }
     
+private:
+    void saveToPreferences()
+    {
+        triggerAsyncUpdate();
+    }
+    
     void loadFromPreferences()
     {
         juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
         
-        std::unique_ptr<juce::XmlElement> e = preferences.getXmlValue (keyName_);
+        std::unique_ptr<juce::XmlElement> root = preferences.getXmlValue (keyName_);
         
-        if (e) {
+        if (root && root->hasTagName (rootName_)) {
         //
-        
+        for (auto* e : root->getChildWithTagNameIterator (elementName_)) {
+            if (e->hasAttribute (Ids::path)) {
+                paths_.addIfNotAlreadyThere (e->getStringAttribute (Ids::path));
+            }
+        }
         //
         }
     }
