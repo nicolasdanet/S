@@ -71,7 +71,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
+public:
     void handle (const std::function<void()>& f)
     {
         core_->addInput (f);
@@ -82,21 +82,6 @@ private:
 // MARK: -
 
 public:
-    void ping()
-    {
-        handle (Inputs::ping());
-    }
-    
-    void switchDsp()
-    {
-        handle (Inputs::switchDsp());
-    }
-    
-    void rescan()
-    {
-        handle (Inputs::rescan());
-    }
-    
     void openPatch (const juce::File& file)
     {
         JUCE_ASSERT_MESSAGE_THREAD

@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ConsoleComponent :    public spaghettis::ApplicationComponent,
+class ConsoleComponent :    public ApplicationComponent,
                             public spaghettis::Logger {
 
 // -----------------------------------------------------------------------------------------------------------
