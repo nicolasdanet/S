@@ -62,7 +62,7 @@ private:
     }
     
 private:
-    void saveToPreferences()
+    void updateSearchPaths()
     {
         triggerAsyncUpdate();
     }
@@ -92,7 +92,7 @@ private:
     
     void appendFullPathName (const juce::String& filepath)
     {
-        paths_.addIfNotAlreadyThere (filepath); updateView(); saveToPreferences();
+        paths_.addIfNotAlreadyThere (filepath); updateView(); updateSearchPaths();
     }
     
     void appendFile (const juce::File& file)
@@ -181,7 +181,7 @@ public:
         //
         }
         
-        updateView(); saveToPreferences();
+        updateView(); updateSearchPaths();
     }
     
 // -----------------------------------------------------------------------------------------------------------
