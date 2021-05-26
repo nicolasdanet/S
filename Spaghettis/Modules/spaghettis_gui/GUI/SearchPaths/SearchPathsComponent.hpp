@@ -47,16 +47,7 @@ public:
 private:
     void handleAsyncUpdate() override
     {
-        juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
-        
-        std::unique_ptr<juce::XmlElement> root = std::make_unique<juce::XmlElement> ("SEARCHPATHS");
-        
-        for (const auto& p : paths_) {
-            juce::XmlElement* e = root->createNewChildElement ("SEARCHPATH");
-            e->setAttribute (Ids::path, p);
-        }
-        
-        preferences.setValue ("SearchPaths", root.get());
+        Spaghettis()->setSearchPaths (paths_);
     }
     
 private:

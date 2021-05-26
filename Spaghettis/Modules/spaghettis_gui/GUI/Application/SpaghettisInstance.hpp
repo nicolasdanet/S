@@ -101,6 +101,7 @@ public:
     void openSearchPathsWindow();
     void closeSearchPathsWindow();
     juce::StringArray getSearchPaths();
+    void setSearchPaths (const juce::StringArray&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
