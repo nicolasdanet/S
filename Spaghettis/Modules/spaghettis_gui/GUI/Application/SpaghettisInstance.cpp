@@ -60,7 +60,26 @@ void SpaghettisInstance::closeSearchPathsWindow()
 {
     searchPaths_ = nullptr;
 }
+
+juce::StringArray SpaghettisInstance::getSearchPaths()
+{
+    juce::StringArray searchPaths;
     
+    std::unique_ptr<juce::XmlElement> root = preferences_->getXmlValue ("SearchPaths");
+        
+    if (root && root->hasTagName ("SEARCHPATHS")) {
+    //
+    for (auto* e : root->getChildWithTagNameIterator ("SEARCHPATH")) {
+        if (e->hasAttribute (Ids::path)) {
+            searchPaths.addIfNotAlreadyThere (e->getStringAttribute (Ids::path));
+        }
+    }
+    //
+    }
+    
+    return searchPaths;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
