@@ -199,6 +199,16 @@ public:
         listBox_.setBounds (getBoundsMenubarResized());
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool tryGrabFocus() override
+    {
+        return tryGrabFocusForComponent (&listBox_);
+    }
+    
 private:
     juce::ListBox listBox_;
     juce::StringArray paths_;

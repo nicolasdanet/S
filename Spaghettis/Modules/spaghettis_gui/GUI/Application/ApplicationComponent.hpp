@@ -47,11 +47,17 @@ public:
 // MARK: -
 
 public:
-    bool tryGrabFocus()
+    static bool tryGrabFocusForComponent (juce::Component *c)
     {
-        grabKeyboardFocus(); return hasKeyboardFocus (true);
+        c->grabKeyboardFocus(); return c->hasKeyboardFocus (true);
     }
     
+public:
+    virtual bool tryGrabFocus()
+    {
+        return tryGrabFocusForComponent (this);
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
