@@ -44,7 +44,7 @@ void inputs_rescan (bool logged)
 
 void inputs_setSearchPaths (const juce::StringArray& paths)
 {
-    for (const auto& p : paths) { post_system ("%s", p.toRawUTF8()); }
+    searchpath_clear(); for (const auto& p : paths) { searchpath_appendRoot (p.toRawUTF8()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
