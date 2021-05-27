@@ -229,14 +229,14 @@ PD_LOCAL void searchpath_extendedMatchedAtIndex (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void searchpath_appendRoot (const char *filepath)
+PD_LOCAL void searchpath_clear (void)
 {
-    searchpath_roots = pathlist_newAppend (searchpath_roots, NULL, filepath);
+    pathlist_free (searchpath_roots); searchpath_roots = NULL;
 }
 
-PD_FORCE t_pathlist *searchpath_getRoots (void)
+PD_LOCAL void searchpath_appendRoot (const char *filepath)
 {
-    return searchpath_roots;
+    searchpath_roots = pathlist_newAppend (searchpath_roots, NULL, filepath);
 }
 
 PD_LOCAL t_pathlist *searchpath_getExtended (void)

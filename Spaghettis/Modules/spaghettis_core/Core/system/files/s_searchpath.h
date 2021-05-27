@@ -14,10 +14,10 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE t_pathlist     *searchpath_getRoots            (void);
 PD_LOCAL t_pathlist     *searchpath_getExtended         (void);
 
-PD_FORCE void       searchpath_appendRoot               (const char *filepath);
+PD_LOCAL void       searchpath_clear                    (void);
+PD_LOCAL void       searchpath_appendRoot               (const char *filepath);
 
 PD_LOCAL int        searchpath_isExternalAvailable      (t_symbol *s);
 PD_LOCAL int        searchpath_isAbstractionAvailable   (t_symbol *s);
