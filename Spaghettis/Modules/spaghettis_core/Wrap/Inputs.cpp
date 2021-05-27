@@ -31,9 +31,9 @@ std::function<void()> Inputs::switchDsp()
     return []() { core::inputs_switchDsp(); };
 }
 
-std::function<void()> Inputs::setSearchPaths (const juce::StringArray&)
+std::function<void()> Inputs::setSearchPaths (juce::StringArray paths)
 {
-    return []() { DBG ("!!!"); };
+    return [p = std::move (paths)]() { core::inputs_setSearchPaths (p); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

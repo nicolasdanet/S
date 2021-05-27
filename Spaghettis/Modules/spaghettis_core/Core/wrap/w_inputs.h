@@ -16,10 +16,11 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-void inputs_ping        (void);
-void inputs_patchOpen   (const juce::File& file);
-void inputs_switchDsp   (void);
-void inputs_rescan      (bool logged);
+void inputs_ping            (void);
+void inputs_patchOpen       (const juce::File&);
+void inputs_switchDsp       (void);
+void inputs_rescan          (bool logged);
+void inputs_setSearchPaths  (const juce::StringArray&);
 
 #endif
 
