@@ -19,9 +19,10 @@ struct Inputs {
 // MARK: -
 
 static std::function<void()> ping();
-static std::function<void()> openFile (juce::File file);
+static std::function<void()> openFile (juce::File);
 static std::function<void()> rescan();
 static std::function<void()> switchDsp();
+static std::function<void()> setSearchPaths (const juce::StringArray&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

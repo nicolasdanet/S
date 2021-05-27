@@ -51,7 +51,7 @@ private:
     }
     
 private:
-    void updateSearchPaths()
+    void setSearchPaths()
     {
         triggerAsyncUpdate();
     }
@@ -64,7 +64,7 @@ private:
     
     void appendFullPathName (const juce::String& filepath)
     {
-        paths_.addIfNotAlreadyThere (filepath); updateView(); updateSearchPaths();
+        paths_.addIfNotAlreadyThere (filepath); updateView(); setSearchPaths();
     }
     
     void appendFile (const juce::File& file)
@@ -144,7 +144,7 @@ public:
         //
         }
         
-        updateView(); updateSearchPaths();
+        updateView(); setSearchPaths();
     }
     
 // -----------------------------------------------------------------------------------------------------------

@@ -27,6 +27,8 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
     #endif
         
     core_->start (commandLine);
+    
+    updateSearchPaths (getSearchPaths());
 }
     
 void SpaghettisInstance::shutdown()
@@ -61,6 +63,12 @@ void SpaghettisInstance::closeSearchPathsWindow()
     searchPaths_ = nullptr;
 }
 
+void SpaghettisInstance::updateSearchPaths (const juce::StringArray& searchpaths)
+{
+    handle (Inputs::setSearchPaths (searchpaths));
+    handle (Inputs::rescan());
+}
+
 juce::StringArray SpaghettisInstance::getSearchPaths()
 {
     juce::StringArray searchPaths;
@@ -90,6 +98,8 @@ void SpaghettisInstance::setSearchPaths (const juce::StringArray& searchpaths)
     }
         
     preferences_->setValue ("SearchPaths", root.get());
+    
+    updateSearchPaths (searchpaths);
 }
 
 // -----------------------------------------------------------------------------------------------------------
