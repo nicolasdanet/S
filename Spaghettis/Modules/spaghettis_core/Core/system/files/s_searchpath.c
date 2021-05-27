@@ -11,11 +11,6 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-extern t_symbol *main_directorySupport;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 #define SEARCHPATH_LEVELS   10
@@ -114,6 +109,10 @@ PD_LOCAL t_error searchpath_scan (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if 0
+
+extern t_symbol *main_directorySupport;
+
 static void searchpath_reportWrite (int f, const char *prefix, const char *s)
 {
     ssize_t w = 0;      /* Avoid unused return warning. */
@@ -126,7 +125,7 @@ static void searchpath_reportWrite (int f, const char *prefix, const char *s)
     (void)w;
 }
 
-PD_LOCAL void searchpath_reportToLogFile (void)
+static void searchpath_reportToLogFile (void)
 {
     char t[PD_STRING] = { 0 };
     t_error err = string_sprintf (t, PD_STRING, "%s/scan-XXXXXX", main_directorySupport->s_name);
@@ -178,6 +177,55 @@ PD_LOCAL void searchpath_reportToLogFile (void)
     
     close (f);
     //
+    }
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void searchpath_report (void)
+{
+    t_pathlist *l = searchpath_extended;
+    
+    while (l) {
+        const char *path = pathlist_getPath (l);
+        l = pathlist_getNext (l);
+        post_system ("rescan: %s", path);
+    }
+    
+    l = searchpath_external;
+    
+    while (l) {
+        const char *path = pathlist_getPath (l);
+        l = pathlist_getNext (l);
+        post_system ("rescan: external / %s", path);
+    }
+    
+    l = searchpath_patch;
+    
+    while (l) {
+        const char *path = pathlist_getPath (l);
+        l = pathlist_getNext (l);
+        post_system ("rescan: patch / %s", path);
+    }
+    
+    l = searchpath_help;
+    
+    while (l) {
+        const char *path = pathlist_getPath (l);
+        l = pathlist_getNext (l);
+        post_system ("rescan: help / %s", path);
+    }
+    
+    l = searchpath_duplicates;
+    
+    while (l) {
+        const char *path = pathlist_getPath (l);
+        l = pathlist_getNext (l);
+        post_system ("rescan: duplicates / %s", path);
     }
 }
 
@@ -252,7 +300,7 @@ PD_LOCAL void searchpath_rescan (int logged)
 {
     t_error err = searchpath_scan();
     
-    if (logged) { searchpath_reportToLogFile(); }
+    if (logged) { searchpath_report(); }
     if (searchpath_hasDuplicates()) { warning_containsDuplicates(); }
     if (err) { error_searchPathOverflow(); }
 }
