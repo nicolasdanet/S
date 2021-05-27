@@ -99,7 +99,6 @@ PD_LOCAL t_error searchpath_scan (void)
     while (!err && l) {
         char *path = pathlist_getPath (l); l = pathlist_getNext (l);
         err |= (nftw (path, searchpath_scanProceed, SEARCHPATH_FDOPEN, FTW_MOUNT | FTW_PHYS) != 0);
-        if (!err) { post_system ("rescan: %s", path); }
     }
     
     PD_ASSERT (!pathlist_check (searchpath_extended));
@@ -254,12 +253,8 @@ PD_LOCAL void searchpath_rescan (int logged)
     t_error err = searchpath_scan();
     
     if (logged) { searchpath_reportToLogFile(); }
-    
     if (searchpath_hasDuplicates()) { warning_containsDuplicates(); }
-    if (err) { error_searchPathOverflow(); post_system ("rescan: failed"); }   // --
-    else {
-        post_system ("rescan: done");  // --
-    }
+    if (err) { error_searchPathOverflow(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

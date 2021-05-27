@@ -39,7 +39,7 @@ void inputs_switchDsp (void)
 
 void inputs_rescan (bool logged)
 {
-    searchpath_rescan (logged);
+    searchpath_rescan (logged ? 1 : 0);
 }
 
 void inputs_setSearchPaths (const juce::StringArray& paths)

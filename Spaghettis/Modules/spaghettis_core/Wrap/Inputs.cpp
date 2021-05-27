@@ -21,9 +21,9 @@ std::function<void()> Inputs::openFile (juce::File file)
     return [f = std::move (file)]() { core::inputs_patchOpen (f); };
 }
 
-std::function<void()> Inputs::rescan()
+std::function<void()> Inputs::rescan (bool logged)
 {
-    return []() { core::inputs_rescan (false); };
+    return [logged]() { core::inputs_rescan (logged); };
 }
 
 std::function<void()> Inputs::switchDsp()

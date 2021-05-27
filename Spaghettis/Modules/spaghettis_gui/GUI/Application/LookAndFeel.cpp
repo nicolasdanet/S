@@ -46,9 +46,6 @@ void LookAndFeel::initializeFonts()
     fontShortcuts_ = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
     
     setDefaultSansSerifTypefaceName (fontName);
-    
-    SPAGHETTIS_DEBUG (fontConsole_.getTypeface()->getName());
-    SPAGHETTIS_DEBUG (fontShortcuts_.getTypeface()->getName());
 }
 
 // -----------------------------------------------------------------------------------------------------------
