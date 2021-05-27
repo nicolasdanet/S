@@ -193,7 +193,7 @@
 		44418211D062CE90F46F056C = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Spaghettis";
 				TargetAttributes = {
 					291A2F99755AE10335EBB572 = {
@@ -255,6 +255,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			name = "Post-build script";
+			alwaysOutOfDate = 1;
 			shellPath = /bin/sh;
 			shellScript = "rep=\"${SOURCE_ROOT}/../..\"\napp=\"${BUILT_PRODUCTS_DIR}/Spaghettis.app\"\nentitlements=\"${rep}/Resources/Spaghettis.entitlements\"\n\ncodesign --options runtime --entitlements \"${entitlements}\" --deep -s \"-\" \"${app}\"  || exit 1\n";
 		};
