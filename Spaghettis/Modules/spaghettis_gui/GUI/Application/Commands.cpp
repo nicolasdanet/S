@@ -20,6 +20,7 @@ void Commands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::fileOpen,
             Commands::paths,
             Commands::rescan,
+            Commands::rescanLogged,
             Commands::dspSwitch
         };
         
@@ -48,6 +49,9 @@ void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommand
     case Commands::rescan :
         r.setInfo (NEEDS_TRANS ("Rescan"),          NEEDS_TRANS ("Rescan search paths"),    file, 0);
         break;
+    case Commands::rescanLogged :
+        r.setInfo (NEEDS_TRANS ("Rescan Logged"),   NEEDS_TRANS ("Rescan search paths"),    file, 0);
+        break;
     case Commands::dspSwitch :
         r.setInfo (NEEDS_TRANS ("Run DSP"),         NEEDS_TRANS ("DSP On/Off"),             media, 0);
         r.addDefaultKeypress ('r', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
@@ -66,6 +70,7 @@ bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& in
     case Commands::fileOpen     : Spaghettis()->openPatch();                        return true;
     case Commands::paths        : Spaghettis()->openSearchPathsWindow();            return true;
     case Commands::rescan       : Spaghettis()->handle (Inputs::rescan());          return true;
+    case Commands::rescanLogged : Spaghettis()->handle (Inputs::rescan (true));     return true;
     case Commands::dspSwitch    : Spaghettis()->handle (Inputs::switchDsp());       return true;
     default : break;
     //
