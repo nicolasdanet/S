@@ -1,6 +1,6 @@
 
 /* 
-    Copyright (c) 2007-2013 William Andrew Burnson.
+    Copyright (c) 2007-2013 Andi Brae.
     Copyright (c) 2013 Nicolas Danet.
     
 */
@@ -17,11 +17,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* This library is a fork of "Belle, Bonne, Sage" from William Andrew Burnson. */
+/* This library is a fork of "Belle, Bonne, Sage" from Andi Brae. */
 /* Notice that all files have been largely modified. */
 /* Original version has been extended since and can be found at the link below. */
 
-/* < https://github.com/burnson/belle > */
+/* < https://github.com/andibrae/belle > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

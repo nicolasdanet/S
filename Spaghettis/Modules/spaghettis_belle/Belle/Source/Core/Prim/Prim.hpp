@@ -1,6 +1,6 @@
 
 /* 
-    Copyright (c) 2007-2013 William Andrew Burnson.
+    Copyright (c) 2007-2013 Andi Brae.
     Copyright (c) 2013 Nicolas Danet.
     
 */  
