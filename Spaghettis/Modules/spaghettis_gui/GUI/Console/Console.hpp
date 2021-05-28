@@ -21,7 +21,9 @@ class Console : public ApplicationWindow {
 public:
     Console() : ApplicationWindow (core::getApplicationName(), "ConsoleWindowPosition")
     {
-        setContentOwned (new ConsoleComponent(), true);
+        content_ = std::make_unique<ConsoleComponent>();
+        
+        setContentNonOwned (content_.get(), true);
 
         makeVisible();
     }
@@ -43,7 +45,15 @@ public:
         
         juce::JUCEApplication::getInstance()->systemRequestedQuit();
     }
+    
+    void clear()
+    {
+        content_->clear();
+    }
 
+private:
+    std::unique_ptr<ConsoleComponent> content_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Console)
 };

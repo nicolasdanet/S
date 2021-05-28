@@ -135,6 +135,11 @@ public:
         text_.setColour (juce::TextEditor::textColourId, colourWithType (type));
         text_.insertTextAtCaret (m + juce::newLine);
     }
+    
+    void clear()
+    {
+        text_.clear();
+    }
 
 private:
     TextLogger text_;
