@@ -58,6 +58,11 @@ static void global_quit (void *dummy)
     #endif
 }
 
+static void global_clear (void *dummy)
+{
+    // -- TODO: clear console.
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -87,6 +92,7 @@ PD_LOCAL void global_setup (void)
     class_addMethod (c, (t_method)global_dsp,       sym_dsp,        A_GIMME, A_NULL);
     class_addMethod (c, (t_method)global_metadata,  sym_metadata,   A_GIMME, A_NULL);
     class_addMethod (c, (t_method)global_quit,      sym_quit,       A_NULL);
+    class_addMethod (c, (t_method)global_clear,     sym_clear,      A_NULL);
     
     class_addAnything (c, (t_method)global_default);
     
