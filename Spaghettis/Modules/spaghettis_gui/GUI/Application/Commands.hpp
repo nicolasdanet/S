@@ -30,7 +30,8 @@ enum CommandIDs : juce::CommandID {
     paths           = SPAGHETTIS_COMMAND (2),
     rescan          = SPAGHETTIS_COMMAND (3),
     rescanLogged    = SPAGHETTIS_COMMAND (4),
-    dspSwitch       = SPAGHETTIS_COMMAND (5)
+    clearConsole    = SPAGHETTIS_COMMAND (5),
+    dspSwitch       = SPAGHETTIS_COMMAND (6)
 };
 
 // -----------------------------------------------------------------------------------------------------------

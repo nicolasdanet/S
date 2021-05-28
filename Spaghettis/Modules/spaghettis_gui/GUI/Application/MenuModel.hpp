@@ -31,7 +31,7 @@ public:
 public:
     juce::StringArray getMenuBarNames() override
     {
-        return { NEEDS_TRANS ("File"), NEEDS_TRANS ("Media") };
+        return { NEEDS_TRANS ("File"), NEEDS_TRANS ("Edit"), NEEDS_TRANS ("Media") };
     }
 
     juce::PopupMenu getMenuForIndex (int n, const juce::String&) override
@@ -56,6 +56,10 @@ public:
         #endif
         //
         } else if (n == 1) {
+        //
+        menu.addCommandItem (commandManager_, Commands::clearConsole);
+        //
+        } else if (n == 2) {
         //
         menu.addCommandItem (commandManager_, Commands::dspSwitch);
         //
