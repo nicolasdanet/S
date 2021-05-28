@@ -35,7 +35,7 @@ The latest JUCE (6.0.8) is required at `~/JUCE`.
 ## Credits
 
 - Pure Data by [Miller Puckette & others](http://msp.ucsd.edu/Software/pd-README.txt)
-- Belle by [William Andrew Burnson](https://github.com/burnson)
+- Belle by [Andi Brae](https://github.com/andibrae/belle)
 - TinyExpr by [Lewis Van Winkle](https://github.com/codeplea/tinyexpr)
 - Mersenne Twister by [T. Nishimura & M. Matsumoto](http://www.math.sci.hiroshima-u.ac.jp/~m-mat)
 - FFT by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/fft.html)
