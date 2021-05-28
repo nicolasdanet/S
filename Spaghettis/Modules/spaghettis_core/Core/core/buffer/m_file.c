@@ -53,7 +53,7 @@ PD_LOCAL t_error buffer_fromFile (t_buffer *x, const char *name, const char *dir
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error buffer_fileRead (t_buffer *x, t_symbol *name, t_glist *glist)
+PD_LOCAL t_error buffer_fileRead (t_buffer *x, t_symbol *name, t_glist *glist, t_object *owner)
 {
     t_error err = PD_ERROR;
     
@@ -63,7 +63,7 @@ PD_LOCAL t_error buffer_fileRead (t_buffer *x, t_symbol *name, t_glist *glist)
         err = buffer_fromFile (x, fileproperties_getName (&p), fileproperties_getDirectory (&p));
     }
     
-    if (err) { error_canNotOpen (name); }
+    if (err) { error_canNotOpen (owner, name); }
     
     return err;
 }

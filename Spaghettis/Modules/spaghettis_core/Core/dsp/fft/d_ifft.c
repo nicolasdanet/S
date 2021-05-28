@@ -53,7 +53,7 @@ static void ifft_tilde_dsp (t_ifft_tilde *x, t_signal **sp)
     
     object_fetchAndCopySignalValuesIfRequired (cast_object (x));
 
-    if (n < FFT_MINIMUM || n > FFT_MAXIMUM) { error_invalid (sym_ifft__tilde__, sym_size); }
+    if (n < FFT_MINIMUM || n > FFT_MAXIMUM) { error_invalid (cast_object (x), sym_ifft__tilde__, sym_size); }
     else {
     //
     PD_ASSERT (sp[0]->s_vector != sp[2]->s_vector);

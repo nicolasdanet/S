@@ -70,7 +70,7 @@ static void rfft_tilde_dsp (t_rfft_tilde *x, t_signal **sp)
     
     object_fetchAndCopySignalValuesIfRequired (cast_object (x));
 
-    if (n < FFT_MINIMUM || n > FFT_MAXIMUM) { error_invalid (sym_rfft__tilde__, sym_size); }
+    if (n < FFT_MINIMUM || n > FFT_MAXIMUM) { error_invalid (cast_object (x), sym_rfft__tilde__, sym_size); }
     else {
     //
     PD_RESTRICTED in1  = sp[0]->s_vector;

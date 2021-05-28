@@ -63,7 +63,7 @@ static void *ctlin_new (t_symbol *s, int argc, t_atom *argv)
     
     pd_bind (cast_pd (x), sym__ctlin);
     
-    if (argc > 2) { warning_unusedArguments (s, argc - 2, argv + 2); }
+    if (argc > 2) { warning_unusedArguments (cast_object (x), s, argc - 2, argv + 2); }
     
     return x;
 }

@@ -121,7 +121,7 @@ static void framp_tilde_dsp (t_framp_tilde *x, t_signal **sp)
     
     object_fetchAndCopySignalValuesIfRequired (cast_object (x));
     
-    if (n < FFT_MINIMUM || n > FFT_MAXIMUM) { error_invalid (sym_framp__tilde__, sym_size); }
+    if (n < FFT_MINIMUM || n > FFT_MAXIMUM) { error_invalid (cast_object (x), sym_framp__tilde__, sym_size); }
     else {
     //
     int half = (n >> 1);

@@ -69,7 +69,7 @@ static void global_clear (void *dummy)
 
 static void global_default (void *dummy, t_symbol *s, int argc, t_atom *argv)
 {
-    error_unknownMethod (sym_pd, s);
+    error_unknownMethod (NULL, sym_pd, s);
 }
 
 // -----------------------------------------------------------------------------------------------------------

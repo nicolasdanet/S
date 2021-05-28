@@ -32,7 +32,7 @@ static void tabwrite_float (t_tabwrite *x, t_float f)
 {
     t_garray *a = garray_fetch (x->x_name);
     
-    if (!a) { error_canNotFind (sym_tabwrite, x->x_name); }
+    if (!a) { error_canNotFind (cast_object (x), sym_tabwrite, x->x_name); }
     else {
         garray_setFloatAtIndex (a, x->x_index, f);
     }

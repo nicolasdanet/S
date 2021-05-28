@@ -94,7 +94,7 @@ static void metro_float (t_metro *x, t_float f)
 
 static void metro_floatDelay (t_metro *x, t_float f)
 {
-    if (f < 0.0) { error_invalid (sym_metro, sym_delay); }
+    if (f < 0.0) { error_invalid (cast_object (x), sym_metro, sym_delay); }
     else {
         x->x_delay = (double)((f == 0.0) ? METRO_DEFAULT_DELAY : f);
     }
@@ -111,7 +111,7 @@ static void metro_unit (t_metro *x, t_symbol *unitName, t_float f)
 {
     t_error err = clock_setUnitParsed (x->x_clock, f, unitName);
     
-    if (err) { error_invalid (sym_metro, sym_unit); }
+    if (err) { error_invalid (cast_object (x), sym_metro, sym_unit); }
     else {
         x->x_unitValue = f;
         x->x_unitName  = unitName;
@@ -204,7 +204,7 @@ static void *metro_new (t_symbol *s, int argc, t_atom *argv)
     
     if (unit != 0.0 && unitName != &s_) { metro_unit (x, unitName, unit); }
     
-    if (argc > 3) { warning_unusedArguments (s, argc - 3, argv + 3); }
+    if (argc > 3) { warning_unusedArguments (cast_object (x), s, argc - 3, argv + 3); }
     
     return x;
 }

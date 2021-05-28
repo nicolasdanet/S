@@ -124,7 +124,7 @@ PD_LOCAL t_error audio_check (t_devices *p)
     //
     }
     
-    if (err) { error_mismatch (sym_audio, sym_channels); }
+    if (err) { error_mismatch (NULL, sym_audio, sym_channels); }
     
     return err;
 }

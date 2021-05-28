@@ -89,7 +89,7 @@ static void textset_list (t_textset *x, t_symbol *s, int argc, t_atom *argv)
     //
     }
     //
-    } else { error_undefined (sym_text__space__set, sym_text); }
+    } else { error_undefined (cast_object (x), sym_text__space__set, sym_text); }
 }
 
 static void textset_anything (t_textset *x, t_symbol *s, int argc, t_atom *argv)
@@ -155,13 +155,15 @@ PD_LOCAL void *textset_new (t_symbol *s, int argc, t_atom *argv)
         if (argc && IS_FLOAT (argv)) { x->x_line  = GET_FLOAT (argv); argc--; argv++; }
         if (argc && IS_FLOAT (argv)) { x->x_field = GET_FLOAT (argv); argc--; argv++; }
         
-        if (argc) { warning_unusedArguments (sym_text__space__set, argc, argv); }
+        if (argc) { warning_unusedArguments (cast_object (x), sym_text__space__set, argc, argv); }
         
         inlet_newSymbol (cast_object (x), TEXTCLIENT_NAME (&x->x_textclient));
     
     } else {
         
-        error_invalidArguments (sym_text__space__set, argc, argv); pd_free (cast_pd (x)); x = NULL;
+        error_invalidArguments (cast_object (x), sym_text__space__set, argc, argv);
+        
+        pd_free (cast_pd (x)); x = NULL;
     }
     
     return x;

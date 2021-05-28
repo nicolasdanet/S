@@ -126,9 +126,12 @@ static void glist_saveProceed (t_glist *glist, t_symbol *name, t_symbol *directo
     
     legacy_version (b); glist_serialize (glist, b, SAVE_DEFAULT, 0);
     
-    if (buffer_fileWrite (b, name, directory)) { error_failsToWrite (name); }
+    if (buffer_fileWrite (b, name, directory)) { error_failsToWrite (cast_object (glist), name); }
     else {
-        post_system (PD_TRANSLATE ("file: saved to %s/%s"), directory->s_name, name->s_name);    // --
+        post_system (cast_object (glist),
+            PD_TRANSLATE ("file: saved to %s/%s"),      // --
+            directory->s_name,
+            name->s_name);
         environment_setDirectory (glist_getEnvironment (glist), directory);
         glist_setDirty (glist, 0);
     }
@@ -145,7 +148,7 @@ PD_FORCE void glist_save (t_glist *glist)
     t_glist *root  = glist_getTop (glist);
     t_symbol *name = environment_getFileName (glist_getEnvironment (root));
     
-    if (glist_isFrozen (glist)) { error_fileIsProtected (name); }
+    if (glist_isFrozen (glist)) { error_fileIsProtected (cast_object (glist), name); }
     else if (name != &s_) {
         glist_saveProceed (root, name, environment_getDirectory (glist_getEnvironment (root)));
     }

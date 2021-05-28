@@ -41,7 +41,9 @@ static void receive_tilde_setProceed (t_receive_tilde *x, t_symbol *s, int verbo
     
     PD_ATOMIC_POINTER_WRITE (t, &x->x_p);
     
-    if (verbose && !t && x->x_name != &s_) { error_canNotFind (sym_receive__tilde__, x->x_name); }
+    if (verbose && !t && x->x_name != &s_) {
+        error_canNotFind (cast_object (x), sym_receive__tilde__, x->x_name);
+    }
 }
 
 static void receive_tilde_set (t_receive_tilde *x, t_symbol *s)
@@ -76,7 +78,9 @@ static t_int *receive_tilde_perform (t_int *w)
 
 static void receive_tilde_dsp (t_receive_tilde *x, t_signal **sp)
 {
-    if (sp[0]->s_vectorSize != INTERNAL_BLOCKSIZE) { error_mismatch (sym_receive__tilde__, sym_size); }
+    int size = sp[0]->s_vectorSize;
+    
+    if (size != INTERNAL_BLOCKSIZE) { error_mismatch (cast_object (x), sym_receive__tilde__, sym_size); }
     else {
     //
     if (object_dspNeedInitializer (cast_object (x))) {

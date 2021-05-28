@@ -38,7 +38,7 @@ static int soundinfo_readHeader (t_soundinfo *x, int argc, t_atom *argv)
 {
     t_audioproperties p; soundfile_propertiesInit (&p);
     
-    t_error err = soundfile_readFileParse (NULL, sym_soundinfo, &argc, &argv, &p);
+    t_error err = soundfile_readFileParse (NULL, sym_soundinfo, &argc, &argv, &p, cast_object (x));
     
     if (!err) {
     //

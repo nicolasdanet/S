@@ -362,7 +362,7 @@ PD_LOCAL void instance_dspFree (void)
 
 static void instance_audioCloseTask (void *dummy)
 {
-    int old = dsp_getState(); dsp_setState (0); if (old) { error_unexpected (sym_audio, sym_shutdown); }
+    int old = dsp_getState(); dsp_setState (0); if (old) { error_unexpected (NULL, sym_audio, sym_shutdown); }
 }
 
 PD_LOCAL void instance_audioCloseWithError (void)
@@ -379,7 +379,9 @@ PD_LOCAL t_error instance_overflowPush (void)
     int count   = ++instance_get()->pd_overflowCount;
     t_error err = (count >= INSTANCE_OVERFLOW);
     
-    if (err && !instance_get()->pd_overflow) { instance_get()->pd_overflow = 1; error_stackOverflow(); }
+    // -- TODO: Pass context to message error?
+    
+    if (err && !instance_get()->pd_overflow) { instance_get()->pd_overflow = 1; error_stackOverflow (NULL); }
     
     err |= instance_get()->pd_overflow;
     
@@ -419,7 +421,7 @@ static void instance_factory (t_pd *x, t_symbol *s, int argc, t_atom *argv)
         }
         
     } else {
-        error_canNotFind (sym_loader, sym_class);       /* External MUST provide a properly named class. */
+        error_canNotFind (NULL, sym_loader, sym_class);   /* External MUST provide a properly named class. */
     }
 }
 

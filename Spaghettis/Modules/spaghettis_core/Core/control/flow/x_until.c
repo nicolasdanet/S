@@ -66,7 +66,7 @@ static void *until_new (void)
     
     inlet_new2 (x, &s_bang);
 
-    static int once = 0; if (!once) { warning_deprecatedObject (sym_until); once = 1; }
+    warning_deprecatedObject (cast_object (x), sym_until);
     
     return x;
 }

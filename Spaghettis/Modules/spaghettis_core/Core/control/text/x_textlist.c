@@ -47,13 +47,15 @@ PD_LOCAL void *texttolist_new (t_symbol *s, int argc, t_atom *argv)
     
         x->x_outlet = outlet_newList (cast_object (x));
         
-        if (argc) { warning_unusedArguments (sym_text__space__tolist, argc, argv); }
+        if (argc) { warning_unusedArguments (cast_object (x), sym_text__space__tolist, argc, argv); }
         
         inlet_newSymbol (cast_object (x), TEXTCLIENT_NAME (&x->x_textclient));
     
     } else {
         
-        error_invalidArguments (sym_text__space__tolist, argc, argv); pd_free (cast_pd (x)); x = NULL;
+        error_invalidArguments (cast_object (x), sym_text__space__tolist, argc, argv);
+        
+        pd_free (cast_pd (x)); x = NULL;
     }
     
     return x;
@@ -69,7 +71,7 @@ static void texttolist_bang (t_texttolist *x)
         outlet_list (x->x_outlet, buffer_getSize (t), buffer_getAtoms (t));
         buffer_free (t);
         
-    } else { error_undefined (sym_text__space__tolist, sym_text); }
+    } else { error_undefined (cast_object (x), sym_text__space__tolist, sym_text); }
 }
 
 static t_buffer *texttolist_functionData (t_object *z, int flags)
@@ -110,13 +112,14 @@ PD_LOCAL void *textfromlist_new (t_symbol *s, int argc, t_atom *argv)
     
     if (!err) {
     
-        if (argc) { warning_unusedArguments (sym_text__space__fromlist, argc, argv); }
+        if (argc) { warning_unusedArguments (cast_object (x), sym_text__space__fromlist, argc, argv); }
         
         inlet_newSymbol (cast_object (x), TEXTCLIENT_NAME (&x->x_textclient));
         
     } else {
     
-        error_invalidArguments (sym_text__space__fromlist, argc, argv);
+        error_invalidArguments (cast_object (x), sym_text__space__fromlist, argc, argv);
+        
         pd_free (cast_pd (x)); x = NULL;
     }
     
@@ -132,7 +135,7 @@ static void textfromlist_list (t_textfromlist *x, t_symbol *s, int argc, t_atom 
         buffer_deserialize (b, argc, argv);
         textclient_update (&x->x_textclient);
     
-    } else { error_undefined (sym_text__space__fromlist, sym_text); } 
+    } else { error_undefined (cast_object (x), sym_text__space__fromlist, sym_text); } 
 }
 
 static void textfromlist_anything (t_textfromlist *x, t_symbol *s, int argc, t_atom *argv)

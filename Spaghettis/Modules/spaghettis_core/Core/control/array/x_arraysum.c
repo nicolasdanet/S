@@ -64,7 +64,7 @@ PD_LOCAL void *arraysum_new (t_symbol *s, int argc, t_atom *argv)
     
     if (ARRAYRANGE_GOOD (x)) { x->x_outlet = outlet_newFloat (cast_object (x)); }
     else {
-        error_invalidArguments (sym_array__space__sum, argc, argv);
+        error_invalidArguments (cast_object (x), sym_array__space__sum, argc, argv);
         pd_free (cast_pd (x)); x = NULL; 
     }
     

@@ -169,7 +169,7 @@ static void *block_new (t_symbol *s, int argc, t_atom *argv)
     }
         
     if (!PD_IS_POWER_2 (downsample) || !PD_IS_POWER_2 (upsample)) {
-        downsample = 1; upsample = 1; warning_invalid (sym_block__tilde__, sym_resampling);
+        downsample = 1; upsample = 1; warning_invalid (cast_object (x), sym_block__tilde__, sym_resampling);
     }
     //
     }

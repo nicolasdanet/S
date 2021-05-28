@@ -62,7 +62,11 @@ PD_LOCAL t_error    buffer_slotsSet                     (t_buffer *x, int n, t_b
 PD_LOCAL void       buffer_serialize                    (t_buffer *x, t_buffer *y);
 PD_LOCAL void       buffer_deserialize                  (t_buffer *x, int argc, t_atom *argv);
 
-PD_LOCAL t_error    buffer_fileRead                     (t_buffer *x, t_symbol *name, t_glist *glist);
+PD_LOCAL t_error    buffer_fileRead                     (t_buffer *x,
+                                                            t_symbol *name,
+                                                            t_glist  *glist,
+                                                            t_object *owner);
+                                                            
 PD_LOCAL t_error    buffer_fileWrite                    (t_buffer *x, t_symbol *name, t_symbol *directory);
 
 // -----------------------------------------------------------------------------------------------------------

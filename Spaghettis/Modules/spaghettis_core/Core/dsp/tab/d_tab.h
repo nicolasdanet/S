@@ -20,19 +20,19 @@ PD_LOCAL t_error tab_fetchArray (t_symbol *s, int *size, t_word **data);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static inline void tab_errorProceed (t_symbol *s1, t_symbol *s2, t_error err1, t_error err2)
+static inline void tab_errorProceed (t_object *x, t_symbol *s1, t_symbol *s2, t_error err1, t_error err2)
 {
     if (s2 != &s_) {
     //
-    if (err1) { error_canNotFind (s1, s2); }
-    if (err2) { error_invalid (s1, sym_array); }
+    if (err1) { error_canNotFind (x, s1, s2); }
+    if (err2) { error_invalid (x, s1, sym_array); }
     //
     }
 }
 
-static inline void tab_error (t_symbol *s1, t_symbol *s2)
+static inline void tab_error (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    tab_errorProceed (s1, s2, PD_ERROR, PD_ERROR_NONE);
+    tab_errorProceed (x, s1, s2, PD_ERROR, PD_ERROR_NONE);
 }
 
 // -----------------------------------------------------------------------------------------------------------

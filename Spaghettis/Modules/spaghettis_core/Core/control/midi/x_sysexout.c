@@ -49,7 +49,7 @@ static void sysexout_list (t_sysexout *x, t_symbol *s, int argc, t_atom *argv)
 {
     if (argc) {
     //
-    if (sysexout_isMalformed (argc, argv)) { error_invalid (sym_sysexout, sym_data); }
+    if (sysexout_isMalformed (argc, argv)) { error_invalid (cast_object (x), sym_sysexout, sym_data); }
     else {
     //
     buffer_clear (x->x_cache);

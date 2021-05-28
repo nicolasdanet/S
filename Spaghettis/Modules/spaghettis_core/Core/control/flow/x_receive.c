@@ -70,7 +70,7 @@ static void receive_set (t_receive *x, t_symbol *s, int argc, t_atom *argv)
 {
     if (argc && IS_SYMBOL (argv)) { receive_bind (x, GET_SYMBOL (argv)); }
     else {
-        error_unexpected (sym_receive, sym_value);
+        error_unexpected (cast_object (x), sym_receive, sym_value);
     }
 }
 

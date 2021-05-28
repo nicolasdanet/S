@@ -78,7 +78,7 @@ static void textget_float (t_textget *x, t_float f)
 
     if (!match) { outlet_float (x->x_outletRight, 2); outlet_list (x->x_outletLeft, 0, NULL); }
     //
-    } else { error_undefined (sym_text__space__get, sym_text); }
+    } else { error_undefined (cast_object (x), sym_text__space__get, sym_text); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -141,13 +141,15 @@ PD_LOCAL void *textget_new (t_symbol *s, int argc, t_atom *argv)
         if (argc && IS_FLOAT (argv)) { x->x_fieldStart = GET_FLOAT (argv); argc--; argv++; }
         if (argc && IS_FLOAT (argv)) { x->x_fieldCount = GET_FLOAT (argv); argc--; argv++; }
 
-        if (argc) { warning_unusedArguments (sym_text__space__get, argc, argv); }
+        if (argc) { warning_unusedArguments (cast_object (x), sym_text__space__get, argc, argv); }
         
         inlet_newSymbol (cast_object (x), TEXTCLIENT_NAME (&x->x_textclient));
         
     } else {
     
-        error_invalidArguments (sym_text__space__get, argc, argv); pd_free (cast_pd (x)); x = NULL; 
+        error_invalidArguments (cast_object (x), sym_text__space__get, argc, argv);
+        
+        pd_free (cast_pd (x)); x = NULL;
     }
     
     return x;

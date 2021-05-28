@@ -158,7 +158,7 @@ PD_LOCAL void *liststream_new (t_symbol *s, int argc, t_atom *argv)
     
     inlet_newFloat (cast_object (x), &x->x_stream);
     
-    if (argc) { warning_unusedArguments (s, argc, argv); }
+    if (argc) { warning_unusedArguments (cast_object (x), s, argc, argv); }
     
     return x;
 }

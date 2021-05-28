@@ -58,7 +58,7 @@ static void timestamp_list (t_timestamp *x, t_symbol *s, int argc, t_atom *argv)
 {
     t_stamp t; t_error err = stamp_getWithTags (argc, argv, &t);
     
-    if (err) { error_invalid (sym_timestamp, sym_stamp); }
+    if (err) { error_invalid (cast_object (x), sym_timestamp, sym_stamp); }
     else {
     //
     t_stamp now; t_nano ns;
@@ -157,9 +157,9 @@ static void *timestamp_new (t_symbol *s, int argc, t_atom *argv)
     //
     }
 
-    error__options (s, argc, argv);
+    error__options (cast_object (x), s, argc, argv);
     
-    if (argc) { warning_unusedArguments (s, argc, argv); }
+    if (argc) { warning_unusedArguments (cast_object (x), s, argc, argv); }
     
     return x;
 }

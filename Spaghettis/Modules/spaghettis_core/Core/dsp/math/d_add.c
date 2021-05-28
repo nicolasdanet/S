@@ -116,9 +116,9 @@ PD_LOCAL void binopScalar_tilde_float (struct _binopscalar_tilde *x, t_float f)
 
 static void *add_tilde_newWithScalar (t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc > 1) { warning_unusedArguments (s, argc - 1, argv + 1); }
-    
     t_addscalar_tilde *x = (t_addscalar_tilde *)pd_new (addScalar_tilde_class);
+    
+    if (argc > 1) { warning_unusedArguments (cast_object (x), s, argc - 1, argv + 1); }
     
     x->x_scalar = atom_getFloatAtIndex (0, argc, argv);
     x->x_outlet = outlet_newSignal (cast_object (x));

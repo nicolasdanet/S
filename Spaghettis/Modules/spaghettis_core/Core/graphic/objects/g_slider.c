@@ -98,7 +98,7 @@ static void slider_setRange (t_slider *x, t_float minimum, t_float maximum)
     
     if (err) { 
         x->x_isLogarithmic = 0;
-        error_invalid (sym_slider, sym_range);
+        error_invalid (cast_object (x), sym_slider, sym_range);
     } else {
         x->x_minimum = minimum;
         x->x_maximum = maximum;

@@ -64,7 +64,9 @@ static void netsend_socketOptions (t_netsend *x, int fd)
 
 static void netsend_socketClose (t_netsend *x)
 {
-    if (x->ns_fd >= 0) { close (x->ns_fd); x->ns_fd = -1; post_system ("netsend: closed"); }    // --
+    if (x->ns_fd >= 0) { close (x->ns_fd); x->ns_fd = -1;
+    
+    post_system (cast_object (x), "netsend: closed"); }    // --
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -81,7 +83,7 @@ static t_error netsend_sendProceedRaw (t_netsend *x, int fd, char *t, int length
     while (alreadySent < length) {
         ssize_t n = send (fd, p, length - alreadySent, 0);  // -- TODO: Manage EWOULDBLOCK in the future?
         if (n <= 0) {
-            error_failsToWrite (sym_netsend);
+            error_failsToWrite (cast_object (x), sym_netsend);
             err = PD_ERROR;
             break; 
         } else {
@@ -182,7 +184,7 @@ static void netsend_polling (t_netsend *x)
     timeOut.tv_sec  = 0;
     timeOut.tv_usec = 0;
     
-    post_system ("netsend: ...");  // --
+    post_system (cast_object (x), "netsend: ...");  // --
     
     if (!err) {
     //
@@ -212,14 +214,14 @@ static void netsend_polling (t_netsend *x)
     x->ns_fd = fd;
     x->ns_pollingDescriptor = -1;
     netsend_pollingStop (x);
-    post_system ("netsend: connected");    // --
+    post_system (cast_object (x), "netsend: connected");    // --
     outlet_float (x->ns_outlet, 1);
     //
     }
     
     if (err) {
     //
-    error_failed (sym_netsend);
+    error_failed (cast_object (x), sym_netsend);
     netsend_pollingStop (x);
     outlet_float (x->ns_outlet, 0);
     //
@@ -234,12 +236,12 @@ static void netsend_connect (t_netsend *x, t_symbol *hostName, t_float f)
 {
     netsend_pollingStop (x);
     
-    if (x->ns_fd >= 0) { error_unexpected (sym_netsend, hostName); }
+    if (x->ns_fd >= 0) { error_unexpected (cast_object (x), sym_netsend, hostName); }
     else {
     //
     int fd = socket (AF_INET, x->ns_protocol, 0);
 
-    if (fd < 0) { error_canNotOpen (sym_netsend); }
+    if (fd < 0) { error_canNotOpen (cast_object (x), sym_netsend); }
     else {
     //
     int portNumber = (int)f;
@@ -247,9 +249,9 @@ static void netsend_connect (t_netsend *x, t_symbol *hostName, t_float f)
     
     netsend_socketOptions (x, fd);
 
-    post_system ("netsend: connecting to port %d", portNumber);    // --
+    post_system (cast_object (x), "netsend: connecting to port %d", portNumber);    // --
 
-    if (h == NULL) { error_invalid (sym_netsend, hostName); }
+    if (h == NULL) { error_invalid (cast_object (x), sym_netsend, hostName); }
     else {
     //
     struct sockaddr_in server;
@@ -262,7 +264,7 @@ static void netsend_connect (t_netsend *x, t_symbol *hostName, t_float f)
         if (errno == EINPROGRESS) { netsend_pollingStart (x, fd); }
         else {
             close (fd);
-            error_failed (sym_netsend);
+            error_failed (cast_object (x), sym_netsend);
             PD_ASSERT (x->ns_fd == -1);
             outlet_float (x->ns_outlet, 0);
         }
@@ -324,7 +326,7 @@ static void *netsend_new (t_symbol *s, int argc, t_atom *argv)
     //
     }
     
-    error__options (s, argc, argv);
+    error__options (cast_object (x), s, argc, argv);
     
     {
     //
@@ -333,7 +335,7 @@ static void *netsend_new (t_symbol *s, int argc, t_atom *argv)
     
     if (argc) { if (IS_FLOAT (argv))  { port = GET_FLOAT (argv); } argc--; argv++; }
     if (argc) { if (IS_SYMBOL (argv)) { host = GET_SYMBOL (argv); } argc--; argv++; }
-    if (argc) { warning_unusedArguments (s, argc, argv); }
+    if (argc) { warning_unusedArguments (cast_object (x), s, argc, argv); }
     
     if (port >= 0) { netsend_connect (x, host, port); }
     //

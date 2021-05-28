@@ -292,7 +292,7 @@ PD_LOCAL t_error audio_openNative (t_devices *p)
     if (jack_get_sample_rate (jack_client) != (jack_nframes_t)sampleRate) {
         jack_client_close (jack_client);
         jack_client = NULL;
-        error_invalid (sym_audio, sym_samplerate);
+        error_invalid (NULL, sym_audio, sym_samplerate);
     }
     //
     }
@@ -315,7 +315,7 @@ PD_LOCAL t_error audio_openNative (t_devices *p)
     jack_portsIn[i] = jack_port_register (jack_client, t, JACK_DEFAULT_AUDIO_TYPE, JackPortIsInput, 0);
     if (jack_portsIn[i]) { jack_setMetadata (jack_client, jack_portsIn[i], 0, i); }
     else {
-        error_failed (sym_JACK);
+        error_failed (NULL, sym_JACK);
         break;
     }
     //
@@ -331,7 +331,7 @@ PD_LOCAL t_error audio_openNative (t_devices *p)
     jack_cvOut[i]    = metadata_getCV (1, i);
     if (jack_portsOut[i]) { jack_setMetadata (jack_client, jack_portsOut[i], 1, i); }
     else {
-        error_failed (sym_JACK);
+        error_failed (NULL, sym_JACK);
         break;  
     }
     //

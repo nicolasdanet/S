@@ -87,7 +87,12 @@ static void readsf_tilde_open (t_readsf_tilde *x, t_symbol *s, int argc, t_atom 
     //
     t_audioproperties p; soundfile_propertiesInit (&p);
     
-    t_error err = soundfile_readFileParse (x->sf_owner, sym_readsf__tilde__, &argc, &argv, &p);
+    t_error err = soundfile_readFileParse (x->sf_owner,
+                        sym_readsf__tilde__,
+                        &argc,
+                        &argv,
+                        &p,
+                        cast_object (x));
     
     if (!err) {
     //
@@ -120,7 +125,7 @@ static void readsf_tilde_open (t_readsf_tilde *x, t_symbol *s, int argc, t_atom 
     //
     }
     
-    if (err) { error_canNotOpen (p.ap_fileName); }
+    if (err) { error_canNotOpen (cast_object (x), p.ap_fileName); }
     //
     }
 }
@@ -139,7 +144,7 @@ static void readsf_tilde_start (t_readsf_tilde *x)
     
     trylock_unlock (&x->sf_mutex);
     
-    if (err) { error_unexpected (sym_readsf__tilde__, sym_start); }
+    if (err) { error_unexpected (cast_object (x), sym_readsf__tilde__, sym_start); }
 }
 
 static void readsf_tilde_stop (t_readsf_tilde *x)

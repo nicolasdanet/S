@@ -67,7 +67,7 @@ static void textinsert_list (t_textinsert *x, t_symbol *s, int argc, t_atom *arg
     
     textclient_update (&x->x_textclient);
     //
-    } else { error_undefined (sym_text__space__insert, sym_text); }
+    } else { error_undefined (cast_object (x), sym_text__space__insert, sym_text); }
 }
 
 static void textinsert_anything (t_textinsert *x, t_symbol *s, int argc, t_atom *argv)
@@ -127,13 +127,15 @@ PD_LOCAL void *textinsert_new (t_symbol *s, int argc, t_atom *argv)
         
         if (argc && IS_FLOAT (argv)) { x->x_line = GET_FLOAT (argv); argc--; argv++; }
         
-        if (argc) { warning_unusedArguments (sym_text__space__insert, argc, argv); }
+        if (argc) { warning_unusedArguments (cast_object (x), sym_text__space__insert, argc, argv); }
         
         inlet_newSymbol (cast_object (x), TEXTCLIENT_NAME (&x->x_textclient));
     
     } else {
         
-        error_invalidArguments (sym_text__space__insert, argc, argv); pd_free (cast_pd (x)); x = NULL;
+        error_invalidArguments (cast_object (x), sym_text__space__insert, argc, argv);
+        
+        pd_free (cast_pd (x)); x = NULL;
     }
     
     return x;

@@ -89,7 +89,7 @@ static void urn_float (t_urn *x, t_float f)
 {
     urn_range (x, f); urn_set (x);
     
-    if (f > URN_LIMIT) { warning_invalid (sym_urn, sym_range); }
+    if (f > URN_LIMIT) { warning_invalid (cast_object (x), sym_urn, sym_range); }
 }
 
 static void urn_clear (t_urn *x)

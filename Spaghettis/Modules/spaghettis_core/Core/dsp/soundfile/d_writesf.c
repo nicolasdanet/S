@@ -84,13 +84,18 @@ static void writesf_tilde_open (t_writesf_tilde *x, t_symbol *s, int argc, t_ato
     //
     t_audioproperties p; soundfile_propertiesInit (&p);
     
-    t_error err = soundfile_writeFileParse (x->sf_owner, sym_writesf__tilde__, &argc, &argv, &p);
+    t_error err = soundfile_writeFileParse (x->sf_owner,
+                        sym_writesf__tilde__,
+                        &argc,
+                        &argv,
+                        &p,
+                        cast_object (x));
     
     p.ap_numberOfChannels = x->sf_numberOfChannels;
     
     if (!err) {
     //
-    int f = soundfile_writeFileHeader (x->sf_owner, &p);
+    int f = soundfile_writeFileHeader (x->sf_owner, &p, cast_object (x));
     
     err = (f < 0);
     
@@ -111,7 +116,7 @@ static void writesf_tilde_open (t_writesf_tilde *x, t_symbol *s, int argc, t_ato
     //
     }
     
-    if (err) { error_canNotOpen (p.ap_fileName); }
+    if (err) { error_canNotOpen (cast_object (x), p.ap_fileName); }
     //
     }
 }
@@ -130,7 +135,7 @@ static void writesf_tilde_start (t_writesf_tilde *x)
     
     trylock_unlock (&x->sf_mutex);
     
-    if (err) { error_unexpected (sym_writesf__tilde__, sym_start); }
+    if (err) { error_unexpected (cast_object (x), sym_writesf__tilde__, sym_start); }
 }
 
 static void writesf_tilde_stop (t_writesf_tilde *x)

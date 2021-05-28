@@ -155,7 +155,7 @@ static void textsearch_list (t_textsearch *x, t_symbol *s, int argc, t_atom *arg
     
     outlet_float (x->x_outlet, bestLine);
     //
-    } else { error_undefined (sym_text__space__search, sym_text); }
+    } else { error_undefined (cast_object (x), sym_text__space__search, sym_text); }
 }
 
 static void textsearch_anything (t_textsearch *x, t_symbol *s, int argc, t_atom *argv)
@@ -242,7 +242,7 @@ PD_LOCAL void *textsearch_new (t_symbol *s, int argc, t_atom *argv)
             }
         }
         
-        warning_unusedArguments (sym_text__space__search, 1, argv + i);
+        warning_unusedArguments (cast_object (x), sym_text__space__search, 1, argv + i);
         //
         }
         //
@@ -252,7 +252,9 @@ PD_LOCAL void *textsearch_new (t_symbol *s, int argc, t_atom *argv)
     
     } else {
     
-        error_invalidArguments (sym_text__space__search, argc, argv); pd_free (cast_pd (x)); x = NULL;
+        error_invalidArguments (cast_object (x), sym_text__space__search, argc, argv);
+        
+        pd_free (cast_pd (x)); x = NULL;
     }
     
     return x;

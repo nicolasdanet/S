@@ -236,7 +236,7 @@ static void sfthread_free (t_sfthread *x)
     //
     t_symbol *filename = symbol_addSuffix (x->sft_properties.ap_fileName, x->sft_properties.ap_fileExtension);
 
-    warning_fileIsCorrupted (filename);
+    warning_fileIsCorrupted (NULL, filename);   // -- TODO: Pass context to message error?
     //
     }
     //

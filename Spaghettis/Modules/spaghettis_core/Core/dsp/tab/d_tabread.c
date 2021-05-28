@@ -47,7 +47,7 @@ static void tabread_tilde_setProceed (t_tabread_tilde *x, t_symbol *s, int verbo
     
     trylock_unlock (&x->x_mutex);
     
-    if (verbose && err) { tab_error (sym_tabread__tilde__, s); }
+    if (verbose && err) { tab_error (cast_object (x), sym_tabread__tilde__, s); }
 }
 
 static void tabread_tilde_set (t_tabread_tilde *x, t_symbol *s)
@@ -125,7 +125,7 @@ static void tabread_tilde_dsp (t_tabread_tilde *x, t_signal **sp)
     t_word *w   = NULL;
     t_error err = tab_fetchArray (x->x_name, &size, &w);
 
-    if (err) { tab_error (sym_tabread__tilde__, x->x_name); }
+    if (err) { tab_error (cast_object (x), sym_tabread__tilde__, x->x_name); }
     else {
         t->s_int0 = size; t->s_pointer0 = (void *)w;
     }

@@ -28,7 +28,7 @@ static void inlet_list (t_inlet *, t_symbol *, int, t_atom *);
 
 static void inlet_unexpected (t_inlet *x, t_symbol *s, int argc, t_atom *argv)
 {
-    error_unexpected (class_getName (pd_class (x->i_owner)), s);
+    error_unexpected (NULL, class_getName (pd_class (x->i_owner)), s);
 }
 
 // -----------------------------------------------------------------------------------------------------------

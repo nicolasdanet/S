@@ -183,7 +183,7 @@ static void qlist_next (t_qlist *x, t_float f)
 {
     if (!x->ql_flagReentrant) { qlist_proceed (x, (f != 0.0), 0); }
     else {
-        error_unexpected (sym_qlist, sym_next);
+        error_unexpected (cast_object (x), sym_qlist, sym_next);
     }
 }
 
@@ -248,7 +248,7 @@ static void qlist_unit (t_qlist *x, t_symbol *unitName, t_float f)
 {
     t_error err = clock_setUnitParsed (x->ql_clock, f, (unitName == &s_ ? sym_millisecond : unitName));
     
-    if (err) { error_invalid (sym_qlist, sym_unit); }
+    if (err) { error_invalid (cast_object (x), sym_qlist, sym_unit); }
     else {
         x->ql_unitName  = unitName;
         x->ql_unitValue = f;
@@ -325,7 +325,7 @@ static void *qlist_new (t_symbol *s, int argc, t_atom *argv)
 
     if (argc && !IS_FLOAT (argv)) { qlist_read (x, symbol_withAtoms (argc, argv)); }
     
-    static int once = 0; if (!once) { warning_deprecatedObject (sym_qlist); once = 1; }
+    warning_deprecatedObject (cast_object (x), sym_qlist);
     
     return x;
 }

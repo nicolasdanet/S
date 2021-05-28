@@ -162,7 +162,7 @@ PD_FORCE void glist_objectCheckLines (t_glist *glist, t_object *o)
         int n = traverser_getIndexOfInlet (&t);
         
         if (object_isSignalOutlet (o1, m) && !object_isSignalInlet (o2, n)) {
-            traverser_disconnect (&t, NULL); error_failed (sym_connect);
+            traverser_disconnect (&t, NULL); error_failed (o, sym_connect);
         }
     }
     }

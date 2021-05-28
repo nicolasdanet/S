@@ -63,11 +63,11 @@ static void post_toUpperCase (int k, char *s, Logger::Type type)
     }
 }
 
-static void post_console (int k, char *s, Logger::Type type)
+static void post_console (t_object *dummy, int k, char *s, Logger::Type type)
 {
     jassert (main_wrapper != nullptr);
     
-    if (k < 0 || k >= PD_STRING) { warning_tooManyCharacters (sym_console); }
+    if (k < 0 || k >= PD_STRING) { warning_tooManyCharacters (dummy, sym_console); }
     else {
         post_toUpperCase (k, s, type); main_wrapper->post (juce::String (s), type);
     }
@@ -75,11 +75,11 @@ static void post_console (int k, char *s, Logger::Type type)
 
 #else
 
-static void post_console (int k, const char *s, int type)
+static void post_console (t_object *dummy, int k, const char *s, int type)
 {
     #if PD_WITH_DEBUG
     
-    if (k < 0 || k >= PD_STRING) { warning_tooManyCharacters (sym_console); }
+    if (k < 0 || k >= PD_STRING) { warning_tooManyCharacters (dummy, sym_console); }
     else {
         post_syslog (s);
     }
@@ -93,7 +93,7 @@ static void post_console (int k, const char *s, int type)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void post (const char *fmt, ...)
+PD_LOCAL void post (t_object *x, const char *fmt, ...)
 {
     int k; char t[PD_STRING] = { 0 }; va_list ap;
     
@@ -101,10 +101,10 @@ PD_LOCAL void post (const char *fmt, ...)
     k = vsnprintf (t, PD_STRING, fmt, ap);
     va_end (ap);
     
-    post_console (k, t, POST_NORMAL);
+    post_console (x, k, t, POST_NORMAL);
 }
 
-PD_LOCAL void post_system (const char *fmt, ...)
+PD_LOCAL void post_system (t_object *x, const char *fmt, ...)
 {
     int k; char t[PD_STRING] = { 0 }; va_list ap;
     
@@ -112,10 +112,10 @@ PD_LOCAL void post_system (const char *fmt, ...)
     k = vsnprintf (t, PD_STRING, fmt, ap);
     va_end (ap);
     
-    post_console (k, t, POST_SYSTEM);
+    post_console (x, k, t, POST_SYSTEM);
 }
 
-PD_LOCAL void post_warning (const char *fmt, ...)
+PD_LOCAL void post_warning (t_object *x, const char *fmt, ...)
 {
     int k; char t[PD_STRING] = { 0 }; va_list ap;
     
@@ -123,10 +123,10 @@ PD_LOCAL void post_warning (const char *fmt, ...)
     k = vsnprintf (t, PD_STRING, fmt, ap);
     va_end (ap);
     
-    post_console (k, t, POST_WARNING);
+    post_console (x, k, t, POST_WARNING);
 }
 
-PD_LOCAL void post_error (const char *fmt, ...)
+PD_LOCAL void post_error (t_object *x, const char *fmt, ...)
 {
     int k; char t[PD_STRING] = { 0 }; va_list ap;
     
@@ -134,7 +134,7 @@ PD_LOCAL void post_error (const char *fmt, ...)
     k = vsnprintf (t, PD_STRING, fmt, ap);
     va_end (ap);
     
-    post_console (k, t, POST_ERROR);
+    post_console (x, k, t, POST_ERROR);
 }
 
 // -----------------------------------------------------------------------------------------------------------

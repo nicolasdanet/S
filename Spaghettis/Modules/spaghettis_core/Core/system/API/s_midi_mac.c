@@ -82,13 +82,13 @@ PD_LOCAL void midi_openNative (t_devices *p)
     for (i = 0; i < numberOfDevicesIn; i++)  {
         t_symbol *s = devices_getInAtIndexAsSymbol (p, i);
         t_error err = midi_openNativeSource (s);
-        if (err) { error_canNotOpen (s); }
+        if (err) { error_canNotOpen (NULL, s); }
     }
     
     for (i = 0; i < numberOfDevicesOut; i++) {
         t_symbol *s = devices_getOutAtIndexAsSymbol (p, i);
         t_error err = midi_openNativeDestination (s);
-        if (err) { error_canNotOpen (s); }
+        if (err) { error_canNotOpen (NULL, s); }
     }
     //
     }

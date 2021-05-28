@@ -55,7 +55,7 @@ PD_LOCAL void *listfromsymbol_new (t_symbol *s, int argc, t_atom *argv)
     
     x->x_outlet = outlet_newList (cast_object (x));
     
-    if (argc) { warning_unusedArguments (s, argc, argv); }
+    if (argc) { warning_unusedArguments (cast_object (x), s, argc, argv); }
     
     return x;
 }

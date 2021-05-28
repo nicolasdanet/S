@@ -20,7 +20,7 @@
 
 void inputs_ping (void)
 {
-    post_system ("?");
+    post_system (NULL, "?");
 }
 
 void inputs_patchOpen (const juce::File& f)

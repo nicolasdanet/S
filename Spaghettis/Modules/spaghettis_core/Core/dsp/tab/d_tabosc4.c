@@ -58,7 +58,7 @@ static void tabosc4_tilde_setProceed (t_tabosc4_tilde *x, t_symbol *s, int verbo
     
     trylock_unlock (&x->x_mutex);
     
-    if (verbose) { tab_errorProceed (sym_tabosc4__tilde__, s, err1, err2); }
+    if (verbose) { tab_errorProceed (cast_object (x), sym_tabosc4__tilde__, s, err1, err2); }
 }
 
 static void tabosc4_tilde_set (t_tabosc4_tilde *x, t_symbol *s)
@@ -172,7 +172,7 @@ static void tabosc4_tilde_dsp (t_tabosc4_tilde *x, t_signal **sp)
     //
     }
 
-    tab_errorProceed (sym_tabread4__tilde__, x->x_name, err1, err2);
+    tab_errorProceed (cast_object (x), sym_tabread4__tilde__, x->x_name, err1, err2);
     
     t->s_float0 = (t_float)(1.0 / sp[0]->s_sampleRate);
     

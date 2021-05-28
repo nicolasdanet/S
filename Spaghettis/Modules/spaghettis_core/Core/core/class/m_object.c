@@ -252,7 +252,7 @@ static void object_openHelp (const char *directory, const char *name)
         f = file_openReadConsideringSearchPath (main_directoryHelp->s_name, name, PD_HELP, &p);
     }
     
-    if (f < 0) { error_canNotFind (gensym (name), sym_help); }
+    if (f < 0) { error_canNotFind (NULL, gensym (name), sym_help); }
     else {
         t_symbol *s1 = gensym (fileproperties_getName (&p));
         t_symbol *s2 = gensym (fileproperties_getDirectory (&p));

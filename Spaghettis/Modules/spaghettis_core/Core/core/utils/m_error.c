@@ -18,9 +18,9 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void error__error (const char *s1, const char *s2)
+PD_LOCAL void error__error (t_object *x, const char *s1, const char *s2)
 {
-    post_error ("%s: %s", s1, s2);
+    post_error (x, "%s: %s", s1, s2);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ static const char *error__empty (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int error__options (t_symbol *s, int argc, t_atom *argv)
+PD_LOCAL int error__options (t_object *x, t_symbol *s, int argc, t_atom *argv)
 {
     int i, k = 0;
     
@@ -49,7 +49,7 @@ PD_LOCAL int error__options (t_symbol *s, int argc, t_atom *argv)
     t_symbol *t = GET_SYMBOL (argv + i);
     
     if (t != sym___dash__ && string_startWith (t->s_name, sym___dash__->s_name)) {
-        warning_unusedOption (s, t);
+        warning_unusedOption (x, s, t);
         k = 1;
     }
     //
@@ -64,133 +64,133 @@ PD_LOCAL int error__options (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void error_dspLoop (void)
+PD_LOCAL void error_dspLoop (t_object *x)
 {
-    post_error (PD_TRANSLATE ("%s: DSP loop"), PD_NAME_LOWERCASE);
+    post_error (x, PD_TRANSLATE ("%s: DSP loop"), PD_NAME_LOWERCASE);
 }
 
-PD_LOCAL void error_stackOverflow (void)
+PD_LOCAL void error_stackOverflow (t_object *x)
 {
-    post_error (PD_TRANSLATE ("%s: stack overflow"), PD_NAME_LOWERCASE);
+    post_error (x, PD_TRANSLATE ("%s: stack overflow"), PD_NAME_LOWERCASE);
 }
 
-PD_LOCAL void error_recursiveCall (void)
+PD_LOCAL void error_recursiveCall (t_object *x)
 {
-    post_warning (PD_TRANSLATE ("%s: recursive call"), PD_NAME_LOWERCASE);
+    post_error (x, PD_TRANSLATE ("%s: recursive call"), PD_NAME_LOWERCASE);
 }
 
-PD_LOCAL void error_stubNotFound (void)
+PD_LOCAL void error_stubNotFound (t_object *x)
 {
-    post_error (PD_TRANSLATE ("loader: stub not found"));
+    post_error (x, PD_TRANSLATE ("loader: stub not found"));
 }
 
-PD_LOCAL void error_searchPathOverflow (void)
+PD_LOCAL void error_searchPathOverflow (t_object *x)
 {
-    post_error (PD_TRANSLATE ("rescan: search path overflow"));
+    post_error (x, PD_TRANSLATE ("rescan: search path overflow"));
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void error_recursiveInstantiation (t_symbol *s)
+PD_LOCAL void error_recursiveInstantiation (t_object *x, t_symbol *s)
 {
-    post_error (PD_TRANSLATE ("%s: recursive instantiation"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: recursive instantiation"), s->s_name);
 }
 
-PD_LOCAL void error_alreadyExists (t_symbol *s)
+PD_LOCAL void error_alreadyExists (t_object *x, t_symbol *s)
 {
-    post_error (PD_TRANSLATE ("%s: already exists"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: already exists"), s->s_name);
 }
 
-PD_LOCAL void error_canNotOpen (t_symbol *s)
+PD_LOCAL void error_canNotOpen (t_object *x, t_symbol *s)
 {
-    post_error (PD_TRANSLATE ("%s: can't open"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: can't open"), s->s_name);
 }
 
-PD_LOCAL void error_canNotCreate (t_symbol *s)
+PD_LOCAL void error_canNotCreate (t_object *x, t_symbol *s)
 {
-    post_error (PD_TRANSLATE ("%s: can't create"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: can't create"), s->s_name);
 }
 
-PD_LOCAL void error_failsToRead (t_symbol *s)
+PD_LOCAL void error_failsToRead (t_object *x, t_symbol *s)
 {
-    post_error (PD_TRANSLATE ("%s: fails to read"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: fails to read"), s->s_name);
 }
 
-PD_LOCAL void error_failsToWrite (t_symbol *s)
+PD_LOCAL void error_failsToWrite (t_object *x, t_symbol *s)
 {
-    post_error (PD_TRANSLATE ("%s: fails to write"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: fails to write"), s->s_name);
 }
 
-PD_LOCAL void error_fileIsProtected (t_symbol *s)
+PD_LOCAL void error_fileIsProtected (t_object *x, t_symbol *s)
 {
-    post_error (PD_TRANSLATE ("%s: file is protected"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: file is protected"), s->s_name);
 }
 
-PD_LOCAL void error_ignored (t_symbol *s)
+PD_LOCAL void error_ignored (t_object *x, t_symbol *s)
 {
-    post_error (PD_TRANSLATE ("%s: ignored"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: ignored"), s->s_name);
 }
 
-PD_LOCAL void error_failed (t_symbol *s)
+PD_LOCAL void error_failed (t_object *x, t_symbol *s)
 {   
-    post_error (PD_TRANSLATE ("%s: failed"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: failed"), s->s_name);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void error_noSuch (t_symbol *s1, t_symbol *s2)
+PD_LOCAL void error_noSuch (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (PD_TRANSLATE ("%s: no such %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: no such %s"), s1->s_name, error__empty (s2));
 }
 
-PD_LOCAL void error_canNotFind (t_symbol *s1, t_symbol *s2)
+PD_LOCAL void error_canNotFind (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (PD_TRANSLATE ("%s: can't find %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: can't find %s"), s1->s_name, error__empty (s2));
 }
 
-PD_LOCAL void error_unknownMethod (t_symbol *s1, t_symbol *s2)
+PD_LOCAL void error_unknownMethod (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (PD_TRANSLATE ("%s: unknown method %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: unknown method %s"), s1->s_name, error__empty (s2));
 }
 
-PD_LOCAL void error_unexpected (t_symbol *s1, t_symbol *s2)
+PD_LOCAL void error_unexpected (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (PD_TRANSLATE ("%s: unexpected %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: unexpected %s"), s1->s_name, error__empty (s2));
 }
 
-PD_LOCAL void error_invalid (t_symbol *s1, t_symbol *s2)
+PD_LOCAL void error_invalid (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (PD_TRANSLATE ("%s: invalid %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: invalid %s"), s1->s_name, error__empty (s2));
 }
 
-PD_LOCAL void error_mismatch (t_symbol *s1, t_symbol *s2)
+PD_LOCAL void error_mismatch (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (PD_TRANSLATE ("%s: mismatch %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: mismatch %s"), s1->s_name, error__empty (s2));
 }
 
-PD_LOCAL void error_unspecified (t_symbol *s1, t_symbol *s2)
+PD_LOCAL void error_unspecified (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (PD_TRANSLATE ("%s: unspecified %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: unspecified %s"), s1->s_name, error__empty (s2));
 }
 
-PD_LOCAL void error_undefined (t_symbol *s1, t_symbol *s2)
+PD_LOCAL void error_undefined (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (PD_TRANSLATE ("%s: undefined %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: undefined %s"), s1->s_name, error__empty (s2));
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void error_canNotMake (int argc, t_atom *argv)
+PD_LOCAL void error_canNotMake (t_object *x, int argc, t_atom *argv)
 {
     char *t = atom_atomsToString (argc, argv);
     
-    post_error (PD_TRANSLATE ("%s: can't make [ %s ]"), PD_NAME_LOWERCASE, t);
+    post_error (x, PD_TRANSLATE ("%s: can't make [ %s ]"), PD_NAME_LOWERCASE, t);
     
     PD_MEMORY_FREE (t);
 }
@@ -199,11 +199,11 @@ PD_LOCAL void error_canNotMake (int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void error_invalidArguments (t_symbol *s, int argc, t_atom *argv)
+PD_LOCAL void error_invalidArguments (t_object *x, t_symbol *s, int argc, t_atom *argv)
 {
     char *t = atom_atomsToString (argc, argv);
     
-    post_error (PD_TRANSLATE ("%s: [ %s ] invalid argument(s)"), s->s_name, t);
+    post_error (x, PD_TRANSLATE ("%s: [ %s ] invalid argument(s)"), s->s_name, t);
     
     PD_MEMORY_FREE (t);
 }
@@ -212,71 +212,71 @@ PD_LOCAL void error_invalidArguments (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void warning_containsDuplicates (void)
+PD_LOCAL void warning_containsDuplicates (t_object *x)
 {
-    post_warning (PD_TRANSLATE ("rescan: contains duplicates"));
+    post_warning (x, PD_TRANSLATE ("rescan: contains duplicates"));
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void warning_tooManyCharacters (t_symbol *s)
+PD_LOCAL void warning_tooManyCharacters (t_object *x, t_symbol *s)
 {
-    post_warning (PD_TRANSLATE ("%s: too many characters"), s->s_name);
+    post_warning (x, PD_TRANSLATE ("%s: too many characters"), s->s_name);
 }
 
-PD_LOCAL void warning_multipleBinding (t_symbol *s)
+PD_LOCAL void warning_multipleBinding (t_object *x, t_symbol *s)
 {
-    post_warning (PD_TRANSLATE ("%s: multiple binding"), s->s_name);
+    post_warning (x, PD_TRANSLATE ("%s: multiple binding"), s->s_name);
 }
 
-PD_LOCAL void warning_fileIsCorrupted (t_symbol *s)
+PD_LOCAL void warning_fileIsCorrupted (t_object *x, t_symbol *s)
 {
-    post_warning (PD_TRANSLATE ("%s: file is corrupted"), s->s_name);
+    post_warning (x, PD_TRANSLATE ("%s: file is corrupted"), s->s_name);
 }
 
-PD_LOCAL void warning_deprecatedObject (t_symbol *s)
+PD_LOCAL void warning_deprecatedObject (t_object *x, t_symbol *s)
 {
-    post_warning (PD_TRANSLATE ("%s: deprecated object"), s->s_name);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_LOCAL void warning_invalid (t_symbol *s1, t_symbol *s2)
-{
-    post_warning (PD_TRANSLATE ("%s: invalid %s"), s1->s_name, error__empty (s2));
-}
-
-PD_LOCAL void warning_empty (t_symbol *s1, t_symbol *s2)
-{
-    post_warning (PD_TRANSLATE ("%s: empty %s"), s1->s_name, error__empty (s2));
-}
-
-PD_LOCAL void warning_badType (t_symbol *s1, t_symbol *s2)
-{
-    post_warning (PD_TRANSLATE ("%s: bad type %s"), s1->s_name, error__empty (s2));
-}
-
-PD_LOCAL void warning_unusedOption (t_symbol *s1, t_symbol *s2)
-{
-    post_warning (PD_TRANSLATE ("%s: unused option %s"), s1->s_name, error__empty (s2));
+    post_warning (x, PD_TRANSLATE ("%s: deprecated object"), s->s_name);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void warning_unusedArguments (t_symbol *s, int argc, t_atom *argv)
+PD_LOCAL void warning_invalid (t_object *x, t_symbol *s1, t_symbol *s2)
+{
+    post_warning (x, PD_TRANSLATE ("%s: invalid %s"), s1->s_name, error__empty (s2));
+}
+
+PD_LOCAL void warning_empty (t_object *x, t_symbol *s1, t_symbol *s2)
+{
+    post_warning (x, PD_TRANSLATE ("%s: empty %s"), s1->s_name, error__empty (s2));
+}
+
+PD_LOCAL void warning_badType (t_object *x, t_symbol *s1, t_symbol *s2)
+{
+    post_warning (x, PD_TRANSLATE ("%s: bad type %s"), s1->s_name, error__empty (s2));
+}
+
+PD_LOCAL void warning_unusedOption (t_object *x, t_symbol *s1, t_symbol *s2)
+{
+    post_warning (x, PD_TRANSLATE ("%s: unused option %s"), s1->s_name, error__empty (s2));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void warning_unusedArguments (t_object *x, t_symbol *s, int argc, t_atom *argv)
 {
     if (s != sym__inlet2) {     /* Avoid to moan for nothing (e.g. implicit list to float cast). */
     if (s != sym__inlet3) {
     //
     char *t = atom_atomsToString (argc, argv);
     
-    post_warning (PD_TRANSLATE ("%s: [ %s ] unused argument(s)"), s->s_name, t);
+    post_warning (x, PD_TRANSLATE ("%s: [ %s ] unused argument(s)"), s->s_name, t);
     
     PD_MEMORY_FREE (t);
     //

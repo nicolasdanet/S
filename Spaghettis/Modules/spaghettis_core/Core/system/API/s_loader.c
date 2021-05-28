@@ -102,11 +102,11 @@ static t_handle loader_externalOpenNative (char *filepath, char *stub, t_symbol 
 {
     t_handle handle = dlopen (filepath, RTLD_NOW | RTLD_GLOBAL);
     
-    if (!handle) { error__error (filepath, dlerror()); }
+    if (!handle) { error__error (NULL, filepath, dlerror()); }
     else {
         t_ctor ctor = (t_ctor)dlsym (handle, stub);
         
-        if (!ctor) { error_stubNotFound(); }
+        if (!ctor) { error_stubNotFound (NULL); }
         else {
             (*ctor) (root); return handle;
         }

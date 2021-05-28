@@ -31,7 +31,9 @@ t_class *send_tilde_class;      /* Shared. */
 
 static void send_tilde_dsp (t_send_tilde *x, t_signal **sp)
 {
-    if (sp[0]->s_vectorSize != INTERNAL_BLOCKSIZE) { error_mismatch (sym_send__tilde__, sym_size); }
+    int size = sp[0]->s_vectorSize;
+    
+    if (size != INTERNAL_BLOCKSIZE) { error_mismatch (cast_object (x), sym_send__tilde__, sym_size); }
     else {
     //
     object_fetchAndCopySignalValuesIfRequired (cast_object (x));

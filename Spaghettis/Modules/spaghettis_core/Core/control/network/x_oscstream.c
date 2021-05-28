@@ -85,7 +85,7 @@ static int oscstream_encode (t_oscstream *x, int argc, t_atom *argv)
     }
     
     if (err) {
-        error_invalid (sym_oscstream, sym_value);
+        error_invalid (cast_object (x), sym_oscstream, sym_value);
     }
     
     switch (byte) {
@@ -119,7 +119,7 @@ static int oscstream_decode (t_oscstream *x, t_float f)
         switch (byte) {
             case OSCSTREAM_ESC_END  : buffer_appendFloat (x->x_bufferDecode, (t_float)OSCSTREAM_END); break;
             case OSCSTREAM_ESC_ESC  : buffer_appendFloat (x->x_bufferDecode, (t_float)OSCSTREAM_ESC); break;
-            default                 : error_invalid (sym_oscstream, sym_value);
+            default                 : error_invalid (cast_object (x), sym_oscstream, sym_value);
         }
         
         x->x_escaped = 0;

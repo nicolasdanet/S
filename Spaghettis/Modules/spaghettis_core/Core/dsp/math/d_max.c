@@ -51,10 +51,10 @@ static void maxScalar_tilde_dsp (t_maxscalar_tilde *x, t_signal **sp)
 
 static void *max_tilde_newWithScalar (t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc > 1) { warning_unusedArguments (s, argc - 1, argv + 1); }
-    
     t_maxscalar_tilde *x = (t_maxscalar_tilde *)pd_new (maxScalar_tilde_class);
     
+    if (argc > 1) { warning_unusedArguments (cast_object (x), s, argc - 1, argv + 1); }
+        
     x->x_scalar = atom_getFloatAtIndex (0, argc, argv);
     x->x_outlet = outlet_newSignal (cast_object (x));
     

@@ -358,7 +358,8 @@ PD_LOCAL t_error    soundfile_readFileParse     (t_glist *x,
                                                     t_symbol *s,
                                                     int *argc,
                                                     t_atom **argv,
-                                                    t_audioproperties *p);
+                                                    t_audioproperties *p,
+                                                    t_object *owner);
                                                     
 PD_LOCAL int        soundfile_readFileHeader    (t_glist *x, t_audioproperties *args);
     
@@ -370,9 +371,10 @@ PD_LOCAL t_error    soundfile_writeFileParse    (t_glist *x,
                                                     t_symbol *s,
                                                     int *argc,
                                                     t_atom **argv,
-                                                    t_audioproperties *p);
+                                                    t_audioproperties *p,
+                                                    t_object *owner);
                                                     
-PD_LOCAL int        soundfile_writeFileHeader   (t_glist *x, t_audioproperties *args);
+PD_LOCAL int        soundfile_writeFileHeader   (t_glist *x, t_audioproperties *args, t_object *owner);
 PD_LOCAL t_error    soundfile_writeFileClose    (int f, int itemsWritten, t_audioproperties *args);
                                             
 // -----------------------------------------------------------------------------------------------------------

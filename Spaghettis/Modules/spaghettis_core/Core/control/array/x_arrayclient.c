@@ -24,7 +24,7 @@ PD_LOCAL t_error arrayclient_init (t_arrayclient *x, int *ac, t_atom **av)
     
     x->ac_name = NULL;
     
-    if (argc && !error__options (class_getName (pd_class (x)), argc, argv)) {
+    if (argc && !error__options (cast_object (x), class_getName (pd_class (x)), argc, argv)) {
     //
     /* Dollar expansion is zero in abstraction opened as patch. */
         
@@ -82,7 +82,7 @@ PD_LOCAL t_garray *arrayclient_fetchGraphicArray (t_arrayclient *x)
     
     if (s && s != &s_) { return garray_fetch (s); }
     else {
-        error_canNotFind (class_getName (pd_class (x)), (s && s != &s_) ? s : sym_garray);
+        error_canNotFind (cast_object (x), class_getName (pd_class (x)), (s && s != &s_) ? s : sym_garray);
     }
     
     return NULL;

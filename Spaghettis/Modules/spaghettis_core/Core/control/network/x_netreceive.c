@@ -177,7 +177,7 @@ static void netreceive_callbackConnected (t_netreceive *x, int dummy)
 {
     int fd = accept (x->nr_fd, 0, 0);
     
-    if (fd < 0) { error_failed (sym_netreceive); }
+    if (fd < 0) { error_failed (cast_object (x), sym_netreceive); }
     else {
         t_receiver *t = receiver_new ((void *)x,
                             fd,
@@ -235,7 +235,7 @@ static void netreceive_close (t_netreceive *x)
     
     x->nr_fd = -1;
     
-    if (report) { post_system ("netreceive: closed"); }            // --
+    if (report) { post_system (cast_object (x), "netreceive: closed"); }            // --
 }
 
 static void netreceive_listen (t_netreceive *x, t_float f)
@@ -248,14 +248,14 @@ static void netreceive_listen (t_netreceive *x, t_float f)
     //
     int fd = socket (AF_INET, x->nr_protocol, 0);
     
-    if (fd < 0) { error_canNotOpen (sym_netreceive); }
+    if (fd < 0) { error_canNotOpen (cast_object (x), sym_netreceive); }
     else {
     //
     t_error err = PD_ERROR_NONE;
     
     struct sockaddr_in server;
 
-    post_system ("netreceive: listening on port %d", portNumber);  // --
+    post_system (cast_object (x), "netreceive: listening on port %d", portNumber);  // --
     
     netreceive_socketOptions (x, fd);
     
@@ -288,7 +288,7 @@ static void netreceive_listen (t_netreceive *x, t_float f)
     //
     }
     
-    if (err) { close (fd); error_failed (sym_netreceive); }
+    if (err) { close (fd); error_failed (cast_object (x), sym_netreceive); }
     else {
         x->nr_fd = fd;
     }
@@ -325,7 +325,7 @@ static void *netreceive_new (t_symbol *s, int argc, t_atom *argv)
     //
     }
 
-    error__options (s, argc, argv);
+    error__options (cast_object (x), s, argc, argv);
     
     if (x->nr_protocol == SOCK_STREAM) { x->nr_outletRight = outlet_newFloat (cast_object (x)); }
     
@@ -334,7 +334,7 @@ static void *netreceive_new (t_symbol *s, int argc, t_atom *argv)
     t_float port = -1;
     
     if (argc) { if (IS_FLOAT (argv)) { port = GET_FLOAT (argv); } argc--; argv++; }
-    if (argc) { warning_unusedArguments (s, argc, argv); }
+    if (argc) { warning_unusedArguments (cast_object (x), s, argc, argv); }
     
     if (port >= 0) { netreceive_listen (x, port); }
     //

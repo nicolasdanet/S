@@ -58,10 +58,10 @@ static void print_tilde_polling (t_print_tilde *x)
     //
     int32_t available = ringbuffer_getAvailableRead (x->x_buffer);
     
-    while (available-- > 0) {                               // --
+    while (available-- > 0) {                                   // --
     //
     t_sample t; ringbuffer_read (x->x_buffer, &t, 1);
-    post ("%s: %g", x->x_name->s_name, t);                  // --
+    post (cast_object (x), "%s: %g", x->x_name->s_name, t);     // --
     //
     }
     //

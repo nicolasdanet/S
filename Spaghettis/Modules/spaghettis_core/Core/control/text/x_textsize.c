@@ -38,7 +38,7 @@ static void textsize_bang (t_textsize *x)
     
     if (b) { outlet_float (x->x_outlet, (t_float)buffer_messagesGetNumberOf (b)); }
     else {
-        error_undefined (sym_text__space__size, sym_text);
+        error_undefined (cast_object (x), sym_text__space__size, sym_text);
     }
 }
 
@@ -54,7 +54,7 @@ static void textsize_float (t_textsize *x, t_float f)
             outlet_float (x->x_outlet, -1);
         }
         
-    } else { error_undefined (sym_text__space__size, sym_text); }
+    } else { error_undefined (cast_object (x), sym_text__space__size, sym_text); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -101,13 +101,15 @@ PD_LOCAL void *textsize_new (t_symbol *s, int argc, t_atom *argv)
     
         x->x_outlet = outlet_newFloat (cast_object (x));
                 
-        if (argc) { warning_unusedArguments (sym_text__space__size, argc, argv); }
+        if (argc) { warning_unusedArguments (cast_object (x), sym_text__space__size, argc, argv); }
         
         inlet_newSymbol (cast_object (x), TEXTCLIENT_NAME (&x->x_textclient));
         
     } else {
         
-        error_invalidArguments (sym_text__space__size, argc, argv); pd_free (cast_pd (x)); x = NULL; 
+        error_invalidArguments (cast_object (x), sym_text__space__size, argc, argv);
+        
+        pd_free (cast_pd (x)); x = NULL; 
     }
     
     return x;

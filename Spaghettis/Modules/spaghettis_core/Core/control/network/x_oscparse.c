@@ -490,7 +490,7 @@ static t_error oscparse_proceedBundle (t_oscparse *x, int argc, t_atom *argv)
     const int headerBundle = 16;
     const int headerMessage = 4;
     
-    if (argc == headerBundle) { warning_empty (sym_oscparse, sym_bundle); }
+    if (argc == headerBundle) { warning_empty (cast_object (x), sym_oscparse, sym_bundle); }
     
     if (argc >= headerBundle) {
     //
@@ -511,7 +511,7 @@ static t_error oscparse_proceedBundle (t_oscparse *x, int argc, t_atom *argv)
     //
     }
     
-    if (err) { error_invalid (sym_oscparse, sym_bundle); }
+    if (err) { error_invalid (cast_object (x), sym_oscparse, sym_bundle); }
     
     return err;
 }
@@ -638,7 +638,7 @@ static t_error oscparse_proceed (t_oscparse *x, int argc, t_atom *argv)
     //
     }
     
-    if (err) { error_invalid (sym_oscparse, sym_message); }
+    if (err) { error_invalid (cast_object (x), sym_oscparse, sym_message); }
     
     return err;
     //
@@ -667,7 +667,7 @@ static void oscparse_list (t_oscparse *x, t_symbol *s, int argc, t_atom *argv)
     }
     
     if (err) { 
-        error_failed (sym_oscparse);
+        error_failed (cast_object (x), sym_oscparse);
     }
     //
     }
@@ -727,9 +727,9 @@ static t_oscparse *oscparse_new (t_symbol *s, int argc, t_atom *argv)
     //
     }
 
-    error__options (s, argc, argv);
+    error__options (cast_object (x), s, argc, argv);
     
-    if (argc) { warning_unusedArguments (s, argc, argv); }
+    if (argc) { warning_unusedArguments (cast_object (x), s, argc, argv); }
     
     return x;
 }

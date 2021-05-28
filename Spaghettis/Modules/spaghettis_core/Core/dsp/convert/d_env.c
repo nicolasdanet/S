@@ -123,8 +123,10 @@ static void env_tilde_initialize (void *lhs, void *rhs)
 
 static void env_tilde_dsp (t_env_tilde *x, t_signal **sp)
 {
-    if (x->x_period % sp[0]->s_vectorSize)      { error_invalid (sym_env__tilde__, sym_period); }
-    else if (x->x_window < sp[0]->s_vectorSize) { error_invalid (sym_env__tilde__, sym_window); }
+    t_object *t = cast_object (x);
+    
+    if (x->x_period % sp[0]->s_vectorSize)      { error_invalid (t, sym_env__tilde__, sym_period); }
+    else if (x->x_window < sp[0]->s_vectorSize) { error_invalid (t, sym_env__tilde__, sym_window); }
     else {
     //
     if (object_dspNeedInitializer (cast_object (x))) {
@@ -195,10 +197,12 @@ static void *env_tilde_new (t_float f1, t_float f2)
     x->x_clock  = clock_new ((void *)x, (t_method)env_tilde_task);
     x->x_outlet = outlet_newFloat (cast_object (x));
 
-    if ((int)f1 && x->x_window != (int)f1) { warning_invalid (sym_env__tilde__, sym_window); k = 1; }
-    if ((int)f2 && x->x_period != (int)f2) { warning_invalid (sym_env__tilde__, sym_period); k = 1; }
+    t_object *t = cast_object (x);
+    
+    if ((int)f1 && x->x_window != (int)f1) { warning_invalid (t, sym_env__tilde__, sym_window); k = 1; }
+    if ((int)f2 && x->x_period != (int)f2) { warning_invalid (t, sym_env__tilde__, sym_period); k = 1; }
     if (k) { 
-        post_system ("%s: window %d period %d", sym_env__tilde__->s_name, x->x_window, x->x_period);    // --
+        post_system (t, "%s: window %d period %d", sym_env__tilde__->s_name, x->x_window, x->x_period); // --
     }
     
     /* Hanning window. */

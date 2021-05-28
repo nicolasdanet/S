@@ -218,10 +218,12 @@ PD_LOCAL void       clock_delay                 (t_clock *x, double delay);     
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   post                            (const char *fmt, ...);
-PD_LOCAL void   post_system                     (const char *fmt, ...);
-PD_LOCAL void   post_warning                    (const char *fmt, ...);
-PD_LOCAL void   post_error                      (const char *fmt, ...);
+/* First parameter not used for now (but could in the future to reveal the caller). */
+
+PD_LOCAL void   post                            (t_object *x, const char *fmt, ...);
+PD_LOCAL void   post_system                     (t_object *x, const char *fmt, ...);
+PD_LOCAL void   post_warning                    (t_object *x, const char *fmt, ...);
+PD_LOCAL void   post_error                      (t_object *x, const char *fmt, ...);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -69,7 +69,10 @@ PD_LOCAL t_buffer *textclient_fetchBuffer (t_textclient *x)
     //
     t_textbuffer *y = (t_textbuffer *)symbol_getThingByClass (x->tc_name, textdefine_class);
 
-    if (y) { return textbuffer_getBuffer (y); } else { error_canNotFind (sym_text, x->tc_name); }
+    if (y) { return textbuffer_getBuffer (y); }
+    else {
+        error_canNotFind (cast_object (x), sym_text, x->tc_name);
+    }
     //
     }
     
@@ -82,7 +85,10 @@ PD_LOCAL t_glist *textclient_fetchOwner (t_textclient *x)
     //
     t_textbuffer *y = (t_textbuffer *)symbol_getThingByClass (x->tc_name, textdefine_class);
 
-    if (y) { return textbuffer_getOwner (y); } else { error_canNotFind (sym_text, x->tc_name); }
+    if (y) { return textbuffer_getOwner (y); }
+    else {
+        error_canNotFind (cast_object (x), sym_text, x->tc_name);
+    }
     //
     }
     
@@ -99,7 +105,7 @@ PD_LOCAL void textclient_update (t_textclient *x)
     //
     t_textbuffer *y = (t_textbuffer *)symbol_getThingByClass (x->tc_name, textdefine_class);
     
-    if (!y) { error_canNotFind (sym_text, x->tc_name); }
+    if (!y) { error_canNotFind (cast_object (x), sym_text, x->tc_name); }
     //
     }
 }

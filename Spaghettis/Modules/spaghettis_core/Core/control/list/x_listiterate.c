@@ -72,7 +72,7 @@ PD_LOCAL void *listiterate_new (t_symbol *s, int argc, t_atom *argv)
     x->x_outletMiddle = outlet_newBang (cast_object (x));
     x->x_outletRight  = outlet_newFloat (cast_object (x));
     
-    if (argc) { warning_unusedArguments (s, argc, argv); }
+    if (argc) { warning_unusedArguments (cast_object (x), s, argc, argv); }
     
     return x;
 }

@@ -263,7 +263,7 @@ static void garray_rename (t_garray *x, t_symbol *s)
     //
     t_symbol *expanded = dollar_expandSymbol (s, x->x_owner);
     
-    if (garray_fetch (expanded)) { error_alreadyExists (expanded); }
+    if (garray_fetch (expanded)) { error_alreadyExists (cast_object (x), expanded); }
     else {
     //
     pd_unbind (cast_pd (x), x->x_name);
@@ -312,7 +312,7 @@ static void garray_read (t_garray *x, t_symbol *name)
     //
     }
     
-    if (err) { error_canNotOpen (name); }
+    if (err) { error_canNotOpen (cast_object (x), name); }
 }
 
 static void garray_write (t_garray *x, t_symbol *name)
@@ -346,7 +346,7 @@ static void garray_write (t_garray *x, t_symbol *name)
     //
     }
     
-    if (err) { error_canNotCreate (name); }
+    if (err) { error_canNotCreate (cast_object (x), name); }
 }
 
 static void garray_resizeProceed (t_garray *x, int n)
@@ -531,7 +531,7 @@ static void *garray_new (t_symbol *s, int argc, t_atom *argv)
         x->x_unexpandedName = x->x_name;
 
     } else if (x->x_name == &s_ || garray_fetch (x->x_name)) {
-        if (x->x_name != &s_) { error_alreadyExists (x->x_name); }
+        if (x->x_name != &s_) { error_alreadyExists (cast_object (x), x->x_name); }
         x->x_name = garray_getUnusedBindName (sym_array);
         x->x_unexpandedName = x->x_name;
     }

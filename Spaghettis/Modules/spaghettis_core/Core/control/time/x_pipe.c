@@ -122,13 +122,13 @@ static void callback_free (t_pipecallback *h)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static int pipe_unitIsValid (t_float f, t_symbol *unitName, int verbose)
+static int pipe_unitIsValid (t_pipe *x, t_float f, t_symbol *unitName, int verbose)
 {
     if (f != 0.0 && unitName != &s_) {
     //
     int n; t_float t; t_error err = clock_parseUnit (f, unitName, &t, &n);
     
-    if (err && verbose) { error_invalid (sym_pipe, sym_unit); }
+    if (err && verbose) { error_invalid (cast_object (x), sym_pipe, sym_unit); }
     
     return (!err);
     //
@@ -148,7 +148,7 @@ static void pipe_set (t_pipe *x, int argc, t_atom *argv)
     for (i = 0; i < argc; i++) {
     //
     if (!atom_typesAreEquals (atomoutlet_getAtom (x->x_vector + i), argv + i)) {
-        error_mismatch (sym_pipe, sym_type);
+        error_mismatch (cast_object (x), sym_pipe, sym_type);
         return;
     }
     //
@@ -163,7 +163,7 @@ static void pipe_list (t_pipe *x, t_symbol *s, int argc, t_atom *argv)
     //
     if (IS_FLOAT (argv + x->x_size)) { x->x_delay = GET_FLOAT (argv + x->x_size); }
     else {
-        error_invalid (sym_pipe, sym_delay);
+        error_invalid (cast_object (x), sym_pipe, sym_delay);
         return;
     }
     //
@@ -206,7 +206,7 @@ static void pipe_clear (t_pipe *x)
 
 static void pipe_unit (t_pipe *x, t_symbol *unitName, t_float f)
 {
-    if (pipe_unitIsValid (f, unitName, 1)) { x->x_unitValue = f; x->x_unitName = unitName; }
+    if (pipe_unitIsValid (x, f, unitName, 1)) { x->x_unitValue = f; x->x_unitName = unitName; }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -298,7 +298,7 @@ static void *pipe_new (t_symbol *s, int argc, t_atom *argv)
     //
     t_float f = atom_getFloat (argv + (argc - 2));
     t_symbol *unitName = atom_getSymbol (argv + (argc - 1));
-    if (pipe_unitIsValid (f, unitName, 0)) {
+    if (pipe_unitIsValid (x, f, unitName, 0)) {
         x->x_unitValue  = f;
         x->x_unitName   = unitName;
         argc -= 2;

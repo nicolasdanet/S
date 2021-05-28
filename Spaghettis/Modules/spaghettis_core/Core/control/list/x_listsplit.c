@@ -91,7 +91,7 @@ PD_LOCAL void *listsplit_new (t_symbol *s, int argc, t_atom *argv)
     
     inlet_newFloat (cast_object (x), &x->x_f);
     
-    if (argc > 1) { warning_unusedArguments (s, argc - 1, argv + 1); }
+    if (argc > 1) { warning_unusedArguments (cast_object (x), s, argc - 1, argv + 1); }
     
     return x;
 }

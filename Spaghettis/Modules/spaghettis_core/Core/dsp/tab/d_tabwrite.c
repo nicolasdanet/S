@@ -96,7 +96,7 @@ static void tabwrite_tilde_setProceed (t_tabwrite_tilde *x, t_symbol *s, int ver
     
     trylock_unlock (&x->x_mutex);
     
-    if (verbose && err) { tab_error (sym_tabwrite__tilde__, s); }
+    if (verbose && err) { tab_error (cast_object (x), sym_tabwrite__tilde__, s); }
 }
 
 static void tabwrite_tilde_set (t_tabwrite_tilde *x, t_symbol *s)
@@ -260,7 +260,7 @@ static void tabwrite_tilde_dsp (t_tabwrite_tilde *x, t_signal **sp)
     t_word *w   = NULL;
     t_error err = tab_fetchArray (x->x_name, &size, &w);
 
-    if (err) { tab_error (sym_tabwrite__tilde__, x->x_name); }
+    if (err) { tab_error (cast_object (x), sym_tabwrite__tilde__, x->x_name); }
     else {
         tabwrite_tilde_space (t, w, size, PD_INT_MAX, 1);
     }

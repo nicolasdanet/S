@@ -47,7 +47,7 @@ static void textdelete_float (t_textdelete *x, t_float f)
         
     textclient_update (&x->x_textclient);
     //
-    } else { error_undefined (sym_text__space__delete, sym_text); }
+    } else { error_undefined (cast_object (x), sym_text__space__delete, sym_text); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -92,13 +92,15 @@ PD_LOCAL void *textdelete_new (t_symbol *s, int argc, t_atom *argv)
     
     if (!err) {
     
-        if (argc) { warning_unusedArguments (sym_text__space__delete, argc, argv); }
+        if (argc) { warning_unusedArguments (cast_object (x), sym_text__space__delete, argc, argv); }
         
         inlet_newSymbol (cast_object (x), TEXTCLIENT_NAME (&x->x_textclient));
     
     } else {
         
-        error_invalidArguments (sym_text__space__delete, argc, argv); pd_free (cast_pd (x)); x = NULL;
+        error_invalidArguments (cast_object (x), sym_text__space__delete, argc, argv);
+        
+        pd_free (cast_pd (x)); x = NULL;
     }
     
     return x;

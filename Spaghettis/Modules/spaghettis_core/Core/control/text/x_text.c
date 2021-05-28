@@ -128,7 +128,7 @@ static void *textdefine_new (t_symbol *s, int argc, t_atom *argv)
         }
     }
     
-    if (!error__options (s, argc, argv)) {
+    if (!error__options (cast_object (x), s, argc, argv)) {
         if (argc && IS_SYMBOL (argv)) {
             pd_bind (cast_pd (x), GET_SYMBOL (argv));
             x->x_name = GET_SYMBOL (argv);
@@ -140,7 +140,7 @@ static void *textdefine_new (t_symbol *s, int argc, t_atom *argv)
     
     if (argc && IS_FLOAT (argv) && (GET_FLOAT (argv) == 0.0)) { argc--; argv++; }
     
-    if (argc) { warning_unusedArguments (s, argc, argv); }
+    if (argc) { warning_unusedArguments (cast_object (x), s, argc, argv); }
     
     return x;
 }
@@ -168,12 +168,12 @@ static void *textdefine_makeObject (t_symbol *s, int argc, t_atom *argv)
         if (t == sym_tolist)        { newest = (t_pd *)texttolist_new (s,   argc - 1, argv + 1); }
         else if (t == sym_fromlist) { newest = (t_pd *)textfromlist_new (s, argc - 1, argv + 1); }
         
-        if (!newest) { error_unexpected (sym_text, t); }
+        if (!newest) { error_unexpected (NULL, sym_text, t); }  // -- TODO: Pass context to message error?
     }
     //
     }
     
-    static int once = 0; if (!once) { warning_deprecatedObject (sym_text); once = 1; }
+    if (newest) { warning_deprecatedObject (cast_object (newest), sym_text); }
 
     instance_objectSetNewest (newest);
     

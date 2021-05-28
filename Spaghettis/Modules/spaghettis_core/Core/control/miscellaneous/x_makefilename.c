@@ -98,7 +98,7 @@ static void makefilename_float (t_makefilename *x, t_float f)
     
     if (!err) { outlet_symbol (x->x_outlet, gensym (name)); }
     else {
-        error_invalid (sym_makefilename, sym_substitution);
+        error_invalid (cast_object (x), sym_makefilename, sym_substitution);
     }
 }
 
@@ -115,7 +115,7 @@ static void makefilename_symbol (t_makefilename *x, t_symbol *s)
         
     if (!err) { outlet_symbol (x->x_outlet, gensym (name)); }
     else {
-        error_invalid (sym_makefilename, sym_substitution);
+        error_invalid (cast_object (x), sym_makefilename, sym_substitution);
     }
 }
 
@@ -141,7 +141,7 @@ static void makefilename_set (t_makefilename *x, t_symbol *dummy, int argc, t_at
 {
     x->x_format = symbol_withAtoms (argc, argv);
     
-    if (makefilename_scanFormat (x)) { error_invalid (sym_makefilename, sym_format); }
+    if (makefilename_scanFormat (x)) { error_invalid (cast_object (x), sym_makefilename, sym_format); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -202,7 +202,7 @@ static void *makefilename_new (t_symbol *dummy, int argc, t_atom *argv)
     x->x_format                 = t;
     x->x_outlet                 = outlet_newSymbol (cast_object (x));
     
-    if (makefilename_scanFormat (x)) { error_invalid (sym_makefilename, sym_format); }
+    if (makefilename_scanFormat (x)) { error_invalid (cast_object (x), sym_makefilename, sym_format); }
     
     return x;
 }

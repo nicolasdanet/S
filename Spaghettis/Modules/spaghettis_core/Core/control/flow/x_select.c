@@ -82,7 +82,7 @@ static void select1_list (t_select1 *x, t_symbol *s, int argc, t_atom *argv)
         }
     }
     
-    if (err) { error_invalid (sym_select, sym_type); }
+    if (err) { error_invalid (cast_object (x), sym_select, sym_type); }
 }
 
 static void select1_anything (t_select1 *x, t_symbol *s, int argc, t_atom *argv)
@@ -165,7 +165,7 @@ static void select2_anything (t_select2 *x, t_symbol *s, int argc, t_atom *argv)
         if (IS_SYMBOL (argv))     { select2_symbol (x, GET_SYMBOL (argv)); }
         else if (IS_FLOAT (argv)) { select2_float (x, GET_FLOAT (argv)); }
         else {
-            error_invalid (sym_select, sym_type);
+            error_invalid (cast_object (x), sym_select, sym_type);
         }
     }
 }

@@ -115,7 +115,7 @@ static void canvas_connect (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
     //
     }
     
-    error_failed (sym_connect);
+    error_failed (cast_object (glist), sym_connect);
 }
 
 static void canvas_disconnect (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
@@ -131,7 +131,7 @@ static void canvas_disconnect (t_glist *glist, t_symbol *s, int argc, t_atom *ar
     //
     }
     
-    error_failed (sym_disconnect);
+    error_failed (cast_object (glist), sym_disconnect);
 }
 
 static void canvas_obj (t_glist *glist, t_symbol *s, int argc, t_atom *argv)

@@ -40,7 +40,9 @@ static void throw_tilde_setProceed (t_throw_tilde *x, t_symbol *s, int verbose)
     
     PD_ATOMIC_POINTER_WRITE (t, &x->x_p);
     
-    if (verbose && !t && x->x_name != &s_) { error_canNotFind (sym_throw__tilde__, x->x_name); }
+    if (verbose && !t && x->x_name != &s_) {
+        error_canNotFind (cast_object (x), sym_throw__tilde__, x->x_name);
+    }
 }
 
 static void throw_tilde_set (t_throw_tilde *x, t_symbol *s)
@@ -72,7 +74,9 @@ static t_int *throw_tilde_perform (t_int *w)
 
 static void throw_tilde_dsp (t_throw_tilde *x, t_signal **sp)
 {
-    if (sp[0]->s_vectorSize != INTERNAL_BLOCKSIZE) { error_mismatch (sym_throw__tilde__, sym_size); }
+    int size = sp[0]->s_vectorSize;
+
+    if (size != INTERNAL_BLOCKSIZE) { error_mismatch (cast_object (x), sym_throw__tilde__, sym_size); }
     else {
     //
     if (object_dspNeedInitializer (cast_object (x))) {

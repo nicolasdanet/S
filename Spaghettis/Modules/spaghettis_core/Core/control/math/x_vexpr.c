@@ -189,7 +189,7 @@ static void *vexpr_new (t_symbol *s, int argc, t_atom *argv)
     
     } else {
     
-        error_invalid (sym_vexpr, sym_expression);
+        error_invalid (cast_object (x), sym_vexpr, sym_expression);
         pd_free (cast_pd (x));
         x = NULL;
     }

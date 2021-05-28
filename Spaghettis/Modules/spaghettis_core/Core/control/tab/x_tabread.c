@@ -32,7 +32,7 @@ static void tabread_float (t_tabread *x, t_float f)
 {
     t_garray *a = garray_fetch (x->x_name);
     
-    if (!a) { error_canNotFind (sym_tabread, x->x_name); }
+    if (!a) { error_canNotFind (cast_object (x), sym_tabread, x->x_name); }
     else {
         outlet_float (x->x_outlet, garray_getFloatAtIndex (a, (int)f));
     }

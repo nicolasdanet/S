@@ -66,7 +66,7 @@ static void delay_float (t_delay *x, t_float f)
 
 static void delay_floatDelay (t_delay *x, t_float f)
 {
-    if (f < 0.0) { error_invalid (sym_delay, sym_delay); } else { x->x_delay = f; }
+    if (f < 0.0) { error_invalid (cast_object (x), sym_delay, sym_delay); } else { x->x_delay = f; }
 }
 
 static void delay_stop (t_delay *x)
@@ -80,7 +80,7 @@ static void delay_unit (t_delay *x, t_symbol *unitName, t_float f)
 {
     t_error err = clock_setUnitParsed (x->x_clock, f, unitName);
     
-    if (err) { error_invalid (sym_delay, sym_unit); }
+    if (err) { error_invalid (cast_object (x), sym_delay, sym_unit); }
     else {
         x->x_unitValue = f;
         x->x_unitName  = unitName;
@@ -164,7 +164,7 @@ static void *delay_new (t_symbol *s, int argc, t_atom *argv)
     
     if (unit != 0.0 && unitName != &s_) { delay_unit (x, unitName, unit); }
     
-    if (argc > 3) { warning_unusedArguments (s, argc - 3, argv + 3); }
+    if (argc > 3) { warning_unusedArguments (cast_object (x), s, argc - 3, argv + 3); }
     
     return x;
 }

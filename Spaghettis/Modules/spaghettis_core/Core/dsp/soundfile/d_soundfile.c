@@ -50,7 +50,8 @@ PD_LOCAL t_error soundfile_readFileParse (t_glist *dummy,
     t_symbol *s,
     int *ac,
     t_atom **av,
-    t_audioproperties *args)
+    t_audioproperties *args,
+    t_object *owner)
 {
     t_error err = PD_ERROR_NONE;
     
@@ -105,7 +106,7 @@ PD_LOCAL t_error soundfile_readFileParse (t_glist *dummy,
     //
     }
     
-    if (!err) { err = (error__options (s, argc, argv) != 0); }
+    if (!err) { err = (error__options (owner, s, argc, argv) != 0); }
     if (!err) { err = (!argc || !IS_SYMBOL (argv)); }
     
     if (!err) {
@@ -370,7 +371,8 @@ PD_LOCAL t_error soundfile_writeFileParse (t_glist *glist,
     t_symbol *s,
     int *ac,
     t_atom **av,
-    t_audioproperties *args)
+    t_audioproperties *args,
+    t_object *owner)
 {
     t_error err = PD_ERROR_NONE;
     
@@ -447,7 +449,7 @@ PD_LOCAL t_error soundfile_writeFileParse (t_glist *glist,
     //
     }
     
-    if (!err) { err = (error__options (s, argc, argv) != 0); }
+    if (!err) { err = (error__options (owner, s, argc, argv) != 0); }
     if (!err) { err = (!argc || !IS_SYMBOL (argv)); }
     
     if (!err) {
@@ -633,7 +635,7 @@ static t_error soundfile_writeFileHeaderNEXT (t_headerhelper *t, t_audioproperti
 
 /* Caller is responsible to close the file. */
 
-PD_LOCAL int soundfile_writeFileHeader (t_glist *glist, t_audioproperties *args)
+PD_LOCAL int soundfile_writeFileHeader (t_glist *glist, t_audioproperties *args, t_object *owner)
 {
     t_error err = PD_ERROR_NONE;
     char name[PD_STRING] = { 0 };
@@ -677,7 +679,7 @@ PD_LOCAL int soundfile_writeFileHeader (t_glist *glist, t_audioproperties *args)
         if (write (f, t.h_c, t.h_bytesSet) < t.h_bytesSet) { close (f); f = -1; PD_BUG; }
     }
     //
-    } else { error_alreadyExists (symbol_addSuffix (args->ap_fileName, args->ap_fileExtension)); }
+    } else { error_alreadyExists (owner, symbol_addSuffix (args->ap_fileName, args->ap_fileExtension)); }
     //
     }
     //

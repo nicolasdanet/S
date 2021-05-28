@@ -96,7 +96,7 @@ PD_LOCAL void eval_bufferProceed (int size, t_atom *v, t_pd *object, int argc, t
         }
         
         if (s == NULL || !(object = symbol_getThing (s))) {
-            if (!s) { error_invalid (&s_, sym_expansion); }
+            if (!s) { error_invalid (NULL, &s_, sym_expansion); }
             else {
                 symbol_hasThing (s);
             }
@@ -171,7 +171,7 @@ PD_LOCAL void eval_file (t_symbol *name, t_symbol *directory)
     
     t_error err = buffer_fromFile (t, name->s_name, directory->s_name);
     
-    if (err) { error_failsToRead (name); }
+    if (err) { error_failsToRead (NULL, name); }
     else {
         legacy_convert (t); eval_fileByBuffer (name, directory, t);
     }

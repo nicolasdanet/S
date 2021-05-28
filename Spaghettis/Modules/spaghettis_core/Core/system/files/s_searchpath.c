@@ -135,12 +135,12 @@ static void searchpath_reportToLogFile (void)
     //
     t_pathlist *l = searchpath_extended;
 
-    post_system ("rescan: dump %s", t);    // --
+    post_system (NULL, "rescan: dump %s", t);                           // --
     
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        searchpath_reportWrite (f, "Path:", path);
+        searchpath_reportWrite (f, "Path:", path);                      // --
     }
     
     l = searchpath_external;
@@ -148,7 +148,7 @@ static void searchpath_reportToLogFile (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        searchpath_reportWrite (f, "External:", path);
+        searchpath_reportWrite (f, "External:", path);                  // --
     }
     
     l = searchpath_patch;
@@ -156,7 +156,7 @@ static void searchpath_reportToLogFile (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        searchpath_reportWrite (f, "Patch:", path);
+        searchpath_reportWrite (f, "Patch:", path);                     // --
     }
     
     l = searchpath_help;
@@ -164,7 +164,7 @@ static void searchpath_reportToLogFile (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        searchpath_reportWrite (f, "Help:", path);
+        searchpath_reportWrite (f, "Help:", path);                      // --
     }
     
     l = searchpath_duplicates;
@@ -172,7 +172,7 @@ static void searchpath_reportToLogFile (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        searchpath_reportWrite (f, "Duplicates:", path);
+        searchpath_reportWrite (f, "Duplicates:", path);                // --
     }
     
     close (f);
@@ -193,7 +193,7 @@ static void searchpath_report (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        post_system ("rescan: %s", path);
+        post_system (NULL, "rescan: %s", path);                         // --
     }
     
     l = searchpath_external;
@@ -201,7 +201,7 @@ static void searchpath_report (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        post_system ("rescan: external / %s", path);
+        post_system (NULL, "rescan: external / %s", path);              // --
     }
     
     l = searchpath_patch;
@@ -209,7 +209,7 @@ static void searchpath_report (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        post_system ("rescan: patch / %s", path);
+        post_system (NULL, "rescan: patch / %s", path);                 // --
     }
     
     l = searchpath_help;
@@ -217,7 +217,7 @@ static void searchpath_report (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        post_system ("rescan: help / %s", path);
+        post_system (NULL, "rescan: help / %s", path);                  // --
     }
     
     l = searchpath_duplicates;
@@ -225,7 +225,7 @@ static void searchpath_report (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        post_system ("rescan: duplicates / %s", path);
+        post_system (NULL, "rescan: duplicates / %s", path);            // --
     }
 }
 
@@ -308,10 +308,10 @@ PD_LOCAL void searchpath_rescan (int logged)
     t_error err = searchpath_scan();
     
     if (logged) { searchpath_report(); }
-    if (searchpath_hasDuplicates()) { warning_containsDuplicates(); }
-    if (err) { error_searchPathOverflow(); }
+    if (searchpath_hasDuplicates()) { warning_containsDuplicates (NULL); }
+    if (err) { error_searchPathOverflow (NULL); }
     else if (logged) {
-        post_system ("rescan: done");
+        post_system (NULL, "rescan: done");     // --
     }
 }
 

@@ -31,7 +31,9 @@ t_class *catch_tilde_class;         /* Shared. */
 
 static void catch_tilde_dsp (t_catch_tilde *x, t_signal **sp)
 {
-    if (sp[0]->s_vectorSize != INTERNAL_BLOCKSIZE) { error_mismatch (sym_catch__tilde__, sym_size); }
+    int size = sp[0]->s_vectorSize;
+    
+    if (size != INTERNAL_BLOCKSIZE) { error_mismatch (cast_object (x), sym_catch__tilde__, sym_size); }
     else {
         dsp_addCopyZeroPerform (x->x_vector, sp[0]->s_vector, INTERNAL_BLOCKSIZE);
     }

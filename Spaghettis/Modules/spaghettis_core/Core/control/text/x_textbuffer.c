@@ -49,15 +49,15 @@ PD_LOCAL t_buffer *textbuffer_getBuffer (t_textbuffer *x)
 
 PD_LOCAL void textbuffer_read (t_textbuffer *x, t_symbol *s)
 {
-    if (buffer_fileRead (x->tb_buffer, s, x->tb_owner)) {
-        error_failsToRead (s);
+    if (buffer_fileRead (x->tb_buffer, s, x->tb_owner, cast_object (x))) {
+        error_failsToRead (cast_object (x), s);
     }
 }
 
 PD_LOCAL void textbuffer_write (t_textbuffer *x, t_symbol *s)
 {
     if (buffer_fileWrite (x->tb_buffer, s, environment_getDirectory (glist_getEnvironment (x->tb_owner)))) {
-        error_failsToWrite (s);
+        error_failsToWrite (cast_object (x), s);
     }
 }
 

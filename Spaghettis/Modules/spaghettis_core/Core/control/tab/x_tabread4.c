@@ -32,7 +32,7 @@ static void tabread4_float (t_tabread4 *x, t_float f)
 {
     t_garray *a = garray_fetch (x->x_name);
     
-    if (!a) { error_canNotFind (sym_tabread4, x->x_name); }
+    if (!a) { error_canNotFind (cast_object (x), sym_tabread4, x->x_name); }
     else {
     //
     int size = 0;

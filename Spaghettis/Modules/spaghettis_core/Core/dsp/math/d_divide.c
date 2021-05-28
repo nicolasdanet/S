@@ -51,10 +51,10 @@ static void divideScalar_tilde_dsp (t_dividescalar_tilde *x, t_signal **sp)
 
 static void *divide_tilde_newWithScalar (t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc > 1) { warning_unusedArguments (s, argc - 1, argv + 1); }
-    
     t_dividescalar_tilde *x = (t_dividescalar_tilde *)pd_new (divideScalar_tilde_class);
 
+    if (argc > 1) { warning_unusedArguments (cast_object (x), s, argc - 1, argv + 1); }
+    
     x->x_scalar = atom_getFloatAtIndex (0, argc, argv);
     x->x_outlet = outlet_newSignal (cast_object (x));
     

@@ -52,7 +52,7 @@ static void pack_float (t_pack *x, t_float f)
 {
     t_atom a; SET_FLOAT (&a, f);
     
-    if (atomoutlet_setAtom (x->x_vector + 0, &a)) { warning_badType (sym_pack, &s_float); }
+    if (atomoutlet_setAtom (x->x_vector + 0, &a)) { warning_badType (cast_object (x), sym_pack, &s_float); }
     
     pack_bang (x);
 }
@@ -61,7 +61,7 @@ static void pack_symbol (t_pack *x, t_symbol *s)
 {
     t_atom a; SET_SYMBOL (&a, s);
     
-    if (atomoutlet_setAtom (x->x_vector + 0, &a)) { warning_badType (sym_pack, &s_symbol); }
+    if (atomoutlet_setAtom (x->x_vector + 0, &a)) { warning_badType (cast_object (x), sym_pack, &s_symbol); }
     
     pack_bang (x);
 }

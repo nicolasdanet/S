@@ -73,7 +73,7 @@ PD_LOCAL void *arraymax_new (t_symbol *s, int argc, t_atom *argv)
         x->x_outletRight = outlet_newFloat (cast_object (x));
 
     } else {
-        error_invalidArguments (sym_array__space__max, argc, argv);
+        error_invalidArguments (cast_object (x), sym_array__space__max, argc, argv);
         pd_free (cast_pd (x)); x = NULL; 
     }
     

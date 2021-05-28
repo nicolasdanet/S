@@ -231,7 +231,7 @@ static void textsequence_proceed (t_textsequence *x, int argc, t_atom *argv)
         
     } else { 
     
-        if (!b) { error_undefined (sym_text__space__search, sym_text); }
+        if (!b) { error_undefined (cast_object (x), sym_text__space__search, sym_text); }
         x->x_indexOfMessage = PD_INT_MAX;
         x->x_waitCount      = 0;
         x->x_isLooping      = 0;
@@ -315,7 +315,7 @@ static void textsequence_message (t_textsequence *x, t_float f)
         x->x_waitCount = 0;
         x->x_sendTo = NULL;
 
-    } else { error_undefined (sym_text__space__sequence, sym_text); }
+    } else { error_undefined (cast_object (x), sym_text__space__sequence, sym_text); }
 }
 
 static void textsequence_arguments (t_textsequence *x, t_symbol *s, int argc, t_atom *argv)
@@ -336,7 +336,7 @@ static void textsequence_unit (t_textsequence *x, t_symbol *unitName, t_float f)
 {
     t_error err = clock_setUnitParsed (x->x_clock, f, unitName);
     
-    if (err) { error_invalid (sym_text__space__sequence, sym_unit); }
+    if (err) { error_invalid (cast_object (x), sym_text__space__sequence, sym_unit); }
     else {
         x->x_unitName  = unitName;
         x->x_unitValue = f;
@@ -445,9 +445,9 @@ PD_LOCAL void *textsequence_new (t_symbol *s, int argc, t_atom *argv)
             }
         }
         
-        error__options (s, argc, argv);
+        error__options (cast_object (x), s, argc, argv);
 
-        if (argc) { warning_unusedArguments (s, argc, argv); }
+        if (argc) { warning_unusedArguments (cast_object (x), s, argc, argv); }
         
         hasWait = (useGlobal || x->x_waitSymbol || x->x_waitNumberOfLeading);
         
@@ -467,7 +467,9 @@ PD_LOCAL void *textsequence_new (t_symbol *s, int argc, t_atom *argv)
         
     } else {
     
-        error_invalidArguments (sym_text__space__search, argc, argv); pd_free (cast_pd (x)); x = NULL;
+        error_invalidArguments (cast_object (x), sym_text__space__search, argc, argv);
+        
+        pd_free (cast_pd (x)); x = NULL;
     }
     
     return x;

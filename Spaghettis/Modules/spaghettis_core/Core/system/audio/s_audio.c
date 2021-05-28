@@ -67,18 +67,18 @@ static void audio_report (t_error err, t_devices *p)
     
     #endif
     
-    void (*f)(const char *fmt, ...) = err ? post_error : post_system;
+    void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
     
-    (f) (PD_TRANSLATE ("dsp: %s / %d channels"), i->s_name, m);                 // --
-    (f) (PD_TRANSLATE ("dsp: %s / %d channels"), o->s_name, n);                 // --
+    (f) (NULL, PD_TRANSLATE ("dsp: %s / %d channels"), i->s_name, m);                 // --
+    (f) (NULL, PD_TRANSLATE ("dsp: %s / %d channels"), o->s_name, n);                 // --
     
     #if PD_APPLE
     
-    (f) (PD_TRANSLATE ("dsp: %d Hz / %d frames"), sampleRate, vectorSize);      // --
+    (f) (NULL, PD_TRANSLATE ("dsp: %d Hz / %d frames"), sampleRate, vectorSize);      // --
     
     #else 
     
-    (f) (PD_TRANSLATE ("dsp: %d Hz"), sampleRate);                              // --
+    (f) (NULL, PD_TRANSLATE ("dsp: %d Hz"), sampleRate);                              // --
     
     #endif
 }

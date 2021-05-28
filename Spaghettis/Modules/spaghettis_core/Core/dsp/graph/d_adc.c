@@ -64,7 +64,7 @@ static void adc_tilde_dsp (t_adc_tilde *x, t_signal **sp)
     //
     }
     
-    if (err) { error_invalid (sym_adc__tilde__, sym_signal); }
+    if (err) { error_invalid (cast_object (x), sym_adc__tilde__, sym_signal); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

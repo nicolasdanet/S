@@ -57,7 +57,7 @@ PD_LOCAL void *arrayset_new (t_symbol *s, int argc, t_atom *argv)
     t_arrayset *x = (t_arrayset *)arrayrange_new (arrayset_class, argc, argv, 1, 0);
     
     if (!ARRAYRANGE_GOOD (x)) {
-        error_invalidArguments (sym_array__space__set, argc, argv);
+        error_invalidArguments (cast_object (x), sym_array__space__set, argc, argv);
         pd_free (cast_pd (x)); x = NULL; 
     }
     

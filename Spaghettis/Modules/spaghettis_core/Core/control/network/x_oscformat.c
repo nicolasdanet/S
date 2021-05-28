@@ -224,7 +224,7 @@ static int oscformat_proceedFillStamp (t_oscformat *x, int argc, t_atom *argv, i
     int available = argc - j;
     t_error err = stamp_getWithTags (available, start, &stamp);
     
-    if (err) { stamp_set (&stamp); error_invalid (sym_oscformat, sym_stamp); }
+    if (err) { stamp_set (&stamp); error_invalid (cast_object (x), sym_oscformat, sym_stamp); }
     
     OSC_8WRITE (a + n, stamp);
     
@@ -340,12 +340,12 @@ static void oscformat_list (t_oscformat *x, t_symbol *s, int argc, t_atom *argv)
 {
     if (argc) {
     //
-    if ((*x->x_path) == 0) { error_unspecified (sym_oscformat, sym_path); }
+    if ((*x->x_path) == 0) { error_unspecified (cast_object (x), sym_oscformat, sym_path); }
     else {
         t_error err = oscformat_proceed (x, argc, argv);
         
         if (err) { 
-            error_failed (sym_oscformat);
+            error_failed (cast_object (x), sym_oscformat);
         }
     }
     //
@@ -379,7 +379,7 @@ static void oscformat_set (t_oscformat *x, t_symbol *s, int argc, t_atom *argv)
         }
     }
     
-    if (err) { error_invalid (sym_oscformat, sym_path); }
+    if (err) { error_invalid (cast_object (x), sym_oscformat, sym_path); }
     else {
     //
     err = string_copy (x->x_path, PD_STRING, t);
@@ -396,7 +396,7 @@ static void oscformat_format (t_oscformat *x, t_symbol *s)
     const char *t = NULL;
     
     for (t = s->s_name; *t; t++) {
-        if (!osc_isValidTypetag (*t)) { error_invalid (sym_oscformat, sym_format); return; }
+        if (!osc_isValidTypetag (*t)) { error_invalid (cast_object (x), sym_oscformat, sym_format); return; }
     }
     
     x->x_format = s;
@@ -461,7 +461,7 @@ static void *oscformat_new (t_symbol *s, int argc, t_atom *argv)
     //
     }
 
-    error__options (s, argc, argv);
+    error__options (cast_object (x), s, argc, argv);
     
     oscformat_set (x, NULL, argc, argv);
     

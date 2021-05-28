@@ -54,7 +54,7 @@ static void timer_unit (t_timer *x, t_symbol *unitName, t_float f)
 {
     t_error err = clock_parseUnit (f, unitName, &x->x_unit, &x->x_isSamples);
     
-    if (err) { error_invalid (sym_timer, sym_unit); }
+    if (err) { error_invalid (cast_object (x), sym_timer, sym_unit); }
     else {
         x->x_unitValue = f;
         x->x_unitName  = unitName;

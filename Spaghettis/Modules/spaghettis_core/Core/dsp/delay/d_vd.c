@@ -69,7 +69,7 @@ static void vd_tilde_dsp (t_vd_tilde *x, t_signal **sp)
 {
     t_delwrite_tilde *m = (t_delwrite_tilde *)symbol_getThingByClass (x->x_name, delwrite_tilde_class);
     
-    if (!m) { if (x->x_name != &s_) { error_canNotFind (sym_vd__tilde__, x->x_name); } }
+    if (!m) { if (x->x_name != &s_) { error_canNotFind (cast_object (x), sym_vd__tilde__, x->x_name); } }
     else {
     //
     t_space *t  = space_new (cast_object (x));

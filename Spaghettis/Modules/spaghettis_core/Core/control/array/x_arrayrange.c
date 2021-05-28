@@ -34,7 +34,7 @@ PD_LOCAL void *arrayrange_new (t_class *c, int argc, t_atom *argv, int makeOnset
     if (argc && IS_FLOAT (argv)) { x->ar_onset = GET_FLOAT (argv); argc--; argv++; }
     if (argc && IS_FLOAT (argv)) { x->ar_size  = GET_FLOAT (argv); argc--; argv++; }
 
-    if (argc) { warning_unusedArguments (class_getName (c), argc, argv); }
+    if (argc) { warning_unusedArguments (cast_object (x), class_getName (c), argc, argv); }
         
     inlet_newSymbol (cast_object (x), ARRAYCLIENT_ADDRESS_NAME (&x->ar_arrayclient));
     //

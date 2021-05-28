@@ -50,7 +50,8 @@ static t_error soundfiler_readFetch (int argc,
     t_garray **a,
     t_word **w,
     int *m, 
-    t_audioproperties *args)
+    t_audioproperties *args,
+    t_object *owner)
 {
     t_error err = PD_ERROR_NONE;
     
@@ -63,7 +64,7 @@ static t_error soundfiler_readFetch (int argc,
     
     a[i] = garray_fetch (t);
     
-    if (a[i] == NULL) { error_canNotFind (sym_soundfiler, t); err = PD_ERROR; break; }
+    if (a[i] == NULL) { error_canNotFind (owner, sym_soundfiler, t); err = PD_ERROR; break; }
     else {
         garray_getData (a[i], &k, &w[i]);
         if (size != SOUNDFILE_UNKNOWN && size != k) {       /* Resized if unequally allocated at first. */
@@ -170,11 +171,11 @@ static int soundfiler_readDecode (int f,
     return framesAlreadyRead;
 }
 
-static int soundfiler_readProceed (t_glist *glist, int argc, t_atom *argv)
+static int soundfiler_readProceed (t_soundfiler *x, t_glist *glist, int argc, t_atom *argv)
 {
     t_audioproperties properties; soundfile_propertiesInit (&properties);
     
-    t_error err = soundfile_readFileParse (NULL, sym_soundfiler, &argc, &argv, &properties);
+    t_error err = soundfile_readFileParse (NULL, sym_soundfiler, &argc, &argv, &properties, cast_object (x));
     
     if (!err) {
     //
@@ -185,7 +186,7 @@ static int soundfiler_readProceed (t_glist *glist, int argc, t_atom *argv)
     
     /* Fetch the garrays. */
     
-    err = soundfiler_readFetch (argc, argv, a, w, &arraysSize, &properties);
+    err = soundfiler_readFetch (argc, argv, a, w, &arraysSize, &properties, cast_object (x));
     
     if (!err) {
     //
@@ -224,7 +225,7 @@ static int soundfiler_readProceed (t_glist *glist, int argc, t_atom *argv)
     //
     }
     
-    if (err) { error_failsToRead (sym_soundfiler); }
+    if (err) { error_failsToRead (cast_object (x), sym_soundfiler); }
     
     return 0;
 }
@@ -235,7 +236,7 @@ static int soundfiler_readProceed (t_glist *glist, int argc, t_atom *argv)
 
 static void soundfiler_read (t_soundfiler *x, t_symbol *s, int argc, t_atom *argv)
 {
-    outlet_float (x->x_outlet, (t_float)soundfiler_readProceed (x->x_owner, argc, argv));
+    outlet_float (x->x_outlet, (t_float)soundfiler_readProceed (x, x->x_owner, argc, argv));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -247,7 +248,8 @@ static t_error soundfiler_writeFetch (int argc,
     t_garray **a,
     t_word **w,
     float *m,
-    t_audioproperties *args)
+    t_audioproperties *args,
+    t_object *owner)
 {
     t_error err = (argc < 1 || argc > SOUNDFILE_CHANNELS);
     
@@ -262,7 +264,7 @@ static t_error soundfiler_writeFetch (int argc,
 
     a[i] = garray_fetch (t);
     
-    if (a[i] == NULL) { error_canNotFind (sym_soundfiler, t); err = PD_ERROR; break; }
+    if (a[i] == NULL) { error_canNotFind (owner, sym_soundfiler, t); err = PD_ERROR; break; }
     else {
         int size;
         float f = garray_getAmplitude (a[i]);
@@ -305,7 +307,8 @@ static int soundfiler_writeEncode (int f,
     t_garray **a,
     t_word **w,
     float *m,
-    t_audioproperties *args)
+    t_audioproperties *args,
+    t_object *owner)
 {
     float normalizationFactor    = soundfiler_writeGetFactor (*m, args);
     int bytesPerFrame            = args->ap_numberOfChannels * args->ap_bytesPerSample;
@@ -350,7 +353,7 @@ static int soundfiler_writeEncode (int f,
     
     if (soundfile_writeFileClose (f, framesAlreadyWritten, args) == PD_ERROR) {
     //
-    warning_fileIsCorrupted (symbol_addSuffix (args->ap_fileName, args->ap_fileExtension));
+    warning_fileIsCorrupted (owner, symbol_addSuffix (args->ap_fileName, args->ap_fileExtension));
     //
     }
     
@@ -359,13 +362,13 @@ static int soundfiler_writeEncode (int f,
     return framesAlreadyWritten;
 }
     
-static int soundfiler_writeProceed (t_glist *glist, int argc, t_atom *argv)
+static int soundfiler_writeProceed (t_soundfiler *x, t_glist *glist, int argc, t_atom *argv)
 {
     t_error err = PD_ERROR_NONE;
     
     t_audioproperties properties; soundfile_propertiesInit (&properties);
     
-    err = soundfile_writeFileParse (NULL, sym_soundfiler, &argc, &argv, &properties);
+    err = soundfile_writeFileParse (NULL, sym_soundfiler, &argc, &argv, &properties, cast_object (x));
 
     if (!err) {
     //
@@ -374,22 +377,24 @@ static int soundfiler_writeProceed (t_glist *glist, int argc, t_atom *argv)
 
     float maximumAmplitude = 0.0;
     
-    err = soundfiler_writeFetch (argc, argv, a, w, &maximumAmplitude, &properties);
+    err = soundfiler_writeFetch (argc, argv, a, w, &maximumAmplitude, &properties, cast_object (x));
     
     if (!err) {
     
-        int f = soundfile_writeFileHeader (glist, &properties);
+        int f = soundfile_writeFileHeader (glist, &properties, cast_object (x));
     
         err = (f < 0);
         
-        if (!err) { return soundfiler_writeEncode (f, argc, a, w, &maximumAmplitude, &properties); }
+        if (!err) {
+            return soundfiler_writeEncode (f, argc, a, w, &maximumAmplitude, &properties, cast_object (x));
+        }
         
         /* Opened file is closed in function called above. */
     }
     //
     }
     
-    if (err) { error_failsToWrite (sym_soundfiler); }
+    if (err) { error_failsToWrite (cast_object (x), sym_soundfiler); }
     
     return 0;
 }
@@ -400,7 +405,7 @@ static int soundfiler_writeProceed (t_glist *glist, int argc, t_atom *argv)
 
 static void soundfiler_write (t_soundfiler *x, t_symbol *s, int argc, t_atom *argv)
 {
-    outlet_float (x->x_outlet, (t_float)soundfiler_writeProceed (x->x_owner, argc, argv)); 
+    outlet_float (x->x_outlet, (t_float)soundfiler_writeProceed (x, x->x_owner, argc, argv));
 }
 
 // -----------------------------------------------------------------------------------------------------------

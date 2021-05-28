@@ -967,7 +967,7 @@ static void sigmund_tilde_list (t_sigmund_tilde *x, t_symbol *s, int argc, t_ato
     
     garray_getData (a, &size, &data);
     
-    if (points + onset > size) { error_invalid (sym_sigmund__tilde__, sym_array); }
+    if (points + onset > size) { error_invalid (cast_object (x), sym_sigmund__tilde__, sym_array); }
     else {
         int i;
         for (i = 0; i < points; i++) {
@@ -976,7 +976,7 @@ static void sigmund_tilde_list (t_sigmund_tilde *x, t_symbol *s, int argc, t_ato
         sigmund_tilde_proceed (x, points, buffer, sampleRate);
     }
     //
-    } else { error_canNotFind (sym_array, name); }
+    } else { error_canNotFind (cast_object (x), sym_array, name); }
     //
     }
 }
@@ -1131,7 +1131,7 @@ static void *sigmund_tilde_new (t_symbol *s, int argc, t_atom *argv)
     //
     }
     
-    error__options (s, argc, argv);
+    error__options (cast_object (x), s, argc, argv);
     
     while (argc > 0) {
     //
@@ -1179,7 +1179,7 @@ static void *sigmund_tilde_new (t_symbol *s, int argc, t_atom *argv)
     //
     }
     
-    if (argc) { warning_unusedArguments (s, argc, argv); }
+    if (argc) { warning_unusedArguments (cast_object (x), s, argc, argv); }
     
     /* Default is continuous pitch and envelope. */
     

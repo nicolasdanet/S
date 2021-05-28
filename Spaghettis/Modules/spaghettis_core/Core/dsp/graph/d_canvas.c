@@ -63,7 +63,7 @@ static t_block *canvas_getBlockIfContainsAny (t_glist **p)
     
     for (y = glist->gl_graphics; y; y = y->g_next) {
         if (pd_class (y) == block_class) {
-            if (block) { error_ignored (sym_block__tilde__); }
+            if (block) { error_ignored (y, sym_block__tilde__); }
             else {
                 block = (t_block *)y;
             }

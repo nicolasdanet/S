@@ -89,7 +89,7 @@ PD_LOCAL void *arraysize_new (t_symbol *s, int argc, t_atom *argv)
     
     if (!err) {
     
-        if (argc) { warning_unusedArguments (sym_array__space__size, argc, argv); }
+        if (argc) { warning_unusedArguments (cast_object (x), sym_array__space__size, argc, argv); }
         
         inlet_newSymbol (cast_object (x), ARRAYCLIENT_ADDRESS_NAME (&x->x_arrayclient));
      
@@ -97,7 +97,7 @@ PD_LOCAL void *arraysize_new (t_symbol *s, int argc, t_atom *argv)
         
     } else {
     
-        error_invalidArguments (sym_array__space__size, argc, argv);
+        error_invalidArguments (cast_object (x), sym_array__space__size, argc, argv);
         
         pd_free (cast_pd (x)); x = NULL; 
     }

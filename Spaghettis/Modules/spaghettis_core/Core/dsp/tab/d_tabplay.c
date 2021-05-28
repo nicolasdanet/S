@@ -65,7 +65,7 @@ static void tabplay_tilde_setProceed (t_tabplay_tilde *x, t_symbol *s, int verbo
     
     trylock_unlock (&x->x_mutex);
     
-    if (verbose && err) { tab_error (sym_tabplay__tilde__, s); }
+    if (verbose && err) { tab_error (cast_object (x), sym_tabplay__tilde__, s); }
 }
 
 static void tabplay_tilde_set (t_tabplay_tilde *x, t_symbol *s)
@@ -214,7 +214,7 @@ static void tabplay_tilde_dsp (t_tabplay_tilde *x, t_signal **sp)
     t_word *w   = NULL;
     t_error err = tab_fetchArray (x->x_name, &size, &w);
 
-    if (err) { tab_error (sym_tabplay__tilde__, x->x_name); }
+    if (err) { tab_error (cast_object (x), sym_tabplay__tilde__, x->x_name); }
     else {
     //
     tabplay_tilde_space (t, w, size, PD_INT_MAX, 0, 1);

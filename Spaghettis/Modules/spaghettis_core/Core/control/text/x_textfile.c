@@ -75,7 +75,7 @@ static void *textfile_new (t_symbol *s, int argc, t_atom *argv)
     
     if (argc && !IS_FLOAT (argv)) { qlist_read (x, symbol_withAtoms (argc, argv)); }
     
-    static int once = 0; if (!once) { warning_deprecatedObject (sym_textfile); once = 1; }
+    warning_deprecatedObject (cast_object (x), sym_textfile);
 
     return x;
 }

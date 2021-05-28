@@ -146,7 +146,7 @@ static void *expr_new (t_symbol *s, int argc, t_atom *argv)
     
     } else {
     
-        error_invalid (sym_expr, sym_expression);
+        error_invalid (cast_object (x), sym_expr, sym_expression);
         pd_free (cast_pd (x));
         x = NULL;
     }

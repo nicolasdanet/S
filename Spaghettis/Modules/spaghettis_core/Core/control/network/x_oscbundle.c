@@ -101,7 +101,7 @@ static void oscbundle_appendMessage (t_oscbundle *x, t_symbol *s, int argc, t_at
     
     err |= ((argc & 3) != 0);       /* Must be a multiple of 4. */
     
-    if (err) { error_invalid (sym_oscbundle, sym_message); }
+    if (err) { error_invalid (cast_object (x), sym_oscbundle, sym_message); }
     else {
     //
     t_atom length[4];
@@ -132,7 +132,7 @@ static void oscbundle_parseStampThenCloseBundle (t_oscbundle *x, t_symbol *s, in
     //
     }
     
-    if (err) { error_invalid (sym_oscbundle, sym_stamp); }
+    if (err) { error_invalid (cast_object (x), sym_oscbundle, sym_stamp); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

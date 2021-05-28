@@ -99,7 +99,7 @@ static void dial_setRange (t_dial *x, t_float minimum, t_float maximum)
     
     if (err) { 
         x->x_isLogarithmic = 0;
-        error_invalid (sym_dial, sym_range);
+        error_invalid (cast_object (x), sym_dial, sym_range);
         
     } else {
         x->x_minimum = minimum;
