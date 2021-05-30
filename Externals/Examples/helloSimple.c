@@ -36,9 +36,9 @@ static void hello_post (t_hello *x)
     t_atom *argv = spaghettis_bufferGetAtoms (x->x_buffer);
     char *s      = spaghettis_atomsToString (argc, argv);
     
-    if (!*s) { spaghettis_post ("I'm empty!"); }
+    if (!*s) { spaghettis_post (NULL, "I'm empty!"); }
     else {
-        spaghettis_post (s);
+        spaghettis_post (NULL, s);
     }
     
     spaghettis_memoryFree (s);                      /* Free the memory allocated for the string. */

@@ -31,7 +31,7 @@ static t_symbol *hello_path;
 
 static void hello_bang (t_hello *x)
 {
-    spaghettis_post (spaghettis_symbolGetName (hello_path));
+    spaghettis_post (NULL, spaghettis_symbolGetName (hello_path));
 }
 
 static void *hello_new (void)

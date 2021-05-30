@@ -128,19 +128,19 @@ PD_DLL void spaghettis_classRequirePending (t_class *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_DLL void spaghettis_post (const char *s)
+PD_DLL void spaghettis_post (t_object *x, const char *s)
 {
-    post (NULL, s);
+    post (x, s);
 }
 
-PD_DLL void spaghettis_postWarning (const char *s)
+PD_DLL void spaghettis_postWarning (t_object *x, const char *s)
 {
-    post_warning (NULL, s);
+    post_warning (x, s);
 }
 
-PD_DLL void spaghettis_postError (const char *s)
+PD_DLL void spaghettis_postError (t_object *x, const char *s)
 {
-    post_error (NULL, s);
+    post_error (x, s);
 }
 
 // -----------------------------------------------------------------------------------------------------------

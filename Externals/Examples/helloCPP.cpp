@@ -30,12 +30,12 @@ class Jojo {
     public:
         Jojo()
         {
-            spaghettis_post ("Jojo contructor...");
+            spaghettis_post (NULL, "Jojo contructor...");
         }
     
         ~Jojo()
         {
-            spaghettis_post ("Jojo destructor...");
+            spaghettis_post (NULL, "Jojo destructor...");
         }
 };
 
@@ -68,7 +68,7 @@ static t_class *hello_class;
 
 static void hello_bang (t_hello *x)
 {
-    spaghettis_post ("CPP spoken!");
+    spaghettis_post (NULL, "CPP spoken!");
 }
 
 // -----------------------------------------------------------------------------------------------------------

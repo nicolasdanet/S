@@ -30,7 +30,7 @@ static t_class *hello_class;
 
 static void hello_bang (t_hello *x)
 {
-    spaghettis_post ("Hello world!");
+    spaghettis_post (NULL, "Hello world!");     /* First parameter not used for now. */
 }
 
 static void *hello_new (void)

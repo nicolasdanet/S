@@ -56,7 +56,7 @@ static void hello_something (t_hello *x, t_symbol *s, int argc, t_atom *argv)
 {
     char *t = spaghettis_atomsToString (argc, argv);
     
-    spaghettis_post (t);
+    spaghettis_post (NULL, t);
     
     spaghettis_memoryFree (t);
 }

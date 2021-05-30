@@ -36,8 +36,8 @@ static void *hello_new (t_symbol *s, int argc, t_atom *argv)
     
     char *t = spaghettis_atomsToString (argc, argv);
     
-    spaghettis_post (spaghettis_symbolGetName (s));
-    spaghettis_post (t);
+    spaghettis_post (NULL, spaghettis_symbolGetName (s));
+    spaghettis_post (NULL, t);
     
     spaghettis_memoryFree (t);
     

@@ -46,7 +46,7 @@ static void *hello_new (void)
 
 static void hello_free (t_hello *x)
 {
-    spaghettis_post ("Clean your room, now!");
+    spaghettis_post (NULL, "Clean your room, now!");
     
     /* Clean the already allocated things here. */
     /* Take care about fully vs partially constructed instance. */
