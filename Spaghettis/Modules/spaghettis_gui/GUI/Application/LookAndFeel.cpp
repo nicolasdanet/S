@@ -42,10 +42,15 @@ void LookAndFeel::initializeFonts()
     if (fontName.isEmpty())           { fontName           = juce::Font::getDefaultSansSerifFontName();  }
     if (fontMonospacedName.isEmpty()) { fontMonospacedName = juce::Font::getDefaultMonospacedFontName(); }
     
-    fontConsole_   = juce::Font (fontName, 18.0, juce::Font::plain);
-    fontShortcuts_ = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
-    
     setDefaultSansSerifTypefaceName (fontName);
+
+    fontConsole_        = juce::Font (fontName, 18.0, juce::Font::plain);
+    fontShortcuts_      = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
+    fontConsoleName_    = fontConsole_.getTypeface()->getName();
+    fontShortcutsName_  = fontShortcuts_.getTypeface()->getName();
+    
+    SPAGHETTIS_DEBUG (fontConsoleName_);
+    SPAGHETTIS_DEBUG (fontShortcutsName_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

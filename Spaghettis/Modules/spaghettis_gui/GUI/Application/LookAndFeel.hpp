@@ -127,6 +127,8 @@ public:
     }
     
 private:
+    juce::String fontConsoleName_;
+    juce::String fontShortcutsName_;
     juce::Font fontConsole_;
     juce::Font fontShortcuts_;
     
