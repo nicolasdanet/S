@@ -20,7 +20,7 @@ class ApplicationComponent :    public juce::Component,
 // MARK: -
 
 public:
-    ApplicationComponent()
+    ApplicationComponent (IconsFactory *factory = nullptr)
     {
         Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
         
@@ -28,11 +28,24 @@ public:
         
         #if SPAGHETTIS_MENUBAR
         
-        menuBar_ = std::make_unique<juce::MenuBarComponent> (&Spaghettis()->getMenuBarModel());
+        menubar_ = std::make_unique<juce::MenuBarComponent> (&Spaghettis()->getMenuBarModel());
         
-        addAndMakeVisible (menuBar_.get());
+        addAndMakeVisible (menubar_.get());
         
         #endif
+        
+        if (factory) {
+        //
+        toolbar_ = std::make_unique<juce::Toolbar>();
+        
+        toolbar_->setVertical (false);
+        toolbar_->setStyle (juce::Toolbar::ToolbarItemStyle::iconsOnly);
+        toolbar_->setEditingActive (false);
+        toolbar_->addDefaultItems (*factory);
+        
+        addAndMakeVisible (toolbar_.get());
+        //
+        }
         
         setWantsKeyboardFocus (true);
     }
@@ -63,15 +76,21 @@ public:
 // MARK: -
 
 protected:
-    juce::Rectangle<int> getBoundsMenubarResized() const
+    juce::Rectangle<int> getBoundsRemaining()
     {
         juce::Rectangle<int> b = getLocalBounds();
 
         #if SPAGHETTIS_MENUBAR
         
-        menuBar_->setBounds (b.removeFromTop (Spaghettis()->getLookAndFeel().getDefaultMenuBarHeight()));
+        menubar_->setBounds (b.removeFromTop (Spaghettis()->getLookAndFeel().getDefaultMenuBarHeight()));
         
         #endif
+
+        if (toolbar_) {
+        //
+        toolbar_->setBounds (b.removeFromBottom  (Spaghettis()->getLookAndFeel().getToolbarHeight()));
+        //
+        }
         
         return b;
     }
@@ -101,10 +120,13 @@ public:
         return Commands::perform (info);
     }
 
+private:
+    std::unique_ptr<juce::Toolbar> toolbar_;
+    
 #if SPAGHETTIS_MENUBAR
 
 private:
-    std::unique_ptr<juce::MenuBarComponent> menuBar_;
+    std::unique_ptr<juce::MenuBarComponent> menubar_;
 
 #endif
 

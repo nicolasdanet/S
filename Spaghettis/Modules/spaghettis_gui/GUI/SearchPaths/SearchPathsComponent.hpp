@@ -159,7 +159,7 @@ public:
     
     void resized() override
     {
-        listBox_.setBounds (getBoundsMenubarResized());
+        listBox_.setBounds (getBoundsRemaining());
     }
 
 // -----------------------------------------------------------------------------------------------------------

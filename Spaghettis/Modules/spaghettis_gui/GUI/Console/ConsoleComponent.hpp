@@ -12,8 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ConsoleComponent :    public ApplicationComponent,
-                            public spaghettis::Logger {
+class ConsoleComponent :    protected ConsoleFactoryHelper,
+                            public    ApplicationComponent,
+                            public    spaghettis::Logger {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -51,7 +52,7 @@ private:
 // MARK: -
 
 public:
-    ConsoleComponent() : lines_ (0)
+    ConsoleComponent() : ApplicationComponent (&factory_), lines_ (0)
     {
         const auto background = juce::TextEditor::backgroundColourId;
         const auto highlight  = juce::TextEditor::highlightColourId;
@@ -92,7 +93,7 @@ public:
     
     void resized() override
     {
-        text_.setBounds (getBoundsMenubarResized());
+        text_.setBounds (getBoundsRemaining());
     }
 
 // -----------------------------------------------------------------------------------------------------------

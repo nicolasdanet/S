@@ -63,6 +63,25 @@ public:
 // MARK: -
 
 public:
+    int getToolbarHeight()
+    {
+        return 26;
+    }
+    
+    void paintToolbarBackground (juce::Graphics&, int w, int h, juce::Toolbar&) override;
+    
+    void paintToolbarButtonBackground (juce::Graphics&,
+        int,
+        int,
+        bool,
+        bool,
+        juce::ToolbarItemComponent&) override;
+                                                   
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     juce::Font getPopupMenuFont() override
     {
         return getFontConsole();

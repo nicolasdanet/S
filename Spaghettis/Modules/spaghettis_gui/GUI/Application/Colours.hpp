@@ -36,10 +36,13 @@ enum ColourIds : int {
     menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (9),
     menubarText                     = SPAGHETTIS_COLOUR (10),
     menubarSeparator                = SPAGHETTIS_COLOUR (11),
-    searchpathsBackground           = SPAGHETTIS_COLOUR (12),
-    searchpathsBackgroundAlternate  = SPAGHETTIS_COLOUR (13),
-    searchpathsText                 = SPAGHETTIS_COLOUR (14),
-    searchpathsTextHighlighted      = SPAGHETTIS_COLOUR (15)
+    toolbarBackground               = SPAGHETTIS_COLOUR (12),
+    toolbarBackgroundOver           = SPAGHETTIS_COLOUR (13),
+    toolbarBackgroundDown           = SPAGHETTIS_COLOUR (14),
+    searchpathsBackground           = SPAGHETTIS_COLOUR (15),
+    searchpathsBackgroundAlternate  = SPAGHETTIS_COLOUR (16),
+    searchpathsText                 = SPAGHETTIS_COLOUR (17),
+    searchpathsTextHighlighted      = SPAGHETTIS_COLOUR (18)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -70,45 +73,51 @@ static void initialize (juce::LookAndFeel* lf)
     // const juce::Colour blue     = juce::Colour (0xff268bd2);
     // const juce::Colour cyan     = juce::Colour (0xff2aa198);
     
-    jassert (lf->isColourSpecified (consoleTextDefault)             == false);
-    jassert (lf->isColourSpecified (consoleTextSystem)              == false);
-    jassert (lf->isColourSpecified (consoleTextWarning)             == false);
-    jassert (lf->isColourSpecified (consoleTextError)               == false);
-    jassert (lf->isColourSpecified (consoleBackground)              == false);
-    jassert (lf->isColourSpecified (consoleHighlight)               == false);
-    jassert (lf->isColourSpecified (menubarBackground)              == false);
-    jassert (lf->isColourSpecified (menubarBackgroundPopup)         == false);
-    jassert (lf->isColourSpecified (menubarBackgroundHighlighted)   == false);
-    jassert (lf->isColourSpecified (menubarText)                    == false);
-    jassert (lf->isColourSpecified (menubarSeparator)               == false);
-    jassert (lf->isColourSpecified (searchpathsBackground)          == false);
-    jassert (lf->isColourSpecified (searchpathsBackgroundAlternate) == false);
-    jassert (lf->isColourSpecified (searchpathsText)                == false);
-    jassert (lf->isColourSpecified (searchpathsTextHighlighted)     == false);
+    jassert (lf->isColourSpecified (consoleTextDefault)                 == false);
+    jassert (lf->isColourSpecified (consoleTextSystem)                  == false);
+    jassert (lf->isColourSpecified (consoleTextWarning)                 == false);
+    jassert (lf->isColourSpecified (consoleTextError)                   == false);
+    jassert (lf->isColourSpecified (consoleBackground)                  == false);
+    jassert (lf->isColourSpecified (consoleHighlight)                   == false);
+    jassert (lf->isColourSpecified (menubarBackground)                  == false);
+    jassert (lf->isColourSpecified (menubarBackgroundPopup)             == false);
+    jassert (lf->isColourSpecified (menubarBackgroundHighlighted)       == false);
+    jassert (lf->isColourSpecified (menubarText)                        == false);
+    jassert (lf->isColourSpecified (menubarSeparator)                   == false);
+    jassert (lf->isColourSpecified (toolbarBackground)                  == false);
+    jassert (lf->isColourSpecified (toolbarBackgroundOver)              == false);
+    jassert (lf->isColourSpecified (toolbarBackgroundDown)              == false);
+    jassert (lf->isColourSpecified (searchpathsBackground)              == false);
+    jassert (lf->isColourSpecified (searchpathsBackgroundAlternate)     == false);
+    jassert (lf->isColourSpecified (searchpathsText)                    == false);
+    jassert (lf->isColourSpecified (searchpathsTextHighlighted)         == false);
     
-    lf->setColour (consoleTextDefault,                          base01);
-    lf->setColour (consoleTextSystem,                           base1);
-    lf->setColour (consoleTextWarning,                          yellow);
-    lf->setColour (consoleTextError,                            orange);
-    lf->setColour (consoleBackground,                           background);
-    lf->setColour (consoleHighlight,                            juce::Colours::transparentBlack);
-    lf->setColour (menubarBackground,                           background.darker (0.50));
-    lf->setColour (menubarBackgroundPopup,                      background.darker (1.00));
-    lf->setColour (menubarBackgroundHighlighted,                orange);
-    lf->setColour (menubarText,                                 juce::Colours::white);
-    lf->setColour (menubarSeparator,                            juce::Colours::black);
-    lf->setColour (searchpathsBackground,                       background);
-    lf->setColour (searchpathsBackgroundAlternate,              background.darker (0.10));
-    lf->setColour (searchpathsText,                             base1);
-    lf->setColour (searchpathsTextHighlighted,                  green);
+    lf->setColour (consoleTextDefault,                                  base01);
+    lf->setColour (consoleTextSystem,                                   base1);
+    lf->setColour (consoleTextWarning,                                  yellow);
+    lf->setColour (consoleTextError,                                    orange);
+    lf->setColour (consoleBackground,                                   background);
+    lf->setColour (consoleHighlight,                                    juce::Colours::transparentBlack);
+    lf->setColour (menubarBackground,                                   background.darker (0.50));
+    lf->setColour (menubarBackgroundPopup,                              background.darker (1.00));
+    lf->setColour (menubarBackgroundHighlighted,                        orange);
+    lf->setColour (menubarText,                                         juce::Colours::white);
+    lf->setColour (menubarSeparator,                                    juce::Colours::black);
+    lf->setColour (toolbarBackground,                                   background);
+    lf->setColour (toolbarBackgroundOver,                               yellow);
+    lf->setColour (toolbarBackgroundDown,                               yellow);
+    lf->setColour (searchpathsBackground,                               background);
+    lf->setColour (searchpathsBackgroundAlternate,                      background.darker (0.10));
+    lf->setColour (searchpathsText,                                     base1);
+    lf->setColour (searchpathsTextHighlighted,                          green);
     
-    lf->setColour (juce::TextEditor::highlightedTextColourId,   green);
-    lf->setColour (juce::TextEditor::outlineColourId,           juce::Colours::transparentBlack);
-    lf->setColour (juce::TextEditor::shadowColourId,            juce::Colours::transparentBlack);
-    lf->setColour (juce::ScrollBar::thumbColourId,              juce::Colours::grey);
-    lf->setColour (juce::ListBox::backgroundColourId,           background);
-    lf->setColour (juce::ListBox::outlineColourId,              juce::Colours::transparentBlack);
-    lf->setColour (juce::ListBox::textColourId,                 base01);
+    lf->setColour (juce::TextEditor::highlightedTextColourId,           green);
+    lf->setColour (juce::TextEditor::outlineColourId,                   juce::Colours::transparentBlack);
+    lf->setColour (juce::TextEditor::shadowColourId,                    juce::Colours::transparentBlack);
+    lf->setColour (juce::ScrollBar::thumbColourId,                      juce::Colours::grey);
+    lf->setColour (juce::ListBox::backgroundColourId,                   background);
+    lf->setColour (juce::ListBox::outlineColourId,                      juce::Colours::transparentBlack);
+    lf->setColour (juce::ListBox::textColourId,                         base01);
 }
 
 // -----------------------------------------------------------------------------------------------------------

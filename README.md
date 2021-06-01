@@ -39,5 +39,6 @@ The latest JUCE (6.0.8) is required at `~/JUCE`.
 - TinyExpr by [Lewis Van Winkle](https://github.com/codeplea/tinyexpr)
 - Mersenne Twister by [T. Nishimura & M. Matsumoto](http://www.math.sci.hiroshima-u.ac.jp/~m-mat)
 - FFT by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/fft.html)
+- Icons by [Google](https://github.com/google/material-design-icons)
 
 #### Licensed  under the [GPL-3.0 license](https://opensource.org/licenses/GPL-3.0).

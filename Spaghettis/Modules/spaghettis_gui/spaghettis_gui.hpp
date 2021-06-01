@@ -59,6 +59,7 @@
 
 #include "GUI/Application/Colours.hpp"
 #include "GUI/Application/Commands.hpp"
+#include "GUI/Application/IconsFactory.hpp"
 #include "GUI/Application/Identifiers.hpp"
 #include "GUI/Application/LookAndFeel.hpp"
 #include "GUI/Application/MenuModel.hpp"
@@ -67,6 +68,7 @@
 #include "GUI/Application/ApplicationComponent.hpp"
 #include "GUI/Application/ApplicationWindow.hpp"
 
+#include "GUI/Console/ConsoleFactory.hpp"
 #include "GUI/Console/ConsoleComponent.hpp"
 #include "GUI/Console/Console.hpp"
 

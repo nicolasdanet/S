@@ -5,47 +5,48 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-#define SPAGHETTIS_COMMAND(c)   (c | 0x7f000000)
+#include "BinaryData.h"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-struct Commands {
+class ConsoleFactory : public IconsFactory {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-enum CommandIds : juce::CommandID {
-    preferences     = SPAGHETTIS_COMMAND (0),
-    fileOpen        = SPAGHETTIS_COMMAND (1),
-    paths           = SPAGHETTIS_COMMAND (2),
-    rescan          = SPAGHETTIS_COMMAND (3),
-    rescanLogged    = SPAGHETTIS_COMMAND (4),
-    clearConsole    = SPAGHETTIS_COMMAND (5),
-    dspSwitch       = SPAGHETTIS_COMMAND (6)
+public:
+    ConsoleFactory()  = default;
+    ~ConsoleFactory() = default;
+
+public:
+    void getAllToolbarItemIds (juce::Array<int>& ids) override
+    {
+        ids.add (clear);
+    }
+
+    void getDefaultItemSet (juce::Array<int>& ids) override
+    {
+        ids.add (clear);
+    }
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleFactory)
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void getCommandInfo (const juce::CommandID, juce::ApplicationCommandInfo&);
-static void getAllCommands (juce::Array<juce::CommandID>&);
-static bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-};
+struct ConsoleFactoryHelper { ConsoleFactory factory_; };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -54,3 +55,4 @@ static bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+

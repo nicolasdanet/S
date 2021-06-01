@@ -12,6 +12,7 @@
 		274D6BFB3E251A69841986B1 /* App */ = {isa = PBXBuildFile; fileRef = 60D8A2DF65E5C0796EA99CB1; };
 		2D23F4A7B71E5EE6AB602452 /* Main.cpp */ = {isa = PBXBuildFile; fileRef = A1056AE48F0DFF9EC3445D0E; };
 		2D9A95A4E54DC0D4312BC9F5 /* include_juce_data_structures.mm */ = {isa = PBXBuildFile; fileRef = D31E9A678ACB0B6E5AA55846; };
+		41E807650BDBD45C260B2364 /* BinaryData.cpp */ = {isa = PBXBuildFile; fileRef = 3AC6DAD528C440D39662FA49; };
 		4471F6CC4D584796C5728278 /* AudioUnit.framework */ = {isa = PBXBuildFile; fileRef = 721D2F47AAC0470E9F2AA340; };
 		58E8530BC898BF294D7C8A13 /* CoreAudio.framework */ = {isa = PBXBuildFile; fileRef = CC31058899835B55FEC293F9; };
 		5B5691F2F80C1D02F0AA9D7B /* CoreMIDI.framework */ = {isa = PBXBuildFile; fileRef = C9C6B2655C8D889351519A5B; };
@@ -32,9 +33,14 @@
 		119BE2259F904F5D7E463AD0 /* include_juce_core.mm */ /* include_juce_core.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_core.mm; path = ../../JuceLibraryCode/include_juce_core.mm; sourceTree = SOURCE_ROOT; };
 		16458E769BBE629739926E6D /* include_juce_graphics.mm */ /* include_juce_graphics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_graphics.mm; path = ../../JuceLibraryCode/include_juce_graphics.mm; sourceTree = SOURCE_ROOT; };
 		1BAEF33E789FBE91AAC83446 /* JuceHeader.h */ /* JuceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = SOURCE_ROOT; };
+		1CA4388DF96AEEE62BE383A2 /* remove_white_24dp.svg */ /* remove_white_24dp.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = remove_white_24dp.svg; path = ../../Resources/Icons/remove_white_24dp.svg; sourceTree = SOURCE_ROOT; };
+		25003B1F3B446939A3689BE6 /* BinaryData.h */ /* BinaryData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BinaryData.h; path = ../../JuceLibraryCode/BinaryData.h; sourceTree = SOURCE_ROOT; };
 		2748188111FF8A9655940C34 /* juce_core */ /* juce_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_core; path = "~/JUCE/modules/juce_core"; sourceTree = "<absolute>"; };
 		275F8E522693FC248DD886E3 /* Carbon.framework */ /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		2A67474B86FB6295CC2B999B /* add_white_24dp.svg */ /* add_white_24dp.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = add_white_24dp.svg; path = ../../Resources/Icons/add_white_24dp.svg; sourceTree = SOURCE_ROOT; };
 		389D7927151AD7F53D9F79C3 /* RecentFilesMenuTemplate.nib */ /* RecentFilesMenuTemplate.nib */ = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = SOURCE_ROOT; };
+		3AC6DAD528C440D39662FA49 /* BinaryData.cpp */ /* BinaryData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../../JuceLibraryCode/BinaryData.cpp; sourceTree = SOURCE_ROOT; };
+		43AE30E5DCBDD6AEB324AE1D /* clear_white_24dp.svg */ /* clear_white_24dp.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = clear_white_24dp.svg; path = ../../Resources/Icons/clear_white_24dp.svg; sourceTree = SOURCE_ROOT; };
 		47B902E51FA1D26D812A2D55 /* juce_events */ /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_events; path = "~/JUCE/modules/juce_events"; sourceTree = "<absolute>"; };
 		4BD2FF29EDDE1ABAC27A7822 /* include_juce_events.mm */ /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
 		60D8A2DF65E5C0796EA99CB1 /* App */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spaghettis.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +90,16 @@
 			name = Spaghettis;
 			sourceTree = "<group>";
 		};
+		314772287FD7DA2C4DAD0866 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				2A67474B86FB6295CC2B999B,
+				43AE30E5DCBDD6AEB324AE1D,
+				1CA4388DF96AEEE62BE383A2,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 		5BC47495E9B251C60B2117AC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				A1056AE48F0DFF9EC3445D0E,
+				314772287FD7DA2C4DAD0866,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -133,6 +150,8 @@
 		AD7A193877DFB259696406E9 /* JUCE Library Code */ = {
 			isa = PBXGroup;
 			children = (
+				3AC6DAD528C440D39662FA49,
+				25003B1F3B446939A3689BE6,
 				119BE2259F904F5D7E463AD0,
 				D31E9A678ACB0B6E5AA55846,
 				4BD2FF29EDDE1ABAC27A7822,
@@ -267,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D23F4A7B71E5EE6AB602452,
+				41E807650BDBD45C260B2364,
 				24C7BCD200D4A0C85C119CF6,
 				2D9A95A4E54DC0D4312BC9F5,
 				E056A29494362A6384E4D8CB,

@@ -80,6 +80,26 @@ void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void LookAndFeel::paintToolbarBackground (juce::Graphics& g, int w, int h, juce::Toolbar& toolbar)
+{
+    g.fillAll (findColour (Colours::toolbarBackground));
+}
+
+void LookAndFeel::paintToolbarButtonBackground (juce::Graphics& g,
+    int width,
+    int height,
+    bool isMouseOver,
+    bool isMouseDown,
+    juce::ToolbarItemComponent& component)
+{
+    if (isMouseOver)      { g.fillAll (findColour (Colours::toolbarBackgroundOver)); }
+    else if (isMouseDown) { g.fillAll (findColour (Colours::toolbarBackgroundDown)); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
     const bool isSeparator,
     int,
