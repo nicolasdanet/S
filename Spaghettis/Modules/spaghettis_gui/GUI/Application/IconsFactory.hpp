@@ -29,10 +29,13 @@ using DrawableContainer = std::vector<std::unique_ptr<juce::Drawable>>;
 // MARK: -
 
 public:
-    enum IconsFactoryIds : int {
-        add     = 0,
-        clear   = 1,
-        remove  = 2,
+    struct Icons {
+    
+        enum IconsIds : int {
+            add     = 0,
+            clear   = 1,
+            remove  = 2,
+        };
     };
     
 // -----------------------------------------------------------------------------------------------------------
@@ -57,10 +60,10 @@ public:
     {
         switch (itemId) {
         //
-        case add    : return createButtonFromBinaryData (itemId, "Add");
-        case remove : return createButtonFromBinaryData (itemId, "Remove");
-        case clear  : return createButtonFromBinaryData (itemId, "Clear");
-        default     : break;
+        case Icons::add     : return createButtonFromBinaryData (itemId, "Add");
+        case Icons::remove  : return createButtonFromBinaryData (itemId, "Remove");
+        case Icons::clear   : return createButtonFromBinaryData (itemId, "Clear");
+        default             : break;
         //
         }
 

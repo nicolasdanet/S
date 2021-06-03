@@ -30,17 +30,17 @@ public:
 public:
     void getAllToolbarItemIds (juce::Array<int>& ids) override
     {
-        ids.add (clear);
+        ids.add (Icons::clear);
     }
 
     void getDefaultItemSet (juce::Array<int>& ids) override
     {
-        ids.add (clear);
+        ids.add (Icons::clear);
     }
     
     void setCallback (int itemId, juce::ToolbarButton* button) override
     {
-        if (itemId == clear) { DBG ("!!!"); }
+        if (itemId == Icons::clear) { DBG ("!!!"); }
     }
 
 private:
