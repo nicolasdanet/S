@@ -72,9 +72,6 @@ public:
 // MARK: -
 
 private:
-    DrawableContainer drawable_;
-    
-private:
     void addIcon (const void* data, const size_t numBytes)
     {
         drawable_.push_back (juce::Drawable::createFromImageData (data, numBytes));
@@ -87,6 +84,9 @@ private:
         
         return new juce::ToolbarButton (itemId, text, drawable_[itemId]->createCopy(), {});
     }
+
+private:
+    DrawableContainer drawable_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (IconsFactory)
