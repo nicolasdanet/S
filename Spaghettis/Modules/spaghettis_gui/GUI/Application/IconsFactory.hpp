@@ -66,7 +66,9 @@ public:
 
         return nullptr;
     }
-
+    
+    virtual void setCallback (int itemId, juce::ToolbarButton* button) = 0;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -82,7 +84,17 @@ private:
         jassert (static_cast<DrawableContainer::size_type> (itemId) < drawable_.size());
         jassert (drawable_[itemId] != nullptr);
         
-        return new juce::ToolbarButton (itemId, text, drawable_[itemId]->createCopy(), {});
+        auto t = std::make_unique<juce::ToolbarButton> (itemId,
+                    text,
+                    drawable_[itemId]->createCopy(),
+                    nullptr);
+        
+        if (t) { setCallback (itemId, t.get()); }
+        else {
+            jassertfalse;
+        }
+        
+        return t.release();
     }
 
 private:
