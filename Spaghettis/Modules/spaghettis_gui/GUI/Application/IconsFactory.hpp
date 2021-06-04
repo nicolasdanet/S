@@ -60,10 +60,10 @@ public:
     {
         switch (itemId) {
         //
-        case Icons::add             : return createButtonFromBinaryData (itemId, "Add");
-        case Icons::remove          : return createButtonFromBinaryData (itemId, "Remove");
-        case Icons::clear           : return createButtonFromBinaryData (itemId, "Clear");
-        default                     : break;
+        case Icons::add     : return createButtonFromBinaryData (itemId, "Add");
+        case Icons::remove  : return createButtonFromBinaryData (itemId, "Remove");
+        case Icons::clear   : return createButtonFromBinaryData (itemId, "Clear");
+        default             : break;
         //
         }
 

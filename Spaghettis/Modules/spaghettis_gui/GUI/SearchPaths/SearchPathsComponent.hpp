@@ -47,22 +47,102 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    void removeSelectedPaths()
+    {
+        for (int i = getNumRows() - 1; i >= 0; i--) {
+        //
+        if (listBox_.isRowSelected (i)) {
+        if (i < paths_.size()) {
+            paths_.remove (i);
+        }
+        }
+        //
+        }
+        
+        updateView(); setSearchPaths();
+    }
+    
+    void addPaths()
+    {
+        chooseAndAppendFolder();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    int getNumRows() override
+    {
+        return rows_;
+    }
+
+    void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
+    {
+        if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::searchpathsBackgroundAlternate)); }
+
+        if (juce::isPositiveAndBelow (row, paths_.size())) {
+        //
+        const juce::Rectangle<int> r (width, height);
+        
+        g.setColour (isSelected ? Spaghettis()->getColour (Colours::searchpathsTextHighlighted)
+                                : Spaghettis()->getColour (Colours::searchpathsText));
+                                    
+        g.setFont (Spaghettis()->getLookAndFeel().getFontConsole());
+        g.drawText (paths_[row], r.reduced (4, 0), juce::Justification::centredLeft, true);
+        //
+        }
+    }
+    
+    void listBoxItemClicked (int row, const juce::MouseEvent &) override
+    {
+        if (juce::isPositiveAndBelow (row, paths_.size()) == false) { updateView(); }
+    }
+    
+    void deleteKeyPressed (int) override
+    {
+        removeSelectedPaths();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics& g) override
+    {
+        g.fillAll (Spaghettis()->getColour (juce::ResizableWindow::backgroundColourId));
+    }
+    
+    void resized() override
+    {
+        listBox_.setBounds (getBoundsRemaining());
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool tryGrabFocus() override
+    {
+        return tryGrabFocusForComponent (&listBox_);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     void handleAsyncUpdate() override
     {
         Spaghettis()->setSearchPaths (paths_);
     }
     
-private:
     void setSearchPaths()
     {
         triggerAsyncUpdate();
-    }
-    
-    void updateView()
-    {
-        listBox_.deselectAllRows();
-        listBox_.repaint();
     }
     
     void appendFullPathName (const juce::String& filepath)
@@ -98,81 +178,10 @@ private:
         fileChooser_->launchAsync (t, callback);
     }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    int getNumRows() override
+    void updateView()
     {
-        return rows_;
-    }
-
-    void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
-    {
-        if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::searchpathsBackgroundAlternate)); }
-
-        if (juce::isPositiveAndBelow (row, paths_.size())) {
-        //
-        const juce::Rectangle<int> r (width, height);
-        
-        g.setColour (isSelected ? Spaghettis()->getColour (Colours::searchpathsTextHighlighted)
-                                : Spaghettis()->getColour (Colours::searchpathsText));
-                                    
-        g.setFont (Spaghettis()->getLookAndFeel().getFontConsole());
-        g.drawText (paths_[row], r.reduced (4, 0), juce::Justification::centredLeft, true);
-        //
-        }
-    }
-    
-    void listBoxItemClicked (int row, const juce::MouseEvent &) override
-    {
-        if (juce::isPositiveAndBelow (row, paths_.size()) == false) {
-            if (listBox_.getNumSelectedRows() > 1) { updateView(); }
-            else {
-                chooseAndAppendFolder();
-            }
-        }
-    }
-    
-    void deleteKeyPressed (int) override
-    {
-        for (int i = getNumRows() - 1; i >= 0; i--) {
-        //
-        if (listBox_.isRowSelected (i)) {
-        if (i < paths_.size()) {
-            paths_.remove (i);
-        }
-        }
-        //
-        }
-        
-        updateView(); setSearchPaths();
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void paint (juce::Graphics& g) override
-    {
-        g.fillAll (Spaghettis()->getColour (juce::ResizableWindow::backgroundColourId));
-    }
-    
-    void resized() override
-    {
-        listBox_.setBounds (getBoundsRemaining());
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    bool tryGrabFocus() override
-    {
-        return tryGrabFocusForComponent (&listBox_);
+        listBox_.deselectAllRows();
+        listBox_.repaint();
     }
     
 private:
