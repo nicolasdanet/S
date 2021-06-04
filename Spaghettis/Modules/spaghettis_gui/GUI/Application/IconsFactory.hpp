@@ -30,7 +30,6 @@ using DrawableContainer = std::vector<std::unique_ptr<juce::Drawable>>;
 
 public:
     struct Icons {
-    
         enum IconsIds : int {
             add             = 1,
             remove          = 2,
@@ -45,9 +44,9 @@ public:
 public:
     IconsFactory()
     {
-        addIcon (BinaryData::add_white_24dp_svg,    BinaryData::add_white_24dp_svgSize);
-        addIcon (BinaryData::remove_white_24dp_svg, BinaryData::remove_white_24dp_svgSize);
-        addIcon (BinaryData::clear_white_24dp_svg,  BinaryData::clear_white_24dp_svgSize);
+        addIcon (BinaryData::add_black_24dp_svg,    BinaryData::add_black_24dp_svgSize);
+        addIcon (BinaryData::remove_black_24dp_svg, BinaryData::remove_black_24dp_svgSize);
+        addIcon (BinaryData::clear_black_24dp_svg,  BinaryData::clear_black_24dp_svgSize);
     }
     
     ~IconsFactory() = default;
@@ -60,9 +59,9 @@ public:
     {
         switch (itemId) {
         //
-        case Icons::add     : return createButtonFromBinaryData (itemId, "Add");
-        case Icons::remove  : return createButtonFromBinaryData (itemId, "Remove");
-        case Icons::clear   : return createButtonFromBinaryData (itemId, "Clear");
+        case Icons::add     : return createButton (itemId, "Add");
+        case Icons::remove  : return createButton (itemId, "Remove");
+        case Icons::clear   : return createButton (itemId, "Clear");
         default             : break;
         //
         }
@@ -79,10 +78,16 @@ public:
 private:
     void addIcon (const void* data, const size_t numBytes)
     {
-        drawable_.push_back (juce::Drawable::createFromImageData (data, numBytes));
+        std::unique_ptr<juce::Drawable> t (juce::Drawable::createFromImageData (data, numBytes));
+        
+        bool done = t->replaceColour (juce::Colours::black, Spaghettis()->getColour (Colours::toolbarIcon));
+        
+        jassert (done);
+        
+        drawable_.push_back (std::move (t));
     }
     
-    juce::ToolbarButton* createButtonFromBinaryData (int itemId, const juce::String& text)
+    juce::ToolbarButton* createButton (int itemId, const juce::String& text)
     {
         int i = itemId - 1;
         

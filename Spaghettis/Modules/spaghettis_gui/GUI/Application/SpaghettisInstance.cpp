@@ -90,7 +90,7 @@ juce::StringArray SpaghettisInstance::getSearchPaths()
 
 void SpaghettisInstance::setSearchPaths (const juce::StringArray& searchpaths)
 {
-    std::unique_ptr<juce::XmlElement> root = std::make_unique<juce::XmlElement> ("SEARCHPATHS");
+    auto root = std::make_unique<juce::XmlElement> ("SEARCHPATHS");
         
     for (const auto& p : searchpaths) {
         juce::XmlElement* e = root->createNewChildElement ("SEARCHPATH");

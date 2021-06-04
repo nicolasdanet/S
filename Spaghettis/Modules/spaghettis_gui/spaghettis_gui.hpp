@@ -59,12 +59,12 @@
 
 #include "GUI/Application/Colours.hpp"
 #include "GUI/Application/Commands.hpp"
-#include "GUI/Application/IconsFactory.hpp"
 #include "GUI/Application/Identifiers.hpp"
 #include "GUI/Application/LookAndFeel.hpp"
 #include "GUI/Application/MenuModel.hpp"
 #include "GUI/Application/SpaghettisInstance.hpp"
 #include "GUI/Application/Spaghettis.hpp"
+#include "GUI/Application/IconsFactory.hpp"
 #include "GUI/Application/ApplicationComponent.hpp"
 #include "GUI/Application/ApplicationWindow.hpp"
 
