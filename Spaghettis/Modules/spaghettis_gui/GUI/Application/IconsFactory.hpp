@@ -32,9 +32,9 @@ public:
     struct Icons {
     
         enum IconsIds : int {
-            add     = 0,
-            clear   = 1,
-            remove  = 2,
+            add             = 0,
+            remove          = 1,
+            clear           = 2
         };
     };
     
@@ -46,8 +46,8 @@ public:
     IconsFactory()
     {
         addIcon (BinaryData::add_white_24dp_svg,    BinaryData::add_white_24dp_svgSize);
-        addIcon (BinaryData::clear_white_24dp_svg,  BinaryData::clear_white_24dp_svgSize);
         addIcon (BinaryData::remove_white_24dp_svg, BinaryData::remove_white_24dp_svgSize);
+        addIcon (BinaryData::clear_white_24dp_svg,  BinaryData::clear_white_24dp_svgSize);
     }
     
     ~IconsFactory() = default;
@@ -60,10 +60,10 @@ public:
     {
         switch (itemId) {
         //
-        case Icons::add     : return createButtonFromBinaryData (itemId, "Add");
-        case Icons::remove  : return createButtonFromBinaryData (itemId, "Remove");
-        case Icons::clear   : return createButtonFromBinaryData (itemId, "Clear");
-        default             : break;
+        case Icons::add             : return createButtonFromBinaryData (itemId, "Add");
+        case Icons::remove          : return createButtonFromBinaryData (itemId, "Remove");
+        case Icons::clear           : return createButtonFromBinaryData (itemId, "Clear");
+        default                     : break;
         //
         }
 

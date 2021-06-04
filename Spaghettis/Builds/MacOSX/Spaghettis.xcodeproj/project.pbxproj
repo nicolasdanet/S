@@ -94,8 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				2A67474B86FB6295CC2B999B,
-				43AE30E5DCBDD6AEB324AE1D,
 				1CA4388DF96AEEE62BE383A2,
+				43AE30E5DCBDD6AEB324AE1D,
 			);
 			name = Icons;
 			sourceTree = "<group>";

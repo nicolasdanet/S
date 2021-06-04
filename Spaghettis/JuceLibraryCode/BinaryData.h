@@ -11,11 +11,11 @@ namespace BinaryData
     extern const char*   add_white_24dp_svg;
     const int            add_white_24dp_svgSize = 194;
 
-    extern const char*   clear_white_24dp_svg;
-    const int            clear_white_24dp_svgSize = 268;
-
     extern const char*   remove_white_24dp_svg;
     const int            remove_white_24dp_svgSize = 176;
+
+    extern const char*   clear_white_24dp_svg;
+    const int            clear_white_24dp_svgSize = 268;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 3;

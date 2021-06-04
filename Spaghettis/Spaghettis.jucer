@@ -11,10 +11,10 @@
       <GROUP id="{5D995D32-88D8-F3E6-9FA3-2BFFDA508EC0}" name="Icons">
         <FILE id="znMX9V" name="add_white_24dp.svg" compile="0" resource="1"
               file="Resources/Icons/add_white_24dp.svg"/>
-        <FILE id="qbLj9S" name="clear_white_24dp.svg" compile="0" resource="1"
-              file="Resources/Icons/clear_white_24dp.svg"/>
         <FILE id="exLrps" name="remove_white_24dp.svg" compile="0" resource="1"
               file="Resources/Icons/remove_white_24dp.svg"/>
+        <FILE id="qbLj9S" name="clear_white_24dp.svg" compile="0" resource="1"
+              file="Resources/Icons/clear_white_24dp.svg"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>
