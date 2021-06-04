@@ -11,29 +11,30 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class ConsoleComponent;
+class SearchPathsComponent;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ConsoleFactory : public IconsFactory {
+class SearchPathsFactory : public IconsFactory {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    ConsoleFactory (ConsoleComponent* owner) : owner_ (owner)
+    SearchPathsFactory (SearchPathsComponent* owner) : owner_ (owner)
     {
     }
     
-    ~ConsoleFactory() = default;
+    ~SearchPathsFactory() = default;
 
 public:
     void getAllToolbarItemIds (juce::Array<int>& ids) override
     {
-        ids.add (Icons::clear);
+        ids.add (Icons::add);
+        ids.add (Icons::remove);
     }
 
     void getDefaultItemSet (juce::Array<int>& ids) override
@@ -44,21 +45,21 @@ public:
     void setCallback (int itemId, juce::ToolbarButton* button) override;
 
 private:
-    ConsoleComponent* owner_;
+    SearchPathsComponent* owner_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleFactory)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SearchPathsFactory)
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-struct ConsoleFactoryHelper {
+struct SearchPathsFactoryHelper {
 
-    ConsoleFactoryHelper (ConsoleComponent* owner) : factory_ (owner) { }
+    SearchPathsFactoryHelper (SearchPathsComponent* owner) : factory_ (owner) { }
 
-    ConsoleFactory factory_;
+    SearchPathsFactory factory_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

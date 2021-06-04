@@ -32,9 +32,9 @@ public:
     struct Icons {
     
         enum IconsIds : int {
-            add             = 0,
-            remove          = 1,
-            clear           = 2
+            add             = 1,
+            remove          = 2,
+            clear           = 3
         };
     };
     
@@ -84,12 +84,15 @@ private:
     
     juce::ToolbarButton* createButtonFromBinaryData (int itemId, const juce::String& text)
     {
-        jassert (static_cast<DrawableContainer::size_type> (itemId) < drawable_.size());
-        jassert (drawable_[itemId] != nullptr);
+        int i = itemId - 1;
+        
+        jassert (i >= 0);
+        jassert (static_cast<DrawableContainer::size_type> (i) < drawable_.size());
+        jassert (drawable_[i] != nullptr);
         
         auto t = std::make_unique<juce::ToolbarButton> (itemId,
                     text,
-                    drawable_[itemId]->createCopy(),
+                    drawable_[i]->createCopy(),
                     nullptr);
         
         if (t) { setCallback (itemId, t.get()); }

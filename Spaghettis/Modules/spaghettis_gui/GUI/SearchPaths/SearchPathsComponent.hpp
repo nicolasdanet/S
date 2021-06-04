@@ -12,16 +12,19 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class SearchPathsComponent :    public  ApplicationComponent,
-                                public  juce::ListBoxModel,
-                                private juce::AsyncUpdater  {
+class SearchPathsComponent :    protected SearchPathsFactoryHelper,     /* MUST be the first. */
+                                public    ApplicationComponent,
+                                public    juce::ListBoxModel,
+                                private   juce::AsyncUpdater  {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    SearchPathsComponent() : paths_ (Spaghettis()->getSearchPaths())
+    SearchPathsComponent() :    SearchPathsFactoryHelper (this),
+                                ApplicationComponent (&factory_),
+                                paths_ (Spaghettis()->getSearchPaths())
     {
         const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getFontConsole().getHeight() * 1.5);
         
