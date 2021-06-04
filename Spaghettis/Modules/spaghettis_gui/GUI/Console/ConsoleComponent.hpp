@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ConsoleComponent :    protected ConsoleFactoryHelper,
+class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the first. */
                             public    ApplicationComponent,
                             public    spaghettis::Logger {
 
@@ -52,7 +52,9 @@ private:
 // MARK: -
 
 public:
-    ConsoleComponent() : ApplicationComponent (&factory_), lines_ (0)
+    ConsoleComponent() :    ConsoleFactoryHelper (this),
+                            ApplicationComponent (&factory_),
+                            lines_ (0)
     {
         const auto background = juce::TextEditor::backgroundColourId;
         const auto highlight  = juce::TextEditor::highlightColourId;

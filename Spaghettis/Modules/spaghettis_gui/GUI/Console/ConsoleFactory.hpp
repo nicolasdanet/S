@@ -10,6 +10,11 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+class ConsoleComponent;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 class ConsoleFactory : public IconsFactory {
@@ -19,7 +24,11 @@ class ConsoleFactory : public IconsFactory {
 // MARK: -
 
 public:
-    ConsoleFactory()  = default;
+    ConsoleFactory (ConsoleComponent* owner) : owner_ (owner)
+    {
+    
+    }
+    
     ~ConsoleFactory() = default;
 
 public:
@@ -33,11 +42,11 @@ public:
         ids.add (Icons::clear);
     }
     
-    void setCallback (int itemId, juce::ToolbarButton* button) override
-    {
-        if (itemId == Icons::clear) { DBG ("!!!"); }
-    }
+    void setCallback (int itemId, juce::ToolbarButton* button) override;
 
+private:
+    ConsoleComponent* owner_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleFactory)
 };
@@ -46,7 +55,12 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-struct ConsoleFactoryHelper { ConsoleFactory factory_; };
+struct ConsoleFactoryHelper {
+
+    ConsoleFactoryHelper (ConsoleComponent* owner) : factory_ (owner) { }
+
+    ConsoleFactory factory_;
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
