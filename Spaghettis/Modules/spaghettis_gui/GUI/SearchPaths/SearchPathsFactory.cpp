@@ -14,15 +14,12 @@ namespace spaghettis {
  
 void SearchPathsFactory::setCallback (int itemId, juce::ToolbarButton* button)
 {
-    if (itemId == Icons::add) {
-        button->onClick = [p = juce::Component::SafePointer<SearchPathsComponent> (owner_)]() {
-            if (SearchPathsComponent* c = p.getComponent()) { c->addPaths(); }
-        };
-
-    } else if (itemId == Icons::remove) {
-        button->onClick = [p = juce::Component::SafePointer<SearchPathsComponent> (owner_)]() {
-            if (SearchPathsComponent* c = p.getComponent()) { c->removeSelectedPaths(); }
-        };
+    switch (itemId) {
+    //
+    case Icons::add     : button->onClick = [this]() { owner_->addPaths(); };               break;
+    case Icons::remove  : button->onClick = [this]() { owner_->removeSelectedPaths(); };    break;
+    default             : break;
+    //
     }
 }
     

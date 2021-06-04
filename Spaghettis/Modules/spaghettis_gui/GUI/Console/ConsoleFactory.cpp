@@ -14,11 +14,10 @@ namespace spaghettis {
  
 void ConsoleFactory::setCallback (int itemId, juce::ToolbarButton* button)
 {
-    if (itemId == Icons::clear) {
+    switch (itemId) {
     //
-    button->onClick = [p = juce::Component::SafePointer<ConsoleComponent> (owner_)]() {
-        if (ConsoleComponent* c = p.getComponent()) { c->clear(); }
-    };
+    case Icons::clear   : button->onClick = [this]() { owner_->clear(); }; break;
+    default             : break;
     //
     }
 }
