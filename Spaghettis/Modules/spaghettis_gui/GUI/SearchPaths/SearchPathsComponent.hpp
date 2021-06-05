@@ -23,7 +23,7 @@ class SearchPathsComponent :    protected SearchPathsFactoryHelper,     /* MUST 
 
 public:
     SearchPathsComponent() :    SearchPathsFactoryHelper (this),
-                                ApplicationComponent (&factory_),
+                                ApplicationComponent (getIconsFactory()),
                                 paths_ (Spaghettis()->getSearchPaths())
     {
         const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getFontConsole().getHeight() * 1.5);

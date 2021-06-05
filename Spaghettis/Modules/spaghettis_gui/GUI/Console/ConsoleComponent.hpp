@@ -53,7 +53,7 @@ private:
 
 public:
     ConsoleComponent() :    ConsoleFactoryHelper (this),
-                            ApplicationComponent (&factory_),
+                            ApplicationComponent (getIconsFactory()),
                             lines_ (0)
     {
         const auto background = juce::TextEditor::backgroundColourId;

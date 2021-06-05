@@ -14,10 +14,21 @@ namespace spaghettis {
 
 /* < https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Base-from-Member > */
 
-template <class T, class U> struct IconsFactoryHelper {
+template <class T, class U> class IconsFactoryHelper {
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     IconsFactoryHelper (U* owner) : factory_ (owner) { }
 
+    IconsFactory* getIconsFactory()
+    {
+        return &factory_;
+    }
+    
+private:
     T factory_;
 };
 
