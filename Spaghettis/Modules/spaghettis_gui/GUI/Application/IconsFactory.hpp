@@ -51,7 +51,7 @@ private:
     {
         auto t = std::make_unique<juce::ToolbarButton> (itemId,
                     text,
-                    icons_->getIconAt (itemId - 1),
+                    icons_->getIcon (itemId),
                     nullptr);
         
         if (t) { setCallback (itemId, t.get()); }

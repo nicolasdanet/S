@@ -57,8 +57,10 @@ public:
         addIcon (BinaryData::clear_black_24dp_svg,  BinaryData::clear_black_24dp_svgSize);
     }
  
-    std::unique_ptr<juce::Drawable> getIconAt (int i) const
+    std::unique_ptr<juce::Drawable> getIcon (int itemId) const
     {
+        int i = itemId - 1;
+        
         jassert (i >= 0);
         jassert (static_cast<DrawableContainer::size_type> (i) < drawable_.size());
         jassert (drawable_[i] != nullptr);
