@@ -19,19 +19,6 @@ class IconsFactory : public juce::ToolbarItemFactory {
 // MARK: -
 
 public:
-    struct Icons {
-        enum IconsIds : int {
-            add             = 1,
-            remove          = 2,
-            clear           = 3
-        };
-    };
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     IconsFactory() = default;
     ~IconsFactory() = default;
 
