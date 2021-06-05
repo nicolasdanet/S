@@ -35,6 +35,9 @@ public:
     {
         ids.add (Icons::add);
         ids.add (Icons::remove);
+        ids.add (Icons::sync);
+        ids.add (Icons::sortDown);
+        ids.add (Icons::sortUp);
     }
 
     void getDefaultItemSet (juce::Array<int>& ids) override
