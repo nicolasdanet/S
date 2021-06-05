@@ -24,9 +24,15 @@ struct Icons {
 // MARK: -
 
 enum IconsIds : int {
-    add     = 1,
-    remove  = 2,
-    clear   = 3
+    add         = 1,
+    clear       = 2,
+    error       = 3,
+    place       = 4,
+    refresh     = 5,
+    remove      = 6,
+    sync        = 7,
+    sortUp      = 8,
+    sortDown    = 9
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -52,9 +58,15 @@ using DrawableContainer = std::vector<std::unique_ptr<juce::Drawable>>;
 public:
     IconsShared()
     {
-        addIcon (BinaryData::add_black_24dp_svg,    BinaryData::add_black_24dp_svgSize);
-        addIcon (BinaryData::remove_black_24dp_svg, BinaryData::remove_black_24dp_svgSize);
-        addIcon (BinaryData::clear_black_24dp_svg,  BinaryData::clear_black_24dp_svgSize);
+        addIcon (BinaryData::add_black_24dp_svg,                BinaryData::add_black_24dp_svgSize);
+        addIcon (BinaryData::clear_black_24dp_svg,              BinaryData::clear_black_24dp_svgSize);
+        addIcon (BinaryData::error_outline_black_24dp_svg,      BinaryData::error_outline_black_24dp_svgSize);
+        addIcon (BinaryData::place_black_24dp_svg,              BinaryData::place_black_24dp_svgSize);
+        addIcon (BinaryData::refresh_black_24dp_svg,            BinaryData::refresh_black_24dp_svgSize);
+        addIcon (BinaryData::remove_black_24dp_svg,             BinaryData::remove_black_24dp_svgSize);
+        addIcon (BinaryData::sync_black_24dp_svg,               BinaryData::sync_black_24dp_svgSize);
+        addIcon (BinaryData::text_rotate_up_black_24dp_svg,     BinaryData::text_rotate_up_black_24dp_svgSize);
+        addIcon (BinaryData::text_rotation_down_black_24dp_svg, BinaryData::text_rotation_down_black_24dp_svgSize);
     }
  
     std::unique_ptr<juce::Drawable> getIcon (int itemId) const

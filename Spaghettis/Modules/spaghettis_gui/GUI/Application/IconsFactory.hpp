@@ -28,16 +28,7 @@ public:
 public:
     juce::ToolbarItemComponent* createItem (int itemId) override
     {
-        switch (itemId) {
-        //
-        case Icons::add     : return createButton (itemId, "Add");
-        case Icons::remove  : return createButton (itemId, "Remove");
-        case Icons::clear   : return createButton (itemId, "Clear");
-        default             : break;
-        //
-        }
-
-        return nullptr;
+        return createButton (itemId, "");
     }
     
     virtual void setCallback (int itemId, juce::ToolbarButton* button) = 0;
