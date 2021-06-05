@@ -66,6 +66,7 @@
 #include "GUI/Application/Spaghettis.hpp"
 #include "GUI/Application/IconsShared.hpp"
 #include "GUI/Application/IconsFactory.hpp"
+#include "GUI/Application/IconsFactoryHelper.hpp"
 #include "GUI/Application/ApplicationComponent.hpp"
 #include "GUI/Application/ApplicationWindow.hpp"
 

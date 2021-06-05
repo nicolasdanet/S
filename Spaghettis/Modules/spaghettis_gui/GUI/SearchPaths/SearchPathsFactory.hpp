@@ -55,12 +55,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-struct SearchPathsFactoryHelper {
-
-    SearchPathsFactoryHelper (SearchPathsComponent* owner) : factory_ (owner) { }
-
-    SearchPathsFactory factory_;
-};
+using SearchPathsFactoryHelper = IconsFactoryHelper<SearchPathsFactory, SearchPathsComponent>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
