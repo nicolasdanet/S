@@ -41,7 +41,7 @@ public:
         getAllToolbarItemIds (ids);
     }
     
-    void setCallback (int itemId, juce::ToolbarButton* button) override;
+    void setToolbarButton (int itemId, juce::ToolbarButton* button) override;
 
 private:
     ConsoleComponent* owner_;

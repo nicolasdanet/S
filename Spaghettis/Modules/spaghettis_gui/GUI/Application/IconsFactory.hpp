@@ -31,7 +31,7 @@ public:
         return createButton (itemId, "");
     }
     
-    virtual void setCallback (int itemId, juce::ToolbarButton* button) = 0;
+    virtual void setToolbarButton (int itemId, juce::ToolbarButton* button) = 0;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ private:
                     icons_->getIcon (itemId),
                     nullptr);
         
-        if (t) { setCallback (itemId, t.get()); }
+        if (t) { setToolbarButton (itemId, t.get()); }
         else {
             jassertfalse;
         }

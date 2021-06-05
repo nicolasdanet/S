@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
  
-void ConsoleFactory::setCallback (int itemId, juce::ToolbarButton* button)
+void ConsoleFactory::setToolbarButton (int itemId, juce::ToolbarButton* button)
 {
     switch (itemId) {
     //
