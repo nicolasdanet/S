@@ -6,82 +6,60 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "BinaryData.h"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class IconsFactory : public juce::ToolbarItemFactory {
+struct IconsShared {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+using DrawableContainer = std::vector<std::unique_ptr<juce::Drawable>>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    struct Icons {
-        enum IconsIds : int {
-            add             = 1,
-            remove          = 2,
-            clear           = 3
-        };
-    };
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    IconsFactory() = default;
-    ~IconsFactory() = default;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-public:
-    juce::ToolbarItemComponent* createItem (int itemId) override
+    IconsShared()
     {
-        switch (itemId) {
-        //
-        case Icons::add     : return createButton (itemId, "Add");
-        case Icons::remove  : return createButton (itemId, "Remove");
-        case Icons::clear   : return createButton (itemId, "Clear");
-        default             : break;
-        //
-        }
-
-        return nullptr;
+        addIcon (BinaryData::add_black_24dp_svg,    BinaryData::add_black_24dp_svgSize);
+        addIcon (BinaryData::remove_black_24dp_svg, BinaryData::remove_black_24dp_svgSize);
+        addIcon (BinaryData::clear_black_24dp_svg,  BinaryData::clear_black_24dp_svgSize);
     }
-    
-    virtual void setCallback (int itemId, juce::ToolbarButton* button) = 0;
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    juce::ToolbarButton* createButton (int itemId, const juce::String& text)
+ 
+    std::unique_ptr<juce::Drawable> getIconAt (int i) const
     {
-        auto t = std::make_unique<juce::ToolbarButton> (itemId,
-                    text,
-                    icons_->getIconAt (itemId - 1),
-                    nullptr);
+        jassert (i >= 0);
+        jassert (static_cast<DrawableContainer::size_type> (i) < drawable_.size());
+        jassert (drawable_[i] != nullptr);
         
-        if (t) { setCallback (itemId, t.get()); }
-        else {
-            jassertfalse;
-        }
-        
-        return t.release();
+        return drawable_[i]->createCopy();
     }
 
 private:
-    juce::SharedResourcePointer<IconsShared> icons_;
+    void addIcon (const void* data, const size_t numBytes)
+    {
+        std::unique_ptr<juce::Drawable> t (juce::Drawable::createFromImageData (data, numBytes));
+        bool done = t->replaceColour (juce::Colours::black, Spaghettis()->getColour (Colours::toolbarIcon));
+        
+        jassert (done);
+        
+        drawable_.push_back (std::move (t));
+    }
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (IconsFactory)
+    DrawableContainer drawable_;
 };
-
+ 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
