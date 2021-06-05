@@ -76,9 +76,10 @@ private:
     void addIcon (const void* data, const size_t numBytes)
     {
         std::unique_ptr<juce::Drawable> t (juce::Drawable::createFromImageData (data, numBytes));
-        bool done = t->replaceColour (juce::Colours::black, Spaghettis()->getColour (Colours::toolbarIcon));
-        
-        jassert (done);
+
+        if (!t->replaceColour (juce::Colours::black, Spaghettis()->getColour (Colours::toolbarIcon))) {
+            jassertfalse;
+        }
         
         drawable_.push_back (std::move (t));
     }
