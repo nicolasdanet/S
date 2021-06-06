@@ -24,7 +24,7 @@ struct Icons {
 // MARK: -
 
 enum IconsIds : int {
-    add                 = 1,
+    add     = 1,
     clear,
     error,
     notification,
@@ -58,21 +58,33 @@ using DrawableContainer = std::vector<std::unique_ptr<juce::Drawable>>;
 public:
     IconsShared()
     {
-        addIcon (BinaryData::add_svg,                   BinaryData::add_svgSize);
-        addIcon (BinaryData::delete_forever_svg,        BinaryData::delete_forever_svgSize);
-        addIcon (BinaryData::warning_amber_svg,         BinaryData::warning_amber_svgSize);
-        addIcon (BinaryData::notifications_svg,         BinaryData::notifications_svgSize);
-        addIcon (BinaryData::place_svg,                 BinaryData::place_svgSize);
-        addIcon (BinaryData::remove_svg,                BinaryData::remove_svgSize);
-        addIcon (BinaryData::sync_svg,                  BinaryData::sync_svgSize);
-        addIcon (BinaryData::text_rotate_up_svg,        BinaryData::text_rotate_up_svgSize);
-        addIcon (BinaryData::text_rotation_down_svg,    BinaryData::text_rotation_down_svgSize);
+        addIcon ("add_svg");
+        addIcon ("delete_forever_svg");
+        addIcon ("warning_amber_svg");
+        addIcon ("notifications_svg");
+        addIcon ("place_svg");
+        addIcon ("remove_svg");
+        addIcon ("sync_svg");
+        addIcon ("text_rotate_up_svg");
+        addIcon ("text_rotation_down_svg");
     }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    std::unique_ptr<juce::Drawable> getIconRaw (int itemId, const DrawableContainer& c) const
+    {
+        int i = itemId - 1;
+        
+        jassert (i >= 0);
+        jassert (static_cast<DrawableContainer::size_type> (i) < c.size());
+        jassert (c[i] != nullptr);
+        
+        return c[i]->createCopy();
+    }
+    
 public:
     std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
     {
@@ -89,37 +101,21 @@ public:
 // MARK: -
 
 private:
-    std::unique_ptr<juce::Drawable> getIconRaw (int itemId, const DrawableContainer& c) const
-    {
-        int i = itemId - 1;
-        
-        jassert (i >= 0);
-        jassert (static_cast<DrawableContainer::size_type> (i) < c.size());
-        jassert (c[i] != nullptr);
-        
-        return c[i]->createCopy();
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
     void addIconRaw (const void* data, const size_t n, juce::Colour colour, DrawableContainer& c)
     {
         std::unique_ptr<juce::Drawable> t (juce::Drawable::createFromImageData (data, n));
-
         t->replaceColour (juce::Colours::black, colour);
-        
         c.push_back (std::move (t));
     }
     
-    void addIcon (const void* data, const size_t n)
+    void addIcon (const char* name)
     {
-        addIconRaw (data, n, Spaghettis()->getColour (Colours::toolbarIcon), off_);
+        int n = 0; const char* data = BinaryData::getNamedResource (name, n);
+        jassert (data);
         addIconRaw (data, n, Spaghettis()->getColour (Colours::toolbarIcon), on_);
+        addIconRaw (data, n, Spaghettis()->getColour (Colours::toolbarIcon), off_);
     }
-
+    
 private:
     DrawableContainer on_;
     DrawableContainer off_;
