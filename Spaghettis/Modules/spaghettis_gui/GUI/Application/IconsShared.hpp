@@ -68,15 +68,20 @@ public:
         addIcon (BinaryData::text_rotate_up_svg,        BinaryData::text_rotate_up_svgSize);
         addIcon (BinaryData::text_rotation_down_svg,    BinaryData::text_rotation_down_svgSize);
     }
- 
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
     {
-        return getIcon (itemId, of_);
+        return getIconRaw (itemId, off_);
     }
 
     std::unique_ptr<juce::Drawable> getIconOn (int itemId) const
     {
-        return getIcon (itemId, on_);
+        return getIconRaw (itemId, on_);
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -84,17 +89,7 @@ public:
 // MARK: -
 
 private:
-    void addIcon (const void* data, const size_t numBytes)
-    {
-        std::unique_ptr<juce::Drawable> t (juce::Drawable::createFromImageData (data, numBytes));
-
-        t->replaceColour (juce::Colours::black, Spaghettis()->getColour (Colours::toolbarIcon));
-        
-        on_.push_back (t->createCopy());
-        of_.push_back (std::move (t));
-    }
-    
-    std::unique_ptr<juce::Drawable> getIcon (int itemId, const DrawableContainer& c) const
+    std::unique_ptr<juce::Drawable> getIconRaw (int itemId, const DrawableContainer& c) const
     {
         int i = itemId - 1;
         
@@ -104,10 +99,30 @@ private:
         
         return c[i]->createCopy();
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void addIconRaw (const void* data, const size_t n, juce::Colour colour, DrawableContainer& c)
+    {
+        std::unique_ptr<juce::Drawable> t (juce::Drawable::createFromImageData (data, n));
+
+        t->replaceColour (juce::Colours::black, colour);
+        
+        c.push_back (std::move (t));
+    }
     
+    void addIcon (const void* data, const size_t n)
+    {
+        addIconRaw (data, n, Spaghettis()->getColour (Colours::toolbarIcon), off_);
+        addIconRaw (data, n, Spaghettis()->getColour (Colours::toolbarIcon), on_);
+    }
+
 private:
     DrawableContainer on_;
-    DrawableContainer of_;
+    DrawableContainer off_;
 };
  
 // -----------------------------------------------------------------------------------------------------------
