@@ -112,8 +112,8 @@ private:
     {
         int n = 0; const char* data = BinaryData::getNamedResource (name, n);
         jassert (data);
-        addIconRaw (data, n, Spaghettis()->getColour (Colours::toolbarIcon), on_);
-        addIconRaw (data, n, Spaghettis()->getColour (Colours::toolbarIcon), off_);
+        addIconRaw (data, n, Spaghettis()->getColour (Colours::toolbarIconOn), on_);
+        addIconRaw (data, n, Spaghettis()->getColour (Colours::toolbarIconOff), off_);
     }
     
 private:
