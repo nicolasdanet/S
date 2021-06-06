@@ -59,7 +59,7 @@ public:
     IconsShared()
     {
         addIcon (BinaryData::add_black_24dp_svg,                BinaryData::add_black_24dp_svgSize);
-        addIcon (BinaryData::clear_black_24dp_svg,              BinaryData::clear_black_24dp_svgSize);
+        addIcon (BinaryData::delete_forever_black_24dp_svg,     BinaryData::delete_forever_black_24dp_svgSize);
         addIcon (BinaryData::error_outline_black_24dp_svg,      BinaryData::error_outline_black_24dp_svgSize);
         addIcon (BinaryData::notifications_black_24dp_svg,      BinaryData::notifications_black_24dp_svgSize);
         addIcon (BinaryData::place_black_24dp_svg,              BinaryData::place_black_24dp_svgSize);

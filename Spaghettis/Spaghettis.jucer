@@ -11,8 +11,8 @@
       <GROUP id="{5D995D32-88D8-F3E6-9FA3-2BFFDA508EC0}" name="Icons">
         <FILE id="SPL6cq" name="add_black_24dp.svg" compile="0" resource="1"
               file="Resources/Icons/add_black_24dp.svg"/>
-        <FILE id="pM1Rvc" name="clear_black_24dp.svg" compile="0" resource="1"
-              file="Resources/Icons/clear_black_24dp.svg"/>
+        <FILE id="UaqbJQ" name="delete_forever_black_24dp.svg" compile="0"
+              resource="1" file="Resources/Icons/delete_forever_black_24dp.svg"/>
         <FILE id="wM0SFE" name="error_outline_black_24dp.svg" compile="0" resource="1"
               file="Resources/Icons/error_outline_black_24dp.svg"/>
         <FILE id="d5Q7aA" name="notifications_black_24dp.svg" compile="0" resource="1"

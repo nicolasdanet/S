@@ -13,12 +13,12 @@ static const unsigned char temp_binary_data_0[] =
 
 const char* add_black_24dp_svg = (const char*) temp_binary_data_0;
 
-//================== clear_black_24dp.svg ==================
+//================== delete_forever_black_24dp.svg ==================
 static const unsigned char temp_binary_data_1[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19"
-" 17.59 13.41 12 19 6.41z\"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M14.12 10.47L12 12.59l-2.13-2.12-1.41 1.41L10.59 14l-2.12 2.12 1.41 1.41L12 15.41l2.1"
+"2 2.12 1.41-1.41L13.41 14l2.12-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z\"/></svg>";
 
-const char* clear_black_24dp_svg = (const char*) temp_binary_data_1;
+const char* delete_forever_black_24dp_svg = (const char*) temp_binary_data_1;
 
 //================== error_outline_black_24dp.svg ==================
 static const unsigned char temp_binary_data_2[] =
@@ -80,7 +80,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
     switch (hash)
     {
         case 0xe1c95091:  numBytes = 194; return add_black_24dp_svg;
-        case 0xaf848565:  numBytes = 268; return clear_black_24dp_svg;
+        case 0xebcfdc1f:  numBytes = 368; return delete_forever_black_24dp_svg;
         case 0x4b0aaee7:  numBytes = 292; return error_outline_black_24dp_svg;
         case 0x550d3d6a:  numBytes = 366; return notifications_black_24dp_svg;
         case 0x8d60576b:  numBytes = 386; return place_black_24dp_svg;
@@ -98,7 +98,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 const char* namedResourceList[] =
 {
     "add_black_24dp_svg",
-    "clear_black_24dp_svg",
+    "delete_forever_black_24dp_svg",
     "error_outline_black_24dp_svg",
     "notifications_black_24dp_svg",
     "place_black_24dp_svg",
@@ -111,7 +111,7 @@ const char* namedResourceList[] =
 const char* originalFilenames[] =
 {
     "add_black_24dp.svg",
-    "clear_black_24dp.svg",
+    "delete_forever_black_24dp.svg",
     "error_outline_black_24dp.svg",
     "notifications_black_24dp.svg",
     "place_black_24dp.svg",
