@@ -13,8 +13,10 @@
               file="Resources/Icons/add_black_24dp.svg"/>
         <FILE id="pM1Rvc" name="clear_black_24dp.svg" compile="0" resource="1"
               file="Resources/Icons/clear_black_24dp.svg"/>
-        <FILE id="k9u5p8" name="error_outline_black_24dp.svg" compile="0" resource="1"
+        <FILE id="wM0SFE" name="error_outline_black_24dp.svg" compile="0" resource="1"
               file="Resources/Icons/error_outline_black_24dp.svg"/>
+        <FILE id="d5Q7aA" name="notifications_black_24dp.svg" compile="0" resource="1"
+              file="Resources/Icons/notifications_black_24dp.svg"/>
         <FILE id="aUS3wb" name="place_black_24dp.svg" compile="0" resource="1"
               file="Resources/Icons/place_black_24dp.svg"/>
         <FILE id="QGCZV4" name="remove_black_24dp.svg" compile="0" resource="1"

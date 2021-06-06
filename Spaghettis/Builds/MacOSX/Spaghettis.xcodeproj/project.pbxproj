@@ -62,6 +62,7 @@
 		D31E9A678ACB0B6E5AA55846 /* include_juce_data_structures.mm */ /* include_juce_data_structures.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_data_structures.mm; path = ../../JuceLibraryCode/include_juce_data_structures.mm; sourceTree = SOURCE_ROOT; };
 		DD376E055A3C1DAE5AD681FE /* juce_gui_basics */ /* juce_gui_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_basics; path = "~/JUCE/modules/juce_gui_basics"; sourceTree = "<absolute>"; };
 		E256EE56D3F74E547832FB86 /* IOKit.framework */ /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		E601F87EFF97BFE803CE977B /* notifications_black_24dp.svg */ /* notifications_black_24dp.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = notifications_black_24dp.svg; path = ../../Resources/Icons/notifications_black_24dp.svg; sourceTree = SOURCE_ROOT; };
 		E8CB080AF78BBE2F817E4F92 /* spaghettis_gui */ /* spaghettis_gui */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_gui; path = ../../Modules/spaghettis_gui; sourceTree = SOURCE_ROOT; };
 		F1C547C596C0EB4AF51B1010 /* clear_black_24dp.svg */ /* clear_black_24dp.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = clear_black_24dp.svg; path = ../../Resources/Icons/clear_black_24dp.svg; sourceTree = SOURCE_ROOT; };
 		F606A6C764F8690C6074F92F /* text_rotate_up_black_24dp.svg */ /* text_rotate_up_black_24dp.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = text_rotate_up_black_24dp.svg; path = ../../Resources/Icons/text_rotate_up_black_24dp.svg; sourceTree = SOURCE_ROOT; };
@@ -101,6 +102,7 @@
 				619A1D0A96A74458711221AA,
 				F1C547C596C0EB4AF51B1010,
 				34212EFE6D6D4E00ACCC8EBB,
+				E601F87EFF97BFE803CE977B,
 				8F6C5D89787D00BCE18DFB92,
 				3740007AB87E76D19FE85EAE,
 				706A5ECDEE79128CFCCA9B67,

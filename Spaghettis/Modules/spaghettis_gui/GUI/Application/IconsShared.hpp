@@ -24,14 +24,15 @@ struct Icons {
 // MARK: -
 
 enum IconsIds : int {
-    add         = 1,
-    clear       = 2,
-    error       = 3,
-    place       = 4,
-    remove      = 5,
-    sync        = 6,
-    sortUp      = 7,
-    sortDown    = 8
+    add                 = 1,
+    clear,
+    error,
+    notification,
+    place,
+    remove,
+    sync,
+    sortUp,
+    sortDown
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -60,6 +61,7 @@ public:
         addIcon (BinaryData::add_black_24dp_svg,                BinaryData::add_black_24dp_svgSize);
         addIcon (BinaryData::clear_black_24dp_svg,              BinaryData::clear_black_24dp_svgSize);
         addIcon (BinaryData::error_outline_black_24dp_svg,      BinaryData::error_outline_black_24dp_svgSize);
+        addIcon (BinaryData::notifications_black_24dp_svg,      BinaryData::notifications_black_24dp_svgSize);
         addIcon (BinaryData::place_black_24dp_svg,              BinaryData::place_black_24dp_svgSize);
         addIcon (BinaryData::remove_black_24dp_svg,             BinaryData::remove_black_24dp_svgSize);
         addIcon (BinaryData::sync_black_24dp_svg,               BinaryData::sync_black_24dp_svgSize);
