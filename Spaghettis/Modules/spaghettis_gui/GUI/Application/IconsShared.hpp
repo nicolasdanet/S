@@ -28,11 +28,10 @@ enum IconsIds : int {
     clear       = 2,
     error       = 3,
     place       = 4,
-    refresh     = 5,
-    remove      = 6,
-    sync        = 7,
-    sortUp      = 8,
-    sortDown    = 9
+    remove      = 5,
+    sync        = 6,
+    sortUp      = 7,
+    sortDown    = 8
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -62,7 +61,6 @@ public:
         addIcon (BinaryData::clear_black_24dp_svg,              BinaryData::clear_black_24dp_svgSize);
         addIcon (BinaryData::error_outline_black_24dp_svg,      BinaryData::error_outline_black_24dp_svgSize);
         addIcon (BinaryData::place_black_24dp_svg,              BinaryData::place_black_24dp_svgSize);
-        addIcon (BinaryData::refresh_black_24dp_svg,            BinaryData::refresh_black_24dp_svgSize);
         addIcon (BinaryData::remove_black_24dp_svg,             BinaryData::remove_black_24dp_svgSize);
         addIcon (BinaryData::sync_black_24dp_svg,               BinaryData::sync_black_24dp_svgSize);
         addIcon (BinaryData::text_rotate_up_black_24dp_svg,     BinaryData::text_rotate_up_black_24dp_svgSize);

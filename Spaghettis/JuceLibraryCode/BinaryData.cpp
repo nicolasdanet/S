@@ -34,39 +34,32 @@ static const unsigned char temp_binary_data_3[] =
 
 const char* place_black_24dp_svg = (const char*) temp_binary_data_3;
 
-//================== refresh_black_24dp.svg ==================
-static const unsigned char temp_binary_data_4[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-"
-"2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z\"/></svg>";
-
-const char* refresh_black_24dp_svg = (const char*) temp_binary_data_4;
-
 //================== remove_black_24dp.svg ==================
-static const unsigned char temp_binary_data_5[] =
+static const unsigned char temp_binary_data_4[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M19 13H5v-2h14v2z\"/></svg>";
 
-const char* remove_black_24dp_svg = (const char*) temp_binary_data_5;
+const char* remove_black_24dp_svg = (const char*) temp_binary_data_4;
 
 //================== sync_black_24dp.svg ==================
-static const unsigned char temp_binary_data_6[] =
+static const unsigned char temp_binary_data_5[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M.01 0h24v24h-24V0z\" fill=\"none\"/><path d=\"M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 "
 "20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z\"/></svg>";
 
-const char* sync_black_24dp_svg = (const char*) temp_binary_data_6;
+const char* sync_black_24dp_svg = (const char*) temp_binary_data_5;
 
 //================== text_rotate_up_black_24dp.svg ==================
-static const unsigned char temp_binary_data_7[] =
+static const unsigned char temp_binary_data_6[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M18 4l-3 3h2v13h2V7h2l-3-3zm-6.2 11.5v-5l2.2-.9V7.5L3 1"
 "2.25v1.5l11 4.75v-2.1l-2.2-.9zM4.98 13L10 11.13v3.74L4.98 13z\"/></svg>";
 
-const char* text_rotate_up_black_24dp_svg = (const char*) temp_binary_data_7;
+const char* text_rotate_up_black_24dp_svg = (const char*) temp_binary_data_6;
 
 //================== text_rotation_down_black_24dp.svg ==================
-static const unsigned char temp_binary_data_8[] =
+static const unsigned char temp_binary_data_7[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M6 20l3-3H7V4H5v13H3l3 3zm6.2-11.5v5l-2.2.9v2.1l11-4.75"
 "v-1.5L10 5.5v2.1l2.2.9zm6.82 2.5L14 12.87V9.13L19.02 11z\"/></svg>";
 
-const char* text_rotation_down_black_24dp_svg = (const char*) temp_binary_data_8;
+const char* text_rotation_down_black_24dp_svg = (const char*) temp_binary_data_7;
 
 
 const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
@@ -83,7 +76,6 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
         case 0xaf848565:  numBytes = 268; return clear_black_24dp_svg;
         case 0x4b0aaee7:  numBytes = 292; return error_outline_black_24dp_svg;
         case 0x8d60576b:  numBytes = 386; return place_black_24dp_svg;
-        case 0xf48d3b17:  numBytes = 361; return refresh_black_24dp_svg;
         case 0xbfc9ae4e:  numBytes = 176; return remove_black_24dp_svg;
         case 0xf8113b57:  numBytes = 386; return sync_black_24dp_svg;
         case 0xfc239845:  numBytes = 305; return text_rotate_up_black_24dp_svg;
@@ -101,7 +93,6 @@ const char* namedResourceList[] =
     "clear_black_24dp_svg",
     "error_outline_black_24dp_svg",
     "place_black_24dp_svg",
-    "refresh_black_24dp_svg",
     "remove_black_24dp_svg",
     "sync_black_24dp_svg",
     "text_rotate_up_black_24dp_svg",
@@ -114,7 +105,6 @@ const char* originalFilenames[] =
     "clear_black_24dp.svg",
     "error_outline_black_24dp.svg",
     "place_black_24dp.svg",
-    "refresh_black_24dp.svg",
     "remove_black_24dp.svg",
     "sync_black_24dp.svg",
     "text_rotate_up_black_24dp.svg",

@@ -20,9 +20,6 @@ namespace BinaryData
     extern const char*   place_black_24dp_svg;
     const int            place_black_24dp_svgSize = 386;
 
-    extern const char*   refresh_black_24dp_svg;
-    const int            refresh_black_24dp_svgSize = 361;
-
     extern const char*   remove_black_24dp_svg;
     const int            remove_black_24dp_svgSize = 176;
 
@@ -36,7 +33,7 @@ namespace BinaryData
     const int            text_rotation_down_black_24dp_svgSize = 300;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 9;
+    const int namedResourceListSize = 8;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

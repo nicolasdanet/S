@@ -50,7 +50,6 @@
 		721D2F47AAC0470E9F2AA340 /* AudioUnit.framework */ /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		872360D0C70C7B5CA52A5B1B /* include_spaghettis_gui.mm */ /* include_spaghettis_gui.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_gui.mm; path = ../../JuceLibraryCode/include_spaghettis_gui.mm; sourceTree = SOURCE_ROOT; };
 		8F6C5D89787D00BCE18DFB92 /* place_black_24dp.svg */ /* place_black_24dp.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = place_black_24dp.svg; path = ../../Resources/Icons/place_black_24dp.svg; sourceTree = SOURCE_ROOT; };
-		912F0D5D4FD833C784F1960F /* refresh_black_24dp.svg */ /* refresh_black_24dp.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = refresh_black_24dp.svg; path = ../../Resources/Icons/refresh_black_24dp.svg; sourceTree = SOURCE_ROOT; };
 		A1056AE48F0DFF9EC3445D0E /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
 		A3A861B41BD91C2AFB7F1175 /* Foundation.framework */ /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A56CB13A5C065878D9CCD781 /* QuartzCore.framework */ /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -103,7 +102,6 @@
 				F1C547C596C0EB4AF51B1010,
 				34212EFE6D6D4E00ACCC8EBB,
 				8F6C5D89787D00BCE18DFB92,
-				912F0D5D4FD833C784F1960F,
 				3740007AB87E76D19FE85EAE,
 				706A5ECDEE79128CFCCA9B67,
 				F606A6C764F8690C6074F92F,

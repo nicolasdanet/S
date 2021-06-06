@@ -35,7 +35,6 @@ public:
     {
         ids.add (Icons::clear);
         ids.add (Icons::error);
-        ids.add (Icons::refresh);
         ids.add (Icons::place);
     }
 
