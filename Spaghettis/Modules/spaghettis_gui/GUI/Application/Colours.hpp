@@ -40,10 +40,11 @@ enum ColourIds : int {
     toolbarBackgroundOver           = SPAGHETTIS_COLOUR (13),
     toolbarBackgroundDown           = SPAGHETTIS_COLOUR (14),
     toolbarIcon                     = SPAGHETTIS_COLOUR (15),
-    searchpathsBackground           = SPAGHETTIS_COLOUR (16),
-    searchpathsBackgroundAlternate  = SPAGHETTIS_COLOUR (17),
-    searchpathsText                 = SPAGHETTIS_COLOUR (18),
-    searchpathsTextHighlighted      = SPAGHETTIS_COLOUR (19)
+    toolbarIconOff                  = SPAGHETTIS_COLOUR (16),
+    searchpathsBackground           = SPAGHETTIS_COLOUR (17),
+    searchpathsBackgroundAlternate  = SPAGHETTIS_COLOUR (18),
+    searchpathsText                 = SPAGHETTIS_COLOUR (19),
+    searchpathsTextHighlighted      = SPAGHETTIS_COLOUR (20)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -89,6 +90,7 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (toolbarBackgroundOver)              == false);
     jassert (lf->isColourSpecified (toolbarBackgroundDown)              == false);
     jassert (lf->isColourSpecified (toolbarIcon)                        == false);
+    jassert (lf->isColourSpecified (toolbarIconOff)                     == false);
     jassert (lf->isColourSpecified (searchpathsBackground)              == false);
     jassert (lf->isColourSpecified (searchpathsBackgroundAlternate)     == false);
     jassert (lf->isColourSpecified (searchpathsText)                    == false);
@@ -109,6 +111,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (toolbarBackgroundOver,                               yellow);
     lf->setColour (toolbarBackgroundDown,                               yellow);
     lf->setColour (toolbarIcon,                                         juce::Colours::white);
+    lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
     lf->setColour (searchpathsBackground,                               background);
     lf->setColour (searchpathsBackgroundAlternate,                      background.darker (0.10));
     lf->setColour (searchpathsText,                                     base1);
