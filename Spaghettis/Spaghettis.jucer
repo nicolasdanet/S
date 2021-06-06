@@ -13,8 +13,6 @@
               file="Resources/Icons/add_black_24dp.svg"/>
         <FILE id="UaqbJQ" name="delete_forever_black_24dp.svg" compile="0"
               resource="1" file="Resources/Icons/delete_forever_black_24dp.svg"/>
-        <FILE id="wM0SFE" name="error_outline_black_24dp.svg" compile="0" resource="1"
-              file="Resources/Icons/error_outline_black_24dp.svg"/>
         <FILE id="d5Q7aA" name="notifications_black_24dp.svg" compile="0" resource="1"
               file="Resources/Icons/notifications_black_24dp.svg"/>
         <FILE id="aUS3wb" name="place_black_24dp.svg" compile="0" resource="1"
@@ -27,6 +25,8 @@
               resource="1" file="Resources/Icons/text_rotate_up_black_24dp.svg"/>
         <FILE id="RjrrPt" name="text_rotation_down_black_24dp.svg" compile="0"
               resource="1" file="Resources/Icons/text_rotation_down_black_24dp.svg"/>
+        <FILE id="DzlxSZ" name="warning_amber_black_24dp.svg" compile="0" resource="1"
+              file="Resources/Icons/warning_amber_black_24dp.svg"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>

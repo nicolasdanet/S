@@ -14,9 +14,6 @@ namespace BinaryData
     extern const char*   delete_forever_black_24dp_svg;
     const int            delete_forever_black_24dp_svgSize = 368;
 
-    extern const char*   error_outline_black_24dp_svg;
-    const int            error_outline_black_24dp_svgSize = 292;
-
     extern const char*   notifications_black_24dp_svg;
     const int            notifications_black_24dp_svgSize = 366;
 
@@ -34,6 +31,9 @@ namespace BinaryData
 
     extern const char*   text_rotation_down_black_24dp_svg;
     const int            text_rotation_down_black_24dp_svgSize = 300;
+
+    extern const char*   warning_amber_black_24dp_svg;
+    const int            warning_amber_black_24dp_svgSize = 200;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 9;

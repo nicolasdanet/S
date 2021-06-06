@@ -35,7 +35,7 @@ public:
     {
         ids.add (Icons::add);
         ids.add (Icons::remove);
-        ids.add (Icons::sync);
+        ids.add (Icons::synchronize);
         ids.add (Icons::sortDown);
         ids.add (Icons::sortUp);
     }

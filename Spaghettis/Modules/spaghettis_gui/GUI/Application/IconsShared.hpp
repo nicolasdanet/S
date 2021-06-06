@@ -30,7 +30,7 @@ enum IconsIds : int {
     notification,
     place,
     remove,
-    sync,
+    synchronize,
     sortUp,
     sortDown
 };
@@ -60,7 +60,7 @@ public:
     {
         addIcon (BinaryData::add_black_24dp_svg,                BinaryData::add_black_24dp_svgSize);
         addIcon (BinaryData::delete_forever_black_24dp_svg,     BinaryData::delete_forever_black_24dp_svgSize);
-        addIcon (BinaryData::error_outline_black_24dp_svg,      BinaryData::error_outline_black_24dp_svgSize);
+        addIcon (BinaryData::warning_amber_black_24dp_svg,      BinaryData::warning_amber_black_24dp_svgSize);
         addIcon (BinaryData::notifications_black_24dp_svg,      BinaryData::notifications_black_24dp_svgSize);
         addIcon (BinaryData::place_black_24dp_svg,              BinaryData::place_black_24dp_svgSize);
         addIcon (BinaryData::remove_black_24dp_svg,             BinaryData::remove_black_24dp_svgSize);
