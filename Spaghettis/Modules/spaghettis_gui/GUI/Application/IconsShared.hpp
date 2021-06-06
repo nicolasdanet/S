@@ -69,17 +69,16 @@ public:
         addIcon (BinaryData::text_rotation_down_black_24dp_svg, BinaryData::text_rotation_down_black_24dp_svgSize);
     }
  
-    std::unique_ptr<juce::Drawable> getIcon (int itemId) const
+    std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
     {
-        int i = itemId - 1;
-        
-        jassert (i >= 0);
-        jassert (static_cast<DrawableContainer::size_type> (i) < drawable_.size());
-        jassert (drawable_[i] != nullptr);
-        
-        return drawable_[i]->createCopy();
+        return getIcon (itemId, of_);
     }
 
+    std::unique_ptr<juce::Drawable> getIconOn (int itemId) const
+    {
+        return getIcon (itemId, on_);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -89,15 +88,26 @@ private:
     {
         std::unique_ptr<juce::Drawable> t (juce::Drawable::createFromImageData (data, numBytes));
 
-        if (!t->replaceColour (juce::Colours::black, Spaghettis()->getColour (Colours::toolbarIcon))) {
-            jassertfalse;
-        }
+        t->replaceColour (juce::Colours::black, Spaghettis()->getColour (Colours::toolbarIcon));
         
-        drawable_.push_back (std::move (t));
+        on_.push_back (t->createCopy());
+        of_.push_back (std::move (t));
+    }
+    
+    std::unique_ptr<juce::Drawable> getIcon (int itemId, const DrawableContainer& c) const
+    {
+        int i = itemId - 1;
+        
+        jassert (i >= 0);
+        jassert (static_cast<DrawableContainer::size_type> (i) < c.size());
+        jassert (c[i] != nullptr);
+        
+        return c[i]->createCopy();
     }
     
 private:
-    DrawableContainer drawable_;
+    DrawableContainer on_;
+    DrawableContainer of_;
 };
  
 // -----------------------------------------------------------------------------------------------------------

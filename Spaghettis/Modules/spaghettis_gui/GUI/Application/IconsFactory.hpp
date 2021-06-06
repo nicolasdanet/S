@@ -42,8 +42,8 @@ private:
     {
         auto t = std::make_unique<juce::ToolbarButton> (itemId,
                     text,
-                    icons_->getIcon (itemId),
-                    nullptr);
+                    icons_->getIconOff (itemId),
+                    icons_->getIconOn (itemId));
         
         if (t) { setToolbarButton (itemId, t.get()); }
         else {
