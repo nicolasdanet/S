@@ -58,15 +58,15 @@ using DrawableContainer = std::vector<std::unique_ptr<juce::Drawable>>;
 public:
     IconsShared()
     {
-        addIcon (BinaryData::add_black_24dp_svg,                BinaryData::add_black_24dp_svgSize);
-        addIcon (BinaryData::delete_forever_black_24dp_svg,     BinaryData::delete_forever_black_24dp_svgSize);
-        addIcon (BinaryData::warning_amber_black_24dp_svg,      BinaryData::warning_amber_black_24dp_svgSize);
-        addIcon (BinaryData::notifications_black_24dp_svg,      BinaryData::notifications_black_24dp_svgSize);
-        addIcon (BinaryData::place_black_24dp_svg,              BinaryData::place_black_24dp_svgSize);
-        addIcon (BinaryData::remove_black_24dp_svg,             BinaryData::remove_black_24dp_svgSize);
-        addIcon (BinaryData::sync_black_24dp_svg,               BinaryData::sync_black_24dp_svgSize);
-        addIcon (BinaryData::text_rotate_up_black_24dp_svg,     BinaryData::text_rotate_up_black_24dp_svgSize);
-        addIcon (BinaryData::text_rotation_down_black_24dp_svg, BinaryData::text_rotation_down_black_24dp_svgSize);
+        addIcon (BinaryData::add_svg,                   BinaryData::add_svgSize);
+        addIcon (BinaryData::delete_forever_svg,        BinaryData::delete_forever_svgSize);
+        addIcon (BinaryData::warning_amber_svg,         BinaryData::warning_amber_svgSize);
+        addIcon (BinaryData::notifications_svg,         BinaryData::notifications_svgSize);
+        addIcon (BinaryData::place_svg,                 BinaryData::place_svgSize);
+        addIcon (BinaryData::remove_svg,                BinaryData::remove_svgSize);
+        addIcon (BinaryData::sync_svg,                  BinaryData::sync_svgSize);
+        addIcon (BinaryData::text_rotate_up_svg,        BinaryData::text_rotate_up_svgSize);
+        addIcon (BinaryData::text_rotation_down_svg,    BinaryData::text_rotation_down_svgSize);
     }
  
     std::unique_ptr<juce::Drawable> getIconOff (int itemId) const

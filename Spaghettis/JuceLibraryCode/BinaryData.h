@@ -8,32 +8,32 @@
 
 namespace BinaryData
 {
-    extern const char*   add_black_24dp_svg;
-    const int            add_black_24dp_svgSize = 194;
+    extern const char*   add_svg;
+    const int            add_svgSize = 194;
 
-    extern const char*   delete_forever_black_24dp_svg;
-    const int            delete_forever_black_24dp_svgSize = 368;
+    extern const char*   delete_forever_svg;
+    const int            delete_forever_svgSize = 368;
 
-    extern const char*   notifications_black_24dp_svg;
-    const int            notifications_black_24dp_svgSize = 366;
+    extern const char*   notifications_svg;
+    const int            notifications_svgSize = 366;
 
-    extern const char*   place_black_24dp_svg;
-    const int            place_black_24dp_svgSize = 386;
+    extern const char*   place_svg;
+    const int            place_svgSize = 386;
 
-    extern const char*   remove_black_24dp_svg;
-    const int            remove_black_24dp_svgSize = 176;
+    extern const char*   remove_svg;
+    const int            remove_svgSize = 176;
 
-    extern const char*   sync_black_24dp_svg;
-    const int            sync_black_24dp_svgSize = 386;
+    extern const char*   sync_svg;
+    const int            sync_svgSize = 386;
 
-    extern const char*   text_rotate_up_black_24dp_svg;
-    const int            text_rotate_up_black_24dp_svgSize = 305;
+    extern const char*   text_rotate_up_svg;
+    const int            text_rotate_up_svgSize = 305;
 
-    extern const char*   text_rotation_down_black_24dp_svg;
-    const int            text_rotation_down_black_24dp_svgSize = 300;
+    extern const char*   text_rotation_down_svg;
+    const int            text_rotation_down_svgSize = 300;
 
-    extern const char*   warning_amber_black_24dp_svg;
-    const int            warning_amber_black_24dp_svgSize = 200;
+    extern const char*   warning_amber_svg;
+    const int            warning_amber_svgSize = 200;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 9;

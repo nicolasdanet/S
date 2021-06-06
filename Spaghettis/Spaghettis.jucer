@@ -9,24 +9,20 @@
     <GROUP id="{2CB25DBA-D987-3F32-EEE6-6B67653E37F3}" name="Source">
       <FILE id="LekPt7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <GROUP id="{5D995D32-88D8-F3E6-9FA3-2BFFDA508EC0}" name="Icons">
-        <FILE id="SPL6cq" name="add_black_24dp.svg" compile="0" resource="1"
-              file="Resources/Icons/add_black_24dp.svg"/>
-        <FILE id="UaqbJQ" name="delete_forever_black_24dp.svg" compile="0"
-              resource="1" file="Resources/Icons/delete_forever_black_24dp.svg"/>
-        <FILE id="d5Q7aA" name="notifications_black_24dp.svg" compile="0" resource="1"
-              file="Resources/Icons/notifications_black_24dp.svg"/>
-        <FILE id="aUS3wb" name="place_black_24dp.svg" compile="0" resource="1"
-              file="Resources/Icons/place_black_24dp.svg"/>
-        <FILE id="QGCZV4" name="remove_black_24dp.svg" compile="0" resource="1"
-              file="Resources/Icons/remove_black_24dp.svg"/>
-        <FILE id="Nrin9X" name="sync_black_24dp.svg" compile="0" resource="1"
-              file="Resources/Icons/sync_black_24dp.svg"/>
-        <FILE id="Ovf3NP" name="text_rotate_up_black_24dp.svg" compile="0"
-              resource="1" file="Resources/Icons/text_rotate_up_black_24dp.svg"/>
-        <FILE id="RjrrPt" name="text_rotation_down_black_24dp.svg" compile="0"
-              resource="1" file="Resources/Icons/text_rotation_down_black_24dp.svg"/>
-        <FILE id="DzlxSZ" name="warning_amber_black_24dp.svg" compile="0" resource="1"
-              file="Resources/Icons/warning_amber_black_24dp.svg"/>
+        <FILE id="pyAzqh" name="add.svg" compile="0" resource="1" file="Resources/Icons/SVG/add.svg"/>
+        <FILE id="CWEOUt" name="delete_forever.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/delete_forever.svg"/>
+        <FILE id="qclnUt" name="notifications.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/notifications.svg"/>
+        <FILE id="D9nQfi" name="place.svg" compile="0" resource="1" file="Resources/Icons/SVG/place.svg"/>
+        <FILE id="QIGuxT" name="remove.svg" compile="0" resource="1" file="Resources/Icons/SVG/remove.svg"/>
+        <FILE id="uexYI2" name="sync.svg" compile="0" resource="1" file="Resources/Icons/SVG/sync.svg"/>
+        <FILE id="ZfmAKG" name="text_rotate_up.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/text_rotate_up.svg"/>
+        <FILE id="IJLGLO" name="text_rotation_down.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/text_rotation_down.svg"/>
+        <FILE id="gCxj3v" name="warning_amber.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/warning_amber.svg"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>
