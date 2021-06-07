@@ -49,7 +49,8 @@ struct IconsShared {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using DrawableContainer = std::vector<std::unique_ptr<juce::Drawable>>;
+using DrawableTuple     = std::tuple<std::unique_ptr<juce::Drawable>, std::unique_ptr<juce::Drawable>, bool>;
+using DrawableContainer = std::vector<DrawableTuple>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -74,26 +75,27 @@ public:
 // MARK: -
 
 private:
-    std::unique_ptr<juce::Drawable> getIconRaw (int itemId, const DrawableContainer& c) const
+    std::unique_ptr<juce::Drawable> getIconRaw (int itemId, bool isOn) const
     {
         int i = itemId - 1;
         
         jassert (i >= 0);
-        jassert (static_cast<DrawableContainer::size_type> (i) < c.size());
-        jassert (c[i] != nullptr);
+        jassert (static_cast<DrawableContainer::size_type> (i) < drawable_.size());
+        jassert (std::get<0> (drawable_[i]) != nullptr);
+        jassert (std::get<1> (drawable_[i]) != nullptr);
         
-        return c[i]->createCopy();
+        return isOn ? std::get<1> (drawable_[i])->createCopy() : std::get<0> (drawable_[i])->createCopy();
     }
     
 public:
     std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
     {
-        return getIconRaw (itemId, off_);
+        return getIconRaw (itemId, false);
     }
 
     std::unique_ptr<juce::Drawable> getIconOn (int itemId) const
     {
-        return getIconRaw (itemId, on_);
+        return getIconRaw (itemId, true);
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -101,24 +103,25 @@ public:
 // MARK: -
 
 private:
-    void addIconRaw (const void* data, const size_t n, juce::Colour colour, DrawableContainer& c)
+    std::unique_ptr<juce::Drawable> getDrawable (const char* name, juce::Colour colour)
     {
+        int n = 0; const char* data = BinaryData::getNamedResource (name, n);
+        jassert (data);
         std::unique_ptr<juce::Drawable> t (juce::Drawable::createFromImageData (data, n));
         t->replaceColour (juce::Colours::black, colour);
-        c.push_back (std::move (t));
+        return t;
     }
     
     void addIcon (const char* name)
     {
-        int n = 0; const char* data = BinaryData::getNamedResource (name, n);
-        jassert (data);
-        addIconRaw (data, n, Spaghettis()->getColour (Colours::toolbarIconOn), on_);
-        addIconRaw (data, n, Spaghettis()->getColour (Colours::toolbarIconOff), off_);
+        auto t1 (getDrawable (name, Spaghettis()->getColour (Colours::toolbarIconOff)));
+        auto t2 (getDrawable (name, Spaghettis()->getColour (Colours::toolbarIconOn)));
+        
+        drawable_.emplace_back (std::move (t1), std::move (t2), false);
     }
     
 private:
-    DrawableContainer on_;
-    DrawableContainer off_;
+    DrawableContainer drawable_;
 };
  
 // -----------------------------------------------------------------------------------------------------------
