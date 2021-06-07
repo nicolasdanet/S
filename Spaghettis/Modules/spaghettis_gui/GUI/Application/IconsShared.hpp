@@ -59,23 +59,38 @@ using DrawableContainer = std::vector<DrawableTuple>;
 public:
     IconsShared()
     {
-        addIcon ("add_svg");
-        addIcon ("delete_forever_svg");
-        addIcon ("warning_amber_svg");
-        addIcon ("notifications_svg");
-        addIcon ("place_svg");
-        addIcon ("remove_svg");
-        addIcon ("sync_svg");
-        addIcon ("text_rotate_up_svg");
-        addIcon ("text_rotation_down_svg");
+        addIconAction ("add_svg");
+        addIconAction ("delete_forever_svg");
+        addIconAction ("warning_amber_svg");
+        addIconAction ("notifications_svg");
+        addIconAction ("place_svg");
+        addIconAction ("remove_svg");
+        addIconAction ("sync_svg");
+        addIconAction ("text_rotate_up_svg");
+        addIconAction ("text_rotation_down_svg");
     }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
+    {
+        return getIconProceed (itemId, false);
+    }
+
+    std::unique_ptr<juce::Drawable> getIconOn (int itemId) const
+    {
+        return getIconProceed (itemId, true);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
-    std::unique_ptr<juce::Drawable> getIconRaw (int itemId, bool isIconOn) const
+    std::unique_ptr<juce::Drawable> getIconProceed (int itemId, bool isIconOn) const
     {
         int i = itemId - 1;
         
@@ -87,20 +102,8 @@ private:
         return isIconOn ? std::get<1> (drawable_[i])->createCopy() : std::get<0> (drawable_[i])->createCopy();
     }
     
-public:
-    std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
-    {
-        return getIconRaw (itemId, false);
-    }
-
-    std::unique_ptr<juce::Drawable> getIconOn (int itemId) const
-    {
-        return getIconRaw (itemId, true);
-    }
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 private:
     std::unique_ptr<juce::Drawable> getDrawable (const char* name, juce::Colour colour)
@@ -112,17 +115,26 @@ private:
         return t;
     }
     
-    void addIconRaw (const char* imageOff, const char* imageOn, bool isToggle)
+    void addIconProceed (const char* imageOff, const char* imageOn, bool isToggle)
     {
         auto t1 (getDrawable (imageOff, Spaghettis()->getColour (Colours::toolbarIconOff)));
         auto t2 (getDrawable (imageOn,  Spaghettis()->getColour (Colours::toolbarIconOn)));
         
         drawable_.emplace_back (std::move (t1), std::move (t2), isToggle);
     }
-    
-    void addIcon (const char* image)
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+private:
+    void addIconAction (const char* image)
     {
-        addIconRaw (image, image, false);
+        addIconProceed (image, image, false);
+    }
+    
+    void addIconToggle (const char* image)
+    {
+        addIconProceed (image, image, true);
     }
     
 private:
