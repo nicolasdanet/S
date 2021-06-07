@@ -31,7 +31,7 @@ public:
         return createButton (itemId, "");
     }
     
-    virtual void setToolbarButton (int itemId, juce::ToolbarButton* button) = 0;
+    virtual void setToolbarButton (int itemId, bool isToogle, juce::ToolbarButton* button) = 0;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -45,10 +45,18 @@ private:
                     icons_->getIconOff (itemId),
                     icons_->getIconOn (itemId));
         
-        if (t) { setToolbarButton (itemId, t.get()); }
+        if (t) {
+        //
+        bool isToggle = icons_->isToggle (itemId);
+        
+        if (isToggle) { t->setClickingTogglesState (true); }
         else {
-            jassertfalse;
+            t->setToggleState (true, juce::dontSendNotification);
         }
+        
+        setToolbarButton (itemId, isToggle, t.get());
+        //
+        } else { jassertfalse; }
         
         return t.release();
     }

@@ -12,12 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
  
-void ConsoleFactory::setToolbarButton (int itemId, juce::ToolbarButton* button)
+void ConsoleFactory::setToolbarButton (int itemId, bool isToggle, juce::ToolbarButton* button)
 {
     switch (itemId) {
     //
-    case Icons::clear   : button->onClick = [this]() { owner_->clear(); }; break;
-    default             : break;
+    case Icons::deleteForever   : button->onClick = [this]() { owner_->clear(); }; break;
+    default                     : break;
     //
     }
 }

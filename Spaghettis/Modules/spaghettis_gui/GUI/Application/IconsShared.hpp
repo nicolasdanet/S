@@ -24,8 +24,8 @@ struct Icons {
 // MARK: -
 
 enum IconsIds : int {
-    add     = 1,
-    clear,
+    add             = 1,
+    deleteForever,
     error,
     notification,
     place,
@@ -61,8 +61,8 @@ public:
     {
         addIconAction ("add_svg");
         addIconAction ("delete_forever_svg");
-        addIconAction ("warning_amber_svg");
-        addIconAction ("notifications_svg");
+        addIconToggle ("warning_amber_svg");
+        addIconToggle ("notifications_svg");
         addIconAction ("place_svg");
         addIconAction ("remove_svg");
         addIconAction ("sync_svg");
@@ -85,12 +85,17 @@ public:
         return getIconProceed (itemId, true);
     }
     
+    bool isToggle (int itemId) const
+    {
+        return std::get<2> (drawable_[getIconIndex (itemId)]);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    std::unique_ptr<juce::Drawable> getIconProceed (int itemId, bool isIconOn) const
+    int getIconIndex (int itemId) const
     {
         int i = itemId - 1;
         
@@ -98,6 +103,13 @@ private:
         jassert (static_cast<DrawableContainer::size_type> (i) < drawable_.size());
         jassert (std::get<0> (drawable_[i]) != nullptr);
         jassert (std::get<1> (drawable_[i]) != nullptr);
+        
+        return i;
+    }
+    
+    std::unique_ptr<juce::Drawable> getIconProceed (int itemId, bool isIconOn) const
+    {
+        int i = getIconIndex (itemId);
         
         return isIconOn ? std::get<1> (drawable_[i])->createCopy() : std::get<0> (drawable_[i])->createCopy();
     }

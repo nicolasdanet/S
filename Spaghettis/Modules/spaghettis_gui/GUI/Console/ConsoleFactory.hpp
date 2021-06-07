@@ -33,7 +33,7 @@ public:
 public:
     void getAllToolbarItemIds (juce::Array<int>& ids) override
     {
-        ids.add (Icons::clear);
+        ids.add (Icons::deleteForever);
         ids.add (Icons::notification);
         ids.add (Icons::error);
         ids.add (Icons::place);
@@ -44,7 +44,7 @@ public:
         getAllToolbarItemIds (ids);
     }
     
-    void setToolbarButton (int itemId, juce::ToolbarButton* button) override;
+    void setToolbarButton (int itemId, bool isToggle, juce::ToolbarButton* button) override;
 
 private:
     ConsoleComponent* owner_;

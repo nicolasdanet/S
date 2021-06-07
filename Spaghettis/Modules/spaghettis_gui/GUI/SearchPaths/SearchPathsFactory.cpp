@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
  
-void SearchPathsFactory::setToolbarButton (int itemId, juce::ToolbarButton* button)
+void SearchPathsFactory::setToolbarButton (int itemId, bool isToggle, juce::ToolbarButton* button)
 {
     switch (itemId) {
     //

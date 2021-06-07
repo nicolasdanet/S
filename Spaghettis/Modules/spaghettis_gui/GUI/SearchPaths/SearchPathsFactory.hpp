@@ -45,7 +45,7 @@ public:
         getAllToolbarItemIds (ids);
     }
     
-    void setToolbarButton (int itemId, juce::ToolbarButton* button) override;
+    void setToolbarButton (int itemId, bool isToggle, juce::ToolbarButton* button) override;
 
 private:
     SearchPathsComponent* owner_;
