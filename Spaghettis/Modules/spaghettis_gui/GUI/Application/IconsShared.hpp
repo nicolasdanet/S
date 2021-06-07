@@ -75,7 +75,7 @@ public:
 // MARK: -
 
 private:
-    std::unique_ptr<juce::Drawable> getIconRaw (int itemId, bool isOn) const
+    std::unique_ptr<juce::Drawable> getIconRaw (int itemId, bool isIconOn) const
     {
         int i = itemId - 1;
         
@@ -84,7 +84,7 @@ private:
         jassert (std::get<0> (drawable_[i]) != nullptr);
         jassert (std::get<1> (drawable_[i]) != nullptr);
         
-        return isOn ? std::get<1> (drawable_[i])->createCopy() : std::get<0> (drawable_[i])->createCopy();
+        return isIconOn ? std::get<1> (drawable_[i])->createCopy() : std::get<0> (drawable_[i])->createCopy();
     }
     
 public:
@@ -112,12 +112,17 @@ private:
         return t;
     }
     
-    void addIcon (const char* name)
+    void addIconRaw (const char* imageOff, const char* imageOn, bool isToggle)
     {
-        auto t1 (getDrawable (name, Spaghettis()->getColour (Colours::toolbarIconOff)));
-        auto t2 (getDrawable (name, Spaghettis()->getColour (Colours::toolbarIconOn)));
+        auto t1 (getDrawable (imageOff, Spaghettis()->getColour (Colours::toolbarIconOff)));
+        auto t2 (getDrawable (imageOn,  Spaghettis()->getColour (Colours::toolbarIconOn)));
         
-        drawable_.emplace_back (std::move (t1), std::move (t2), false);
+        drawable_.emplace_back (std::move (t1), std::move (t2), isToggle);
+    }
+    
+    void addIcon (const char* image)
+    {
+        addIconRaw (image, image, false);
     }
     
 private:
