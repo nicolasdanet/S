@@ -88,7 +88,11 @@ protected:
 
         if (toolbar_) {
         //
-        toolbar_->setBounds (b.removeFromBottom  (Spaghettis()->getLookAndFeel().getToolbarHeight()));
+        const int border = 3;
+        
+        auto t = b.removeFromBottom (Spaghettis()->getLookAndFeel().getToolbarHeight() + (border * 2));
+        
+        toolbar_->setBounds (t.reduced (border));
         //
         }
         

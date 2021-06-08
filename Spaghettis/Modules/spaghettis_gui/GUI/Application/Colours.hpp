@@ -25,6 +25,7 @@ struct Colours {
 // MARK: -
 
 enum ColourIds : int {
+    windowBackground                = SPAGHETTIS_COLOUR (0),
     consoleTextDefault              = SPAGHETTIS_COLOUR (1),
     consoleTextSystem               = SPAGHETTIS_COLOUR (2),
     consoleTextWarning              = SPAGHETTIS_COLOUR (3),
@@ -75,6 +76,7 @@ static void initialize (juce::LookAndFeel* lf)
     // const juce::Colour blue     = juce::Colour (0xff268bd2);
     // const juce::Colour cyan     = juce::Colour (0xff2aa198);
     
+    jassert (lf->isColourSpecified (windowBackground)                   == false);
     jassert (lf->isColourSpecified (consoleTextDefault)                 == false);
     jassert (lf->isColourSpecified (consoleTextSystem)                  == false);
     jassert (lf->isColourSpecified (consoleTextWarning)                 == false);
@@ -108,14 +110,15 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarText,                                         juce::Colours::white);
     lf->setColour (menubarSeparator,                                    juce::Colours::black);
     lf->setColour (toolbarBackground,                                   background);
-    lf->setColour (toolbarBackgroundOver,                               yellow);
-    lf->setColour (toolbarBackgroundDown,                               yellow);
+    lf->setColour (toolbarBackgroundOver,                               background);
+    lf->setColour (toolbarBackgroundDown,                               background);
     lf->setColour (toolbarIconOn,                                       juce::Colours::white);
     lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
     lf->setColour (searchpathsBackground,                               background);
     lf->setColour (searchpathsBackgroundAlternate,                      background.darker (0.10));
     lf->setColour (searchpathsText,                                     base1);
     lf->setColour (searchpathsTextHighlighted,                          green);
+    lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
     
     lf->setColour (juce::TextEditor::highlightedTextColourId,           green);
     lf->setColour (juce::TextEditor::outlineColourId,                   juce::Colours::transparentBlack);

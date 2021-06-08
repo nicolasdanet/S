@@ -22,7 +22,7 @@ class ApplicationWindow :   public juce::DocumentWindow,
 public:
     ApplicationWindow (const juce::String& name, const juce::String& keyName) :
         juce::DocumentWindow (name,
-            Spaghettis()->getColour (juce::ResizableWindow::backgroundColourId),
+            Spaghettis()->getColour (Colours::windowBackground),
             DocumentWindow::allButtons,
             false),
         keyName_ (keyName)

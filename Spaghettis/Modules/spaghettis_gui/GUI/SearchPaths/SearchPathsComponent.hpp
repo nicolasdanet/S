@@ -112,7 +112,7 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        g.fillAll (Spaghettis()->getColour (juce::ResizableWindow::backgroundColourId));
+        g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
     }
     
     void resized() override
