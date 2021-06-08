@@ -34,6 +34,7 @@ public:
     void getAllToolbarItemIds (juce::Array<int>& ids) override
     {
         ids.add (Icons::deleteForever);
+        ids.add (ToolbarItemFactory::spacerId);
         ids.add (Icons::notification);
         ids.add (Icons::error);
         ids.add (Icons::place);

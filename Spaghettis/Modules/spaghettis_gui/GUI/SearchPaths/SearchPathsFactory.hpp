@@ -36,6 +36,7 @@ public:
         ids.add (Icons::add);
         ids.add (Icons::remove);
         ids.add (Icons::synchronize);
+        ids.add (ToolbarItemFactory::spacerId);
         ids.add (Icons::sortDown);
         ids.add (Icons::sortUp);
     }
