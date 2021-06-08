@@ -11,7 +11,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
- 
+
+/* Note that at this point the owner component is not fully constructed. */
+
 void ConsoleFactory::setToolbarButton (int itemId, bool isToggle, juce::ToolbarButton* button)
 {
     switch (itemId) {
