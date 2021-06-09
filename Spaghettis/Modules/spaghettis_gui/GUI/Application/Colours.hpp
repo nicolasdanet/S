@@ -56,13 +56,18 @@ static void initialize (juce::LookAndFeel* lf)
     
     const juce::Colour background               = juce::Colour (0xff1f2029);
     const juce::Colour backgroundAlternate      = background.darker (0.10);
-    const juce::Colour backgroundDark           = background.darker (0.50);
     
-    const juce::Colour base01   = juce::Colour (0xff586e75);
-    const juce::Colour base1    = juce::Colour (0xff93a1a1);
-    const juce::Colour yellow   = juce::Colour (0xffb58900);
-    const juce::Colour orange   = juce::Colour (0xffcb4b16);
-    const juce::Colour green    = juce::Colour (0xff859900);
+    #if JUCE_LINUX
+    const juce::Colour backgroundDark           = background.darker (0.50);
+    #else
+    const juce::Colour backgroundDark           = background.darker (0.25);
+    #endif
+    
+    const juce::Colour base01                   = juce::Colour (0xff586e75);
+    const juce::Colour base1                    = juce::Colour (0xff93a1a1);
+    const juce::Colour yellow                   = juce::Colour (0xffb58900);
+    const juce::Colour orange                   = juce::Colour (0xffcb4b16);
+    const juce::Colour green                    = juce::Colour (0xff859900);
 
     // const juce::Colour base03   = juce::Colour (0xff002b36);
     // const juce::Colour base02   = juce::Colour (0xff073642);
@@ -107,6 +112,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarBackgroundHighlighted,                        orange);
     lf->setColour (menubarText,                                         juce::Colours::white);
     lf->setColour (menubarSeparator,                                    juce::Colours::black);
+    lf->setColour (toolbarBackground,                                   backgroundDark);
     lf->setColour (toolbarIconOn,                                       juce::Colours::white);
     lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
     lf->setColour (searchpathsBackground,                               background);
@@ -114,12 +120,6 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (searchpathsText,                                     base1);
     lf->setColour (searchpathsTextHighlighted,                          green);
 
-    #if JUCE_LINUX
-    lf->setColour (toolbarBackground,                                   backgroundDark);
-    #else
-    lf->setColour (toolbarBackground,                                   background);
-    #endif
-    
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
     
     lf->setColour (juce::TextEditor::highlightedTextColourId,           green);

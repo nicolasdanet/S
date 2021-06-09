@@ -88,11 +88,7 @@ protected:
 
         if (toolbar_) {
         //
-        #if JUCE_LINUX
         const int border = 2;
-        #else
-        const int border = 3;
-        #endif
         
         auto t = b.removeFromBottom (Spaghettis()->getLookAndFeel().getToolbarHeight());
         
