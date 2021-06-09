@@ -38,14 +38,12 @@ enum ColourIds : int {
     menubarText                     = SPAGHETTIS_COLOUR (10),
     menubarSeparator                = SPAGHETTIS_COLOUR (11),
     toolbarBackground               = SPAGHETTIS_COLOUR (12),
-    toolbarBackgroundOver           = SPAGHETTIS_COLOUR (13),
-    toolbarBackgroundDown           = SPAGHETTIS_COLOUR (14),
-    toolbarIconOn                   = SPAGHETTIS_COLOUR (15),
-    toolbarIconOff                  = SPAGHETTIS_COLOUR (16),
-    searchpathsBackground           = SPAGHETTIS_COLOUR (17),
-    searchpathsBackgroundAlternate  = SPAGHETTIS_COLOUR (18),
-    searchpathsText                 = SPAGHETTIS_COLOUR (19),
-    searchpathsTextHighlighted      = SPAGHETTIS_COLOUR (20)
+    toolbarIconOn                   = SPAGHETTIS_COLOUR (13),
+    toolbarIconOff                  = SPAGHETTIS_COLOUR (14),
+    searchpathsBackground           = SPAGHETTIS_COLOUR (15),
+    searchpathsBackgroundAlternate  = SPAGHETTIS_COLOUR (16),
+    searchpathsText                 = SPAGHETTIS_COLOUR (17),
+    searchpathsTextHighlighted      = SPAGHETTIS_COLOUR (18)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -56,14 +54,15 @@ static void initialize (juce::LookAndFeel* lf)
 {
     /* < https://ethanschoonover.com/solarized/ > */
     
-    const juce::Colour background   = juce::Colour (0xff1f2029);
+    const juce::Colour background       = juce::Colour (0xff1f2029);
+    const juce::Colour backgroundDark   = background.darker (0.50);
     
-    const juce::Colour base01   = juce::Colour (0xff586e75);
-    const juce::Colour base1    = juce::Colour (0xff93a1a1);
-    const juce::Colour yellow   = juce::Colour (0xffb58900);
-    const juce::Colour orange   = juce::Colour (0xffcb4b16);
-    const juce::Colour green    = juce::Colour (0xff859900);
-    
+    const juce::Colour base01           = juce::Colour (0xff586e75);
+    const juce::Colour base1            = juce::Colour (0xff93a1a1);
+    const juce::Colour yellow           = juce::Colour (0xffb58900);
+    const juce::Colour orange           = juce::Colour (0xffcb4b16);
+    const juce::Colour green            = juce::Colour (0xff859900);
+
     // const juce::Colour base03   = juce::Colour (0xff002b36);
     // const juce::Colour base02   = juce::Colour (0xff073642);
     // const juce::Colour base00   = juce::Colour (0xff657b83);
@@ -89,8 +88,6 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarText)                        == false);
     jassert (lf->isColourSpecified (menubarSeparator)                   == false);
     jassert (lf->isColourSpecified (toolbarBackground)                  == false);
-    jassert (lf->isColourSpecified (toolbarBackgroundOver)              == false);
-    jassert (lf->isColourSpecified (toolbarBackgroundDown)              == false);
     jassert (lf->isColourSpecified (toolbarIconOn)                      == false);
     jassert (lf->isColourSpecified (toolbarIconOff)                     == false);
     jassert (lf->isColourSpecified (searchpathsBackground)              == false);
@@ -104,20 +101,24 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (consoleTextError,                                    orange);
     lf->setColour (consoleBackground,                                   background);
     lf->setColour (consoleHighlight,                                    juce::Colours::transparentBlack);
-    lf->setColour (menubarBackground,                                   background.darker (0.50));
-    lf->setColour (menubarBackgroundPopup,                              background.darker (1.00));
+    lf->setColour (menubarBackground,                                   backgroundDark);
+    lf->setColour (menubarBackgroundPopup,                              backgroundDark);
     lf->setColour (menubarBackgroundHighlighted,                        orange);
     lf->setColour (menubarText,                                         juce::Colours::white);
     lf->setColour (menubarSeparator,                                    juce::Colours::black);
-    lf->setColour (toolbarBackground,                                   background);
-    lf->setColour (toolbarBackgroundOver,                               background);
-    lf->setColour (toolbarBackgroundDown,                               background);
     lf->setColour (toolbarIconOn,                                       juce::Colours::white);
     lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
     lf->setColour (searchpathsBackground,                               background);
     lf->setColour (searchpathsBackgroundAlternate,                      background.darker (0.10));
     lf->setColour (searchpathsText,                                     base1);
     lf->setColour (searchpathsTextHighlighted,                          green);
+
+    #if JUCE_LINUX
+    lf->setColour (toolbarBackground,                                   backgroundDark);
+    #else
+    lf->setColour (toolbarBackground,                                   background);
+    #endif
+    
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
     
     lf->setColour (juce::TextEditor::highlightedTextColourId,           green);

@@ -35,7 +35,7 @@ public:
 public:
     int getDefaultMenuBarHeight() override
     {
-        return 26;
+        return 28;
     }
 
     juce::Font getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&) override
@@ -65,7 +65,11 @@ public:
 public:
     int getToolbarHeight()
     {
-        return 28;
+        #if JUCE_LINUX
+            return 30;
+        #else
+            return 34;
+        #endif
     }
     
     void paintToolbarBackground (juce::Graphics&, int w, int h, juce::Toolbar&) override;
