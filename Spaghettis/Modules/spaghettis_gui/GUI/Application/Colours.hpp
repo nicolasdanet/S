@@ -38,12 +38,13 @@ enum ColourIds : int {
     menubarText                     = SPAGHETTIS_COLOUR (10),
     menubarSeparator                = SPAGHETTIS_COLOUR (11),
     toolbarBackground               = SPAGHETTIS_COLOUR (12),
-    toolbarIconOn                   = SPAGHETTIS_COLOUR (13),
-    toolbarIconOff                  = SPAGHETTIS_COLOUR (14),
-    searchpathsBackground           = SPAGHETTIS_COLOUR (15),
-    searchpathsBackgroundAlternate  = SPAGHETTIS_COLOUR (16),
-    searchpathsText                 = SPAGHETTIS_COLOUR (17),
-    searchpathsTextHighlighted      = SPAGHETTIS_COLOUR (18)
+    toolbarBackgroundDown           = SPAGHETTIS_COLOUR (13),
+    toolbarIconOn                   = SPAGHETTIS_COLOUR (14),
+    toolbarIconOff                  = SPAGHETTIS_COLOUR (15),
+    searchpathsBackground           = SPAGHETTIS_COLOUR (16),
+    searchpathsBackgroundAlternate  = SPAGHETTIS_COLOUR (17),
+    searchpathsText                 = SPAGHETTIS_COLOUR (18),
+    searchpathsTextHighlighted      = SPAGHETTIS_COLOUR (19)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -94,6 +95,7 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarText)                        == false);
     jassert (lf->isColourSpecified (menubarSeparator)                   == false);
     jassert (lf->isColourSpecified (toolbarBackground)                  == false);
+    jassert (lf->isColourSpecified (toolbarBackgroundDown)              == false);
     jassert (lf->isColourSpecified (toolbarIconOn)                      == false);
     jassert (lf->isColourSpecified (toolbarIconOff)                     == false);
     jassert (lf->isColourSpecified (searchpathsBackground)              == false);
@@ -113,6 +115,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarText,                                         juce::Colours::white);
     lf->setColour (menubarSeparator,                                    juce::Colours::black);
     lf->setColour (toolbarBackground,                                   backgroundDark);
+    lf->setColour (toolbarBackgroundDown,                               backgroundAlternate);
     lf->setColour (toolbarIconOn,                                       juce::Colours::white);
     lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
     lf->setColour (searchpathsBackground,                               background);

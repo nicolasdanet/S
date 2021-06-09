@@ -92,7 +92,7 @@ void LookAndFeel::paintToolbarButtonBackground (juce::Graphics& g,
     bool isMouseDown,
     juce::ToolbarItemComponent& component)
 {
-
+    if (isMouseDown) { g.fillAll (findColour (Colours::toolbarBackgroundDown)); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
