@@ -34,6 +34,8 @@ public:
         listBox_.setRowHeight (h);
         listBox_.getViewport()->setScrollBarsShown (false, false, true, true);
         
+        updateScrollBar();
+        
         addAndMakeVisible (listBox_);
         
         setSize (400, 500);
@@ -60,7 +62,7 @@ public:
         //
         }
         
-        updateView(); setSearchPaths();
+        updateRows(); updateScrollBar(); setSearchPaths();
     }
     
     void addPaths()
@@ -97,7 +99,7 @@ public:
     
     void listBoxItemClicked (int row, const juce::MouseEvent &) override
     {
-        if (juce::isPositiveAndBelow (row, paths_.size()) == false) { updateView(); }
+        if (juce::isPositiveAndBelow (row, paths_.size()) == false) { updateRows(); }
     }
     
     void deleteKeyPressed (int) override
@@ -117,7 +119,7 @@ public:
     
     void resized() override
     {
-        listBox_.setBounds (getBoundsRemaining());
+        listBox_.setBounds (getBoundsRemaining()); updateScrollBar();
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -147,7 +149,7 @@ private:
     
     void appendFullPathName (const juce::String& filepath)
     {
-        paths_.addIfNotAlreadyThere (filepath); updateView(); setSearchPaths();
+        paths_.addIfNotAlreadyThere (filepath); updateRows(); updateScrollBar(); setSearchPaths();
     }
     
     void appendFile (const juce::File& file)
@@ -178,7 +180,26 @@ private:
         fileChooser_->launchAsync (t, callback);
     }
 
-    void updateView()
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void updateScrollBar()
+    {
+        int i = listBox_.getRowContainingPosition (0, 0);
+        int j = listBox_.getRowContainingPosition (0, listBox_.getBottom());
+        
+        if (i >= 0) {
+        //
+        const bool show = (j - i) < paths_.size();
+        
+        listBox_.getViewport()->setScrollBarsShown (show, show, true, true);
+        //
+        }
+    }
+    
+    void updateRows()
     {
         listBox_.deselectAllRows();
         listBox_.repaint();
@@ -192,7 +213,7 @@ private:
     std::unique_ptr<juce::FileChooser> fileChooser_;
 
 private:
-    static int const rows_ = 64;
+    static int const rows_ = 32;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SearchPathsComponent)
