@@ -187,16 +187,7 @@ private:
 private:
     void updateScrollBar()
     {
-        int i = listBox_.getRowContainingPosition (0, 0);
-        int j = listBox_.getRowContainingPosition (0, listBox_.getBottom());
-        
-        if (i >= 0) {
-        //
-        const bool show = (j - i) < paths_.size();
-        
-        listBox_.getViewport()->setScrollBarsShown (show, show, true, true);
-        //
-        }
+        ApplicationComponent::showScrollBarIfRequired (listBox_, paths_);
     }
     
     void updateRows()

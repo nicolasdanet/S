@@ -124,6 +124,25 @@ public:
         return Commands::perform (info);
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+protected:
+    static void showScrollBarIfRequired (juce::ListBox& listBox, const juce::StringArray& content)
+    {
+        int i = listBox.getRowContainingPosition (0, 0);
+        int j = listBox.getRowContainingPosition (0, listBox.getBottom());
+        
+        if (i >= 0) {
+        //
+        const bool show = (j - i) < content.size();
+        
+        listBox.getViewport()->setScrollBarsShown (show, show, true, true);
+        //
+        }
+    }
+    
 private:
     std::unique_ptr<juce::Toolbar> toolbar_;
     
