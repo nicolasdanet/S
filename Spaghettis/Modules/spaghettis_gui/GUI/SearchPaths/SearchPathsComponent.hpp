@@ -77,7 +77,7 @@ public:
 public:
     int getNumRows() override
     {
-        return rows_;
+        return juce::jmax (rows_, paths_.size());
     }
 
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
@@ -192,6 +192,7 @@ private:
     
     void updateRows()
     {
+        listBox_.updateContent();
         listBox_.deselectAllRows();
         listBox_.repaint();
     }
