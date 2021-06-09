@@ -54,14 +54,15 @@ static void initialize (juce::LookAndFeel* lf)
 {
     /* < https://ethanschoonover.com/solarized/ > */
     
-    const juce::Colour background       = juce::Colour (0xff1f2029);
-    const juce::Colour backgroundDark   = background.darker (0.50);
+    const juce::Colour background               = juce::Colour (0xff1f2029);
+    const juce::Colour backgroundAlternate      = background.darker (0.10);
+    const juce::Colour backgroundDark           = background.darker (0.50);
     
-    const juce::Colour base01           = juce::Colour (0xff586e75);
-    const juce::Colour base1            = juce::Colour (0xff93a1a1);
-    const juce::Colour yellow           = juce::Colour (0xffb58900);
-    const juce::Colour orange           = juce::Colour (0xffcb4b16);
-    const juce::Colour green            = juce::Colour (0xff859900);
+    const juce::Colour base01   = juce::Colour (0xff586e75);
+    const juce::Colour base1    = juce::Colour (0xff93a1a1);
+    const juce::Colour yellow   = juce::Colour (0xffb58900);
+    const juce::Colour orange   = juce::Colour (0xffcb4b16);
+    const juce::Colour green    = juce::Colour (0xff859900);
 
     // const juce::Colour base03   = juce::Colour (0xff002b36);
     // const juce::Colour base02   = juce::Colour (0xff073642);
@@ -109,7 +110,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (toolbarIconOn,                                       juce::Colours::white);
     lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
     lf->setColour (searchpathsBackground,                               background);
-    lf->setColour (searchpathsBackgroundAlternate,                      background.darker (0.10));
+    lf->setColour (searchpathsBackgroundAlternate,                      backgroundAlternate);
     lf->setColour (searchpathsText,                                     base1);
     lf->setColour (searchpathsTextHighlighted,                          green);
 
