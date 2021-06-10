@@ -52,17 +52,19 @@ public:
 public:
     void removeSelectedPaths()
     {
+        bool done = false;
+        
         for (int i = getNumRows() - 1; i >= 0; i--) {
         //
         if (listBox_.isRowSelected (i)) {
         if (i < paths_.size()) {
-            paths_.remove (i);
+            paths_.remove (i); done = true;
         }
         }
         //
         }
         
-        updateRows(); updateScrollBar(); setSearchPaths();
+        if (done) { updateRows(); updateScrollBar(); setSearchPaths(); }
     }
     
     void addPaths()
@@ -72,7 +74,23 @@ public:
     
     void sortPaths (bool reverse = false)
     {
-        paths_.sortNatural(); updateRows(); setSearchPaths();
+        if (paths_.size() > 1) {
+        //
+        paths_.sortNatural();
+        
+        if (reverse) {
+        //
+        juce::StringArray scoped; scoped.ensureStorageAllocated (paths_.size());
+        
+        for (const auto& s : paths_) { scoped.insert (0, s); }
+        
+        scoped.swapWith (paths_);
+        //
+        }
+        
+        updateRows(); setSearchPaths();
+        //
+        }
     }
     
 // -----------------------------------------------------------------------------------------------------------
