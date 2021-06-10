@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::unique_ptr<juce::Drawable> IconsShared::getDrawable (const char* name, juce::Colour colour)
+std::unique_ptr<juce::Drawable> Icons::getDrawable (const char* name, juce::Colour colour)
 {
     int n = 0; const char* data = BinaryData::getNamedResource (name, n);
     jassert (data);
@@ -21,7 +21,7 @@ std::unique_ptr<juce::Drawable> IconsShared::getDrawable (const char* name, juce
     return t;
 }
     
-void IconsShared::addIconProceed (const char* imageOff, const char* imageOn, bool isToggle)
+void Icons::addIconProceed (const char* imageOff, const char* imageOn, bool isToggle)
 {
     auto t1 (getDrawable (imageOff, Spaghettis()->getColour (Colours::toolbarIconOff)));
     auto t2 (getDrawable (imageOn,  Spaghettis()->getColour (Colours::toolbarIconOn)));

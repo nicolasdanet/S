@@ -59,7 +59,7 @@
 
 #include "GUI/Application/Colours.hpp"
 #include "GUI/Application/Commands.hpp"
-#include "GUI/Application/IconsShared.hpp"
+#include "GUI/Application/Icons.hpp"
 #include "GUI/Application/Identifiers.hpp"
 #include "GUI/Application/LookAndFeel.hpp"
 #include "GUI/Application/MenuModel.hpp"

@@ -40,7 +40,7 @@ public:
 private:
     juce::ToolbarButton* createButton (int itemId, const juce::String& text)
     {
-        const IconsShared& icons = IconsShared::getInstance();
+        const Icons& icons = Icons::getInstance();
         
         auto t = std::make_unique<juce::ToolbarButton> (itemId,
                     text,

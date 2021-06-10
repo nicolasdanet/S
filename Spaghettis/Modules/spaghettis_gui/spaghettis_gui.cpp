@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/Commands.cpp"
-#include "GUI/Application/IconsShared.cpp"
+#include "GUI/Application/Icons.cpp"
 #include "GUI/Application/LookAndFeel.cpp"
 #include "GUI/Application/SpaghettisInstance.cpp"
 #include "GUI/Console/ConsoleFactory.cpp"
