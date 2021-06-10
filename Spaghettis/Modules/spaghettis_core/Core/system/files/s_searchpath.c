@@ -307,10 +307,10 @@ PD_LOCAL void searchpath_rescan (int logged)
 {
     t_error err = searchpath_scan();
     
-    if (logged) { searchpath_report(); }
+    if (logged > 0) { searchpath_report(); }
     if (searchpath_hasDuplicates()) { warning_containsDuplicates (NULL); }
     if (err) { error_searchPathOverflow (NULL); }
-    else {
+    else if (logged >= 0) {
         post_system (NULL, "rescan: done");     // --
     }
 }

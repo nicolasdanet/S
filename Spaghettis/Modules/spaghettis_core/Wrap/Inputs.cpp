@@ -21,8 +21,10 @@ std::function<void()> Inputs::openFile (juce::File file)
     return [f = std::move (file)]() { core::inputs_patchOpen (f); };
 }
 
-std::function<void()> Inputs::rescan (bool logged)
+std::function<void()> Inputs::rescan (Logged type)
 {
+    const int logged = (type == Logged::base) ? 0 : ((type == Logged::full) ? 1 : -1);
+    
     return [logged]() { core::inputs_rescan (logged); };
 }
 

@@ -104,7 +104,7 @@ public:
     void setSearchPaths (const juce::StringArray&);
 
 private:
-    void updateSearchPaths (const juce::StringArray&);
+    void updateSearchPaths (const juce::StringArray&, Inputs::Logged type);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
