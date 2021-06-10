@@ -115,7 +115,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarText,                                         juce::Colours::white);
     lf->setColour (menubarSeparator,                                    juce::Colours::black);
     lf->setColour (toolbarBackground,                                   backgroundDark);
-    lf->setColour (toolbarBackgroundDown,                               backgroundAlternate);
+    lf->setColour (toolbarBackgroundDown,                               background);
     lf->setColour (toolbarIconOn,                                       juce::Colours::white);
     lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
     lf->setColour (searchpathsBackground,                               background);
