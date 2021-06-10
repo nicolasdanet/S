@@ -40,14 +40,16 @@ public:
 private:
     juce::ToolbarButton* createButton (int itemId, const juce::String& text)
     {
+        const IconsShared& icons = IconsShared::getInstance();
+        
         auto t = std::make_unique<juce::ToolbarButton> (itemId,
                     text,
-                    icons_->getIconOff (itemId),
-                    icons_->getIconOn (itemId));
+                    icons.getIconOff (itemId),
+                    icons.getIconOn (itemId));
         
         if (t) {
         //
-        bool isToggle = icons_->isToggle (itemId);
+        bool isToggle = icons.isToggle (itemId);
         
         if (isToggle) { t->setClickingTogglesState (true); }
         else {
@@ -61,9 +63,6 @@ private:
         return t.release();
     }
 
-private:
-    juce::SharedResourcePointer<IconsShared> icons_;
-    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (IconsFactory)
 };
