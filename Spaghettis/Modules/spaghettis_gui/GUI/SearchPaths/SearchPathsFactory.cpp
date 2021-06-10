@@ -20,6 +20,8 @@ void SearchPathsFactory::setToolbarButton (int itemId, bool isToggle, juce::Tool
     //
     case Icons::add         : button->onClick = [this]() { owner_->addPaths(); };                       break;
     case Icons::remove      : button->onClick = [this]() { owner_->removeSelectedPaths(); };            break;
+    case Icons::sortDown    : button->onClick = [this]() { owner_->sortPaths(); };                      break;
+    case Icons::sortUp      : button->onClick = [this]() { owner_->sortPaths (true); };                 break;
     case Icons::synchronize : button->onClick = []() { Spaghettis()->handle (Inputs::rescan (true)); }; break;
     default                 : break;
     //
