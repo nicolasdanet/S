@@ -215,9 +215,7 @@ private:
     
     void updateRows()
     {
-        listBox_.updateContent();
-        listBox_.deselectAllRows();
-        listBox_.repaint();
+        ApplicationComponent::updateRows (listBox_);
     }
     
 private:

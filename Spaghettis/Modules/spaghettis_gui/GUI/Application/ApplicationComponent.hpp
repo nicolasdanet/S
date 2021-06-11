@@ -128,6 +128,8 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Handy reusable free functions for list box components. */
+
 protected:
     static void showScrollBarIfRequired (juce::ListBox& listBox, int contentSize)
     {
@@ -141,6 +143,13 @@ protected:
         listBox.getViewport()->setScrollBarsShown (show, show, true, true);
         //
         }
+    }
+    
+    static void updateRows (juce::ListBox& listBox)
+    {
+        listBox.updateContent();
+        listBox.deselectAllRows();
+        listBox.repaint();
     }
     
     static int getNumberOfRowsToDraw (int contentSize)
