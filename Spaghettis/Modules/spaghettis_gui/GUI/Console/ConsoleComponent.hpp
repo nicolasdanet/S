@@ -15,7 +15,8 @@ namespace spaghettis {
 class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the first. */
                             public    ApplicationComponent,
                             public    juce::ListBoxModel,
-                            public    spaghettis::Logger {
+                            public    spaghettis::Logger,
+                            private   juce::AsyncUpdater {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -62,27 +63,26 @@ public:
     {
         if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::consoleBackgroundAlternate)); }
         else {
-            // g.fillAll (Spaghettis()->getColour (Colours::consoleBackground));
+            /* g.fillAll (Spaghettis()->getColour (Colours::consoleBackground)); */
         }
         
-        /*
         if (juce::isPositiveAndBelow (row, messages_.size())) {
         //
         const juce::Rectangle<int> r (width, height);
+        const MessagesElement& e = messages_[row];
         
-        g.setColour (isSelected ? Spaghettis()->getColour (Colours::searchpathsTextHighlighted)
-                                : Spaghettis()->getColour (Colours::searchpathsText));
+        g.setColour (isSelected ? Spaghettis()->getColour (Colours::consoleTextHighlighted)
+                                : colourWithType (std::get<1> (e)));
                                     
         g.setFont (Spaghettis()->getLookAndFeel().getFontConsole());
-        g.drawText (paths_[row], r.reduced (4, 0), juce::Justification::centredLeft, true);
+        g.drawText (std::get<0> (e), r.reduced (4, 0), juce::Justification::centredLeft, true);
         //
         }
-        */
     }
     
     void listBoxItemClicked (int row, const juce::MouseEvent &) override
     {
-        if (juce::isPositiveAndBelow (row, messages_.size()) == false) { update(); }
+        if (juce::isPositiveAndBelow (row, messages_.size()) == false) { triggerAsyncUpdate(); }
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -115,14 +115,19 @@ public:
 // MARK: -
 
 public:
+    void handleAsyncUpdate() override
+    {
+        update();
+    }
+    
     void logMessage (const juce::String& m, Type type) override
     {
-        messages_.emplace_back (m, type);
+        messages_.emplace_back (m, type); triggerAsyncUpdate();
     }
     
     void clear()
     {
-        messages_.clear();
+        messages_.clear(); triggerAsyncUpdate();
     }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -100,7 +100,7 @@ public:
     {
         if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::searchpathsBackgroundAlternate)); }
         else {
-            // g.fillAll (Spaghettis()->getColour (Colours::searchpathsBackground));
+            /* g.fillAll (Spaghettis()->getColour (Colours::searchpathsBackground)); */
         }
 
         if (juce::isPositiveAndBelow (row, paths_.size())) {
