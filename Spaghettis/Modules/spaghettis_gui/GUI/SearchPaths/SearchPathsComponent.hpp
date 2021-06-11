@@ -26,18 +26,10 @@ public:
                                 ApplicationComponent (getIconsFactory()),
                                 paths_ (Spaghettis()->getSearchPaths())
     {
-        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getFontConsole().getHeight() * 1.5);
-        
         listBox_.setModel (this);
-        listBox_.setMultipleSelectionEnabled (true);
-        listBox_.setClickingTogglesRowSelection (true);
-        listBox_.setRowHeight (h);
-        listBox_.getViewport()->setScrollBarsShown (false, false, true, true);
-        
+        ApplicationComponent::initializeListBox (listBox_);
         updateScrollBar();
-        
         addAndMakeVisible (listBox_);
-        
         setSize (400, 500);
     }
     
@@ -100,7 +92,7 @@ public:
 public:
     int getNumRows() override
     {
-        return ApplicationComponent::getNumberOfRowsToDraw (paths_.size());
+        return ApplicationComponent::getNumberOfListBoxRowsToDraw (paths_.size());
     }
 
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
@@ -210,12 +202,12 @@ private:
 private:
     void updateScrollBar()
     {
-        ApplicationComponent::showScrollBarIfRequired (listBox_, paths_.size());
+        ApplicationComponent::showListBoxScrollBarIfRequired (listBox_, paths_.size());
     }
     
     void updateRows()
     {
-        ApplicationComponent::updateRows (listBox_);
+        ApplicationComponent::updateListBoxRows (listBox_);
     }
     
 private:
