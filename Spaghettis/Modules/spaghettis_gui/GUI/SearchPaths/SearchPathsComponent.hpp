@@ -30,6 +30,7 @@ public:
         ApplicationComponent::listBoxInitialize (listBox_);
         update (false);
         addAndMakeVisible (listBox_);
+        
         setSize (400, 500);
     }
     
@@ -202,7 +203,9 @@ private:
 private:
     void update (bool updateRows = true)
     {
-        if (updateRows) { ApplicationComponent::listBoxUpdateRows (listBox_); }
+        if (updateRows) {
+            ApplicationComponent::listBoxUpdateRows (listBox_);
+        }
         
         ApplicationComponent::listBoxShowScrollBarIfRequired (listBox_, paths_.size());
     }
