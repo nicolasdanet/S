@@ -30,8 +30,8 @@ enum ColourIds : int {
     consoleTextSystem               = SPAGHETTIS_COLOUR (2),
     consoleTextWarning              = SPAGHETTIS_COLOUR (3),
     consoleTextError                = SPAGHETTIS_COLOUR (4),
-    consoleBackground               = SPAGHETTIS_COLOUR (5),
-    consoleHighlight                = SPAGHETTIS_COLOUR (6),
+    consoleTextHighlighted          = SPAGHETTIS_COLOUR (5),
+    consoleBackground               = SPAGHETTIS_COLOUR (6),
     menubarBackground               = SPAGHETTIS_COLOUR (7),
     menubarBackgroundPopup          = SPAGHETTIS_COLOUR (8),
     menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (9),
@@ -87,8 +87,8 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (consoleTextSystem)                  == false);
     jassert (lf->isColourSpecified (consoleTextWarning)                 == false);
     jassert (lf->isColourSpecified (consoleTextError)                   == false);
+    jassert (lf->isColourSpecified (consoleTextHighlighted)             == false);
     jassert (lf->isColourSpecified (consoleBackground)                  == false);
-    jassert (lf->isColourSpecified (consoleHighlight)                   == false);
     jassert (lf->isColourSpecified (menubarBackground)                  == false);
     jassert (lf->isColourSpecified (menubarBackgroundPopup)             == false);
     jassert (lf->isColourSpecified (menubarBackgroundHighlighted)       == false);
@@ -107,8 +107,8 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (consoleTextSystem,                                   base1);
     lf->setColour (consoleTextWarning,                                  yellow);
     lf->setColour (consoleTextError,                                    orange);
+    lf->setColour (consoleTextHighlighted,                              green);
     lf->setColour (consoleBackground,                                   background);
-    lf->setColour (consoleHighlight,                                    juce::Colours::transparentBlack);
     lf->setColour (menubarBackground,                                   backgroundDark);
     lf->setColour (menubarBackgroundPopup,                              backgroundDark);
     lf->setColour (menubarBackgroundHighlighted,                        orange);
@@ -125,9 +125,6 @@ static void initialize (juce::LookAndFeel* lf)
 
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
     
-    lf->setColour (juce::TextEditor::highlightedTextColourId,           green);
-    lf->setColour (juce::TextEditor::outlineColourId,                   juce::Colours::transparentBlack);
-    lf->setColour (juce::TextEditor::shadowColourId,                    juce::Colours::transparentBlack);
     lf->setColour (juce::ScrollBar::thumbColourId,                      juce::Colours::grey);
     lf->setColour (juce::ListBox::backgroundColourId,                   background);
     lf->setColour (juce::ListBox::outlineColourId,                      juce::Colours::transparentBlack);
