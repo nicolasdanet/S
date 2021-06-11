@@ -122,7 +122,7 @@ public:
     
     void logMessage (const juce::String& m, Type type) override
     {
-        messages_.emplace_back (m, type); triggerAsyncUpdate();
+        removeMessagesIfRequired(); messages_.emplace_back (m, type); triggerAsyncUpdate();
     }
     
     void clear()
@@ -142,6 +142,17 @@ private:
         }
         
         ApplicationComponent::listBoxShowScrollBarIfRequired (listBox_, static_cast<int> (messages_.size()));
+    }
+    
+    void removeMessagesIfRequired()
+    {
+        if (messages_.size() >= maximum_) {
+        //
+        MessagesContainer scoped (messages_.begin() + removed_, messages_.end());
+        scoped.reserve (maximum_);
+        scoped.swap (messages_);
+        //
+        }
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -166,6 +177,7 @@ private:
 
 private:
     static const int maximum_ = 2048;
+    static const int removed_ = 1024;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)
