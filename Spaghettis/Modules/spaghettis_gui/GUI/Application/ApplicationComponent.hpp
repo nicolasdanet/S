@@ -131,7 +131,7 @@ public:
 /* Handy reusable free functions for list box components. */
 
 protected:
-    static void initializeListBox (juce::ListBox& listBox)
+    static void listBoxInitialize (juce::ListBox& listBox)
     {
         const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getFontConsole().getHeight() * 1.5);
         
@@ -141,7 +141,7 @@ protected:
         listBox.getViewport()->setScrollBarsShown (false, false, true, true);
     }
     
-    static void showListBoxScrollBarIfRequired (juce::ListBox& listBox, int contentSize)
+    static void listBoxShowScrollBarIfRequired (juce::ListBox& listBox, int contentSize)
     {
         int i = listBox.getRowContainingPosition (0, 0);
         int j = listBox.getRowContainingPosition (0, listBox.getBottom());
@@ -155,14 +155,14 @@ protected:
         }
     }
     
-    static void updateListBoxRows (juce::ListBox& listBox)
+    static void listBoxUpdateRows (juce::ListBox& listBox)
     {
         listBox.updateContent();
         listBox.deselectAllRows();
         listBox.repaint();
     }
     
-    static int getNumberOfListBoxRowsToDraw (int contentSize)
+    static int lisBoxGetNumberOfRowsToDraw (int contentSize)
     {
         return juce::jmax (32, contentSize);
     }

@@ -27,7 +27,7 @@ public:
                                 paths_ (Spaghettis()->getSearchPaths())
     {
         listBox_.setModel (this);
-        ApplicationComponent::initializeListBox (listBox_);
+        ApplicationComponent::listBoxInitialize (listBox_);
         updateScrollBar();
         addAndMakeVisible (listBox_);
         setSize (400, 500);
@@ -92,7 +92,7 @@ public:
 public:
     int getNumRows() override
     {
-        return ApplicationComponent::getNumberOfListBoxRowsToDraw (paths_.size());
+        return ApplicationComponent::lisBoxGetNumberOfRowsToDraw (paths_.size());
     }
 
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
@@ -202,12 +202,12 @@ private:
 private:
     void updateScrollBar()
     {
-        ApplicationComponent::showListBoxScrollBarIfRequired (listBox_, paths_.size());
+        ApplicationComponent::listBoxShowScrollBarIfRequired (listBox_, paths_.size());
     }
     
     void updateRows()
     {
-        ApplicationComponent::updateListBoxRows (listBox_);
+        ApplicationComponent::listBoxUpdateRows (listBox_);
     }
     
 private:
