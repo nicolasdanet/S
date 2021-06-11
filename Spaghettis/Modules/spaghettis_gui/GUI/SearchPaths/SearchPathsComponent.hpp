@@ -28,7 +28,7 @@ public:
     {
         listBox_.setModel (this);
         ApplicationComponent::listBoxInitialize (listBox_);
-        updateScrollBar();
+        update (false);
         addAndMakeVisible (listBox_);
         setSize (400, 500);
     }
@@ -56,7 +56,7 @@ public:
         //
         }
         
-        if (done) { updateRows(); updateScrollBar(); setSearchPaths(); }
+        if (done) { update(); setSearchPaths(); }
     }
     
     void addPaths()
@@ -80,7 +80,7 @@ public:
         //
         }
         
-        updateRows(); setSearchPaths();
+        update(); setSearchPaths();
         //
         }
     }
@@ -114,7 +114,7 @@ public:
     
     void listBoxItemClicked (int row, const juce::MouseEvent &) override
     {
-        if (juce::isPositiveAndBelow (row, paths_.size()) == false) { updateRows(); }
+        if (juce::isPositiveAndBelow (row, paths_.size()) == false) { update(); }
     }
     
     void deleteKeyPressed (int) override
@@ -134,7 +134,7 @@ public:
     
     void resized() override
     {
-        listBox_.setBounds (getBoundsRemaining()); updateScrollBar();
+        listBox_.setBounds (getBoundsRemaining()); update (false);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -164,7 +164,7 @@ private:
     
     void appendFullPathName (const juce::String& filepath)
     {
-        paths_.addIfNotAlreadyThere (filepath); updateRows(); updateScrollBar(); setSearchPaths();
+        paths_.addIfNotAlreadyThere (filepath); update(); setSearchPaths();
     }
     
     void appendFile (const juce::File& file)
@@ -200,14 +200,11 @@ private:
 // MARK: -
 
 private:
-    void updateScrollBar()
+    void update (bool updateRows = true)
     {
+        if (updateRows) { ApplicationComponent::listBoxUpdateRows (listBox_); }
+        
         ApplicationComponent::listBoxShowScrollBarIfRequired (listBox_, paths_.size());
-    }
-    
-    void updateRows()
-    {
-        ApplicationComponent::listBoxUpdateRows (listBox_);
     }
     
 private:
