@@ -25,26 +25,26 @@ struct Colours {
 // MARK: -
 
 enum ColourIds : int {
-    windowBackground                = SPAGHETTIS_COLOUR (0),
-    consoleTextDefault              = SPAGHETTIS_COLOUR (1),
-    consoleTextSystem               = SPAGHETTIS_COLOUR (2),
-    consoleTextWarning              = SPAGHETTIS_COLOUR (3),
-    consoleTextError                = SPAGHETTIS_COLOUR (4),
-    consoleTextHighlighted          = SPAGHETTIS_COLOUR (5),
-    consoleBackground               = SPAGHETTIS_COLOUR (6),
-    menubarBackground               = SPAGHETTIS_COLOUR (7),
-    menubarBackgroundPopup          = SPAGHETTIS_COLOUR (8),
-    menubarBackgroundHighlighted    = SPAGHETTIS_COLOUR (9),
-    menubarText                     = SPAGHETTIS_COLOUR (10),
-    menubarSeparator                = SPAGHETTIS_COLOUR (11),
-    toolbarBackground               = SPAGHETTIS_COLOUR (12),
-    toolbarBackgroundDown           = SPAGHETTIS_COLOUR (13),
-    toolbarIconOn                   = SPAGHETTIS_COLOUR (14),
-    toolbarIconOff                  = SPAGHETTIS_COLOUR (15),
-    searchpathsBackground           = SPAGHETTIS_COLOUR (16),
-    searchpathsBackgroundAlternate  = SPAGHETTIS_COLOUR (17),
-    searchpathsText                 = SPAGHETTIS_COLOUR (18),
-    searchpathsTextHighlighted      = SPAGHETTIS_COLOUR (19)
+    windowBackground        = SPAGHETTIS_COLOUR (0),
+    consoleTextDefault,
+    consoleTextSystem,
+    consoleTextWarning,
+    consoleTextError,
+    consoleTextHighlighted,
+    consoleBackground,
+    menubarBackground,
+    menubarBackgroundPopup,
+    menubarBackgroundHighlighted,
+    menubarText,
+    menubarSeparator,
+    toolbarBackground,
+    toolbarBackgroundDown,
+    toolbarIconOn,
+    toolbarIconOff,
+    searchpathsBackground,
+    searchpathsBackgroundAlternate,
+    searchpathsText,
+    searchpathsTextHighlighted
 };
 
 // -----------------------------------------------------------------------------------------------------------
