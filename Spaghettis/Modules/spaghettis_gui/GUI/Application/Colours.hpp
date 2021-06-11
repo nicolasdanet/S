@@ -32,6 +32,7 @@ enum ColourIds : int {
     consoleTextError,
     consoleTextHighlighted,
     consoleBackground,
+    consoleBackgroundAlternate,
     menubarBackground,
     menubarBackgroundPopup,
     menubarBackgroundHighlighted,
@@ -89,6 +90,7 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (consoleTextError)                   == false);
     jassert (lf->isColourSpecified (consoleTextHighlighted)             == false);
     jassert (lf->isColourSpecified (consoleBackground)                  == false);
+    jassert (lf->isColourSpecified (consoleBackgroundAlternate)         == false);
     jassert (lf->isColourSpecified (menubarBackground)                  == false);
     jassert (lf->isColourSpecified (menubarBackgroundPopup)             == false);
     jassert (lf->isColourSpecified (menubarBackgroundHighlighted)       == false);
@@ -109,6 +111,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (consoleTextError,                                    orange);
     lf->setColour (consoleTextHighlighted,                              green);
     lf->setColour (consoleBackground,                                   background);
+    lf->setColour (consoleBackgroundAlternate,                          backgroundAlternate);
     lf->setColour (menubarBackground,                                   backgroundDark);
     lf->setColour (menubarBackgroundPopup,                              backgroundDark);
     lf->setColour (menubarBackgroundHighlighted,                        orange);

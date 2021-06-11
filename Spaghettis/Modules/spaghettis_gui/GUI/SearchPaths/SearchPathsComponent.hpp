@@ -99,6 +99,9 @@ public:
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
     {
         if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::searchpathsBackgroundAlternate)); }
+        else {
+            // g.fillAll (Spaghettis()->getColour (Colours::searchpathsBackground));
+        }
 
         if (juce::isPositiveAndBelow (row, paths_.size())) {
         //
