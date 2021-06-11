@@ -100,7 +100,7 @@ public:
 public:
     int getNumRows() override
     {
-        return juce::jmax (rows_, paths_.size());
+        return ApplicationComponent::getNumberOfRowsToDraw (paths_.size());
     }
 
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
@@ -210,7 +210,7 @@ private:
 private:
     void updateScrollBar()
     {
-        ApplicationComponent::showScrollBarIfRequired (listBox_, paths_);
+        ApplicationComponent::showScrollBarIfRequired (listBox_, paths_.size());
     }
     
     void updateRows()
@@ -227,9 +227,6 @@ private:
 private:
     std::unique_ptr<juce::FileChooser> fileChooser_;
 
-private:
-    static int const rows_ = 32;
-    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SearchPathsComponent)
 };

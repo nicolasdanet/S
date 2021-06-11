@@ -129,18 +129,23 @@ public:
 // MARK: -
 
 protected:
-    static void showScrollBarIfRequired (juce::ListBox& listBox, const juce::StringArray& content)
+    static void showScrollBarIfRequired (juce::ListBox& listBox, int contentSize)
     {
         int i = listBox.getRowContainingPosition (0, 0);
         int j = listBox.getRowContainingPosition (0, listBox.getBottom());
         
         if (i >= 0) {
         //
-        const bool show = (j - i) < content.size();
+        const bool show = (j - i) < contentSize;
         
         listBox.getViewport()->setScrollBarsShown (show, show, true, true);
         //
         }
+    }
+    
+    static int getNumberOfRowsToDraw (int contentSize)
+    {
+        return juce::jmax (32, contentSize);
     }
     
 private:
