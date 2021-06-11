@@ -27,7 +27,7 @@ public:
                                 paths_ (Spaghettis()->getSearchPaths())
     {
         listBox_.setModel (this);
-        ApplicationComponent::listBoxInitialize (listBox_);
+        ApplicationComponent::listBoxInitialize (listBox_, true);
         update (false);
         addAndMakeVisible (listBox_);
         

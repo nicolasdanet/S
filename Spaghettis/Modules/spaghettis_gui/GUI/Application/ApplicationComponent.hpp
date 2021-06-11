@@ -131,11 +131,11 @@ public:
 /* Handy reusable free functions for list box components. */
 
 protected:
-    static void listBoxInitialize (juce::ListBox& listBox)
+    static void listBoxInitialize (juce::ListBox& listBox, bool multiple)
     {
         const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getFontConsole().getHeight() * 1.5);
         
-        listBox.setMultipleSelectionEnabled (true);
+        listBox.setMultipleSelectionEnabled (multiple);
         listBox.setClickingTogglesRowSelection (true);
         listBox.setRowHeight (h);
         listBox.getViewport()->setScrollBarsShown (false, false, true, true);

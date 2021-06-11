@@ -35,7 +35,7 @@ public:
         messages_.reserve (maximum_);
         
         listBox_.setModel (this);
-        ApplicationComponent::listBoxInitialize (listBox_);
+        ApplicationComponent::listBoxInitialize (listBox_, false);
         update (false);
         addAndMakeVisible (listBox_);
  
