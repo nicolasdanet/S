@@ -63,13 +63,17 @@ static void post_toUpperCase (int k, char *s, Logger::Type type)
     }
 }
 
-static void post_console (t_object *dummy, int k, char *s, Logger::Type type)
+static void post_console (t_object *o, int k, char *s, Logger::Type type)
 {
     jassert (main_wrapper != nullptr);
     
-    if (k < 0 || k >= PD_STRING) { warning_tooManyCharacters (dummy, sym_console); }
+    if (k < 0 || k >= PD_STRING) { warning_tooManyCharacters (o, sym_console); }
     else {
-        post_toUpperCase (k, s, type); main_wrapper->post (juce::String (s), type);
+    //
+    post_toUpperCase (k, s, type);
+    
+    main_wrapper->post (juce::String (s), type, o ? object_getUnique (o) : Unique());
+    //
     }
 }
 

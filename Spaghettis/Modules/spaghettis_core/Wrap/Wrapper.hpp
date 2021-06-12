@@ -109,9 +109,9 @@ private:
 // MARK: -
 
 public:
-    void post (const juce::String& m, Logger::Type type = Logger::Type::normal)
+    void post (const juce::String& m, Logger::Type type, Unique u)
     {
-        post_.add (m, type); triggerAsyncUpdate();
+        post_.add (m, type, u); triggerAsyncUpdate();
     }
     
 private:

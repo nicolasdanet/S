@@ -5,41 +5,20 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Wrapper::run()
-{
-    bool error = false;
-    
-    try {
-        error = core::main_threadLoop (this);
-    }
-    catch (...) {
-        error = true;
-    }
+struct Unique {
 
-    if (error) {
-    //
-    juce::String s = juce::String (PD_NAME_LOWERCASE) + juce::String (": core error");
-    
-    post (NEEDS_TRANS (s), Logger::Type::error, Unique());
-    //
-    }
-}
+    Unique (uint64_t u = 0) { u_ = u; }
 
-void Wrapper::setCommandLine (const juce::StringArray& commandLine)
-{
-    commandLine_ = commandLine;
-    
-    commandLine_.removeString ("-NSDocumentRevisionsDebugMode");
-    commandLine_.removeString ("YES");
-    commandLine_.insert (0, PD_NAME);
-}
-    
+    uint64_t u_;
+};
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

@@ -17,7 +17,7 @@ class Post {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using MessagesElement   = std::pair<juce::String, Logger::Type>;
+using MessagesElement   = std::tuple<juce::String, Logger::Type, Unique>;
 using MessagesContainer = std::vector<MessagesElement>;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -32,9 +32,9 @@ public:
 // MARK: -
 
 public:
-    void add (const juce::String& m, Logger::Type type)
+    void add (const juce::String& m, Logger::Type type, Unique u)
     {
-        const juce::ScopedLock l (lock_); messages_.emplace_back (m, type);
+        const juce::ScopedLock l (lock_); messages_.emplace_back (m, type, u);
     }
     
     void log (Logger *logger)
