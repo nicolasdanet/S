@@ -119,9 +119,9 @@ public:
         update();
     }
     
-    void logMessage (const juce::String& m, Type type, Unique u) override
+    void logMessage (const Message& m) override
     {
-        removeMessagesIfRequired(); messages_.emplace_back (m, type, u); triggerAsyncUpdate();
+        removeMessagesIfRequired(); messages_.push_back (m); triggerAsyncUpdate();
     }
     
     void clear()
