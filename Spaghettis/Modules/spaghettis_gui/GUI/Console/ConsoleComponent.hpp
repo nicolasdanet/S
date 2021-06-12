@@ -26,7 +26,7 @@ public:
     ConsoleComponent() :    ConsoleFactoryHelper (this),
                             ApplicationComponent (getIconsFactory())
     {
-        messages_.reserve (maximum_);
+        messages_.reserve (sizeReserved_);
         
         listBox_.setModel (this);
         ApplicationComponent::listBoxInitialize (listBox_, false);
@@ -142,10 +142,10 @@ private:
     
     void removeMessagesIfRequired()
     {
-        if (messages_.size() >= maximum_) {
+        if (messages_.size() >= sizeRequired_) {
         //
-        Logger::MessagesPacket scoped (messages_.begin() + removed_, messages_.end());
-        scoped.reserve (maximum_);
+        Logger::MessagesPacket scoped (messages_.begin() + sizeRemoved_, messages_.end());
+        scoped.reserve (sizeReserved_);
         scoped.swap (messages_);
         //
         }
@@ -172,8 +172,9 @@ private:
     Logger::MessagesPacket messages_;
 
 private:
-    static const int maximum_ = 2048;
-    static const int removed_ = 1024;
+    static const int sizeReserved_  = 2048;
+    static const int sizeRequired_  = 1024;
+    static const int sizeRemoved_   = 512;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)
