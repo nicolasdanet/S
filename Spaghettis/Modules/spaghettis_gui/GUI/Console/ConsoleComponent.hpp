@@ -20,11 +20,6 @@ class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the f
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-using MessagesContainer = std::vector<Logger::Message>;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
@@ -68,7 +63,7 @@ public:
         if (juce::isPositiveAndBelow (row, messages_.size())) {
         //
         const juce::Rectangle<int> r (width, height);
-        const Logger::Message& e = messages_[row];
+        const Logger::MessagesElement& e = messages_[row];
         
         g.setColour (isSelected ? Spaghettis()->getColour (Colours::consoleTextHighlighted)
                                 : colourWithType (std::get<1> (e)));
@@ -119,9 +114,11 @@ public:
         update();
     }
     
-    void logMessage (const Message& m) override
+    void logMessage (const MessagesPacket& m) override
     {
-        removeMessagesIfRequired(); messages_.push_back (m); triggerAsyncUpdate();
+        removeMessagesIfRequired(); messages_.insert (messages_.end(), m.begin(), m.end());
+        
+        triggerAsyncUpdate();
     }
     
     void clear()
@@ -147,7 +144,7 @@ private:
     {
         if (messages_.size() >= maximum_) {
         //
-        MessagesContainer scoped (messages_.begin() + removed_, messages_.end());
+        Logger::MessagesPacket scoped (messages_.begin() + removed_, messages_.end());
         scoped.reserve (maximum_);
         scoped.swap (messages_);
         //
@@ -172,7 +169,7 @@ private:
     
 private:
     juce::ListBox listBox_;
-    MessagesContainer messages_;
+    Logger::MessagesPacket messages_;
 
 private:
     static const int maximum_ = 2048;

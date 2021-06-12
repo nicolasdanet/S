@@ -17,11 +17,6 @@ class Post {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using MessagesContainer = std::vector<Logger::Message>;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 public:
     Post() = default;
     ~Post() = default;
@@ -38,19 +33,17 @@ public:
     
     void log (Logger *logger)
     {
-        MessagesContainer scoped;
+        Logger::MessagesPacket scoped;
         
         {
             const juce::ScopedLock l (lock_); scoped.swap (messages_);
         }
         
-        if (logger) {
-            for (const auto& e : scoped) { logger->logMessage (e); }
-        }
+        logger->logMessage (scoped);
     }
     
 private:
-    MessagesContainer messages_;
+    Logger::MessagesPacket messages_;
     juce::CriticalSection lock_;
 
 private:
