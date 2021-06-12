@@ -46,7 +46,11 @@ public:
         }
         
         if (logger) {
-            for (const auto& e : scoped) { logger->logMessage (std::get<0> (e), std::get<1> (e)); }
+        //
+        for (const auto& e : scoped) {
+            logger->logMessage (std::get<0> (e), std::get<1> (e), std::get<2> (e));
+        }
+        //
         }
     }
     

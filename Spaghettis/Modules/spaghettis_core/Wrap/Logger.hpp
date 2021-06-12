@@ -39,7 +39,7 @@ protected:
     Logger& operator = (Logger&&) = default;
 
 public:
-    virtual void logMessage (const juce::String& m, Type type) = 0;
+    virtual void logMessage (const juce::String& m, Type type, Unique u) = 0;
 };
 
 // -----------------------------------------------------------------------------------------------------------

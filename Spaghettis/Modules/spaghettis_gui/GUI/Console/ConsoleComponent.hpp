@@ -21,7 +21,7 @@ class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the f
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using MessagesElement   = std::pair<juce::String, Logger::Type>;
+using MessagesElement   = std::tuple<juce::String, Logger::Type, Unique>;
 using MessagesContainer = std::vector<MessagesElement>;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ public:
         
         g.setColour (isSelected ? Spaghettis()->getColour (Colours::consoleTextHighlighted)
                                 : colourWithType (std::get<1> (e)));
-                                    
+        
         g.setFont (Spaghettis()->getLookAndFeel().getFontConsole());
         g.drawText (std::get<0> (e), r.reduced (4, 0), juce::Justification::centredLeft, true);
         //
@@ -120,9 +120,9 @@ public:
         update();
     }
     
-    void logMessage (const juce::String& m, Type type) override
+    void logMessage (const juce::String& m, Type type, Unique u) override
     {
-        removeMessagesIfRequired(); messages_.emplace_back (m, type); triggerAsyncUpdate();
+        removeMessagesIfRequired(); messages_.emplace_back (m, type, u); triggerAsyncUpdate();
     }
     
     void clear()
