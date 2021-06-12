@@ -20,14 +20,17 @@ class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the f
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+using MessagesContainer = std::deque<Logger::MessagesElement>;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
     ConsoleComponent() :    ConsoleFactoryHelper (this),
                             ApplicationComponent (getIconsFactory())
     {
-        messages_.reserve (sizeReserved_);
-        
         listBox_.setModel (this);
         ApplicationComponent::listBoxInitialize (listBox_, false);
         update (false);
@@ -142,11 +145,15 @@ private:
     
     void removeMessagesIfRequired()
     {
-        if (messages_.size() >= sizeRequired_) {
+        int size = static_cast<int> (messages_.size());
+        
+        if (size >= maximum_) {
         //
-        Logger::MessagesPacket scoped (messages_.begin() + sizeRemoved_, messages_.end());
-        scoped.reserve (sizeReserved_);
-        scoped.swap (messages_);
+        const int n = juce::nextPowerOfTwo (size - maximum_ + removed_);
+        
+        jassert (n < size);
+        
+        messages_.erase (messages_.begin(), messages_.begin() + n);
         //
         }
     }
@@ -169,12 +176,11 @@ private:
     
 private:
     juce::ListBox listBox_;
-    Logger::MessagesPacket messages_;
+    MessagesContainer messages_;
 
 private:
-    static const int sizeReserved_  = 2048;
-    static const int sizeRequired_  = 1024;
-    static const int sizeRemoved_   = 512;
+    static const int maximum_ = 2048;
+    static const int removed_ = 128;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)
