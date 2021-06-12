@@ -21,8 +21,7 @@ class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the f
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using MessagesElement   = std::tuple<juce::String, Logger::Type, Unique>;
-using MessagesContainer = std::vector<MessagesElement>;
+using MessagesContainer = std::vector<Logger::Message>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -69,7 +68,7 @@ public:
         if (juce::isPositiveAndBelow (row, messages_.size())) {
         //
         const juce::Rectangle<int> r (width, height);
-        const MessagesElement& e = messages_[row];
+        const Logger::Message& e = messages_[row];
         
         g.setColour (isSelected ? Spaghettis()->getColour (Colours::consoleTextHighlighted)
                                 : colourWithType (std::get<1> (e)));
