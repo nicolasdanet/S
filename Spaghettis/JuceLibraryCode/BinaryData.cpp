@@ -47,25 +47,32 @@ static const unsigned char temp_binary_data_5[] =
 
 const char* sync_svg = (const char*) temp_binary_data_5;
 
-//================== text_rotate_up.svg ==================
+//================== system_update_alt.svg ==================
 static const unsigned char temp_binary_data_6[] =
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0zm0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M12 16l4-4h-3V3h-2v9H8l4 4zm9-13h-6v1.99h6v14.03H3V4.99h6V3H3c-1.1 0-2"
+" .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 13l4-4h-3V3h-2v9H8l4 4zm9-13h-6v1.99h6v14.03H3V4.99h6V3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z\"/></svg>";
+
+const char* system_update_alt_svg = (const char*) temp_binary_data_6;
+
+//================== text_rotate_up.svg ==================
+static const unsigned char temp_binary_data_7[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M18 4l-3 3h2v13h2V7h2l-3-3zm-6.2 11.5v-5l2.2-.9V7.5L3 1"
 "2.25v1.5l11 4.75v-2.1l-2.2-.9zM4.98 13L10 11.13v3.74L4.98 13z\"/></svg>";
 
-const char* text_rotate_up_svg = (const char*) temp_binary_data_6;
+const char* text_rotate_up_svg = (const char*) temp_binary_data_7;
 
 //================== text_rotation_down.svg ==================
-static const unsigned char temp_binary_data_7[] =
+static const unsigned char temp_binary_data_8[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M6 20l3-3H7V4H5v13H3l3 3zm6.2-11.5v5l-2.2.9v2.1l11-4.75"
 "v-1.5L10 5.5v2.1l2.2.9zm6.82 2.5L14 12.87V9.13L19.02 11z\"/></svg>";
 
-const char* text_rotation_down_svg = (const char*) temp_binary_data_7;
+const char* text_rotation_down_svg = (const char*) temp_binary_data_8;
 
 //================== warning_amber.svg ==================
-static const unsigned char temp_binary_data_8[] =
+static const unsigned char temp_binary_data_9[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z\"/></svg>";
 
-const char* warning_amber_svg = (const char*) temp_binary_data_8;
+const char* warning_amber_svg = (const char*) temp_binary_data_9;
 
 
 const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
@@ -84,6 +91,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
         case 0x6ad7eb2c:  numBytes = 386; return place_svg;
         case 0x41800429:  numBytes = 176; return remove_svg;
         case 0x6c4e42c0:  numBytes = 386; return sync_svg;
+        case 0x570fe968:  numBytes = 434; return system_update_alt_svg;
         case 0x5854ae92:  numBytes = 305; return text_rotate_up_svg;
         case 0xc6ecbe56:  numBytes = 300; return text_rotation_down_svg;
         case 0x15528c25:  numBytes = 200; return warning_amber_svg;
@@ -102,6 +110,7 @@ const char* namedResourceList[] =
     "place_svg",
     "remove_svg",
     "sync_svg",
+    "system_update_alt_svg",
     "text_rotate_up_svg",
     "text_rotation_down_svg",
     "warning_amber_svg"
@@ -115,6 +124,7 @@ const char* originalFilenames[] =
     "place.svg",
     "remove.svg",
     "sync.svg",
+    "system_update_alt.svg",
     "text_rotate_up.svg",
     "text_rotation_down.svg",
     "warning_amber.svg"

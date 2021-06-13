@@ -38,6 +38,8 @@ public:
         ids.add (Icons::error);
         ids.add (Icons::message);
         ids.add (Icons::place);
+        ids.add (ToolbarItemFactory::spacerId);
+        ids.add (Icons::autoscroll);
     }
 
     void getDefaultItemSet (juce::Array<int>& ids) override

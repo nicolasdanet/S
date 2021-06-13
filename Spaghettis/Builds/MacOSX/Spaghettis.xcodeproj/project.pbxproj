@@ -49,6 +49,7 @@
 		636759924C4B7A2A44012B75 /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = "~/JUCE/modules/juce_data_structures"; sourceTree = "<absolute>"; };
 		6BABF3016D73C66D88F37770 /* juce_graphics */ /* juce_graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_graphics; path = "~/JUCE/modules/juce_graphics"; sourceTree = "<absolute>"; };
 		721D2F47AAC0470E9F2AA340 /* AudioUnit.framework */ /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		7A5361F3DC6AEDFD1ABF5D15 /* system_update_alt.svg */ /* system_update_alt.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = system_update_alt.svg; path = ../../Resources/Icons/SVG/system_update_alt.svg; sourceTree = SOURCE_ROOT; };
 		872360D0C70C7B5CA52A5B1B /* include_spaghettis_gui.mm */ /* include_spaghettis_gui.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_gui.mm; path = ../../JuceLibraryCode/include_spaghettis_gui.mm; sourceTree = SOURCE_ROOT; };
 		A1056AE48F0DFF9EC3445D0E /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
 		A3A861B41BD91C2AFB7F1175 /* Foundation.framework */ /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,6 +106,7 @@
 				C165063F783EB92398410471,
 				169888A447C1894B871E408F,
 				23E635BF79136575BCB8FACE,
+				7A5361F3DC6AEDFD1ABF5D15,
 				EDBC7364DA4A3F17718C64B9,
 				CE6B14227A3E33E9D11D5748,
 				5DEA2A3A342A4BC9A49A33D6,

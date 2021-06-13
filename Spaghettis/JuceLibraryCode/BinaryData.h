@@ -26,6 +26,9 @@ namespace BinaryData
     extern const char*   sync_svg;
     const int            sync_svgSize = 386;
 
+    extern const char*   system_update_alt_svg;
+    const int            system_update_alt_svgSize = 434;
+
     extern const char*   text_rotate_up_svg;
     const int            text_rotate_up_svgSize = 305;
 
@@ -36,7 +39,7 @@ namespace BinaryData
     const int            warning_amber_svgSize = 200;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 9;
+    const int namedResourceListSize = 10;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];
