@@ -20,13 +20,16 @@ std::unique_ptr<juce::Drawable> Icons::getDrawable (const char* name, juce::Colo
     t->replaceColour (juce::Colours::black, colour);
     return t;
 }
-    
-void Icons::addIconProceed (const char* imageOff, const char* imageOn, bool isToggle)
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void Icons::addIconProceed (const char* imageOff, const char* imageOn, bool isToggle, int extra)
 {
     auto t1 (getDrawable (imageOff, Spaghettis()->getColour (Colours::toolbarIconOff)));
     auto t2 (getDrawable (imageOn,  Spaghettis()->getColour (Colours::toolbarIconOn)));
     
-    drawable_.emplace_back (std::move (t1), std::move (t2), isToggle);
+    drawable_.emplace_back (std::move (t1), std::move (t2), isToggle, extra);
 }
     
 // -----------------------------------------------------------------------------------------------------------

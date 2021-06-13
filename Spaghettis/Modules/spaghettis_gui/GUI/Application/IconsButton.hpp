@@ -23,6 +23,7 @@ public:
                                     Icons::getInstance().getIconOff (itemId),
                                     Icons::getInstance().getIconOn (itemId)),
                                 itemId_ (itemId),
+                                extra_ (Icons::getInstance().getExtra (itemId)),
                                 isToggle_ (Icons::getInstance().isToggle (itemId))
                                 
     {
@@ -40,9 +41,15 @@ public:
 
 bool getToolbarItemSizes (int thickness, bool isVertical, int& size, int& min, int& max) override
 {
-    DBG (thickness);
+    if (!isVertical) {
+    //
+    min  = thickness;
+    size = thickness + extra_;
+    max  = thickness + extra_ + extra_;
+    //
+    } else { return juce::ToolbarButton::getToolbarItemSizes (thickness, isVertical, size, min, max); }
     
-    return juce::ToolbarButton::getToolbarItemSizes (thickness, isVertical, size, min, max);
+    return true;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -61,7 +68,8 @@ public:
     }
     
 private:
-    int itemId_;
+    int  itemId_;
+    int  extra_;
     bool isToggle_;
     
 private:

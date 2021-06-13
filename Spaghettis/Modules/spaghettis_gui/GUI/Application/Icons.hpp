@@ -22,7 +22,8 @@ class Icons {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using DrawableTuple     = std::tuple<std::unique_ptr<juce::Drawable>, std::unique_ptr<juce::Drawable>, bool>;
+using DrawablePointer   = std::unique_ptr<juce::Drawable>;
+using DrawableTuple     = std::tuple<DrawablePointer, DrawablePointer, bool, int>;
 using DrawableContainer = std::vector<DrawableTuple>;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -53,7 +54,7 @@ public:
         addIconAction ("add_svg");
         addIconToggle ("system_update_alt_svg");
         addIconAction ("delete_forever_svg");
-        addIconToggle ("error_outline_svg");
+        addIconToggle ("error_outline_svg", 4);
         addIconToggle ("mail_svg");
         addIconAction ("place_svg");
         addIconAction ("remove_svg");
@@ -88,6 +89,11 @@ public:
         return std::get<2> (drawable_[getIconIndex (itemId)]);
     }
     
+    int getExtra (int itemId) const
+    {
+        return std::get<3> (drawable_[getIconIndex (itemId)]);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -116,23 +122,25 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    std::unique_ptr<juce::Drawable> getDrawable (const char* name, juce::Colour colour);
-    void addIconProceed (const char* imageOff, const char* imageOn, bool isToggle);
+    void addIconAction (const char* image, int extra = 0)
+    {
+        addIconProceed (image, image, false, extra);
+    }
+    
+    void addIconToggle (const char* image, int extra = 0)
+    {
+        addIconProceed (image, image, true,  extra);
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    void addIconAction (const char* image)
-    {
-        addIconProceed (image, image, false);
-    }
+    void addIconProceed (const char*, const char*, bool, int);
     
-    void addIconToggle (const char* image)
-    {
-        addIconProceed (image, image, true);
-    }
-    
+private:
+    static std::unique_ptr<juce::Drawable> getDrawable (const char*, juce::Colour);
+        
 private:
     DrawableContainer drawable_;
 };
