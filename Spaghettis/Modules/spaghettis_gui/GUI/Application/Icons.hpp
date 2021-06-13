@@ -34,7 +34,7 @@ public:
         add             = 1,
         deleteForever,
         error,
-        notification,
+        message,
         place,
         remove,
         synchronize,
@@ -52,7 +52,7 @@ public:
         addIconAction ("add_svg");
         addIconAction ("delete_forever_svg");
         addIconToggle ("warning_amber_svg");
-        addIconToggle ("notifications_svg");
+        addIconToggle ("mail_svg");
         addIconAction ("place_svg");
         addIconAction ("remove_svg");
         addIconAction ("sync_svg");

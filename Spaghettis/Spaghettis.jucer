@@ -12,8 +12,7 @@
         <FILE id="pyAzqh" name="add.svg" compile="0" resource="1" file="Resources/Icons/SVG/add.svg"/>
         <FILE id="CWEOUt" name="delete_forever.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/delete_forever.svg"/>
-        <FILE id="qclnUt" name="notifications.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/notifications.svg"/>
+        <FILE id="v09zib" name="mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/mail.svg"/>
         <FILE id="D9nQfi" name="place.svg" compile="0" resource="1" file="Resources/Icons/SVG/place.svg"/>
         <FILE id="QIGuxT" name="remove.svg" compile="0" resource="1" file="Resources/Icons/SVG/remove.svg"/>
         <FILE id="uexYI2" name="sync.svg" compile="0" resource="1" file="Resources/Icons/SVG/sync.svg"/>

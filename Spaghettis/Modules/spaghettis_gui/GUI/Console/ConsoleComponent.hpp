@@ -180,7 +180,7 @@ private:
 
 private:
     static const int maximum_ = 2048;
-    static const int removed_ = 128;
+    static const int removed_ = 64;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)

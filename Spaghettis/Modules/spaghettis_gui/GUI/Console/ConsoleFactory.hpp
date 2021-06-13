@@ -35,8 +35,8 @@ public:
     {
         ids.add (Icons::deleteForever);
         ids.add (ToolbarItemFactory::spacerId);
-        ids.add (Icons::notification);
         ids.add (Icons::error);
+        ids.add (Icons::message);
         ids.add (Icons::place);
     }
 
