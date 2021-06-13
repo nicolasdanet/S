@@ -14,9 +14,9 @@ namespace spaghettis {
  
 /* Note that at this point the owner component is not fully constructed. */
  
-void SearchPathsFactory::setToolbarButton (int itemId, bool isToggle, juce::ToolbarButton* button)
+void SearchPathsFactory::setToolbarButton (IconsButton* button)
 {
-    switch (itemId) {
+    switch (button->getItemId()) {
     //
     case Icons::add         : button->onClick = [this]() { owner_->addPaths(); };               break;
     case Icons::remove      : button->onClick = [this]() { owner_->removeSelectedPaths(); };    break;

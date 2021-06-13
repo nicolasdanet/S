@@ -14,9 +14,9 @@ namespace spaghettis {
 
 /* Note that at this point the owner component is not fully constructed. */
 
-void ConsoleFactory::setToolbarButton (int itemId, bool isToggle, juce::ToolbarButton* button)
+void ConsoleFactory::setToolbarButton (IconsButton* button)
 {
-    switch (itemId) {
+    switch (button->getItemId()) {
     //
     case Icons::deleteForever   : button->onClick = [this]() { owner_->clear(); }; break;
     default                     : break;

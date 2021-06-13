@@ -28,37 +28,24 @@ public:
 public:
     juce::ToolbarItemComponent* createItem (int itemId) override
     {
-        return createButton (itemId, "");
+        return createButton (itemId);
     }
     
-    virtual void setToolbarButton (int itemId, bool isToogle, juce::ToolbarButton* button) = 0;
+    virtual void setToolbarButton (IconsButton* button) = 0;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    juce::ToolbarButton* createButton (int itemId, const juce::String& text)
+    IconsButton* createButton (int itemId)
     {
-        const Icons& icons = Icons::getInstance();
+        auto t = std::make_unique<IconsButton> (itemId);
         
-        auto t = std::make_unique<juce::ToolbarButton> (itemId,
-                    text,
-                    icons.getIconOff (itemId),
-                    icons.getIconOn (itemId));
-        
-        if (t) {
-        //
-        bool isToggle = icons.isToggle (itemId);
-        
-        if (isToggle) { t->setClickingTogglesState (true); }
+        if (t) { setToolbarButton (t.get()); }
         else {
-            t->setToggleState (true, juce::dontSendNotification);
+            jassertfalse;
         }
-        
-        setToolbarButton (itemId, isToggle, t.get());
-        //
-        } else { jassertfalse; }
         
         return t.release();
     }

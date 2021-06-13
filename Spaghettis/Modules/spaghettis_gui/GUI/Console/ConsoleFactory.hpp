@@ -47,7 +47,7 @@ public:
         getAllToolbarItemIds (ids);
     }
     
-    void setToolbarButton (int itemId, bool isToggle, juce::ToolbarButton* button) override;
+    void setToolbarButton (IconsButton* button) override;
 
 private:
     ConsoleComponent* owner_;

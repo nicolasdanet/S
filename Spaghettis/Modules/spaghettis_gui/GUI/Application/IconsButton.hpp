@@ -11,55 +11,51 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class SearchPathsComponent;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-class SearchPathsFactory : public IconsFactory {
+class IconsButton : public juce::ToolbarButton {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    SearchPathsFactory (SearchPathsComponent* owner) : owner_ (owner)
+    IconsButton (int itemId) :  juce::ToolbarButton (itemId,
+                                    "",
+                                    Icons::getInstance().getIconOff (itemId),
+                                    Icons::getInstance().getIconOn (itemId)),
+                                itemId_ (itemId),
+                                isToggle_ (Icons::getInstance().isToggle (itemId))
+                                
     {
+        if (isToggle_) { setClickingTogglesState (true); }
+        else {
+            setToggleState (true, juce::dontSendNotification);
+        }
     }
     
-    ~SearchPathsFactory() = default;
+    ~IconsButton() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
-    void getAllToolbarItemIds (juce::Array<int>& ids) override
+    int getItemId() const
     {
-        ids.add (Icons::add);
-        ids.add (Icons::remove);
-        ids.add (Icons::synchronize);
-        ids.add (ToolbarItemFactory::spacerId);
-        ids.add (Icons::sortDown);
-        ids.add (Icons::sortUp);
-    }
-
-    void getDefaultItemSet (juce::Array<int>& ids) override
-    {
-        getAllToolbarItemIds (ids);
+        return itemId_;
     }
     
-    void setToolbarButton (IconsButton* button) override;
-
-private:
-    SearchPathsComponent* owner_;
+    bool isToggle() const
+    {
+        return isToggle_;
+    }
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SearchPathsFactory)
+    int itemId_;
+    bool isToggle_;
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (IconsButton)
 };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-using SearchPathsFactoryHelper = IconsFactoryHelper<SearchPathsFactory, SearchPathsComponent>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -65,6 +65,7 @@
 #include "GUI/Application/MenuModel.hpp"
 #include "GUI/Application/SpaghettisInstance.hpp"
 #include "GUI/Application/Spaghettis.hpp"
+#include "GUI/Application/IconsButton.hpp"
 #include "GUI/Application/IconsFactory.hpp"
 #include "GUI/Application/IconsFactoryHelper.hpp"
 #include "GUI/Application/ApplicationComponent.hpp"
