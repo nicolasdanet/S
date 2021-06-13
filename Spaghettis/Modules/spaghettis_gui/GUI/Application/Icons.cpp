@@ -29,6 +29,8 @@ void Icons::addIconProceed (const char* imageOff, const char* imageOn, bool isTo
     auto t1 (getDrawable (imageOff, Spaghettis()->getColour (Colours::toolbarIconOff)));
     auto t2 (getDrawable (imageOn,  Spaghettis()->getColour (Colours::toolbarIconOn)));
     
+    jassert (extra >= 0);
+    
     drawable_.emplace_back (std::move (t1), std::move (t2), isToggle, extra);
 }
     
