@@ -44,12 +44,12 @@
 		3AC6DAD528C440D39662FA49 /* BinaryData.cpp */ /* BinaryData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../../JuceLibraryCode/BinaryData.cpp; sourceTree = SOURCE_ROOT; };
 		47B902E51FA1D26D812A2D55 /* juce_events */ /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_events; path = "~/JUCE/modules/juce_events"; sourceTree = "<absolute>"; };
 		4BD2FF29EDDE1ABAC27A7822 /* include_juce_events.mm */ /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
-		5DEA2A3A342A4BC9A49A33D6 /* warning_amber.svg */ /* warning_amber.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = warning_amber.svg; path = ../../Resources/Icons/SVG/warning_amber.svg; sourceTree = SOURCE_ROOT; };
 		60D8A2DF65E5C0796EA99CB1 /* App */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spaghettis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		636759924C4B7A2A44012B75 /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = "~/JUCE/modules/juce_data_structures"; sourceTree = "<absolute>"; };
 		6BABF3016D73C66D88F37770 /* juce_graphics */ /* juce_graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_graphics; path = "~/JUCE/modules/juce_graphics"; sourceTree = "<absolute>"; };
 		721D2F47AAC0470E9F2AA340 /* AudioUnit.framework */ /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		7A5361F3DC6AEDFD1ABF5D15 /* system_update_alt.svg */ /* system_update_alt.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = system_update_alt.svg; path = ../../Resources/Icons/SVG/system_update_alt.svg; sourceTree = SOURCE_ROOT; };
+		817B1F9B7CE730C1E7A674CF /* error_outline.svg */ /* error_outline.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = error_outline.svg; path = ../../Resources/Icons/SVG/error_outline.svg; sourceTree = SOURCE_ROOT; };
 		872360D0C70C7B5CA52A5B1B /* include_spaghettis_gui.mm */ /* include_spaghettis_gui.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_gui.mm; path = ../../JuceLibraryCode/include_spaghettis_gui.mm; sourceTree = SOURCE_ROOT; };
 		A1056AE48F0DFF9EC3445D0E /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
 		A3A861B41BD91C2AFB7F1175 /* Foundation.framework */ /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +102,7 @@
 			children = (
 				AE0F38C45226A973F2BA01E2,
 				1E0D225CDF10472A2FBFE7E8,
+				817B1F9B7CE730C1E7A674CF,
 				042B5CF305973FFD5571D23B,
 				C165063F783EB92398410471,
 				169888A447C1894B871E408F,
@@ -109,7 +110,6 @@
 				7A5361F3DC6AEDFD1ABF5D15,
 				EDBC7364DA4A3F17718C64B9,
 				CE6B14227A3E33E9D11D5748,
-				5DEA2A3A342A4BC9A49A33D6,
 			);
 			name = Icons;
 			sourceTree = "<group>";

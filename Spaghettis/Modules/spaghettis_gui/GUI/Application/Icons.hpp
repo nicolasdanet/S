@@ -53,7 +53,7 @@ public:
         addIconAction ("add_svg");
         addIconToggle ("system_update_alt_svg");
         addIconAction ("delete_forever_svg");
-        addIconToggle ("warning_amber_svg");
+        addIconToggle ("error_outline_svg");
         addIconToggle ("mail_svg");
         addIconAction ("place_svg");
         addIconAction ("remove_svg");
