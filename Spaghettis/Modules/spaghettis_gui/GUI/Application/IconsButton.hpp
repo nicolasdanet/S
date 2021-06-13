@@ -38,6 +38,17 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool getToolbarItemSizes (int thickness, bool isVertical, int& size, int& min, int& max) override
+{
+    DBG (thickness);
+    
+    return juce::ToolbarButton::getToolbarItemSizes (thickness, isVertical, size, min, max);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     int getItemId() const
     {
