@@ -29,7 +29,9 @@ using MessagesContainer = std::deque<Logger::MessagesElement>;
 
 public:
     ConsoleComponent() :    ConsoleFactoryHelper (this),
-                            ApplicationComponent (getIconsFactory())
+                            ApplicationComponent (getIconsFactory()),
+                            showMessages_ (true),
+                            showErrors_ (true)
     {
         listBox_.setModel (this);
         ApplicationComponent::listBoxInitialize (listBox_, false);
@@ -118,7 +120,9 @@ public:
     {
         ApplicationComponent::listBoxUpdate (listBox_, messages_, true);
         
-        // DBG (juce::String (getIconToggleState (Icons::autoscroll) ? "1" : "0"));
+        if (getIconToggleState (Icons::autoscroll)) {
+            listBox_.scrollToEnsureRowIsOnscreen (static_cast<int> (messages_.size()));
+        }
     }
     
     void logMessage (const MessagesPacket& m) override
@@ -168,11 +172,15 @@ private:
         
         return Spaghettis()->getColour (c);
     }
-    
+
 private:
     juce::ListBox listBox_;
     MessagesContainer messages_;
 
+private:
+    bool showMessages_;
+    bool showErrors_;
+    
 private:
     static const int maximum_ = 2048;
     static const int removed_ = 64;
