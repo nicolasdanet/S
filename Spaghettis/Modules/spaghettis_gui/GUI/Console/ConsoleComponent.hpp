@@ -115,6 +115,8 @@ public:
     void handleAsyncUpdate() override
     {
         update();
+        
+        // DBG (juce::String (getIconToggleState (Icons::autoscroll) ? "1" : "0"));
     }
     
     void logMessage (const MessagesPacket& m) override

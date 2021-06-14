@@ -75,6 +75,24 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    bool getIconToggleState (int itemId)
+    {
+        IconsButton* b = fetchButton (toolbar_.get(), itemId);
+        
+        if (b && b->isToggle()) {
+        //
+        return b->getToggleState();
+        //
+        }
+        
+        jassertfalse; return false;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 protected:
     juce::Rectangle<int> getBoundsRemaining()
     {
@@ -128,6 +146,30 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* A free function to fetch icons with item identifiers. */
+
+private:
+    static IconsButton* fetchButton (juce::Toolbar* toolbar, int itemId)
+    {
+        const int n = toolbar->getNumItems();
+        
+        for (int i = 0; i < n; ++i) {
+        //
+        if (toolbar->getItemId (i) == itemId) {
+            IconsButton* b = dynamic_cast<IconsButton*> (toolbar->getItemComponent (i));
+            jassert (b);
+            return b;
+        }
+        //
+        }
+        
+        return nullptr;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 /* Handy reusable free functions for list box components. */
 
 protected:
@@ -166,7 +208,7 @@ protected:
         listBox.deselectAllRows();
         listBox.repaint();
     }
-    
+
 private:
     std::unique_ptr<juce::Toolbar> toolbar_;
     
