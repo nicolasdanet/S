@@ -209,6 +209,13 @@ protected:
         listBox.repaint();
     }
 
+    template <class T> static void listBoxUpdate (juce::ListBox& listBox, T& c, bool updateRows)
+    {
+        if (updateRows) { listBoxUpdateRows (listBox); }
+        
+        listBoxShowScrollBarIfRequired (listBox, static_cast<int> (c.size()));
+    }
+    
 private:
     std::unique_ptr<juce::Toolbar> toolbar_;
     

@@ -33,7 +33,7 @@ public:
     {
         listBox_.setModel (this);
         ApplicationComponent::listBoxInitialize (listBox_, false);
-        update (false);
+        ApplicationComponent::listBoxUpdate (listBox_, messages_, false);
         addAndMakeVisible (listBox_);
  
         Spaghettis()->setLogger (this);
@@ -94,7 +94,9 @@ public:
     
     void resized() override
     {
-        listBox_.setBounds (getBoundsRemaining()); update (false);
+        listBox_.setBounds (getBoundsRemaining());
+        
+        ApplicationComponent::listBoxUpdate (listBox_, messages_, false);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -114,7 +116,7 @@ public:
 public:
     void handleAsyncUpdate() override
     {
-        update();
+        ApplicationComponent::listBoxUpdate (listBox_, messages_, true);
         
         // DBG (juce::String (getIconToggleState (Icons::autoscroll) ? "1" : "0"));
     }
@@ -136,15 +138,6 @@ public:
 // MARK: -
 
 private:
-    void update (bool updateRows = true)
-    {
-        if (updateRows) {
-            ApplicationComponent::listBoxUpdateRows (listBox_);
-        }
-        
-        ApplicationComponent::listBoxShowScrollBarIfRequired (listBox_, static_cast<int> (messages_.size()));
-    }
-    
     void removeMessagesIfRequired()
     {
         int size = static_cast<int> (messages_.size());
