@@ -188,32 +188,28 @@ protected:
         return juce::jmax (32, contentSize);
     }
     
-    static void listBoxShowScrollBarIfRequired (juce::ListBox& listBox, int contentSize)
+    static void listBoxUpdateProceed (juce::ListBox& listBox, int size, bool updateRows)
     {
-        int i = listBox.getRowContainingPosition (0, 0);
-        int j = listBox.getRowContainingPosition (0, listBox.getBottom());
+        if (updateRows) {
+            listBox.updateContent();
+            listBox.deselectAllRows();
+            listBox.repaint();
+        }
         
-        if (i >= 0) {
-        //
-        const bool show = (j - i) < contentSize;
-        
-        listBox.getViewport()->setScrollBarsShown (show, show, true, true);
-        //
+        {
+            int i = listBox.getRowContainingPosition (0, 0);
+            int j = listBox.getRowContainingPosition (0, listBox.getBottom());
+            
+            if (i >= 0) {
+                const bool show = (j - i) < size;
+                listBox.getViewport()->setScrollBarsShown (show, show, true, true);
+            }
         }
     }
     
-    static void listBoxUpdateRows (juce::ListBox& listBox)
-    {
-        listBox.updateContent();
-        listBox.deselectAllRows();
-        listBox.repaint();
-    }
-
     template <class T> static void listBoxUpdate (juce::ListBox& listBox, T& c, bool updateRows)
     {
-        if (updateRows) { listBoxUpdateRows (listBox); }
-        
-        listBoxShowScrollBarIfRequired (listBox, static_cast<int> (c.size()));
+        listBoxUpdateProceed (listBox, static_cast<int> (c.size()), updateRows);
     }
     
 private:

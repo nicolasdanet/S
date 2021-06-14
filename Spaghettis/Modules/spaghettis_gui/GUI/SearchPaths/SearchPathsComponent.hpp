@@ -28,7 +28,7 @@ public:
     {
         listBox_.setModel (this);
         ApplicationComponent::listBoxInitialize (listBox_, true);
-        update (false);
+        ApplicationComponent::listBoxUpdate (listBox_, paths_, false);
         addAndMakeVisible (listBox_);
         
         setSize (400, 500);
@@ -57,7 +57,7 @@ public:
         //
         }
         
-        if (done) { update(); setSearchPaths(); }
+        if (done) { ApplicationComponent::listBoxUpdate (listBox_, paths_, true); setSearchPaths(); }
     }
     
     void addPaths()
@@ -81,7 +81,7 @@ public:
         //
         }
         
-        update(); setSearchPaths();
+        ApplicationComponent::listBoxUpdate (listBox_, paths_, true); setSearchPaths();
         //
         }
     }
@@ -118,7 +118,9 @@ public:
     
     void listBoxItemClicked (int row, const juce::MouseEvent &) override
     {
-        if (juce::isPositiveAndBelow (row, paths_.size()) == false) { update(); }
+        if (juce::isPositiveAndBelow (row, paths_.size()) == false) {
+            ApplicationComponent::listBoxUpdate (listBox_, paths_, true);
+        }
     }
     
     void deleteKeyPressed (int) override
@@ -138,7 +140,9 @@ public:
     
     void resized() override
     {
-        listBox_.setBounds (getBoundsRemaining()); update (false);
+        listBox_.setBounds (getBoundsRemaining());
+        
+        ApplicationComponent::listBoxUpdate (listBox_, paths_, false);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -168,7 +172,9 @@ private:
     
     void appendFullPathName (const juce::String& filepath)
     {
-        paths_.addIfNotAlreadyThere (filepath); update(); setSearchPaths();
+        paths_.addIfNotAlreadyThere (filepath);
+        ApplicationComponent::listBoxUpdate (listBox_, paths_, true);
+        setSearchPaths();
     }
     
     void appendFile (const juce::File& file)
@@ -199,20 +205,6 @@ private:
         fileChooser_->launchAsync (t, callback);
     }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    void update (bool updateRows = true)
-    {
-        if (updateRows) {
-            ApplicationComponent::listBoxUpdateRows (listBox_);
-        }
-        
-        ApplicationComponent::listBoxShowScrollBarIfRequired (listBox_, paths_.size());
-    }
-    
 private:
     juce::ListBox listBox_;
     juce::StringArray paths_;
