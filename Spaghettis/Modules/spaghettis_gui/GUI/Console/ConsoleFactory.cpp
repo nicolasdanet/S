@@ -18,7 +18,8 @@ void ConsoleFactory::setToolbarButton (IconsButton* button)
 {
     switch (button->getItemId()) {
     //
-    case Icons::deleteForever   : button->onClick = [this]() { owner_->clear(); }; break;
+    case Icons::deleteForever   : button->onClick = [this]() { owner_->clear(); };              break;
+    case Icons::autoscroll      : button->onClick = [this]() { owner_->handleAsyncUpdate(); };  break;
     default                     : break;
     //
     }

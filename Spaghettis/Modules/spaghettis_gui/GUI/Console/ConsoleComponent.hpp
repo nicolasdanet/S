@@ -121,7 +121,9 @@ public:
         ApplicationComponent::listBoxUpdate (listBox_, messages_, true);
         
         if (getIconToggleState (Icons::autoscroll)) {
-            listBox_.scrollToEnsureRowIsOnscreen (static_cast<int> (messages_.size()));
+        //
+        listBox_.scrollToEnsureRowIsOnscreen (static_cast<int> (messages_.size()));
+        //
         }
     }
     
