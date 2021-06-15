@@ -21,7 +21,7 @@ class SearchPaths : public ApplicationWindow {
 public:
     SearchPaths() : ApplicationWindow ("Paths", "SearchPathsWindow")
     {
-        setContentOwned (new SearchPathsComponent(), true);
+        setContentOwned (new SearchPathsComponent (getKeyName()), true);
 
         makeVisible();
     }

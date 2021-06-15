@@ -20,7 +20,7 @@ class ApplicationComponent :    public juce::Component,
 // MARK: -
 
 public:
-    ApplicationComponent (IconsFactory *factory = nullptr)
+    ApplicationComponent (const juce::String& keyName, IconsFactory *factory = nullptr) : keyName_ (keyName)
     {
         Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
         
@@ -52,7 +52,7 @@ public:
     
     ~ApplicationComponent() override
     {
-        removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
+        saveIcons(); removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -87,6 +87,27 @@ public:
         }
         
         jassertfalse; return false;
+    }
+    
+    void saveIcons()
+    {
+        if (toolbar_) {
+        //
+        const int n = toolbar_->getNumItems();
+        
+        // DBG (keyName_);
+        
+        for (int i = 0; i < n; ++i) {
+        //
+        IconsButton* b = dynamic_cast<IconsButton*> (toolbar_->getItemComponent (i));
+        if (b) {
+            // const int itemId = b->getItemId();
+            // const bool state = b->getToggleState();
+        }
+        //
+        }
+        //
+        }
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -213,6 +234,7 @@ protected:
     }
     
 private:
+    juce::String keyName_;
     std::unique_ptr<juce::Toolbar> toolbar_;
     
 #if SPAGHETTIS_MENUBAR

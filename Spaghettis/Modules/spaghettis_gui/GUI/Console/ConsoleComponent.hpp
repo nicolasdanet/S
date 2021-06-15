@@ -28,10 +28,10 @@ using MessagesContainer = std::deque<Logger::MessagesElement>;
 // MARK: -
 
 public:
-    ConsoleComponent() :    ConsoleFactoryHelper (this),
-                            ApplicationComponent (getIconsFactory()),
-                            showMessages_ (true),
-                            showErrors_ (true)
+    ConsoleComponent (const juce::String& keyName) :    ConsoleFactoryHelper (this),
+                                                        ApplicationComponent (keyName, getIconsFactory()),
+                                                        showMessages_ (true),
+                                                        showErrors_ (true)
     {
         listBox_.setModel (this);
         ApplicationComponent::listBoxInitialize (listBox_, false);
