@@ -24,14 +24,18 @@ std::unique_ptr<juce::Drawable> Icons::getDrawable (const char* name, juce::Colo
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Icons::addIconProceed (const char* imageOff, const char* imageOn, bool isToggle, int extra)
+void Icons::addIconProceed (const juce::String& name,
+    const char* imageOff,
+    const char* imageOn,
+    bool isToggle,
+    int extra)
 {
     auto t1 (getDrawable (imageOff, Spaghettis()->getColour (Colours::toolbarIconOff)));
     auto t2 (getDrawable (imageOn,  Spaghettis()->getColour (Colours::toolbarIconOn)));
     
     jassert (extra >= 0);
     
-    drawable_.emplace_back (juce::String(), std::move (t1), std::move (t2), isToggle, extra);
+    drawable_.emplace_back (name, std::move (t1), std::move (t2), isToggle, extra);
 }
     
 // -----------------------------------------------------------------------------------------------------------

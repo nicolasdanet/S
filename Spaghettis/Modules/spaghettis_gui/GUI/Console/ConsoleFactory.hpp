@@ -33,11 +33,11 @@ public:
 public:
     void getAllToolbarItemIds (juce::Array<int>& ids) override
     {
-        ids.add (Icons::deleteForever);
+        ids.add (Icons::clear);
         ids.add (ToolbarItemFactory::spacerId);
         ids.add (Icons::message);
         ids.add (Icons::error);
-        ids.add (Icons::place);
+        ids.add (Icons::find);
         ids.add (ToolbarItemFactory::spacerId);
         ids.add (Icons::autoscroll);
     }

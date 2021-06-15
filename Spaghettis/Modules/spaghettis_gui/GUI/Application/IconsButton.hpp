@@ -19,13 +19,13 @@ class IconsButton : public juce::ToolbarButton {
 
 public:
     IconsButton (int item) :    juce::ToolbarButton (item,
-                                    "",
-                                    Icons::getInstance().getIconOff (item),
-                                    Icons::getInstance().getIconOn (item)),
+                                        "",
+                                        Icons::getInstance().getIconOff (item),
+                                        Icons::getInstance().getIconOn (item)),
                                 itemId_ (item),
-                                extra_ (Icons::getInstance().getExtra (item)),
-                                isToggle_ (Icons::getInstance().isToggle (item))
-                                
+                                name_ (Icons::getInstance().getName (item)),
+                                isToggle_ (Icons::getInstance().isToggle (item)),
+                                extra_ (Icons::getInstance().getExtra (item))
     {
         if (isToggle_) { setClickingTogglesState (true); }
         else {
@@ -62,16 +62,22 @@ public:
         return itemId_;
     }
     
+    juce::String getName() const
+    {
+        return name_;
+    }
+    
     bool isToggle() const
     {
         return isToggle_;
     }
     
 private:
-    int  itemId_;
-    int  extra_;
+    int itemId_;
+    juce::String name_;
     bool isToggle_;
-    
+    int extra_;
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (IconsButton)
 };

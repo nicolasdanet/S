@@ -105,6 +105,7 @@ public:
         if (b && b->isToggle()) {
             // const int itemId = b->getItemId();
             juce::XmlElement* e = root->createNewChildElement ("BUTTON");
+            e->setAttribute (Ids::item,  b->getName());
             e->setAttribute (Ids::state, b->getToggleState());
             save = true;
         }
