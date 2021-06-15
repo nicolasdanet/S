@@ -93,19 +93,25 @@ public:
     {
         if (toolbar_) {
         //
-        const int n = toolbar_->getNumItems();
+        juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
         
-        // DBG (keyName_);
+        auto root   = std::make_unique<juce::XmlElement> ("BUTTONS");
+        const int n = toolbar_->getNumItems();
+        bool save   = false;
         
         for (int i = 0; i < n; ++i) {
         //
         IconsButton* b = dynamic_cast<IconsButton*> (toolbar_->getItemComponent (i));
-        if (b) {
+        if (b && b->isToggle()) {
             // const int itemId = b->getItemId();
-            // const bool state = b->getToggleState();
+            juce::XmlElement* e = root->createNewChildElement ("BUTTON");
+            e->setAttribute (Ids::state, b->getToggleState());
+            save = true;
         }
         //
         }
+        
+        if (save) { preferences.setValue (keyName_ + "Buttons", root.get()); }
         //
         }
     }
