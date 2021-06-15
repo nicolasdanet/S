@@ -35,7 +35,7 @@ public:
     {
         juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
         
-        preferences.setValue (keyName_, juce::var (getWindowStateAsString()));
+        preferences.setValue (keyName_ + "Position", juce::var (getWindowStateAsString()));
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ public:
     {
         juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
         
-        const juce::String s = preferences.getValue (keyName_);
+        const juce::String s = preferences.getValue (keyName_ + "Position");
         
         if (s.isNotEmpty()) { restoreWindowStateFromString (s); }
         

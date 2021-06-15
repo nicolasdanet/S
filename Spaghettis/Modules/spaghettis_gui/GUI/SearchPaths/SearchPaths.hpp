@@ -19,7 +19,7 @@ class SearchPaths : public ApplicationWindow {
 // MARK: -
 
 public:
-    SearchPaths() : ApplicationWindow ("Paths", "SearchPathsWindowPosition")
+    SearchPaths() : ApplicationWindow ("Paths", "SearchPathsWindow")
     {
         setContentOwned (new SearchPathsComponent(), true);
 

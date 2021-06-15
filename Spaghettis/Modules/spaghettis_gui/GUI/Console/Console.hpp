@@ -19,7 +19,7 @@ class Console : public ApplicationWindow {
 // MARK: -
 
 public:
-    Console() : ApplicationWindow (core::getApplicationName(), "ConsoleWindowPosition")
+    Console() : ApplicationWindow (core::getApplicationName(), "ConsoleWindow")
     {
         content_ = std::make_unique<ConsoleComponent>();
         
