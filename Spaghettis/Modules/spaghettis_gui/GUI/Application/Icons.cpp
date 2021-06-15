@@ -31,7 +31,7 @@ void Icons::addIconProceed (const char* imageOff, const char* imageOn, bool isTo
     
     jassert (extra >= 0);
     
-    drawable_.emplace_back (std::move (t1), std::move (t2), isToggle, extra);
+    drawable_.emplace_back (juce::String(), std::move (t1), std::move (t2), isToggle, extra);
 }
     
 // -----------------------------------------------------------------------------------------------------------

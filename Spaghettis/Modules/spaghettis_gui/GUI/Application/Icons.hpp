@@ -23,7 +23,7 @@ class Icons {
 // -----------------------------------------------------------------------------------------------------------
 
 using DrawablePointer   = std::unique_ptr<juce::Drawable>;
-using DrawableTuple     = std::tuple<DrawablePointer, DrawablePointer, bool, int>;
+using DrawableTuple     = std::tuple<juce::String, DrawablePointer, DrawablePointer, bool, int>;
 using DrawableContainer = std::vector<DrawableTuple>;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -86,12 +86,12 @@ public:
     
     bool isToggle (int itemId) const
     {
-        return std::get<2> (drawable_[getIconIndex (itemId)]);
+        return std::get<3> (drawable_[getIconIndex (itemId)]);
     }
     
     int getExtra (int itemId) const
     {
-        return std::get<3> (drawable_[getIconIndex (itemId)]);
+        return std::get<4> (drawable_[getIconIndex (itemId)]);
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -105,8 +105,8 @@ private:
         
         jassert (i >= 0);
         jassert (static_cast<DrawableContainer::size_type> (i) < drawable_.size());
-        jassert (std::get<0> (drawable_[i]) != nullptr);
         jassert (std::get<1> (drawable_[i]) != nullptr);
+        jassert (std::get<2> (drawable_[i]) != nullptr);
         
         return i;
     }
@@ -115,7 +115,7 @@ private:
     {
         int i = getIconIndex (itemId);
         
-        return isIconOn ? std::get<1> (drawable_[i])->createCopy() : std::get<0> (drawable_[i])->createCopy();
+        return isIconOn ? std::get<2> (drawable_[i])->createCopy() : std::get<1> (drawable_[i])->createCopy();
     }
     
 // -----------------------------------------------------------------------------------------------------------
