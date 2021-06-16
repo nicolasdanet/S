@@ -52,7 +52,7 @@ public:
     
     ~ApplicationComponent() override
     {
-        saveIcons(); removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
+        saveToolbarButtonsStates(); removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -88,8 +88,13 @@ public:
         
         jassertfalse; return false;
     }
-    
-    void saveIcons()
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void saveToolbarButtonsStates()
     {
         if (toolbar_) {
         //
@@ -103,7 +108,6 @@ public:
         //
         IconsButton* b = dynamic_cast<IconsButton*> (toolbar_->getItemComponent (i));
         if (b && b->isToggle()) {
-            // const int itemId = b->getItemId();
             juce::XmlElement* e = root->createNewChildElement ("BUTTON");
             e->setAttribute (Ids::item,  b->getName());
             e->setAttribute (Ids::state, b->getToggleState());
@@ -113,6 +117,29 @@ public:
         }
         
         if (save) { preferences.setValue (keyName_ + "Buttons", root.get()); }
+        //
+        }
+    }
+    
+    void loadToolbarButtonsStates()
+    {
+        if (toolbar_) {
+        //
+        juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
+        
+        std::unique_ptr<juce::XmlElement> root = preferences.getXmlValue (keyName_ + "Buttons");
+        
+        if (root && root->hasTagName ("BUTTONS")) {
+        //
+        for (auto* e : root->getChildWithTagNameIterator ("BUTTON")) {
+            if (e->hasAttribute (Ids::item) && e->hasAttribute (Ids::state)) {
+                const int itemId = Icons::getInstance().getItemId (e->getStringAttribute (Ids::item));
+                const bool state = e->getBoolAttribute (Ids::state);
+                DBG (juce::String (itemId) + " / " + juce::String (state ? "1" : "0"));
+            }
+        }
+        //
+        }
         //
         }
     }

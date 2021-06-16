@@ -40,6 +40,8 @@ public:
  
         Spaghettis()->setLogger (this);
         
+        loadToolbarButtonsStates();
+        
         setSize (600, 300);
     }
     

@@ -76,7 +76,7 @@ public:
 public:
     juce::String getName (int itemId) const
     {
-        return std::get<0> (drawable_[getIconIndex (itemId)]);
+        return std::get<0> (drawables_[getIconIndex (itemId)]);
     }
     
     std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
@@ -91,12 +91,26 @@ public:
     
     bool isToggle (int itemId) const
     {
-        return std::get<3> (drawable_[getIconIndex (itemId)]);
+        return std::get<3> (drawables_[getIconIndex (itemId)]);
     }
     
     int getExtra (int itemId) const
     {
-        return std::get<4> (drawable_[getIconIndex (itemId)]);
+        return std::get<4> (drawables_[getIconIndex (itemId)]);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    int getItemId (const juce::String& name) const
+    {
+        int size = static_cast<int> (drawables_.size());
+        
+        for (int i = 0; i < size; ++i) { if (std::get<0> (drawables_[i]) == name) { return i + 1; } }
+        
+        return 0;
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -109,18 +123,18 @@ private:
         int i = itemId - 1;
         
         jassert (i >= 0);
-        jassert (static_cast<DrawableContainer::size_type> (i) < drawable_.size());
-        jassert (std::get<1> (drawable_[i]) != nullptr);
-        jassert (std::get<2> (drawable_[i]) != nullptr);
+        jassert (static_cast<DrawableContainer::size_type> (i) < drawables_.size());
+        jassert (std::get<1> (drawables_[i]) != nullptr);
+        jassert (std::get<2> (drawables_[i]) != nullptr);
         
         return i;
     }
     
-    std::unique_ptr<juce::Drawable> getIconProceed (int itemId, bool isIconOn) const
+    std::unique_ptr<juce::Drawable> getIconProceed (int itemId, bool isOn) const
     {
         int i = getIconIndex (itemId);
         
-        return isIconOn ? std::get<2> (drawable_[i])->createCopy() : std::get<1> (drawable_[i])->createCopy();
+        return isOn ? std::get<2> (drawables_[i])->createCopy() : std::get<1> (drawables_[i])->createCopy();
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -147,7 +161,7 @@ private:
     static std::unique_ptr<juce::Drawable> getDrawable (const char*, juce::Colour);
         
 private:
-    DrawableContainer drawable_;
+    DrawableContainer drawables_;
 };
  
 // -----------------------------------------------------------------------------------------------------------

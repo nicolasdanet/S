@@ -35,7 +35,7 @@ void Icons::addIconProceed (const juce::String& name,
     
     jassert (extra >= 0);
     
-    drawable_.emplace_back (name, std::move (t1), std::move (t2), isToggle, extra);
+    drawables_.emplace_back (name, std::move (t1), std::move (t2), isToggle, extra);
 }
     
 // -----------------------------------------------------------------------------------------------------------
