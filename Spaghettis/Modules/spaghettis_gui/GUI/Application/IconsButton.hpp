@@ -25,7 +25,8 @@ public:
                                 itemId_ (item),
                                 name_ (Icons::getInstance().getName (item)),
                                 isToggle_ (Icons::getInstance().isToggle (item)),
-                                extra_ (Icons::getInstance().getExtra (item))
+                                extra_ (Icons::getInstance().getExtra (item)),
+                                defaultState_ (Icons::getInstance().getDefaultState (item))
     {
         if (isToggle_) { setClickingTogglesState (true); }
         else {
@@ -72,11 +73,17 @@ public:
         return isToggle_;
     }
     
+    bool getDefaultState() const
+    {
+        return defaultState_;
+    }
+    
 private:
-    int itemId_;
+    int  itemId_;
     juce::String name_;
     bool isToggle_;
-    int extra_;
+    int  extra_;
+    bool defaultState_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (IconsButton)

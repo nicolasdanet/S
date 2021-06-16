@@ -23,7 +23,7 @@ class Icons {
 // -----------------------------------------------------------------------------------------------------------
 
 using DrawablePointer   = std::unique_ptr<juce::Drawable>;
-using DrawableTuple     = std::tuple<juce::String, DrawablePointer, DrawablePointer, bool, int>;
+using DrawableTuple     = std::tuple<juce::String, DrawablePointer, DrawablePointer, bool, int, bool>;
 using DrawableContainer = std::vector<DrawableTuple>;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -98,6 +98,11 @@ public:
     {
         return std::get<4> (drawables_[getIconIndex (itemId)]);
     }
+    
+    bool getDefaultState (int itemId) const
+    {
+        return std::get<5> (drawables_[getIconIndex (itemId)]);
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -143,19 +148,19 @@ private:
 private:
     void addIconAction (const juce::String& name, int extra, const char* image)
     {
-        addIconProceed (name, image, image, false, extra);
+        addIconProceed (name, image, image, false, extra, true);
     }
     
     void addIconToggle (const juce::String& name, int extra, const char* image)
     {
-        addIconProceed (name, image, image, true,  extra);
+        addIconProceed (name, image, image, true,  extra, true);
     }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    void addIconProceed (const juce::String&, const char*, const char*, bool, int);
+    void addIconProceed (const juce::String&, const char*, const char*, bool, int, bool);
     
 private:
     static std::unique_ptr<juce::Drawable> getDrawable (const char*, juce::Colour);

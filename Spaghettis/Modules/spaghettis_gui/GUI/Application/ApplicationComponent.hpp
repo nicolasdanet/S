@@ -140,7 +140,7 @@ public:
         //
         IconsButton* b = dynamic_cast<IconsButton*> (toolbar_->getItemComponent (i));
         if (b && b->isToggle()) {
-            b->setToggleState (true, juce::dontSendNotification);
+            b->setToggleState (b->getDefaultState(), juce::dontSendNotification);
         }
         //
         }

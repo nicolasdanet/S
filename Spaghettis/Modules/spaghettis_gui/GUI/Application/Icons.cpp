@@ -28,14 +28,15 @@ void Icons::addIconProceed (const juce::String& name,
     const char* imageOff,
     const char* imageOn,
     bool isToggle,
-    int extra)
+    int  extra,
+    bool defaultStateIsOn)
 {
     auto t1 (getDrawable (imageOff, Spaghettis()->getColour (Colours::toolbarIconOff)));
     auto t2 (getDrawable (imageOn,  Spaghettis()->getColour (Colours::toolbarIconOn)));
     
     jassert (extra >= 0);
     
-    drawables_.emplace_back (name, std::move (t1), std::move (t2), isToggle, extra);
+    drawables_.emplace_back (name, std::move (t1), std::move (t2), isToggle, extra, defaultStateIsOn);
 }
     
 // -----------------------------------------------------------------------------------------------------------
