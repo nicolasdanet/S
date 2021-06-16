@@ -80,24 +80,14 @@ public:
     {
         IconsButton* b = fetchButton (toolbar_.get(), itemId);
         
-        if (b && b->isToggle()) {
-        //
-        return b->getState();
-        //
-        }
-        
-        jassertfalse; return false;
+        if (b && b->isToggle()) { return b->getState(); } else { jassertfalse; return false; }
     }
     
     void setIconToggleState (int itemId, bool shouldBeOn)
     {
         IconsButton* b = fetchButton (toolbar_.get(), itemId);
         
-        if (b && b->isToggle()) {
-        //
-        b->setState (shouldBeOn);
-        //
-        } else { jassertfalse; }
+        if (b && b->isToggle()) { b->setState (shouldBeOn); } else { jassertfalse; }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -132,20 +122,6 @@ public:
         }
     }
     
-    void loadToolbarButtonsStatesDefault()
-    {
-        const int n = toolbar_->getNumItems();
-
-        for (int i = 0; i < n; ++i) {
-        //
-        IconsButton* b = dynamic_cast<IconsButton*> (toolbar_->getItemComponent (i));
-        if (b && b->isToggle()) {
-            b->setState (b->getDefaultState());
-        }
-        //
-        }
-    }
-    
     void loadToolbarButtonsStates()
     {
         if (toolbar_) {
@@ -155,16 +131,26 @@ public:
         std::unique_ptr<juce::XmlElement> root = preferences.getXmlValue (keyName_ + "Buttons");
         
         if (root && root->hasTagName ("BUTTONS")) {
-        //
-        for (auto* e : root->getChildWithTagNameIterator ("BUTTON")) {
-            if (e->hasAttribute (Ids::item) && e->hasAttribute (Ids::state)) {
-                const int itemId = Icons::getInstance().getItemId (e->getStringAttribute (Ids::item));
-                const bool state = e->getBoolAttribute (Ids::state);
-                setIconToggleState (itemId, state);
+
+            for (auto* e : root->getChildWithTagNameIterator ("BUTTON")) {
+                if (e->hasAttribute (Ids::item) && e->hasAttribute (Ids::state)) {
+                    const int itemId = Icons::getInstance().getItemId (e->getStringAttribute (Ids::item));
+                    const bool state = e->getBoolAttribute (Ids::state);
+                    setIconToggleState (itemId, state);
+                }
+            }
+
+        } else {    /* Default states. */
+        
+            const int n = toolbar_->getNumItems();
+
+            for (int i = 0; i < n; ++i) {
+                IconsButton* b = dynamic_cast<IconsButton*> (toolbar_->getItemComponent (i));
+                if (b && b->isToggle()) {
+                    b->setState (b->getDefaultState());
+                }
             }
         }
-        //
-        } else { loadToolbarButtonsStatesDefault(); }
         //
         }
     }
