@@ -82,7 +82,7 @@ public:
         
         if (b && b->isToggle()) {
         //
-        return b->getToggleState();
+        return b->getState();
         //
         }
         
@@ -95,7 +95,7 @@ public:
         
         if (b && b->isToggle()) {
         //
-        b->setToggleState (shouldBeOn, juce::dontSendNotification);
+        b->setState (shouldBeOn);
         //
         } else { jassertfalse; }
     }
@@ -121,7 +121,7 @@ public:
         if (b && b->isToggle()) {
             juce::XmlElement* e = root->createNewChildElement ("BUTTON");
             e->setAttribute (Ids::item,  b->getName());
-            e->setAttribute (Ids::state, b->getToggleState());
+            e->setAttribute (Ids::state, b->getState());
             save = true;
         }
         //
@@ -140,7 +140,7 @@ public:
         //
         IconsButton* b = dynamic_cast<IconsButton*> (toolbar_->getItemComponent (i));
         if (b && b->isToggle()) {
-            b->setToggleState (b->getDefaultState(), juce::dontSendNotification);
+            b->setState (b->getDefaultState());
         }
         //
         }

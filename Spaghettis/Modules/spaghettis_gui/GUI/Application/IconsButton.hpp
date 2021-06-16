@@ -30,7 +30,7 @@ public:
     {
         if (isToggle_) { setClickingTogglesState (true); }
         else {
-            setToggleState (true, juce::dontSendNotification);
+            setState (true);
         }
     }
     
@@ -53,6 +53,31 @@ bool getToolbarItemSizes (int thickness, bool isVertical, int& size, int& min, i
     return true;
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void setState (bool shouldBeOn)
+    {
+        setToggleState (shouldBeOn, juce::dontSendNotification);
+    }
+    
+    bool getState() const
+    {
+        jassert (isToggle_); return getToggleState();
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void invoke()
+    {
+        if (onClick != nullptr) { onClick(); }
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
