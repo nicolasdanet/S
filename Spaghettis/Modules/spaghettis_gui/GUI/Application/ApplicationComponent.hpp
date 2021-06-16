@@ -95,7 +95,7 @@ public:
         
         if (b && b->isToggle()) {
         //
-        return b->setToggleState (shouldBeOn, juce::dontSendNotification);
+        b->setToggleState (shouldBeOn, juce::dontSendNotification);
         //
         } else { jassertfalse; }
     }
@@ -132,6 +132,20 @@ public:
         }
     }
     
+    void loadToolbarButtonsStatesDefault()
+    {
+        const int n = toolbar_->getNumItems();
+
+        for (int i = 0; i < n; ++i) {
+        //
+        IconsButton* b = dynamic_cast<IconsButton*> (toolbar_->getItemComponent (i));
+        if (b && b->isToggle()) {
+            b->setToggleState (true, juce::dontSendNotification);
+        }
+        //
+        }
+    }
+    
     void loadToolbarButtonsStates()
     {
         if (toolbar_) {
@@ -150,7 +164,7 @@ public:
             }
         }
         //
-        }
+        } else { loadToolbarButtonsStatesDefault(); }
         //
         }
     }
