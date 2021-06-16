@@ -51,16 +51,16 @@ public:
 public:
     Icons()
     {
-        addIconAction ("add",           "add_svg");
-        addIconToggle ("autoscroll",    "system_update_alt_svg");
-        addIconAction ("clear",         "delete_forever_svg");
-        addIconToggle ("error",         "error_outline_svg",        4);
-        addIconAction ("find",          "place_svg");
-        addIconToggle ("message",       "mail_svg",                 2);
-        addIconAction ("remove",        "remove_svg");
-        addIconAction ("synchronize",   "sync_svg");
-        addIconAction ("sortUp",        "text_rotate_up_svg");
-        addIconAction ("sortDown",      "text_rotation_down_svg");
+        addIconAction ("add",           0, "add_svg");
+        addIconToggle ("autoscroll",    0, "system_update_alt_svg");
+        addIconAction ("clear",         0, "delete_forever_svg");
+        addIconToggle ("error",         4, "error_outline_svg");
+        addIconAction ("find",          0, "place_svg");
+        addIconToggle ("message",       2, "mail_svg");
+        addIconAction ("remove",        0, "remove_svg");
+        addIconAction ("synchronize",   0, "sync_svg");
+        addIconAction ("sortUp",        0, "text_rotate_up_svg");
+        addIconAction ("sortDown",      0, "text_rotation_down_svg");
     }
 
 public:
@@ -141,12 +141,12 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    void addIconAction (const juce::String& name, const char* image, int extra = 0)
+    void addIconAction (const juce::String& name, int extra, const char* image)
     {
         addIconProceed (name, image, image, false, extra);
     }
     
-    void addIconToggle (const juce::String& name, const char* image, int extra = 0)
+    void addIconToggle (const juce::String& name, int extra, const char* image)
     {
         addIconProceed (name, image, image, true,  extra);
     }
