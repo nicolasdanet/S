@@ -88,6 +88,17 @@ public:
         
         jassertfalse; return false;
     }
+    
+    void setIconToggleState (int itemId, bool shouldBeOn)
+    {
+        IconsButton* b = fetchButton (toolbar_.get(), itemId);
+        
+        if (b && b->isToggle()) {
+        //
+        return b->setToggleState (shouldBeOn, juce::dontSendNotification);
+        //
+        } else { jassertfalse; }
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -135,7 +146,7 @@ public:
             if (e->hasAttribute (Ids::item) && e->hasAttribute (Ids::state)) {
                 const int itemId = Icons::getInstance().getItemId (e->getStringAttribute (Ids::item));
                 const bool state = e->getBoolAttribute (Ids::state);
-                DBG (juce::String (itemId) + " / " + juce::String (state ? "1" : "0"));
+                setIconToggleState (itemId, state);
             }
         }
         //
