@@ -55,6 +55,34 @@ public:
 // MARK: -
 
 public:
+    void handleAsyncUpdate() override
+    {
+        ApplicationComponent::listBoxUpdate (listBox_, messages_, true);
+        
+        if (getIconToggleState (Icons::autoscroll)) {
+        //
+        listBox_.scrollToEnsureRowIsOnscreen (static_cast<int> (messages_.size()));
+        //
+        }
+    }
+    
+    void logMessage (const MessagesPacket& m) override
+    {
+        removeMessagesIfRequired(); messages_.insert (messages_.end(), m.begin(), m.end());
+        
+        triggerAsyncUpdate();
+    }
+    
+    void clear()
+    {
+        messages_.clear(); triggerAsyncUpdate();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     int getNumRows() override
     {
         return ApplicationComponent::lisBoxGetNumberOfRowsToDraw (static_cast<int> (messages_.size()));
@@ -111,34 +139,6 @@ public:
     bool tryGrabFocus() override
     {
         return tryGrabFocusForComponent (&listBox_);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void handleAsyncUpdate() override
-    {
-        ApplicationComponent::listBoxUpdate (listBox_, messages_, true);
-        
-        if (getIconToggleState (Icons::autoscroll)) {
-        //
-        listBox_.scrollToEnsureRowIsOnscreen (static_cast<int> (messages_.size()));
-        //
-        }
-    }
-    
-    void logMessage (const MessagesPacket& m) override
-    {
-        removeMessagesIfRequired(); messages_.insert (messages_.end(), m.begin(), m.end());
-        
-        triggerAsyncUpdate();
-    }
-    
-    void clear()
-    {
-        messages_.clear(); triggerAsyncUpdate();
     }
 
 // -----------------------------------------------------------------------------------------------------------
