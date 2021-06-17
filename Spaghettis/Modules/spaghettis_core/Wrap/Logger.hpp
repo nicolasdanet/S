@@ -46,8 +46,44 @@ protected:
 
 public:
     virtual void logMessage (MessagesPacket& m) = 0;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static juce::String getText (const MessagesElement& e)
+    {
+        return std::get<0> (e);
+    }
+    
+    static Type getType (const MessagesElement& e)
+    {
+        return std::get<1> (e);
+    }
+    
+    static Unique getUnique (const MessagesElement& e)
+    {
+        return std::get<2> (e);
+    }
 };
 
+        
+        /*
+        if (showMessages == false || showErrors == false) {
+        //
+        auto f = [](const Logger::MessagesElement& e)
+        {
+            Type t = std::get<1> (e);
+            
+            return false;
+        };
+        
+        m.erase (std::remove_if (m.begin(), m.end(), f), m.end());
+        //
+        }
+        */
+        
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

@@ -29,9 +29,7 @@ using MessagesContainer = std::deque<Logger::MessagesElement>;
 
 public:
     ConsoleComponent (const juce::String& keyName) :    ConsoleFactoryHelper (this),
-                                                        ApplicationComponent (keyName, getIconsFactory()),
-                                                        showMessages_ (true),
-                                                        showErrors_ (true)
+                                                        ApplicationComponent (keyName, getIconsFactory())
     {
         listBox_.setModel (this);
         ApplicationComponent::listBoxInitialize (listBox_, false);
@@ -59,7 +57,7 @@ public:
     {
         ApplicationComponent::listBoxUpdate (listBox_, messages_, true);
         
-        if (getIconToggleState (Icons::autoscroll)) {
+        if (getButtonState (Icons::autoscroll)) {
         //
         listBox_.scrollToEnsureRowIsOnscreen (static_cast<int> (messages_.size()));
         //
@@ -100,13 +98,13 @@ public:
         if (juce::isPositiveAndBelow (row, messages_.size())) {
         //
         const juce::Rectangle<int> r (width, height);
-        const Logger::MessagesElement& e = messages_[row];
+        const auto& e = messages_[row];
         
         g.setColour (isSelected ? Spaghettis()->getColour (Colours::consoleTextHighlighted)
-                                : colourWithType (std::get<1> (e)));
+                                : colourWithType (Logger::getType (e)));
         
         g.setFont (Spaghettis()->getLookAndFeel().getFontConsole());
-        g.drawText (std::get<0> (e), r.reduced (4, 0), juce::Justification::centredLeft, true);
+        g.drawText (Logger::getText (e), r.reduced (4, 0), juce::Justification::centredLeft, true);
         //
         }
     }
@@ -150,7 +148,8 @@ public:
 private:
     void parseMessages (MessagesPacket& m)
     {
-        
+        // const bool showMessages = getButtonState (Icons::message);
+        // const bool showErrors   = getButtonState (Icons::error);
     }
     
     void removeMessagesIfRequired()
@@ -188,10 +187,6 @@ private:
     juce::ListBox listBox_;
     MessagesContainer messages_;
 
-private:
-    bool showMessages_;
-    bool showErrors_;
-    
 private:
     static const int maximum_ = 2048;
     static const int removed_ = 64;

@@ -76,7 +76,7 @@ public:
 // MARK: -
 
 public:
-    bool getIconToggleState (int itemId)
+    bool getButtonState (int itemId)
     {
         IconsButton* b = fetchButton (toolbar_.get(), itemId);
         
@@ -84,7 +84,7 @@ public:
     }
 
 private:
-    void setIconToggleState (int itemId, bool shouldBeOn)
+    void setButtonState (int itemId, bool shouldBeOn)
     {
         IconsButton* b = fetchButton (toolbar_.get(), itemId);
         
@@ -137,7 +137,7 @@ public:
                 if (e->hasAttribute (Ids::item) && e->hasAttribute (Ids::state)) {
                     const int itemId = Icons::getInstance().getItemId (e->getStringAttribute (Ids::item));
                     const bool state = e->getBoolAttribute (Ids::state);
-                    setIconToggleState (itemId, state);
+                    setButtonState (itemId, state);
                 }
             }
 
