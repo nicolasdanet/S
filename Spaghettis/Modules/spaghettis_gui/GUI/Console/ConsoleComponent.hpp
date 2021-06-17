@@ -66,9 +66,11 @@ public:
         }
     }
     
-    void logMessage (const MessagesPacket& m) override
+    void logMessage (MessagesPacket& m) override
     {
-        removeMessagesIfRequired(); messages_.insert (messages_.end(), m.begin(), m.end());
+        removeMessagesIfRequired(); parseMessages (m);
+        
+        messages_.insert (messages_.end(), m.begin(), m.end());
         
         triggerAsyncUpdate();
     }
@@ -146,6 +148,11 @@ public:
 // MARK: -
 
 private:
+    void parseMessages (MessagesPacket& m)
+    {
+        
+    }
+    
     void removeMessagesIfRequired()
     {
         int size = static_cast<int> (messages_.size());

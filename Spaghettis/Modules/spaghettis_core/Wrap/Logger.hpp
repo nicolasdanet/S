@@ -45,7 +45,7 @@ protected:
     Logger& operator = (Logger&&) = default;
 
 public:
-    virtual void logMessage (const MessagesPacket& m) = 0;
+    virtual void logMessage (MessagesPacket& m) = 0;
 };
 
 // -----------------------------------------------------------------------------------------------------------
