@@ -18,13 +18,15 @@ void ConsoleFactory::setToolbarButton (IconsButton* button)
 {
     switch (button->getItemId()) {
     //
-    case Icons::clear       : button->onClick = [this]() { owner_->clear(); };              break;
-    case Icons::autoscroll  : button->onClick = [this]() { owner_->handleAsyncUpdate(); };  break;
+    case Icons::clear       : button->onClick = [this]() { owner_->clear(); }; break;
+    case Icons::autoscroll  : button->onClick = [this, button]() {
+                                    if (button->getState()) { owner_->handleAsyncUpdate(); }
+                                }; break;
     default                 : break;
     //
     }
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
