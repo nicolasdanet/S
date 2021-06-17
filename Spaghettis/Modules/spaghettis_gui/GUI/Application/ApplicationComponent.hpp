@@ -82,7 +82,8 @@ public:
         
         if (b && b->isToggle()) { return b->getState(); } else { jassertfalse; return false; }
     }
-    
+
+private:
     void setIconToggleState (int itemId, bool shouldBeOn)
     {
         IconsButton* b = fetchButton (toolbar_.get(), itemId);
@@ -217,7 +218,7 @@ public:
 private:
     static IconsButton* fetchButton (juce::Toolbar* toolbar, int itemId)
     {
-        const int n = toolbar->getNumItems();
+        jassert (toolbar); const int n = toolbar->getNumItems();
         
         for (int i = 0; i < n; ++i) {
         //
