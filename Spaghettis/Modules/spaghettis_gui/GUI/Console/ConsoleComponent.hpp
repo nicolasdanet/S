@@ -66,7 +66,7 @@ public:
     
     void logMessage (MessagesPacket& m) override
     {
-        removeMessagesIfRequired(); parseMessages (m);
+        removeMessagesIfRequired();
         
         messages_.insert (messages_.end(), m.begin(), m.end());
         
@@ -148,8 +148,25 @@ public:
 private:
     void parseMessages (MessagesPacket& m)
     {
-        // const bool showMessages = getButtonState (Icons::message);
-        // const bool showErrors   = getButtonState (Icons::error);
+        const bool showMessages = getButtonState (Icons::message);
+        const bool showErrors   = getButtonState (Icons::error);
+
+        if (showMessages == false || showErrors == false) {
+        //
+        auto f = [showMessages, showErrors](const Logger::MessagesElement& e)
+        {
+            Type t = Logger::getType (e);
+            
+            if (t == Type::normal && showMessages == false)    { return true; }
+            else if (t != Type::normal && showErrors == false) { return true; }
+            else {
+                return false;
+            }
+        };
+        
+        m.erase (std::remove_if (m.begin(), m.end(), f), m.end());
+        //
+        }
     }
     
     void removeMessagesIfRequired()
