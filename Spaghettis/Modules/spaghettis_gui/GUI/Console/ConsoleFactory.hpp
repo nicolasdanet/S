@@ -34,6 +34,7 @@ public:
     void getAllToolbarItemIds (juce::Array<int>& ids) override
     {
         ids.add (Icons::clear);
+        ids.add (Icons::restore);
         ids.add (ToolbarItemFactory::spacerId);
         ids.add (Icons::message);
         ids.add (Icons::error);

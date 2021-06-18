@@ -58,6 +58,7 @@
 		AE0F38C45226A973F2BA01E2 /* add.svg */ /* add.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = add.svg; path = ../../Resources/Icons/SVG/add.svg; sourceTree = SOURCE_ROOT; };
 		B4DAE1C42FD0579475CBE2CD /* spaghettis_core */ /* spaghettis_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_core; path = ../../Modules/spaghettis_core; sourceTree = SOURCE_ROOT; };
 		B7A6D4B166AFD6C1609FE05A /* Info-App.plist */ /* Info-App.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-App.plist"; path = "Info-App.plist"; sourceTree = SOURCE_ROOT; };
+		B9F040988535C506C0795C1D /* restore.svg */ /* restore.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = restore.svg; path = ../../Resources/Icons/SVG/restore.svg; sourceTree = SOURCE_ROOT; };
 		C165063F783EB92398410471 /* place.svg */ /* place.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = place.svg; path = ../../Resources/Icons/SVG/place.svg; sourceTree = SOURCE_ROOT; };
 		C9C6B2655C8D889351519A5B /* CoreMIDI.framework */ /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		CC31058899835B55FEC293F9 /* CoreAudio.framework */ /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -106,6 +107,7 @@
 				042B5CF305973FFD5571D23B,
 				C165063F783EB92398410471,
 				169888A447C1894B871E408F,
+				B9F040988535C506C0795C1D,
 				23E635BF79136575BCB8FACE,
 				7A5361F3DC6AEDFD1ABF5D15,
 				EDBC7364DA4A3F17718C64B9,

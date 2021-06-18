@@ -39,6 +39,7 @@ public:
         find,
         message,
         remove,
+        restore,
         synchronize,
         sortUp,
         sortDown
@@ -58,6 +59,7 @@ public:
         addIconAction ("find",          0, "place_svg");
         addIconToggle ("message",       2, "mail_svg");
         addIconAction ("remove",        0, "remove_svg");
+        addIconAction ("restore",       0, "restore_svg");
         addIconAction ("synchronize",   0, "sync_svg");
         addIconAction ("sortUp",        0, "text_rotate_up_svg");
         addIconAction ("sortDown",      0, "text_rotation_down_svg");

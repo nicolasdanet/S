@@ -18,7 +18,8 @@ void ConsoleFactory::setToolbarButton (IconsButton* button)
 {
     switch (button->getItemId()) {
     //
-    case Icons::clear       : button->onClick = [this]() { owner_->clear(); }; break;
+    case Icons::clear       : button->onClick = [this]() { owner_->clear(); };      break;
+    case Icons::restore     : button->onClick = [this]() { owner_->restore(); };    break;
     case Icons::message     : /* Falls through. */
     case Icons::error       : button->onClick = [this, button]() {
                                     if (button->getState() == false) { owner_->parse(); }
