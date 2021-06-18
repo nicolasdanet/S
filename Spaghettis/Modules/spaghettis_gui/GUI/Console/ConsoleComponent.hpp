@@ -74,9 +74,10 @@ public:
     void logMessage (MessagesPacket& m) override
     {
         removeMessagesIfRequired (messages_);
+        removeMessagesIfRequired (history_);
         
+        history_.insert (history_.end(), m.begin(), m.end());
         parseMessages (m, getButtonState (Icons::message), getButtonState (Icons::error));
-
         messages_.insert (messages_.end(), m.begin(), m.end());
         
         triggerAsyncUpdate();
@@ -94,6 +95,11 @@ public:
         triggerAsyncUpdate();
     }
 
+    void restore()
+    {
+    
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -214,6 +220,7 @@ private:
 private:
     juce::ListBox listBox_;
     MessagesContainer messages_;
+    MessagesContainer history_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)
