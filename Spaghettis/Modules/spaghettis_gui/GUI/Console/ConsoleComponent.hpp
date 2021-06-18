@@ -84,9 +84,11 @@ public:
     
     void parse()
     {
+        parseMessages (messages_, getButtonState (Icons::message), getButtonState (Icons::error));
         
+        triggerAsyncUpdate();
     }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -184,7 +186,7 @@ private:
         }
     }
     
-    static void parseMessages (MessagesPacket& m, bool showMessages, bool showErrors)
+    template <class T>  static void parseMessages (T& m, bool showMessages, bool showErrors)
     {
         if (showMessages == false || showErrors == false) {
         //
