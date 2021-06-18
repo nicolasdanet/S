@@ -263,15 +263,9 @@ protected:
             listBox.repaint();
         }
         
-        {
-            int i = listBox.getRowContainingPosition (0, 0);
-            int j = listBox.getRowContainingPosition (0, listBox.getBottom());
-            
-            if (i >= 0) {
-                const bool show = (j - i) < size;
-                listBox.getViewport()->setScrollBarsShown (show, show, true, true);
-            }
-        }
+        const bool show = listBox.getNumRowsOnScreen() < size;
+        
+        listBox.getViewport()->setScrollBarsShown (show, show, true, true);
     }
     
     template <class T> static void listBoxUpdate (juce::ListBox& listBox, T& c, bool updateRows)
