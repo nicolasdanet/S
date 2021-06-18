@@ -68,8 +68,10 @@ public:
     
     void logMessage (MessagesPacket& m) override
     {
-        removeMessagesIfRequired();
+        removeMessagesIfRequired (messages_);
         
+        parseMessages (m, getButtonState (Icons::message), getButtonState (Icons::error));
+
         messages_.insert (messages_.end(), m.begin(), m.end());
         
         triggerAsyncUpdate();
@@ -148,11 +150,37 @@ public:
 // MARK: -
 
 private:
-    void parseMessages (MessagesPacket& m)
+    static juce::Colour colourWithType (Type type)
     {
-        const bool showMessages = getButtonState (Icons::message);
-        const bool showErrors   = getButtonState (Icons::error);
+        int c = Colours::consoleTextError;
+        
+        if (type == Type::normal)       { c = Colours::consoleTextDefault; }
+        else if (type == Type::system)  { c = Colours::consoleTextSystem;  }
+        else if (type == Type::warning) { c = Colours::consoleTextWarning; }
+        
+        return Spaghettis()->getColour (c);
+    }
 
+    static void removeMessagesIfRequired (MessagesContainer& messages)
+    {
+        const int maximum_ = 2048;
+        const int removed_ = 64;
+        
+        int size = static_cast<int> (messages.size());
+        
+        if (size >= maximum_) {
+        //
+        const int n = juce::nextPowerOfTwo (size - maximum_ + removed_);
+        
+        jassert (n < size);
+        
+        messages.erase (messages.begin(), messages.begin() + n);
+        //
+        }
+    }
+    
+    static void parseMessages (MessagesPacket& m, bool showMessages, bool showErrors)
+    {
         if (showMessages == false || showErrors == false) {
         //
         auto f = [showMessages, showErrors](const Logger::MessagesElement& e)
@@ -171,45 +199,10 @@ private:
         }
     }
     
-    void removeMessagesIfRequired()
-    {
-        int size = static_cast<int> (messages_.size());
-        
-        if (size >= maximum_) {
-        //
-        const int n = juce::nextPowerOfTwo (size - maximum_ + removed_);
-        
-        jassert (n < size);
-        
-        messages_.erase (messages_.begin(), messages_.begin() + n);
-        //
-        }
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    static juce::Colour colourWithType (Type type)
-    {
-        int c = Colours::consoleTextError;
-        
-        if (type == Type::normal)       { c = Colours::consoleTextDefault; }
-        else if (type == Type::system)  { c = Colours::consoleTextSystem;  }
-        else if (type == Type::warning) { c = Colours::consoleTextWarning; }
-        
-        return Spaghettis()->getColour (c);
-    }
-
 private:
     juce::ListBox listBox_;
     MessagesContainer messages_;
 
-private:
-    static const int maximum_ = 2048;
-    static const int removed_ = 64;
-    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)
 };
