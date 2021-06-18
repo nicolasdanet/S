@@ -53,7 +53,7 @@ public:
 // MARK: -
 
 public:
-    void handleAsyncUpdate() override
+    void update()
     {
         ApplicationComponent::listBoxUpdate (listBox_, messages_, true);
         
@@ -64,6 +64,11 @@ public:
         listBox_.scrollToEnsureRowIsOnscreen (juce::jmax (i, 0));
         //
         }
+    }
+    
+    void handleAsyncUpdate() override
+    {
+        update();
     }
     
     void logMessage (MessagesPacket& m) override
