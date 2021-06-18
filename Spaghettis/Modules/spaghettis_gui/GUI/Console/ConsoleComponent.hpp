@@ -59,7 +59,9 @@ public:
         
         if (getButtonState (Icons::autoscroll)) {
         //
-        listBox_.scrollToEnsureRowIsOnscreen (static_cast<int> (messages_.size()));
+        const int i = static_cast<int> (messages_.size()) - 1;
+        
+        listBox_.scrollToEnsureRowIsOnscreen (juce::jmax (i, 0));
         //
         }
     }
