@@ -194,8 +194,8 @@ private:
         {
             Type t = Logger::getType (e);
             
-            if (t == Type::normal && showMessages == false)    { return true; }
-            else if (t != Type::normal && showErrors == false) { return true; }
+            if ((t == Type::normal || t == Type::system) && showMessages == false)    { return true; }
+            else if ((t == Type::warning || t == Type::error) && showErrors == false) { return true; }
             else {
                 return false;
             }
