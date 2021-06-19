@@ -22,7 +22,10 @@ void ConsoleFactory::setToolbarButton (IconsButton* button)
     case Icons::restore     : button->onClick = [this]() { owner_->restore(); };    break;
     case Icons::message     : /* Falls through. */
     case Icons::error       : button->onClick = [this, button]() {
-                                    if (button->getState() == false) { owner_->parse(); }
+                                    if (button->getState()) { owner_->restore(); }
+                                    else {
+                                        owner_->parse();
+                                    }
                                 }; break;
     case Icons::autoscroll  : button->onClick = [this, button]() {
                                     if (button->getState()) { owner_->update(); }
