@@ -263,7 +263,8 @@ protected:
             listBox.repaint();
         }
         
-        const bool show = listBox.getNumRowsOnScreen() < size;
+        const bool show = (listBox.getNumRowsOnScreen() < size) ||
+                          (size > 0 && listBox.getRowContainingPosition (0, 0) >= size);
         
         listBox.getViewport()->setScrollBarsShown (show, show, true, true);
     }

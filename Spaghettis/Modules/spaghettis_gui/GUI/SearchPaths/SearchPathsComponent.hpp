@@ -145,6 +145,11 @@ public:
         ApplicationComponent::listBoxUpdate (listBox_, paths_, false);
     }
 
+    void listWasScrolled() override
+    {
+        ApplicationComponent::listBoxUpdate (listBox_, paths_, false);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

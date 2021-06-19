@@ -167,6 +167,11 @@ public:
         ApplicationComponent::listBoxUpdate (listBox_, messages_, false);
     }
 
+    void listWasScrolled() override
+    {
+        ApplicationComponent::listBoxUpdate (listBox_, messages_, false);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
