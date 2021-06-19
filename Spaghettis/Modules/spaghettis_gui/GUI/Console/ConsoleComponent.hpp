@@ -77,10 +77,8 @@ public:
         removeMessagesIfRequired (history_);
         
         history_.insert (history_.end(), m.begin(), m.end());
-        parseMessages (m, getButtonState (Icons::message), getButtonState (Icons::error));
-        messages_.insert (messages_.end(), m.begin(), m.end());
         
-        triggerAsyncUpdate();
+        logMessageProceed (m);
     }
     
     void clear()
@@ -97,7 +95,22 @@ public:
 
     void restore()
     {
-        DBG ("?");
+        MessagesPacket m (history_.begin(), history_.end());
+        
+        messages_.clear(); logMessageProceed (m);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+private:
+    void logMessageProceed (MessagesPacket& m)
+    {
+        parseMessages (m, getButtonState (Icons::message), getButtonState (Icons::error));
+        
+        messages_.insert (messages_.end(), m.begin(), m.end());
+        
+        triggerAsyncUpdate();
     }
     
 // -----------------------------------------------------------------------------------------------------------
