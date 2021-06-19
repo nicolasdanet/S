@@ -9,7 +9,7 @@ Tested on Ubuntu 20.04, macOS Big Sur (Intel only), and Raspbian Buster (RPI4).
         
 ## Dependencies
 
-The latest JUCE (6.0.8) is required at `~/JUCE`.
+The latest JUCE is required at `~/JUCE`.
 
 ## Build
 
