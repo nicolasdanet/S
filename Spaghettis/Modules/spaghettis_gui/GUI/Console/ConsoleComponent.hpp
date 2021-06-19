@@ -127,9 +127,6 @@ public:
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
     {
         if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::consoleBackgroundAlternate)); }
-        else {
-            /* g.fillAll (Spaghettis()->getColour (Colours::consoleBackground)); */
-        }
         
         if (juce::isPositiveAndBelow (row, messages_.size())) {
         //
@@ -216,11 +213,11 @@ private:
         }
     }
     
-    template <class T>  static void parseMessages (T& m, bool showMessages, bool showErrors)
+    template <class T> static void parseMessages (T& m, bool showMessages, bool showErrors)
     {
         if (showMessages == false || showErrors == false) {
         //
-        auto f = [showMessages, showErrors](const Logger::MessagesElement& e)
+        auto f = [showMessages, showErrors] (const Logger::MessagesElement& e)
         {
             Type t = Logger::getType (e);
             
