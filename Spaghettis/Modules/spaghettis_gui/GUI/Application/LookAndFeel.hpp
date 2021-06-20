@@ -119,9 +119,16 @@ public:
         const juce::Drawable*,
         const juce::Colour* const) override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
-    juce::Rectangle<int> getTooltipBounds (const juce::String&, juce::Point<int>, juce::Rectangle<int>) override;
     void drawTooltip (juce::Graphics&, const juce::String&, int, int) override;
+        
+    juce::Rectangle<int> getTooltipBounds (const juce::String&,
+        juce::Point<int>,
+        juce::Rectangle<int>) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
