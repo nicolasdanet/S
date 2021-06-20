@@ -239,15 +239,19 @@ juce::Rectangle<int> LookAndFeel::getTooltipBounds (const juce::String& text,
     juce::Point<int> pt,
     juce::Rectangle<int> area)
 {
-    const juce::TextLayout tl (getTooltipLayout (text));
+    const float extra = getTooltipsFont().getHeight();
+    const int offsetX = 12;
+    const int offsetY = 6;
+    
+    const juce::TextLayout t (getTooltipLayout (text));
+    
+    int w = static_cast<int> (t.getWidth()  + extra);
+    int h = static_cast<int> (t.getHeight() + extra / 2.0);
+    
+    int x = pt.x > area.getCentreX() ? (pt.x - (w + offsetX)) : (pt.x + offsetX);
+    int y = pt.y > area.getCentreY() ? (pt.y - (h + offsetY)) : (pt.y + offsetY);
 
-    auto w = (int) (tl.getWidth() + 14.0f);
-    auto h = (int) (tl.getHeight() + 6.0f);
-
-    return juce::Rectangle<int> (pt.x > area.getCentreX() ? pt.x - (w + 12) : pt.x + 24,
-                           pt.y > area.getCentreY() ? pt.y - (h + 6)  : pt.y + 6,
-                           w, h)
-             .constrainedWithin (area);
+    return juce::Rectangle<int> (x, y, w, h).constrainedWithin (area);
 }
 
 void LookAndFeel::drawTooltip (juce::Graphics& g, const juce::String& text, int width, int height)
