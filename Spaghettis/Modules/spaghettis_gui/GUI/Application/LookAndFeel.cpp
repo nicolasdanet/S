@@ -222,26 +222,25 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace LookAndFeelHelpers
+juce::TextLayout LookAndFeel::getTooltipLayout (const juce::String& text)
 {
-    static juce::TextLayout layoutTooltipText (const juce::String& text, juce::Colour colour) noexcept
-    {
-        const float tooltipFontSize = 13.0f;
-        const int maxToolTipWidth = 400;
+    const float tooltipFontSize = 13.0f;
+    const int maxToolTipWidth = 400;
 
-        juce::AttributedString s;
-        s.setJustification (juce::Justification::centred);
-        s.append (text, juce::Font (tooltipFontSize, juce::Font::bold), colour);
+    juce::Colour colour = juce::Colours::orange;
+    
+    juce::AttributedString s;
+    s.setJustification (juce::Justification::centred);
+    s.append (text, juce::Font (tooltipFontSize, juce::Font::bold), colour);
 
-        juce::TextLayout tl;
-        tl.createLayoutWithBalancedLineLengths (s, (float) maxToolTipWidth);
-        return tl;
-    }
+    juce::TextLayout tl;
+    tl.createLayoutWithBalancedLineLengths (s, (float) maxToolTipWidth);
+    return tl;
 }
 
 juce::Rectangle<int> LookAndFeel::getTooltipBounds (const juce::String& tipText, juce::Point<int> screenPos, juce::Rectangle<int> parentArea)
 {
-    const juce::TextLayout tl (LookAndFeelHelpers::layoutTooltipText (tipText, juce::Colours::black));
+    const juce::TextLayout tl (getTooltipLayout (tipText));
 
     auto w = (int) (tl.getWidth() + 14.0f);
     auto h = (int) (tl.getHeight() + 6.0f);
@@ -261,8 +260,7 @@ void LookAndFeel::drawTooltip (juce::Graphics& g, const juce::String& text, int 
     g.drawRect (0, 0, width, height, 1);
    #endif
 
-    LookAndFeelHelpers::layoutTooltipText (text, /* findColour (juce::TooltipWindow::textColourId) */ juce::Colours::orange)
-        .draw (g, juce::Rectangle<float> ((float) width, (float) height));
+    getTooltipLayout (text).draw (g, juce::Rectangle<float> ((float) width, (float) height));
 }
 
 // -----------------------------------------------------------------------------------------------------------

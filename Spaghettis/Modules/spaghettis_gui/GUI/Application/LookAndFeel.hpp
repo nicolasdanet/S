@@ -142,6 +142,9 @@ private:
     void drawPopupMenuItemShortcut (juce::Graphics&, const juce::Rectangle<int>&, const juce::String&);
 
 private:
+    juce::TextLayout getTooltipLayout (const juce::String&);
+    
+private:
     juce::String initializeFontsBest (const juce::StringArray&);
     void initializeFonts();
     
