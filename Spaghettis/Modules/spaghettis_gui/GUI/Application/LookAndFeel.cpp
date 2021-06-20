@@ -256,14 +256,9 @@ juce::Rectangle<int> LookAndFeel::getTooltipBounds (const juce::String& text,
 
 void LookAndFeel::drawTooltip (juce::Graphics& g, const juce::String& text, int width, int height)
 {
-    g.fillAll (findColour (juce::TooltipWindow::backgroundColourId));
+    g.fillAll (findColour (Colours::tooltipBackground));
 
-   #if ! JUCE_MAC // The mac windows already have a non-optional 1 pix outline, so don't double it here..
-    g.setColour (findColour (TooltipWindow::outlineColourId));
-    g.drawRect (0, 0, width, height, 1);
-   #endif
-
-    getTooltipLayout (text).draw (g, juce::Rectangle<float> ((float) width, (float) height));
+    getTooltipLayout (text).draw (g, juce::Rectangle<float> (width, height));
 }
 
 // -----------------------------------------------------------------------------------------------------------
