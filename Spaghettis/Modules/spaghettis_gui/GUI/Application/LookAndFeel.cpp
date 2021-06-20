@@ -215,6 +215,67 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace LookAndFeelHelpers
+{
+    static juce::Colour createBaseColour (juce::Colour buttonColour,
+                                    bool hasKeyboardFocus,
+                                    bool shouldDrawButtonAsHighlighted,
+                                    bool shouldDrawButtonAsDown) noexcept
+    {
+        const float sat = hasKeyboardFocus ? 1.3f : 0.9f;
+        const juce::Colour baseColour (buttonColour.withMultipliedSaturation (sat));
+
+        if (shouldDrawButtonAsDown)        return baseColour.contrasting (0.2f);
+        if (shouldDrawButtonAsHighlighted) return baseColour.contrasting (0.1f);
+
+        return baseColour;
+    }
+
+    static juce::TextLayout layoutTooltipText (const juce::String& text, juce::Colour colour) noexcept
+    {
+        const float tooltipFontSize = 13.0f;
+        const int maxToolTipWidth = 400;
+
+        juce::AttributedString s;
+        s.setJustification (juce::Justification::centred);
+        s.append (text, juce::Font (tooltipFontSize, juce::Font::bold), colour);
+
+        juce::TextLayout tl;
+        tl.createLayoutWithBalancedLineLengths (s, (float) maxToolTipWidth);
+        return tl;
+    }
+}
+
+juce::Rectangle<int> LookAndFeel::getTooltipBounds (const juce::String& tipText, juce::Point<int> screenPos, juce::Rectangle<int> parentArea)
+{
+    const juce::TextLayout tl (LookAndFeelHelpers::layoutTooltipText (tipText, juce::Colours::black));
+
+    auto w = (int) (tl.getWidth() + 14.0f);
+    auto h = (int) (tl.getHeight() + 6.0f);
+
+    return juce::Rectangle<int> (screenPos.x > parentArea.getCentreX() ? screenPos.x - (w + 12) : screenPos.x + 24,
+                           screenPos.y > parentArea.getCentreY() ? screenPos.y - (h + 6)  : screenPos.y + 6,
+                           w, h)
+             .constrainedWithin (parentArea);
+}
+
+void LookAndFeel::drawTooltip (juce::Graphics& g, const juce::String& text, int width, int height)
+{
+    g.fillAll (findColour (juce::TooltipWindow::backgroundColourId));
+
+   #if ! JUCE_MAC // The mac windows already have a non-optional 1 pix outline, so don't double it here..
+    g.setColour (findColour (TooltipWindow::outlineColourId));
+    g.drawRect (0, 0, width, height, 1);
+   #endif
+
+    LookAndFeelHelpers::layoutTooltipText (text, /* findColour (juce::TooltipWindow::textColourId) */ juce::Colours::orange)
+        .draw (g, juce::Rectangle<float> ((float) width, (float) height));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 } // namespace spaghettis
 
