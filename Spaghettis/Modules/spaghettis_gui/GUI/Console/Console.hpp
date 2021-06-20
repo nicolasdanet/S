@@ -52,6 +52,9 @@ public:
     }
 
 private:
+    juce::TooltipWindow tooltip_;
+
+private:
     std::unique_ptr<ConsoleComponent> content_;
     
 private:
