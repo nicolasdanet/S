@@ -159,12 +159,19 @@ public:
     {
         return fontShortcuts_;
     }
+
+    const juce::Font& getTooltipsFont() const
+    {
+        return fontTooltips_;
+    }
     
 private:
     juce::String fontConsoleName_;
     juce::String fontShortcutsName_;
+    juce::String fontTooltipsName_;
     juce::Font fontConsole_;
     juce::Font fontShortcuts_;
+    juce::Font fontTooltips_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LookAndFeel)
