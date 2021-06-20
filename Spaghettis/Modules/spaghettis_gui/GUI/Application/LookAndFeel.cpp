@@ -52,7 +52,7 @@ void LookAndFeel::initializeFonts()
     
     fontConsoleName_    = fontConsole_.getTypeface()->getName();
     fontShortcutsName_  = fontShortcuts_.getTypeface()->getName();
-    fontTooltipsName_   = fontConsole_.getTypeface()->getName();
+    fontTooltipsName_   = fontTooltips_.getTypeface()->getName();
     
     SPAGHETTIS_DEBUG (fontConsoleName_);
     SPAGHETTIS_DEBUG (fontShortcutsName_);
@@ -224,31 +224,30 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
 
 juce::TextLayout LookAndFeel::getTooltipLayout (const juce::String& text)
 {
-    const float tooltipFontSize = 13.0f;
-    const int maxToolTipWidth = 400;
-
-    juce::Colour colour = juce::Colours::orange;
+    const float maximum = 400;
     
     juce::AttributedString s;
     s.setJustification (juce::Justification::centred);
-    s.append (text, juce::Font (tooltipFontSize, juce::Font::bold), colour);
+    s.append (text, getTooltipsFont(), findColour (Colours::tooltipText));
 
-    juce::TextLayout tl;
-    tl.createLayoutWithBalancedLineLengths (s, (float) maxToolTipWidth);
-    return tl;
+    juce::TextLayout t;
+    t.createLayoutWithBalancedLineLengths (s, maximum);
+    return t;
 }
 
-juce::Rectangle<int> LookAndFeel::getTooltipBounds (const juce::String& tipText, juce::Point<int> screenPos, juce::Rectangle<int> parentArea)
+juce::Rectangle<int> LookAndFeel::getTooltipBounds (const juce::String& text,
+    juce::Point<int> pt,
+    juce::Rectangle<int> area)
 {
-    const juce::TextLayout tl (getTooltipLayout (tipText));
+    const juce::TextLayout tl (getTooltipLayout (text));
 
     auto w = (int) (tl.getWidth() + 14.0f);
     auto h = (int) (tl.getHeight() + 6.0f);
 
-    return juce::Rectangle<int> (screenPos.x > parentArea.getCentreX() ? screenPos.x - (w + 12) : screenPos.x + 24,
-                           screenPos.y > parentArea.getCentreY() ? screenPos.y - (h + 6)  : screenPos.y + 6,
+    return juce::Rectangle<int> (pt.x > area.getCentreX() ? pt.x - (w + 12) : pt.x + 24,
+                           pt.y > area.getCentreY() ? pt.y - (h + 6)  : pt.y + 6,
                            w, h)
-             .constrainedWithin (parentArea);
+             .constrainedWithin (area);
 }
 
 void LookAndFeel::drawTooltip (juce::Graphics& g, const juce::String& text, int width, int height)
