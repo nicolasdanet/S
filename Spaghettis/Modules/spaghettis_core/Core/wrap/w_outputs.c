@@ -23,6 +23,15 @@ void outputs_reportDsp (int n)
     wrapper_send (Outputs::reportDsp (n ? true : false));
 }
 
+void outputs_patchOpened (t_symbol *name, t_symbol *directory)
+{
+    jassert (name && directory);
+    
+    juce::File f (juce::String (symbol_getName (directory)) + "/" + juce::String (symbol_getName (name)));
+    
+    wrapper_send (Outputs::patchOpened (f));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -31,7 +40,8 @@ void outputs_reportDsp (int n)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void outputs_reportDsp (int n) { }
+void outputs_reportDsp      (int n)                                 { }
+void outputs_patchOpened    (t_symbol *name, t_symbol *directory)   { }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

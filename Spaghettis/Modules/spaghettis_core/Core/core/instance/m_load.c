@@ -211,6 +211,8 @@ PD_LOCAL t_error instance_patchOpen (t_symbol *name, t_symbol *directory)
     
     dsp_resume (state);
     
+    if (done) { outputs_patchOpened (name, directory); }
+    
     return (done != 1);
 }
 
