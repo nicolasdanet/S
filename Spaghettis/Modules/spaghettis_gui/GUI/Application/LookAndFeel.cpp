@@ -46,8 +46,8 @@ void LookAndFeel::initializeFonts()
 
     fontConsole_        = juce::Font (fontName, 18.0, juce::Font::plain);
     fontShortcuts_      = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
-    fontTooltips_       = juce::Font (fontName, 18.0, juce::Font::plain);
-    
+    fontTooltips_       = juce::Font (fontName, 16.0, juce::Font::bold);
+
     /* < https://forum.juce.com/t/fonts-need-to-be-initialized-on-rpi > */
     
     fontConsoleName_    = fontConsole_.getTypeface()->getName();

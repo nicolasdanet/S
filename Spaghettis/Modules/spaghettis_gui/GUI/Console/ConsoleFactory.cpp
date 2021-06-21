@@ -18,12 +18,12 @@ void ConsoleFactory::setToolbarButton (IconsButton* button)
 {
     switch (button->getItemId()) {
     //
-    case Icons::clear       : button->setTooltip (NEEDS_TRANS ("Clear logs"));                  break;
-    case Icons::restore     : button->setTooltip (NEEDS_TRANS ("Restore logs"));                break;
-    case Icons::message     : button->setTooltip (NEEDS_TRANS ("Show messages"));               break;
-    case Icons::error       : button->setTooltip (NEEDS_TRANS ("Show errors"));                 break;
-    case Icons::find        : button->setTooltip (NEEDS_TRANS ("Locate selected log sender"));  break;
-    case Icons::autoscroll  : button->setTooltip (NEEDS_TRANS ("Enable autoscroll mode"));      break;
+    case Icons::clear       : button->setTooltip (NEEDS_TRANS ("Clear logs"));          break;
+    case Icons::restore     : button->setTooltip (NEEDS_TRANS ("Restore logs"));        break;
+    case Icons::message     : button->setTooltip (NEEDS_TRANS ("Show messages"));       break;
+    case Icons::error       : button->setTooltip (NEEDS_TRANS ("Show errors"));         break;
+    case Icons::find        : button->setTooltip (NEEDS_TRANS ("Locate sender"));       break;
+    case Icons::autoscroll  : button->setTooltip (NEEDS_TRANS ("Enable autoscroll"));   break;
     default                 : break;
     //
     }

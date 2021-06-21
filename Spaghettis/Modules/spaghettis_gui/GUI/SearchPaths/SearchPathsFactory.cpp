@@ -18,11 +18,11 @@ void SearchPathsFactory::setToolbarButton (IconsButton* button)
 {
     switch (button->getItemId()) {
     //
-    case Icons::add         : button->setTooltip (NEEDS_TRANS ("Add folder"));                  break;
-    case Icons::remove      : button->setTooltip (NEEDS_TRANS ("Remove selected folders"));     break;
-    case Icons::sortDown    : button->setTooltip (NEEDS_TRANS ("Sort alphabetically"));         break;
-    case Icons::sortUp      : button->setTooltip (NEEDS_TRANS ("Sort alphabetically reverse")); break;
-    case Icons::synchronize : button->setTooltip (NEEDS_TRANS ("Rescan folders logged"));       break;
+    case Icons::add         : button->setTooltip (NEEDS_TRANS ("Add folder"));          break;
+    case Icons::remove      : button->setTooltip (NEEDS_TRANS ("Remove folders"));      break;
+    case Icons::sortDown    : button->setTooltip (NEEDS_TRANS ("Sort alphabetically")); break;
+    case Icons::sortUp      : button->setTooltip (NEEDS_TRANS ("Sort reverse"));        break;
+    case Icons::synchronize : button->setTooltip (NEEDS_TRANS ("Rescan logged"));       break;
     default                 : break;
     //
     }
