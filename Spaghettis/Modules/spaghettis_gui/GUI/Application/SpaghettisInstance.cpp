@@ -133,9 +133,19 @@ void SpaghettisInstance::appendRecentFile (const juce::File& file)
 
 }
 
-void SpaghettisInstance::clearRecentFile()
+int SpaghettisInstance::getNumberOfRecentFiles() const
+{
+    return 0;
+}
+
+void SpaghettisInstance::clearRecentFiles()
 {
 
+}
+
+void SpaghettisInstance::fillRecentFilesMenu (juce::PopupMenu& m)
+{
+    
 }
 
 // -----------------------------------------------------------------------------------------------------------

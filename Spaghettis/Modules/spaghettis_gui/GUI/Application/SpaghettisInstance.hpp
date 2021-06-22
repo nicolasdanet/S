@@ -97,8 +97,10 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void appendRecentFile (const juce::File& file);
-    void clearRecentFile();
+    void appendRecentFile (const juce::File&);
+    int  getNumberOfRecentFiles() const;
+    void clearRecentFiles();
+    void fillRecentFilesMenu (juce::PopupMenu&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

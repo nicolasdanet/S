@@ -18,6 +18,7 @@ void Commands::getAllCommands (juce::Array<juce::CommandID>& c)
         {
             Commands::preferences,
             Commands::fileOpen,
+            Commands::clearRecentFiles,
             Commands::paths,
             Commands::rescan,
             Commands::rescanLogged,
@@ -38,24 +39,28 @@ void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommand
     switch (c) {
     //
     case Commands::preferences :
-        r.setInfo (NEEDS_TRANS ("Preferences..."),  NEEDS_TRANS ("Set preferences"),        general, 0);
+        r.setInfo (NEEDS_TRANS ("Preferences..."),  NEEDS_TRANS ("Set preferences"),            general, 0);
         r.addDefaultKeypress (',', juce::ModifierKeys::commandModifier);
         break;
     case Commands::fileOpen :
-        r.setInfo (NEEDS_TRANS ("Open..."),         NEEDS_TRANS ("Open a patch"),           file, 0);
+        r.setInfo (NEEDS_TRANS ("Open..."),         NEEDS_TRANS ("Open a patch"),               file, 0);
         r.addDefaultKeypress ('o', juce::ModifierKeys::commandModifier);
         break;
+    case Commands::clearRecentFiles :
+        r.setInfo (NEEDS_TRANS ("Clear Menu"),      NEEDS_TRANS ("Clears all recent files"),    file, 0);
+        r.setActive (Spaghettis()->getNumberOfRecentFiles() > 0);
+        break;
     case Commands::paths :
-        r.setInfo (NEEDS_TRANS ("Paths..."),        NEEDS_TRANS ("Set search paths"),       file, 0);
+        r.setInfo (NEEDS_TRANS ("Paths..."),        NEEDS_TRANS ("Set search paths"),           file, 0);
         break;
     case Commands::rescan :
-        r.setInfo (NEEDS_TRANS ("Rescan"),          NEEDS_TRANS ("Rescan search paths"),    file, 0);
+        r.setInfo (NEEDS_TRANS ("Rescan"),          NEEDS_TRANS ("Rescan search paths"),        file, 0);
         break;
     case Commands::rescanLogged :
-        r.setInfo (NEEDS_TRANS ("Rescan Logged"),   NEEDS_TRANS ("Rescan search paths"),    file, 0);
+        r.setInfo (NEEDS_TRANS ("Rescan Logged"),   NEEDS_TRANS ("Rescan search paths"),        file, 0);
         break;
     case Commands::clearConsole :
-        r.setInfo (NEEDS_TRANS ("Clear Console"),   NEEDS_TRANS ("Clear the console"),      edit, 0);
+        r.setInfo (NEEDS_TRANS ("Clear Console"),   NEEDS_TRANS ("Clear the console"),          edit, 0);
         r.addDefaultKeypress ('l', juce::ModifierKeys::commandModifier);
         break;
     case Commands::dspSwitch :
@@ -72,13 +77,22 @@ bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& in
 {
     switch (info.commandID) {
     //
-    case Commands::preferences  : Spaghettis()->handle (Inputs::ping());                        return true;
-    case Commands::fileOpen     : Spaghettis()->openPatch();                                    return true;
-    case Commands::paths        : Spaghettis()->openSearchPathsWindow();                        return true;
-    case Commands::rescan       : Spaghettis()->handle (Inputs::rescan (Inputs::Logged::base)); return true;
-    case Commands::rescanLogged : Spaghettis()->handle (Inputs::rescan (Inputs::Logged::full)); return true;
-    case Commands::clearConsole : Spaghettis()->clearConsole();                                 return true;
-    case Commands::dspSwitch    : Spaghettis()->handle (Inputs::switchDsp());                   return true;
+    case Commands::preferences      :   Spaghettis()->handle (Inputs::ping());
+                                        return true;
+    case Commands::fileOpen         :   Spaghettis()->openPatch();
+                                        return true;
+    case Commands::clearRecentFiles :   Spaghettis()->clearRecentFiles();
+                                        return true;
+    case Commands::paths            :   Spaghettis()->openSearchPathsWindow();
+                                        return true;
+    case Commands::rescan           :   Spaghettis()->handle (Inputs::rescan (Inputs::Logged::base));
+                                        return true;
+    case Commands::rescanLogged     :   Spaghettis()->handle (Inputs::rescan (Inputs::Logged::full));
+                                        return true;
+    case Commands::clearConsole     :   Spaghettis()->clearConsole();
+                                        return true;
+    case Commands::dspSwitch        :   Spaghettis()->handle (Inputs::switchDsp());
+                                        return true;
     default : break;
     //
     }

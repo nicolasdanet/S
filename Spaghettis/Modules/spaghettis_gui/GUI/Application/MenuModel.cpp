@@ -18,7 +18,14 @@ juce::PopupMenu MenuModel::getMenuForIndex (int n, const juce::String&)
     
     if (n == 0) {
     //
+    juce::PopupMenu recentFiles;
+    
+    Spaghettis()->fillRecentFilesMenu (recentFiles);
+    if (recentFiles.getNumItems() > 0) { recentFiles.addSeparator(); }
+    recentFiles.addCommandItem (commandManager_, Commands::clearRecentFiles);
+    
     menu.addCommandItem (commandManager_, Commands::fileOpen);
+    menu.addSubMenu (NEEDS_TRANS ("Open Recent"), recentFiles);
     menu.addSeparator();
     #if SPAGHETTIS_MENUBAR
     menu.addCommandItem (commandManager_, Commands::preferences);
