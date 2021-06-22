@@ -99,7 +99,7 @@ public:
 public:
     void patchOpened (const juce::File& file)
     {
-        DBG (file.getFullPathName());
+        
     }
     
 // -----------------------------------------------------------------------------------------------------------

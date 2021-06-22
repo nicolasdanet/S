@@ -62,7 +62,6 @@
 #include "GUI/Application/Icons.hpp"
 #include "GUI/Application/Identifiers.hpp"
 #include "GUI/Application/LookAndFeel.hpp"
-#include "GUI/Application/RecentFiles.hpp"
 #include "GUI/Application/MenuModel.hpp"
 #include "GUI/Application/SpaghettisInstance.hpp"
 #include "GUI/Application/Spaghettis.hpp"
