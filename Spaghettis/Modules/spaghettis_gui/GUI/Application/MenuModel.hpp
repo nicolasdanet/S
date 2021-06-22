@@ -36,9 +36,7 @@ public:
 
     juce::PopupMenu getMenuForIndex (int, const juce::String&) override;
 
-    void menuItemSelected (int, int) override
-    {
-    }
+    void menuItemSelected (int, int) override;
 
 #if ! ( SPAGHETTIS_MENUBAR )
 

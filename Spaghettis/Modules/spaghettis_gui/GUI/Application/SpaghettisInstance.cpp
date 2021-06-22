@@ -145,7 +145,7 @@ void SpaghettisInstance::clearRecentFiles()
 
 void SpaghettisInstance::fillRecentFilesMenu (juce::PopupMenu& m)
 {
-    
+    if (m.getNumItems() > 0) { m.addSeparator(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
