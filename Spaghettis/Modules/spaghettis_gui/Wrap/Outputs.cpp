@@ -18,7 +18,7 @@ std::function<void()> Outputs::reportDsp (bool state)
 
 std::function<void()> Outputs::patchOpened (juce::File file)
 {
-    return [f = std::move (file)]() { Spaghettis()->patchOpened (f); };
+    return [f = std::move (file)]() { Spaghettis()->appendRecentFile (f); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

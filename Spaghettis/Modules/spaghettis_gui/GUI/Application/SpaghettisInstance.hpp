@@ -97,10 +97,8 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void patchOpened (const juce::File& file)
-    {
-        
-    }
+    void appendRecentFile (const juce::File& file);
+    void clearRecentFile();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -210,6 +208,7 @@ public:
 // MARK: -
 
 private:
+    juce::StringArray recentFiles_;
     std::unique_ptr<LookAndFeel> lookAndFeel_;
     std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
     std::unique_ptr<MenuModel> menu_;

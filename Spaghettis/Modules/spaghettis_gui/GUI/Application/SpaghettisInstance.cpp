@@ -128,6 +128,20 @@ void SpaghettisInstance::openPatch()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void SpaghettisInstance::appendRecentFile (const juce::File& file)
+{
+
+}
+
+void SpaghettisInstance::clearRecentFile()
+{
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void SpaghettisInstance::clearConsole()
 {
     if (console_) { console_->clear(); }
