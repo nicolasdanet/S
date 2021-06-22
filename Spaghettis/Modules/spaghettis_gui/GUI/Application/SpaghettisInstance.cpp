@@ -130,24 +130,51 @@ void SpaghettisInstance::openPatch()
 
 void SpaghettisInstance::appendRecentFile (const juce::File& file)
 {
-
+    juce::String s (file.getFullPathName());
+    
+    if (!recentFiles_.contains (s)) {
+    //
+    recentFiles_.insert (0, std::move (s));
+    menu_->menuItemsChanged();
+    saveRecentFiles();
+    //
+    }
 }
 
 int SpaghettisInstance::getNumberOfRecentFiles() const
 {
-    return 0;
+    return recentFiles_.size();
 }
 
 void SpaghettisInstance::clearRecentFiles()
 {
-
+    recentFiles_.clear(); menu_->menuItemsChanged(); saveRecentFiles();
 }
 
-void SpaghettisInstance::fillRecentFilesMenu (juce::PopupMenu& m)
+void SpaghettisInstance::setRecentFilesMenu (juce::PopupMenu& m)
 {
+    int i = Commands::recentFiles;
+    
+    for (const auto& path : recentFiles_) { m.addItem (i++, path); }
+    
     if (m.getNumItems() > 0) { m.addSeparator(); }
 }
 
+void SpaghettisInstance::openRecentFile (int n)
+{
+    if (juce::isPositiveAndBelow (n, recentFiles_.size())) { DBG (recentFiles_[n]); }
+}
+
+void SpaghettisInstance::loadRecentFiles()
+{
+    recentFiles_ = juce::StringArray { "bijou", "caillou", "chou", "genou", "hibou", "joujou", "pou" };
+}
+
+void SpaghettisInstance::saveRecentFiles()
+{
+
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

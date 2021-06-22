@@ -44,6 +44,8 @@ public:
         #endif
         
         preferences_ = std::make_unique<juce::PropertiesFile> (file, juce::PropertiesFile::Options());
+        
+        loadRecentFiles();  /* MUST be at end. */
     }
     
     ~SpaghettisInstance()
@@ -100,7 +102,10 @@ public:
     void appendRecentFile (const juce::File&);
     int  getNumberOfRecentFiles() const;
     void clearRecentFiles();
-    void fillRecentFilesMenu (juce::PopupMenu&);
+    void setRecentFilesMenu (juce::PopupMenu&);
+    void openRecentFile (int n);
+    void loadRecentFiles();
+    void saveRecentFiles();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

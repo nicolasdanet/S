@@ -18,7 +18,7 @@ juce::PopupMenu MenuModel::getMenuForIndex (int n, const juce::String&)
     
     if (n == 0) {
     //
-    juce::PopupMenu recentFiles; Spaghettis()->fillRecentFilesMenu (recentFiles);
+    juce::PopupMenu recentFiles; Spaghettis()->setRecentFilesMenu (recentFiles);
 
     recentFiles.addCommandItem (commandManager_, Commands::clearRecentFiles);
     
@@ -51,9 +51,9 @@ juce::PopupMenu MenuModel::getMenuForIndex (int n, const juce::String&)
     return menu;
 }
 
-void MenuModel::menuItemSelected (int menuItemID, int index)
+void MenuModel::menuItemSelected (int n, int index)
 {
-
+    if (n >= Commands::recentFiles) { Spaghettis()->openRecentFile (n - Commands::recentFiles); }
 }
  
 // -----------------------------------------------------------------------------------------------------------
