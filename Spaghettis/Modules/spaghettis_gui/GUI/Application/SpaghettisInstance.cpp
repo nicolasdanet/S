@@ -132,13 +132,10 @@ void SpaghettisInstance::appendRecentFile (const juce::File& file)
 {
     juce::String s (file.getFullPathName());
     
-    if (!recentFiles_.contains (s)) {
-    //
-    recentFiles_.insert (0, std::move (s));
+    recentFiles_.removeString (s);
+    recentFiles_.insert (0, s);
     menu_->menuItemsChanged();
     saveRecentFiles();
-    //
-    }
 }
 
 int SpaghettisInstance::getNumberOfRecentFiles() const
