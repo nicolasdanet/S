@@ -162,7 +162,7 @@ void SpaghettisInstance::setRecentFilesMenu (juce::PopupMenu& m)
 
 void SpaghettisInstance::openRecentFile (int n)
 {
-    if (juce::isPositiveAndBelow (n, recentFiles_.size())) { DBG (recentFiles_[n]); }
+    if (juce::isPositiveAndBelow (n, recentFiles_.size())) { openPatch (juce::File (recentFiles_[n])); }
 }
 
 void SpaghettisInstance::loadRecentFiles()
@@ -195,7 +195,7 @@ void SpaghettisInstance::saveRecentFiles()
         
     preferences_->setValue ("RecentFiles", root.get());
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
