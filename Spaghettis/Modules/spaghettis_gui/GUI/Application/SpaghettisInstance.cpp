@@ -167,12 +167,33 @@ void SpaghettisInstance::openRecentFile (int n)
 
 void SpaghettisInstance::loadRecentFiles()
 {
-    recentFiles_ = juce::StringArray { "bijou", "caillou", "chou", "genou", "hibou", "joujou", "pou" };
+    std::unique_ptr<juce::XmlElement> root = preferences_->getXmlValue ("RecentFiles");
+        
+    if (root && root->hasTagName ("RECENTFILES")) {
+    //
+    juce::StringArray scoped;
+    
+    for (auto* e : root->getChildWithTagNameIterator ("RECENTFILE")) {
+        if (e->hasAttribute (Ids::path)) {
+            scoped.addIfNotAlreadyThere (e->getStringAttribute (Ids::path));
+        }
+    }
+    
+    scoped.swapWith (recentFiles_);
+    //
+    }
 }
 
 void SpaghettisInstance::saveRecentFiles()
 {
-
+    auto root = std::make_unique<juce::XmlElement> ("RECENTFILES");
+        
+    for (const auto& f : recentFiles_) {
+        juce::XmlElement* e = root->createNewChildElement ("RECENTFILE");
+        e->setAttribute (Ids::path, f);
+    }
+        
+    preferences_->setValue ("RecentFiles", root.get());
 }
     
 // -----------------------------------------------------------------------------------------------------------
