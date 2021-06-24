@@ -130,12 +130,16 @@ void SpaghettisInstance::openPatch()
 
 void SpaghettisInstance::appendRecentFile (const juce::File& file)
 {
+    const int maximum = 2;
+    
     juce::String s (file.getFullPathName());
     
     recentFiles_.removeString (s);
     recentFiles_.insert (0, s);
-    menu_->menuItemsChanged();
-    saveRecentFiles();
+    
+    while (recentFiles_.size() > maximum) { recentFiles_.remove (recentFiles_.size() - 1); }
+    
+    menu_->menuItemsChanged(); saveRecentFiles();
 }
 
 int SpaghettisInstance::getNumberOfRecentFiles() const
