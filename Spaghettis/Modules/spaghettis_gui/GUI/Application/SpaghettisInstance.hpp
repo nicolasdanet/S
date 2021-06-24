@@ -104,8 +104,13 @@ public:
     void clearRecentFiles();
     void setRecentFilesMenu (juce::PopupMenu&);
     void openRecentFile (int n);
+
+private:
     void loadRecentFiles();
     void saveRecentFiles();
+
+private:
+    static juce::StringArray getFilesShortIfPossible (const juce::StringArray&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

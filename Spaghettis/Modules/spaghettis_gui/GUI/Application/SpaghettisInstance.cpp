@@ -152,7 +152,9 @@ void SpaghettisInstance::setRecentFilesMenu (juce::PopupMenu& m)
 {
     int i = Commands::recentFiles;
     
-    for (const auto& path : recentFiles_) { m.addItem (i++, path); }
+    juce::StringArray t (getFilesShortIfPossible (recentFiles_));
+    
+    for (const auto& path : t) { m.addItem (i++, path); }
     
     if (m.getNumItems() > 0) { m.addSeparator(); }
 }
@@ -191,6 +193,15 @@ void SpaghettisInstance::saveRecentFiles()
     }
         
     preferences_->setValue ("RecentFiles", root.get());
+}
+
+juce::StringArray SpaghettisInstance::getFilesShortIfPossible (const juce::StringArray& a)
+{
+    juce::StringArray t; t.ensureStorageAllocated (a.size());
+    
+    for (const auto& s : a) { if (!t.addIfNotAlreadyThere (juce::File (s).getFileName())) { return a; } }
+    
+    return t;
 }
 
 // -----------------------------------------------------------------------------------------------------------
