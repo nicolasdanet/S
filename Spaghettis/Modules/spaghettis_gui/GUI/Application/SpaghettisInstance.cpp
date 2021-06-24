@@ -130,7 +130,7 @@ void SpaghettisInstance::openPatch()
 
 void SpaghettisInstance::appendRecentFile (const juce::File& file)
 {
-    const int maximum = 2;
+    const int maximum = 16;
     
     juce::String s (file.getFullPathName());
     
