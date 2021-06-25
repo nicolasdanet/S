@@ -26,7 +26,7 @@ struct Commands {
 
 enum CommandIds : juce::CommandID {
     preferences     = SPAGHETTIS_COMMAND (0),
-    fileOpen,
+    openPatch,
     clearRecentFiles,
     paths,
     rescan,

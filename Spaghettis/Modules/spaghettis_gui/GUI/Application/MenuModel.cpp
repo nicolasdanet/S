@@ -22,7 +22,7 @@ juce::PopupMenu MenuModel::getMenuForIndex (int n, const juce::String&)
 
     recentFiles.addCommandItem (commandManager_, Commands::clearRecentFiles);
     
-    menu.addCommandItem (commandManager_, Commands::fileOpen);
+    menu.addCommandItem (commandManager_, Commands::openPatch);
     menu.addSubMenu (NEEDS_TRANS ("Open Recent"), recentFiles);
     menu.addSeparator();
     #if SPAGHETTIS_MENUBAR
