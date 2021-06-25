@@ -23,7 +23,12 @@ void inputs_ping (void)
     post_system (NULL, "?");
 }
 
-void inputs_patchOpen (const juce::File& f)
+void inputs_newPatch()
+{
+    post_system (NULL, "!");
+}
+
+void inputs_openPatch (const juce::File& f)
 {
     if (f.existsAsFile()) {
         t_symbol *name = gensym (f.getFileName().toRawUTF8());

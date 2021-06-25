@@ -90,7 +90,7 @@ public:
                 
         setCurrentOpenDirectory (file.getParentDirectory());
         
-        handle (Inputs::openFile (file));
+        handle (Inputs::openPatch (file));
     }
     
     void openPatch();

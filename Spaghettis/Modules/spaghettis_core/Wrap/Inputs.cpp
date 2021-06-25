@@ -16,9 +16,14 @@ std::function<void()> Inputs::ping()
     return []() { core::inputs_ping(); };
 }
 
-std::function<void()> Inputs::openFile (juce::File file)
+std::function<void()> Inputs::newPatch()
 {
-    return [f = std::move (file)]() { core::inputs_patchOpen (f); };
+    return []() { core::inputs_newPatch(); };
+}
+
+std::function<void()> Inputs::openPatch (juce::File file)
+{
+    return [f = std::move (file)]() { core::inputs_openPatch (f); };
 }
 
 std::function<void()> Inputs::rescan (Logged type)

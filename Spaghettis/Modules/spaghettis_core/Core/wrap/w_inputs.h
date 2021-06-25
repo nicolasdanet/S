@@ -17,7 +17,8 @@
 #if defined ( PD_BUILDING_APPLICATION )
 
 void inputs_ping            (void);
-void inputs_patchOpen       (const juce::File&);
+void inputs_newPatch        (void);
+void inputs_openPatch       (const juce::File&);
 void inputs_switchDsp       (void);
 void inputs_rescan          (int logged);
 void inputs_setSearchPaths  (const juce::StringArray&);
