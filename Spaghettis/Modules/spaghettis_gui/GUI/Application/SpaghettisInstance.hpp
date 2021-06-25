@@ -84,6 +84,15 @@ public:
 // MARK: -
 
 public:
+    void newPatch()
+    {
+        const juce::String name (core::getUntitled());
+        const juce::String suffix (core::getPatchExtension());
+        const juce::File file (getCurrentOpenDirectory().getNonexistentChildFile (name, suffix, false));
+        
+        handle (Inputs::newPatch (file));
+    }
+    
     void openPatch (const juce::File& file)
     {
         JUCE_ASSERT_MESSAGE_THREAD

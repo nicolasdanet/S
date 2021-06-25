@@ -84,7 +84,7 @@ bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& in
     //
     case Commands::preferences      :   Spaghettis()->handle (Inputs::ping());
                                         return true;
-    case Commands::newPatch         :   Spaghettis()->handle (Inputs::newPatch());
+    case Commands::newPatch         :   Spaghettis()->newPatch();
                                         return true;
     case Commands::openPatch        :   Spaghettis()->openPatch();
                                         return true;

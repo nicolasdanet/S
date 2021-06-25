@@ -23,9 +23,13 @@ void inputs_ping (void)
     post_system (NULL, "?");
 }
 
-void inputs_newPatch()
+void inputs_newPatch (const juce::File& f)
 {
-    post_system (NULL, "!");
+    if (!f.existsAsFile()) {
+        t_symbol *name = gensym (f.getFileName().toRawUTF8());
+        t_symbol *directory = gensym (f.getParentDirectory().getFullPathName().toRawUTF8());
+        instance_patchNew (name, directory);
+    }
 }
 
 void inputs_openPatch (const juce::File& f)

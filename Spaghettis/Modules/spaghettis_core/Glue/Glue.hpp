@@ -32,6 +32,8 @@ void main_threadExit();
 
 juce::String getFileExtensions();
 juce::String getApplicationName();
+juce::String getUntitled();
+juce::String getPatchExtension();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -29,7 +29,7 @@ enum class Logged {
 // MARK: -
 
 static std::function<void()> ping();
-static std::function<void()> newPatch();
+static std::function<void()> newPatch (juce::File);
 static std::function<void()> openPatch (juce::File);
 static std::function<void()> rescan (Logged type);
 static std::function<void()> switchDsp();

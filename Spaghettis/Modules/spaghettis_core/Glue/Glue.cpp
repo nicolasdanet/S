@@ -93,6 +93,16 @@ juce::String getApplicationName()
     return juce::String (PD_NAME);
 }
 
+juce::String getUntitled()
+{
+    return juce::String (NEEDS_TRANS ("Untitled"));
+}
+
+juce::String getPatchExtension()
+{
+    return juce::String (PD_PATCH);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
