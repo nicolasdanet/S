@@ -17,6 +17,7 @@ void Commands::getAllCommands (juce::Array<juce::CommandID>& c)
     juce::Array<juce::CommandID> commands
         {
             Commands::preferences,
+            Commands::newPatch,
             Commands::openPatch,
             Commands::clearRecentFiles,
             Commands::paths,
@@ -41,6 +42,10 @@ void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommand
     case Commands::preferences :
         r.setInfo (NEEDS_TRANS ("Preferences..."),  NEEDS_TRANS ("Set preferences"),            general, 0);
         r.addDefaultKeypress (',', juce::ModifierKeys::commandModifier);
+        break;
+    case Commands::newPatch :
+        r.setInfo (NEEDS_TRANS ("New Patch"),       NEEDS_TRANS ("Create a new patch"),               file, 0);
+        r.addDefaultKeypress ('n', juce::ModifierKeys::commandModifier);
         break;
     case Commands::openPatch :
         r.setInfo (NEEDS_TRANS ("Open..."),         NEEDS_TRANS ("Open a patch"),               file, 0);
@@ -78,6 +83,8 @@ bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& in
     switch (info.commandID) {
     //
     case Commands::preferences      :   Spaghettis()->handle (Inputs::ping());
+                                        return true;
+    case Commands::newPatch         :   DBG ("?");
                                         return true;
     case Commands::openPatch        :   Spaghettis()->openPatch();
                                         return true;
