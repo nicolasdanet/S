@@ -36,11 +36,11 @@ public:
         const juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
 
         #if JUCE_MAC
-        juce::File file = home.getChildFile ("Library/Application Support/Spaghettis/spaghettis.settings");
+        juce::File file = home.getChildFile ("Library/Application Support/Spaghettis/properties.xml");
         #endif
         
         #if JUCE_LINUX
-        juce::File file = home.getChildFile (".config/spaghettis/spaghettis.settings");
+        juce::File file = home.getChildFile (".config/spaghettis/properties.xml");
         #endif
         
         preferences_ = std::make_unique<juce::PropertiesFile> (file, juce::PropertiesFile::Options());
