@@ -285,7 +285,7 @@
 		378972441C4F716800263434 /* m_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971E61C4F716700263434 /* m_utils.c */; };
 		3789724C1C4F716800263434 /* s_audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971F11C4F716700263434 /* s_audio.c */; };
 		3789724D1C4F716800263434 /* s_entry.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971F21C4F716700263434 /* s_entry.c */; };
-		3789724E1C4F716800263434 /* s_preferences.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971F31C4F716700263434 /* s_preferences.c */; };
+		3789724E1C4F716800263434 /* s_settings.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971F31C4F716700263434 /* s_settings.c */; };
 		378972501C4F716800263434 /* s_loader.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971F51C4F716700263434 /* s_loader.c */; };
 		378972511C4F716800263434 /* s_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971F61C4F716700263434 /* s_main.c */; };
 		378972561C4F716800263434 /* s_midi.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971FB1C4F716700263434 /* s_midi.c */; };
@@ -419,7 +419,7 @@
 		1726300124879A3300803F0F /* s_scheduler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_scheduler.h; sourceTree = "<group>"; };
 		1726300224879A3A00803F0F /* s_monitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_monitor.h; sourceTree = "<group>"; };
 		1726300424879D7B00803F0F /* s_audio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_audio.h; sourceTree = "<group>"; };
-		172630092487DBFB00803F0F /* s_preferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_preferences.h; sourceTree = "<group>"; };
+		172630092487DBFB00803F0F /* s_settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_settings.h; sourceTree = "<group>"; };
 		1726300A2487DC0600803F0F /* s_memory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_memory.h; sourceTree = "<group>"; };
 		1726300B2487E08C00803F0F /* d_vinlet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = d_vinlet.h; sourceTree = "<group>"; };
 		1726300C2487E08C00803F0F /* d_voutlet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = d_voutlet.h; sourceTree = "<group>"; };
@@ -759,7 +759,7 @@
 		378971ED1C4F716700263434 /* s_audio_linux.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_audio_linux.c; sourceTree = "<group>"; };
 		378971F11C4F716700263434 /* s_audio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_audio.c; sourceTree = "<group>"; };
 		378971F21C4F716700263434 /* s_entry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_entry.c; sourceTree = "<group>"; };
-		378971F31C4F716700263434 /* s_preferences.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_preferences.c; sourceTree = "<group>"; };
+		378971F31C4F716700263434 /* s_settings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_settings.c; sourceTree = "<group>"; };
 		378971F51C4F716700263434 /* s_loader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_loader.c; sourceTree = "<group>"; };
 		378971F61C4F716700263434 /* s_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_main.c; sourceTree = "<group>"; };
 		378971F71C4F716700263434 /* s_midi_linux.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_midi_linux.c; sourceTree = "<group>"; };
@@ -1041,14 +1041,14 @@
 			path = memory;
 			sourceTree = "<group>";
 		};
-		172630082487DADB00803F0F /* preferences */ = {
+		172630082487DADB00803F0F /* settings */ = {
 			isa = PBXGroup;
 			children = (
-				172630092487DBFB00803F0F /* s_preferences.h */,
+				172630092487DBFB00803F0F /* s_settings.h */,
 				37E224BE1E4B542B00314AA4 /* s_properties.c */,
-				378971F31C4F716700263434 /* s_preferences.c */,
+				378971F31C4F716700263434 /* s_settings.c */,
 			);
-			path = preferences;
+			path = settings;
 			sourceTree = "<group>";
 		};
 		172BA9BA2486AA70002058E8 /* MIDI */ = {
@@ -1354,7 +1354,7 @@
 			children = (
 				172630072487DA9300803F0F /* memory */,
 				17263000248797FE00803F0F /* scheduler */,
-				172630082487DADB00803F0F /* preferences */,
+				172630082487DADB00803F0F /* settings */,
 				17262FFC24878B0200803F0F /* files */,
 				172630052487D20300803F0F /* log */,
 				172BA9BB2486ACB9002058E8 /* policy */,
@@ -1975,7 +1975,7 @@
 				378972441C4F716800263434 /* m_utils.c in Sources */,
 				3789724C1C4F716800263434 /* s_audio.c in Sources */,
 				3789724D1C4F716800263434 /* s_entry.c in Sources */,
-				3789724E1C4F716800263434 /* s_preferences.c in Sources */,
+				3789724E1C4F716800263434 /* s_settings.c in Sources */,
 				378972501C4F716800263434 /* s_loader.c in Sources */,
 				378972511C4F716800263434 /* s_main.c in Sources */,
 				378972561C4F716800263434 /* s_midi.c in Sources */,
