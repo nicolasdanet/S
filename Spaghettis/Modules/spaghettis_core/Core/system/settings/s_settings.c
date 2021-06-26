@@ -24,7 +24,7 @@ PD_LOCAL void       properties_setKey       (const char *, const char *);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void preferences_load (void)
+PD_LOCAL void settings_load (void)
 {
     t_devices midi;    
     t_devices audio;   
@@ -120,7 +120,7 @@ PD_LOCAL void preferences_load (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void preferences_save (void)
+PD_FORCE void settings_save (void)
 {
     t_devices midi;    
     t_devices audio;   

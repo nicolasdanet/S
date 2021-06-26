@@ -177,15 +177,15 @@ static t_error main_setPathSupport (void)
     return err;
 }
 
-static t_error main_setFilePreferences (const char *preferences)
+static t_error main_setFileSettings (const char *settings)
 {
     char filepath[PD_STRING] = { 0 };
     
-    const char *name      = preferences ? preferences : "preferences.txt";
-    const char *directory = preferences ? main_directoryExecutable->s_name : main_directorySupport->s_name;
+    const char *name      = settings ? settings : "settings.txt";
+    const char *directory = settings ? main_directoryExecutable->s_name : main_directorySupport->s_name;
 
     if (!path_withDirectoryAndName (filepath, PD_STRING, directory, name)) {
-        if (!preferences || path_isFileExistAsRegularFile (filepath)) {
+        if (!settings || path_isFileExistAsRegularFile (filepath)) {
             main_filePreferences = gensym (filepath);
             return PD_ERROR_NONE;
         }
@@ -213,19 +213,19 @@ static t_error main_parseArguments (int argc, char **argv)
     //
     }
 
-    char *preferences = NULL;
+    char *settings = NULL;
     
     while (!err && (argc > 0)) {
         if (string_endWith (*argv, PD_PATCH)) { startup_appendPendedFiles (*argv); }
-        if (string_endWith (*argv, ".txt"))   { preferences = *argv; }
+        if (string_endWith (*argv, ".txt"))   { settings = *argv; }
         argc--; argv++;
     }
 
-    err |= main_setFilePreferences (preferences);
+    err |= main_setFileSettings (settings);
     
     if (err) {
     //
-    fprintf (stderr, "Usage: " PD_NAME_LOWERCASE " [ --version ] [ preferences ] [ files ... ]\n");     // --
+    fprintf (stderr, "Usage: " PD_NAME_LOWERCASE " [ --version ] [ settings ] [ files ... ]\n");     // --
     //
     }
     
@@ -303,7 +303,7 @@ PD_LOCAL int main_start (void)
     //
     midi_initialize();
     setup_initialize();     /* Instance initialized. */
-    preferences_load();
+    settings_load();
         
     if (!(err |= main_create())) { err |= scheduler_main(); }
     
