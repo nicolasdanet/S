@@ -85,6 +85,8 @@ static void initialize (juce::LookAndFeel* lf)
     // const juce::Colour blue     = juce::Colour (0xff268bd2);
     // const juce::Colour cyan     = juce::Colour (0xff2aa198);
     
+    jassert (background.isOpaque());
+    
     jassert (lf->isColourSpecified (windowBackground)                   == false);
     jassert (lf->isColourSpecified (consoleTextDefault)                 == false);
     jassert (lf->isColourSpecified (consoleTextSystem)                  == false);
@@ -135,6 +137,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
     
     lf->setColour (juce::ScrollBar::thumbColourId,                      juce::Colours::grey);
+    lf->setColour (juce::PopupMenu::backgroundColourId,                 backgroundDark);
     lf->setColour (juce::ListBox::backgroundColourId,                   background);
     lf->setColour (juce::ListBox::outlineColourId,                      juce::Colours::transparentBlack);
     lf->setColour (juce::ListBox::textColourId,                         base01);
