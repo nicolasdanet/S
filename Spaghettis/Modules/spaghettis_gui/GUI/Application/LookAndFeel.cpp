@@ -45,17 +45,19 @@ void LookAndFeel::initializeFonts()
     setDefaultSansSerifTypefaceName (fontName);
 
     fontConsole_        = juce::Font (fontName, 18.0, juce::Font::plain);
-    fontShortcuts_      = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
+    fontMenu_           = juce::Font (fontName, 18.0, juce::Font::plain);
+    fontMenuShortcuts_  = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
     fontTooltips_       = juce::Font (fontName, 16.0, juce::Font::bold);
 
     /* < https://forum.juce.com/t/fonts-need-to-be-initialized-on-rpi > */
     
-    fontConsoleName_    = fontConsole_.getTypeface()->getName();
-    fontShortcutsName_  = fontShortcuts_.getTypeface()->getName();
-    fontTooltipsName_   = fontTooltips_.getTypeface()->getName();
+    fontConsoleName_        = fontConsole_.getTypeface()->getName();
+    fontMenuName_           = fontMenu_.getTypeface()->getName();
+    fontMenuShortcutsName_  = fontMenuShortcuts_.getTypeface()->getName();
+    fontTooltipsName_       = fontTooltips_.getTypeface()->getName();
     
     SPAGHETTIS_DEBUG (fontConsoleName_);
-    SPAGHETTIS_DEBUG (fontShortcutsName_);
+    SPAGHETTIS_DEBUG (fontMenuShortcutsName_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -171,7 +173,7 @@ void LookAndFeel::drawPopupMenuItemShortcut (juce::Graphics& g,
     const juce::Rectangle<int>& r,
     const juce::String& shortcutText)
 {
-    g.setFont (getFontShortcuts());
+    g.setFont (getMenuShortcutsFont());
     g.drawText (shortcutText, r, juce::Justification::centredRight, true);
 }
 

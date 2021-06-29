@@ -136,7 +136,7 @@ public:
         g.setColour (isSelected ? Spaghettis()->getColour (Colours::consoleTextHighlighted)
                                 : colourWithType (Logger::getType (e)));
         
-        g.setFont (Spaghettis()->getLookAndFeel().getFontConsole());
+        g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
         g.drawText (Logger::getText (e), r.reduced (4, 0), juce::Justification::centredLeft, true);
         //
         }

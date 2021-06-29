@@ -40,7 +40,7 @@ public:
 
     juce::Font getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&) override
     {
-        return getFontConsole();
+        return getMenuFont();
     }
 
     void drawMenuBarBackground (juce::Graphics& g, int, int, bool, juce::MenuBarComponent&) override
@@ -84,7 +84,7 @@ public:
 public:
     juce::Font getPopupMenuFont() override
     {
-        return getFontConsole();
+        return getMenuFont();
     }
     
     void drawPopupMenuBackground (juce::Graphics& g, int, int) override
@@ -149,14 +149,19 @@ private:
 // MARK: -
 
 public:
-    const juce::Font& getFontConsole() const
+    const juce::Font& getConsoleFont() const
     {
         return fontConsole_;
     }
     
-    const juce::Font& getFontShortcuts() const
+    const juce::Font& getMenuFont() const
     {
-        return fontShortcuts_;
+        return fontMenu_;
+    }
+    
+    const juce::Font& getMenuShortcutsFont() const
+    {
+        return fontMenuShortcuts_;
     }
 
     const juce::Font& getTooltipsFont() const
@@ -166,10 +171,12 @@ public:
     
 private:
     juce::String fontConsoleName_;
-    juce::String fontShortcutsName_;
+    juce::String fontMenuName_;
+    juce::String fontMenuShortcutsName_;
     juce::String fontTooltipsName_;
     juce::Font fontConsole_;
-    juce::Font fontShortcuts_;
+    juce::Font fontMenu_;
+    juce::Font fontMenuShortcuts_;
     juce::Font fontTooltips_;
 
 private:

@@ -107,7 +107,7 @@ public:
         g.setColour (isSelected ? Spaghettis()->getColour (Colours::searchpathsTextHighlighted)
                                 : Spaghettis()->getColour (Colours::searchpathsText));
                                     
-        g.setFont (Spaghettis()->getLookAndFeel().getFontConsole());
+        g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
         g.drawText (paths_[row], r.reduced (4, 0), juce::Justification::centredLeft, true);
         //
         }

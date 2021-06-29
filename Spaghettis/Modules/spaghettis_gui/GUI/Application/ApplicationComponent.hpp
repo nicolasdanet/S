@@ -242,7 +242,7 @@ private:
 protected:
     static void listBoxInitialize (juce::ListBox& listBox, bool multiple)
     {
-        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getFontConsole().getHeight() * 1.5);
+        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getConsoleFont().getHeight() * 1.5);
         
         listBox.setMultipleSelectionEnabled (multiple);
         listBox.setClickingTogglesRowSelection (true);
