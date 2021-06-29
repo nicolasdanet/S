@@ -36,8 +36,8 @@ public:
         ids.add (Icons::clear);
         ids.add (Icons::restore);
         ids.add (ToolbarItemFactory::spacerId);
-        ids.add (Icons::message);
         ids.add (Icons::error);
+        ids.add (Icons::message);
         ids.add (Icons::find);
         ids.add (ToolbarItemFactory::spacerId);
         ids.add (Icons::autoscroll);

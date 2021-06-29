@@ -20,8 +20,8 @@ void ConsoleFactory::setToolbarButton (IconsButton* button)
     //
     case Icons::clear       : button->setTooltip (NEEDS_TRANS ("Clear logs"));          break;
     case Icons::restore     : button->setTooltip (NEEDS_TRANS ("Restore logs"));        break;
-    case Icons::message     : button->setTooltip (NEEDS_TRANS ("Show messages"));       break;
     case Icons::error       : button->setTooltip (NEEDS_TRANS ("Show errors"));         break;
+    case Icons::message     : button->setTooltip (NEEDS_TRANS ("Show messages"));       break;
     case Icons::find        : button->setTooltip (NEEDS_TRANS ("Locate sender"));       break;
     case Icons::autoscroll  : button->setTooltip (NEEDS_TRANS ("Enable autoscroll"));   break;
     default                 : break;
@@ -32,8 +32,8 @@ void ConsoleFactory::setToolbarButton (IconsButton* button)
     //
     case Icons::clear       : button->onClick = [this]() { owner_->clear(); };   break;
     case Icons::restore     : button->onClick = [this]() { owner_->restore(); }; break;
-    case Icons::message     : /* Falls through. */
-    case Icons::error       : button->onClick = [this, button]() {
+    case Icons::error       : /* Falls through. */
+    case Icons::message     : button->onClick = [this, button]() {
                                     if (button->getState()) { owner_->restore(); }
                                     else {
                                         owner_->parse();
