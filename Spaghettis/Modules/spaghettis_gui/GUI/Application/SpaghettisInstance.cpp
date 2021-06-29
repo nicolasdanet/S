@@ -50,12 +50,20 @@ void SpaghettisInstance::shutdown()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+template <class T> void SpaghettisInstance::openWindow (std::unique_ptr<T>& p)
+{
+    if (p == nullptr) { p = std::make_unique<T>(); }
+    else {
+        p.get()->toFront (true);
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 void SpaghettisInstance::openPreferencesWindow()
 {
-    if (preferences_ == nullptr) { preferences_ = std::make_unique<Preferences>(); }
-    else {
-        preferences_.get()->toFront (true);
-    }
+    openWindow (preferences_);
 }
 
 void SpaghettisInstance::closePreferencesWindow()
@@ -63,22 +71,19 @@ void SpaghettisInstance::closePreferencesWindow()
     preferences_ = nullptr;
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void SpaghettisInstance::openSearchPathsWindow()
 {
-    if (searchPaths_ == nullptr) { searchPaths_ = std::make_unique<SearchPaths>(); }
-    else {
-        searchPaths_.get()->toFront (true);
-    }
+    openWindow (searchPaths_);
 }
 
 void SpaghettisInstance::closeSearchPathsWindow()
 {
     searchPaths_ = nullptr;
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void SpaghettisInstance::updateSearchPaths (const juce::StringArray& searchpaths, Inputs::Logged type)
 {
