@@ -75,6 +75,9 @@
 #include "GUI/Console/ConsoleComponent.hpp"
 #include "GUI/Console/Console.hpp"
 
+#include "GUI/Preferences/PreferencesComponent.hpp"
+#include "GUI/Preferences/Preferences.hpp"
+
 #include "GUI/SearchPaths/SearchPathsFactory.hpp"
 #include "GUI/SearchPaths/SearchPathsComponent.hpp"
 #include "GUI/SearchPaths/SearchPaths.hpp"
