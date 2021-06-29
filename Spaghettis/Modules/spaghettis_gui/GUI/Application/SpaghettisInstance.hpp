@@ -12,6 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 
 class Console;
+class Preferences;
 class SearchPaths;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -43,7 +44,7 @@ public:
         juce::File file = home.getChildFile (".config/spaghettis/properties.xml");
         #endif
         
-        preferences_ = std::make_unique<juce::PropertiesFile> (file, juce::PropertiesFile::Options());
+        properties_ = std::make_unique<juce::PropertiesFile> (file, juce::PropertiesFile::Options());
         
         loadRecentFiles();  /* MUST be at end. */
     }
@@ -121,6 +122,14 @@ private:
 private:
     static juce::StringArray getFilesShortIfPossible (const juce::StringArray&);
     
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void openPreferencesWindow();
+    void closePreferencesWindow();
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -209,9 +218,9 @@ public:
         return *commandManager_;
     }
 
-    juce::PropertiesFile& getPreferences()
+    juce::PropertiesFile& getProperties()
     {
-        return *preferences_;
+        return *properties_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -239,8 +248,9 @@ private:
     
 private:
     std::unique_ptr<Console> console_;
+    std::unique_ptr<Preferences> preferences_;
     std::unique_ptr<SearchPaths> searchPaths_;
-    std::unique_ptr<juce::PropertiesFile> preferences_;
+    std::unique_ptr<juce::PropertiesFile> properties_;
     std::unique_ptr<juce::FileChooser> fileChooser_;
 
 private:

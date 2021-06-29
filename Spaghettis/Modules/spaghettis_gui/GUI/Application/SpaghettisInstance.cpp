@@ -50,6 +50,23 @@ void SpaghettisInstance::shutdown()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void SpaghettisInstance::openPreferencesWindow()
+{
+    if (preferences_ == nullptr) { preferences_ = std::make_unique<Preferences>(); }
+    else {
+        preferences_.get()->toFront (true);
+    }
+}
+
+void SpaghettisInstance::closePreferencesWindow()
+{
+    preferences_ = nullptr;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void SpaghettisInstance::openSearchPathsWindow()
 {
     if (searchPaths_ == nullptr) { searchPaths_ = std::make_unique<SearchPaths>(); }
@@ -73,7 +90,7 @@ juce::StringArray SpaghettisInstance::getSearchPaths()
 {
     juce::StringArray searchPaths;
     
-    std::unique_ptr<juce::XmlElement> root = preferences_->getXmlValue ("SearchPaths");
+    std::unique_ptr<juce::XmlElement> root = properties_->getXmlValue ("SearchPaths");
         
     if (root && root->hasTagName ("SEARCHPATHS")) {
     //
@@ -97,7 +114,7 @@ void SpaghettisInstance::setSearchPaths (const juce::StringArray& searchpaths)
         e->setAttribute (Ids::path, p);
     }
         
-    preferences_->setValue ("SearchPaths", root.get());
+    properties_->setValue ("SearchPaths", root.get());
     
     updateSearchPaths (searchpaths, Inputs::Logged::base);
 }
@@ -170,7 +187,7 @@ void SpaghettisInstance::openRecentFile (int n)
 
 void SpaghettisInstance::loadRecentFiles()
 {
-    std::unique_ptr<juce::XmlElement> root = preferences_->getXmlValue ("RecentFiles");
+    std::unique_ptr<juce::XmlElement> root = properties_->getXmlValue ("RecentFiles");
         
     if (root && root->hasTagName ("RECENTFILES")) {
     //
@@ -196,7 +213,7 @@ void SpaghettisInstance::saveRecentFiles()
         e->setAttribute (Ids::path, f);
     }
         
-    preferences_->setValue ("RecentFiles", root.get());
+    properties_->setValue ("RecentFiles", root.get());
 }
 
 juce::StringArray SpaghettisInstance::getFilesShortIfPossible (const juce::StringArray& a)

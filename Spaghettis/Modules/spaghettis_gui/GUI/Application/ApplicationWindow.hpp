@@ -33,9 +33,9 @@ public:
 
     ~ApplicationWindow()
     {
-        juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
+        juce::PropertiesFile& properties = Spaghettis()->getProperties();
         
-        preferences.setValue (keyName_ + "Position", juce::var (getWindowStateAsString()));
+        properties.setValue (keyName_ + "Position", juce::var (getWindowStateAsString()));
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -80,9 +80,9 @@ public:
 
     void makeVisible()
     {
-        juce::PropertiesFile& preferences = Spaghettis()->getPreferences();
+        juce::PropertiesFile& properties = Spaghettis()->getProperties();
         
-        const juce::String s = preferences.getValue (keyName_ + "Position");
+        const juce::String s = properties.getValue (keyName_ + "Position");
         
         if (s.isNotEmpty()) { restoreWindowStateFromString (s); }
         

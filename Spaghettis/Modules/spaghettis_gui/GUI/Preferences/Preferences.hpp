@@ -35,7 +35,7 @@ public:
 public:
     void closeButtonPressed() override
     {
-        // Spaghettis()->closeSearchPathsWindow();
+        Spaghettis()->closePreferencesWindow();
     }
 
 private:
