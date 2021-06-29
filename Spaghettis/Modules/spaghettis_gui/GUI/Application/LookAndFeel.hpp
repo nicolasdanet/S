@@ -65,11 +65,7 @@ public:
 public:
     int getToolbarHeight()
     {
-        #if JUCE_LINUX
-            return 30;
-        #else
-            return 34;
-        #endif
+        return 30;
     }
     
     void paintToolbarBackground (juce::Graphics&, int w, int h, juce::Toolbar&) override;
