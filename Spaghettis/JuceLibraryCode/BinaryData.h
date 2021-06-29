@@ -11,8 +11,8 @@ namespace BinaryData
     extern const char*   add_svg;
     const int            add_svgSize = 194;
 
-    extern const char*   delete_forever_svg;
-    const int            delete_forever_svgSize = 368;
+    extern const char*   clear_svg;
+    const int            clear_svgSize = 268;
 
     extern const char*   error_outline_svg;
     const int            error_outline_svgSize = 292;
