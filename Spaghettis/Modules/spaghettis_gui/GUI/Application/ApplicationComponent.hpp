@@ -100,7 +100,7 @@ public:
     {
         if (toolbar_) {
         //
-        juce::PropertiesFile& properties = Spaghettis()->getProperties();
+        juce::PropertiesFile& p = Spaghettis()->getProperties();
         
         auto root   = std::make_unique<juce::XmlElement> ("BUTTONS");
         const int n = toolbar_->getNumItems();
@@ -118,7 +118,7 @@ public:
         //
         }
         
-        if (save) { properties.setValue (keyName_ + "Buttons", root.get()); }
+        if (save) { p.setValue (keyName_ + "Buttons", root.get()); }
         //
         }
     }
@@ -127,9 +127,9 @@ public:
     {
         if (toolbar_) {
         //
-        juce::PropertiesFile& properties = Spaghettis()->getProperties();
+        juce::PropertiesFile& p = Spaghettis()->getProperties();
         
-        std::unique_ptr<juce::XmlElement> root = properties.getXmlValue (keyName_ + "Buttons");
+        std::unique_ptr<juce::XmlElement> root = p.getXmlValue (keyName_ + "Buttons");
         
         if (root && root->hasTagName ("BUTTONS")) {
 
