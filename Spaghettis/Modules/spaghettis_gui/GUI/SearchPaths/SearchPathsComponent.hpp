@@ -31,7 +31,7 @@ public:
         ApplicationComponent::listBoxUpdate (listBox_, paths_, false);
         addAndMakeVisible (listBox_);
         
-        setSize (400, 500);
+        setOpaque (true); setSize (400, 500);
     }
     
     ~SearchPathsComponent() override

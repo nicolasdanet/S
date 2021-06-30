@@ -21,7 +21,7 @@ class PreferencesComponent : public ApplicationComponent {
 public:
     PreferencesComponent (const juce::String& keyName) : ApplicationComponent (keyName)
     {
-        setSize (400, 500);
+        setOpaque (true); setSize (400, 500);
     }
     
     ~PreferencesComponent() override
