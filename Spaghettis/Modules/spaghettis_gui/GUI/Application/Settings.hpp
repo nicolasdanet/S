@@ -17,21 +17,21 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ApplicationPreferences {
+class Settings {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    ApplicationPreferences() = default;
-    ~ApplicationPreferences() = default;
+    Settings() = default;
+    ~Settings() = default;
 
 private:
     juce::ValueTree tree_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ApplicationPreferences)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Settings)
 };
  
 // -----------------------------------------------------------------------------------------------------------
