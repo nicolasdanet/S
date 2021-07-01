@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void SpaghettisInstance::start (const juce::StringArray& commandLine)
 {
-    console_ = std::make_unique<Console>();
+    consoleComponent_ = std::make_unique<Console>();
 
     #if ! ( SPAGHETTIS_MENUBAR )
         
@@ -43,7 +43,7 @@ void SpaghettisInstance::shutdown()
         
     #endif
         
-    console_ = nullptr;
+    consoleComponent_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -63,22 +63,22 @@ template <class T> void SpaghettisInstance::openWindow (std::unique_ptr<T>& p)
 
 void SpaghettisInstance::openPreferencesWindow()
 {
-    openWindow (preferences_);
+    openWindow (preferencesComponent_);
 }
 
 void SpaghettisInstance::closePreferencesWindow()
 {
-    preferences_ = nullptr;
+    preferencesComponent_ = nullptr;
 }
 
 void SpaghettisInstance::openSearchPathsWindow()
 {
-    openWindow (searchPaths_);
+    openWindow (searchPathsComponent_);
 }
 
 void SpaghettisInstance::closeSearchPathsWindow()
 {
-    searchPaths_ = nullptr;
+    searchPathsComponent_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -236,7 +236,7 @@ juce::StringArray SpaghettisInstance::getFilesShortIfPossible (const juce::Strin
 
 void SpaghettisInstance::clearConsole()
 {
-    if (console_) { console_->clear(); }
+    if (consoleComponent_) { consoleComponent_->clear(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

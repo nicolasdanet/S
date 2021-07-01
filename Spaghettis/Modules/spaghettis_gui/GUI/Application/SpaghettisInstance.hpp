@@ -241,19 +241,22 @@ private:
 // MARK: -
 
 private:
-    juce::StringArray recentFiles_;
     std::unique_ptr<LookAndFeel> lookAndFeel_;
     std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
     std::unique_ptr<MenuModel> menu_;
     std::unique_ptr<Wrapper> core_;
+
+private:
     juce::File currentOpenDirectory_;
     bool dspIsRunning_;
+    juce::StringArray recentFiles_;
     
 private:
-    std::unique_ptr<Console> console_;
-    std::unique_ptr<Preferences> preferences_;
-    std::unique_ptr<SearchPaths> searchPaths_;
+    std::unique_ptr<Console> consoleComponent_;
+    std::unique_ptr<Preferences> preferencesComponent_;
+    std::unique_ptr<SearchPaths> searchPathsComponent_;
     std::unique_ptr<juce::PropertiesFile> properties_;
+    std::unique_ptr<ApplicationPreferences> preferences_;
     std::unique_ptr<juce::FileChooser> fileChooser_;
 
 private:
