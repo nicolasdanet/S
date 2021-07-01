@@ -28,6 +28,7 @@ class SpaghettisInstance {
 public:
     SpaghettisInstance() :
         lookAndFeel_ (std::make_unique<LookAndFeel>()),
+        preferences_ (std::make_unique<ApplicationPreferences>()),
         commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
         menu_ (std::make_unique<MenuModel> (commandManager_.get())),
         core_ (std::make_unique<Wrapper>()),
@@ -242,6 +243,7 @@ private:
 
 private:
     std::unique_ptr<LookAndFeel> lookAndFeel_;
+    std::unique_ptr<ApplicationPreferences> preferences_;
     std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
     std::unique_ptr<MenuModel> menu_;
     std::unique_ptr<Wrapper> core_;
@@ -252,11 +254,10 @@ private:
     juce::StringArray recentFiles_;
     
 private:
-    std::unique_ptr<Console> consoleComponent_;
-    std::unique_ptr<Preferences> preferencesComponent_;
-    std::unique_ptr<SearchPaths> searchPathsComponent_;
+    std::unique_ptr<Console> consoleWindow_;
+    std::unique_ptr<Preferences> preferencesWindow_;
+    std::unique_ptr<SearchPaths> searchPathsWindow_;
     std::unique_ptr<juce::PropertiesFile> properties_;
-    std::unique_ptr<ApplicationPreferences> preferences_;
     std::unique_ptr<juce::FileChooser> fileChooser_;
 
 private:
