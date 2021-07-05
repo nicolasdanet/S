@@ -100,10 +100,11 @@ void LookAndFeel::paintToolbarButtonBackground (juce::Graphics& g,
     juce::ToolbarItemComponent& component)
 {
     if (isMouseDown) {
-    if (Icons::getInstance().isToggle (component.getItemId()) == false) {
-        g.fillAll (findColour (Colours::toolbarBackgroundDown));
-    }
-    }
+        if (Icons::getInstance().isToggle (component.getItemId()) == false) {
+            g.fillAll (findColour (Colours::toolbarBackgroundDown));
+        }
+        
+    } else if (isMouseOver) { g.fillAll (findColour (Colours::toolbarBackgroundOver)); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

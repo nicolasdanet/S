@@ -40,6 +40,7 @@ enum ColourIds : int {
     menubarSeparator,
     toolbarBackground,
     toolbarBackgroundDown,
+    toolbarBackgroundOver,
     toolbarIconOn,
     toolbarIconOff,
     searchpathsBackground,
@@ -102,6 +103,7 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (menubarSeparator)                   == false);
     jassert (lf->isColourSpecified (toolbarBackground)                  == false);
     jassert (lf->isColourSpecified (toolbarBackgroundDown)              == false);
+    jassert (lf->isColourSpecified (toolbarBackgroundOver)              == false);
     jassert (lf->isColourSpecified (toolbarIconOn)                      == false);
     jassert (lf->isColourSpecified (toolbarIconOff)                     == false);
     jassert (lf->isColourSpecified (searchpathsBackground)              == false);
@@ -125,6 +127,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarSeparator,                                    juce::Colours::black);
     lf->setColour (toolbarBackground,                                   backgroundDark);
     lf->setColour (toolbarBackgroundDown,                               background);
+    lf->setColour (toolbarBackgroundOver,                               backgroundDark);
     lf->setColour (toolbarIconOn,                                       juce::Colours::white);
     lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
     lf->setColour (searchpathsBackground,                               background);
