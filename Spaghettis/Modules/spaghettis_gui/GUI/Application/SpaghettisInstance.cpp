@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void SpaghettisInstance::start (const juce::StringArray& commandLine)
 {
-    consoleWindow_ = std::make_unique<Console>();
+    consoleWindow_ = std::make_unique<ConsoleWindow>();
 
     #if ! ( SPAGHETTIS_MENUBAR )
         

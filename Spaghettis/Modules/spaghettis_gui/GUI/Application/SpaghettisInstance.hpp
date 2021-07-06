@@ -11,9 +11,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class Console;
-class Preferences;
-class SearchPaths;
+class ConsoleWindow;
+class PreferencesWindow;
+class SearchPathsWindow;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -254,9 +254,9 @@ private:
     juce::StringArray recentFiles_;
     
 private:
-    std::unique_ptr<Console> consoleWindow_;
-    std::unique_ptr<Preferences> preferencesWindow_;
-    std::unique_ptr<SearchPaths> searchPathsWindow_;
+    std::unique_ptr<ConsoleWindow> consoleWindow_;
+    std::unique_ptr<PreferencesWindow> preferencesWindow_;
+    std::unique_ptr<SearchPathsWindow> searchPathsWindow_;
     std::unique_ptr<juce::PropertiesFile> properties_;
     std::unique_ptr<juce::FileChooser> fileChooser_;
 

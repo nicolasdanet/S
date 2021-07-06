@@ -12,21 +12,21 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class SearchPaths : public ApplicationWindow {
+class PreferencesWindow : public ApplicationWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    SearchPaths() : ApplicationWindow ("Paths", "SearchPathsWindow")
+    PreferencesWindow() : ApplicationWindow ("Preferences", "PreferencesWindow")
     {
-        setContentOwned (new SearchPathsComponent (getKeyName()), true);
+        setContentOwned (new PreferencesComponent (getKeyName()), true);
 
         makeVisible();
     }
 
-    ~SearchPaths() = default;
+    ~PreferencesWindow() = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -35,11 +35,11 @@ public:
 public:
     void closeButtonPressed() override
     {
-        Spaghettis()->closeSearchPathsWindow();
+        Spaghettis()->closePreferencesWindow();
     }
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SearchPaths)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PreferencesWindow)
 };
     
 // -----------------------------------------------------------------------------------------------------------

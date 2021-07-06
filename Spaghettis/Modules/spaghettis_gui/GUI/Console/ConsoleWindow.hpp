@@ -12,14 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Console : public ApplicationWindow {
+class ConsoleWindow : public ApplicationWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Console() : ApplicationWindow (core::getApplicationName(), "ConsoleWindow")
+    ConsoleWindow() : ApplicationWindow (core::getApplicationName(), "ConsoleWindow")
     {
         content_ = std::make_unique<ConsoleComponent> (getKeyName());
         
@@ -30,7 +30,7 @@ public:
         makeVisible();
     }
 
-    ~Console() = default;
+    ~ConsoleWindow() = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ private:
     std::unique_ptr<ConsoleComponent> content_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Console)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleWindow)
 };
     
 // -----------------------------------------------------------------------------------------------------------
