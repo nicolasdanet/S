@@ -24,9 +24,23 @@ class Settings {
 // MARK: -
 
 public:
-    Settings() = default;
+    Settings() : tree_ (Settings::getDefault())
+    {
+    
+    }
+    
     ~Settings() = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    static juce::ValueTree getDefault()
+    {
+        juce::ValueTree v; return v;
+    }
+    
 private:
     juce::ValueTree tree_;
     
