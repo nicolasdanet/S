@@ -35,7 +35,7 @@ private:
     {
         juce::ValueTree v; return v;
     }
-    
+
 private:
     juce::ValueTree tree_;
     

@@ -52,17 +52,17 @@ public:
 public:
     Icons()
     {
-        addIconAction ("add",           0, "add_svg");
-        addIconToggle ("autoscroll",    0, "system_update_alt_svg");
-        addIconAction ("clear",         0, "delete_forever_svg");
-        addIconToggle ("error",         4, "error_outline_svg");
-        addIconAction ("find",          0, "place_svg");
-        addIconToggle ("message",       2, "mail_svg");
-        addIconAction ("remove",        0, "remove_svg");
-        addIconAction ("restore",       0, "restore_svg");
-        addIconAction ("synchronize",   0, "sync_svg");
-        addIconAction ("sortUp",        0, "text_rotate_up_svg");
-        addIconAction ("sortDown",      0, "text_rotation_down_svg");
+        addIconAction ("Add",           0, "add_svg");
+        addIconToggle ("Autoscroll",    0, "system_update_alt_svg");
+        addIconAction ("Clear",         0, "delete_forever_svg");
+        addIconToggle ("Error",         4, "error_outline_svg");
+        addIconAction ("Find",          0, "place_svg");
+        addIconToggle ("Message",       2, "mail_svg");
+        addIconAction ("Remove",        0, "remove_svg");
+        addIconAction ("Restore",       0, "restore_svg");
+        addIconAction ("Synchronize",   0, "sync_svg");
+        addIconAction ("SortUp",        0, "text_rotate_up_svg");
+        addIconAction ("SortDown",      0, "text_rotation_down_svg");
     }
 
 public:
