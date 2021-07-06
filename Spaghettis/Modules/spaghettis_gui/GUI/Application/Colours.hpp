@@ -62,18 +62,20 @@ static void initialize (juce::LookAndFeel* lf)
     const juce::Colour background               = juce::Colour (0xff1f2029);
     const juce::Colour backgroundAlternate      = background.darker (0.10);
     
-    #if JUCE_LINUX
-    const juce::Colour backgroundDark           = background.darker (0.50);
-    #else
-    const juce::Colour backgroundDark           = background.darker (0.25);
-    #endif
-        
     const juce::Colour base01                   = juce::Colour (0xff586e75);
     const juce::Colour base1                    = juce::Colour (0xff93a1a1);
     const juce::Colour yellow                   = juce::Colour (0xffb58900);
     const juce::Colour orange                   = juce::Colour (0xffcb4b16);
     const juce::Colour green                    = juce::Colour (0xff859900);
 
+    #if JUCE_LINUX
+    const juce::Colour backgroundDark           = background.darker (0.50);
+    const juce::Colour orangeDark               = orange);
+    #else
+    const juce::Colour backgroundDark           = background.darker (0.25);
+    const juce::Colour orangeDark               = orange.darker (0.25);
+    #endif
+    
     // const juce::Colour base03   = juce::Colour (0xff002b36);
     // const juce::Colour base02   = juce::Colour (0xff073642);
     // const juce::Colour base00   = juce::Colour (0xff657b83);
@@ -126,7 +128,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarText,                                         juce::Colours::white);
     lf->setColour (menubarSeparator,                                    juce::Colours::black);
     lf->setColour (toolbarBackground,                                   backgroundDark);
-    lf->setColour (toolbarBackgroundDown,                               orange.darker (0.25));
+    lf->setColour (toolbarBackgroundDown,                               orangeDark);
     lf->setColour (toolbarBackgroundOver,                               backgroundDark);
     lf->setColour (toolbarIconOn,                                       juce::Colours::white);
     lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
