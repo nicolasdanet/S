@@ -10,7 +10,8 @@
       <FILE id="LekPt7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <GROUP id="{5D995D32-88D8-F3E6-9FA3-2BFFDA508EC0}" name="Icons">
         <FILE id="pyAzqh" name="add.svg" compile="0" resource="1" file="Resources/Icons/SVG/add.svg"/>
-        <FILE id="RQb3pC" name="clear.svg" compile="0" resource="1" file="Resources/Icons/SVG/clear.svg"/>
+        <FILE id="lQeYTz" name="delete_forever.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/delete_forever.svg"/>
         <FILE id="YbQGbR" name="error_outline.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/error_outline.svg"/>
         <FILE id="v09zib" name="mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/mail.svg"/>

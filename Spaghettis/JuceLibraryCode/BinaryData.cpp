@@ -13,12 +13,12 @@ static const unsigned char temp_binary_data_0[] =
 
 const char* add_svg = (const char*) temp_binary_data_0;
 
-//================== clear.svg ==================
+//================== delete_forever.svg ==================
 static const unsigned char temp_binary_data_1[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19"
-" 17.59 13.41 12 19 6.41z\"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M14.12 10.47L12 12.59l-2.13-2.12-1.41 1.41L10.59 14l-2.12 2.12 1.41 1.41L12 15.41l2.1"
+"2 2.12 1.41-1.41L13.41 14l2.12-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z\"/></svg>";
 
-const char* clear_svg = (const char*) temp_binary_data_1;
+const char* delete_forever_svg = (const char*) temp_binary_data_1;
 
 //================== error_outline.svg ==================
 static const unsigned char temp_binary_data_2[] =
@@ -94,7 +94,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
     switch (hash)
     {
         case 0xbb8f2dc6:  numBytes = 194; return add_svg;
-        case 0xb444b572:  numBytes = 268; return clear_svg;
+        case 0xdc6c4ef8:  numBytes = 368; return delete_forever_svg;
         case 0xf4b96930:  numBytes = 292; return error_outline_svg;
         case 0xff683fdc:  numBytes = 277; return mail_svg;
         case 0x6ad7eb2c:  numBytes = 386; return place_svg;
@@ -114,7 +114,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 const char* namedResourceList[] =
 {
     "add_svg",
-    "clear_svg",
+    "delete_forever_svg",
     "error_outline_svg",
     "mail_svg",
     "place_svg",
@@ -129,7 +129,7 @@ const char* namedResourceList[] =
 const char* originalFilenames[] =
 {
     "add.svg",
-    "clear.svg",
+    "delete_forever.svg",
     "error_outline.svg",
     "mail.svg",
     "place.svg",
