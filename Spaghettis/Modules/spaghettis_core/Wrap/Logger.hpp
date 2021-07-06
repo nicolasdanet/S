@@ -31,6 +31,16 @@ using MessagesPacket  = std::vector<Logger::MessagesElement>;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+enum {
+    MESSAGE = 0,
+    TYPE,
+    UNIQUE
+};
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     virtual ~Logger()
     {
@@ -54,17 +64,17 @@ public:
 public:
     static juce::String getText (const MessagesElement& e)
     {
-        return std::get<0> (e);
+        return std::get<MESSAGE> (e);
     }
     
     static Type getType (const MessagesElement& e)
     {
-        return std::get<1> (e);
+        return std::get<TYPE> (e);
     }
     
     static Unique getUnique (const MessagesElement& e)
     {
-        return std::get<2> (e);
+        return std::get<UNIQUE> (e);
     }
 };
 
