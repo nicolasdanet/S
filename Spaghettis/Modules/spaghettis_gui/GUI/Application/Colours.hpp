@@ -68,6 +68,8 @@ static void initialize (juce::LookAndFeel* lf)
     const juce::Colour backgroundDark           = background.darker (0.25);
     #endif
     
+    const juce::Colour backgroundBright         = background.brighter (0.10);
+    
     const juce::Colour base01                   = juce::Colour (0xff586e75);
     const juce::Colour base1                    = juce::Colour (0xff93a1a1);
     const juce::Colour yellow                   = juce::Colour (0xffb58900);
@@ -126,7 +128,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarText,                                         juce::Colours::white);
     lf->setColour (menubarSeparator,                                    juce::Colours::black);
     lf->setColour (toolbarBackground,                                   backgroundDark);
-    lf->setColour (toolbarBackgroundDown,                               background);
+    lf->setColour (toolbarBackgroundDown,                               backgroundBright);
     lf->setColour (toolbarBackgroundOver,                               backgroundDark);
     lf->setColour (toolbarIconOn,                                       juce::Colours::white);
     lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
