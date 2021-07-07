@@ -70,7 +70,7 @@ static void initialize (juce::LookAndFeel* lf)
 
     #if JUCE_LINUX
     const juce::Colour backgroundDark           = background.darker (0.50);
-    const juce::Colour orangeDark               = orange);
+    const juce::Colour orangeDark               = orange;
     #else
     const juce::Colour backgroundDark           = background.darker (0.25);
     const juce::Colour orangeDark               = orange.darker (0.25);
