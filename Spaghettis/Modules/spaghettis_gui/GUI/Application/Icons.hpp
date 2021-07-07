@@ -97,12 +97,12 @@ public:
     
     std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
     {
-        return getIconProceed (itemId, false);
+        return std::get<ICONS_OFF> (drawables_[getIconIndex (itemId)])->createCopy();
     }
 
     std::unique_ptr<juce::Drawable> getIconOn (int itemId) const
     {
-        return getIconProceed (itemId, true);
+        return std::get<ICONS_ON> (drawables_[getIconIndex (itemId)])->createCopy();
     }
     
     bool isToggle (int itemId) const
@@ -149,15 +149,6 @@ private:
         jassert (std::get<ICONS_ON>  (drawables_[i]) != nullptr);
         
         return i;
-    }
-    
-    std::unique_ptr<juce::Drawable> getIconProceed (int itemId, bool isOn) const
-    {
-        int i = getIconIndex (itemId);
-        
-        return isOn
-            ? std::get<ICONS_ON>  (drawables_[i])->createCopy()
-            : std::get<ICONS_OFF> (drawables_[i])->createCopy();
     }
     
 // -----------------------------------------------------------------------------------------------------------
