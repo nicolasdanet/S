@@ -30,6 +30,20 @@ using DrawableContainer = std::vector<DrawableTuple>;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    enum {
+        ICONS_NAME  = 0,
+        ICONS_OFF   = 1,
+        ICONS_ON,
+        ICONS_TOGGLE,
+        ICONS_EXTRA,
+        ICONS_STATE
+    };
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     enum IconsIds : int {
         add             = 1,
@@ -78,7 +92,7 @@ public:
 public:
     juce::String getName (int itemId) const
     {
-        return std::get<0> (drawables_[getIconIndex (itemId)]);
+        return std::get<ICONS_NAME> (drawables_[getIconIndex (itemId)]);
     }
     
     std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
@@ -93,17 +107,17 @@ public:
     
     bool isToggle (int itemId) const
     {
-        return std::get<3> (drawables_[getIconIndex (itemId)]);
+        return std::get<ICONS_TOGGLE> (drawables_[getIconIndex (itemId)]);
     }
     
     int getExtra (int itemId) const
     {
-        return std::get<4> (drawables_[getIconIndex (itemId)]);
+        return std::get<ICONS_EXTRA> (drawables_[getIconIndex (itemId)]);
     }
     
     bool getDefaultState (int itemId) const
     {
-        return std::get<5> (drawables_[getIconIndex (itemId)]);
+        return std::get<ICONS_STATE> (drawables_[getIconIndex (itemId)]);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,7 +129,7 @@ public:
     {
         int size = static_cast<int> (drawables_.size());
         
-        for (int i = 0; i < size; ++i) { if (std::get<0> (drawables_[i]) == name) { return i + 1; } }
+        for (int i = 0; i < size; ++i) { if (std::get<ICONS_NAME> (drawables_[i]) == name) { return i + 1; } }
         
         return 0;
     }
@@ -131,8 +145,8 @@ private:
         
         jassert (i >= 0);
         jassert (static_cast<DrawableContainer::size_type> (i) < drawables_.size());
-        jassert (std::get<1> (drawables_[i]) != nullptr);
-        jassert (std::get<2> (drawables_[i]) != nullptr);
+        jassert (std::get<ICONS_OFF> (drawables_[i]) != nullptr);
+        jassert (std::get<ICONS_ON>  (drawables_[i]) != nullptr);
         
         return i;
     }
@@ -141,7 +155,9 @@ private:
     {
         int i = getIconIndex (itemId);
         
-        return isOn ? std::get<2> (drawables_[i])->createCopy() : std::get<1> (drawables_[i])->createCopy();
+        return isOn
+            ? std::get<ICONS_ON>  (drawables_[i])->createCopy()
+            : std::get<ICONS_OFF> (drawables_[i])->createCopy();
     }
     
 // -----------------------------------------------------------------------------------------------------------
