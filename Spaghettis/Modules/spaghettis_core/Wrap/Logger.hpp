@@ -32,9 +32,9 @@ using MessagesPacket  = std::vector<Logger::MessagesElement>;
 // MARK: -
 
 enum {
-    MESSAGE = 0,
-    TYPE,
-    UNIQUE
+    LOGGER_MESSAGE = 0,
+    LOGGER_TYPE,
+    LOGGER_UNIQUE
 };
     
 // -----------------------------------------------------------------------------------------------------------
@@ -64,17 +64,17 @@ public:
 public:
     static juce::String getText (const MessagesElement& e)
     {
-        return std::get<MESSAGE> (e);
+        return std::get<LOGGER_MESSAGE> (e);
     }
     
     static Type getType (const MessagesElement& e)
     {
-        return std::get<TYPE> (e);
+        return std::get<LOGGER_TYPE> (e);
     }
     
     static Unique getUnique (const MessagesElement& e)
     {
-        return std::get<UNIQUE> (e);
+        return std::get<LOGGER_UNIQUE> (e);
     }
 };
 
