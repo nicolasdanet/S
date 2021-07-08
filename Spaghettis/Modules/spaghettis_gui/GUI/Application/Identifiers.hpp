@@ -21,6 +21,7 @@ namespace Ids {
     DECLARE_ID (item);
     DECLARE_ID (path);
     DECLARE_ID (state);
+    DECLARE_ID (value);
 
 #undef DECLARE_ID
 

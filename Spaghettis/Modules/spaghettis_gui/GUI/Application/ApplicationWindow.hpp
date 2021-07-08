@@ -35,7 +35,11 @@ public:
     {
         juce::PropertiesFile& p = Spaghettis()->getProperties();
         
-        p.setValue (keyName_ + "Position", juce::var (getWindowStateAsString()));
+        auto e = std::make_unique<juce::XmlElement> ("POSITION");
+        
+        e->setAttribute (Ids::value, getWindowStateAsString());
+        
+        p.setValue (keyName_ + "Position", e.get());
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -82,9 +86,14 @@ public:
     {
         juce::PropertiesFile& p = Spaghettis()->getProperties();
         
-        const juce::String s = p.getValue (keyName_ + "Position");
+        std::unique_ptr<juce::XmlElement> e = p.getXmlValue (keyName_ + "Position");
         
-        if (s.isNotEmpty()) { restoreWindowStateFromString (s); }
+        if (e && e->hasTagName ("POSITION") && e->hasAttribute (Ids::value)) {
+            const juce::String s = e->getStringAttribute (Ids::value);
+            if (s.isNotEmpty()) {
+                restoreWindowStateFromString (s);
+            }
+        }
         
         setVisible (true); addToDesktop(); toFront (true);
     }
