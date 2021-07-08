@@ -33,7 +33,38 @@ public:
 private:
     static juce::ValueTree getDefault()
     {
-        juce::ValueTree v; return v;
+        juce::ValueTree v { "PREFERENCES", {}, {
+        //
+        { "SECTION", {{ Ids::name, "Editing" }},
+            {
+                { "PARAMETER", {
+                    { Ids::item,  "snapToGrid" },
+                    { Ids::text,  NEEDS_TRANS ("Snap to grid") },
+                    { Ids::type,  "boolean" },
+                    { Ids::value, true }
+                }},
+                { "PARAMETER", {
+                    { Ids::item, "gridSize" },
+                    { Ids::text,  NEEDS_TRANS ("Grid size") },
+                    { Ids::type, "integer" },
+                    { Ids::value, 12 }
+                }}
+            }
+        },
+        { "SECTION", {{ Ids::name, "Fonts" }},
+            {
+                { "PARAMETER", {
+                    { Ids::item, "defaultFontSize" },
+                    { Ids::text,  NEEDS_TRANS ("Default font size") },
+                    { Ids::type, "integer" },
+                    { Ids::value, 12 }
+                }}
+            }
+        }
+        //
+        }};
+
+        return v;
     }
 
 private:

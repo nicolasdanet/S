@@ -19,8 +19,11 @@ namespace Ids {
 #define DECLARE_ID(name)  static const juce::Identifier name (#name)
 
     DECLARE_ID (item);
+    DECLARE_ID (name);
     DECLARE_ID (path);
     DECLARE_ID (state);
+    DECLARE_ID (text);
+    DECLARE_ID (type);
     DECLARE_ID (value);
 
 #undef DECLARE_ID
