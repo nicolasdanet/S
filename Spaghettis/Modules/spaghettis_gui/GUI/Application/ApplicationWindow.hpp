@@ -86,7 +86,7 @@ public:
     {
         juce::PropertiesFile& p = Spaghettis()->getProperties();
         
-        std::unique_ptr<juce::XmlElement> e = p.getXmlValue (keyName_ + "Position");
+        std::unique_ptr<juce::XmlElement> e (p.getXmlValue (keyName_ + "Position"));
         
         if (e && e->hasTagName ("POSITION") && e->hasAttribute (Ids::value)) {
             const juce::String s = e->getStringAttribute (Ids::value);

@@ -129,7 +129,7 @@ public:
         //
         juce::PropertiesFile& p = Spaghettis()->getProperties();
         
-        std::unique_ptr<juce::XmlElement> root = p.getXmlValue (keyName_ + "Buttons");
+        std::unique_ptr<juce::XmlElement> root (p.getXmlValue (keyName_ + "Buttons"));
         
         if (root && root->hasTagName ("BUTTONS")) {
 
