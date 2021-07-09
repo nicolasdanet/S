@@ -21,7 +21,17 @@ class Preferences {
 public:
     Preferences() : tree_ (Preferences::getDefault())
     {
-    
+        if (tree_.isValid() && tree_.hasType (Ids::PREFERENCES)) {
+        //
+        for (const auto& child : tree_) {
+        //
+        if (child.hasType (Ids::SECTION) && child.hasProperty (Ids::name)) {
+            DBG (child.getProperty (Ids::name).toString());
+        }
+        //
+        }
+        //
+        }
     }
     
     ~Preferences() = default;
@@ -33,17 +43,17 @@ public:
 private:
     static juce::ValueTree getDefault()
     {
-        juce::ValueTree v { "PREFERENCES", {}, {
+        juce::ValueTree v { Ids::PREFERENCES, {}, {
         //
-        { "SECTION", {{ Ids::name, "Editing" }},
+        { Ids::SECTION, {{ Ids::name, "Editing" }},
             {
-                { "PARAMETER", {
+                { Ids::PARAMETER, {
                     { Ids::item,  "snapToGrid" },
                     { Ids::text,  NEEDS_TRANS ("Snap to grid") },
                     { Ids::type,  "boolean" },
                     { Ids::value, true }
                 }},
-                { "PARAMETER", {
+                { Ids::PARAMETER, {
                     { Ids::item, "gridSize" },
                     { Ids::text,  NEEDS_TRANS ("Grid size") },
                     { Ids::type, "integer" },
@@ -51,9 +61,9 @@ private:
                 }}
             }
         },
-        { "SECTION", {{ Ids::name, "Fonts" }},
+        { Ids::SECTION, {{ Ids::name, "Fonts" }},
             {
-                { "PARAMETER", {
+                { Ids::PARAMETER, {
                     { Ids::item, "defaultFontSize" },
                     { Ids::text,  NEEDS_TRANS ("Default font size") },
                     { Ids::type, "integer" },

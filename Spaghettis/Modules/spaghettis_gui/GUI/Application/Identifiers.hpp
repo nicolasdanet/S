@@ -25,7 +25,11 @@ namespace Ids {
     DECLARE_ID (text);
     DECLARE_ID (type);
     DECLARE_ID (value);
-
+    
+    DECLARE_ID (PARAMETER);
+    DECLARE_ID (PREFERENCES);
+    DECLARE_ID (SECTION);
+    
 #undef DECLARE_ID
 
 // -----------------------------------------------------------------------------------------------------------
