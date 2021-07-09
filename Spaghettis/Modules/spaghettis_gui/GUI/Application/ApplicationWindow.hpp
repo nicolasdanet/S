@@ -35,7 +35,7 @@ public:
     {
         juce::PropertiesFile& p = Spaghettis()->getProperties();
         
-        auto e = std::make_unique<juce::XmlElement> ("POSITION");
+        auto e = std::make_unique<juce::XmlElement> (Ids::POSITION);
         
         e->setAttribute (Ids::value, getWindowStateAsString());
         
@@ -88,7 +88,7 @@ public:
         
         std::unique_ptr<juce::XmlElement> e (p.getXmlValue (keyName_ + "Position"));
         
-        if (e && e->hasTagName ("POSITION") && e->hasAttribute (Ids::value)) {
+        if (e && e->hasTagName (Ids::POSITION) && e->hasAttribute (Ids::value)) {
             const juce::String s = e->getStringAttribute (Ids::value);
             if (s.isNotEmpty()) {
                 restoreWindowStateFromString (s);

@@ -97,9 +97,9 @@ juce::StringArray SpaghettisInstance::getSearchPaths()
     
     std::unique_ptr<juce::XmlElement> root (properties_->getXmlValue ("SearchPaths"));
         
-    if (root && root->hasTagName ("SEARCHPATHS")) {
+    if (root && root->hasTagName (Ids::SEARCHPATHS)) {
     //
-    for (auto* e : root->getChildWithTagNameIterator ("SEARCHPATH")) {
+    for (auto* e : root->getChildWithTagNameIterator (Ids::SEARCHPATH)) {
         if (e->hasAttribute (Ids::path)) {
             searchPaths.addIfNotAlreadyThere (e->getStringAttribute (Ids::path));
         }
@@ -112,10 +112,10 @@ juce::StringArray SpaghettisInstance::getSearchPaths()
 
 void SpaghettisInstance::setSearchPaths (const juce::StringArray& searchpaths)
 {
-    auto root = std::make_unique<juce::XmlElement> ("SEARCHPATHS");
+    auto root = std::make_unique<juce::XmlElement> (Ids::SEARCHPATHS);
         
     for (const auto& p : searchpaths) {
-        juce::XmlElement* e = root->createNewChildElement ("SEARCHPATH");
+        juce::XmlElement* e = root->createNewChildElement (Ids::SEARCHPATH);
         e->setAttribute (Ids::path, p);
     }
         
@@ -194,11 +194,11 @@ void SpaghettisInstance::loadRecentFiles()
 {
     std::unique_ptr<juce::XmlElement> root (properties_->getXmlValue ("RecentFiles"));
         
-    if (root && root->hasTagName ("RECENTFILES")) {
+    if (root && root->hasTagName (Ids::RECENTFILES)) {
     //
     juce::StringArray scoped;
     
-    for (auto* e : root->getChildWithTagNameIterator ("RECENTFILE")) {
+    for (auto* e : root->getChildWithTagNameIterator (Ids::RECENTFILE)) {
         if (e->hasAttribute (Ids::path)) {
             scoped.addIfNotAlreadyThere (e->getStringAttribute (Ids::path));
         }
@@ -211,10 +211,10 @@ void SpaghettisInstance::loadRecentFiles()
 
 void SpaghettisInstance::saveRecentFiles()
 {
-    auto root = std::make_unique<juce::XmlElement> ("RECENTFILES");
+    auto root = std::make_unique<juce::XmlElement> (Ids::RECENTFILES);
         
     for (const auto& f : recentFiles_) {
-        juce::XmlElement* e = root->createNewChildElement ("RECENTFILE");
+        juce::XmlElement* e = root->createNewChildElement (Ids::RECENTFILE);
         e->setAttribute (Ids::path, f);
     }
         
