@@ -27,13 +27,13 @@ public:
         //
         if (isValidSection (section)) {
         
-            DBG (section.getProperty (Ids::name).toString());
+            // DBG (section.getProperty (Ids::name).toString());
             
             for (const auto& parameter : section) {
             
                 if (isValidParameter (parameter)) {
 
-                    DBG (parameter.getProperty (Ids::item).toString());
+                    // DBG (parameter.getProperty (Ids::item).toString());
                     
                 }
             }
