@@ -21,27 +21,7 @@ class Preferences {
 public:
     Preferences() : tree_ (Preferences::getDefault())
     {
-        if (isValid (tree_)) {
-        //
-        for (const auto& section : tree_) {
-        //
-        if (isValidSection (section)) {
-        
-            // DBG (section.getProperty (Ids::name).toString());
-            
-            for (const auto& parameter : section) {
-            
-                if (isValidParameter (parameter)) {
-
-                    // DBG (parameter.getProperty (Ids::item).toString());
-                    
-                }
-            }
-        }
-        //
-        }
-        //
-        }
+        jassert (isValidTree (tree_));
     }
     
     ~Preferences() = default;
@@ -86,12 +66,12 @@ private:
 
         return v;
     }
-
-    static bool isValid (const juce::ValueTree& t)
-    {
-        return (t.isValid() && t.hasType (Ids::PREFERENCES));
-    }
     
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
     static bool isValidSection (const juce::ValueTree& t)
     {
         return (t.hasType (Ids::SECTION) && t.hasProperty (Ids::name));
@@ -104,6 +84,25 @@ private:
                     && t.hasProperty (Ids::text)
                     && t.hasProperty (Ids::type)
                     && t.hasProperty (Ids::value));
+    }
+    
+    static bool isValidTree (const juce::ValueTree& tree)
+    {
+        if (tree.isValid() && tree.hasType (Ids::PREFERENCES)) {
+        //
+        for (const auto& section : tree) {
+        //
+        if (isValidSection (section)) {
+            for (const auto& parameter : section)  {
+                if (!isValidParameter (parameter)) { return false; }
+            }
+        } else { return false; }
+        //
+        }
+        //
+        } else { return false; }
+        
+        return true;
     }
     
 private:
