@@ -21,6 +21,8 @@ class PreferencesComponent : public ApplicationComponent {
 public:
     PreferencesComponent (const juce::String& keyName) : ApplicationComponent (keyName)
     {
+        addAndMakeVisible (panel_);
+        
         setOpaque (true); setSize (400, 500);
     }
     
@@ -40,19 +42,24 @@ public:
     
     void resized() override
     {
-        getBoundsRemaining();
+        panel_.setBounds (getBoundsRemaining());
     }
-    
-/*
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/*
 public:
     bool tryGrabFocus() override
     {
-        return tryGrabFocusForComponent ();
+        return tryGrabFocusForComponent (&panel_);
     }
-    
 */
 
+private:
+    juce::ConcertinaPanel panel_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PreferencesComponent)
 };
