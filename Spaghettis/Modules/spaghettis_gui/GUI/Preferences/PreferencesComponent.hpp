@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PreferencesComponent : public ApplicationComponent {
+class PreferencesComponent :    public ApplicationComponent,
+                                private juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -30,7 +31,7 @@ public:
         
         addAndMakeVisible (panel_);
 
-        setOpaque (true); setSize (400, 500);
+        setOpaque (true); setSize (400, 500); startTimer (300);
     }
     
     ~PreferencesComponent() override
@@ -64,6 +65,12 @@ public:
     }
 */
 
+public:
+    void timerCallback() override
+    {
+        stopTimer(); panel_.expandPanelFully (panel_.getPanel (0), true);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
