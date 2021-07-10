@@ -16,12 +16,17 @@ class PreferencesComponent : public ApplicationComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+friend class Preferences;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
     PreferencesComponent (const juce::String& keyName) : ApplicationComponent (keyName)
     {
-        Spaghettis()->getPreferences().buildConcertinaPanel (panel_);
+        Spaghettis()->getPreferences().buildConcertinaPanel (*this);
         
         addAndMakeVisible (panel_);
 
@@ -59,6 +64,17 @@ public:
     }
 */
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void addPanel (juce::PropertyPanel* panel)
+    {
+        panel_.addPanel (-1, panel, true);
+        panel_.setMaximumPanelSize (panel, panel->getTotalContentHeight());
+    }
+    
 private:
     juce::ConcertinaPanel panel_;
     

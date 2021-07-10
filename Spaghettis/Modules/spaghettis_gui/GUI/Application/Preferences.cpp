@@ -12,6 +12,23 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void Preferences::buildConcertinaPanel (PreferencesComponent& c)
+{
+    for (const auto& s : tree_) {
+    //
+    auto panel = std::make_unique<juce::PropertyPanel> (s.getProperty (Ids::name).toString());
+    
+    //for (const auto& p : s) { }
+    
+    c.addPanel (panel.release());
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::ValueTree Preferences::getDefault()
 {
     juce::ValueTree tree { Ids::PREFERENCES, {}, {
