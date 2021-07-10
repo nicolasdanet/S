@@ -21,8 +21,10 @@ class PreferencesComponent : public ApplicationComponent {
 public:
     PreferencesComponent (const juce::String& keyName) : ApplicationComponent (keyName)
     {
-        addAndMakeVisible (panel_);
+        Spaghettis()->getPreferences().buildConcertinaPanel (panel_);
         
+        addAndMakeVisible (panel_);
+
         setOpaque (true); setSize (400, 500);
     }
     
