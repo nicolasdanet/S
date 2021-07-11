@@ -172,9 +172,6 @@ private:
     void addIconProceed (const juce::String&, const char*, const char*, bool, int, bool);
     
 private:
-    static std::unique_ptr<juce::Drawable> getDrawable (const char*, juce::Colour);
-        
-private:
     DrawableContainer drawables_;
 };
  
