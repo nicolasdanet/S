@@ -33,7 +33,7 @@ juce::ValueTree Preferences::getDefault()
 {
     juce::ValueTree tree { Ids::PREFERENCES, {}, {
     //
-    { Ids::SECTION, {{ Ids::name, "Editing" }},
+    { Ids::GROUP, {{ Ids::name, "Editing" }},
         {
             { Ids::PARAMETER, {
                 { Ids::item,  "snapToGrid" },
@@ -49,7 +49,7 @@ juce::ValueTree Preferences::getDefault()
             }}
         }
     },
-    { Ids::SECTION, {{ Ids::name, "Fonts" }},
+    { Ids::GROUP, {{ Ids::name, "Fonts" }},
         {
             { Ids::PARAMETER, {
                 { Ids::item, "defaultFontSize" },
@@ -71,7 +71,7 @@ juce::ValueTree Preferences::getDefault()
 
 bool Preferences::isValidSection (const juce::ValueTree& tree)
 {
-    return (tree.hasType (Ids::SECTION) && tree.hasProperty (Ids::name));
+    return (tree.hasType (Ids::GROUP) && tree.hasProperty (Ids::name));
 }
 
 bool Preferences::isValidParameter (const juce::ValueTree& tree)
