@@ -63,6 +63,53 @@ void Preferences::buildConcertinaPanel (PreferencesComponent& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+bool isValidSection (const juce::ValueTree& tree)
+{
+    return (tree.hasType (Ids::GROUP) && tree.hasProperty (Ids::name));
+}
+
+bool isValidParameter (const juce::ValueTree& tree)
+{
+    return (tree.hasType (Ids::PARAMETER)
+                && tree.hasProperty (Ids::item)
+                && tree.hasProperty (Ids::text)
+                && tree.hasProperty (Ids::type)
+                && tree.hasProperty (Ids::value));
+}
+
+bool isValidTree (const juce::ValueTree& tree)
+{
+    if (tree.isValid() && tree.hasType (Ids::PREFERENCES)) {
+    //
+    for (const auto& section : tree) {
+    //
+    if (isValidSection (section)) {
+        for (const auto& parameter : section)  {
+            if (!isValidParameter (parameter)) { return false; }
+        }
+    } else { return false; }
+    //
+    }
+    //
+    } else { return false; }
+    
+    return true;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::ValueTree Preferences::getDefault()
 {
     juce::ValueTree tree { Ids::PREFERENCES, {}, {
@@ -96,46 +143,11 @@ juce::ValueTree Preferences::getDefault()
     //
     }};
 
+    jassert (isValidTree (tree));
+    
     return tree;
 }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-bool Preferences::isValidSection (const juce::ValueTree& tree)
-{
-    return (tree.hasType (Ids::GROUP) && tree.hasProperty (Ids::name));
-}
-
-bool Preferences::isValidParameter (const juce::ValueTree& tree)
-{
-    return (tree.hasType (Ids::PARAMETER)
-                && tree.hasProperty (Ids::item)
-                && tree.hasProperty (Ids::text)
-                && tree.hasProperty (Ids::type)
-                && tree.hasProperty (Ids::value));
-}
-
-bool Preferences::isValidTree (const juce::ValueTree& tree)
-{
-    if (tree.isValid() && tree.hasType (Ids::PREFERENCES)) {
-    //
-    for (const auto& section : tree) {
-    //
-    if (isValidSection (section)) {
-        for (const auto& parameter : section)  {
-            if (!isValidParameter (parameter)) { return false; }
-        }
-    } else { return false; }
-    //
-    }
-    //
-    } else { return false; }
-    
-    return true;
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

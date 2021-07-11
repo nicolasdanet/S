@@ -26,7 +26,6 @@ class Preferences {
 public:
     Preferences() : tree_ (Preferences::getDefault())
     {
-        jassert (isValidTree (tree_));
     }
     
     ~Preferences() = default;
@@ -45,11 +44,6 @@ public:
 private:
     static juce::ValueTree getDefault();
 
-private:
-    static bool isValidSection (const juce::ValueTree&);
-    static bool isValidParameter (const juce::ValueTree&);
-    static bool isValidTree (const juce::ValueTree&);
-    
 private:
     juce::ValueTree tree_;
     
