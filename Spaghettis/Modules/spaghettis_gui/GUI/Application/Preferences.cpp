@@ -34,6 +34,8 @@ void buildConcertinaPanelParameters (const juce::ValueTree& parameter,
 {
     std::unique_ptr<juce::PropertyComponent> p (buildConcertinaPanelParametersGet (parameter));
     
+    p->setTooltip (parameter.getProperty (Ids::info).toString());
+    
     components.add (p.release());
 }
 
@@ -87,6 +89,7 @@ bool isValidParameter (const juce::ValueTree& tree)
     return (tree.hasType (Ids::PARAMETER)
                 && tree.hasProperty (Ids::item)
                 && tree.hasProperty (Ids::text)
+                && tree.hasProperty (Ids::info)
                 && tree.hasProperty (Ids::type)
                 && tree.hasProperty (Ids::value));
 }
@@ -128,12 +131,14 @@ juce::ValueTree Preferences::getDefault()
             { Ids::PARAMETER, {
                 { Ids::item,  "SnapToGrid" },
                 { Ids::text,  NEEDS_TRANS ("Snap to Grid") },
+                { Ids::info,  NEEDS_TRANS ("Enable magnetic grid") },
                 { Ids::type,  "boolean" },
                 { Ids::value, true }
             }},
             { Ids::PARAMETER, {
                 { Ids::item, "GridSize" },
                 { Ids::text,  NEEDS_TRANS ("Grid Size") },
+                { Ids::info,  NEEDS_TRANS ("Set magnetic grid spacing") },
                 { Ids::type, "integer" },
                 { Ids::value, 12 }
             }}
@@ -144,6 +149,7 @@ juce::ValueTree Preferences::getDefault()
             { Ids::PARAMETER, {
                 { Ids::item, "DefaultFontSize" },
                 { Ids::text,  NEEDS_TRANS ("Default Font Size") },
+                { Ids::info,  NEEDS_TRANS ("Set font size for new patch") },
                 { Ids::type, "integer" },
                 { Ids::value, 12 }
             }}
