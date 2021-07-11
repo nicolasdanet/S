@@ -146,6 +146,13 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (juce::ListBox::backgroundColourId,                   background);
     lf->setColour (juce::ListBox::outlineColourId,                      juce::Colours::transparentBlack);
     lf->setColour (juce::ListBox::textColourId,                         base01);
+    
+    // TextPropertyComponent::textColourId
+    // TextPropertyComponent::outlineColourId
+    // TextPropertyComponent::backgroundColourId
+    
+    // BooleanPropertyComponent::backgroundColourId
+    // BooleanPropertyComponent::outlineColourId
 }
 
 // -----------------------------------------------------------------------------------------------------------
