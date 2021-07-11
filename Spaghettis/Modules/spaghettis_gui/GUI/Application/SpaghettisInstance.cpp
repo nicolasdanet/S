@@ -50,7 +50,12 @@ void SpaghettisInstance::shutdown()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> void SpaghettisInstance::openWindow (std::unique_ptr<T>& p)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+template <class T> void createOrOpenWindow (std::unique_ptr<T>& p)
 {
     if (p == nullptr) { p = std::make_unique<T>(); }
     else {
@@ -61,9 +66,15 @@ template <class T> void SpaghettisInstance::openWindow (std::unique_ptr<T>& p)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void SpaghettisInstance::openPreferencesWindow()
 {
-    openWindow (preferencesWindow_);
+    createOrOpenWindow (preferencesWindow_);
 }
 
 void SpaghettisInstance::closePreferencesWindow()
@@ -73,7 +84,7 @@ void SpaghettisInstance::closePreferencesWindow()
 
 void SpaghettisInstance::openSearchPathsWindow()
 {
-    openWindow (searchPathsWindow_);
+    createOrOpenWindow (searchPathsWindow_);
 }
 
 void SpaghettisInstance::closeSearchPathsWindow()
@@ -150,6 +161,29 @@ void SpaghettisInstance::openPatch()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::StringArray getFilesShortIfPossible (const juce::StringArray& a)
+{
+    juce::StringArray t; t.ensureStorageAllocated (a.size());
+    
+    for (const auto& s : a) { if (!t.addIfNotAlreadyThere (juce::File (s).getFileName())) { return a; } }
+    
+    return t;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void SpaghettisInstance::appendRecentFile (const juce::File& file)
 {
     const int maximum = 16;
@@ -219,15 +253,6 @@ void SpaghettisInstance::saveRecentFiles()
     }
         
     properties_->setValue ("RecentFiles", root.get());
-}
-
-juce::StringArray SpaghettisInstance::getFilesShortIfPossible (const juce::StringArray& a)
-{
-    juce::StringArray t; t.ensureStorageAllocated (a.size());
-    
-    for (const auto& s : a) { if (!t.addIfNotAlreadyThere (juce::File (s).getFileName())) { return a; } }
-    
-    return t;
 }
 
 // -----------------------------------------------------------------------------------------------------------
