@@ -17,24 +17,33 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void buildConcertinaPanelParameters (const juce::ValueTree& p, juce::Array<juce::PropertyComponent*>& t)
+juce::PropertyComponent* buildConcertinaPanelParametersGet (const juce::ValueTree& parameter)
 {
-    juce::String text = p.getProperty (Ids::text).toString();
-    juce::String type = p.getProperty (Ids::type).toString();
+    juce::String text = parameter.getProperty (Ids::text).toString();
+    juce::String type = parameter.getProperty (Ids::type).toString();
     
-    if (type == "boolean") { t.add (new juce::BooleanPropertyComponent (juce::Value (true), text, "")); }
-    else {
-        t.add (new juce::TextPropertyComponent (juce::Value (juce::var ("Toto")), text, 200, false));
+    if (type == "boolean") {
+        return new juce::BooleanPropertyComponent (juce::Value (true), text, "");
+    } else {
+        return new juce::TextPropertyComponent (juce::Value (juce::var ("Toto")), text, 200, false);
     }
+}
+
+void buildConcertinaPanelParameters (const juce::ValueTree& parameter,
+    juce::Array<juce::PropertyComponent*>& components)
+{
+    std::unique_ptr<juce::PropertyComponent> p (buildConcertinaPanelParametersGet (parameter));
+    
+    components.add (p.release());
 }
 
 void buildConcertinaPanelGroup (const juce::ValueTree& group, juce::PropertyPanel& panel)
 {
-    juce::Array<juce::PropertyComponent*> t;
+    juce::Array<juce::PropertyComponent*> components;
     
-    for (const auto& p : group) { buildConcertinaPanelParameters (p, t); }
+    for (const auto& parameter : group) { buildConcertinaPanelParameters (parameter, components); }
     
-    panel.addProperties (t);
+    panel.addProperties (components);
 }
 
 // -----------------------------------------------------------------------------------------------------------
