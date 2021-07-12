@@ -266,6 +266,18 @@ void LookAndFeel::drawTooltip (juce::Graphics& g, const juce::String& text, int 
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int LookAndFeel::getPropertyPanelSectionHeaderHeight (const juce::String& s)
+{
+    if (s.isEmpty()) { return 0; }
+    else {
+        return static_cast<int> (Spaghettis()->getLookAndFeel().getConsoleFont().getHeight() * 1.5);
+    }
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 } // namespace spaghettis
 
