@@ -48,7 +48,9 @@ enum ColourIds : int {
     searchpathsText,
     searchpathsTextHighlighted,
     tooltipBackground,
-    tooltipText
+    tooltipText,
+    preferencesBackground,
+    preferencesText
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -114,6 +116,8 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (searchpathsTextHighlighted)         == false);
     jassert (lf->isColourSpecified (tooltipBackground)                  == false);
     jassert (lf->isColourSpecified (tooltipText)                        == false);
+    jassert (lf->isColourSpecified (preferencesBackground)              == false);
+    jassert (lf->isColourSpecified (preferencesText)                    == false);
     
     lf->setColour (consoleTextDefault,                                  base01);
     lf->setColour (consoleTextSystem,                                   base1);
@@ -138,6 +142,8 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (searchpathsTextHighlighted,                          green);
     lf->setColour (tooltipBackground,                                   backgroundDark);
     lf->setColour (tooltipText,                                         juce::Colours::white);
+    lf->setColour (preferencesBackground,                               background);
+    lf->setColour (preferencesText,                                     base1);
     
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
     

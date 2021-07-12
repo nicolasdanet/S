@@ -148,19 +148,16 @@ private:
     juce::String initializeFontsBest (const juce::StringArray&);
     void initializeFonts();
 
-/*
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-virtual void 	drawPropertyPanelSectionHeader (Graphics &, const String &name, bool isOpen, int width, int height)=0
- 
-virtual void 	drawPropertyComponentBackground (Graphics &, int width, int height, PropertyComponent &)=0
- 
-virtual void 	drawPropertyComponentLabel (Graphics &, int width, int height, PropertyComponent &)=0
- 
-virtual Rectangle< int > 	getPropertyComponentContentPosition (PropertyComponent &)=0
- 
-virtual int 	getPropertyPanelSectionHeaderHeight (const String &sectionTitle)=0
-*/
-
+public:
+    // void drawPropertyPanelSectionHeader (juce::Graphics&, const juce::String&, bool, int, int) override;
+    // void drawPropertyComponentBackground (juce::Graphics&, int, int, juce::PropertyComponent&) override;
+    // void drawPropertyComponentLabel (juce::Graphics&, int, int, juce::PropertyComponent&) override;
+    // int getPropertyPanelSectionHeaderHeight (const juce::String&) override;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
