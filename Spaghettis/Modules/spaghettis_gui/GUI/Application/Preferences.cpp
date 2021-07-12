@@ -81,16 +81,16 @@ namespace {
 
 bool isValidSection (const juce::ValueTree& tree)
 {
-    return (tree.hasType (Ids::GROUP) && tree.hasProperty (Ids::name));
+    return (tree.hasType (Ids::GROUP) && tree.getProperty (Ids::name).isString());
 }
 
 bool isValidParameter (const juce::ValueTree& tree)
 {
     return (tree.hasType (Ids::PARAMETER)
-                && tree.hasProperty (Ids::item)
-                && tree.hasProperty (Ids::text)
-                && tree.hasProperty (Ids::info)
-                && tree.hasProperty (Ids::type)
+                && tree.getProperty (Ids::item).isString()
+                && tree.getProperty (Ids::text).isString()
+                && tree.getProperty (Ids::info).isString()
+                && tree.getProperty (Ids::type).isString()
                 && tree.hasProperty (Ids::value));
 }
 
