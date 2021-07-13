@@ -23,7 +23,7 @@ juce::PropertyComponent* buildConcertinaPanelParametersGet (const juce::ValueTre
     juce::String type = parameter.getProperty (Ids::type).toString();
     
     if (type == "boolean") {
-        return new juce::BooleanPropertyComponent (juce::Value (true), text, "");
+        return new juce::BooleanPropertyComponent (juce::Value (true), text, "Toto");
     } else {
         return new juce::TextPropertyComponent (juce::Value (juce::var ("Toto")), text, 200, false);
     }
@@ -34,6 +34,7 @@ void buildConcertinaPanelParameters (const juce::ValueTree& parameter,
 {
     std::unique_ptr<juce::PropertyComponent> p (buildConcertinaPanelParametersGet (parameter));
     
+    p->setPreferredHeight (Spaghettis()->getLookAndFeel().getPropertyPanelHeight());
     p->setTooltip (parameter.getProperty (Ids::info).toString());
     
     components.add (p.release());

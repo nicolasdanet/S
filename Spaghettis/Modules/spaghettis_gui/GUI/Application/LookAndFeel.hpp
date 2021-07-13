@@ -157,7 +157,20 @@ public:
     // void drawPropertyComponentBackground (juce::Graphics&, int, int, juce::PropertyComponent&) override;
     // void drawPropertyComponentLabel (juce::Graphics&, int, int, juce::PropertyComponent&) override;
     
-    int getPropertyPanelSectionHeaderHeight (const juce::String&) override;
+    int getPropertyPanelSectionHeaderHeight (const juce::String& s) override
+    {
+        if (s.isEmpty()) { return 0; } else { return getPropertyPanelHeight(); }
+    }
+
+    int getPropertyPanelHeight()
+    {
+        return static_cast<int> (getConsoleFont().getHeight() * 1.5);
+    }
+    
+    juce::Font getLabelFont (juce::Label&) override
+    {
+        return getConsoleFont();
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
