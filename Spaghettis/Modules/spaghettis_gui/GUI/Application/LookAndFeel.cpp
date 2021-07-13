@@ -270,7 +270,17 @@ void LookAndFeel::drawTooltip (juce::Graphics& g, const juce::String& text, int 
 
 void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g, int w, int h, juce::PropertyComponent&)
 {
-    g.fillAll (findColour (Colours::tooltipBackground));
+    g.fillAll (findColour (Colours::preferencesBackground));
+}
+
+void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g, int w, int height, juce::PropertyComponent& component)
+{
+    juce::Rectangle<int> t (getPropertyComponentContentPosition (component));
+    juce::Rectangle<int> r (0, 0, t.getX(), t.getHeight());
+    
+    g.setColour (findColour (Colours::preferencesText));
+    g.setFont (getConsoleFont());
+    g.drawText (component.getName(), r.reduced (5, 0), juce::Justification::centredLeft, true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
