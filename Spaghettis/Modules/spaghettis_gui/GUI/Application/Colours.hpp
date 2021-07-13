@@ -146,12 +146,9 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (preferencesText,                                     base1);
     
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
-    
     lf->setColour (juce::ScrollBar::thumbColourId,                      juce::Colours::grey);
-    //lf->setColour (juce::PopupMenu::backgroundColourId,                 backgroundDark);
     lf->setColour (juce::ListBox::backgroundColourId,                   background);
-    //lf->setColour (juce::ListBox::outlineColourId,                      juce::Colours::transparentBlack);
-    //lf->setColour (juce::ListBox::textColourId,                         base1);
+    
     //lf->setColour (juce::PropertyComponent::labelTextColourId,          base1);
     //lf->setColour (juce::PropertyComponent::backgroundColourId,         background);
     //lf->setColour (juce::TextPropertyComponent::textColourId,           base1);
