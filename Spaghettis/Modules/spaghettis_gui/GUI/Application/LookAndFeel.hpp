@@ -154,9 +154,10 @@ private:
 
 public:
     // void drawPropertyPanelSectionHeader (juce::Graphics&, const juce::String&, bool, int, int) override;
-    // void drawPropertyComponentBackground (juce::Graphics&, int, int, juce::PropertyComponent&) override;
     // void drawPropertyComponentLabel (juce::Graphics&, int, int, juce::PropertyComponent&) override;
     
+    void drawPropertyComponentBackground (juce::Graphics&, int, int, juce::PropertyComponent&) override;
+
     int getPropertyPanelSectionHeaderHeight (const juce::String& s) override
     {
         if (s.isEmpty()) { return 0; } else { return getPropertyPanelHeight(); }
