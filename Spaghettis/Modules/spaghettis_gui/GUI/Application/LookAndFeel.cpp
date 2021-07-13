@@ -80,7 +80,7 @@ void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
 
     g.setColour (findColour (Colours::menubarText));
     g.setFont (getMenuBarFont (m, index, text));
-    g.drawFittedText (text, 0, 0, width, height, juce::Justification::centred, 1);
+    g.drawText (text, 0, 0, width, height, juce::Justification::centred, true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -214,7 +214,7 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     
     r.removeFromRight (3);
     g.setFont (getPopupMenuFont());
-    g.drawFittedText (text, r, juce::Justification::centredLeft, 1);
+    g.drawText (text, r, juce::Justification::centredLeft, true);
 
     if (shortcutText.isNotEmpty()) { g.setColour (c2); drawPopupMenuItemShortcut (g, r, shortcutText); }
     //
