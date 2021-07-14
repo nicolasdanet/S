@@ -131,7 +131,7 @@ juce::ValueTree Preferences::getDefault()
         {
             { Ids::PARAMETER, {
                 { Ids::item,  "SnapToGrid" },
-                { Ids::text,  NEEDS_TRANS ("Snap to Grid") },
+                { Ids::text,  NEEDS_TRANS ("Snap To Grid") },
                 { Ids::info,  NEEDS_TRANS ("Enable magnetic grid") },
                 { Ids::type,  "boolean" },
                 { Ids::value, true }
