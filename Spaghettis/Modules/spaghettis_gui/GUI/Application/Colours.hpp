@@ -49,8 +49,10 @@ enum ColourIds : int {
     searchpathsTextHighlighted,
     tooltipBackground,
     tooltipText,
-    preferencesBackground,
-    preferencesText
+    preferencesParameterBackground,
+    preferencesParameterText,
+    preferencesBoolean,
+    preferencesBooleanTick
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -116,8 +118,10 @@ static void initialize (juce::LookAndFeel* lf)
     jassert (lf->isColourSpecified (searchpathsTextHighlighted)         == false);
     jassert (lf->isColourSpecified (tooltipBackground)                  == false);
     jassert (lf->isColourSpecified (tooltipText)                        == false);
-    jassert (lf->isColourSpecified (preferencesBackground)              == false);
-    jassert (lf->isColourSpecified (preferencesText)                    == false);
+    jassert (lf->isColourSpecified (preferencesParameterBackground)     == false);
+    jassert (lf->isColourSpecified (preferencesParameterText)           == false);
+    jassert (lf->isColourSpecified (preferencesBoolean)                 == false);
+    jassert (lf->isColourSpecified (preferencesBooleanTick)             == false);
     
     lf->setColour (consoleTextDefault,                                  base01);
     lf->setColour (consoleTextSystem,                                   base1);
@@ -142,10 +146,13 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (searchpathsTextHighlighted,                          green);
     lf->setColour (tooltipBackground,                                   backgroundDark);
     lf->setColour (tooltipText,                                         juce::Colours::white);
-    lf->setColour (preferencesBackground,                               background);
-    lf->setColour (preferencesText,                                     base1);
+    lf->setColour (preferencesParameterBackground,                      background);
+    lf->setColour (preferencesParameterText,                            base1);
+    lf->setColour (preferencesBoolean,                                  base1);
+    lf->setColour (preferencesBooleanTick,                              juce::Colours::white);
     
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
+    
     lf->setColour (juce::ScrollBar::thumbColourId,                      juce::Colours::grey);
     lf->setColour (juce::ListBox::backgroundColourId,                   background);
     

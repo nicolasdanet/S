@@ -248,11 +248,11 @@ juce::Rectangle<int> LookAndFeel::getTooltipBounds (const juce::String& text,
     
     const juce::TextLayout t (getTooltipLayout (text));
     
-    int w = static_cast<int> (t.getWidth()  + extra);
-    int h = static_cast<int> (t.getHeight() + extra / 2.0);
+    const int w = static_cast<int> (t.getWidth()  + extra);
+    const int h = static_cast<int> (t.getHeight() + extra / 2.0);
     
-    int x = pt.x > area.getCentreX() ? (pt.x - (w + offsetX)) : (pt.x + offsetX);
-    int y = pt.y > area.getCentreY() ? (pt.y - (h + offsetY)) : (pt.y + offsetY);
+    const int x = pt.x > area.getCentreX() ? (pt.x - (w + offsetX)) : (pt.x + offsetX);
+    const int y = pt.y > area.getCentreY() ? (pt.y - (h + offsetY)) : (pt.y + offsetY);
 
     return juce::Rectangle<int> (x, y, w, h).constrainedWithin (area);
 }
@@ -273,9 +273,9 @@ void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
     int h,
     juce::PropertyComponent& c)
 {
-    juce::Rectangle<int> r = getPropertyComponentContentPosition (c);
+    const juce::Rectangle<int> r = getPropertyComponentContentPosition (c);
     
-    g.setColour (findColour (Colours::preferencesBackground));
+    g.setColour (findColour (Colours::preferencesParameterBackground));
     g.fillRect (juce::Rectangle<int> (r.getX(), h).withTrimmedBottom (1));
 }
 
@@ -284,9 +284,9 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
     int h,
     juce::PropertyComponent& c)
 {
-    juce::Rectangle<int> r = getPropertyComponentContentPosition (c);
+    const juce::Rectangle<int> r = getPropertyComponentContentPosition (c);
     
-    g.setColour (findColour (Colours::preferencesText));
+    g.setColour (findColour (Colours::preferencesParameterText));
     g.setFont (getConsoleFont());
     g.drawText (c.getName(),
         juce::Rectangle<int> (r.getX(), h).reduced (5, 0),
@@ -298,29 +298,21 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& button,
-                                       bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown)
+void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bool, bool)
 {
-    auto fontSize = juce::jmin (15.0f, (float) button.getHeight() * 0.75f);
-    auto tickWidth = fontSize * 1.1f;
+    const int   h = b.getHeight();
+    const float t = h * 0.6f;
+    
+    const juce::Rectangle<float> r (juce::Rectangle<float> (h, h).withSizeKeepingCentre (t, t));
 
-    drawTickBox (g, button, 4.0f, ((float) button.getHeight() - tickWidth) * 0.5f,
-                 tickWidth, tickWidth,
-                 button.getToggleState(),
-                 button.isEnabled(),
-                 shouldDrawButtonAsHighlighted,
-                 shouldDrawButtonAsDown);
-
-    g.setColour (button.findColour (juce::ToggleButton::textColourId));
-    g.setFont (fontSize);
-
-    if (! button.isEnabled())
-        g.setOpacity (0.5f);
-
-    g.drawFittedText (button.getButtonText(),
-                      button.getLocalBounds().withTrimmedLeft (juce::roundToInt (tickWidth) + 10)
-                                             .withTrimmedRight (2),
-                      juce::Justification::centredLeft, 10);
+    g.setColour (findColour (Colours::preferencesBoolean));
+    g.drawRoundedRectangle (r, 4.0f, 1.0f);
+    
+    if (b.getToggleState()) {
+        g.setColour (findColour (Colours::preferencesBooleanTick));
+        const juce::Path tick = getTickShape (0.75f);
+        g.fillPath (tick, tick.getTransformToScaleToFit (r.reduced (4, 5), false));
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
