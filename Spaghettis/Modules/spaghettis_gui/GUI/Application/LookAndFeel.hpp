@@ -166,6 +166,13 @@ public:
         return static_cast<int> (getConsoleFont().getHeight() * 1.5);
     }
     
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void drawToggleButton (juce::Graphics&, juce::ToggleButton&, bool, bool) override;
+                                       
     juce::Font getLabelFont (juce::Label&) override
     {
         return getConsoleFont();

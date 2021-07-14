@@ -268,20 +268,59 @@ void LookAndFeel::drawTooltip (juce::Graphics& g, const juce::String& text, int 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g, int w, int h, juce::PropertyComponent&)
+void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
+    int w,
+    int h,
+    juce::PropertyComponent& c)
 {
+    juce::Rectangle<int> r = getPropertyComponentContentPosition (c);
+    
     g.setColour (findColour (Colours::preferencesBackground));
-    g.fillRect (juce::Rectangle<int> (w, h).withTrimmedBottom (1));
+    g.fillRect (juce::Rectangle<int> (r.getX(), h).withTrimmedBottom (1));
 }
 
-void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g, int w, int h, juce::PropertyComponent& c)
+void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
+    int w,
+    int h,
+    juce::PropertyComponent& c)
 {
+    juce::Rectangle<int> r = getPropertyComponentContentPosition (c);
+    
     g.setColour (findColour (Colours::preferencesText));
     g.setFont (getConsoleFont());
     g.drawText (c.getName(),
-        juce::Rectangle<int> (w, h).reduced (5, 0),
+        juce::Rectangle<int> (r.getX(), h).reduced (5, 0),
         juce::Justification::centredLeft,
         true);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& button,
+                                       bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown)
+{
+    auto fontSize = juce::jmin (15.0f, (float) button.getHeight() * 0.75f);
+    auto tickWidth = fontSize * 1.1f;
+
+    drawTickBox (g, button, 4.0f, ((float) button.getHeight() - tickWidth) * 0.5f,
+                 tickWidth, tickWidth,
+                 button.getToggleState(),
+                 button.isEnabled(),
+                 shouldDrawButtonAsHighlighted,
+                 shouldDrawButtonAsDown);
+
+    g.setColour (button.findColour (juce::ToggleButton::textColourId));
+    g.setFont (fontSize);
+
+    if (! button.isEnabled())
+        g.setOpacity (0.5f);
+
+    g.drawFittedText (button.getButtonText(),
+                      button.getLocalBounds().withTrimmedLeft (juce::roundToInt (tickWidth) + 10)
+                                             .withTrimmedRight (2),
+                      juce::Justification::centredLeft, 10);
 }
 
 // -----------------------------------------------------------------------------------------------------------
