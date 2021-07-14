@@ -276,7 +276,7 @@ void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
     const juce::Rectangle<int> r = getPropertyComponentContentPosition (c);
     
     g.setColour (findColour (Colours::preferencesParameterBackground));
-    g.fillRect (juce::Rectangle<int> (r.getX(), h).withTrimmedBottom (1));
+    g.fillRect (juce::Rectangle<int> (r.getX(), h).withTrimmedBottom (1).withTrimmedRight (1));
 }
 
 void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
