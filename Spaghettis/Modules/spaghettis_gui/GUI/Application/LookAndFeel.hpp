@@ -178,6 +178,13 @@ public:
         return getConsoleFont();
     }
     
+    juce::BorderSize<int> getLabelBorderSize (juce::Label&) override
+    {
+        /* Avoid the text to drift down when editing in preferences. */
+        
+        return juce::BorderSize<int> { 3, 5, 0, 5 };
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
