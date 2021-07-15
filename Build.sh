@@ -21,7 +21,7 @@ if [[ $OSTYPE =~ linux-gnueabihf ]]; then
     CPUTYPE="`lscpu`"
     if [[ $CPUTYPE =~ "Cortex-A72" ]]; then
         cd Spaghettis/Builds/LinuxMakefile
-        make -j4 CXX=clang++ CONFIG=Release TARGET_ARCH="${rpi4}"
+        make -j4 CXX=clang++ CONFIG=Release TARGET_ARCH="${rpi4}" CPPFLAGS="-DJUCE_RPI=1"
         rm -r build/intermediate
         exit 0
     fi
