@@ -276,7 +276,7 @@ void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
     const juce::Rectangle<int> r = getPropertyComponentContentPosition (c);
     
     g.setColour (findColour (Colours::preferencesParameterBackground));
-    g.fillRect (juce::Rectangle<int> (r.getX(), h).withTrimmedBottom (1).withTrimmedRight (1));
+    g.fillRect (juce::Rectangle<int> (r.getX(), h).withTrimmedBottom (1).withTrimmedRight (2));
 }
 
 void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
@@ -310,8 +310,8 @@ void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bo
     
     if (b.getToggleState()) {
         g.setColour (findColour (Colours::preferencesBooleanTick));
-        const juce::Path tick = getTickShape (0.75f);
-        g.fillPath (tick, tick.getTransformToScaleToFit (r.reduced (4, 5), false));
+        const juce::Path p = getTickShape (0.75f);
+        g.fillPath (p, p.getTransformToScaleToFit (r.reduced (4, 5), false));
     }
 }
 

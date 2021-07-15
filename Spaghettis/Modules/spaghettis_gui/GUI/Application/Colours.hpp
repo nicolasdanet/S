@@ -153,17 +153,28 @@ static void initialize (juce::LookAndFeel* lf)
     
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
     
+    /* Scroll bar. */
+    
     lf->setColour (juce::ScrollBar::thumbColourId,                      juce::Colours::grey);
     lf->setColour (juce::ListBox::backgroundColourId,                   background);
     
-    //lf->setColour (juce::PropertyComponent::labelTextColourId,          base1);
-    //lf->setColour (juce::PropertyComponent::backgroundColourId,         background);
-    //lf->setColour (juce::TextPropertyComponent::textColourId,           base1);
-    //lf->setColour (juce::TextPropertyComponent::outlineColourId,        juce::Colours::transparentBlack);
-    //lf->setColour (juce::TextPropertyComponent::backgroundColourId,     background);
+    /* Text based preferences. */
+    
+    lf->setColour (juce::TextPropertyComponent::textColourId,           base1);
+    lf->setColour (juce::TextPropertyComponent::outlineColourId,        juce::Colours::transparentBlack);
+    lf->setColour (juce::TextPropertyComponent::backgroundColourId,     backgroundAlternate);
+                   
+    lf->setColour (juce::TextEditor::highlightColourId,                 juce::Colours::transparentBlack);
+    lf->setColour (juce::TextEditor::highlightedTextColourId,           green);
+    lf->setColour (juce::CaretComponent::caretColourId,                 juce::Colours::white);
+    lf->setColour (juce::Label::backgroundWhenEditingColourId,          backgroundAlternate);
+    lf->setColour (juce::Label::textWhenEditingColourId,                base1);
+    lf->setColour (juce::Label::outlineWhenEditingColourId,             juce::Colours::transparentBlack);
+    
+    /* Boolean preferences. */
     
     lf->setColour (juce::BooleanPropertyComponent::outlineColourId,     juce::Colours::transparentBlack);
-    lf->setColour (juce::BooleanPropertyComponent::backgroundColourId,  background);
+    lf->setColour (juce::BooleanPropertyComponent::backgroundColourId,  backgroundAlternate);
 }
 
 // -----------------------------------------------------------------------------------------------------------
