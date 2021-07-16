@@ -13,7 +13,6 @@ namespace spaghettis {
 // MARK: -
 
 class PreferencesComponent :    public  ApplicationComponent,
-                                private juce::ChangeListener,
                                 private juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -67,20 +66,16 @@ public:
 */
 
 public:
-    void timerCallback() override
+    void expandPanel (int i)
     {
-        stopTimer(); panel_.expandPanelFully (panel_.getPanel (0), true);
-    }
-
-    void changeListenerCallback (juce::ChangeBroadcaster* source) override
-    {
-        const auto f = [source] (const std::unique_ptr<PropertyHeader>& h) { return h.get() == source; };
-        const auto p = std::find_if (headers_.begin(), headers_.end(), f);
-        const int i  = static_cast<int>(std::distance (headers_.begin(), p));
-
-        if (i != static_cast<int> (headers_.size())) { panel_.expandPanelFully (panel_.getPanel (i), true); }
+        panel_.expandPanelFully (panel_.getPanel (i), true);
     }
     
+    void timerCallback() override
+    {
+        stopTimer(); expandPanel (0);
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -90,19 +85,14 @@ private:
     {
         const int headerSize = Spaghettis()->getLookAndFeel().getPropertyPanelHeight() + 6;
         
-        auto h = std::make_unique<PropertyHeader> (p->getName());
-        
-        h->addChangeListener (this);
+        auto h = std::make_unique<PropertyHeader> (p->getName(), panel_.getNumPanels(), this);
         
         panel_.addPanel (-1, p, true);
-        panel_.setCustomPanelHeader (p, h.get(), false);
+        panel_.setCustomPanelHeader (p, h.release(), true);
         panel_.setPanelHeaderSize (p, headerSize);
-        
-        headers_.push_back (std::move (h));
     }
     
 private:
-    std::vector<std::unique_ptr<PropertyHeader>> headers_;
     juce::ConcertinaPanel panel_;
     
 private:

@@ -11,15 +11,22 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class PropertyHeader :  public juce::Component,
-                        public juce::ChangeBroadcaster {
+class PreferencesComponent;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+class PropertyHeader :  public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    PropertyHeader (const juce::String& name) : juce::Component (name)
+    PropertyHeader (const juce::String& name, int index, PreferencesComponent *owner) :
+        juce::Component (name),
+        index_ (index),
+        owner_ (owner)
     {
     }
 
@@ -44,11 +51,13 @@ public:
         g.drawText (getName(), b.reduced (8, 0), juce::Justification::centredLeft, true);
     }
 
-    void mouseUp (const juce::MouseEvent& e) override
-    {
-        if (!e.mouseWasDraggedSinceMouseDown()) { sendChangeMessage(); }
-    }
+    void mouseUp (const juce::MouseEvent&) override;
 
+private:
+    int index_;
+    PreferencesComponent *owner_;
+    
+private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PropertyHeader)
 };
 

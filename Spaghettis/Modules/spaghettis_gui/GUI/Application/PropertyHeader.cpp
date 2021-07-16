@@ -6,21 +6,21 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_gui.hpp"
+namespace spaghettis {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PropertyHeader::mouseUp (const juce::MouseEvent& e)
+{
+    if (!e.mouseWasDraggedSinceMouseDown()) { owner_->expandPanel (index_); }
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Commands.cpp"
-#include "GUI/Application/Icons.cpp"
-#include "GUI/Application/LookAndFeel.cpp"
-#include "GUI/Application/MenuModel.cpp"
-#include "GUI/Application/Preferences.cpp"
-#include "GUI/Application/PropertyHeader.cpp"
-#include "GUI/Application/SpaghettisInstance.cpp"
-#include "GUI/Console/ConsoleFactory.cpp"
-#include "GUI/SearchPaths/SearchPathsFactory.cpp"
-#include "Wrap/Outputs.cpp"
+} // namespace spaghettis
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
