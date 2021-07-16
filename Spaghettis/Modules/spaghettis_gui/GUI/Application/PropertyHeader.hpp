@@ -19,7 +19,7 @@ class PropertyHeader :  public juce::Component,
 // MARK: -
 
 public:
-    PropertyHeader (const juce::String& name) : juce::Component (name), name_ (name)
+    PropertyHeader (const juce::String& name) : juce::Component (name)
     {
     }
 
@@ -39,15 +39,15 @@ public:
         
         g.setColour (Spaghettis()->getColour (Colours::preferencesHeaderBackground));
         g.fillRoundedRectangle (b.toFloat(), 2.0f);
+        g.setColour (Spaghettis()->getColour (Colours::preferencesHeaderText));
+        g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
+        g.drawText (getName(), b.reduced (5, 0), juce::Justification::centredLeft, true);
     }
 
     void mouseUp (const juce::MouseEvent& e) override
     {
         if (!e.mouseWasDraggedSinceMouseDown()) { sendChangeMessage(); }
     }
-
-private:
-    juce::String name_;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PropertyHeader)
 };
