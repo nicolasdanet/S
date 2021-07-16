@@ -74,15 +74,11 @@ public:
 
     void changeListenerCallback (juce::ChangeBroadcaster* source) override
     {
-        DBG ("!!!");
-        /*
-        const auto pointerMatches = [source] (const std::unique_ptr<ConcertinaHeader>& header) { return header.get() == source; };
-        const auto it = std::find_if (headers.begin(), headers.end(), pointerMatches);
-        const auto index = (int) std::distance (headers.begin(), it);
+        const auto f = [source] (const std::unique_ptr<PropertyHeader>& h) { return h.get() == source; };
+        const auto p = std::find_if (headers_.begin(), headers_.end(), f);
+        const int i  = static_cast<int>(std::distance (headers_.begin(), p));
 
-        if (index != (int) headers.size())
-            concertinaPanel.expandPanelFully (concertinaPanel.getPanel (index), true);
-        */
+        if (i != static_cast<int> (headers_.size())) { panel_.expandPanelFully (panel_.getPanel (i), true); }
     }
     
 // -----------------------------------------------------------------------------------------------------------
