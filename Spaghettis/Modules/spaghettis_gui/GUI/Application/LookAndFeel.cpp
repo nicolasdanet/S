@@ -289,7 +289,7 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
     g.setColour (findColour (Colours::preferencesParameterText));
     g.setFont (getConsoleFont());
     g.drawText (c.getName(),
-        juce::Rectangle<int> (r.getX(), h).reduced (5, 0).withTrimmedLeft (5),
+        juce::Rectangle<int> (r.getX(), h).reduced (5, 0).withTrimmedLeft (10),
         juce::Justification::centredLeft,
         true);
 }

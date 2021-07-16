@@ -92,7 +92,7 @@ public:
 private:
     void addPanel (juce::PropertyPanel* p)
     {
-        const int headerSize = 30;
+        const int headerSize = Spaghettis()->getLookAndFeel().getPropertyPanelHeight() + 6;
         
         auto h = std::make_unique<PropertyHeader> (p->getName());
         
