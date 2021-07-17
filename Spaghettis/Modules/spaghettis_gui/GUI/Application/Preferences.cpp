@@ -155,6 +155,17 @@ juce::ValueTree Preferences::getDefault()
                 { Ids::value, 12 }
             }}
         }
+    },
+    { Ids::GROUP, {{ Ids::name, "Foo" }},
+        {
+            { Ids::PARAMETER, {
+                { Ids::item, "DummyStuff" },
+                { Ids::text,  NEEDS_TRANS ("Bar") },
+                { Ids::info,  NEEDS_TRANS ("Set Bar") },
+                { Ids::type, "integer" },
+                { Ids::value, 12 }
+            }}
+        }
     }
     //
     }};
