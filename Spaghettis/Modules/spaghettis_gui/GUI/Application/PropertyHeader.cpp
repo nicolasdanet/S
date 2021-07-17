@@ -20,7 +20,7 @@ void PropertyHeader::paint (juce::Graphics& g)
     g.fillRoundedRectangle (b.toFloat(), 2.0f);
     g.setColour (Spaghettis()->getColour (Colours::preferencesHeaderText));
     g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
-    g.drawText (getName(), b.reduced (8, 0), juce::Justification::centredLeft, true);
+    g.drawText (getName(), b.reduced (10, 0), juce::Justification::centredLeft, true);
 }
 
 void PropertyHeader::mouseUp (const juce::MouseEvent& e)
