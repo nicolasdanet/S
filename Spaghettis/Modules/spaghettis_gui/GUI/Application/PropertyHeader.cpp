@@ -18,19 +18,9 @@ void PropertyHeader::paint (juce::Graphics& g)
     
     g.setColour (Spaghettis()->getColour (Colours::preferencesHeaderBackground));
     g.fillRoundedRectangle (b.toFloat(), 2.0f);
-    
-    const juce::Rectangle<int> arrow = b.removeFromLeft (b.getCentreY());
-    
-    g.setColour (Spaghettis()->getColour (Colours::preferencesHeaderArrow));
-
-    if (owner_->isExpanded (index_)) { LookAndFeel::drawArrowOpened (g, arrow); }
-    else {
-        LookAndFeel::drawArrowClosed (g, arrow);
-    }
-    
     g.setColour (Spaghettis()->getColour (Colours::preferencesHeaderText));
     g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
-    g.drawText (getName(), b.reduced (6), juce::Justification::centredLeft, true);
+    g.drawText (getName(), b.reduced (8, 0), juce::Justification::centredLeft, true);
 }
 
 void PropertyHeader::mouseUp (const juce::MouseEvent& e)

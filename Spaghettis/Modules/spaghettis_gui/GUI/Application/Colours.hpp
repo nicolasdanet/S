@@ -51,7 +51,6 @@ enum ColourIds : int {
     tooltipText,
     preferencesHeaderBackground,
     preferencesHeaderText,
-    preferencesHeaderArrow,
     preferencesParameterBackground,
     preferencesParameterText,
     preferencesBoolean,
@@ -126,7 +125,6 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (tooltipText,                                         juce::Colours::white);
     lf->setColour (preferencesHeaderBackground,                         background);
     lf->setColour (preferencesHeaderText,                               juce::Colours::white);
-    lf->setColour (preferencesHeaderArrow,                              base1);
     lf->setColour (preferencesParameterBackground,                      background);
     lf->setColour (preferencesParameterText,                            base1);
     lf->setColour (preferencesBoolean,                                  base1);
