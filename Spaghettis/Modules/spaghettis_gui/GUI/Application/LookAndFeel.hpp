@@ -217,6 +217,21 @@ public:
     {
         return fontTooltips_;
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static void drawArrowClosed (juce::Graphics& g, const juce::Rectangle<int>& t)
+    {
+        g.fillRect (t);
+    }
+
+    static void drawArrowOpened (juce::Graphics& g, const juce::Rectangle<int>& t)
+    {
+        g.fillRect (t);
+    }
     
 private:
     juce::String fontConsoleName_;

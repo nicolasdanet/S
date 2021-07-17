@@ -51,6 +51,7 @@ enum ColourIds : int {
     tooltipText,
     preferencesHeaderBackground,
     preferencesHeaderText,
+    preferencesHeaderArrow,
     preferencesParameterBackground,
     preferencesParameterText,
     preferencesBoolean,
@@ -96,36 +97,9 @@ static void initialize (juce::LookAndFeel* lf)
     
     jassert (background.isOpaque());
     
-    jassert (lf->isColourSpecified (windowBackground)                   == false);
-    jassert (lf->isColourSpecified (consoleTextDefault)                 == false);
-    jassert (lf->isColourSpecified (consoleTextSystem)                  == false);
-    jassert (lf->isColourSpecified (consoleTextWarning)                 == false);
-    jassert (lf->isColourSpecified (consoleTextError)                   == false);
-    jassert (lf->isColourSpecified (consoleTextHighlighted)             == false);
-    jassert (lf->isColourSpecified (consoleBackground)                  == false);
-    jassert (lf->isColourSpecified (consoleBackgroundAlternate)         == false);
-    jassert (lf->isColourSpecified (menubarBackground)                  == false);
-    jassert (lf->isColourSpecified (menubarBackgroundPopup)             == false);
-    jassert (lf->isColourSpecified (menubarBackgroundHighlighted)       == false);
-    jassert (lf->isColourSpecified (menubarText)                        == false);
-    jassert (lf->isColourSpecified (menubarSeparator)                   == false);
-    jassert (lf->isColourSpecified (toolbarBackground)                  == false);
-    jassert (lf->isColourSpecified (toolbarBackgroundDown)              == false);
-    jassert (lf->isColourSpecified (toolbarBackgroundOver)              == false);
-    jassert (lf->isColourSpecified (toolbarIconOn)                      == false);
-    jassert (lf->isColourSpecified (toolbarIconOff)                     == false);
-    jassert (lf->isColourSpecified (searchpathsBackground)              == false);
-    jassert (lf->isColourSpecified (searchpathsBackgroundAlternate)     == false);
-    jassert (lf->isColourSpecified (searchpathsText)                    == false);
-    jassert (lf->isColourSpecified (searchpathsTextHighlighted)         == false);
-    jassert (lf->isColourSpecified (tooltipBackground)                  == false);
-    jassert (lf->isColourSpecified (tooltipText)                        == false);
-    jassert (lf->isColourSpecified (preferencesHeaderBackground)        == false);
-    jassert (lf->isColourSpecified (preferencesHeaderText)              == false);
-    jassert (lf->isColourSpecified (preferencesParameterBackground)     == false);
-    jassert (lf->isColourSpecified (preferencesParameterText)           == false);
-    jassert (lf->isColourSpecified (preferencesBoolean)                 == false);
-    jassert (lf->isColourSpecified (preferencesBooleanTick)             == false);
+    for (int i = windowBackground ; i < preferencesBooleanTick; ++i) {
+        jassert (lf->isColourSpecified (i) == false);
+    }
     
     lf->setColour (consoleTextDefault,                                  base01);
     lf->setColour (consoleTextSystem,                                   base1);
@@ -152,6 +126,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (tooltipText,                                         juce::Colours::white);
     lf->setColour (preferencesHeaderBackground,                         background);
     lf->setColour (preferencesHeaderText,                               juce::Colours::white);
+    lf->setColour (preferencesHeaderArrow,                              base1);
     lf->setColour (preferencesParameterBackground,                      background);
     lf->setColour (preferencesParameterText,                            base1);
     lf->setColour (preferencesBoolean,                                  base1);

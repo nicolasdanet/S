@@ -25,7 +25,7 @@ friend class Preferences;
 // MARK: -
 
 public:
-    PreferencesComponent (const juce::String& keyName) : ApplicationComponent (keyName)
+    PreferencesComponent (const juce::String& keyName) : ApplicationComponent (keyName), expanded_ (0)
     {
         Spaghettis()->getPreferences().buildConcertinaPanel (*this);
         
@@ -68,7 +68,12 @@ public:
 public:
     void expandPanel (int i)
     {
-        panel_.expandPanelFully (panel_.getPanel (i), true);
+        expanded_ = i; panel_.expandPanelFully (panel_.getPanel (i), true);
+    }
+    
+    bool isExpanded (int i) const
+    {
+        return (expanded_ == i);
     }
     
     void timerCallback() override
@@ -84,16 +89,19 @@ private:
     void addPanel (juce::PropertyPanel* p)
     {
         const int headerSize = Spaghettis()->getLookAndFeel().getPropertyPanelHeight() + 6;
-        
-        auto h = std::make_unique<PropertyHeader> (p->getName(), panel_.getNumPanels(), this);
+        const int i = panel_.getNumPanels();
+        auto h = std::make_unique<PropertyHeader> (p->getName(), i, this);
         
         panel_.addPanel (-1, p, true);
         panel_.setCustomPanelHeader (p, h.release(), true);
         panel_.setPanelHeaderSize (p, headerSize);
+        
+        expanded_ = i;
     }
     
 private:
     juce::ConcertinaPanel panel_;
+    int expanded_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PreferencesComponent)

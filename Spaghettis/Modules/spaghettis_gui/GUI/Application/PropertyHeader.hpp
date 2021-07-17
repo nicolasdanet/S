@@ -36,20 +36,12 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
     void resized() override
     {
     }
 
-    void paint (juce::Graphics& g) override
-    {
-        juce::Rectangle<int> b (getLocalBounds().reduced (2, 0).withTrimmedBottom (1));
-        
-        g.setColour (Spaghettis()->getColour (Colours::preferencesHeaderBackground));
-        g.fillRoundedRectangle (b.toFloat(), 2.0f);
-        g.setColour (Spaghettis()->getColour (Colours::preferencesHeaderText));
-        g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
-        g.drawText (getName(), b.reduced (8, 0), juce::Justification::centredLeft, true);
-    }
+    void paint (juce::Graphics&) override;
 
     void mouseUp (const juce::MouseEvent&) override;
 
