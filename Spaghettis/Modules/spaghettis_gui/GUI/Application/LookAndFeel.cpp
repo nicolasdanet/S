@@ -321,11 +321,11 @@ void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bo
 
 void LookAndFeel::drawArrowClosed (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
-    const int side = juce::jmin (r.getWidth(), r.getHeight());
-    const float x  = static_cast<float> (r.getCentreX());
-    const float y  = static_cast<float> (r.getCentreY());
-    const float h  = side * 0.5f;
-    const float w  = side * 0.25f;
+    const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;
+    const float x    = static_cast<float> (r.getCentreX());
+    const float y    = static_cast<float> (r.getCentreY());
+    const float h    = side * 0.5f;
+    const float w    = side * 0.25f;
     
     juce::Path path;
     path.startNewSubPath (x - w, y - h);
@@ -337,11 +337,11 @@ void LookAndFeel::drawArrowClosed (juce::Graphics& g, const juce::Rectangle<int>
 
 void LookAndFeel::drawArrowOpened (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
-    const int side = juce::jmin (r.getWidth(), r.getHeight());
-    const float x  = static_cast<float> (r.getCentreX());
-    const float y  = static_cast<float> (r.getCentreY());
-    const float h  = side * 0.25f;
-    const float w  = side * 0.5f;
+    const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;
+    const float x    = static_cast<float> (r.getCentreX());
+    const float y    = static_cast<float> (r.getCentreY());
+    const float h    = side * 0.25f;
+    const float w    = side * 0.5f;
     
     juce::Path path;
     path.startNewSubPath (x - w, y - h);
