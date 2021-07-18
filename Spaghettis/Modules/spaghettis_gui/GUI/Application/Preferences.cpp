@@ -17,36 +17,28 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::PropertyComponent* buildConcertinaPanelParametersGet (const juce::ValueTree& parameter)
+juce::PropertyComponent* buildConcertinaPanelParametersGet (juce::ValueTree parameter)
 {
     juce::String text = parameter.getProperty (Ids::text).toString();
     juce::String type = parameter.getProperty (Ids::type).toString();
     
+    juce::Value v = parameter.getPropertyAsValue (Ids::value, nullptr);
+    
     if (type == "boolean") {
-        return new Parameters::Boolean (juce::Value (true), text);
+        return new Parameters::Boolean (v, text);
     } else {
-        return new Parameters::Text (juce::Value (juce::var ("Toto")), text);
+        return new Parameters::Text (v, text);
     }
 }
 
-void buildConcertinaPanelParameters (const juce::ValueTree& parameter,
-    juce::Array<juce::PropertyComponent*>& components)
+void buildConcertinaPanelParameters (juce::ValueTree parameter, juce::Array<juce::PropertyComponent*>& c)
 {
     std::unique_ptr<juce::PropertyComponent> p (buildConcertinaPanelParametersGet (parameter));
     
     p->setPreferredHeight (Spaghettis()->getLookAndFeel().getPropertyPanelHeight());
     p->setTooltip (parameter.getProperty (Ids::info).toString());
     
-    components.add (p.release());
-}
-
-void buildConcertinaPanelGroup (const juce::ValueTree& group, juce::PropertyPanel& panel)
-{
-    juce::Array<juce::PropertyComponent*> components;
-    
-    for (const auto& parameter : group) { buildConcertinaPanelParameters (parameter, components); }
-    
-    panel.addProperties (components);
+    c.add (p.release());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -64,11 +56,22 @@ void Preferences::buildConcertinaPanel (PreferencesComponent& c)
     //
     auto panel = std::make_unique<juce::PropertyPanel> (group.getProperty (Ids::name).toString());
     
-    buildConcertinaPanelGroup (group, *panel);
+    {
+        juce::Array<juce::PropertyComponent*> components;
+    
+        for (const auto& parameter : group) { buildConcertinaPanelParameters (parameter, components); }
+    
+        panel->addProperties (components);
+    }
     
     c.addPanel (panel.release());
     //
     }
+}
+
+void Preferences::valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&)
+{
+    DBG ("?");
 }
 
 // -----------------------------------------------------------------------------------------------------------
