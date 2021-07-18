@@ -289,7 +289,7 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
     g.setColour (findColour (Colours::preferencesParameterText));
     g.setFont (getConsoleFont());
     g.drawText (c.getName(),
-        juce::Rectangle<int> (r.getX(), h).reduced (4, 0).withTrimmedLeft (15),
+        juce::Rectangle<int> (r.getX(), h).reduced (4, 0).withTrimmedLeft (30),
         juce::Justification::centredLeft,
         true);
 }
@@ -315,6 +315,42 @@ void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bo
     }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LookAndFeel::drawArrowClosed (juce::Graphics& g, const juce::Rectangle<int>& r)
+{
+    const int side = juce::jmin (r.getWidth(), r.getHeight());
+    const float x  = static_cast<float> (r.getCentreX());
+    const float y  = static_cast<float> (r.getCentreY());
+    const float h  = side * 0.5f;
+    const float w  = side * 0.25f;
+    
+    juce::Path path;
+    path.startNewSubPath (x - w, y - h);
+    path.lineTo (x + w, y);
+    path.lineTo (x - w, y + h);
+
+    g.strokePath (path, juce::PathStrokeType (2.0f));
+}
+
+void LookAndFeel::drawArrowOpened (juce::Graphics& g, const juce::Rectangle<int>& r)
+{
+    const int side = juce::jmin (r.getWidth(), r.getHeight());
+    const float x  = static_cast<float> (r.getCentreX());
+    const float y  = static_cast<float> (r.getCentreY());
+    const float h  = side * 0.25f;
+    const float w  = side * 0.5f;
+    
+    juce::Path path;
+    path.startNewSubPath (x - w, y - h);
+    path.lineTo (x, y + h);
+    path.lineTo (x + w, y - h);
+
+    g.strokePath (path, juce::PathStrokeType (2.0f));
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
