@@ -145,23 +145,37 @@ juce::ValueTree Preferences::getDefault()
             }}
         }
     },
-    { Ids::GROUP, {{ Ids::name, "Fonts" }},
+    { Ids::GROUP, {{ Ids::name, "Nuclear" }},
         {
             { Ids::PARAMETER, {
-                { Ids::item, "DefaultFontSize" },
-                { Ids::text,  NEEDS_TRANS ("Default Font Size") },
-                { Ids::info,  NEEDS_TRANS ("Set font size for new patch") },
+                { Ids::item, "Engine" },
+                { Ids::text,  NEEDS_TRANS ("Power Engine") },
+                { Ids::info,  NEEDS_TRANS ("Set power of stuff") },
+                { Ids::type, "integer" },
+                { Ids::value, 12 }
+            }},
+            { Ids::PARAMETER, {
+                { Ids::item, "Launcher" },
+                { Ids::text,  NEEDS_TRANS ("Launcher Efficiency") },
+                { Ids::info,  NEEDS_TRANS ("Set tenderness of button") },
                 { Ids::type, "integer" },
                 { Ids::value, 12 }
             }}
         }
     },
-    { Ids::GROUP, {{ Ids::name, "Foo" }},
+    { Ids::GROUP, {{ Ids::name, "Colors" }},
         {
             { Ids::PARAMETER, {
-                { Ids::item, "DummyStuff" },
+                { Ids::item, "Bar" },
                 { Ids::text,  NEEDS_TRANS ("Bar") },
-                { Ids::info,  NEEDS_TRANS ("Set Bar") },
+                { Ids::info,  NEEDS_TRANS ("Set Bar Color") },
+                { Ids::type, "integer" },
+                { Ids::value, 12 }
+            }},
+            { Ids::PARAMETER, {
+                { Ids::item, "Foo" },
+                { Ids::text,  NEEDS_TRANS ("Foo") },
+                { Ids::info,  NEEDS_TRANS ("Set Foo Color") },
                 { Ids::type, "integer" },
                 { Ids::value, 12 }
             }}
