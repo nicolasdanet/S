@@ -66,7 +66,7 @@
 #include "GUI/Application/Preferences.hpp"
 #include "GUI/Application/SpaghettisInstance.hpp"
 #include "GUI/Application/Spaghettis.hpp"
-#include "GUI/Application/PropertyComponents.hpp"
+#include "GUI/Application/Parameters.hpp"
 #include "GUI/Application/PropertyHeader.hpp"
 #include "GUI/Application/IconsButton.hpp"
 #include "GUI/Application/IconsFactory.hpp"

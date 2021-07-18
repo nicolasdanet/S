@@ -23,9 +23,9 @@ juce::PropertyComponent* buildConcertinaPanelParametersGet (const juce::ValueTre
     juce::String type = parameter.getProperty (Ids::type).toString();
     
     if (type == "boolean") {
-        return new juce::BooleanPropertyComponent (juce::Value (true), text, "Toto");
+        return new Parameters::Boolean (juce::Value (true), text);
     } else {
-        return new juce::TextPropertyComponent (juce::Value (juce::var ("Toto")), text, 200, false);
+        return new Parameters::Text (juce::Value (juce::var ("Toto")), text);
     }
 }
 
