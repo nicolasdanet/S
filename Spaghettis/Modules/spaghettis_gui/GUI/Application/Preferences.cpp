@@ -149,17 +149,24 @@ juce::ValueTree Preferences::getDefault()
         {
             { Ids::PARAMETER, {
                 { Ids::item, "Engine" },
-                { Ids::text,  NEEDS_TRANS ("Power Engine") },
-                { Ids::info,  NEEDS_TRANS ("Set power of stuff") },
-                { Ids::type, "integer" },
-                { Ids::value, 12 }
+                { Ids::text,  NEEDS_TRANS ("Kind Of Engine") },
+                { Ids::info,  NEEDS_TRANS ("Set kind of stuff") },
+                { Ids::type, "text" },
+                { Ids::value, "Submarine" }
+            }},
+            { Ids::PARAMETER, {
+                { Ids::item, "Power" },
+                { Ids::text,  NEEDS_TRANS ("Power Of Engine") },
+                { Ids::info,  NEEDS_TRANS ("Set power of engine") },
+                { Ids::type, "float" },
+                { Ids::value, 99.5 }
             }},
             { Ids::PARAMETER, {
                 { Ids::item, "Launcher" },
                 { Ids::text,  NEEDS_TRANS ("Launcher Efficiency") },
                 { Ids::info,  NEEDS_TRANS ("Set tenderness of button") },
-                { Ids::type, "integer" },
-                { Ids::value, 12 }
+                { Ids::type, "float" },
+                { Ids::value, 99.5 }
             }}
         }
     },
@@ -168,16 +175,16 @@ juce::ValueTree Preferences::getDefault()
             { Ids::PARAMETER, {
                 { Ids::item, "Bar" },
                 { Ids::text,  NEEDS_TRANS ("Bar") },
-                { Ids::info,  NEEDS_TRANS ("Set Bar Color") },
-                { Ids::type, "integer" },
-                { Ids::value, 12 }
+                { Ids::info,  NEEDS_TRANS ("Set bar color") },
+                { Ids::type, "color" },
+                { Ids::value, 0 }
             }},
             { Ids::PARAMETER, {
                 { Ids::item, "Foo" },
                 { Ids::text,  NEEDS_TRANS ("Foo") },
-                { Ids::info,  NEEDS_TRANS ("Set Foo Color") },
-                { Ids::type, "integer" },
-                { Ids::value, 12 }
+                { Ids::info,  NEEDS_TRANS ("Set foo color") },
+                { Ids::type, "color" },
+                { Ids::value, 0 }
             }}
         }
     }
