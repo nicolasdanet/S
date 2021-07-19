@@ -124,7 +124,12 @@ bool isValidTree (const juce::ValueTree& tree)
 void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier& identifier)
 {
     if (isValidParameter (tree)) {
-        DBG (tree.getProperty (Ids::item).toString());
+    //
+    const juce::String key (tree.getProperty (Ids::item).toString());
+    const juce::String value (tree.getProperty (Ids::value).toString());
+        
+    DBG (key + " / " + value);
+    //
     }
 }
 
