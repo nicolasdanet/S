@@ -24,9 +24,9 @@ juce::PropertyComponent* buildConcertinaPanelParametersGet (juce::ValueTree para
     
     juce::Value v = parameter.getPropertyAsValue (Ids::value, nullptr);
     
-    if (type == "boolean") {
-        return new Parameters::Boolean (v, text);
-    } else {
+    if (type == "boolean") { return new Parameters::Boolean (v, text); }
+    if (type == "integer") { return new Parameters::Integer (v, text); }
+    else {
         return new Parameters::Text (v, text);
     }
 }
