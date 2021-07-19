@@ -83,6 +83,21 @@ bool isValidSection (const juce::ValueTree& tree)
     return (tree.hasType (Ids::GROUP) && tree.getProperty (Ids::name).isString());
 }
 
+bool isValidValue (const juce::ValueTree& parameter)
+{
+    juce::String type = parameter.getProperty (Ids::type).toString();
+    
+    auto v = parameter.getProperty (Ids::value);
+    
+    if (type == "boolean")      { return v.isBool();                               }
+    else if (type == "integer") { return v.isInt()    || v.isInt64();              }
+    else if (type == "float")   { return v.isDouble() || v.isInt64() || v.isInt(); }
+    else if (type == "text")    { return v.isString();                             }
+    else if (type == "color")   { return true;                                     }
+    
+    return false;
+}
+
 bool isValidParameter (const juce::ValueTree& tree)
 {
     return (tree.hasType (Ids::PARAMETER)
@@ -90,7 +105,7 @@ bool isValidParameter (const juce::ValueTree& tree)
                 && tree.getProperty (Ids::text).isString()
                 && tree.getProperty (Ids::info).isString()
                 && tree.getProperty (Ids::type).isString()
-                && tree.hasProperty (Ids::value));
+                && tree.hasProperty (Ids::value) && isValidValue (tree));
 }
 
 bool isValidTree (const juce::ValueTree& tree)
@@ -127,10 +142,10 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::I
     //
     const juce::String key (tree.getProperty (Ids::item).toString());
     const juce::String value (tree.getProperty (Ids::value).toString());
-        
+    
     DBG (key + " / " + value);
     //
-    }
+    } else { DBG ("Invalid"); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
