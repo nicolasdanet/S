@@ -109,13 +109,13 @@ public:
     }
 
 private:
-    template<class Q = T>
+    template <class Q = T>
     typename std::enable_if<std::is_same<int, Q>::value, T>::type convert (const juce::String& s) const
     {
         return s.getIntValue();
     }
     
-    template<class Q = T>
+    template <class Q = T>
     typename std::enable_if<std::is_same<double, Q>::value, T>::type convert (const juce::String& s) const
     {
         return s.getDoubleValue();
