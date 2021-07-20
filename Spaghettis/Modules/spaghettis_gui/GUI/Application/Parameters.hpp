@@ -71,8 +71,29 @@ class Integer : public juce::TextPropertyComponent {
 // MARK: -
 
 public:
-    Integer (const juce::Value& v, const juce::String& s) : juce::TextPropertyComponent (v, s, 64, false)
+    Integer (const juce::Value& v, const juce::String& s) : juce::TextPropertyComponent (v, s, 16, false)
     {
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::String getText() const override
+    {
+        return parsed (TextPropertyComponent::getText());
+    }
+        
+    void setText (const juce::String& s) override
+    {
+        TextPropertyComponent::setText (parsed (s));
+    }
+
+private:
+    juce::String parsed (const juce::String& s) const
+    {
+        return juce::String (s.getIntValue());
     }
 
 private:

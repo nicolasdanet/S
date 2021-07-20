@@ -83,21 +83,6 @@ bool isValidSection (const juce::ValueTree& tree)
     return (tree.hasType (Ids::GROUP) && tree.getProperty (Ids::name).isString());
 }
 
-bool isValidValue (const juce::ValueTree& parameter)
-{
-    juce::String type = parameter.getProperty (Ids::type).toString();
-    
-    auto v = parameter.getProperty (Ids::value);
-    
-    if (type == "boolean")      { return v.isBool();                               }
-    else if (type == "integer") { return v.isInt()    || v.isInt64();              }
-    else if (type == "float")   { return v.isDouble() || v.isInt64() || v.isInt(); }
-    else if (type == "text")    { return v.isString();                             }
-    else if (type == "color")   { return true;                                     }
-    
-    return false;
-}
-
 bool isValidParameter (const juce::ValueTree& tree)
 {
     return (tree.hasType (Ids::PARAMETER)
@@ -105,7 +90,7 @@ bool isValidParameter (const juce::ValueTree& tree)
                 && tree.getProperty (Ids::text).isString()
                 && tree.getProperty (Ids::info).isString()
                 && tree.getProperty (Ids::type).isString()
-                && tree.hasProperty (Ids::value) && isValidValue (tree));
+                && tree.hasProperty (Ids::value));
 }
 
 bool isValidTree (const juce::ValueTree& tree)
@@ -145,7 +130,7 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::I
     
     DBG (key + " / " + value);
     //
-    } else { DBG ("Invalid"); }
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -170,7 +155,7 @@ juce::ValueTree Preferences::getDefault()
                 { Ids::text,  NEEDS_TRANS ("Grid Size") },
                 { Ids::info,  NEEDS_TRANS ("Set magnetic grid spacing") },
                 { Ids::type, "integer" },
-                { Ids::value, 12 }
+                { Ids::value, "12" }
             }}
         }
     },
@@ -188,14 +173,14 @@ juce::ValueTree Preferences::getDefault()
                 { Ids::text,  NEEDS_TRANS ("Power Of Engine") },
                 { Ids::info,  NEEDS_TRANS ("Set power of engine") },
                 { Ids::type, "float" },
-                { Ids::value, 99.5 }
+                { Ids::value, "99.5" }
             }},
             { Ids::PARAMETER, {
                 { Ids::item, "Launcher" },
                 { Ids::text,  NEEDS_TRANS ("Launcher Efficiency") },
                 { Ids::info,  NEEDS_TRANS ("Set tenderness of button") },
                 { Ids::type, "float" },
-                { Ids::value, 99.5 }
+                { Ids::value, "99.5" }
             }}
         }
     },
@@ -206,14 +191,14 @@ juce::ValueTree Preferences::getDefault()
                 { Ids::text,  NEEDS_TRANS ("Bar") },
                 { Ids::info,  NEEDS_TRANS ("Set bar color") },
                 { Ids::type, "color" },
-                { Ids::value, 0 }
+                { Ids::value, "0" }
             }},
             { Ids::PARAMETER, {
                 { Ids::item, "Foo" },
                 { Ids::text,  NEEDS_TRANS ("Foo") },
                 { Ids::info,  NEEDS_TRANS ("Set foo color") },
                 { Ids::type, "color" },
-                { Ids::value, 0 }
+                { Ids::value, "0" }
             }}
         }
     }
