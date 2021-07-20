@@ -141,61 +141,63 @@ juce::ValueTree Preferences::getDefault()
     { Ids::GROUP, {{ Ids::name, "Editing" }},
         {
             { Ids::PARAMETER, {
-                { Ids::item,  "SnapToGrid" },
-                { Ids::text,  NEEDS_TRANS ("Snap To Grid") },
-                { Ids::info,  NEEDS_TRANS ("Enable magnetic grid") },
-                { Ids::type,  "boolean" },
-                { Ids::value, true }
+                { Ids::item,    "SnapToGrid" },
+                { Ids::text,    NEEDS_TRANS ("Snap To Grid") },
+                { Ids::info,    NEEDS_TRANS ("Enable magnetic grid") },
+                { Ids::type,    "boolean" },
+                { Ids::value,   true }
             }},
             { Ids::PARAMETER, {
-                { Ids::item, "GridSize" },
-                { Ids::text,  NEEDS_TRANS ("Grid Size") },
-                { Ids::info,  NEEDS_TRANS ("Set magnetic grid spacing") },
-                { Ids::type, "integer" },
-                { Ids::value, "12" }
+                { Ids::item,    "GridSize" },
+                { Ids::text,    NEEDS_TRANS ("Grid Size") },
+                { Ids::info,    NEEDS_TRANS ("Set magnetic grid spacing") },
+                { Ids::type,    "integer" },
+                { Ids::minimum, 1 },
+                { Ids::maximum, 64 },
+                { Ids::value,   "12" }
             }}
         }
     },
     { Ids::GROUP, {{ Ids::name, "Nuclear" }},
         {
             { Ids::PARAMETER, {
-                { Ids::item, "Engine" },
-                { Ids::text,  NEEDS_TRANS ("Kind Of Engine") },
-                { Ids::info,  NEEDS_TRANS ("Set kind of stuff") },
-                { Ids::type, "text" },
-                { Ids::value, "Submarine" }
+                { Ids::item,    "Engine" },
+                { Ids::text,    NEEDS_TRANS ("Kind Of Engine") },
+                { Ids::info,    NEEDS_TRANS ("Set kind of stuff") },
+                { Ids::type,    "text" },
+                { Ids::value,   "Submarine" }
             }},
             { Ids::PARAMETER, {
-                { Ids::item, "Power" },
-                { Ids::text,  NEEDS_TRANS ("Power Of Engine") },
-                { Ids::info,  NEEDS_TRANS ("Set power of engine") },
-                { Ids::type, "float" },
-                { Ids::value, "99.5" }
+                { Ids::item,    "Power" },
+                { Ids::text,    NEEDS_TRANS ("Power Of Engine") },
+                { Ids::info,    NEEDS_TRANS ("Set power of engine") },
+                { Ids::type,    "float" },
+                { Ids::value,   "99.5" }
             }},
             { Ids::PARAMETER, {
-                { Ids::item, "Launcher" },
-                { Ids::text,  NEEDS_TRANS ("Launcher Efficiency") },
-                { Ids::info,  NEEDS_TRANS ("Set tenderness of button") },
-                { Ids::type, "float" },
-                { Ids::value, "99.5" }
+                { Ids::item,    "Launcher" },
+                { Ids::text,    NEEDS_TRANS ("Launcher Efficiency") },
+                { Ids::info,    NEEDS_TRANS ("Set tenderness of button") },
+                { Ids::type,    "float" },
+                { Ids::value,   "99.5" }
             }}
         }
     },
     { Ids::GROUP, {{ Ids::name, "Colors" }},
         {
             { Ids::PARAMETER, {
-                { Ids::item, "Bar" },
-                { Ids::text,  NEEDS_TRANS ("Bar") },
-                { Ids::info,  NEEDS_TRANS ("Set bar color") },
-                { Ids::type, "color" },
-                { Ids::value, "0" }
+                { Ids::item,    "Bar" },
+                { Ids::text,    NEEDS_TRANS ("Bar") },
+                { Ids::info,    NEEDS_TRANS ("Set bar color") },
+                { Ids::type,    "color" },
+                { Ids::value,   "0" }
             }},
             { Ids::PARAMETER, {
-                { Ids::item, "Foo" },
-                { Ids::text,  NEEDS_TRANS ("Foo") },
-                { Ids::info,  NEEDS_TRANS ("Set foo color") },
-                { Ids::type, "color" },
-                { Ids::value, "0" }
+                { Ids::item,    "Foo" },
+                { Ids::text,    NEEDS_TRANS ("Foo") },
+                { Ids::info,     NEEDS_TRANS ("Set foo color") },
+                { Ids::type,    "color" },
+                { Ids::value,   "0" }
             }}
         }
     }

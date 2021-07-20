@@ -81,10 +81,16 @@ public:
     Integer (juce::ValueTree p) :
         juce::TextPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
             p.getProperty (Ids::text).toString(),
-            16,
+            12,
             false),
-        value_ (0)
+        v_ (0)
     {
+        const int m = p.getProperty (Ids::minimum);
+        const int n = p.getProperty (Ids::maximum);
+        const int minimum = juce::jmin (m, n);
+        const int maximum = juce::jmax (m, n);
+        
+        if (minimum != maximum) { range_ = juce::Range<int> (minimum, maximum); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -105,13 +111,18 @@ public:
 private:
     juce::String parsed (const juce::String& s) const
     {
-        if (s.isNotEmpty() && s.containsOnly ("-0123456789")) { value_ = s.getIntValue(); }
+        if (s.isNotEmpty() && s.containsOnly ("-0123456789")) {
+        //
+        const int t = s.getIntValue(); if (range_.isEmpty()) { v_ = t; } else { v_ = range_.clipValue (t); }
+        //
+        }
         
-        return juce::String (value_);
+        return juce::String (v_);
     }
 
 private:
-    mutable int value_;
+    mutable int v_;
+    juce::Range<int> range_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Integer)

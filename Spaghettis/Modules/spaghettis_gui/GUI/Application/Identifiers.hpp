@@ -20,6 +20,8 @@ namespace Ids {
 
     DECLARE_ID (info);
     DECLARE_ID (item);
+    DECLARE_ID (maximum);
+    DECLARE_ID (minimum);
     DECLARE_ID (name);
     DECLARE_ID (path);
     DECLARE_ID (state);
