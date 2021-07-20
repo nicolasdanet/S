@@ -24,7 +24,10 @@ class Boolean : public juce::BooleanPropertyComponent {
 // MARK: -
 
 public:
-    Boolean (const juce::Value& v, const juce::String& s) : juce::BooleanPropertyComponent (v, s, "")
+    Boolean (juce::ValueTree p) :
+        juce::BooleanPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
+            p.getProperty (Ids::text).toString(),
+            "")
     {
     }
     
@@ -47,7 +50,11 @@ class Text : public juce::TextPropertyComponent {
 // MARK: -
 
 public:
-    Text (const juce::Value& v, const juce::String& s) : juce::TextPropertyComponent (v, s, 64, false)
+    Text (juce::ValueTree p) :
+        juce::TextPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
+            p.getProperty (Ids::text).toString(),
+            64,
+            false)
     {
         setInterestedInFileDrag (false);
     }
@@ -71,7 +78,11 @@ class Integer : public juce::TextPropertyComponent {
 // MARK: -
 
 public:
-    Integer (const juce::Value& v, const juce::String& s) : juce::TextPropertyComponent (v, s, 16, false),
+    Integer (juce::ValueTree p) :
+        juce::TextPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
+            p.getProperty (Ids::text).toString(),
+            16,
+            false),
         value_ (0)
     {
     }

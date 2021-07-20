@@ -19,15 +19,12 @@ namespace {
 
 juce::PropertyComponent* buildConcertinaPanelParametersGet (juce::ValueTree parameter)
 {
-    juce::String text = parameter.getProperty (Ids::text).toString();
     juce::String type = parameter.getProperty (Ids::type).toString();
-    
-    juce::Value v = parameter.getPropertyAsValue (Ids::value, nullptr);
-    
-    if (type == "boolean") { return new Parameters::Boolean (v, text); }
-    if (type == "integer") { return new Parameters::Integer (v, text); }
+
+    if (type == "boolean") { return new Parameters::Boolean (parameter); }
+    if (type == "integer") { return new Parameters::Integer (parameter); }
     else {
-        return new Parameters::Text (v, text);
+        return new Parameters::Text (parameter);
     }
 }
 
