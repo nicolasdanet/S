@@ -71,7 +71,8 @@ class Integer : public juce::TextPropertyComponent {
 // MARK: -
 
 public:
-    Integer (const juce::Value& v, const juce::String& s) : juce::TextPropertyComponent (v, s, 16, false)
+    Integer (const juce::Value& v, const juce::String& s) : juce::TextPropertyComponent (v, s, 16, false),
+        value_ (0)
     {
     }
 
@@ -93,9 +94,14 @@ public:
 private:
     juce::String parsed (const juce::String& s) const
     {
-        return juce::String (s.getIntValue());
+        if (s.isNotEmpty() && s.containsOnly ("-0123456789")) { value_ = s.getIntValue(); }
+        
+        return juce::String (value_);
     }
 
+private:
+    mutable int value_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Integer)
 
