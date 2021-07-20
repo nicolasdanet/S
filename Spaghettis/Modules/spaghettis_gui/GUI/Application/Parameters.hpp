@@ -71,26 +71,26 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Integer : public juce::TextPropertyComponent {
+template <class T> class Number : public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Integer (juce::ValueTree p) :
+    Number (juce::ValueTree p) :
         juce::TextPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
             p.getProperty (Ids::text).toString(),
-            12,
+            32,
             false),
-        v_ (0)
+        v_ ()
     {
-        const int m = p.getProperty (Ids::minimum);
-        const int n = p.getProperty (Ids::maximum);
-        const int minimum = juce::jmin (m, n);
-        const int maximum = juce::jmax (m, n);
+        auto m = static_cast<T> (p.getProperty (Ids::minimum));
+        auto n = static_cast<T> (p.getProperty (Ids::maximum));
+        auto minimum = juce::jmin (m, n);
+        auto maximum = juce::jmax (m, n);
         
-        if (minimum != maximum) { range_ = juce::Range<int> (minimum, maximum); }
+        if (minimum != maximum) { range_ = juce::Range<T> (minimum, maximum); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -109,11 +109,16 @@ public:
     }
 
 private:
+    typename std::enable_if<std::is_same<int, T>::value, T>::type convert (const juce::String& s) const
+    {
+        return s.getIntValue();
+    }
+    
     juce::String parsed (const juce::String& s) const
     {
-        if (s.isNotEmpty() && s.containsOnly ("-0123456789")) {
+        if (s.isNotEmpty() && s.containsOnly ("-.0123456789")) {
         //
-        const int t = s.getIntValue(); if (range_.isEmpty()) { v_ = t; } else { v_ = range_.clipValue (t); }
+        auto t = convert (s); if (range_.isEmpty()) { v_ = t; } else { v_ = range_.clipValue (t); }
         //
         }
         
@@ -121,16 +126,22 @@ private:
     }
 
 private:
-    mutable int v_;
-    juce::Range<int> range_;
+    mutable T v_;
+    juce::Range<T> range_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Integer)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Number)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+using Integer = Number<int>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
