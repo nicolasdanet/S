@@ -109,9 +109,16 @@ public:
     }
 
 private:
-    typename std::enable_if<std::is_same<int, T>::value, T>::type convert (const juce::String& s) const
+    template<class Q = T>
+    typename std::enable_if<std::is_same<int, Q>::value, T>::type convert (const juce::String& s) const
     {
         return s.getIntValue();
+    }
+    
+    template<class Q = T>
+    typename std::enable_if<std::is_same<double, Q>::value, T>::type convert (const juce::String& s) const
+    {
+        return s.getDoubleValue();
     }
     
     juce::String parsed (const juce::String& s) const
@@ -142,6 +149,7 @@ private:
 // MARK: -
 
 using Integer = Number<int>;
+using Float   = Number<double>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
