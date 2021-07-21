@@ -71,6 +71,37 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class Range {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Range (const juce::ValueTree& p) : p_ (p) { }
+
+public:
+    template <class T> operator juce::Range<T>() const
+    {
+        auto m = static_cast<T> (p_.getProperty (Ids::minimum));
+        auto n = static_cast<T> (p_.getProperty (Ids::maximum));
+        auto minimum = juce::jmin (m, n);
+        auto maximum = juce::jmax (m, n);
+            
+        if (minimum != maximum) { return juce::Range<T> (minimum, maximum); }
+        else {
+            return juce::Range<T>();
+        }
+    }
+
+private:
+    const juce::ValueTree& p_;
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 template <class T> class Number : public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -83,14 +114,9 @@ public:
             p.getProperty (Ids::text).toString(),
             32,
             false),
-        v_ ()
+        v_ (),
+        range_ (Range (p))
     {
-        auto m = static_cast<T> (p.getProperty (Ids::minimum));
-        auto n = static_cast<T> (p.getProperty (Ids::maximum));
-        auto minimum = juce::jmin (m, n);
-        auto maximum = juce::jmax (m, n);
-        
-        if (minimum != maximum) { range_ = juce::Range<T> (minimum, maximum); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
