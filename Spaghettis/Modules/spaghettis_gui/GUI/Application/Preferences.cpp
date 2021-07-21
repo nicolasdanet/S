@@ -186,6 +186,15 @@ juce::ValueTree Preferences::getDefault()
                 { Ids::info,    NEEDS_TRANS ("Set tenderness of button") },
                 { Ids::type,    "float" },
                 { Ids::value,   "99.5" }
+            }},
+            { Ids::PARAMETER, {
+                { Ids::item,    "Random" },
+                { Ids::text,    NEEDS_TRANS ("Random Rate") },
+                { Ids::info,    NEEDS_TRANS ("Set entropy in life") },
+                { Ids::type,    "float" },
+                { Ids::minimum, 0 },
+                { Ids::maximum, 1 },
+                { Ids::value,   "0.5" }
             }}
         }
     },
