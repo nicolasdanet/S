@@ -24,7 +24,11 @@ juce::PropertyComponent* buildConcertinaPanelParametersGet (juce::ValueTree para
     if (type == "boolean")      { return new Parameters::Boolean (parameter); }
     else if (type == "integer") { return new Parameters::Integer (parameter); }
     else if (type == "float")   {
-        return new Parameters::Float (parameter);
+        if (Parameters::Range (parameter).isSet()) {
+            return new Parameters::Float (parameter);
+        } else {
+            return new Parameters::Float (parameter);
+        }
     } else {
         return new Parameters::Text (parameter);
     }

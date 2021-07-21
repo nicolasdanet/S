@@ -81,6 +81,11 @@ public:
     Range (const juce::ValueTree& p) : p_ (p) { }
 
 public:
+    bool isSet() const
+    {
+        return (p_.hasProperty (Ids::minimum) &&  p_.hasProperty (Ids::maximum));
+    }
+    
     template <class T> operator juce::Range<T>() const
     {
         auto m = static_cast<T> (p_.getProperty (Ids::minimum));
