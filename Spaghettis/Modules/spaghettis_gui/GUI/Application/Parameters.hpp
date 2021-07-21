@@ -17,6 +17,63 @@ namespace Parameters {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class Range {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Range (const juce::ValueTree& p) : p_ (p) { }
+
+public:
+    bool isSet() const
+    {
+        return (p_.hasProperty (Ids::minimum) &&  p_.hasProperty (Ids::maximum));
+    }
+    
+    double getMinimumAsDouble() const
+    {
+        double m = static_cast<double> (p_.getProperty (Ids::minimum));
+        double n = static_cast<double> (p_.getProperty (Ids::maximum));
+        
+        return juce::jmin (m, n);
+    }
+    
+    double getMaximumAsDouble() const
+    {
+        double m = static_cast<double> (p_.getProperty (Ids::minimum));
+        double n = static_cast<double> (p_.getProperty (Ids::maximum));
+        
+        return juce::jmax (m, n);
+    }
+    
+    double getStep() const
+    {
+        return 0.001;
+    }
+    
+    template <class T> operator juce::Range<T>() const
+    {
+        auto m = static_cast<T> (p_.getProperty (Ids::minimum));
+        auto n = static_cast<T> (p_.getProperty (Ids::maximum));
+        auto minimum = juce::jmin (m, n);
+        auto maximum = juce::jmax (m, n);
+            
+        if (minimum != maximum) { return juce::Range<T> (minimum, maximum); }
+        else {
+            return juce::Range<T>();
+        }
+    }
+
+private:
+    const juce::ValueTree& p_;
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class Boolean : public juce::BooleanPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -71,42 +128,6 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Range {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    Range (const juce::ValueTree& p) : p_ (p) { }
-
-public:
-    bool isSet() const
-    {
-        return (p_.hasProperty (Ids::minimum) &&  p_.hasProperty (Ids::maximum));
-    }
-    
-    template <class T> operator juce::Range<T>() const
-    {
-        auto m = static_cast<T> (p_.getProperty (Ids::minimum));
-        auto n = static_cast<T> (p_.getProperty (Ids::maximum));
-        auto minimum = juce::jmin (m, n);
-        auto maximum = juce::jmax (m, n);
-            
-        if (minimum != maximum) { return juce::Range<T> (minimum, maximum); }
-        else {
-            return juce::Range<T>();
-        }
-    }
-
-private:
-    const juce::ValueTree& p_;
-};
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 template <class T> class Number : public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -114,13 +135,13 @@ template <class T> class Number : public juce::TextPropertyComponent {
 // MARK: -
 
 public:
-    Number (juce::ValueTree p) :
+    Number (juce::ValueTree p, const Range& range) :
         juce::TextPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
             p.getProperty (Ids::text).toString(),
             32,
             false),
         v_ (),
-        range_ (Range (p))
+        range_ (range)
     {
     }
 
@@ -177,10 +198,33 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 using Integer = Number<int>;
 using Float   = Number<double>;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+class Slider : public juce::SliderPropertyComponent {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Slider (juce::ValueTree p, const Range& range) :
+        SliderPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
+            p.getProperty (Ids::text).toString(),
+            range.getMinimumAsDouble(),
+            range.getMaximumAsDouble(),
+            range.getStep())
+    {
+    }
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Slider)
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
