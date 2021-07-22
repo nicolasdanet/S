@@ -132,7 +132,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (preferencesParameterBackground,                      background);
     lf->setColour (preferencesParameterText,                            base1);
     lf->setColour (preferencesSliderBackground,                         backgroundAlternate);
-    lf->setColour (preferencesSliderTrack,                              yellow);
+    lf->setColour (preferencesSliderTrack,                              background.darker (0.5));
     lf->setColour (preferencesBoolean,                                  base1);
     lf->setColour (preferencesBooleanTick,                              juce::Colours::white);
     
@@ -163,10 +163,9 @@ static void initialize (juce::LookAndFeel* lf)
     
     /* Slider preferences. */
     
-    //lf->setColour (juce::Slider::trackColourId,                         orange);
     lf->setColour (juce::Slider::textBoxTextColourId,                   base1);
     lf->setColour (juce::Slider::textBoxHighlightColourId,              juce::Colours::transparentBlack);
-    lf->setColour (juce::Slider::textBoxOutlineColourId,                yellow);
+    lf->setColour (juce::Slider::textBoxOutlineColourId,                backgroundAlternate);
 }
 
 // -----------------------------------------------------------------------------------------------------------

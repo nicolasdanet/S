@@ -319,18 +319,26 @@ void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bo
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawLinearSlider (juce::Graphics& g, int x, int y, int width, int height,
-                                       float sliderPos,
-                                       float minSliderPos,
-                                       float maxSliderPos,
-                                       const juce::Slider::SliderStyle style,
-                                       juce::Slider& slider)
+void LookAndFeel::drawLinearSlider (juce::Graphics& g,
+    int x,
+    int y,
+    int w,
+    int h,
+    float position,
+    float,
+    float,
+    const juce::Slider::SliderStyle,
+    juce::Slider& slider)
 {
-    if (slider.isBar() && slider.isHorizontal())
-    {
-        g.setColour (Spaghettis()->getColour (Colours::preferencesSliderTrack));
-        g.fillRect (slider.isHorizontal() ? juce::Rectangle<float> (static_cast<float> (x), (float) y + 0.5f, sliderPos - (float) x, (float) height - 1.0f)
-                                          : juce::Rectangle<float> ((float) x + 0.5f, sliderPos, (float) width - 1.0f, (float) y + ((float) height - sliderPos)));
+    if (slider.isBar() && slider.isHorizontal()) {
+    //
+    const juce::Rectangle<int> r (x, y, w, h);
+    
+    g.setColour (Spaghettis()->getColour (Colours::preferencesSliderBackground));
+    g.fillRect (r);
+    g.setColour (Spaghettis()->getColour (Colours::preferencesSliderTrack));
+    g.fillRect (r.withTrimmedRight (static_cast<int> (w - position)));
+    //
     } else { jassertfalse; }
 }
 
