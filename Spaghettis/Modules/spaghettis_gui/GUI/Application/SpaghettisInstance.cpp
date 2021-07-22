@@ -43,7 +43,9 @@ void SpaghettisInstance::shutdown()
         
     #endif
         
-    consoleWindow_ = nullptr;
+    consoleWindow_     = nullptr;
+    preferencesWindow_ = nullptr;
+    searchPathsWindow_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------

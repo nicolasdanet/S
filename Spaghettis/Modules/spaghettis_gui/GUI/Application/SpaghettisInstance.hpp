@@ -58,6 +58,10 @@ public:
         
         #endif
         
+        jassert (consoleWindow_      == nullptr);
+        jassert (preferencesWindow_  == nullptr);
+        jassert (searchPathsWindow_  == nullptr);
+    
         clearSingletonInstance();
     }
 
