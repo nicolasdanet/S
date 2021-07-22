@@ -54,6 +54,8 @@ enum ColourIds : int {
     preferencesHeaderArrow,
     preferencesParameterBackground,
     preferencesParameterText,
+    preferencesSliderBackground,
+    preferencesSliderTrack,
     preferencesBoolean,
     preferencesBooleanTick
 };
@@ -129,6 +131,8 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (preferencesHeaderArrow,                              base1);
     lf->setColour (preferencesParameterBackground,                      background);
     lf->setColour (preferencesParameterText,                            base1);
+    lf->setColour (preferencesSliderBackground,                         backgroundAlternate);
+    lf->setColour (preferencesSliderTrack,                              yellow);
     lf->setColour (preferencesBoolean,                                  base1);
     lf->setColour (preferencesBooleanTick,                              juce::Colours::white);
     
@@ -156,6 +160,13 @@ static void initialize (juce::LookAndFeel* lf)
     
     lf->setColour (juce::BooleanPropertyComponent::outlineColourId,     juce::Colours::transparentBlack);
     lf->setColour (juce::BooleanPropertyComponent::backgroundColourId,  backgroundAlternate);
+    
+    /* Slider preferences. */
+    
+    //lf->setColour (juce::Slider::trackColourId,                         orange);
+    lf->setColour (juce::Slider::textBoxTextColourId,                   base1);
+    lf->setColour (juce::Slider::textBoxHighlightColourId,              juce::Colours::transparentBlack);
+    lf->setColour (juce::Slider::textBoxOutlineColourId,                yellow);
 }
 
 // -----------------------------------------------------------------------------------------------------------

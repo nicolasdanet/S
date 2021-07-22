@@ -198,6 +198,22 @@ public:
 // MARK: -
 
 public:
+    void drawLinearSlider (juce::Graphics&,
+        int,
+        int,
+        int,
+        int,
+        float,
+        float,
+        float,
+        const juce::Slider::SliderStyle,
+        juce::Slider&) override;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     static void drawArrowOpened (juce::Graphics&, const juce::Rectangle<int>&);
     static void drawArrowClosed (juce::Graphics&, const juce::Rectangle<int>&);
 
