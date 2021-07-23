@@ -342,6 +342,11 @@ void LookAndFeel::drawLinearSlider (juce::Graphics& g,
     } else { jassertfalse; }
 }
 
+juce::Label* LookAndFeel::createSliderTextBox (juce::Slider& slider)
+{
+   return new SliderLabel();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

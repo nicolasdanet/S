@@ -163,9 +163,10 @@ static void initialize (juce::LookAndFeel* lf)
     
     /* Slider preferences. */
     
-    lf->setColour (juce::Slider::textBoxTextColourId,                   base1);
-    lf->setColour (juce::Slider::textBoxHighlightColourId,              juce::Colours::transparentBlack);
-    lf->setColour (juce::Slider::textBoxOutlineColourId,                backgroundAlternate);
+    lf->setColour (juce::Label::textColourId,                           base1);
+    //lf->setColour (juce::Slider::textBoxTextColourId,                   base1);
+    //lf->setColour (juce::Slider::textBoxHighlightColourId,              juce::Colours::transparentBlack);
+    //lf->setColour (juce::Slider::textBoxOutlineColourId,                backgroundAlternate);
 }
 
 // -----------------------------------------------------------------------------------------------------------
