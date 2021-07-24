@@ -19,7 +19,7 @@ class ConsoleWindow : public ApplicationWindow {
 // MARK: -
 
 public:
-    ConsoleWindow() : ApplicationWindow (core::getApplicationName(), "ConsoleWindow")
+    explicit ConsoleWindow() : ApplicationWindow (core::getApplicationName(), "ConsoleWindow")
     {
         content_ = std::make_unique<ConsoleComponent> (getKeyName());
         

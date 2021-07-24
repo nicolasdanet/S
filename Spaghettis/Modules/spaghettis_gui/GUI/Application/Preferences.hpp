@@ -24,7 +24,7 @@ class Preferences : public juce::ValueTree::Listener {
 // MARK: -
 
 public:
-    Preferences() : tree_ (Preferences::getDefault())
+    explicit Preferences() : tree_ (Preferences::getDefault())
     {
         tree_.addListener (this);
     }

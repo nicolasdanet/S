@@ -19,7 +19,7 @@ class MenuModel : public juce::MenuBarModel {
 // MARK: -
 
 public:
-    MenuModel (juce::ApplicationCommandManager* m)
+    explicit MenuModel (juce::ApplicationCommandManager* m)
     {
         jassert (m != nullptr);
         commandManager_ = m;

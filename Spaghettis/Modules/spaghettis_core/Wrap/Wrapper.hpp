@@ -19,7 +19,7 @@ class Wrapper : private juce::AsyncUpdater, private juce::Thread {
 // MARK: -
 
 public:
-    Wrapper() : juce::Thread (juce::String ("Core"))
+    explicit Wrapper() : juce::Thread (juce::String ("Core"))
     {
     
     }

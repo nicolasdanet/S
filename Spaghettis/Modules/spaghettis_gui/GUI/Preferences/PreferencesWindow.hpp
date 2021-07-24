@@ -19,7 +19,7 @@ class PreferencesWindow : public ApplicationWindow {
 // MARK: -
 
 public:
-    PreferencesWindow() : ApplicationWindow ("Preferences", "PreferencesWindow")
+    explicit PreferencesWindow() : ApplicationWindow ("Preferences", "PreferencesWindow")
     {
         setContentOwned (new PreferencesComponent (getKeyName()), true);
 

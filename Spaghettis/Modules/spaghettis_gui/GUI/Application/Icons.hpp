@@ -64,7 +64,7 @@ public:
 // MARK: -
 
 public:
-    Icons()
+    explicit Icons()
     {
         addIconAction ("Add",           0, "add_svg");
         addIconToggle ("Autoscroll",    0, "system_update_alt_svg");

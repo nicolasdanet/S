@@ -24,7 +24,7 @@ class Range {
 // MARK: -
 
 public:
-    Range (const juce::ValueTree& p) : p_ (p) { }
+    explicit Range (const juce::ValueTree& p) : p_ (p) { }
 
 public:
     bool isSet() const
@@ -81,7 +81,7 @@ class Boolean : public juce::BooleanPropertyComponent {
 // MARK: -
 
 public:
-    Boolean (juce::ValueTree p) :
+    explicit Boolean (juce::ValueTree p) :
         juce::BooleanPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
             p.getProperty (Ids::text).toString(),
             "")
@@ -107,7 +107,7 @@ class Text : public juce::TextPropertyComponent {
 // MARK: -
 
 public:
-    Text (juce::ValueTree p) :
+    explicit Text (juce::ValueTree p) :
         juce::TextPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
             p.getProperty (Ids::text).toString(),
             64,
@@ -135,7 +135,7 @@ template <class T> class Number : public juce::TextPropertyComponent {
 // MARK: -
 
 public:
-    Number (juce::ValueTree p, const Range& range) :
+    explicit Number (juce::ValueTree p, const Range& range) :
         juce::TextPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
             p.getProperty (Ids::text).toString(),
             32,
@@ -220,7 +220,7 @@ class Slider : public juce::SliderPropertyComponent {
 // MARK: -
 
 public:
-    Slider (juce::ValueTree p, const Range& range) :
+    explicit Slider (juce::ValueTree p, const Range& range) :
         SliderPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
             p.getProperty (Ids::text).toString(),
             range.getMinimumAsDouble(),

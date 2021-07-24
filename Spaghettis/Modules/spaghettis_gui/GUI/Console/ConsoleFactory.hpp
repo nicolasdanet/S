@@ -24,7 +24,7 @@ class ConsoleFactory : public IconsFactory {
 // MARK: -
 
 public:
-    ConsoleFactory (ConsoleComponent* owner) : owner_ (owner)
+    explicit ConsoleFactory (ConsoleComponent* owner) : owner_ (owner)
     {
     }
     

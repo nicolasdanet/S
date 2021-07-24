@@ -24,7 +24,7 @@ using FunctorsContainer = std::vector<std::function<void()>>;
 // MARK: -
 
 public:
-    MessageQueues()
+    explicit MessageQueues()
     {
     }
     

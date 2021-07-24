@@ -23,7 +23,7 @@ class PropertyHeader :  public juce::Component {
 // MARK: -
 
 public:
-    PropertyHeader (const juce::String& name, int index, PreferencesComponent *owner) :
+    explicit PropertyHeader (const juce::String& name, int index, PreferencesComponent *owner) :
         juce::Component (name),
         index_ (index),
         owner_ (owner)

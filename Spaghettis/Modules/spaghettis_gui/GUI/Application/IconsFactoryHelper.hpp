@@ -21,7 +21,7 @@ template <class T, class U> class IconsFactoryHelper {
 // MARK: -
 
 public:
-    IconsFactoryHelper (U* owner) : factory_ (owner) { }
+    explicit IconsFactoryHelper (U* owner) : factory_ (owner) { }
 
     IconsFactory* getIconsFactory()
     {

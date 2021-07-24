@@ -24,7 +24,7 @@ class SearchPathsFactory : public IconsFactory {
 // MARK: -
 
 public:
-    SearchPathsFactory (SearchPathsComponent* owner) : owner_ (owner)
+    explicit SearchPathsFactory (SearchPathsComponent* owner) : owner_ (owner)
     {
     }
     

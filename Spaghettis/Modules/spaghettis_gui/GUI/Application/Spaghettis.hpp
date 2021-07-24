@@ -25,7 +25,7 @@ class SpaghettisOwner {
 friend class ::SpaghettisApplication;       // -- Must be just one owning instance.
 
 private:
-    SpaghettisOwner() : spaghettis_ (SpaghettisInstance::getInstance())
+    explicit SpaghettisOwner() : spaghettis_ (SpaghettisInstance::getInstance())
     {
         jassert (spaghettis_ != nullptr);
     }
@@ -53,7 +53,7 @@ class Spaghettis {
 // MARK: -
 
 public:
-    Spaghettis() : spaghettis_ (SpaghettisInstance::getInstance())
+    explicit Spaghettis() : spaghettis_ (SpaghettisInstance::getInstance())
     {
         jassert (spaghettis_ != nullptr);
     }

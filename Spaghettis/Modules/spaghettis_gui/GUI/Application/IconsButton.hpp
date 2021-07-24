@@ -18,15 +18,15 @@ class IconsButton : public juce::ToolbarButton {
 // MARK: -
 
 public:
-    IconsButton (int item) :    juce::ToolbarButton (item,
-                                        "",
-                                        Icons::getInstance().getIconOff (item),
-                                        Icons::getInstance().getIconOn (item)),
-                                itemId_ (item),
-                                name_ (Icons::getInstance().getName (item)),
-                                isToggle_ (Icons::getInstance().isToggle (item)),
-                                extra_ (Icons::getInstance().getExtra (item)),
-                                default_ (Icons::getInstance().getDefaultState (item))
+    explicit IconsButton (int item) :   juce::ToolbarButton (item,
+                                            "",
+                                            Icons::getInstance().getIconOff (item),
+                                            Icons::getInstance().getIconOn (item)),
+        itemId_ (item),
+        name_ (Icons::getInstance().getName (item)),
+        isToggle_ (Icons::getInstance().isToggle (item)),
+        extra_ (Icons::getInstance().getExtra (item)),
+        default_ (Icons::getInstance().getDefaultState (item))
     {
         if (isToggle_) { setClickingTogglesState (true); }
         else {

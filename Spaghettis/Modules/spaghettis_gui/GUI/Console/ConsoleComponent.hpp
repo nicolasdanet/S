@@ -28,8 +28,9 @@ using MessagesContainer = std::deque<Logger::MessagesElement>;
 // MARK: -
 
 public:
-    ConsoleComponent (const juce::String& keyName) :    ConsoleFactoryHelper (this),
-                                                        ApplicationComponent (keyName, getIconsFactory())
+    explicit ConsoleComponent (const juce::String& keyName) :
+        ConsoleFactoryHelper (this),
+        ApplicationComponent (keyName, getIconsFactory())
     {
         listBox_.setModel (this);
         ApplicationComponent::listBoxInitialize (listBox_, false);

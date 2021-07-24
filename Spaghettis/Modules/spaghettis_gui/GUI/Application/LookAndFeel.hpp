@@ -19,7 +19,7 @@ class LookAndFeel : public juce::LookAndFeel_V4 {
 // MARK: -
 
 public:
-    LookAndFeel()
+    explicit LookAndFeel()
     {
         Colours::initialize (this);
         
@@ -269,7 +269,7 @@ class SliderLabel : public juce::Label {
 // MARK: -
 
 public:
-    SliderLabel()
+    explicit SliderLabel()
     {
         setJustificationType (juce::Justification::centred);
     }

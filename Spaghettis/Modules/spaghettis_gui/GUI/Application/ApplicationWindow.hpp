@@ -20,7 +20,7 @@ class ApplicationWindow :   public juce::DocumentWindow,
 // MARK: -
 
 public:
-    ApplicationWindow (const juce::String& name, const juce::String& keyName) :
+    explicit ApplicationWindow (const juce::String& name, const juce::String& keyName) :
         juce::DocumentWindow (name,
             Spaghettis()->getColour (Colours::windowBackground),
             DocumentWindow::allButtons,

@@ -20,7 +20,8 @@ class ApplicationComponent :    public juce::Component,
 // MARK: -
 
 public:
-    ApplicationComponent (const juce::String& keyName, IconsFactory* factory = nullptr) : keyName_ (keyName)
+    explicit ApplicationComponent (const juce::String& keyName, IconsFactory* factory = nullptr) :
+        keyName_ (keyName)
     {
         Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
         

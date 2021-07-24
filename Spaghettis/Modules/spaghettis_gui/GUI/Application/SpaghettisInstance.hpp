@@ -26,7 +26,7 @@ class SpaghettisInstance {
 // MARK: -
 
 public:
-    SpaghettisInstance() :
+    explicit SpaghettisInstance() :
         lookAndFeel_ (std::make_unique<LookAndFeel>()),
         preferences_ (std::make_unique<Preferences>()),
         commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
