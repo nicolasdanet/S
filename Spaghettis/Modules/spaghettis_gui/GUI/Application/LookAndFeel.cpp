@@ -344,7 +344,7 @@ void LookAndFeel::drawLinearSlider (juce::Graphics& g,
 
 juce::Label* LookAndFeel::createSliderTextBox (juce::Slider& slider)
 {
-   return new SliderLabel();
+    return new SliderLabel();
 }
 
 // -----------------------------------------------------------------------------------------------------------

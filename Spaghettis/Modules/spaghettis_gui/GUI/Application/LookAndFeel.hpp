@@ -274,8 +274,13 @@ public:
         setJustificationType (juce::Justification::centred);
     }
     
+    ~SliderLabel() = default;
+
 public:
     void mouseWheelMove (const juce::MouseEvent&, const juce::MouseWheelDetails&) override {}
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderLabel)
 };
 
 // -----------------------------------------------------------------------------------------------------------

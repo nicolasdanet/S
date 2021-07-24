@@ -160,30 +160,37 @@ public:
         TextPropertyComponent::setText (parsed (s));
     }
 
-private:
+public:
     template <class Q = T>
-    typename std::enable_if<std::is_same<int, Q>::value, T>::type convert (const juce::String& s) const
+    static typename std::enable_if<std::is_same<int, Q>::value, T>::type convert (const juce::String& s)
     {
         return s.getIntValue();
     }
     
     template <class Q = T>
-    typename std::enable_if<std::is_same<double, Q>::value, T>::type convert (const juce::String& s) const
+    static typename std::enable_if<std::is_same<double, Q>::value, T>::type convert (const juce::String& s)
     {
         return s.getDoubleValue();
     }
     
+    static T parsedWithDefault (const juce::String& s, T t)
+    {
+        if (s.isNotEmpty() && s.containsOnly ("-.e+0123456789")) { return convert (s); }
+        else {
+            return t;
+        }
+    }
+
+private:
     juce::String parsed (const juce::String& s) const
     {
-        if (s.isNotEmpty() && s.containsOnly ("-.0123456789")) {
-        //
-        auto t = convert (s); if (range_.isEmpty()) { v_ = t; } else { v_ = range_.clipValue (t); }
-        //
-        }
+        auto t = parsedWithDefault (s, v_);
+        
+        if (range_.isEmpty()) { v_ = t; } else { v_ = range_.clipValue (t); }
         
         return juce::String (v_);
     }
-
+    
 private:
     mutable T v_;
     juce::Range<T> range_;
@@ -220,6 +227,10 @@ public:
             range.getMaximumAsDouble(),
             range.getStep())
     {
+        slider.valueFromTextFunction = [this](const juce::String& text)
+        {
+            return Number<double>::parsedWithDefault (text, slider.getValue());
+        };
     }
 
 private:
