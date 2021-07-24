@@ -337,7 +337,7 @@ void LookAndFeel::drawLinearSlider (juce::Graphics& g,
     g.setColour (Spaghettis()->getColour (Colours::preferencesSliderBackground));
     g.fillRect (r);
     g.setColour (Spaghettis()->getColour (Colours::preferencesSliderTrack));
-    g.fillRect (r.withTrimmedRight (static_cast<int> (w - position)));
+    g.fillRect (r.reduced (0, 1).withTrimmedRight (static_cast<int> (w - position)));
     //
     } else { jassertfalse; }
 }
