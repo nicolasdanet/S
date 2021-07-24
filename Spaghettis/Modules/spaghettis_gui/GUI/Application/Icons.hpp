@@ -110,7 +110,7 @@ public:
         return std::get<ICONS_TOGGLE> (drawables_[getIconIndex (itemId)]);
     }
     
-    int getExtra (int itemId) const
+    int getExtraSpace (int itemId) const
     {
         return std::get<ICONS_EXTRA> (drawables_[getIconIndex (itemId)]);
     }

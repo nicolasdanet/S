@@ -25,7 +25,7 @@ public:
         itemId_ (item),
         name_ (Icons::getInstance().getName (item)),
         isToggle_ (Icons::getInstance().isToggle (item)),
-        extra_ (Icons::getInstance().getExtra (item)),
+        extra_ (Icons::getInstance().getExtraSpace (item)),
         default_ (Icons::getInstance().getDefaultState (item))
     {
         if (isToggle_) { setClickingTogglesState (true); }
