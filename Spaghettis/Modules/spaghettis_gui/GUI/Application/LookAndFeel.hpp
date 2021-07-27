@@ -233,6 +233,11 @@ public:
         return juce::Colours::findColourForName (name, c);
     }
 
+    static juce::String getColourAsDisplayString (const juce::Colour c)
+    {
+        return c.toDisplayString (true);
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

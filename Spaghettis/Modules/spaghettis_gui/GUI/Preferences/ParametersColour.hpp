@@ -24,7 +24,7 @@ class ColourEditor : public juce::Component, private juce::Value::Listener {
 // MARK: -
 
 public:
-    explicit ColourEditor (const juce::Value& v) : value_ (v), colour_ (juce::Colours::black)
+    explicit ColourEditor (const juce::Value& v) : value_ (v)
     {
         value_.addListener (this);
     }
@@ -38,24 +38,19 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        DBG ("?");
+        const juce::Colour c (getColour());
         
-        const juce::Colour colour (getColour());
+        juce::Rectangle<int> r = getLocalBounds().reduced (2);
 
-        g.fillAll (colour);
-        
-        /*
-        g.fillAll (Colours::grey);
-        g.fillCheckerBoard (getLocalBounds().reduced (2).toFloat(),
-                            10.0f, 10.0f,
-                            Colour (0xffdddddd).overlaidWith (colour),
-                            Colour (0xffffffff).overlaidWith (colour));
-
-        g.setColour (Colours::white.overlaidWith (colour).contrasting());
-        g.setFont (Font ((float) getHeight() * 0.6f, Font::bold));
-        g.drawFittedText (colour.toDisplayString (true), getLocalBounds().reduced (2, 1),
-                          Justification::centred, 1);
-        */
+        g.fillAll (Spaghettis()->getColour (Colours::preferencesColourBackground));
+        g.setColour (c);
+        g.fillRect (r.removeFromLeft (r.getHeight() * 2));
+        g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
+        g.setColour (Spaghettis()->getColour (Colours::preferencesColourText));
+        g.drawText (LookAndFeel::getColourAsDisplayString (c),
+            r.withTrimmedLeft (6),
+            juce::Justification::centredLeft,
+            true);
     }
 
     juce::Colour getColour() const
@@ -63,11 +58,6 @@ public:
         return LookAndFeel::parseColour (value_.toString());
     }
 
-    void refresh()
-    {
-        juce::Colour t = getColour(); if (t != colour_) { colour_ = t; repaint(); }
-    }
-    
     /*
     void setColour (juce::Colour newColour)
     {
@@ -102,12 +92,11 @@ public:
 private:
     void valueChanged (juce::Value&) override
     {
-        refresh();
+        repaint();
     }
     
 private:
-    juce::Value  value_;
-    juce::Colour colour_;
+    juce::Value value_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourEditor)
