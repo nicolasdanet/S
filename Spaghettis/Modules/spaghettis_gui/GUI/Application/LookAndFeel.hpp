@@ -224,6 +224,20 @@ public:
 // MARK: -
 
 public:
+    static juce::Colour parseColour (const juce::String& name)
+    {
+        const int n = name.length(); juce::Colour c = juce::Colours::black;
+        
+        if (n == 6 || n == 8) { c = juce::Colour::fromString (n == 6 ? "ff" + name : name); }
+        
+        return juce::Colours::findColourForName (name, c);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     const juce::Font& getConsoleFont() const
     {
         return fontConsole_;

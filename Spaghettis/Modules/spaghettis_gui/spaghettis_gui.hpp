@@ -66,7 +66,13 @@
 #include "GUI/Application/Preferences.hpp"
 #include "GUI/Application/SpaghettisInstance.hpp"
 #include "GUI/Application/Spaghettis.hpp"
-#include "GUI/Application/Parameters.hpp"
+
+#include "GUI/Preferences/Parameters.hpp"
+#include "GUI/Preferences/ParametersBoolean.hpp"
+#include "GUI/Preferences/ParametersColour.hpp"
+#include "GUI/Preferences/ParametersNumber.hpp"
+#include "GUI/Preferences/ParametersText.hpp"
+
 #include "GUI/Application/PropertyHeader.hpp"
 #include "GUI/Application/IconsButton.hpp"
 #include "GUI/Application/IconsFactory.hpp"

@@ -24,6 +24,7 @@ juce::PropertyComponent* buildConcertinaPanelParametersGet (juce::ValueTree para
     const Parameters::Range range (parameter);
     
     if (type == "boolean")      { return new Parameters::Boolean (parameter); }
+    if (type == "color")        { return new Parameters::Colour (parameter);  }
     else if (type == "integer") { return new Parameters::Integer (parameter, range); }
     else if (type == "float")   {
         if (range.isSet()) {
@@ -207,14 +208,14 @@ juce::ValueTree Preferences::getDefault()
                 { Ids::text,    NEEDS_TRANS ("Bar") },
                 { Ids::info,    NEEDS_TRANS ("Set bar color") },
                 { Ids::type,    "color" },
-                { Ids::value,   "0" }
+                { Ids::value,   "ffffffff" }
             }},
             { Ids::PARAMETER, {
                 { Ids::item,    "Foo" },
                 { Ids::text,    NEEDS_TRANS ("Foo") },
                 { Ids::info,     NEEDS_TRANS ("Set foo color") },
                 { Ids::type,    "color" },
-                { Ids::value,   "0" }
+                { Ids::value,   "ffffffff" }
             }}
         }
     }
