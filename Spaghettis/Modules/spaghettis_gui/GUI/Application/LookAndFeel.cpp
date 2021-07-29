@@ -325,9 +325,9 @@ void LookAndFeel::drawLinearSlider (juce::Graphics& g,
     int w,
     int h,
     float position,
-    float,
-    float,
-    const juce::Slider::SliderStyle,
+    float min,
+    float max,
+    const juce::Slider::SliderStyle style,
     juce::Slider& slider)
 {
     if (slider.isBar() && slider.isHorizontal()) {
@@ -339,9 +339,9 @@ void LookAndFeel::drawLinearSlider (juce::Graphics& g,
     g.setColour (Spaghettis()->getColour (Colours::preferencesSliderTrack));
     g.fillRect (r.reduced (0, 1).withTrimmedRight (static_cast<int> (w - position)));
     //
-    } else { jassertfalse; }
+    } else { juce::LookAndFeel_V4::drawLinearSlider (g, x, y, w, h, position, min, max, style, slider); }
 }
-
+                                
 juce::Label* LookAndFeel::createSliderTextBox (juce::Slider& slider)
 {
     return new SliderLabel();

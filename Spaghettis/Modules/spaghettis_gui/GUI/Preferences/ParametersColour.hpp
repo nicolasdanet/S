@@ -17,6 +17,37 @@ namespace Parameters {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class ColourSelector : public juce::Component {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit ColourSelector (juce::Colour colour)
+    {
+        setSize (300, 280);
+    }
+    
+    ~ColourSelector() = default;
+    
+    void paint (juce::Graphics& g) override
+    {
+        g.fillAll (juce::Colours::orange);
+    }
+    
+    void resized() override
+    {
+    }
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourSelector)
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class ColourEditor : public juce::Component, private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -47,7 +78,7 @@ public:
         g.fillRect (r.removeFromLeft (r.getHeight() * 2));
         g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
         g.setColour (Spaghettis()->getColour (Colours::preferencesColourText));
-        g.drawText (LookAndFeel::getColourAsDisplayString (c),
+        g.drawText (LookAndFeel::getDisplayStringFromColour (c),
             r.withTrimmedLeft (6),
             juce::Justification::centredLeft,
             true);
@@ -55,40 +86,21 @@ public:
 
     juce::Colour getColour() const
     {
-        return LookAndFeel::parseColour (value_.toString());
+        return LookAndFeel::getColourFromString (value_.toString());
     }
 
-    /*
-    void setColour (juce::Colour newColour)
+    void setColour (const juce::Colour& colour)
     {
-        if (getColour() != newColour)
-        {
-            if (newColour == defaultColour && canResetToDefault)
-                colourValue = var();
-            else
-                colourValue = newColour.toDisplayString (true);
-        }
+        value_.setValue (LookAndFeel::getValueFromColour (colour));
     }
-    */
 
-    /*
-    void mouseDown (const MouseEvent&) override
+    void mouseDown (const juce::MouseEvent&) override
     {
-        if (undoManager != nullptr)
-            undoManager->beginNewTransaction();
-
-        CallOutBox::launchAsynchronously (std::make_unique<PopupColourSelector> (colourValue,
-                                                                                 defaultColour,
-                                                                                 canResetToDefault),
-                                          getScreenBounds(),
-                                          nullptr);
+        auto t = std::make_unique<ColourSelector> (getColour());
+        
+        juce::CallOutBox::launchAsynchronously (std::move (t), getScreenBounds(), nullptr);
     }
-    */
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 private:
     void valueChanged (juce::Value&) override
     {
@@ -141,96 +153,6 @@ private:
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Colour)
 };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-/*
-
-
-    //==============================================================================
-    struct PopupColourSelector   : public Component,
-                                   private ChangeListener,
-                                   private Value::Listener
-    {
-        PopupColourSelector (const Value& colour,
-                             Colour defaultCol,
-                             const bool canResetToDefault)
-            : defaultButton ("Reset to Default"),
-              colourValue (colour),
-              defaultColour (defaultCol)
-        {
-            addAndMakeVisible (selector);
-            selector.setName ("Colour");
-            selector.setCurrentColour (getColour());
-            selector.addChangeListener (this);
-
-            if (canResetToDefault)
-            {
-                addAndMakeVisible (defaultButton);
-                defaultButton.onClick = [this]
-                {
-                    setColour (defaultColour);
-                    selector.setCurrentColour (defaultColour);
-                };
-            }
-
-            colourValue.addListener (this);
-            setSize (300, 400);
-        }
-
-        void resized() override
-        {
-            if (defaultButton.isVisible())
-            {
-                selector.setBounds (0, 0, getWidth(), getHeight() - 30);
-                defaultButton.changeWidthToFitText (22);
-                defaultButton.setTopLeftPosition (10, getHeight() - 26);
-            }
-            else
-            {
-                selector.setBounds (getLocalBounds());
-            }
-        }
-
-        Colour getColour() const
-        {
-            if (colourValue.toString().isEmpty())
-                return defaultColour;
-
-            return Colour::fromString (colourValue.toString());
-        }
-
-        void setColour (Colour newColour)
-        {
-            if (getColour() != newColour)
-            {
-                if (newColour == defaultColour && defaultButton.isVisible())
-                    colourValue = var();
-                else
-                    colourValue = newColour.toDisplayString (true);
-            }
-        }
-
-    private:
-        void changeListenerCallback (ChangeBroadcaster*) override
-        {
-            if (selector.getCurrentColour() != getColour())
-                setColour (selector.getCurrentColour());
-        }
-
-        void valueChanged (Value&) override
-        {
-            selector.setCurrentColour (getColour());
-        }
-
-        StoredSettings::ColourSelectorWithSwatches selector;
-        TextButton defaultButton;
-        Value colourValue;
-        Colour defaultColour;
-    };
-*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

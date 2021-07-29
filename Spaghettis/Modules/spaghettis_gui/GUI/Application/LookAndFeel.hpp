@@ -224,7 +224,7 @@ public:
 // MARK: -
 
 public:
-    static juce::Colour parseColour (const juce::String& name)
+    static juce::Colour getColourFromString (const juce::String& name)
     {
         const int n = name.length(); juce::Colour c = juce::Colours::black;
         
@@ -233,9 +233,14 @@ public:
         return juce::Colours::findColourForName (name, c);
     }
 
-    static juce::String getColourAsDisplayString (const juce::Colour c)
+    static juce::var getValueFromColour (const juce::Colour& colour)
     {
-        return c.toDisplayString (true);
+        return juce::var (colour.toString());
+    }
+    
+    static juce::String getDisplayStringFromColour (const juce::Colour& colour)
+    {
+        return colour.toDisplayString (true);
     }
 
 // -----------------------------------------------------------------------------------------------------------
