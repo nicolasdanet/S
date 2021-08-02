@@ -245,11 +245,11 @@ public:
 // MARK: -
 
 private:
-    std::unique_ptr<LookAndFeel> lookAndFeel_;
-    std::unique_ptr<Preferences> preferences_;
-    std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
-    std::unique_ptr<MenuModel> menu_;
-    std::unique_ptr<Wrapper> core_;
+    const std::unique_ptr<LookAndFeel> lookAndFeel_;
+    const std::unique_ptr<Preferences> preferences_;
+    const std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
+    const std::unique_ptr<MenuModel> menu_;
+    const std::unique_ptr<Wrapper> core_;
 
 private:
     juce::File currentOpenDirectory_;
