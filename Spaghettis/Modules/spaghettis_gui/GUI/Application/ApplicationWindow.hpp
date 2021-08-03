@@ -59,17 +59,19 @@ protected:
 public:
     void timerCallback() override
     {
+        const int timerAttempts = 10;
+                
         ApplicationComponent* c = dynamic_cast<ApplicationComponent*> (getContentComponent());
         
-        timerCount_++; jassert (timerCount_ <= timerAttempts_);
+        timerCount_++; jassert (timerCount_ <= timerAttempts);
         
-        if (!c || c->tryGrabFocus() || timerCount_ > timerAttempts_) { stopTimer(); }
+        if (!c || c->tryGrabFocus() || timerCount_ > timerAttempts) { stopTimer(); }
     }
 
 private:
     void timerStart()
     {
-        timerCount_ = 0; startTimer (timerInterval_);
+        const int timerInterval = 20; timerCount_ = 0; startTimer (timerInterval);
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -101,10 +103,6 @@ public:
 private:
     juce::String keyName_;
     int timerCount_;
-    
-private:
-    static const int timerInterval_ = 20;
-    static const int timerAttempts_ = 10;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ApplicationWindow)

@@ -55,7 +55,7 @@ class ColourEditor : public juce::Component, private juce::Value::Listener {
 // MARK: -
 
 public:
-    explicit ColourEditor (const juce::Value& v) : value_ (v)
+    explicit ColourEditor (const juce::Value& v) : tracker_ (this), value_ (v)
     {
         value_.addListener (this);
     }
@@ -98,7 +98,7 @@ public:
     {
         auto t = std::make_unique<ColourSelector> (getColour());
         
-        juce::CallOutBox::launchAsynchronously (std::move (t), getScreenBounds(), nullptr);
+        tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), getScreenBounds(), nullptr));
     }
     
 private:
@@ -108,6 +108,7 @@ private:
     }
     
 private:
+    CallOutBoxTracker tracker_;
     juce::Value value_;
 
 private:

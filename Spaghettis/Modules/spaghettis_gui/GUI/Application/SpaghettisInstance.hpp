@@ -32,6 +32,7 @@ public:
         commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
         menu_ (std::make_unique<MenuModel> (commandManager_.get())),
         core_ (std::make_unique<Wrapper>()),
+        boxRegister_ (std::make_unique<CallOutBoxRegister>()),
         currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory)),
         dspIsRunning_ (false)
     {
@@ -230,6 +231,11 @@ public:
         return *preferences_;
     }
     
+    CallOutBoxRegister& getBoxRegister()
+    {
+        return *boxRegister_;
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -250,6 +256,7 @@ private:
     const std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
     const std::unique_ptr<MenuModel> menu_;
     const std::unique_ptr<Wrapper> core_;
+    const std::unique_ptr<CallOutBoxRegister> boxRegister_;
 
 private:
     juce::File currentOpenDirectory_;

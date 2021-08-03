@@ -57,6 +57,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Application/CallOutBoxRegister.hpp"
 #include "GUI/Application/Colours.hpp"
 #include "GUI/Application/Commands.hpp"
 #include "GUI/Application/Icons.hpp"
