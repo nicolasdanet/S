@@ -54,6 +54,7 @@ enum ColourIds : int {
     preferencesHeaderArrow,
     preferencesParameterBackground,
     preferencesParameterText,
+    preferencesParameterSelectorBackground,
     preferencesSliderBackground,
     preferencesSliderTrack,
     preferencesColourBackground,
@@ -133,6 +134,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (preferencesHeaderArrow,                              base1);
     lf->setColour (preferencesParameterBackground,                      background);
     lf->setColour (preferencesParameterText,                            base1);
+    lf->setColour (preferencesParameterSelectorBackground,              backgroundDark);
     lf->setColour (preferencesSliderBackground,                         backgroundAlternate);
     lf->setColour (preferencesSliderTrack,                              background.darker (0.5));
     lf->setColour (preferencesColourBackground,                         backgroundAlternate);
