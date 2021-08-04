@@ -71,15 +71,13 @@ public:
     {
         const juce::Colour c (getColour());
         
-        juce::Rectangle<int> r = getLocalBounds().reduced (2);
-
         g.fillAll (Spaghettis()->getColour (Colours::preferencesColourBackground));
         g.setColour (c);
-        g.fillRect (r.removeFromLeft (r.getHeight() * 2));
+        g.fillRect (getColourBounds());
         g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
         g.setColour (Spaghettis()->getColour (Colours::preferencesColourText));
         g.drawText (LookAndFeel::getDisplayStringFromColour (c),
-            r.withTrimmedLeft (6),
+            getTextBounds(),
             juce::Justification::centredLeft,
             true);
     }
@@ -97,16 +95,28 @@ public:
     void mouseDown (const juce::MouseEvent&) override
     {
         auto t = std::make_unique<ColourSelector> (getColour());
+        auto r = localAreaToGlobal (getColourBounds());
         
-        tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), getScreenBounds(), nullptr));
+        tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), r, nullptr));
     }
-    
+
 private:
     void valueChanged (juce::Value&) override
     {
         repaint();
     }
     
+private:
+    juce::Rectangle<int> getColourBounds() const
+    {
+        auto r = getLocalBounds().reduced (2); return r.removeFromLeft (r.getHeight() * 2);
+    }
+
+    juce::Rectangle<int> getTextBounds() const
+    {
+        auto r = getLocalBounds().reduced (2); return r.withTrimmedLeft (r.getHeight() * 2 + 6);
+    }
+
 private:
     CallOutBoxTracker tracker_;
     juce::Value value_;
