@@ -33,7 +33,7 @@ public:
     
     void paint (juce::Graphics& g) override
     {
-        g.fillAll (Spaghettis()->getColour (Colours::preferencesParameterSelectorBackground));
+        g.fillAll (Spaghettis()->getColour (Colours::callOutBoxBackground));
     }
     
     void resized() override

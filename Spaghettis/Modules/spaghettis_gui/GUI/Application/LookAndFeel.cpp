@@ -351,6 +351,22 @@ juce::Label* LookAndFeel::createSliderTextBox (juce::Slider& slider)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void LookAndFeel::drawCallOutBoxBackground (juce::CallOutBox&,
+    juce::Graphics& g,
+    const juce::Path& path,
+    juce::Image&)
+{
+    g.setColour (Spaghettis()->getColour (Colours::callOutBoxBackground));
+    g.fillPath (path);
+
+    g.setColour (Spaghettis()->getColour (Colours::callOutBoxOutline));
+    g.strokePath (path, juce::PathStrokeType (2.0f));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LookAndFeel::drawArrowClosed (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
     const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;

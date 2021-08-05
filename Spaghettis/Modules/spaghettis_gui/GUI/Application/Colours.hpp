@@ -49,12 +49,13 @@ enum ColourIds : int {
     searchpathsTextHighlighted,
     tooltipBackground,
     tooltipText,
+    callOutBoxBackground,
+    callOutBoxOutline,
     preferencesHeaderBackground,
     preferencesHeaderText,
     preferencesHeaderArrow,
     preferencesParameterBackground,
     preferencesParameterText,
-    preferencesParameterSelectorBackground,
     preferencesSliderBackground,
     preferencesSliderTrack,
     preferencesColourBackground,
@@ -129,12 +130,13 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (searchpathsTextHighlighted,                          green);
     lf->setColour (tooltipBackground,                                   backgroundDark);
     lf->setColour (tooltipText,                                         juce::Colours::white);
+    lf->setColour (callOutBoxBackground,                                backgroundDark);
+    lf->setColour (callOutBoxOutline,                                   base1);
     lf->setColour (preferencesHeaderBackground,                         background);
     lf->setColour (preferencesHeaderText,                               juce::Colours::white);
     lf->setColour (preferencesHeaderArrow,                              base1);
     lf->setColour (preferencesParameterBackground,                      background);
     lf->setColour (preferencesParameterText,                            base1);
-    lf->setColour (preferencesParameterSelectorBackground,              backgroundDark);
     lf->setColour (preferencesSliderBackground,                         backgroundAlternate);
     lf->setColour (preferencesSliderTrack,                              background.darker (0.5));
     lf->setColour (preferencesColourBackground,                         backgroundAlternate);
