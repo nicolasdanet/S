@@ -57,7 +57,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/CallOutBoxRegister.hpp"
+#include "GUI/Application/Helpers/CallOutBoxRegister.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Application/Colours.hpp"
 #include "GUI/Application/Commands.hpp"
 #include "GUI/Application/Icons.hpp"
@@ -68,25 +72,44 @@
 #include "GUI/Application/SpaghettisInstance.hpp"
 #include "GUI/Application/Spaghettis.hpp"
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Preferences/Parameters.hpp"
 #include "GUI/Preferences/ParametersBoolean.hpp"
 #include "GUI/Preferences/ParametersColour.hpp"
 #include "GUI/Preferences/ParametersNumber.hpp"
 #include "GUI/Preferences/ParametersText.hpp"
 
-#include "GUI/Application/PropertyHeader.hpp"
-#include "GUI/Application/IconsButton.hpp"
-#include "GUI/Application/IconsFactory.hpp"
-#include "GUI/Application/IconsFactoryHelper.hpp"
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#include "GUI/Application/Helpers/PropertyHeader.hpp"
+#include "GUI/Application/Helpers/IconsButton.hpp"
+#include "GUI/Application/Helpers/IconsFactory.hpp"
+#include "GUI/Application/Helpers/IconsFactoryHelper.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Application/ApplicationComponent.hpp"
 #include "GUI/Application/ApplicationWindow.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Console/ConsoleFactory.hpp"
 #include "GUI/Console/ConsoleComponent.hpp"
 #include "GUI/Console/ConsoleWindow.hpp"
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Preferences/PreferencesComponent.hpp"
 #include "GUI/Preferences/PreferencesWindow.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/SearchPaths/SearchPathsFactory.hpp"
 #include "GUI/SearchPaths/SearchPathsComponent.hpp"
