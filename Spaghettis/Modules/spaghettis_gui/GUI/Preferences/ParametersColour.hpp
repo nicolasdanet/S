@@ -17,19 +17,19 @@ namespace Parameters {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ColourSelector : public juce::Component {
+class ColourSelectorTemporary : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ColourSelector (juce::Colour colour)
+    explicit ColourSelectorTemporary (juce::Colour colour)
     {
         setSize (300, 280);
     }
     
-    ~ColourSelector() = default;
+    ~ColourSelectorTemporary() = default;
     
     void paint (juce::Graphics& g) override
     {
@@ -41,7 +41,7 @@ public:
     }
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourSelector)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourSelectorTemporary)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        const juce::Colour c (getColour());
+        const juce::Colour c (LookAndFeel::getColourFromValue (value_));
         
         g.fillAll (Spaghettis()->getColour (Colours::preferencesColourBackground));
         g.setColour (c);
@@ -82,19 +82,9 @@ public:
             true);
     }
 
-    juce::Colour getColour() const
-    {
-        return LookAndFeel::getColourFromString (value_.toString());
-    }
-
-    void setColour (const juce::Colour& colour)
-    {
-        value_.setValue (LookAndFeel::getValueFromColour (colour));
-    }
-
     void mouseDown (const juce::MouseEvent&) override
     {
-        auto t = std::make_unique<ColourSelector> (getColour());
+        auto t = std::make_unique<ColourSelectorTemporary> (LookAndFeel::getColourFromValue (value_));
         auto r = localAreaToGlobal (getColourBounds());
         
         tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), r, nullptr));

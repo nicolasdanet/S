@@ -234,18 +234,21 @@ public:
 // MARK: -
 
 public:
-    static juce::Colour getColourFromString (const juce::String& name)
+    static juce::Colour getColourFromValue (const juce::Value& v)
     {
-        const int n = name.length(); juce::Colour c = juce::Colours::black;
+        const juce::String name (v.toString());
+        const int n = name.length();
+        
+        juce::Colour c = juce::Colours::black;
         
         if (n == 6 || n == 8) { c = juce::Colour::fromString (n == 6 ? "ff" + name : name); }
         
         return juce::Colours::findColourForName (name, c);
     }
 
-    static juce::var getValueFromColour (const juce::Colour& colour)
+    static void setValueWithColour (juce::Value& v, const juce::Colour& c)
     {
-        return juce::var (colour.toString());
+        v.setValue (c.toString());
     }
     
     static juce::String getDisplayStringFromColour (const juce::Colour& colour)
