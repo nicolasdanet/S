@@ -52,104 +52,131 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-/*
+
 class ColourSpace : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class ColourSelector;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 public:
-    ColourSpaceView (ColourSelector& cs, float& hue, float& sat, float& val, int edgeSize)
-        : owner (cs), h (hue), s (sat), v (val), edge (edgeSize)
+    ColourSpace (ColourSelector& owner, float& h, float& s, float& v) :
+        owner_ (owner),
+        h_ (h),
+        s_ (s),
+        v_ (v),
+        lastHue_ (0.0f)
     {
-        addAndMakeVisible (marker);
-        setMouseCursor (MouseCursor::CrosshairCursor);
+        addAndMakeVisible (marker_);
+        setMouseCursor (juce::MouseCursor::CrosshairCursor);
     }
 
-    void paint (Graphics& g) override
+    ~ColourSpace() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics& g) override
     {
-        if (colours.isNull())
-        {
-            auto width = getWidth() / 2;
-            auto height = getHeight() / 2;
-            colours = Image (Image::RGB, width, height, false);
-
-            Image::BitmapData pixels (colours, Image::BitmapData::writeOnly);
-
-            for (int y = 0; y < height; ++y)
-            {
-                auto val = 1.0f - (float) y / (float) height;
-
-                for (int x = 0; x < width; ++x)
-                {
-                    auto sat = (float) x / (float) width;
-                    pixels.setPixelColour (x, y, Colour (h, sat, val, 1.0f));
-                }
-            }
-        }
+        createBackgroundImageIfRequired();
 
         g.setOpacity (1.0f);
-        g.drawImageTransformed (colours,
-                                RectanglePlacement (RectanglePlacement::stretchToFit)
-                                    .getTransformToFit (colours.getBounds().toFloat(),
-                                                        getLocalBounds().reduced (edge).toFloat()),
-                                false);
+        g.drawImageTransformed (background_,
+            juce::RectanglePlacement (juce::RectanglePlacement::stretchToFit).getTransformToFit (background_.getBounds().toFloat(),
+            getLocalBounds().reduced (edge_).toFloat()),
+            false);
     }
 
-    void mouseDown (const MouseEvent& e) override
+    void mouseDown (const juce::MouseEvent& e) override
     {
         mouseDrag (e);
     }
 
-    void mouseDrag (const MouseEvent& e) override
+    void mouseDrag (const juce::MouseEvent& e) override
     {
-        auto sat =        (float) (e.x - edge) / (float) (getWidth()  - edge * 2);
-        auto val = 1.0f - (float) (e.y - edge) / (float) (getHeight() - edge * 2);
-
-        owner.setSV (sat, val);
+        // auto sat =        (float) (e.x - edge_) / (float) (getWidth()  - edge_ * 2);
+        // auto val = 1.0f - (float) (e.y - edge_) / (float) (getHeight() - edge_ * 2);
+        // owner.setSV (sat, val);
     }
 
-    void updateIfNeeded()
+    void update()
     {
-        if (lastHue != h)
-        {
-            lastHue = h;
-            colours = {};
-            repaint();
-        }
+        if (lastHue_ != h_) { lastHue_ = h_; resetBackgroundImage(); repaint(); }
 
         updateMarker();
     }
 
     void resized() override
     {
-        colours = {};
-        updateMarker();
+        resetBackgroundImage(); updateMarker();
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 private:
-    ColourSelector& owner;
-    float& h;
-    float& s;
-    float& v;
-    float lastHue = 0;
-    const int edge;
-    Image colours;
-    ColourSpaceMarker marker;
+    void resetBackgroundImage()
+    {
+        background_ = juce::Image();
+    }
+    
+    void createBackgroundImageIfRequired()
+    {
+        if (background_.isNull()) {
+        //
+        const int width  = getWidth()  / 2;
+        const int height = getHeight() / 2;
+        
+        background_ = juce::Image (juce::Image::RGB, width, height, false);
 
+        juce::Image::BitmapData pixels (background_, juce::Image::BitmapData::writeOnly);
+
+        for (int y = 0; y < height; ++y) {
+            const float value = 1.0f - y / static_cast<float> (height);
+            for (int x = 0; x < width; ++x) {
+                const float saturation = x / static_cast<float> (width);
+                pixels.setPixelColour (x, y, juce::Colour (h_, saturation, value, 1.0f));
+            }
+        }
+        //
+        }
+    }
+    
     void updateMarker()
     {
-        auto markerSize = jmax (14, edge * 2);
-        auto area = getLocalBounds().reduced (edge);
-
-        marker.setBounds (Rectangle<int> (markerSize, markerSize)
-                            .withCentre (area.getRelativePoint (s, 1.0f - v)));
+        juce::Rectangle<int> area = getLocalBounds().reduced (edge_);
+        
+        auto pt = area.getRelativePoint (s_, 1.0f - v_);
+        
+        juce::Rectangle<int> r = juce::Rectangle<int> (edge_ * 2, edge_ * 2);
+        
+        marker_.setBounds (r.withCentre (pt));
     }
+    
+private:
+    ColourSelector& owner_;
+    float& h_;
+    float& s_;
+    float& v_;
+    float lastHue_;
+    juce::Image background_;
+    ColourSpaceMarker marker_;
 
-    JUCE_DECLARE_NON_COPYABLE (ColourSpaceView)
+private:
+    const int edge_ = 7;
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourSpace)
 };
-*/
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -182,6 +209,9 @@ public:
     {
         return static_cast<double> (text.getHexValue32());
     }
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourSlider)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -207,6 +237,9 @@ public:
 
 private:
     juce::Value value_;
+    float h_;
+    float s_;
+    float v_;
     //std::unique_ptr<ColourSpace> colourSpace_;
     //std::unique_ptr<HueSelector> hueSelector_;
     std::array<std::unique_ptr<juce::Slider>, 4> sliders_;
