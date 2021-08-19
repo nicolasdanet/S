@@ -17,37 +17,6 @@ namespace Parameters {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ColourSelectorTemporary : public juce::Component {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    explicit ColourSelectorTemporary (juce::Colour colour)
-    {
-        setSize (300, 280);
-    }
-    
-    ~ColourSelectorTemporary() = default;
-    
-    void paint (juce::Graphics& g) override
-    {
-        g.fillAll (Spaghettis()->getColour (Colours::callOutBoxBackground));
-    }
-    
-    void resized() override
-    {
-    }
-    
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourSelectorTemporary)
-};
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 class ColourEditor : public juce::Component, private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -84,7 +53,7 @@ public:
 
     void mouseDown (const juce::MouseEvent&) override
     {
-        auto t = std::make_unique<ColourSelectorTemporary> (LookAndFeel::getColourFromValue (value_));
+        auto t = std::make_unique<ColourSelector> (value_);
         auto r = localAreaToGlobal (getColourBounds());
         
         tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), r, nullptr));
