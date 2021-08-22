@@ -12,6 +12,43 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class ColourSlider : public juce::Slider {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit ColourSlider (const juce::String& name) : juce::Slider (name)
+    {
+        setRange (0.0, 255.0, 1.0);
+    }
+    
+    ~ColourSlider() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::String getTextFromValue (double value) override
+    {
+        return juce::String::toHexString (static_cast<int> (value)).toUpperCase().paddedLeft ('0', 2);
+    }
+
+    double getValueFromText (const juce::String& text) override
+    {
+        return static_cast<double> (text.getHexValue32());
+    }
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourSlider)
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class ColourSpaceMarker : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -53,16 +90,16 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class ColourSelector;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 class ColourSpace : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-class ColourSelector;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 public:
     ColourSpace (ColourSelector& owner, float& h, float& s, float& v) :
@@ -181,43 +218,6 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ColourSlider : public juce::Slider {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    explicit ColourSlider (const juce::String& name) : juce::Slider (name)
-    {
-        setRange (0.0, 255.0, 1.0);
-    }
-    
-    ~ColourSlider() = default;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    juce::String getTextFromValue (double value) override
-    {
-        return juce::String::toHexString (static_cast<int> (value)).toUpperCase().paddedLeft ('0', 2);
-    }
-
-    double getValueFromText (const juce::String& text) override
-    {
-        return static_cast<double> (text.getHexValue32());
-    }
-
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourSlider)
-};
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 class ColourSelector : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -225,9 +225,20 @@ class ColourSelector : public juce::Component {
 // MARK: -
 
 public:
-    explicit ColourSelector (const juce::Value& v) : value_ (v)
+    explicit ColourSelector (const juce::Value& v) :
+        value_ (v),
+        h_ (0.0f),
+        s_ (0.0f),
+        v_ (0.0f),
+        colourSpace_ (std::make_unique<ColourSpace> (*this, h_, s_, v_))
     {
         setSize (300, 280);
+        
+        updateHSV();
+        
+        addAndMakeVisible (colourSpace_.get());
+        
+        update();
     }
     
     ~ColourSelector() = default;
@@ -238,9 +249,10 @@ public:
 
 public:
     void paint (juce::Graphics&) override;
-    
     void resized() override;
-    
+    void updateHSV();
+    void update();
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -249,9 +261,9 @@ private:
     float h_;
     float s_;
     float v_;
-    //std::unique_ptr<ColourSpace> colourSpace_;
+    const std::unique_ptr<ColourSpace> colourSpace_;
     //std::unique_ptr<HueSelector> hueSelector_;
-    std::array<std::unique_ptr<juce::Slider>, 4> sliders_;
+    //std::array<std::unique_ptr<juce::Slider>, 4> sliders_;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
