@@ -124,7 +124,7 @@ public:
     {
         createBackgroundImageIfRequired();
 
-        g.setOpacity (1.0f);
+        // g.setOpacity (1.0f);
         g.drawImageTransformed (background_,
             juce::RectanglePlacement (juce::RectanglePlacement::stretchToFit).getTransformToFit (background_.getBounds().toFloat(),
             getLocalBounds().reduced (edge_).toFloat()),
@@ -193,9 +193,7 @@ private:
         
         auto pt = area.getRelativePoint (s_, 1.0f - v_);
         
-        juce::Rectangle<int> r = juce::Rectangle<int> (edge_ * 2, edge_ * 2);
-        
-        marker_.setBounds (r.withCentre (pt));
+        marker_.setBounds (juce::Rectangle<int> (edge_ * 2, edge_ * 2).withCentre (pt));
     }
     
 private:
