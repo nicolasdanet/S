@@ -132,20 +132,7 @@ public:
         mouseDrag (e);
     }
 
-    void mouseDrag (const juce::MouseEvent& e) override
-    {
-        const float x = static_cast<float> (e.x - edge_);
-        const float y = static_cast<float> (e.y - edge_);
-        const float w = static_cast<float> (getWidth() - (edge_ * 2));
-        const float h = static_cast<float> (getHeight() - (edge_ * 2));
-        
-        const float saturation  = x / w;
-        const float value       = 1.0f - (y / h);
-        
-        DBG (juce::String (saturation) + " / " + juce::String (value));
-        
-        // owner.setSV (sat, val);
-    }
+    void mouseDrag (const juce::MouseEvent& e) override;
 
     void update()
     {
@@ -206,7 +193,7 @@ private:
     ColourSpaceMarker marker_;
 
 private:
-    const int edge_ = 7;
+    const int edge_ = 6;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourSpace)
@@ -228,15 +215,16 @@ public:
         h_ (0.0f),
         s_ (0.0f),
         v_ (0.0f),
+        a_ (0.0f),
         colourSpace_ (std::make_unique<ColourSpace> (*this, h_, s_, v_))
     {
         setSize (300, 280);
         
-        updateHSV();
+        updateColour();
         
         addAndMakeVisible (colourSpace_.get());
         
-        update();
+        updateComponents();
     }
     
     ~ColourSelector() = default;
@@ -248,9 +236,13 @@ public:
 public:
     void paint (juce::Graphics&) override;
     void resized() override;
-    void updateHSV();
+    void updateColour();
+    void updateComponents();
     void update();
-
+    void setColour (const juce::Colour&);
+    void setHue (float);
+    void setSV (float, float);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -259,6 +251,7 @@ private:
     float h_;
     float s_;
     float v_;
+    float a_;
     const std::unique_ptr<ColourSpace> colourSpace_;
     //std::unique_ptr<HueSelector> hueSelector_;
     //std::array<std::unique_ptr<juce::Slider>, 4> sliders_;
