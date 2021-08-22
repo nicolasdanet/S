@@ -122,13 +122,9 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        createBackgroundImageIfRequired();
-
-        // g.setOpacity (1.0f);
-        g.drawImageTransformed (background_,
-            juce::RectanglePlacement (juce::RectanglePlacement::stretchToFit).getTransformToFit (background_.getBounds().toFloat(),
-            getLocalBounds().reduced (edge_).toFloat()),
-            false);
+        if (background_.isNull()) { createBackgroundImage (getLocalBounds().reduced (edge_)); }
+        
+        g.drawImageAt (background_, edge_, edge_, false);
     }
 
     void mouseDown (const juce::MouseEvent& e) override
@@ -165,31 +161,27 @@ private:
         background_ = juce::Image();
     }
     
-    void createBackgroundImageIfRequired()
+    void createBackgroundImage (const juce::Rectangle<int>& r)
     {
-        if (background_.isNull()) {
-        //
-        const int width  = getWidth()  / 2;
-        const int height = getHeight() / 2;
+        const int width  = r.getWidth();
+        const int height = r.getHeight();
         
         background_ = juce::Image (juce::Image::RGB, width, height, false);
 
         juce::Image::BitmapData pixels (background_, juce::Image::BitmapData::writeOnly);
 
         for (int y = 0; y < height; ++y) {
-            const float value = 1.0f - y / static_cast<float> (height);
+            const float value = 1.0f - (y / static_cast<float> (height));
             for (int x = 0; x < width; ++x) {
                 const float saturation = x / static_cast<float> (width);
                 pixels.setPixelColour (x, y, juce::Colour (h_, saturation, value, 1.0f));
             }
         }
-        //
-        }
     }
     
     void updateMarker()
     {
-        juce::Rectangle<int> area = getLocalBounds().reduced (edge_);
+        const juce::Rectangle<int> area = getLocalBounds().reduced (edge_);
         
         auto pt = area.getRelativePoint (s_, 1.0f - v_);
         
