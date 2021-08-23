@@ -263,6 +263,7 @@ public:
 
 private:
     juce::Value value_;
+    juce::Colour colour_;
     float h_;
     float s_;
     float v_;

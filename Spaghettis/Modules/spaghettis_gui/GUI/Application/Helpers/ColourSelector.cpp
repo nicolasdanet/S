@@ -55,19 +55,17 @@ void ColourSelector::resized()
 
 void ColourSelector::updateColour()
 {
-    const juce::Colour c (LookAndFeel::getColourFromValue (value_));
+    colour_ = LookAndFeel::getColourFromValue (value_);
     
-    c.getHSB (h_, s_, v_); a_ = c.getFloatAlpha();
+    colour_.getHSB (h_, s_, v_); a_ = colour_.getFloatAlpha();
 }
 
 void ColourSelector::updateViews()
 {
-    const juce::Colour c (LookAndFeel::getColourFromValue (value_));
-    
-    sliders_[0]->setValue (static_cast<int> (c.getRed()),   juce::dontSendNotification);
-    sliders_[1]->setValue (static_cast<int> (c.getGreen()), juce::dontSendNotification);
-    sliders_[2]->setValue (static_cast<int> (c.getBlue()),  juce::dontSendNotification);
-    sliders_[3]->setValue (static_cast<int> (c.getAlpha()), juce::dontSendNotification);
+    sliders_[0]->setValue (static_cast<int> (colour_.getRed()),   juce::dontSendNotification);
+    sliders_[1]->setValue (static_cast<int> (colour_.getGreen()), juce::dontSendNotification);
+    sliders_[2]->setValue (static_cast<int> (colour_.getBlue()),  juce::dontSendNotification);
+    sliders_[3]->setValue (static_cast<int> (colour_.getAlpha()), juce::dontSendNotification);
     
     colourSpace_->update();
 }
@@ -83,7 +81,7 @@ void ColourSelector::update()
 
 void ColourSelector::setColour (const juce::Colour& c)
 {
-    LookAndFeel::setValueWithColour (value_, c); update();
+    if (c != colour_) { LookAndFeel::setValueWithColour (value_, c); update(); }
 }
 
 void ColourSelector::setHue (float h)
