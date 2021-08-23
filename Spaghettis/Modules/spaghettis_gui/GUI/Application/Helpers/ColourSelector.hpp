@@ -220,19 +220,19 @@ public:
     {
         updateColour();
         
-        sliders_[0].reset (new ColourSlider (NEEDS_TRANS ("Red")));
-        sliders_[1].reset (new ColourSlider (NEEDS_TRANS ("Green")));
-        sliders_[2].reset (new ColourSlider (NEEDS_TRANS ("Blue")));
-        sliders_[3].reset (new ColourSlider (NEEDS_TRANS ("Alpha")));
+        std::get<0> (sliders_).reset (new ColourSlider (NEEDS_TRANS ("Red")));
+        std::get<1> (sliders_).reset (new ColourSlider (NEEDS_TRANS ("Green")));
+        std::get<2> (sliders_).reset (new ColourSlider (NEEDS_TRANS ("Blue")));
+        std::get<3> (sliders_).reset (new ColourSlider (NEEDS_TRANS ("Alpha")));
 
         for (auto& slider : sliders_) {
             slider->onValueChange = [this] { changeColour(); };
         }
         
-        addAndMakeVisible (sliders_[0].get());
-        addAndMakeVisible (sliders_[1].get());
-        addAndMakeVisible (sliders_[2].get());
-        addAndMakeVisible (sliders_[3].get());
+        addAndMakeVisible (std::get<0> (sliders_).get());
+        addAndMakeVisible (std::get<1> (sliders_).get());
+        addAndMakeVisible (std::get<2> (sliders_).get());
+        addAndMakeVisible (std::get<3> (sliders_).get());
         
         addAndMakeVisible (colourSpace_.get());
         
