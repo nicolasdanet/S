@@ -41,8 +41,13 @@ public:
         const juce::Colour c (LookAndFeel::getColourFromValue (value_));
         
         g.fillAll (Spaghettis()->getColour (Colours::preferencesColourBackground));
-        g.setColour (c);
-        g.fillRect (getColourBounds());
+        
+        g.fillCheckerBoard (getColourBounds().toFloat(),
+            11.0f,
+            11.0f,
+            juce::Colours::grey.overlaidWith (c),
+            juce::Colours::white.overlaidWith (c));
+        
         g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
         g.setColour (Spaghettis()->getColour (Colours::preferencesColourText));
         g.drawText (LookAndFeel::getDisplayStringFromColour (c),
