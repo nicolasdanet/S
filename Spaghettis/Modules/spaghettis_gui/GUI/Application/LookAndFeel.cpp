@@ -155,7 +155,7 @@ void LookAndFeel::drawPopupMenuItemSubMenu (juce::Graphics& g, juce::Rectangle<i
 {
     const int w = static_cast<int> (0.6f * getPopupMenuFont().getAscent());
     
-    const juce::Rectangle<int> t = r.removeFromRight (w);
+    const juce::Rectangle<int> t (r.removeFromRight (w));
     
     const float x = static_cast<float> (t.getX());
     const float y = static_cast<float> (t.getCentreY());
@@ -273,7 +273,7 @@ void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
     int h,
     juce::PropertyComponent& c)
 {
-    const juce::Rectangle<int> r = getPropertyComponentContentPosition (c);
+    const juce::Rectangle<int> r (getPropertyComponentContentPosition (c));
     
     g.setColour (findColour (Colours::preferencesParameterBackground));
     g.fillRect (juce::Rectangle<int> (r.getX(), h).withTrimmedBottom (1).withTrimmedRight (2));
@@ -284,7 +284,7 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
     int h,
     juce::PropertyComponent& c)
 {
-    const juce::Rectangle<int> r = getPropertyComponentContentPosition (c);
+    const juce::Rectangle<int> r (getPropertyComponentContentPosition (c));
     
     g.setColour (findColour (Colours::preferencesParameterText));
     g.setFont (getConsoleFont());

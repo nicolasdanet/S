@@ -176,7 +176,7 @@ private:
     
     void updateMarker()
     {
-        const juce::Rectangle<int> area = getLocalBounds().reduced (edge_);
+        const juce::Rectangle<int> area (getLocalBounds().reduced (edge_));
         
         auto pt = area.getRelativePoint (s_, 1.0f - v_);
         
@@ -218,13 +218,27 @@ public:
         a_ (0.0f),
         colourSpace_ (std::make_unique<ColourSpace> (*this, h_, s_, v_))
     {
-        setSize (300, 280);
-        
         updateColour();
+        
+        sliders_[0].reset (new ColourSlider (NEEDS_TRANS ("Red")));
+        sliders_[1].reset (new ColourSlider (NEEDS_TRANS ("Green")));
+        sliders_[2].reset (new ColourSlider (NEEDS_TRANS ("Blue")));
+        sliders_[3].reset (new ColourSlider (NEEDS_TRANS ("Alpha")));
+
+        for (auto& slider : sliders_) {
+            slider->onValueChange = [this] { changeColour(); };
+        }
+        
+        addAndMakeVisible (sliders_[0].get());
+        addAndMakeVisible (sliders_[1].get());
+        addAndMakeVisible (sliders_[2].get());
+        addAndMakeVisible (sliders_[3].get());
         
         addAndMakeVisible (colourSpace_.get());
         
-        updateComponents();
+        setSize (300, 280);
+        
+        updateViews();
     }
     
     ~ColourSelector() = default;
@@ -237,11 +251,12 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
     void updateColour();
-    void updateComponents();
+    void updateViews();
     void update();
     void setColour (const juce::Colour&);
     void setHue (float);
     void setSV (float, float);
+    void changeColour();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -254,7 +269,7 @@ private:
     float a_;
     const std::unique_ptr<ColourSpace> colourSpace_;
     //std::unique_ptr<HueSelector> hueSelector_;
-    //std::array<std::unique_ptr<juce::Slider>, 4> sliders_;
+    std::array<std::unique_ptr<juce::Slider>, 4> sliders_;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

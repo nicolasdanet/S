@@ -19,7 +19,7 @@ void PropertyHeader::paint (juce::Graphics& g)
     g.setColour (Spaghettis()->getColour (Colours::preferencesHeaderBackground));
     g.fillRoundedRectangle (b.toFloat(), 2.0f);
     
-    const juce::Rectangle<int> arrow = b.removeFromLeft (b.getCentreY());
+    const juce::Rectangle<int> arrow (b.removeFromLeft (b.getCentreY()));
     
     g.setColour (Spaghettis()->getColour (Colours::preferencesHeaderArrow));
 
