@@ -62,10 +62,10 @@ void ColourSelector::updateColour()
 
 void ColourSelector::updateViews()
 {
-    std::get<0> (sliders_)->setValue (static_cast<int> (colour_.getRed()),   juce::dontSendNotification);
-    std::get<1> (sliders_)->setValue (static_cast<int> (colour_.getGreen()), juce::dontSendNotification);
-    std::get<2> (sliders_)->setValue (static_cast<int> (colour_.getBlue()),  juce::dontSendNotification);
-    std::get<3> (sliders_)->setValue (static_cast<int> (colour_.getAlpha()), juce::dontSendNotification);
+    std::get<0> (sliders_)->setValue (static_cast<int> (colour_.getAlpha()), juce::dontSendNotification);
+    std::get<1> (sliders_)->setValue (static_cast<int> (colour_.getRed()),   juce::dontSendNotification);
+    std::get<2> (sliders_)->setValue (static_cast<int> (colour_.getGreen()), juce::dontSendNotification);
+    std::get<3> (sliders_)->setValue (static_cast<int> (colour_.getBlue()),  juce::dontSendNotification);
     
     colourSpace_->update();
 }
@@ -107,10 +107,10 @@ void ColourSelector::changeColour()
 {
     jassert (std::get<0> (sliders_) != nullptr);
     
-    const juce::uint8 r = static_cast<juce::uint8> (std::get<0> (sliders_)->getValue());
-    const juce::uint8 g = static_cast<juce::uint8> (std::get<1> (sliders_)->getValue());
-    const juce::uint8 b = static_cast<juce::uint8> (std::get<2> (sliders_)->getValue());
-    const juce::uint8 a = static_cast<juce::uint8> (std::get<3> (sliders_)->getValue());
+    const juce::uint8 a = static_cast<juce::uint8> (std::get<0> (sliders_)->getValue());
+    const juce::uint8 r = static_cast<juce::uint8> (std::get<1> (sliders_)->getValue());
+    const juce::uint8 g = static_cast<juce::uint8> (std::get<2> (sliders_)->getValue());
+    const juce::uint8 b = static_cast<juce::uint8> (std::get<3> (sliders_)->getValue());
     
     setColour (juce::Colour (r, g, b, a));
 }
