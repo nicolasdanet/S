@@ -44,20 +44,18 @@ void LookAndFeel::initializeFonts()
     
     setDefaultSansSerifTypefaceName (fontName);
 
-    fontConsole_        = juce::Font (fontName, 18.0, juce::Font::plain);
-    fontMenu_           = juce::Font (fontName, 18.0, juce::Font::plain);
-    fontMenuShortcuts_  = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
-    fontTooltips_       = juce::Font (fontName, 16.0, juce::Font::bold);
+    font18_             = juce::Font (fontName, 18.0, juce::Font::plain);
+    font18Monospaced_   = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
+    font16Bold_         = juce::Font (fontName, 16.0, juce::Font::bold);
 
     /* < https://forum.juce.com/t/fonts-need-to-be-initialized-on-rpi > */
     
-    fontConsoleName_        = fontConsole_.getTypeface()->getName();
-    fontMenuName_           = fontMenu_.getTypeface()->getName();
-    fontMenuShortcutsName_  = fontMenuShortcuts_.getTypeface()->getName();
-    fontTooltipsName_       = fontTooltips_.getTypeface()->getName();
+    font18Name_             = font18_.getTypeface()->getName();
+    font18MonospacedName_   = font18Monospaced_.getTypeface()->getName();
+    font16BoldName_         = font16Bold_.getTypeface()->getName();
     
-    SPAGHETTIS_DEBUG (fontConsoleName_);
-    SPAGHETTIS_DEBUG (fontMenuShortcutsName_);
+    SPAGHETTIS_DEBUG (font18Name_);
+    SPAGHETTIS_DEBUG (font18MonospacedName_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

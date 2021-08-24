@@ -261,33 +261,36 @@ public:
 public:
     const juce::Font& getConsoleFont() const
     {
-        return fontConsole_;
+        return font18_;
     }
     
     const juce::Font& getMenuFont() const
     {
-        return fontMenu_;
+        return font18_;
+    }
+    
+    const juce::Font& getColourFont() const
+    {
+        return font18Monospaced_;
     }
     
     const juce::Font& getMenuShortcutsFont() const
     {
-        return fontMenuShortcuts_;
+        return font18Monospaced_;
     }
 
     const juce::Font& getTooltipsFont() const
     {
-        return fontTooltips_;
+        return font16Bold_;
     }
 
 private:
-    juce::String fontConsoleName_;
-    juce::String fontMenuName_;
-    juce::String fontMenuShortcutsName_;
-    juce::String fontTooltipsName_;
-    juce::Font fontConsole_;
-    juce::Font fontMenu_;
-    juce::Font fontMenuShortcuts_;
-    juce::Font fontTooltips_;
+    juce::String font18Name_;
+    juce::String font18MonospacedName_;
+    juce::String font16BoldName_;
+    juce::Font font18_;
+    juce::Font font18Monospaced_;
+    juce::Font font16Bold_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LookAndFeel)

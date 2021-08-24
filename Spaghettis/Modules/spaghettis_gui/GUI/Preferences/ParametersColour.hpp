@@ -48,7 +48,7 @@ public:
             juce::Colours::grey.overlaidWith (c),
             juce::Colours::white.overlaidWith (c));
         
-        g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
+        g.setFont (Spaghettis()->getLookAndFeel().getColourFont());
         g.setColour (Spaghettis()->getColour (Colours::preferencesColourText));
         g.drawText (LookAndFeel::getDisplayStringFromColour (c),
             getTextBounds(),
