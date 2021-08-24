@@ -19,7 +19,7 @@ class ColourSlider : public juce::Slider {
 // MARK: -
 
 public:
-    explicit ColourSlider (const juce::String& name) : juce::Slider (name)
+    explicit ColourSlider() : juce::Slider()
     {
         const int w = 50;
         const int h = getTextBoxHeight();
@@ -224,10 +224,10 @@ public:
     {
         updateColour();
         
-        std::get<0> (sliders_).reset (new ColourSlider (NEEDS_TRANS ("Alpha")));
-        std::get<1> (sliders_).reset (new ColourSlider (NEEDS_TRANS ("Red")));
-        std::get<2> (sliders_).reset (new ColourSlider (NEEDS_TRANS ("Green")));
-        std::get<3> (sliders_).reset (new ColourSlider (NEEDS_TRANS ("Blue")));
+        std::get<0> (sliders_).reset (new ColourSlider());
+        std::get<1> (sliders_).reset (new ColourSlider());
+        std::get<2> (sliders_).reset (new ColourSlider());
+        std::get<3> (sliders_).reset (new ColourSlider());
 
         for (auto& slider : sliders_) {
             slider->onValueChange = [this] { changeColour(); };
