@@ -21,7 +21,11 @@ class ColourSlider : public juce::Slider {
 public:
     explicit ColourSlider (const juce::String& name) : juce::Slider (name)
     {
+        const int w = 50;
+        const int h = getTextBoxHeight();
+        
         setRange (0.0, 255.0, 1.0);
+        setTextBoxStyle (juce::Slider::TextBoxRight, true, w, h);
     }
     
     ~ColourSlider() = default;
