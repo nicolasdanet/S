@@ -77,9 +77,9 @@ public:
         const float w = static_cast<float> (getWidth());
         const float h = static_cast<float> (getHeight());
         
-        g.setColour (juce::Colour::greyLevel (0.1f));
+        g.setColour (juce::Colours::black);
         g.drawEllipse (1.0f, 1.0f, w - 2.0f, h - 2.0f, 1.0f);
-        g.setColour (juce::Colour::greyLevel (0.9f));
+        g.setColour (juce::Colours::white);
         g.drawEllipse (2.0f, 2.0f, w - 4.0f, h - 4.0f, 1.0f);
     }
 
@@ -236,10 +236,10 @@ public:
         p.addTriangle (1.0f, 1.0f, w * 0.3f, h * 0.5f, 1.0f, h - 1.0f);
         p.addTriangle (w - 1.0f, 1.0f, w * 0.7f, h * 0.5f, w - 1.0f, h - 1.0f);
 
-        g.setColour (juce::Colours::white.withAlpha (0.75f));
+        g.setColour (juce::Colours::white);
         g.fillPath (p);
 
-        g.setColour (juce::Colours::black.withAlpha (0.75f));
+        g.setColour (juce::Colours::black);
         g.strokePath (p, juce::PathStrokeType (1.2f));
     }
 
@@ -262,28 +262,29 @@ public:
     {
         addAndMakeVisible (marker_);
     }
+    
+    ~HueSelector() = default;
+        
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
+public:
     void paint (juce::Graphics& g) override
     {
+        const float y1 = static_cast<float> (edge_);
+        const float y2 = static_cast<float> (getHeight() - edge_);
+        
         juce::ColourGradient c;
         
         c.isRadial = false;
-        c.point1.setXY (0.0f, static_cast<float> (edge_));
-        c.point2.setXY (0.0f, static_cast<float> (getHeight()));
+        c.point1.setXY (0.0f, y1);
+        c.point2.setXY (0.0f, y2);
 
         for (float i = 0.0f; i <= 1.0f; i += 0.02f) { c.addColour (i, juce::Colour (i, 1.0f, 1.0f, 1.0f)); }
 
         g.setGradientFill (c);
         g.fillRect (getLocalBounds().reduced (edge_));
-    }
-
-    void resized() override
-    {
-        juce::Rectangle<int> area = getLocalBounds().reduced (edge_);
-
-        auto pt = area.getRelativePoint (0.5f, h_);
-        
-        marker_.setBounds (juce::Rectangle<int> (getWidth(), edge_ * 2).withCentre (pt));
     }
 
     void mouseDown (const juce::MouseEvent& e) override
@@ -301,6 +302,15 @@ public:
         resized();
     }
 
+    void resized() override
+    {
+        juce::Rectangle<int> area = getLocalBounds().reduced (edge_);
+
+        auto pt = area.getRelativePoint (0.5f, h_);
+        
+        marker_.setBounds (juce::Rectangle<int> (getWidth(), edge_ * 2).withCentre (pt));
+    }
+    
 private:
     ColourSelector& owner_;
     float& h_;
