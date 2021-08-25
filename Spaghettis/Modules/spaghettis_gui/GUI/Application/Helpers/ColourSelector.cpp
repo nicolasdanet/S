@@ -39,9 +39,11 @@ void ColourSelector::resized()
     juce::Rectangle<int> area (getLocalBounds());
     
     const int h       = area.getHeight();
-    const int hSpace  = static_cast<int> (area.getHeight() * 0.75);
+    const int wHue    = 40;
+    const int hSpace  = static_cast<int> (h * 0.75);
     const int hSilder = static_cast<int> ((h - hSpace) / sliders_.size());
     
+    hueSelector_->setBounds (area.removeFromRight (wHue));
     colourSpace_->setBounds (area.removeFromTop (hSpace));
     
     for (auto& slider : sliders_) {
@@ -62,12 +64,13 @@ void ColourSelector::updateColour()
 
 void ColourSelector::updateViews()
 {
+    colourSpace_->update();
+    hueSelector_->update();
+    
     std::get<0> (sliders_)->setValue (static_cast<int> (colour_.getAlpha()), juce::dontSendNotification);
     std::get<1> (sliders_)->setValue (static_cast<int> (colour_.getRed()),   juce::dontSendNotification);
     std::get<2> (sliders_)->setValue (static_cast<int> (colour_.getGreen()), juce::dontSendNotification);
     std::get<3> (sliders_)->setValue (static_cast<int> (colour_.getBlue()),  juce::dontSendNotification);
-    
-    colourSpace_->update();
 }
 
 void ColourSelector::update()

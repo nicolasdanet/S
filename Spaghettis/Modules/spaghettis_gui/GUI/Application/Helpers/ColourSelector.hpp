@@ -207,6 +207,116 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class HueSelectorMarker : public juce::Component {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit HueSelectorMarker()
+    {
+        setInterceptsMouseClicks (false, false);
+    }
+
+    ~HueSelectorMarker() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics& g) override
+    {
+        const float w = static_cast<float> (getWidth());
+        const float h = static_cast<float> (getHeight());
+
+        juce::Path p;
+        
+        p.addTriangle (1.0f, 1.0f, w * 0.3f, h * 0.5f, 1.0f, h - 1.0f);
+        p.addTriangle (w - 1.0f, 1.0f, w * 0.7f, h * 0.5f, w - 1.0f, h - 1.0f);
+
+        g.setColour (juce::Colours::white.withAlpha (0.75f));
+        g.fillPath (p);
+
+        g.setColour (juce::Colours::black.withAlpha (0.75f));
+        g.strokePath (p, juce::PathStrokeType (1.2f));
+    }
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HueSelectorMarker)
+};
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+class HueSelector : public juce::Component {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit HueSelector (ColourSelector& owner, float& h) : owner_ (owner), h_ (h)
+    {
+        addAndMakeVisible (marker_);
+    }
+
+    void paint (juce::Graphics& g) override
+    {
+        juce::ColourGradient c;
+        
+        c.isRadial = false;
+        c.point1.setXY (0.0f, static_cast<float> (edge_));
+        c.point2.setXY (0.0f, static_cast<float> (getHeight()));
+
+        for (float i = 0.0f; i <= 1.0f; i += 0.02f) { c.addColour (i, juce::Colour (i, 1.0f, 1.0f, 1.0f)); }
+
+        g.setGradientFill (c);
+        g.fillRect (getLocalBounds().reduced (edge_));
+    }
+
+    void resized() override
+    {
+        juce::Rectangle<int> area = getLocalBounds().reduced (edge_);
+
+        auto pt = area.getRelativePoint (0.5f, h_);
+        
+        marker_.setBounds (juce::Rectangle<int> (getWidth(), edge_ * 2).withCentre (pt));
+    }
+
+    void mouseDown (const juce::MouseEvent& e) override
+    {
+        mouseDrag (e);
+    }
+
+    void mouseDrag (const juce::MouseEvent& e) override
+    {
+        // owner.setHue ((float) (e.y - edge) / (float) (getHeight() - edge * 2));
+    }
+
+    void update()
+    {
+        resized();
+    }
+
+private:
+    ColourSelector& owner_;
+    float& h_;
+    HueSelectorMarker marker_;
+
+private:
+    const int edge_ = 6;
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HueSelector)
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class ColourSelector : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -220,7 +330,8 @@ public:
         s_ (0.0f),
         v_ (0.0f),
         a_ (0.0f),
-        colourSpace_ (std::make_unique<ColourSpace> (*this, h_, s_, v_))
+        colourSpace_ (std::make_unique<ColourSpace> (*this, h_, s_, v_)),
+        hueSelector_ (std::make_unique<HueSelector> (*this, h_))
     {
         updateColour();
         
@@ -233,12 +344,13 @@ public:
             slider->onValueChange = [this] { changeColour(); };
         }
         
+        addAndMakeVisible (colourSpace_.get());
+        addAndMakeVisible (hueSelector_.get());
+
         addAndMakeVisible (std::get<0> (sliders_).get());
         addAndMakeVisible (std::get<1> (sliders_).get());
         addAndMakeVisible (std::get<2> (sliders_).get());
         addAndMakeVisible (std::get<3> (sliders_).get());
-        
-        addAndMakeVisible (colourSpace_.get());
         
         setSize (300, 280);
         
@@ -273,7 +385,7 @@ private:
     float v_;
     float a_;
     const std::unique_ptr<ColourSpace> colourSpace_;
-    //std::unique_ptr<HueSelector> hueSelector_;
+    const std::unique_ptr<HueSelector> hueSelector_;
     std::array<std::unique_ptr<juce::Slider>, 4> sliders_;
 
 // -----------------------------------------------------------------------------------------------------------
