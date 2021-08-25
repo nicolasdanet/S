@@ -41,10 +41,13 @@ void ColourSelector::resized()
     const int h       = area.getHeight();
     const int wHue    = 40;
     const int hSpace  = static_cast<int> (h * 0.75);
-    const int hSilder = static_cast<int> ((h - hSpace) / sliders_.size());
     
     hueSelector_->setBounds (area.removeFromRight (wHue));
     colourSpace_->setBounds (area.removeFromTop (hSpace));
+    
+    area.removeFromBottom (edge_);
+    
+    const int hSilder = area.getHeight() / sliders_.size();
     
     for (auto& slider : sliders_) {
         slider->setBounds (area.removeFromTop (hSilder));
