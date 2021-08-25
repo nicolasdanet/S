@@ -106,8 +106,9 @@ class ColourSpace : public juce::Component {
 // MARK: -
 
 public:
-    ColourSpace (ColourSelector& owner, float& h, float& s, float& v) :
+    ColourSpace (ColourSelector& owner, int edge, float& h, float& s, float& v) :
         owner_ (owner),
+        edge_ (edge),
         h_ (h),
         s_ (s),
         v_ (v),
@@ -189,6 +190,7 @@ private:
     
 private:
     ColourSelector& owner_;
+    int edge_;
     float& h_;
     float& s_;
     float& v_;
@@ -196,9 +198,6 @@ private:
     juce::Image background_;
     ColourSpaceMarker marker_;
 
-private:
-    const int edge_ = 6;
-    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourSpace)
 };
@@ -258,7 +257,7 @@ class HueSelector : public juce::Component {
 // MARK: -
 
 public:
-    explicit HueSelector (ColourSelector& owner, float& h) : owner_ (owner), h_ (h)
+    explicit HueSelector (ColourSelector& owner, int edge, float& h) : owner_ (owner), edge_ (edge), h_ (h)
     {
         addAndMakeVisible (marker_);
     }
@@ -313,12 +312,10 @@ public:
     
 private:
     ColourSelector& owner_;
+    int edge_;
     float& h_;
     HueSelectorMarker marker_;
 
-private:
-    const int edge_ = 6;
-    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HueSelector)
 };
@@ -340,8 +337,9 @@ public:
         s_ (0.0f),
         v_ (0.0f),
         a_ (0.0f),
-        colourSpace_ (std::make_unique<ColourSpace> (*this, h_, s_, v_)),
-        hueSelector_ (std::make_unique<HueSelector> (*this, h_))
+        edge_ (6),
+        colourSpace_ (std::make_unique<ColourSpace> (*this, edge_, h_, s_, v_)),
+        hueSelector_ (std::make_unique<HueSelector> (*this, edge_, h_))
     {
         updateColour();
         
@@ -394,13 +392,11 @@ private:
     float s_;
     float v_;
     float a_;
+    int edge_;
     const std::unique_ptr<ColourSpace> colourSpace_;
     const std::unique_ptr<HueSelector> hueSelector_;
     std::array<std::unique_ptr<juce::Slider>, 4> sliders_;
 
-public:
-    const int edge_ = 6;
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
