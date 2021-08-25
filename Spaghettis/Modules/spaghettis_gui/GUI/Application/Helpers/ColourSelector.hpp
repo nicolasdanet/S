@@ -291,10 +291,7 @@ public:
         mouseDrag (e);
     }
 
-    void mouseDrag (const juce::MouseEvent& e) override
-    {
-        // owner.setHue ((float) (e.y - edge) / (float) (getHeight() - edge * 2));
-    }
+    void mouseDrag (const juce::MouseEvent& e) override;
 
     void update()
     {

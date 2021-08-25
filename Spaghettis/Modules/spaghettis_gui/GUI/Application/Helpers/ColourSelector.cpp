@@ -25,6 +25,14 @@ void ColourSpace::mouseDrag (const juce::MouseEvent& e)
     owner_.setSV (s, v);
 }
 
+void HueSelector::mouseDrag (const juce::MouseEvent& e)
+{
+    const float y = static_cast<float> (e.y - edge_);
+    const float h = static_cast<float> (getHeight() - (edge_ * 2));
+    
+    owner_.setHue (y / h);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
