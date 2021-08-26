@@ -25,7 +25,7 @@ public:
         const int h = getTextBoxHeight();
         
         setRange (0.0, 255.0, 1.0);
-        setTextBoxStyle (juce::Slider::TextBoxRight, true, w, h);
+        setTextBoxStyle (juce::Slider::TextBoxRight, false, w, h);
     }
     
     ~ColourSlider() = default;
