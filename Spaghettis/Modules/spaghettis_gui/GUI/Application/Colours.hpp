@@ -160,7 +160,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (juce::TextEditor::highlightColourId,                 juce::Colours::transparentBlack);
     lf->setColour (juce::TextEditor::highlightedTextColourId,           green);
     lf->setColour (juce::CaretComponent::caretColourId,                 juce::Colours::white);
-    lf->setColour (juce::Label::backgroundWhenEditingColourId,          backgroundAlternate);
+    lf->setColour (juce::Label::backgroundWhenEditingColourId,          juce::Colours::transparentBlack);
     lf->setColour (juce::Label::textWhenEditingColourId,                base1);
     lf->setColour (juce::Label::outlineWhenEditingColourId,             juce::Colours::transparentBlack);
     
