@@ -335,7 +335,7 @@ public:
         colourSpace_ (std::make_unique<ColourSpace> (*this, edge_, h_, s_, v_)),
         hueSelector_ (std::make_unique<HueSelector> (*this, edge_, h_))
     {
-        updateColour();
+        fetchColour(); updateHSV();
         
         std::get<0> (sliders_).reset (new ColourSlider());
         std::get<1> (sliders_).reset (new ColourSlider());
@@ -343,7 +343,7 @@ public:
         std::get<3> (sliders_).reset (new ColourSlider());
 
         for (auto& slider : sliders_) {
-            slider->onValueChange = [this] { changeColour(); };
+            slider->onValueChange = [this] { setColour(); };
         }
         
         addAndMakeVisible (colourSpace_.get());
@@ -368,13 +368,13 @@ public:
 public:
     void paint (juce::Graphics&) override;
     void resized() override;
-    void updateColour();
+    void fetchColour();
+    void pushColour();
+    void updateHSV();
     void updateViews();
-    void update();
-    void setColour (const juce::Colour&);
     void setHue (float);
     void setSV (float, float);
-    void changeColour();
+    void setColour();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

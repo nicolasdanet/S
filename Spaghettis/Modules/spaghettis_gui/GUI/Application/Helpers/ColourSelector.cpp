@@ -19,10 +19,10 @@ void ColourSpace::mouseDrag (const juce::MouseEvent& e)
     const float w = static_cast<float> (getWidth() - (edge_ * 2));
     const float h = static_cast<float> (getHeight() - (edge_ * 2));
     
-    const float s = x / w;
-    const float v = 1.0f - (y / h);
+    const float saturation = x / w;
+    const float value = 1.0f - (y / h);
 
-    owner_.setSV (s, v);
+    owner_.setSV (saturation, value);
 }
 
 void HueSelector::mouseDrag (const juce::MouseEvent& e)
@@ -30,7 +30,9 @@ void HueSelector::mouseDrag (const juce::MouseEvent& e)
     const float y = static_cast<float> (e.y - edge_);
     const float h = static_cast<float> (getHeight() - (edge_ * 2));
     
-    owner_.setHue (y / h);
+    const float hue = y / h;
+    
+    owner_.setHue (hue);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -66,10 +68,18 @@ void ColourSelector::resized()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ColourSelector::updateColour()
+void ColourSelector::fetchColour()
 {
     colour_ = LookAndFeel::getColourFromValue (value_);
-    
+}
+
+void ColourSelector::pushColour()
+{
+    LookAndFeel::setValueWithColour (value_, colour_);
+}
+
+void ColourSelector::updateHSV()
+{
     colour_.getHSB (h_, s_, v_); a_ = colour_.getFloatAlpha();
 }
 
@@ -84,25 +94,21 @@ void ColourSelector::updateViews()
     std::get<3> (sliders_)->setValue (static_cast<int> (colour_.getBlue()),  juce::dontSendNotification);
 }
 
-void ColourSelector::update()
-{
-    updateColour(); updateViews();
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void ColourSelector::setColour (const juce::Colour& c)
-{
-    if (c != colour_) { LookAndFeel::setValueWithColour (value_, c); update(); }
-}
 
 void ColourSelector::setHue (float h)
 {
     h = juce::jlimit (0.0f, 1.0f, h);
 
-    if (h != h_) { setColour (juce::Colour (h, s_, v_, a_)); }
+    if (h != h_) {
+    //
+    h_ = h;
+    
+    colour_ = juce::Colour (h_, s_, v_, a_); updateViews(); pushColour();
+    //
+    }
 }
 
 void ColourSelector::setSV (float s, float v)
@@ -110,14 +116,16 @@ void ColourSelector::setSV (float s, float v)
     s = juce::jlimit (0.0f, 1.0f, s);
     v = juce::jlimit (0.0f, 1.0f, v);
 
-    if (s != s_ || v != v_) { setColour (juce::Colour (h_, s, v, a_)); }
+    if (s != s_ || v != v_) {
+    //
+    s_ = s; v_ = v;
+    
+    colour_ = juce::Colour (h_, s_, v_, a_); updateViews(); pushColour();
+    //
+    }
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void ColourSelector::changeColour()
+void ColourSelector::setColour()
 {
     jassert (std::get<0> (sliders_) != nullptr);
     
@@ -126,7 +134,7 @@ void ColourSelector::changeColour()
     const juce::uint8 g = static_cast<juce::uint8> (std::get<2> (sliders_)->getValue());
     const juce::uint8 b = static_cast<juce::uint8> (std::get<3> (sliders_)->getValue());
     
-    setColour (juce::Colour (r, g, b, a));
+    colour_ = juce::Colour (r, g, b, a); updateHSV(); updateViews(); pushColour();
 }
 
 // -----------------------------------------------------------------------------------------------------------
