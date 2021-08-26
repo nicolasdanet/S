@@ -271,14 +271,11 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        const float y1 = static_cast<float> (edge_);
-        const float y2 = static_cast<float> (getHeight() - edge_);
-        
         juce::ColourGradient c;
         
         c.isRadial = false;
-        c.point1.setXY (0.0f, y1);
-        c.point2.setXY (0.0f, y2);
+        c.point1.setXY (0.0f, edge_);
+        c.point2.setXY (0.0f, static_cast<float> (getHeight() - edge_));
 
         for (float i = 0.0f; i <= 1.0f; i += 0.02f) { c.addColour (i, juce::Colour (i, 1.0f, 1.0f, 1.0f)); }
 
