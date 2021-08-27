@@ -378,7 +378,7 @@ void drawLinearSliderHorizontal (juce::Graphics& g,
     g.strokePath (getLineWithStartAndEnd (a, p), type);
     
     g.setColour (slider.findColour (juce::Slider::thumbColourId));
-    g.fillEllipse (juce::Rectangle<float> (thickness * 2, thickness * 2).withCentre (p));
+    g.fillRect (juce::Rectangle<float> (thickness, thickness * 2).withCentre (p));
 }
 
 // -----------------------------------------------------------------------------------------------------------
