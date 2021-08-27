@@ -341,6 +341,55 @@ void drawLinearSliderHorizontalBar (juce::Graphics& g,
     g.fillRect (r.reduced (0, 1).withTrimmedRight (static_cast<int> (w - position)));
 }
 
+int getSliderThumbRadius (juce::Slider& slider)
+{
+    return juce::jmin (12, slider.isHorizontal() ? static_cast<int> ((float) slider.getHeight() * 0.5f)
+                                           : static_cast<int> ((float) slider.getWidth()  * 0.5f));
+}
+
+void drawLinearSliderHorizontal (juce::Graphics& g,
+    int x,
+    int y,
+    int w,
+    int h,
+    float position,
+    float min,
+    float max,
+    const juce::Slider::SliderStyle style,
+    juce::Slider& slider)
+{
+    const float trackWidth = juce::jmin (6.0f, h * 0.25f);
+
+    juce::Point<float> startPoint (x, y + h * 0.5f);
+    juce::Point<float> endPoint (x + w, y + h * 0.5f);
+
+    juce::Path backgroundTrack;
+    
+    backgroundTrack.startNewSubPath (startPoint);
+    backgroundTrack.lineTo (endPoint);
+    g.setColour (slider.findColour (juce::Slider::backgroundColourId));
+    g.strokePath (backgroundTrack, { trackWidth, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
+
+    juce::Path valueTrack;
+    juce::Point<float> minPoint, maxPoint, thumbPoint;
+
+    const float kx = position;
+    const float ky = (float) y + (float) h * 0.5f;
+
+    minPoint = startPoint;
+    maxPoint = { kx, ky };
+
+    int thumbWidth = getSliderThumbRadius (slider);
+    
+    valueTrack.startNewSubPath (minPoint);
+    valueTrack.lineTo (maxPoint);
+    g.setColour (slider.findColour (juce::Slider::trackColourId));
+    g.strokePath (valueTrack, { trackWidth, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
+
+    g.setColour (slider.findColour (juce::Slider::thumbColourId));
+    g.fillEllipse (juce::Rectangle<float> (static_cast<float> (thumbWidth), static_cast<float> (thumbWidth)).withCentre (maxPoint));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -361,8 +410,12 @@ void LookAndFeel::drawLinearSlider (juce::Graphics& g,
     const juce::Slider::SliderStyle style,
     juce::Slider& slider)
 {
-    if (slider.isHorizontal() && slider.isBar()) {
-        drawLinearSliderHorizontalBar (g, x, y, w, h, position, min, max, style, slider);
+    if (slider.isHorizontal() && !slider.isTwoValue() && !slider.isThreeValue()) {
+        if (slider.isBar()) {
+            drawLinearSliderHorizontalBar (g, x, y, w, h, position, min, max, style, slider);
+        } else {
+            drawLinearSliderHorizontal (g, x, y, w, h, position, min, max, style, slider);
+        }
     } else { juce::LookAndFeel_V4::drawLinearSlider (g, x, y, w, h, position, min, max, style, slider); }
 }
                                 
