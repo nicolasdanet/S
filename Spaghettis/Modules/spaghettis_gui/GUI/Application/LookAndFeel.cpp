@@ -322,6 +322,14 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+juce::Path getLineWithStartAndEnd (const juce::Point<float>& a, const juce::Point<float>& b)
+{
+    juce::Path path;
+    path.startNewSubPath (a);
+    path.lineTo (b);
+    return path;
+}
+
 void drawLinearSliderHorizontalBar (juce::Graphics& g,
     int x,
     int y,
@@ -363,32 +371,14 @@ void drawLinearSliderHorizontal (juce::Graphics& g,
 
     const juce::PathStrokeType type (thickness, juce::PathStrokeType::curved, juce::PathStrokeType::rounded);
     
-    {
-        const juce::Colour c (slider.findColour (juce::Slider::backgroundColourId));
-        
-        juce::Path path;
-        path.startNewSubPath (a);
-        path.lineTo (b);
-        g.setColour (c);
-        g.strokePath (path, type);
-    }
+    g.setColour (slider.findColour (juce::Slider::backgroundColourId));
+    g.strokePath (getLineWithStartAndEnd (a, b), type);
     
-    {
-        const juce::Colour c (slider.findColour (juce::Slider::trackColourId));
-        
-        juce::Path path;
-        path.startNewSubPath (a);
-        path.lineTo (p);
-        g.setColour (c);
-        g.strokePath (path, type);
-    }
+    g.setColour (slider.findColour (juce::Slider::trackColourId));
+    g.strokePath (getLineWithStartAndEnd (a, p), type);
     
-    {
-        const juce::Colour c (slider.findColour (juce::Slider::thumbColourId));
-        
-        g.setColour (c);
-        g.fillEllipse (juce::Rectangle<float> (thickness * 2, thickness * 2).withCentre (p));
-    }
+    g.setColour (slider.findColour (juce::Slider::thumbColourId));
+    g.fillEllipse (juce::Rectangle<float> (thickness * 2, thickness * 2).withCentre (p));
 }
 
 // -----------------------------------------------------------------------------------------------------------
