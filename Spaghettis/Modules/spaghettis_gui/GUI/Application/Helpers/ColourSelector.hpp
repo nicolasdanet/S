@@ -368,13 +368,15 @@ public:
 public:
     void paint (juce::Graphics&) override;
     void resized() override;
+    void setHue (float);
+    void setSV (float, float);
+    void setColour();
+
+private:
     void fetchColour();
     void pushColour();
     void updateHSV();
     void updateViews();
-    void setHue (float);
-    void setSV (float, float);
-    void setColour();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -317,6 +317,39 @@ void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bo
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void drawLinearSliderHorizontalBar (juce::Graphics& g,
+    int x,
+    int y,
+    int w,
+    int h,
+    float position,
+    float min,
+    float max,
+    const juce::Slider::SliderStyle style,
+    juce::Slider& slider)
+{
+    const juce::Rectangle<int> r (x, y, w, h);
+    
+    g.setColour (Spaghettis()->getColour (Colours::preferencesSliderBackground));
+    g.fillRect (r);
+    g.setColour (Spaghettis()->getColour (Colours::preferencesSliderTrack));
+    g.fillRect (r.reduced (0, 1).withTrimmedRight (static_cast<int> (w - position)));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LookAndFeel::drawLinearSlider (juce::Graphics& g,
     int x,
     int y,
@@ -328,15 +361,8 @@ void LookAndFeel::drawLinearSlider (juce::Graphics& g,
     const juce::Slider::SliderStyle style,
     juce::Slider& slider)
 {
-    if (slider.isBar() && slider.isHorizontal()) {
-    //
-    const juce::Rectangle<int> r (x, y, w, h);
-    
-    g.setColour (Spaghettis()->getColour (Colours::preferencesSliderBackground));
-    g.fillRect (r);
-    g.setColour (Spaghettis()->getColour (Colours::preferencesSliderTrack));
-    g.fillRect (r.reduced (0, 1).withTrimmedRight (static_cast<int> (w - position)));
-    //
+    if (slider.isHorizontal() && slider.isBar()) {
+        drawLinearSliderHorizontalBar (g, x, y, w, h, position, min, max, style, slider);
     } else { juce::LookAndFeel_V4::drawLinearSlider (g, x, y, w, h, position, min, max, style, slider); }
 }
                                 
