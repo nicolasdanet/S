@@ -44,7 +44,7 @@ void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommand
         r.addDefaultKeypress (',', juce::ModifierKeys::commandModifier);
         break;
     case Commands::newPatch :
-        r.setInfo (NEEDS_TRANS ("New Patch"),       NEEDS_TRANS ("Create a new patch"),               file, 0);
+        r.setInfo (NEEDS_TRANS ("New Patch"),       NEEDS_TRANS ("Create a new patch"),         file, 0);
         r.addDefaultKeypress ('n', juce::ModifierKeys::commandModifier);
         break;
     case Commands::openPatch :
@@ -69,7 +69,7 @@ void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommand
         r.addDefaultKeypress ('l', juce::ModifierKeys::commandModifier);
         break;
     case Commands::dspSwitch :
-        r.setInfo (NEEDS_TRANS ("Run DSP"),         NEEDS_TRANS ("DSP On/Off"),             media, 0);
+        r.setInfo (NEEDS_TRANS ("Run DSP"),         NEEDS_TRANS ("DSP On/Off"),                 media, 0);
         r.addDefaultKeypress ('r', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
         r.setTicked (Spaghettis()->isDspRunning());
         break;

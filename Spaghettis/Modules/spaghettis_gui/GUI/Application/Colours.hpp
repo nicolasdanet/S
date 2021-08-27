@@ -103,7 +103,7 @@ static void initialize (juce::LookAndFeel* lf)
     
     jassert (background.isOpaque());
     
-    for (int i = windowBackground ; i < preferencesBooleanTick; ++i) {
+    for (int i = windowBackground; i < preferencesBooleanTick; ++i) {
         jassert (lf->isColourSpecified (i) == false);
     }
     

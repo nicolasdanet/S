@@ -146,7 +146,7 @@ private:
         jassert (i >= 0);
         jassert (static_cast<DrawableContainer::size_type> (i) < drawables_.size());
         jassert (std::get<ICONS_OFF> (drawables_[i]) != nullptr);
-        jassert (std::get<ICONS_ON>  (drawables_[i]) != nullptr);
+        jassert (std::get<ICONS_ON> (drawables_[i]) != nullptr);
         
         return i;
     }

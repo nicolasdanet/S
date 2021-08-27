@@ -33,7 +33,7 @@ public:
 public:
     bool isSet() const
     {
-        return (p_.hasProperty (Ids::minimum) &&  p_.hasProperty (Ids::maximum));
+        return (p_.hasProperty (Ids::minimum) && p_.hasProperty (Ids::maximum));
     }
     
     double getMinimumAsDouble() const

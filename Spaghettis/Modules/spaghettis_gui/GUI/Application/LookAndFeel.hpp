@@ -315,7 +315,9 @@ public:
     ~SliderLabel() = default;
 
 public:
-    void mouseWheelMove (const juce::MouseEvent&, const juce::MouseWheelDetails&) override {}
+    void mouseWheelMove (const juce::MouseEvent&, const juce::MouseWheelDetails&) override
+    {
+    }
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderLabel)

@@ -29,7 +29,7 @@ public:
             p.getProperty (Ids::text).toString(),
             32,
             false),
-        v_ (),
+        v_(),
         range_ (range)
     {
     }
@@ -64,7 +64,7 @@ public:
     
     static T parsedWithDefault (const juce::String& s, T t)
     {
-        if (s.isNotEmpty() && s.containsOnly ("-.e+0123456789")) { return convert (s); }
+        if (s.isNotEmpty() && s.containsOnly ("-.e+0123456789")) { return convert (s); }    // --
         else {
             return t;
         }
@@ -116,7 +116,7 @@ public:
             range.getMaximumAsDouble(),
             range.getStep())
     {
-        slider.valueFromTextFunction = [this](const juce::String& text)
+        slider.valueFromTextFunction = [this] (const juce::String& text)
         {
             return Number<double>::parsedWithDefault (text, slider.getValue());
         };
