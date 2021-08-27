@@ -358,34 +358,43 @@ void drawLinearSliderHorizontal (juce::Graphics& g,
     const juce::Slider::SliderStyle style,
     juce::Slider& slider)
 {
-    const float trackWidth = juce::jmin (6.0f, h * 0.25f);
-
-    juce::Point<float> startPoint (x, y + h * 0.5f);
-    juce::Point<float> endPoint (x + w, y + h * 0.5f);
-
-    juce::Path backgroundTrack;
+    const float thickness = juce::jmin (6.0f, h * 0.25f);
+    const float x1 = static_cast<float> (x);
+    const float y1 = static_cast<float> (y + h * 0.5f);
+    const float x2 = static_cast<float> (x + w);
+    const float y2 = y1;
     
-    backgroundTrack.startNewSubPath (startPoint);
-    backgroundTrack.lineTo (endPoint);
-    g.setColour (slider.findColour (juce::Slider::backgroundColourId));
-    g.strokePath (backgroundTrack, { trackWidth, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
+    juce::Point<float> a (x1, y1);
+    juce::Point<float> b (x2, y2);
 
-    juce::Path valueTrack;
-    juce::Point<float> minPoint, maxPoint, thumbPoint;
+    const juce::PathStrokeType type (thickness, juce::PathStrokeType::curved, juce::PathStrokeType::rounded);
+    
+    {
+        juce::Path path;
+        path.startNewSubPath (a);
+        path.lineTo (b);
+        g.setColour (slider.findColour (juce::Slider::backgroundColourId));
+        g.strokePath (path, type);
+    }
+    
+    juce::Point<float> minPoint, maxPoint;
+    
+    {
+        juce::Path valueTrack;
+        
+        const float kx = position;
+        const float ky = (float) y + (float) h * 0.5f;
 
-    const float kx = position;
-    const float ky = (float) y + (float) h * 0.5f;
-
-    minPoint = startPoint;
-    maxPoint = { kx, ky };
-
+        minPoint = a;
+        maxPoint = { kx, ky };
+    
+        valueTrack.startNewSubPath (minPoint);
+        valueTrack.lineTo (maxPoint);
+        g.setColour (slider.findColour (juce::Slider::trackColourId));
+        g.strokePath (valueTrack, { thickness, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
+    }
+    
     int thumbWidth = getSliderThumbRadius (slider);
-    
-    valueTrack.startNewSubPath (minPoint);
-    valueTrack.lineTo (maxPoint);
-    g.setColour (slider.findColour (juce::Slider::trackColourId));
-    g.strokePath (valueTrack, { trackWidth, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
-
     g.setColour (slider.findColour (juce::Slider::thumbColourId));
     g.fillEllipse (juce::Rectangle<float> (static_cast<float> (thumbWidth), static_cast<float> (thumbWidth)).withCentre (maxPoint));
 }

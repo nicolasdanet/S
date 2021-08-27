@@ -172,6 +172,10 @@ static void initialize (juce::LookAndFeel* lf)
     /* Slider preferences. */
     
     lf->setColour (juce::Label::textColourId,                           base1);
+    
+    /* Color selector sliders. */
+    
+    lf->setColour (juce::Slider::backgroundColourId,                    orange);
 }
 
 // -----------------------------------------------------------------------------------------------------------
