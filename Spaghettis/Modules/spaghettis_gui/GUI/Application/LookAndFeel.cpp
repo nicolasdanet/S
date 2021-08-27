@@ -341,12 +341,6 @@ void drawLinearSliderHorizontalBar (juce::Graphics& g,
     g.fillRect (r.reduced (0, 1).withTrimmedRight (static_cast<int> (w - position)));
 }
 
-int getSliderThumbRadius (juce::Slider& slider)
-{
-    return juce::jmin (12, slider.isHorizontal() ? static_cast<int> ((float) slider.getHeight() * 0.5f)
-                                           : static_cast<int> ((float) slider.getWidth()  * 0.5f));
-}
-
 void drawLinearSliderHorizontal (juce::Graphics& g,
     int x,
     int y,
@@ -360,43 +354,41 @@ void drawLinearSliderHorizontal (juce::Graphics& g,
 {
     const float thickness = juce::jmin (6.0f, h * 0.25f);
     const float x1 = static_cast<float> (x);
-    const float y1 = static_cast<float> (y + h * 0.5f);
     const float x2 = static_cast<float> (x + w);
-    const float y2 = y1;
+    const float m  = static_cast<float> (y + h * 0.5f);
     
-    juce::Point<float> a (x1, y1);
-    juce::Point<float> b (x2, y2);
+    const juce::Point<float> a (x1, m);
+    const juce::Point<float> b (x2, m);
+    const juce::Point<float> p (position, m);
 
     const juce::PathStrokeType type (thickness, juce::PathStrokeType::curved, juce::PathStrokeType::rounded);
     
     {
+        const juce::Colour c (slider.findColour (juce::Slider::backgroundColourId));
+        
         juce::Path path;
         path.startNewSubPath (a);
         path.lineTo (b);
-        g.setColour (slider.findColour (juce::Slider::backgroundColourId));
+        g.setColour (c);
         g.strokePath (path, type);
     }
     
-    juce::Point<float> minPoint, maxPoint;
-    
     {
-        juce::Path valueTrack;
+        const juce::Colour c (slider.findColour (juce::Slider::trackColourId));
         
-        const float kx = position;
-        const float ky = (float) y + (float) h * 0.5f;
-
-        minPoint = a;
-        maxPoint = { kx, ky };
-    
-        valueTrack.startNewSubPath (minPoint);
-        valueTrack.lineTo (maxPoint);
-        g.setColour (slider.findColour (juce::Slider::trackColourId));
-        g.strokePath (valueTrack, { thickness, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
+        juce::Path path;
+        path.startNewSubPath (a);
+        path.lineTo (p);
+        g.setColour (c);
+        g.strokePath (path, type);
     }
     
-    int thumbWidth = getSliderThumbRadius (slider);
-    g.setColour (slider.findColour (juce::Slider::thumbColourId));
-    g.fillEllipse (juce::Rectangle<float> (static_cast<float> (thumbWidth), static_cast<float> (thumbWidth)).withCentre (maxPoint));
+    {
+        const juce::Colour c (slider.findColour (juce::Slider::thumbColourId));
+        
+        g.setColour (c);
+        g.fillEllipse (juce::Rectangle<float> (thickness * 2, thickness * 2).withCentre (p));
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
