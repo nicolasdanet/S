@@ -103,10 +103,10 @@ bool isValidTree (const juce::ValueTree& tree)
 {
     if (tree.isValid() && tree.hasType (Ids::PREFERENCES)) {
     //
-    for (const auto& section : tree) {
+    for (const auto& group : tree) {
     //
-    if (isValidSection (section)) {
-        for (const auto& parameter : section)  {
+    if (isValidSection (group)) {
+        for (const auto& parameter : group)  {
             if (!isValidParameter (parameter)) { return false; }
         }
     } else { return false; }
@@ -231,6 +231,45 @@ juce::ValueTree Preferences::getDefault()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void setPropertyFrom (juce::ValueTree& tree, const juce::ValueTree& group, const juce::ValueTree& parameter)
+{
+    juce::ValueTree t = tree.getChildWithProperty (Ids::name, group.getProperty (Ids::name))
+                            .getChildWithProperty (Ids::item, parameter.getProperty (Ids::item));
+    
+    if (t.isValid()) {
+    //
+    const juce::var& v (parameter.getProperty (Ids::value));
+    
+    if (t.getProperty (Ids::value).hasSameTypeAs (v)) {
+        DBG (v.toString());
+    }
+    //
+    }
+}
+
+void setPropertiesFrom (juce::ValueTree& tree, const juce::ValueTree& other)
+{
+    for (const auto& group : other) {
+    for (const auto& parameter : group) {
+        setPropertyFrom (tree, group, parameter);
+    }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void Preferences::read()
 {
     if (file_.existsAsFile() && file_.hasFileExtension (".xml")) {
@@ -238,8 +277,7 @@ void Preferences::read()
         if (xml) {
             juce::ValueTree t (juce::ValueTree::fromXml (*xml));
             if (isValidTree (t)) {
-                DBG ("?");
-                return;
+                setPropertiesFrom (tree_, t); return;
             }
         }
     }
