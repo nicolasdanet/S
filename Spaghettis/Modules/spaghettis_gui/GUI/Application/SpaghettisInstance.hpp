@@ -28,7 +28,6 @@ class SpaghettisInstance {
 public:
     explicit SpaghettisInstance() :
         lookAndFeel_ (std::make_unique<LookAndFeel>()),
-        preferences_ (std::make_unique<Preferences>()),
         commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
         menu_ (std::make_unique<MenuModel> (commandManager_.get())),
         core_ (std::make_unique<Wrapper>()),
@@ -39,14 +38,20 @@ public:
         const juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
 
         #if JUCE_MAC
-        const juce::File file = home.getChildFile ("Library/Application Support/Spaghettis/properties.xml");
+        const juce::File file = home.getChildFile ("Library/Application Support/Spaghettis");
         #endif
         
         #if JUCE_LINUX
-        const juce::File file = home.getChildFile (".config/spaghettis/properties.xml");
+        const juce::File file = home.getChildFile (".config/spaghettis");
         #endif
         
-        properties_ = std::make_unique<juce::PropertiesFile> (file, juce::PropertiesFile::Options());
+        const juce::File properties  = file.getChildFile ("properties.xml");
+        const juce::File preferences = file.getChildFile ("preferences.xml");
+        
+        properties_  = std::make_unique<juce::PropertiesFile> (properties, juce::PropertiesFile::Options());
+        preferences_ = std::make_unique<Preferences> (preferences);
+        
+        preferences_->read();
         
         loadRecentFiles();  /* MUST be at end. */
     }
@@ -252,7 +257,6 @@ public:
 
 private:
     const std::unique_ptr<LookAndFeel> lookAndFeel_;
-    const std::unique_ptr<Preferences> preferences_;
     const std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
     const std::unique_ptr<MenuModel> menu_;
     const std::unique_ptr<Wrapper> core_;
@@ -268,6 +272,7 @@ private:
     std::unique_ptr<PreferencesWindow> preferencesWindow_;
     std::unique_ptr<SearchPathsWindow> searchPathsWindow_;
     std::unique_ptr<juce::PropertiesFile> properties_;
+    std::unique_ptr<Preferences> preferences_;
     std::unique_ptr<juce::FileChooser> fileChooser_;
 
 private:

@@ -229,6 +229,33 @@ juce::ValueTree Preferences::getDefault()
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Preferences::read()
+{
+    if (file_.existsAsFile() && file_.hasFileExtension (".xml")) {
+        std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file_));
+        if (xml) {
+            juce::ValueTree t (juce::ValueTree::fromXml (*xml));
+            if (isValidTree (t)) {
+                DBG ("?");
+                return;
+            }
+        }
+    }
+    
+    write();
+}
+
+void Preferences::write()
+{
+    std::unique_ptr<juce::XmlElement> xml (tree_.createXml());
+    
+    if (xml) { xml->writeTo (file_); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 } // namespace spaghettis
 

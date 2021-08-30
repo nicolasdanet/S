@@ -24,7 +24,7 @@ class Preferences : private juce::ValueTree::Listener {
 // MARK: -
 
 public:
-    explicit Preferences() : tree_ (Preferences::getDefault())
+    explicit Preferences (const juce::File& file) : file_ (file), tree_ (Preferences::getDefault())
     {
         tree_.addListener (this);
     }
@@ -36,8 +36,16 @@ public:
 // MARK: -
 
 public:
+    void read();
+    void write();
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override;
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -53,6 +61,7 @@ private:
     static juce::ValueTree getDefault();
 
 private:
+    juce::File file_;
     juce::ValueTree tree_;
     
 private:
