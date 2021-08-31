@@ -33,7 +33,14 @@ public:
 // MARK: -
 
 public:
-    juce::var applied (const juce::var& v) const
+    juce::PropertyComponent* createPropertyComponent() const;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::var constrained (const juce::var& v) const
     {
         juce::var t (v);
         

@@ -12,6 +12,26 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::PropertyComponent* Parameters::Base::createPropertyComponent() const
+{
+    if (type_ == "boolean")      { return new Parameters::Boolean (p_); }
+    if (type_ == "color")        { return new Parameters::Colour (p_);  }
+    else if (type_ == "integer") { return new Parameters::Integer (p_, *this); }
+    else if (type_ == "float")   {
+        if (hasRange()) {
+            return new Parameters::Slider (p_, *this);
+        } else {
+            return new Parameters::Float (p_, *this);
+        }
+    } else {
+        return new Parameters::Text (p_);
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -19,22 +39,7 @@ namespace {
 
 juce::PropertyComponent* buildConcertinaPanelParametersGet (juce::ValueTree parameter)
 {
-    juce::String type = parameter.getProperty (Ids::type).toString();
-
-    const Parameters::Base b (parameter);
-    
-    if (type == "boolean")      { return new Parameters::Boolean (parameter); }
-    if (type == "color")        { return new Parameters::Colour (parameter);  }
-    else if (type == "integer") { return new Parameters::Integer (parameter, b); }
-    else if (type == "float")   {
-        if (b.hasRange()) {
-            return new Parameters::Slider (parameter, b);
-        } else {
-            return new Parameters::Float (parameter, b);
-        }
-    } else {
-        return new Parameters::Text (parameter);
-    }
+    return Parameters::Base (parameter).createPropertyComponent();
 }
 
 void buildConcertinaPanelParameters (juce::ValueTree parameter, juce::Array<juce::PropertyComponent*>& c)
@@ -246,7 +251,7 @@ void setPropertyFrom (juce::ValueTree& tree, const juce::ValueTree& group, const
     const juce::var& v (parameter.getProperty (Ids::value));
     
     if (t.getProperty (Ids::value).hasSameTypeAs (v)) {
-        t.setProperty (Ids::value, Parameters::Base (t).applied (v), nullptr);
+        t.setProperty (Ids::value, Parameters::Base (t).constrained (v), nullptr);
     }
     //
     }
