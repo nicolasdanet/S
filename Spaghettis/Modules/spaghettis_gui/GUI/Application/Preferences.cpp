@@ -232,10 +232,13 @@ void setPropertyFrom (juce::ValueTree& tree, const juce::ValueTree& group, const
     
     if (t.isValid()) {
     //
-    const juce::var& v (parameter.getProperty (Ids::value));
+    const juce::var& newValue (parameter.getProperty (Ids::value));
+    const juce::var& oldValue (t.getProperty (Ids::value));
     
-    if (t.getProperty (Ids::value).hasSameTypeAs (v)) {
-        t.setProperty (Ids::value, Parameters::Base (t).constrained (v), nullptr);
+    if (oldValue.hasSameTypeAs (newValue)) {
+    if (oldValue.equals (newValue) == false) {
+        t.setProperty (Ids::value, Parameters::Base (t).constrained (newValue), nullptr);
+    }
     }
     //
     }
