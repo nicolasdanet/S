@@ -245,9 +245,7 @@ void setPropertyFrom (juce::ValueTree& tree, const juce::ValueTree& group, const
     //
     const juce::var& v (parameter.getProperty (Ids::value));
     
-    if (t.getProperty (Ids::value).hasSameTypeAs (v)) {
-        DBG (v.toString());
-    }
+    if (t.getProperty (Ids::value).hasSameTypeAs (v)) { t.setProperty (Ids::value, v, nullptr); }
     //
     }
 }
