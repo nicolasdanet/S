@@ -122,6 +122,10 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::I
     DBG (key + " / " + value);
     //
     }
+    
+    // DBG (juce::String (isReading_ ? "1" : "0"));
+    
+    // triggerAsyncUpdate();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -262,7 +266,9 @@ void Preferences::read()
         if (xml) {
             juce::ValueTree t (juce::ValueTree::fromXml (*xml));
             if (isValidTree (t)) {
-                setPropertiesFrom (tree_, t); return;
+                juce::ScopedValueSetter<bool> (isReading_, true, false);
+                setPropertiesFrom (tree_, t);
+                return;
             }
         }
     }

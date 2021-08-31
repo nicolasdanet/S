@@ -17,20 +17,34 @@ class PreferencesComponent;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Preferences : private juce::ValueTree::Listener {
+class Preferences : private juce::ValueTree::Listener,
+                    private juce::AsyncUpdater {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Preferences (const juce::File& file) : file_ (file), tree_ (Preferences::getDefault())
+    explicit Preferences (const juce::File& file) :
+        file_ (file),
+        tree_ (Preferences::getDefault()),
+        isReading_ (false)
     {
         tree_.addListener (this);
     }
     
     ~Preferences() = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void handleAsyncUpdate() override
+    {
+        // write();
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -63,6 +77,7 @@ private:
 private:
     juce::File file_;
     juce::ValueTree tree_;
+    bool isReading_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Preferences)
