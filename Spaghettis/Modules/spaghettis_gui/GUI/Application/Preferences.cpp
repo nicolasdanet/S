@@ -12,26 +12,6 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::PropertyComponent* Parameters::Base::createPropertyComponent() const
-{
-    if (type_ == "boolean")      { return new Parameters::Boolean (p_); }
-    if (type_ == "color")        { return new Parameters::Colour (p_);  }
-    else if (type_ == "integer") { return new Parameters::Integer (p_, *this); }
-    else if (type_ == "float")   {
-        if (hasRange()) {
-            return new Parameters::Slider (p_, *this);
-        } else {
-            return new Parameters::Float (p_, *this);
-        }
-    } else {
-        return new Parameters::Text (p_);
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
