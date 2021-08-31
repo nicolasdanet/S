@@ -21,16 +21,16 @@ juce::PropertyComponent* buildConcertinaPanelParametersGet (juce::ValueTree para
 {
     juce::String type = parameter.getProperty (Ids::type).toString();
 
-    const Parameters::Range range (parameter);
+    const Parameters::Constraint constraint (parameter);
     
     if (type == "boolean")      { return new Parameters::Boolean (parameter); }
     if (type == "color")        { return new Parameters::Colour (parameter);  }
-    else if (type == "integer") { return new Parameters::Integer (parameter, range); }
+    else if (type == "integer") { return new Parameters::Integer (parameter, constraint); }
     else if (type == "float")   {
-        if (range.isSet()) {
-            return new Parameters::Slider (parameter, range);
+        if (constraint.hasRange()) {
+            return new Parameters::Slider (parameter, constraint);
         } else {
-            return new Parameters::Float (parameter, range);
+            return new Parameters::Float (parameter, constraint);
         }
     } else {
         return new Parameters::Text (parameter);
@@ -246,7 +246,7 @@ void setPropertyFrom (juce::ValueTree& tree, const juce::ValueTree& group, const
     const juce::var& v (parameter.getProperty (Ids::value));
     
     if (t.getProperty (Ids::value).hasSameTypeAs (v)) {
-        t.setProperty (Ids::value, Parameters::Range (t).clamped (v), nullptr);
+        t.setProperty (Ids::value, Parameters::Constraint (t).applied (v), nullptr);
     }
     //
     }

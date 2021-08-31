@@ -24,13 +24,13 @@ template <class T> class Number : public juce::TextPropertyComponent {
 // MARK: -
 
 public:
-    explicit Number (juce::ValueTree p, const Range& range) :
+    explicit Number (juce::ValueTree p, const Constraint& constraint) :
         juce::TextPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
             p.getProperty (Ids::text).toString(),
             32,
             false),
         v_(),
-        range_ (range)
+        range_ (constraint)
     {
     }
 
@@ -109,7 +109,7 @@ class Slider : public juce::SliderPropertyComponent {
 // MARK: -
 
 public:
-    explicit Slider (juce::ValueTree p, const Range& range) :
+    explicit Slider (juce::ValueTree p, const Constraint& range) :
         SliderPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
             p.getProperty (Ids::text).toString(),
             range.getMinimumAsDouble(),

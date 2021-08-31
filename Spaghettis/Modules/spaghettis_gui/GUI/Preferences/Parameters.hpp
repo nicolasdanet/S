@@ -17,21 +17,21 @@ namespace Parameters {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Range {
+class Constraint {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Range (const juce::ValueTree& p) : p_ (p) { }
+    explicit Constraint (const juce::ValueTree& p) : p_ (p) { }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    juce::var clamped (const juce::var& v) const
+    juce::var applied (const juce::var& v) const
     {
         juce::var t (v);
         
@@ -43,7 +43,7 @@ public:
 // MARK: -
 
 public:
-    bool isSet() const
+    bool hasRange() const
     {
         return (p_.hasProperty (Ids::minimum) && p_.hasProperty (Ids::maximum));
     }
