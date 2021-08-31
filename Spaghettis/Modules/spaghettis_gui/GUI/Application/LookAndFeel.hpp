@@ -253,6 +253,11 @@ public:
     {
         return colour.toDisplayString (true);
     }
+    
+    static juce::Colour getColorFromString (const juce::String& s)
+    {
+        return juce::Colour::fromString (s.length() == 8 ? s : "ff000000");
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
