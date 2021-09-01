@@ -30,14 +30,17 @@ juce::PropertyComponent* Parameters::Base::createPropertyComponent() const
 
 juce::var Parameters::Base::constrained (const juce::var& v) const
 {
-    if (type_ == "integer" && hasRange()) {
+    if (type_ == "boolean") {
+        bool b = static_cast<bool> (v);
+        return juce::var (b);
+    } else if (type_ == "color") {
+        return juce::var (LookAndFeel::getColorFromString (v.toString()).toString());
+    } else if (type_ == "integer" && hasRange()) {
         int i = juce::Range<int> (*this).clipValue (static_cast<int> (v));
         return juce::var (juce::String (i));
     } else if (type_ == "float" && hasRange()) {
         double f = juce::Range<double> (*this).clipValue (static_cast<double> (v));
         return juce::var (juce::String (f));
-    } else if (type_ == "color") {
-        return juce::var (LookAndFeel::getColorFromString (v.toString()).toString());
     }
     
     return juce::var (v);
