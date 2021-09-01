@@ -123,9 +123,7 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::I
     //
     }
     
-    // DBG (juce::String (isReading_ ? "1" : "0"));
-    
-    // triggerAsyncUpdate();
+    if (!isReading_ ) { startTimer (300); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -235,10 +233,8 @@ void setPropertyFrom (juce::ValueTree& tree, const juce::ValueTree& group, const
     const juce::var& newValue (parameter.getProperty (Ids::value));
     const juce::var& oldValue (t.getProperty (Ids::value));
     
-    if (oldValue.hasSameTypeAs (newValue)) {
-    if (oldValue.equals (newValue) == false) {
+    if (oldValue.hasSameTypeAs (newValue) && !oldValue.equals (newValue)) {
         t.setProperty (Ids::value, Parameters::Base (t).constrained (newValue), nullptr);
-    }
     }
     //
     }
