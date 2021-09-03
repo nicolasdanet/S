@@ -82,9 +82,11 @@ static void initialize (juce::LookAndFeel* lf)
     const juce::Colour green                    = juce::Colour (0xff859900);
 
     #if JUCE_LINUX
+    const juce::Colour backgroundDarker         = background.darker (0.75);
     const juce::Colour backgroundDark           = background.darker (0.50);
     const juce::Colour orangeDark               = orange;
     #else
+    const juce::Colour backgroundDarker         = background.darker (0.50);
     const juce::Colour backgroundDark           = background.darker (0.25);
     const juce::Colour orangeDark               = orange.darker (0.25);
     #endif
@@ -138,7 +140,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (preferencesParameterBackground,                      background);
     lf->setColour (preferencesParameterText,                            base1);
     lf->setColour (preferencesSliderBackground,                         backgroundAlternate);
-    lf->setColour (preferencesSliderTrack,                              background.darker (0.5));
+    lf->setColour (preferencesSliderTrack,                              backgroundDarker);
     lf->setColour (preferencesColourBackground,                         backgroundAlternate);
     lf->setColour (preferencesColourText,                               base1);
     lf->setColour (preferencesBoolean,                                  base1);
@@ -175,7 +177,7 @@ static void initialize (juce::LookAndFeel* lf)
     
     /* Colour selector sliders. */
     
-    lf->setColour (juce::Slider::backgroundColourId,                    background.darker (0.5));
+    lf->setColour (juce::Slider::backgroundColourId,                    backgroundDarker);
     lf->setColour (juce::Slider::trackColourId,                         background);
     lf->setColour (juce::Slider::thumbColourId,                         juce::Colours::grey);
 }
