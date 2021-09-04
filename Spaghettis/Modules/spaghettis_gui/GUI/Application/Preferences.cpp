@@ -123,7 +123,7 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::I
     //
     }
     
-    if (!isReading_ ) { startTimer (300); }
+    if (!isReading_) { startTimer (300); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
