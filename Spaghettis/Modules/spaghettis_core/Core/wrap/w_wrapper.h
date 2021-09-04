@@ -16,7 +16,7 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-void wrapper_send (const std::function<void()>& f);
+void wrapper_send (const Perform& f);
 
 #endif
 

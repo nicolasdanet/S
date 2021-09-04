@@ -17,7 +17,7 @@
 
 extern Wrapper *main_wrapper;
 
-void wrapper_send (const std::function<void()>& f)
+void wrapper_send (const Perform& f)
 {
     main_wrapper->addOutput (f);
 }

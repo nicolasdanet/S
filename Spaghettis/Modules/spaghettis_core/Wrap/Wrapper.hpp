@@ -66,12 +66,12 @@ public:
 // MARK: -
 
 public:
-    void addOutput (const std::function<void()>& f)
+    void addOutput (const Perform& f)
     {
         queues_.addOutput (f);
     }
     
-    void addInput (const std::function<void()>& f)
+    void addInput (const Perform& f)
     {
         queues_.addInput (f);
     }
@@ -127,7 +127,7 @@ private:
     Logger *logger_;
     Post post_;
     juce::StringArray commandLine_;
-    MessageQueues queues_;
+    Queues queues_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Wrapper)

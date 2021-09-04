@@ -10,25 +10,25 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+using Perform = std::function<void()>;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class MessageQueues : private juce::AsyncUpdater {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-using FunctorsContainer = std::vector<std::function<void()>>;
+class Queues : private juce::AsyncUpdater {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit MessageQueues()
+    explicit Queues()
     {
     }
     
-    ~MessageQueues() override
+    ~Queues() override
     {
         jassert (inputs_.empty());
         jassert (outputs_.empty());
@@ -39,12 +39,12 @@ public:
 // MARK: -
 
 public:
-    void addInput (const std::function<void()>& f)
+    void addInput (const Perform& f)
     {
         add (inputs_, lockInputs_, f);
     }
 
-    void addOutput (const std::function<void()>& f)
+    void addOutput (const Perform& f)
     {
         add (outputs_, lockOutputs_, f); triggerAsyncUpdate();
     }
@@ -81,9 +81,9 @@ private:
 // MARK: -
 
 private:
-    void poll (FunctorsContainer& c, juce::CriticalSection& lock, bool fake)
+    void poll (std::vector<Perform>& c, juce::CriticalSection& lock, bool fake)
     {
-        FunctorsContainer scoped;
+        std::vector<Perform> scoped;
         
         {
             const juce::ScopedLock l (lock); scoped.swap (c);
@@ -92,7 +92,7 @@ private:
         if (!fake) { for (auto f : scoped) { f(); } }
     }
     
-    void add (FunctorsContainer& c, juce::CriticalSection& lock, std::function<void()> f)
+    void add (std::vector<Perform>& c, juce::CriticalSection& lock, Perform f)
     {
         const juce::ScopedLock l (lock); c.push_back (std::move (f));
     }
@@ -102,15 +102,15 @@ private:
 // MARK: -
 
 private:
-    FunctorsContainer inputs_;
+    std::vector<Perform> inputs_;
     juce::CriticalSection lockInputs_;
 
 private:
-    FunctorsContainer outputs_;
+    std::vector<Perform> outputs_;
     juce::CriticalSection lockOutputs_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MessageQueues)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Queues)
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

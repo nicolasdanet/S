@@ -20,11 +20,6 @@ class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the f
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-using MessagesContainer = std::deque<Logger::MessagesElement>;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
@@ -196,7 +191,7 @@ private:
         return Spaghettis()->getColour (c);
     }
 
-    static void removeMessagesIfRequired (MessagesContainer& messages)
+    static void removeMessagesIfRequired (std::deque<Logger::MessagesElement>& messages)
     {
         const int maximum_ = 2048;
         const int removed_ = 64;
@@ -236,8 +231,8 @@ private:
     
 private:
     juce::ListBox listBox_;
-    MessagesContainer messages_;
-    MessagesContainer history_;
+    std::deque<Logger::MessagesElement> messages_;
+    std::deque<Logger::MessagesElement> history_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)

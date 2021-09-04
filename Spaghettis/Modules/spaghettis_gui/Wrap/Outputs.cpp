@@ -11,12 +11,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::function<void()> Outputs::reportDsp (bool state)
+Perform Outputs::reportDsp (bool state)
 {
     return [state]() { Spaghettis()->setDspState (state); };
 }
 
-std::function<void()> Outputs::patchOpened (juce::File file)
+Perform Outputs::patchOpened (juce::File file)
 {
     return [f = std::move (file)]() { Spaghettis()->appendRecentFile (f); };
 }

@@ -24,7 +24,6 @@ class Icons {
 
 using DrawablePointer   = std::unique_ptr<juce::Drawable>;
 using DrawableTuple     = std::tuple<juce::String, DrawablePointer, DrawablePointer, bool, int, bool>;
-using DrawableContainer = std::vector<DrawableTuple>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -144,7 +143,7 @@ private:
         int i = itemId - 1;
         
         jassert (i >= 0);
-        jassert (static_cast<DrawableContainer::size_type> (i) < drawables_.size());
+        jassert (static_cast<std::vector<DrawableTuple>::size_type> (i) < drawables_.size());
         jassert (std::get<ICONS_OFF> (drawables_[i]) != nullptr);
         jassert (std::get<ICONS_ON> (drawables_[i]) != nullptr);
         
@@ -172,7 +171,7 @@ private:
     void addIconProceed (const juce::String&, const char*, const char*, bool, int, bool);
     
 private:
-    DrawableContainer drawables_;
+    std::vector<DrawableTuple> drawables_;
 };
  
 // -----------------------------------------------------------------------------------------------------------

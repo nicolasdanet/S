@@ -86,7 +86,7 @@ public:
 // MARK: -
 
 public:
-    void handle (const std::function<void()>& f)
+    void handle (const Perform& f)
     {
         core_->addInput (f);
     }
