@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define SCHEDULER_INPUTS    20                      /* Roughly 20ms period. */
+#define SCHEDULER_INPUTS    19                      /* Roughly 20ms period. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -147,7 +147,7 @@ static void scheduler_mainLoop (void)
     const double realStart       = clock_getRealTimeInSeconds();
     const t_systime logicalStart = scheduler_getLogicalTime();
     
-    uint64_t pollInputsCounter = 0;
+    int pollInputsCounter = 0;
     
     while (!PD_ATOMIC_INT32_READ (&scheduler_quit)) {
     //
@@ -157,7 +157,7 @@ static void scheduler_mainLoop (void)
         scheduler_tick();
         midi_poll();
         monitor_nonBlocking();
-        if (++pollInputsCounter % SCHEDULER_INPUTS == 0) { wrapper_poll(); }
+        if (++pollInputsCounter > SCHEDULER_INPUTS) { pollInputsCounter = 0; wrapper_poll(); }
     }
         
     if (!PD_ATOMIC_INT32_READ (&scheduler_quit)) { scheduler_clean(); }
