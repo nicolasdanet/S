@@ -49,7 +49,6 @@ typedef struct _pdinstance {
     int             pd_hasPending;
     int             pd_hasGrid;
     int             pd_gridSize;
-    int             pd_fontSize;
     t_int32Atomic   pd_chainRetain;
     t_pointerAtomic pd_chain;
     t_chain         *pd_build;
@@ -250,13 +249,6 @@ PD_LOCAL void       instance_snapSetGrid            (int n);
 PD_LOCAL int        instance_snapGetGrid            (void);
 
 PD_LOCAL int        instance_snapGetSnapped         (int n);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_LOCAL int        instance_fontGetDefaultSize     (void);
-PD_FORCE void       instance_fontSetDefaultSize     (int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

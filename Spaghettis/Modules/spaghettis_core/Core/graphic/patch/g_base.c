@@ -72,11 +72,6 @@ PD_LOCAL t_rectangle *glist_getWindow (t_glist *g)
     return &g->gl_window;
 }
 
-PD_LOCAL int glist_getFontSize (t_glist *g)
-{
-    return g->gl_fontSize;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -114,11 +109,6 @@ PD_LOCAL void glist_setDirty (t_glist *glist, int n)
 PD_LOCAL void glist_setFrozen (t_glist *glist, int n)
 {
     glist_getTop (glist)->gl_isFrozen = (n != 0);
-}
-
-PD_LOCAL void glist_setFontSize (t_glist *g, int n)
-{
-    if (n > 0) { g->gl_fontSize = n; }
 }
 
 PD_LOCAL void glist_setWindow (t_glist *glist, t_rectangle *r)

@@ -361,7 +361,6 @@
 		37CD716E1D9A9C5400A61BD3 /* x_symbol.c in Sources */ = {isa = PBXBuildFile; fileRef = 37CD716D1D9A9C5400A61BD3 /* x_symbol.c */; };
 		37CD71A31D9A9D5100A61BD3 /* x_float.c in Sources */ = {isa = PBXBuildFile; fileRef = 37CD71A11D9A9D5100A61BD3 /* x_float.c */; };
 		37CD71A41D9A9D5100A61BD3 /* x_int.c in Sources */ = {isa = PBXBuildFile; fileRef = 37CD71A21D9A9D5100A61BD3 /* x_int.c */; };
-		37D287111C54F1D70041C5C2 /* m_font.c in Sources */ = {isa = PBXBuildFile; fileRef = 37D287101C54F1D70041C5C2 /* m_font.c */; };
 		37D4D9AC1E3C7B33002CE930 /* s_leak.c in Sources */ = {isa = PBXBuildFile; fileRef = 37D4D9AB1E3C7B33002CE930 /* s_leak.c */; };
 		37D5E3421D743889004CB497 /* m_error.c in Sources */ = {isa = PBXBuildFile; fileRef = 37D5E3411D743889004CB497 /* m_error.c */; };
 		37D724771D92768600408D24 /* x_pipe.c in Sources */ = {isa = PBXBuildFile; fileRef = 37D724761D92768600408D24 /* x_pipe.c */; };
@@ -847,7 +846,6 @@
 		37CD716D1D9A9C5400A61BD3 /* x_symbol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_symbol.c; sourceTree = "<group>"; };
 		37CD71A11D9A9D5100A61BD3 /* x_float.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_float.c; sourceTree = "<group>"; };
 		37CD71A21D9A9D5100A61BD3 /* x_int.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_int.c; sourceTree = "<group>"; };
-		37D287101C54F1D70041C5C2 /* m_font.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_font.c; sourceTree = "<group>"; };
 		37D4D9AB1E3C7B33002CE930 /* s_leak.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_leak.c; sourceTree = "<group>"; };
 		37D5E3411D743889004CB497 /* m_error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_error.c; sourceTree = "<group>"; };
 		37D5E4271D746170004CB497 /* m_error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_error.h; sourceTree = "<group>"; };
@@ -1096,7 +1094,6 @@
 				172E0EC02483A7D000D0E711 /* m_polling.c */,
 				17B168F722672256009EDB39 /* m_pending.c */,
 				17F6BD3B1F110686001E602C /* m_snap.c */,
-				37D287101C54F1D70041C5C2 /* m_font.c */,
 				37F182091C70DBF8003D1A3A /* m_instance.c */,
 			);
 			path = instance;
@@ -1995,7 +1992,6 @@
 				17C15CEA1F8E4EF8000695B7 /* x_arguments.c in Sources */,
 				378972691C4F716800263434 /* x_text.c in Sources */,
 				37E0BC371C53E0B700114412 /* m_pathlist.c in Sources */,
-				37D287111C54F1D70041C5C2 /* m_font.c in Sources */,
 				37C76DA51C5CF20D00AE4CBF /* s_handlers.c in Sources */,
 				177303D323361F0D00755F7C /* x_sysexin.c in Sources */,
 				172E0EC52483E72000D0E711 /* m_load.c in Sources */,

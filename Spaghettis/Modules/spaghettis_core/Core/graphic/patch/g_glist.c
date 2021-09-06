@@ -45,12 +45,10 @@ static t_glist *glist_new (t_glist *owner, t_symbol *name, t_rectangle *window)
     x->gl_sorterObjects = buffer_new();
     x->gl_sorterIndexes = buffer_new();
     
-    glist_setFontSize (x, (owner ? glist_getFontSize (owner) : instance_fontGetDefaultSize()));
-
     if (window) { glist_setWindow (x, window); }
     
     if (glist_isRoot (x)) { x->gl_abstractions = abstractions_new(); instance_rootsAdd (x); }
-        
+
     return x;
 }
 
@@ -72,9 +70,9 @@ PD_LOCAL void glist_free (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_glist *glist_newPatchPop (t_symbol *name, t_rectangle *window, int isOpened, int fontSize)
+PD_LOCAL t_glist *glist_newPatchPop (t_symbol *name, t_rectangle *window, int isOpened)
 {
-    t_glist *x = glist_newPatch (name, window, isOpened, fontSize);
+    t_glist *x = glist_newPatch (name, window, isOpened);
         
     PD_ASSERT (instance_contextGetCurrent() == x);
     
@@ -83,7 +81,7 @@ PD_LOCAL t_glist *glist_newPatchPop (t_symbol *name, t_rectangle *window, int is
     return x;
 }
 
-PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window, int isOpened, int fontSize)
+PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window, int isOpened)
 {
     t_glist *owner = instance_contextGetCurrent();
     
@@ -103,7 +101,6 @@ PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window, int isOpe
     object_setWidth (cast_object (x), 0);
     object_setType (cast_object (x), TYPE_OBJECT);
     
-    glist_setFontSize (x, fontSize);
     glist_setOpened (x, isOpened);
     
     glist_loadBegin (x); instance_stackPush (x);

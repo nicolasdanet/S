@@ -28,7 +28,9 @@ static void glist_serializeHeader (t_glist *glist, t_buffer *b)
     buffer_appendFloat (b,  rectangle_getWidth (glist_getWindow (glist)));
     buffer_appendFloat (b,  rectangle_getHeight (glist_getWindow (glist)));
     
-    if (!glist_isSubpatch (glist)) { buffer_appendFloat (b, glist_getFontSize (glist)); }
+    // -- TODO: Remove dummy font size.
+    
+    if (!glist_isSubpatch (glist)) { buffer_appendFloat (b, 12); }
     else {
     //
     t_symbol *s = glist_getUnexpandedName (glist);

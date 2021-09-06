@@ -199,7 +199,7 @@ PD_FORCE void instance_patchNew (t_symbol *name, t_symbol *directory)
 {
     instance_environmentSetFile (name, directory);
     
-    glist_newPatchPop (&s_, NULL, 1, 0);
+    glist_newPatchPop (&s_, NULL, 1);
     
     instance_environmentResetFile();
 }

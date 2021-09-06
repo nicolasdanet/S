@@ -26,7 +26,6 @@ struct _glist {
     t_buffer        *gl_sorterObjects;
     t_buffer        *gl_sorterIndexes;
     t_rectangle     gl_window;
-    int             gl_fontSize;
     int             gl_undoEnabled;
     int             gl_isDirty;
     int             gl_isFrozen;
@@ -40,8 +39,8 @@ struct _glist {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_glist    *glist_newPatchPop  (t_symbol *name, t_rectangle *window, int isOpened, int fontSize);
-PD_LOCAL t_glist    *glist_newPatch     (t_symbol *name, t_rectangle *window, int isOpened, int fontSize);
+PD_LOCAL t_glist    *glist_newPatchPop  (t_symbol *name, t_rectangle *window, int isOpened);
+PD_LOCAL t_glist    *glist_newPatch     (t_symbol *name, t_rectangle *window, int isOpened);
 
 PD_LOCAL void       glist_free          (t_glist *g);
 
@@ -72,8 +71,6 @@ PD_LOCAL t_undomanager      *glist_getUndoManager       (t_glist *g);
 PD_LOCAL t_abstractions     *glist_getAbstractions      (t_glist *g);
 PD_LOCAL t_rectangle        *glist_getWindow            (t_glist *g);
 
-PD_LOCAL int                glist_getFontSize           (t_glist *g);
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -81,7 +78,6 @@ PD_LOCAL int                glist_getFontSize           (t_glist *g);
 PD_LOCAL void   glist_setName                           (t_glist *g, t_symbol *name);
 PD_LOCAL void   glist_setDirty                          (t_glist *g, int n);
 PD_LOCAL void   glist_setFrozen                         (t_glist *g, int n);
-PD_LOCAL void   glist_setFontSize                       (t_glist *g, int n);
 PD_LOCAL void   glist_setWindow                         (t_glist *g, t_rectangle *r);
 PD_LOCAL void   glist_setOpened                         (t_glist *g, int n);
 
