@@ -29,6 +29,8 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
     core_->start (commandLine);
     
     updateSearchPaths (getSearchPaths(), Inputs::Logged::none);
+    
+    preferences_->read();
 }
     
 void SpaghettisInstance::shutdown()

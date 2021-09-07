@@ -51,8 +51,6 @@ public:
         properties_  = std::make_unique<juce::PropertiesFile> (properties, juce::PropertiesFile::Options());
         preferences_ = std::make_unique<Preferences> (preferences);
         
-        preferences_->read();
-        
         loadRecentFiles();  /* MUST be at end. */
     }
     

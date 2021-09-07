@@ -123,6 +123,8 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::I
     //
     }
     
+    // Spaghettis()->handle (Inputs::setSnapToGrid (true));
+    
     if (!isReading_) { startTimer (300); }
 }
 

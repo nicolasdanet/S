@@ -43,6 +43,16 @@ Perform Inputs::setSearchPaths (juce::StringArray paths)
     return [p = std::move (paths)]() { core::inputs_setSearchPaths (p); };
 }
 
+Perform Inputs::setSnapToGrid (bool isSet)
+{
+    return [isSet]() { core::inputs_setSnap (isSet); };
+}
+
+Perform Inputs::setSnapToGridSize (int size)
+{
+    return [size]() { core::inputs_setSnapSize (size); };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

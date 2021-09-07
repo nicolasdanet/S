@@ -22,6 +22,8 @@ void inputs_openPatch       (const juce::File&);
 void inputs_switchDsp       (void);
 void inputs_rescan          (int logged);
 void inputs_setSearchPaths  (const juce::StringArray&);
+void inputs_setSnap         (bool);
+void inputs_setSnapSize     (int);
 
 #endif
 

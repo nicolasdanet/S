@@ -56,6 +56,16 @@ void inputs_setSearchPaths (const juce::StringArray& paths)
     searchpath_clear(); for (const auto& p : paths) { searchpath_appendRoot (p.toRawUTF8()); }
 }
 
+void inputs_setSnap (bool snapToGrid)
+{
+    instance_snapSet (static_cast<int> (snapToGrid == true));
+}
+
+void inputs_setSnapSize (int gridSize)
+{
+    instance_snapSetGrid (gridSize);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
