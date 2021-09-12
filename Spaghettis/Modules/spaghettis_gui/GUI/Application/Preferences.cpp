@@ -117,15 +117,18 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::I
     if (isValidParameter (tree)) {
     //
     const juce::String key (tree.getProperty (Ids::item).toString());
-    const juce::String value (tree.getProperty (Ids::value).toString());
     
-    DBG (key + " / " + value);
+    DBG (key + " / " + tree.getProperty (Ids::value).toString());
+
+    if (key == "SnapToGrid") {
+        Spaghettis()->handle (Inputs::setSnapToGrid (tree.getProperty (Ids::value)));
+    } else if (key == "GridSize") {
+        Spaghettis()->handle (Inputs::setSnapToGridSize (tree.getProperty (Ids::value)));
+    }
+        
+    if (!isReading_) { startTimer (300); }
     //
     }
-    
-    // Spaghettis()->handle (Inputs::setSnapToGrid (true));
-    
-    if (!isReading_) { startTimer (300); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
