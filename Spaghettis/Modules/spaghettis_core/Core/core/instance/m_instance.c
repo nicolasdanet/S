@@ -21,6 +21,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#define INSTANCE_GRID_DEFAULT   12
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 t_pdinstance *pd_this;          /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
@@ -446,7 +452,10 @@ static t_pdinstance *instance_new()
     x->pd_pool        = buffer_new();
     x->pd_dsp         = dspthread_new();
     x->pd_stop        = clock_new ((void *)x, (t_method)instance_audioCloseTask);
-        
+    
+    x->pd_hasGrid     = 1;
+    x->pd_gridSize    = INSTANCE_GRID_DEFAULT;
+    
     class_addAnything (x->pd_objectMaker, (t_method)instance_factory);
     
     class_addMethod (x->pd_canvasMaker, (t_method)canvas_new,   sym_canvas, A_GIMME, A_NULL);
