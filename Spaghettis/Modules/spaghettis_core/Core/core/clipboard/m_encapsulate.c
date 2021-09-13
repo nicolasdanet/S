@@ -314,7 +314,7 @@ static void encapsulate_addInletsToSnippetCreate (t_glist *glist,
     
     int left = rectangle_getTopLeftX (r);
     int up   = rectangle_getTopLeftY (r);
-    int step = 12 * 4;                          /* ??? */
+    int step = 12 * 4;                          // -- ???
     
     up   -= ENCAPSULATE_INLETS;
     step += ENCAPSULATE_PAD;
@@ -433,7 +433,7 @@ static void encapsulate_addOutletsToSnippetCreate (t_glist *glist,
     
     int left = rectangle_getTopLeftX (r);
     int down = rectangle_getBottomRightY (r);
-    int step = 12 * 4;                          /* ??? */
+    int step = 12 * 4;                          // -- ???
     
     down += ENCAPSULATE_OUTLETS;
     step += ENCAPSULATE_PAD;
