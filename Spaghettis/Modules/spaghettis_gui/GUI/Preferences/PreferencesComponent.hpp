@@ -59,13 +59,11 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
 public:
     bool tryGrabFocus() override
     {
         return tryGrabFocusForComponent (&panel_);
     }
-*/
 
 public:
     void expandPanel (int i)
