@@ -242,10 +242,14 @@ PD_LOCAL void       instance_pendingRelease         (void);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       instance_snapSet                (int n);
-PD_LOCAL int        instance_snapIsSet              (void);
+#if defined ( PD_BUILDING_APPLICATION )
 
+PD_LOCAL void       instance_snapSet                (int n);
 PD_LOCAL void       instance_snapSetGrid            (int n);
+
+#endif
+
+PD_LOCAL int        instance_snapIsSet              (void);
 PD_LOCAL int        instance_snapGetGrid            (void);
 
 PD_LOCAL int        instance_snapGetSnapped         (int n);
