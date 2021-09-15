@@ -50,7 +50,7 @@ static t_error audio_getDevicesList (t_deviceslist *l, int reload)
     //
     deviceslist_init (&cache);
     err = audio_getListsNative (&cache);
-    if (!err) { cacheLoaded = 1; }
+    if (!err) { cacheLoaded = 1; outputs_reportAvailableAudioDevices (&cache); }
     //
     }
     
