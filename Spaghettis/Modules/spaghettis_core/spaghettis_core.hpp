@@ -45,7 +45,12 @@
 
 #include "Glue/Glue.hpp"
 #include "Glue/Unique.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "Wrap/Debug.hpp"
+#include "Wrap/Devices.hpp"
 #include "Wrap/Logger.hpp"
 #include "Wrap/Post.hpp"
 #include "Wrap/Queues.hpp"

@@ -57,7 +57,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Helpers/AudioDevices.hpp"
 #include "GUI/Application/Helpers/CallOutBoxRegister.hpp"
 #include "GUI/Application/Helpers/ColourSelector.hpp"
 

@@ -37,6 +37,10 @@ public:
     AudioDevices()  = default;
     ~AudioDevices() = default;
 
+public:
+    void setAvailableDevicesIn (std::vector<AudioDevice>&&);
+    void setAvailableDevicesOut (std::vector<AudioDevice>&&);
+    
 private:
     std::vector<AudioDevice> availableDevicesIn_;
     std::vector<AudioDevice> availableDevicesOut_;

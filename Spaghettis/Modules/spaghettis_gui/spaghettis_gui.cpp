@@ -26,7 +26,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Helpers/AudioDevices.cpp"
 #include "GUI/Application/Helpers/CallOutBoxRegister.cpp"
 #include "GUI/Application/Helpers/ColourSelector.cpp"
 #include "GUI/Application/Helpers/PropertyHeader.cpp"
