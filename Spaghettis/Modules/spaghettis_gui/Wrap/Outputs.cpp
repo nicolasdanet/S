@@ -21,6 +21,16 @@ Perform Outputs::patchOpened (juce::File file)
     return [f = std::move (file)]() { Spaghettis()->appendRecentFile (f); };
 }
 
+Perform Outputs::reportAvailableAudioDevices (std::vector<AudioDevice> i, std::vector<AudioDevice> o)
+{
+    auto f = [devicesIn = std::move (i), devicesOut = std::move (o)]()
+    {
+        SPAGHETTIS_DEBUG ("?");
+    };
+    
+    return f;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

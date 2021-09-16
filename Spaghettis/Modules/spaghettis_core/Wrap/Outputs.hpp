@@ -18,8 +18,9 @@ struct Outputs {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform reportDsp (bool state);
-static Perform patchOpened (juce::File);
+static Perform reportDsp                    (bool state);
+static Perform patchOpened                  (juce::File);
+static Perform reportAvailableAudioDevices  (std::vector<AudioDevice>, std::vector<AudioDevice>);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

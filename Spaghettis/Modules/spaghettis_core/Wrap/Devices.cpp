@@ -12,16 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void AudioDevices::setAvailableDevicesIn (std::vector<AudioDevice>&& devices)
+void AudioDevices::setAvailableDevices (std::vector<AudioDevice> i, std::vector<AudioDevice> o)
 {
-    availableDevicesIn_ = std::move (devices);
+    availableDevicesIn_  = std::move (i);
+    availableDevicesOut_ = std::move (o);
 }
 
-void AudioDevices::setAvailableDevicesOut (std::vector<AudioDevice>&& devices)
-{
-    availableDevicesOut_ = std::move (devices);
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

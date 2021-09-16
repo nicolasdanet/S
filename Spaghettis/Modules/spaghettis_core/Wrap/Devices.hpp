@@ -10,6 +10,11 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+using AudioDevice = std::pair<juce::String, int>;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 class AudioDevices {
@@ -18,15 +23,10 @@ class AudioDevices {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-using AudioDevice = std::pair<juce::String, int>;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 private:
     enum {
-        AUDIODEVICE_NAME        = 0,
-        AUDIODEVICE_CHANNELS    = 1
+        AUDIODEVICES_NAME       = 0,
+        AUDIODEVICES_CHANNELS   = 1
     };
     
 // -----------------------------------------------------------------------------------------------------------
@@ -38,8 +38,7 @@ public:
     ~AudioDevices() = default;
 
 public:
-    void setAvailableDevicesIn (std::vector<AudioDevice>&&);
-    void setAvailableDevicesOut (std::vector<AudioDevice>&&);
+    void setAvailableDevices (std::vector<AudioDevice>, std::vector<AudioDevice>);
     
 private:
     std::vector<AudioDevice> availableDevicesIn_;
