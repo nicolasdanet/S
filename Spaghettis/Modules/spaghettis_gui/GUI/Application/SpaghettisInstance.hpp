@@ -32,6 +32,7 @@ public:
         menu_ (std::make_unique<MenuModel> (commandManager_.get())),
         core_ (std::make_unique<Wrapper>()),
         boxRegister_ (std::make_unique<CallOutBoxRegister>()),
+        audioDevices_ (std::make_unique<AudioDevices>()),
         currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory)),
         dspIsRunning_ (false)
     {
@@ -239,6 +240,11 @@ public:
         return *boxRegister_;
     }
     
+    AudioDevices& getAudioDevices()
+    {
+        return *audioDevices_;
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -259,6 +265,7 @@ private:
     const std::unique_ptr<MenuModel> menu_;
     const std::unique_ptr<Wrapper> core_;
     const std::unique_ptr<CallOutBoxRegister> boxRegister_;
+    const std::unique_ptr<AudioDevices> audioDevices_;
 
 private:
     juce::File currentOpenDirectory_;

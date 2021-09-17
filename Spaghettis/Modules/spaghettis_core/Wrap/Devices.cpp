@@ -16,6 +16,14 @@ void AudioDevices::setAvailableDevices (std::vector<AudioDevice> i, std::vector<
 {
     availableDevicesIn_  = std::move (i);
     availableDevicesOut_ = std::move (o);
+    
+    for (const auto& d : availableDevicesIn_) {
+        DBG (std::get<AUDIODEVICES_NAME> (d) + " / " + juce::String (std::get<AUDIODEVICES_CHANNELS> (d)));
+    }
+    
+    for (const auto& d : availableDevicesOut_) {
+        DBG (std::get<AUDIODEVICES_NAME> (d) + " / " + juce::String (std::get<AUDIODEVICES_CHANNELS> (d)));
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

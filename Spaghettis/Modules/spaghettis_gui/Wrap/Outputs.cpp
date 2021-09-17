@@ -25,7 +25,7 @@ Perform Outputs::reportAvailableAudioDevices (std::vector<AudioDevice> i, std::v
 {
     auto f = [devicesIn = std::move (i), devicesOut = std::move (o)]()
     {
-        SPAGHETTIS_DEBUG ("?");
+        Spaghettis()->getAudioDevices().setAvailableDevices (devicesIn, devicesOut);
     };
     
     return f;
