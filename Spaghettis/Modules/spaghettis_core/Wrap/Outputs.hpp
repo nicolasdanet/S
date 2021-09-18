@@ -20,7 +20,8 @@ struct Outputs {
 
 static Perform reportDsp                    (bool state);
 static Perform patchOpened                  (juce::File);
-static Perform reportAvailableAudioDevices  (std::vector<AudioDevice>, std::vector<AudioDevice>);
+static Perform reportAvailableAudioDevices  (std::vector<AudioDevice>&&, std::vector<AudioDevice>&&);
+static Perform reportCurrentAudioDevices    (std::vector<AudioDevice>&&, std::vector<AudioDevice>&&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

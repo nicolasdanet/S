@@ -69,9 +69,9 @@ PD_LOCAL void outputs_reportAvailableAudioDevices (t_deviceslist *l)
     wrapper_send (Outputs::reportAvailableAudioDevices (outputs_getAudioIn (l), outputs_getAudioOut (l)));
 }
 
-PD_LOCAL void outputs_reportCurrentAudioDevices (t_deviceslist *)
+PD_LOCAL void outputs_reportCurrentAudioDevices (t_deviceslist *l)
 {
-
+    wrapper_send (Outputs::reportCurrentAudioDevices (outputs_getAudioIn (l), outputs_getAudioOut (l)));
 }
 
 // -----------------------------------------------------------------------------------------------------------
