@@ -78,6 +78,8 @@ PD_LOCAL void audio_setDevices (t_devices *p, int setParameters)
     n = deviceslist_getTotalOfChannelsOut (&audio_devices);
     
     audio_vectorInitialize (devices_getSampleRate (p), m, n);
+    
+    outputs_reportCurrentAudioDevices (&audio_devices);
 }
 
 // -----------------------------------------------------------------------------------------------------------

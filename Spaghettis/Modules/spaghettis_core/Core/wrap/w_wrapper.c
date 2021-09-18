@@ -17,19 +17,19 @@
 
 extern Wrapper *main_wrapper;
 
-void wrapper_send (const Perform& f)
+PD_LOCAL void wrapper_send (const Perform& f)
 {
     main_wrapper->addOutput (f);
 }
 
-void wrapper_poll (void)
+PD_LOCAL void wrapper_poll (void)
 {
     main_wrapper->pollInputs();
 }
 
 #else
 
-void wrapper_poll (void)
+PD_LOCAL void wrapper_poll (void)
 {
 
 }

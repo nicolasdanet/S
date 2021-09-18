@@ -39,10 +39,13 @@ public:
 
 public:
     void setAvailableDevices (std::vector<AudioDevice>, std::vector<AudioDevice>);
+    void setCurrentDevices (std::vector<AudioDevice>, std::vector<AudioDevice>);
     
 private:
     std::vector<AudioDevice> availableDevicesIn_;
     std::vector<AudioDevice> availableDevicesOut_;
+    std::vector<AudioDevice> currentDevicesIn_;
+    std::vector<AudioDevice> currentDevicesOut_;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

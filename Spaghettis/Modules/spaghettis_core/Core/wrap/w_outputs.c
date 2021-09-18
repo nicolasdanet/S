@@ -18,12 +18,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void outputs_reportDsp (int n)
+PD_LOCAL void outputs_reportDsp (int n)
 {
     wrapper_send (Outputs::reportDsp (n ? true : false));
 }
 
-void outputs_patchOpened (t_symbol *name, t_symbol *directory)
+PD_LOCAL void outputs_patchOpened (t_symbol *name, t_symbol *directory)
 {
     jassert (name && directory);
     
@@ -32,25 +32,46 @@ void outputs_patchOpened (t_symbol *name, t_symbol *directory)
     wrapper_send (Outputs::patchOpened (f));
 }
 
-void outputs_reportAvailableAudioDevices (t_deviceslist *l)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL std::vector<AudioDevice> outputs_getAudioIn (t_deviceslist *l)
 {
-    std::vector<AudioDevice> i, o;
-        
+    std::vector<AudioDevice> d;
+    
     for (int j = 0; j < deviceslist_getInSize (l); ++j) {
         t_symbol *t  = deviceslist_getInAtIndex (l, j);
         int channels = deviceslist_getInChannelsAtIndex (l, j);
         PD_ASSERT (t);
-        i.emplace_back (t->s_name, channels);
+        d.emplace_back (t->s_name, channels);
     }
+    
+    return d;
+}
+
+PD_LOCAL std::vector<AudioDevice> outputs_getAudioOut (t_deviceslist *l)
+{
+    std::vector<AudioDevice> d;
     
     for (int j = 0; j < deviceslist_getOutSize (l); ++j) {
         t_symbol *t  = deviceslist_getOutAtIndex (l, j);
         int channels = deviceslist_getOutChannelsAtIndex (l, j);
         PD_ASSERT (t);
-        o.emplace_back (t->s_name, channels);
+        d.emplace_back (t->s_name, channels);
     }
     
-    wrapper_send (Outputs::reportAvailableAudioDevices (i, o));
+    return d;
+}
+
+PD_LOCAL void outputs_reportAvailableAudioDevices (t_deviceslist *l)
+{
+    wrapper_send (Outputs::reportAvailableAudioDevices (outputs_getAudioIn (l), outputs_getAudioOut (l)));
+}
+
+PD_LOCAL void outputs_reportCurrentAudioDevices (t_deviceslist *)
+{
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -60,10 +81,12 @@ void outputs_reportAvailableAudioDevices (t_deviceslist *l)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void outputs_reportDsp                      (int n)                                 { }
 void outputs_patchOpened                    (t_symbol *name, t_symbol *directory)   { }
 void outputs_reportAvailableAudioDevices    (t_deviceslist *l)                      { }
+void outputs_reportCurrentAudioDevices      (t_deviceslist *l)                      { }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

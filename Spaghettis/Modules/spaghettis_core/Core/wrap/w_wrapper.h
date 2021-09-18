@@ -16,7 +16,7 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-void wrapper_send (const Perform& f);
+PD_LOCAL void wrapper_send (const Perform& f);
 
 #endif
 
@@ -24,7 +24,7 @@ void wrapper_send (const Perform& f);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void wrapper_poll (void);
+PD_LOCAL void wrapper_poll (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

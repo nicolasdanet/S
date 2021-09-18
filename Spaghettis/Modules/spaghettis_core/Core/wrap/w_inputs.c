@@ -18,12 +18,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void inputs_ping (void)
+PD_LOCAL void inputs_ping (void)
 {
     post_system (NULL, "?");
 }
 
-void inputs_newPatch (const juce::File& f)
+PD_LOCAL void inputs_newPatch (const juce::File& f)
 {
     if (!f.existsAsFile()) {
         t_symbol *name = gensym (f.getFileName().toRawUTF8());
@@ -32,7 +32,7 @@ void inputs_newPatch (const juce::File& f)
     }
 }
 
-void inputs_openPatch (const juce::File& f)
+PD_LOCAL void inputs_openPatch (const juce::File& f)
 {
     if (f.existsAsFile()) {
         t_symbol *name = gensym (f.getFileName().toRawUTF8());
@@ -41,27 +41,27 @@ void inputs_openPatch (const juce::File& f)
     }
 }
 
-void inputs_switchDsp (void)
+PD_LOCAL void inputs_switchDsp (void)
 {
     dsp_setState (!dsp_getState());
 }
 
-void inputs_rescan (int logged)
+PD_LOCAL void inputs_rescan (int logged)
 {
     searchpath_rescan (logged);
 }
 
-void inputs_setSearchPaths (const juce::StringArray& paths)
+PD_LOCAL void inputs_setSearchPaths (const juce::StringArray& paths)
 {
     searchpath_clear(); for (const auto& p : paths) { searchpath_appendRoot (p.toRawUTF8()); }
 }
 
-void inputs_setSnap (bool snapToGrid)
+PD_LOCAL void inputs_setSnap (bool snapToGrid)
 {
     instance_snapSet (static_cast<int> (snapToGrid == true));
 }
 
-void inputs_setSnapSize (int gridSize)
+PD_LOCAL void inputs_setSnapSize (int gridSize)
 {
     instance_snapSetGrid (gridSize);
 }
