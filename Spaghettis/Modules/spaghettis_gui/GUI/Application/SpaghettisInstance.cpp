@@ -103,7 +103,7 @@ void SpaghettisInstance::closeSearchPathsWindow()
 void SpaghettisInstance::updateSearchPaths (const juce::StringArray& searchpaths, Inputs::Logged type)
 {
     handle (Inputs::setSearchPaths (searchpaths));
-    handle (Inputs::rescan (type));
+    handle (Inputs::rescanSearchPaths (type));
 }
 
 juce::StringArray SpaghettisInstance::getSearchPaths()

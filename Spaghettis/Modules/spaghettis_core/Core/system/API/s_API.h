@@ -66,6 +66,7 @@ PD_LOCAL void       audio_getDevices            (t_devices *p);
 PD_LOCAL void       audio_setDevices            (t_devices *p, int setAlsoParameters);
 
 PD_LOCAL t_error    audio_check                 (t_devices *p);
+PD_LOCAL void       audio_rescanDevices         (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

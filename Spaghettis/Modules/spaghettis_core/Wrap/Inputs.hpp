@@ -31,11 +31,12 @@ enum class Logged {
 static Perform ping();
 static Perform newPatch (juce::File);
 static Perform openPatch (juce::File);
-static Perform rescan (Logged type);
+static Perform rescanSearchPaths (Logged type);
 static Perform switchDsp();
 static Perform setSearchPaths (juce::StringArray);
 static Perform setSnapToGrid (bool);
 static Perform setSnapToGridSize (int);
+static Perform rescanDevices (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -82,24 +82,24 @@ bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& in
 {
     switch (info.commandID) {
     //
-    case Commands::preferences      :   Spaghettis()->openPreferencesWindow();
-                                        return true;
-    case Commands::newPatch         :   Spaghettis()->newPatch();
-                                        return true;
-    case Commands::openPatch        :   Spaghettis()->openPatch();
-                                        return true;
-    case Commands::clearRecentFiles :   Spaghettis()->clearRecentFiles();
-                                        return true;
-    case Commands::paths            :   Spaghettis()->openSearchPathsWindow();
-                                        return true;
-    case Commands::rescan           :   Spaghettis()->handle (Inputs::rescan (Inputs::Logged::base));
-                                        return true;
-    case Commands::rescanLogged     :   Spaghettis()->handle (Inputs::rescan (Inputs::Logged::full));
-                                        return true;
-    case Commands::clearConsole     :   Spaghettis()->clearConsole();
-                                        return true;
-    case Commands::dspSwitch        :   Spaghettis()->handle (Inputs::switchDsp());
-                                        return true;
+    case Commands::preferences      : Spaghettis()->openPreferencesWindow();
+                                      return true;
+    case Commands::newPatch         : Spaghettis()->newPatch();
+                                      return true;
+    case Commands::openPatch        : Spaghettis()->openPatch();
+                                      return true;
+    case Commands::clearRecentFiles : Spaghettis()->clearRecentFiles();
+                                      return true;
+    case Commands::paths            : Spaghettis()->openSearchPathsWindow();
+                                      return true;
+    case Commands::rescan           : Spaghettis()->handle (Inputs::rescanSearchPaths (Inputs::Logged::base));
+                                      return true;
+    case Commands::rescanLogged     : Spaghettis()->handle (Inputs::rescanSearchPaths (Inputs::Logged::full));
+                                      return true;
+    case Commands::clearConsole     : Spaghettis()->clearConsole();
+                                      return true;
+    case Commands::dspSwitch        : Spaghettis()->handle (Inputs::switchDsp());
+                                      return true;
     default : break;
     //
     }

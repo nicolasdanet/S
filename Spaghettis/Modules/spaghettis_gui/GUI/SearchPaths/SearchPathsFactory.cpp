@@ -34,7 +34,7 @@ void SearchPathsFactory::setToolbarButton (IconsButton* button)
     case Icons::sortDown    : button->onClick = [this]() { owner_->sortPaths(); };              break;
     case Icons::sortUp      : button->onClick = [this]() { owner_->sortPaths (true); };         break;
     case Icons::synchronize : button->onClick = []() {
-                                    Spaghettis()->handle (Inputs::rescan (Inputs::Logged::full));
+                                    Spaghettis()->handle (Inputs::rescanSearchPaths (Inputs::Logged::full));
                                 }; break;
     default                 : break;
     //

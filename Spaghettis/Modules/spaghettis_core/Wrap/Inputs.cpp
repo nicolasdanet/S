@@ -26,11 +26,11 @@ Perform Inputs::openPatch (juce::File file)
     return [f = std::move (file)]() { core::inputs_openPatch (f); };
 }
 
-Perform Inputs::rescan (Logged type)
+Perform Inputs::rescanSearchPaths (Logged type)
 {
     const int logged = (type == Logged::base) ? 0 : ((type == Logged::full) ? 1 : -1);
     
-    return [logged]() { core::inputs_rescan (logged); };
+    return [logged]() { core::inputs_rescanSearchPaths (logged); };
 }
 
 Perform Inputs::switchDsp()
@@ -51,6 +51,11 @@ Perform Inputs::setSnapToGrid (bool isSet)
 Perform Inputs::setSnapToGridSize (int size)
 {
     return [size]() { core::inputs_setSnapSize (size); };
+}
+
+Perform Inputs::rescanDevices (void)
+{
+    return []() { core::inputs_rescanDevices(); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

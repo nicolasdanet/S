@@ -46,7 +46,7 @@ PD_LOCAL void inputs_switchDsp (void)
     dsp_setState (!dsp_getState());
 }
 
-PD_LOCAL void inputs_rescan (int logged)
+PD_LOCAL void inputs_rescanSearchPaths (int logged)
 {
     searchpath_rescan (logged);
 }
@@ -64,6 +64,11 @@ PD_LOCAL void inputs_setSnap (bool snapToGrid)
 PD_LOCAL void inputs_setSnapSize (int gridSize)
 {
     instance_snapSetGrid (gridSize);
+}
+
+PD_LOCAL void inputs_rescanDevices (void)
+{
+    audio_rescanDevices();
 }
 
 // -----------------------------------------------------------------------------------------------------------
