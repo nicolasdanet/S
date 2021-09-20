@@ -12,6 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 
 class ConsoleWindow;
+class DevicesWindow;
 class PreferencesWindow;
 class SearchPathsWindow;
 
@@ -64,6 +65,7 @@ public:
         #endif
         
         jassert (consoleWindow_      == nullptr);
+        jassert (devicesWindow_      == nullptr);
         jassert (preferencesWindow_  == nullptr);
         jassert (searchPathsWindow_  == nullptr);
     
@@ -282,6 +284,7 @@ private:
     
 private:
     std::unique_ptr<ConsoleWindow> consoleWindow_;
+    std::unique_ptr<DevicesWindow> devicesWindow_;
     std::unique_ptr<PreferencesWindow> preferencesWindow_;
     std::unique_ptr<SearchPathsWindow> searchPathsWindow_;
     std::unique_ptr<juce::PropertiesFile> properties_;
