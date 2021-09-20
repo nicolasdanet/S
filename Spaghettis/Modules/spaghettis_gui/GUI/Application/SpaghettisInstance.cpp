@@ -86,6 +86,17 @@ void SpaghettisInstance::closePreferencesWindow()
     preferencesWindow_ = nullptr;
 }
 
+void SpaghettisInstance::openDevicesWindow()
+{
+    DBG ("?");
+    // createOrOpenWindow (preferencesWindow_);
+}
+
+void SpaghettisInstance::closeDevicesWindow()
+{
+    // preferencesWindow_ = nullptr;
+}
+
 void SpaghettisInstance::openSearchPathsWindow()
 {
     createOrOpenWindow (searchPathsWindow_);

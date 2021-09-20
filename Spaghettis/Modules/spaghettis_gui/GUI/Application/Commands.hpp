@@ -33,6 +33,7 @@ enum CommandIds : juce::CommandID {
     rescan,
     rescanLogged,
     clearConsole,
+    devices,
     dspSwitch
 };
 

@@ -142,6 +142,14 @@ public:
 // MARK: -
 
 public:
+    void openDevicesWindow();
+    void closeDevicesWindow();
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void openSearchPathsWindow();
     void closeSearchPathsWindow();
     juce::StringArray getSearchPaths();

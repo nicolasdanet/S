@@ -24,6 +24,7 @@ void Commands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::rescan,
             Commands::rescanLogged,
             Commands::clearConsole,
+            Commands::devices,
             Commands::dspSwitch
         };
         
@@ -68,6 +69,9 @@ void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommand
         r.setInfo (NEEDS_TRANS ("Clear Console"),   NEEDS_TRANS ("Clear the console"),          edit, 0);
         r.addDefaultKeypress ('l', juce::ModifierKeys::commandModifier);
         break;
+    case Commands::devices :
+        r.setInfo (NEEDS_TRANS ("Devices..."),      NEEDS_TRANS ("Audio/MIDI devices"),         media, 0);
+        break;
     case Commands::dspSwitch :
         r.setInfo (NEEDS_TRANS ("Run DSP"),         NEEDS_TRANS ("DSP On/Off"),                 media, 0);
         r.addDefaultKeypress ('r', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
@@ -97,6 +101,8 @@ bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& in
     case Commands::rescanLogged     : Spaghettis()->handle (Inputs::rescanSearchPaths (Inputs::Logged::full));
                                       return true;
     case Commands::clearConsole     : Spaghettis()->clearConsole();
+                                      return true;
+    case Commands::devices          : Spaghettis()->openDevicesWindow();
                                       return true;
     case Commands::dspSwitch        : Spaghettis()->handle (Inputs::switchDsp());
                                       return true;
