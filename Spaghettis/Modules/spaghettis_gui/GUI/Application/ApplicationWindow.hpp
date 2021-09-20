@@ -31,6 +31,10 @@ public:
         setResizable (true, true);
     }
 
+    explicit ApplicationWindow (const juce::String& name) : ApplicationWindow (name, name + "Window")
+    {
+    }
+    
     ~ApplicationWindow()
     {
         juce::PropertiesFile& p = Spaghettis()->getProperties();
