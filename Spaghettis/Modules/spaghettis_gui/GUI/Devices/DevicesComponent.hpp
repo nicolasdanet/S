@@ -12,6 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+constexpr int numberOfAudioDevicesAllowed() { return 1; }
+constexpr int numberOfMidiDevicesAllowed()  { return 4; }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class DevicesComponent :    public ApplicationComponent,
                             public juce::ChangeListener {
 
@@ -23,6 +30,9 @@ public:
     explicit DevicesComponent (const juce::String& keyName) : ApplicationComponent (keyName)
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
+        
+        for (auto& box : audioIn_)  { initialize (box); }
+        for (auto& box : audioOut_) { initialize (box); }
         
         setOpaque (true); setSize (400, 500);
         
@@ -46,7 +56,12 @@ public:
     
     void resized() override
     {
-        // panel_.setBounds (getBoundsRemaining());
+        juce::Rectangle<int> area (getBoundsRemaining());
+    
+        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.5);
+    
+        for (auto& box : audioIn_)  { box.setBounds (area.removeFromTop (h)); }
+        for (auto& box : audioOut_) { box.setBounds (area.removeFromTop (h)); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -70,6 +85,20 @@ public:
     }
 */
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void initialize (juce::ComboBox& box)
+    {
+        addAndMakeVisible (box);
+    }
+    
+private:
+    std::array<juce::ComboBox, numberOfAudioDevicesAllowed()> audioIn_;
+    std::array<juce::ComboBox, numberOfAudioDevicesAllowed()> audioOut_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DevicesComponent)
 };
