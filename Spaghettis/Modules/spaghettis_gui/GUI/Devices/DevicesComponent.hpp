@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DevicesComponent : public ApplicationComponent {
+class DevicesComponent :    public ApplicationComponent,
+                            public juce::ChangeListener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -21,11 +22,16 @@ class DevicesComponent : public ApplicationComponent {
 public:
     explicit DevicesComponent (const juce::String& keyName) : ApplicationComponent (keyName)
     {
+        Spaghettis()->getAudioDevices().addChangeListener (this);
+        
         setOpaque (true); setSize (400, 500);
+        
+        Spaghettis()->handle (Inputs::rescanDevices());
     }
     
     ~DevicesComponent() override
     {
+        Spaghettis()->getAudioDevices().removeChangeListener (this);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -46,6 +52,15 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+public:
+    void changeListenerCallback (juce::ChangeBroadcaster*) override
+    {
+        DBG ("?");
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 /*
 public:
