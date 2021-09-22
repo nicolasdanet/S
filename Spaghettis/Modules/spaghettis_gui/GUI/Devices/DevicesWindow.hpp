@@ -22,7 +22,7 @@ public:
     explicit DevicesWindow() : ApplicationWindow ("Devices")
     {
         setContentOwned (new DevicesComponent (getKeyName()), true);
-
+        
         makeVisible();
     }
 

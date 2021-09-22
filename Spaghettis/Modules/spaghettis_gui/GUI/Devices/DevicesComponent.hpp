@@ -31,10 +31,10 @@ public:
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
         
-        for (auto& b : audioIn_)       { initializeBox (b);   }
-        for (auto& b : audioOut_)      { initializeBox (b);   }
-        for (auto& l : audioInLabel_)  { initializeLabel (l); }
-        for (auto& l : audioOutLabel_) { initializeLabel (l); }
+        for (auto& b : audioIn_)       { initializeBox (b); }
+        for (auto& b : audioOut_)      { initializeBox (b); }
+        for (auto& l : audioInLabel_)  { initializeLabel (l, "Audio In");  }
+        for (auto& l : audioOutLabel_) { initializeLabel (l, "Audio Out"); }
         
         setOpaque (true); setSize (400, 500);
         
@@ -58,7 +58,7 @@ public:
     
     void resized() override
     {
-        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.5);
+        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.75);
         const int n = numberOfAudioDevicesAllowed();
         
         juce::Rectangle<int> area (getBoundsRemaining());
@@ -95,23 +95,23 @@ public:
 private:
     void initializeBox (juce::ComboBox& box)
     {
-        box.addItem ("Bijou",   1);
-        box.addItem ("Caillou", 2);
-        box.addItem ("Chou",    3);
-        box.addItem ("Genou",   4);
-        box.addItem ("Hibou",   5);
-        box.addItem ("Joujou",  6);
-        box.addItem ("Pou",     7);
+        box.addItem ("Bijoux",   1);
+        box.addItem ("Cailloux", 2);
+        box.addItem ("Choux",    3);
+        box.addItem ("Genoux",   4);
+        box.addItem ("Hiboux",   5);
+        box.addItem ("Joujoux",  6);
+        box.addItem ("Poux",     7);
 
         addAndMakeVisible (box);
     }
     
-    void initializeLabel (juce::Label& label)
+    void initializeLabel (juce::Label& label, const juce::String& s)
     {
         const juce::Colour text (Spaghettis()->getColour (Colours::devicesParameterText));
         const juce::Colour background (Spaghettis()->getColour (Colours::devicesParameterBackground));
         
-        label.setText ("Toto", juce::dontSendNotification);
+        label.setText (s, juce::dontSendNotification);
         
         label.setColour (juce::Label::textColourId,       text);
         label.setColour (juce::Label::backgroundColourId, background);
@@ -121,7 +121,7 @@ private:
     
     static void dispose (juce::Rectangle<int> t, juce::Label& label, juce::ComboBox& box)
     {
-        const int w = 50; label.setBounds (t.removeFromLeft (w).reduced (1)); box.setBounds (t.reduced (1));
+        const int w = 125; label.setBounds (t.removeFromLeft (w).reduced (1)); box.setBounds (t.reduced (1));
     }
     
 private:
