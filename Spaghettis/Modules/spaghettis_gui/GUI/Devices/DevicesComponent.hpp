@@ -31,8 +31,10 @@ public:
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
         
-        for (auto& box : audioIn_)  { initialize (box); }
-        for (auto& box : audioOut_) { initialize (box); }
+        for (auto& box : audioIn_)          { initializeComboBox (box); }
+        for (auto& box : audioOut_)         { initializeComboBox (box); }
+        for (auto& label : audioInLabel_)   { initializeLabel (label);  }
+        for (auto& label : audioOutLabel_)  { initializeLabel (label);  }
         
         setOpaque (true); setSize (400, 500);
         
@@ -56,13 +58,17 @@ public:
     
     void resized() override
     {
-        juce::Rectangle<int> area (getBoundsRemaining());
-    
         const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.5);
-        const int edge = 1;
         
-        for (auto& box : audioIn_)  { box.setBounds (area.removeFromTop (h).reduced (edge)); }
-        for (auto& box : audioOut_) { box.setBounds (area.removeFromTop (h).reduced (edge)); }
+        juce::Rectangle<int> area (getBoundsRemaining());
+
+        for (int i = 0; i < numberOfAudioDevicesAllowed(); ++i) {
+            dispose (area.removeFromTop (h), audioInLabel_[i], audioIn_[i]);
+        }
+        
+        for (int i = 0; i < numberOfAudioDevicesAllowed(); ++i) {
+            dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]);
+        }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -91,7 +97,7 @@ public:
 // MARK: -
 
 private:
-    void initialize (juce::ComboBox& box)
+    void initializeComboBox (juce::ComboBox& box)
     {
         box.addItem ("Bijou",   1);
         box.addItem ("Caillou", 2);
@@ -104,9 +110,23 @@ private:
         addAndMakeVisible (box);
     }
     
+    void initializeLabel (juce::Label& label)
+    {
+        label.setText ("Toto", juce::dontSendNotification);
+        
+        addAndMakeVisible (label);
+    }
+    
+    static void dispose (juce::Rectangle<int> t, juce::Label& label, juce::ComboBox& box)
+    {
+        const int w = 50; label.setBounds (t.removeFromLeft (w).reduced (1)); box.setBounds (t.reduced (1));
+    }
+    
 private:
     std::array<juce::ComboBox, numberOfAudioDevicesAllowed()> audioIn_;
     std::array<juce::ComboBox, numberOfAudioDevicesAllowed()> audioOut_;
+    std::array<juce::Label, numberOfAudioDevicesAllowed()> audioInLabel_;
+    std::array<juce::Label, numberOfAudioDevicesAllowed()> audioOutLabel_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DevicesComponent)
