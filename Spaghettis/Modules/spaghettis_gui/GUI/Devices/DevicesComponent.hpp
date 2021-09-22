@@ -59,9 +59,10 @@ public:
         juce::Rectangle<int> area (getBoundsRemaining());
     
         const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.5);
-    
-        for (auto& box : audioIn_)  { box.setBounds (area.removeFromTop (h)); }
-        for (auto& box : audioOut_) { box.setBounds (area.removeFromTop (h)); }
+        const int edge = 1;
+        
+        for (auto& box : audioIn_)  { box.setBounds (area.removeFromTop (h).reduced (edge)); }
+        for (auto& box : audioOut_) { box.setBounds (area.removeFromTop (h).reduced (edge)); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -92,6 +93,14 @@ public:
 private:
     void initialize (juce::ComboBox& box)
     {
+        box.addItem ("Bijou",   1);
+        box.addItem ("Caillou", 2);
+        box.addItem ("Chou",    3);
+        box.addItem ("Genou",   4);
+        box.addItem ("Hibou",   5);
+        box.addItem ("Joujou",  6);
+        box.addItem ("Pou",     7);
+
         addAndMakeVisible (box);
     }
     
