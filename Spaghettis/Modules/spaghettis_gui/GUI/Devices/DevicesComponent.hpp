@@ -31,10 +31,10 @@ public:
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
         
-        for (auto& box : audioIn_)          { initializeComboBox (box); }
-        for (auto& box : audioOut_)         { initializeComboBox (box); }
-        for (auto& label : audioInLabel_)   { initializeLabel (label);  }
-        for (auto& label : audioOutLabel_)  { initializeLabel (label);  }
+        for (auto& b : audioIn_)       { initializeBox (b);   }
+        for (auto& b : audioOut_)      { initializeBox (b);   }
+        for (auto& l : audioInLabel_)  { initializeLabel (l); }
+        for (auto& l : audioOutLabel_) { initializeLabel (l); }
         
         setOpaque (true); setSize (400, 500);
         
@@ -59,16 +59,12 @@ public:
     void resized() override
     {
         const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.5);
+        const int n = numberOfAudioDevicesAllowed();
         
         juce::Rectangle<int> area (getBoundsRemaining());
 
-        for (int i = 0; i < numberOfAudioDevicesAllowed(); ++i) {
-            dispose (area.removeFromTop (h), audioInLabel_[i], audioIn_[i]);
-        }
-        
-        for (int i = 0; i < numberOfAudioDevicesAllowed(); ++i) {
-            dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]);
-        }
+        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioInLabel_[i],  audioIn_[i]);  }
+        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -97,7 +93,7 @@ public:
 // MARK: -
 
 private:
-    void initializeComboBox (juce::ComboBox& box)
+    void initializeBox (juce::ComboBox& box)
     {
         box.addItem ("Bijou",   1);
         box.addItem ("Caillou", 2);
