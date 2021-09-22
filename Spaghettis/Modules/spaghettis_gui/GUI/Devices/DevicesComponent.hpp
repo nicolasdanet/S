@@ -108,7 +108,13 @@ private:
     
     void initializeLabel (juce::Label& label)
     {
+        const juce::Colour text (Spaghettis()->getColour (Colours::devicesParameterText));
+        const juce::Colour background (Spaghettis()->getColour (Colours::devicesParameterBackground));
+        
         label.setText ("Toto", juce::dontSendNotification);
+        
+        label.setColour (juce::Label::textColourId,       text);
+        label.setColour (juce::Label::backgroundColourId, background);
         
         addAndMakeVisible (label);
     }

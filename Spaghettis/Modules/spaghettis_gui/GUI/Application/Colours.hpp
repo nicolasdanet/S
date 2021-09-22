@@ -47,6 +47,8 @@ enum ColourIds : int {
     searchpathsBackgroundAlternate,
     searchpathsText,
     searchpathsTextHighlighted,
+    devicesParameterBackground,
+    devicesParameterText,
     tooltipBackground,
     tooltipText,
     callOutBoxBackground,
@@ -130,6 +132,8 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (searchpathsBackgroundAlternate,                      backgroundAlternate);
     lf->setColour (searchpathsText,                                     base1);
     lf->setColour (searchpathsTextHighlighted,                          green);
+    lf->setColour (devicesParameterBackground,                          background);
+    lf->setColour (devicesParameterText,                                base1);
     lf->setColour (tooltipBackground,                                   backgroundDark);
     lf->setColour (tooltipText,                                         juce::Colours::white);
     lf->setColour (callOutBoxBackground,                                backgroundDark);
@@ -171,15 +175,15 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (juce::BooleanPropertyComponent::outlineColourId,     juce::Colours::transparentBlack);
     lf->setColour (juce::BooleanPropertyComponent::backgroundColourId,  backgroundAlternate);
     
-    /* Slider preferences. */
-    
-    lf->setColour (juce::Label::textColourId,                           base1);
-    
     /* Colour selector sliders. */
     
     lf->setColour (juce::Slider::backgroundColourId,                    backgroundDarker);
     lf->setColour (juce::Slider::trackColourId,                         background);
     lf->setColour (juce::Slider::thumbColourId,                         juce::Colours::grey);
+    
+    /* Slider preferences. */
+    
+    lf->setColour (juce::Label::textColourId,                           base1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
