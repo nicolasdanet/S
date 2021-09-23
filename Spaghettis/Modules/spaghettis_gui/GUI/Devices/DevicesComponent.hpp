@@ -58,7 +58,7 @@ public:
     
     void resized() override
     {
-        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.75);
+        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.5);
         const int n = numberOfAudioDevicesAllowed();
         
         juce::Rectangle<int> area (getBoundsRemaining());

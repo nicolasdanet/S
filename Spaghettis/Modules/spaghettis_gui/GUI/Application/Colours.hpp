@@ -133,7 +133,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (searchpathsText,                                     base1);
     lf->setColour (searchpathsTextHighlighted,                          green);
     lf->setColour (devicesParameterBackground,                          background);
-    lf->setColour (devicesParameterText,                                juce::Colours::white);
+    lf->setColour (devicesParameterText,                                base1);
     lf->setColour (tooltipBackground,                                   backgroundDark);
     lf->setColour (tooltipText,                                         juce::Colours::white);
     lf->setColour (callOutBoxBackground,                                backgroundDark);
