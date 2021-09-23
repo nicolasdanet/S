@@ -123,17 +123,6 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    void drawTooltip (juce::Graphics&, const juce::String&, int, int) override;
-        
-    juce::Rectangle<int> getTooltipBounds (const juce::String&,
-        juce::Point<int>,
-        juce::Rectangle<int>) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 private:
     void drawPopupMenuItemSelector (juce::Graphics&, const juce::Rectangle<int>&);
     void drawPopupMenuItemBackground (juce::Graphics& , const juce::Rectangle<int>&);
@@ -141,9 +130,35 @@ private:
     void drawPopupMenuItemSubMenu (juce::Graphics&, juce::Rectangle<int>&);
     void drawPopupMenuItemShortcut (juce::Graphics&, const juce::Rectangle<int>&, const juce::String&);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::Font getComboBoxFont()
+    {
+        return getMenuFont();
+    }
+    
+    juce::Font getComboBoxFont (juce::ComboBox& box) override
+    {
+        return getComboBoxFont();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void drawTooltip (juce::Graphics&, const juce::String&, int, int) override;
+        
+    juce::Rectangle<int> getTooltipBounds (const juce::String&,
+        juce::Point<int>,
+        juce::Rectangle<int>) override;
+
 private:
     juce::TextLayout getTooltipLayout (const juce::String&);
-
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -187,21 +202,6 @@ public:
         return juce::BorderSize<int> { 3, 5, 0, 5 };
         
         #endif
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    juce::Font getComboBoxFont()
-    {
-        return getMenuFont();
-    }
-    
-    juce::Font getComboBoxFont (juce::ComboBox& box) override
-    {
-        return getComboBoxFont();
     }
 
 // -----------------------------------------------------------------------------------------------------------
