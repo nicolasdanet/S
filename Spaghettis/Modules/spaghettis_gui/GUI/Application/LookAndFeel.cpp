@@ -219,6 +219,29 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
     }
 }
 
+void LookAndFeel::drawPopupMenuItemWithOptions (juce::Graphics& g,
+    const juce::Rectangle<int>& area,
+    bool isHighlighted,
+    const juce::PopupMenu::Item& item,
+    const juce::PopupMenu::Options&)
+{
+    const auto colour = item.colour != juce::Colour() ? &item.colour : nullptr;
+    const auto hasSubMenu = item.subMenu != nullptr
+                            && (item.itemID == 0 || item.subMenu->getNumItems() > 0);
+
+    drawPopupMenuItem (g,
+                       area,
+                       item.isSeparator,
+                       item.isEnabled,
+                       isHighlighted,
+                       item.isTicked,
+                       hasSubMenu,
+                       item.text,
+                       item.shortcutKeyDescription,
+                       item.image.get(),
+                       colour);
+}
+        
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

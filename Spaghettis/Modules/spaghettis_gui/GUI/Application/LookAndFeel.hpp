@@ -119,6 +119,12 @@ public:
         const juce::Drawable*,
         const juce::Colour* const) override;
 
+    void drawPopupMenuItemWithOptions (juce::Graphics&,
+        const juce::Rectangle<int>&,
+        bool,
+        const juce::PopupMenu::Item&,
+        const juce::PopupMenu::Options&) override;
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
