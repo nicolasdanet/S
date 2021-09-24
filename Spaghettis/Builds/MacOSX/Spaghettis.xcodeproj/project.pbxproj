@@ -382,7 +382,7 @@
 					"DEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60101",
+					"JUCE_PROJUCER_VERSION=0x60102",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
@@ -417,6 +417,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(SRCROOT)/../../Modules";
+				OTHER_CFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
@@ -444,7 +445,7 @@
 					"NDEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60101",
+					"JUCE_PROJUCER_VERSION=0x60102",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
@@ -480,6 +481,7 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(SRCROOT)/../../Modules";
+				OTHER_CFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
