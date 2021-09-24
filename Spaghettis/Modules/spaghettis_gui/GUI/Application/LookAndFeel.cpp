@@ -223,12 +223,19 @@ void LookAndFeel::drawPopupMenuItemWithOptions (juce::Graphics& g,
     const juce::Rectangle<int>& area,
     bool isHighlighted,
     const juce::PopupMenu::Item& item,
-    const juce::PopupMenu::Options&)
+    const juce::PopupMenu::Options& options)
 {
     const auto colour = item.colour != juce::Colour() ? &item.colour : nullptr;
     const auto hasSubMenu = item.subMenu != nullptr
                             && (item.itemID == 0 || item.subMenu->getNumItems() > 0);
 
+    juce::Component* c = options.getTargetComponent();
+    
+    if (c && dynamic_cast<juce::ComboBox*> (c) != nullptr) { DBG ("ComboBox"); }
+    else {
+        DBG ("MenuBar");
+    }
+    
     drawPopupMenuItem (g,
                        area,
                        item.isSeparator,
