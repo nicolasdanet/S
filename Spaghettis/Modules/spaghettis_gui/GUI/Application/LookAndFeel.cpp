@@ -254,10 +254,9 @@ void LookAndFeel::positionComboBoxText (juce::ComboBox& box, juce::Label& label)
     label.setFont (getComboBoxFont (box));
 }
 
-/*
-void LookAndFeel::drawComboBoxTextWhenNothingSelected (Graphics& g, ComboBox& box, Label& label)
+void LookAndFeel::drawComboBoxTextWhenNothingSelected (juce::Graphics& g, juce::ComboBox& box, juce::Label& label)
 {
-    g.setColour (findColour (ComboBox::textColourId).withMultipliedAlpha (0.5f));
+    g.setColour (findColour (juce::ComboBox::textColourId).withMultipliedAlpha (0.5f));
 
     auto font = label.getLookAndFeel().getLabelFont (label);
 
@@ -266,10 +265,10 @@ void LookAndFeel::drawComboBoxTextWhenNothingSelected (Graphics& g, ComboBox& bo
     auto textArea = getLabelBorderSize (label).subtractedFrom (label.getLocalBounds());
 
     g.drawFittedText (box.getTextWhenNothingSelected(), textArea, label.getJustificationType(),
-                      jmax (1, (int) ((float) textArea.getHeight() / font.getHeight())),
+                      juce::jmax (1, (int) ((float) textArea.getHeight() / font.getHeight())),
                       label.getMinimumHorizontalScale());
 }
-*/
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
