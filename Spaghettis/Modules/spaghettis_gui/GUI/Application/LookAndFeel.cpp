@@ -243,17 +243,23 @@ void LookAndFeel::drawPopupMenuItemWithOptions (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawComboBox (juce::Graphics& g, int width, int height, bool,
-                                   int, int, int, int, juce::ComboBox& box)
+void LookAndFeel::drawComboBox (juce::Graphics& g,
+    int width,
+    int height,
+    bool,
+    int,
+    int,
+    int,
+    int,
+    juce::ComboBox& box)
 {
-    auto cornerSize = box.findParentComponentOfClass<juce::ChoicePropertyComponent>() != nullptr ? 0.0f : 3.0f;
     juce::Rectangle<int> boxBounds (0, 0, width, height);
 
-    g.setColour (box.findColour (juce::ComboBox::backgroundColourId));
-    g.fillRoundedRectangle (boxBounds.toFloat(), cornerSize);
+    g.setColour (findColour (Colours::devicesComboBoxBackground));
+    g.fillRect (boxBounds);
 
-    g.setColour (box.findColour (juce::ComboBox::outlineColourId));
-    g.drawRoundedRectangle (boxBounds.toFloat().reduced (0.5f, 0.5f), cornerSize, 1.0f);
+    // g.setColour (box.findColour (juce::ComboBox::outlineColourId));
+    // g.drawRoundedRectangle (boxBounds.toFloat().reduced (0.5f, 0.5f), cornerSize, 1.0f);
 
     juce::Rectangle<int> arrowZone (width - 30, 0, 20, height);
     juce::Path path;
