@@ -130,10 +130,9 @@ private:
         const bool,
         const bool,
         const bool,
+        const bool,
         const juce::String&,
-        const juce::String&,
-        const juce::Drawable*,
-        const juce::Colour* const);
+        const juce::String&);
         
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

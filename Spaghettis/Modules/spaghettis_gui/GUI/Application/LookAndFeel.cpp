@@ -183,10 +183,9 @@ void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
     const bool isHighlighted,
     const bool isTicked,
     const bool hasSubMenu,
+    const bool isComboBox,
     const juce::String& text,
-    const juce::String& shortcutText,
-    const juce::Drawable*,
-    const juce::Colour* const)
+    const juce::String& shortcutText)
 {
     if (isSeparator) { drawPopupMenuItemSelector (g, area); }
     else {
@@ -222,22 +221,22 @@ void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
 void LookAndFeel::drawPopupMenuItemWithOptions (juce::Graphics& g,
     const juce::Rectangle<int>& area,
     bool  isHighlighted,
-    const juce::PopupMenu::Item& item,
+    const juce::PopupMenu::Item& i,
     const juce::PopupMenu::Options& options)
 {
-    if (dynamic_cast<juce::ComboBox*> (options.getTargetComponent()) != nullptr) { DBG ("ComboBox"); }
+    const bool hasSubMenu = (i.subMenu != nullptr) && (i.itemID == 0 || i.subMenu->getNumItems() > 0);
+    const bool isComboBox = (dynamic_cast<juce::ComboBox*> (options.getTargetComponent()) != nullptr);
 
     drawPopupMenuItemProceed (g,
         area,
-        item.isSeparator,
-        item.isEnabled,
+        i.isSeparator,
+        i.isEnabled,
         isHighlighted,
-        item.isTicked,
-        (item.subMenu != nullptr) && (item.itemID == 0 || item.subMenu->getNumItems() > 0),
-        item.text,
-        item.shortcutKeyDescription,
-        nullptr,
-        nullptr);
+        i.isTicked,
+        hasSubMenu,
+        isComboBox,
+        i.text,
+        i.shortcutKeyDescription);
 }
         
 // -----------------------------------------------------------------------------------------------------------
