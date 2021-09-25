@@ -176,7 +176,7 @@ void LookAndFeel::drawPopupMenuItemShortcut (juce::Graphics& g,
     g.drawText (shortcutText, r, juce::Justification::centredRight, true);
 }
 
-void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
+void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
     const juce::Rectangle<int>& area,
     const bool isSeparator,
     const bool isActive,
@@ -221,32 +221,23 @@ void LookAndFeel::drawPopupMenuItem (juce::Graphics& g,
 
 void LookAndFeel::drawPopupMenuItemWithOptions (juce::Graphics& g,
     const juce::Rectangle<int>& area,
-    bool isHighlighted,
+    bool  isHighlighted,
     const juce::PopupMenu::Item& item,
     const juce::PopupMenu::Options& options)
 {
-    const auto colour = item.colour != juce::Colour() ? &item.colour : nullptr;
-    const auto hasSubMenu = item.subMenu != nullptr
-                            && (item.itemID == 0 || item.subMenu->getNumItems() > 0);
+    if (dynamic_cast<juce::ComboBox*> (options.getTargetComponent()) != nullptr) { DBG ("ComboBox"); }
 
-    juce::Component* c = options.getTargetComponent();
-    
-    if (c && dynamic_cast<juce::ComboBox*> (c) != nullptr) { DBG ("ComboBox"); }
-    else {
-        DBG ("MenuBar");
-    }
-    
-    drawPopupMenuItem (g,
-                       area,
-                       item.isSeparator,
-                       item.isEnabled,
-                       isHighlighted,
-                       item.isTicked,
-                       hasSubMenu,
-                       item.text,
-                       item.shortcutKeyDescription,
-                       item.image.get(),
-                       colour);
+    drawPopupMenuItemProceed (g,
+        area,
+        item.isSeparator,
+        item.isEnabled,
+        isHighlighted,
+        item.isTicked,
+        (item.subMenu != nullptr) && (item.itemID == 0 || item.subMenu->getNumItems() > 0),
+        item.text,
+        item.shortcutKeyDescription,
+        nullptr,
+        nullptr);
 }
         
 // -----------------------------------------------------------------------------------------------------------

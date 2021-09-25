@@ -107,18 +107,6 @@ public:
         int&,
         int&) override;
     
-    void drawPopupMenuItem (juce::Graphics& g,
-        const juce::Rectangle<int>&,
-        const bool,
-        const bool,
-        const bool,
-        const bool,
-        const bool,
-        const juce::String&,
-        const juce::String&,
-        const juce::Drawable*,
-        const juce::Colour* const) override;
-
     void drawPopupMenuItemWithOptions (juce::Graphics&,
         const juce::Rectangle<int>&,
         bool,
@@ -135,7 +123,18 @@ private:
     void drawPopupMenuItemTick (juce::Graphics&, juce::Rectangle<int>);
     void drawPopupMenuItemSubMenu (juce::Graphics&, juce::Rectangle<int>&);
     void drawPopupMenuItemShortcut (juce::Graphics&, const juce::Rectangle<int>&, const juce::String&);
-
+    void drawPopupMenuItemProceed (juce::Graphics&,
+        const juce::Rectangle<int>&,
+        const bool,
+        const bool,
+        const bool,
+        const bool,
+        const bool,
+        const juce::String&,
+        const juce::String&,
+        const juce::Drawable*,
+        const juce::Colour* const);
+        
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
