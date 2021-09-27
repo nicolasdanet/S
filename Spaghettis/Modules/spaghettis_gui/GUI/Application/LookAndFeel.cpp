@@ -253,31 +253,23 @@ void LookAndFeel::drawComboBox (juce::Graphics& g,
     int,
     juce::ComboBox& box)
 {
-    juce::Rectangle<int> boxBounds (0, 0, width, height);
+    juce::Rectangle<int> b (0, 0, width, height);
 
     g.setColour (findColour (Colours::devicesComboBoxBackground));
-    g.fillRect (boxBounds);
-
-    // g.setColour (box.findColour (juce::ComboBox::outlineColourId));
-    // g.drawRoundedRectangle (boxBounds.toFloat().reduced (0.5f, 0.5f), cornerSize, 1.0f);
-
-    juce::Rectangle<int> arrowZone (width - 30, 0, 20, height);
-    juce::Path path;
-    path.startNewSubPath ((float) arrowZone.getX() + 3.0f, (float) arrowZone.getCentreY() - 2.0f);
-    path.lineTo ((float) arrowZone.getCentreX(), (float) arrowZone.getCentreY() + 3.0f);
-    path.lineTo ((float) arrowZone.getRight() - 3.0f, (float) arrowZone.getCentreY() - 2.0f);
-
-    g.setColour (box.findColour (juce::ComboBox::arrowColourId).withAlpha ((box.isEnabled() ? 0.9f : 0.2f)));
-    g.strokePath (path, juce::PathStrokeType (2.0f));
+    g.fillRect (b);
+    g.setColour (findColour (Colours::devicesComboBoxArrow));
+    
+    b.removeFromRight (b.getCentreY());
+    
+    LookAndFeel::drawArrowOpened (g, b.removeFromRight (b.getCentreY()));
 }
 
 void LookAndFeel::positionComboBoxText (juce::ComboBox& box, juce::Label& label)
 {
-    label.setBounds (1, 1,
-                     box.getWidth() - 30,
-                     box.getHeight() - 2);
-
-    label.setFont (getComboBoxFont (box));
+    const juce::Rectangle<int> b (0, 0, box.getWidth(), box.getHeight());
+    
+    label.setBounds (b.withTrimmedRight (b.getCentreY() * 2).reduced (1));
+    label.setFont (getComboBoxFont());
 }
 
 void LookAndFeel::drawComboBoxTextWhenNothingSelected (juce::Graphics& g, juce::ComboBox& box, juce::Label& label)
