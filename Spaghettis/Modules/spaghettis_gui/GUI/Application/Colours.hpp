@@ -50,7 +50,6 @@ enum ColourIds : int {
     devicesParameterBackground,
     devicesParameterText,
     devicesComboBoxBackground,
-    devicesComboBoxText,
     devicesComboBoxArrow,
     tooltipBackground,
     tooltipText,
@@ -138,7 +137,6 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (devicesParameterBackground,                          background);
     lf->setColour (devicesParameterText,                                base1);
     lf->setColour (devicesComboBoxBackground,                           backgroundAlternate);
-    lf->setColour (devicesComboBoxText,                                 base1);
     lf->setColour (devicesComboBoxArrow,                                base1);
     lf->setColour (tooltipBackground,                                   backgroundDark);
     lf->setColour (tooltipText,                                         juce::Colours::white);
@@ -190,6 +188,10 @@ static void initialize (juce::LookAndFeel* lf)
     /* Slider preferences. */
     
     lf->setColour (juce::Label::textColourId,                           base1);
+    
+    /* Devices combo box. */
+    
+    lf->setColour (juce::ComboBox::textColourId,                        base1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
