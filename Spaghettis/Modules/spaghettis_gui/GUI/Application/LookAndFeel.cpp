@@ -272,19 +272,9 @@ void LookAndFeel::positionComboBoxText (juce::ComboBox& box, juce::Label& label)
     label.setFont (getComboBoxFont());
 }
 
-void LookAndFeel::drawComboBoxTextWhenNothingSelected (juce::Graphics& g, juce::ComboBox& box, juce::Label& label)
+void LookAndFeel::drawComboBoxTextWhenNothingSelected (juce::Graphics&, juce::ComboBox&, juce::Label&)
 {
-    g.setColour (findColour (juce::ComboBox::textColourId).withMultipliedAlpha (0.5f));
 
-    auto font = label.getLookAndFeel().getLabelFont (label);
-
-    g.setFont (font);
-
-    auto textArea = getLabelBorderSize (label).subtractedFrom (label.getLocalBounds());
-
-    g.drawFittedText (box.getTextWhenNothingSelected(), textArea, label.getJustificationType(),
-                      juce::jmax (1, (int) ((float) textArea.getHeight() / font.getHeight())),
-                      label.getMinimumHorizontalScale());
 }
 
 // -----------------------------------------------------------------------------------------------------------
