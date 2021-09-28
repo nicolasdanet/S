@@ -138,9 +138,17 @@ void LookAndFeel::drawPopupMenuItemSelector (juce::Graphics& g, const juce::Rect
     g.setColour (findColour (Colours::menubarSeparator).withAlpha (0.25f)); g.fillRect (area);
 }
 
-void LookAndFeel::drawPopupMenuItemBackground (juce::Graphics& g, const juce::Rectangle<int>& area)
+void LookAndFeel::drawPopupMenuItemBackground (juce::Graphics& g,
+    const juce::Rectangle<int>& area,
+    bool  isComboBox)
 {
-    g.setColour (findColour (Colours::menubarBackgroundHighlighted)); g.fillRect (area);
+    if (isComboBox) {
+        g.setColour (findColour (Colours::devicesPopupBackgroundHighlighted));
+    } else {
+        g.setColour (findColour (Colours::menubarBackgroundHighlighted));
+    }
+    
+    g.fillRect (area);
 }
 
 void LookAndFeel::drawPopupMenuItemTick (juce::Graphics& g, juce::Rectangle<int> t)
@@ -190,9 +198,10 @@ void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
     if (isSeparator) { drawPopupMenuItemSelector (g, area); }
     else {
     //
-    if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area); }
+    if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area, isComboBox); }
     
-    const juce::Colour c1 = findColour (Colours::menubarText);
+    const int n = isComboBox ? Colours::devicesPopupText : Colours::menubarText;
+    const juce::Colour c1 = findColour (n);
     const juce::Colour c2 = c1.withMultipliedAlpha (0.5f);
     
     g.setColour (isActive ? c1 : c2);
