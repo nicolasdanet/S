@@ -40,6 +40,9 @@ public:
 public:
     void setAvailableDevices (std::vector<AudioDevice>, std::vector<AudioDevice>);
     void setCurrentDevices (std::vector<AudioDevice>, std::vector<AudioDevice>);
+
+private:
+    static void report (const std::vector<AudioDevice>&, const juce::String&);
     
 private:
     std::vector<AudioDevice> availableDevicesIn_;

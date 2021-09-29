@@ -53,9 +53,6 @@ void LookAndFeel::initializeFonts()
     font18Name_             = font18_.getTypefacePtr()->getName();
     font18MonospacedName_   = font18Monospaced_.getTypefacePtr()->getName();
     font16BoldName_         = font16Bold_.getTypefacePtr()->getName();
-    
-    SPAGHETTIS_DEBUG (font18Name_);
-    SPAGHETTIS_DEBUG (font18MonospacedName_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

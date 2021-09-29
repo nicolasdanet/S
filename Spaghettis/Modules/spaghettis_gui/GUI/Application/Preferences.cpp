@@ -118,8 +118,6 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::I
     //
     const juce::String key (tree.getProperty (Ids::item).toString());
     
-    DBG (key + " / " + tree.getProperty (Ids::value).toString());
-
     if (key == "SnapToGrid") {
         Spaghettis()->handle (Inputs::setSnapToGrid (tree.getProperty (Ids::value)));
     } else if (key == "GridSize") {

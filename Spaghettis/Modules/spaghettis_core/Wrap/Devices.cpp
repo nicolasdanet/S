@@ -10,6 +10,18 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+void AudioDevices::report (const std::vector<AudioDevice>& devices, const juce::String& s)
+{
+    for (const auto& d : devices) {
+        const juce::String name (std::get<AUDIODEVICES_NAME> (d));
+        const juce::String channels (std::get<AUDIODEVICES_CHANNELS> (d));
+        SPAGHETTIS_DEBUG (s + " : " + name + " / " + channels);
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void AudioDevices::setAvailableDevices (std::vector<AudioDevice> i, std::vector<AudioDevice> o)
@@ -19,13 +31,8 @@ void AudioDevices::setAvailableDevices (std::vector<AudioDevice> i, std::vector<
     
     sendChangeMessage();
     
-    for (const auto& d : availableDevicesIn_) {
-        DBG (juce::String ("Available") + " : " + std::get<AUDIODEVICES_NAME> (d) + " / " + juce::String (std::get<AUDIODEVICES_CHANNELS> (d)));
-    }
-
-    for (const auto& d : availableDevicesOut_) {
-        DBG (juce::String ("Available") + " : " + std::get<AUDIODEVICES_NAME> (d) + " / " + juce::String (std::get<AUDIODEVICES_CHANNELS> (d)));
-    }
+    report (availableDevicesIn_,  "Available");
+    report (availableDevicesOut_, "Available");
 }
 
 void AudioDevices::setCurrentDevices (std::vector<AudioDevice> i, std::vector<AudioDevice> o)
@@ -35,13 +42,8 @@ void AudioDevices::setCurrentDevices (std::vector<AudioDevice> i, std::vector<Au
     
     sendChangeMessage();
     
-    for (const auto& d : currentDevicesIn_) {
-        DBG (juce::String ("Current") + " : " + std::get<AUDIODEVICES_NAME> (d) + " / " + juce::String (std::get<AUDIODEVICES_CHANNELS> (d)));
-    }
-
-    for (const auto& d : currentDevicesOut_) {
-        DBG (juce::String ("Current") + " : " + std::get<AUDIODEVICES_NAME> (d) + " / " + juce::String (std::get<AUDIODEVICES_CHANNELS> (d)));
-    }
+    report (currentDevicesIn_,  "Current");
+    report (currentDevicesOut_, "Current");
 }
 
 // -----------------------------------------------------------------------------------------------------------
