@@ -20,6 +20,15 @@ void AudioDevices::report (const std::vector<AudioDevice>& devices, const juce::
     }
 }
 
+juce::StringArray AudioDevices::update (const std::vector<AudioDevice>& devices)
+{
+    juce::StringArray a; for (const auto& d : devices) { a.add (std::get<AUDIODEVICES_NAME> (d)); }
+    
+    a.sortNatural();
+    
+    return a;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -46,6 +55,20 @@ void AudioDevices::setCurrentDevices (std::vector<AudioDevice> i, std::vector<Au
     report (currentDevicesOut_, "Current");
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::StringArray AudioDevices::getAvailableDevicesIn()
+{
+    return update (availableDevicesIn_);
+}
+
+juce::StringArray AudioDevices::getAvailableDevicesOut()
+{
+    return update (availableDevicesOut_);
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

@@ -35,7 +35,7 @@ public:
         for (auto& b : audioOut_)      { initializeBox (b); }
         for (auto& l : audioInLabel_)  { initializeLabel (l, "Audio In");  }
         for (auto& l : audioOutLabel_) { initializeLabel (l, "Audio Out"); }
-        
+                
         setOpaque (true); setSize (400, 500);
         
         Spaghettis()->handle (Inputs::rescanDevices());
@@ -67,6 +67,25 @@ public:
         for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]); }
     }
 
+    void update()
+    {
+        DBG ("?");
+        
+        for (auto& c : audioIn_) {
+        //
+        c.clear (juce::dontSendNotification);
+        c.addItemList (Spaghettis()->getAudioDevices().getAvailableDevicesIn(), firstItemIdOffset_);
+        //
+        }
+        
+        for (auto& c : audioOut_) {
+        //
+        c.clear (juce::dontSendNotification);
+        c.addItemList (Spaghettis()->getAudioDevices().getAvailableDevicesOut(), firstItemIdOffset_);
+        //
+        }
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -74,7 +93,7 @@ public:
 public:
     void changeListenerCallback (juce::ChangeBroadcaster*) override
     {
-        DBG ("?");
+        update();
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -95,14 +114,6 @@ public:
 private:
     void initializeBox (juce::ComboBox& box)
     {
-        box.addItem ("Bijoux",   1);
-        box.addItem ("Cailloux", 2);
-        box.addItem ("Choux",    3);
-        box.addItem ("Genoux",   4);
-        box.addItem ("Hiboux",   5);
-        box.addItem ("Joujoux",  6);
-        box.addItem ("Poux",     7);
-
         addAndMakeVisible (box);
     }
     
@@ -129,6 +140,9 @@ private:
     std::array<juce::ComboBox, numberOfAudioDevicesAllowed()> audioOut_;
     std::array<juce::Label, numberOfAudioDevicesAllowed()> audioInLabel_;
     std::array<juce::Label, numberOfAudioDevicesAllowed()> audioOutLabel_;
+
+private:
+    static const int firstItemIdOffset_ = 1;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DevicesComponent)
