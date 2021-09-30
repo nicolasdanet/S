@@ -50,9 +50,13 @@ void LookAndFeel::initializeFonts()
 
     /* < https://forum.juce.com/t/fonts-need-to-be-initialized-on-rpi > */
     
-    font18Name_             = font18_.getTypefacePtr()->getName();
-    font18MonospacedName_   = font18Monospaced_.getTypefacePtr()->getName();
-    font16BoldName_         = font16Bold_.getTypefacePtr()->getName();
+    // font18Name_             = font18_.getTypefacePtr()->getName();
+    // font18MonospacedName_   = font18Monospaced_.getTypefacePtr()->getName();
+    // font16BoldName_         = font16Bold_.getTypefacePtr()->getName();
+    
+    font18Name_             = font18_.getTypeface()->getName();
+    font18MonospacedName_   = font18Monospaced_.getTypeface()->getName();
+    font16BoldName_         = font16Bold_.getTypeface()->getName();
 }
 
 // -----------------------------------------------------------------------------------------------------------

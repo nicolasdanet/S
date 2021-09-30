@@ -417,7 +417,6 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(SRCROOT)/../../Modules";
-				OTHER_CFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
@@ -481,7 +480,6 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(SRCROOT)/../../Modules";
-				OTHER_CFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
