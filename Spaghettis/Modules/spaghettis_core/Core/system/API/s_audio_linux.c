@@ -459,8 +459,8 @@ PD_LOCAL t_error audio_getListsNative (t_deviceslist *p)
 {
     t_error err = PD_ERROR_NONE;
     
-    err |= deviceslist_appendAudioIn (p,  gensym ("JACK ports"), 0);
-    err |= deviceslist_appendAudioOut (p, gensym ("JACK ports"), 0);
+    err |= deviceslist_appendAudioIn (p,  gensym ("JACK ports"), 2);
+    err |= deviceslist_appendAudioOut (p, gensym ("JACK ports"), 2);
 
     return err;
 }

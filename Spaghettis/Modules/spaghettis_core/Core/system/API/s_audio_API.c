@@ -36,15 +36,7 @@ static t_error audio_getDevicesList (t_deviceslist *l, int reload)
     
     t_error err = PD_ERROR_NONE;
     
-    if (reload) {
-    //
-    #if PD_APPLE
-    
-    cacheLoaded = 0;
-    
-    #endif
-    //
-    }
+    if (reload) { cacheLoaded = 0; }
     
     if (!cacheLoaded) {
     //
