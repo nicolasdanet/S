@@ -20,7 +20,7 @@ void AudioDevices::report (const std::vector<AudioDevice>& devices, const juce::
     }
 }
 
-juce::StringArray AudioDevices::update (const std::vector<AudioDevice>& devices)
+juce::StringArray AudioDevices::getNames (const std::vector<AudioDevice>& devices)
 {
     juce::StringArray a; for (const auto& d : devices) { a.add (std::get<AUDIODEVICES_NAME> (d)); }
     
@@ -59,14 +59,14 @@ void AudioDevices::setCurrentDevices (std::vector<AudioDevice> i, std::vector<Au
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::StringArray AudioDevices::getAvailableDevicesIn()
+juce::StringArray AudioDevices::getAvailableNamesIn()
 {
-    return update (availableDevicesIn_);
+    return getNames (availableDevicesIn_);
 }
 
-juce::StringArray AudioDevices::getAvailableDevicesOut()
+juce::StringArray AudioDevices::getAvailableNamesOut()
 {
-    return update (availableDevicesOut_);
+    return getNames (availableDevicesOut_);
 }
     
 // -----------------------------------------------------------------------------------------------------------

@@ -42,12 +42,12 @@ public:
     void setCurrentDevices (std::vector<AudioDevice>, std::vector<AudioDevice>);
 
 public:
-    juce::StringArray getAvailableDevicesIn();
-    juce::StringArray getAvailableDevicesOut();
+    juce::StringArray getAvailableNamesIn();
+    juce::StringArray getAvailableNamesOut();
     
 private:
     static void report (const std::vector<AudioDevice>&, const juce::String&);
-    static juce::StringArray update (const std::vector<AudioDevice>&);
+    static juce::StringArray getNames (const std::vector<AudioDevice>&);
     
 private:
     std::vector<AudioDevice> availableDevicesIn_;

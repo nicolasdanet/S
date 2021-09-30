@@ -74,14 +74,14 @@ public:
         for (auto& c : audioIn_) {
         //
         c.clear (juce::dontSendNotification);
-        c.addItemList (Spaghettis()->getAudioDevices().getAvailableDevicesIn(), firstItemIdOffset_);
+        c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesIn(), firstItemIdOffset_);
         //
         }
         
         for (auto& c : audioOut_) {
         //
         c.clear (juce::dontSendNotification);
-        c.addItemList (Spaghettis()->getAudioDevices().getAvailableDevicesOut(), firstItemIdOffset_);
+        c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesOut(), firstItemIdOffset_);
         //
         }
     }
