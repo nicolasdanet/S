@@ -98,6 +98,25 @@ public:
         }
     }
 
+public:
+    void getAllCommands (juce::Array<juce::CommandID>& c) override
+    {
+        juce::JUCEApplication::getAllCommands (c); spaghettis::Commands::getApplicationCommands (c);
+    }
+
+    void getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r) override
+    {
+        juce::JUCEApplication::getCommandInfo (c, r); spaghettis::Commands::getCommandInfo (c, r);
+    }
+
+    bool perform (const juce::ApplicationCommandTarget::InvocationInfo& info) override
+    {
+        if (spaghettis::Commands::perform (info) == false) { return juce::JUCEApplication::perform (info); }
+        else {
+            return true;
+        }
+    }
+    
 private:
     spaghettis::SpaghettisOwner spaghettis_;
 

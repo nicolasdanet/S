@@ -50,6 +50,7 @@ enum BaseIds : int {
 
 static void getCommandInfo (const juce::CommandID, juce::ApplicationCommandInfo&);
 static void getAllCommands (juce::Array<juce::CommandID>&);
+static void getApplicationCommands (juce::Array<juce::CommandID>&);
 static bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
 
 // -----------------------------------------------------------------------------------------------------------

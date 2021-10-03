@@ -31,6 +31,11 @@ void Commands::getAllCommands (juce::Array<juce::CommandID>& c)
     c.addArray (commands);
 }
 
+void Commands::getApplicationCommands (juce::Array<juce::CommandID>& c)
+{
+    c.add (Commands::preferences);
+}
+
 void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r)
 {
     static const char* const general    = NEEDS_TRANS ("General");
