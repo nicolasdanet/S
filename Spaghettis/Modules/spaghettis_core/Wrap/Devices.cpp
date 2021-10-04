@@ -25,7 +25,7 @@ juce::String AudioDevices::getNameAt (const std::vector<AudioDevice>& devices, i
 {
     jassert (i >= 0); const std::vector<AudioDevice>::size_type n = i;
     
-    if (n <= devices.size()) { return std::get<AUDIODEVICES_NAME> (devices[i]); }
+    if (n < devices.size()) { return std::get<AUDIODEVICES_NAME> (devices[i]); }
     
     return juce::String();
 }
