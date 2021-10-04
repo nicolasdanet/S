@@ -10,15 +10,7 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-void AudioDevices::report (const std::vector<AudioDevice>& devices, const juce::String& s)
-{
-    for (const auto& d : devices) {
-        const juce::String name (std::get<AUDIODEVICES_NAME> (d));
-        const juce::String channels (std::get<AUDIODEVICES_CHANNELS> (d));
-        SPAGHETTIS_DEBUG (s + " : " + name + " / " + channels);
-    }
-}
+// MARK: -
 
 juce::StringArray AudioDevices::getNames (const std::vector<AudioDevice>& devices)
 {
@@ -27,6 +19,15 @@ juce::StringArray AudioDevices::getNames (const std::vector<AudioDevice>& device
     a.sortNatural();
     
     return a;
+}
+
+juce::String AudioDevices::getNameAt (const std::vector<AudioDevice>& devices, int i)
+{
+    jassert (i >= 0); const std::vector<AudioDevice>::size_type n = i;
+    
+    if (n <= devices.size()) { return std::get<AUDIODEVICES_NAME> (devices[i]); }
+    
+    return juce::String();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -39,9 +40,6 @@ void AudioDevices::setAvailableDevices (std::vector<AudioDevice> i, std::vector<
     availableDevicesOut_ = std::move (o);
     
     sendChangeMessage();
-    
-    report (availableDevicesIn_,  "Available");
-    report (availableDevicesOut_, "Available");
 }
 
 void AudioDevices::setCurrentDevices (std::vector<AudioDevice> i, std::vector<AudioDevice> o)
@@ -50,9 +48,6 @@ void AudioDevices::setCurrentDevices (std::vector<AudioDevice> i, std::vector<Au
     currentDevicesOut_ = std::move (o);
     
     sendChangeMessage();
-    
-    report (currentDevicesIn_,  "Current");
-    report (currentDevicesOut_, "Current");
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -67,6 +62,20 @@ juce::StringArray AudioDevices::getAvailableNamesIn()
 juce::StringArray AudioDevices::getAvailableNamesOut()
 {
     return getNames (availableDevicesOut_);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::String AudioDevices::getCurrentNameInAtIndex (int n)
+{
+    return getNameAt (currentDevicesIn_, n);
+}
+
+juce::String AudioDevices::getCurrentNameOutAtIndex (int n)
+{
+    return getNameAt (currentDevicesOut_, n);
 }
     
 // -----------------------------------------------------------------------------------------------------------

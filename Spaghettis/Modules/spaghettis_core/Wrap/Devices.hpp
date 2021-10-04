@@ -44,10 +44,15 @@ public:
 public:
     juce::StringArray getAvailableNamesIn();
     juce::StringArray getAvailableNamesOut();
+
+public:
+    juce::String getCurrentNameInAtIndex (int n);
+    juce::String getCurrentNameOutAtIndex (int n);
     
 private:
     static void report (const std::vector<AudioDevice>&, const juce::String&);
     static juce::StringArray getNames (const std::vector<AudioDevice>&);
+    static juce::String getNameAt (const std::vector<AudioDevice>&, int);
     
 private:
     std::vector<AudioDevice> availableDevicesIn_;

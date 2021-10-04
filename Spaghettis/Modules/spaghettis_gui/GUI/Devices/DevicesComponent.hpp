@@ -71,17 +71,23 @@ public:
     {
         DBG ("?");
         
+        int m = 0;
+        
         for (auto& c : audioIn_) {
         //
         c.clear (juce::dontSendNotification);
         c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesIn(), firstItemIdOffset_);
+        setSelectedItemByString (c, Spaghettis()->getAudioDevices().getCurrentNameInAtIndex (m++));
         //
         }
+        
+        int n = 0;
         
         for (auto& c : audioOut_) {
         //
         c.clear (juce::dontSendNotification);
         c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesOut(), firstItemIdOffset_);
+        setSelectedItemByString (c, Spaghettis()->getAudioDevices().getCurrentNameOutAtIndex (n++));
         //
         }
     }
@@ -133,6 +139,23 @@ private:
     static void dispose (juce::Rectangle<int> t, juce::Label& label, juce::ComboBox& box)
     {
         const int w = 125; label.setBounds (t.removeFromLeft (w).reduced (1)); box.setBounds (t.reduced (1));
+    }
+    
+private:
+    static void setSelectedItemByString (juce::ComboBox& box, const juce::String& s)
+    {
+        if (s.isNotEmpty()) {
+        //
+        const int n = box.getNumItems();
+        
+        for (int i = 0; i < n; ++i) {
+            if (box.getItemText (i) == s) {
+                box.setSelectedItemIndex (i, juce::dontSendNotification);
+                break;
+            }
+        }
+        //
+        }
     }
     
 private:
