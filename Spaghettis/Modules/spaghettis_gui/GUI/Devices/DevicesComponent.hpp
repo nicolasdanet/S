@@ -20,6 +20,7 @@ constexpr int numberOfMidiDevicesAllowed()  { return 4; }
 // MARK: -
 
 class DevicesComponent :    public ApplicationComponent,
+                            public juce::ComboBox::Listener,
                             public juce::ChangeListener {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -43,6 +44,9 @@ public:
     
     ~DevicesComponent() override
     {
+        for (auto& b : audioOut_) { releaseBox (b); }
+        for (auto& b : audioIn_)  { releaseBox (b); }
+        
         Spaghettis()->getAudioDevices().removeChangeListener (this);
     }
 
@@ -69,8 +73,6 @@ public:
 
     void update()
     {
-        DBG ("?");
-        
         int m = 0;
         
         for (auto& c : audioIn_) {
@@ -91,7 +93,17 @@ public:
         //
         }
     }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void comboBoxChanged (juce::ComboBox *box) override
+    {
+        DBG ("?");
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -120,7 +132,14 @@ public:
 private:
     void initializeBox (juce::ComboBox& box)
     {
+        box.addListener (this);
+        
         addAndMakeVisible (box);
+    }
+    
+    void releaseBox (juce::ComboBox& box)
+    {
+        box.removeListener (this);
     }
     
     void initializeLabel (juce::Label& label, const juce::String& s)
