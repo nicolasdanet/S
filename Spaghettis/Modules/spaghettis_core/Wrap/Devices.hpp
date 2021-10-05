@@ -37,23 +37,64 @@ public:
     AudioDevices()  = default;
     ~AudioDevices() = default;
 
-public:
-    void setAvailableDevices (std::vector<AudioDevice>, std::vector<AudioDevice>);
-    void setCurrentDevices (std::vector<AudioDevice>, std::vector<AudioDevice>);
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 public:
-    juce::StringArray getAvailableNamesIn();
-    juce::StringArray getAvailableNamesOut();
+    void setAvailableDevices (std::vector<AudioDevice> i, std::vector<AudioDevice> o)
+    {
+        availableDevicesIn_  = std::move (i);
+        availableDevicesOut_ = std::move (o);
+        
+        sendChangeMessage();
+    }
+
+    void setCurrentDevices (std::vector<AudioDevice> i, std::vector<AudioDevice> o)
+    {
+        currentDevicesIn_  = std::move (i);
+        currentDevicesOut_ = std::move (o);
+        
+        sendChangeMessage();
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
-    juce::String getCurrentNameInAtIndex (int n);
-    juce::String getCurrentNameOutAtIndex (int n);
+    juce::StringArray getAvailableNamesIn()
+    {
+        return getNames (availableDevicesIn_);
+    }
+
+    juce::StringArray getAvailableNamesOut()
+    {
+        return getNames (availableDevicesOut_);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::String getCurrentNameInAtIndex (int n)
+    {
+        return getNameAt (currentDevicesIn_, n);
+    }
+
+    juce::String getCurrentNameOutAtIndex (int n)
+    {
+        return getNameAt (currentDevicesOut_, n);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     void setDevice (const juce::String& type, const juce::String& name);
     
 private:
-    static void report (const std::vector<AudioDevice>&, const juce::String&);
     static juce::StringArray getNames (const std::vector<AudioDevice>&);
     static juce::String getNameAt (const std::vector<AudioDevice>&, int);
     
