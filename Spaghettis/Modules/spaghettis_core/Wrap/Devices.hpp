@@ -92,7 +92,7 @@ public:
 // MARK: -
 
 public:
-    void setDevice (const juce::String& type, const juce::String& name);
+    void setDevice (const juce::String&, int, bool);
     
 private:
     static juce::StringArray getNames (const std::vector<AudioDevice>&);

@@ -28,17 +28,19 @@ class DevicesComponent :    public ApplicationComponent,
 // MARK: -
 
 public:
-    explicit DevicesComponent (const juce::String& keyName) : ApplicationComponent (keyName)
+    explicit DevicesComponent (const juce::String& keyName) : ApplicationComponent (keyName),
+        i_ ("Audio In"),
+        o_ ("Audio Out")
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
         
         int m = 0;
         int n = 0;
         
-        for (auto& b : audioIn_)       { initializeBox (b,   "Audio In",  m++); }
-        for (auto& b : audioOut_)      { initializeBox (b,   "Audio Out", n++); }
-        for (auto& l : audioInLabel_)  { initializeLabel (l, "Audio In");  }
-        for (auto& l : audioOutLabel_) { initializeLabel (l, "Audio Out"); }
+        for (auto& b : audioIn_)       { initializeBox (b,   i_, m++); }
+        for (auto& b : audioOut_)      { initializeBox (b,   o_, n++); }
+        for (auto& l : audioInLabel_)  { initializeLabel (l, i_); }
+        for (auto& l : audioOutLabel_) { initializeLabel (l, o_); }
                 
         setOpaque (true); setSize (400, 500);
         
@@ -106,9 +108,11 @@ public:
     {
         const juce::String s (box->getComponentID());
         
-        if (s.startsWith ("Audio")) {
-            Spaghettis()->getAudioDevices().setDevice (s, box->getText());
-        }
+        const bool i = s.startsWith (i_);
+        const bool o = s.startsWith (o_);
+        const int n  = s.getTrailingIntValue();
+        
+        if (i || o) { Spaghettis()->getAudioDevices().setDevice (box->getText(), n, i); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -148,11 +152,6 @@ private:
         addAndMakeVisible (box);
     }
     
-    void releaseBox (juce::ComboBox& box)
-    {
-        box.removeListener (this);
-    }
-    
     void initializeLabel (juce::Label& label, const juce::String& s)
     {
         const juce::Colour text (Spaghettis()->getColour (Colours::devicesParameterText));
@@ -164,6 +163,11 @@ private:
         label.setColour (juce::Label::backgroundColourId, background);
         
         addAndMakeVisible (label);
+    }
+    
+    void releaseBox (juce::ComboBox& box)
+    {
+        box.removeListener (this);
     }
     
     static void dispose (juce::Rectangle<int> t, juce::Label& label, juce::ComboBox& box)
@@ -187,6 +191,10 @@ private:
         //
         }
     }
+
+private:
+    const juce::String i_;
+    const juce::String o_;
     
 private:
     std::array<juce::ComboBox, numberOfAudioDevicesAllowed()> audioIn_;
