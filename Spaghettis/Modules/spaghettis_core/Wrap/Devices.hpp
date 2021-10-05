@@ -48,6 +48,9 @@ public:
 public:
     juce::String getCurrentNameInAtIndex (int n);
     juce::String getCurrentNameOutAtIndex (int n);
+
+public:
+    void setDevice (const juce::String& type, const juce::String& name);
     
 private:
     static void report (const std::vector<AudioDevice>&, const juce::String&);
