@@ -32,8 +32,8 @@ public:
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
         
-        for (auto& b : audioIn_)       { initializeBox (b); }
-        for (auto& b : audioOut_)      { initializeBox (b); }
+        for (auto& b : audioIn_)       { initializeBox (b,   "Audio In");  }
+        for (auto& b : audioOut_)      { initializeBox (b,   "Audio Out"); }
         for (auto& l : audioInLabel_)  { initializeLabel (l, "Audio In");  }
         for (auto& l : audioOutLabel_) { initializeLabel (l, "Audio Out"); }
                 
@@ -101,7 +101,11 @@ public:
 public:
     void comboBoxChanged (juce::ComboBox *box) override
     {
-        DBG ("?");
+        const juce::String s (box->getComponentID());
+        
+        if (s == "Audio In" || s == "Audio Out") {
+            DBG ("?");
+        }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -130,8 +134,12 @@ public:
 // MARK: -
 
 private:
-    void initializeBox (juce::ComboBox& box)
+    void initializeBox (juce::ComboBox& box, const juce::String& s)
     {
+        const juce::String tooltip (NEEDS_TRANS ("Select a device for " + s.toLowerCase() + "."));
+        
+        box.setTooltip (tooltip);
+        box.setComponentID (s);
         box.addListener (this);
         
         addAndMakeVisible (box);
