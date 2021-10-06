@@ -97,6 +97,7 @@ public:
 private:
     static juce::StringArray getNames (const std::vector<AudioDevice>&);
     static juce::String getNameAt (const std::vector<AudioDevice>&, int);
+    static int getChannelsFor (const std::vector<AudioDevice>&, const juce::String&);
     
 private:
     std::vector<AudioDevice> availableDevicesIn_;

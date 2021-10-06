@@ -29,18 +29,18 @@ class DevicesComponent :    public ApplicationComponent,
 
 public:
     explicit DevicesComponent (const juce::String& keyName) : ApplicationComponent (keyName),
-        i_ ("Audio In"),
-        o_ ("Audio Out")
+        audioInTag_ ("Audio In"),
+        audioOutTag_ ("Audio Out")
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
         
         int m = 0;
         int n = 0;
         
-        for (auto& b : audioIn_)       { initializeBox (b,   i_, m++); }
-        for (auto& b : audioOut_)      { initializeBox (b,   o_, n++); }
-        for (auto& l : audioInLabel_)  { initializeLabel (l, i_); }
-        for (auto& l : audioOutLabel_) { initializeLabel (l, o_); }
+        for (auto& b : audioIn_)       { initializeBox (b,   audioInTag_,  m++); }
+        for (auto& b : audioOut_)      { initializeBox (b,   audioOutTag_, n++); }
+        for (auto& l : audioInLabel_)  { initializeLabel (l, audioInTag_); }
+        for (auto& l : audioOutLabel_) { initializeLabel (l, audioOutTag_); }
                 
         setOpaque (true); setSize (400, 500);
         
@@ -108,8 +108,8 @@ public:
     {
         const juce::String s (box->getComponentID());
         
-        const bool i = s.startsWith (i_);
-        const bool o = s.startsWith (o_);
+        const bool i = s.startsWith (audioInTag_);
+        const bool o = s.startsWith (audioOutTag_);
         const int n  = s.getTrailingIntValue();
         
         if (i || o) { Spaghettis()->getAudioDevices().setDevice (box->getText(), n, i); }
@@ -143,7 +143,7 @@ public:
 private:
     void initializeBox (juce::ComboBox& box, const juce::String& s, int i)
     {
-        const juce::String tooltip (NEEDS_TRANS ("Select a device for " + s.toLowerCase() + "."));
+        const juce::String tooltip (NEEDS_TRANS ("Select a device for " + s.toLowerCase()));
         
         box.setTooltip (tooltip);
         box.setComponentID (s + " " + juce::String (i));
@@ -193,8 +193,8 @@ private:
     }
 
 private:
-    const juce::String i_;
-    const juce::String o_;
+    const juce::String audioInTag_;
+    const juce::String audioOutTag_;
     
 private:
     std::array<juce::ComboBox, numberOfAudioDevicesAllowed()> audioIn_;

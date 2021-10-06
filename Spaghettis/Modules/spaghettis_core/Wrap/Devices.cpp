@@ -25,9 +25,17 @@ juce::String AudioDevices::getNameAt (const std::vector<AudioDevice>& devices, i
 {
     jassert (i >= 0); const std::vector<AudioDevice>::size_type n = i;
     
-    if (n < devices.size()) { return std::get<AUDIODEVICES_NAME> (devices[i]); }
+    if (n < devices.size()) { return std::get<AUDIODEVICES_NAME> (devices[n]); }
     
     return juce::String();
+}
+
+int AudioDevices::getChannelsFor (const std::vector<AudioDevice>& devices, const juce::String& name)
+{
+    auto f = [&] (const AudioDevice& d) { return std::get<AUDIODEVICES_NAME> (d) == name; };
+    auto r = std::find_if (devices.begin(), devices.end(), f);
+    
+    return r != devices.end() ? std::get<AUDIODEVICES_CHANNELS> (*r) : 0;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -40,11 +48,16 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 
 void changeDeviceAt (std::vector<AudioDevice>& devices,
-    int n,
+    int i,
     const juce::String& name,
     int channels)
 {
-
+    const std::vector<AudioDevice>::size_type n = i;
+    
+    if (n < devices.size()) { devices[n] = AudioDevice (name, channels); }
+    else {
+        devices.emplace_back (name, channels);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -58,7 +71,28 @@ void changeDeviceAt (std::vector<AudioDevice>& devices,
 
 void AudioDevices::setDevice (const juce::String& name, int n, bool isDeviceIn)
 {
-    DBG (name + " / " + juce::String (n) + " / " + (isDeviceIn ? "IN" : "OUT"));
+    std::vector<AudioDevice> i (currentDevicesIn_);
+    std::vector<AudioDevice> o (currentDevicesOut_);
+    
+    jassert (n >= 0);
+    
+    if (isDeviceIn) {
+        changeDeviceAt (i, n, name, getChannelsFor (availableDevicesIn_, name));
+    } else {
+        changeDeviceAt (o, n, name, getChannelsFor (availableDevicesOut_, name));
+    }
+    
+    for (const auto& d : i) {
+        const juce::String s (std::get<AUDIODEVICES_NAME> (d));
+        const int channels (std::get<AUDIODEVICES_CHANNELS> (d));
+        DBG ("In / " + s + " / " + juce::String (channels));
+    }
+    
+    for (const auto& d : o) {
+        const juce::String s (std::get<AUDIODEVICES_NAME> (d));
+        const int channels (std::get<AUDIODEVICES_CHANNELS> (d));
+        DBG ("Out / " + s + " / " + juce::String (channels));
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
