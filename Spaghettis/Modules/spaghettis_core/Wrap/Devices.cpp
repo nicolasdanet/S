@@ -81,18 +81,6 @@ void AudioDevices::setDevice (const juce::String& name, int n, bool isDeviceIn)
     } else {
         changeDeviceAt (o, n, name, getChannelsFor (availableDevicesOut_, name));
     }
-    
-    for (const auto& d : i) {
-        const juce::String s (std::get<AUDIODEVICES_NAME> (d));
-        const int channels (std::get<AUDIODEVICES_CHANNELS> (d));
-        DBG ("In / " + s + " / " + juce::String (channels));
-    }
-    
-    for (const auto& d : o) {
-        const juce::String s (std::get<AUDIODEVICES_NAME> (d));
-        const int channels (std::get<AUDIODEVICES_CHANNELS> (d));
-        DBG ("Out / " + s + " / " + juce::String (channels));
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

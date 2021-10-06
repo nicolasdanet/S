@@ -58,6 +58,11 @@ Perform Inputs::rescanDevices (void)
     return []() { core::inputs_rescanDevices(); };
 }
 
+Perform Inputs::setAudioDevices (std::vector<AudioDevice>&&, std::vector<AudioDevice>&&)
+{
+    return []() { DBG ("?"); };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

@@ -37,6 +37,7 @@ static Perform setSearchPaths (juce::StringArray);
 static Perform setSnapToGrid (bool);
 static Perform setSnapToGridSize (int);
 static Perform rescanDevices (void);
+static Perform setAudioDevices (std::vector<AudioDevice>&&, std::vector<AudioDevice>&&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
