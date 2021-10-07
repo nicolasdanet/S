@@ -84,7 +84,7 @@ public:
         //
         c.clear (juce::dontSendNotification);
         c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesIn(), firstItemIdOffset_);
-        setSelectedItemByString (c, Spaghettis()->getAudioDevices().getCurrentNameInAtIndex (m++));
+        setSelectedItemByString (c, Spaghettis()->getAudioDevices().getNameInAt (m++));
         //
         }
         
@@ -94,7 +94,7 @@ public:
         //
         c.clear (juce::dontSendNotification);
         c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesOut(), firstItemIdOffset_);
-        setSelectedItemByString (c, Spaghettis()->getAudioDevices().getCurrentNameOutAtIndex (n++));
+        setSelectedItemByString (c, Spaghettis()->getAudioDevices().getNameOutAt (n++));
         //
         }
     }
@@ -102,6 +102,15 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+private:
+    void changeDevice (const juce::String& name, int n, bool isDeviceIn)
+    {
+        const AudioDevices& d (Spaghettis()->getAudioDevices());
+        
+        std::vector<AudioDevice> i (isDeviceIn ? d.getDevicesInChangedAt (name, n) : d.getDevicesIn());
+        std::vector<AudioDevice> o (isDeviceIn ? d.getDevicesOut() : d.getDevicesOutChangedAt (name, n));
+    }
 
 public:
     void comboBoxChanged (juce::ComboBox *box) override
@@ -112,7 +121,9 @@ public:
         const bool o = s.startsWith (audioOutTag_);
         const int n  = s.getTrailingIntValue();
         
-        if (i || o) { Spaghettis()->getAudioDevices().setDevice (box->getText(), n, i); }
+        jassert (n >= 0);
+        
+        if (i || o) { changeDevice (box->getText(), n, (i == true)); }
     }
 
 // -----------------------------------------------------------------------------------------------------------

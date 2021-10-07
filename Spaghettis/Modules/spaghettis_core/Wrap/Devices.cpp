@@ -34,20 +34,10 @@ int AudioDevices::getChannelsFor (const std::vector<AudioDevice>& devices, const
 {
     auto f = [&] (const AudioDevice& d) { return std::get<AUDIODEVICES_NAME> (d) == name; };
     auto r = std::find_if (devices.begin(), devices.end(), f);
-    
     return r != devices.end() ? std::get<AUDIODEVICES_CHANNELS> (*r) : 0;
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-void changeDeviceAt (std::vector<AudioDevice>& devices,
+void AudioDevices::changeDeviceAt (std::vector<AudioDevice>& devices,
     int i,
     const juce::String& name,
     int channels)
@@ -62,27 +52,18 @@ void changeDeviceAt (std::vector<AudioDevice>& devices,
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void AudioDevices::setDevice (const juce::String& name, int n, bool isDeviceIn)
+std::vector<AudioDevice> AudioDevices::getDevicesInChangedAt (const juce::String& name, int n) const
 {
-    std::vector<AudioDevice> i (currentDevicesIn_);
-    std::vector<AudioDevice> o (currentDevicesOut_);
-    
-    jassert (n >= 0);
-    
-    if (isDeviceIn) {
-        changeDeviceAt (i, n, name, getChannelsFor (availableDevicesIn_, name));
-    } else {
-        changeDeviceAt (o, n, name, getChannelsFor (availableDevicesOut_, name));
-    }
+    return currentDevicesIn_;
 }
 
+std::vector<AudioDevice> AudioDevices::getDevicesOutChangedAt (const juce::String& name, int n) const
+{
+    return currentDevicesOut_;
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

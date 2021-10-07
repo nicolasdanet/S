@@ -62,12 +62,12 @@ public:
 // MARK: -
 
 public:
-    juce::StringArray getAvailableNamesIn()
+    juce::StringArray getAvailableNamesIn() const
     {
         return getNames (availableDevicesIn_);
     }
 
-    juce::StringArray getAvailableNamesOut()
+    juce::StringArray getAvailableNamesOut() const
     {
         return getNames (availableDevicesOut_);
     }
@@ -77,12 +77,12 @@ public:
 // MARK: -
 
 public:
-    juce::String getCurrentNameInAtIndex (int n)
+    juce::String getNameInAt (int n) const
     {
         return getNameAt (currentDevicesIn_, n);
     }
 
-    juce::String getCurrentNameOutAtIndex (int n)
+    juce::String getNameOutAt (int n) const
     {
         return getNameAt (currentDevicesOut_, n);
     }
@@ -92,12 +92,33 @@ public:
 // MARK: -
 
 public:
-    void setDevice (const juce::String&, int, bool);
+    std::vector<AudioDevice> getDevicesIn() const
+    {
+        return currentDevicesIn_;
+    }
+
+    std::vector<AudioDevice> getDevicesOut() const
+    {
+        return currentDevicesOut_;
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    std::vector<AudioDevice> getDevicesInChangedAt (const juce::String& name, int n) const;
+    std::vector<AudioDevice> getDevicesOutChangedAt (const juce::String& name, int n) const;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
     
 private:
     static juce::StringArray getNames (const std::vector<AudioDevice>&);
     static juce::String getNameAt (const std::vector<AudioDevice>&, int);
     static int getChannelsFor (const std::vector<AudioDevice>&, const juce::String&);
+    static void changeDeviceAt (std::vector<AudioDevice>&, int, const juce::String&, int);
     
 private:
     std::vector<AudioDevice> availableDevicesIn_;
