@@ -71,6 +71,21 @@ PD_LOCAL void inputs_rescanDevices (void)
     audio_rescanDevices();
 }
 
+PD_LOCAL void inputs_setAudioDevices (const std::vector<AudioDevice>& i, const std::vector<AudioDevice>& o)
+{
+    DBG ("IN");
+    
+    for (const auto& d : i) {
+        DBG (AudioDevices::getName (d) + " / " + juce::String (AudioDevices::getChannels (d)));
+    }
+    
+    DBG ("OUT");
+        
+    for (const auto& d : o) {
+        DBG (AudioDevices::getName (d) + " / " + juce::String (AudioDevices::getChannels (d)));
+    }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

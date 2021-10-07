@@ -56,12 +56,20 @@ void AudioDevices::changeDeviceAt (std::vector<AudioDevice>& devices,
 
 std::vector<AudioDevice> AudioDevices::getDevicesInChangedAt (const juce::String& name, int n) const
 {
-    return currentDevicesIn_;
+    std::vector<AudioDevice> t (currentDevicesIn_);
+    
+    changeDeviceAt (t, n, name, getChannelsFor (availableDevicesIn_, name));
+    
+    return t;
 }
 
 std::vector<AudioDevice> AudioDevices::getDevicesOutChangedAt (const juce::String& name, int n) const
 {
-    return currentDevicesOut_;
+    std::vector<AudioDevice> t (currentDevicesOut_);
+    
+    changeDeviceAt (t, n, name, getChannelsFor (availableDevicesOut_, name));
+    
+    return t;
 }
     
 // -----------------------------------------------------------------------------------------------------------

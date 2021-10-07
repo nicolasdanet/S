@@ -28,6 +28,21 @@ private:
         AUDIODEVICES_NAME       = 0,
         AUDIODEVICES_CHANNELS   = 1
     };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static juce::String getName (const AudioDevice& d)
+    {
+        return std::get<AUDIODEVICES_NAME> (d);
+    }
+    
+    static int getChannels (const AudioDevice& d)
+    {
+        return std::get<AUDIODEVICES_CHANNELS> (d);
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -119,7 +134,7 @@ private:
     static juce::String getNameAt (const std::vector<AudioDevice>&, int);
     static int getChannelsFor (const std::vector<AudioDevice>&, const juce::String&);
     static void changeDeviceAt (std::vector<AudioDevice>&, int, const juce::String&, int);
-    
+
 private:
     std::vector<AudioDevice> availableDevicesIn_;
     std::vector<AudioDevice> availableDevicesOut_;

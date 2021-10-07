@@ -110,6 +110,8 @@ private:
         
         std::vector<AudioDevice> i (isDeviceIn ? d.getDevicesInChangedAt (name, n) : d.getDevicesIn());
         std::vector<AudioDevice> o (isDeviceIn ? d.getDevicesOut() : d.getDevicesOutChangedAt (name, n));
+        
+        Spaghettis()->handle (Inputs::setAudioDevices (std::move (i), std::move (o)));
     }
 
 public:
