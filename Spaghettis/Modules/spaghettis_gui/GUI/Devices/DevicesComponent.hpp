@@ -80,7 +80,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     void updateView()
     {
         int m = 0;
@@ -104,7 +104,6 @@ public:
         }
     }
 
-private:
     void updateDevice (const juce::String& name, int n, bool isDeviceIn)
     {
         const AudioDevices& d (Spaghettis()->getAudioDevices());
