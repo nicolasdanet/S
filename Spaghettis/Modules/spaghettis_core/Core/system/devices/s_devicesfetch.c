@@ -121,6 +121,28 @@ PD_LOCAL t_error devices_appendAudioOutWithString (t_devices *p, char *device, i
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL t_error devices_appendAudioIn (t_devices *p, const AudioDevice& d)
+{
+    t_symbol *s = gensym (AudioDevices::getName (d).toRawUTF8());
+
+    return devices_appendAudioInWithSymbol (p, s, AudioDevices::getChannels (d));
+}
+
+PD_LOCAL t_error devices_appendAudioOut (t_devices *p, const AudioDevice& d)
+{
+    t_symbol *s = gensym (AudioDevices::getName (d).toRawUTF8());
+
+    return devices_appendAudioOutWithSymbol (p, s, AudioDevices::getChannels (d));
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static t_error deviceslist_appendMidiInAsNumber (t_deviceslist *p, int n)
 {
     t_symbol *t = midi_deviceAsSymbol (0, n);

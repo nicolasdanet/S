@@ -99,4 +99,15 @@ PD_LOCAL t_error    devices_appendAudioOutWithString    (t_devices *p, char *dev
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL t_error    devices_appendAudioIn               (t_devices *p, const AudioDevice& d);
+PD_LOCAL t_error    devices_appendAudioOut              (t_devices *p, const AudioDevice& d);
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 #endif // S_DEVICES_H_
