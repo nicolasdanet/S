@@ -76,7 +76,12 @@ public:
         for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]); }
     }
 
-    void update()
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void updateView()
     {
         int m = 0;
         
@@ -99,12 +104,8 @@ public:
         }
     }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 private:
-    void changeDevice (const juce::String& name, int n, bool isDeviceIn)
+    void updateDevice (const juce::String& name, int n, bool isDeviceIn)
     {
         const AudioDevices& d (Spaghettis()->getAudioDevices());
         
@@ -113,6 +114,10 @@ private:
         
         Spaghettis()->handle (Inputs::setAudioDevices (std::move (i), std::move (o)));
     }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     void comboBoxChanged (juce::ComboBox *box) override
@@ -125,17 +130,12 @@ public:
         
         jassert (n >= 0);
         
-        if (i || o) { changeDevice (box->getText(), n, (i == true)); }
+        if (i || o) { updateDevice (box->getText(), n, (i == true)); }
     }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void changeListenerCallback (juce::ChangeBroadcaster*) override
     {
-        update();
+        updateView();
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -182,13 +182,17 @@ private:
     {
         box.removeListener (this);
     }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
     static void dispose (juce::Rectangle<int> t, juce::Label& label, juce::ComboBox& box)
     {
         const int w = 125; label.setBounds (t.removeFromLeft (w).reduced (1)); box.setBounds (t.reduced (1));
     }
     
-private:
     static void setSelectedItemByString (juce::ComboBox& box, const juce::String& s)
     {
         if (s.isNotEmpty()) {
