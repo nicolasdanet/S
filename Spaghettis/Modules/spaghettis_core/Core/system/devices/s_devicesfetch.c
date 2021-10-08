@@ -125,16 +125,16 @@ PD_LOCAL t_error devices_appendAudioOutWithString (t_devices *p, char *device, i
 
 PD_LOCAL t_error devices_appendAudioIn (t_devices *p, const AudioDevice& d)
 {
-    t_symbol *s = gensym (AudioDevices::getName (d).toRawUTF8());
+    t_symbol *s = gensym (d.getName().toRawUTF8());
 
-    return devices_appendAudioInWithSymbol (p, s, AudioDevices::getChannels (d));
+    return devices_appendAudioInWithSymbol (p, s, d.getChannels());
 }
 
 PD_LOCAL t_error devices_appendAudioOut (t_devices *p, const AudioDevice& d)
 {
-    t_symbol *s = gensym (AudioDevices::getName (d).toRawUTF8());
+    t_symbol *s = gensym (d.getName().toRawUTF8());
 
-    return devices_appendAudioOutWithSymbol (p, s, AudioDevices::getChannels (d));
+    return devices_appendAudioOutWithSymbol (p, s, d.getChannels());
 }
 
 #endif

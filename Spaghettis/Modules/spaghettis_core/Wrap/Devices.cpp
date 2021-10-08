@@ -14,7 +14,7 @@ namespace spaghettis {
 
 juce::StringArray Devices::getNames (const std::vector<AudioDevice>& devices)
 {
-    juce::StringArray a; for (const auto& d : devices) { a.add (std::get<AUDIODEVICES_NAME> (d)); }
+    juce::StringArray a; for (const auto& d : devices) { a.add (d.getName()); }
     
     a.sortNatural();
     
@@ -25,16 +25,16 @@ juce::String Devices::getNameAt (const std::vector<AudioDevice>& devices, int i)
 {
     jassert (i >= 0); const std::vector<AudioDevice>::size_type n = i;
     
-    if (n < devices.size()) { return std::get<AUDIODEVICES_NAME> (devices[n]); }
+    if (n < devices.size()) { return devices[n].getName(); }
     
     return juce::String();
 }
 
 int Devices::getChannelsFor (const std::vector<AudioDevice>& devices, const juce::String& name)
 {
-    auto f = [&] (const AudioDevice& d) { return std::get<AUDIODEVICES_NAME> (d) == name; };
+    auto f = [&] (const AudioDevice& d) { return d.getName() == name; };
     auto r = std::find_if (devices.begin(), devices.end(), f);
-    return r != devices.end() ? std::get<AUDIODEVICES_CHANNELS> (*r) : 0;
+    return r != devices.end() ? r->getChannels() : 0;
 }
 
 void Devices::changeDeviceAt (std::vector<AudioDevice>& devices,
