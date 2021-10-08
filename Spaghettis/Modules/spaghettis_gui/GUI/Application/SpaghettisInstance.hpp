@@ -34,6 +34,7 @@ public:
         core_ (std::make_unique<Wrapper>()),
         boxRegister_ (std::make_unique<CallOutBoxRegister>()),
         audioDevices_ (std::make_unique<AudioDevices>()),
+        midiDevices_ (std::make_unique<MidiDevices>()),
         currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory)),
         dspIsRunning_ (false)
     {
@@ -255,6 +256,11 @@ public:
         return *audioDevices_;
     }
     
+    MidiDevices& getMidiDevices()
+    {
+        return *midiDevices_;
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -276,6 +282,7 @@ private:
     const std::unique_ptr<Wrapper> core_;
     const std::unique_ptr<CallOutBoxRegister> boxRegister_;
     const std::unique_ptr<AudioDevices> audioDevices_;
+    const std::unique_ptr<MidiDevices> midiDevices_;
 
 private:
     juce::File currentOpenDirectory_;

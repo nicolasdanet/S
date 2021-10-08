@@ -41,6 +41,26 @@ Perform Outputs::reportCurrentAudioDevices (std::vector<AudioDevice>&& i, std::v
     return f;
 }
 
+Perform Outputs::reportAvailableMidiDevices (std::vector<MidiDevice>&& i, std::vector<MidiDevice>&& o)
+{
+    auto f = [devicesIn = std::move (i), devicesOut = std::move (o)]()
+    {
+        Spaghettis()->getMidiDevices().setAvailableDevices (devicesIn, devicesOut);
+    };
+    
+    return f;
+}
+
+Perform Outputs::reportCurrentMidiDevices (std::vector<MidiDevice>&& i, std::vector<MidiDevice>&& o)
+{
+    auto f = [devicesIn = std::move (i), devicesOut = std::move (o)]()
+    {
+        Spaghettis()->getMidiDevices().setCurrentDevices (devicesIn, devicesOut);
+    };
+    
+    return f;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

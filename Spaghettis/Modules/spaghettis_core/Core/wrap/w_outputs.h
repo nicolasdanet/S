@@ -18,6 +18,8 @@ PD_LOCAL void outputs_reportDsp                     (int);
 PD_LOCAL void outputs_patchOpened                   (t_symbol *, t_symbol *);
 PD_LOCAL void outputs_reportAvailableAudioDevices   (t_deviceslist *);
 PD_LOCAL void outputs_reportCurrentAudioDevices     (t_deviceslist *);
+PD_LOCAL void outputs_reportAvailableMidiDevices    (t_deviceslist *);
+PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

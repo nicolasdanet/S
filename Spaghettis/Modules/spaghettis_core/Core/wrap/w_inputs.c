@@ -69,6 +69,7 @@ PD_LOCAL void inputs_setSnapSize (int gridSize)
 PD_LOCAL void inputs_rescanDevices (void)
 {
     audio_rescanDevices();
+    midi_rescanDevices();
 }
 
 PD_LOCAL void inputs_setAudioDevices (const std::vector<AudioDevice>& i, const std::vector<AudioDevice>& o)

@@ -22,6 +22,8 @@ static Perform reportDsp                    (bool state);
 static Perform patchOpened                  (juce::File);
 static Perform reportAvailableAudioDevices  (std::vector<AudioDevice>&&, std::vector<AudioDevice>&&);
 static Perform reportCurrentAudioDevices    (std::vector<AudioDevice>&&, std::vector<AudioDevice>&&);
+static Perform reportAvailableMidiDevices   (std::vector<MidiDevice>&&, std::vector<MidiDevice>&&);
+static Perform reportCurrentMidiDevices     (std::vector<MidiDevice>&&, std::vector<MidiDevice>&&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

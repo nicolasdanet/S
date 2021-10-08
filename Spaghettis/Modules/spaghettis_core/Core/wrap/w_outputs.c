@@ -36,7 +36,7 @@ PD_LOCAL void outputs_patchOpened (t_symbol *name, t_symbol *directory)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL std::vector<AudioDevice> outputs_getAudioIn (t_deviceslist *l)
+static std::vector<AudioDevice> outputs_getAudioIn (t_deviceslist *l)
 {
     std::vector<AudioDevice> d;
     
@@ -50,7 +50,7 @@ PD_LOCAL std::vector<AudioDevice> outputs_getAudioIn (t_deviceslist *l)
     return d;
 }
 
-PD_LOCAL std::vector<AudioDevice> outputs_getAudioOut (t_deviceslist *l)
+static std::vector<AudioDevice> outputs_getAudioOut (t_deviceslist *l)
 {
     std::vector<AudioDevice> d;
     
@@ -74,6 +74,17 @@ PD_LOCAL void outputs_reportCurrentAudioDevices (t_deviceslist *l)
     wrapper_send (Outputs::reportCurrentAudioDevices (outputs_getAudioIn (l), outputs_getAudioOut (l)));
 }
 
+PD_LOCAL void outputs_reportAvailableMidiDevices (t_deviceslist *l)
+{
+    DBG ("?");
+    // wrapper_send (Outputs::reportAvailableMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
+}
+
+PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
+{
+    // wrapper_send (Outputs::reportCurrentMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -87,6 +98,8 @@ void outputs_reportDsp                      (int n)                             
 void outputs_patchOpened                    (t_symbol *name, t_symbol *directory)   { }
 void outputs_reportAvailableAudioDevices    (t_deviceslist *l)                      { }
 void outputs_reportCurrentAudioDevices      (t_deviceslist *l)                      { }
+void outputs_reportAvailableMidiDevices     (t_deviceslist *l)                      { }
+void outputs_reportCurrentMidiDevices       (t_deviceslist *l)                      { }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

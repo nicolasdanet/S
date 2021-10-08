@@ -25,21 +25,13 @@ static t_error midi_getDevicesList (t_deviceslist *l, int reload)
     
     t_error err = PD_ERROR_NONE;
     
-    if (reload) {
-    //
-    #if PD_APPLE
-    
-    cacheLoaded = 0;
-    
-    #endif
-    //
-    }
+    if (reload) { cacheLoaded = 0; }
     
     if (!cacheLoaded) {
     //
     deviceslist_init (&cache);
     err = midi_getListsNative (&cache);
-    if (!err) { cacheLoaded = 1; }
+    if (!err) { cacheLoaded = 1; outputs_reportAvailableMidiDevices (&cache); }
     //
     }
     
@@ -85,6 +77,17 @@ PD_LOCAL void midi_setDevices (t_devices *p, int setParameters)
     pd_message (symbol_getThing (sym__midiports), sym__midiports, 0, NULL);
     //
     }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void midi_rescanDevices (void)
+{
+    t_deviceslist l; t_error err = midi_getDevicesList (&l, 1);
+    
+    PD_ASSERT (!err); PD_UNUSED (err);
 }
 
 // -----------------------------------------------------------------------------------------------------------

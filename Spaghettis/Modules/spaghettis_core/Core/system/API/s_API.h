@@ -54,6 +54,8 @@ PD_LOCAL void       midi_close                  (void);
 PD_LOCAL void       midi_getDevices             (t_devices *p);
 PD_LOCAL void       midi_setDevices             (t_devices *p, int setAlsoParameters);
 
+PD_LOCAL void       midi_rescanDevices          (void);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
