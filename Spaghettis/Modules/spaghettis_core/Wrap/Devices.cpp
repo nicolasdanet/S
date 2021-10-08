@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::StringArray AudioDevices::getNames (const std::vector<AudioDevice>& devices)
+juce::StringArray Devices::getNames (const std::vector<AudioDevice>& devices)
 {
     juce::StringArray a; for (const auto& d : devices) { a.add (std::get<AUDIODEVICES_NAME> (d)); }
     
@@ -21,7 +21,7 @@ juce::StringArray AudioDevices::getNames (const std::vector<AudioDevice>& device
     return a;
 }
 
-juce::String AudioDevices::getNameAt (const std::vector<AudioDevice>& devices, int i)
+juce::String Devices::getNameAt (const std::vector<AudioDevice>& devices, int i)
 {
     jassert (i >= 0); const std::vector<AudioDevice>::size_type n = i;
     
@@ -30,14 +30,14 @@ juce::String AudioDevices::getNameAt (const std::vector<AudioDevice>& devices, i
     return juce::String();
 }
 
-int AudioDevices::getChannelsFor (const std::vector<AudioDevice>& devices, const juce::String& name)
+int Devices::getChannelsFor (const std::vector<AudioDevice>& devices, const juce::String& name)
 {
     auto f = [&] (const AudioDevice& d) { return std::get<AUDIODEVICES_NAME> (d) == name; };
     auto r = std::find_if (devices.begin(), devices.end(), f);
     return r != devices.end() ? std::get<AUDIODEVICES_CHANNELS> (*r) : 0;
 }
 
-void AudioDevices::changeDeviceAt (std::vector<AudioDevice>& devices,
+void Devices::changeDeviceAt (std::vector<AudioDevice>& devices,
     int i,
     const juce::String& name,
     int channels)
@@ -54,7 +54,7 @@ void AudioDevices::changeDeviceAt (std::vector<AudioDevice>& devices,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::vector<AudioDevice> AudioDevices::getDevicesInChangedAt (const juce::String& name, int n) const
+std::vector<AudioDevice> Devices::getDevicesInChangedAt (const juce::String& name, int n) const
 {
     std::vector<AudioDevice> t (currentDevicesIn_);
     
@@ -63,7 +63,7 @@ std::vector<AudioDevice> AudioDevices::getDevicesInChangedAt (const juce::String
     return t;
 }
 
-std::vector<AudioDevice> AudioDevices::getDevicesOutChangedAt (const juce::String& name, int n) const
+std::vector<AudioDevice> Devices::getDevicesOutChangedAt (const juce::String& name, int n) const
 {
     std::vector<AudioDevice> t (currentDevicesOut_);
     
