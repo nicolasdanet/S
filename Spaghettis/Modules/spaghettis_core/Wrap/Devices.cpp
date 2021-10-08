@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::StringArray Devices::getNames (const std::vector<AudioDevice>& devices)
+template <class T> juce::StringArray Devices<T>::getNames (const std::vector<T>& devices)
 {
     juce::StringArray a; for (const auto& d : devices) { a.add (d.getName()); }
     
@@ -21,30 +21,30 @@ juce::StringArray Devices::getNames (const std::vector<AudioDevice>& devices)
     return a;
 }
 
-juce::String Devices::getNameAt (const std::vector<AudioDevice>& devices, int i)
+template <class T> juce::String Devices<T>::getNameAt (const std::vector<T>& devices, int i)
 {
-    jassert (i >= 0); const std::vector<AudioDevice>::size_type n = i;
+    jassert (i >= 0); const typename std::vector<T>::size_type n = i;
     
     if (n < devices.size()) { return devices[n].getName(); }
     
     return juce::String();
 }
 
-int Devices::getChannelsFor (const std::vector<AudioDevice>& devices, const juce::String& name)
+template <class T> int Devices<T>::getChannelsFor (const std::vector<T>& devices, const juce::String& name)
 {
-    auto f = [&] (const AudioDevice& d) { return d.getName() == name; };
+    auto f = [&] (const T& d) { return d.getName() == name; };
     auto r = std::find_if (devices.begin(), devices.end(), f);
     return r != devices.end() ? r->getChannels() : 0;
 }
 
-void Devices::changeDeviceAt (std::vector<AudioDevice>& devices,
+template <class T> void Devices<T>::changeDeviceAt (std::vector<T>& devices,
     int i,
     const juce::String& name,
     int channels)
 {
-    const std::vector<AudioDevice>::size_type n = i;
+    const typename std::vector<T>::size_type n = i;
     
-    if (n < devices.size()) { devices[n] = AudioDevice (name, channels); }
+    if (n < devices.size()) { devices[n] = T (name, channels); }
     else {
         devices.emplace_back (name, channels);
     }
@@ -54,24 +54,29 @@ void Devices::changeDeviceAt (std::vector<AudioDevice>& devices,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::vector<AudioDevice> Devices::getDevicesInChangedAt (const juce::String& name, int n) const
+template <class T> std::vector<T> Devices<T>::getDevicesInChangedAt (const juce::String& name, int n) const
 {
-    std::vector<AudioDevice> t (currentDevicesIn_);
+    std::vector<T> t (currentDevicesIn_);
     
     changeDeviceAt (t, n, name, getChannelsFor (availableDevicesIn_, name));
     
     return t;
 }
 
-std::vector<AudioDevice> Devices::getDevicesOutChangedAt (const juce::String& name, int n) const
+template <class T> std::vector<T> Devices<T>::getDevicesOutChangedAt (const juce::String& name, int n) const
 {
-    std::vector<AudioDevice> t (currentDevicesOut_);
+    std::vector<T> t (currentDevicesOut_);
     
     changeDeviceAt (t, n, name, getChannelsFor (availableDevicesOut_, name));
     
     return t;
 }
     
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+template class Devices<AudioDevice>;
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

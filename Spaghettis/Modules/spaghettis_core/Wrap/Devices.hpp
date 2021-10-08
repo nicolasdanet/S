@@ -55,7 +55,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Devices : public juce::ChangeBroadcaster {
+template <class T> class Devices : public juce::ChangeBroadcaster {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void setAvailableDevices (std::vector<AudioDevice> i, std::vector<AudioDevice> o)
+    void setAvailableDevices (std::vector<T> i, std::vector<T> o)
     {
         availableDevicesIn_  = std::move (i);
         availableDevicesOut_ = std::move (o);
@@ -77,7 +77,7 @@ public:
         sendChangeMessage();
     }
 
-    void setCurrentDevices (std::vector<AudioDevice> i, std::vector<AudioDevice> o)
+    void setCurrentDevices (std::vector<T> i, std::vector<T> o)
     {
         currentDevicesIn_  = std::move (i);
         currentDevicesOut_ = std::move (o);
@@ -120,12 +120,12 @@ public:
 // MARK: -
 
 public:
-    std::vector<AudioDevice> getDevicesIn() const
+    std::vector<T> getDevicesIn() const
     {
         return currentDevicesIn_;
     }
 
-    std::vector<AudioDevice> getDevicesOut() const
+    std::vector<T> getDevicesOut() const
     {
         return currentDevicesOut_;
     }
@@ -135,24 +135,24 @@ public:
 // MARK: -
 
 public:
-    std::vector<AudioDevice> getDevicesInChangedAt (const juce::String& name, int n) const;
-    std::vector<AudioDevice> getDevicesOutChangedAt (const juce::String& name, int n) const;
+    std::vector<T> getDevicesInChangedAt (const juce::String& name, int n) const;
+    std::vector<T> getDevicesOutChangedAt (const juce::String& name, int n) const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
     
 private:
-    static juce::StringArray getNames (const std::vector<AudioDevice>&);
-    static juce::String getNameAt (const std::vector<AudioDevice>&, int);
-    static int getChannelsFor (const std::vector<AudioDevice>&, const juce::String&);
-    static void changeDeviceAt (std::vector<AudioDevice>&, int, const juce::String&, int);
+    static juce::StringArray getNames (const std::vector<T>&);
+    static juce::String getNameAt (const std::vector<T>&, int);
+    static int getChannelsFor (const std::vector<T>&, const juce::String&);
+    static void changeDeviceAt (std::vector<T>&, int, const juce::String&, int);
 
 private:
-    std::vector<AudioDevice> availableDevicesIn_;
-    std::vector<AudioDevice> availableDevicesOut_;
-    std::vector<AudioDevice> currentDevicesIn_;
-    std::vector<AudioDevice> currentDevicesOut_;
+    std::vector<T> availableDevicesIn_;
+    std::vector<T> availableDevicesOut_;
+    std::vector<T> currentDevicesIn_;
+    std::vector<T> currentDevicesOut_;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -164,7 +164,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using AudioDevices = Devices;
+using AudioDevices = Devices<AudioDevice>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
