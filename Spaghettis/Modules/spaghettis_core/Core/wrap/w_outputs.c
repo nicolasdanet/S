@@ -64,6 +64,32 @@ static std::vector<AudioDevice> outputs_getAudioOut (t_deviceslist *l)
     return d;
 }
 
+static std::vector<MidiDevice> outputs_getMidiIn (t_deviceslist *l)
+{
+    std::vector<MidiDevice> d;
+    
+    for (int j = 0; j < deviceslist_getInSize (l); ++j) {
+        t_symbol *t  = deviceslist_getInAtIndex (l, j);
+        PD_ASSERT (t);
+        d.emplace_back (t->s_name);
+    }
+    
+    return d;
+}
+
+static std::vector<MidiDevice> outputs_getMidiOut (t_deviceslist *l)
+{
+    std::vector<MidiDevice> d;
+    
+    for (int j = 0; j < deviceslist_getOutSize (l); ++j) {
+        t_symbol *t  = deviceslist_getOutAtIndex (l, j);
+        PD_ASSERT (t);
+        d.emplace_back (t->s_name);
+    }
+    
+    return d;
+}
+
 PD_LOCAL void outputs_reportAvailableAudioDevices (t_deviceslist *l)
 {
     wrapper_send (Outputs::reportAvailableAudioDevices (outputs_getAudioIn (l), outputs_getAudioOut (l)));
@@ -76,14 +102,12 @@ PD_LOCAL void outputs_reportCurrentAudioDevices (t_deviceslist *l)
 
 PD_LOCAL void outputs_reportAvailableMidiDevices (t_deviceslist *l)
 {
-    DBG ("?");
-    // wrapper_send (Outputs::reportAvailableMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
+    wrapper_send (Outputs::reportAvailableMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
 }
 
 PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 {
-    DBG ("!");
-    // wrapper_send (Outputs::reportCurrentMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
+    wrapper_send (Outputs::reportCurrentMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
 }
 
 // -----------------------------------------------------------------------------------------------------------
