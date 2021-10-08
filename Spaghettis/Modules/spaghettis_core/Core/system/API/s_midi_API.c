@@ -77,6 +77,8 @@ PD_LOCAL void midi_setDevices (t_devices *p, int setParameters)
     pd_message (symbol_getThing (sym__midiports), sym__midiports, 0, NULL);
     //
     }
+    
+    outputs_reportCurrentMidiDevices (&midi_devices);
 }
 
 // -----------------------------------------------------------------------------------------------------------

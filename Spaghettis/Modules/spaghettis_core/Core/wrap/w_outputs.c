@@ -82,6 +82,7 @@ PD_LOCAL void outputs_reportAvailableMidiDevices (t_deviceslist *l)
 
 PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 {
+    DBG ("!");
     // wrapper_send (Outputs::reportCurrentMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
 }
 
