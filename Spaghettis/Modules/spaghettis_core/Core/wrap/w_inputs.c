@@ -75,6 +75,9 @@ PD_LOCAL void inputs_setAudioDevices (const std::vector<AudioDevice>& i, const s
 {
     t_devices audio; devices_initAsAudio (&audio);
     
+    jassert (i.size() <= DEVICES_MAXIMUM_IO);
+    jassert (o.size() <= DEVICES_MAXIMUM_IO);
+    
     for (const auto& d : i) { devices_appendAudioIn (&audio, d);  }
     for (const auto& d : o) { devices_appendAudioOut (&audio, d); }
     
