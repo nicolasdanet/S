@@ -34,6 +34,7 @@ public:
         midiOutTag_ ("Midi Out")
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
+        Spaghettis()->getMidiDevices().addChangeListener (this);
         
         initialize();
                 
@@ -46,6 +47,7 @@ public:
     {
         release();
         
+        Spaghettis()->getMidiDevices().removeChangeListener (this);
         Spaghettis()->getAudioDevices().removeChangeListener (this);
     }
 
@@ -80,28 +82,28 @@ public:
 private:
     void updateView()
     {
-        int m = 0;
-        
-        for (auto& c : audioIn_) {
-        //
-        c.clear (juce::dontSendNotification);
-        c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesIn(), firstItemIdOffset_);
-        setSelectedItemByString (c, Spaghettis()->getAudioDevices().getNameInAt (m++));
-        //
+        {
+            int n = 0;
+            
+            for (auto& c : audioIn_) {
+                c.clear (juce::dontSendNotification);
+                c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesIn(), firstItemIdOffset_);
+                setSelectedItemByString (c, Spaghettis()->getAudioDevices().getNameInAt (n++));
+            }
         }
         
-        int n = 0;
-        
-        for (auto& c : audioOut_) {
-        //
-        c.clear (juce::dontSendNotification);
-        c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesOut(), firstItemIdOffset_);
-        setSelectedItemByString (c, Spaghettis()->getAudioDevices().getNameOutAt (n++));
-        //
+        {
+            int n = 0;
+            
+            for (auto& c : audioOut_) {
+                c.clear (juce::dontSendNotification);
+                c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesOut(), firstItemIdOffset_);
+                setSelectedItemByString (c, Spaghettis()->getAudioDevices().getNameOutAt (n++));
+            }
         }
     }
 
-    void updateDevice (const juce::String& name, int n, bool isDeviceIn)
+    void updateAudioDevice (const juce::String& name, int n, bool isDeviceIn)
     {
         const AudioDevices& d (Spaghettis()->getAudioDevices());
         
@@ -126,7 +128,7 @@ public:
         
         jassert (n >= 0);
         
-        if (i || o) { updateDevice (box->getText(), n, (i == true)); }
+        if (i || o) { updateAudioDevice (box->getText(), n, (i == true)); }
     }
 
     void changeListenerCallback (juce::ChangeBroadcaster*) override
