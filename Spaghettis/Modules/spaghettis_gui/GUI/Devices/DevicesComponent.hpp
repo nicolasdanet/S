@@ -80,27 +80,24 @@ public:
 // MARK: -
 
 private:
+    template <class T>
+    void updateViewProceed (const T& devices, std::array<juce::ComboBox, numberOfDevices()>& a)
+    {
+        int n = 0;
+            
+        for (auto& c : a) {
+            c.clear (juce::dontSendNotification);
+            c.addItemList (devices.getAvailableNamesIn(), firstItemIdOffset_);
+            setSelectedItemByString (c, devices.getNameInAt (n++));
+        }
+    }
+    
     void updateView()
     {
-        {
-            int n = 0;
-            
-            for (auto& c : audioIn_) {
-                c.clear (juce::dontSendNotification);
-                c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesIn(), firstItemIdOffset_);
-                setSelectedItemByString (c, Spaghettis()->getAudioDevices().getNameInAt (n++));
-            }
-        }
-        
-        {
-            int n = 0;
-            
-            for (auto& c : audioOut_) {
-                c.clear (juce::dontSendNotification);
-                c.addItemList (Spaghettis()->getAudioDevices().getAvailableNamesOut(), firstItemIdOffset_);
-                setSelectedItemByString (c, Spaghettis()->getAudioDevices().getNameOutAt (n++));
-            }
-        }
+        updateViewProceed (Spaghettis()->getAudioDevices(), audioIn_);
+        updateViewProceed (Spaghettis()->getAudioDevices(), audioOut_);
+        updateViewProceed (Spaghettis()->getMidiDevices(),  midiIn_);
+        updateViewProceed (Spaghettis()->getMidiDevices(),  midiOut_);
     }
 
     void updateAudioDevice (const juce::String& name, int n, bool isDeviceIn)
