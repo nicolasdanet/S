@@ -81,23 +81,23 @@ public:
 
 private:
     template <class T>
-    void updateViewProceed (const T& devices, std::array<juce::ComboBox, numberOfDevices()>& a)
+    void updateViewProceed (const T& devices, std::array<juce::ComboBox, numberOfDevices()>& a, bool b)
     {
         int n = 0;
             
         for (auto& c : a) {
             c.clear (juce::dontSendNotification);
-            c.addItemList (devices.getAvailableNamesIn(), firstItemIdOffset_);
-            setSelectedItemByString (c, devices.getNameInAt (n++));
+            c.addItemList (devices.getAvailableNames (b), firstItemIdOffset_);
+            setSelectedItemByString (c, devices.getNameAt (n++, b));
         }
     }
     
     void updateView()
     {
-        updateViewProceed (Spaghettis()->getAudioDevices(), audioIn_);
-        updateViewProceed (Spaghettis()->getAudioDevices(), audioOut_);
-        updateViewProceed (Spaghettis()->getMidiDevices(),  midiIn_);
-        updateViewProceed (Spaghettis()->getMidiDevices(),  midiOut_);
+        updateViewProceed (Spaghettis()->getAudioDevices(), audioIn_,  true);
+        updateViewProceed (Spaghettis()->getAudioDevices(), audioOut_, false);
+        updateViewProceed (Spaghettis()->getMidiDevices(),  midiIn_,   true);
+        updateViewProceed (Spaghettis()->getMidiDevices(),  midiOut_,  false);
     }
 
     void updateAudioDevice (const juce::String& name, int n, bool isDeviceIn)
@@ -110,6 +110,16 @@ private:
         Spaghettis()->handle (Inputs::setAudioDevices (std::move (i), std::move (o)));
     }
     
+    void updateMidiDevice (const juce::String& name, int n, bool isDeviceIn)
+    {
+        const MidiDevices& d (Spaghettis()->getMidiDevices());
+        
+        std::vector<MidiDevice> i (isDeviceIn ? d.getDevicesInChangedAt (name, n) : d.getDevicesIn());
+        std::vector<MidiDevice> o (isDeviceIn ? d.getDevicesOut() : d.getDevicesOutChangedAt (name, n));
+        
+        Spaghettis()->handle (Inputs::setMidiDevices (std::move (i), std::move (o)));
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -119,13 +129,17 @@ public:
     {
         const juce::String s (box->getComponentID());
         
-        const bool i = s.startsWith (audioInTag_);
-        const bool o = s.startsWith (audioOutTag_);
-        const int n  = s.getTrailingIntValue();
+        const bool isAudioIn  = s.startsWith (audioInTag_);
+        const bool isAusioOut = s.startsWith (audioOutTag_);
+        const bool isMidiIn   = s.startsWith (midiInTag_);
+        const bool isMidiOut  = s.startsWith (midiOutTag_);
+        
+        const int n = s.getTrailingIntValue();
         
         jassert (n >= 0);
         
-        if (i || o) { updateAudioDevice (box->getText(), n, (i == true)); }
+        if (isAudioIn || isAusioOut)    { updateAudioDevice (box->getText(), n, (isAudioIn == true)); }
+        else if (isMidiIn || isMidiOut) { updateMidiDevice (box->getText(), n, (isMidiIn == true)); }
     }
 
     void changeListenerCallback (juce::ChangeBroadcaster*) override

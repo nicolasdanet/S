@@ -86,6 +86,21 @@ PD_LOCAL void inputs_setAudioDevices (const std::vector<AudioDevice>& i, const s
     audio_setDevices (&audio, 0);
 }
 
+PD_LOCAL void inputs_setMidiDevices (const std::vector<MidiDevice>& i, const std::vector<MidiDevice>& o)
+{
+    t_devices midi; devices_initAsMidi (&midi);
+    
+    jassert (i.size() <= DEVICES_MAXIMUM_IO);
+    jassert (o.size() <= DEVICES_MAXIMUM_IO);
+    
+    for (const auto& d : i) { devices_appendMidiIn (&midi, d);  }
+    for (const auto& d : o) { devices_appendMidiOut (&midi, d); }
+    
+    midi_close();
+    midi_setDevices (&midi, 0);
+    midi_open();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

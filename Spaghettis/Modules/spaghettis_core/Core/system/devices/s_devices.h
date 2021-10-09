@@ -105,6 +105,8 @@ PD_LOCAL t_error    devices_appendAudioOutWithString    (t_devices *p, char *dev
 
 PD_LOCAL t_error    devices_appendAudioIn               (t_devices *p, const AudioDevice& d);
 PD_LOCAL t_error    devices_appendAudioOut              (t_devices *p, const AudioDevice& d);
+PD_LOCAL t_error    devices_appendMidiIn                (t_devices *p, const MidiDevice& d);
+PD_LOCAL t_error    devices_appendMidiOut               (t_devices *p, const MidiDevice& d);
 
 #endif
 

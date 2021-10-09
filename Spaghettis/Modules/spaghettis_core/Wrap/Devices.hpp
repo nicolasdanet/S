@@ -95,7 +95,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     juce::StringArray getAvailableNamesIn() const
     {
         return getNames (availableDevicesIn_);
@@ -106,11 +106,17 @@ public:
         return getNames (availableDevicesOut_);
     }
 
+public:
+    juce::StringArray getAvailableNames (bool isDeviceIn) const
+    {
+        return isDeviceIn ? getAvailableNamesIn() : getAvailableNamesOut();
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     juce::String getNameInAt (int n) const
     {
         return getNameAt (currentDevicesIn_, n);
@@ -119,6 +125,12 @@ public:
     juce::String getNameOutAt (int n) const
     {
         return getNameAt (currentDevicesOut_, n);
+    }
+
+public:
+    juce::String getNameAt (int n, bool isDeviceIn) const
+    {
+        return isDeviceIn ? getNameInAt (n) : getNameOutAt (n);
     }
 
 // -----------------------------------------------------------------------------------------------------------

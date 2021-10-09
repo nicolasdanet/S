@@ -137,6 +137,20 @@ PD_LOCAL t_error devices_appendAudioOut (t_devices *p, const AudioDevice& d)
     return devices_appendAudioOutWithSymbol (p, s, d.getChannels());
 }
 
+PD_LOCAL t_error devices_appendMidiIn (t_devices *p, const MidiDevice& d)
+{
+    t_symbol *s = gensym (d.getName().toRawUTF8());
+
+    return devices_appendMidiInWithSymbol (p, s);
+}
+
+PD_LOCAL t_error devices_appendMidiOut (t_devices *p, const MidiDevice& d)
+{
+    t_symbol *s = gensym (d.getName().toRawUTF8());
+
+    return devices_appendMidiOutWithSymbol (p, s);
+}
+
 #endif
 
 // -----------------------------------------------------------------------------------------------------------

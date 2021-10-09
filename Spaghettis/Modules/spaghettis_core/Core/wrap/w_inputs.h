@@ -26,6 +26,7 @@ PD_LOCAL void inputs_setSnap            (bool);
 PD_LOCAL void inputs_setSnapSize        (int);
 PD_LOCAL void inputs_rescanDevices      (void);
 PD_LOCAL void inputs_setAudioDevices    (const std::vector<AudioDevice>&, const std::vector<AudioDevice>&);
+PD_LOCAL void inputs_setMidiDevices     (const std::vector<MidiDevice>&, const std::vector<MidiDevice>&);
 
 #endif
 

@@ -68,6 +68,16 @@ Perform Inputs::setAudioDevices (std::vector<AudioDevice>&& i, std::vector<Audio
     return f;
 }
 
+Perform Inputs::setMidiDevices (std::vector<MidiDevice>&& i, std::vector<MidiDevice>&& o)
+{
+    auto f = [devicesIn = std::move (i), devicesOut = std::move (o)]()
+    {
+        core::inputs_setMidiDevices (devicesIn, devicesOut);
+    };
+    
+    return f;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
