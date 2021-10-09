@@ -36,18 +36,7 @@ public:
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
         
-        int m = 0;
-        int n = 0;
-        
-        for (auto& b : audioIn_)        { initializeBox (b,   audioInTag_,  m++); }
-        for (auto& b : audioOut_)       { initializeBox (b,   audioOutTag_, n++); }
-        for (auto& l : audioInLabel_)   { initializeLabel (l, audioInTag_);       }
-        for (auto& l : audioOutLabel_)  { initializeLabel (l, audioOutTag_);      }
-        
-        for (auto& b : midiIn_)         { initializeBox (b,   midiInTag_,  m++);  }
-        for (auto& b : midiOut_)        { initializeBox (b,   midiOutTag_, n++);  }
-        for (auto& l : midiInLabel_)    { initializeLabel (l, midiInTag_);        }
-        for (auto& l : midiOutLabel_)   { initializeLabel (l, midiOutTag_);       }
+        initialize();
                 
         setOpaque (true); setSize (400, 500);
         
@@ -56,10 +45,7 @@ public:
     
     ~DevicesComponent() override
     {
-        for (auto& b : audioOut_) { releaseBox (b); }
-        for (auto& b : audioIn_)  { releaseBox (b); }
-        for (auto& b : midiOut_)  { releaseBox (b); }
-        for (auto& b : midiIn_)   { releaseBox (b); }
+        release();
         
         Spaghettis()->getAudioDevices().removeChangeListener (this);
     }
@@ -80,15 +66,13 @@ public:
         
         juce::Rectangle<int> area (getBoundsRemaining());
 
-        const int n = numberOfAudioDevicesAllowed();
+        const int m = numberOfAudioDevicesAllowed();
+        const int n = numberOfMidiDevicesAllowed();
         
-        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioInLabel_[i],  audioIn_[i]);  }
-        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]); }
-        
-        const int m = numberOfMidiDevicesAllowed();
-        
-        for (int i = 0; i < m; ++i) { dispose (area.removeFromTop (h), midiInLabel_[i],   midiIn_[i]);   }
-        for (int i = 0; i < m; ++i) { dispose (area.removeFromTop (h), midiOutLabel_[i],  midiOut_[i]);  }
+        for (int i = 0; i < m; ++i) { dispose (area.removeFromTop (h), audioInLabel_[i],  audioIn_[i]);  }
+        for (int i = 0; i < m; ++i) { dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]); }
+        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), midiInLabel_[i],   midiIn_[i]);   }
+        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), midiOutLabel_[i],  midiOut_[i]);  }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -197,6 +181,35 @@ private:
         box.removeListener (this);
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void initialize()
+    {
+        int m = 0;
+        int n = 0;
+        
+        for (auto& b : audioIn_)        { initializeBox (b,   audioInTag_,  m++); }
+        for (auto& b : audioOut_)       { initializeBox (b,   audioOutTag_, n++); }
+        for (auto& l : audioInLabel_)   { initializeLabel (l, audioInTag_);       }
+        for (auto& l : audioOutLabel_)  { initializeLabel (l, audioOutTag_);      }
+        
+        for (auto& b : midiIn_)         { initializeBox (b,   midiInTag_,  m++);  }
+        for (auto& b : midiOut_)        { initializeBox (b,   midiOutTag_, n++);  }
+        for (auto& l : midiInLabel_)    { initializeLabel (l, midiInTag_);        }
+        for (auto& l : midiOutLabel_)   { initializeLabel (l, midiOutTag_);       }
+    }
+    
+    void release()
+    {
+        for (auto& b : audioOut_)       { releaseBox (b); }
+        for (auto& b : audioIn_)        { releaseBox (b); }
+        for (auto& b : midiOut_)        { releaseBox (b); }
+        for (auto& b : midiIn_)         { releaseBox (b); }
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
