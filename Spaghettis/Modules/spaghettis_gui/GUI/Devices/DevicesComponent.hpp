@@ -30,17 +30,24 @@ class DevicesComponent :    public ApplicationComponent,
 public:
     explicit DevicesComponent (const juce::String& keyName) : ApplicationComponent (keyName),
         audioInTag_ ("Audio In"),
-        audioOutTag_ ("Audio Out")
+        audioOutTag_ ("Audio Out"),
+        midiInTag_ ("Midi In"),
+        midiOutTag_ ("Midi Out")
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
         
         int m = 0;
         int n = 0;
         
-        for (auto& b : audioIn_)       { initializeBox (b,   audioInTag_,  m++); }
-        for (auto& b : audioOut_)      { initializeBox (b,   audioOutTag_, n++); }
-        for (auto& l : audioInLabel_)  { initializeLabel (l, audioInTag_); }
-        for (auto& l : audioOutLabel_) { initializeLabel (l, audioOutTag_); }
+        for (auto& b : audioIn_)        { initializeBox (b,   audioInTag_,  m++); }
+        for (auto& b : audioOut_)       { initializeBox (b,   audioOutTag_, n++); }
+        for (auto& l : audioInLabel_)   { initializeLabel (l, audioInTag_);       }
+        for (auto& l : audioOutLabel_)  { initializeLabel (l, audioOutTag_);      }
+        
+        for (auto& b : midiIn_)         { initializeBox (b,   midiInTag_,  m++);  }
+        for (auto& b : midiOut_)        { initializeBox (b,   midiOutTag_, n++);  }
+        for (auto& l : midiInLabel_)    { initializeLabel (l, midiInTag_);        }
+        for (auto& l : midiOutLabel_)   { initializeLabel (l, midiOutTag_);       }
                 
         setOpaque (true); setSize (400, 500);
         
@@ -51,6 +58,8 @@ public:
     {
         for (auto& b : audioOut_) { releaseBox (b); }
         for (auto& b : audioIn_)  { releaseBox (b); }
+        for (auto& b : midiOut_)  { releaseBox (b); }
+        for (auto& b : midiIn_)   { releaseBox (b); }
         
         Spaghettis()->getAudioDevices().removeChangeListener (this);
     }
@@ -68,12 +77,18 @@ public:
     void resized() override
     {
         const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.5);
-        const int n = numberOfAudioDevicesAllowed();
         
         juce::Rectangle<int> area (getBoundsRemaining());
 
+        const int n = numberOfAudioDevicesAllowed();
+        
         for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioInLabel_[i],  audioIn_[i]);  }
         for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]); }
+        
+        const int m = numberOfMidiDevicesAllowed();
+        
+        for (int i = 0; i < m; ++i) { dispose (area.removeFromTop (h), midiInLabel_[i],   midiIn_[i]);   }
+        for (int i = 0; i < m; ++i) { dispose (area.removeFromTop (h), midiOutLabel_[i],  midiOut_[i]);  }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -211,12 +226,20 @@ private:
 private:
     const juce::String audioInTag_;
     const juce::String audioOutTag_;
+    const juce::String midiInTag_;
+    const juce::String midiOutTag_;
     
 private:
     std::array<juce::ComboBox, numberOfAudioDevicesAllowed()> audioIn_;
     std::array<juce::ComboBox, numberOfAudioDevicesAllowed()> audioOut_;
     std::array<juce::Label, numberOfAudioDevicesAllowed()> audioInLabel_;
     std::array<juce::Label, numberOfAudioDevicesAllowed()> audioOutLabel_;
+
+private:
+    std::array<juce::ComboBox, numberOfMidiDevicesAllowed()> midiIn_;
+    std::array<juce::ComboBox, numberOfMidiDevicesAllowed()> midiOut_;
+    std::array<juce::Label, numberOfMidiDevicesAllowed()> midiInLabel_;
+    std::array<juce::Label, numberOfMidiDevicesAllowed()> midiOutLabel_;
 
 private:
     static const int firstItemIdOffset_ = 1;

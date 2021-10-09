@@ -18,7 +18,7 @@ class AudioDevice {
 // MARK: -
 
 public:
-    AudioDevice (const juce::String& name, int channels = 0) : name_ (name), channels_ (channels)
+    explicit AudioDevice (const juce::String& name, int channels = 0) : name_ (name), channels_ (channels)
     {
     }
     
