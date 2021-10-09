@@ -12,9 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-constexpr int numberOfAudioDevicesAllowed() { return 1; }
-constexpr int numberOfMidiDevicesAllowed()  { return 4; }
-    
+constexpr int numberOfDevices() { return 2; }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -66,11 +65,10 @@ public:
         
         juce::Rectangle<int> area (getBoundsRemaining());
 
-        const int m = numberOfAudioDevicesAllowed();
-        const int n = numberOfMidiDevicesAllowed();
+        const int n = numberOfDevices();
         
-        for (int i = 0; i < m; ++i) { dispose (area.removeFromTop (h), audioInLabel_[i],  audioIn_[i]);  }
-        for (int i = 0; i < m; ++i) { dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]); }
+        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioInLabel_[i],  audioIn_[i]);  }
+        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]); }
         for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), midiInLabel_[i],   midiIn_[i]);   }
         for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), midiOutLabel_[i],  midiOut_[i]);  }
     }
@@ -188,26 +186,31 @@ private:
 private:
     void initialize()
     {
-        int m = 0;
-        int n = 0;
+        {
+            int m = 0; int n = 0;
+            
+            for (auto& b : audioIn_)        { initializeBox (b,   audioInTag_,  m++); }
+            for (auto& b : audioOut_)       { initializeBox (b,   audioOutTag_, n++); }
+            for (auto& l : audioInLabel_)   { initializeLabel (l, audioInTag_);       }
+            for (auto& l : audioOutLabel_)  { initializeLabel (l, audioOutTag_);      }
+        }
         
-        for (auto& b : audioIn_)        { initializeBox (b,   audioInTag_,  m++); }
-        for (auto& b : audioOut_)       { initializeBox (b,   audioOutTag_, n++); }
-        for (auto& l : audioInLabel_)   { initializeLabel (l, audioInTag_);       }
-        for (auto& l : audioOutLabel_)  { initializeLabel (l, audioOutTag_);      }
-        
-        for (auto& b : midiIn_)         { initializeBox (b,   midiInTag_,  m++);  }
-        for (auto& b : midiOut_)        { initializeBox (b,   midiOutTag_, n++);  }
-        for (auto& l : midiInLabel_)    { initializeLabel (l, midiInTag_);        }
-        for (auto& l : midiOutLabel_)   { initializeLabel (l, midiOutTag_);       }
+        {
+            int m = 0; int n = 0;
+            
+            for (auto& b : midiIn_)         { initializeBox (b,   midiInTag_,   m++); }
+            for (auto& b : midiOut_)        { initializeBox (b,   midiOutTag_,  n++); }
+            for (auto& l : midiInLabel_)    { initializeLabel (l, midiInTag_);        }
+            for (auto& l : midiOutLabel_)   { initializeLabel (l, midiOutTag_);       }
+        }
     }
     
     void release()
     {
-        for (auto& b : audioOut_)       { releaseBox (b); }
-        for (auto& b : audioIn_)        { releaseBox (b); }
-        for (auto& b : midiOut_)        { releaseBox (b); }
-        for (auto& b : midiIn_)         { releaseBox (b); }
+        for (auto& b : midiOut_)  { releaseBox (b); }
+        for (auto& b : midiIn_)   { releaseBox (b); }
+        for (auto& b : audioOut_) { releaseBox (b); }
+        for (auto& b : audioIn_)  { releaseBox (b); }
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -243,16 +246,16 @@ private:
     const juce::String midiOutTag_;
     
 private:
-    std::array<juce::ComboBox, numberOfAudioDevicesAllowed()> audioIn_;
-    std::array<juce::ComboBox, numberOfAudioDevicesAllowed()> audioOut_;
-    std::array<juce::Label, numberOfAudioDevicesAllowed()> audioInLabel_;
-    std::array<juce::Label, numberOfAudioDevicesAllowed()> audioOutLabel_;
+    std::array<juce::ComboBox, numberOfDevices()> audioIn_;
+    std::array<juce::ComboBox, numberOfDevices()> audioOut_;
+    std::array<juce::Label,    numberOfDevices()> audioInLabel_;
+    std::array<juce::Label,    numberOfDevices()> audioOutLabel_;
 
 private:
-    std::array<juce::ComboBox, numberOfMidiDevicesAllowed()> midiIn_;
-    std::array<juce::ComboBox, numberOfMidiDevicesAllowed()> midiOut_;
-    std::array<juce::Label, numberOfMidiDevicesAllowed()> midiInLabel_;
-    std::array<juce::Label, numberOfMidiDevicesAllowed()> midiOutLabel_;
+    std::array<juce::ComboBox, numberOfDevices()> midiIn_;
+    std::array<juce::ComboBox, numberOfDevices()> midiOut_;
+    std::array<juce::Label,    numberOfDevices()> midiInLabel_;
+    std::array<juce::Label,    numberOfDevices()> midiOutLabel_;
 
 private:
     static const int firstItemIdOffset_ = 1;
