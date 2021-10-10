@@ -72,7 +72,7 @@ public:
         removeMessagesIfRequired (messages_);
         removeMessagesIfRequired (history_);
         
-        history_.insert (history_.end(), m.begin(), m.end());
+        history_.insert (history_.cend(), m.cbegin(), m.cend());
         
         logMessageProceed (m);
     }
@@ -91,7 +91,7 @@ public:
 
     void restore()
     {
-        MessagesPacket m (history_.begin(), history_.end());
+        MessagesPacket m (history_.cbegin(), history_.cend());
         
         messages_.clear(); logMessageProceed (m);
     }
@@ -105,7 +105,7 @@ private:
     {
         parseMessages (m, getButtonState (Icons::message), getButtonState (Icons::error));
         
-        messages_.insert (messages_.end(), m.begin(), m.end());
+        messages_.insert (messages_.cend(), m.cbegin(), m.cend());
         
         triggerAsyncUpdate();
     }
@@ -204,7 +204,7 @@ private:
         
         jassert (n < size);
         
-        messages.erase (messages.begin(), messages.begin() + n);
+        messages.erase (messages.cbegin(), messages.cbegin() + n);
         //
         }
     }

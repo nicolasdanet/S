@@ -33,7 +33,7 @@ template <class T> juce::String Devices<T>::getNameAt (const std::vector<T>& dev
 template <class T> int Devices<T>::getChannelsFor (const std::vector<T>& devices, const juce::String& name)
 {
     auto f = [&] (const T& d) { return d.getName() == name; };
-    auto r = std::find_if (devices.begin(), devices.end(), f);
+    auto r = std::find_if (devices.cbegin(), devices.cend(), f);
     return r != devices.end() ? r->getChannels() : 0;
 }
 
