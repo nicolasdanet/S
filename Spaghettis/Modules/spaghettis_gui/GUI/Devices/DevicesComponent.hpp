@@ -213,22 +213,22 @@ private:
 // MARK: -
 
 private:
-    static Generator gen (const juce::String& s)
-    {
-        return [s, n = 0] () mutable { return s + " " + juce::String (n++); };
-    }
-    
     void initialize()
     {
-        { Generator f = gen (audioInTag_);  for (auto& b : audioIn_)        { initializeBox (b, f); } }
-        { Generator f = gen (audioOutTag_); for (auto& b : audioOut_)       { initializeBox (b, f); } }
-        { Generator f = gen (midiInTag_);   for (auto& b : midiIn_)         { initializeBox (b, f); } }
-        { Generator f = gen (midiOutTag_);  for (auto& b : midiOut_)        { initializeBox (b, f); } }
+        auto g = [] (const juce::String& s)
+        {
+            return [s, n = 0]() mutable { return s + " " + juce::String (n++); };
+        };
         
-        { Generator f = gen (audioInTag_);  for (auto& l : audioInLabel_)   { initializeLabel (l, f); } }
-        { Generator f = gen (audioOutTag_); for (auto& l : audioOutLabel_)  { initializeLabel (l, f); } }
-        { Generator f = gen (midiInTag_);   for (auto& l : midiInLabel_)    { initializeLabel (l, f); } }
-        { Generator f = gen (midiOutTag_);  for (auto& l : midiOutLabel_)   { initializeLabel (l, f); } }
+        { Generator f = g (audioInTag_);  for (auto& b : audioIn_)        { initializeBox (b, f); } }
+        { Generator f = g (audioOutTag_); for (auto& b : audioOut_)       { initializeBox (b, f); } }
+        { Generator f = g (midiInTag_);   for (auto& b : midiIn_)         { initializeBox (b, f); } }
+        { Generator f = g (midiOutTag_);  for (auto& b : midiOut_)        { initializeBox (b, f); } }
+        
+        { Generator f = g (audioInTag_);  for (auto& l : audioInLabel_)   { initializeLabel (l, f); } }
+        { Generator f = g (audioOutTag_); for (auto& l : audioOutLabel_)  { initializeLabel (l, f); } }
+        { Generator f = g (midiInTag_);   for (auto& l : midiInLabel_)    { initializeLabel (l, f); } }
+        { Generator f = g (midiOutTag_);  for (auto& l : midiOutLabel_)   { initializeLabel (l, f); } }
     }
     
     void release()
