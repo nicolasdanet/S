@@ -70,10 +70,14 @@ public:
 
         const int n = numberOfDevices();
         
-        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioInLabel_[i],  audioIn_[i]);  }
-        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]); }
-        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), midiInLabel_[i],   midiIn_[i]);   }
-        for (int i = 0; i < n; ++i) { dispose (area.removeFromTop (h), midiOutLabel_[i],  midiOut_[i]);  }
+        for (int i = 0; i < n; ++i) {
+            dispose (area.removeFromTop (h), audioInLabel_[i],  audioIn_[i]);
+            dispose (area.removeFromTop (h), audioOutLabel_[i], audioOut_[i]);
+        }
+        for (int i = 0; i < n; ++i) {
+            dispose (area.removeFromTop (h), midiInLabel_[i],   midiIn_[i]);
+            dispose (area.removeFromTop (h), midiOutLabel_[i],  midiOut_[i]);
+        }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -88,8 +92,8 @@ private:
             
         for (auto& c : a) {
             c.clear (juce::dontSendNotification);
-            c.addItemList (devices.getAvailableNames (b), firstItemId_ + 1);
             c.addItem (noneTag_, firstItemId_);
+            c.addItemList (devices.getAvailableNames (b), firstItemId_ + 1);
             const juce::String s (devices.getNameAt (n++, b));
             setSelectedItemByString (c, s.isEmpty() ? noneTag_ : s);
         }
