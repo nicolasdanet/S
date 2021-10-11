@@ -37,6 +37,13 @@ template <class T> int Devices<T>::getChannelsFor (const std::vector<T>& devices
     return r != devices.end() ? r->getChannels() : 0;
 }
 
+template <class T> void Devices<T>::removeDeviceAt (std::vector<T>& devices, int i)
+{
+    const typename std::vector<T>::size_type n = i;
+    
+    if (n < devices.size()) { devices.erase (devices.cbegin() + n); }
+}
+
 template <class T> void Devices<T>::changeDeviceAt (std::vector<T>& devices,
     int i,
     const juce::String& name,
@@ -58,7 +65,10 @@ template <class T> std::vector<T> Devices<T>::getDevicesInChangedAt (const juce:
 {
     std::vector<T> t (currentDevicesIn_);
     
-    changeDeviceAt (t, n, name, getChannelsFor (availableDevicesIn_, name));
+    if (name.isNotEmpty()) { changeDeviceAt (t, n, name, getChannelsFor (availableDevicesIn_, name)); }
+    else {
+        removeDeviceAt (t, n);
+    }
     
     return t;
 }
@@ -67,7 +77,10 @@ template <class T> std::vector<T> Devices<T>::getDevicesOutChangedAt (const juce
 {
     std::vector<T> t (currentDevicesOut_);
     
-    changeDeviceAt (t, n, name, getChannelsFor (availableDevicesOut_, name));
+    if (name.isNotEmpty()) { changeDeviceAt (t, n, name, getChannelsFor (availableDevicesOut_, name)); }
+    else {
+        removeDeviceAt (t, n);
+    }
     
     return t;
 }

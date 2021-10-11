@@ -138,6 +138,7 @@ private:
     static juce::StringArray getNames (const std::vector<T>&);
     static juce::String getNameAt (const std::vector<T>&, int);
     static int getChannelsFor (const std::vector<T>&, const juce::String&);
+    static void removeDeviceAt (std::vector<T>&, int);
     static void changeDeviceAt (std::vector<T>&, int, const juce::String&, int);
 
 private:

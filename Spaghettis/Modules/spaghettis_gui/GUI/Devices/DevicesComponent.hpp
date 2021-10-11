@@ -31,7 +31,8 @@ public:
         audioInTag_ ("Audio In"),
         audioOutTag_ ("Audio Out"),
         midiInTag_ ("Midi In"),
-        midiOutTag_ ("Midi Out")
+        midiOutTag_ ("Midi Out"),
+        noneTag_ ("TOTO")
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
         Spaghettis()->getMidiDevices().addChangeListener (this);
@@ -87,8 +88,10 @@ private:
             
         for (auto& c : a) {
             c.clear (juce::dontSendNotification);
-            c.addItemList (devices.getAvailableNames (b), firstItemIdOffset_);
-            setSelectedItemByString (c, devices.getNameAt (n++, b));
+            c.addItem (noneTag_, firstItemId_);
+            c.addItemList (devices.getAvailableNames (b), firstItemId_ + 1);
+            const juce::String s (devices.getNameAt (n++, b));
+            setSelectedItemByString (c, s.isEmpty() ? noneTag_ : s);
         }
     }
     
@@ -129,6 +132,8 @@ public:
     {
         const juce::String s (box->getComponentID());
         
+        juce::String name (box->getText()); if (name == noneTag_) { name = juce::String(); }
+        
         const bool isAudioIn  = s.startsWith (audioInTag_);
         const bool isAusioOut = s.startsWith (audioOutTag_);
         const bool isMidiIn   = s.startsWith (midiInTag_);
@@ -138,8 +143,8 @@ public:
         
         jassert (n >= 0);
         
-        if (isAudioIn || isAusioOut)    { updateAudioDevice (box->getText(), n, (isAudioIn == true)); }
-        else if (isMidiIn || isMidiOut) { updateMidiDevice (box->getText(), n, (isMidiIn == true)); }
+        if (isAudioIn || isAusioOut)    { updateAudioDevice (name, n, (isAudioIn == true)); }
+        else if (isMidiIn || isMidiOut) { updateMidiDevice (name, n, (isMidiIn == true)); }
     }
 
     void changeListenerCallback (juce::ChangeBroadcaster*) override
@@ -238,8 +243,6 @@ private:
     
     static void setSelectedItemByString (juce::ComboBox& box, const juce::String& s)
     {
-        if (s.isNotEmpty()) {
-        //
         const int n = box.getNumItems();
         
         for (int i = 0; i < n; ++i) {
@@ -248,8 +251,6 @@ private:
                 break;
             }
         }
-        //
-        }
     }
 
 private:
@@ -257,6 +258,7 @@ private:
     const juce::String audioOutTag_;
     const juce::String midiInTag_;
     const juce::String midiOutTag_;
+    const juce::String noneTag_;
     
 private:
     std::array<juce::ComboBox, numberOfDevices()> audioIn_;
@@ -271,7 +273,7 @@ private:
     std::array<juce::Label,    numberOfDevices()> midiOutLabel_;
 
 private:
-    static const int firstItemIdOffset_ = 1;
+    static const int firstItemId_ = 1;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DevicesComponent)
