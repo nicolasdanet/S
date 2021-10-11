@@ -24,6 +24,11 @@ class DevicesComponent :    public ApplicationComponent,
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+using Generator = std::function<juce::String()>;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
@@ -172,12 +177,12 @@ public:
 // MARK: -
 
 private:
-    void initializeBox (juce::ComboBox& box, const juce::String& s, int i)
+    void initializeBox (juce::ComboBox& box, const Generator& f)
     {
-        const juce::String tooltip (NEEDS_TRANS ("Select a device for " + s.toLowerCase()));
+        const juce::String s (f());
         
-        box.setTooltip (tooltip);
-        box.setComponentID (s + " " + juce::String (i));
+        box.setTooltip (NEEDS_TRANS ("Select a device for ") + s.toLowerCase());
+        box.setComponentID (s);
         box.addListener (this);
         
         addAndMakeVisible (box);
@@ -206,25 +211,24 @@ private:
 // MARK: -
 
 private:
+    static Generator generator (const juce::String& s)
+    {
+        return [s, n = 0] () mutable { return s + " " + juce::String (n++); };
+    }
+    
     void initialize()
     {
-        {
-            int m = 0; int n = 0;
-            
-            for (auto& b : audioIn_)        { initializeBox (b,   audioInTag_,  m++); }
-            for (auto& b : audioOut_)       { initializeBox (b,   audioOutTag_, n++); }
-            for (auto& l : audioInLabel_)   { initializeLabel (l, audioInTag_);       }
-            for (auto& l : audioOutLabel_)  { initializeLabel (l, audioOutTag_);      }
-        }
+        Generator f = {};
         
-        {
-            int m = 0; int n = 0;
-            
-            for (auto& b : midiIn_)         { initializeBox (b,   midiInTag_,   m++); }
-            for (auto& b : midiOut_)        { initializeBox (b,   midiOutTag_,  n++); }
-            for (auto& l : midiInLabel_)    { initializeLabel (l, midiInTag_);        }
-            for (auto& l : midiOutLabel_)   { initializeLabel (l, midiOutTag_);       }
-        }
+        f = generator (audioInTag_);  for (auto& b : audioIn_)  { initializeBox (b, f); }
+        f = generator (audioOutTag_); for (auto& b : audioOut_) { initializeBox (b, f); }
+        f = generator (midiInTag_);   for (auto& b : midiIn_)   { initializeBox (b, f); }
+        f = generator (midiOutTag_);  for (auto& b : midiOut_)  { initializeBox (b, f); }
+        
+        for (auto& l : audioInLabel_)   { initializeLabel (l, audioInTag_);  }
+        for (auto& l : audioOutLabel_)  { initializeLabel (l, audioOutTag_); }
+        for (auto& l : midiInLabel_)    { initializeLabel (l, midiInTag_);   }
+        for (auto& l : midiOutLabel_)   { initializeLabel (l, midiOutTag_);  }
     }
     
     void release()
