@@ -104,6 +104,27 @@ public:
         setVisible (true); addToDesktop(); toFront (true);
     }
 
+    void makeVisibleWithMinimumHeight (int h)
+    {
+        makeVisible(); setMinimumHeight (h);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void setMinimumHeight (int h)
+    {
+        juce::ComponentBoundsConstrainer *c = getConstrainer();
+        juce::ComponentPeer *p = getPeer();
+        
+        jassert (c);
+        jassert (p);
+        
+        c->setMinimumHeight (h + p->getFrameSize().getBottom());
+    }
+
 private:
     juce::String keyName_;
     int timerCount_;
