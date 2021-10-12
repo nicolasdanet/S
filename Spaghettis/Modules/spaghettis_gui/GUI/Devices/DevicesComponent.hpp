@@ -193,7 +193,7 @@ public:
 private:
     void initializeBox (juce::ComboBox& box, Generator& f)
     {
-        box.setTooltip (NEEDS_TRANS ("Select a device"));
+        box.setTooltip (NEEDS_TRANS ("Select an I/O device"));
         box.setComponentID (f());
         box.addListener (this);
         
