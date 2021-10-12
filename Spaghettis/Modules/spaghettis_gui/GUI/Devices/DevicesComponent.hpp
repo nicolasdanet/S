@@ -43,8 +43,8 @@ public:
         Spaghettis()->getMidiDevices().addChangeListener (this);
         
         initialize();
-                
-        setOpaque (true); setSize (400, 500);
+        
+        setOpaque (true); setSize (600, getTotalHeight());
         
         Spaghettis()->handle (Inputs::rescanDevices());
     }
@@ -62,6 +62,21 @@ public:
 // MARK: -
 
 public:
+    static int getComboBoxHeight()
+    {
+        return static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.5);
+    }
+    
+    static int getTotalHeight()
+    {
+        return getComboBoxHeight() * numberOfDevices() * 4;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void paint (juce::Graphics& g) override
     {
         g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
@@ -69,11 +84,10 @@ public:
     
     void resized() override
     {
-        const int h = static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.5);
-        
         juce::Rectangle<int> area (getBoundsRemaining());
 
         const int n = numberOfDevices();
+        const int h = getComboBoxHeight();
         
         for (int i = 0; i < n; ++i) {
             dispose (area.removeFromTop (h), audioInLabel_[i],  audioIn_[i]);
