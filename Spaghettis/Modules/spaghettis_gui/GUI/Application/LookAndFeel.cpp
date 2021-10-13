@@ -381,6 +381,26 @@ void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bo
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void LookAndFeel::drawLabel (juce::Graphics& g, juce::Label& l)
+{
+    g.fillAll (l.findColour (juce::Label::backgroundColourId));
+
+    if (l.isBeingEdited() == false) {
+    //
+    const juce::Font font (getLabelFont (l));
+    const juce::Rectangle<int> area (getLabelBorderSize (l).subtractedFrom (l.getLocalBounds()));
+
+    g.setColour (l.findColour (juce::Label::textColourId));
+    g.setFont (font);
+    g.drawText (l.getText(), area, l.getJustificationType(), true);
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------

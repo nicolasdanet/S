@@ -191,7 +191,9 @@ public:
 
 public:
     void drawToggleButton (juce::Graphics&, juce::ToggleButton&, bool, bool) override;
-                                       
+    
+    void drawLabel (juce::Graphics& g, juce::Label& label) override;
+    
     juce::Font getLabelFont (juce::Label&) override
     {
         return getConsoleFont();
