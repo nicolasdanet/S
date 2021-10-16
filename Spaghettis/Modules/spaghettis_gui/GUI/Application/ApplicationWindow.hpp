@@ -122,7 +122,7 @@ private:
         jassert (c);
         jassert (p);
         
-        c->setMinimumHeight (h + p->getFrameSize().getBottom());
+        c->setMinimumHeight (h + p->getFrameSize().getTop());
     }
 
 private:
