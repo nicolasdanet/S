@@ -116,13 +116,23 @@ public:
 private:
     void setMinimumHeight (int h)
     {
+        #if ! ( JUCE_LINUX )
+        
         juce::ComponentBoundsConstrainer *c = getConstrainer();
         juce::ComponentPeer *p = getPeer();
         
         jassert (c);
         jassert (p);
         
+        #if SPAGHETTIS_MENUBAR
+        
+        h += Spaghettis()->getLookAndFeel().getDefaultMenuBarHeight();
+        
+        #endif
+        
         c->setMinimumHeight (h + p->getFrameSize().getTop());
+        
+        #endif
     }
 
 private:
