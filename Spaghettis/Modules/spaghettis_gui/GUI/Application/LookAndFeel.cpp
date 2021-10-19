@@ -106,6 +106,27 @@ void LookAndFeel::paintToolbarButtonBackground (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void LookAndFeel::drawPopupMenuBackground (juce::Graphics& g, int, int)
+{
+    g.fillAll (findColour (Colours::menubarBackgroundPopup));
+}
+    
+void LookAndFeel::drawPopupMenuBackgroundWithOptions (juce::Graphics& g,
+    int width,
+    int height,
+    const juce::PopupMenu::Options& options)
+{
+    const bool isComboBox = (dynamic_cast<juce::ComboBox*> (options.getTargetComponent()) != nullptr);
+    
+    DBG ((isComboBox ? juce::String ("ComboBox") : juce::String ("!")));
+    
+    drawPopupMenuBackground (g, width, height);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
     const bool isSeparator,
     int,
