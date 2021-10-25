@@ -51,8 +51,6 @@ public:
     
     ~DevicesComponent() override
     {
-        juce::PopupMenu::dismissAllActiveMenus();
-        
         release();
         
         Spaghettis()->getMidiDevices().removeChangeListener (this);
@@ -251,6 +249,8 @@ private:
     
     void release()
     {
+        juce::PopupMenu::dismissAllActiveMenus();
+
         for (auto& b : midiOut_)  { releaseBox (b); }
         for (auto& b : midiIn_)   { releaseBox (b); }
         for (auto& b : audioOut_) { releaseBox (b); }
