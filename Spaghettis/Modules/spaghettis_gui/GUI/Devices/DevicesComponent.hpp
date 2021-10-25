@@ -51,6 +51,8 @@ public:
     
     ~DevicesComponent() override
     {
+        juce::PopupMenu::dismissAllActiveMenus();
+        
         release();
         
         Spaghettis()->getMidiDevices().removeChangeListener (this);
