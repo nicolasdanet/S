@@ -71,7 +71,7 @@ void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
 {
     const bool highlighted = (isMenuOpen || isMouseOverItem) && m.isEnabled();
         
-    if (highlighted) { g.fillAll (findColour (Colours::menubarBackgroundHighlighted)); }
+    if (highlighted) { g.fillAll (findColour (Colours::menubarPopupBackgroundHighlighted)); }
 
     g.setColour (findColour (Colours::menubarText));
     g.setFont (getMenuBarFont (m, index, text));
@@ -106,9 +106,13 @@ void LookAndFeel::paintToolbarButtonBackground (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawPopupMenuBackground (juce::Graphics& g, int, int)
+void LookAndFeel::drawPopupMenuBackgroundProceed (juce::Graphics& g, bool isComboBox)
 {
-    g.fillAll (findColour (Colours::menubarBackgroundPopup));
+    if (isComboBox) {
+        g.fillAll (findColour (Colours::devicesPopupBackground));
+    } else {
+        g.fillAll (findColour (Colours::menubarPopupBackground));
+    }
 }
     
 void LookAndFeel::drawPopupMenuBackgroundWithOptions (juce::Graphics& g,
@@ -118,9 +122,7 @@ void LookAndFeel::drawPopupMenuBackgroundWithOptions (juce::Graphics& g,
 {
     const bool isComboBox = (dynamic_cast<juce::ComboBox*> (options.getTargetComponent()) != nullptr);
     
-    DBG ((isComboBox ? juce::String ("ComboBox") : juce::String ("!")));
-    
-    drawPopupMenuBackground (g, width, height);
+    drawPopupMenuBackgroundProceed (g, isComboBox);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -163,7 +165,7 @@ void LookAndFeel::drawPopupMenuItemBackground (juce::Graphics& g,
     if (isComboBox) {
         g.setColour (findColour (Colours::devicesPopupBackgroundHighlighted));
     } else {
-        g.setColour (findColour (Colours::menubarBackgroundHighlighted));
+        g.setColour (findColour (Colours::menubarPopupBackgroundHighlighted));
     }
     
     g.fillRect (area);

@@ -91,8 +91,6 @@ public:
         return getMenuFont();
     }
     
-    void drawPopupMenuBackground (juce::Graphics&, int, int) override;
-
     void drawPopupMenuBackgroundWithOptions (juce::Graphics&,
         int,
         int,
@@ -118,6 +116,9 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+private:
+    void drawPopupMenuBackgroundProceed (juce::Graphics&, bool);
 
 private:
     void drawPopupMenuItemSelector (juce::Graphics&, const juce::Rectangle<int>&);

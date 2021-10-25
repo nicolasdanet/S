@@ -34,8 +34,8 @@ enum ColourIds : int {
     consoleBackground,
     consoleBackgroundAlternate,
     menubarBackground,
-    menubarBackgroundPopup,
-    menubarBackgroundHighlighted,
+    menubarPopupBackground,
+    menubarPopupBackgroundHighlighted,
     menubarText,
     menubarSeparator,
     toolbarBackground,
@@ -51,6 +51,7 @@ enum ColourIds : int {
     devicesParameterText,
     devicesComboBoxBackground,
     devicesComboBoxArrow,
+    devicesPopupBackground,
     devicesPopupBackgroundHighlighted,
     devicesPopupText,
     tooltipBackground,
@@ -123,8 +124,8 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (consoleBackground,                                   background);
     lf->setColour (consoleBackgroundAlternate,                          backgroundAlternate);
     lf->setColour (menubarBackground,                                   backgroundDark);
-    lf->setColour (menubarBackgroundPopup,                              backgroundDark);
-    lf->setColour (menubarBackgroundHighlighted,                        orange);
+    lf->setColour (menubarPopupBackground,                              backgroundDark);
+    lf->setColour (menubarPopupBackgroundHighlighted,                   orange);
     lf->setColour (menubarText,                                         juce::Colours::white);
     lf->setColour (menubarSeparator,                                    juce::Colours::black);
     lf->setColour (toolbarBackground,                                   backgroundDark);
@@ -140,6 +141,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (devicesParameterText,                                base1);
     lf->setColour (devicesComboBoxBackground,                           backgroundAlternate);
     lf->setColour (devicesComboBoxArrow,                                base1);
+    lf->setColour (devicesPopupBackground,                              backgroundDark);
     lf->setColour (devicesPopupBackgroundHighlighted,                   background);
     lf->setColour (devicesPopupText,                                    base1);
     lf->setColour (tooltipBackground,                                   backgroundDark);
