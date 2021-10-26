@@ -25,7 +25,9 @@ public:
             Spaghettis()->getColour (Colours::windowBackground),
             DocumentWindow::allButtons,
             false),
-        keyName_ (keyName)
+        keyName_ (keyName),
+        timerCount_ (0),
+        mimimumHeight_ (0)
     {
         setUsingNativeTitleBar (true);
         setResizable (true, true);
@@ -70,8 +72,14 @@ public:
         timerCount_++; jassert (timerCount_ <= timerAttempts);
         
         if (!c || c->tryGrabFocus() || timerCount_ > timerAttempts) {
-            Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
-            stopTimer();
+        //
+        /* If required set the mimimum height later after the creation. */
+        /* < https://forum.juce.com/t/getting-the-title-bar-height-in-a-windows-osx-app/38461/14 > */
+        
+        if (mimimumHeight_) { setMinimumHeight (mimimumHeight_); }
+        
+        stopTimer();
+        //
         }
     }
 
@@ -109,7 +117,7 @@ public:
 
     void makeVisibleWithMinimumHeight (int h)
     {
-        makeVisible(); setMinimumHeight (h);
+        jassert (h > 0); mimimumHeight_ = h; makeVisible();
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -137,6 +145,7 @@ private:
 private:
     juce::String keyName_;
     int timerCount_;
+    int mimimumHeight_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ApplicationWindow)

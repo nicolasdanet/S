@@ -59,6 +59,8 @@ void LookAndFeel::initializeFonts()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Cache the window title height (assume that it doesn't change). */
+
 int LookAndFeel::getWindowTitleHeight (juce::Component *c)
 {
     if (!windowTitleHeight_) {
@@ -68,12 +70,8 @@ int LookAndFeel::getWindowTitleHeight (juce::Component *c)
     jassert (p);
     
     windowTitleHeight_ = p->getFrameSize().getTop();
-    
-    DBG (juce::String ("Get / ") + juce::String (windowTitleHeight_));
     //
     }
-    
-    DBG (windowTitleHeight_);
     
     return windowTitleHeight_;
 }
