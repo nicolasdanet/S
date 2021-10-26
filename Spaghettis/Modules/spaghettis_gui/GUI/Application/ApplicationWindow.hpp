@@ -69,7 +69,10 @@ public:
         
         timerCount_++; jassert (timerCount_ <= timerAttempts);
         
-        if (!c || c->tryGrabFocus() || timerCount_ > timerAttempts) { stopTimer(); }
+        if (!c || c->tryGrabFocus() || timerCount_ > timerAttempts) {
+            Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
+            stopTimer();
+        }
     }
 
 private:

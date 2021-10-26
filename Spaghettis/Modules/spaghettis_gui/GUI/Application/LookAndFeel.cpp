@@ -61,11 +61,21 @@ void LookAndFeel::initializeFonts()
 
 int LookAndFeel::getWindowTitleHeight (juce::Component *c)
 {
+    if (!windowTitleHeight_) {
+    //
     juce::ComponentPeer *p = c->getPeer();
     
     jassert (p);
     
-    return p->getFrameSize().getTop();
+    windowTitleHeight_ = p->getFrameSize().getTop();
+    
+    DBG (juce::String ("Get / ") + juce::String (windowTitleHeight_));
+    //
+    }
+    
+    DBG (windowTitleHeight_);
+    
+    return windowTitleHeight_;
 }
     
 // -----------------------------------------------------------------------------------------------------------

@@ -19,7 +19,7 @@ class LookAndFeel : public juce::LookAndFeel_V4 {
 // MARK: -
 
 public:
-    explicit LookAndFeel()
+    explicit LookAndFeel() : windowTitleHeight_ (0)
     {
         Colours::initialize (this);
         
@@ -335,6 +335,9 @@ private:
     juce::Font font18_;
     juce::Font font18Monospaced_;
     juce::Font font16Bold_;
+
+private:
+    int windowTitleHeight_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LookAndFeel)
