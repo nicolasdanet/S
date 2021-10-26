@@ -59,6 +59,19 @@ void LookAndFeel::initializeFonts()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int LookAndFeel::getWindowTitleHeight (juce::Component *c)
+{
+    juce::ComponentPeer *p = c->getPeer();
+    
+    jassert (p);
+    
+    return p->getFrameSize().getTop();
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
     int width,
     int height,
