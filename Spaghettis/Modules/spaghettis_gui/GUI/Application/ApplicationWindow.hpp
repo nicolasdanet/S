@@ -66,19 +66,25 @@ public:
     void timerCallback() override
     {
         const int timerAttempts = 10;
-                
-        ApplicationComponent* c = dynamic_cast<ApplicationComponent*> (getContentComponent());
         
-        timerCount_++; jassert (timerCount_ <= timerAttempts);
+        DBG (juce::String ("? / ") + juce::String (timerCount_));
         
-        if (!c || c->tryGrabFocus() || timerCount_ > timerAttempts) {
+        if (++timerCount_ > timerAttempts) { jassertfalse; stopTimer(); }
+        else {
         //
-        /* If required set the mimimum height later after the creation. */
         /* < https://forum.juce.com/t/getting-the-title-bar-height-in-a-windows-osx-app/38461/14 > */
         
-        if (mimimumHeight_) { setMinimumHeight (mimimumHeight_); }
+        const int h = Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
         
-        stopTimer();
+        DBG (juce::String ("Height / ") + juce::String (h));
+        
+        if (h != 0) {
+        //
+        ApplicationComponent* c = dynamic_cast<ApplicationComponent*> (getContentComponent());
+            
+        if (!c || c->tryGrabFocus()) { DBG ("Stop"); setMinimumHeight (mimimumHeight_); stopTimer(); }
+        //
+        }
         //
         }
     }
@@ -127,10 +133,8 @@ public:
 private:
     void setMinimumHeight (int h)
     {
-        // -- TODO: Fix it for Raspberry Pi!
-        
-        #if ! ( JUCE_RPI )
-        
+        if (h) {
+        //
         juce::ComponentBoundsConstrainer *c = getConstrainer();
         
         jassert (c);
@@ -144,8 +148,8 @@ private:
         h += Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
         
         c->setMinimumHeight (h);
-        
-        #endif
+        //
+        }
     }
 
 private:
