@@ -127,6 +127,10 @@ public:
 private:
     void setMinimumHeight (int h)
     {
+        // -- TODO: Fix it for Raspberry Pi!
+        
+        #if ! ( JUCE_RPI )
+        
         juce::ComponentBoundsConstrainer *c = getConstrainer();
         
         jassert (c);
@@ -140,6 +144,8 @@ private:
         h += Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
         
         c->setMinimumHeight (h);
+        
+        #endif
     }
 
 private:
