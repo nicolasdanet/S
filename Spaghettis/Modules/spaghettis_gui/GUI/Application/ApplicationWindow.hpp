@@ -67,8 +67,6 @@ public:
     {
         const int timerAttempts = 10;
         
-        DBG (juce::String ("? / ") + juce::String (timerCount_));
-        
         if (++timerCount_ > timerAttempts) { jassertfalse; stopTimer(); }
         else {
         //
@@ -76,13 +74,11 @@ public:
         
         const int h = Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
         
-        DBG (juce::String ("Height / ") + juce::String (h));
-        
         if (h != 0) {
         //
         ApplicationComponent* c = dynamic_cast<ApplicationComponent*> (getContentComponent());
             
-        if (!c || c->tryGrabFocus()) { DBG ("Stop"); setMinimumHeight (mimimumHeight_); stopTimer(); }
+        if (!c || c->tryGrabFocus()) { setMinimumHeight (mimimumHeight_); stopTimer(); }
         //
         }
         //

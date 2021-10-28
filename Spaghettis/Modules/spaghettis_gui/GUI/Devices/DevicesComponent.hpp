@@ -69,7 +69,7 @@ public:
     
     static int getTotalHeight()
     {
-        return (getComboBoxHeight() * numberOfDevices() * 4) + 2;
+        return (getComboBoxHeight() * numberOfDevices() * 4) + 1;
     }
     
 // -----------------------------------------------------------------------------------------------------------
