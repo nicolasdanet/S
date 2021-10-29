@@ -214,6 +214,7 @@ private:
     
     void releaseBox (juce::ComboBox& box)
     {
+        box.hidePopup();
         box.removeListener (this);
     }
 
@@ -249,8 +250,6 @@ private:
     
     void release()
     {
-        juce::PopupMenu::dismissAllActiveMenus();
-
         for (auto& b : midiOut_)  { releaseBox (b); }
         for (auto& b : midiIn_)   { releaseBox (b); }
         for (auto& b : audioOut_) { releaseBox (b); }
