@@ -53,7 +53,15 @@ public:
     
     ~ApplicationComponent() override
     {
-        saveToolbarButtonsStates(); removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
+        #if SPAGHETTIS_MENUBAR
+        
+        juce::PopupMenu::dismissAllActiveMenus();
+        
+        #endif
+        
+        saveToolbarButtonsStates();
+        
+        removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
     }
 
 // -----------------------------------------------------------------------------------------------------------

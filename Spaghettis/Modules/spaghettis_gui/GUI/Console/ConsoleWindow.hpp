@@ -39,12 +39,6 @@ public:
 public:
     void closeButtonPressed() override
     {
-        #if SPAGHETTIS_MENUBAR
-        
-        juce::PopupMenu::dismissAllActiveMenus();
-        
-        #endif
-        
         juce::JUCEApplication::getInstance()->systemRequestedQuit();
     }
     
