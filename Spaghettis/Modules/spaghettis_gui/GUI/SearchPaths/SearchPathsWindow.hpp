@@ -12,14 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class SearchPathsWindow : public ApplicationWindow {
+class SearchPathsWindow : public BaseWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit SearchPathsWindow() : ApplicationWindow ("Paths", "SearchPathsWindow")
+    explicit SearchPathsWindow() : BaseWindow ("Paths", "SearchPathsWindow")
     {
         setContentOwned (new SearchPathsComponent (getKeyName()), true);
 

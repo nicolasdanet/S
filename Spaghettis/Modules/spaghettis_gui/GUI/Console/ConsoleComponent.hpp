@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the first. */
-                            public    ApplicationComponent,
+                            public    BaseComponent,
                             public    juce::ListBoxModel,
                             public    spaghettis::Logger,
                             private   juce::AsyncUpdater {
@@ -25,11 +25,11 @@ class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the f
 public:
     explicit ConsoleComponent (const juce::String& keyName) :
         ConsoleFactoryHelper (this),
-        ApplicationComponent (keyName, getIconsFactory())
+        BaseComponent (keyName, getIconsFactory())
     {
         listBox_.setModel (this);
-        ApplicationComponent::listBoxInitialize (listBox_, false);
-        ApplicationComponent::listBoxUpdate (listBox_, messages_, false);
+        BaseComponent::listBoxInitialize (listBox_, false);
+        BaseComponent::listBoxUpdate (listBox_, messages_, false);
         addAndMakeVisible (listBox_);
  
         Spaghettis()->setLogger (this);
@@ -51,7 +51,7 @@ public:
 public:
     void update()
     {
-        ApplicationComponent::listBoxUpdate (listBox_, messages_, true);
+        BaseComponent::listBoxUpdate (listBox_, messages_, true);
         
         if (getButtonState (Icons::autoscroll)) {
         //
@@ -117,7 +117,7 @@ private:
 public:
     int getNumRows() override
     {
-        return ApplicationComponent::lisBoxGetNumberOfRowsToDraw (static_cast<int> (messages_.size()));
+        return BaseComponent::lisBoxGetNumberOfRowsToDraw (static_cast<int> (messages_.size()));
     }
 
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
@@ -157,12 +157,12 @@ public:
     {
         listBox_.setBounds (getBoundsRemaining());
         
-        ApplicationComponent::listBoxUpdate (listBox_, messages_, false);
+        BaseComponent::listBoxUpdate (listBox_, messages_, false);
     }
 
     void listWasScrolled() override
     {
-        ApplicationComponent::listBoxUpdate (listBox_, messages_, false);
+        BaseComponent::listBoxUpdate (listBox_, messages_, false);
     }
     
 // -----------------------------------------------------------------------------------------------------------

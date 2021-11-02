@@ -12,15 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ApplicationWindow :   public  juce::DocumentWindow,
-                            private juce::Timer {
+class BaseWindow :  public  juce::DocumentWindow,
+                    private juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ApplicationWindow (const juce::String& name, const juce::String& keyName) :
+    explicit BaseWindow (const juce::String& name, const juce::String& keyName) :
         juce::DocumentWindow (name,
             Spaghettis()->getColour (Colours::windowBackground),
             DocumentWindow::allButtons,
@@ -33,11 +33,11 @@ public:
         setResizable (true, true);
     }
 
-    explicit ApplicationWindow (const juce::String& name) : ApplicationWindow (name, name + "Window")
+    explicit BaseWindow (const juce::String& name) : BaseWindow (name, name + "Window")
     {
     }
     
-    ~ApplicationWindow()
+    ~BaseWindow()
     {
         juce::PropertiesFile& p = Spaghettis()->getProperties();
         
@@ -76,7 +76,7 @@ public:
         
         if (h != 0) {
         //
-        ApplicationComponent* c = dynamic_cast<ApplicationComponent*> (getContentComponent());
+        BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());
             
         if (!c || c->tryGrabFocus()) { setMinimumHeight (mimimumHeight_); stopTimer(); }
         //
@@ -154,7 +154,7 @@ private:
     int mimimumHeight_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ApplicationWindow)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaseWindow)
 };
 
 // -----------------------------------------------------------------------------------------------------------

@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PreferencesComponent :    public  ApplicationComponent,
+class PreferencesComponent :    public  BaseComponent,
                                 private juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ friend class Preferences;
 // MARK: -
 
 public:
-    explicit PreferencesComponent (const juce::String& keyName) : ApplicationComponent (keyName),
+    explicit PreferencesComponent (const juce::String& keyName) : BaseComponent (keyName),
         expanded_ (0),
         expandedLast_ (0)
     {

@@ -12,14 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ConsoleWindow : public ApplicationWindow {
+class ConsoleWindow : public BaseWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ConsoleWindow() : ApplicationWindow (core::getApplicationName(), "ConsoleWindow")
+    explicit ConsoleWindow() : BaseWindow (core::getApplicationName(), "ConsoleWindow")
     {
         content_ = std::make_unique<ConsoleComponent> (getKeyName());
         

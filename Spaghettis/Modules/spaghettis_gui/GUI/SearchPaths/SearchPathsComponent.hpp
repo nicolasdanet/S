@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 class SearchPathsComponent :    protected SearchPathsFactoryHelper,     /* MUST be the first. */
-                                public    ApplicationComponent,
+                                public    BaseComponent,
                                 public    juce::ListBoxModel,
                                 private   juce::AsyncUpdater  {
 
@@ -24,12 +24,12 @@ class SearchPathsComponent :    protected SearchPathsFactoryHelper,     /* MUST 
 public:
     explicit SearchPathsComponent (const juce::String& keyName) :
         SearchPathsFactoryHelper (this),
-        ApplicationComponent (keyName, getIconsFactory()),
+        BaseComponent (keyName, getIconsFactory()),
         paths_ (Spaghettis()->getSearchPaths())
     {
         listBox_.setModel (this);
-        ApplicationComponent::listBoxInitialize (listBox_, true);
-        ApplicationComponent::listBoxUpdate (listBox_, paths_, false);
+        BaseComponent::listBoxInitialize (listBox_, true);
+        BaseComponent::listBoxUpdate (listBox_, paths_, false);
         addAndMakeVisible (listBox_);
         
         setOpaque (true); setSize (400, 500);
@@ -58,7 +58,7 @@ public:
         //
         }
         
-        if (done) { ApplicationComponent::listBoxUpdate (listBox_, paths_, true); setSearchPaths(); }
+        if (done) { BaseComponent::listBoxUpdate (listBox_, paths_, true); setSearchPaths(); }
     }
     
     void addPaths()
@@ -82,7 +82,7 @@ public:
         //
         }
         
-        ApplicationComponent::listBoxUpdate (listBox_, paths_, true); setSearchPaths();
+        BaseComponent::listBoxUpdate (listBox_, paths_, true); setSearchPaths();
         //
         }
     }
@@ -94,7 +94,7 @@ public:
 public:
     int getNumRows() override
     {
-        return ApplicationComponent::lisBoxGetNumberOfRowsToDraw (paths_.size());
+        return BaseComponent::lisBoxGetNumberOfRowsToDraw (paths_.size());
     }
 
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
@@ -117,7 +117,7 @@ public:
     void listBoxItemClicked (int row, const juce::MouseEvent &) override
     {
         if (juce::isPositiveAndBelow (row, paths_.size()) == false) {
-            ApplicationComponent::listBoxUpdate (listBox_, paths_, true);
+            BaseComponent::listBoxUpdate (listBox_, paths_, true);
         }
     }
     
@@ -140,12 +140,12 @@ public:
     {
         listBox_.setBounds (getBoundsRemaining());
         
-        ApplicationComponent::listBoxUpdate (listBox_, paths_, false);
+        BaseComponent::listBoxUpdate (listBox_, paths_, false);
     }
 
     void listWasScrolled() override
     {
-        ApplicationComponent::listBoxUpdate (listBox_, paths_, false);
+        BaseComponent::listBoxUpdate (listBox_, paths_, false);
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -176,7 +176,7 @@ private:
     void appendFullPathName (const juce::String& filepath)
     {
         paths_.addIfNotAlreadyThere (filepath);
-        ApplicationComponent::listBoxUpdate (listBox_, paths_, true);
+        BaseComponent::listBoxUpdate (listBox_, paths_, true);
         setSearchPaths();
     }
     

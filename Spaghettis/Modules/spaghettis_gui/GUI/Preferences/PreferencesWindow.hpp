@@ -12,14 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PreferencesWindow : public ApplicationWindow {
+class PreferencesWindow : public BaseWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit PreferencesWindow() : ApplicationWindow ("Preferences")
+    explicit PreferencesWindow() : BaseWindow ("Preferences")
     {
         setContentOwned (new PreferencesComponent (getKeyName()), true);
 

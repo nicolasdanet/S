@@ -12,16 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ApplicationComponent :    public juce::Component,
-                                public juce::ApplicationCommandTarget {
+class BaseComponent :   public juce::Component,
+                        public juce::ApplicationCommandTarget {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ApplicationComponent (const juce::String& keyName, IconsFactory* factory = nullptr) :
-        keyName_ (keyName)
+    explicit BaseComponent (const juce::String& keyName, IconsFactory* factory = nullptr) : keyName_ (keyName)
     {
         Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
         
@@ -51,7 +50,7 @@ public:
         setWantsKeyboardFocus (true);
     }
     
-    ~ApplicationComponent() override
+    ~BaseComponent() override
     {
         #if SPAGHETTIS_MENUBAR
         
@@ -295,7 +294,7 @@ private:
 #endif
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ApplicationComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaseComponent)
 };
 
 // -----------------------------------------------------------------------------------------------------------

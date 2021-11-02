@@ -18,7 +18,7 @@ constexpr int numberOfDevices() { return 2; }
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DevicesComponent :    public ApplicationComponent,
+class DevicesComponent :    public BaseComponent,
                             public juce::ComboBox::Listener,
                             public juce::ChangeListener {
 
@@ -32,7 +32,7 @@ using Generator = std::function<juce::String()>;
 // MARK: -
 
 public:
-    explicit DevicesComponent (const juce::String& keyName) : ApplicationComponent (keyName),
+    explicit DevicesComponent (const juce::String& keyName) : BaseComponent (keyName),
         audioInTag_ ("Audio In"),
         audioOutTag_ ("Audio Out"),
         midiInTag_ ("Midi In"),

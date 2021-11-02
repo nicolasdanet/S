@@ -12,14 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DevicesWindow : public ApplicationWindow {
+class DevicesWindow : public BaseWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit DevicesWindow() : ApplicationWindow ("Devices")
+    explicit DevicesWindow() : BaseWindow ("Devices")
     {
         setContentOwned (new DevicesComponent (getKeyName()), true);
         
