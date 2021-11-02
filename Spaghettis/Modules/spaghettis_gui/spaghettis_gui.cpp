@@ -16,7 +16,7 @@
 #include "GUI/Application/LookAndFeel.cpp"
 #include "GUI/Application/MenuModel.cpp"
 #include "GUI/Application/Preferences.cpp"
-#include "GUI/Application/SpaghettisInstance.cpp"
+#include "GUI/Application/Instance.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

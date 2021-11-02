@@ -70,7 +70,7 @@
 #include "GUI/Application/LookAndFeel.hpp"
 #include "GUI/Application/MenuModel.hpp"
 #include "GUI/Application/Preferences.hpp"
-#include "GUI/Application/SpaghettisInstance.hpp"
+#include "GUI/Application/Instance.hpp"
 #include "GUI/Application/Spaghettis.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
