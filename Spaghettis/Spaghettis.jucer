@@ -16,7 +16,6 @@
               file="Resources/Icons/SVG/error_outline.svg"/>
         <FILE id="v09zib" name="mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/mail.svg"/>
         <FILE id="D9nQfi" name="place.svg" compile="0" resource="1" file="Resources/Icons/SVG/place.svg"/>
-        <FILE id="QIGuxT" name="remove.svg" compile="0" resource="1" file="Resources/Icons/SVG/remove.svg"/>
         <FILE id="WYGHhC" name="restore.svg" compile="0" resource="1" file="Resources/Icons/SVG/restore.svg"/>
         <FILE id="uexYI2" name="sync.svg" compile="0" resource="1" file="Resources/Icons/SVG/sync.svg"/>
         <FILE id="JrIvGS" name="system_update_alt.svg" compile="0" resource="1"

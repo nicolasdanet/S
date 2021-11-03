@@ -51,7 +51,6 @@ public:
         error,
         find,
         message,
-        remove,
         restore,
         synchronize,
         sortUp,
@@ -71,7 +70,6 @@ public:
         addIconToggle ("Error",         4, "error_outline_svg");
         addIconAction ("Find",          0, "place_svg");
         addIconToggle ("Message",       2, "mail_svg");
-        addIconAction ("Remove",        0, "remove_svg");
         addIconAction ("Restore",       0, "restore_svg");
         addIconAction ("Synchronize",   0, "sync_svg");
         addIconAction ("SortUp",        0, "text_rotate_up_svg");
