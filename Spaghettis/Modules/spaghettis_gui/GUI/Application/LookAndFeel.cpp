@@ -127,12 +127,12 @@ void LookAndFeel::paintToolbarButtonBackground (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawPopupMenuBackgroundProceed (juce::Graphics& g, bool isComboBox)
+void LookAndFeel::drawPopupMenuBackgroundProceed (juce::Graphics& g, bool isMenuBar)
 {
-    if (isComboBox) {
-        g.fillAll (findColour (Colours::devicesPopupBackground));
-    } else {
+    if (isMenuBar) {
         g.fillAll (findColour (Colours::menubarPopupBackground));
+    } else {
+        g.fillAll (findColour (Colours::devicesPopupBackground));
     }
 }
     
@@ -141,9 +141,9 @@ void LookAndFeel::drawPopupMenuBackgroundWithOptions (juce::Graphics& g,
     int height,
     const juce::PopupMenu::Options& options)
 {
-    const bool isComboBox = (dynamic_cast<juce::ComboBox*> (options.getTargetComponent()) != nullptr);
+    const bool isMenuBar = (dynamic_cast<juce::MenuBarComponent*> (options.getTargetComponent()) != nullptr);
     
-    drawPopupMenuBackgroundProceed (g, isComboBox);
+    drawPopupMenuBackgroundProceed (g, isMenuBar);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -181,12 +181,12 @@ void LookAndFeel::drawPopupMenuItemSelector (juce::Graphics& g, const juce::Rect
 
 void LookAndFeel::drawPopupMenuItemBackground (juce::Graphics& g,
     const juce::Rectangle<int>& area,
-    bool  isComboBox)
+    bool  isMenuBar)
 {
-    if (isComboBox) {
-        g.setColour (findColour (Colours::devicesPopupBackgroundHighlighted));
-    } else {
+    if (isMenuBar) {
         g.setColour (findColour (Colours::menubarPopupBackgroundHighlighted));
+    } else {
+        g.setColour (findColour (Colours::devicesPopupBackgroundHighlighted));
     }
     
     g.fillRect (area);
@@ -232,16 +232,16 @@ void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
     const bool isHighlighted,
     const bool isTicked,
     const bool hasSubMenu,
-    const bool isComboBox,
+    const bool isMenuBar,
     const juce::String& text,
     const juce::String& shortcutText)
 {
     if (isSeparator) { drawPopupMenuItemSelector (g, area); }
     else {
     //
-    if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area, isComboBox); }
+    if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area, isMenuBar); }
     
-    const int n = isComboBox ? Colours::devicesPopupText : Colours::menubarText;
+    const int n = isMenuBar ? Colours::menubarText : Colours::devicesPopupText;
     const juce::Colour c1 = findColour (n);
     const juce::Colour c2 = c1.withMultipliedAlpha (0.5f);
     
@@ -275,7 +275,7 @@ void LookAndFeel::drawPopupMenuItemWithOptions (juce::Graphics& g,
     const juce::PopupMenu::Options& options)
 {
     const bool hasSubMenu = (i.subMenu != nullptr) && (i.itemID == 0 || i.subMenu->getNumItems() > 0);
-    const bool isComboBox = (dynamic_cast<juce::ComboBox*> (options.getTargetComponent()) != nullptr);
+    const bool isMenuBar = (dynamic_cast<juce::MenuBarComponent*> (options.getTargetComponent()) != nullptr);
 
     drawPopupMenuItemProceed (g,
         area,
@@ -284,7 +284,7 @@ void LookAndFeel::drawPopupMenuItemWithOptions (juce::Graphics& g,
         isHighlighted,
         i.isTicked,
         hasSubMenu,
-        isComboBox,
+        isMenuBar,
         i.text,
         i.shortcutKeyDescription);
 }
