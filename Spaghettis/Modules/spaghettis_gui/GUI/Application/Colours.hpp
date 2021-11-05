@@ -140,7 +140,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (devicesParameterText,                                base1);
     lf->setColour (devicesComboBoxBackground,                           backgroundAlternate);
     lf->setColour (devicesComboBoxArrow,                                base1);
-    lf->setColour (devicesPopupBackground,                              backgroundDark);
+    lf->setColour (devicesPopupBackground,                              backgroundDarker);
     lf->setColour (devicesPopupBackgroundHighlighted,                   orange);
     lf->setColour (devicesPopupText,                                    base1);
     lf->setColour (devicesPopupTextHighlighted,                         juce::Colours::white);
