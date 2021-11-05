@@ -91,11 +91,9 @@ static void initialize (juce::LookAndFeel* lf)
     #if JUCE_LINUX
     const juce::Colour backgroundDarker         = background.darker (0.75);
     const juce::Colour backgroundDark           = background.darker (0.50);
-    const juce::Colour orangeDark               = orange;
     #else
     const juce::Colour backgroundDarker         = background.darker (0.50);
     const juce::Colour backgroundDark           = background.darker (0.25);
-    const juce::Colour orangeDark               = orange.darker (0.25);
     #endif
     
     // const juce::Colour base03   = juce::Colour (0xff002b36);
@@ -129,7 +127,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarText,                                         juce::Colours::white);
     lf->setColour (menubarSeparator,                                    juce::Colours::black);
     lf->setColour (toolbarBackground,                                   backgroundDark);
-    lf->setColour (toolbarBackgroundDown,                               orangeDark);
+    lf->setColour (toolbarBackgroundDown,                               orange);
     lf->setColour (toolbarBackgroundOver,                               backgroundDark);
     lf->setColour (toolbarIconOn,                                       juce::Colours::white);
     lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
