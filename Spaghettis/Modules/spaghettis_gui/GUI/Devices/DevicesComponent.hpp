@@ -64,7 +64,7 @@ public:
 public:
     static int getComboBoxHeight()
     {
-        return static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.5);
+        return static_cast<int> (Spaghettis()->getLookAndFeel().getComboBoxFont().getHeight() * 1.75);
     }
     
     static int getTotalHeight()
