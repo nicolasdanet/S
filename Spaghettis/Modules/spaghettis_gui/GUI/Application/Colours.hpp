@@ -97,12 +97,12 @@ static void initialize (juce::LookAndFeel* lf)
     const juce::Colour backgroundDark           = background.darker (0.25);
     #endif
     
-    // const juce::Colour base03   = juce::Colour (0xff002b36);
-    // const juce::Colour base02   = juce::Colour (0xff073642);
-    // const juce::Colour base00   = juce::Colour (0xff657b83);
-    // const juce::Colour base0    = juce::Colour (0xff839496);
-    // const juce::Colour base2    = juce::Colour (0xffeee8d5);
-    // const juce::Colour base3    = juce::Colour (0xfffdf6e3);
+    const juce::Colour base03   = juce::Colour (0xff002b36);
+    const juce::Colour base02   = juce::Colour (0xff073642);
+    const juce::Colour base00   = juce::Colour (0xff657b83);
+    const juce::Colour base0    = juce::Colour (0xff839496);
+    const juce::Colour base2    = juce::Colour (0xffeee8d5);
+    const juce::Colour base3    = juce::Colour (0xfffdf6e3);
     // const juce::Colour red      = juce::Colour (0xffdc322f);
     // const juce::Colour magenta  = juce::Colour (0xffd33682);
     // const juce::Colour violet   = juce::Colour (0xff6c71c4);
@@ -140,9 +140,9 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (devicesParameterText,                                base1);
     lf->setColour (devicesComboBoxBackground,                           backgroundAlternate);
     lf->setColour (devicesComboBoxArrow,                                base1);
-    lf->setColour (devicesPopupBackground,                              backgroundDarker);
+    lf->setColour (devicesPopupBackground,                              base2);
     lf->setColour (devicesPopupBackgroundHighlighted,                   orange);
-    lf->setColour (devicesPopupText,                                    base1);
+    lf->setColour (devicesPopupText,                                    base03);
     lf->setColour (devicesPopupTextHighlighted,                         juce::Colours::white);
     lf->setColour (tooltipBackground,                                   backgroundDark);
     lf->setColour (tooltipText,                                         juce::Colours::white);
