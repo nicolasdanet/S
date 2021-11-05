@@ -111,8 +111,8 @@ private:
             
         for (auto& c : a) {
             c.clear (juce::dontSendNotification);
-            c.addItem (noneTag_, firstItemId_);
             c.addItemList (devices.getAvailableNames (b), firstItemId_ + 1);
+            c.addItem (noneTag_, firstItemId_);
             const juce::String s (devices.getNameAt (n++, b));
             setSelectedItemByString (c, s.isEmpty() ? noneTag_ : s);
         }
