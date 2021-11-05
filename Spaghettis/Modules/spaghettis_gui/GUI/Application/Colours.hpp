@@ -54,6 +54,7 @@ enum ColourIds : int {
     devicesPopupBackground,
     devicesPopupBackgroundHighlighted,
     devicesPopupText,
+    devicesPopupTextHighlighted,
     tooltipBackground,
     tooltipText,
     callOutBoxBackground,
@@ -140,8 +141,9 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (devicesComboBoxBackground,                           backgroundAlternate);
     lf->setColour (devicesComboBoxArrow,                                base1);
     lf->setColour (devicesPopupBackground,                              backgroundDark);
-    lf->setColour (devicesPopupBackgroundHighlighted,                   background);
+    lf->setColour (devicesPopupBackgroundHighlighted,                   orange);
     lf->setColour (devicesPopupText,                                    base1);
+    lf->setColour (devicesPopupTextHighlighted,                         juce::Colours::white);
     lf->setColour (tooltipBackground,                                   backgroundDark);
     lf->setColour (tooltipText,                                         juce::Colours::white);
     lf->setColour (callOutBoxBackground,                                backgroundDark);

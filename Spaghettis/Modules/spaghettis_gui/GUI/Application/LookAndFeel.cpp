@@ -241,7 +241,8 @@ void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
     //
     if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area, isMenuBar); }
     
-    const int n = isMenuBar ? Colours::menubarText : Colours::devicesPopupText;
+    const int n = isMenuBar ? Colours::menubarText :
+                  isHighlighted ? Colours::devicesPopupTextHighlighted : Colours::devicesPopupText;
     const juce::Colour c1 = findColour (n);
     const juce::Colour c2 = c1.withMultipliedAlpha (0.5f);
     
