@@ -263,7 +263,7 @@ private:
 private:
     static void dispose (juce::Rectangle<int> t, juce::Label& label, juce::ComboBox& box)
     {
-        const int w = 140; label.setBounds (t.removeFromLeft (w).reduced (1)); box.setBounds (t.reduced (1));
+        const int w = 180; label.setBounds (t.removeFromLeft (w).reduced (1)); box.setBounds (t.reduced (1));
     }
     
     static void setSelectedItemByString (juce::ComboBox& box, const juce::String& s)
