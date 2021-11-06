@@ -34,10 +34,12 @@ enum ColourIds : int {
     consoleBackground,
     consoleBackgroundAlternate,
     menubarBackground,
+    menubarText,
     menubarPopupBackground,
     menubarPopupBackgroundHighlighted,
-    menubarText,
-    menubarSeparator,
+    menubarPopupText,
+    menubarPopupTextHighlighted,
+    menubarPopupSeparator,
     toolbarBackground,
     toolbarBackgroundDown,
     toolbarBackgroundOver,
@@ -51,10 +53,6 @@ enum ColourIds : int {
     devicesParameterText,
     devicesComboBoxBackground,
     devicesComboBoxArrow,
-    devicesPopupBackground,
-    devicesPopupBackgroundHighlighted,
-    devicesPopupText,
-    devicesPopupTextHighlighted,
     tooltipBackground,
     tooltipText,
     callOutBoxBackground,
@@ -122,10 +120,12 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (consoleBackground,                                   background);
     lf->setColour (consoleBackgroundAlternate,                          backgroundAlternate);
     lf->setColour (menubarBackground,                                   backgroundDark);
-    lf->setColour (menubarPopupBackground,                              backgroundDark);
-    lf->setColour (menubarPopupBackgroundHighlighted,                   orange);
     lf->setColour (menubarText,                                         juce::Colours::white);
-    lf->setColour (menubarSeparator,                                    juce::Colours::black);
+    lf->setColour (menubarPopupBackground,                              base2);
+    lf->setColour (menubarPopupBackgroundHighlighted,                   orange);
+    lf->setColour (menubarPopupText,                                    juce::Colours::black);
+    lf->setColour (menubarPopupTextHighlighted,                         juce::Colours::white);
+    lf->setColour (menubarPopupSeparator,                               juce::Colours::black);
     lf->setColour (toolbarBackground,                                   backgroundDark);
     lf->setColour (toolbarBackgroundDown,                               orange);
     lf->setColour (toolbarBackgroundOver,                               backgroundDark);
@@ -139,10 +139,6 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (devicesParameterText,                                base1);
     lf->setColour (devicesComboBoxBackground,                           backgroundAlternate);
     lf->setColour (devicesComboBoxArrow,                                base1);
-    lf->setColour (devicesPopupBackground,                              base2);
-    lf->setColour (devicesPopupBackgroundHighlighted,                   orange);
-    lf->setColour (devicesPopupText,                                    juce::Colours::black);
-    lf->setColour (devicesPopupTextHighlighted,                         juce::Colours::white);
     lf->setColour (tooltipBackground,                                   backgroundDark);
     lf->setColour (tooltipText,                                         juce::Colours::white);
     lf->setColour (callOutBoxBackground,                                backgroundDark);
