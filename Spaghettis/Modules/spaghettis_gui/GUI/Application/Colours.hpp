@@ -97,14 +97,15 @@ static void initialize (juce::LookAndFeel* lf)
         
     const juce::Colour background               = juce::Colour (0xff1f2029);
     const juce::Colour backgroundAlternate      = background.darker (0.10);
-    const juce::Colour backgroundBright         = background.brighter (0.5);
 
     #if JUCE_LINUX
     const juce::Colour backgroundDarker         = background.darker (0.75);
     const juce::Colour backgroundDark           = background.darker (0.50);
+    const juce::Colour backgroundBright         = background.brighter (0.15);
     #else
     const juce::Colour backgroundDarker         = background.darker (0.50);
     const juce::Colour backgroundDark           = background.darker (0.25);
+    const juce::Colour backgroundBright         = background.brighter (0.15);
     #endif
     
     jassert (background.isOpaque());
@@ -124,7 +125,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarText,                                         juce::Colours::white);
     lf->setColour (menubarPopupBackground,                              backgroundBright);
     lf->setColour (menubarPopupBackgroundHighlighted,                   orange);
-    lf->setColour (menubarPopupText,                                    juce::Colours::black);
+    lf->setColour (menubarPopupText,                                    juce::Colours::lightgrey);
     lf->setColour (menubarPopupTextHighlighted,                         juce::Colours::white);
     lf->setColour (menubarPopupSeparator,                               juce::Colours::black);
     lf->setColour (toolbarBackground,                                   backgroundDark);
