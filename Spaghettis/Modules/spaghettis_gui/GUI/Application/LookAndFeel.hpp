@@ -140,6 +140,7 @@ private:
         const bool,
         const bool,
         const bool,
+        const bool,
         const juce::String&,
         const juce::String&);
         

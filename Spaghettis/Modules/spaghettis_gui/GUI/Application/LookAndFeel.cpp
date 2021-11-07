@@ -219,6 +219,7 @@ void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
     const bool isHighlighted,
     const bool isTicked,
     const bool hasSubMenu,
+    const bool isComboBox,
     const juce::String& text,
     const juce::String& shortcutText)
 {
@@ -238,7 +239,7 @@ void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
     juce::Rectangle<int> r = area.reduced (border, 0);
     juce::Rectangle<int> t = r.removeFromLeft (r.getHeight() * 0.75);
     
-    if (isTicked) { drawPopupMenuItemTick (g, std::move (t)); }
+    if (isTicked) { if (!isComboBox) { drawPopupMenuItemTick (g, std::move (t)); } }
     else if (hasSubMenu) {
     //
     drawPopupMenuItemSubMenu (g, r);
@@ -261,7 +262,10 @@ void LookAndFeel::drawPopupMenuItemWithOptions (juce::Graphics& g,
     const juce::PopupMenu::Options& options)
 {
     const bool hasSubMenu = (i.subMenu != nullptr) && (i.itemID == 0 || i.subMenu->getNumItems() > 0);
-
+    const bool isComboBox = (dynamic_cast<juce::ComboBox*> (options.getTargetComponent()) != nullptr);
+    
+    jassert (!hasSubMenu || !isComboBox);
+    
     drawPopupMenuItemProceed (g,
         area,
         i.isSeparator,
@@ -269,6 +273,7 @@ void LookAndFeel::drawPopupMenuItemWithOptions (juce::Graphics& g,
         isHighlighted,
         i.isTicked,
         hasSubMenu,
+        isComboBox,
         i.text,
         i.shortcutKeyDescription);
 }
