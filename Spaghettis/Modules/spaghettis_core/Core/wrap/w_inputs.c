@@ -84,6 +84,7 @@ PD_LOCAL void inputs_setAudioDevices (const std::vector<AudioDevice>& i, const s
     
     audio_close();
     audio_setDevices (&audio, 0);
+    settings_save();
 }
 
 PD_LOCAL void inputs_setMidiDevices (const std::vector<MidiDevice>& i, const std::vector<MidiDevice>& o)
@@ -99,6 +100,7 @@ PD_LOCAL void inputs_setMidiDevices (const std::vector<MidiDevice>& i, const std
     midi_close();
     midi_setDevices (&midi, 0);
     midi_open();
+    settings_save();
 }
 
 // -----------------------------------------------------------------------------------------------------------

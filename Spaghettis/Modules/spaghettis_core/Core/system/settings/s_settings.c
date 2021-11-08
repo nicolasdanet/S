@@ -120,7 +120,7 @@ PD_LOCAL void settings_load (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void settings_save (void)
+PD_LOCAL void settings_save (void)
 {
     t_devices midi;    
     t_devices audio;   
