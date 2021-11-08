@@ -123,7 +123,7 @@ PD_LOCAL t_error audio_check (t_devices *p)
     return err;
 }
 
-PD_LOCAL void audio_rescanDevices (void)
+PD_FORCE void audio_rescanDevices (void)
 {
     t_deviceslist l; t_error err = audio_getDevicesList (&l, 1);
     
