@@ -292,15 +292,19 @@ void LookAndFeel::drawComboBox (juce::Graphics& g,
     int,
     juce::ComboBox& box)
 {
+    const bool popupActive = box.isPopupActive();
+    
     juce::Rectangle<int> b (0, 0, width, height);
-
-    g.setColour (findColour (Colours::devicesComboBoxBackground));
+    
+    g.setColour (findColour (popupActive ? Colours::devicesComboBoxBackgroundActive
+                                         : Colours::devicesComboBoxBackground));
     g.fillRect (b);
     g.setColour (findColour (Colours::devicesComboBoxArrow));
     
-    b.removeFromRight (b.getCentreY());
-    
-    LookAndFeel::drawArrowOpened (g, b.removeFromRight (b.getCentreY()));
+    if (!popupActive) {
+        b.removeFromRight (b.getCentreY());
+        LookAndFeel::drawArrowOpened (g, b.removeFromRight (b.getCentreY()));
+    }
 }
 
 void LookAndFeel::positionComboBoxText (juce::ComboBox& box, juce::Label& label)
