@@ -28,7 +28,7 @@ public:
 public:
     void add (const juce::String& m, Logger::Type type, Unique u)
     {
-        const juce::ScopedLock l (lock_); messages_.emplace_back (m, type, u);
+        const std::lock_guard<std::mutex> l (lock_); messages_.emplace_back (m, type, u);
     }
     
     void log (Logger *logger)
@@ -36,7 +36,7 @@ public:
         Logger::MessagesPacket scoped;
         
         {
-            const juce::ScopedLock l (lock_); scoped.swap (messages_);
+            const std::lock_guard<std::mutex> l (lock_); scoped.swap (messages_);
         }
         
         logger->logMessage (scoped);
@@ -44,7 +44,7 @@ public:
     
 private:
     Logger::MessagesPacket messages_;
-    juce::CriticalSection lock_;
+    std::mutex lock_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Post)

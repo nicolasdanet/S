@@ -81,20 +81,20 @@ private:
 // MARK: -
 
 private:
-    void poll (std::vector<Perform>& c, juce::CriticalSection& lock, bool fake)
+    void poll (std::vector<Perform>& c, std::mutex& lock, bool fake)
     {
         std::vector<Perform> scoped;
         
         {
-            const juce::ScopedLock l (lock); scoped.swap (c);
+            const std::lock_guard<std::mutex> l (lock); scoped.swap (c);
         }
         
         if (!fake) { for (auto f : scoped) { f(); } }
     }
     
-    void add (std::vector<Perform>& c, juce::CriticalSection& lock, Perform f)
+    void add (std::vector<Perform>& c, std::mutex& lock, Perform f)
     {
-        const juce::ScopedLock l (lock); c.push_back (std::move (f));
+        const std::lock_guard<std::mutex> l (lock); c.push_back (std::move (f));
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -103,11 +103,11 @@ private:
 
 private:
     std::vector<Perform> inputs_;
-    juce::CriticalSection lockInputs_;
+    std::mutex lockInputs_;
 
 private:
     std::vector<Perform> outputs_;
-    juce::CriticalSection lockOutputs_;
+    std::mutex lockOutputs_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Queues)
