@@ -43,9 +43,7 @@ private:
 // MARK: -
 
 public:
-    virtual ~Logger()
-    {
-    }
+    virtual ~Logger() = default;
 
 protected:
     Logger() = default;
