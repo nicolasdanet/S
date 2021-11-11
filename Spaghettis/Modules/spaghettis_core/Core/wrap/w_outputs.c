@@ -18,6 +18,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+PD_FORCE void outputs_quit (void)
+{
+    wrapper_send (Outputs::quit());
+}
+
 PD_LOCAL void outputs_reportDsp (int n)
 {
     wrapper_send (Outputs::reportDsp (n ? true : false));
@@ -119,12 +124,13 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void outputs_reportDsp                      (int n)                                 { }
-void outputs_patchOpened                    (t_symbol *name, t_symbol *directory)   { }
-void outputs_reportAvailableAudioDevices    (t_deviceslist *l)                      { }
-void outputs_reportCurrentAudioDevices      (t_deviceslist *l)                      { }
-void outputs_reportAvailableMidiDevices     (t_deviceslist *l)                      { }
-void outputs_reportCurrentMidiDevices       (t_deviceslist *l)                      { }
+PD_FORCE void outputs_quit                          (void)                                  { }
+PD_LOCAL void outputs_reportDsp                     (int n)                                 { }
+PD_LOCAL void outputs_patchOpened                   (t_symbol *name, t_symbol *directory)   { }
+PD_LOCAL void outputs_reportAvailableAudioDevices   (t_deviceslist *l)                      { }
+PD_LOCAL void outputs_reportCurrentAudioDevices     (t_deviceslist *l)                      { }
+PD_LOCAL void outputs_reportAvailableMidiDevices    (t_deviceslist *l)                      { }
+PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *l)                      { }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

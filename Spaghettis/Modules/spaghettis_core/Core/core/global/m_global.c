@@ -56,6 +56,12 @@ static void global_quit (void *dummy)
     main_exit();
     
     #endif
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    outputs_quit();
+    
+    #endif
 }
 
 static void global_clear (void *dummy)

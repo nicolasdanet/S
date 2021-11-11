@@ -11,6 +11,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+Perform Outputs::quit()
+{
+    return []() { juce::JUCEApplication::getInstance()->systemRequestedQuit(); };
+}
+
 Perform Outputs::reportDsp (bool state)
 {
     return [state]() { Spaghettis()->setDspState (state); };
