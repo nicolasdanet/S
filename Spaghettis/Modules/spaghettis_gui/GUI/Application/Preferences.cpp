@@ -165,13 +165,6 @@ juce::ValueTree Preferences::getDefault()
                 { Ids::info,    NEEDS_TRANS ("Set background color of patch") },
                 { Ids::type,    "color" },
                 { Ids::value,   "ff1f2029" }
-            } },
-            { Ids::PARAMETER, {
-                { Ids::item,    "Foo" },
-                { Ids::text,    NEEDS_TRANS ("Foo") },
-                { Ids::info,     NEEDS_TRANS ("Set foo color") },
-                { Ids::type,    "color" },
-                { Ids::value,   "ffffffff" }
             } }
         }
     }

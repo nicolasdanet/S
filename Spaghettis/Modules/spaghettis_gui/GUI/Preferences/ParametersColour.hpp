@@ -54,6 +54,8 @@ public:
             getTextBounds(),
             juce::Justification::centredLeft,
             true);
+        
+        g.drawRect (getColourBounds().toFloat());
     }
 
     void mouseDown (const juce::MouseEvent&) override
