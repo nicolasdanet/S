@@ -44,7 +44,7 @@ public:
         
         initialize();
         
-        setOpaque (true); setSize (600, getTotalHeight());
+        setOpaque (true); setSize (700, getTotalHeight());
         
         Spaghettis()->handle (Inputs::rescanDevices());
     }
@@ -263,7 +263,7 @@ private:
 private:
     static void dispose (juce::Rectangle<int> t, juce::Label& label, juce::ComboBox& box)
     {
-        const int w = 180; label.setBounds (t.removeFromLeft (w).reduced (1)); box.setBounds (t.reduced (1));
+        const int w = 200; label.setBounds (t.removeFromLeft (w).reduced (1)); box.setBounds (t.reduced (1));
     }
     
     static void setSelectedItemByString (juce::ComboBox& box, const juce::String& s)
