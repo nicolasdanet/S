@@ -75,12 +75,12 @@ private:
 private:
     juce::Rectangle<int> getColourBounds() const
     {
-        auto r = getLocalBounds().reduced (2); return r.removeFromLeft (r.getHeight() * 2);
+        auto r = getLocalBounds().reduced (4, 2); return r.removeFromLeft (r.getHeight() * 2);
     }
 
     juce::Rectangle<int> getTextBounds() const
     {
-        auto r = getLocalBounds().reduced (2); return r.withTrimmedLeft (r.getHeight() * 2 + 6);
+        auto r = getLocalBounds().reduced (4, 2); return r.withTrimmedLeft (r.getHeight() * 2 + 6);
     }
 
 private:
