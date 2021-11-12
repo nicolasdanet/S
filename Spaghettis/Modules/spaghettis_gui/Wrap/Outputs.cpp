@@ -16,6 +16,11 @@ Perform Outputs::quit()
     return []() { juce::JUCEApplication::getInstance()->systemRequestedQuit(); };
 }
 
+Perform Outputs::clearConsole()
+{
+    return []() { Spaghettis()->clearConsole(); };
+}
+
 Perform Outputs::reportDsp (bool state)
 {
     return [state]() { Spaghettis()->setDspState (state); };

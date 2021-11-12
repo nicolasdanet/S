@@ -66,7 +66,7 @@ static void global_quit (void *dummy)
 
 static void global_clear (void *dummy)
 {
-    // -- TODO: clear console.
+    outputs_clearConsole();
 }
 
 // -----------------------------------------------------------------------------------------------------------
