@@ -157,53 +157,19 @@ juce::ValueTree Preferences::getDefault()
             } }
         }
     },
-    { Ids::GROUP, { { Ids::name, "Nuclear" } },
-        {
-            { Ids::PARAMETER, {
-                { Ids::item,    "Engine" },
-                { Ids::text,    NEEDS_TRANS ("Kind Of Engine") },
-                { Ids::info,    NEEDS_TRANS ("Set kind of stuff") },
-                { Ids::type,    "text" },
-                { Ids::value,   "Submarine" }
-            } },
-            { Ids::PARAMETER, {
-                { Ids::item,    "Power" },
-                { Ids::text,    NEEDS_TRANS ("Power Of Engine") },
-                { Ids::info,    NEEDS_TRANS ("Set power of engine") },
-                { Ids::type,    "float" },
-                { Ids::value,   "99.5" }
-            } },
-            { Ids::PARAMETER, {
-                { Ids::item,    "Launcher" },
-                { Ids::text,    NEEDS_TRANS ("Launcher Efficiency") },
-                { Ids::info,    NEEDS_TRANS ("Set tenderness of button") },
-                { Ids::type,    "float" },
-                { Ids::value,   "99.5" }
-            } },
-            { Ids::PARAMETER, {
-                { Ids::item,    "Random" },
-                { Ids::text,    NEEDS_TRANS ("Random Rate") },
-                { Ids::info,    NEEDS_TRANS ("Set entropy in life") },
-                { Ids::type,    "float" },
-                { Ids::minimum, 0 },
-                { Ids::maximum, 1 },
-                { Ids::value,   "0.5" }
-            } }
-        }
-    },
     { Ids::GROUP, { { Ids::name, "Colors" } },
         {
             { Ids::PARAMETER, {
-                { Ids::item,    "Bar" },
-                { Ids::text,    NEEDS_TRANS ("Bar") },
-                { Ids::info,    NEEDS_TRANS ("Set bar color") },
+                { Ids::item,    "PatchBackground" },
+                { Ids::text,    NEEDS_TRANS ("Patch Background") },
+                { Ids::info,    NEEDS_TRANS ("Set background color of patch") },
                 { Ids::type,    "color" },
-                { Ids::value,   "ffffffff" }
+                { Ids::value,   "ff1f2029" }
             } },
             { Ids::PARAMETER, {
                 { Ids::item,    "Foo" },
                 { Ids::text,    NEEDS_TRANS ("Foo") },
-                { Ids::info,    NEEDS_TRANS ("Set foo color") },
+                { Ids::info,     NEEDS_TRANS ("Set foo color") },
                 { Ids::type,    "color" },
                 { Ids::value,   "ffffffff" }
             } }
