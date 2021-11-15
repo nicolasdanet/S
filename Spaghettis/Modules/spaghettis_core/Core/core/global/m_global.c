@@ -13,8 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void main_exit             (void);
-PD_LOCAL void metadata_setParsed    (int, t_atom *);
+PD_LOCAL void metadata_setParsed (int, t_atom *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -51,17 +50,7 @@ static void global_metadata (void *dummy, t_symbol *s, int argc, t_atom *argv)
 
 static void global_quit (void *dummy)
 {
-    #if defined ( PD_BUILDING_TERMINAL )
-    
-    main_exit();
-    
-    #endif
-    
-    #if defined ( PD_BUILDING_APPLICATION )
-    
     outputs_quit();
-    
-    #endif
 }
 
 static void global_clear (void *dummy)

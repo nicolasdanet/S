@@ -18,7 +18,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_GUARD void outputs_quit (void)
+PD_LOCAL void outputs_quit (void)
 {
     wrapper_send (Outputs::quit());
 }
@@ -129,7 +129,20 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUARD void outputs_quit                          (void)                                  { }
+PD_LOCAL void main_exit (void);
+
+PD_LOCAL void outputs_quit (void)
+{
+    #if defined ( PD_BUILDING_TERMINAL )
+    
+    main_exit();
+    
+    #endif
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 PD_LOCAL void outputs_clearConsole                  (void)                                  { }
 PD_LOCAL void outputs_reportDsp                     (int n)                                 { }
 PD_LOCAL void outputs_patchOpened                   (t_symbol *name, t_symbol *directory)   { }
