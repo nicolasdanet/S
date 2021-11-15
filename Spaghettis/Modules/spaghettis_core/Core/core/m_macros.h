@@ -132,8 +132,8 @@ PD_LOCAL void post_log (const char *, ...);
 
 #if 0
     
-    #define PD_TRY      try {
-    #define PD_CATCH    } catch (...) { scheduler_needToExitWithError(); }
+    #define PD_TRY          try {
+    #define PD_CATCH        } catch (...) { scheduler_needToExitWithError(); }
     
 #else
     
