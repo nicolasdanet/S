@@ -14,7 +14,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void outputs_quit                          (void);
+PD_GUARD void outputs_quit                          (void);
 PD_LOCAL void outputs_clearConsole                  (void);
 PD_LOCAL void outputs_reportDsp                     (int);
 PD_LOCAL void outputs_patchOpened                   (t_symbol *, t_symbol *);

@@ -195,7 +195,7 @@ PD_LOCAL void instance_loadSnippet (t_glist *glist, t_buffer *b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void instance_patchNew (t_symbol *name, t_symbol *directory)
+PD_GUARD void instance_patchNew (t_symbol *name, t_symbol *directory)
 {
     instance_environmentSetFile (name, directory);
     

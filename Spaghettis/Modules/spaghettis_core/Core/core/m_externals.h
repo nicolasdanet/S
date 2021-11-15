@@ -17,11 +17,15 @@
 /* Handy to track unused functions. */
 
 #ifndef PD_LOCAL
-#define PD_LOCAL                                /* Static functions. */
+#define PD_LOCAL                                /* */
+#endif
+
+#ifndef PD_GUARD
+#define PD_GUARD                                /* Used by application only. */
 #endif
 
 #ifndef PD_FORCE
-#define PD_FORCE                                /* Unused functions kept for now. */
+#define PD_FORCE                                /* Unused kept for now.*/
 #endif
 
 // -----------------------------------------------------------------------------------------------------------

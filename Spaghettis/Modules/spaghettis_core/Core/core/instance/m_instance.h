@@ -192,7 +192,7 @@ PD_LOCAL void       instance_autoreleaseProceed     (t_pd *x);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void       instance_patchNew               (t_symbol *name, t_symbol *directory);
+PD_GUARD void       instance_patchNew               (t_symbol *name, t_symbol *directory);
 PD_LOCAL t_error    instance_patchOpen              (t_symbol *name, t_symbol *directory);
 
 // -----------------------------------------------------------------------------------------------------------

@@ -375,7 +375,7 @@ PD_LOCAL int object_getIndexAsSignalOfOutlet (t_object *x, int m)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int object_isSignalInlet (t_object *x, int m)
+PD_FORCE int object_isSignalInlet (t_object *x, int m)
 {
     t_inlet *i = NULL;
     

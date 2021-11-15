@@ -57,7 +57,7 @@ PD_LOCAL int    object_getNumberOfSignalInlets      (t_object *x);
 PD_LOCAL int    object_getNumberOfSignalOutlets     (t_object *x);
 PD_LOCAL int    object_getIndexAsSignalOfInlet      (t_object *x, int m);
 PD_LOCAL int    object_getIndexAsSignalOfOutlet     (t_object *x, int m);
-PD_LOCAL int    object_isSignalInlet                (t_object *x, int m);
+PD_FORCE int    object_isSignalInlet                (t_object *x, int m);
 PD_LOCAL int    object_isSignalOutlet               (t_object *x, int m);
 
 // -----------------------------------------------------------------------------------------------------------

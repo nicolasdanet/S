@@ -144,31 +144,3 @@ PD_LOCAL t_error glist_objectConnect (t_glist *glist, t_object *src, int m, t_ob
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_FORCE void glist_objectCheckLines (t_glist *glist, t_object *o)
-{
-    t_traverser t; traverser_start (&t, glist);
-    
-    while (traverser_next (&t)) {
-    //
-    t_object *o1 = traverser_getSource (&t);
-    t_object *o2 = traverser_getDestination (&t);
-    
-    if (!object_isDummy (o1) && !object_isDummy (o2)) {
-    if (o1 == o || o2 == o) {
-        
-        int m = traverser_getIndexOfOutlet (&t);
-        int n = traverser_getIndexOfInlet (&t);
-        
-        if (object_isSignalOutlet (o1, m) && !object_isSignalInlet (o2, n)) {
-            traverser_disconnect (&t, NULL); error_failed (o, sym_connect);
-        }
-    }
-    }
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
