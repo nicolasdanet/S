@@ -61,6 +61,8 @@ static void *sfthread_readerThread (void *z)
 {
     t_sfthread *x = (t_sfthread *)z;
     
+    PD_TRY
+    
     denormal_setPolicy();   /* If inheritance is broken. */
     
     while (!PD_ATOMIC_INT32_READ (&x->sft_flag)) {
@@ -89,12 +91,16 @@ static void *sfthread_readerThread (void *z)
     
     close (x->sft_fileDescriptor);
     
+    PD_CATCH
+    
     return (NULL);
 }
 
 static void *sfthread_writerThread (void *z)
 {
     t_sfthread *x = (t_sfthread *)z;
+    
+    PD_TRY
     
     denormal_setPolicy();   /* If inheritance is broken. */
     
@@ -136,6 +142,8 @@ static void *sfthread_writerThread (void *z)
     }
     
     close (x->sft_fileDescriptor);
+    
+    PD_CATCH
     
     return (NULL);
 }

@@ -174,6 +174,8 @@ static void *dspthread_thread (void *z)
 {
     t_dspthread *x = (t_dspthread *)z;
     
+    PD_TRY
+    
     privilege_check();
     
     denormal_setPolicy();   /* If inheritance is broken. */
@@ -197,6 +199,8 @@ static void *dspthread_thread (void *z)
     }
     
     instance_chainSetInitialized();
+    
+    PD_CATCH
     
     return (NULL);
 }

@@ -13,22 +13,19 @@ namespace spaghettis {
 
 void Wrapper::run()
 {
-    bool error = false;
-    
-    try {
-        error = core::main_threadLoop (this);
-    }
-    catch (...) {
-        error = true;
-    }
+    JUCE_TRY
+    {
+        const bool error = core::main_threadLoop (this);
 
-    if (error) {
-    //
-    juce::String s = juce::String (PD_NAME_LOWERCASE) + juce::String (": core error");
-    
-    post (NEEDS_TRANS (s), Logger::Type::error, Unique());
-    //
+        if (error) {
+        //
+        juce::String s = juce::String (PD_NAME_LOWERCASE) + juce::String (": core error");
+        
+        post (NEEDS_TRANS (s), Logger::Type::error, Unique());
+        //
+        }
     }
+    JUCE_CATCH_EXCEPTION
 }
 
 void Wrapper::setCommandLine (const juce::StringArray& commandLine)
