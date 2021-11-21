@@ -32,6 +32,12 @@ static int buffer_containsSemicolonOrComma (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+// -- TODO: Give a typedef name for slots to avoid confusion?
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL int buffer_messagesIsLastProperlyEnded (t_buffer *x)
 {
     int size = buffer_getSize (x);

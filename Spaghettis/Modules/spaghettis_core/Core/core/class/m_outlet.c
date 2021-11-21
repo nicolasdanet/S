@@ -172,7 +172,7 @@ PD_LOCAL int outlet_getIndexAsSignal (t_outlet *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Note that it doesn't matter, but it could in the futur. */
+/* Note that it doesn't matter, but it could in the future. */
 
 static void outlet_checkType (t_outlet *x, int match)
 {
