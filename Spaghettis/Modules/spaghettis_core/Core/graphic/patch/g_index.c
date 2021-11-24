@@ -13,8 +13,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void   glist_objectRemoveProceed   (t_glist *, t_object *);
-PD_LOCAL void   glist_objectAddProceed      (t_glist *, t_object *, t_object *, int);
+PD_LOCAL void   glist_objectRemoveRaw   (t_glist *, t_object *);
+PD_LOCAL void   glist_objectAddRaw      (t_glist *, t_object *, t_object *, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -22,14 +22,14 @@ PD_LOCAL void   glist_objectAddProceed      (t_glist *, t_object *, t_object *, 
 
 PD_LOCAL void glist_objectMoveAtFirst (t_glist *glist, t_object *y)
 {
-    glist_objectRemoveProceed (glist, y);
-    glist_objectAddProceed (glist, y, NULL, 1);
+    glist_objectRemoveRaw (glist, y);
+    glist_objectAddRaw (glist, y, NULL, 1);
 }
 
 PD_LOCAL void glist_objectMoveAtLast (t_glist *glist, t_object *y)
 {
-    glist_objectRemoveProceed (glist, y);
-    glist_objectAddProceed (glist, y, NULL, 0);
+    glist_objectRemoveRaw (glist, y);
+    glist_objectAddRaw (glist, y, NULL, 0);
 }
 
 PD_LOCAL void glist_objectMoveAt (t_glist *glist, t_object *y, int n)
@@ -37,8 +37,8 @@ PD_LOCAL void glist_objectMoveAt (t_glist *glist, t_object *y, int n)
     if (n < 1) { glist_objectMoveAtFirst (glist, y); }
     else {
     //
-    glist_objectRemoveProceed (glist, y);
-    glist_objectAddProceed (glist, y, glist_objectGetAt (glist, (n - 1)), 0);
+    glist_objectRemoveRaw (glist, y);
+    glist_objectAddRaw (glist, y, glist_objectGetAt (glist, (n - 1)), 0);
     //
     }
 }

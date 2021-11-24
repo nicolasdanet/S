@@ -21,7 +21,7 @@ PD_LOCAL void   glist_undoDisable   (t_glist *);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_objectAddProceed (t_glist *glist, t_object *y, t_object *first, int prepend)
+PD_LOCAL void glist_objectAddRaw (t_glist *glist, t_object *y, t_object *first, int prepend)
 {
     y->g_next = NULL;
     
@@ -36,13 +36,11 @@ PD_LOCAL void glist_objectAddProceed (t_glist *glist, t_object *y, t_object *fir
     }
     //
     }
-    
-    instance_registerAdd (y, glist);
 }
 
-static void glist_objectAddNextProceed (t_glist *glist, t_object *y, t_object *first)
+static void glist_objectAddProceed (t_glist *glist, t_object *y)
 {
-    glist_objectAddProceed (glist, y, first, 0);
+    glist_objectAddRaw (glist, y, NULL, 0); instance_registerAdd (y, glist);
 }
 
 static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
@@ -56,7 +54,7 @@ static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
 
 PD_LOCAL void glist_objectAdd (t_glist *glist, t_object *y)
 {
-    glist_objectAddNextProceed (glist, y, NULL);
+    glist_objectAddProceed (glist, y);
     glist_objectAddUndoProceed (glist, y);
 }
 
@@ -101,10 +99,8 @@ PD_LOCAL void glist_objectRemovePurgeInlets (t_glist *glist)
     buffer_clear (glist->gl_sorterObjects);
 }
 
-PD_LOCAL void glist_objectRemoveProceed (t_glist *glist, t_object *y)
+PD_LOCAL void glist_objectRemoveRaw (t_glist *glist, t_object *y)
 {
-    instance_registerRemove (y);
-    
     if (glist->gl_graphics == y) { glist->gl_graphics = y->g_next; }
     else {
         t_object *t = NULL;
@@ -112,6 +108,11 @@ PD_LOCAL void glist_objectRemoveProceed (t_glist *glist, t_object *y)
             if (t->g_next == y) { t->g_next = y->g_next; break; }
         }
     }
+}
+
+static void glist_objectRemoveProceed (t_glist *glist, t_object *y)
+{
+    instance_registerRemove (y); glist_objectRemoveRaw (glist, y);
 }
 
 static void glist_objectRemoveFree (t_glist *glist, t_object *y)
