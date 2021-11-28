@@ -12,42 +12,76 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+/* < https://forum.juce.com/t/is-it-safe-to-use-std-try-lock-or-scopedtrylock-on-the-realtime-thread > */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+#if 0
 
 typedef pthread_mutex_t t_trylock;
 
+static inline void trylock_init (t_trylock *t)
+{
+    pthread_mutex_init (t, NULL);
+}
+
+static inline void trylock_destroy (t_trylock *t)
+{
+    pthread_mutex_destroy (t);
+}
+
+static inline int trylock_trylock (t_trylock *t)
+{
+    return pthread_mutex_trylock (t);
+}
+
+static inline void trylock_lock (t_trylock *t)
+{
+    pthread_mutex_lock (t);
+}
+
+static inline void trylock_unlock (t_trylock *t)
+{
+    pthread_mutex_unlock (t);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static inline void trylock_init (t_trylock *mutex)
+#else
+
+typedef atomic_flag t_trylock;
+
+static inline void trylock_init (t_trylock *t)
 {
-    pthread_mutex_init (mutex, NULL);
+    atomic_flag_clear (t);
 }
 
-static inline void trylock_destroy (t_trylock *mutex)
+static inline void trylock_destroy (t_trylock *t)
 {
-    pthread_mutex_destroy (mutex);
+
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static inline int trylock_trylock (t_trylock *mutex)
+static inline int trylock_trylock (t_trylock *t)
 {
-    return pthread_mutex_trylock (mutex);
+    return atomic_flag_test_and_set_explicit (t, memory_order_acquire);
 }
 
-static inline void trylock_lock (t_trylock *mutex)
+static inline void trylock_lock (t_trylock *t)
 {
-    pthread_mutex_lock (mutex);
+    while (trylock_trylock (t)) { nano_sleep (PD_MILLISECONDS_TO_NANOSECONDS (0.1)); PD_LOG ("*?*"); }
 }
 
-static inline void trylock_unlock (t_trylock *mutex)
+static inline void trylock_unlock (t_trylock *t)
 {
-    pthread_mutex_unlock (mutex);
+    atomic_flag_clear_explicit (t, memory_order_release);
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -14,7 +14,6 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "system/memory/s_memory.h"
-#include "system/memory/s_trylock.h"
 #include "system/memory/s_atomic.h"
 #include "system/scheduler/s_monitor.h"
 #include "system/scheduler/s_clock.h"
@@ -31,6 +30,7 @@
 #include "system/devices/s_devices.h"
 #include "system/devices/s_deviceslist.h"
 #include "system/API/s_API.h"
+#include "system/memory/s_trylock.h"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
