@@ -54,7 +54,19 @@ static inline void trylock_unlock (t_trylock *t)
 
 #else
 
-typedef atomic_flag t_trylock;
+#if defined ( __cplusplus )
+
+    #include <atomic>
+    
+    typedef std::atomic_flag t_trylock;
+        
+#else
+
+    #include <stdatomic.h>
+    
+    typedef atomic_flag t_trylock;
+    
+#endif
 
 static inline void trylock_init (t_trylock *t)
 {
@@ -68,6 +80,12 @@ static inline void trylock_destroy (t_trylock *t)
 
 static inline int trylock_trylock (t_trylock *t)
 {
+    #if defined ( __cplusplus )
+
+    using std::memory_order_acquire;
+
+    #endif
+
     return atomic_flag_test_and_set_explicit (t, memory_order_acquire);
 }
 
@@ -78,6 +96,12 @@ static inline void trylock_lock (t_trylock *t)
 
 static inline void trylock_unlock (t_trylock *t)
 {
+    #if defined ( __cplusplus )
+    
+    using std::memory_order_release;
+
+    #endif
+
     atomic_flag_clear_explicit (t, memory_order_release);
 }
 
