@@ -35,6 +35,28 @@ static t_int32Atomic    scheduler_quit;             /* Static. */
 
 static t_float64Atomic  scheduler_systime;          /* Static. */
 
+/* MUST be thread-safe (after initialization). */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL double scheduler_getRealTimeInSeconds (void)
+{
+    static t_time start;                    /* Static. */
+    t_time now;
+    t_nano elapsed = 0ULL;
+    
+    time_set (&now);
+    
+    if (start == 0ULL) { start = now; }
+    else {
+        time_elapsedNanoseconds (&start, &now, &elapsed);
+    }
+    
+    return PD_NANOSECONDS_TO_SECONDS (elapsed);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -129,7 +151,7 @@ static int scheduler_mainLoopNeedToTick (double realStart, t_systime logicalStar
 {
     if (!PD_ATOMIC_INT32_READ (&scheduler_quit)) {
     //
-    double now          = clock_getRealTimeInSeconds();
+    double now          = scheduler_getRealTimeInSeconds();
     double realLapse    = PD_SECONDS_TO_MILLISECONDS (now - realStart);
     double logicalLapse = scheduler_getMillisecondsSince (logicalStart);
     
@@ -144,7 +166,7 @@ static int scheduler_mainLoopNeedToTick (double realStart, t_systime logicalStar
 
 static void scheduler_mainLoop (void)
 {
-    const double realStart       = clock_getRealTimeInSeconds();
+    const double realStart       = scheduler_getRealTimeInSeconds();
     const t_systime logicalStart = scheduler_getLogicalTime();
     
     int pollInputsCounter = 0;
@@ -163,7 +185,7 @@ static void scheduler_mainLoop (void)
     if (!PD_ATOMIC_INT32_READ (&scheduler_quit)) { scheduler_clean(); }
     
     if (!PD_ATOMIC_INT32_READ (&scheduler_quit)) {
-        double elapsed = PD_SECONDS_TO_MILLISECONDS (clock_getRealTimeInSeconds() - t);
+        double elapsed = PD_SECONDS_TO_MILLISECONDS (scheduler_getRealTimeInSeconds() - t);
         double monitor = (0.75 - elapsed);
         if (monitor > 0.0) { monitor_blocking (monitor); }
     //

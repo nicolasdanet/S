@@ -19,28 +19,6 @@ PD_LOCAL t_systime scheduler_addMillisecondsToSystime (t_systime, double);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* MUST be thread-safe (after initialization). */
-
-PD_LOCAL double clock_getRealTimeInSeconds (void)
-{
-    static t_time start;                    /* Static. */
-    t_time now;
-    t_nano elapsed = 0ULL;
-    
-    time_set (&now);
-    
-    if (start == 0ULL) { start = now; }
-    else {
-        time_elapsedNanoseconds (&start, &now, &elapsed);
-    }
-    
-    return PD_NANOSECONDS_TO_SECONDS (elapsed);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 PD_LOCAL t_error clock_parseUnit (t_float f, t_symbol *s, t_float *n, int *isSamples)
 {
     t_error err = (f <= 0.0);
