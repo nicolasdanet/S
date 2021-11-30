@@ -22,7 +22,8 @@
 PD_LOCAL t_clocks   *clocks_new     (void);
 
 PD_LOCAL void       clocks_free     (t_clocks *x);
-PD_LOCAL int        clocks_clean    (t_clocks *x);      /* Block other threads. */
+PD_LOCAL int        clocks_shrink   (t_clocks *x);
+PD_LOCAL void       clocks_clean    (t_clocks *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -66,9 +66,9 @@ void test_clocksTick (t_systime t)
     clocks_tick (test_clocksManager, t);
 }
 
-int test_clocksClean (void)
+int test_clocksShrink (void)
 {
-    return clocks_clean (test_clocksManager);
+    return clocks_shrink (test_clocksManager);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -217,7 +217,7 @@ void *test_clocksAtomicTask (void *x)
                 }
             }
             
-            if (++i % 10 == 0) { test_clocksClean(); }
+            if (++i % 10 == 0) { test_clocksShrink(); }
         }
     }
     

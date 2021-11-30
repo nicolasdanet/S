@@ -15,6 +15,7 @@
 
 struct _clocks {
     pthread_rwlock_t    x_lock;
+    t_int32Atomic       x_count;
     t_int32Atomic       x_offset;
     t_int32Atomic       x_maximum;
     int                 x_size;
@@ -28,6 +29,8 @@ struct _clocks {
 // MARK: -
 
 #define CLOCKS_SIZE     65535                   /* Arbitrary. */
+
+#define CLOCKS_COUNT    1000
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -251,7 +254,7 @@ PD_LOCAL void clocks_tick (t_clocks *x, t_systime systime)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int clocks_clean (t_clocks *x)
+PD_LOCAL int clocks_shrink (t_clocks *x)
 {
     if (pthread_rwlock_trywrlock (&x->x_lock) == 0) {
     //
@@ -278,6 +281,17 @@ PD_LOCAL int clocks_clean (t_clocks *x)
     }
     
     return 0;
+}
+
+PD_LOCAL void clocks_clean (t_clocks *x)
+{
+    int n = PD_ATOMIC_INT32_INCREMENT (&x->x_count);
+    
+    if (n > CLOCKS_COUNT) {
+    //
+    if (clocks_shrink (x)) { PD_ATOMIC_INT32_WRITE (0, &x->x_count); }
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

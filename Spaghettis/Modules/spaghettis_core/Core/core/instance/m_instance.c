@@ -13,8 +13,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define INSTANCE_TIME_CLOCKS    1000
-
 #define INSTANCE_TIME_CHAIN     PD_SECONDS_TO_MILLISECONDS (30)
 
 // -----------------------------------------------------------------------------------------------------------
@@ -247,15 +245,7 @@ PD_LOCAL void instance_clocksTick (t_systime t)
 
 PD_LOCAL void instance_clocksClean (void)
 {
-    int n = PD_ATOMIC_INT32_INCREMENT (&instance_get()->pd_clocksCount);
-    
-    if (n > INSTANCE_TIME_CLOCKS) {
-    //
-    if (clocks_clean (instance_get()->pd_clocks)) {
-        PD_ATOMIC_INT32_WRITE (0, &instance_get()->pd_clocksCount);
-    }
-    //
-    }
+    clocks_clean (instance_get()->pd_clocks);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -40,7 +40,6 @@ typedef struct _pdinstance {
     t_environment   pd_environment;
     uint64_t        pd_pollingCount;
     uint64_t        pd_autoreleaseCount;
-    t_int32Atomic   pd_clocksCount;
     int             pd_poolCount;
     int             pd_overflow;
     int             pd_overflowCount;
