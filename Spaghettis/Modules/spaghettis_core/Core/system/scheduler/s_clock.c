@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_systime scheduler_addMillisecondsToSystime (t_systime, double);
+PD_LOCAL t_systime scheduler_addMillisecondsToLogicalTime (t_systime, double);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -230,7 +230,7 @@ PD_LOCAL t_error clock_reschedule (t_clock *x, double delay, double ms, t_systim
     if (now - t > ms) { return PD_ERROR; }                  /* Abort if it is too old. */
     if (u < 1.0)      { return PD_ERROR; }                  /* Abort if it is too small. */
    
-    while (t < now) { t = scheduler_addMillisecondsToSystime (t, u); }
+    while (t < now) { t = scheduler_addMillisecondsToLogicalTime (t, u); }
     //
     }
 

@@ -71,11 +71,6 @@ PD_LOCAL t_systime scheduler_getLogicalTime (void)
     return PD_ATOMIC_FLOAT64_READ (&scheduler_systime);
 }
 
-PD_LOCAL t_systime scheduler_addMillisecondsToSystime (t_systime t, double ms)
-{
-    return (t + ms);
-}
-
 PD_LOCAL t_systime scheduler_getLogicalTimeAfter (double ms)
 {
     return (scheduler_getLogicalTime() + ms);
@@ -95,6 +90,15 @@ PD_LOCAL double scheduler_getUnitsSince (t_systime systime, double unit, int isS
     if (isSamples) { d = 1000.0 / audio_getSampleRate(); }
     
     return (elapsed / (d * unit));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL t_systime scheduler_addMillisecondsToLogicalTime (t_systime t, double ms)
+{
+    return (t + ms);
 }
 
 // -----------------------------------------------------------------------------------------------------------
