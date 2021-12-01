@@ -39,7 +39,7 @@ namespace spaghettis { namespace core {
 
 #include "core/instance/m_pool.c"
 #include "core/instance/m_register.c"
-#include "core/instance/m_clocks.c"
+#include "core/instance/m_clocks_rwlock.c"
 #include "core/instance/m_abstractions.c"
 #include "core/instance/m_eval.c"
 #include "core/instance/m_stack.c"
