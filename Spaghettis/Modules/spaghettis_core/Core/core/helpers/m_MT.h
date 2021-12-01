@@ -38,7 +38,7 @@
 PD_LOCAL t_randMT   *randMT_new         (void);
 
 PD_LOCAL void       randMT_free         (t_randMT *x);
-PD_LOCAL double     randMT_getDouble    (t_randMT *x);  // -- Random float on [0, 1).
+PD_LOCAL double     randMT_getDouble    (t_randMT *x);  /* Random float on [0, 1). */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

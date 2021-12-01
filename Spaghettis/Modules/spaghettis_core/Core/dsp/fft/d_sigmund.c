@@ -30,7 +30,7 @@
 
 /* Note that for now that object is reset with encapsulation. */
 
-// -- TODO: Fetch states with pending?
+// TODO: Fetch states with pending?
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -239,7 +239,7 @@ static void sigmund_tilde_proceedRawTweak (t_sigmund_tilde *x,
     qsort (sorted + 1, count, sizeof (t_peak *), sigmund_tilde_proceedRawCompareFrequency);
     
     negativePeak.p_frequency          = -sorted[1]->p_frequency;
-    negativePeak.p_amplitudeReal      =  sorted[1]->p_amplitudeReal;            // --
+    negativePeak.p_amplitudeReal      =  sorted[1]->p_amplitudeReal;
     negativePeak.p_amplitudeImaginary = -sorted[1]->p_amplitudeImaginary;
     
     sorted[0] = &negativePeak;
@@ -584,7 +584,7 @@ static void sigmund_tilde_proceedNote (t_sigmund_tilde *z, t_sigmundhelper *h)
     t_float maximumPower            = 0.0;
     t_float frequencyAtMaximumPower = 0.0;
     t_float hiFrequency             = -SIGMUND_FLT_MAX;
-    t_float loFrequency             =  SIGMUND_FLT_MAX;             // --
+    t_float loFrequency             =  SIGMUND_FLT_MAX;
     
     start = x->n_histogramPhase - stablePeriod + 1;
     
@@ -897,7 +897,7 @@ static void sigmund_tilde_task (t_sigmund_tilde *x)
     //
     int32_t available = ringbuffer_getAvailableRead (x->x_ringbuffer);
     
-    while (available-- > 0) {   // --
+    while (available-- > 0) {
     //
     t_sample t; ringbuffer_read (x->x_ringbuffer, &t, 1);
     

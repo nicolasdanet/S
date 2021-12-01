@@ -33,10 +33,10 @@ typedef struct _devices {
     int d_vectorSize;
     int d_inSize;
     int d_outSize;
-    int d_in          [DEVICES_MAXIMUM_IO];             // --
-    int d_out         [DEVICES_MAXIMUM_IO];             // --
-    int d_inChannels  [DEVICES_MAXIMUM_IO];             // --
-    int d_outChannels [DEVICES_MAXIMUM_IO];             // --
+    int d_in          [DEVICES_MAXIMUM_IO];
+    int d_out         [DEVICES_MAXIMUM_IO];
+    int d_inChannels  [DEVICES_MAXIMUM_IO];
+    int d_outChannels [DEVICES_MAXIMUM_IO];
     int d_isMidi;
     } t_devices;
 

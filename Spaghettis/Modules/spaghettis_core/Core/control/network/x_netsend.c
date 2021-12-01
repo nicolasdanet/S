@@ -15,7 +15,7 @@
 
 /* Note that for now that object is reset with encapsulation. */
 
-// -- TODO: Fetch states with pending?
+// TODO: Fetch states with pending?
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ static void netsend_socketClose (t_netsend *x)
 {
     if (x->ns_fd >= 0) { close (x->ns_fd); x->ns_fd = -1;
     
-    post_system (cast_object (x), "netsend: closed"); }    // --
+    post_system (cast_object (x), "netsend: closed"); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ static t_error netsend_sendProceedRaw (t_netsend *x, int fd, char *t, int length
     char *p = t;
 
     while (alreadySent < length) {
-        ssize_t n = send (fd, p, length - alreadySent, 0);  // -- TODO: Manage EWOULDBLOCK in the future?
+        ssize_t n = send (fd, p, length - alreadySent, 0);  // TODO: Manage EWOULDBLOCK in the future?
         if (n <= 0) {
             error_failsToWrite (cast_object (x), sym_netsend);
             err = PD_ERROR;
@@ -94,7 +94,7 @@ static t_error netsend_sendProceedRaw (t_netsend *x, int fd, char *t, int length
     return err;
 }
 
-// -- TODO: Use memory cached for efficiency?
+// TODO: Use memory cached for efficiency?
 
 static t_error netsend_sendProceedText (t_netsend *x, int fd, t_symbol *s, int argc, t_atom *argv)
 {   
@@ -184,7 +184,7 @@ static void netsend_polling (t_netsend *x)
     timeOut.tv_sec  = 0;
     timeOut.tv_usec = 0;
     
-    post_system (cast_object (x), "netsend: ...");  // --
+    post_system (cast_object (x), "netsend: ...");
     
     if (!err) {
     //
@@ -214,7 +214,7 @@ static void netsend_polling (t_netsend *x)
     x->ns_fd = fd;
     x->ns_pollingDescriptor = -1;
     netsend_pollingStop (x);
-    post_system (cast_object (x), "netsend: connected");    // --
+    post_system (cast_object (x), "netsend: connected");
     outlet_float (x->ns_outlet, 1);
     //
     }
@@ -249,7 +249,7 @@ static void netsend_connect (t_netsend *x, t_symbol *hostName, t_float f)
     
     netsend_socketOptions (x, fd);
 
-    post_system (cast_object (x), "netsend: connecting to port %d", portNumber);    // --
+    post_system (cast_object (x), "netsend: connecting to port %d", portNumber);
 
     if (h == NULL) { error_invalid (cast_object (x), sym_netsend, hostName); }
     else {

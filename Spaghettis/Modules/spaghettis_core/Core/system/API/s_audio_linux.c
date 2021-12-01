@@ -56,12 +56,12 @@ static t_uint32Atomic       jack_bufferSize;
 // MARK: -
 
 #define METADATA_TYPE_TEXT              "text/plain"
-#define METADATA_TYPE_INTEGER           "http://www.w3.org/2001/XMLSchema#integer"      // --
-#define METADATA_PRETTY_NAME            "http://jackaudio.org/metadata/pretty-name"     // --
-#define METADATA_SIGNAL_TYPE            "http://jackaudio.org/metadata/signal-type"     // --
-#define METADATA_ORDER                  "http://jackaudio.org/metadata/order"           // --
-#define METADATA_LV2_MINIMUM            "http://lv2plug.in/ns/lv2core#minimum"          // --
-#define METADATA_LV2_MAXIMUM            "http://lv2plug.in/ns/lv2core#maximum"          // --
+#define METADATA_TYPE_INTEGER           "http://www.w3.org/2001/XMLSchema#integer"
+#define METADATA_PRETTY_NAME            "http://jackaudio.org/metadata/pretty-name"
+#define METADATA_SIGNAL_TYPE            "http://jackaudio.org/metadata/signal-type"
+#define METADATA_ORDER                  "http://jackaudio.org/metadata/order"
+#define METADATA_LV2_MINIMUM            "http://lv2plug.in/ns/lv2core#minimum"
+#define METADATA_LV2_MAXIMUM            "http://lv2plug.in/ns/lv2core#maximum"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

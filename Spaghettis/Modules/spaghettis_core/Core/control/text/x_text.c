@@ -168,7 +168,7 @@ static void *textdefine_makeObject (t_symbol *s, int argc, t_atom *argv)
         if (t == sym_tolist)        { newest = (t_pd *)texttolist_new (s,   argc - 1, argv + 1); }
         else if (t == sym_fromlist) { newest = (t_pd *)textfromlist_new (s, argc - 1, argv + 1); }
         
-        if (!newest) { error_unexpected (NULL, sym_text, t); }  // -- TODO: Pass context to message error?
+        if (!newest) { error_unexpected (NULL, sym_text, t); }  // TODO: Pass context to message error?
     }
     //
     }

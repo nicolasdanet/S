@@ -26,7 +26,7 @@ static t_error priority_setRTNative (pthread_t thread)
     /* On macOS POSIX thread is able to set thread priority only within the lowest priority band (0–63). */
     /* < https://developer.apple.com/library/ios/technotes/tn2169/_index.html > */
 
-    // -- TODO: Use thread_policy_set instead?
+    // TODO: Use thread_policy_set instead?
     
     param.sched_priority = 63; 
 

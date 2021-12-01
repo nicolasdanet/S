@@ -219,7 +219,7 @@ static void menubutton_restore (t_menubutton *x, t_symbol *s, int argc, t_atom *
     
     menubutton_clear (x); buffer_deserialize (x->x_slots, argc, argv);
     
-    if (old) { }    // -- ???
+    if (old) { }    /* ??? */
 }
 
 // -----------------------------------------------------------------------------------------------------------

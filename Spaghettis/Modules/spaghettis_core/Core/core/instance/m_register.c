@@ -54,7 +54,7 @@ static t_registerelement *register_swapped (t_register *x, size_t i)
 
 /* Fetch the element (raised if too far). */
 
-// -- TODO: Check to see if it is really an optimization.
+// TODO: Check to see if it is really an optimization.
 
 static t_registerelement *register_fetch (t_register *x, t_id u)
 {

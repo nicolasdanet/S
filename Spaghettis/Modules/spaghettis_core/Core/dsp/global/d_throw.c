@@ -59,7 +59,7 @@ static void throw_tilde_restore (t_throw_tilde *x, t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* No aliasing.*/
+/* No aliasing. */
 
 static t_int *throw_tilde_perform (t_int *w)
 {

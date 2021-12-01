@@ -219,7 +219,7 @@ static void slider_restore (t_slider *x)
 {
     t_slider *old = (t_slider *)instance_pendingFetch (cast_object (x));
     
-    if (old) { }    // -- ???
+    if (old) { }    /* ??? */
 }
 
 // -----------------------------------------------------------------------------------------------------------

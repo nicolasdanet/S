@@ -97,7 +97,7 @@ static void toggle_restore (t_toggle *x)
 {
     t_toggle *old = (t_toggle *)instance_pendingFetch (cast_object (x));
     
-    if (old) { }    // -- ???
+    if (old) { }    /* ??? */
 }
 
 // -----------------------------------------------------------------------------------------------------------

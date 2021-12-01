@@ -46,7 +46,7 @@ PD_LOCAL void dsp_setState (int n)
         instance_dspStop(); dsp_status = 0; audio_stop();
     }
         
-    if (dsp_status) { post_system (NULL, "dsp: start"); } else { post_system (NULL, "dsp: stop"); }   // --
+    if (dsp_status) { post_system (NULL, "dsp: start"); } else { post_system (NULL, "dsp: stop"); }
     
     dsp_report();
     //

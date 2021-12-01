@@ -140,7 +140,7 @@ static t_block *ugen_graphGetBlockIfContainsAny (t_dspcontext *context)
 
         t_object *o = u->u_owner;
         
-        // -- TODO: Pass context to message error?
+        // TODO: Pass context to message error?
         
         if (pd_class (o) == block_class) {
             if (block) { error_unexpected (NULL, sym_dsp, sym_block__tilde__); }
@@ -311,7 +311,7 @@ static void ugen_graphMain (t_dspcontext *context)
     
     for (u = context->dc_ugens; u; u = u->u_next) {
         if (!u->u_done) {
-            error_dspLoop (NULL); break;    // -- TODO: Pass context to message error?
+            error_dspLoop (NULL); break;    // TODO: Pass context to message error?
         }
     }
 }

@@ -156,7 +156,7 @@ static inline t_float dsp_getCosineAtLUT (double index)
     t_rawcast64 z;
     int i;
     
-    // -- Note that index MUST be <= 2^19 (i.e. 1024 * COSINE_TABLE_SIZE).
+    /* Note that index MUST be <= 2^19 (i.e. 1024 * COSINE_TABLE_SIZE). */
     
     z.z_d = index + DSP_UNITBIT;
     
@@ -187,7 +187,7 @@ static inline double dsp_clipForHoeldrichOverflow (double f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-// -- Wrap the phase to [0.0, 512.0[ range.
+/* Wrap the phase to [0.0, 512.0[ range. */
 
 static double inline dsp_wrapCosine (double phase)
 {
@@ -197,7 +197,7 @@ static double inline dsp_wrapCosine (double phase)
     return z.z_d - COSINE_UNITBIT;
 }
 
-// -- Wrap the phase to [0.0, 1.0[ range.
+/* Wrap the phase to [0.0, 1.0[ range. */
 
 static double inline dsp_wrapPhasor (double phase)
 {

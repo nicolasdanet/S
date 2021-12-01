@@ -221,7 +221,7 @@ static void dial_restore (t_dial *x)
 {
     t_dial *old = (t_dial *)instance_pendingFetch (cast_object (x));
     
-    if (old) { }    // -- ???
+    if (old) { }    /* ??? */
 }
 
 // -----------------------------------------------------------------------------------------------------------

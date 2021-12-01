@@ -28,7 +28,7 @@ static void glist_serializeHeader (t_glist *glist, t_buffer *b)
     buffer_appendFloat (b,  rectangle_getWidth (glist_getWindow (glist)));
     buffer_appendFloat (b,  rectangle_getHeight (glist_getWindow (glist)));
     
-    // -- TODO: Remove dummy font size.
+    // TODO: Remove dummy font size.
     
     if (!glist_isSubpatch (glist)) { buffer_appendFloat (b, 12); }
     else {
@@ -131,7 +131,7 @@ static void glist_saveProceed (t_glist *glist, t_symbol *name, t_symbol *directo
     if (buffer_fileWrite (b, name, directory)) { error_failsToWrite (cast_object (glist), name); }
     else {
         post_system (cast_object (glist),
-            PD_TRANSLATE ("file: saved to %s/%s"),      // --
+            PD_TRANSLATE ("file: saved to %s/%s"),
             directory->s_name,
             name->s_name);
         environment_setDirectory (glist_getEnvironment (glist), directory);

@@ -222,9 +222,9 @@ static void undomanager_collapsePost (t_undomanager *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-// -- TODO: Collapse consecutive separators (e.g. after actions has been removed)?
+// TODO: Collapse consecutive separators (e.g. after actions has been removed)?
 
-// -- TODO: Remove superfluous actions (e.g. labels)?
+// TODO: Remove superfluous actions (e.g. labels)?
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

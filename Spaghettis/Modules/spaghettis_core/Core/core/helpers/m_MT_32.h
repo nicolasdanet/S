@@ -37,8 +37,8 @@ PD_LOCAL MTState32  *genrand32_new  (void);
 // -----------------------------------------------------------------------------------------------------------
 
 PD_LOCAL void       genrand32_free  (MTState32 *x);
-PD_LOCAL uint32_t   genrand32_int32 (MTState32 *x);  // -- Random number on [0, 0xffffffff].
-PD_LOCAL double     genrand32_res53 (MTState32 *x);  // -- Random number on [0, 1) with 53-bit resolution.
+PD_LOCAL uint32_t   genrand32_int32 (MTState32 *x);  /* Random number on [0, 0xffffffff]. */
+PD_LOCAL double     genrand32_res53 (MTState32 *x);  /* Random number on [0, 1) with 53-bit resolution. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

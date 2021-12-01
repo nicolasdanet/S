@@ -55,16 +55,16 @@ PD_LOCAL void metadata_report (t_error err)
     for (i = 0; i < DEVICES_MAXIMUM_CHANNELS; i++) {
     //
     if (metadata_inputCv[i]) {
-        (f) (NULL, PD_TRANSLATE ("dsp: input %d / cv %d"), i + 1, metadata_inputCv[i]);                 // --
+        (f) (NULL, PD_TRANSLATE ("dsp: input %d / cv %d"), i + 1, metadata_inputCv[i]);
     }
     if (metadata_inputMinimum[i] != metadata_inputMaximum[i]) {
         int t0 = metadata_inputMinimum[i];
         int t1 = metadata_inputMaximum[i];
-        (f) (NULL, PD_TRANSLATE ("dsp: input %d / minimum %d"), i + 1, PD_MIN (t0, t1));                // --
-        (f) (NULL, PD_TRANSLATE ("dsp: input %d / maximum %d"), i + 1, PD_MAX (t0, t1));                // --
+        (f) (NULL, PD_TRANSLATE ("dsp: input %d / minimum %d"), i + 1, PD_MIN (t0, t1));
+        (f) (NULL, PD_TRANSLATE ("dsp: input %d / maximum %d"), i + 1, PD_MAX (t0, t1));
     }
     if (metadata_inputName[i]) {
-        (f) (NULL, PD_TRANSLATE ("dsp: input %d / name %s"), i + 1, metadata_inputName[i]->s_name);     // --
+        (f) (NULL, PD_TRANSLATE ("dsp: input %d / name %s"), i + 1, metadata_inputName[i]->s_name);
     }
     //
     }
@@ -72,16 +72,16 @@ PD_LOCAL void metadata_report (t_error err)
     for (i = 0; i < DEVICES_MAXIMUM_CHANNELS; i++) {
     //
     if (metadata_outputCv[i]) {
-        (f) (NULL, PD_TRANSLATE ("dsp: output %d / cv %d"), i + 1, metadata_outputCv[i]);               // --
+        (f) (NULL, PD_TRANSLATE ("dsp: output %d / cv %d"), i + 1, metadata_outputCv[i]);
     }
     if (metadata_outputMinimum[i] != metadata_outputMaximum[i]) {
         int t0 = metadata_outputMinimum[i];
         int t1 = metadata_outputMaximum[i];
-        (f) (NULL, PD_TRANSLATE ("dsp: output %d / minimum %d"), i + 1, PD_MIN (t0, t1));               // --
-        (f) (NULL, PD_TRANSLATE ("dsp: output %d / maximum %d"), i + 1, PD_MAX (t0, t1));               // --
+        (f) (NULL, PD_TRANSLATE ("dsp: output %d / minimum %d"), i + 1, PD_MIN (t0, t1));
+        (f) (NULL, PD_TRANSLATE ("dsp: output %d / maximum %d"), i + 1, PD_MAX (t0, t1));
     }
     if (metadata_outputName[i]) {
-        (f) (NULL, PD_TRANSLATE ("dsp: output %d / name %s"), i + 1, metadata_outputName[i]->s_name);   // --
+        (f) (NULL, PD_TRANSLATE ("dsp: output %d / name %s"), i + 1, metadata_outputName[i]->s_name);
     }
     //
     }

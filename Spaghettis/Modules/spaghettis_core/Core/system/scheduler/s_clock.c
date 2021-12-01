@@ -99,17 +99,21 @@ PD_LOCAL void clock_setExecuteTime (t_clock *x, t_systime t)
 
 /* Proper order of operation for increment and decrement is not guaranted. */
 
-// -- For instance:
+/*
 
-// -- 1. Clock is removed while consumed in thread A.
-// -- 2. Clock is added by thread B.
-// -- 3. Counter is incremented by thread B (it is equal to  2).
-// -- 4. Counter is decremented by thread A (it is equal to  1).
+For instance:
 
-// -- 1. Clock is added by thread B.
-// -- 2. Clock is removed while consumed in thread A.
-// -- 3. Counter is decremented by thread A (it is equal to -1).
-// -- 4. Counter is incremented by thread B (it is equal to  0).
+1. Clock is removed while consumed in thread A.
+2. Clock is added by thread B.
+3. Counter is incremented by thread B (it is equal to  2).
+4. Counter is decremented by thread A (it is equal to  1).
+
+1. Clock is added by thread B.
+2. Clock is removed while consumed in thread A.
+3. Counter is decremented by thread A (it is equal to -1).
+4. Counter is incremented by thread B (it is equal to  0).
+
+*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

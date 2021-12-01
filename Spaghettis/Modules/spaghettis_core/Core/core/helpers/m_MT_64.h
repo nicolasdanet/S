@@ -52,8 +52,8 @@ PD_LOCAL MTState64  *genrand64_new  (void);
 // -----------------------------------------------------------------------------------------------------------
 
 PD_LOCAL void       genrand64_free  (MTState64 *x);
-PD_LOCAL uint64_t   genrand64_int64 (MTState64 *x); // -- Random number on [0, 2 ^ 64 - 1].
-PD_LOCAL double     genrand64_real2 (MTState64 *x); // -- Random number on [0, 1).
+PD_LOCAL uint64_t   genrand64_int64 (MTState64 *x);     /* Random number on [0, 2 ^ 64 - 1]. */
+PD_LOCAL double     genrand64_real2 (MTState64 *x);     /* Random number on [0, 1). */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

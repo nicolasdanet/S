@@ -30,7 +30,7 @@
 
 /* Note that for now that object is reset with encapsulation. */
 
-// -- TODO: Fetch states with pending?
+// TODO: Fetch states with pending?
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -118,7 +118,7 @@ static t_symbol *oscparse_fetchNextAdressElement (int argc, t_atom *argv, int *i
     
     char t[PD_STRING] = { 0 };
     
-    // -- Multiple-level wildcard matching (i.e. '//').
+    /* Multiple-level wildcard matching (i.e. '//'). */
     
     int multiple = (j < argc - 1 && OSC_GETCHAR (argv + j) == '/' && OSC_GETCHAR (argv + j + 1) == '/');
     

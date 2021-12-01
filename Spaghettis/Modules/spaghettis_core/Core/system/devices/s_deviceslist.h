@@ -24,10 +24,10 @@ typedef struct _deviceslist {
     int         d_vectorSize;
     int         d_inSize;
     int         d_outSize;
-    int         d_inChannels  [DEVICES_MAXIMUM_IO];     // --
-    int         d_outChannels [DEVICES_MAXIMUM_IO];     // --
-    t_symbol    *d_inNames    [DEVICES_MAXIMUM_IO];     // --
-    t_symbol    *d_outNames   [DEVICES_MAXIMUM_IO];     // --
+    int         d_inChannels  [DEVICES_MAXIMUM_IO];
+    int         d_outChannels [DEVICES_MAXIMUM_IO];
+    t_symbol    *d_inNames    [DEVICES_MAXIMUM_IO];
+    t_symbol    *d_outNames   [DEVICES_MAXIMUM_IO];
     } t_deviceslist;
 
 // -----------------------------------------------------------------------------------------------------------

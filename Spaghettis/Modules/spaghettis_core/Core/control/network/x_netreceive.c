@@ -20,7 +20,7 @@
 
 /* Note that for now that object is reset with encapsulation. */
 
-// -- TODO: Fetch states with pending?
+// TODO: Fetch states with pending?
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -235,7 +235,7 @@ static void netreceive_close (t_netreceive *x)
     
     x->nr_fd = -1;
     
-    if (report) { post_system (cast_object (x), "netreceive: closed"); }            // --
+    if (report) { post_system (cast_object (x), "netreceive: closed"); }
 }
 
 static void netreceive_listen (t_netreceive *x, t_float f)
@@ -255,7 +255,7 @@ static void netreceive_listen (t_netreceive *x, t_float f)
     
     struct sockaddr_in server;
 
-    post_system (cast_object (x), "netreceive: listening on port %d", portNumber);  // --
+    post_system (cast_object (x), "netreceive: listening on port %d", portNumber);
     
     netreceive_socketOptions (x, fd);
     

@@ -41,12 +41,12 @@ PD_LOCAL int denormal_isBigOrSmall (t_sample f)
 
 static intptr_t denormal_getFPSR (void)
 {
-    intptr_t fpsr = 0; asm volatile("vmrs %0, fpscr" : "=r" (fpsr)); return fpsr;       // --
+    intptr_t fpsr = 0; asm volatile("vmrs %0, fpscr" : "=r" (fpsr)); return fpsr;
 }
 
 static void denormal_setFPSR (intptr_t fpsr)
 {
-    asm volatile("vmsr fpscr, %0" : : "ri" (fpsr));                                     // --
+    asm volatile("vmsr fpscr, %0" : : "ri" (fpsr));
 }
 
 PD_LOCAL void denormal_setPolicy (void)

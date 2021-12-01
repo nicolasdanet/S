@@ -122,7 +122,7 @@ static void radio_restore (t_radio *x)
 {
     t_radio *old = (t_radio *)instance_pendingFetch (cast_object (x));
     
-    if (old) { } // -- ???
+    if (old) { } /* ??? */
 }
 
 // -----------------------------------------------------------------------------------------------------------

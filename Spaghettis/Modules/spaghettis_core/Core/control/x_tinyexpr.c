@@ -21,7 +21,7 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-// -- http://CodePlea.com
+/* http://CodePlea.com */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -330,9 +330,9 @@ static void te_nextTokenOperator (te_state *s)
     case '-'  : s->x_type = TOK_INFIX; s->x_fn = (const void *)fn_substract; break;
     case '*'  : s->x_type = TOK_INFIX; s->x_fn = (const void *)fn_multiply;  break;
     case '/'  : s->x_type = TOK_INFIX; s->x_fn = (const void *)fn_divide;    break;
-    case '^'  : s->x_type = TOK_INFIX; s->x_fn = (const void *)fn_pow;       break;     // --
+    case '^'  : s->x_type = TOK_INFIX; s->x_fn = (const void *)fn_pow;       break;
     case '%'  : s->x_type = TOK_INFIX; s->x_fn = (const void *)fn_fmod;      break;
-    case '('  : s->x_type = TOK_OPEN;  break;                                           // --
+    case '('  : s->x_type = TOK_OPEN;  break;
     case ')'  : s->x_type = TOK_CLOSE; break;
     case ','  : s->x_type = TOK_COMMA; break;
     case ' '  : break;
@@ -590,7 +590,7 @@ PD_LOCAL double te_eval (const te_expr *x)
     //
     case TE_CONSTANT  : return (x->te_value);
     case TE_VARIABLE  : return (*x->te_bound);
-    case TE_FUNCTION0 : return ((te_fn0)x->te_fn) ();           // --
+    case TE_FUNCTION0 : return ((te_fn0)x->te_fn) ();
     case TE_FUNCTION1 : return ((te_fn1)x->te_fn) (TE_M0);
     case TE_FUNCTION2 : return ((te_fn2)x->te_fn) (TE_M1);
     case TE_FUNCTION3 : return ((te_fn3)x->te_fn) (TE_M2);

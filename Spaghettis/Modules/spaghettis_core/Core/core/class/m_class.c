@@ -100,7 +100,7 @@ static void class_defaultList (t_pd *x, t_symbol *s, int argc, t_atom *argv)
     }
 }
 
-// -- TODO: Pass context to message error?
+// TODO: Pass context to message error?
 
 static void class_defaultAnything (t_pd *x, t_symbol *s, int argc, t_atom *argv)
 {

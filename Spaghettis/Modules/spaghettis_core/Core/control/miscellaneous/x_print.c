@@ -29,17 +29,17 @@ typedef struct _print {
 
 static void print_bang (t_print *x)
 {
-    post (cast_object (x), "%s: bang", x->x_name->s_name);                      // --
+    post (cast_object (x), "%s: bang", x->x_name->s_name);
 }
 
 static void print_float (t_print *x, t_float f)
 {
-    post (cast_object (x), "%s: %.9g", x->x_name->s_name, f);                   // --
+    post (cast_object (x), "%s: %.9g", x->x_name->s_name, f);
 }
 
 static void print_symbol (t_print *x, t_symbol *s)
 {
-    post (cast_object (x), "%s: %s", x->x_name->s_name, s->s_name);             // --
+    post (cast_object (x), "%s: %s", x->x_name->s_name, s->s_name);
 }
 
 static void print_list (t_print *x, t_symbol *s, int argc, t_atom *argv)
@@ -48,7 +48,7 @@ static void print_list (t_print *x, t_symbol *s, int argc, t_atom *argv)
     //
     char *t = atom_atomsToString (argc, argv);
     
-    post (cast_object (x), "%s: [ %s ]", x->x_name->s_name, t);                 // --
+    post (cast_object (x), "%s: [ %s ]", x->x_name->s_name, t);
     
     PD_MEMORY_FREE (t);
     //
@@ -61,7 +61,7 @@ static void print_anything (t_print *x, t_symbol *s, int argc, t_atom *argv)
     //
     char *t = atom_atomsToString (argc, argv);
     
-    post (cast_object (x), "%s: %s [ %s ]", x->x_name->s_name, s->s_name, t);    // --
+    post (cast_object (x), "%s: %s [ %s ]", x->x_name->s_name, s->s_name, t);
     
     PD_MEMORY_FREE (t);
     //

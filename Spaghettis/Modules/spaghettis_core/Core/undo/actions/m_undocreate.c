@@ -57,7 +57,7 @@ PD_LOCAL t_undoaction *undocreate_new (t_object *o, t_undosnippet *snippet)
     t_undoaction *x = (t_undoaction *)pd_new (undocreate_class);
     t_undocreate *z = (t_undocreate *)x;
     
-    // -- TODO: Consider if arrays always require to rebuild the graph?
+    // TODO: Consider if arrays always require to rebuild the graph?
     
     int safe = (object_hasDspOrIsGraphicArray (o) == 0);
     

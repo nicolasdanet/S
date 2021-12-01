@@ -15,7 +15,7 @@
 
 /* For now the memory is released only when the glist is freed. */
 
-// -- TODO: Purge abstractions with polling mechanism?
+// TODO: Purge abstractions with polling mechanism?
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

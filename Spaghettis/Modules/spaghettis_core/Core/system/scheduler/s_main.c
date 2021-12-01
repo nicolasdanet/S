@@ -225,7 +225,7 @@ static t_error main_parseArguments (int argc, char **argv)
     
     if (err) {
     //
-    fprintf (stderr, "Usage: " PD_NAME_LOWERCASE " [ --version ] [ settings ] [ files ... ]\n");     // --
+    fprintf (stderr, "Usage: " PD_NAME_LOWERCASE " [ --version ] [ settings ] [ files ... ]\n");
     //
     }
     

@@ -75,7 +75,7 @@ PD_LOCAL void cos_tilde_initialize (void)
     *p++ = (t_float)0.0;
     
     for (i = COSINE_TABLE_SIZE / 4; i--; p++) { *p = -cos_tilde_table[i]; }
-    for (i = COSINE_TABLE_SIZE / 2; i--; p++) { *p =  cos_tilde_table[i]; }     // --
+    for (i = COSINE_TABLE_SIZE / 2; i--; p++) { *p =  cos_tilde_table[i]; }
     //
     }
 }

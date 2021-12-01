@@ -122,10 +122,10 @@ PD_LOCAL t_error audiograph_check (t_audiograph *graph, int close)
 
 static void audiograph_invalid (int sampleRate, int i, int o)
 {
-    post_error (NULL, PD_TRANSLATE ("audio: invalid sampling rate"));                               // --
+    post_error (NULL, PD_TRANSLATE ("audio: invalid sampling rate"));
     
-    if (sampleRate != i) { post_error (NULL, PD_TRANSLATE ("audio: invalid input / %d Hz"), i);  }  // --
-    if (sampleRate != o) { post_error (NULL, PD_TRANSLATE ("audio: invalid output / %d Hz"), o); }  // --
+    if (sampleRate != i) { post_error (NULL, PD_TRANSLATE ("audio: invalid input / %d Hz"), i);  }
+    if (sampleRate != o) { post_error (NULL, PD_TRANSLATE ("audio: invalid output / %d Hz"), o); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

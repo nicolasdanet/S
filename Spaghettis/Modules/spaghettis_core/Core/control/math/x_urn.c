@@ -36,7 +36,7 @@ typedef struct _urn {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-// -- TODO: Use a best approach in case of a large range?
+// TODO: Use a best approach in case of a large range?
 
 /* < https://meta.stackoverflow.com/questions/334325 > */
 

@@ -114,7 +114,7 @@ static void bng_restore (t_bng *x)
 {
     t_bng *old = (t_bng *)instance_pendingFetch (cast_object (x));
     
-    if (old) { }    // -- ???
+    if (old) { }    /* ??? */
 }
 
 // -----------------------------------------------------------------------------------------------------------

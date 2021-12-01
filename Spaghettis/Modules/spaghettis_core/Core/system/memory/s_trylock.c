@@ -35,7 +35,7 @@ PD_LOCAL void trylock_destroy (t_trylock *t)
 
 }
 
- PD_LOCAL int trylock_trylock (t_trylock *t)
+PD_LOCAL int trylock_trylock (t_trylock *t)
 {
     #if defined ( __cplusplus )
 

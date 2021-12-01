@@ -26,7 +26,7 @@ static t_class *global_class;       /* Shared. */
 
 static void global_open (void *dummy, t_symbol *name, t_symbol *directory)
 {
-    // -- TODO: check if file exists first.
+    // TODO: check if file exists first.
     
     // instance_patchOpen (name, directory);
 }

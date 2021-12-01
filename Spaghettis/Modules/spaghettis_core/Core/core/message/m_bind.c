@@ -45,7 +45,7 @@ typedef struct _bindlist {
 
 static t_bindelement *bindlist_traverseStart (t_bindlist *x)
 {
-    if (x->b_used) { error_recursiveCall (NULL); return NULL; }     // -- TODO: Pass context to message error?
+    if (x->b_used) { error_recursiveCall (NULL); return NULL; }     // TODO: Pass context to message error?
     else {
     //
     x->b_used = 1; x->b_cached = x->b_list ? x->b_list->e_next : NULL;
@@ -255,7 +255,7 @@ static void symbol_hasThingError (t_symbol *s)
 {  
     if (s) {
     if (s != sym___hash__A) {
-        error_noSuch (NULL, s, sym_object);     // -- TODO: Pass context to message error?
+        error_noSuch (NULL, s, sym_object);     // TODO: Pass context to message error?
     }
     }
 }

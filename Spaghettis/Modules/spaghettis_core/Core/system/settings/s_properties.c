@@ -123,7 +123,7 @@ PD_LOCAL int properties_getKey (const char *key, char *value, int size)
 
 PD_LOCAL void properties_setKey (const char *key, const char *value)
 {
-    if (properties_saveFile) { fprintf (properties_saveFile, "%s: %s\n", key, value); }     // --
+    if (properties_saveFile) { fprintf (properties_saveFile, "%s: %s\n", key, value); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
