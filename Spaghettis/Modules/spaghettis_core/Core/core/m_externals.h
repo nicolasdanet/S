@@ -17,7 +17,7 @@
 /* Handy to track unused functions. */
 
 #ifndef PD_LOCAL
-#define PD_LOCAL                                /* */
+#define PD_LOCAL
 #endif
 
 #ifndef PD_GUARD
