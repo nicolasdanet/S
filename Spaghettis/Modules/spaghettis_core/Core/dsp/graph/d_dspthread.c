@@ -187,8 +187,6 @@ static void *dspthread_thread (void *z)
     PD_ATOMIC_FLOAT64_WRITE (0, &x->x_time);
     
     if (!dspthread_proceed (x)) { nano_sleep (audio_getNanosecondsToSleep()); }
-    
-    instance_clocksClean();
     //
     }
     

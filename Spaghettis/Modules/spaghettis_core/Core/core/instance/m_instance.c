@@ -243,11 +243,6 @@ PD_LOCAL void instance_clocksTick (t_systime t)
     clocks_tick (instance_get()->pd_clocks, t);
 }
 
-PD_LOCAL void instance_clocksClean (void)
-{
-    clocks_clean (instance_get()->pd_clocks);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

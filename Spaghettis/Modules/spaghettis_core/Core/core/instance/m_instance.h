@@ -163,7 +163,6 @@ PD_LOCAL t_chain    *instance_chainGetCurrent       (void);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       instance_clocksClean            (void);
 PD_LOCAL void       instance_clocksAdd              (t_clock *c);
 PD_LOCAL void       instance_clocksRemove           (t_clock *c);
 PD_LOCAL void       instance_clocksDestroy          (t_clock *c);

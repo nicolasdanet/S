@@ -141,7 +141,6 @@ static void scheduler_clean (void)
 {
     if (!PD_ATOMIC_INT32_READ (&scheduler_quit) && !audio_isOpened()) {
     //
-    instance_clocksClean();
     instance_dspClean();
     //
     }

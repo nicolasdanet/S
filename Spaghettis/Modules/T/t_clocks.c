@@ -66,11 +66,6 @@ void test_clocksTick (t_systime t)
     clocks_tick (test_clocksManager, t);
 }
 
-int test_clocksShrink (void)
-{
-    return clocks_shrink (test_clocksManager);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -216,8 +211,6 @@ void *test_clocksAtomicTask (void *x)
                     test_clocksDelay (test_clocksGetC (test_clocksIndex++), test_clocksRandom (500));
                 }
             }
-            
-            if (++i % 10 == 0) { test_clocksShrink(); }
         }
     }
     
