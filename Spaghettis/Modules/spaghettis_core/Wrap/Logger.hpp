@@ -24,7 +24,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using MessagesElement = std::tuple<juce::String, Logger::Type, Unique>;
+using MessagesElement = std::tuple<juce::String, Logger::Type, core::Unique>;
 using MessagesPacket  = std::vector<Logger::MessagesElement>;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -71,7 +71,7 @@ public:
         return std::get<LOGGER_TYPE> (e);
     }
     
-    static Unique getUnique (const MessagesElement& e)
+    static core::Unique getUnique (const MessagesElement& e)
     {
         return std::get<LOGGER_UNIQUE> (e);
     }

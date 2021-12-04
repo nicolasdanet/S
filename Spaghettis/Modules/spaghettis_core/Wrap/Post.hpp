@@ -26,7 +26,7 @@ public:
 // MARK: -
 
 public:
-    void add (const juce::String& m, Logger::Type type, Unique u)
+    void add (const juce::String& m, Logger::Type type, core::Unique u)
     {
         const std::lock_guard<std::mutex> l (lock_); messages_.emplace_back (m, type, u);
     }
