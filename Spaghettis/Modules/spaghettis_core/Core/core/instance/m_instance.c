@@ -184,6 +184,8 @@ static t_glist *instance_rootsGet (void)
 PD_LOCAL void instance_registerAdd (t_object *o, t_glist *owner)
 {
     register_add (instance_get()->pd_register, object_getUnique (o), o, owner);
+    
+    outputs_objectAdded (o);
 }
 
 PD_LOCAL t_error instance_registerRemove (t_object *o)

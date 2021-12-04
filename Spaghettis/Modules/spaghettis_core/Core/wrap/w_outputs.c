@@ -120,6 +120,11 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
     wrapper_send (Outputs::reportCurrentMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
 }
 
+PD_LOCAL void outputs_objectAdded (t_object *x)
+{
+    wrapper_send (Outputs::objectAdded (Unique (x)));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -150,6 +155,7 @@ PD_LOCAL void outputs_reportAvailableAudioDevices   (t_deviceslist *l)          
 PD_LOCAL void outputs_reportCurrentAudioDevices     (t_deviceslist *l)                      { }
 PD_LOCAL void outputs_reportAvailableMidiDevices    (t_deviceslist *l)                      { }
 PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *l)                      { }
+PD_LOCAL void outputs_objectAdded                   (t_object *x)                           { }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

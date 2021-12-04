@@ -39,6 +39,17 @@ public:
     Unique& operator = (const Unique&) = default;
     Unique& operator = (Unique&&) = default;
 
+public:
+    bool isValid() const
+    {
+        return u_ != 0;
+    }
+    
+    bool isRoot() const
+    {
+        return path_->empty();
+    }
+
 private:
     std::shared_ptr<std::vector<uint64_t>> path_;
     uint64_t u_;
