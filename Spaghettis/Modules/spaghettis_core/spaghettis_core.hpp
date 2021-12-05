@@ -20,7 +20,7 @@
   website:            https://github.com/Spaghettis
   license:            BSD
 
-  dependencies:       juce_core juce_events
+  dependencies:       juce_core juce_data_structures juce_events
   OSXFrameworks:      Carbon CoreMIDI CoreAudio AudioUnit
   OSXLibs:            dl pthread
   linuxLibs:          dl pthread m asound jack
@@ -38,6 +38,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "juce_core/juce_core.h"
+#include "juce_data_structures/juce_data_structures.h"
 #include "juce_events/juce_events.h"
 
 // -----------------------------------------------------------------------------------------------------------

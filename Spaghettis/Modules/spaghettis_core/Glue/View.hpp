@@ -38,6 +38,9 @@ public:
     View (View&&) = default;
     View& operator = (const View&) = default;
     View& operator = (View&&) = default;
+
+private:
+    juce::ValueTree t_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
