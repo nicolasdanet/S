@@ -75,9 +75,9 @@ Perform Outputs::reportCurrentMidiDevices (std::vector<MidiDevice>&& i, std::vec
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Outputs::objectAdded (core::Unique unique)
+Perform Outputs::objectAdded (core::Unique unique, core::View view)
 {
-    return [u = std::move (unique)]() { DBG ("?"); };
+    return [u = std::move (unique), v = std::move (view)]() { DBG ("?"); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

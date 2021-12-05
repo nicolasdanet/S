@@ -122,7 +122,7 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 
 PD_LOCAL void outputs_objectAdded (t_object *x)
 {
-    wrapper_send (Outputs::objectAdded (Unique (x)));
+    wrapper_send (Outputs::objectAdded (Unique (x), View (x)));
 }
 
 // -----------------------------------------------------------------------------------------------------------
