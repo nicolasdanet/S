@@ -39,6 +39,20 @@ public:
     View& operator = (const View&) = default;
     View& operator = (View&&) = default;
 
+public:
+    void debug() const
+    {
+        juce::StringArray s;
+        
+        for (int i = 0; i < t_.getNumProperties(); ++i) {
+        //
+        s.add (t_.getProperty (t_.getPropertyName (i)).toString());
+        //
+        }
+        
+        DBG (s.joinIntoString ("/"));
+    }
+    
 private:
     juce::ValueTree t_;
 };

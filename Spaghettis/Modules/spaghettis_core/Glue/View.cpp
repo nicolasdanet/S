@@ -21,7 +21,10 @@ View::View (struct _object *o) : t_ (Ids::OBJECT)
 {
     if (o) {
     //
-    // type
+    const juce::String type (class_getNameAsString (pd_class (o)));
+    
+    t_.setProperty (Ids::name, juce::var (type), nullptr);
+    
     // buffer
     // inlets
     // outles
