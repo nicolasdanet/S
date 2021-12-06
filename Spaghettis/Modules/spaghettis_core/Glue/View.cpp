@@ -32,7 +32,7 @@ juce::String getContentBuffer (struct _object *o)
     
     if (b && buffer_getSize (b)) {
     //
-    char *t = buffer_toString (b);
+    char *t = atom_atomsToString (buffer_getSize (b), buffer_getAtoms (b));
     
     s = juce::String (t);
     
