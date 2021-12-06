@@ -125,6 +125,11 @@ PD_LOCAL void outputs_objectAdded (t_object *x)
     wrapper_send (Outputs::objectAdded (Unique (x), View (x)));
 }
 
+PD_LOCAL void outputs_objectRemoved (t_object *x)
+{
+    wrapper_send (Outputs::objectRemoved (Unique (x)));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -156,6 +161,7 @@ PD_LOCAL void outputs_reportCurrentAudioDevices     (t_deviceslist *l)          
 PD_LOCAL void outputs_reportAvailableMidiDevices    (t_deviceslist *l)                      { }
 PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *l)                      { }
 PD_LOCAL void outputs_objectAdded                   (t_object *x)                           { }
+PD_LOCAL void outputs_objectRemoved                 (t_object *x)                           { }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

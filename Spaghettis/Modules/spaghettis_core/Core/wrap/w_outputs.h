@@ -28,6 +28,7 @@ PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *);
 // MARK: -
 
 PD_LOCAL void outputs_objectAdded                   (t_object *x);
+PD_LOCAL void outputs_objectRemoved                 (t_object *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

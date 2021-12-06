@@ -194,6 +194,8 @@ PD_LOCAL t_error instance_registerRemove (t_object *o)
     
     PD_ASSERT (!err); PD_UNUSED (err);
     
+    outputs_objectRemoved (o);
+    
     return err;
 }
 

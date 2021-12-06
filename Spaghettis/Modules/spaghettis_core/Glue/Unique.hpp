@@ -62,6 +62,9 @@ public:
 private:
     std::shared_ptr<std::vector<UniqueType>> path_;
     UniqueType u_;
+
+private:
+    JUCE_LEAK_DETECTOR (Unique)
 };
 
 // -----------------------------------------------------------------------------------------------------------

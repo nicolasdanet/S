@@ -80,6 +80,11 @@ Perform Outputs::objectAdded (core::Unique unique, core::View view)
     return [u = std::move (unique), v = std::move (view)]() { v.debug(); };
 }
 
+Perform Outputs::objectRemoved (core::Unique unique)
+{
+    return [u = std::move (unique)]() { DBG ("!"); };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
