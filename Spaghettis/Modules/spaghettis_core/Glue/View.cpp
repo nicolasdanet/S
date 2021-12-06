@@ -68,6 +68,8 @@ View::View (struct _object *o) : t_ (Ids::OBJECT)
     t_.setProperty (Ids::y,         juce::var (object_getY (o)), nullptr);
     t_.setProperty (Ids::width,     juce::var (object_getWidth (o)), nullptr);
     t_.setProperty (Ids::selected,  juce::var (object_getSelected (o)), nullptr);
+    
+    if (class_hasViewFunction (pd_class (o))) { (*class_getViewFunction (pd_class (o))) (o, t_); }
     //
     }
 }

@@ -45,6 +45,12 @@ enum {
 
 typedef void (*t_savefn)    (t_object *x, t_buffer *b, int flags);
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+typedef void (*t_viewfn)    (t_object *x, juce::ValueTree& t);
+
+#endif
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -74,6 +80,9 @@ struct _class {
     t_savefn                c_fnSave;
     t_datafn                c_fnData;
     t_dismissfn             c_fnDismiss;
+    #if defined ( PD_BUILDING_APPLICATION )
+    t_viewfn                c_fnView;
+    #endif
     int                     c_requirePending;
     int                     c_hasSignal;
     int                     c_hasFirstInlet;
@@ -241,6 +250,15 @@ static inline int class_hasDismissFunction (t_class *c)
     return (c->c_fnDismiss != NULL);
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+static inline int class_hasViewFunction (t_class *c)
+{
+    return (c->c_fnView != NULL);
+}
+
+#endif
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -260,6 +278,15 @@ static inline t_dismissfn class_getDismissFunction (t_class *c)
     return c->c_fnDismiss;
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+static inline t_viewfn class_getViewFunction (t_class *c)
+{
+    return c->c_fnView;
+}
+
+#endif
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -268,6 +295,15 @@ static inline void class_setSaveFunction (t_class *c, t_savefn f)
 {
     c->c_fnSave = f;
 }
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+static inline void class_setViewFunction (t_class *c, t_viewfn f)
+{
+    c->c_fnView = f;
+}
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
