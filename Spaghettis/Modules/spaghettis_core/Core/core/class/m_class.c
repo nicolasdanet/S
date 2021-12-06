@@ -135,20 +135,6 @@ static void class_defaultSave (t_object *x, t_buffer *b, int flags)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-/* Default view function for all boxes object. */
-
-#if defined ( PD_BUILDING_APPLICATION )
-
-static void class_defaultView (t_object *x, juce::ValueTree& t)
-{
-    t.setProperty (Ids::type, juce::var ("box"), nullptr);
-}
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 /* For now the class name needs to be unique only if it contains a constructor. */
@@ -206,7 +192,7 @@ PD_LOCAL t_class *class_new (t_symbol *s,
     c->c_fnData             = NULL;
     c->c_fnDismiss          = NULL;
     #if defined ( PD_BUILDING_APPLICATION )
-    c->c_fnView             = (type == CLASS_BOX ? class_defaultView : NULL);
+    c->c_fnView             = NULL;
     #endif
     c->c_hasSignal          = hasSignal;
     c->c_hasFirstInlet      = ((flags & CLASS_NOINLET) == 0);

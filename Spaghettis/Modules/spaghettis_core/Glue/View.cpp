@@ -58,9 +58,10 @@ View::View (struct _object *o) : t_ (Ids::OBJECT)
 {
     if (o) {
     //
-    const juce::String type (class_getNameAsString (pd_class (o)));
+    const bool hasView = class_hasViewFunction (pd_class (o));
     
-    t_.setProperty (Ids::name,      juce::var (type), nullptr);
+    t_.setProperty (Ids::type,      juce::var (hasView ? "graphic" : "box"), nullptr);
+    t_.setProperty (Ids::name,      juce::var (juce::String (class_getNameAsString (pd_class (o)))), nullptr);
     t_.setProperty (Ids::buffer,    juce::var (getContentBuffer (o)), nullptr);
     t_.setProperty (Ids::inlets,    juce::var (object_getNumberOfInlets (o)), nullptr);
     t_.setProperty (Ids::outlets,   juce::var (object_getNumberOfOutlets (o)), nullptr);
@@ -69,7 +70,11 @@ View::View (struct _object *o) : t_ (Ids::OBJECT)
     t_.setProperty (Ids::width,     juce::var (object_getWidth (o)), nullptr);
     t_.setProperty (Ids::selected,  juce::var (object_getSelected (o)), nullptr);
     
-    if (class_hasViewFunction (pd_class (o))) { (*class_getViewFunction (pd_class (o))) (o, t_); }
+    if (hasView) {
+    //
+    juce::ValueTree p; (*class_getViewFunction (pd_class (o))) (o, p); t_.appendChild (p, nullptr);
+    //
+    }
     //
     }
 }
