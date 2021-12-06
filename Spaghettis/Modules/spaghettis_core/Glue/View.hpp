@@ -46,11 +46,12 @@ public:
         
         for (int i = 0; i < t_.getNumProperties(); ++i) {
         //
-        s.add (t_.getProperty (t_.getPropertyName (i)).toString());
+        const juce::Identifier name = t_.getPropertyName (i);
+        s.add (name.toString() + ": " + t_.getProperty (name).toString());
         //
         }
         
-        DBG (s.joinIntoString ("/"));
+        DBG (s.joinIntoString (" / "));
     }
     
 private:

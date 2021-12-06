@@ -47,7 +47,7 @@ static t_glist *glist_new (t_glist *owner, t_symbol *name, t_rectangle *window)
     
     if (window) { glist_setWindow (x, window); }
     
-    if (glist_isRoot (x)) { x->gl_abstractions = abstractions_new(); instance_rootsAdd (x); }
+    if (glist_isRoot (x)) { x->gl_abstractions = abstractions_new(); }
 
     return x;
 }
@@ -102,6 +102,8 @@ PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window, int isOpe
     object_setType (cast_object (x), TYPE_OBJECT);
     
     glist_setOpened (x, isOpened);
+    
+    if (glist_isRoot (x)) { instance_rootsAdd (x); }
     
     glist_loadBegin (x); instance_stackPush (x);
     

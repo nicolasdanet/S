@@ -15,6 +15,43 @@ namespace core {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::String getContentBuffer (struct _object *o)
+{
+    juce::String s;
+    
+    if (o) {
+    //
+    t_buffer *b = object_getBuffer (o);
+    
+    if (b && buffer_getSize (b)) {
+    //
+    char *t = buffer_toString (b);
+    
+    s = juce::String (t);
+    
+    PD_MEMORY_FREE (t);
+    //
+    }
+    //
+    }
+    
+    return s;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+ 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 View::View (struct _object *o) : t_ (Ids::OBJECT)
@@ -23,15 +60,14 @@ View::View (struct _object *o) : t_ (Ids::OBJECT)
     //
     const juce::String type (class_getNameAsString (pd_class (o)));
     
-    t_.setProperty (Ids::name, juce::var (type), nullptr);
-    
-    // buffer
-    // inlets
-    // outles
-    // x
-    // y
-    // width
-    // selected
+    t_.setProperty (Ids::name,      juce::var (type), nullptr);
+    t_.setProperty (Ids::buffer,    juce::var (getContentBuffer (o)), nullptr);
+    t_.setProperty (Ids::inlets,    juce::var (object_getNumberOfInlets (o)), nullptr);
+    t_.setProperty (Ids::outlets,   juce::var (object_getNumberOfOutlets (o)), nullptr);
+    t_.setProperty (Ids::x,         juce::var (object_getX (o)), nullptr);
+    t_.setProperty (Ids::y,         juce::var (object_getY (o)), nullptr);
+    t_.setProperty (Ids::width,     juce::var (object_getWidth (o)), nullptr);
+    t_.setProperty (Ids::selected,  juce::var (object_getSelected (o)), nullptr);
     //
     }
 }
