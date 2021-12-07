@@ -54,7 +54,7 @@ juce::String getContentBuffer (struct _object *o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-View::View (struct _object *o) : t_ (Ids::OBJECT)
+Description::Description (struct _object *o) : t_ (Ids::OBJECT)
 {
     if (o) {
     //

@@ -22,22 +22,22 @@ struct _object;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class View {
+class Description {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit View (struct _object *o = nullptr);
+    explicit Description (struct _object *o = nullptr);
     
-    ~View() = default;
+    ~Description() = default;
 
 public:
-    View (const View&) = default;
-    View (View&&) = default;
-    View& operator = (const View&) = default;
-    View& operator = (View&&) = default;
+    Description (const Description&) = default;
+    Description (Description&&) = default;
+    Description& operator = (const Description&) = default;
+    Description& operator = (Description&&) = default;
 
 public:
     void debug() const
@@ -58,7 +58,7 @@ private:
     juce::ValueTree t_;
     
 private:
-    JUCE_LEAK_DETECTOR (View)
+    JUCE_LEAK_DETECTOR (Description)
 };
 
 // -----------------------------------------------------------------------------------------------------------
