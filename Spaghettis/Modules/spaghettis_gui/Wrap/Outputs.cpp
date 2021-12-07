@@ -85,7 +85,7 @@ Perform Outputs::objectRemoved (core::Unique unique)
     return [u = std::move (unique)]() { DBG ("! Removed"); };
 }
 
-Perform Outputs::objectRenamed (core::Unique unique, core::UniqueType)
+Perform Outputs::objectRenamed (core::Unique unique, core::Unique::Identifier)
 {
     return [u = std::move (unique)]() { DBG ("! Renamed"); };
 }

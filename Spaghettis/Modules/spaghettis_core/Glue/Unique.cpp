@@ -22,7 +22,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void makeUniquePath (std::vector<UniqueType>& v, t_id u)
+void makeUniquePath (std::vector<Unique::Identifier>& v, t_id u)
 {
     while (u && instance_registerContains (u)) {
     //
@@ -45,7 +45,7 @@ void makeUniquePath (std::vector<UniqueType>& v, t_id u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Unique::Unique (struct _object *o) : path_ (std::make_shared<std::vector<UniqueType>>()), u_ (0)
+Unique::Unique (struct _object *o) : path_ (std::make_shared<std::vector<Unique::Identifier>>()), u_ (0)
 {
     if (o) { u_ = object_getUnique (o); makeUniquePath (*path_, u_); }
 }
