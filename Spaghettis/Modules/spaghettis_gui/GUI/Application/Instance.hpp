@@ -15,6 +15,7 @@ class ConsoleWindow;
 class DevicesWindow;
 class PreferencesWindow;
 class SearchPathsWindow;
+class Patches;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -35,6 +36,7 @@ public:
         boxRegister_ (std::make_unique<CallOutBoxRegister>()),
         audioDevices_ (std::make_unique<AudioDevices>()),
         midiDevices_ (std::make_unique<MidiDevices>()),
+        patches_ (std::make_unique<Patches>()),
         currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory)),
         dspIsRunning_ (false)
     {
@@ -261,6 +263,11 @@ public:
         return *midiDevices_;
     }
     
+    Patches& getPatches()
+    {
+        return *patches_;
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -283,6 +290,7 @@ private:
     const std::unique_ptr<CallOutBoxRegister> boxRegister_;
     const std::unique_ptr<AudioDevices> audioDevices_;
     const std::unique_ptr<MidiDevices> midiDevices_;
+    const std::unique_ptr<Patches> patches_;
 
 private:
     juce::File currentOpenDirectory_;
