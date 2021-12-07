@@ -45,6 +45,16 @@ public:
     Unique& operator = (const Unique&) = default;
     Unique& operator = (Unique&&) = default;
 
+public:
+    void debug() const
+    {
+        juce::StringArray s;
+        
+        for (auto& u : *path_) { s.add (juce::String (u)); }
+        
+        DBG (s.joinIntoString (" / "));
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

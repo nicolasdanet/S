@@ -26,17 +26,17 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void addObject (core::Unique unique, core::Description view)
+    void addObject (core::Unique u, core::Description v)
     {
-        view.debug();
+        v.debug(); u.debug();
     }
 
-    void removeObject (core::Unique unique)
+    void removeObject (core::Unique u)
     {
     
     }
 
-    void renameObject (core::Unique unique, core::Unique::Identifier)
+    void renameObject (core::Unique u, core::Unique::Identifier i)
     {
 
     }
