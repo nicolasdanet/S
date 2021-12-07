@@ -201,6 +201,8 @@ PD_LOCAL t_error instance_registerRemove (t_object *o)
 
 PD_LOCAL void instance_registerRename (t_object *o, t_id newUnique)
 {
+    outputs_objectRenamed (o, newUnique);
+    
     register_rename (instance_get()->pd_register, object_getUnique (o), newUnique);
 }
 

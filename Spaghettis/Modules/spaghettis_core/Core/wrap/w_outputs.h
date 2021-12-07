@@ -29,6 +29,7 @@ PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *);
 
 PD_LOCAL void outputs_objectAdded                   (t_object *x);
 PD_LOCAL void outputs_objectRemoved                 (t_object *x);
+PD_LOCAL void outputs_objectRenamed                 (t_object *x, t_id t);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -82,7 +82,12 @@ Perform Outputs::objectAdded (core::Unique unique, core::View view)
 
 Perform Outputs::objectRemoved (core::Unique unique)
 {
-    return [u = std::move (unique)]() { DBG ("!"); };
+    return [u = std::move (unique)]() { DBG ("! Removed"); };
+}
+
+Perform Outputs::objectRenamed (core::Unique unique, core::UniqueType)
+{
+    return [u = std::move (unique)]() { DBG ("! Renamed"); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
