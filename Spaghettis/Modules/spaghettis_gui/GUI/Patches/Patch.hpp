@@ -19,7 +19,7 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch() : p_ (Ids::PATCH)
+    explicit Patch (core::Unique::Identifier u) : u_ (u), p_ (Ids::PATCH)
     {
 
     }
@@ -31,6 +31,7 @@ public:
 // MARK: -
 
 private:
+    core::Unique::Identifier u_;
     juce::ValueTree p_;
 
 private:
