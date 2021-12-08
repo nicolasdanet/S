@@ -28,17 +28,19 @@ public:
 public:
     void addObject (core::Unique u, core::Description v)
     {
+        jassert (u.isValid());
+        
         v.debug(); u.debug();
     }
 
     void removeObject (core::Unique u)
     {
-    
+        jassert (u.isValid());
     }
 
     void renameObject (core::Unique u, core::Unique::Identifier i)
     {
-
+        jassert (u.isValid());
     }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -120,19 +120,19 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
     wrapper_send (Outputs::reportCurrentMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
 }
 
-PD_LOCAL void outputs_objectAdded (t_object *x)
+PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
-    wrapper_send (Outputs::objectAdded (Unique (x), Description (x)));
+    wrapper_send (Outputs::objectAdded (Unique (x, owner), Description (x)));
 }
 
-PD_LOCAL void outputs_objectRemoved (t_object *x)
+PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)
 {
-    wrapper_send (Outputs::objectRemoved (Unique (x)));
+    wrapper_send (Outputs::objectRemoved (Unique (x, owner)));
 }
 
-PD_LOCAL void outputs_objectRenamed (t_object *x, t_id t)
+PD_LOCAL void outputs_objectRenamed (t_object *x, t_glist *owner, t_id t)
 {
-    wrapper_send (Outputs::objectRenamed (Unique (x), t));
+    wrapper_send (Outputs::objectRenamed (Unique (x, owner), t));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -165,9 +165,9 @@ PD_LOCAL void outputs_reportAvailableAudioDevices   (t_deviceslist *l)          
 PD_LOCAL void outputs_reportCurrentAudioDevices     (t_deviceslist *l)                      { }
 PD_LOCAL void outputs_reportAvailableMidiDevices    (t_deviceslist *l)                      { }
 PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *l)                      { }
-PD_LOCAL void outputs_objectAdded                   (t_object *x)                           { }
-PD_LOCAL void outputs_objectRemoved                 (t_object *x)                           { }
-PD_LOCAL void outputs_objectRenamed                 (t_object *x, t_id t)                   { }
+PD_LOCAL void outputs_objectAdded                   (t_object *x, t_glist *owner)           { }
+PD_LOCAL void outputs_objectRemoved                 (t_object *x, t_glist *owner)           { }
+PD_LOCAL void outputs_objectRenamed                 (t_object *x, t_glist *owner, t_id u)   { }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

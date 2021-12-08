@@ -18,6 +18,7 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 
 struct _object;
+struct _glist;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -35,7 +36,8 @@ public:
 // MARK: -
 
 public:
-    explicit Unique (struct _object *o = nullptr);
+    explicit Unique ();
+    explicit Unique (struct _object *o, struct _glist *owner);
     
     ~Unique() = default;
 
@@ -71,8 +73,10 @@ public:
     }
 
 private:
-    std::shared_ptr<std::vector<Unique::Identifier>> path_;
     Unique::Identifier u_;
+        
+private:
+    std::shared_ptr<std::vector<Unique::Identifier>> path_;
 
 private:
     JUCE_LEAK_DETECTOR (Unique)

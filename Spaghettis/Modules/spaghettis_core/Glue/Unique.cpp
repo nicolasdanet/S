@@ -22,16 +22,13 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void makeUniquePath (std::vector<Unique::Identifier>& v, t_id u)
+void makeUniquePath (std::vector<Unique::Identifier>& v, struct _object *o, struct _glist *owner)
 {
-    while (u && instance_registerContains (u)) {
+    while (owner) {
     //
-    t_glist *owner = instance_registerGetOwner (u);
-    
-    if (owner) { u = object_getUnique (cast_object (owner)); v.insert (v.cbegin(), u); }
-    else {
-        break;
-    }
+    v.insert (v.cbegin(), object_getUnique (cast_object (owner)));
+
+    owner = glist_getParent (owner);
     //
     }
 }
@@ -45,9 +42,17 @@ void makeUniquePath (std::vector<Unique::Identifier>& v, t_id u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Unique::Unique (struct _object *o) : path_ (std::make_shared<std::vector<Unique::Identifier>>()), u_ (0)
+Unique::Unique() :
+    u_ (0),
+    path_ (std::make_shared<std::vector<Unique::Identifier>>())
 {
-    if (o) { u_ = object_getUnique (o); makeUniquePath (*path_, u_); }
+
+}
+
+Unique::Unique (struct _object *o, struct _glist *owner) : u_ (object_getUnique (o)),
+    path_ (std::make_shared<std::vector<Unique::Identifier>>())
+{
+    makeUniquePath (*path_, o, owner);
 }
 
 // -----------------------------------------------------------------------------------------------------------
