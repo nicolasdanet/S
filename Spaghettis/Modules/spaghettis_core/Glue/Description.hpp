@@ -39,8 +39,12 @@ public:
     Description& operator = (const Description&) = default;
     Description& operator = (Description&&) = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
-    void debug() const
+    juce::String debug() const
     {
         juce::StringArray s;
         
@@ -51,8 +55,15 @@ public:
         //
         }
         
-        DBG (s.joinIntoString (" / "));
+        return (s.joinIntoString (" / "));
     }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool isPatch() const;
     
 private:
     juce::ValueTree t_;

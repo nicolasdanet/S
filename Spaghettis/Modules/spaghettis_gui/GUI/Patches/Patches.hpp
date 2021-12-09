@@ -30,7 +30,10 @@ public:
     {
         jassert (u.isValid());
         
-        v.debug(); u.debug();
+        if (u.isRoot()) { createPatch (u, v); }
+        else {
+            fetchPatch (u);
+        }
     }
 
     void removeObject (core::Unique u)
@@ -43,6 +46,21 @@ public:
         jassert (u.isValid());
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void createPatch (core::Unique u, core::Description v)
+    {
+        jassert (v.isPatch()); DBG (v.debug()); DBG (u.debug());
+    }
+    
+    Patch* fetchPatch (core::Unique u) const
+    {
+        return nullptr;
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
