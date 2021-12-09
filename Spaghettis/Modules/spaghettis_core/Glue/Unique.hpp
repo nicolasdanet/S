@@ -34,13 +34,15 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
+        
 public:
-    explicit Unique ();
     explicit Unique (struct _object *o, struct _glist *owner);
     
     ~Unique() = default;
 
+private:
+    explicit Unique();
+    
 public:
     Unique (const Unique&) = default;
     Unique (Unique&&) = default;
@@ -72,6 +74,16 @@ public:
         return path_->empty();
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static Unique invalid()
+    {
+        return Unique();
+    }
+    
 private:
     Unique::Identifier u_;
         

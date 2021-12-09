@@ -72,7 +72,7 @@ static void post_console (t_object *o, int k, char *s, Logger::Type type)
     //
     post_toUpperCase (k, s, type);
     
-    Unique u = o ? Unique (o, instance_registerGetOwner (object_getUnique (o))) : Unique();
+    Unique u = o ? Unique (o, instance_registerGetOwner (object_getUnique (o))) : Unique::invalid();
     
     main_wrapper->post (juce::String (s), type, u);
     //

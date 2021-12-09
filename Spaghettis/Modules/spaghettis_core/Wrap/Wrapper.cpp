@@ -21,7 +21,7 @@ void Wrapper::run()
         //
         juce::String s = juce::String (PD_NAME_LOWERCASE) + juce::String (": core error");
         
-        post (NEEDS_TRANS (s), Logger::Type::error, core::Unique());
+        post (NEEDS_TRANS (s), Logger::Type::error, core::Unique::invalid());
         //
         }
     }
