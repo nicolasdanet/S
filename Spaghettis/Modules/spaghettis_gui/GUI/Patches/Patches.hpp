@@ -32,7 +32,7 @@ public:
         
         if (u.isRoot()) { createPatch (u, v); }
         else {
-            fetchPatch (u);
+            // fetchPatch (u);
         }
     }
 
@@ -51,22 +51,11 @@ public:
 // MARK: -
 
 private:
-    void createPatch (core::Unique u, core::Description v)
-    {
-        roots_.push_back (std::make_unique<Patch> (u, v));
-    }
-    
-    Patch* fetchPatch (core::Unique u) const
-    {
-        auto f = [&] (const std::unique_ptr<Patch>& p)
-        {
-            return (p->getUniqueIdentifier() == u.getRoot());
-        };
+    Patch* fetchPatch (core::Unique u) const;
         
-        auto r = std::find_if (roots_.cbegin(), roots_.cend(), f);
-        
-        return r != roots_.end() ? r->get() : nullptr;
-    }
+private:
+    void createPatch (core::Unique u, core::Description v);
+
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
