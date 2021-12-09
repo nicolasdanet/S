@@ -53,12 +53,19 @@ public:
 private:
     void createPatch (core::Unique u, core::Description v)
     {
-        jassert (v.isPatch()); DBG (v.debug()); DBG (u.debug());
+        roots_.push_back (std::make_unique<Patch> (u, v));
     }
     
     Patch* fetchPatch (core::Unique u) const
     {
-        return nullptr;
+        auto f = [&] (const std::unique_ptr<Patch>& p)
+        {
+            return (p->getUniqueIdentifier() == u.getRoot());
+        };
+        
+        auto r = std::find_if (roots_.cbegin(), roots_.cend(), f);
+        
+        return r != roots_.end() ? r->get() : nullptr;
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -66,7 +73,7 @@ private:
 // MARK: -
 
 private:
-    std::vector<std::shared_ptr<Patch>> roots_;
+    std::vector<std::unique_ptr<Patch>> roots_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Patches)
