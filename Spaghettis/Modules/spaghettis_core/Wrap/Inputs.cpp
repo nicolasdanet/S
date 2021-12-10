@@ -10,6 +10,7 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 Perform Inputs::ping()
 {
@@ -76,6 +77,11 @@ Perform Inputs::setMidiDevices (std::vector<MidiDevice>&& i, std::vector<MidiDev
     };
     
     return f;
+}
+
+Perform Inputs::closePatch (core::Unique::Identifier i, bool save)
+{
+    return [i, save]() { core::inputs_closePatch (i, save); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

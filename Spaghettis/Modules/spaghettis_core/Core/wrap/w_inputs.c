@@ -103,6 +103,21 @@ PD_LOCAL void inputs_setMidiDevices (const std::vector<MidiDevice>& i, const std
     settings_save();
 }
 
+PD_LOCAL void inputs_closePatch (core::Unique::Identifier i, int save)
+{
+    t_object *o = instance_registerGetObject (i);
+    
+    if (object_isCanvas (o)) {
+    //
+    t_glist *g = cast_glist (o); jassert (glist_isRoot (g));
+    
+    if (save) { glist_save (g); }
+    
+    glist_close (g);
+    //
+    } else { jassertfalse; }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
