@@ -19,7 +19,7 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (core::Unique u, core::Description v) : u_ (u), p_ (Ids::PATCH)
+    explicit Patch (core::Unique u, core::Description v) : p_ (Ids::PATCH)
     {
         jassert (v.isPatch()); DBG (v.debug()); DBG (u.debug());
     }
@@ -30,18 +30,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    core::Unique::Identifier getUniqueIdentifier() const
-    {
-        return u_.getRoot();
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 private:
-    core::Unique u_;
     juce::ValueTree p_;
 
 private:

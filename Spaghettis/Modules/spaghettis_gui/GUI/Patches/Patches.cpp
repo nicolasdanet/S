@@ -14,14 +14,14 @@ namespace spaghettis {
 
 Patch* Patches::fetchPatch (core::Unique u) const
 {
-    auto f = [&] (const std::unique_ptr<Patch>& p)
+    auto f = [i = u.getRoot()] (const RootsElement& e)
     {
-        return (p->getUniqueIdentifier() == u.getRoot());
+        return (std::get<0> (e) == i);
     };
         
     auto r = std::find_if (roots_.cbegin(), roots_.cend(), f);
-        
-    return r != roots_.end() ? r->get() : nullptr;
+    
+    return r != roots_.cend() ? std::get<1> (*r).get() : nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -30,14 +30,14 @@ Patch* Patches::fetchPatch (core::Unique u) const
 
 void Patches::createPatch (core::Unique u, core::Description v)
 {
-    roots_.push_back (std::make_unique<Patch> (u, v));
+    roots_.emplace_back (u.getRoot(), std::make_unique<Patch> (u, v));
 }
 
 void Patches::fetchAndAddObject (core::Unique u, core::Description v)
 {
     Patch* p = fetchPatch (u);
     
-    if (p) { }
+    if (p) { DBG (v.debug()); DBG (u.debug()); }
     else {
         jassertfalse;
     }
@@ -45,9 +45,11 @@ void Patches::fetchAndAddObject (core::Unique u, core::Description v)
 
 void Patches::fetchAndRemoveObject (core::Unique u)
 {
+    /*
     Patch* p = fetchPatch (u);
     
     if (p) { }
+    */
 }
 
 // -----------------------------------------------------------------------------------------------------------

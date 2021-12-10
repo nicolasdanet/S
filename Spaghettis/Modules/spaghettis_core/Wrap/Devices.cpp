@@ -39,7 +39,7 @@ template <class T> int Devices<T>::getChannelsFor (const std::vector<T>& devices
     
     auto r = std::find_if (devices.cbegin(), devices.cend(), f);
     
-    return r != devices.end() ? r->getChannels() : 0;
+    return r != devices.cend() ? r->getChannels() : 0;
 }
 
 template <class T> void Devices<T>::removeDeviceAt (std::vector<T>& devices, int i)
