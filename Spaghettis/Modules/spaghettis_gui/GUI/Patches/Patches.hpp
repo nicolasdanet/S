@@ -32,13 +32,13 @@ public:
         
         if (u.isRoot()) { createPatch (u, v); }
         else {
-            // fetchPatch (u);
+            fetchAndAddObject (u, v);
         }
     }
 
     void removeObject (core::Unique u)
     {
-        jassert (u.isValid());
+        jassert (u.isValid()); fetchAndRemoveObject (u);
     }
 
     void renameObject (core::Unique u, core::Unique::Identifier i)
@@ -55,7 +55,8 @@ private:
         
 private:
     void createPatch (core::Unique u, core::Description v);
-
+    void fetchAndAddObject (core::Unique u, core::Description v);
+    void fetchAndRemoveObject (core::Unique u);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

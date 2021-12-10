@@ -33,6 +33,23 @@ void Patches::createPatch (core::Unique u, core::Description v)
     roots_.push_back (std::make_unique<Patch> (u, v));
 }
 
+void Patches::fetchAndAddObject (core::Unique u, core::Description v)
+{
+    Patch* p = fetchPatch (u);
+    
+    if (p) { }
+    else {
+        jassertfalse;
+    }
+}
+
+void Patches::fetchAndRemoveObject (core::Unique u)
+{
+    Patch* p = fetchPatch (u);
+    
+    if (p) { }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
