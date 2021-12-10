@@ -19,7 +19,7 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (core::Unique u, core::Description v) : p_ (Ids::PATCH)
+    explicit Patch (const core::Unique& u, const core::Description& v) : p_ (Ids::PATCH)
     {
         jassert (v.isPatch()); DBG (v.debug()); DBG (u.debug());
     }

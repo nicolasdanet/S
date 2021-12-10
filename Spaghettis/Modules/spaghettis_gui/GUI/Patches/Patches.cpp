@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Patch* Patches::fetchPatch (core::Unique u) const
+Patch* Patches::fetchPatch (const core::Unique& u) const
 {
     auto f = [i = u.getRoot()] (const RootsElement& e)
     {
@@ -28,12 +28,12 @@ Patch* Patches::fetchPatch (core::Unique u) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patches::createPatch (core::Unique u, core::Description v)
+void Patches::createPatch (const core::Unique& u, const core::Description& v)
 {
     roots_.emplace_back (u.getRoot(), std::make_unique<Patch> (u, v));
 }
 
-void Patches::fetchAndAddObject (core::Unique u, core::Description v)
+void Patches::fetchAndAddObject (const core::Unique& u, const core::Description& v)
 {
     Patch* p = fetchPatch (u);
     
@@ -43,7 +43,7 @@ void Patches::fetchAndAddObject (core::Unique u, core::Description v)
     }
 }
 
-void Patches::fetchAndRemoveObject (core::Unique u)
+void Patches::fetchAndRemoveObject (const core::Unique& u)
 {
     /*
     Patch* p = fetchPatch (u);

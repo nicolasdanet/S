@@ -31,7 +31,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void addObject (core::Unique u, core::Description v)
+    void addObject (const core::Unique& u, const core::Description& v)
     {
         jassert (u.isValid());
         
@@ -41,12 +41,12 @@ public:
         }
     }
 
-    void removeObject (core::Unique u)
+    void removeObject (const core::Unique& u)
     {
         jassert (u.isValid()); fetchAndRemoveObject (u);
     }
 
-    void renameObject (core::Unique u, core::Unique::Identifier i)
+    void renameObject (const core::Unique& u, core::Unique::Identifier i)
     {
         jassert (u.isValid());
     }
@@ -56,12 +56,12 @@ public:
 // MARK: -
 
 private:
-    Patch* fetchPatch (core::Unique u) const;
+    Patch* fetchPatch (const core::Unique& u) const;
         
 private:
-    void createPatch (core::Unique u, core::Description v);
-    void fetchAndAddObject (core::Unique u, core::Description v);
-    void fetchAndRemoveObject (core::Unique u);
+    void createPatch (const core::Unique& u, const core::Description& v);
+    void fetchAndAddObject (const core::Unique& u, const core::Description& v);
+    void fetchAndRemoveObject (const core::Unique& u);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
