@@ -36,7 +36,7 @@ public:
     {
         jassert (u.isValid());
         
-        if (u.isRoot()) { createPatch (u, v); }
+        if (u.isRoot()) { jassert (v.isPatch()); createPatch (u, v); }
         else {
             Patch* p = fetchPatch (u); if (p) { p->addObject (u, v); }
         }

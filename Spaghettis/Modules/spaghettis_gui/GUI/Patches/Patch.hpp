@@ -19,18 +19,16 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (const core::Unique& u, const core::Description& v) : p_ (Ids::PATCH)
+    explicit Patch (const core::Unique& u, const core::Description& v) : p_ (v.getTree())
     {
-        jassert (v.isPatch());
-        
-        DBG ("Ctor Patch"); DBG (v.debug()); DBG (u.debug());
+        DBG (p_.toXmlString());
     }
 
     ~Patch()
     {
         // Spaghettis()->handle (Inputs::closePatch (, false));
         
-        DBG ("Dtor Patch");
+        // DBG ("Dtor");
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -40,12 +38,12 @@ public:
 public:
     void addObject (const core::Unique& u, const core::Description& v)
     {
-        DBG ("Add Object"); DBG (v.debug()); DBG (u.debug());
+        // DBG ("Add"); DBG (v.debug()); DBG (u.debug());
     }
     
     void removeObject (const core::Unique& u)
     {
-        DBG ("Remove Object"); DBG (u.debug());
+        // DBG ("Remove"); DBG (u.debug());
     }
     
 // -----------------------------------------------------------------------------------------------------------
