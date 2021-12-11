@@ -17,7 +17,8 @@ class Patches {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using RootsElement = std::pair<core::Unique::Identifier, std::unique_ptr<Patch>>;
+public:
+    using RootsElement = std::pair<core::Unique::Identifier, std::unique_ptr<Patch>>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -37,18 +38,18 @@ public:
         
         if (u.isRoot()) { createPatch (u, v); }
         else {
-            Patch* p = fetchPatch (u);
-    
-            if (p) { DBG (v.debug()); DBG (u.debug()); }
-            else {
-                jassertfalse;
-            }
+            Patch* p = fetchPatch (u); if (p) { p->addObject (u, v); }
         }
     }
 
     void removeObject (const core::Unique& u)
     {
         jassert (u.isValid());
+        
+        if (u.isRoot()) { destroyPatch (u); }
+        else {
+            Patch* p = fetchPatch (u); if (p) { p->removeObject (u); }
+        }
     }
 
     void renameObject (const core::Unique& u, core::Unique::Identifier i)
@@ -60,9 +61,17 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    void closeAll();
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     void createPatch (const core::Unique& u, const core::Description& v);
-
+    void destroyPatch (const core::Unique& u);
+    
 private:
     Patch* fetchPatch (const core::Unique& u) const;
     

@@ -12,14 +12,32 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Patch* Patches::fetchPatch (const core::Unique& u) const
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+auto checkUnique (const core::Unique& u)
 {
-    auto f = [i = u.getRoot()] (const RootsElement& e)
+    return [i = u.getRoot()] (const Patches::RootsElement& e)
     {
         return (std::get<0> (e) == i);
     };
-        
-    auto r = std::find_if (roots_.cbegin(), roots_.cend(), f);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+// MARK: -
+
+Patch* Patches::fetchPatch (const core::Unique& u) const
+{
+    auto r = std::find_if (roots_.cbegin(), roots_.cend(), checkUnique (u));
     
     return r != roots_.cend() ? std::get<1> (*r).get() : nullptr;
 }
@@ -31,6 +49,20 @@ Patch* Patches::fetchPatch (const core::Unique& u) const
 void Patches::createPatch (const core::Unique& u, const core::Description& v)
 {
     roots_.emplace_back (u.getRoot(), std::make_unique<Patch> (u, v));
+}
+
+void Patches::destroyPatch (const core::Unique& u)
+{
+    roots_.erase (std::remove_if (roots_.begin(), roots_.end(), checkUnique (u)), roots_.end());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Patches::closeAll()
+{
+    roots_.clear();
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -35,6 +35,8 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
     
 void SpaghettisInstance::shutdown()
 {
+    patches_->closeAll();
+    
     core_->shutdown();
     
     closeSearchPathsWindow();

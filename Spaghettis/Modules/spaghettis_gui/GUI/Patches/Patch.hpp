@@ -21,11 +21,33 @@ class Patch {
 public:
     explicit Patch (const core::Unique& u, const core::Description& v) : p_ (Ids::PATCH)
     {
-        jassert (v.isPatch()); DBG (v.debug()); DBG (u.debug());
+        jassert (v.isPatch());
+        
+        DBG ("Ctor Patch"); DBG (v.debug()); DBG (u.debug());
     }
 
-    ~Patch() = default;
+    ~Patch()
+    {
+        // Spaghettis()->handle (Inputs::closePatch (, false));
+        
+        DBG ("Dtor Patch");
+    }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void addObject (const core::Unique& u, const core::Description& v)
+    {
+        DBG ("Add Object"); DBG (v.debug()); DBG (u.debug());
+    }
+    
+    void removeObject (const core::Unique& u)
+    {
+        DBG ("Remove Object"); DBG (u.debug());
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
