@@ -37,13 +37,18 @@ public:
         
         if (u.isRoot()) { createPatch (u, v); }
         else {
-            fetchAndAddObject (u, v);
+            Patch* p = fetchPatch (u);
+    
+            if (p) { DBG (v.debug()); DBG (u.debug()); }
+            else {
+                jassertfalse;
+            }
         }
     }
 
     void removeObject (const core::Unique& u)
     {
-        jassert (u.isValid()); fetchAndRemoveObject (u);
+        jassert (u.isValid());
     }
 
     void renameObject (const core::Unique& u, core::Unique::Identifier i)
@@ -56,12 +61,10 @@ public:
 // MARK: -
 
 private:
-    Patch* fetchPatch (const core::Unique& u) const;
-        
-private:
     void createPatch (const core::Unique& u, const core::Description& v);
-    void fetchAndAddObject (const core::Unique& u, const core::Description& v);
-    void fetchAndRemoveObject (const core::Unique& u);
+
+private:
+    Patch* fetchPatch (const core::Unique& u) const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
