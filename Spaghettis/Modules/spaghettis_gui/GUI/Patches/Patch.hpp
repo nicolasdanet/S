@@ -28,9 +28,11 @@ public:
 
     ~Patch()
     {
-        // Spaghettis()->handle (Inputs::closePatch (, false));
+        DBG ("Dtor");
         
-        // DBG ("Dtor");
+        const juce::var v (p_.getProperty (Ids::identifier));
+        
+        Spaghettis()->handle (Inputs::closePatch (core::Unique::Converter::fromVar (v), false));
     }
 
 // -----------------------------------------------------------------------------------------------------------
