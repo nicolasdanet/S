@@ -26,12 +26,23 @@ class Queues : private juce::AsyncUpdater {
 public:
     explicit Queues()
     {
+
     }
     
     ~Queues() override
     {
         jassert (inputs_.empty());
         jassert (outputs_.empty());
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool isReadyToShutdown()
+    {
+        return empty (inputs_, lockInputs_);
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -56,6 +67,8 @@ public:
 public:
     void clear()
     {
+        cancelPendingUpdate();
+        
         poll (inputs_,  lockInputs_,  true);
         poll (outputs_, lockOutputs_, true);
     }
@@ -95,6 +108,11 @@ private:
     void add (std::vector<Perform>& c, std::mutex& lock, Perform f)
     {
         const std::lock_guard<std::mutex> l (lock); c.push_back (std::move (f));
+    }
+    
+    bool empty (std::vector<Perform>& c, std::mutex& lock)
+    {
+        const std::lock_guard<std::mutex> l (lock); return c.empty();
     }
     
 // -----------------------------------------------------------------------------------------------------------

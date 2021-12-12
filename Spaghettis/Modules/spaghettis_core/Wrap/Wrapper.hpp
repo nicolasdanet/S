@@ -50,6 +50,10 @@ public:
     
     void shutdown()
     {
+        /* Wait that all the inputs are handled before to ask for exit. */
+        
+        if (queues_.isReadyToShutdown() == false) { DBG ("TOTO"); }
+        
         core::main_threadExit();
         
         const bool good = stopThread (1000);
