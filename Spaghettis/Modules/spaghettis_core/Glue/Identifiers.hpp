@@ -40,6 +40,7 @@ namespace Identifiers {
     DECLARE_ID (selected);
     DECLARE_ID (state);
     DECLARE_ID (text);
+    DECLARE_ID (title);
     DECLARE_ID (type);
     DECLARE_ID (value);
     DECLARE_ID (width);

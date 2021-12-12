@@ -58,9 +58,12 @@ Description::Description (struct _object *o) : t_ (Ids::OBJECT)
 {
     if (o) {
     //
+    const bool isPatch = object_isCanvas (o);
     const bool hasView = class_hasViewFunction (pd_class (o));
     
-    t_.setProperty (Ids::type,      juce::var (hasView ? "graphic" : "box"), nullptr);
+    const juce::String type (isPatch ? "patch" : (hasView ? "graphic" : "box"));
+    
+    t_.setProperty (Ids::type,      juce::var (type), nullptr);
     t_.setProperty (Ids::name,      juce::var (juce::String (class_getNameAsString (pd_class (o)))), nullptr);
     t_.setProperty (Ids::buffer,    juce::var (getContentBuffer (o)), nullptr);
     t_.setProperty (Ids::inlets,    juce::var (object_getNumberOfInlets (o)), nullptr);
@@ -70,22 +73,21 @@ Description::Description (struct _object *o) : t_ (Ids::OBJECT)
     t_.setProperty (Ids::width,     juce::var (object_getWidth (o)), nullptr);
     t_.setProperty (Ids::selected,  juce::var (object_getSelected (o)), nullptr);
     
+    if (isPatch) {
+    //
+    t_.setProperty (Ids::title,     juce::var (glist_getName (cast_glist (o))->s_name), nullptr);
+    //
+    }
+    
     if (hasView) {
     //
-    juce::ValueTree p; (*class_getViewFunction (pd_class (o))) (o, p); t_.appendChild (p, nullptr);
+    juce::ValueTree p (Ids::PARAMETERS); (*class_getViewFunction (pd_class (o))) (o, p);
+    
+    t_.appendChild (p, nullptr);
     //
     }
     //
     }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool Description::isPatch() const
-{
-    return t_.getProperty (Ids::name).equalsWithSameType ("canvas");
 }
 
 // -----------------------------------------------------------------------------------------------------------

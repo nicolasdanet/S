@@ -64,7 +64,7 @@ PD_LOCAL t_glist            *glist_getRoot              (t_glist *g);
 PD_LOCAL t_glist            *glist_getTop               (t_glist *g);
 PD_LOCAL t_glist            *glist_getParent            (t_glist *g);
 PD_LOCAL t_glist            *glist_getNext              (t_glist *g);
-PD_FORCE t_symbol           *glist_getName              (t_glist *g);
+PD_GUARD t_symbol           *glist_getName              (t_glist *g);
 PD_LOCAL t_symbol           *glist_getUnexpandedName    (t_glist *g);
 PD_LOCAL t_environment      *glist_getEnvironment       (t_glist *g);
 PD_LOCAL t_undomanager      *glist_getUndoManager       (t_glist *g);
