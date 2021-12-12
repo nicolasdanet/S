@@ -21,9 +21,9 @@ class Patch {
 public:
     explicit Patch (const core::Unique& u, const core::Description& v) : p_ (v.getTree())
     {
-        DBG (v.debug()); DBG (u.debug());
-        
         jassert (p_.getProperty (Ids::type).equalsWithSameType ("patch"));
+
+        p_.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
     }
 
     ~Patch()
