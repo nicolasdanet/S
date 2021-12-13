@@ -32,6 +32,7 @@ static Perform reportCurrentMidiDevices     (std::vector<MidiDevice>&&, std::vec
 // MARK: -
 
 static Perform objectAdded                  (core::Unique, core::Description);
+static Perform objectChanged                (core::Unique, core::Description);
 static Perform objectRemoved                (core::Unique);
 static Perform objectRenamed                (core::Unique, core::Unique::Identifier);
 

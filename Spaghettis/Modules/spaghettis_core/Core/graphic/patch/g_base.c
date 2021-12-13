@@ -99,7 +99,7 @@ PD_LOCAL void glist_setDirty (t_glist *glist, int n)
     //
     if (y->gl_isDirty != isDirty) {
     //
-    y->gl_isDirty = isDirty;
+    y->gl_isDirty = isDirty; outputs_changeDirty (cast_object (y), NULL);
     //
     }
     //

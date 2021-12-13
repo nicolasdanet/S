@@ -54,7 +54,7 @@ juce::String getContentBuffer (struct _object *o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Description Description::make (struct _object *o)
+Description Description::view (struct _object *o)
 {
     juce::ValueTree t (Ids::OBJECT);
     
@@ -98,6 +98,13 @@ Description Description::make (struct _object *o)
     }
     //
     }
+    
+    return Description (t);
+}
+
+Description Description::dirty (struct _object *o)
+{
+    juce::ValueTree t (Ids::OBJECT);
     
     return Description (t);
 }

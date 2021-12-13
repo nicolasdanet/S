@@ -77,17 +77,34 @@ Perform Outputs::reportCurrentMidiDevices (std::vector<MidiDevice>&& i, std::vec
 
 Perform Outputs::objectAdded (core::Unique unique, core::Description view)
 {
-    return [u = std::move (unique), v = std::move (view)]() { Spaghettis()->getPatches().addObject (u, v); };
+    return [u = std::move (unique), v = std::move (view)]()
+    {
+        Spaghettis()->getPatches().addObject (u, v);
+    };
+}
+
+Perform Outputs::objectChanged (core::Unique unique, core::Description view)
+{
+    return [u = std::move (unique), v = std::move (view)]()
+    {
+        Spaghettis()->getPatches().changeObject (u, v);
+    };
 }
 
 Perform Outputs::objectRemoved (core::Unique unique)
 {
-    return [u = std::move (unique)]() { Spaghettis()->getPatches().removeObject (u); };
+    return [u = std::move (unique)]()
+    {
+        Spaghettis()->getPatches().removeObject (u);
+    };
 }
 
 Perform Outputs::objectRenamed (core::Unique unique, core::Unique::Identifier i)
 {
-    return [i, u = std::move (unique)]() { Spaghettis()->getPatches().renameObject (u, i); };
+    return [i, u = std::move (unique)]()
+    {
+        Spaghettis()->getPatches().renameObject (u, i);
+    };
 }
 
 // -----------------------------------------------------------------------------------------------------------

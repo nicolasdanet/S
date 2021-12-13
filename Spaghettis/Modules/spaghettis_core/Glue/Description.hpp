@@ -48,8 +48,9 @@ public:
 // MARK: -
 
 public:
-    static Description make (struct _object *o = nullptr);
-
+    static Description view (struct _object *o);
+    static Description dirty (struct _object *o);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
