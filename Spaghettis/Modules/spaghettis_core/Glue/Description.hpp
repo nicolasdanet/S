@@ -28,9 +28,13 @@ class Description {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    explicit Description (struct _object *o = nullptr);
+private:
+    explicit Description (const juce::ValueTree& t) : t_ (t)
+    {
     
+    }
+
+public:
     ~Description() = default;
 
 public:
@@ -38,6 +42,13 @@ public:
     Description (Description&&) = default;
     Description& operator = (const Description&) = default;
     Description& operator = (Description&&) = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static Description make (struct _object *o = nullptr);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -122,7 +122,7 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 
 PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
-    wrapper_send (Outputs::objectAdded (Unique (x, owner), Description (x)));
+    wrapper_send (Outputs::objectAdded (Unique (x, owner), Description::make (x)));
 }
 
 PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)
