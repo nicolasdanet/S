@@ -167,7 +167,7 @@ PD_LOCAL int glist_isSubpatch (t_glist *glist)
     return (!glist_isTop (glist));
 }
 
-PD_FORCE int glist_isDirty (t_glist *glist)
+PD_GUARD int glist_isDirty (t_glist *glist)
 {
     return (glist_getTop (glist)->gl_isDirty != 0);
 }

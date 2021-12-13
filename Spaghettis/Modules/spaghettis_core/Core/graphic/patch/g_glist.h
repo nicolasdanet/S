@@ -90,7 +90,7 @@ PD_LOCAL int    glist_isTop                             (t_glist *g);
 PD_LOCAL int    glist_isAbstraction                     (t_glist *g);
 PD_LOCAL int    glist_isAbstractionOrInside             (t_glist *g);
 PD_LOCAL int    glist_isSubpatch                        (t_glist *g);
-PD_FORCE int    glist_isDirty                           (t_glist *g);
+PD_GUARD int    glist_isDirty                           (t_glist *g);
 PD_LOCAL int    glist_isFrozen                          (t_glist *g);
 PD_LOCAL int    glist_isLoading                         (t_glist *g);
 PD_LOCAL int    glist_isOpened                          (t_glist *g);

@@ -50,9 +50,7 @@ public:
     
     void shutdown()
     {
-        /* Wait that all the inputs are handled before to ask for exit. */
-        
-        if (queues_.isReadyToShutdown() == false) { DBG ("TOTO"); }
+        int n = 0; while (n++ < 16 && queues_.isAllInputsAlreadyHandled() == false) { wait (250); }
         
         core::main_threadExit();
         

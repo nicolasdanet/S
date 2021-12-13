@@ -21,6 +21,8 @@ class Patch {
 public:
     explicit Patch (const core::Unique& u, const core::Description& v) : p_ (v.getTree())
     {
+        DBG (v.debug());
+        
         jassert (p_.getProperty (Ids::type).equalsWithSameType ("patch"));
 
         p_.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
@@ -28,8 +30,6 @@ public:
 
     ~Patch()
     {
-        DBG ("Dtor");
-        
         const juce::var v (p_.getProperty (Ids::identifier));
         
         Spaghettis()->handle (Inputs::closePatch (core::Unique::Converter::fromVar (v), false));

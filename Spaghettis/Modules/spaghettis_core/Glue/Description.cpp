@@ -75,7 +75,15 @@ Description::Description (struct _object *o) : t_ (Ids::OBJECT)
     
     if (isPatch) {
     //
-    t_.setProperty (Ids::title,     juce::var (glist_getName (cast_glist (o))->s_name), nullptr);
+    t_glist *g = cast_glist (o);
+    
+    t_.setProperty (Ids::title,     juce::var (glist_getName (g)->s_name), nullptr);
+    
+    if (glist_isRoot (g)) {
+    //
+    t_.setProperty (Ids::dirty,     juce::var (glist_isDirty (g)), nullptr);
+    //
+    }
     //
     }
     

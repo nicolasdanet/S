@@ -35,7 +35,7 @@ public:
     void addObject (const core::Unique& u, const core::Description& v)
     {
         jassert (u.isValid());
-        
+
         if (u.isRoot()) { createPatch (u, v); }
         else {
             Patch* p = fetchPatch (u); if (p) { p->addObject (u, v); }
@@ -45,7 +45,7 @@ public:
     void removeObject (const core::Unique& u)
     {
         jassert (u.isValid());
-        
+
         if (u.isRoot()) { destroyPatch (u); }
         else {
             Patch* p = fetchPatch (u); if (p) { p->removeObject (u); }

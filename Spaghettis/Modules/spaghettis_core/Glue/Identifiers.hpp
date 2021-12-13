@@ -29,6 +29,7 @@ namespace Identifiers {
 // MARK: -
 
     DECLARE_ID (buffer);
+    DECLARE_ID (dirty);
     DECLARE_ID (identifier);
     DECLARE_ID (info);
     DECLARE_ID (inlets);

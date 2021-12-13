@@ -40,7 +40,7 @@ public:
 // MARK: -
 
 public:
-    bool isReadyToShutdown()
+    bool isAllInputsAlreadyHandled()
     {
         return empty (inputs_, lockInputs_);
     }
