@@ -32,6 +32,10 @@ public:
     {
         const juce::var v (p_.getProperty (Ids::identifier));
         
+        const bool dirty = p_.getProperty (Ids::dirty, false);
+        
+        DBG (juce::String (dirty ? "True" : "False"));
+        
         Spaghettis()->handle (Inputs::closePatch (core::Unique::Converter::fromVar (v), false));
     }
 

@@ -81,7 +81,7 @@ Description::Description (struct _object *o) : t_ (Ids::OBJECT)
     
     if (glist_isRoot (g)) {
     //
-    t_.setProperty (Ids::dirty,     juce::var (glist_isDirty (g)), nullptr);
+    t_.setProperty (Ids::dirty,     juce::var (glist_isDirty (g) ? true : false), nullptr);
     //
     }
     //

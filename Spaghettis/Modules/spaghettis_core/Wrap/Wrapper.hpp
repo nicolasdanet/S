@@ -50,13 +50,13 @@ public:
     
     void shutdown()
     {
-        int n = 0; while (n++ < 16 && queues_.isAllInputsAlreadyHandled() == false) { wait (250); }
+        int n = 0; while (n < 8 && queues_.isAllInputsAlreadyHandled() == false) { wait (250); n++; }
         
         core::main_threadExit();
         
         const bool good = stopThread (1000);
         
-        jassert (good); (void)good;
+        jassert (n < 8); jassert (good); (void)good;
         
         cancelPendingUpdate();
         
