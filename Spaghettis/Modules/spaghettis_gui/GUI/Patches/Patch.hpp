@@ -28,17 +28,20 @@ public:
         p_.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
     }
 
-    ~Patch()
+    ~Patch() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void close()
     {
         const juce::var v (p_.getProperty (Ids::identifier));
-        
-        const bool dirty = p_.getProperty (Ids::dirty, false);
-        
-        DBG (juce::String (dirty ? "True" : "False"));
-        
-        Spaghettis()->handle (Inputs::closePatch (core::Unique::Converter::fromVar (v), false));
+         
+        Spaghettis()->handle (Inputs::closePatch (core::Unique::Converter::fromVar (v)));
     }
-
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

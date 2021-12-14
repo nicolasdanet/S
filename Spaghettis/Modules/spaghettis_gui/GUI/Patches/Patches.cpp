@@ -32,7 +32,6 @@ auto checkUnique (const core::Unique& u)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
 // MARK: -
 
 Patch* Patches::fetchPatch (const core::Unique& u) const
@@ -62,6 +61,10 @@ void Patches::destroyPatch (const core::Unique& u)
 
 void Patches::closeAll()
 {
+    auto f = [] (const Patches::RootsElement& e) { std::get<1> (e)->close(); };
+    
+    std::for_each (roots_.cbegin(), roots_.cend(), f);
+    
     roots_.clear();
 }
 

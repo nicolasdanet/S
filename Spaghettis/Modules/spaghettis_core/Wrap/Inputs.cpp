@@ -79,9 +79,9 @@ Perform Inputs::setMidiDevices (std::vector<MidiDevice>&& i, std::vector<MidiDev
     return f;
 }
 
-Perform Inputs::closePatch (core::Unique::Identifier i, bool save)
+Perform Inputs::closePatch (core::Unique::Identifier i)
 {
-    return [i, save]() { core::inputs_closePatch (i, save); };
+    return [i]() { core::inputs_closePatch (i); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
