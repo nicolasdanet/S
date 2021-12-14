@@ -65,25 +65,25 @@ Description Description::view (struct _object *o)
     
     const juce::String type (isPatch ? "patch" : (hasView ? "graphic" : "box"));
     
-    t.setProperty (Ids::type,      juce::var (type), nullptr);
-    t.setProperty (Ids::name,      juce::var (juce::String (class_getNameAsString (pd_class (o)))), nullptr);
-    t.setProperty (Ids::buffer,    juce::var (getContentBuffer (o)), nullptr);
-    t.setProperty (Ids::inlets,    juce::var (object_getNumberOfInlets (o)), nullptr);
-    t.setProperty (Ids::outlets,   juce::var (object_getNumberOfOutlets (o)), nullptr);
-    t.setProperty (Ids::x,         juce::var (object_getX (o)), nullptr);
-    t.setProperty (Ids::y,         juce::var (object_getY (o)), nullptr);
-    t.setProperty (Ids::width,     juce::var (object_getWidth (o)), nullptr);
-    t.setProperty (Ids::selected,  juce::var (object_getSelected (o)), nullptr);
+    t.setProperty (Ids::type,       juce::var (type), nullptr);
+    t.setProperty (Ids::name,       juce::var (juce::String (class_getNameAsString (pd_class (o)))), nullptr);
+    t.setProperty (Ids::buffer,     juce::var (getContentBuffer (o)), nullptr);
+    t.setProperty (Ids::inlets,     juce::var (object_getNumberOfInlets (o)), nullptr);
+    t.setProperty (Ids::outlets,    juce::var (object_getNumberOfOutlets (o)), nullptr);
+    t.setProperty (Ids::x,          juce::var (object_getX (o)), nullptr);
+    t.setProperty (Ids::y,          juce::var (object_getY (o)), nullptr);
+    t.setProperty (Ids::width,      juce::var (object_getWidth (o)), nullptr);
+    t.setProperty (Ids::selected,   juce::var (object_getSelected (o)), nullptr);
     
     if (isPatch) {
     //
     t_glist *g = cast_glist (o);
     
-    t.setProperty (Ids::title,     juce::var (glist_getName (g)->s_name), nullptr);
+    t.setProperty (Ids::title,      juce::var (glist_getName (g)->s_name), nullptr);
     
     if (glist_isRoot (g)) {
     //
-    t.setProperty (Ids::dirty,     juce::var (glist_isDirty (g) ? true : false), nullptr);
+    t.setProperty (Ids::dirty,      juce::var (glist_isDirty (g) ? true : false), nullptr);
     //
     }
     //
@@ -102,9 +102,13 @@ Description Description::view (struct _object *o)
     return Description (t);
 }
 
-Description Description::dirty (struct _object *o)
+Description Description::dirty (struct _glist *g)
 {
     juce::ValueTree t (Ids::OBJECT);
+    
+    jassert (glist_isRoot (g));
+
+    t.setProperty (Ids::dirty,      juce::var (glist_isDirty (g) ? true : false), nullptr);
     
     return Description (t);
 }

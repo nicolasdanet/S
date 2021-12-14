@@ -135,9 +135,9 @@ PD_LOCAL void outputs_objectRenamed (t_object *x, t_glist *owner, t_id t)
     wrapper_send (Outputs::objectRenamed (Unique (x, owner), t));
 }
 
-PD_LOCAL void outputs_changeDirty (t_object *x, t_glist *owner)
+PD_LOCAL void outputs_changeDirty (t_glist *g)
 {
-    wrapper_send (Outputs::objectChanged (Unique (x, owner), Description::dirty (x)));
+    wrapper_send (Outputs::objectChanged (Unique (cast_object (g), nullptr), Description::dirty (g)));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -173,7 +173,7 @@ PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *l)          
 PD_LOCAL void outputs_objectAdded                   (t_object *x, t_glist *owner)           { }
 PD_LOCAL void outputs_objectRemoved                 (t_object *x, t_glist *owner)           { }
 PD_LOCAL void outputs_objectRenamed                 (t_object *x, t_glist *owner, t_id u)   { }
-PD_LOCAL void outputs_changeDirty                   (t_object *x, t_glist *owner)           { }
+PD_LOCAL void outputs_changeDirty                   (t_glist *g)                            { }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
