@@ -19,11 +19,9 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (const core::Unique& u, const core::Description& v) : p_ (v.getTree())
+    explicit Patch (const core::Unique& u, const core::Description& v) : u_ (u), p_ (v.getTree())
     {
-        DBG (v.debug());
-        
-        jassert (p_.getProperty (Ids::type).equalsWithSameType ("patch"));
+        DBG (v.debug()); jassert (p_.getProperty (Ids::type).equalsWithSameType ("patch"));
 
         p_.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
     }
@@ -37,9 +35,7 @@ public:
 public:
     void close()
     {
-        const juce::var v (p_.getProperty (Ids::identifier));
-         
-        Spaghettis()->handle (Inputs::closePatch (core::Unique::Converter::fromVar (v)));
+        Spaghettis()->handle (Inputs::closePatch (u_.getIdentifier()));
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -49,12 +45,22 @@ public:
 public:
     void addObject (const core::Unique& u, const core::Description& v)
     {
-        // DBG ("Add"); DBG (v.debug()); DBG (u.debug());
+        DBG (v.debug()); DBG (u.debug());
     }
     
     void removeObject (const core::Unique& u)
     {
-        // DBG ("Remove"); DBG (u.debug());
+        DBG (u.debug());
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    core::Unique::Identifier getIdentifier() const
+    {
+        return u_.getIdentifier();
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -62,6 +68,7 @@ public:
 // MARK: -
 
 private:
+    core::Unique u_;
     juce::ValueTree p_;
 
 private:

@@ -17,11 +17,11 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto checkUnique (const core::Unique& u)
+auto fnCheck (const core::Unique& u)
 {
-    return [i = u.getRoot()] (const Patches::RootsElement& e)
+    return [i = u.getRoot()] (const std::unique_ptr<Patch>& p)
     {
-        return (std::get<0> (e) == i);
+        return (p->getIdentifier() == i);
     };
 }
 
@@ -36,9 +36,9 @@ auto checkUnique (const core::Unique& u)
 
 Patch* Patches::fetchPatch (const core::Unique& u) const
 {
-    auto r = std::find_if (roots_.cbegin(), roots_.cend(), checkUnique (u));
+    auto r = std::find_if (roots_.cbegin(), roots_.cend(), fnCheck (u));
     
-    return r != roots_.cend() ? std::get<1> (*r).get() : nullptr;
+    return r != roots_.cend() ? r->get() : nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -47,12 +47,12 @@ Patch* Patches::fetchPatch (const core::Unique& u) const
 
 void Patches::createPatch (const core::Unique& u, const core::Description& v)
 {
-    roots_.emplace_back (u.getRoot(), std::make_unique<Patch> (u, v));
+    roots_.push_back (std::make_unique<Patch> (u, v));
 }
 
 void Patches::destroyPatch (const core::Unique& u)
 {
-    roots_.erase (std::remove_if (roots_.begin(), roots_.end(), checkUnique (u)), roots_.end());
+    roots_.erase (std::remove_if (roots_.begin(), roots_.end(), fnCheck (u)), roots_.end());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -61,9 +61,7 @@ void Patches::destroyPatch (const core::Unique& u)
 
 void Patches::closeAll()
 {
-    auto f = [] (const Patches::RootsElement& e) { std::get<1> (e)->close(); };
-    
-    std::for_each (roots_.cbegin(), roots_.cend(), f);
+    std::for_each (roots_.cbegin(), roots_.cend(), [] (const auto& p) { p->close(); });
     
     roots_.clear();
 }
