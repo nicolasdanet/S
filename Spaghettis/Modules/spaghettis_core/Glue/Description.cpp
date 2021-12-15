@@ -83,6 +83,9 @@ Description Description::view (struct _object *o)
     
     if (glist_isRoot (g)) {
     //
+    const juce::String directory (environment_getDirectoryAsString (glist_getEnvironment (g)));
+    
+    t.setProperty (Ids::directory,  juce::var (directory), nullptr);
     t.setProperty (Ids::dirty,      juce::var (glist_isDirty (g) ? true : false), nullptr);
     //
     }
