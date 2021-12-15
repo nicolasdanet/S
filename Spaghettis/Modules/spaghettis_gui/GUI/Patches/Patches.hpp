@@ -61,7 +61,7 @@ public:
 // MARK: -
 
 public:
-    void closeAll();
+    void closeAllPatches();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -70,6 +70,7 @@ public:
 private:
     void createPatch (const core::Unique& u, const core::Description& v);
     void destroyPatch (const core::Unique& u);
+    void closePatch (const core::Unique& u);
     
 private:
     Patch* fetchPatch (const core::Unique& u) const;

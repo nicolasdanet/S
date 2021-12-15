@@ -44,6 +44,13 @@ void Patches::destroyPatch (const core::Unique& u)
     roots_.erase (std::remove_if (roots_.begin(), roots_.end(), fnCheck (u)), roots_.end());
 }
 
+void Patches::closePatch (const core::Unique& u)
+{
+    perform (u, [&] (Patch *p) { p->close(); });
+    
+    destroyPatch (u);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -59,7 +66,7 @@ Patch* Patches::fetchPatch (const core::Unique& u) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patches::closeAll()
+void Patches::closeAllPatches()
 {
     std::for_each (roots_.cbegin(), roots_.cend(), [] (const auto& p) { p->close(); });
     
