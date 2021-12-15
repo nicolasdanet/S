@@ -32,7 +32,7 @@ public:
 
         if (u.isRoot()) { createPatch (u, v); }
         else {
-            Patch* p = fetchPatch (u); if (p) { p->addObject (u, v); }
+            perform (u, [&] (Patch *p) { p->addObject (u, v); });
         }
     }
 
@@ -42,7 +42,7 @@ public:
 
         if (u.isRoot()) { destroyPatch (u); }
         else {
-            Patch* p = fetchPatch (u); if (p) { p->removeObject (u); }
+            perform (u, [&] (Patch *p) { p->removeObject (u); });
         }
     }
 
@@ -73,6 +73,16 @@ private:
     
 private:
     Patch* fetchPatch (const core::Unique& u) const;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    template <class T> void perform (const core::Unique& u, T f) const
+    {
+        Patch* p = fetchPatch (u); if (p) { f (p); }
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
