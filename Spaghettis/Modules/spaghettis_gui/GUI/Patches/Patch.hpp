@@ -45,12 +45,12 @@ public:
 public:
     void addObject (const core::Unique& u, const core::Description& v)
     {
-        DBG (v.debug());
+        // DBG (v.debug());
     }
     
     void removeObject (const core::Unique& u)
     {
-        DBG (u.debug());
+        // DBG (u.debug());
     }
 
 // -----------------------------------------------------------------------------------------------------------
