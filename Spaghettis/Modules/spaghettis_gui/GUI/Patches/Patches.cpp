@@ -12,26 +12,39 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patches::createPatch (const core::Unique& u, const core::Description& v)
+std::shared_ptr<Patch> Patches::fetchPatch (const core::Unique& u) const
 {
-    roots_.push_back (std::make_unique<Patch> (u, v));
-}
-
-void Patches::destroyPatch (const core::Unique& u)
-{
-    roots_.erase (std::remove_if (roots_.begin(), roots_.end(), identifierIsEqual (u)), roots_.end());
-}
-
-void Patches::closePatch (const core::Unique& u)
-{
-    perform (u, [] (Patch *p) { p->close(); });
+    auto r = std::find_if (roots_.cbegin(), roots_.cend(), identifierIsEqual (u));
     
-    destroyPatch (u);
+    return std::shared_ptr<Patch> (r != roots_.cend() ? *r : nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+void Patches::addPatch (const core::Unique& u, const core::Description& v)
+{
+    roots_.push_back (std::make_shared<Patch> (u, v));
+}
+
+void Patches::removePatch (const core::Unique& u)
+{
+    roots_.erase (std::remove_if (roots_.begin(), roots_.end(), identifierIsEqual (u)), roots_.end());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/* To avoid bad loops remove first the patch from the roots before to free it. */
+
+void Patches::closePatch (const core::Unique& u)
+{
+    std::shared_ptr<Patch> scoped (fetchPatch (u));
+    
+    if (scoped) { removePatch (u); scoped->close(); }
+}
 
 void Patches::closeAllPatches()
 {

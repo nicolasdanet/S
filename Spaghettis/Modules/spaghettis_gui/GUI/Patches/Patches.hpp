@@ -30,7 +30,7 @@ public:
     {
         jassert (u.isValid());
 
-        if (u.isRoot()) { createPatch (u, v); }
+        if (u.isRoot()) { addPatch (u, v); }
         else {
             perform (u, [&] (Patch *p) { p->addObject (u, v); });
         }
@@ -40,7 +40,7 @@ public:
     {
         jassert (u.isValid());
 
-        if (u.isRoot()) { destroyPatch (u); }
+        if (u.isRoot()) { removePatch (u); }
         else {
             perform (u, [&] (Patch *p) { p->removeObject (u); });
         }
@@ -68,10 +68,13 @@ public:
 // MARK: -
 
 private:
-    void createPatch (const core::Unique& u, const core::Description& v);
-    void destroyPatch (const core::Unique& u);
+    void addPatch (const core::Unique& u, const core::Description& v);
+    void removePatch (const core::Unique& u);
     void closePatch (const core::Unique& u);
 
+private:
+    std::shared_ptr<Patch> fetchPatch (const core::Unique& u) const;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -99,7 +102,7 @@ private:
 // MARK: -
 
 private:
-    std::vector<std::unique_ptr<Patch>> roots_;
+    std::vector<std::shared_ptr<Patch>> roots_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Patches)
