@@ -32,7 +32,7 @@ public:
 
         if (u.isRoot()) { createPatch (u, v); }
         else {
-            perform (u, [&] (Patch *p) { p->addObject (u, v); });
+            perform (u, [&] (const std::shared_ptr<Patch>& p) { p->addObject (u, v); });
         }
     }
 
@@ -42,7 +42,7 @@ public:
 
         if (u.isRoot()) { closePatch (u, false); }
         else {
-            perform (u, [&] (Patch *p) { p->removeObject (u); });
+            perform (u, [&] (const std::shared_ptr<Patch>& p) { p->removeObject (u); });
         }
     }
 
@@ -82,12 +82,18 @@ private:
 private:
     static auto isEqual (const core::Unique& u)
     {
-        return [i = u.getRoot()] (const auto& p) { return (p->getUnique().getIdentifier() == i); };
+        return [i = u.getRoot()] (const std::shared_ptr<Patch>& p)
+        {
+            return (p->getUnique().getIdentifier() == i);
+        };
     }
     
     static auto getUnique()
     {
-        return [](const auto& p) { return p->getUnique(); };
+        return [] (const std::shared_ptr<Patch>& p)
+        {
+            return p->getUnique();
+        };
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -99,7 +105,7 @@ private:
     {
         auto r = std::find_if (roots_.cbegin(), roots_.cend(), Patches::isEqual (u));
     
-        if (r != roots_.cend()) { f (r->get()); }
+        if (r != roots_.cend()) { f (*r); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
