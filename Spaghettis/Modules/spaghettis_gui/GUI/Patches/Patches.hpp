@@ -30,7 +30,7 @@ public:
     {
         jassert (u.isValid());
 
-        if (u.isRoot()) { addPatch (u, v); }
+        if (u.isRoot()) { createPatch (u, v); }
         else {
             perform (u, [&] (Patch *p) { p->addObject (u, v); });
         }
@@ -40,7 +40,7 @@ public:
     {
         jassert (u.isValid());
 
-        if (u.isRoot()) { removePatch (u); }
+        if (u.isRoot()) { closePatch (u); }
         else {
             perform (u, [&] (Patch *p) { p->removeObject (u); });
         }
@@ -68,21 +68,26 @@ public:
 // MARK: -
 
 private:
-    void addPatch (const core::Unique& u, const core::Description& v);
-    void removePatch (const core::Unique& u);
+    void createPatch (const core::Unique& u, const core::Description& v);
     void closePatch (const core::Unique& u);
-
+    
 private:
     std::shared_ptr<Patch> fetchPatch (const core::Unique& u) const;
+    void removePatch (const core::Unique& u);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    static auto identifierIsEqual (const core::Unique& u)
+    static auto isEqual (const core::Unique& u)
     {
-        return [i = u.getRoot()] (const auto& p) { return (p->getIdentifier() == i); };
+        return [i = u.getRoot()] (const auto& p) { return (p->getUnique().getIdentifier() == i); };
+    }
+    
+    static auto getUnique()
+    {
+        return [](const auto& p) { return p->getUnique(); };
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -92,7 +97,7 @@ private:
 private:
     template <class T> void perform (const core::Unique& u, T f) const
     {
-        auto r = std::find_if (roots_.cbegin(), roots_.cend(), identifierIsEqual (u));
+        auto r = std::find_if (roots_.cbegin(), roots_.cend(), Patches::isEqual (u));
     
         if (r != roots_.cend()) { f (r->get()); }
     }

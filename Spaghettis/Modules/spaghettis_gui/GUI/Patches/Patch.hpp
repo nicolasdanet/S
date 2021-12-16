@@ -58,9 +58,9 @@ public:
 // MARK: -
 
 public:
-    core::Unique::Identifier getIdentifier() const
+    core::Unique getUnique() const
     {
-        return u_.getIdentifier();
+        return u_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
