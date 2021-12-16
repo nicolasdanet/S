@@ -1,7 +1,7 @@
 
 /*
     Copyright (c) 2007-2013 Andi Brae.
-    Copyright (c) 2013 Nicolas Danet.
+    Copyright (c) 2013 Jojo and others.
     
 */
 

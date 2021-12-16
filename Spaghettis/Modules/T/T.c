@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2017 Nicolas Danet. */
+/* Copyright (c) 2017 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 

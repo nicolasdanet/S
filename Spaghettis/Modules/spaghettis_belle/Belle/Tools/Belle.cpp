@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2013 Nicolas Danet. */
+/* Copyright (c) 2013 Jojo and others. */
 
 /* < http://opensource.org/licenses/BSD-2-Clause > */
 
