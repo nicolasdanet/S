@@ -12,28 +12,6 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-auto fnCheck (const core::Unique& u)
-{
-    return [i = u.getRoot()] (const std::unique_ptr<Patch>& p)
-    {
-        return (p->getIdentifier() == i);
-    };
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void Patches::createPatch (const core::Unique& u, const core::Description& v)
 {
     roots_.push_back (std::make_unique<Patch> (u, v));
@@ -41,25 +19,14 @@ void Patches::createPatch (const core::Unique& u, const core::Description& v)
 
 void Patches::destroyPatch (const core::Unique& u)
 {
-    roots_.erase (std::remove_if (roots_.begin(), roots_.end(), fnCheck (u)), roots_.end());
+    roots_.erase (std::remove_if (roots_.begin(), roots_.end(), identifierIsEqual (u)), roots_.end());
 }
 
 void Patches::closePatch (const core::Unique& u)
 {
-    perform (u, [&] (Patch *p) { p->close(); });
+    perform (u, [] (Patch *p) { p->close(); });
     
     destroyPatch (u);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-Patch* Patches::fetchPatch (const core::Unique& u) const
-{
-    auto r = std::find_if (roots_.cbegin(), roots_.cend(), fnCheck (u));
-    
-    return r != roots_.cend() ? r->get() : nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------

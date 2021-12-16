@@ -71,10 +71,17 @@ private:
     void createPatch (const core::Unique& u, const core::Description& v);
     void destroyPatch (const core::Unique& u);
     void closePatch (const core::Unique& u);
-    
-private:
-    Patch* fetchPatch (const core::Unique& u) const;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    static auto identifierIsEqual (const core::Unique& u)
+    {
+        return [i = u.getRoot()] (const auto& p) { return (p->getIdentifier() == i); };
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -82,9 +89,11 @@ private:
 private:
     template <class T> void perform (const core::Unique& u, T f) const
     {
-        Patch* p = fetchPatch (u); if (p) { f (p); }
-    }
+        auto r = std::find_if (roots_.cbegin(), roots_.cend(), identifierIsEqual (u));
     
+        if (r != roots_.cend()) { f (r->get()); }
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
