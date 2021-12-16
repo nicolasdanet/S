@@ -40,7 +40,7 @@ public:
     {
         jassert (u.isValid());
 
-        if (u.isRoot()) { closePatch (u); }
+        if (u.isRoot()) { closePatch (u, false); }
         else {
             perform (u, [&] (Patch *p) { p->removeObject (u); });
         }
@@ -69,7 +69,7 @@ public:
 
 private:
     void createPatch (const core::Unique& u, const core::Description& v);
-    void closePatch (const core::Unique& u);
+    void closePatch (const core::Unique& u, bool notify = true);
     
 private:
     std::shared_ptr<Patch> fetchPatch (const core::Unique& u) const;

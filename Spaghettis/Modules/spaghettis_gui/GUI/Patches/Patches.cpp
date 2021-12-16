@@ -35,11 +35,11 @@ void Patches::createPatch (const core::Unique& u, const core::Description& v)
 
 /* To avoid bad loops remove first the patch from the roots before to release it. */
 
-void Patches::closePatch (const core::Unique& u)
+void Patches::closePatch (const core::Unique& u, bool notify)
 {
     std::shared_ptr<Patch> scoped (fetchPatch (u));
     
-    if (scoped) { removePatch (u); scoped->close(); }
+    if (scoped) { removePatch (u); if (notify) { scoped->close(); } }
 }
 
 // -----------------------------------------------------------------------------------------------------------
