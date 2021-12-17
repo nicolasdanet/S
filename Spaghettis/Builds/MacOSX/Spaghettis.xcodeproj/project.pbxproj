@@ -226,7 +226,7 @@
 		44418211D062CE90F46F056C = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = "Spaghettis";
 				TargetAttributes = {
 					291A2F99755AE10335EBB572 = {
@@ -373,6 +373,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
+				EXCLUDED_ARCHS = "arm64e";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -415,6 +416,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(SRCROOT)/../../Modules";
+				OTHER_CFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
@@ -435,6 +437,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				DEAD_CODE_STRIPPING = YES;
+				EXCLUDED_ARCHS = "arm64e";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -442,7 +445,7 @@
 					"NDEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60102",
+					"JUCE_PROJUCER_VERSION=0x60103",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
@@ -478,6 +481,7 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(SRCROOT)/../../Modules";
+				OTHER_CFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
