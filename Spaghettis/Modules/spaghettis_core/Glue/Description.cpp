@@ -83,9 +83,13 @@ Description Description::view (struct _object *o)
     
     if (glist_isRoot (g)) {
     //
+    const juce::String filename  (environment_getFileNameAsString (glist_getEnvironment (g)));
     const juce::String directory (environment_getDirectoryAsString (glist_getEnvironment (g)));
+    const juce::File file (juce::File (directory).getChildFile (filename));
     
-    t.setProperty (Ids::directory,  juce::var (directory), nullptr);
+    t.setProperty (Ids::filename,   juce::var (file.getFileName()), nullptr);
+    t.setProperty (Ids::extension,  juce::var (file.getFileExtension()), nullptr);
+    t.setProperty (Ids::path,       juce::var (file.getFullPathName()), nullptr);
     //
     }
     //
