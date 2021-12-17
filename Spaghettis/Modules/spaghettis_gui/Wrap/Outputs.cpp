@@ -75,6 +75,18 @@ Perform Outputs::reportCurrentMidiDevices (std::vector<MidiDevice>&& i, std::vec
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+Perform Outputs::patchDirty (core::Unique unique, bool isDirty)
+{
+    return [u = std::move (unique), b = isDirty]()
+    {
+        Spaghettis()->getPatches().setDirty (u, b);
+    };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 Perform Outputs::objectAdded (core::Unique unique, core::Description view)
 {
     return [u = std::move (unique), v = std::move (view)]()
