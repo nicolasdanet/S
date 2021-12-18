@@ -55,11 +55,9 @@ void SpaghettisInstance::shutdown()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool SpaghettisInstance::closePatches()
+void SpaghettisInstance::closePatches()
 {
     patches_->closeAllPatches();
-    
-    return true;
 }
 
 // -----------------------------------------------------------------------------------------------------------
