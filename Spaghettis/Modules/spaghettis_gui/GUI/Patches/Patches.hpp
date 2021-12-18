@@ -63,7 +63,7 @@ public:
 public:
     void setDirty (const core::Unique& u, bool isDirty)
     {
-    
+        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->setDirty (isDirty); });
     }
     
 // -----------------------------------------------------------------------------------------------------------

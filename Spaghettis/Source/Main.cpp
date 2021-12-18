@@ -62,7 +62,7 @@ public:
     
     void systemRequestedQuit() override
     {
-        quit();
+        if (spaghettis::Spaghettis()->closePatches()) { quit(); }
     }
     
 // -----------------------------------------------------------------------------------------------------------

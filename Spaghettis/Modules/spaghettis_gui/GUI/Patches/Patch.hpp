@@ -19,7 +19,10 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (const core::Unique& u, const core::Description& v) : u_ (u), p_ (v.getTree())
+    explicit Patch (const core::Unique& u, const core::Description& v) :
+        u_ (u),
+        p_ (v.getTree()),
+        dirty_ (false)
     {
         DBG (v.debug()); jassert (p_.getProperty (Ids::type).equalsWithSameType ("patch"));
 
@@ -37,7 +40,7 @@ public:
     {
         Spaghettis()->handle (Inputs::closePatch (u_.getIdentifier()));
     }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -62,6 +65,11 @@ public:
     {
         return u_;
     }
+
+    void setDirty (bool isDirty)
+    {
+        dirty_ = isDirty;
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -70,6 +78,7 @@ public:
 private:
     core::Unique u_;
     juce::ValueTree p_;
+    bool dirty_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Patch)
