@@ -22,6 +22,7 @@ public:
     explicit Patch (const core::Unique& u, const core::Description& v) :
         u_ (u),
         p_ (v.getTree()),
+        file_ (v.getProperty (Ids::path).toString()),
         dirty_ (false)
     {
         DBG (v.debug()); jassert (p_.getProperty (Ids::type).equalsWithSameType ("patch"));
@@ -36,11 +37,28 @@ public:
 // MARK: -
 
 public:
-    void close()
+    void close() const
     {
         Spaghettis()->handle (Inputs::closePatch (u_.getIdentifier()));
     }
+    
+    void save (const juce::File& file) const
+    {
+    
+    }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void requestClose()
+    {
+        DBG ("CLOSE / " + file_.getFullPathName());
+        
+        close();
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -78,6 +96,7 @@ public:
 private:
     core::Unique u_;
     juce::ValueTree p_;
+    juce::File file_;
     bool dirty_;
 
 private:

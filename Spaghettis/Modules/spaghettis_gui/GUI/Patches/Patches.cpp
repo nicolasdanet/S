@@ -39,7 +39,13 @@ void Patches::closePatch (const core::Unique& u, bool notify)
 {
     std::shared_ptr<Patch> scoped (fetchPatch (u));
     
-    if (scoped) { removePatch (u); if (notify) { scoped->close(); } }
+    if (scoped) {
+    //
+    removePatch (u);
+    
+    if (notify) { scoped->requestClose(); }
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
