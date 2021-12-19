@@ -18,8 +18,7 @@ void Patch::openSaveDialog()
                         file_,
                         spaghettis::core::getFileExtensions());
     
-    const int t = juce::FileBrowserComponent::saveMode
-                        | juce::FileBrowserComponent::warnAboutOverwriting;
+    const int t = juce::FileBrowserComponent::saveMode;
         
     auto callback = [u = u_] (const juce::FileChooser& fileChooser)
     {

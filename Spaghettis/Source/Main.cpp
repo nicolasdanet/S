@@ -60,15 +60,19 @@ public:
         juce::LookAndFeel::setDefaultLookAndFeel (nullptr);
     }
     
+    void systemRequestedQuitPoll()
+    {
+        if (spaghettis::Spaghettis()->isAllCloseRequestsDone()) { quit(); }
+        else {
+            juce::Timer::callAfterDelay (500.0, [this]() { systemRequestedQuitPoll(); });
+        }
+    }
+    
     void systemRequestedQuit() override
     {
         spaghettis::Spaghettis()->closeAllPatches();
         
-        bool b = spaghettis::Spaghettis()->isAllCloseRequestsDone();
-        
-        DBG (juce::String (b ? "True" : "False"));
-        
-        quit();
+        systemRequestedQuitPoll();
     }
     
 // -----------------------------------------------------------------------------------------------------------
