@@ -14,14 +14,23 @@ namespace spaghettis {
 
 std::shared_ptr<Patch> Patches::fetchPatch (const core::Unique& u) const
 {
-    auto r = std::find_if (roots_.cbegin(), roots_.cend(), Patches::isEqual (u));
+    auto r = std::find_if (roots_.cbegin(), roots_.cend(), isEqual (u));
     
     return std::shared_ptr<Patch> (r != roots_.cend() ? *r : nullptr);
 }
 
 void Patches::removePatch (const core::Unique& u)
 {
-    roots_.erase (std::remove_if (roots_.begin(), roots_.end(), Patches::isEqual (u)), roots_.end());
+    roots_.erase (std::remove_if (roots_.begin(), roots_.end(), isEqual (u)), roots_.end());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Patches::removeRequest (const core::Unique& u)
+{
+    requests_.erase (std::remove_if (requests_.begin(), requests_.end(), isEqual (u)), requests_.end());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -40,11 +49,7 @@ void Patches::closePatch (const core::Unique& u, bool notify)
     std::shared_ptr<Patch> scoped (fetchPatch (u));
     
     if (scoped) {
-    //
-    removePatch (u);
-    
-    if (notify) { scoped->requestClose(); }
-    //
+        removePatch (u); if (notify) { requests_.push_back (scoped); scoped->requestClose(); }
     }
 }
 
@@ -56,7 +61,7 @@ void Patches::closeAllPatches()
 {
     std::vector<core::Unique> t;
     
-    std::transform (roots_.cbegin(), roots_.cend(), std::back_inserter (t), Patches::getUnique());
+    std::transform (roots_.cbegin(), roots_.cend(), std::back_inserter (t), asUnique());
     
     for (const auto& u : t) { closePatch (u); }
 }

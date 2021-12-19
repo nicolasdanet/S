@@ -51,12 +51,13 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    void openSaveDialog();
+
 public:
     void requestClose()
     {
-        DBG ("CLOSE / " + file_.getFullPathName());
-        
-        close();
+        if (!dirty_) { close(); } else { openSaveDialog(); }
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -98,6 +99,9 @@ private:
     juce::ValueTree p_;
     juce::File file_;
     bool dirty_;
+
+private:
+    std::unique_ptr<juce::FileChooser> fileChooser_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Patch)

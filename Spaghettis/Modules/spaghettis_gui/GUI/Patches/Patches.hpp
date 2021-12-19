@@ -71,6 +71,9 @@ public:
 // MARK: -
 
 public:
+    void removeRequest (const core::Unique& u);
+    
+public:
     void closeAllPatches();
     
 // -----------------------------------------------------------------------------------------------------------
@@ -98,7 +101,7 @@ private:
         };
     }
     
-    static auto getUnique()
+    static auto asUnique()
     {
         return [] (const std::shared_ptr<Patch>& p)
         {
@@ -113,7 +116,7 @@ private:
 private:
     template <class T> void perform (const core::Unique& u, T f) const
     {
-        auto r = std::find_if (roots_.cbegin(), roots_.cend(), Patches::isEqual (u));
+        auto r = std::find_if (roots_.cbegin(), roots_.cend(), isEqual (u));
     
         if (r != roots_.cend()) { f (*r); }
     }
@@ -124,7 +127,8 @@ private:
 
 private:
     std::vector<std::shared_ptr<Patch>> roots_;
-
+    std::vector<std::shared_ptr<Patch>> requests_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Patches)
 };

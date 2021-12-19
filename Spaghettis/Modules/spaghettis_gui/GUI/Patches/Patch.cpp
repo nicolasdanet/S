@@ -12,6 +12,25 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void Patch::openSaveDialog()
+{
+    fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Save a Patch..."),
+                        file_,
+                        spaghettis::core::getFileExtensions());
+    
+    const int t = juce::FileBrowserComponent::saveMode
+                        | juce::FileBrowserComponent::warnAboutOverwriting;
+        
+    auto callback = [u = u_] (const juce::FileChooser& fileChooser)
+    {
+        // auto files = fileChooser.getResults(); for (const auto& f : files) { }
+        
+        Spaghettis()->getPatches().removeRequest (u);
+    };
+                        
+    fileChooser_->launchAsync (t, callback);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
