@@ -45,19 +45,19 @@ public:
     void save (const juce::File& file) const
     {
     
-    }
+    } 
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    void openSaveDialog();
+    void requestCloseDialog();
 
 public:
     void requestClose()
     {
-        if (!dirty_) { close(); } else { openSaveDialog(); }
+        if (!dirty_) { close(); } else { requestCloseDialog(); }
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -99,9 +99,6 @@ private:
     juce::ValueTree p_;
     juce::File file_;
     bool dirty_;
-
-private:
-    std::unique_ptr<juce::FileChooser> fileChooser_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Patch)
