@@ -18,8 +18,8 @@ void Patch::requestCloseDialog()
         
     juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (title)
         .withMessage (file_.getFileName())
-        .withButton ("Yes")
-        .withButton ("No"));
+        .withButton (NEEDS_TRANS ("Yes"))
+        .withButton (NEEDS_TRANS ("No")));
     
     auto f = [u = u_](int result) { DBG (result); Spaghettis()->getPatches().removeRequest (u); };
     
