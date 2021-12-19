@@ -62,7 +62,11 @@ public:
     
     void systemRequestedQuit() override
     {
-        spaghettis::Spaghettis()->closePatches();
+        spaghettis::Spaghettis()->closeAllPatches();
+        
+        bool b = spaghettis::Spaghettis()->isAllCloseRequestsDone();
+        
+        DBG (juce::String (b ? "True" : "False"));
         
         quit();
     }

@@ -30,6 +30,8 @@ void Patches::removePatch (const core::Unique& u)
 
 void Patches::removeRequest (const core::Unique& u)
 {
+    jassert (juce::MessageManager::getInstance()->isThisTheMessageThread());
+    
     requests_.erase (std::remove_if (requests_.begin(), requests_.end(), isEqual (u)), requests_.end());
 }
 

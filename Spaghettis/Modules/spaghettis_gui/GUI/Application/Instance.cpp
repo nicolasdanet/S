@@ -55,9 +55,14 @@ void SpaghettisInstance::shutdown()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void SpaghettisInstance::closePatches()
+void SpaghettisInstance::closeAllPatches()
 {
     patches_->closeAllPatches();
+}
+
+bool SpaghettisInstance::isAllCloseRequestsDone() const
+{
+    return patches_->isAllCloseRequestsDone();
 }
 
 // -----------------------------------------------------------------------------------------------------------
