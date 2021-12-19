@@ -14,8 +14,10 @@ namespace spaghettis {
 
 void Patch::requestCloseDialog()
 {
-    juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle ("A Title")
-        .withMessage ("A message.")
+    const juce::String title = NEEDS_TRANS ("Save patch before closing?");
+        
+    juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (title)
+        .withMessage (file_.getFileName())
         .withButton ("Yes")
         .withButton ("No"));
     
