@@ -20,14 +20,14 @@ class Patch {
 
 public:
     explicit Patch (const core::Unique& u, const core::Description& v) :
-        u_ (u),
+        unique_ (u),
         file_ (v.getProperty (Ids::path).toString()),
-        p_ (v.getTree()),
+        tree_ (v.getTree()),
         dirty_ (false)
     {
-        DBG (v.debug()); jassert (p_.getProperty (Ids::type).equalsWithSameType ("patch"));
+        DBG (v.debug()); jassert (tree_.getProperty (Ids::type).equalsWithSameType ("patch"));
 
-        p_.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
+        tree_.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
     }
 
     ~Patch() = default;
@@ -39,12 +39,12 @@ public:
 public:
     void close() const
     {
-        Spaghettis()->handle (Inputs::closePatch (u_.getIdentifier()));
+        Spaghettis()->handle (Inputs::closePatch (unique_.getIdentifier()));
     }
     
     void save() const
     {
-        Spaghettis()->handle (Inputs::savePatch (u_.getIdentifier()));
+        Spaghettis()->handle (Inputs::savePatch (unique_.getIdentifier()));
     } 
 
 // -----------------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ public:
 public:
     core::Unique getUnique() const
     {
-        return u_;
+        return unique_;
     }
     
     juce::File getFile() const
@@ -92,9 +92,9 @@ public:
 // MARK: -
 
 private:
-    core::Unique u_;
+    core::Unique unique_;
     juce::File file_;
-    juce::ValueTree p_;
+    juce::ValueTree tree_;
     bool dirty_;
 
 private:
