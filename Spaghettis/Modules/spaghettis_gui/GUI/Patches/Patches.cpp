@@ -30,32 +30,30 @@ void Patches::removePatch (const core::Unique& u)
 
 void Patches::showSaveRequest (const std::shared_ptr<Patch>& p)
 {
-    requests_.push_back (p);
+    const juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (p->getFile().getFileName())
+            .withMessage (NEEDS_TRANS ("Save the patch before closing?"))
+            .withButton (NEEDS_TRANS ("Yes"))
+            .withButton (NEEDS_TRANS ("No")));
     
-    juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (p->getFile().getFileName())
-        .withMessage (NEEDS_TRANS ("Save the patch before closing?"))
-        .withButton (NEEDS_TRANS ("Yes"))
-        .withButton (NEEDS_TRANS ("No")));
-    
-    auto f = [u = p->getUnique()](int result)
+    auto f = [u = p->getUnique()] (int result)
     {
         const bool save = (result == 0); Spaghettis()->getPatches().handleSaveRequest (u, save);
     };
     
     juce::NativeMessageBox::showAsync (options, f);
+    
+    requests_.push_back (p);
 }
 
-void Patches::handleSaveRequest (const core::Unique& u, bool saveBeforeClosing)
+void Patches::handleSaveRequest (const core::Unique& u, bool save)
 {
     jassert (juce::MessageManager::getInstance()->isThisTheMessageThread());
         
     auto p = std::find_if (requests_.cbegin(), requests_.cend(), isEqual (u));
     
     if (p != requests_.cend()) {
-
-        if (saveBeforeClosing) { p->get()->save(); }
         
-        p->get()->close();
+        p->get()->close (save);
         
         requests_.erase (std::remove_if (requests_.begin(), requests_.end(), isEqual (u)), requests_.end());
     }

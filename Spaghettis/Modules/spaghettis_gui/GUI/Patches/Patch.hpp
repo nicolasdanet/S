@@ -37,16 +37,16 @@ public:
 // MARK: -
 
 public:
-    void close() const
-    {
-        Spaghettis()->handle (Inputs::closePatch (unique_.getIdentifier()));
-    }
-    
     void save() const
     {
         Spaghettis()->handle (Inputs::savePatch (unique_.getIdentifier()));
-    } 
-
+    }
+    
+    void close (bool saveFirst = false) const
+    {
+        if (saveFirst) { save(); } Spaghettis()->handle (Inputs::closePatch (unique_.getIdentifier()));
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
