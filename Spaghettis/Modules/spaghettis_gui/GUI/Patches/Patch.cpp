@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::requestCloseDialog()
+void Patch::requestSave()
 {
     juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (file_.getFileName())
         .withMessage (NEEDS_TRANS ("Save the patch before closing?"))
@@ -21,7 +21,7 @@ void Patch::requestCloseDialog()
     
     auto f = [u = u_](int result)
     {
-        const bool save = (result == 0); Spaghettis()->getPatches().handleCloseRequest (u, save);
+        const bool save = (result == 0); Spaghettis()->getPatches().handleSaveRequest (u, save);
     };
     
     juce::NativeMessageBox::showAsync (options, f);

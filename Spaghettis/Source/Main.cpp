@@ -62,7 +62,7 @@ public:
     
     void systemRequestedQuitPoll()
     {
-        if (spaghettis::Spaghettis()->isAllCloseRequestsDone()) { quit(); }
+        if (spaghettis::Spaghettis()->isAllSaveRequestsDone()) { quit(); }
         else {
             juce::Timer::callAfterDelay (500.0, [this]() { systemRequestedQuitPoll(); });
         }

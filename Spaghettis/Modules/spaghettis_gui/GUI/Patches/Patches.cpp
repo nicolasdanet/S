@@ -28,21 +28,20 @@ void Patches::removePatch (const core::Unique& u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patches::handleCloseRequest (const core::Unique& u, bool saveBeforeClosing)
+void Patches::handleSaveRequest (const core::Unique& u, bool saveBeforeClosing)
 {
     jassert (juce::MessageManager::getInstance()->isThisTheMessageThread());
         
     auto p = std::find_if (requests_.cbegin(), requests_.cend(), isEqual (u));
     
     if (p != requests_.cend()) {
-    //
-    if (saveBeforeClosing) { p->get()->save(); }
-    
-    p->get()->close();
-    //
+
+        if (saveBeforeClosing) { p->get()->save(); }
+        
+        p->get()->close();
+        
+        requests_.erase (std::remove_if (requests_.begin(), requests_.end(), isEqual (u)), requests_.end());
     }
-    
-    requests_.erase (std::remove_if (requests_.begin(), requests_.end(), isEqual (u)), requests_.end());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -58,10 +57,19 @@ void Patches::createPatch (const core::Unique& u, const core::Description& v)
 
 void Patches::closePatch (const core::Unique& u, bool notify)
 {
-    std::shared_ptr<Patch> scoped (fetchPatch (u));
+    std::shared_ptr<Patch> p (fetchPatch (u));
+            
+    if (p) {
+    //
+    removePatch (u);
     
-    if (scoped) {
-        removePatch (u); if (notify) { requests_.push_back (scoped); scoped->requestClose(); }
+    if (notify) {
+        if (p->isDirty()) { requests_.push_back (p); p->requestSave(); }
+        else {
+            p->close();
+        }
+    }
+    //
     }
 }
 

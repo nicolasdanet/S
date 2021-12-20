@@ -51,15 +51,9 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    void requestCloseDialog();
-
 public:
-    void requestClose()
-    {
-        if (!dirty_) { close(); } else { requestCloseDialog(); }
-    }
-    
+    void requestSave();
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -83,6 +77,11 @@ public:
     core::Unique getUnique() const
     {
         return u_;
+    }
+    
+    bool isDirty() const
+    {
+        return dirty_;
     }
 
     void setDirty (bool isDirty)

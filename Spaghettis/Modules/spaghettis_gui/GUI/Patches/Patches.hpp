@@ -74,9 +74,9 @@ public:
     void closeAllPatches();
 
 public:
-    void handleCloseRequest (const core::Unique& u, bool saveBeforeClosing);
+    void handleSaveRequest (const core::Unique& u, bool saveBeforeClosing);
     
-    bool isAllCloseRequestsDone()
+    bool isAllSaveRequestsDone()
     {
         return requests_.empty();
     }
