@@ -30,8 +30,6 @@ namespace Identifiers {
 
     DECLARE_ID (buffer);
     DECLARE_ID (directory);
-    DECLARE_ID (extension);
-    DECLARE_ID (filename);
     DECLARE_ID (identifier);
     DECLARE_ID (info);
     DECLARE_ID (inlets);

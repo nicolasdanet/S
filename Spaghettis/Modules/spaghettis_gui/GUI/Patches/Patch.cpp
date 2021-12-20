@@ -26,6 +26,10 @@ void Patch::requestCloseDialog()
     juce::NativeMessageBox::showAsync (options, f);
 }
 
+// Metal API Validation Enabled
+// MTLIOAccelDevice bad MetalPluginClassName property (null)
+// +[MTLIOAccelDevice registerDevices]: Zero Metal services found
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
