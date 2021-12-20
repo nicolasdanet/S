@@ -12,21 +12,6 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::requestSave()
-{
-    juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (file_.getFileName())
-        .withMessage (NEEDS_TRANS ("Save the patch before closing?"))
-        .withButton (NEEDS_TRANS ("Yes"))
-        .withButton (NEEDS_TRANS ("No")));
-    
-    auto f = [u = u_](int result)
-    {
-        const bool save = (result == 0); Spaghettis()->getPatches().handleSaveRequest (u, save);
-    };
-    
-    juce::NativeMessageBox::showAsync (options, f);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

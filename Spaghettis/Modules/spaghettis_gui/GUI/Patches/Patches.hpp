@@ -73,6 +73,13 @@ public:
 public:
     void closeAllPatches();
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void showSaveRequest (const std::shared_ptr<Patch>& p);
+    
 public:
     void handleSaveRequest (const core::Unique& u, bool saveBeforeClosing);
     

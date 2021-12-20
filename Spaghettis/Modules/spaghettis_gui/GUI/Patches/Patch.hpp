@@ -52,13 +52,6 @@ public:
 // MARK: -
 
 public:
-    void requestSave();
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void addObject (const core::Unique& u, const core::Description& v)
     {
         // DBG (v.debug());
@@ -77,6 +70,11 @@ public:
     core::Unique getUnique() const
     {
         return u_;
+    }
+    
+    juce::File getFile() const
+    {
+        return file_;
     }
     
     bool isDirty() const

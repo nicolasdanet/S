@@ -28,6 +28,23 @@ void Patches::removePatch (const core::Unique& u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void Patches::showSaveRequest (const std::shared_ptr<Patch>& p)
+{
+    requests_.push_back (p);
+    
+    juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (p->getFile().getFileName())
+        .withMessage (NEEDS_TRANS ("Save the patch before closing?"))
+        .withButton (NEEDS_TRANS ("Yes"))
+        .withButton (NEEDS_TRANS ("No")));
+    
+    auto f = [u = p->getUnique()](int result)
+    {
+        const bool save = (result == 0); Spaghettis()->getPatches().handleSaveRequest (u, save);
+    };
+    
+    juce::NativeMessageBox::showAsync (options, f);
+}
+
 void Patches::handleSaveRequest (const core::Unique& u, bool saveBeforeClosing)
 {
     jassert (juce::MessageManager::getInstance()->isThisTheMessageThread());
@@ -64,10 +81,7 @@ void Patches::closePatch (const core::Unique& u, bool notify)
     removePatch (u);
     
     if (notify) {
-        if (p->isDirty()) { requests_.push_back (p); p->requestSave(); }
-        else {
-            p->close();
-        }
+        if (p->isDirty()) { showSaveRequest (p); } else { p->close(); }
     }
     //
     }
