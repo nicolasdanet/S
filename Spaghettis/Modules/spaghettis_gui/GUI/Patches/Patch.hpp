@@ -42,9 +42,9 @@ public:
         Spaghettis()->handle (Inputs::closePatch (u_.getIdentifier()));
     }
     
-    void save (const juce::File& file) const
+    void save() const
     {
-    
+        Spaghettis()->handle (Inputs::savePatch (u_.getIdentifier()));
     } 
 
 // -----------------------------------------------------------------------------------------------------------

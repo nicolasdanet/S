@@ -28,9 +28,19 @@ void Patches::removePatch (const core::Unique& u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patches::removeRequest (const core::Unique& u)
+void Patches::handleCloseRequest (const core::Unique& u, bool saveBeforeClosing)
 {
     jassert (juce::MessageManager::getInstance()->isThisTheMessageThread());
+        
+    auto p = std::find_if (requests_.cbegin(), requests_.cend(), isEqual (u));
+    
+    if (p != requests_.cend()) {
+    //
+    if (saveBeforeClosing) { p->get()->save(); }
+    
+    p->get()->close();
+    //
+    }
     
     requests_.erase (std::remove_if (requests_.begin(), requests_.end(), isEqual (u)), requests_.end());
 }

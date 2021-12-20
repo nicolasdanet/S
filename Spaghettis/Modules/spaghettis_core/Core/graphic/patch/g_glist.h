@@ -55,7 +55,7 @@ PD_LOCAL void       glist_makeObject    (t_glist *g, int argc, t_atom *argv);
 // MARK: -
 
 PD_LOCAL void       glist_close         (t_glist *g);
-PD_FORCE void       glist_save          (t_glist *g);
+PD_GUARD void       glist_save          (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

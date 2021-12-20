@@ -40,6 +40,7 @@ static Perform rescanDevices (void);
 static Perform setAudioDevices (std::vector<AudioDevice>&&, std::vector<AudioDevice>&&);
 static Perform setMidiDevices (std::vector<MidiDevice>&&, std::vector<MidiDevice>&&);
 static Perform closePatch (core::Unique::Identifier);
+static Perform savePatch (core::Unique::Identifier);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

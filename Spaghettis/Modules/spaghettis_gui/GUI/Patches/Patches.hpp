@@ -71,10 +71,10 @@ public:
 // MARK: -
 
 public:
-    void removeRequest (const core::Unique& u);
-    
-public:
     void closeAllPatches();
+
+public:
+    void handleCloseRequest (const core::Unique& u, bool saveBeforeClosing);
     
     bool isAllCloseRequestsDone()
     {

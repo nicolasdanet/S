@@ -14,14 +14,15 @@ namespace spaghettis {
 
 void Patch::requestCloseDialog()
 {
-    const juce::String title = NEEDS_TRANS ("Save patch before closing?");
-        
-    juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (title)
-        .withMessage (file_.getFileName())
+    juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (file_.getFileName())
+        .withMessage (NEEDS_TRANS ("Save the patch before closing?"))
         .withButton (NEEDS_TRANS ("Yes"))
         .withButton (NEEDS_TRANS ("No")));
     
-    auto f = [u = u_](int result) { DBG (result); Spaghettis()->getPatches().removeRequest (u); };
+    auto f = [u = u_](int result)
+    {
+        const bool save = (result == 0); Spaghettis()->getPatches().handleCloseRequest (u, save);
+    };
     
     juce::NativeMessageBox::showAsync (options, f);
 }

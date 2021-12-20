@@ -110,8 +110,21 @@ PD_LOCAL void inputs_closePatch (core::Unique::Identifier i)
     if (object_isCanvas (o)) {
     //
     t_glist *g = cast_glist (o); jassert (glist_isRoot (g));
-    
+
     glist_close (g);
+    //
+    } else { jassertfalse; }
+}
+
+PD_LOCAL void inputs_savePatch (core::Unique::Identifier i)
+{
+    t_object *o = instance_registerGetObject (i);
+    
+    if (object_isCanvas (o)) {
+    //
+    t_glist *g = cast_glist (o); jassert (glist_isRoot (g));
+
+    glist_save (g);
     //
     } else { jassertfalse; }
 }

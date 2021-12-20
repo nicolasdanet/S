@@ -84,6 +84,11 @@ Perform Inputs::closePatch (core::Unique::Identifier i)
     return [i]() { core::inputs_closePatch (i); };
 }
 
+Perform Inputs::savePatch (core::Unique::Identifier i)
+{
+    return [i]() { core::inputs_savePatch (i); };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
