@@ -100,7 +100,6 @@ public:
         return Unique();
     }
 
-
 private:
     Unique::Identifier u_;
         
