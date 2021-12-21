@@ -14,12 +14,12 @@ namespace spaghettis {
 
 void Patch::addObject (const core::Unique& u, const core::Description& v)
 {
-    DBG (u.debug()); DBG (v.debug());
+    
 }
     
 void Patch::removeObject (const core::Unique& u)
 {
-    // DBG (u.debug());
+
 }
     
 // -----------------------------------------------------------------------------------------------------------

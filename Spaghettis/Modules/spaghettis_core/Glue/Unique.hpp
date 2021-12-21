@@ -62,6 +62,8 @@ public:
         
         for (auto& u : *path_) { s.add (juce::String (u)); }
         
+        s.add (juce::String (u_));
+        
         return (s.joinIntoString (" / "));
     }
 

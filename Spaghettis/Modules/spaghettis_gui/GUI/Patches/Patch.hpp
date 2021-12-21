@@ -25,7 +25,7 @@ public:
         tree_ (v.getTree()),
         dirty_ (false)
     {
-        DBG (v.debug()); jassert (tree_.getProperty (Ids::type).equalsWithSameType ("patch"));
+        jassert (tree_.getProperty (Ids::type).equalsWithSameType ("patch"));
 
         setIdentifier (tree_, u);
     }
