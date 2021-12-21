@@ -51,12 +51,7 @@ void Patches::handleSaveRequest (const core::Unique& u, bool save)
         
     auto p = std::find_if (requests_.cbegin(), requests_.cend(), isEqual (u));
     
-    if (p != requests_.cend()) {
-        
-        p->get()->close (save);
-        
-        requests_.erase (std::remove_if (requests_.begin(), requests_.end(), isEqual (u)), requests_.end());
-    }
+    if (p != requests_.cend()) { p->get()->close (save); requests_.erase (p); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
