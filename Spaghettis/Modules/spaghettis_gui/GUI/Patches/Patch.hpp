@@ -27,7 +27,7 @@ public:
     {
         DBG (v.debug()); jassert (tree_.getProperty (Ids::type).equalsWithSameType ("patch"));
 
-        tree_.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
+        setIdentifier (tree_, u);
     }
 
     ~Patch() = default;
@@ -80,6 +80,16 @@ public:
         dirty_ = isDirty;
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    static void setIdentifier (juce::ValueTree& t, const core::Unique& u)
+    {
+        t.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
