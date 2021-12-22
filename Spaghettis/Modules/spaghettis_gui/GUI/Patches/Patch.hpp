@@ -27,7 +27,7 @@ public:
     {
         jassert (tree_.getProperty (Ids::type).equalsWithSameType ("patch"));
 
-        jassert (unique_.isRoot()); setIdentifier (tree_, unique_.getIdentifier());
+        jassert (unique_.isRoot()); setIdentifier (tree_, unique_.getRoot());
     }
 
     ~Patch() = default;
@@ -39,12 +39,12 @@ public:
 public:
     void save() const
     {
-        Spaghettis()->handle (Inputs::savePatch (unique_.getIdentifier()));
+        Spaghettis()->handle (Inputs::savePatch (unique_.getRoot()));
     }
     
     void close (bool saveFirst = false) const
     {
-        if (saveFirst) { save(); } Spaghettis()->handle (Inputs::closePatch (unique_.getIdentifier()));
+        if (saveFirst) { save(); } Spaghettis()->handle (Inputs::closePatch (unique_.getRoot()));
     }
     
 // -----------------------------------------------------------------------------------------------------------

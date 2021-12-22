@@ -109,7 +109,7 @@ private:
     {
         return [i = u.getRoot()] (const std::shared_ptr<Patch>& p)
         {
-            return (p->getUnique().getIdentifier() == i);
+            return (p->getUnique().getRoot() == i);
         };
     }
     
