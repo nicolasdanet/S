@@ -27,7 +27,7 @@ public:
     {
         jassert (tree_.getProperty (Ids::type).equalsWithSameType ("patch"));
 
-        setIdentifier (tree_, u);
+        setIdentifier (tree_, u.getIdentifier());
     }
 
     ~Patch() = default;
@@ -60,6 +60,21 @@ public:
 // MARK: -
 
 public:
+    void setDirty (bool isDirty)
+    {
+        dirty_ = isDirty;
+    }
+    
+    bool isDirty() const
+    {
+        return dirty_;
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     core::Unique getUnique() const
     {
         return unique_;
@@ -70,24 +85,19 @@ public:
         return file_;
     }
     
-    bool isDirty() const
-    {
-        return dirty_;
-    }
-
-    void setDirty (bool isDirty)
-    {
-        dirty_ = isDirty;
-    }
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    static void setIdentifier (juce::ValueTree& t, const core::Unique& u)
+    static void setIdentifier (juce::ValueTree& t, core::Unique::Identifier i)
     {
-        t.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
+        t.setProperty (Ids::identifier, core::Unique::Converter::toVar (i), nullptr);
+    }
+    
+    static bool hasIdentifier (juce::ValueTree& t, core::Unique::Identifier i)
+    {
+        return (i == core::Unique::Converter::fromVar (t.getProperty (Ids::identifier)));
     }
     
 // -----------------------------------------------------------------------------------------------------------
