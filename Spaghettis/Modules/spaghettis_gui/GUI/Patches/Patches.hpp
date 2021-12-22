@@ -30,8 +30,6 @@ public:
     {
         jassert (u.isValid());
 
-        DBG (u.debug()); DBG (v.debug());
-        
         if (u.isRoot()) { createPatch (u, v); }
         else {
             perform (u, [&] (const std::shared_ptr<Patch>& p) { p->addObject (u, v); });
@@ -107,7 +105,7 @@ private:
 // MARK: -
 
 private:
-    static auto isEqual (const core::Unique& u)
+    static auto hasEqualRoot (const core::Unique& u)
     {
         return [i = u.getRoot()] (const std::shared_ptr<Patch>& p)
         {
@@ -115,7 +113,7 @@ private:
         };
     }
     
-    static auto asUnique()
+    static auto toUnique()
     {
         return [] (const std::shared_ptr<Patch>& p)
         {
@@ -130,7 +128,7 @@ private:
 private:
     template <class T> void perform (const core::Unique& u, T f) const
     {
-        auto r = std::find_if (roots_.cbegin(), roots_.cend(), isEqual (u));
+        auto r = std::find_if (roots_.cbegin(), roots_.cend(), hasEqualRoot (u));
     
         if (r != roots_.cend()) { f (*r); }
     }

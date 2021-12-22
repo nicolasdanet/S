@@ -27,7 +27,7 @@ public:
     {
         jassert (tree_.getProperty (Ids::type).equalsWithSameType ("patch"));
 
-        setIdentifier (tree_, u.getIdentifier());
+        jassert (unique_.isRoot()); setIdentifier (tree_, unique_.getIdentifier());
     }
 
     ~Patch() = default;
@@ -95,7 +95,7 @@ private:
         t.setProperty (Ids::identifier, core::Unique::Converter::toVar (i), nullptr);
     }
     
-    static bool hasIdentifier (juce::ValueTree& t, core::Unique::Identifier i)
+    static bool hasIdentifier (const juce::ValueTree& t, core::Unique::Identifier i)
     {
         return (i == core::Unique::Converter::fromVar (t.getProperty (Ids::identifier)));
     }

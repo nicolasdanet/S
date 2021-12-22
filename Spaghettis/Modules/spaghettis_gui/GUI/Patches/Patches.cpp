@@ -14,14 +14,14 @@ namespace spaghettis {
 
 std::shared_ptr<Patch> Patches::fetchPatch (const core::Unique& u) const
 {
-    auto r = std::find_if (roots_.cbegin(), roots_.cend(), isEqual (u));
+    auto r = std::find_if (roots_.cbegin(), roots_.cend(), hasEqualRoot (u));
     
     return std::shared_ptr<Patch> (r != roots_.cend() ? *r : nullptr);
 }
 
 void Patches::removePatch (const core::Unique& u)
 {
-    roots_.erase (std::remove_if (roots_.begin(), roots_.end(), isEqual (u)), roots_.end());
+    roots_.erase (std::remove_if (roots_.begin(), roots_.end(), hasEqualRoot (u)), roots_.end());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ void Patches::handleSaveRequest (const core::Unique& u, bool save)
 {
     jassert (juce::MessageManager::getInstance()->isThisTheMessageThread());
         
-    auto p = std::find_if (requests_.cbegin(), requests_.cend(), isEqual (u));
+    auto p = std::find_if (requests_.cbegin(), requests_.cend(), hasEqualRoot (u));
     
     if (p != requests_.cend()) { p->get()->close (save); requests_.erase (p); }
 }
@@ -88,7 +88,7 @@ void Patches::closeAllPatches()
 {
     std::vector<core::Unique> t;
     
-    std::transform (roots_.cbegin(), roots_.cend(), std::back_inserter (t), asUnique());
+    std::transform (roots_.cbegin(), roots_.cend(), std::back_inserter (t), toUnique());
     
     for (const auto& u : t) { closePatch (u); }
 }
