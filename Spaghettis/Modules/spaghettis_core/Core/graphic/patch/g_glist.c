@@ -103,7 +103,7 @@ PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window, int isOpe
     
     glist_setOpened (x, isOpened);
     
-    if (glist_isRoot (x)) { instance_rootsAdd (x); }
+    if (glist_isRoot (x)) { instance_rootsAdd (x); } else { outputs_objectAdded (cast_object (x), owner); }
     
     glist_loadBegin (x); instance_stackPush (x);
     
