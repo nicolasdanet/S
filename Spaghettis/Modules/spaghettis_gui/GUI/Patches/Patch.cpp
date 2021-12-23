@@ -18,17 +18,28 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 
 /*
+juce::ValueTree getParentSearch (const juce::ValueTree& tree, std::vector<core::Unique::Identifier>& i)
+{
+    juce::ValueTree t (tree);
+    
+    return t;
+}
+
 juce::ValueTree getParentFor (const juce::ValueTree& tree, const core::Unique& u)
 {
     juce::ValueTree t (tree.getRoot());
-    std::vector<Unique::Identifier> i (u.getPath());
     
-    // jassert (t.hasType (Ids::OBJECT));
-    // jassert (hasIdentifier (t, );
+    std::vector<core::Unique::Identifier> i (u.getPath());
+    
+    jassert (t.hasType (Ids::OBJECT));
+    jassert (!i.empty());
+    jassert (Patch::hasIdentifier (t, i.back()));
+    
+    i.pop_back();
     
     // getChildWithProperty (const Identifier &propertyName, const var &propertyValue) const
     
-    return t;
+    return (i.empty() ? t : getParentSearch (t, i));
 }
 */
 

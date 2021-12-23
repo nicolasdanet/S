@@ -89,7 +89,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
+public:
     static void setIdentifier (juce::ValueTree& t, core::Unique::Identifier i)
     {
         t.setProperty (Ids::identifier, core::Unique::Converter::toVar (i), nullptr);

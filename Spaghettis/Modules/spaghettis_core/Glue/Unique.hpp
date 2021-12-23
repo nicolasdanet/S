@@ -60,10 +60,10 @@ public:
     {
         juce::StringArray s;
         
-        s.add (juce::String (u_));
-        
         if (path_) { for (auto& u : *path_) { s.add (juce::String (u)); } }
         
+        s.add (juce::String (u_));
+                
         return (s.joinIntoString (" / "));
     }
 
@@ -86,7 +86,7 @@ public:
     {
         if (!path_) { return u_; }
         else {
-            jassert (!path_->empty()); return path_->back();
+            jassert (!path_->empty()); return path_->front();
         }
     }
     
