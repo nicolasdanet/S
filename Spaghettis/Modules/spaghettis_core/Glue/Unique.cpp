@@ -42,17 +42,17 @@ void makeUniquePath (std::vector<Unique::Identifier>& v, struct _object *o, stru
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Unique::Unique() :
-    u_ (0),
-    path_ (std::make_shared<std::vector<Unique::Identifier>>())
+Unique::Unique() : u_ (0)
 {
 
 }
 
-Unique::Unique (struct _object *o, struct _glist *owner) : u_ (object_getUnique (o)),
-    path_ (std::make_shared<std::vector<Unique::Identifier>>())
+Unique::Unique (struct _object *o, struct _glist *owner) : u_ (object_getUnique (o))
 {
-    makeUniquePath (*path_, o, owner);
+    if (owner) {
+        path_ = std::make_shared<std::vector<Unique::Identifier>>();
+        makeUniquePath (*path_, o, owner);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

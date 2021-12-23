@@ -60,7 +60,7 @@ public:
     {
         juce::StringArray s;
         
-        for (auto& u : *path_) { s.add (juce::String (u)); }
+        if (path_) { for (auto& u : *path_) { s.add (juce::String (u)); } }
         
         s.add (juce::String (u_));
         
@@ -79,12 +79,15 @@ public:
     
     bool isRoot() const
     {
-        return path_->empty();
+        return !path_;
     }
 
     Unique::Identifier getRoot() const
     {
-        if (isRoot()) { return u_; } else { return path_->front(); }
+        if (!path_) { return u_; }
+        else {
+            jassert (!path_->empty()); return path_->front();
+        }
     }
     
     Unique::Identifier getIdentifier() const
