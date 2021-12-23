@@ -60,9 +60,9 @@ public:
     {
         juce::StringArray s;
         
-        if (path_) { for (auto& u : *path_) { s.add (juce::String (u)); } }
-        
         s.add (juce::String (u_));
+        
+        if (path_) { for (auto& u : *path_) { s.add (juce::String (u)); } }
         
         return (s.joinIntoString (" / "));
     }
@@ -86,7 +86,7 @@ public:
     {
         if (!path_) { return u_; }
         else {
-            jassert (!path_->empty()); return path_->front();
+            jassert (!path_->empty()); return path_->back();
         }
     }
     

@@ -18,18 +18,18 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 
 /*
-
 juce::ValueTree getParentFor (const juce::ValueTree& tree, const core::Unique& u)
 {
     juce::ValueTree t (tree.getRoot());
+    std::vector<Unique::Identifier> i (u.getPath());
     
-    // hasType (Ids::OBJECT);
-    // hasIdentifier ();
+    // jassert (t.hasType (Ids::OBJECT));
+    // jassert (hasIdentifier (t, );
+    
     // getChildWithProperty (const Identifier &propertyName, const var &propertyValue) const
     
     return t;
 }
-
 */
 
 // -----------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ void Patch::removeObject (const core::Unique& u)
 {
 
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

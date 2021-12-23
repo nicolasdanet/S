@@ -26,7 +26,7 @@ void makeUniquePath (std::vector<Unique::Identifier>& v, struct _object *o, stru
 {
     while (owner) {
     //
-    v.insert (v.cbegin(), object_getUnique (cast_object (owner)));
+    v.push_back (object_getUnique (cast_object (owner)));
 
     owner = glist_getParent (owner);
     //
