@@ -25,9 +25,7 @@ public:
         tree_ (v.getTree()),
         dirty_ (false)
     {
-        jassert (tree_.getProperty (Ids::type).equalsWithSameType ("patch"));
-
-        jassert (unique_.isRoot()); setIdentifier (tree_, unique_.getRoot());
+        setIdentifier (tree_, unique_.getRoot());
     }
 
     ~Patch() = default;
@@ -54,6 +52,13 @@ public:
 public:
     void addObject (const core::Unique& u, const core::Description& v);
     void removeObject (const core::Unique& u);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    juce::ValueTree getParentFor (const core::Unique& u) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -98,6 +103,11 @@ public:
     static bool hasIdentifier (const juce::ValueTree& t, core::Unique::Identifier i)
     {
         return (i == core::Unique::Converter::fromVar (t.getProperty (Ids::identifier)));
+    }
+    
+    static juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::Identifier i)
+    {
+        return t.getChildWithProperty (Ids::identifier, core::Unique::Converter::toVar (i));
     }
     
 // -----------------------------------------------------------------------------------------------------------

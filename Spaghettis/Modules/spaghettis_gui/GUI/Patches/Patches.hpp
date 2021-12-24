@@ -28,8 +28,6 @@ public:
 public:
     void addObject (const core::Unique& u, const core::Description& v)
     {
-        jassert (u.isValid());
-
         if (u.isRoot()) { createPatch (u, v); }
         else {
             perform (u, [&] (const std::shared_ptr<Patch>& p) { p->addObject (u, v); });
@@ -38,8 +36,6 @@ public:
 
     void removeObject (const core::Unique& u)
     {
-        jassert (u.isValid());
-
         if (u.isRoot()) { closePatch (u, false); }
         else {
             perform (u, [&] (const std::shared_ptr<Patch>& p) { p->removeObject (u); });
@@ -48,12 +44,12 @@ public:
 
     void renameObject (const core::Unique& u, core::Unique::Identifier i)
     {
-        jassert (u.isValid());
+
     }
 
     void changeObject (const core::Unique& u, const core::Description& v)
     {
-        jassert (u.isValid());
+
     }
 
 // -----------------------------------------------------------------------------------------------------------

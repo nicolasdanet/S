@@ -47,8 +47,6 @@ void Patches::showSaveRequest (const std::shared_ptr<Patch>& p)
 
 void Patches::handleSaveRequest (const core::Unique& u, bool save)
 {
-    jassert (juce::MessageManager::getInstance()->isThisTheMessageThread());
-        
     auto p = std::find_if (requests_.cbegin(), requests_.cend(), hasEqualRoot (u));
     
     if (p != requests_.cend()) { p->get()->close (save); requests_.erase (p); }

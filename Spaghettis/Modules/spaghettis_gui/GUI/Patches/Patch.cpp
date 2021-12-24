@@ -12,40 +12,21 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-/*
-juce::ValueTree getParentSearch (const juce::ValueTree& tree, std::vector<core::Unique::Identifier>& i)
+juce::ValueTree Patch::getParentFor (const core::Unique& u) const
 {
-    juce::ValueTree t (tree);
+    juce::ValueTree t (tree_);
+        
+    std::vector<core::Unique::Identifier> identifiers (u.getPath());
+    
+    jassert (!identifiers.empty() && hasIdentifier (t, identifiers.front()));
+    
+    identifiers.erase (identifiers.cbegin());
+    
+    for (const auto& i : identifiers) { t = Patch::getChildWithIdentifier (t, i); }
+
+    jassert (t.isValid());
     
     return t;
-}
-
-juce::ValueTree getParentFor (const juce::ValueTree& tree, const core::Unique& u)
-{
-    juce::ValueTree t (tree.getRoot());
-    
-    std::vector<core::Unique::Identifier> i (u.getPath());
-    
-    jassert (t.hasType (Ids::OBJECT));
-    jassert (!i.empty());
-    jassert (Patch::hasIdentifier (t, i.back()));
-    
-    i.pop_back();
-    
-    // getChildWithProperty (const Identifier &propertyName, const var &propertyValue) const
-    
-    return (i.empty() ? t : getParentSearch (t, i));
-}
-*/
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -55,6 +36,10 @@ juce::ValueTree getParentFor (const juce::ValueTree& tree, const core::Unique& u
 void Patch::addObject (const core::Unique& u, const core::Description& v)
 {
     DBG (u.debug()); DBG (v.debug());
+    
+    juce::ValueTree parent = getParentFor (u);
+    
+    DBG (juce::String (" -> ") + parent.getProperty (Ids::identifier).toString());
 }
 
 void Patch::removeObject (const core::Unique& u)
