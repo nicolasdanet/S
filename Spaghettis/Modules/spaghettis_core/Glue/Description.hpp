@@ -56,7 +56,7 @@ public:
 // MARK: -
 
 public:
-    juce::ValueTree getTree (Unique::Identifier i) const
+    juce::ValueTree fetchTree (Unique::Identifier i) const
     {
         juce::ValueTree t (t_);
         
@@ -65,9 +65,9 @@ public:
         return t;
     }
     
-    const juce::var& getProperty (const juce::Identifier& name) const
+    juce::String getFullPathName() const
     {
-        return t_.getProperty (name);
+        return t_.getProperty (Ids::path).toString();
     }
 
 // -----------------------------------------------------------------------------------------------------------
