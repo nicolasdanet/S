@@ -19,19 +19,9 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (const core::Unique& u, const core::Description& v) :
-        unique_ (u),
-        file_ (v.getProperty (Ids::path).toString()),
-        tree_ (v.getTree()),
-        dirty_ (false)
-    {
-        setIdentifier (tree_, unique_.getRoot());
-    }
+    explicit Patch (const core::Unique& u, const core::Description& v);
 
-    ~Patch()
-    {
-        DBG (tree_.toXmlString());
-    }
+    ~Patch() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -61,7 +51,7 @@ public:
 // MARK: -
 
 private:
-    juce::ValueTree getParentFor (const core::Unique& u) const;
+    juce::ValueTree getParent (const core::Unique& u) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -91,26 +81,6 @@ public:
     juce::File getFile() const
     {
         return file_;
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static void setIdentifier (juce::ValueTree& t, core::Unique::Identifier i)
-    {
-        t.setProperty (Ids::identifier, core::Unique::Converter::toVar (i), nullptr);
-    }
-    
-    static bool hasIdentifier (const juce::ValueTree& t, core::Unique::Identifier i)
-    {
-        return (i == core::Unique::Converter::fromVar (t.getProperty (Ids::identifier)));
-    }
-    
-    static juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::Identifier i)
-    {
-        return t.getChildWithProperty (Ids::identifier, core::Unique::Converter::toVar (i));
     }
     
 // -----------------------------------------------------------------------------------------------------------
