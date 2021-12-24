@@ -23,8 +23,6 @@ juce::ValueTree Patch::getParentFor (const core::Unique& u) const
     identifiers.erase (identifiers.cbegin());
     
     for (const auto& i : identifiers) { t = Patch::getChildWithIdentifier (t, i); }
-
-    jassert (t.isValid());
     
     return t;
 }
@@ -37,9 +35,14 @@ void Patch::addObject (const core::Unique& u, const core::Description& v)
 {
     DBG (u.debug()); DBG (v.debug());
     
+    juce::ValueTree object = v.getTree();
     juce::ValueTree parent = getParentFor (u);
     
-    DBG (juce::String (" -> ") + parent.getProperty (Ids::identifier).toString());
+    setIdentifier (object, u.getIdentifier());
+    
+    jassert (parent.isValid());
+    
+    parent.appendChild (object, nullptr);
 }
 
 void Patch::removeObject (const core::Unique& u)
