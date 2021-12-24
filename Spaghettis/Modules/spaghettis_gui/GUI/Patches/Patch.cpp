@@ -17,11 +17,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setIdentifier (juce::ValueTree& t, core::Unique::Identifier i)
-{
-    t.setProperty (Ids::identifier, core::Unique::Converter::toVar (i), nullptr);
-}
-
 bool hasIdentifier (const juce::ValueTree& t, core::Unique::Identifier i)
 {
     return (i == core::Unique::Converter::fromVar (t.getProperty (Ids::identifier)));
@@ -44,10 +39,10 @@ juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::
 Patch::Patch (const core::Unique& u, const core::Description& v) :
     unique_ (u),
     file_ (v.getProperty (Ids::path).toString()),
-    tree_ (v.getTree()),
+    tree_ (v.getTree (u.getRoot())),
     dirty_ (false)
 {
-    setIdentifier (tree_, unique_.getRoot());
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -56,16 +51,16 @@ Patch::Patch (const core::Unique& u, const core::Description& v) :
 
 void Patch::addObject (const core::Unique& u, const core::Description& v)
 {
-    DBG (v.debug());
+    const core::Unique::Identifier i = u.getIdentifier();
     
-    juce::ValueTree object = v.getTree();
     juce::ValueTree parent = getParent (u);
+    juce::ValueTree object = getChildWithIdentifier (parent, i);
     
-    setIdentifier (object, u.getIdentifier());
-    
-    jassert (parent.isValid());
-    
-    parent.appendChild (object, nullptr);
+    if (object.isValid()) {
+        object.copyPropertiesFrom (v.getTree (i), nullptr);
+    } else {
+        parent.appendChild (v.getTree (i), nullptr);
+    }
 }
 
 void Patch::removeObject (const core::Unique& u)

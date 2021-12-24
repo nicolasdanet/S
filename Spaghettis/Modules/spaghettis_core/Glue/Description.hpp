@@ -56,9 +56,13 @@ public:
 // MARK: -
 
 public:
-    juce::ValueTree getTree() const
+    juce::ValueTree getTree (Unique::Identifier i) const
     {
-        return t_;
+        juce::ValueTree t (t_);
+        
+        t.setProperty (Ids::identifier, core::Unique::Converter::toVar (i), nullptr);
+        
+        return t;
     }
     
     const juce::var& getProperty (const juce::Identifier& name) const
