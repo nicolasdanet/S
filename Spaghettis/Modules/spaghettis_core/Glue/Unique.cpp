@@ -22,7 +22,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::vector<Unique::Identifier> fetchIdentifiersOfParents (struct _object *o, struct _glist *owner)
+std::vector<Unique::Identifier> fetchIdentifiersFromRoot (struct _object *o, struct _glist *owner)
 {
     std::vector<Unique::Identifier> t;
     
@@ -55,7 +55,7 @@ Unique::Unique (struct _object *o, struct _glist *owner) : u_ (object_getUnique 
 {
     if (owner) {
     //
-    std::vector<Unique::Identifier> t (fetchIdentifiersOfParents (o, owner));
+    std::vector<Unique::Identifier> t (fetchIdentifiersFromRoot (o, owner));
     
     if (!t.empty()) { r_ = t.front(); t.erase (t.cbegin()); }
     if (!t.empty()) { path_ = std::make_shared<std::vector<Unique::Identifier>> (std::move (t)); }
