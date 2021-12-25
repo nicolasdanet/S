@@ -17,11 +17,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool hasIdentifier (const juce::ValueTree& t, core::Unique::Identifier i)
-{
-    return (i == core::Unique::Converter::fromVar (t.getProperty (Ids::identifier)));
-}
-
 juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::Identifier i)
 {
     return t.getChildWithProperty (Ids::identifier, core::Unique::Converter::toVar (i));
@@ -75,14 +70,10 @@ void Patch::removeObject (const core::Unique& u)
 juce::ValueTree Patch::getParent (const core::Unique& u) const
 {
     juce::ValueTree t (tree_);
-        
-    std::vector<core::Unique::Identifier> identifiers (u.getPath());
     
-    jassert (!identifiers.empty() && hasIdentifier (t, identifiers.front()));
-    
-    identifiers.erase (identifiers.cbegin());
-    
-    for (const auto& i : identifiers) { t = getChildWithIdentifier (t, i); }
+    if (u.hasPath()) {
+        for (const auto& i : u.getPath()) { t = getChildWithIdentifier (t, i); }
+    }
     
     return t;
 }

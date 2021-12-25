@@ -95,9 +95,20 @@ public:
         return u_;
     }
     
+    /* Don't consider the root. */
+    
+    bool hasPath() const
+    {
+        return (path_ && path_->size() > 1);
+    }
+    
     std::vector<Unique::Identifier> getPath() const
     {
-        return (path_ ? *path_ : std::vector<Unique::Identifier>());
+        if (hasPath()) { return std::vector<Unique::Identifier> (path_->cbegin() + 1, path_->end()); }
+    
+        jassertfalse;
+        
+        return std::vector<Unique::Identifier>();
     }
     
 // -----------------------------------------------------------------------------------------------------------

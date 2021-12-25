@@ -50,8 +50,11 @@ Unique::Unique() : u_ (0)
 Unique::Unique (struct _object *o, struct _glist *owner) : u_ (object_getUnique (o))
 {
     if (owner) {
-        path_ = std::make_shared<std::vector<Unique::Identifier>>();
-        makeUniquePath (*path_, o, owner);
+    //
+    path_ = std::make_shared<std::vector<Unique::Identifier>>();
+    
+    makeUniquePath (*path_, o, owner);
+    //
     }
 }
 
