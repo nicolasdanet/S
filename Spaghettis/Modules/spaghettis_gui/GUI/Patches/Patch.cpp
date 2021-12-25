@@ -46,6 +46,8 @@ Patch::Patch (const core::Unique& u, const core::Description& v) :
 
 void Patch::addObject (const core::Unique& u, const core::Description& v)
 {
+    DBG (u.debug()); DBG (v.debug());
+    
     const core::Unique::Identifier i = u.getIdentifier();
     
     juce::ValueTree parent = getParent (u);

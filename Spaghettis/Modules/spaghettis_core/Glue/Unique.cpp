@@ -22,15 +22,19 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void makeUniquePath (std::vector<Unique::Identifier>& v, struct _object *o, struct _glist *owner)
+std::vector<Unique::Identifier> fetchIdentifiersOfParents (struct _object *o, struct _glist *owner)
 {
+    std::vector<Unique::Identifier> t;
+    
     while (owner) {
     //
-    v.insert (v.cbegin(), object_getUnique (cast_object (owner)));
+    t.insert (t.cbegin(), object_getUnique (cast_object (owner)));
 
     owner = glist_getParent (owner);
     //
     }
+    
+    return t;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -42,18 +46,19 @@ void makeUniquePath (std::vector<Unique::Identifier>& v, struct _object *o, stru
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Unique::Unique() : u_ (0)
+Unique::Unique() : u_ (0), r_ (0)
 {
 
 }
 
-Unique::Unique (struct _object *o, struct _glist *owner) : u_ (object_getUnique (o))
+Unique::Unique (struct _object *o, struct _glist *owner) : u_ (object_getUnique (o)), r_ (0)
 {
     if (owner) {
     //
-    path_ = std::make_shared<std::vector<Unique::Identifier>>();
+    std::vector<Unique::Identifier> t (fetchIdentifiersOfParents (o, owner));
     
-    makeUniquePath (*path_, o, owner);
+    if (!t.empty()) { r_ = t.front(); t.erase (t.cbegin()); }
+    if (!t.empty()) { path_ = std::make_shared<std::vector<Unique::Identifier>> (std::move (t)); }
     //
     }
 }

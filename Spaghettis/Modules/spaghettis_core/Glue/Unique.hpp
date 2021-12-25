@@ -60,6 +60,8 @@ public:
     {
         juce::StringArray s;
         
+        s.add (juce::String (r_));
+        
         if (path_) { for (auto& u : *path_) { s.add (juce::String (u)); } }
         
         s.add (juce::String (u_));
@@ -79,15 +81,12 @@ public:
     
     bool isRoot() const
     {
-        return !path_;
+        return r_ == 0;
     }
 
     Unique::Identifier getRoot() const
     {
-        if (!path_) { return u_; }
-        else {
-            jassert (!path_->empty()); return path_->front();
-        }
+        return isRoot() ? u_ : r_;
     }
     
     Unique::Identifier getIdentifier() const
@@ -95,20 +94,14 @@ public:
         return u_;
     }
     
-    /* Don't consider the root. */
-    
     bool hasPath() const
     {
-        return (path_ && path_->size() > 1);
+        return (path_ != nullptr);
     }
     
-    std::vector<Unique::Identifier> getPath() const
+    const std::vector<Unique::Identifier>& getPath() const
     {
-        if (hasPath()) { return std::vector<Unique::Identifier> (path_->cbegin() + 1, path_->end()); }
-    
-        jassertfalse;
-        
-        return std::vector<Unique::Identifier>();
+        jassert (hasPath()); return *path_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -123,6 +116,7 @@ public:
 
 private:
     Unique::Identifier u_;
+    Unique::Identifier r_;
         
 private:
     std::shared_ptr<std::vector<Unique::Identifier>> path_;
