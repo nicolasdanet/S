@@ -123,9 +123,8 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
     const Unique u (x, owner);
-    const Description v (Description::view (u, x));
     
-    wrapper_send (Outputs::objectAdded (std::move (u), std::move (v)));
+    wrapper_send (Outputs::objectAdded (u, Description::view (u, x)));
 }
 
 PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)

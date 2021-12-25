@@ -56,7 +56,7 @@ public:
 // MARK: -
 
 public:
-    juce::ValueTree fetchTree (Unique::Identifier i) const
+    juce::ValueTree fetchTree() const
     {
         return t_;
     }
