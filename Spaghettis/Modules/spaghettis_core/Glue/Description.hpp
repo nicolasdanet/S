@@ -49,7 +49,7 @@ public:
 // MARK: -
 
 public:
-    static Description view (struct _object *o);
+    static Description view (const Unique& u, struct _object *o);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -58,11 +58,7 @@ public:
 public:
     juce::ValueTree fetchTree (Unique::Identifier i) const
     {
-        juce::ValueTree t (t_);
-        
-        t.setProperty (Ids::identifier, core::Unique::Converter::toVar (i), nullptr);
-        
-        return t;
+        return t_;
     }
     
     juce::String getFullPathName() const

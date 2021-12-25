@@ -54,9 +54,11 @@ juce::String getContentBuffer (struct _object *o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Description Description::view (struct _object *o)
+Description Description::view (const Unique& u, struct _object *o)
 {
     juce::ValueTree t (Ids::OBJECT);
+    
+    t.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
     
     if (o) {
     //
