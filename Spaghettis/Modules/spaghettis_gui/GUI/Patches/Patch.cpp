@@ -33,21 +33,26 @@ juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::
 
 void Patch::addObject (const core::Unique& u, const core::Description& v)
 {
-    DBG (u.debug()); DBG (v.debug());
-    
-    juce::ValueTree parent = getParent (u);
-    juce::ValueTree object = getChildWithIdentifier (parent, u.getIdentifier());
+    juce::ValueTree parent (getParent (u));
+    juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
     
     if (object.isValid()) {
-        object.copyPropertiesFrom (v, nullptr);
+        object.copyPropertiesAndChildrenFrom (v, nullptr);
     } else {
-        parent.appendChild (v, nullptr);
+        parent.appendChild (v, nullptr);            DBG (juce::String ("Add: ") + u.debug()); DBG (v.debug());
     }
 }
 
 void Patch::removeObject (const core::Unique& u)
 {
-
+    juce::ValueTree parent (getParent (u));
+    juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
+    
+    if (object.isValid()) {
+        parent.removeChild (object, nullptr);       DBG (juce::String ("Remove: ") + u.debug());
+    } else {
+        jassertfalse;       /* Is this possible? */
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -63,6 +68,11 @@ juce::ValueTree Patch::getParent (const core::Unique& u) const
     }
     
     return t;
+}
+
+juce::ValueTree Patch::getObject (const core::Unique& u) const
+{
+    return getChildWithIdentifier (getParent (u), u.getIdentifier());
 }
 
 // -----------------------------------------------------------------------------------------------------------
