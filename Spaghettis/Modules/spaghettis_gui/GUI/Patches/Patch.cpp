@@ -33,23 +33,27 @@ juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::
 
 void Patch::addObject (const core::Unique& u, const core::Description& v)
 {
+    DBG (juce::String ("Add: ") + u.debug()); DBG (v.debug());
+    
     juce::ValueTree parent (getParent (u));
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
     
     if (object.isValid()) {
         object.copyPropertiesAndChildrenFrom (v, nullptr);
     } else {
-        parent.appendChild (v, nullptr);            DBG (juce::String ("Add: ") + u.debug()); DBG (v.debug());
+        parent.appendChild (v, nullptr);
     }
 }
 
 void Patch::removeObject (const core::Unique& u)
 {
+    DBG (juce::String ("Remove: ") + u.debug());
+    
     juce::ValueTree parent (getParent (u));
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
     
     if (object.isValid()) {
-        parent.removeChild (object, nullptr);       DBG (juce::String ("Remove: ") + u.debug());
+        parent.removeChild (object, nullptr);
     } else {
         jassertfalse;       /* Is this possible? */
     }
