@@ -60,7 +60,7 @@ public:
     {
         juce::StringArray s;
         
-        s.add (juce::String (r_));
+        s.add (isRoot() ? juce::String ("-") : juce::String (r_));
         
         if (path_) { for (auto& u : *path_) { s.add (juce::String (u)); } }
         
