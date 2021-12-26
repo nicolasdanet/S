@@ -53,6 +53,7 @@ public:
 
 public:
     void addObject (const core::Unique& u, const core::Description& v);
+    void changeObject (const core::Unique& u, const core::Description& v);
     void removeObject (const core::Unique& u);
 
 // -----------------------------------------------------------------------------------------------------------

@@ -33,8 +33,6 @@ juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::
 
 void Patch::addObject (const core::Unique& u, const core::Description& v)
 {
-    DBG (juce::String ("Add: ") + u.debug()); DBG (v.debug());
-    
     juce::ValueTree parent (getParent (u));
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
     
@@ -45,10 +43,13 @@ void Patch::addObject (const core::Unique& u, const core::Description& v)
     }
 }
 
+void Patch::changeObject (const core::Unique& u, const core::Description& v)
+{
+    
+}
+
 void Patch::removeObject (const core::Unique& u)
 {
-    DBG (juce::String ("Remove: ") + u.debug());
-    
     juce::ValueTree parent (getParent (u));
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
     

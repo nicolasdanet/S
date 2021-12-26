@@ -28,14 +28,25 @@ public:
 public:
     void addObject (const core::Unique& u, const core::Description& v)
     {
+        DBG (juce::String ("Add: ") + u.debug()); DBG (v.debug());
+            
         if (u.isRoot()) { createPatch (u, v); }
         else {
             perform (u, [&] (const std::shared_ptr<Patch>& p) { p->addObject (u, v); });
         }
     }
 
+    void changeObject (const core::Unique& u, const core::Description& v)
+    {
+        DBG (juce::String ("Change: ") + u.debug()); DBG (v.debug());
+        
+        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->changeObject (u, v); });
+    }
+    
     void removeObject (const core::Unique& u)
     {
+        DBG (juce::String ("Remove: ") + u.debug());
+        
         if (u.isRoot()) { closePatch (u, false); }
         else {
             perform (u, [&] (const std::shared_ptr<Patch>& p) { p->removeObject (u); });
@@ -43,11 +54,6 @@ public:
     }
 
     void renameObject (const core::Unique& u, core::Unique::Identifier i)
-    {
-
-    }
-
-    void changeObject (const core::Unique& u, const core::Description& v)
     {
 
     }
