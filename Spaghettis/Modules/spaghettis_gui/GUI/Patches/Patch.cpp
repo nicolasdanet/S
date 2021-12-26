@@ -33,7 +33,6 @@ juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::
 
 Patch::Patch (const core::Unique& u, const core::Description& v) :
     unique_ (u),
-    file_ (v.getFullPathName()),
     tree_ (v.fetchTree()),
     dirty_ (false)
 {

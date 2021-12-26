@@ -83,7 +83,7 @@ public:
     
     juce::File getFile() const
     {
-        return file_;
+        return juce::File (tree_.getProperty (Ids::path).toString());
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -92,7 +92,6 @@ public:
 
 private:
     core::Unique unique_;
-    juce::File file_;
     juce::ValueTree tree_;
     bool dirty_;
 
