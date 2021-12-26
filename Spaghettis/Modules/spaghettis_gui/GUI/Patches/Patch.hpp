@@ -19,7 +19,13 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (const core::Unique& u, const core::Description& v);
+    explicit Patch (const core::Unique& u, const core::Description& v) :
+        unique_ (u),
+        tree_ (v),
+        dirty_ (false)
+    {
+
+    }
 
     ~Patch()
     {
