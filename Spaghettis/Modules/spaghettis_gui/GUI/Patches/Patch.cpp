@@ -33,7 +33,7 @@ juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::
 
 Patch::Patch (const core::Unique& u, const core::Description& v) :
     unique_ (u),
-    tree_ (v.fetchTree()),
+    tree_ (v),
     dirty_ (false)
 {
 
@@ -51,9 +51,9 @@ void Patch::addObject (const core::Unique& u, const core::Description& v)
     juce::ValueTree object = getChildWithIdentifier (parent, u.getIdentifier());
     
     if (object.isValid()) {
-        object.copyPropertiesFrom (v.fetchTree(), nullptr);
+        object.copyPropertiesFrom (v, nullptr);
     } else {
-        parent.appendChild (v.fetchTree(), nullptr);
+        parent.appendChild (v, nullptr);
     }
 }
 

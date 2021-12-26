@@ -56,7 +56,7 @@ public:
 // MARK: -
 
 public:
-    juce::ValueTree fetchTree() const
+    operator juce::ValueTree() const
     {
         return t_;
     }
