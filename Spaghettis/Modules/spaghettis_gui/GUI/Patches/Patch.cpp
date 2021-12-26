@@ -75,11 +75,6 @@ juce::ValueTree Patch::getParent (const core::Unique& u) const
     return t;
 }
 
-juce::ValueTree Patch::getObject (const core::Unique& u) const
-{
-    return getChildWithIdentifier (getParent (u), u.getIdentifier());
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

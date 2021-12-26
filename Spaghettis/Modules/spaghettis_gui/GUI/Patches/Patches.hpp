@@ -40,7 +40,10 @@ public:
     {
         DBG (juce::String ("Change: ") + u.debug()); DBG (v.debug());
         
-        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->changeObject (u, v); });
+        if (u.isRoot()) { changePatch (u, v); }
+        else {
+            perform (u, [&] (const std::shared_ptr<Patch>& p) { p->changeObject (u, v); });
+        }
     }
     
     void removeObject (const core::Unique& u)
@@ -96,6 +99,7 @@ public:
 
 private:
     void createPatch (const core::Unique& u, const core::Description& v);
+    void changePatch (const core::Unique& u, const core::Description& v);
     void closePatch (const core::Unique& u, bool notify = true);
     
 private:

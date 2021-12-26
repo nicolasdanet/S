@@ -61,6 +61,11 @@ void Patches::createPatch (const core::Unique& u, const core::Description& v)
     roots_.push_back (std::make_shared<Patch> (u, v));
 }
 
+void Patches::changePatch (const core::Unique& u, const core::Description& v)
+{
+
+}
+
 /* To avoid bad loops remove first the patch from the roots before to release it. */
 
 void Patches::closePatch (const core::Unique& u, bool notify)
