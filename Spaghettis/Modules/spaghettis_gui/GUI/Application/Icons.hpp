@@ -48,6 +48,7 @@ public:
         add             = 1,
         autoscroll,
         clear,
+        edit,
         error,
         find,
         message,
@@ -67,6 +68,7 @@ public:
         addIconAction ("Add",           0, "add_svg");
         addIconToggle ("Autoscroll",    0, "system_update_alt_svg");
         addIconAction ("Clear",         0, "delete_forever_svg");
+        addIconToggle ("Edit",          0, "lock_svg", "lock_open_svg");
         addIconToggle ("Error",         4, "error_outline_svg");
         addIconAction ("Find",          0, "place_svg");
         addIconToggle ("Message",       2, "mail_svg");
@@ -159,9 +161,14 @@ private:
     
     void addIconToggle (const juce::String& name, int extra, const char* image)
     {
-        addIconProceed (name, image, image, true,  extra, true);
+        addIconProceed (name, image, image, true, extra, true);
     }
 
+    void addIconToggle (const juce::String& name, int extra, const char* imageOff, const char* imageOn)
+    {
+        addIconProceed (name, imageOff, imageOn, true, extra, true);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
