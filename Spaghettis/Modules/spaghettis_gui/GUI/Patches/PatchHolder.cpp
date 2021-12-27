@@ -12,14 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::shared_ptr<Patch> Patches::fetchPatch (const core::Unique& u) const
+std::shared_ptr<Patch> PatchHolder::fetchPatch (const core::Unique& u) const
 {
     auto r = std::find_if (roots_.cbegin(), roots_.cend(), hasEqualRoot (u));
     
     return std::shared_ptr<Patch> (r != roots_.cend() ? *r : nullptr);
 }
 
-void Patches::removePatch (const core::Unique& u)
+void PatchHolder::removePatch (const core::Unique& u)
 {
     roots_.erase (std::remove_if (roots_.begin(), roots_.end(), hasEqualRoot (u)), roots_.end());
 }
@@ -28,7 +28,7 @@ void Patches::removePatch (const core::Unique& u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patches::showSaveRequest (const std::shared_ptr<Patch>& p)
+void PatchHolder::showSaveRequest (const std::shared_ptr<Patch>& p)
 {
     const juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (p->getFile().getFileName())
             .withMessage (NEEDS_TRANS ("Save the patch before closing?"))
@@ -45,7 +45,7 @@ void Patches::showSaveRequest (const std::shared_ptr<Patch>& p)
     requests_.push_back (p);
 }
 
-void Patches::handleSaveRequest (const core::Unique& u, bool save)
+void PatchHolder::handleSaveRequest (const core::Unique& u, bool save)
 {
     auto p = std::find_if (requests_.cbegin(), requests_.cend(), hasEqualRoot (u));
     
@@ -56,19 +56,19 @@ void Patches::handleSaveRequest (const core::Unique& u, bool save)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patches::createPatch (const core::Unique& u, const core::Description& v)
+void PatchHolder::createPatch (const core::Unique& u, const core::Description& v)
 {
     roots_.push_back (std::make_shared<Patch> (u, v));
 }
 
-void Patches::changePatch (const core::Unique& u, const core::Description& v)
+void PatchHolder::changePatch (const core::Unique& u, const core::Description& v)
 {
 
 }
 
 /* To avoid bad loops remove first the patch from the roots before to release it. */
 
-void Patches::closePatch (const core::Unique& u, bool notify)
+void PatchHolder::closePatch (const core::Unique& u, bool notify)
 {
     std::shared_ptr<Patch> p (fetchPatch (u));
             
@@ -87,7 +87,7 @@ void Patches::closePatch (const core::Unique& u, bool notify)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patches::closeAllPatches()
+void PatchHolder::closeAllPatches()
 {
     std::vector<core::Unique> t;
     
