@@ -32,10 +32,6 @@ public:
         setUsingNativeTitleBar (true);
         setResizable (true, true);
     }
-
-    explicit BaseWindow (const juce::String& name) : BaseWindow (name, name + "Window")
-    {
-    }
     
     ~BaseWindow()
     {

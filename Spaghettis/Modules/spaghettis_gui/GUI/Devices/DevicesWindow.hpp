@@ -19,7 +19,7 @@ class DevicesWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit DevicesWindow() : BaseWindow ("Devices")
+    explicit DevicesWindow() : BaseWindow ("Devices", "DevicesWindow")
     {
         setContentOwned (new DevicesComponent (getKeyName()), true);
         
