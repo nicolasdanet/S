@@ -65,6 +65,7 @@
 		D31E9A678ACB0B6E5AA55846 /* include_juce_data_structures.mm */ /* include_juce_data_structures.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_data_structures.mm; path = ../../JuceLibraryCode/include_juce_data_structures.mm; sourceTree = SOURCE_ROOT; };
 		D35841C9E7BBB4974D7BE1BF /* lock.svg */ /* lock.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = lock.svg; path = ../../Resources/Icons/SVG/lock.svg; sourceTree = SOURCE_ROOT; };
 		DD376E055A3C1DAE5AD681FE /* juce_gui_basics */ /* juce_gui_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_basics; path = "~/JUCE/modules/juce_gui_basics"; sourceTree = "<absolute>"; };
+		DE18CD68DEAAA547548AB5DC /* lock_open.svg */ /* lock_open.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = lock_open.svg; path = ../../Resources/Icons/SVG/lock_open.svg; sourceTree = SOURCE_ROOT; };
 		E256EE56D3F74E547832FB86 /* IOKit.framework */ /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		E8CB080AF78BBE2F817E4F92 /* spaghettis_gui */ /* spaghettis_gui */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_gui; path = ../../Modules/spaghettis_gui; sourceTree = SOURCE_ROOT; };
 		EDBC7364DA4A3F17718C64B9 /* text_rotate_up.svg */ /* text_rotate_up.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = text_rotate_up.svg; path = ../../Resources/Icons/SVG/text_rotate_up.svg; sourceTree = SOURCE_ROOT; };
@@ -105,6 +106,7 @@
 				1E0D225CDF10472A2FBFE7E8,
 				817B1F9B7CE730C1E7A674CF,
 				D35841C9E7BBB4974D7BE1BF,
+				DE18CD68DEAAA547548AB5DC,
 				042B5CF305973FFD5571D23B,
 				C165063F783EB92398410471,
 				B9F040988535C506C0795C1D,
