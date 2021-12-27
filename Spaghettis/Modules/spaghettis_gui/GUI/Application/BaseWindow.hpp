@@ -20,7 +20,7 @@ class BaseWindow :  public  juce::DocumentWindow,
 // MARK: -
 
 public:
-    explicit BaseWindow (const juce::String& name, const juce::String& keyName) :
+    explicit BaseWindow (const juce::String& name, const juce::String& keyName = juce::String()) :
         juce::DocumentWindow (name,
             Spaghettis()->getColour (Colours::windowBackground),
             DocumentWindow::allButtons,
@@ -35,6 +35,8 @@ public:
     
     ~BaseWindow()
     {
+        if (keyName_.isNotEmpty()) {
+        //
         juce::PropertiesFile& p = Spaghettis()->getProperties();
         
         auto e = std::make_unique<juce::XmlElement> (Ids::POSITION);
@@ -42,6 +44,8 @@ public:
         e->setAttribute (Ids::value, getWindowStateAsString());
         
         p.setValue (keyName_ + "Position", e.get());
+        //
+        }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -99,6 +103,8 @@ public:
 
     void makeVisible()
     {
+        if (keyName_.isNotEmpty()) {
+        //
         juce::PropertiesFile& p = Spaghettis()->getProperties();
         
         const std::unique_ptr<juce::XmlElement> e (p.getXmlValue (keyName_ + "Position"));
@@ -108,6 +114,8 @@ public:
             if (s.isNotEmpty()) {
                 restoreWindowStateFromString (s);
             }
+        }
+        //
         }
         
         setVisible (true); addToDesktop(); toFront (true);

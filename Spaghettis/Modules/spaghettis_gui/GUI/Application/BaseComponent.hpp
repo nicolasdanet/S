@@ -106,7 +106,7 @@ private:
 public:
     void saveToolbarButtonsStates()
     {
-        if (toolbar_) {
+        if (toolbar_ && keyName_.isNotEmpty()) {
         //
         juce::PropertiesFile& p = Spaghettis()->getProperties();
         
@@ -133,7 +133,7 @@ public:
     
     void loadToolbarButtonsStates()
     {
-        if (toolbar_) {
+        if (toolbar_ && keyName_.isNotEmpty()) {
         //
         juce::PropertiesFile& p = Spaghettis()->getProperties();
         
