@@ -88,6 +88,7 @@
 #include "GUI/Application/Helpers/IconsButton.hpp"
 #include "GUI/Application/Helpers/IconsFactory.hpp"
 #include "GUI/Application/Helpers/IconsFactoryHelper.hpp"
+#include "GUI/Application/Helpers/ListBoxFunctions.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

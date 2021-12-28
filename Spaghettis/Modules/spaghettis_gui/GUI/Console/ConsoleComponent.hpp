@@ -28,8 +28,8 @@ public:
         BaseComponent (keyName, getIconsFactory())
     {
         listBox_.setModel (this);
-        BaseComponent::listBoxInitialize (listBox_, false);
-        BaseComponent::listBoxUpdate (listBox_, messages_, false);
+        ListBoxFunctions::initialize (listBox_, false);
+        ListBoxFunctions::update (listBox_, messages_, false);
         addAndMakeVisible (listBox_);
  
         Spaghettis()->setLogger (this);
@@ -51,7 +51,7 @@ public:
 public:
     void update()
     {
-        BaseComponent::listBoxUpdate (listBox_, messages_, true);
+        ListBoxFunctions::update (listBox_, messages_, true);
         
         if (getButtonState (Icons::autoscroll)) {
         //
@@ -117,7 +117,7 @@ private:
 public:
     int getNumRows() override
     {
-        return BaseComponent::lisBoxGetNumberOfRowsToDraw (static_cast<int> (messages_.size()));
+        return ListBoxFunctions::getNumberOfRowsToDraw (static_cast<int> (messages_.size()));
     }
 
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
@@ -157,12 +157,12 @@ public:
     {
         listBox_.setBounds (getBoundsRemaining());
         
-        BaseComponent::listBoxUpdate (listBox_, messages_, false);
+        ListBoxFunctions::update (listBox_, messages_, false);
     }
 
     void listWasScrolled() override
     {
-        BaseComponent::listBoxUpdate (listBox_, messages_, false);
+        ListBoxFunctions::update (listBox_, messages_, false);
     }
     
 // -----------------------------------------------------------------------------------------------------------

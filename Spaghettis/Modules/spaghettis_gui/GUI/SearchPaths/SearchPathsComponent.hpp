@@ -28,8 +28,8 @@ public:
         paths_ (Spaghettis()->getSearchPaths())
     {
         listBox_.setModel (this);
-        BaseComponent::listBoxInitialize (listBox_, true);
-        BaseComponent::listBoxUpdate (listBox_, paths_, false);
+        ListBoxFunctions::initialize (listBox_, true);
+        ListBoxFunctions::update (listBox_, paths_, false);
         addAndMakeVisible (listBox_);
         
         setOpaque (true); setSize (400, 500);
@@ -56,7 +56,7 @@ public:
         //
         }
         
-        if (done) { BaseComponent::listBoxUpdate (listBox_, paths_, true); setSearchPaths(); }
+        if (done) { ListBoxFunctions::update (listBox_, paths_, true); setSearchPaths(); }
     }
     
     void addPaths()
@@ -80,7 +80,7 @@ public:
         //
         }
         
-        BaseComponent::listBoxUpdate (listBox_, paths_, true); setSearchPaths();
+        ListBoxFunctions::update (listBox_, paths_, true); setSearchPaths();
         //
         }
     }
@@ -92,7 +92,7 @@ public:
 public:
     int getNumRows() override
     {
-        return BaseComponent::lisBoxGetNumberOfRowsToDraw (paths_.size());
+        return ListBoxFunctions::getNumberOfRowsToDraw (paths_.size());
     }
 
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
@@ -115,7 +115,7 @@ public:
     void listBoxItemClicked (int row, const juce::MouseEvent &) override
     {
         if (juce::isPositiveAndBelow (row, paths_.size()) == false) {
-            BaseComponent::listBoxUpdate (listBox_, paths_, true);
+            ListBoxFunctions::update (listBox_, paths_, true);
         }
     }
     
@@ -138,12 +138,12 @@ public:
     {
         listBox_.setBounds (getBoundsRemaining());
         
-        BaseComponent::listBoxUpdate (listBox_, paths_, false);
+        ListBoxFunctions::update (listBox_, paths_, false);
     }
 
     void listWasScrolled() override
     {
-        BaseComponent::listBoxUpdate (listBox_, paths_, false);
+        ListBoxFunctions::update (listBox_, paths_, false);
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -174,7 +174,7 @@ private:
     void appendFullPathName (const juce::String& filepath)
     {
         paths_.addIfNotAlreadyThere (filepath);
-        BaseComponent::listBoxUpdate (listBox_, paths_, true);
+        ListBoxFunctions::update (listBox_, paths_, true);
         setSearchPaths();
     }
     
