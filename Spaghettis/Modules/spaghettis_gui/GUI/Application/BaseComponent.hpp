@@ -84,20 +84,10 @@ public:
 // MARK: -
 
 public:
-    bool getButtonState (int itemId)
-    {
-        IconsButton* b = fetchButton (toolbar_.get(), itemId);
-        
-        if (b && b->isToggle()) { return b->getState(); } else { jassertfalse; return false; }
-    }
+    bool getButtonState (int itemId);
 
 private:
-    void setButtonState (int itemId, bool shouldBeOn)
-    {
-        IconsButton* b = fetchButton (toolbar_.get(), itemId);
-        
-        if (b && b->isToggle()) { b->setState (shouldBeOn); } else { jassertfalse; }
-    }
+    void setButtonState (int itemId, bool shouldBeOn);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -217,30 +207,6 @@ public:
         return Commands::perform (info);
     }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-/* A free function to fetch icons with item identifiers. */
-
-private:
-    static IconsButton* fetchButton (juce::Toolbar* toolbar, int itemId)
-    {
-        jassert (toolbar); const int n = toolbar->getNumItems();
-        
-        for (int i = 0; i < n; ++i) {
-        //
-        if (toolbar->getItemId (i) == itemId) {
-            IconsButton* b = dynamic_cast<IconsButton*> (toolbar->getItemComponent (i));
-            jassert (b);
-            return b;
-        }
-        //
-        }
-        
-        return nullptr;
-    }
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
