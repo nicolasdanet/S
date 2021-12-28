@@ -23,7 +23,7 @@ class Icons {
 // -----------------------------------------------------------------------------------------------------------
 
 using DrawablePointer   = std::unique_ptr<juce::Drawable>;
-using DrawableTuple     = std::tuple<juce::String, DrawablePointer, DrawablePointer, bool, int, bool>;
+using DrawableTuple     = std::tuple<juce::String, int, DrawablePointer, DrawablePointer, bool, bool>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -32,10 +32,10 @@ using DrawableTuple     = std::tuple<juce::String, DrawablePointer, DrawablePoin
 private:
     enum {
         ICONS_NAME      = 0,
-        ICONS_OFF       = 1,
+        ICONS_EXTRA     = 1,
+        ICONS_OFF,
         ICONS_ON,
         ICONS_TOGGLE,
-        ICONS_EXTRA,
         ICONS_STATE
     };
     
@@ -94,6 +94,11 @@ public:
         return std::get<ICONS_NAME> (drawables_[getIconIndex (itemId)]);
     }
     
+    int getExtraSpace (int itemId) const
+    {
+        return std::get<ICONS_EXTRA> (drawables_[getIconIndex (itemId)]);
+    }
+    
     std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
     {
         return std::get<ICONS_OFF> (drawables_[getIconIndex (itemId)])->createCopy();
@@ -107,11 +112,6 @@ public:
     bool isToggle (int itemId) const
     {
         return std::get<ICONS_TOGGLE> (drawables_[getIconIndex (itemId)]);
-    }
-    
-    int getExtraSpace (int itemId) const
-    {
-        return std::get<ICONS_EXTRA> (drawables_[getIconIndex (itemId)]);
     }
     
     bool getDefaultState (int itemId) const
@@ -156,19 +156,19 @@ private:
 private:
     void addIconAction (const juce::String& s, int extra, const char* image)
     {
-        addIconProceed (s, image, image, false, extra, true);
+        addIconProceed (s, extra, image, image, false, true);
     }
     
     void addIconToggle (const juce::String& s, int extra, const char* off, const char* on, bool state = true)
     {
-        addIconProceed (s, off, on, true, extra, state);
+        addIconProceed (s, extra, off, on, true, state);
     }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    void addIconProceed (const juce::String&, const char*, const char*, bool, int, bool);
+    void addIconProceed (const juce::String&, int, const char*, const char*, bool, bool);
     
 private:
     std::vector<DrawableTuple> drawables_;

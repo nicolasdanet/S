@@ -36,10 +36,10 @@ std::unique_ptr<juce::Drawable> getDrawable (const char* name, juce::Colour colo
 // MARK: -
 
 void Icons::addIconProceed (const juce::String& name,
+    int extra,
     const char* imageOff,
     const char* imageOn,
     bool isToggle,
-    int  extra,
     bool defaultStateIsOn)
 {
     auto t1 (getDrawable (imageOff, Spaghettis()->getColour (Colours::toolbarIconOff)));
@@ -47,7 +47,7 @@ void Icons::addIconProceed (const juce::String& name,
     
     jassert (extra >= 0);
     
-    drawables_.emplace_back (name, std::move (t1), std::move (t2), isToggle, extra, defaultStateIsOn);
+    drawables_.emplace_back (name, extra, std::move (t1), std::move (t2), isToggle, defaultStateIsOn);
 }
     
 // -----------------------------------------------------------------------------------------------------------
