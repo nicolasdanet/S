@@ -100,6 +100,8 @@ public:
 private:
     void createPatch (const core::Unique& u, const core::Description& v);
     void changePatch (const core::Unique& u, const core::Description& v);
+
+public:
     void closePatch (const core::Unique& u, bool notify = true);
     
 private:

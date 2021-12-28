@@ -77,6 +77,25 @@ juce::ValueTree Patch::getParent (const core::Unique& u) const
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Patch::openWindow()
+{
+    window_ = std::make_unique<PatchWindow> (*this);
+}
+
+void Patch::closeWindow (PatchWindow* window)
+{
+    Spaghettis()->getPatches().closePatch (unique_, true);
+}
+
+void Patch::releaseWindows()
+{
+    window_ = nullptr;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 } // namespace spaghettis
 
