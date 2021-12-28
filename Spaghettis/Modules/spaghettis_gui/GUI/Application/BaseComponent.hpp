@@ -20,7 +20,7 @@ class BaseComponent :   public juce::Component,
 // MARK: -
 
 public:
-    explicit BaseComponent (const juce::String& keyName, IconsFactory* factory = nullptr) : keyName_ (keyName)
+    explicit BaseComponent (const juce::String& keyName, IconsFactory* factory) : keyName_ (keyName)
     {
         Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
         

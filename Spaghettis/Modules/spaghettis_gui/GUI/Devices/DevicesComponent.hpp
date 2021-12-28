@@ -32,7 +32,7 @@ using Generator = std::function<juce::String()>;
 // MARK: -
 
 public:
-    explicit DevicesComponent (const juce::String& keyName) : BaseComponent (keyName),
+    explicit DevicesComponent (const juce::String& keyName) : BaseComponent (keyName, nullptr),
         audioInTag_ ("Audio In"),
         audioOutTag_ ("Audio Out"),
         midiInTag_ ("Midi In"),
