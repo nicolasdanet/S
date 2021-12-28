@@ -155,7 +155,7 @@ public:
     
     void resized() override
     {
-        listBox_.setBounds (getBoundsRemaining());
+        listBox_.setBounds (setBarsBoundsAndGetRemaining());
         
         ListBoxFunctions::update (listBox_, messages_, false);
     }

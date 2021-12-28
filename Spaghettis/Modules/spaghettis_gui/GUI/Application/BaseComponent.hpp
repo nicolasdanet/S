@@ -96,7 +96,7 @@ private:
 // MARK: -
 
 protected:
-    juce::Rectangle<int> getBoundsRemaining()
+    juce::Rectangle<int> setBarsBoundsAndGetRemaining()
     {
         juce::Rectangle<int> b = getLocalBounds();
 

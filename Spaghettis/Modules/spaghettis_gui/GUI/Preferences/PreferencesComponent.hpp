@@ -50,7 +50,7 @@ public:
     
     void resized() override
     {
-        panel_.setBounds (getBoundsRemaining());
+        panel_.setBounds (setBarsBoundsAndGetRemaining());
     }
 
 // -----------------------------------------------------------------------------------------------------------

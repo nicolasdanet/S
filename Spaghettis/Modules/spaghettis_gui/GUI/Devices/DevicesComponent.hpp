@@ -84,7 +84,7 @@ public:
     
     void resized() override
     {
-        juce::Rectangle<int> area (getBoundsRemaining());
+        juce::Rectangle<int> area (setBarsBoundsAndGetRemaining());
 
         const int n = numberOfDevices();
         const int h = getComboBoxHeight();
