@@ -63,27 +63,7 @@ protected:
 // MARK: -
 
 public:
-    void timerCallback() override
-    {
-        const int timerAttempts = 10;
-        
-        if (++timerCount_ > timerAttempts) { jassertfalse; stopTimer(); }
-        else {
-        //
-        /* < https://forum.juce.com/t/getting-the-title-bar-height-in-a-windows-osx-app/38461/14 > */
-        
-        const int h = Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
-        
-        if (h != 0) {
-        //
-        BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());
-            
-        if (!c || c->tryGrabFocus()) { setMinimumHeight (mimimumHeight_); stopTimer(); }
-        //
-        }
-        //
-        }
-    }
+    void timerCallback() override;
 
 private:
     void timerStart()
@@ -101,25 +81,7 @@ public:
         if (isActiveWindow()) { timerStart(); }
     }
 
-    void makeVisible()
-    {
-        if (keyName_.isNotEmpty()) {
-        //
-        juce::PropertiesFile& p = Spaghettis()->getProperties();
-        
-        const std::unique_ptr<juce::XmlElement> e (p.getXmlValue (keyName_ + "Position"));
-        
-        if (e && e->hasTagName (Ids::POSITION) && e->hasAttribute (Ids::value)) {
-            const juce::String s = e->getStringAttribute (Ids::value);
-            if (s.isNotEmpty()) {
-                restoreWindowStateFromString (s);
-            }
-        }
-        //
-        }
-        
-        setVisible (true); addToDesktop(); toFront (true);
-    }
+    void makeVisible();
 
     void makeVisibleWithMinimumHeight (int h)
     {
@@ -131,26 +93,7 @@ public:
 // MARK: -
 
 private:
-    void setMinimumHeight (int h)
-    {
-        if (h) {
-        //
-        juce::ComponentBoundsConstrainer *c = getConstrainer();
-        
-        jassert (c);
-        
-        #if SPAGHETTIS_MENUBAR
-        
-        h += Spaghettis()->getLookAndFeel().getDefaultMenuBarHeight();
-        
-        #endif
-        
-        h += Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
-        
-        c->setMinimumHeight (h);
-        //
-        }
-    }
+    void setMinimumHeight (int h);
 
 private:
     juce::String keyName_;

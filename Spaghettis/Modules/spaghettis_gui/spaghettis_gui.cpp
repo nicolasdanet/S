@@ -12,6 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/BaseComponent.cpp"
+#include "GUI/Application/BaseWindow.cpp"
 #include "GUI/Application/Commands.cpp"
 #include "GUI/Application/Icons.cpp"
 #include "GUI/Application/LookAndFeel.cpp"
