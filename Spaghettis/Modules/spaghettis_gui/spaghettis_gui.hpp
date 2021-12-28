@@ -113,8 +113,11 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Patches/Patch.hpp"
+#include "GUI/Patches/PatchFactory.hpp"
+#include "GUI/Patches/PatchComponent.hpp"
 #include "GUI/Patches/PatchHolder.hpp"
 #include "GUI/Patches/PatchView.hpp"
+#include "GUI/Patches/PatchWindow.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
