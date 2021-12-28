@@ -31,8 +31,8 @@ using DrawableTuple     = std::tuple<juce::String, DrawablePointer, DrawablePoin
 
 private:
     enum {
-        ICONS_NAME  = 0,
-        ICONS_OFF   = 1,
+        ICONS_NAME      = 0,
+        ICONS_OFF       = 1,
         ICONS_ON,
         ICONS_TOGGLE,
         ICONS_EXTRA,
@@ -66,12 +66,12 @@ public:
     explicit Icons()
     {
         addIconAction ("Add",           0, "add_svg");
-        addIconToggle ("Autoscroll",    0, "system_update_alt_svg");
+        addIconToggle ("Autoscroll",    0, "system_update_alt_svg", "system_update_alt_svg");
         addIconAction ("Clear",         0, "delete_forever_svg");
-        addIconToggle ("Edit",          0, "lock_svg", "lock_open_svg");
-        addIconToggle ("Error",         4, "error_outline_svg");
+        addIconToggle ("Edit",          0, "lock_svg", "lock_open_svg", false);
+        addIconToggle ("Error",         4, "error_outline_svg", "error_outline_svg");
         addIconAction ("Find",          0, "place_svg");
-        addIconToggle ("Message",       2, "mail_svg");
+        addIconToggle ("Message",       2, "mail_svg", "mail_svg");
         addIconAction ("Restore",       0, "restore_svg");
         addIconAction ("Synchronize",   0, "sync_svg");
         addIconAction ("SortUp",        0, "text_rotate_up_svg");
@@ -154,19 +154,14 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    void addIconAction (const juce::String& name, int extra, const char* image)
+    void addIconAction (const juce::String& s, int extra, const char* image)
     {
-        addIconProceed (name, image, image, false, extra, true);
+        addIconProceed (s, image, image, false, extra, true);
     }
     
-    void addIconToggle (const juce::String& name, int extra, const char* image)
+    void addIconToggle (const juce::String& s, int extra, const char* off, const char* on, bool state = true)
     {
-        addIconProceed (name, image, image, true, extra, true);
-    }
-
-    void addIconToggle (const juce::String& name, int extra, const char* imageOff, const char* imageOn)
-    {
-        addIconProceed (name, imageOff, imageOn, true, extra, true);
+        addIconProceed (s, off, on, true, extra, state);
     }
     
 // -----------------------------------------------------------------------------------------------------------
