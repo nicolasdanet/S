@@ -53,7 +53,7 @@ public:
 // MARK: -
 
 protected:
-    juce::String getKeyName() const
+    juce::String getPropertiesKeyName() const
     {
         return keyName_;
     }
