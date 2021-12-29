@@ -79,9 +79,9 @@ juce::ValueTree Patch::getParent (const core::Unique& u) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::openWindow()
+void Patch::openMainWindow()
 {
-    window_ = std::make_unique<PatchWindow> (*this);
+    mainWindow_ = std::make_unique<PatchWindow> (*this, tree_);
 }
 
 void Patch::closeWindowButtonPressed (PatchWindow* window)
@@ -91,7 +91,7 @@ void Patch::closeWindowButtonPressed (PatchWindow* window)
 
 void Patch::releaseAllWindows()
 {
-    window_ = nullptr;
+    mainWindow_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------

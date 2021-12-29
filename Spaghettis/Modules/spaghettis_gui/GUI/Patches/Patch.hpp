@@ -29,7 +29,7 @@ public:
         tree_ (v),
         dirty_ (false)
     {
-        openWindow();
+        openMainWindow();
     }
 
     ~Patch()
@@ -66,7 +66,7 @@ public:
 // MARK: -
 
 public:
-    void openWindow();
+    void openMainWindow();
     void closeWindowButtonPressed (PatchWindow* window);
     void releaseAllWindows();
     
@@ -112,11 +112,6 @@ public:
         return juce::File (tree_.getProperty (Ids::path).toString());
     }
     
-    juce::String getTitle() const
-    {
-        return tree_.getProperty (Ids::title).toString();
-    }
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -127,7 +122,7 @@ private:
     bool dirty_;
 
 private:
-    std::unique_ptr<PatchWindow> window_;
+    std::unique_ptr<PatchWindow> mainWindow_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Patch)

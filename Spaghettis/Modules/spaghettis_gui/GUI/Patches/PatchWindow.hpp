@@ -19,7 +19,10 @@ class PatchWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit PatchWindow (Patch& owner) : BaseWindow (owner.getTitle()), owner_ (owner)
+    explicit PatchWindow (Patch& owner, const juce::ValueTree& content) :
+        BaseWindow (content.getProperty (Ids::title).toString()),
+        content_ (content),
+        owner_ (owner)
     {
         setContentOwned (new PatchComponent (getPropertiesKeyName()), true);
         
@@ -39,8 +42,11 @@ public:
     }
 
 private:
+    juce::ValueTree content_;
+
+private:
     Patch& owner_;
-    
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchWindow)
 };
