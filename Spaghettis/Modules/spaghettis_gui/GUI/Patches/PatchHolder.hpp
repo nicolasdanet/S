@@ -102,7 +102,7 @@ private:
     void changePatch (const core::Unique& u, const core::Description& v);
 
 public:
-    void closePatch (const core::Unique& u, bool notify = true);
+    void closePatch (const core::Unique& u, bool notify);
     
 private:
     std::shared_ptr<Patch> fetchPatch (const core::Unique& u) const;

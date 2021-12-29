@@ -93,7 +93,7 @@ void PatchHolder::closeAllPatches()
     
     std::transform (roots_.cbegin(), roots_.cend(), std::back_inserter (t), toUnique());
     
-    for (const auto& u : t) { closePatch (u); }
+    for (const auto& u : t) { closePatch (u, true); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
