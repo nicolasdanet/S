@@ -84,12 +84,12 @@ void Patch::openWindow()
     window_ = std::make_unique<PatchWindow> (*this);
 }
 
-void Patch::closeWindow (PatchWindow* window)
+void Patch::closeWindowButtonPressed (PatchWindow* window)
 {
     Spaghettis()->getPatches().closePatch (unique_, true);
 }
 
-void Patch::releaseWindows()
+void Patch::releaseAllWindows()
 {
     window_ = nullptr;
 }

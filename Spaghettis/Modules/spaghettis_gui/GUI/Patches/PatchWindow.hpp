@@ -35,7 +35,7 @@ public:
 public:
     void closeButtonPressed() override
     {
-        owner_.closeWindow (this);
+        owner_.closeWindowButtonPressed (this);
     }
 
 private:

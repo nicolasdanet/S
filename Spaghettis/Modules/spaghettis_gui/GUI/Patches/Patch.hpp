@@ -34,7 +34,7 @@ public:
 
     ~Patch()
     {
-        releaseWindows();
+        releaseAllWindows();
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -67,8 +67,8 @@ public:
 
 public:
     void openWindow();
-    void closeWindow (PatchWindow* window);
-    void releaseWindows();
+    void closeWindowButtonPressed (PatchWindow* window);
+    void releaseAllWindows();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
