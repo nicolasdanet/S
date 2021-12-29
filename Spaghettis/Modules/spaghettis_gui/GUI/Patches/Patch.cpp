@@ -86,6 +86,8 @@ void Patch::openMainWindow()
 
 void Patch::closeWindowButtonPressed (PatchWindow* window)
 {
+    jassert (mainWindow_.get() == window);
+    
     Spaghettis()->getPatches().closePatch (unique_, true);
 }
 
