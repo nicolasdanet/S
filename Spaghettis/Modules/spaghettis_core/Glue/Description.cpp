@@ -45,6 +45,14 @@ juce::String getContentBuffer (struct _object *o)
     return s;
 }
 
+juce::File getPatchFile (t_glist *glist)
+{
+    const juce::String filename  (environment_getFileNameAsString (glist_getEnvironment (glist)));
+    const juce::String directory (environment_getDirectoryAsString (glist_getEnvironment (glist)));
+
+    return juce::File (directory).getChildFile (filename);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -78,33 +86,27 @@ Description Description::view (const Unique& u, struct _object *o)
     t.setProperty (Ids::selected,   juce::var (object_getSelected (o)), nullptr);
     
     if (isPatch) {
-    //
-    t_glist *g = cast_glist (o);
     
-    juce::ValueTree p (Ids::PARAMETERS);
-    
-    p.setProperty (Ids::title,      juce::var (glist_getName (g)->s_name), nullptr);
-    
-    if (glist_isRoot (g)) {
-    //
-    const juce::String filename  (environment_getFileNameAsString (glist_getEnvironment (g)));
-    const juce::String directory (environment_getDirectoryAsString (glist_getEnvironment (g)));
-    const juce::File file (juce::File (directory).getChildFile (filename));
-    
-    p.setProperty (Ids::path,       juce::var (file.getFullPathName()), nullptr);
-    //
-    }
-    
-    t.appendChild (p, nullptr);
-    //
+        juce::ValueTree p (Ids::PARAMETERS);
+        
+        t_glist *g = cast_glist (o);
+        
+        p.setProperty (Ids::title, juce::var (glist_getName (g)->s_name), nullptr);
+        
+        if (glist_isRoot (g)) {
+            p.setProperty (Ids::path, juce::var (getPatchFile (g).getFullPathName()), nullptr);
+        }
+        
+        t.appendChild (p, nullptr);
     }
     
     if (hasView) {
-    //
-    juce::ValueTree p (Ids::PARAMETERS); (*class_getViewFunction (pd_class (o))) (o, p);
     
-    t.appendChild (p, nullptr);
-    //
+        juce::ValueTree p (Ids::PARAMETERS);
+        
+        (*class_getViewFunction (pd_class (o))) (o, p);
+        
+        t.appendChild (p, nullptr);
     }
     //
     }

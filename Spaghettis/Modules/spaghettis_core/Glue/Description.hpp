@@ -87,7 +87,9 @@ public:
         
         juce::ValueTree p (t_.getChildWithName (Ids::PARAMETERS));
         
-        if (p.isValid()) { s += " ### "; s += debugJoinIntoString (p); }
+        if (p.isValid()) {
+            s += " ### "; s += debugJoinIntoString (p);
+        }
         
         return s;
     }
