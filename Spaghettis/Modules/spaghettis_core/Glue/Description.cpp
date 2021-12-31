@@ -93,6 +93,16 @@ Description Description::view (const Unique& u, struct _object *o)
         
         p.setProperty (Ids::title, juce::var (glist_getName (g)->s_name), nullptr);
         
+        const int x = rectangle_getTopLeftX (glist_getWindow (g));
+        const int y = rectangle_getTopLeftY (glist_getWindow (g));
+        const int w = rectangle_getWidth (glist_getWindow (g));
+        const int h = rectangle_getHeight (glist_getWindow (g));
+    
+        p.setProperty (Ids::x,      juce::var (x), nullptr);
+        p.setProperty (Ids::y,      juce::var (y), nullptr);
+        p.setProperty (Ids::width,  juce::var (w), nullptr);
+        p.setProperty (Ids::height, juce::var (h), nullptr);
+        
         if (glist_isRoot (g)) {
             p.setProperty (Ids::path, juce::var (getPatchFile (g).getFullPathName()), nullptr);
         }
