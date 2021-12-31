@@ -22,7 +22,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::vector<Unique::Identifier> fetchIdentifiersFromRoot (struct _object *o, struct _glist *owner)
+std::vector<Unique::Identifier> fetchIdentifiersFromRoot (struct _object* o, struct _glist* owner)
 {
     std::vector<Unique::Identifier> t;
     
@@ -51,7 +51,7 @@ Unique::Unique() : u_ (0), r_ (0)
 
 }
 
-Unique::Unique (struct _object *o, struct _glist *owner) : u_ (object_getUnique (o)), r_ (0)
+Unique::Unique (struct _object* o, struct _glist* owner) : u_ (object_getUnique (o)), r_ (0)
 {
     if (owner) {
     //

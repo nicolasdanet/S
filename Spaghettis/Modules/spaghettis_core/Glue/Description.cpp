@@ -22,17 +22,17 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String getContentBuffer (struct _object *o)
+juce::String getContentBuffer (struct _object* o)
 {
     juce::String s;
     
     if (o) {
     //
-    t_buffer *b = object_getBuffer (o);
+    t_buffer* b = object_getBuffer (o);
     
     if (b && buffer_getSize (b)) {
     //
-    char *t = atom_atomsToString (buffer_getSize (b), buffer_getAtoms (b));
+    char* t = atom_atomsToString (buffer_getSize (b), buffer_getAtoms (b));
     
     s = juce::String (t);
     
@@ -45,7 +45,7 @@ juce::String getContentBuffer (struct _object *o)
     return s;
 }
 
-juce::File getPatchFile (t_glist *glist)
+juce::File getPatchFile (t_glist* glist)
 {
     const juce::String filename  (environment_getFileNameAsString (glist_getEnvironment (glist)));
     const juce::String directory (environment_getDirectoryAsString (glist_getEnvironment (glist)));
@@ -62,7 +62,7 @@ juce::File getPatchFile (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Description Description::view (const Unique& u, struct _object *o)
+Description Description::view (const Unique& u, struct _object* o)
 {
     juce::ValueTree t (Ids::OBJECT);
     
@@ -89,7 +89,7 @@ Description Description::view (const Unique& u, struct _object *o)
     
         juce::ValueTree p (Ids::PARAMETERS);
         
-        t_glist *g = cast_glist (o);
+        t_glist* g = cast_glist (o);
         
         p.setProperty (Ids::title, juce::var (glist_getName (g)->s_name), nullptr);
         

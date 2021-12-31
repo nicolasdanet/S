@@ -38,7 +38,7 @@ public:
 // MARK: -
         
 public:
-    explicit Unique (struct _object *o, struct _glist *owner);
+    explicit Unique (struct _object* o, struct _glist* owner);
     
     ~Unique() = default;
 
