@@ -81,7 +81,9 @@ Description Description::view (const Unique& u, struct _object *o)
     //
     t_glist *g = cast_glist (o);
     
-    t.setProperty (Ids::title,      juce::var (glist_getName (g)->s_name), nullptr);
+    juce::ValueTree p (Ids::PARAMETERS);
+    
+    p.setProperty (Ids::title,      juce::var (glist_getName (g)->s_name), nullptr);
     
     if (glist_isRoot (g)) {
     //
@@ -89,9 +91,11 @@ Description Description::view (const Unique& u, struct _object *o)
     const juce::String directory (environment_getDirectoryAsString (glist_getEnvironment (g)));
     const juce::File file (juce::File (directory).getChildFile (filename));
     
-    t.setProperty (Ids::path,       juce::var (file.getFullPathName()), nullptr);
+    p.setProperty (Ids::path,       juce::var (file.getFullPathName()), nullptr);
     //
     }
+    
+    t.appendChild (p, nullptr);
     //
     }
     

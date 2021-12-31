@@ -55,6 +55,8 @@ void BaseWindow::makeVisible()
     //
     }
     
+    // setBoundsConstrained
+    
     setVisible (true); addToDesktop(); toFront (true);
 }
 
