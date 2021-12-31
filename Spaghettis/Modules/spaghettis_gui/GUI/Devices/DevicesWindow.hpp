@@ -23,7 +23,9 @@ public:
     {
         setContentOwned (new DevicesComponent (getPropertiesKeyName()), true);
         
-        makeVisibleWithMinimumHeight (DevicesComponent::getTotalHeight());
+        requiresMinimumHeight (DevicesComponent::getTotalHeight());
+        
+        makeVisible();
     }
 
     ~DevicesWindow() = default;

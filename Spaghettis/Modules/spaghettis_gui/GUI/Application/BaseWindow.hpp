@@ -83,9 +83,14 @@ public:
 
     void makeVisible();
 
-    void makeVisibleWithMinimumHeight (int h)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void requiresMinimumHeight (int h)
     {
-        jassert (h > 0); mimimumHeight_ = h; makeVisible();
+        jassert (h > 0); mimimumHeight_ = h;
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -93,7 +98,7 @@ public:
 // MARK: -
 
 private:
-    void setMinimumHeight (int h);
+    void setMinimumHeightCallback (int h);
 
 private:
     juce::String keyName_;

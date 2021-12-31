@@ -27,7 +27,7 @@ void BaseWindow::timerCallback()
     //
     BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());
         
-    if (!c || c->tryGrabFocus()) { setMinimumHeight (mimimumHeight_); stopTimer(); }
+    if (!c || c->tryGrabFocus()) { setMinimumHeightCallback (mimimumHeight_); stopTimer(); }
     //
     }
     //
@@ -64,7 +64,7 @@ void BaseWindow::makeVisible()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseWindow::setMinimumHeight (int h)
+void BaseWindow::setMinimumHeightCallback (int h)
 {
     if (h) {
     //
