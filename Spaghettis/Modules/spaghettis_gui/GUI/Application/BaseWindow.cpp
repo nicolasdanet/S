@@ -38,9 +38,10 @@ void BaseWindow::timerCallback()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseWindow::makeVisible()
+void BaseWindow::makeVisible (juce::Rectangle<int> window)
 {
-    if (keyName_.isNotEmpty()) {
+    if (!window.isEmpty()) { setBounds (window); }
+    else if (keyName_.isNotEmpty()) {
     //
     juce::PropertiesFile& p = Spaghettis()->getProperties();
     
@@ -54,8 +55,6 @@ void BaseWindow::makeVisible()
     }
     //
     }
-    
-    // setBoundsConstrained
     
     setVisible (true); addToDesktop(); toFront (true);
 }
@@ -84,7 +83,7 @@ void BaseWindow::setMinimumHeightCallback (int h)
     //
     }
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

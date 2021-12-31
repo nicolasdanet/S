@@ -23,7 +23,7 @@ public:
     {
         setContentOwned (new DevicesComponent (getPropertiesKeyName()), true);
         
-        requiresMinimumHeight (DevicesComponent::getTotalHeight());
+        requireMinimumHeight (DevicesComponent::getTotalHeight());
         
         makeVisible();
     }

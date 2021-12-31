@@ -81,14 +81,14 @@ public:
         if (isActiveWindow()) { timerStart(); }
     }
 
-    void makeVisible();
+    void makeVisible (juce::Rectangle<int> window = juce::Rectangle<int>());
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void requiresMinimumHeight (int h)
+    void requireMinimumHeight (int h)
     {
         jassert (h > 0); mimimumHeight_ = h;
     }
