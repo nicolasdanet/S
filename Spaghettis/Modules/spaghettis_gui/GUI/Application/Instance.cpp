@@ -60,9 +60,9 @@ void SpaghettisInstance::closeAllPatches()
     patches_->closeAllPatches();
 }
 
-bool SpaghettisInstance::isAllSaveRequestsDone() const
+bool SpaghettisInstance::isAllRequestsDone() const
 {
-    return patches_->isAllSaveRequestsDone();
+    return patches_->isAllRequestsDone();
 }
 
 // -----------------------------------------------------------------------------------------------------------

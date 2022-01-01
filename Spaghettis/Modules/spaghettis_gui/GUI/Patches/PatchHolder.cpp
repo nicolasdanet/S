@@ -28,20 +28,47 @@ void PatchHolder::removePatch (const core::Unique& u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchHolder::showSaveRequest (const std::shared_ptr<Patch>& p)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::MessageBoxOptions getSaveRequestOptions (const std::shared_ptr<Patch>& p, CloseType notify)
 {
-    const juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (p->getFile().getFileName())
+    if (notify == CloseType::yesNoCancel) {
+        return juce::MessageBoxOptions().withTitle (p->getFile().getFileName())
             .withAssociatedComponent (p->getMainWindow())
             .withMessage (NEEDS_TRANS ("Save the patch before closing?"))
             .withButton (NEEDS_TRANS ("Yes"))
-            .withButton (NEEDS_TRANS ("No")));
+            .withButton (NEEDS_TRANS ("No"))
+            .withButton (NEEDS_TRANS ("Cancel"));
     
+    } else {
+        return juce::MessageBoxOptions().withTitle (p->getFile().getFileName())
+            .withAssociatedComponent (p->getMainWindow())
+            .withMessage (NEEDS_TRANS ("Save the patch before closing?"))
+            .withButton (NEEDS_TRANS ("Yes"))
+            .withButton (NEEDS_TRANS ("No"));
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PatchHolder::showSaveRequest (const std::shared_ptr<Patch>& p, CloseType notify)
+{
     auto f = [u = p->getUnique()] (int result)
     {
         const bool save = (result == 0); Spaghettis()->getPatches().handleSaveRequest (u, save);
     };
     
-    juce::NativeMessageBox::showAsync (options, f);
+    juce::NativeMessageBox::showAsync (getSaveRequestOptions (p, notify), f);
     
     requests_.push_back (p);
 }
@@ -77,8 +104,9 @@ void PatchHolder::requestClosePatch (const core::Unique& u, CloseType notify)
     //
     removePatch (u);
     
-    if (notify != CloseType::none) {
-        if (p->isDirty()) { showSaveRequest (p); } else { p->close(); }
+    if (notify == CloseType::yesNoCancel) { showSaveRequest (p, notify); }
+    else if (notify == CloseType::yesNo)  {
+        if (p->isDirty()) { showSaveRequest (p, notify); } else { p->close(); }
     }
     //
     }
@@ -94,7 +122,7 @@ void PatchHolder::closeAllPatches()
     
     std::transform (roots_.cbegin(), roots_.cend(), std::back_inserter (t), toUnique());
     
-    for (const auto& u : t) { requestClosePatch (u, CloseType::save); }
+    for (const auto& u : t) { requestClosePatch (u, CloseType::yesNo); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

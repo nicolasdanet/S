@@ -88,7 +88,7 @@ void Patch::closeWindowButtonPressed (PatchWindow* window)
 {
     jassert (mainWindow_.get() == window);
     
-    Spaghettis()->getPatches().requestClosePatch (unique_, CloseType::cancel);
+    Spaghettis()->getPatches().requestClosePatch (unique_, CloseType::yesNoCancel);
 }
 
 void Patch::releaseAllWindows()

@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-enum class CloseType { none, save, cancel };
+enum class CloseType { none, yesNo, yesNoCancel };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -89,12 +89,12 @@ public:
 // MARK: -
 
 private:
-    void showSaveRequest (const std::shared_ptr<Patch>& p);
+    void showSaveRequest (const std::shared_ptr<Patch>&, CloseType notify);
     
 public:
     void handleSaveRequest (const core::Unique& u, bool save);
     
-    bool isAllSaveRequestsDone()
+    bool isAllRequestsDone()
     {
         return requests_.empty();
     }
