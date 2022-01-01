@@ -12,6 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+enum class CloseType { none, save, cancel };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class PatchHolder {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -50,7 +56,7 @@ public:
     {
         DBG (juce::String ("Remove: ") + u.debug());
         
-        if (u.isRoot()) { closePatch (u, false); }
+        if (u.isRoot()) { requestClosePatch (u, CloseType::none); }
         else {
             perform (u, [&] (const std::shared_ptr<Patch>& p) { p->removeObject (u); });
         }
@@ -102,7 +108,7 @@ private:
     void changePatch (const core::Unique& u, const core::Description& v);
 
 public:
-    void closePatch (const core::Unique& u, bool notify);
+    void requestClosePatch (const core::Unique& u, CloseType notify);
     
 private:
     std::shared_ptr<Patch> fetchPatch (const core::Unique& u) const;

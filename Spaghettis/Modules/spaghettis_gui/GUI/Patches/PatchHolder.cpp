@@ -69,7 +69,7 @@ void PatchHolder::changePatch (const core::Unique& u, const core::Description& v
 
 /* To avoid bad loops remove first the patch from the roots before to release it. */
 
-void PatchHolder::closePatch (const core::Unique& u, bool notify)
+void PatchHolder::requestClosePatch (const core::Unique& u, CloseType notify)
 {
     std::shared_ptr<Patch> p (fetchPatch (u));
             
@@ -77,7 +77,7 @@ void PatchHolder::closePatch (const core::Unique& u, bool notify)
     //
     removePatch (u);
     
-    if (notify) {
+    if (notify != CloseType::none) {
         if (p->isDirty()) { showSaveRequest (p); } else { p->close(); }
     }
     //
@@ -94,7 +94,7 @@ void PatchHolder::closeAllPatches()
     
     std::transform (roots_.cbegin(), roots_.cend(), std::back_inserter (t), toUnique());
     
-    for (const auto& u : t) { closePatch (u, true); }
+    for (const auto& u : t) { requestClosePatch (u, CloseType::save); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
