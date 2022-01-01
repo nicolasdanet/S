@@ -69,6 +69,9 @@ public:
     void openMainWindow();
     void closeWindowButtonPressed (PatchWindow* window);
     void releaseAllWindows();
+
+public:
+    juce::Component* getMainWindow() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

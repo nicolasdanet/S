@@ -96,6 +96,11 @@ void Patch::releaseAllWindows()
     mainWindow_ = nullptr;
 }
 
+juce::Component* Patch::getMainWindow() const
+{
+    return dynamic_cast<juce::Component*> (mainWindow_.get());
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

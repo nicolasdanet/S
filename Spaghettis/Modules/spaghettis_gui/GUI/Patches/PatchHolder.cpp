@@ -31,6 +31,7 @@ void PatchHolder::removePatch (const core::Unique& u)
 void PatchHolder::showSaveRequest (const std::shared_ptr<Patch>& p)
 {
     const juce::MessageBoxOptions options (juce::MessageBoxOptions().withTitle (p->getFile().getFileName())
+            .withAssociatedComponent (p->getMainWindow())
             .withMessage (NEEDS_TRANS ("Save the patch before closing?"))
             .withButton (NEEDS_TRANS ("Yes"))
             .withButton (NEEDS_TRANS ("No")));
