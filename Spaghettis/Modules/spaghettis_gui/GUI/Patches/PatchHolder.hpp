@@ -34,7 +34,7 @@ public:
 public:
     void addObject (const core::Unique& u, const core::Description& v)
     {
-        DBG (v.debug());
+        DBG (u.debug()); DBG (v.debug());
         
         if (u.isRoot()) { createPatch (u, v); }
         else {
