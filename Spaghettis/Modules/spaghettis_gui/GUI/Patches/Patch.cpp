@@ -31,6 +31,15 @@ juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void Patch::setDirty (bool isDirty)
+{
+    dirty_ = isDirty; if (mainWindow_) { mainWindow_->setDirtyFlag (isDirty); }
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void Patch::addObject (const core::Unique& u, const core::Description& v)
 {
     juce::ValueTree parent (getParent (u));

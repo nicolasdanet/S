@@ -6,7 +6,7 @@
 #X obj 48 300 hslider 128 15 0 127 0;
 #X obj 48 228 bng 15 250;
 #X obj 216 264 vradio 15 single 8;
-#X obj 336 264 menubutton 8 1;
+#X obj 336 264 menubutton 8 0;
 #A _restore bijou \; caillou \; chou \; genou \; hibou \; joujou \; pou \;;
 #X msg 48 192 bang;
 #X obj 48 156 metro 1000;
