@@ -92,7 +92,7 @@ private:
     void showSaveRequest (const std::shared_ptr<Patch>&, CloseType notify);
     
 public:
-    void handleSaveRequest (const core::Unique& u, bool save);
+    void handleSaveRequest (const core::Unique& u, int result);
     
     bool isAllRequestsDone()
     {
@@ -110,15 +110,11 @@ private:
 public:
     void requestClosePatch (const core::Unique& u, CloseType notify);
     
-private:
-    std::shared_ptr<Patch> fetchPatch (const core::Unique& u) const;
-    void removePatch (const core::Unique& u);
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
+public:
     static auto hasEqualRoot (const core::Unique& u)
     {
         return [i = u.getRoot()] (const std::shared_ptr<Patch>& p)
