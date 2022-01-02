@@ -34,8 +34,8 @@ public:
 public:
     void addObject (const core::Unique& u, const core::Description& v)
     {
-        DBG (juce::String ("Add: ") + u.debug()); DBG (v.debug());
-            
+        DBG (v.debug());
+        
         if (u.isRoot()) { createPatch (u, v); }
         else {
             perform (u, [&] (const std::shared_ptr<Patch>& p) { p->addObject (u, v); });
@@ -44,8 +44,6 @@ public:
 
     void changeObject (const core::Unique& u, const core::Description& v)
     {
-        DBG (juce::String ("Change: ") + u.debug()); DBG (v.debug());
-        
         if (u.isRoot()) { changePatch (u, v); }
         else {
             perform (u, [&] (const std::shared_ptr<Patch>& p) { p->changeObject (u, v); });
@@ -54,8 +52,6 @@ public:
     
     void removeObject (const core::Unique& u)
     {
-        DBG (juce::String ("Remove: ") + u.debug());
-        
         if (u.isRoot()) { requestClosePatch (u, CloseType::none); }
         else {
             perform (u, [&] (const std::shared_ptr<Patch>& p) { p->removeObject (u); });
@@ -114,34 +110,8 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    static auto hasEqualRoot (const core::Unique& u)
-    {
-        return [i = u.getRoot()] (const std::shared_ptr<Patch>& p)
-        {
-            return (p->getUnique().getRoot() == i);
-        };
-    }
-    
-    static auto toUnique()
-    {
-        return [] (const std::shared_ptr<Patch>& p)
-        {
-            return p->getUnique();
-        };
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 private:
-    template <class T> void perform (const core::Unique& u, T f) const
-    {
-        auto r = std::find_if (roots_.cbegin(), roots_.cend(), hasEqualRoot (u));
-    
-        if (r != roots_.cend()) { f (*r); }
-    }
+    template <class T> void perform (const core::Unique& u, T f) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
