@@ -146,10 +146,7 @@ void PatchHolder::requestClosePatch (const core::Unique& u, CloseType notify)
     //
     removePatch (roots_, u);
     
-    if (notify == CloseType::yesNoCancel) { showSaveRequest (p, notify); }
-    else if (notify == CloseType::yesNo)  {
-        if (p->isDirty()) { showSaveRequest (p, notify); } else { p->close(); }
-    }
+    if (p->isDirty()) { showSaveRequest (p, notify); } else { p->close(); }
     //
     }
 }
