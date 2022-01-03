@@ -60,19 +60,21 @@ public:
         juce::LookAndFeel::setDefaultLookAndFeel (nullptr);
     }
     
-    void systemRequestedQuitPoll()
+    template <class T> void performOrWaitAllRequestsDone (T f) const
     {
-        if (spaghettis::Spaghettis()->isAllRequestsDone()) { quit(); }
+        if (spaghettis::Spaghettis()->isAllRequestsDone()) { f(); }
         else {
-            juce::Timer::callAfterDelay (500.0, [this]() { systemRequestedQuitPoll(); });
+            juce::Timer::callAfterDelay (500.0, [this, f = f]() { performOrWaitAllRequestsDone<T> (f); });
         }
     }
     
     void systemRequestedQuit() override
     {
+        performOrWaitAllRequestsDone ([]() { DBG ("!"); });
+        
         spaghettis::Spaghettis()->closeAllPatches();
         
-        systemRequestedQuitPoll();
+        performOrWaitAllRequestsDone ([]() { quit(); });
     }
     
 // -----------------------------------------------------------------------------------------------------------
