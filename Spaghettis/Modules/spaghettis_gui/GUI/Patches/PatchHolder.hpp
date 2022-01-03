@@ -32,53 +32,17 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void addObject (const core::Unique& u, const core::Description& v)
-    {
-        DBG (u.debug()); DBG (v.debug());
-        
-        if (u.isRoot()) { createPatch (u, v); }
-        else {
-            perform (u, [&] (const std::shared_ptr<Patch>& p) { p->addObject (u, v); });
-        }
-    }
-
-    void changeObject (const core::Unique& u, const core::Description& v)
-    {
-        if (u.isRoot()) { changePatch (u, v); }
-        else {
-            perform (u, [&] (const std::shared_ptr<Patch>& p) { p->changeObject (u, v); });
-        }
-    }
-    
-    void removeObject (const core::Unique& u)
-    {
-        if (u.isRoot()) { requestClosePatch (u, CloseType::none); }
-        else {
-            perform (u, [&] (const std::shared_ptr<Patch>& p) { p->removeObject (u); });
-        }
-    }
-
-    void renameObject (const core::Unique& u, core::Unique::Identifier i)
-    {
-
-    }
+    void addObject (const core::Unique& u, const core::Description& v);
+    void changeObject (const core::Unique& u, const core::Description& v);
+    void removeObject (const core::Unique& u);
+    void renameObject (const core::Unique& u, core::Unique::Identifier i);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void setDirty (const core::Unique& u, bool isDirty)
-    {
-        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->setDirty (isDirty); });
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void closeAllPatches();
+    void setDirty (const core::Unique& u, bool isDirty);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -88,24 +52,21 @@ private:
     void showSaveRequest (const std::shared_ptr<Patch>&, CloseType notify);
     
 public:
+    void requestClosePatch (const core::Unique& u, CloseType notify);
     void handleSaveRequest (const core::Unique& u, int result);
     
     bool isAllRequestsDone()
     {
         return requests_.empty();
     }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    void createPatch (const core::Unique& u, const core::Description& v);
-    void changePatch (const core::Unique& u, const core::Description& v);
-
 public:
-    void requestClosePatch (const core::Unique& u, CloseType notify);
-    
+    void closeAllPatches();
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -80,12 +80,44 @@ juce::MessageBoxOptions getSaveRequestOptions (const std::shared_ptr<Patch>& p, 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchHolder::createPatch (const core::Unique& u, const core::Description& v)
+template <class T> void PatchHolder::perform (const core::Unique& u, T f) const
 {
-    roots_.push_back (std::make_shared<Patch> (u, v));
+    auto r = std::find_if (roots_.cbegin(), roots_.cend(), hasEqualRoot (u));
+    
+    if (r != roots_.cend()) { f (*r); }
 }
 
-void PatchHolder::changePatch (const core::Unique& u, const core::Description& v)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PatchHolder::addObject (const core::Unique& u, const core::Description& v)
+{
+    DBG (u.debug()); DBG (v.debug());
+    
+    if (u.isRoot()) { roots_.push_back (std::make_shared<Patch> (u, v)); }
+    else {
+        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->addObject (u, v); });
+    }
+}
+
+void PatchHolder::changeObject (const core::Unique& u, const core::Description& v)
+{
+    if (u.isRoot()) { }
+    else {
+        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->changeObject (u, v); });
+    }
+}
+
+void PatchHolder::removeObject (const core::Unique& u)
+{
+    if (u.isRoot()) { requestClosePatch (u, CloseType::none); }
+    else {
+        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->removeObject (u); });
+    }
+}
+
+void PatchHolder::renameObject (const core::Unique& u, core::Unique::Identifier i)
 {
 
 }
@@ -94,11 +126,9 @@ void PatchHolder::changePatch (const core::Unique& u, const core::Description& v
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> void PatchHolder::perform (const core::Unique& u, T f) const
+void PatchHolder::setDirty (const core::Unique& u, bool isDirty)
 {
-    auto r = std::find_if (roots_.cbegin(), roots_.cend(), hasEqualRoot (u));
-    
-    if (r != roots_.cend()) { f (*r); }
+    perform (u, [&] (const std::shared_ptr<Patch>& p) { p->setDirty (isDirty); });
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -136,6 +166,10 @@ void PatchHolder::handleSaveRequest (const core::Unique& u, int result)
     }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 /* To avoid bad loops remove first the patch from the roots before to release it. */
 
 void PatchHolder::requestClosePatch (const core::Unique& u, CloseType notify)
@@ -150,10 +184,6 @@ void PatchHolder::requestClosePatch (const core::Unique& u, CloseType notify)
     //
     }
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 void PatchHolder::closeAllPatches()
 {
