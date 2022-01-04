@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-enum class CloseType { none, yesNo, yesNoCancel };
+enum class CloseType    { none, yesNo, yesNoCancel };
+enum class CloseResult  { yes, no, cancel };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -53,7 +54,7 @@ private:
     
 public:
     void requestClosePatch (const core::Unique& u, CloseType notify);
-    void handleSaveRequest (const core::Unique& u, int result);
+    void handleSaveRequest (const core::Unique& u, CloseResult result);
     
     bool isAllRequestsDone()
     {
