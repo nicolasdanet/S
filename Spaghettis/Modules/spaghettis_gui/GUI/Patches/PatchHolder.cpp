@@ -151,10 +151,12 @@ void PatchHolder::handleSaveRequest (const core::Unique& u, int result)
 {
     std::shared_ptr<Patch> p (fetchPatch (requests_, u));
     
+    DBG (result);
+    
     if (p) {
     //
     removePatch (requests_, u);
-    
+                 
     const bool save   = (result == 0);
     const bool cancel = (result == 2);
     

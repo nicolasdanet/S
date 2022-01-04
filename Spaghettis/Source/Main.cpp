@@ -70,10 +70,7 @@ public:
     
     void systemRequestedQuit() override
     {
-        performOrWaitAllRequestsDone ([]() { DBG ("!"); });
-        
-        spaghettis::Spaghettis()->closeAllPatches();
-        
+        performOrWaitAllRequestsDone ([]() { spaghettis::Spaghettis()->closeAllPatches(); });
         performOrWaitAllRequestsDone ([]() { quit(); });
     }
     
