@@ -137,6 +137,17 @@ juce::ValueTree Preferences::getDefault()
 {
     juce::ValueTree tree { Ids::PREFERENCES, { }, {
     //
+    { Ids::GROUP, { { Ids::name, "General" } },
+        {
+            { Ids::PARAMETER, {
+                { Ids::item,    "AskBeforeQuit" },
+                { Ids::text,    NEEDS_TRANS ("Ask Before Quitting") },
+                { Ids::info,    NEEDS_TRANS ("Show dialog box to confirm quitting") },
+                { Ids::type,    "boolean" },
+                { Ids::value,   true }
+            } }
+        }
+    },
     { Ids::GROUP, { { Ids::name, "Editing" } },
         {
             { Ids::PARAMETER, {
