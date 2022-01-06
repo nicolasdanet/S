@@ -59,7 +59,12 @@ public:
         
         juce::LookAndFeel::setDefaultLookAndFeel (nullptr);
     }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     template <class T> void performOrWaitAllRequestsDone (T f) const
     {
         if (spaghettis::Spaghettis()->isAllRequestsDone()) { f(); }
@@ -70,6 +75,10 @@ public:
     
     void systemRequestedQuit() override
     {
+        const bool ask = spaghettis::Spaghettis()->getPreferences().getValue ("AskBeforeQuit");
+        
+        if (ask == true) { DBG ("ASK"); }
+
         performOrWaitAllRequestsDone ([]() { spaghettis::Spaghettis()->closeAllPatches(); });
         performOrWaitAllRequestsDone ([]() { quit(); });
     }
@@ -88,7 +97,12 @@ public:
     {
         return ProjectInfo::versionString;
     }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     bool moreThanOneInstanceAllowed() override
     {
         return false;
@@ -106,6 +120,10 @@ public:
         //
         }
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     void getAllCommands (juce::Array<juce::CommandID>& c) override

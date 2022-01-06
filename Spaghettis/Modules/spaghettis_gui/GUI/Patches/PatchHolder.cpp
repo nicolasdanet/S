@@ -139,7 +139,7 @@ void PatchHolder::showSaveRequest (const std::shared_ptr<Patch>& p, CloseType no
     {
         Spaghettis()->getPatches().handleSaveRequest (u, getCloseResult (notify, result));
     };
-    
+
     if (notify == CloseType::yesNoCancel) {
         juce::NativeMessageBox::showYesNoCancelBox (juce::MessageBoxIconType::QuestionIcon,
             p->getFile().getFileName(),
