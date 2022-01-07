@@ -78,10 +78,11 @@ public:
     
     void systemRequestedQuit() override
     {
-        const bool ask = spaghettis::Spaghettis()->getPreferences().getValue ("AskBeforeQuit");
+        if (!spaghettis::Spaghettis()->getPatches().isEmpty()) {
+            const bool ask = spaghettis::Spaghettis()->getPreferences().getValue ("AskBeforeQuit");
+            if (ask == true) { spaghettis::Spaghettis()->requestToQuit(); }
+        }
         
-        if (ask == true) { spaghettis::Spaghettis()->requestToQuit(); }
-
         performOrWaitAllRequestsDone ([]() { spaghettis::Spaghettis()->closeAllPatches(); });
         performOrWaitAllRequestsDone ([]() { quit(); });
     }

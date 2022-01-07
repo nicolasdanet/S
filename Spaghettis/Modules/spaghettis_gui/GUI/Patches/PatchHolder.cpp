@@ -178,6 +178,15 @@ void PatchHolder::handleSaveRequest (const core::Unique& u, CloseResult result)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool PatchHolder::isEmpty() const
+{
+    return roots_.empty();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 /* To avoid bad loops remove first the patch from the roots before to release it. */
 
 void PatchHolder::requestClosePatch (const core::Unique& u, CloseType notify)
