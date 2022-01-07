@@ -55,14 +55,34 @@ void SpaghettisInstance::shutdown()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void SpaghettisInstance::requestToQuit()
+{
+    auto f = [this] (int result)
+    {
+        quit_ = (result == 1) ? QuitStatus::quit : QuitStatus::cancel;
+    };
+    
+    quit_ = QuitStatus::wait;
+        
+    juce::NativeMessageBox::showYesNoBox (juce::MessageBoxIconType::QuestionIcon,
+        core::getApplicationName(),
+        NEEDS_TRANS ("Do you really want to quit?"),
+        nullptr,
+        juce::ModalCallbackFunction::create (f));
+}
+
 void SpaghettisInstance::closeAllPatches()
 {
     patches_->closeAllPatches();
 }
 
-bool SpaghettisInstance::isAllRequestsDone() const
+RequestsStatus SpaghettisInstance::getRequestsStatus() const
 {
-    return patches_->isAllRequestsDone();
+    if (quit_ == QuitStatus::quit && patches_->isAllRequestsDone()) { return RequestsStatus::done; }
+    else if (quit_ == QuitStatus::cancel) { return RequestsStatus::cancel; }
+    else {
+        return RequestsStatus::wait;
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -67,8 +67,11 @@ public:
 public:
     template <class T> void performOrWaitAllRequestsDone (T f) const
     {
-        if (spaghettis::Spaghettis()->isAllRequestsDone()) { f(); }
-        else {
+        const spaghettis::RequestsStatus status = spaghettis::Spaghettis()->getRequestsStatus();
+        
+        if (status == spaghettis::RequestsStatus::cancel)    { return; }
+        else if (status == spaghettis::RequestsStatus::done) { f(); }
+        else if (status == spaghettis::RequestsStatus::wait) {
             juce::Timer::callAfterDelay (500.0, [this, f = f]() { performOrWaitAllRequestsDone<T> (f); });
         }
     }
@@ -77,7 +80,7 @@ public:
     {
         const bool ask = spaghettis::Spaghettis()->getPreferences().getValue ("AskBeforeQuit");
         
-        if (ask == true) { DBG ("ASK"); }
+        if (ask == true) { spaghettis::Spaghettis()->requestToQuit(); }
 
         performOrWaitAllRequestsDone ([]() { spaghettis::Spaghettis()->closeAllPatches(); });
         performOrWaitAllRequestsDone ([]() { quit(); });

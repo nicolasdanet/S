@@ -21,6 +21,13 @@ class PatchHolder;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+enum class QuitStatus       { quit, wait, cancel };
+enum class RequestsStatus   { done, wait, cancel };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class SpaghettisInstance {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -38,7 +45,8 @@ public:
         midiDevices_ (std::make_unique<MidiDevices>()),
         patches_ (std::make_unique<PatchHolder>()),
         currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory)),
-        dspIsRunning_ (false)
+        dspIsRunning_ (false),
+        quit_ (QuitStatus::quit)
     {
         const juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
 
@@ -86,8 +94,11 @@ public:
     void shutdown();
 
 public:
+    void requestToQuit();
     void closeAllPatches();
-    bool isAllRequestsDone() const;
+
+public:
+    RequestsStatus getRequestsStatus() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -299,6 +310,7 @@ private:
 private:
     juce::File currentOpenDirectory_;
     bool dspIsRunning_;
+    QuitStatus quit_;
     juce::StringArray recentFiles_;
     
 private:
