@@ -135,6 +135,12 @@ void PatchHolder::setDirty (const core::Unique& u, bool isDirty)
 
 void PatchHolder::showSaveRequest (const std::shared_ptr<Patch>& p, CloseType notify)
 {
+    juce::Component* window = p->getMainWindow();
+    
+    jassert (window);
+    
+    window->toFront (false);
+    
     auto f = [notify, u = p->getUnique()] (int result)
     {
         Spaghettis()->getPatches().handleSaveRequest (u, getCloseResult (notify, result));
@@ -144,14 +150,14 @@ void PatchHolder::showSaveRequest (const std::shared_ptr<Patch>& p, CloseType no
         juce::NativeMessageBox::showYesNoCancelBox (juce::MessageBoxIconType::QuestionIcon,
             p->getFile().getFileName(),
             NEEDS_TRANS ("Save the patch before closing?"),
-            p->getMainWindow(),
+            window,
             juce::ModalCallbackFunction::create (f));
     
     } else {
         juce::NativeMessageBox::showYesNoBox (juce::MessageBoxIconType::QuestionIcon,
             p->getFile().getFileName(),
             NEEDS_TRANS ("Save the patch before closing?"),
-            p->getMainWindow(),
+            window,
             juce::ModalCallbackFunction::create (f));
     }
     

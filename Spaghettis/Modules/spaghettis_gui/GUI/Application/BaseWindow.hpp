@@ -92,7 +92,7 @@ private:
 public:
     void activeWindowStatusChanged() override
     {
-        if (isActiveWindow()) { timerStart(); }
+        if (isActiveWindow()) { ensureModalWindowsAlwaysOnTop(); timerStart(); }
     }
 
     void makeVisible (juce::Rectangle<int> window = juce::Rectangle<int>());
@@ -105,6 +105,20 @@ public:
     void requireMinimumHeight (int h)
     {
         jassert (h > 0); mimimumHeight_ = h;
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    static void ensureModalWindowsAlwaysOnTop()
+    {
+        #if JUCE_LINUX
+        
+        juce::ModalComponentManager::getInstance()->bringModalComponentsToFront (false);
+        
+        #endif
     }
 
 // -----------------------------------------------------------------------------------------------------------
