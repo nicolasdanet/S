@@ -200,6 +200,12 @@ static void initialize (juce::LookAndFeel* lf)
     /* Devices combo box. */
     
     lf->setColour (juce::ComboBox::textColourId,                        base1);
+    
+    /* Dialog boxes on Linux. */
+    
+    lf->setColour (juce::AlertWindow::backgroundColourId,               backgroundDark1);
+    lf->setColour (juce::AlertWindow::textColourId,                     juce::Colours::white);
+    lf->setColour (juce::AlertWindow::outlineColourId,                  base1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
