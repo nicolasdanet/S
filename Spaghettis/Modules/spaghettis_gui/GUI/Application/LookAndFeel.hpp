@@ -277,7 +277,7 @@ public:
     
     juce::Font getAlertWindowMessageFont() override
     {
-        return getMenuFont();
+        return getTooltipsFont();
     }
     
     juce::Font getAlertWindowFont() override
