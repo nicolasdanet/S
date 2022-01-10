@@ -265,11 +265,14 @@ virtual int 	getAlertBoxWindowFlags ()=0
  
 virtual Array< int > 	getWidthsForTextButtons (AlertWindow &, const Array< TextButton * > &)=0
  
-virtual int 	getAlertWindowButtonHeight ()=0
- 
 */
 
 public:
+    int getAlertWindowButtonHeight() override
+    {
+        return 32;
+    }
+    
     juce::Font getAlertWindowTitleFont() override
     {
         return getMenuFont();
