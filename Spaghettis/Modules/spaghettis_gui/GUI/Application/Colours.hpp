@@ -206,6 +206,11 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (juce::AlertWindow::backgroundColourId,               backgroundDark1);
     lf->setColour (juce::AlertWindow::textColourId,                     juce::Colours::white);
     lf->setColour (juce::AlertWindow::outlineColourId,                  base1);
+    
+    lf->setColour (juce::TextButton::buttonColourId,                    juce::Colours::green);
+    lf->setColour (juce::TextButton::buttonOnColourId,                  juce::Colours::red);
+    lf->setColour (juce::TextButton::textColourOffId,                   juce::Colours::yellow);
+    lf->setColour (juce::TextButton::textColourOnId,                    juce::Colours::orange);
 }
 
 // -----------------------------------------------------------------------------------------------------------
