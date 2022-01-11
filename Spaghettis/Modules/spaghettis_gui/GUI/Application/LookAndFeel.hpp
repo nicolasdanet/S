@@ -266,6 +266,13 @@ public:
         const juce::Rectangle<int>&,
         juce::TextLayout&) override;
 
+private:
+    void drawAlertBoxBackground (juce::Graphics&, const juce::Rectangle<int>&, float);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+public:
     int getAlertWindowButtonHeight() override
     {
         return 32;

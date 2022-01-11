@@ -592,22 +592,27 @@ void LookAndFeel::drawArrowOpened (juce::Graphics& g, const juce::Rectangle<int>
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void LookAndFeel::drawAlertBoxBackground (juce::Graphics& g,
+    const juce::Rectangle<int>& bounds,
+    float cornerSize)
+{
+    g.setColour (findColour (Colours::alertWindowBackground));
+    g.fillRoundedRectangle (bounds.toFloat(), cornerSize);
+    g.setColour (findColour (Colours::alertWindowOutline));
+    g.drawRoundedRectangle (bounds.expanded (1).toFloat(), cornerSize, 2.0f);
+}
+        
 void LookAndFeel::drawAlertBox (juce::Graphics& g,
     juce::AlertWindow& alert,
     const juce::Rectangle<int>& textArea,
     juce::TextLayout& textLayout)
 {
-    auto cornerSize = 4.0f;
-
-    g.setColour (findColour (Colours::alertWindowOutline));
-    g.drawRoundedRectangle (alert.getLocalBounds().toFloat(), cornerSize, 2.0f);
-
-    auto bounds = alert.getLocalBounds().reduced (1);
+    const juce::Rectangle<int> bounds = alert.getLocalBounds().reduced (1);
+    
+    drawAlertBoxBackground (g, bounds, 4.0f);
+    
     g.reduceClipRegion (bounds);
-
-    g.setColour (findColour (Colours::alertWindowBackground));
-    g.fillRoundedRectangle (bounds.toFloat(), cornerSize);
-
+    
     auto iconSpaceUsed = 0;
 
     auto iconWidth = 80;
