@@ -683,10 +683,6 @@ void LookAndFeel::drawAlertBox (juce::Graphics& g,
     const juce::Rectangle<int> bounds = alert.getLocalBounds().reduced (1);
     
     drawAlertBoxBackground (g, bounds, 4.0f);
-    
-    g.setColour (juce::Colours::orange);
-    g.drawRect (textArea);
-    
     drawAlertBoxText (g, bounds, textLayout, drawAlertBoxIcon (g, bounds));
 }
 

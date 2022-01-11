@@ -277,7 +277,7 @@ private:
 public:
     int getAlertWindowButtonHeight() override
     {
-        return static_cast<int> (getTooltipsFont().getHeight() * 1.5);
+        return static_cast<int> (getMenuFont().getHeight() * 1.75);
     }
     
     juce::Font getAlertWindowTitleFont() override
@@ -302,7 +302,7 @@ public:
 public:
     juce::Font getTextButtonFont (juce::TextButton&, int) override
     {
-        return getTooltipsFont();
+        return getMenuFont();
     }
 
 // -----------------------------------------------------------------------------------------------------------
