@@ -258,12 +258,14 @@ public:
 
 /*
 virtual AlertWindow * 	createAlertWindow (const String &title, const String &message, const String &button1, const String &button2, const String &button3, MessageBoxIconType iconType, int numButtons, Component *associatedComponent)=0
- 
-virtual void 	drawAlertBox (Graphics &, AlertWindow &, const Rectangle< int > &textArea, TextLayout &)=0
-
 */
 
 public:
+    void drawAlertBox (juce::Graphics&,
+        juce::AlertWindow&,
+        const juce::Rectangle<int>&,
+        juce::TextLayout&) override;
+
     int getAlertWindowButtonHeight() override
     {
         return 32;
