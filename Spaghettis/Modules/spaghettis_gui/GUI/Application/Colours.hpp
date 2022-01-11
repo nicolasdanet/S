@@ -58,6 +58,9 @@ enum ColourIds : int {
     tooltipText,
     callOutBoxBackground,
     callOutBoxOutline,
+    alertWindowBackground,
+    alertWindowOutline,
+    alertWindowText,
     preferencesHeaderBackground,
     preferencesHeaderText,
     preferencesHeaderArrow,
@@ -150,6 +153,9 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (tooltipText,                                         juce::Colours::white);
     lf->setColour (callOutBoxBackground,                                backgroundDark1);
     lf->setColour (callOutBoxOutline,                                   base1);
+    lf->setColour (alertWindowBackground,                               backgroundDark1);
+    lf->setColour (alertWindowOutline,                                  base1);
+    lf->setColour (alertWindowText,                                     juce::Colours::white);
     lf->setColour (preferencesHeaderBackground,                         background);
     lf->setColour (preferencesHeaderText,                               juce::Colours::white);
     lf->setColour (preferencesHeaderArrow,                              base1);
@@ -202,10 +208,6 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (juce::ComboBox::textColourId,                        base1);
     
     /* Dialog boxes on Linux. */
-    
-    lf->setColour (juce::AlertWindow::backgroundColourId,               backgroundDark1);
-    lf->setColour (juce::AlertWindow::textColourId,                     juce::Colours::white);
-    lf->setColour (juce::AlertWindow::outlineColourId,                  base1);
     
     lf->setColour (juce::TextButton::buttonColourId,                    backgroundDark2);
     lf->setColour (juce::TextButton::textColourOffId,                   juce::Colours::white);

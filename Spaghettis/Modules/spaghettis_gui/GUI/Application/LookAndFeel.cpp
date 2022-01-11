@@ -599,13 +599,13 @@ void LookAndFeel::drawAlertBox (juce::Graphics& g,
 {
     auto cornerSize = 4.0f;
 
-    g.setColour (alert.findColour (juce::AlertWindow::outlineColourId));
+    g.setColour (findColour (Colours::alertWindowOutline));
     g.drawRoundedRectangle (alert.getLocalBounds().toFloat(), cornerSize, 2.0f);
 
     auto bounds = alert.getLocalBounds().reduced (1);
     g.reduceClipRegion (bounds);
 
-    g.setColour (alert.findColour (juce::AlertWindow::backgroundColourId));
+    g.setColour (findColour (Colours::alertWindowBackground));
     g.fillRoundedRectangle (bounds.toFloat(), cornerSize);
 
     auto iconSpaceUsed = 0;
@@ -659,7 +659,7 @@ void LookAndFeel::drawAlertBox (juce::Graphics& g,
         iconSpaceUsed = iconWidth;
     }
 
-    g.setColour (alert.findColour (juce::AlertWindow::textColourId));
+    g.setColour (findColour (Colours::alertWindowText));
 
     juce::Rectangle<int> alertBounds (bounds.getX() + iconSpaceUsed, 30,
                                 bounds.getWidth(), bounds.getHeight() - getAlertWindowButtonHeight() - 20);
