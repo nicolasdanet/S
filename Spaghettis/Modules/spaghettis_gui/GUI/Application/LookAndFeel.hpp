@@ -260,11 +260,7 @@ public:
 virtual AlertWindow * 	createAlertWindow (const String &title, const String &message, const String &button1, const String &button2, const String &button3, MessageBoxIconType iconType, int numButtons, Component *associatedComponent)=0
  
 virtual void 	drawAlertBox (Graphics &, AlertWindow &, const Rectangle< int > &textArea, TextLayout &)=0
- 
-virtual int 	getAlertBoxWindowFlags ()=0
- 
-virtual Array< int > 	getWidthsForTextButtons (AlertWindow &, const Array< TextButton * > &)=0
- 
+
 */
 
 public:
