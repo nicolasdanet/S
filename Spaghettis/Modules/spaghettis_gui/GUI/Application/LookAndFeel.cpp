@@ -593,7 +593,7 @@ void LookAndFeel::drawArrowOpened (juce::Graphics& g, const juce::Rectangle<int>
 // MARK: -
 
 void LookAndFeel::drawAlertBoxBackground (juce::Graphics& g,
-    const juce::Rectangle<int>& bounds,
+    juce::Rectangle<int> bounds,
     float cornerSize)
 {
     g.setColour (findColour (Colours::alertWindowBackground));
@@ -602,7 +602,7 @@ void LookAndFeel::drawAlertBoxBackground (juce::Graphics& g,
     g.drawRoundedRectangle (bounds.expanded (1).toFloat(), cornerSize, 2.0f);
 }
 
-int LookAndFeel::drawAlertBoxIcon (juce::Graphics& g, const juce::Rectangle<int>& bounds)
+int LookAndFeel::drawAlertBoxIcon (juce::Graphics& g, juce::Rectangle<int> bounds)
 {
     int iconSpaceUsed = 0;
     
@@ -663,16 +663,12 @@ int LookAndFeel::drawAlertBoxIcon (juce::Graphics& g, const juce::Rectangle<int>
 }
 
 void LookAndFeel::drawAlertBoxText (juce::Graphics& g,
-    const juce::Rectangle<int>& bounds,
-    const juce::TextLayout& textLayout,
-    int iconSpaceUsed)
+    juce::Rectangle<int> bounds,
+    const juce::TextLayout& textLayout)
 {
     g.setColour (findColour (Colours::alertWindowText));
 
-    juce::Rectangle<int> alertBounds (bounds.getX() + iconSpaceUsed, 30,
-                                bounds.getWidth(), bounds.getHeight() - getAlertWindowButtonHeight() - 20);
-
-    textLayout.draw (g, alertBounds.toFloat());
+    g.drawRect (bounds); textLayout.draw (g, bounds.toFloat());
 }
 
 void LookAndFeel::drawAlertBox (juce::Graphics& g,
@@ -683,7 +679,11 @@ void LookAndFeel::drawAlertBox (juce::Graphics& g,
     const juce::Rectangle<int> bounds = alert.getLocalBounds().reduced (1);
     
     drawAlertBoxBackground (g, bounds, 4.0f);
-    drawAlertBoxText (g, bounds, textLayout, drawAlertBoxIcon (g, bounds));
+    
+    const int iconSpaceUsed   = drawAlertBoxIcon (g, bounds);
+    const int buttonSpaceUsed = getAlertWindowButtonHeight();
+        
+    drawAlertBoxText (g, bounds.reduced (buttonSpaceUsed).withTrimmedLeft (iconSpaceUsed), textLayout);
 }
 
 // -----------------------------------------------------------------------------------------------------------
