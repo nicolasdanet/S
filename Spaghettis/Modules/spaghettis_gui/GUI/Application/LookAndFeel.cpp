@@ -605,35 +605,36 @@ void LookAndFeel::drawAlertBoxBackground (juce::Graphics& g,
 void LookAndFeel::drawAlertBoxIcon (juce::Graphics& g,
     juce::Rectangle<int> bounds,
     juce::AlertWindow& alert,
-    int iconWidth)
+    int iconSpace)
 {
     const juce::MessageBoxIconType type = alert.getAlertType();
 
-    auto iconSize = juce::jmin (iconWidth + 50, bounds.getHeight() + 20);
+    const char character = [type]()
+        {
+            if (type == juce::MessageBoxIconType::WarningIcon)   { return '!'; }
+            else if (type == juce::MessageBoxIconType::InfoIcon) { return 'i'; }
+            else {
+                return '?';
+            }
+        }();
     
-    juce::Rectangle<int> iconRect (iconSize / -10, iconSize / -10,
-                         iconSize, iconSize);
-                         
+    const int iconSize = iconSpace + 50;
+    const int iconMove = iconSize * 0.1;
+    
+    const juce::Rectangle<int> iconRect (juce::Rectangle<int> (iconSize, iconSize).translated (-iconMove, -iconMove));
+    
     juce::Path icon;
-    char character;
-    juce::uint32 colour;
-
+    
     if (type == juce::MessageBoxIconType::WarningIcon)
     {
-        character = '!';
-
         icon.addTriangle ((float) iconRect.getX() + (float) iconRect.getWidth() * 0.5f, (float) iconRect.getY(),
                           static_cast<float> (iconRect.getRight()), static_cast<float> (iconRect.getBottom()),
                           static_cast<float> (iconRect.getX()), static_cast<float> (iconRect.getBottom()));
 
         icon = icon.createPathWithRoundedCorners (5.0f);
-        colour = 0x66ff2a00;
     }
     else
     {
-        colour = juce::Colour (0xff00b0b9).withAlpha (0.4f).getARGB();
-        character = (type == juce::MessageBoxIconType::InfoIcon) ? 'i' : '?';
-
         icon.addEllipse (iconRect.toFloat());
     }
 
@@ -646,7 +647,7 @@ void LookAndFeel::drawAlertBoxIcon (juce::Graphics& g,
     ga.createPath (icon);
 
     icon.setUsingNonZeroWinding (false);
-    g.setColour (juce::Colour (colour));
+    g.setColour (juce::Colour (findColour (Colours::alertWindowIcon)));
     g.fillPath (icon);
 }
 
@@ -666,7 +667,7 @@ void LookAndFeel::drawAlertBox (juce::Graphics& g,
 {
     const juce::Rectangle<int> bounds = alert.getLocalBounds().reduced (1);
     
-    drawAlertBoxBackground (g, bounds, 4.0f);
+    const float cornerSize = 4.0f; drawAlertBoxBackground (g, bounds, cornerSize);
     
     g.reduceClipRegion (bounds);
     
@@ -674,7 +675,7 @@ void LookAndFeel::drawAlertBox (juce::Graphics& g,
     const int h = getAlertWindowButtonHeight();
     
     drawAlertBoxIcon (g, bounds, alert, w);
-    drawAlertBoxText (g, bounds.reduced (20).withTrimmedLeft (w).withTrimmedBottom (h), textLayout);
+    drawAlertBoxText (g, bounds.reduced (0, 30).withTrimmedLeft (w).withTrimmedBottom (h), textLayout);
 }
 
 // -----------------------------------------------------------------------------------------------------------
