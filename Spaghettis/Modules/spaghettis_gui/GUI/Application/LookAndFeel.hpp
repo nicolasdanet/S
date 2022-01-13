@@ -268,7 +268,7 @@ public:
 
 private:
     void drawAlertBoxBackground (juce::Graphics&, juce::Rectangle<int>, float);
-    void drawAlertBoxIcon (juce::Graphics&, juce::Rectangle<int>, juce::AlertWindow&, int);
+    void drawAlertBoxIcon (juce::Graphics&, juce::Rectangle<int>, juce::AlertWindow&);
     void drawAlertBoxText (juce::Graphics&, juce::Rectangle<int>, const juce::TextLayout&);
     
 // -----------------------------------------------------------------------------------------------------------
