@@ -15,10 +15,16 @@
 #include "GUI/Application/BaseWindow.cpp"
 #include "GUI/Application/Commands.cpp"
 #include "GUI/Application/Icons.cpp"
-#include "GUI/Application/LookAndFeel.cpp"
 #include "GUI/Application/MenuModel.cpp"
 #include "GUI/Application/Preferences.cpp"
 #include "GUI/Application/Instance.cpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#include "GUI/Application/LookAndFeel/LookAndFeel.cpp"
+#include "GUI/Application/LookAndFeel/LookAndFeelAlert.cpp"
+#include "GUI/Application/LookAndFeel/LookAndFeelPopup.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -1,0 +1,115 @@
+
+/* Copyright (c) 2020 Jojo and others. */
+
+/* < https://opensource.org/licenses/BSD-3-Clause > */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+namespace spaghettis {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void drawAlertBoxIconPathSetContent (const juce::Rectangle<float>& r, const juce::String& s, juce::Path& path)
+{
+    const juce::Font f (r.getHeight() * 0.9f, juce::Font::bold);
+    
+    juce::GlyphArrangement g;
+    
+    g.addFittedText (f, s, r.getX(), r.getY(), r.getWidth(), r.getHeight(), juce::Justification::centred, 0);
+    g.createPath (path);
+}
+
+juce::Path drawAlertBoxIconPath (const juce::Rectangle<float>& r, juce::MessageBoxIconType type)
+{
+    const juce::String content = [type]()
+        {
+            if (type == juce::MessageBoxIconType::WarningIcon)   { return juce::String ("!"); }
+            else if (type == juce::MessageBoxIconType::InfoIcon) { return juce::String ("i"); }
+            else {
+                return juce::String ("?");
+            }
+        }();
+        
+    juce::Path path;
+    
+    path.addEllipse (r);
+    
+    drawAlertBoxIconPathSetContent (r, content, path);
+    
+    path.setUsingNonZeroWinding (false);
+    
+    return path;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LookAndFeel::drawAlertBoxBackground (juce::Graphics& g,
+    juce::Rectangle<int> bounds,
+    float cornerSize)
+{
+    g.setColour (findColour (Colours::alertWindowBackground));
+    g.fillRoundedRectangle (bounds.toFloat(), cornerSize);
+    g.setColour (findColour (Colours::alertWindowOutline));
+    g.drawRoundedRectangle (bounds.expanded (1).toFloat(), cornerSize, 2.0f);
+}
+
+void LookAndFeel::drawAlertBoxIcon (juce::Graphics& g,
+    juce::Rectangle<int> iconArea,
+    juce::AlertWindow& alert)
+{
+    g.setColour (juce::Colour (findColour (Colours::alertWindowIcon)));
+    g.fillPath (drawAlertBoxIconPath (iconArea.toFloat(), alert.getAlertType()));
+}
+
+void LookAndFeel::drawAlertBoxText (juce::Graphics& g,
+    juce::Rectangle<int> bounds,
+    const juce::TextLayout& textLayout)
+{
+    g.setColour (findColour (Colours::alertWindowText));
+
+    textLayout.draw (g, bounds.toFloat());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void LookAndFeel::drawAlertBox (juce::Graphics& g,
+    juce::AlertWindow& alert,
+    const juce::Rectangle<int>& textArea,
+    juce::TextLayout& textLayout)
+{
+    const juce::Rectangle<int> bounds   = alert.getLocalBounds().reduced (1);
+    const juce::Rectangle<int> iconArea = juce::Rectangle<int> (-12, -12, 120, 120);
+    const float cornerSize              = 4.0f;
+    const int h                         = getAlertWindowButtonHeight();
+    
+    drawAlertBoxBackground (g, bounds, cornerSize);
+    
+    g.reduceClipRegion (bounds);
+    
+    drawAlertBoxIcon (g, iconArea, alert);
+    drawAlertBoxText (g, bounds.reduced (0, 30).withTrimmedLeft (80).withTrimmedBottom (h), textLayout);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+} // namespace spaghettis
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------

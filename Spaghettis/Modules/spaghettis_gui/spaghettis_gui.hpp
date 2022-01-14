@@ -63,10 +63,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Colours.hpp"
+#include "GUI/Application/LookAndFeel/Colours.hpp"
+#include "GUI/Application/LookAndFeel/LookAndFeel.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Application/Commands.hpp"
 #include "GUI/Application/Icons.hpp"
-#include "GUI/Application/LookAndFeel.hpp"
 #include "GUI/Application/MenuModel.hpp"
 #include "GUI/Application/Preferences.hpp"
 #include "GUI/Application/Instance.hpp"
