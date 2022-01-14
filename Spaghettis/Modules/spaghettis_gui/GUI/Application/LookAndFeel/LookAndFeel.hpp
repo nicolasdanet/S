@@ -55,7 +55,35 @@ public:
 public:
     static void drawArrowOpened (juce::Graphics&, const juce::Rectangle<int>&);
     static void drawArrowClosed (juce::Graphics&, const juce::Rectangle<int>&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/*
+virtual AlertWindow * 	createAlertWindow (const String &title, const String &message, const String &button1, const String &button2, const String &button3, MessageBoxIconType iconType, int numButtons, Component *associatedComponent)=0
+*/
+
+public:
+    void drawAlertBox (juce::Graphics&,
+        juce::AlertWindow&,
+        const juce::Rectangle<int>&,
+        juce::TextLayout&) override;
+
+private:
+    void drawAlertBoxBackground (juce::Graphics&, juce::Rectangle<int>, float);
+    void drawAlertBoxIcon (juce::Graphics&, juce::Rectangle<int>, juce::AlertWindow&);
+    void drawAlertBoxText (juce::Graphics&, juce::Rectangle<int>, const juce::TextLayout&);
     
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+public:
+    int getAlertWindowButtonHeight() override;
+    juce::Font getAlertWindowTitleFont() override;
+    juce::Font getAlertWindowMessageFont() override;
+    juce::Font getAlertWindowFont() override;
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -272,49 +300,6 @@ public:
         juce::Graphics&,
         const juce::Path&,
         juce::Image&) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-/*
-virtual AlertWindow * 	createAlertWindow (const String &title, const String &message, const String &button1, const String &button2, const String &button3, MessageBoxIconType iconType, int numButtons, Component *associatedComponent)=0
-*/
-
-public:
-    void drawAlertBox (juce::Graphics&,
-        juce::AlertWindow&,
-        const juce::Rectangle<int>&,
-        juce::TextLayout&) override;
-
-private:
-    void drawAlertBoxBackground (juce::Graphics&, juce::Rectangle<int>, float);
-    void drawAlertBoxIcon (juce::Graphics&, juce::Rectangle<int>, juce::AlertWindow&);
-    void drawAlertBoxText (juce::Graphics&, juce::Rectangle<int>, const juce::TextLayout&);
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-public:
-    int getAlertWindowButtonHeight() override
-    {
-        return static_cast<int> (getMenuFont().getHeight() * 1.75);
-    }
-    
-    juce::Font getAlertWindowTitleFont() override
-    {
-        return getMenuFont();
-    }
-    
-    juce::Font getAlertWindowMessageFont() override
-    {
-        return getTooltipsFont();
-    }
-    
-    juce::Font getAlertWindowFont() override
-    {
-        return getMenuFont();
-    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

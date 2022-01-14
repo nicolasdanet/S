@@ -108,6 +108,30 @@ void LookAndFeel::drawAlertBox (juce::Graphics& g,
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int LookAndFeel::getAlertWindowButtonHeight()
+{
+    return static_cast<int> (getMenuFont().getHeight() * 1.75);
+}
+
+juce::Font LookAndFeel::getAlertWindowTitleFont()
+{
+    return getMenuFont();
+}
+
+juce::Font LookAndFeel::getAlertWindowMessageFont()
+{
+    return getTooltipsFont();
+}
+
+juce::Font LookAndFeel::getAlertWindowFont()
+{
+    return getMenuFont();
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 } // namespace spaghettis
 
