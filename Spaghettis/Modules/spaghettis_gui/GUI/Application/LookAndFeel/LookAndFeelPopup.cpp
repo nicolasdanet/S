@@ -12,6 +12,20 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Font LookAndFeel::getPopupMenuFont()
+{
+    return getMenuFont();
+}
+
+int LookAndFeel::getPopupMenuBorderSize()
+{
+    return 0;
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LookAndFeel::drawPopupMenuBackgroundProceed (juce::Graphics& g)
 {
     g.fillAll (findColour (Colours::menubarPopupBackground));

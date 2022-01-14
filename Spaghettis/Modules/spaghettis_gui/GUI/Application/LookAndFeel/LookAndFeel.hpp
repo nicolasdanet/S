@@ -32,7 +32,6 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
     const juce::Font& getConsoleFont() const;
@@ -43,14 +42,12 @@ public:
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
     int getWindowTitleHeight (juce::Component *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
     static void drawArrowOpened (juce::Graphics&, const juce::Rectangle<int>&);
@@ -108,22 +105,11 @@ public:
 // MARK: -
 
 public:
-    int getDefaultMenuBarHeight() override
-    {
-        return 28;
-    }
+    int getDefaultMenuBarHeight() override;
+    juce::Font getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&) override;
+    void drawMenuBarBackground (juce::Graphics&, int, int, bool, juce::MenuBarComponent&) override;
 
-    juce::Font getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&) override
-    {
-        return getMenuFont();
-    }
-
-    void drawMenuBarBackground (juce::Graphics& g, int, int, bool, juce::MenuBarComponent&) override
-    {
-        g.fillAll (findColour (Colours::menubarBackground));
-    }
-
-    void drawMenuBarItem (juce::Graphics& g,
+    void drawMenuBarItem (juce::Graphics&,
         int,
         int,
         int,
@@ -133,6 +119,51 @@ public:
         bool,
         juce::MenuBarComponent&) override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::Font getPopupMenuFont() override;
+    int getPopupMenuBorderSize() override;
+
+    void drawPopupMenuBackgroundWithOptions (juce::Graphics&,
+        int,
+        int,
+        const juce::PopupMenu::Options&) override;
+    
+    void getIdealPopupMenuItemSize (const juce::String&,
+        const bool,
+        int,
+        int&,
+        int&) override;
+    
+    void drawPopupMenuItemWithOptions (juce::Graphics&,
+        const juce::Rectangle<int>&,
+        bool,
+        const juce::PopupMenu::Item&,
+        const juce::PopupMenu::Options&) override;
+
+private:
+    void drawPopupMenuBackgroundProceed (juce::Graphics&);
+
+private:
+    void drawPopupMenuItemSelector (juce::Graphics&, const juce::Rectangle<int>&);
+    void drawPopupMenuItemBackground (juce::Graphics& , const juce::Rectangle<int>&);
+    void drawPopupMenuItemTick (juce::Graphics&, juce::Rectangle<int>);
+    void drawPopupMenuItemSubMenu (juce::Graphics&, juce::Rectangle<int>&);
+    void drawPopupMenuItemShortcut (juce::Graphics&, const juce::Rectangle<int>&, const juce::String&);
+    void drawPopupMenuItemProceed (juce::Graphics&,
+        const juce::Rectangle<int>&,
+        const bool,
+        const bool,
+        const bool,
+        const bool,
+        const bool,
+        const bool,
+        const juce::String&,
+        const juce::String&);
+        
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -156,62 +187,6 @@ public:
         bool,
         juce::ToolbarItemComponent&) override;
                                                    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    juce::Font getPopupMenuFont() override
-    {
-        return getMenuFont();
-    }
-    
-    void drawPopupMenuBackgroundWithOptions (juce::Graphics&,
-        int,
-        int,
-        const juce::PopupMenu::Options&) override;
-
-    int getPopupMenuBorderSize() override
-    {
-        return 0;
-    }
-    
-    void getIdealPopupMenuItemSize (const juce::String&,
-        const bool,
-        int,
-        int&,
-        int&) override;
-    
-    void drawPopupMenuItemWithOptions (juce::Graphics&,
-        const juce::Rectangle<int>&,
-        bool,
-        const juce::PopupMenu::Item&,
-        const juce::PopupMenu::Options&) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    void drawPopupMenuBackgroundProceed (juce::Graphics&);
-
-private:
-    void drawPopupMenuItemSelector (juce::Graphics&, const juce::Rectangle<int>&);
-    void drawPopupMenuItemBackground (juce::Graphics& , const juce::Rectangle<int>&);
-    void drawPopupMenuItemTick (juce::Graphics&, juce::Rectangle<int>);
-    void drawPopupMenuItemSubMenu (juce::Graphics&, juce::Rectangle<int>&);
-    void drawPopupMenuItemShortcut (juce::Graphics&, const juce::Rectangle<int>&, const juce::String&);
-    void drawPopupMenuItemProceed (juce::Graphics&,
-        const juce::Rectangle<int>&,
-        const bool,
-        const bool,
-        const bool,
-        const bool,
-        const bool,
-        const bool,
-        const juce::String&,
-        const juce::String&);
-        
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

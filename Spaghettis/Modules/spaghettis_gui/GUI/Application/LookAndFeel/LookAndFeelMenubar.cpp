@@ -12,6 +12,21 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int LookAndFeel::getDefaultMenuBarHeight()
+{
+    return 28;
+}
+
+juce::Font LookAndFeel::getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&)
+{
+    return getMenuFont();
+}
+
+void LookAndFeel::drawMenuBarBackground (juce::Graphics& g, int, int, bool, juce::MenuBarComponent&)
+{
+    g.fillAll (findColour (Colours::menubarBackground));
+}
+    
 void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
     int width,
     int height,
