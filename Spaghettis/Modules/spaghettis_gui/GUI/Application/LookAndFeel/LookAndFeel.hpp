@@ -42,17 +42,29 @@ public:
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     int getWindowTitleHeight (juce::Component *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     static void drawArrowOpened (juce::Graphics&, const juce::Rectangle<int>&);
     static void drawArrowClosed (juce::Graphics&, const juce::Rectangle<int>&);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static juce::Colour getColourFromValue (const juce::Value&);
+    static void setValueWithColour (juce::Value&, const juce::Colour&);
+    static juce::String getDisplayStringFromColour (const juce::Colour&);
+    static juce::Colour getColorFromString (const juce::String&);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -77,6 +89,9 @@ public:
     juce::Font getAlertWindowTitleFont() override;
     juce::Font getAlertWindowMessageFont() override;
     juce::Font getAlertWindowFont() override;
+
+public:
+    juce::Font getTextButtonFont (juce::TextButton&, int) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -228,43 +243,6 @@ private:
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    juce::Font getTextButtonFont (juce::TextButton&, int) override
-    {
-        return getMenuFont();
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static juce::Colour getColourFromValue (const juce::Value& v)
-    {
-        const juce::String name (v.toString());
-        
-        if (name.length() == 8) { return juce::Colour::fromString (name); }
-        else {
-            jassertfalse; return juce::Colours::black;
-        }
-    }
-
-    static void setValueWithColour (juce::Value& v, const juce::Colour& c)
-    {
-        v.setValue (c.toString().paddedLeft ('0', 8));
-    }
-    
-    static juce::String getDisplayStringFromColour (const juce::Colour& colour)
-    {
-        return colour.toDisplayString (true);
-    }
-    
-    static juce::Colour getColorFromString (const juce::String& s)
-    {
-        return juce::Colour::fromString (s.length() == 8 ? s : "ff000000");
-    }
 
 private:
     juce::String font18Name_;

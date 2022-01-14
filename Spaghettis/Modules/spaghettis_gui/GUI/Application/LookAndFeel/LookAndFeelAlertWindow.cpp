@@ -129,6 +129,11 @@ juce::Font LookAndFeel::getAlertWindowFont()
 {
     return getMenuFont();
 }
+
+juce::Font LookAndFeel::getTextButtonFont (juce::TextButton&, int)
+{
+    return getMenuFont();
+}
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
