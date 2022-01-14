@@ -26,6 +26,8 @@
 #include "GUI/Application/LookAndFeel/LookAndFeelAlertWindow.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelComboBox.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelPopup.cpp"
+#include "GUI/Application/LookAndFeel/LookAndFeelToolbar.cpp"
+#include "GUI/Application/LookAndFeel/LookAndFeelTooltip.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
