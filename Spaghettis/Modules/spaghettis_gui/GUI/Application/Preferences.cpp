@@ -186,7 +186,7 @@ juce::ValueTree Preferences::getDefault()
                 { Ids::value,   "12" }
             } }
         }
-    }, /*
+    },
     { Ids::GROUP, { { Ids::name, "Nuclear" } },
         {
             { Ids::PARAMETER, {
@@ -220,7 +220,7 @@ juce::ValueTree Preferences::getDefault()
                 { Ids::value,   "0.5" }
             } }
         }
-    }, */
+    },
     { Ids::GROUP, { { Ids::name, "Colors" } },
         {
             { Ids::PARAMETER, {
