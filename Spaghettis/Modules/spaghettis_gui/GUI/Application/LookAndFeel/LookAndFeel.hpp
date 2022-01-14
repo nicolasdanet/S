@@ -27,8 +27,34 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    void initializeFonts();
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    const juce::Font& getConsoleFont() const;
+    const juce::Font& getMenuFont() const;
+    const juce::Font& getColourFont() const;
+    const juce::Font& getMenuShortcutsFont() const;
+    const juce::Font& getTooltipsFont() const;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     int getWindowTitleHeight (juce::Component *);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static void drawArrowOpened (juce::Graphics&, const juce::Rectangle<int>&);
+    static void drawArrowClosed (juce::Graphics&, const juce::Rectangle<int>&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -305,14 +331,6 @@ public:
 // MARK: -
 
 public:
-    static void drawArrowOpened (juce::Graphics&, const juce::Rectangle<int>&);
-    static void drawArrowClosed (juce::Graphics&, const juce::Rectangle<int>&);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     static juce::Colour getColourFromValue (const juce::Value& v)
     {
         const juce::String name (v.toString());
@@ -336,43 +354,6 @@ public:
     static juce::Colour getColorFromString (const juce::String& s)
     {
         return juce::Colour::fromString (s.length() == 8 ? s : "ff000000");
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    void initializeFonts();
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    const juce::Font& getConsoleFont() const
-    {
-        return font18_;
-    }
-    
-    const juce::Font& getMenuFont() const
-    {
-        return font18_;
-    }
-    
-    const juce::Font& getColourFont() const
-    {
-        return font18Monospaced_;
-    }
-    
-    const juce::Font& getMenuShortcutsFont() const
-    {
-        return font18Monospaced_;
-    }
-
-    const juce::Font& getTooltipsFont() const
-    {
-        return font16Bold_;
     }
 
 private:

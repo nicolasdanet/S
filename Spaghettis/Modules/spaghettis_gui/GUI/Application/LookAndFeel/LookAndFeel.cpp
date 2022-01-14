@@ -84,6 +84,35 @@ void LookAndFeel::initializeFonts()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+const juce::Font& LookAndFeel::getConsoleFont() const
+{
+    return font18_;
+}
+
+const juce::Font& LookAndFeel::getMenuFont() const
+{
+    return font18_;
+}
+
+const juce::Font& LookAndFeel::getColourFont() const
+{
+    return font18Monospaced_;
+}
+
+const juce::Font& LookAndFeel::getMenuShortcutsFont() const
+{
+    return font18Monospaced_;
+}
+
+const juce::Font& LookAndFeel::getTooltipsFont() const
+{
+    return font16Bold_;
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 /* Cache the window title height (assume that it doesn't change). */
 
 int LookAndFeel::getWindowTitleHeight (juce::Component *c)
