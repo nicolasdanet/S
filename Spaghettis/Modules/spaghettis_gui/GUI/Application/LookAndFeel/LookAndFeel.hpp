@@ -19,12 +19,7 @@ class LookAndFeel : public juce::LookAndFeel_V4 {
 // MARK: -
 
 public:
-    explicit LookAndFeel() : windowTitleHeight_ (0)
-    {
-        Colours::initialize (this);
-        
-        initializeFonts();
-    }
+    explicit LookAndFeel();
     
     ~LookAndFeel() = default;
 
@@ -348,7 +343,6 @@ public:
 // MARK: -
 
 private:
-    juce::String initializeFontsBest (const juce::StringArray&);
     void initializeFonts();
     
 // -----------------------------------------------------------------------------------------------------------
