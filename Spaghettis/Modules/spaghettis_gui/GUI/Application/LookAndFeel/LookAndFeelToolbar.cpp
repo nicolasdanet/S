@@ -12,6 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int LookAndFeel::getToolbarHeight()
+{
+    #if JUCE_LINUX
+        return 30;
+    #else
+        return 32;
+    #endif
+}
+    
 void LookAndFeel::paintToolbarBackground (juce::Graphics& g, int w, int h, juce::Toolbar& toolbar)
 {
     g.fillAll (findColour (Colours::toolbarBackground));

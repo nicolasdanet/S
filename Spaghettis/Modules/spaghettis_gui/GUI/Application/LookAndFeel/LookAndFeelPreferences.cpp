@@ -38,6 +38,16 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
         true);
 }
 
+int LookAndFeel::getPropertyPanelSectionHeaderHeight (const juce::String& s)
+{
+    if (s.isEmpty()) { return 0; } else { return getPropertyPanelHeight(); }
+}
+
+int LookAndFeel::getPropertyPanelHeight()
+{
+    return static_cast<int> (getConsoleFont().getHeight() * 1.5);
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -79,6 +89,26 @@ void LookAndFeel::drawLabel (juce::Graphics& g, juce::Label& l)
     }
 }
 
+juce::Font LookAndFeel::getLabelFont (juce::Label&)
+{
+    return getConsoleFont();
+}
+
+juce::BorderSize<int> LookAndFeel::getLabelBorderSize (juce::Label&)
+{
+    /* Avoid the text to drift down when editing in preferences. */
+    
+    #if JUCE_RPI
+    
+    return juce::BorderSize<int> { 2, 5, 0, 5 };
+    
+    #else
+    
+    return juce::BorderSize<int> { 3, 5, 0, 5 };
+    
+    #endif
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

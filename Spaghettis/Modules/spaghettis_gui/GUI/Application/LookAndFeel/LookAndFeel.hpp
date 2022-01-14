@@ -163,43 +163,6 @@ private:
         const bool,
         const juce::String&,
         const juce::String&);
-        
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    int getToolbarHeight()
-    {
-        #if JUCE_LINUX
-            return 30;
-        #else
-            return 32;
-        #endif
-    }
-    
-    void paintToolbarBackground (juce::Graphics&, int w, int h, juce::Toolbar&) override;
-    
-    void paintToolbarButtonBackground (juce::Graphics&,
-        int,
-        int,
-        bool,
-        bool,
-        juce::ToolbarItemComponent&) override;
-                                                   
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void drawTooltip (juce::Graphics&, const juce::String&, int, int) override;
-        
-    juce::Rectangle<int> getTooltipBounds (const juce::String&,
-        juce::Point<int>,
-        juce::Rectangle<int>) override;
-
-private:
-    juce::TextLayout getTooltipLayout (const juce::String&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -209,48 +172,16 @@ public:
     void drawPropertyComponentBackground (juce::Graphics&, int, int, juce::PropertyComponent&) override;
     void drawPropertyComponentLabel (juce::Graphics&, int, int, juce::PropertyComponent&) override;
     
-    int getPropertyPanelSectionHeaderHeight (const juce::String& s) override
-    {
-        if (s.isEmpty()) { return 0; } else { return getPropertyPanelHeight(); }
-    }
-
-    int getPropertyPanelHeight()
-    {
-        return static_cast<int> (getConsoleFont().getHeight() * 1.5);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
+    int getPropertyPanelSectionHeaderHeight (const juce::String& s) override;
+    int getPropertyPanelHeight();
 
 public:
     void drawToggleButton (juce::Graphics&, juce::ToggleButton&, bool, bool) override;
-    
-    void drawLabel (juce::Graphics& g, juce::Label& label) override;
-    
-    juce::Font getLabelFont (juce::Label&) override
-    {
-        return getConsoleFont();
-    }
-    
-    juce::BorderSize<int> getLabelBorderSize (juce::Label&) override
-    {
-        /* Avoid the text to drift down when editing in preferences. */
-        
-        #if JUCE_RPI
-        
-        return juce::BorderSize<int> { 2, 5, 0, 5 };
-        
-        #else
-        
-        return juce::BorderSize<int> { 3, 5, 0, 5 };
-        
-        #endif
-    }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
+public:
+    void drawLabel (juce::Graphics& g, juce::Label& label) override;
+    juce::Font getLabelFont (juce::Label&) override;
+    juce::BorderSize<int> getLabelBorderSize (juce::Label&) override;
 
 public:
     void drawLinearSlider (juce::Graphics&,
@@ -265,7 +196,36 @@ public:
         juce::Slider&) override;
     
     juce::Label* createSliderTextBox (juce::Slider&) override;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
+public:
+    int getToolbarHeight();
+
+    void paintToolbarBackground (juce::Graphics&, int w, int h, juce::Toolbar&) override;
+    void paintToolbarButtonBackground (juce::Graphics&,
+        int,
+        int,
+        bool,
+        bool,
+        juce::ToolbarItemComponent&) override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void drawTooltip (juce::Graphics&, const juce::String&, int, int) override;
+        
+    juce::Rectangle<int> getTooltipBounds (const juce::String&,
+        juce::Point<int>,
+        juce::Rectangle<int>) override;
+
+private:
+    juce::TextLayout getTooltipLayout (const juce::String&);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
