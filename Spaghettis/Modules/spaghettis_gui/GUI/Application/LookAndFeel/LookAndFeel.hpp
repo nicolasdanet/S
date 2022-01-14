@@ -69,11 +69,16 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
-virtual AlertWindow * 	createAlertWindow (const String &title, const String &message, const String &button1, const String &button2, const String &button3, MessageBoxIconType iconType, int numButtons, Component *associatedComponent)=0
-*/
-
 public:
+    juce::AlertWindow* createAlertWindow (const juce::String&,
+        const juce::String&,
+        const juce::String&,
+        const juce::String&,
+        const juce::String&,
+        juce::MessageBoxIconType,
+        int,
+        juce::Component*) override;
+
     void drawAlertBox (juce::Graphics&,
         juce::AlertWindow&,
         const juce::Rectangle<int>&,
