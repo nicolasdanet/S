@@ -23,7 +23,8 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/LookAndFeel/LookAndFeel.cpp"
-#include "GUI/Application/LookAndFeel/LookAndFeelAlert.cpp"
+#include "GUI/Application/LookAndFeel/LookAndFeelAlertWindow.cpp"
+#include "GUI/Application/LookAndFeel/LookAndFeelComboBox.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelPopup.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
