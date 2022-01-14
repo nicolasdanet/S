@@ -75,14 +75,33 @@ private:
     void drawAlertBoxIcon (juce::Graphics&, juce::Rectangle<int>, juce::AlertWindow&);
     void drawAlertBoxText (juce::Graphics&, juce::Rectangle<int>, const juce::TextLayout&);
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 public:
     int getAlertWindowButtonHeight() override;
     juce::Font getAlertWindowTitleFont() override;
     juce::Font getAlertWindowMessageFont() override;
     juce::Font getAlertWindowFont() override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void drawCallOutBoxBackground (juce::CallOutBox&,
+        juce::Graphics&,
+        const juce::Path&,
+        juce::Image&) override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::Font getComboBoxFont();
+    juce::Font getComboBoxFont (juce::ComboBox&) override;
+
+    void drawComboBox (juce::Graphics&, int, int, bool, int, int, int, int, juce::ComboBox&) override;
+    void positionComboBoxText (juce::ComboBox&, juce::Label&) override;
+    void drawComboBoxTextWhenNothingSelected (juce::Graphics&, juce::ComboBox&, juce::Label&) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -198,25 +217,6 @@ private:
 // MARK: -
 
 public:
-    juce::Font getComboBoxFont()
-    {
-        return getMenuFont();
-    }
-    
-    juce::Font getComboBoxFont (juce::ComboBox& box) override
-    {
-        return getComboBoxFont();
-    }
-
-    void drawComboBox (juce::Graphics&, int, int, bool, int, int, int, int, juce::ComboBox&) override;
-    void positionComboBoxText (juce::ComboBox&, juce::Label&) override;
-    void drawComboBoxTextWhenNothingSelected (juce::Graphics&, juce::ComboBox&, juce::Label&) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void drawTooltip (juce::Graphics&, const juce::String&, int, int) override;
         
     juce::Rectangle<int> getTooltipBounds (const juce::String&,
@@ -290,16 +290,6 @@ public:
         juce::Slider&) override;
     
     juce::Label* createSliderTextBox (juce::Slider&) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void drawCallOutBoxBackground (juce::CallOutBox&,
-        juce::Graphics&,
-        const juce::Path&,
-        juce::Image&) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -12,6 +12,20 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Font LookAndFeel::getComboBoxFont()
+{
+    return getMenuFont();
+}
+
+juce::Font LookAndFeel::getComboBoxFont (juce::ComboBox& box)
+{
+    return getComboBoxFont();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LookAndFeel::drawComboBox (juce::Graphics& g,
     int width,
     int height,
