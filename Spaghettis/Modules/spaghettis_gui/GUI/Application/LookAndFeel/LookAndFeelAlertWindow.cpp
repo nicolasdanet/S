@@ -21,20 +21,16 @@ juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
     int numButtons,
     juce::Component* associatedComponent)
 {
-    auto boundsOffset = 50;
+    juce::AlertWindow* w = LookAndFeel_V4::createAlertWindow (title,
+        message,
+        button1,
+        button2,
+        button3,
+        iconType,
+        numButtons,
+        associatedComponent);
 
-    auto* aw = LookAndFeel_V2::createAlertWindow (title, message, button1, button2, button3,
-                                                  iconType, numButtons, associatedComponent);
-
-    auto bounds = aw->getBounds();
-    bounds = bounds.withSizeKeepingCentre (bounds.getWidth() + boundsOffset, bounds.getHeight() + boundsOffset);
-    aw->setBounds (bounds);
-
-    for (auto* child : aw->getChildren())
-        if (auto* button = dynamic_cast<juce::TextButton*> (child))
-            button->setBounds (button->getBounds() + juce::Point<int> (25, 40));
-
-    return aw;
+    return w;
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -79,6 +79,9 @@ public:
         int,
         juce::Component*) override;
 
+    // drawButtonBackground
+    // drawButtonText
+    
     void drawAlertBox (juce::Graphics&,
         juce::AlertWindow&,
         const juce::Rectangle<int>&,
