@@ -28,7 +28,7 @@ juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
         button3,
         iconType,
         numButtons,
-        associatedComponent);
+        nullptr);
 
     return w;
 }
