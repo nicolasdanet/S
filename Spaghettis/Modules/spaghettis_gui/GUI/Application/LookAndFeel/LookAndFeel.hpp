@@ -79,7 +79,8 @@ public:
         int,
         juce::Component*) override;
 
-    // drawButtonBackground
+    void drawButtonBackground (juce::Graphics&, juce::Button&, const juce::Colour&, bool, bool) override;
+                                           
     // drawButtonText
     
     void drawAlertBox (juce::Graphics&,
