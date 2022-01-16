@@ -203,15 +203,15 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (juce::BooleanPropertyComponent::outlineColourId,     juce::Colours::transparentBlack);
     lf->setColour (juce::BooleanPropertyComponent::backgroundColourId,  backgroundDark);
     
+    /* Slider preferences. */
+    
+    lf->setColour (juce::Label::textColourId,                           base1);
+    
     /* Colour selector sliders. */
     
     lf->setColour (juce::Slider::backgroundColourId,                    backgroundDark2);
     lf->setColour (juce::Slider::trackColourId,                         background);
     lf->setColour (juce::Slider::thumbColourId,                         juce::Colours::grey);
-    
-    /* Slider preferences. */
-    
-    lf->setColour (juce::Label::textColourId,                           base1);
     
     /* Devices combo box. */
     
