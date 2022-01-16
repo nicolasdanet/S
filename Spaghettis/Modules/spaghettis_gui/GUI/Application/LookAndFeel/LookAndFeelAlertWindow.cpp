@@ -57,11 +57,9 @@ void LookAndFeel::drawButtonBackground (juce::Graphics& g,
 
 void LookAndFeel::drawButtonText (juce::Graphics& g, juce::TextButton& button, bool, bool)
 {
-    juce::Rectangle<int> r (button.getHeight(), button.getWidth());
-    
     g.setFont (getTextButtonFont());
     g.setColour (findColour (Colours::alertWindowButtonText));
-    g.drawText (button.getButtonText(), r, juce::Justification::centred, true);
+    g.drawText (button.getButtonText(), button.getBounds(), juce::Justification::centred, true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
