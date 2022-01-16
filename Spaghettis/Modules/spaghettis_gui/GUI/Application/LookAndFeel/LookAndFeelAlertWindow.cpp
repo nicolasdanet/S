@@ -57,22 +57,11 @@ void LookAndFeel::drawButtonBackground (juce::Graphics& g,
 
 void LookAndFeel::drawButtonText (juce::Graphics& g, juce::TextButton& button, bool, bool)
 {
-    juce::Font font (getTextButtonFont (button, button.getHeight()));
-    g.setFont (font);
-    g.setColour (juce::Colours::red);
-
-    const int yIndent = juce::jmin (4, button.proportionOfHeight (0.3f));
-    const int cornerSize = juce::jmin (button.getHeight(), button.getWidth()) / 2;
-
-    const int fontHeight = juce::roundToInt (font.getHeight() * 0.6f);
-    const int leftIndent  = juce::jmin (fontHeight, 2 + cornerSize / (button.isConnectedOnLeft() ? 4 : 2));
-    const int rightIndent = juce::jmin (fontHeight, 2 + cornerSize / (button.isConnectedOnRight() ? 4 : 2));
-    const int textWidth = button.getWidth() - leftIndent - rightIndent;
-
-    if (textWidth > 0)
-        g.drawFittedText (button.getButtonText(),
-                          leftIndent, yIndent, textWidth, button.getHeight() - yIndent * 2,
-                          juce::Justification::centred, 2);
+    juce::Rectangle<int> r (button.getHeight(), button.getWidth());
+    
+    g.setFont (getTextButtonFont());
+    g.setColour (findColour (Colours::alertWindowButtonText));
+    g.drawText (button.getButtonText(), r, juce::Justification::centred, true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -170,7 +159,7 @@ void LookAndFeel::drawAlertBox (juce::Graphics& g,
     g.reduceClipRegion (bounds);
     
     drawAlertBoxIcon (g, iconArea, alert);
-    drawAlertBoxText (g, bounds.reduced (0, 30).withTrimmedLeft (80).withTrimmedBottom (h), textLayout);
+    drawAlertBoxText (g, bounds.reduced (0, 40).withTrimmedLeft (80).withTrimmedBottom (h), textLayout);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -197,9 +186,14 @@ juce::Font LookAndFeel::getAlertWindowFont()
     return getMenuFont();
 }
 
-juce::Font LookAndFeel::getTextButtonFont (juce::TextButton&, int)
+juce::Font LookAndFeel::getTextButtonFont()
 {
     return getMenuFont();
+}
+
+juce::Font LookAndFeel::getTextButtonFont (juce::TextButton&, int)
+{
+    return getTextButtonFont();
 }
     
 // -----------------------------------------------------------------------------------------------------------

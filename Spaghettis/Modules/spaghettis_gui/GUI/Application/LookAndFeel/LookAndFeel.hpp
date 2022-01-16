@@ -99,6 +99,7 @@ public:
     juce::Font getAlertWindowFont() override;
 
 public:
+    juce::Font getTextButtonFont();
     juce::Font getTextButtonFont (juce::TextButton&, int) override;
 
 // -----------------------------------------------------------------------------------------------------------
