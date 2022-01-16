@@ -12,6 +12,80 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+juce::AlertWindow* createAlertWindowLocal (const juce::String& title,
+    const juce::String& message,
+    const juce::String& button1,
+    const juce::String& button2,
+    const juce::String& button3,
+    juce::MessageBoxIconType iconType,
+    int numButtons,
+    juce::Component* associatedComponent)
+{
+    juce::AlertWindow* aw = new juce::AlertWindow (title, message, iconType, associatedComponent);
+
+    if (numButtons == 1)
+    {
+        aw->addButton (button1, 0,
+                       juce::KeyPress (juce::KeyPress::escapeKey),
+                       juce::KeyPress (juce::KeyPress::returnKey));
+    }
+    else
+    {
+        const juce::KeyPress button1ShortCut ((int) juce::CharacterFunctions::toLowerCase (button1[0]), 0, 0);
+        juce::KeyPress button2ShortCut ((int) juce::CharacterFunctions::toLowerCase (button2[0]), 0, 0);
+        
+        if (button1ShortCut == button2ShortCut)
+            button2ShortCut = juce::KeyPress();
+
+        if (numButtons == 2)
+        {
+            aw->addButton (button1, 1, juce::KeyPress (juce::KeyPress::returnKey), button1ShortCut);
+            aw->addButton (button2, 0, juce::KeyPress (juce::KeyPress::escapeKey), button2ShortCut);
+        }
+        else if (numButtons == 3)
+        {
+            aw->addButton (button1, 1, button1ShortCut);
+            aw->addButton (button2, 2, button2ShortCut);
+            aw->addButton (button3, 0, juce::KeyPress (juce::KeyPress::escapeKey));
+        }
+    }
+
+    return aw;
+}
+
+juce::AlertWindow* createAlertWindowProceed (const juce::String& title,
+    const juce::String& message,
+    const juce::String& button1,
+    const juce::String& button2,
+    const juce::String& button3,
+    juce::MessageBoxIconType iconType,
+    int numButtons,
+    juce::Component* associatedComponent)
+{
+    auto boundsOffset = 50;
+
+    auto* aw = createAlertWindowLocal (title, message, button1, button2, button3,
+                                                  iconType, numButtons, associatedComponent);
+
+    auto bounds = aw->getBounds();
+    bounds = bounds.withSizeKeepingCentre (bounds.getWidth() + boundsOffset, bounds.getHeight() + boundsOffset);
+    aw->setBounds (bounds);
+
+    for (auto* child : aw->getChildren())
+        if (auto* button = dynamic_cast<juce::TextButton*> (child))
+            button->setBounds (button->getBounds() + juce::Point<int> (25, 40));
+
+    return aw;
+}
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
     const juce::String& message,
     const juce::String& button1,
@@ -21,7 +95,7 @@ juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
     int numButtons,
     juce::Component* associatedComponent)
 {
-    juce::AlertWindow* w = LookAndFeel_V4::createAlertWindow (title,
+    juce::AlertWindow* w = createAlertWindowProceed (title,
         message,
         button1,
         button2,
