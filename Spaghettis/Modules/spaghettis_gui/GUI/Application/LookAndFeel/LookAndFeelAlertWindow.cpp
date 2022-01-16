@@ -57,9 +57,21 @@ void LookAndFeel::drawButtonBackground (juce::Graphics& g,
 
 void LookAndFeel::drawButtonText (juce::Graphics& g, juce::TextButton& button, bool, bool)
 {
+    const int yIndent = juce::jmin (4, button.proportionOfHeight (0.3f));
+    const int cornerSize = juce::jmin (button.getHeight(), button.getWidth()) / 2;
+
+    const int fontHeight = juce::roundToInt (getTextButtonFont().getHeight() * 0.6f);
+    const int leftIndent  = juce::jmin (fontHeight, 2 + cornerSize / (button.isConnectedOnLeft() ? 4 : 2));
+    const int rightIndent = juce::jmin (fontHeight, 2 + cornerSize / (button.isConnectedOnRight() ? 4 : 2));
+    const int textWidth = button.getWidth() - leftIndent - rightIndent;
+    const int textHeight = button.getHeight() - yIndent * 2;
+    
+    juce::Rectangle<int> r (leftIndent, yIndent, textWidth, textHeight);
+        
     g.setFont (getTextButtonFont());
     g.setColour (findColour (Colours::alertWindowButtonText));
-    g.drawText (button.getButtonText(), button.getBounds(), juce::Justification::centred, true);
+    
+    g.drawText (button.getButtonText(), r, juce::Justification::centred, true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
