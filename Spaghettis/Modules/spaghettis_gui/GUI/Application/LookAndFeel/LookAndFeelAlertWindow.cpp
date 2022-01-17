@@ -51,19 +51,15 @@ void createAlertWindowAddButtons (juce::AlertWindow* aw,
     }
 }
 
-void createAlertWindowArrange (juce::AlertWindow* w)
+void createAlertWindowSetBounds (juce::AlertWindow* w)
 {
-    auto boundsOffset = 50;
+    w->setBounds (w->getBounds().expanded (40));
 
-    juce::Rectangle<int> bounds = w->getBounds();
-    
-    bounds = bounds.withSizeKeepingCentre (bounds.getWidth() + boundsOffset, bounds.getHeight() + boundsOffset);
-    
-    w->setBounds (bounds);
-
-    for (auto* child : w->getChildren())
-        if (auto* button = dynamic_cast<juce::TextButton*> (child))
-            button->setBounds (button->getBounds() + juce::Point<int> (25, 40));
+    for (auto* child : w->getChildren()) {
+        if (juce::TextButton* button = dynamic_cast<juce::TextButton*> (child)) {
+            button->setBounds (button->getBounds().translated (25, 40));
+        }
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -84,12 +80,12 @@ juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
     int numberOfButtons,
     juce::Component* associatedComponent)
 {
-    juce::AlertWindow* w = new juce::AlertWindow (title, message, iconType, nullptr);
+    auto w = std::make_unique<juce::AlertWindow> (title, message, iconType, nullptr);
         
-    createAlertWindowAddButtons (w, button1, button2, button3, numberOfButtons);
-    createAlertWindowArrange (w);
+    createAlertWindowAddButtons (w.get(), button1, button2, button3, numberOfButtons);
+    createAlertWindowSetBounds (w.get());
 
-    return w;
+    return w.release();
 }
 
 // -----------------------------------------------------------------------------------------------------------
