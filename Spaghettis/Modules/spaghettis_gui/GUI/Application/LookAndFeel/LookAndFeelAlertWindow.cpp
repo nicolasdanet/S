@@ -14,16 +14,18 @@ namespace spaghettis {
 
 namespace {
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 juce::AlertWindow* createAlertWindowLocal (const juce::String& title,
     const juce::String& message,
     const juce::String& button1,
     const juce::String& button2,
     const juce::String& button3,
     juce::MessageBoxIconType iconType,
-    int numButtons,
-    juce::Component* associatedComponent)
+    int numButtons)
 {
-    juce::AlertWindow* aw = new juce::AlertWindow (title, message, iconType, associatedComponent);
+    juce::AlertWindow* aw = new juce::AlertWindow (title, message, iconType, nullptr);
 
     if (numButtons == 1)
     {
@@ -61,24 +63,27 @@ juce::AlertWindow* createAlertWindowProceed (const juce::String& title,
     const juce::String& button2,
     const juce::String& button3,
     juce::MessageBoxIconType iconType,
-    int numButtons,
-    juce::Component* associatedComponent)
+    int numberOfButtons)
 {
-    auto boundsOffset = 50;
+    juce::AlertWindow* w = createAlertWindowLocal (title, message, button1, button2, button3, iconType, numberOfButtons);
+    
+    // auto boundsOffset = 50;
 
-    auto* aw = createAlertWindowLocal (title, message, button1, button2, button3,
-                                                  iconType, numButtons, associatedComponent);
+    // juce::Rectangle<int> bounds = w->getBounds();
+    
+    // bounds = bounds.withSizeKeepingCentre (bounds.getWidth() + boundsOffset, bounds.getHeight() + boundsOffset);
+    
+    // w->setBounds (bounds);
 
-    auto bounds = aw->getBounds();
-    bounds = bounds.withSizeKeepingCentre (bounds.getWidth() + boundsOffset, bounds.getHeight() + boundsOffset);
-    aw->setBounds (bounds);
-
-    for (auto* child : aw->getChildren())
+    for (auto* child : w->getChildren())
         if (auto* button = dynamic_cast<juce::TextButton*> (child))
             button->setBounds (button->getBounds() + juce::Point<int> (25, 40));
 
-    return aw;
+    return w;
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 }
 
@@ -92,7 +97,7 @@ juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
     const juce::String& button2,
     const juce::String& button3,
     juce::MessageBoxIconType iconType,
-    int numButtons,
+    int numberOfButtons,
     juce::Component* associatedComponent)
 {
     juce::AlertWindow* w = createAlertWindowProceed (title,
@@ -101,8 +106,7 @@ juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
         button2,
         button3,
         iconType,
-        numButtons,
-        nullptr);
+        numberOfButtons);
 
     return w;
 }
