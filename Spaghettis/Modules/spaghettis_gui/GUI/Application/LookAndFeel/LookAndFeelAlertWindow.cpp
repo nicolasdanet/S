@@ -53,11 +53,11 @@ void createAlertWindowAddButtons (juce::AlertWindow* aw,
 
 void createAlertWindowSetBounds (juce::AlertWindow* w)
 {
-    w->setBounds (w->getBounds().expanded (40));
+    w->setBounds (w->getBounds().expanded (20));
 
     for (auto* child : w->getChildren()) {
         if (juce::TextButton* button = dynamic_cast<juce::TextButton*> (child)) {
-            button->setBounds (button->getBounds().translated (25, 40));
+            button->setBounds (button->getBounds().translated (20, 20));
         }
     }
 }
