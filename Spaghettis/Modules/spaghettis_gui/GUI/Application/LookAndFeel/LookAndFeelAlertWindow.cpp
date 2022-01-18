@@ -143,8 +143,8 @@ void LookAndFeel::drawButtonText (juce::Graphics& g, juce::TextButton& button, b
     
     const bool hightlighted   = button.isRegisteredForShortcut (juce::KeyPress (juce::KeyPress::returnKey));
     const juce::Colour colour = (findColour (hightlighted
-                                    ? Colours::alertWindowButtonText
-                                    : Colours::alertWindowButtonTextHighlighted));
+                                    ? Colours::alertWindowButtonTextHighlighted
+                                    : Colours::alertWindowButtonText));
         
     g.setFont (getTextButtonFont());
     g.setColour (colour);
