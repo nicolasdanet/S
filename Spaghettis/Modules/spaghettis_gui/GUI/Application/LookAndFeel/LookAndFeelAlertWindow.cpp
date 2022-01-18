@@ -17,41 +17,68 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void createAlertWindowAddButtons (juce::AlertWindow* aw,
+using juce::KeyPress;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+KeyPress getShortcut (const juce::String& button)
+{
+    return KeyPress (static_cast<int> (juce::CharacterFunctions::toLowerCase (button[0])));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void createAlertWindowAddButtons (const std::unique_ptr<juce::AlertWindow>& w, const juce::String& button1)
+{
+    w->addButton (button1, 0, KeyPress (KeyPress::escapeKey), KeyPress (KeyPress::returnKey));
+}
+
+void createAlertWindowAddButtons (const std::unique_ptr<juce::AlertWindow>& w,
+    const juce::String& button1,
+    const juce::String& button2)
+{
+    const KeyPress shortCut1 (getShortcut (button1));
+    const KeyPress shortCut2 (getShortcut (button2));
+    
+    jassert (shortCut1 != shortCut2);
+    
+    w->addButton (button1, 1, KeyPress (KeyPress::returnKey), shortCut1);
+    w->addButton (button2, 0, KeyPress (KeyPress::escapeKey), shortCut2);
+}
+
+void createAlertWindowAddButtons (const std::unique_ptr<juce::AlertWindow>& w,
+    const juce::String& button1,
+    const juce::String& button2,
+    const juce::String& button3)
+{
+    const KeyPress shortCut1 (getShortcut (button1));
+    const KeyPress shortCut2 (getShortcut (button2));
+    
+    jassert (shortCut1 != shortCut2);
+    
+    w->addButton (button1, 1, KeyPress (KeyPress::returnKey), shortCut1);
+    w->addButton (button2, 2, shortCut2);
+    w->addButton (button3, 0, KeyPress (KeyPress::escapeKey));
+}
+
+void createAlertWindowAddButtons (const std::unique_ptr<juce::AlertWindow>& w,
     const juce::String& button1,
     const juce::String& button2,
     const juce::String& button3,
-    int numButtons)
+    int numberOfButtons)
 {
-    if (numButtons == 1)
-    {
-        aw->addButton (button1, 0,
-                       juce::KeyPress (juce::KeyPress::escapeKey),
-                       juce::KeyPress (juce::KeyPress::returnKey));
-    }
-    else
-    {
-        const juce::KeyPress button1ShortCut ((int) juce::CharacterFunctions::toLowerCase (button1[0]), 0, 0);
-        juce::KeyPress button2ShortCut ((int) juce::CharacterFunctions::toLowerCase (button2[0]), 0, 0);
-        
-        if (button1ShortCut == button2ShortCut)
-            button2ShortCut = juce::KeyPress();
-
-        if (numButtons == 2)
-        {
-            aw->addButton (button1, 1, juce::KeyPress (juce::KeyPress::returnKey), button1ShortCut);
-            aw->addButton (button2, 0, juce::KeyPress (juce::KeyPress::escapeKey), button2ShortCut);
-        }
-        else if (numButtons == 3)
-        {
-            aw->addButton (button1, 1, button1ShortCut);
-            aw->addButton (button2, 2, button2ShortCut);
-            aw->addButton (button3, 0, juce::KeyPress (juce::KeyPress::escapeKey));
-        }
+    switch (numberOfButtons) {
+        case 1  : createAlertWindowAddButtons (w, button1); break;
+        case 2  : createAlertWindowAddButtons (w, button1, button2); break;
+        case 3  : createAlertWindowAddButtons (w, button1, button2, button3); break;
+        default : break;
     }
 }
 
-void createAlertWindowSetBounds (juce::AlertWindow* w)
+void createAlertWindowSetBounds (const std::unique_ptr<juce::AlertWindow>& w)
 {
     w->setBounds (w->getBounds().expanded (20));
 
@@ -82,8 +109,8 @@ juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
 {
     auto w = std::make_unique<juce::AlertWindow> (title, message, iconType, nullptr);
         
-    createAlertWindowAddButtons (w.get(), button1, button2, button3, numberOfButtons);
-    createAlertWindowSetBounds (w.get());
+    createAlertWindowAddButtons (w, button1, button2, button3, numberOfButtons);
+    createAlertWindowSetBounds (w);
 
     return w.release();
 }
