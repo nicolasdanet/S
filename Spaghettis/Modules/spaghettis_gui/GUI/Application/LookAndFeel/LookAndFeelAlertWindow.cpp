@@ -139,11 +139,15 @@ void LookAndFeel::drawButtonBackground (juce::Graphics& g,
 
 void LookAndFeel::drawButtonText (juce::Graphics& g, juce::TextButton& button, bool, bool)
 {
-    juce::Rectangle<int> r (button.getWidth(), button.getHeight());
+    const juce::Rectangle<int> r (button.getWidth(), button.getHeight());
     
+    const bool hightlighted   = button.isRegisteredForShortcut (juce::KeyPress (juce::KeyPress::returnKey));
+    const juce::Colour colour = (findColour (hightlighted
+                                    ? Colours::alertWindowButtonText
+                                    : Colours::alertWindowButtonTextHighlighted));
+        
     g.setFont (getTextButtonFont());
-    g.setColour (findColour (Colours::alertWindowButtonText));
-    
+    g.setColour (colour);
     g.drawText (button.getButtonText(), r.reduced (10, 5), juce::Justification::centred, true);
 }
 

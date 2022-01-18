@@ -66,6 +66,7 @@ enum ColourIds : int {
     alertWindowButtonBackgroundOver,
     alertWindowButtonOutline,
     alertWindowButtonText,
+    alertWindowButtonTextHighlighted,
     preferencesHeaderBackground,
     preferencesHeaderText,
     preferencesHeaderArrow,
@@ -165,7 +166,8 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (alertWindowButtonBackground,                         backgroundDark2);
     lf->setColour (alertWindowButtonBackgroundOver,                     orange);
     lf->setColour (alertWindowButtonOutline,                            base1);
-    lf->setColour (alertWindowButtonText,                               juce::Colours::white);
+    lf->setColour (alertWindowButtonText,                               base1);
+    lf->setColour (alertWindowButtonTextHighlighted,                    juce::Colours::white);
     lf->setColour (preferencesHeaderBackground,                         background);
     lf->setColour (preferencesHeaderText,                               juce::Colours::white);
     lf->setColour (preferencesHeaderArrow,                              base1);
