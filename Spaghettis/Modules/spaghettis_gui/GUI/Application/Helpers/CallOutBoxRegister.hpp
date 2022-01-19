@@ -21,7 +21,7 @@ class CallOutBoxRegister : private juce::Timer {
 class CallOutBoxElement {
 
 public:
-    explicit CallOutBoxElement (juce::Component* owner, juce::CallOutBox& box) : owner_ (owner), box_ (&box)
+    explicit CallOutBoxElement (juce::Component* owner, juce::CallOutBox* box) : owner_ (owner), box_ (box)
     {
     };
     
@@ -49,7 +49,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void add (juce::Component* owner, juce::CallOutBox& box)
+    void add (juce::Component* owner, juce::CallOutBox* box)
     {
         v_.emplace_back (owner, box); const int interval = 5000; startTimer (interval);
     }
@@ -90,33 +90,6 @@ private:
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CallOutBoxRegister)
-};
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-class CallOutBoxTracker {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    explicit CallOutBoxTracker (juce::Component* owner) : owner_ (owner)
-    {
-    }
-    
-    ~CallOutBoxTracker();
-
-public:
-    void track (juce::CallOutBox&);
-
-private:
-    juce::Component* owner_;
-    
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CallOutBoxTracker)
 };
 
 // -----------------------------------------------------------------------------------------------------------
