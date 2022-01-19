@@ -56,15 +56,28 @@ public:
         v_.emplace_back (owner, child); const int interval = 5000; startTimer (interval);
     }
     
-    void dismiss (juce::Component* component) const
+    /* Use the function above only to consume the result into a range based loop. */
+    /* https://www.fluentcpp.com/2021/05/22/the-subtle-dangers-of-temporaries-in-for-loops/ */
+    
+    std::vector<juce::CallOutBox*> getChilds (juce::Component* component) const
     {
+        std::vector<juce::CallOutBox*> childs;
+        
         for (const auto& e : v_) {
         //
         if (e.owner_.getComponent() == component && e.child_.getComponent() != nullptr) {
-            e.child_->dismiss();
+            childs.push_back (e.child_.getComponent());
         }
         //
         }
+        
+        return childs;
+    }
+
+public:
+    void dismiss (juce::Component* component) const
+    {
+        for (const auto& child : getChilds (component)) { child->dismiss(); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
