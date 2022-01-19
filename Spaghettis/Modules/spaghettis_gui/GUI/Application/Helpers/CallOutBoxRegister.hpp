@@ -21,7 +21,9 @@ class CallOutBoxRegister : private juce::Timer {
 class CallOutBoxElement {
 
 public:
-    explicit CallOutBoxElement (juce::Component* owner, juce::CallOutBox* box) : owner_ (owner), box_ (box)
+    explicit CallOutBoxElement (juce::Component* owner, juce::CallOutBox* child) :
+        owner_ (owner),
+        child_ (child)
     {
     };
     
@@ -33,8 +35,8 @@ public:
     CallOutBoxElement& operator = (CallOutBoxElement&&) = default;
     
 public:
-    juce::Component* owner_;
-    juce::Component::SafePointer<juce::CallOutBox> box_;
+    juce::Component::SafePointer<juce::Component> owner_;
+    juce::Component::SafePointer<juce::CallOutBox> child_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -49,17 +51,17 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void add (juce::Component* owner, juce::CallOutBox* box)
+    void add (juce::Component* owner, juce::CallOutBox* child)
     {
-        v_.emplace_back (owner, box); const int interval = 5000; startTimer (interval);
+        v_.emplace_back (owner, child); const int interval = 5000; startTimer (interval);
     }
     
     void dismiss (juce::Component* component) const
     {
         for (const auto& e : v_) {
         //
-        if (e.owner_ == component && e.box_.getComponent() != nullptr) {
-            e.box_->dismiss();
+        if (e.owner_.getComponent() == component && e.child_.getComponent() != nullptr) {
+            e.child_->dismiss();
         }
         //
         }
@@ -74,7 +76,7 @@ private:
     {
         auto f = [] (const CallOutBoxElement& e)
         {
-            return (e.box_.getComponent() == nullptr);
+            return (e.owner_.getComponent() == nullptr) || (e.child_.getComponent() == nullptr);
         };
         
         v_.erase (std::remove_if (v_.begin(), v_.end(), f), v_.end());
