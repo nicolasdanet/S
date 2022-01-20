@@ -41,6 +41,7 @@ public:
         menu_ (std::make_unique<MenuModel> (commandManager_.get())),
         core_ (std::make_unique<Wrapper>()),
         boxRegister_ (std::make_unique<CallOutBoxRegister>()),
+        alertRegister_ (std::make_unique<AlertWindowRegister>()),
         audioDevices_ (std::make_unique<AudioDevices>()),
         midiDevices_ (std::make_unique<MidiDevices>()),
         patches_ (std::make_unique<PatchHolder>()),
@@ -268,6 +269,11 @@ public:
         return *boxRegister_;
     }
     
+    AlertWindowRegister& getAlertRegister()
+    {
+        return *alertRegister_;
+    }
+    
     AudioDevices& getAudioDevices()
     {
         return *audioDevices_;
@@ -303,6 +309,7 @@ private:
     const std::unique_ptr<MenuModel> menu_;
     const std::unique_ptr<Wrapper> core_;
     const std::unique_ptr<CallOutBoxRegister> boxRegister_;
+    const std::unique_ptr<AlertWindowRegister> alertRegister_;
     const std::unique_ptr<AudioDevices> audioDevices_;
     const std::unique_ptr<MidiDevices> midiDevices_;
     const std::unique_ptr<PatchHolder> patches_;

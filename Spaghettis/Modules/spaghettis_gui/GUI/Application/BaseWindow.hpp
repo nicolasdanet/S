@@ -92,9 +92,19 @@ private:
 public:
     void activeWindowStatusChanged() override
     {
-        if (isActiveWindow()) { ensureModalWindowsAlwaysOnTop(); timerStart(); }
+        if (isActiveWindow()) { ensureAlertWindowsAlwaysOnTop(); timerStart(); }
     }
 
+    void moved() override
+    {
+        juce::ResizableWindow::moved(); ensureAlertWindowsAlwaysOnTop();
+    }
+    
+    void resized() override
+    {
+        juce::ResizableWindow::resized(); ensureAlertWindowsAlwaysOnTop();
+    }
+    
     void makeVisible (juce::Rectangle<int> window = juce::Rectangle<int>());
 
 // -----------------------------------------------------------------------------------------------------------
@@ -112,11 +122,11 @@ public:
 // MARK: -
 
 private:
-    static void ensureModalWindowsAlwaysOnTop()
+    static void ensureAlertWindowsAlwaysOnTop()
     {
         #if JUCE_LINUX
         
-        juce::ModalComponentManager::getInstance()->bringModalComponentsToFront (false);
+        Spaghettis()->getAlertRegister().ensureAlertWindowsAlwaysOnTop();
         
         #endif
     }

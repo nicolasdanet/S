@@ -107,11 +107,19 @@ juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
     int numberOfButtons,
     juce::Component* associatedComponent)
 {
+    #if ! ( JUCE_LINUX )
+        jassertfalse;           /* Others OS use native alert windows. */
+    #endif
+    
     auto w = std::make_unique<juce::AlertWindow> (title, message, iconType, nullptr);
         
     createAlertWindowAddButtons (w, button1, button2, button3, numberOfButtons);
     createAlertWindowSetBounds (w);
-
+    
+    if (associatedComponent) {
+        Spaghettis()->getAlertRegister().add (associatedComponent, w.get());
+    }
+    
     return w.release();
 }
 
