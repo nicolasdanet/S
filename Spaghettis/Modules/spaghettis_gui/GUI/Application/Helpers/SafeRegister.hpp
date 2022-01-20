@@ -56,6 +56,17 @@ public:
         v_.emplace_back (owner, child); const int interval = 5000; startTimer (interval);
     }
     
+    template <class F> void perform (F f) const
+    {
+        for (const auto& e : v_) {
+        //
+        if (e.owner_.getComponent() != nullptr && e.child_.getComponent() != nullptr) {
+            f (e.owner_.getComponent(), e.child_.getComponent());
+        }
+        //
+        }
+    }
+    
     /* Use the function above only to consume the result into a range based loop. */
     /* https://www.fluentcpp.com/2021/05/22/the-subtle-dangers-of-temporaries-in-for-loops/ */
     
