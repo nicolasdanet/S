@@ -34,9 +34,7 @@ public:
                 child->centreAroundComponent (parent, child->getWidth(), child->getHeight());
             };
         
-        static int toto = 0; DBG (toto); toto++;
-        
-        perform (f, 0);
+        perform (f);
     }
     
 // -----------------------------------------------------------------------------------------------------------

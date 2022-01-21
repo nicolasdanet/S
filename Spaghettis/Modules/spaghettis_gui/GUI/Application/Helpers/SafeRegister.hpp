@@ -59,24 +59,13 @@ public:
 // MARK: -
 
 protected:
-    template <class F> void perform (F f, int delay)
+    template <class F> void perform (F f)
     {
         prune();
         
-        for (const auto& element : v_) {
+        for (const auto& e : v_) {
         //
-        auto t = [e = element, f = f]()
-            {
-                if (e.parent_.getComponent() != nullptr && e.child_.getComponent() != nullptr) {
-                    f (e.parent_.getComponent(), e.child_.getComponent());
-                }
-        
-            };
-        
-        if (delay > 0) { juce::Timer::callAfterDelay (delay, t); }
-        else {
-            t();
-        }
+        f (e.parent_.getComponent(), e.child_.getComponent());
         //
         }
     }
@@ -84,15 +73,15 @@ protected:
     /* Use the function above only to consume the result into a range based loop. */
     /* https://www.fluentcpp.com/2021/05/22/the-subtle-dangers-of-temporaries-in-for-loops/ */
     
-    std::vector<V*> getChilds (K* component) const
+    std::vector<V*> getChilds (K* component)
     {
+        prune();
+        
         std::vector<V*> childs;
         
         for (const auto& e : v_) {
         //
-        if (e.parent_.getComponent() == component && e.child_.getComponent() != nullptr) {
-            childs.push_back (e.child_.getComponent());
-        }
+        if (e.parent_.getComponent() == component) { childs.push_back (e.child_.getComponent()); }
         //
         }
         

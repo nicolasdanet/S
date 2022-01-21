@@ -26,7 +26,7 @@ public:
 // MARK: -
 
 public:
-    void dismiss (juce::Component* component) const
+    void dismiss (juce::Component* component)
     {
         for (const auto& child : getChilds (component)) { child->dismiss(); }
     }
