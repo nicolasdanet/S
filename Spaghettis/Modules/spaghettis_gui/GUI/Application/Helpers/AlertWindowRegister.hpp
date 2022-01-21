@@ -27,6 +27,8 @@ public:
 public:
     void ensureAlertWindowsAlwaysOnTop()
     {
+        juce::ModalComponentManager::getInstance()->bringModalComponentsToFront();
+        
         auto f = [](juce::Component* parent, juce::AlertWindow* child)
             {
                 child->centreAroundComponent (parent, child->getWidth(), child->getHeight());
@@ -34,7 +36,7 @@ public:
         
         static int toto = 0; DBG (toto); toto++;
         
-        perform (f);
+        performLater (0, f);
     }
     
 // -----------------------------------------------------------------------------------------------------------

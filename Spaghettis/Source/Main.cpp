@@ -72,7 +72,9 @@ public:
         if (status == spaghettis::RequestsStatus::cancel)    { return; }
         else if (status == spaghettis::RequestsStatus::done) { f(); }
         else if (status == spaghettis::RequestsStatus::wait) {
-            juce::Timer::callAfterDelay (500.0, [this, f = f]() { performOrWaitAllRequestsDone<T> (f); });
+            const int primeInterval = 457;
+            auto t = [this, f = f]() { performOrWaitAllRequestsDone<T> (f); };
+            juce::Timer::callAfterDelay (primeInterval, t);
         }
     }
     

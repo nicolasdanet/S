@@ -59,17 +59,25 @@ public:
 // MARK: -
 
 protected:
-    template <class F> void perform (F f) const
+    template <class F> void performLater (int delay, F f)
     {
-        for (const auto& e : v_) {
+        prune();
+        
+        for (const auto& element : v_) {
         //
-        if (e.parent_.getComponent() != nullptr && e.child_.getComponent() != nullptr) {
-            f (e.parent_.getComponent(), e.child_.getComponent());
-        }
+        auto t = [e = element, f = f]()
+            {
+                if (e.parent_.getComponent() != nullptr && e.child_.getComponent() != nullptr) {
+                    f (e.parent_.getComponent(), e.child_.getComponent());
+                }
+        
+            };
+        
+        juce::Timer::callAfterDelay (delay, t);
         //
         }
     }
-    
+            
     /* Use the function above only to consume the result into a range based loop. */
     /* https://www.fluentcpp.com/2021/05/22/the-subtle-dangers-of-temporaries-in-for-loops/ */
     
