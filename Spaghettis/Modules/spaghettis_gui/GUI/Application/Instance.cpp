@@ -67,7 +67,7 @@ void SpaghettisInstance::requestToQuit()
     juce::NativeMessageBox::showYesNoBox (juce::MessageBoxIconType::QuestionIcon,
         core::getApplicationName(),
         NEEDS_TRANS ("Do you really want to quit?"),
-        nullptr,
+        consoleWindow_.get(),
         juce::ModalCallbackFunction::create (f));
 }
 
