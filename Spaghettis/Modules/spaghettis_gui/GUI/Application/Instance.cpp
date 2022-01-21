@@ -81,6 +81,7 @@ RequestsStatus SpaghettisInstance::getRequestsStatus() const
     if (quit_ == QuitStatus::quit && patches_->isAllRequestsDone()) { return RequestsStatus::done; }
     else if (quit_ == QuitStatus::cancel) { return RequestsStatus::cancel; }
     else {
+        DBG ("WAIT");
         return RequestsStatus::wait;
     }
 }
