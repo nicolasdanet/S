@@ -82,7 +82,7 @@ public:
 private:
     void timerStart()
     {
-        const int timerInterval = 20; timerCount_ = 0; startTimer (timerInterval);
+        const int primeInterval = 19; timerCount_ = 0; startTimer (primeInterval);
     }
     
 // -----------------------------------------------------------------------------------------------------------

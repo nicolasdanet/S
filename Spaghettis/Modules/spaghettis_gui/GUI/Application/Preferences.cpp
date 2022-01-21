@@ -143,7 +143,7 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::I
         Spaghettis()->handle (Inputs::setSnapToGridSize (tree.getProperty (Ids::value)));
     }
         
-    if (!isReading_) { startTimer (300); }
+    if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }
     //
     }
 }

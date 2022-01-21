@@ -33,7 +33,9 @@ public:
         
         addAndMakeVisible (panel_);
 
-        setOpaque (true); setSize (400, 500); startTimer (300);
+        setOpaque (true); setSize (400, 500);
+        
+        const int primeInterval = 307; startTimer (primeInterval);
     }
     
     ~PreferencesComponent() = default;

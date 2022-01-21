@@ -21,9 +21,7 @@ template <class K, class V> class SafeRegister : private juce::Timer {
 class SafeRegisterElement {
 
 public:
-    explicit SafeRegisterElement (K* owner, V* child) :
-        owner_ (owner),
-        child_ (child)
+    explicit SafeRegisterElement (K* parent, V* child) : parent_ (parent), child_ (child)
     {
     };
     
@@ -35,7 +33,7 @@ public:
     SafeRegisterElement& operator = (SafeRegisterElement&&) = default;
     
 public:
-    juce::Component::SafePointer<K> owner_;
+    juce::Component::SafePointer<K> parent_;
     juce::Component::SafePointer<V> child_;
 };
 
@@ -51,17 +49,22 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void add (K* owner, V* child)
+    void add (K* parent, V* child)
     {
-        v_.emplace_back (owner, child); const int interval = 5000; startTimer (interval);
+        v_.emplace_back (parent, child); const int primeInterval = 5009; startTimer (primeInterval);
     }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+protected:
     template <class F> void perform (F f) const
     {
         for (const auto& e : v_) {
         //
-        if (e.owner_.getComponent() != nullptr && e.child_.getComponent() != nullptr) {
-            f (e.owner_.getComponent(), e.child_.getComponent());
+        if (e.parent_.getComponent() != nullptr && e.child_.getComponent() != nullptr) {
+            f (e.parent_.getComponent(), e.child_.getComponent());
         }
         //
         }
@@ -76,7 +79,7 @@ public:
         
         for (const auto& e : v_) {
         //
-        if (e.owner_.getComponent() == component && e.child_.getComponent() != nullptr) {
+        if (e.parent_.getComponent() == component && e.child_.getComponent() != nullptr) {
             childs.push_back (e.child_.getComponent());
         }
         //
@@ -94,7 +97,7 @@ private:
     {
         auto f = [] (const SafeRegisterElement& e)
         {
-            return (e.owner_.getComponent() == nullptr) || (e.child_.getComponent() == nullptr);
+            return (e.parent_.getComponent() == nullptr) || (e.child_.getComponent() == nullptr);
         };
         
         v_.erase (std::remove_if (v_.begin(), v_.end(), f), v_.end());

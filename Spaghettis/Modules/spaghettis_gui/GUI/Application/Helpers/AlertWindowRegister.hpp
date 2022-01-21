@@ -27,11 +27,14 @@ public:
 public:
     void ensureAlertWindowsAlwaysOnTop()
     {
-        auto f = [](juce::Component*, juce::AlertWindow*) { DBG ("?"); };
+        auto f = [](juce::Component* parent, juce::AlertWindow* child)
+            {
+                child->centreAroundComponent (parent, child->getWidth(), child->getHeight());
+            };
+        
+        static int toto = 0; DBG (toto); toto++;
         
         perform (f);
-        
-        // centreAroundComponent
     }
     
 // -----------------------------------------------------------------------------------------------------------
