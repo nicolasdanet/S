@@ -67,11 +67,11 @@ public:
 public:
     template <class T> void performOrWaitAllRequestsDone (T f) const
     {
-        const spaghettis::RequestsStatus status = spaghettis::Spaghettis()->getRequestsStatus();
+        const spaghettis::ExitStatus status = spaghettis::Spaghettis()->getExitStatus();
         
-        if (status == spaghettis::RequestsStatus::cancel)    { return; }
-        else if (status == spaghettis::RequestsStatus::done) { f(); }
-        else if (status == spaghettis::RequestsStatus::wait) {
+        if (status == spaghettis::ExitStatus::cancel)    { return; }
+        else if (status == spaghettis::ExitStatus::work) { f(); }
+        else if (status == spaghettis::ExitStatus::wait) {
             const int primeInterval = 457;
             auto t = [this, f = f]() { performOrWaitAllRequestsDone<T> (f); };
             juce::Timer::callAfterDelay (primeInterval, t);
@@ -80,13 +80,10 @@ public:
     
     void systemRequestedQuit() override
     {
-        if (!spaghettis::Spaghettis()->getPatches().isEmpty()) {
-            const bool ask = spaghettis::Spaghettis()->getPreferences().getValue ("AskBeforeQuit");
-            if (ask == true) { spaghettis::Spaghettis()->requestToQuit(); }
+        if (spaghettis::Spaghettis()->requestToQuit()) {
+            performOrWaitAllRequestsDone ([]() { spaghettis::Spaghettis()->closeAllPatches(); });
+            performOrWaitAllRequestsDone ([]() { quit(); });
         }
-        
-        performOrWaitAllRequestsDone ([]() { spaghettis::Spaghettis()->closeAllPatches(); });
-        performOrWaitAllRequestsDone ([]() { quit(); });
     }
     
 // -----------------------------------------------------------------------------------------------------------

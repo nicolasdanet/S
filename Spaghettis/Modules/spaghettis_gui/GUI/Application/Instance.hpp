@@ -21,8 +21,8 @@ class PatchHolder;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-enum class QuitStatus       { quit, wait, cancel };
-enum class RequestsStatus   { done, wait, cancel };
+enum class QuitStatus { quit, wait, cancel };
+enum class ExitStatus { work, wait, cancel };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -95,11 +95,14 @@ public:
     void shutdown();
 
 public:
-    void requestToQuit();
+    bool requestToQuit();
     void closeAllPatches();
 
+private:
+    void showExitWindow();
+    
 public:
-    RequestsStatus getRequestsStatus() const;
+    ExitStatus getExitStatus() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

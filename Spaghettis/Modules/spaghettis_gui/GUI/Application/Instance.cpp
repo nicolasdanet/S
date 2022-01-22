@@ -55,7 +55,7 @@ void SpaghettisInstance::shutdown()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void SpaghettisInstance::requestToQuit()
+void SpaghettisInstance::showExitWindow()
 {
     auto f = [this] (int result)
     {
@@ -71,18 +71,28 @@ void SpaghettisInstance::requestToQuit()
         juce::ModalCallbackFunction::create (f));
 }
 
+bool SpaghettisInstance::requestToQuit()
+{
+    quit_ = QuitStatus::quit;
+    
+    if (!getPatches().isEmpty()) {
+        if (static_cast<bool> (getPreferences().getValue ("AskBeforeQuit")) == true) { showExitWindow(); }
+    }
+    
+    return true;
+}
+    
 void SpaghettisInstance::closeAllPatches()
 {
     patches_->closeAllPatches();
 }
 
-RequestsStatus SpaghettisInstance::getRequestsStatus() const
+ExitStatus SpaghettisInstance::getExitStatus() const
 {
-    if (quit_ == QuitStatus::quit && patches_->isAllRequestsDone()) { return RequestsStatus::done; }
-    else if (quit_ == QuitStatus::cancel) { return RequestsStatus::cancel; }
+    if (quit_ == QuitStatus::quit && patches_->isAllRequestsDone()) { return ExitStatus::work; }
+    else if (quit_ == QuitStatus::cancel) { return ExitStatus::cancel; }
     else {
-        DBG ("WAIT");
-        return RequestsStatus::wait;
+        return ExitStatus::wait;
     }
 }
 
