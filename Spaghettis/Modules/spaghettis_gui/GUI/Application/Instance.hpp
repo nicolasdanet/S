@@ -312,7 +312,7 @@ private:
     const std::unique_ptr<MenuModel> menu_;
     const std::unique_ptr<Wrapper> core_;
     const std::unique_ptr<CallOutBoxRegister> boxRegister_;
-    const std::unique_ptr<AlertWindowRegister> alertRegister_;
+    const std::unique_ptr<AlertWindowRegister> alertRegister_;              /* Only used on Linux. */
     const std::unique_ptr<AudioDevices> audioDevices_;
     const std::unique_ptr<MidiDevices> midiDevices_;
     const std::unique_ptr<PatchHolder> patches_;
