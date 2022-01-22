@@ -73,13 +73,20 @@ void SpaghettisInstance::showExitWindow()
 
 bool SpaghettisInstance::requestToQuit()
 {
+    /* On Linux don't let quitting while already opened modal windows remain. */
+    
+    if (!alertRegister_->isEmpty()) { return false; }
+    else {
+    //
     quit_ = QuitStatus::quit;
     
-    if (!getPatches().isEmpty()) {
-        if (static_cast<bool> (getPreferences().getValue ("AskBeforeQuit")) == true) { showExitWindow(); }
+    if (!patches_->isEmpty()) {
+        if (static_cast<bool> (preferences_->getValue ("AskBeforeQuit")) == true) { showExitWindow(); }
     }
     
     return true;
+    //
+    }
 }
     
 void SpaghettisInstance::closeAllPatches()
