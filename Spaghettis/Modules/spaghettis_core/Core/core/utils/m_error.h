@@ -76,6 +76,7 @@ PD_LOCAL void error_invalidArguments            (t_object *, t_symbol *, int arg
 // MARK: -
 
 PD_LOCAL void warning_containsDuplicates        (t_object *);
+PD_LOCAL void warning_invalidSearchPath         (t_object *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -109,6 +109,8 @@ PD_LOCAL int file_openReadConsideringSearchPath (const char *directory,
             if (f >= 0) { searchpath_extendedMatchedAtIndex (n); break; }
             n++;
         }
+        
+        if (f < 0) { warning_invalidSearchPath (NULL); }
     }
     
     return f;

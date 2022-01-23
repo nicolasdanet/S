@@ -92,8 +92,15 @@ PD_LOCAL t_error searchpath_scan (void)
     searchpath_countDirectories = 0;
     
     while (!err && l) {
-        char *path = pathlist_getPath (l); l = pathlist_getNext (l);
+    //
+    char *path = pathlist_getPath (l); l = pathlist_getNext (l);
+    
+    if (path_isFileExist (path) && path_isValid (path)) {
         err |= (nftw (path, searchpath_scanProceed, SEARCHPATH_FDOPEN, FTW_MOUNT | FTW_PHYS) != 0);
+    } else {
+        post_warning (NULL, PD_TRANSLATE ("rescan: invalid %s"), path);
+    }
+    //
     }
     
     PD_ASSERT (!pathlist_check (searchpath_extended));
@@ -193,7 +200,7 @@ static void searchpath_report (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        post_system (NULL, "rescan: %s", path);
+        post_system (NULL, PD_TRANSLATE ("rescan: %s"), path);
     }
     
     l = searchpath_external;
@@ -201,7 +208,7 @@ static void searchpath_report (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        post_system (NULL, "rescan: external / %s", path);
+        post_system (NULL, PD_TRANSLATE ("rescan: external / %s"), path);
     }
     
     l = searchpath_patch;
@@ -209,7 +216,7 @@ static void searchpath_report (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        post_system (NULL, "rescan: patch / %s", path);
+        post_system (NULL, PD_TRANSLATE ("rescan: patch / %s"), path);
     }
     
     l = searchpath_help;
@@ -217,7 +224,7 @@ static void searchpath_report (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        post_system (NULL, "rescan: help / %s", path);
+        post_system (NULL, PD_TRANSLATE ("rescan: help / %s"), path);
     }
     
     l = searchpath_duplicates;
@@ -225,7 +232,7 @@ static void searchpath_report (void)
     while (l) {
         const char *path = pathlist_getPath (l);
         l = pathlist_getNext (l);
-        post_system (NULL, "rescan: duplicates / %s", path);
+        post_system (NULL, PD_TRANSLATE ("rescan: duplicates / %s"), path);
     }
 }
 
@@ -311,7 +318,7 @@ PD_LOCAL void searchpath_rescan (int logged)
     if (searchpath_hasDuplicates()) { warning_containsDuplicates (NULL); }
     if (err) { error_searchPathOverflow (NULL); }
     else if (logged >= 0) {
-        post_system (NULL, "rescan: done");
+        post_system (NULL, PD_TRANSLATE ("rescan: done"));
     }
 }
 

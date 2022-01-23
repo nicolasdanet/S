@@ -227,9 +227,6 @@ public:
     void setCurrentOpenDirectory (const juce::File& file)
     {
         if (file.isDirectory()) { currentOpenDirectory_ = file; }
-        else {
-            jassertfalse;
-        }
     }
     
     juce::File getCurrentOpenDirectory() const
