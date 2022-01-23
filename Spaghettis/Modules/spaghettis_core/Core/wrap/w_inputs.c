@@ -38,6 +38,8 @@ PD_LOCAL void inputs_openPatch (const juce::File& f)
         t_symbol *name = gensym (f.getFileName().toRawUTF8());
         t_symbol *directory = gensym (f.getParentDirectory().getFullPathName().toRawUTF8());
         instance_patchOpen (name, directory);
+    } else {
+        error_doesNotExist (NULL, f.getFullPathName().toRawUTF8());
     }
 }
 

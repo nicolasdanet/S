@@ -26,6 +26,12 @@ PD_LOCAL int  error__options                    (t_object *, t_symbol *s, int ar
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_LOCAL void error_doesNotExist                (t_object *x, const char *filepath);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void error_dspLoop                     (t_object *);
 PD_LOCAL void error_stackOverflow               (t_object *);
 PD_LOCAL void error_recursiveCall               (t_object *);
