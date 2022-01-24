@@ -33,7 +33,7 @@ public:
 // MARK: -
 
 public:
-    juce::PropertyComponent* createPropertyComponent() const;
+    std::unique_ptr<juce::PropertyComponent> createPropertyComponent() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

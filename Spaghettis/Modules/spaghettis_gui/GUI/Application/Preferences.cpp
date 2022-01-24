@@ -36,7 +36,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::PropertyComponent* buildConcertinaPanelParametersGet (juce::ValueTree parameter)
+std::unique_ptr<juce::PropertyComponent> buildConcertinaPanelParametersGet (juce::ValueTree parameter)
 {
     return Parameters::Base (parameter).createPropertyComponent();
 }
