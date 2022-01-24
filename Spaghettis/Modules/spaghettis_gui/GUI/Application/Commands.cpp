@@ -38,10 +38,10 @@ void Commands::getApplicationCommands (juce::Array<juce::CommandID>& c)
 
 void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r)
 {
-    static const char* const general    = NEEDS_TRANS ("General");
-    static const char* const file       = NEEDS_TRANS ("File");
-    static const char* const edit       = NEEDS_TRANS ("Edit");
-    static const char* const media      = NEEDS_TRANS ("Media");
+    const char* const general = NEEDS_TRANS ("General");
+    const char* const file    = NEEDS_TRANS ("File");
+    const char* const edit    = NEEDS_TRANS ("Edit");
+    const char* const media   = NEEDS_TRANS ("Media");
 
     switch (c) {
     //
