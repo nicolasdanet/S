@@ -107,12 +107,14 @@ private:
     template <class T>
     void updateViewProceed (const T& devices, std::array<juce::ComboBox, numberOfDevices()>& a, bool b)
     {
+        const int firstItemId = 1;
+        
         int n = 0;
             
         for (auto& c : a) {
             c.clear (juce::dontSendNotification);
-            c.addItemList (devices.getAvailableNames (b), firstItemId_ + 1);
-            c.addItem (noneTag_, firstItemId_);
+            c.addItemList (devices.getAvailableNames (b), firstItemId + 1);
+            c.addItem (noneTag_, firstItemId);
             const juce::String s (devices.getNameAt (n++, b));
             setSelectedItemByString (c, s.isEmpty() ? noneTag_ : s);
         }
@@ -296,9 +298,6 @@ private:
     std::array<juce::ComboBox, numberOfDevices()> midiOut_;
     std::array<juce::Label,    numberOfDevices()> midiInLabel_;
     std::array<juce::Label,    numberOfDevices()> midiOutLabel_;
-
-private:
-    static const int firstItemId_ = 1;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DevicesComponent)
