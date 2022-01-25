@@ -46,7 +46,7 @@ public:
     {
         bool done = false;
         
-        for (int i = getNumRows() - 1; i >= 0; i--) {
+        for (int i = getNumRows() - 1; i >= 0; --i) {
         //
         if (listBox_.isRowSelected (i)) {
         if (i < paths_.size()) {

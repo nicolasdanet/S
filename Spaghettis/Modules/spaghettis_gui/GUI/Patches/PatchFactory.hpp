@@ -33,7 +33,7 @@ public:
 public:
     void getAllToolbarItemIds (juce::Array<int>& ids) override
     {
-        ids.add (Icons::edit);
+        // ids.add (Icons::edit);
     }
 
     void getDefaultItemSet (juce::Array<int>& ids) override

@@ -18,14 +18,14 @@ void PatchFactory::setToolbarButton (IconsButton* button)
 {
     switch (button->getItemId()) {
     //
-    case Icons::edit    : button->setTooltip (NEEDS_TRANS ("Edit mode")); break;
+    // case Icons::edit    : button->setTooltip (NEEDS_TRANS ("Edit mode")); break;
     default             : break;
     //
     }
     
     switch (button->getItemId()) {
     //
-    case Icons::edit    : button->onClick = []() { DBG ("!"); }; break;
+    // case Icons::edit    : button->onClick = []() { DBG ("!"); }; break;
     default             : break;
     //
     }
