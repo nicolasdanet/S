@@ -48,13 +48,20 @@ public:
         add             = 1,
         autoscroll,
         clear,
+        edit,
         error,
         find,
+        help,
+        inspector,
         message,
+        presets,
         restore,
+        run,
         synchronize,
         sortUp,
-        sortDown
+        sortDown,
+        zoomIn,
+        zoomOut
     };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -67,13 +74,20 @@ public:
         addIconAction ("Add",           0, "add_svg");
         addIconToggle ("Autoscroll",    0, "system_update_alt_svg");
         addIconAction ("Clear",         0, "delete_forever_svg");
+        addIconAction ("Edit",          0, "construction_svg");
         addIconToggle ("Error",         4, "error_outline_svg");
         addIconAction ("Find",          0, "place_svg");
+        addIconToggle ("Help",          0, "help_outline_svg", false);
+        addIconToggle ("Inspector",     0, "info_svg", false);
         addIconToggle ("Message",       2, "mail_svg");
+        addIconToggle ("Presets",       0, "tune_svg", false);
         addIconAction ("Restore",       0, "restore_svg");
+        addIconAction ("Run",           0, "visibility_svg");
         addIconAction ("Synchronize",   0, "sync_svg");
         addIconAction ("SortUp",        0, "text_rotate_up_svg");
         addIconAction ("SortDown",      0, "text_rotation_down_svg");
+        addIconAction ("ZoomIn",        0, "zoom_in_svg");
+        addIconAction ("ZoomOut",       0, "zoom_out_svg");
     }
 
 public:
