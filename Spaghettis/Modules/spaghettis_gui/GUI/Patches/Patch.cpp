@@ -33,7 +33,7 @@ juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::
 
 void Patch::setDirty (bool isDirty)
 {
-    dirty_ = isDirty; if (mainWindow_) { mainWindow_->setDirtyFlag (isDirty); }
+    dirty_ = isDirty; setWindowDirtyFlag();
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -109,7 +109,12 @@ juce::Component* Patch::getMainWindow() const
 {
     return dynamic_cast<juce::Component*> (mainWindow_.get());
 }
-    
+
+void Patch::setWindowDirtyFlag()
+{
+    if (mainWindow_) { mainWindow_->setDirtyFlag (dirty_); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
