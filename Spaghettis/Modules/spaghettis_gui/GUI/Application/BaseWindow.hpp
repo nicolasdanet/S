@@ -33,7 +33,7 @@ public:
         setResizable (true, true);
     }
     
-    ~BaseWindow()
+    ~BaseWindow() override
     {
         if (keyName_.isNotEmpty()) {
         //

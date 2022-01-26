@@ -93,7 +93,7 @@ void Patch::openMainWindow()
     mainWindow_ = std::make_unique<EditWindow> (*this, tree_);
 }
 
-void Patch::closeWindowButtonPressed (EditWindow* window)
+void Patch::closeWindowButtonPressed (PatchWindow* window)
 {
     jassert (mainWindow_.get() == window);
     

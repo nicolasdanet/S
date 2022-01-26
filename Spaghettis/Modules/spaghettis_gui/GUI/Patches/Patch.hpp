@@ -11,7 +11,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class EditWindow;
+class PatchWindow;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ public:
 
 public:
     void openMainWindow();
-    void closeWindowButtonPressed (EditWindow* window);
+    void closeWindowButtonPressed (PatchWindow* window);
     void releaseAllWindows();
 
 public:
@@ -127,7 +127,7 @@ private:
     bool dirty_;
 
 private:
-    std::unique_ptr<EditWindow> mainWindow_;
+    std::unique_ptr<PatchWindow> mainWindow_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Patch)

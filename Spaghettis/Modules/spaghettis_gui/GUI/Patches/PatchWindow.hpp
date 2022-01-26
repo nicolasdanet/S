@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -12,29 +12,36 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditWindow : public PatchWindow {
+class PatchWindow : public BaseWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit EditWindow (Patch& owner, const juce::ValueTree& content) : PatchWindow (owner, content)
+    explicit PatchWindow (Patch& owner, const juce::ValueTree& content) :
+        BaseWindow (Patch::getParameter (content, Ids::title).toString()),
+        owner_ (owner)
     {
-        setContentOwned (new EditComponent (getPropertiesKeyName()), true);
-        
-        const int x = Patch::getParameter (content, Ids::x);
-        const int y = Patch::getParameter (content, Ids::y);
-        const int w = Patch::getParameter (content, Ids::width);
-        const int h = Patch::getParameter (content, Ids::height);
-        
-        makeVisible (juce::Rectangle<int> (x, y, w, h));
     }
 
-    ~EditWindow() = default;
+    ~PatchWindow() = default;
     
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void closeButtonPressed() override
+    {
+        owner_.closeWindowButtonPressed (this);
+    }
+
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditWindow)
+    Patch& owner_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchWindow)
 };
     
 // -----------------------------------------------------------------------------------------------------------

@@ -26,6 +26,7 @@ class EditFactory : public IconsFactory {
 public:
     explicit EditFactory (EditComponent* owner) : owner_ (owner)
     {
+        jassertquiet (owner_);
     }
     
     ~EditFactory() = default;

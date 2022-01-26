@@ -122,6 +122,7 @@
 
 #include "GUI/Patches/Patch.hpp"
 #include "GUI/Patches/PatchHolder.hpp"
+#include "GUI/Patches/PatchWindow.hpp"
 
 #include "GUI/Patches/EditWindow/EditFactory.hpp"
 #include "GUI/Patches/EditWindow/EditComponent.hpp"
