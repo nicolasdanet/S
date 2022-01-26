@@ -12,18 +12,18 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PatchWindow : public BaseWindow {
+class EditWindow : public BaseWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit PatchWindow (Patch& owner, const juce::ValueTree& content) :
+    explicit EditWindow (Patch& owner, const juce::ValueTree& content) :
         BaseWindow (Patch::getParameter (content, Ids::title).toString()),
         owner_ (owner)
     {
-        setContentOwned (new PatchComponent (getPropertiesKeyName()), true);
+        setContentOwned (new EditComponent (getPropertiesKeyName()), true);
         
         const int x = Patch::getParameter (content, Ids::x);
         const int y = Patch::getParameter (content, Ids::y);
@@ -33,7 +33,7 @@ public:
         makeVisible (juce::Rectangle<int> (x, y, w, h));
     }
 
-    ~PatchWindow() = default;
+    ~EditWindow() = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ private:
     Patch& owner_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchWindow)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditWindow)
 };
     
 // -----------------------------------------------------------------------------------------------------------

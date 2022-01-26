@@ -14,7 +14,7 @@ namespace spaghettis {
 
 /* Note that at this point the owner component is not fully constructed. */
 
-void PatchFactory::setToolbarButton (IconsButton* button)
+void EditFactory::setToolbarButton (IconsButton* button)
 {
     switch (button->getItemId()) {
     //

@@ -12,18 +12,18 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PatchView {
+class EditView {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    PatchView()  = default;
-    ~PatchView() = default;
+    EditView()  = default;
+    ~EditView() = default;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchView)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
 };
 
 // -----------------------------------------------------------------------------------------------------------

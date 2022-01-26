@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PatchComponent :  protected PatchFactoryHelper,         /* MUST be the first. */
+class EditComponent :   protected EditFactoryHelper,    /* MUST be the first. */
                         public    BaseComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -20,14 +20,14 @@ class PatchComponent :  protected PatchFactoryHelper,         /* MUST be the fir
 // MARK: -
 
 public:
-    explicit PatchComponent (const juce::String& keyName) :
-        PatchFactoryHelper (this),
+    explicit EditComponent (const juce::String& keyName) :
+        EditFactoryHelper (this),
         BaseComponent (keyName, getIconsFactory())
     {
         setOpaque (true); setSize (600, 300);
     }
     
-    ~PatchComponent() = default;
+    ~EditComponent() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ public:
 */
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditComponent)
 };
 
 // -----------------------------------------------------------------------------------------------------------

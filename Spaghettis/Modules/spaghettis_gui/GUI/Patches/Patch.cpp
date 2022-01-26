@@ -90,10 +90,10 @@ juce::ValueTree Patch::getParent (const core::Unique& u) const
 
 void Patch::openMainWindow()
 {
-    mainWindow_ = std::make_unique<PatchWindow> (*this, tree_);
+    mainWindow_ = std::make_unique<EditWindow> (*this, tree_);
 }
 
-void Patch::closeWindowButtonPressed (PatchWindow* window)
+void Patch::closeWindowButtonPressed (EditWindow* window)
 {
     jassert (mainWindow_.get() == window);
     
