@@ -21,11 +21,22 @@ class PatchWindow : public BaseWindow {
 public:
     explicit PatchWindow (Patch& owner, const juce::ValueTree& content) :
         BaseWindow (Patch::getParameter (content, Ids::title).toString()),
-        owner_ (owner)
+        owner_ (owner),
+        content_ (content)
     {
     }
 
     ~PatchWindow() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool isRoot() const
+    {
+        return true;
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -39,6 +50,9 @@ public:
 
 private:
     Patch& owner_;
+
+private:
+    juce::ValueTree content_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchWindow)
