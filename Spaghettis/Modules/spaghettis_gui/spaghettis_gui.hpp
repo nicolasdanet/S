@@ -121,11 +121,12 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Patches/Patch.hpp"
-#include "GUI/Patches/PatchFactory.hpp"
-#include "GUI/Patches/PatchComponent.hpp"
 #include "GUI/Patches/PatchHolder.hpp"
-#include "GUI/Patches/PatchView.hpp"
-#include "GUI/Patches/PatchWindow.hpp"
+
+#include "GUI/Patches/EditWindow/EditFactory.hpp"
+#include "GUI/Patches/EditWindow/EditComponent.hpp"
+#include "GUI/Patches/EditWindow/EditView.hpp"
+#include "GUI/Patches/EditWindow/EditWindow.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

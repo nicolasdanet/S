@@ -53,9 +53,10 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Patches/Patch.cpp"
-#include "GUI/Patches/PatchFactory.cpp"
 #include "GUI/Patches/PatchHolder.cpp"
-#include "GUI/Patches/PatchView.cpp"
+
+#include "GUI/Patches/EditWindow/EditFactory.cpp"
+#include "GUI/Patches/EditWindow/EditView.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
