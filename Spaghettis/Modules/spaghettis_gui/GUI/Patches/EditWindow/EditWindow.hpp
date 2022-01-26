@@ -23,10 +23,10 @@ public:
     {
         setContentOwned (new EditComponent (getPropertiesKeyName()), true);
         
-        const int x = Patch::getParameter (content, Ids::x);
-        const int y = Patch::getParameter (content, Ids::y);
-        const int w = Patch::getParameter (content, Ids::width);
-        const int h = Patch::getParameter (content, Ids::height);
+        const int x = Attributes::getParameter (content, Ids::x);
+        const int y = Attributes::getParameter (content, Ids::y);
+        const int w = Attributes::getParameter (content, Ids::width);
+        const int h = Attributes::getParameter (content, Ids::height);
         
         makeVisible (juce::Rectangle<int> (x, y, w, h));
     }

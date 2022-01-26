@@ -107,19 +107,9 @@ public:
 
     juce::File getFile() const
     {
-        return juce::File (Patch::getParameter (tree_, Ids::path).toString());
+        return juce::File (Attributes::getParameter (tree_, Ids::path).toString());
     }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static const juce::var& getParameter (const juce::ValueTree& t, const juce::Identifier &name)
-    {
-        return t.getChildWithName (Ids::PARAMETERS).getProperty (name);
-    }
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
