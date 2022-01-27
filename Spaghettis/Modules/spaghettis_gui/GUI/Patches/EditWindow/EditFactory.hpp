@@ -34,7 +34,13 @@ public:
 public:
     void getAllToolbarItemIds (juce::Array<int>& ids) override
     {
-        // ids.add (Icons::edit);
+        ids.add (Icons::zoomIn);
+        ids.add (Icons::zoomOut);
+        ids.add (Icons::help);
+        ids.add (Icons::inspector);
+        ids.add (ToolbarItemFactory::spacerId);
+        ids.add (Icons::edit);
+        ids.add (Icons::run);
     }
 
     void getDefaultItemSet (juce::Array<int>& ids) override
