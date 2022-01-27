@@ -10,15 +10,15 @@
       <FILE id="LekPt7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <GROUP id="{5D995D32-88D8-F3E6-9FA3-2BFFDA508EC0}" name="Icons">
         <FILE id="pyAzqh" name="add.svg" compile="0" resource="1" file="Resources/Icons/SVG/add.svg"/>
-        <FILE id="K9mzX4" name="construction.svg" compile="0" resource="1"
-              file="../../../Downloads/construction.svg"/>
+        <FILE id="W4KSZp" name="construction.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/construction.svg"/>
         <FILE id="lQeYTz" name="delete_forever.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/delete_forever.svg"/>
         <FILE id="YbQGbR" name="error_outline.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/error_outline.svg"/>
-        <FILE id="NT7udQ" name="help_outline.svg" compile="0" resource="1"
-              file="../../../Downloads/help_outline.svg"/>
-        <FILE id="wmFSnq" name="info.svg" compile="0" resource="1" file="../../../Downloads/info.svg"/>
+        <FILE id="n2y0sA" name="help_outline.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/help_outline.svg"/>
+        <FILE id="MftGP7" name="info.svg" compile="0" resource="1" file="Resources/Icons/SVG/info.svg"/>
         <FILE id="v09zib" name="mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/mail.svg"/>
         <FILE id="D9nQfi" name="place.svg" compile="0" resource="1" file="Resources/Icons/SVG/place.svg"/>
         <FILE id="WYGHhC" name="restore.svg" compile="0" resource="1" file="Resources/Icons/SVG/restore.svg"/>
@@ -29,10 +29,10 @@
               file="Resources/Icons/SVG/text_rotate_up.svg"/>
         <FILE id="IJLGLO" name="text_rotation_down.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/text_rotation_down.svg"/>
-        <FILE id="hVjjH6" name="tune.svg" compile="0" resource="1" file="../../../Downloads/tune.svg"/>
-        <FILE id="VqthWN" name="visibility.svg" compile="0" resource="1" file="../../../Downloads/visibility.svg"/>
-        <FILE id="tovKRm" name="zoom_in.svg" compile="0" resource="1" file="../../../Downloads/zoom_in.svg"/>
-        <FILE id="VVG3iA" name="zoom_out.svg" compile="0" resource="1" file="../../../Downloads/zoom_out.svg"/>
+        <FILE id="wLVawc" name="tune.svg" compile="0" resource="1" file="Resources/Icons/SVG/tune.svg"/>
+        <FILE id="nhfcRR" name="visibility.svg" compile="0" resource="1" file="Resources/Icons/SVG/visibility.svg"/>
+        <FILE id="pzNbU3" name="zoom_in.svg" compile="0" resource="1" file="Resources/Icons/SVG/zoom_in.svg"/>
+        <FILE id="PZxLeU" name="zoom_out.svg" compile="0" resource="1" file="Resources/Icons/SVG/zoom_out.svg"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>
