@@ -57,6 +57,7 @@
 
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
+#include "GUI/Patches/EditWindow/EditWindow.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

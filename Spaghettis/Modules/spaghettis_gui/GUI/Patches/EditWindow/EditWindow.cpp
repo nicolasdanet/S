@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -12,32 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditWindow : public PatchWindow {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    explicit EditWindow (Patch& owner, const juce::ValueTree& content) : PatchWindow (owner, content)
-    {
-        setContentOwned (new EditComponent (getPropertiesKeyName()), true);
-        
-        makeVisible (getEditWindowPosition (content));
-    }
-
-    ~EditWindow() = default;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    static juce::Rectangle<int> getEditWindowPosition (const juce::ValueTree&);
+juce::Rectangle<int> EditWindow::getEditWindowPosition (const juce::ValueTree& content)
+{
+    const int x = Attributes::getParameter (content, Ids::x);
+    const int y = Attributes::getParameter (content, Ids::y);
+    const int w = Attributes::getParameter (content, Ids::width);
+    const int h = Attributes::getParameter (content, Ids::height);
     
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditWindow)
-};
+    return juce::Rectangle<int> (x, y, w, h);
+}
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

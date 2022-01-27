@@ -132,7 +132,7 @@ const juce::var& Description::getParameter (const juce::ValueTree& t, const juce
 {
     return t.getChildWithName (Ids::PARAMETERS).getProperty (name);
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
