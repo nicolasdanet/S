@@ -56,18 +56,7 @@ public:
 // MARK: -
 
 public:
-    juce::String debug() const
-    {
-        juce::StringArray s;
-        
-        s.add (isRoot() ? juce::String ("-") : juce::String (r_));
-        
-        if (path_) { for (auto& u : *path_) { s.add (juce::String (u)); } }
-        
-        s.add (juce::String (u_));
-                
-        return (s.joinIntoString (" / "));
-    }
+    juce::String asString() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

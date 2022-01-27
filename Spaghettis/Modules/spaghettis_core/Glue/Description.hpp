@@ -67,39 +67,6 @@ public:
 
 public:
     static const juce::var& getParameter (const juce::ValueTree&, const juce::Identifier &);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    static juce::String debugJoinIntoString (const juce::ValueTree& t)
-    {
-        juce::StringArray s;
-        
-        for (int i = 0; i < t.getNumProperties(); ++i) {
-        //
-        const juce::Identifier name = t.getPropertyName (i);
-        s.add (name.toString() + ": " + t.getProperty (name).toString());
-        //
-        }
-        
-        return (s.joinIntoString (" / "));
-    }
-
-public:
-    juce::String debug() const
-    {
-        juce::String s (debugJoinIntoString (t_));
-        
-        juce::ValueTree p (t_.getChildWithName (Ids::PARAMETERS));
-        
-        if (p.isValid()) {
-            s += " ### "; s += debugJoinIntoString (p);
-        }
-        
-        return s;
-    }
     
 private:
     juce::ValueTree t_;
