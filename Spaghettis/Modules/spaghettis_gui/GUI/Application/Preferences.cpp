@@ -164,6 +164,13 @@ juce::ValueTree Preferences::getDefault()
                 { Ids::info,    NEEDS_TRANS ("Show dialog box to confirm quitting") },
                 { Ids::type,    "boolean" },
                 { Ids::value,   true }
+            } },
+            { Ids::PARAMETER, {
+                { Ids::item,    "DefaultIsRunView" },
+                { Ids::text,    NEEDS_TRANS ("Default Is Run View") },
+                { Ids::info,    NEEDS_TRANS ("Open a patch into a run view") },
+                { Ids::type,    "boolean" },
+                { Ids::value,   false }
             } }
         }
     },
