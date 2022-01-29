@@ -35,6 +35,16 @@ void Patch::setDirty (bool isDirty)
 {
     dirty_ = isDirty; setDirtyFlagIfRequired();
 }
+
+void Patch::updateDirty() const
+{
+    setDirtyFlagIfRequired();
+}
+
+bool Patch::isDirty() const
+{
+    return dirty_;
+}
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -101,11 +111,15 @@ void Patch::openWindow()
 void Patch::openEditWindow()
 {
     windows_.push_back (std::make_unique<EditWindow> (*this, tree_));
+    
+    updateDirty();
 }
 
 void Patch::openRunWindow()
 {
     windows_.push_back (std::make_unique<RunWindow> (*this, tree_));
+    
+    updateDirty();
 }
 
 void Patch::closeWindowButtonPressed (PatchWindow* w)
@@ -150,7 +164,7 @@ juce::Component* Patch::getMainWindow() const
     return dynamic_cast<juce::Component*> (windows_.front().get());
 }
 
-void Patch::setDirtyFlagIfRequired()
+void Patch::setDirtyFlagIfRequired() const
 {
     for (const auto& p : windows_) { if (p->isRoot()) { p->setDirtyFlag (dirty_); } }
 }

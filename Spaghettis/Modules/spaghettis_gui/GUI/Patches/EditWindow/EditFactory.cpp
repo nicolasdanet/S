@@ -22,8 +22,8 @@ void EditFactory::setToolbarButton (IconsButton* button)
     case Icons::zoomOut     : button->setTooltip (NEEDS_TRANS ("Zoom out"));                break;
     case Icons::help        : button->setTooltip (NEEDS_TRANS ("Hide or show help"));       break;
     case Icons::inspector   : button->setTooltip (NEEDS_TRANS ("Hide or show inspector"));  break;
-    case Icons::edit        : button->setTooltip (NEEDS_TRANS ("Open edit view"));          break;
-    case Icons::run         : button->setTooltip (NEEDS_TRANS ("Open run view"));           break;
+    case Icons::edit        : button->setTooltip (NEEDS_TRANS ("Open an edit view"));       break;
+    case Icons::run         : button->setTooltip (NEEDS_TRANS ("Open a run view"));         break;
     default                 : break;
     //
     }
@@ -34,8 +34,12 @@ void EditFactory::setToolbarButton (IconsButton* button)
     case Icons::zoomOut     : button->onClick = []() { DBG ("Zoom Out"); };     break;
     case Icons::help        : button->onClick = []() { DBG ("Help"); };         break;
     case Icons::inspector   : button->onClick = []() { DBG ("Inspector"); };    break;
-    case Icons::edit        : button->onClick = []() { DBG ("Edit"); };         break;
-    case Icons::run         : button->onClick = []() { DBG ("Run"); };          break;
+    case Icons::edit        : button->onClick = [this]() {
+                                    PatchWindow::getOwner (owner_).openEditWindow();
+                                }; break;
+    case Icons::run         : button->onClick = [this]() {
+                                    PatchWindow::getOwner (owner_).openRunWindow();
+                                }; break;
     default                 : break;
     //
     }

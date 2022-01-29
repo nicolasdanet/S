@@ -48,6 +48,20 @@ public:
         owner_.closeWindowButtonPressed (this);
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static Patch& getOwner (juce::Component *c)
+    {
+        PatchWindow* w = dynamic_cast<PatchWindow*> (c->getTopLevelComponent());
+        
+        jassert (w);
+        
+        return w->owner_;
+    }
+    
 private:
     Patch& owner_;
 
