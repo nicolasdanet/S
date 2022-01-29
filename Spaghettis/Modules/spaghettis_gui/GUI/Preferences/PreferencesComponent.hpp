@@ -25,7 +25,7 @@ friend class Preferences;
 // MARK: -
 
 public:
-    explicit PreferencesComponent (const juce::String& keyName) : BaseComponent (keyName, nullptr),
+    explicit PreferencesComponent (const juce::String& keyName) : BaseComponent (nullptr, keyName),
         expanded_ (0),
         expandedLast_ (0)
     {

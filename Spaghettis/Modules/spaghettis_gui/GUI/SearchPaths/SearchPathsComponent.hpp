@@ -24,7 +24,7 @@ class SearchPathsComponent :    protected SearchPathsFactoryHelper,     /* MUST 
 public:
     explicit SearchPathsComponent (const juce::String& keyName) :
         SearchPathsFactoryHelper (this),
-        BaseComponent (keyName, getIconsFactory()),
+        BaseComponent (getIconsFactory(), keyName),
         paths_ (Spaghettis()->getSearchPaths())
     {
         listBox_.setModel (this);

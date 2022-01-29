@@ -20,12 +20,12 @@ class BaseWindow :  public  juce::DocumentWindow,
 // MARK: -
 
 public:
-    explicit BaseWindow (const juce::String& name, const juce::String& keyName = juce::String()) :
+    explicit BaseWindow (const juce::String& name, const juce::String& s = juce::String()) :
         juce::DocumentWindow (name,
             Spaghettis()->getColour (Colours::windowBackground),
             DocumentWindow::allButtons,
             false),
-        keyName_ (keyName),
+        keyName_ (s),
         timerCount_ (0),
         mimimumHeight_ (0)
     {

@@ -22,7 +22,7 @@ class RunComponent :    protected RunFactoryHelper,    /* MUST be the first. */
 public:
     explicit RunComponent (const juce::String& keyName) :
         RunFactoryHelper (this),
-        BaseComponent (keyName, getIconsFactory())
+        BaseComponent (getIconsFactory(), keyName)
     {
         setOpaque (true); setSize (600, 300);
     }

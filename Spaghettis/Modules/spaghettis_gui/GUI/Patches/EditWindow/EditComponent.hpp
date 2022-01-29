@@ -22,7 +22,7 @@ class EditComponent :   protected EditFactoryHelper,    /* MUST be the first. */
 public:
     explicit EditComponent (const juce::String& keyName) :
         EditFactoryHelper (this),
-        BaseComponent (keyName, getIconsFactory())
+        BaseComponent (getIconsFactory(), keyName)
     {
         setOpaque (true); setSize (600, 300);
     }

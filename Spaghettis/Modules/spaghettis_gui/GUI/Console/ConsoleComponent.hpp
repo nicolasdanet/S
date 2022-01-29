@@ -25,7 +25,7 @@ class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the f
 public:
     explicit ConsoleComponent (const juce::String& keyName) :
         ConsoleFactoryHelper (this),
-        BaseComponent (keyName, getIconsFactory())
+        BaseComponent (getIconsFactory(), keyName)
     {
         listBox_.setModel (this);
         ListBoxFunctions::initialize (listBox_, false);
