@@ -100,34 +100,59 @@ void Patch::openWindow()
 
 void Patch::openEditWindow()
 {
-    mainWindow_ = std::make_unique<EditWindow> (*this, tree_);
+    windows_.push_back (std::make_unique<EditWindow> (*this, tree_));
 }
 
 void Patch::openRunWindow()
 {
-    mainWindow_ = std::make_unique<RunWindow> (*this, tree_);
+    windows_.push_back (std::make_unique<RunWindow> (*this, tree_));
 }
 
-void Patch::closeWindowButtonPressed (PatchWindow* window)
+void Patch::closeWindowButtonPressed (PatchWindow* w)
 {
-    jassert (mainWindow_.get() == window);
-    
+    if (windows_.size() > 1) { removeWindow (w); }
+    else {
+    //
     Spaghettis()->getPatches().requestClosePatch (unique_, CloseType::yesNoCancel);
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Patch::removeWindow (PatchWindow* w)
+{
+    auto f = [window = w](const std::unique_ptr<PatchWindow>& p)
+    {
+        return (p.get() == window);
+    };
+        
+    windows_.erase (std::remove_if (windows_.begin(), windows_.end(), f), windows_.end());
 }
 
 void Patch::releaseAllWindows()
 {
-    mainWindow_ = nullptr;
+    windows_.clear();
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 juce::Component* Patch::getMainWindow() const
 {
-    return dynamic_cast<juce::Component*> (mainWindow_.get());
+    jassert (windows_.empty() == false);
+    
+    for (const auto& p : windows_) { if (p->isRoot()) { return dynamic_cast<juce::Component*> (p.get()); } }
+    
+    return dynamic_cast<juce::Component*> (windows_.front().get());
 }
 
 void Patch::setDirtyFlagIfRequired()
 {
-    if (mainWindow_ && mainWindow_->isRoot()) { mainWindow_->setDirtyFlag (dirty_); }
+    for (const auto& p : windows_) { if (p->isRoot()) { p->setDirtyFlag (dirty_); } }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -81,9 +81,12 @@ public:
     void openWindow();
     void openEditWindow();
     void openRunWindow();
-    void closeWindowButtonPressed (PatchWindow* window);
-    void releaseAllWindows();
+    void closeWindowButtonPressed (PatchWindow*);
 
+private:
+    void releaseAllWindows();
+    void removeWindow (PatchWindow*);
+    
 public:
     juce::Component* getMainWindow() const;
 
@@ -122,7 +125,7 @@ private:
     bool dirty_;
 
 private:
-    std::unique_ptr<PatchWindow> mainWindow_;
+    std::vector<std::unique_ptr<PatchWindow>> windows_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Patch)
