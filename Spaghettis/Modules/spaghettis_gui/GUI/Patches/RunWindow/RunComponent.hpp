@@ -20,9 +20,7 @@ class RunComponent :    protected RunFactoryHelper,    /* MUST be the first. */
 // MARK: -
 
 public:
-    explicit RunComponent (const juce::String& keyName) :
-        RunFactoryHelper (this),
-        BaseComponent (getIconsFactory(), keyName)
+    explicit RunComponent() : RunFactoryHelper (this), BaseComponent (getIconsFactory())
     {
         setOpaque (true); setSize (600, 300);
     }

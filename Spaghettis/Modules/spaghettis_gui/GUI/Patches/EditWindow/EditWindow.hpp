@@ -21,7 +21,7 @@ class EditWindow : public PatchWindow {
 public:
     explicit EditWindow (Patch& owner, const juce::ValueTree& content) : PatchWindow (owner, content)
     {
-        setContentOwned (new EditComponent (getPropertiesKeyName()), true);
+        setContentOwned (new EditComponent(), true);
         
         makeVisible (getEditWindowPosition (content));
     }
