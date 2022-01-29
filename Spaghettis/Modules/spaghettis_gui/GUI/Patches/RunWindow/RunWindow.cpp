@@ -12,16 +12,6 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> RunWindow::getRunWindowPosition (const juce::ValueTree& content)
-{
-    const int x = Attributes::getParameter (content, Ids::x);
-    const int y = Attributes::getParameter (content, Ids::y);
-    const int w = Attributes::getParameter (content, Ids::width);
-    const int h = Attributes::getParameter (content, Ids::height);
-    
-    return juce::Rectangle<int> (x, y, w, h);
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

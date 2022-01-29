@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -23,18 +23,11 @@ public:
     {
         setContentOwned (new RunComponent (getPropertiesKeyName()), true);
         
-        makeVisible (getRunWindowPosition (content));
+        makeVisible();
     }
 
     ~RunWindow() = default;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    static juce::Rectangle<int> getRunWindowPosition (const juce::ValueTree&);
-    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunWindow)
 };
