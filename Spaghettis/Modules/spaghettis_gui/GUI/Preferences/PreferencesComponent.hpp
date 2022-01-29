@@ -33,7 +33,7 @@ public:
         
         addAndMakeVisible (panel_);
 
-        setOpaque (true); setSize (500, 500);
+        setOpaque (true); setSize (600, 400);
         
         const int primeInterval = 307; startTimer (primeInterval);
     }
