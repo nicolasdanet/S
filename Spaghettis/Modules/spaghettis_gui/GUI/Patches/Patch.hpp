@@ -80,6 +80,7 @@ public:
 public:
     void openWindow();
     void openEditWindow();
+    void openRunWindow();
     void closeWindowButtonPressed (PatchWindow* window);
     void releaseAllWindows();
 

@@ -58,6 +58,9 @@
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
 #include "GUI/Patches/EditWindow/EditWindow.cpp"
+#include "GUI/Patches/RunWindow/RunFactory.cpp"
+#include "GUI/Patches/RunWindow/RunView.cpp"
+#include "GUI/Patches/RunWindow/RunWindow.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
