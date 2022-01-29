@@ -29,7 +29,7 @@ public:
         tree_ (v),
         dirty_ (false)
     {
-        openMainWindow();
+        openWindow();
     }
 
     ~Patch()
@@ -78,7 +78,8 @@ public:
 // MARK: -
 
 public:
-    void openMainWindow();
+    void openWindow();
+    void openEditWindow();
     void closeWindowButtonPressed (PatchWindow* window);
     void releaseAllWindows();
 

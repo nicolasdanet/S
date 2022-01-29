@@ -88,7 +88,12 @@ juce::ValueTree Patch::getParent (const core::Unique& u) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::openMainWindow()
+void Patch::openWindow()
+{
+    openEditWindow();
+}
+
+void Patch::openEditWindow()
 {
     mainWindow_ = std::make_unique<EditWindow> (*this, tree_);
 }
