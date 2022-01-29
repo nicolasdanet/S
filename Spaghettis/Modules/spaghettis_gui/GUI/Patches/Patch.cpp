@@ -90,7 +90,12 @@ juce::ValueTree Patch::getParent (const core::Unique& u) const
 
 void Patch::openWindow()
 {
-    openRunWindow();
+    const bool runView = Spaghettis()->getPreferences().getValue ("DefaultIsRunView");
+    
+    if (runView) { openRunWindow(); }
+    else {
+        openEditWindow();
+    }
 }
 
 void Patch::openEditWindow()
