@@ -193,6 +193,8 @@ private:
 // MARK: -
 
 public:
+    juce::Rectangle<int> getPropertyComponentContentPosition (juce::PropertyComponent&) override;
+    
     void drawPropertyComponentBackground (juce::Graphics&, int, int, juce::PropertyComponent&) override;
     void drawPropertyComponentLabel (juce::Graphics&, int, int, juce::PropertyComponent&) override;
     

@@ -12,6 +12,19 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Rectangle<int> LookAndFeel::getPropertyComponentContentPosition (juce::PropertyComponent& component)
+{
+    juce::Rectangle<int> r (component.getWidth(), component.getHeight() - 1);
+    
+    const int labelWidth = juce::jmin (250, r.getWidth() / 2);
+    
+    return r.withTrimmedLeft (labelWidth);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
     int w,
     int h,
