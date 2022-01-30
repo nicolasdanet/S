@@ -14,7 +14,7 @@ namespace spaghettis {
 
 const juce::var Preferences::getValue (const juce::String& item) const
 {
-    return core::Parameters::getValue (tree_, item);
+    return Attributes::getValue (tree_, item);
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ const juce::var Preferences::getValue (const juce::String& item) const
 
 void Preferences::buildConcertinaPanel (PreferencesComponent& c)
 {
-    Parameter::Build::makeConcertinaPanel (tree_, c);
+    Parameter::buildConcertinaPanel (tree_, c);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ void Preferences::buildConcertinaPanel (PreferencesComponent& c)
 
 void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier& identifier)
 {
-    if (core::Parameters::isValidParameter (tree)) {
+    if (Attributes::isValidParameter (tree)) {
     //
     const juce::String key (tree.getProperty (Ids::item).toString());
     
@@ -141,7 +141,7 @@ juce::ValueTree Preferences::getDefault()
     //
     } };
 
-    jassert (core::Parameters::isValidPreferences (tree));
+    jassert (Attributes::isValidPreferences (tree));
     
     return tree;
 }
@@ -196,7 +196,7 @@ void Preferences::read()
         std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file_));
         if (xml) {
             juce::ValueTree t (juce::ValueTree::fromXml (*xml));
-            if (core::Parameters::isValidPreferences (t)) {
+            if (Attributes::isValidPreferences (t)) {
                 juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
                 setPropertiesFrom (tree_, t);
                 return;

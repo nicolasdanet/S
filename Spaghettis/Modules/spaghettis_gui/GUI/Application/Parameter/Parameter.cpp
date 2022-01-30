@@ -79,7 +79,7 @@ void buildConcertinaPanelParameter (juce::ValueTree parameter, juce::Array<juce:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Parameter::Build::makeConcertinaPanel (const juce::ValueTree& tree, Model& m)
+void Parameter::buildConcertinaPanel (const juce::ValueTree& tree, Model& m)
 {
     for (const auto& group : tree) {
     //
