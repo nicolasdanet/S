@@ -36,14 +36,14 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<juce::PropertyComponent> buildConcertinaPanelParametersGet (juce::ValueTree parameter)
+std::unique_ptr<juce::PropertyComponent> buildConcertinaPanelParameterGet (juce::ValueTree parameter)
 {
-    return Parameters::Base (parameter).createPropertyComponent();
+    return Parameter::Base (parameter).createPropertyComponent();
 }
 
-void buildConcertinaPanelParameters (juce::ValueTree parameter, juce::Array<juce::PropertyComponent*>& c)
+void buildConcertinaPanelParameter (juce::ValueTree parameter, juce::Array<juce::PropertyComponent*>& c)
 {
-    std::unique_ptr<juce::PropertyComponent> p (buildConcertinaPanelParametersGet (parameter));
+    std::unique_ptr<juce::PropertyComponent> p (buildConcertinaPanelParameterGet (parameter));
     
     p->setPreferredHeight (Spaghettis()->getLookAndFeel().getPropertyPanelHeight());
     p->setTooltip (parameter.getProperty (Ids::info).toString());
@@ -69,7 +69,7 @@ void Preferences::buildConcertinaPanel (PreferencesComponent& c)
     {
         juce::Array<juce::PropertyComponent*> components;
     
-        for (const auto& parameter : group) { buildConcertinaPanelParameters (parameter, components); }
+        for (const auto& parameter : group) { buildConcertinaPanelParameter (parameter, components); }
     
         panel->addProperties (components);
     }
@@ -267,7 +267,7 @@ void setPropertyFrom (juce::ValueTree& tree, const juce::ValueTree& group, const
     const juce::var& oldValue (t.getProperty (Ids::value));
     
     if (!oldValue.equals (newValue)) {
-        t.setProperty (Ids::value, Parameters::Base (t).constrained (newValue), nullptr);
+        t.setProperty (Ids::value, Parameter::Base (t).constrained (newValue), nullptr);
     }
     //
     }
