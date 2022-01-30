@@ -1,0 +1,43 @@
+
+/* Copyright (c) 2022 Jojo and others. */
+
+/* < https://opensource.org/licenses/BSD-3-Clause > */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+namespace spaghettis {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Parameters::ColourEditor::paint (juce::Graphics& g)
+{
+    const juce::Colour c (LookAndFeel::getColourFromValue (value_));
+    
+    g.fillAll (Spaghettis()->getColour (Colours::preferencesColourBackground));
+    
+    g.fillCheckerBoard (getColourBounds().toFloat(),
+        11.0f,
+        11.0f,
+        juce::Colours::grey.overlaidWith (c),
+        juce::Colours::white.overlaidWith (c));
+    
+    g.setFont (Spaghettis()->getLookAndFeel().getColourFont());
+    g.setColour (Spaghettis()->getColour (Colours::preferencesColourText));
+    g.drawText (LookAndFeel::getDisplayStringFromColour (c),
+        getTextBounds(),
+        juce::Justification::centredLeft,
+        true);
+    
+    g.drawRect (getColourBounds().toFloat());
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+} // namespace spaghettis
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------

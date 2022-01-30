@@ -73,21 +73,21 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Application/Parameters/Parameters.hpp"
+#include "GUI/Application/Parameters/ParametersBoolean.hpp"
+#include "GUI/Application/Parameters/ParametersColour.hpp"
+#include "GUI/Application/Parameters/ParametersNumber.hpp"
+#include "GUI/Application/Parameters/ParametersText.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Application/Commands.hpp"
 #include "GUI/Application/Icons.hpp"
 #include "GUI/Application/MenuModel.hpp"
 #include "GUI/Application/Preferences.hpp"
 #include "GUI/Application/Instance.hpp"
 #include "GUI/Application/Spaghettis.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "GUI/Application/Parameters/Parameters.hpp"
-#include "GUI/Application/Parameters/ParametersBoolean.hpp"
-#include "GUI/Application/Parameters/ParametersColour.hpp"
-#include "GUI/Application/Parameters/ParametersNumber.hpp"
-#include "GUI/Application/Parameters/ParametersText.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

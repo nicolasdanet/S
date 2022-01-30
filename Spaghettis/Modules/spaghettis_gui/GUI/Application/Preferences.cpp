@@ -21,9 +21,9 @@ const juce::var Preferences::getValue (const juce::String& item) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Preferences::buildConcertinaPanel (PreferencesComponent& c)
+void Preferences::buildConcertinaPanel (Parameters::Model& m)
 {
-    Parameters::buildConcertinaPanel (tree_, c);
+    Parameters::buildConcertinaPanel (tree_, m);
 }
 
 // -----------------------------------------------------------------------------------------------------------
