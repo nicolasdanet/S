@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PreferencesComponent :    public  Parameter::Model,
+class PreferencesComponent :    public  Parameters::Model,
                                 public  BaseComponent,
                                 private juce::Timer {
 

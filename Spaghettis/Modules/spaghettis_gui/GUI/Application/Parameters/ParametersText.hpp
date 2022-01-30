@@ -11,34 +11,35 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-namespace Parameter {
+namespace Parameters {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-class Boolean : public juce::BooleanPropertyComponent {
+class Text : public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Boolean (juce::ValueTree p) :
-        juce::BooleanPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
+    explicit Text (juce::ValueTree p) :
+        juce::TextPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
             p.getProperty (Ids::text).toString(),
-            "")
+            64,
+            false)
     {
+        setInterestedInFileDrag (false);
     }
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Boolean)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Text)
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-} // namespace Parameter
+} // namespace Parameters
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -12,23 +12,23 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::unique_ptr<juce::PropertyComponent> Parameter::Base::createPropertyComponent() const
+std::unique_ptr<juce::PropertyComponent> Parameters::Base::createPropertyComponent() const
 {
-    if (type_ == "boolean")      { return std::make_unique<Parameter::Boolean> (p_); }
-    if (type_ == "color")        { return std::make_unique<Parameter::Colour> (p_);  }
-    else if (type_ == "integer") { return std::make_unique<Parameter::Integer> (p_, *this); }
+    if (type_ == "boolean")      { return std::make_unique<Parameters::Boolean> (p_); }
+    if (type_ == "color")        { return std::make_unique<Parameters::Colour> (p_);  }
+    else if (type_ == "integer") { return std::make_unique<Parameters::Integer> (p_, *this); }
     else if (type_ == "float")   {
         if (hasRange()) {
-            return std::make_unique<Parameter::Slider> (p_, *this);
+            return std::make_unique<Parameters::Slider> (p_, *this);
         } else {
-            return std::make_unique<Parameter::Float> (p_, *this);
+            return std::make_unique<Parameters::Float> (p_, *this);
         }
     } else {
-        return std::make_unique<Parameter::Text> (p_);
+        return std::make_unique<Parameters::Text> (p_);
     }
 }
 
-juce::var Parameter::Base::constrained (const juce::var& v) const
+juce::var Parameters::Base::constrained (const juce::var& v) const
 {
     if (type_ == "boolean") {
         bool b = static_cast<bool> (v);
@@ -57,7 +57,7 @@ namespace {
 
 std::unique_ptr<juce::PropertyComponent> buildConcertinaPanelParameterGet (juce::ValueTree parameter)
 {
-    return Parameter::Base (parameter).createPropertyComponent();
+    return Parameters::Base (parameter).createPropertyComponent();
 }
 
 void buildConcertinaPanelParameter (juce::ValueTree parameter, juce::Array<juce::PropertyComponent*>& c)
@@ -79,7 +79,7 @@ void buildConcertinaPanelParameter (juce::ValueTree parameter, juce::Array<juce:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Parameter::buildConcertinaPanel (const juce::ValueTree& tree, Model& m)
+void Parameters::buildConcertinaPanel (const juce::ValueTree& tree, Model& m)
 {
     for (const auto& group : tree) {
     //

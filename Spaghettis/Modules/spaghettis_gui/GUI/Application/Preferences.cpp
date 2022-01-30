@@ -23,7 +23,7 @@ const juce::var Preferences::getValue (const juce::String& item) const
 
 void Preferences::buildConcertinaPanel (PreferencesComponent& c)
 {
-    Parameter::buildConcertinaPanel (tree_, c);
+    Parameters::buildConcertinaPanel (tree_, c);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -166,7 +166,7 @@ void setPropertyFrom (juce::ValueTree& tree, const juce::ValueTree& group, const
     const juce::var& oldValue (t.getProperty (Ids::value));
     
     if (!oldValue.equals (newValue)) {
-        t.setProperty (Ids::value, Parameter::Base (t).constrained (newValue), nullptr);
+        t.setProperty (Ids::value, Parameters::Base (t).constrained (newValue), nullptr);
     }
     //
     }
