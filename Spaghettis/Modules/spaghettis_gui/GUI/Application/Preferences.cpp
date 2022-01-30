@@ -21,52 +21,9 @@ const juce::var Preferences::getValue (const juce::String& item) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-std::unique_ptr<juce::PropertyComponent> buildConcertinaPanelParameterGet (juce::ValueTree parameter)
-{
-    return Parameter::Base (parameter).createPropertyComponent();
-}
-
-void buildConcertinaPanelParameter (juce::ValueTree parameter, juce::Array<juce::PropertyComponent*>& c)
-{
-    std::unique_ptr<juce::PropertyComponent> p (buildConcertinaPanelParameterGet (parameter));
-    
-    p->setPreferredHeight (Spaghettis()->getLookAndFeel().getPropertyPanelHeight());
-    p->setTooltip (parameter.getProperty (Ids::info).toString());
-    
-    c.add (p.release());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void Preferences::buildConcertinaPanel (PreferencesComponent& c)
 {
-    for (const auto& group : tree_) {
-    //
-    auto panel = std::make_unique<juce::PropertyPanel> (group.getProperty (Ids::name).toString());
-    
-    {
-        juce::Array<juce::PropertyComponent*> components;
-    
-        for (const auto& parameter : group) { buildConcertinaPanelParameter (parameter, components); }
-    
-        panel->addProperties (components);
-    }
-    
-    c.addPanel (panel.release());
-    //
-    }
+    Parameter::Build::makeConcertinaPanel (tree_, c);
 }
 
 // -----------------------------------------------------------------------------------------------------------

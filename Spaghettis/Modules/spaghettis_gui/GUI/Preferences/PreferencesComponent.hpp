@@ -12,13 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PreferencesComponent :    public  BaseComponent,
+class PreferencesComponent :    public  Parameter::Model,
+                                public  BaseComponent,
                                 private juce::Timer {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-friend class Preferences;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -94,8 +90,8 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    void addPanel (juce::PropertyPanel* p)
+public:
+    void addPanel (juce::PropertyPanel* p) override
     {
         const int headerSize = Spaghettis()->getLookAndFeel().getPropertyPanelHeight() + 6;
         const int i = panel_.getNumPanels();
