@@ -83,11 +83,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Preferences/Parameters.hpp"
-#include "GUI/Preferences/ParametersBoolean.hpp"
-#include "GUI/Preferences/ParametersColour.hpp"
-#include "GUI/Preferences/ParametersNumber.hpp"
-#include "GUI/Preferences/ParametersText.hpp"
+#include "GUI/Application/Parameters/Parameters.hpp"
+#include "GUI/Application/Parameters/ParametersBoolean.hpp"
+#include "GUI/Application/Parameters/ParametersColour.hpp"
+#include "GUI/Application/Parameters/ParametersNumber.hpp"
+#include "GUI/Application/Parameters/ParametersText.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
