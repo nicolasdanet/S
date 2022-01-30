@@ -14,17 +14,7 @@ namespace spaghettis {
 
 const juce::var Preferences::getValue (const juce::String& item) const
 {
-    for (const auto& group : tree_) {
-    for (const auto& parameter : group) {
-        if (parameter.getProperty (Ids::item).equalsWithSameType (item)) {
-            return parameter.getProperty (Ids::value);
-        }
-    }
-    }
-    
-    jassertfalse;
-    
-    return juce::var();
+    return core::Parameters::getValue (tree_, item);
 }
     
 // -----------------------------------------------------------------------------------------------------------
