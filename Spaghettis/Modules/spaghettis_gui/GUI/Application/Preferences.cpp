@@ -83,57 +83,9 @@ void Preferences::buildConcertinaPanel (PreferencesComponent& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-bool isValidSection (const juce::ValueTree& tree)
-{
-    return (tree.hasType (Ids::GROUP) && tree.getProperty (Ids::name).isString());
-}
-
-bool isValidParameter (const juce::ValueTree& tree)
-{
-    return (tree.hasType (Ids::PARAMETER)
-                && tree.getProperty (Ids::item).isString()
-                && tree.getProperty (Ids::text).isString()
-                && tree.getProperty (Ids::info).isString()
-                && tree.getProperty (Ids::type).isString()
-                && tree.hasProperty (Ids::value));
-}
-
-bool isValidTree (const juce::ValueTree& tree)
-{
-    if (tree.isValid() && tree.hasType (Ids::PREFERENCES)) {
-    //
-    for (const auto& group : tree) {
-    //
-    if (isValidSection (group)) {
-        for (const auto& parameter : group)  {
-            if (!isValidParameter (parameter)) { return false; }
-        }
-    } else { return false; }
-    //
-    }
-    //
-    } else { return false; }
-    
-    return true;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier& identifier)
 {
-    if (isValidParameter (tree)) {
+    if (core::Parameters::isValidParameter (tree)) {
     //
     const juce::String key (tree.getProperty (Ids::item).toString());
     
@@ -242,7 +194,7 @@ juce::ValueTree Preferences::getDefault()
     //
     } };
 
-    jassert (isValidTree (tree));
+    jassert (core::Parameters::isValidPreferences (tree));
     
     return tree;
 }
@@ -297,7 +249,7 @@ void Preferences::read()
         std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file_));
         if (xml) {
             juce::ValueTree t (juce::ValueTree::fromXml (*xml));
-            if (isValidTree (t)) {
+            if (core::Parameters::isValidPreferences (t)) {
                 juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
                 setPropertiesFrom (tree_, t);
                 return;

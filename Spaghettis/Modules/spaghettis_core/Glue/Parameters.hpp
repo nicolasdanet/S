@@ -23,6 +23,48 @@ struct Parameters {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static bool isValidSection (const juce::ValueTree& tree)
+{
+    return (tree.hasType (Ids::GROUP) && tree.getProperty (Ids::name).isString());
+}
+
+static bool isValidParameter (const juce::ValueTree& tree)
+{
+    return (tree.hasType (Ids::PARAMETER)
+                && tree.getProperty (Ids::item).isString()
+                && tree.getProperty (Ids::text).isString()
+                && tree.getProperty (Ids::info).isString()
+                && tree.getProperty (Ids::type).isString()
+                && tree.hasProperty (Ids::value));
+}
+
+static bool isValidTree (const juce::ValueTree& tree, const juce::Identifier& identifier)
+{
+    if (tree.isValid() && tree.hasType (identifier)) {
+    //
+    for (const auto& group : tree) {
+    //
+    if (isValidSection (group)) {
+        for (const auto& parameter : group)  {
+            if (!isValidParameter (parameter)) { return false; }
+        }
+    } else { return false; }
+    //
+    }
+    //
+    } else { return false; }
+    
+    return true;
+}
+
+static bool isValidPreferences (const juce::ValueTree& tree)
+{
+    return isValidTree (tree, Ids::PREFERENCES);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 };
 
 // -----------------------------------------------------------------------------------------------------------
