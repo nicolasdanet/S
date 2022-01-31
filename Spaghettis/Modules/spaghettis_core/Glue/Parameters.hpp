@@ -40,12 +40,12 @@ static const juce::var getValue (const juce::ValueTree& tree, const juce::String
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static bool isValidSection (const juce::ValueTree& group)
+static bool groupIsValid (const juce::ValueTree& group)
 {
     return (group.hasType (Ids::GROUP) && group.getProperty (Ids::name).isString());
 }
 
-static bool isValidParameter (const juce::ValueTree& parameter)
+static bool parameterIsValid (const juce::ValueTree& parameter)
 {
     return (parameter.hasType (Ids::PARAMETER)
                 && parameter.getProperty (Ids::item).isString()
@@ -55,15 +55,15 @@ static bool isValidParameter (const juce::ValueTree& parameter)
                 && parameter.hasProperty (Ids::value));
 }
 
-static bool isValidTree (const juce::ValueTree& tree, const juce::Identifier& identifier)
+static bool treeIsValid (const juce::ValueTree& tree, const juce::Identifier& identifier)
 {
     if (tree.isValid() && tree.hasType (identifier)) {
     //
     for (const auto& group : tree) {
     //
-    if (isValidSection (group)) {
+    if (groupIsValid (group)) {
         for (const auto& parameter : group)  {
-            if (!isValidParameter (parameter)) { return false; }
+            if (!parameterIsValid (parameter)) { return false; }
         }
     } else { return false; }
     //
@@ -72,11 +72,6 @@ static bool isValidTree (const juce::ValueTree& tree, const juce::Identifier& id
     } else { return false; }
     
     return true;
-}
-
-static bool isValidPreferences (const juce::ValueTree& tree)
-{
-    return isValidTree (tree, Ids::PREFERENCES);
 }
 
 // -----------------------------------------------------------------------------------------------------------

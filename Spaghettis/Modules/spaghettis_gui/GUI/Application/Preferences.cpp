@@ -32,7 +32,7 @@ void Preferences::buildConcertinaPanel (Parameters::Model& m)
 
 void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier& identifier)
 {
-    if (Attributes::isValidParameter (tree)) {
+    if (Attributes::parameterIsValid (tree)) {
     //
     const juce::String key (tree.getProperty (Ids::item).toString());
     
@@ -141,7 +141,7 @@ juce::ValueTree Preferences::getDefault()
     //
     } };
 
-    jassert (Attributes::isValidPreferences (tree));
+    jassert (Attributes::treeIsValid (tree, Ids::PREFERENCES));
     
     return tree;
 }
@@ -196,7 +196,7 @@ void Preferences::read()
         std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file_));
         if (xml) {
             juce::ValueTree t (juce::ValueTree::fromXml (*xml));
-            if (Attributes::isValidPreferences (t)) {
+            if (Attributes::treeIsValid (t, Ids::PREFERENCES)) {
                 juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
                 setPropertiesFrom (tree_, t);
                 return;
