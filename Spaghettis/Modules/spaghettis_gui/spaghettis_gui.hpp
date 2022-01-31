@@ -74,6 +74,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/Parameters/Parameters.hpp"
+#include "GUI/Application/Parameters/ParametersModel.hpp"
 #include "GUI/Application/Parameters/ParametersBoolean.hpp"
 #include "GUI/Application/Parameters/ParametersColour.hpp"
 #include "GUI/Application/Parameters/ParametersNumber.hpp"

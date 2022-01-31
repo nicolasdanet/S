@@ -17,79 +17,27 @@ namespace Parameters {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Base {
+class Model {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Base (const juce::ValueTree& p) : p_ (p), type_ (p.getProperty (Ids::type).toString())
-    {
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
+    Model()          = default;
+    virtual ~Model() = default;
 
 public:
-    std::unique_ptr<juce::PropertyComponent> createPropertyComponent() const;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    juce::var constrained (const juce::var& v) const;
+    virtual void addPanel (juce::PropertyPanel*) = 0;
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    bool hasRange() const
-    {
-        return (p_.hasProperty (Ids::minimum) && p_.hasProperty (Ids::maximum));
-    }
-    
-    double getMinimumAsDouble() const
-    {
-        double m = static_cast<double> (p_.getProperty (Ids::minimum));
-        double n = static_cast<double> (p_.getProperty (Ids::maximum));
-        
-        return juce::jmin (m, n);
-    }
-    
-    double getMaximumAsDouble() const
-    {
-        double m = static_cast<double> (p_.getProperty (Ids::minimum));
-        double n = static_cast<double> (p_.getProperty (Ids::maximum));
-        
-        return juce::jmax (m, n);
-    }
-    
-    double getStep() const
-    {
-        return 0.001;
-    }
-    
-    template <class T> operator juce::Range<T>() const
-    {
-        auto m = static_cast<T> (p_.getProperty (Ids::minimum));
-        auto n = static_cast<T> (p_.getProperty (Ids::maximum));
-        auto minimum = juce::jmin (m, n);
-        auto maximum = juce::jmax (m, n);
-            
-        if (minimum != maximum) { return juce::Range<T> (minimum, maximum); }
-        else {
-            return juce::Range<T>();
-        }
-    }
-
 private:
-    const juce::ValueTree p_;
-    const juce::String type_;
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Model)
 };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void buildConcertinaPanel (const juce::ValueTree&, Model&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

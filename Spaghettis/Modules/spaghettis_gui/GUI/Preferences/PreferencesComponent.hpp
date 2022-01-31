@@ -21,7 +21,8 @@ class PreferencesComponent :    public  Parameters::Model,
 // MARK: -
 
 public:
-    explicit PreferencesComponent (const juce::String& keyName) : BaseComponent (nullptr, keyName),
+    explicit PreferencesComponent (const juce::String& keyName) :
+        BaseComponent (nullptr, keyName),
         expanded_ (0),
         expandedLast_ (0)
     {
