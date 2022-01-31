@@ -23,7 +23,7 @@ struct Parameters {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static const juce::var getValue (const juce::ValueTree& tree, const juce::String& item)
+static const juce::var treeGetValueForItem (const juce::ValueTree& tree, const juce::String& item)
 {
     for (const auto& group : tree) {
     for (const auto& parameter : group) {
@@ -32,6 +32,8 @@ static const juce::var getValue (const juce::ValueTree& tree, const juce::String
         }
     }
     }
+    
+    jassertfalse;
     
     return juce::var();
 }
