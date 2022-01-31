@@ -14,7 +14,7 @@ namespace spaghettis {
 
 const juce::var Preferences::getValueForItem (const juce::String& item) const
 {
-    return Attributes::treeGetValueForItem (tree_, item);
+    return core::Tree::getValueForItem (tree_, item);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ const juce::var Preferences::getValueForItem (const juce::String& item) const
 
 void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier& identifier)
 {
-    if (Attributes::parameterIsValid (tree)) {
+    if (core::Parameter::isValid (tree)) {
     //
     const juce::String key (tree.getProperty (Ids::item).toString());
     
@@ -132,7 +132,7 @@ juce::ValueTree Preferences::getDefault()
     //
     } };
 
-    jassert (Attributes::treeIsValid (tree, Ids::PREFERENCES));
+    jassert (core::Tree::isValid (tree, Ids::PREFERENCES));
     
     return tree;
 }
@@ -187,7 +187,7 @@ void Preferences::read()
         std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file_));
         if (xml) {
             juce::ValueTree t (juce::ValueTree::fromXml (*xml));
-            if (Attributes::treeIsValid (t, Ids::PREFERENCES)) {
+            if (core::Tree::isValid (t, Ids::PREFERENCES)) {
                 juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
                 setPropertiesFrom (tree_, t);
                 return;

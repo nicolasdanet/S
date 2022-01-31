@@ -17,13 +17,58 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-struct Parameters {
+struct Parameter {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static const juce::var treeGetValueForItem (const juce::ValueTree& tree, const juce::String& item)
+static bool isValid (const juce::ValueTree& parameter)
+{
+    return (parameter.hasType (Ids::PARAMETER)
+                && parameter.getProperty (Ids::item).isString()
+                && parameter.getProperty (Ids::text).isString()
+                && parameter.getProperty (Ids::info).isString()
+                && parameter.getProperty (Ids::type).isString()
+                && parameter.hasProperty (Ids::value));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+struct Group {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static bool isValid (const juce::ValueTree& group)
+{
+    return (group.hasType (Ids::GROUP) && group.getProperty (Ids::name).isString());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+struct Tree {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static const juce::var getValueForItem (const juce::ValueTree& tree, const juce::String& item)
 {
     for (const auto& group : tree) {
     for (const auto& parameter : group) {
@@ -38,34 +83,15 @@ static const juce::var treeGetValueForItem (const juce::ValueTree& tree, const j
     return juce::var();
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static bool groupIsValid (const juce::ValueTree& group)
-{
-    return (group.hasType (Ids::GROUP) && group.getProperty (Ids::name).isString());
-}
-
-static bool parameterIsValid (const juce::ValueTree& parameter)
-{
-    return (parameter.hasType (Ids::PARAMETER)
-                && parameter.getProperty (Ids::item).isString()
-                && parameter.getProperty (Ids::text).isString()
-                && parameter.getProperty (Ids::info).isString()
-                && parameter.getProperty (Ids::type).isString()
-                && parameter.hasProperty (Ids::value));
-}
-
-static bool treeIsValid (const juce::ValueTree& tree, const juce::Identifier& identifier)
+static bool isValid (const juce::ValueTree& tree, const juce::Identifier& identifier)
 {
     if (tree.isValid() && tree.hasType (identifier)) {
     //
     for (const auto& group : tree) {
     //
-    if (groupIsValid (group)) {
+    if (Group::isValid (group)) {
         for (const auto& parameter : group)  {
-            if (!parameterIsValid (parameter)) { return false; }
+            if (!Parameter::isValid (parameter)) { return false; }
         }
     } else { return false; }
     //
@@ -85,11 +111,6 @@ static bool treeIsValid (const juce::ValueTree& tree, const juce::Identifier& id
 // -----------------------------------------------------------------------------------------------------------
 
 } // namespace core
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-using Attributes = core::Parameters;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
