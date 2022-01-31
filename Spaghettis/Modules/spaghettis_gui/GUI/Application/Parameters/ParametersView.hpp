@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -21,12 +21,17 @@ class View : private juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+friend class Header;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    View (const juce::ValueTree& tree) : expanded_ (0), expandedLast_ (0)
+    explicit View (const juce::ValueTree& tree) : tree_ (tree), expanded_ (0), expandedLast_ (0)
     {
-        buildConcertinaPanel (tree, *this);
+        buildConcertinaPanel (tree_, *this);
         
         const int primeInterval = 307; startTimer (primeInterval);
     }
@@ -41,7 +46,7 @@ protected:
     juce::ConcertinaPanel& getPanel();
     void resizePanel (const juce::Rectangle<int>&);
 
-public:
+private:
     void expandPanel (int);
     bool isExpanded (int);
     void timerCallback();
@@ -60,6 +65,7 @@ protected:
     juce::ConcertinaPanel panel_;
 
 private:
+    juce::ValueTree tree_;
     int expanded_;
     int expandedLast_;
     
