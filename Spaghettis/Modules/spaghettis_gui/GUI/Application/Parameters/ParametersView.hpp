@@ -11,47 +11,66 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class PreferencesComponent;
+namespace Parameters {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-class PropertyHeader : public juce::Component {
+class View : private juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit PropertyHeader (const juce::String& name, int index, PreferencesComponent *owner) :
-        juce::Component (name),
-        index_ (index),
-        owner_ (owner)
+    View (const juce::ValueTree& tree) : expanded_ (0), expandedLast_ (0)
     {
+        buildConcertinaPanel (tree, *this);
+        
+        const int primeInterval = 307; startTimer (primeInterval);
     }
-
-    ~PropertyHeader() = default;
+    
+    virtual ~View() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+protected:
+    juce::ConcertinaPanel& getPanel();
+    void resizePanel (const juce::Rectangle<int>&);
+
 public:
-    void resized() override
-    {
-    }
-
-    void paint (juce::Graphics&) override;
-
-    void mouseUp (const juce::MouseEvent&) override;
-
-private:
-    int index_;
-    PreferencesComponent *owner_;
+    void expandPanel (int);
+    bool isExpanded (int);
+    void timerCallback();
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PropertyHeader)
+    void addPanel (juce::PropertyPanel*);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    static void buildConcertinaPanel (const juce::ValueTree&, View&);
+
+protected:
+    juce::ConcertinaPanel panel_;
+
+private:
+    int expanded_;
+    int expandedLast_;
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (View)
 };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+} // namespace Parameters
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

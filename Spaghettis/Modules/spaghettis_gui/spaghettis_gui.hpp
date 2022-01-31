@@ -74,7 +74,8 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/Parameters/Parameters.hpp"
-#include "GUI/Application/Parameters/ParametersModel.hpp"
+#include "GUI/Application/Parameters/ParametersHeader.hpp"
+#include "GUI/Application/Parameters/ParametersView.hpp"
 #include "GUI/Application/Parameters/ParametersBoolean.hpp"
 #include "GUI/Application/Parameters/ParametersColour.hpp"
 #include "GUI/Application/Parameters/ParametersNumber.hpp"
@@ -93,7 +94,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Helpers/PropertyHeader.hpp"
 #include "GUI/Application/Helpers/IconsButton.hpp"
 #include "GUI/Application/Helpers/IconsFactory.hpp"
 #include "GUI/Application/Helpers/IconsFactoryHelper.hpp"

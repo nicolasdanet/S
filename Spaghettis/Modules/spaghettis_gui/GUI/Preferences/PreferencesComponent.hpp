@@ -12,9 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PreferencesComponent :    public  Parameters::Model,
-                                public  BaseComponent,
-                                private juce::Timer {
+class PreferencesComponent :    public  Parameters::View,
+                                public  BaseComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -22,17 +21,12 @@ class PreferencesComponent :    public  Parameters::Model,
 
 public:
     explicit PreferencesComponent (const juce::String& keyName) :
-        BaseComponent (nullptr, keyName),
-        expanded_ (0),
-        expandedLast_ (0)
+        Parameters::View (Spaghettis()->getPreferences().getTree()),
+        BaseComponent (nullptr, keyName)
     {
-        Spaghettis()->getPreferences().buildConcertinaPanel (*this);
+        addAndMakeVisible (getPanel());
         
-        addAndMakeVisible (panel_);
-
         setOpaque (true); setSize (600, 400);
-        
-        const int primeInterval = 307; startTimer (primeInterval);
     }
     
     ~PreferencesComponent() = default;
@@ -49,67 +43,21 @@ public:
     
     void resized() override
     {
-        panel_.setBounds (setBarsBoundsAndGetRemaining());
+        resizePanel (setBarsBoundsAndGetRemaining());
     }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/*
 public:
     bool tryGrabFocus() override
     {
         return tryGrabFocusForComponent (&panel_);
     }
+*/
 
-public:
-    void expandPanel (int i)
-    {
-        if (panel_.getNumPanels() > 1) {
-        //
-        if (expanded_ == i) { jassert (expandedLast_ != i); expandPanel (expandedLast_); }
-        else {
-            expandedLast_   = expanded_;
-            expanded_       = i;
-            panel_.expandPanelFully (panel_.getPanel (i), true);
-        }
-        //
-        }
-    }
-    
-    bool isExpanded (int i)
-    {
-        return (i == expanded_);
-    }
-    
-    void timerCallback() override
-    {
-        stopTimer(); expandPanel (0);
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void addPanel (juce::PropertyPanel* p) override
-    {
-        const int headerSize = Spaghettis()->getLookAndFeel().getPropertyPanelHeight() + 6;
-        const int i = panel_.getNumPanels();
-        auto h = std::make_unique<PropertyHeader> (p->getName(), i, this);
-        
-        panel_.addPanel (-1, p, true);
-        panel_.setCustomPanelHeader (p, h.release(), true);
-        panel_.setPanelHeaderSize (p, headerSize);
-        
-        expanded_ = i;
-    }
-    
-private:
-    juce::ConcertinaPanel panel_;
-    int expanded_;
-    int expandedLast_;
-    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PreferencesComponent)
 };
