@@ -67,17 +67,17 @@ enum ColourIds : int {
     alertWindowButtonOutline,
     alertWindowButtonText,
     alertWindowButtonTextHighlighted,
-    preferencesHeaderBackground,
-    preferencesHeaderText,
-    preferencesHeaderArrow,
-    preferencesParameterBackground,
-    preferencesParameterText,
-    preferencesSliderBackground,
-    preferencesSliderTrack,
-    preferencesColourBackground,
-    preferencesColourText,
-    preferencesBoolean,
-    preferencesBooleanTick
+    parametersHeaderBackground,
+    parametersHeaderText,
+    parametersHeaderArrow,
+    parametersParameterBackground,
+    parametersParameterText,
+    parametersSliderBackground,
+    parametersSliderTrack,
+    parametersColourBackground,
+    parametersColourText,
+    parametersBoolean,
+    parametersBooleanTick
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -123,7 +123,7 @@ static void initialize (juce::LookAndFeel* lf)
     
     jassert (background.isOpaque());
     
-    for (int i = windowBackground; i < preferencesBooleanTick; ++i) {
+    for (int i = windowBackground; i < parametersBooleanTick; ++i) {
         jassert (lf->isColourSpecified (i) == false);
     }
     
@@ -168,17 +168,17 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (alertWindowButtonOutline,                            base1);
     lf->setColour (alertWindowButtonText,                               base1);
     lf->setColour (alertWindowButtonTextHighlighted,                    juce::Colours::white);
-    lf->setColour (preferencesHeaderBackground,                         background);
-    lf->setColour (preferencesHeaderText,                               juce::Colours::white);
-    lf->setColour (preferencesHeaderArrow,                              base1);
-    lf->setColour (preferencesParameterBackground,                      background);
-    lf->setColour (preferencesParameterText,                            base1);
-    lf->setColour (preferencesSliderBackground,                         backgroundDark);
-    lf->setColour (preferencesSliderTrack,                              backgroundDark2);
-    lf->setColour (preferencesColourBackground,                         backgroundDark);
-    lf->setColour (preferencesColourText,                               base1);
-    lf->setColour (preferencesBoolean,                                  base1);
-    lf->setColour (preferencesBooleanTick,                              juce::Colours::white);
+    lf->setColour (parametersHeaderBackground,                          background);
+    lf->setColour (parametersHeaderText,                                juce::Colours::white);
+    lf->setColour (parametersHeaderArrow,                               base1);
+    lf->setColour (parametersParameterBackground,                       background);
+    lf->setColour (parametersParameterText,                             base1);
+    lf->setColour (parametersSliderBackground,                          backgroundDark);
+    lf->setColour (parametersSliderTrack,                               backgroundDark2);
+    lf->setColour (parametersColourBackground,                          backgroundDark);
+    lf->setColour (parametersColourText,                                base1);
+    lf->setColour (parametersBoolean,                                   base1);
+    lf->setColour (parametersBooleanTick,                               juce::Colours::white);
     
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
     
@@ -187,7 +187,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (juce::ScrollBar::thumbColourId,                      juce::Colours::grey);
     lf->setColour (juce::ListBox::backgroundColourId,                   background);
     
-    /* Text based preferences. */
+    /* Text based parameters. */
     
     lf->setColour (juce::TextPropertyComponent::textColourId,           base1);
     lf->setColour (juce::TextPropertyComponent::outlineColourId,        juce::Colours::transparentBlack);
@@ -200,12 +200,12 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (juce::Label::textWhenEditingColourId,                base1);
     lf->setColour (juce::Label::outlineWhenEditingColourId,             juce::Colours::transparentBlack);
     
-    /* Boolean preferences. */
+    /* Boolean parameters. */
     
     lf->setColour (juce::BooleanPropertyComponent::outlineColourId,     juce::Colours::transparentBlack);
     lf->setColour (juce::BooleanPropertyComponent::backgroundColourId,  backgroundDark);
     
-    /* Slider preferences. */
+    /* Slider parameters. */
     
     lf->setColour (juce::Label::textColourId,                           base1);
     

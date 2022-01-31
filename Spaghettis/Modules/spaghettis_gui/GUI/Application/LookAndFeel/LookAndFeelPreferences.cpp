@@ -32,7 +32,7 @@ void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
 {
     const juce::Rectangle<int> r (getPropertyComponentContentPosition (c));
     
-    g.setColour (findColour (Colours::preferencesParameterBackground));
+    g.setColour (findColour (Colours::parametersParameterBackground));
     g.fillRect (juce::Rectangle<int> (r.getX(), h).withTrimmedBottom (1).withTrimmedRight (2));
 }
 
@@ -43,7 +43,7 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
 {
     const juce::Rectangle<int> r (getPropertyComponentContentPosition (c));
     
-    g.setColour (findColour (Colours::preferencesParameterText));
+    g.setColour (findColour (Colours::parametersParameterText));
     g.setFont (getConsoleFont());
     g.drawText (c.getName(),
         juce::Rectangle<int> (r.getX(), h).reduced (4, 0).withTrimmedLeft (30),
@@ -72,11 +72,11 @@ void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bo
     
     const juce::Rectangle<float> r (juce::Rectangle<float> (h, h).withSizeKeepingCentre (t, t));
 
-    g.setColour (findColour (Colours::preferencesBoolean));
+    g.setColour (findColour (Colours::parametersBoolean));
     g.drawRoundedRectangle (r, 4.0f, 1.0f);
     
     if (b.getToggleState()) {
-        g.setColour (findColour (Colours::preferencesBooleanTick));
+        g.setColour (findColour (Colours::parametersBooleanTick));
         const juce::Path p = getTickShape (0.75f);
         g.fillPath (p, p.getTransformToScaleToFit (r.reduced (4, 5), false));
     }
@@ -152,9 +152,9 @@ void drawLinearSliderHorizontalBar (juce::Graphics& g,
 {
     const juce::Rectangle<int> r (x, y, w, h);
     
-    g.setColour (Spaghettis()->getColour (Colours::preferencesSliderBackground));
+    g.setColour (Spaghettis()->getColour (Colours::parametersSliderBackground));
     g.fillRect (r);
-    g.setColour (Spaghettis()->getColour (Colours::preferencesSliderTrack));
+    g.setColour (Spaghettis()->getColour (Colours::parametersSliderTrack));
     g.fillRect (r.reduced (0, 1).withTrimmedRight (static_cast<int> (w - position)));
 }
 
