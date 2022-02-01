@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void Parameters::ColourEditor::paint (juce::Graphics& g)
 {
-    const juce::Colour c (LookAndFeel::getColourFromValue (value_));
+    const juce::Colour c (core::Colours::getColourFromValue (value_));
     
     g.fillAll (Spaghettis()->getColour (Colours::parametersColourBackground));
     
@@ -26,7 +26,7 @@ void Parameters::ColourEditor::paint (juce::Graphics& g)
     
     g.setFont (Spaghettis()->getLookAndFeel().getColourFont());
     g.setColour (Spaghettis()->getColour (Colours::parametersColourText));
-    g.drawText (LookAndFeel::getDisplayStringFromColour (c),
+    g.drawText (core::Colours::getDisplayStringFromColour (c),
         getTextBounds(),
         juce::Justification::centredLeft,
         true);

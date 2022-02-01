@@ -70,12 +70,12 @@ void ColourSelector::resized()
 
 void ColourSelector::fetchColour()
 {
-    colour_ = LookAndFeel::getColourFromValue (value_);
+    colour_ = core::Colours::getColourFromValue (value_);
 }
 
 void ColourSelector::pushColour()
 {
-    LookAndFeel::setValueWithColour (value_, colour_);
+    core::Colours::setValueWithColour (value_, colour_);
 }
 
 void ColourSelector::updateHSV()

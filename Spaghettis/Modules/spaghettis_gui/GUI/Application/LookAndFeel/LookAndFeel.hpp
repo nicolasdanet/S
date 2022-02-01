@@ -60,16 +60,6 @@ public:
 // MARK: -
 
 public:
-    static juce::Colour getColourFromValue (const juce::Value&);
-    static void setValueWithColour (juce::Value&, const juce::Colour&);
-    static juce::String getDisplayStringFromColour (const juce::Colour&);
-    static juce::Colour getColorFromString (const juce::String&);
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     juce::AlertWindow* createAlertWindow (const juce::String&,
         const juce::String&,
         const juce::String&,

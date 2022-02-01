@@ -1,80 +1,80 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-// ====================================
-
-/*************************************************************************************************************
-
- BEGIN_JUCE_MODULE_DECLARATION
-
-  ID:                 spaghettis_core
-  vendor:             Spaghettis
-  version:            0.9
-  name:               Core
-  description:        The control and DSP engines of Spaghettis.
-  website:            https://github.com/Spaghettis
-  license:            BSD
-
-  dependencies:       juce_core juce_data_structures juce_events juce_graphics juce_gui_basics
-  OSXFrameworks:      Carbon CoreMIDI CoreAudio AudioUnit
-  OSXLibs:            dl pthread
-  linuxLibs:          dl pthread m asound jack
-
- END_JUCE_MODULE_DECLARATION
-
-*************************************************************************************************************/
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#pragma once
+namespace core {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "juce_core/juce_core.h"
-#include "juce_data_structures/juce_data_structures.h"
-#include "juce_events/juce_events.h"
-#include "juce_gui_basics/juce_gui_basics.h"
+struct Colours {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::String getDisplayStringFromColour (const juce::Colour& colour)
+{
+    return colour.toDisplayString (true);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::String getColourAsString (const juce::Colour& c)
+{
+    return c.toString().paddedLeft ('0', 8);
+}
+
+static juce::Colour getColourFromString (const juce::String& s)
+{
+    return juce::Colour::fromString (s.length() == 8 ? s : "ff000000");
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::Colour getColourFromValue (const juce::Value& v)
+{
+    const juce::String name (v.toString());
+    
+    if (name.length() == 8) { return juce::Colour::fromString (name); }
+    else {
+        jassertfalse; return juce::Colours::black;
+    }
+}
+
+static void setValueWithColour (juce::Value& v, const juce::Colour& c)
+{
+    v.setValue (getColourAsString (c));
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Glue/Identifiers.hpp"
-#include "Glue/Glue.hpp"
-#include "Glue/Unique.hpp"
-#include "Glue/Colours.hpp"
-#include "Glue/Parameters.hpp"
-#include "Glue/Description.hpp"
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Wrap/Debug.hpp"
-#include "Wrap/Devices.hpp"
-#include "Wrap/Logger.hpp"
-#include "Wrap/Post.hpp"
-#include "Wrap/Queues.hpp"
-#include "Wrap/Inputs.hpp"
-#include "Wrap/Outputs.hpp"
-#include "Wrap/Wrapper.hpp"
+} // namespace core
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#define PD_BUILDING_APPLICATION
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if DEBUG
-    #define PD_WITH_DEBUG   1
-#endif
+} // namespace spaghettis
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

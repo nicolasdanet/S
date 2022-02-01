@@ -34,7 +34,7 @@ juce::var Parameters::Base::constrained (const juce::var& v) const
         bool b = static_cast<bool> (v);
         return juce::var (b);
     } else if (type_ == "color") {
-        return juce::var (LookAndFeel::getColorFromString (v.toString()).toString());
+        return juce::var (core::Colours::getColourFromString (v.toString()).toString());
     } else if (type_ == "integer" && hasRange()) {
         int i = juce::Range<int> (*this).clipValue (static_cast<int> (v));
         return juce::var (juce::String (i));

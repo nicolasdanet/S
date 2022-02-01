@@ -12,25 +12,25 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const juce::var Preferences::getValueForItem (const juce::String& item) const
+const juce::var Preferences::getValueByItem (const juce::String& item) const
 {
-    return core::Tree::getValueForItem (tree_, item);
+    return core::Tree::getValueByItem (tree_, item);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Preferences::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier& identifier)
+void Preferences::valueTreePropertyChanged (juce::ValueTree& parameter, const juce::Identifier& identifier)
 {
-    if (core::Parameter::isValid (tree)) {
+    if (core::Parameter::isValid (parameter)) {
     //
-    const juce::String key (tree.getProperty (Ids::item).toString());
+    const juce::String key (core::Parameter::getItem (parameter));
     
     if (key == "SnapToGrid") {
-        Spaghettis()->handle (Inputs::setSnapToGrid (tree.getProperty (Ids::value)));
+        Spaghettis()->handle (Inputs::setSnapToGrid (core::Parameter::getValue (parameter)));
     } else if (key == "GridSize") {
-        Spaghettis()->handle (Inputs::setSnapToGridSize (tree.getProperty (Ids::value)));
+        Spaghettis()->handle (Inputs::setSnapToGridSize (core::Parameter::getValue (parameter)));
     }
         
     if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }

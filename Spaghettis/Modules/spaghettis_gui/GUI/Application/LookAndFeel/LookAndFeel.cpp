@@ -168,35 +168,6 @@ void LookAndFeel::drawArrowOpened (juce::Graphics& g, const juce::Rectangle<int>
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::Colour LookAndFeel::getColourFromValue (const juce::Value& v)
-{
-    const juce::String name (v.toString());
-    
-    if (name.length() == 8) { return juce::Colour::fromString (name); }
-    else {
-        jassertfalse; return juce::Colours::black;
-    }
-}
-
-void LookAndFeel::setValueWithColour (juce::Value& v, const juce::Colour& c)
-{
-    v.setValue (c.toString().paddedLeft ('0', 8));
-}
-
-juce::String LookAndFeel::getDisplayStringFromColour (const juce::Colour& colour)
-{
-    return colour.toDisplayString (true);
-}
-
-juce::Colour LookAndFeel::getColorFromString (const juce::String& s)
-{
-    return juce::Colour::fromString (s.length() == 8 ? s : "ff000000");
-}
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 } // namespace spaghettis
 

@@ -81,7 +81,7 @@ bool SpaghettisInstance::requestToQuit()
     quit_ = QuitStatus::quit;
     
     if (!patches_->isEmpty()) {
-        if (static_cast<bool> (preferences_->getValueForItem ("AskBeforeQuit")) == true) { showExitWindow(); }
+        if (static_cast<bool> (preferences_->getValueByItem ("AskBeforeQuit")) == true) { showExitWindow(); }
     }
     
     return true;
