@@ -21,6 +21,11 @@ struct Parameter {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+friend struct Tree;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
@@ -38,7 +43,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     static bool isValid (const juce::ValueTree& parameter)
     {
         return (parameter.hasType (Ids::PARAMETER)
@@ -62,10 +67,78 @@ struct Group {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+friend struct Tree;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    static juce::ValueTree getParameter (const juce::ValueTree& group, const juce::String& item)
+    {
+        for (const auto& parameter : group) {
+            if (parameter.getProperty (Ids::item).equalsWithSameType (item)) { return parameter; }
+        }
+        
+        return juce::ValueTree();
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static void addParameter (juce::ValueTree& group,
+        const juce::String& item,
+        const juce::String& text,
+        const juce::String& info,
+        bool b)
+    {
+        return addParameter (group, item, text, info, "boolean", b);
+    }
+
+    static void addParameter (juce::ValueTree& group,
+        const juce::String& item,
+        const juce::String& text,
+        const juce::String& info,
+        juce::Colour c)
+    {
+        return addParameter (group, item, text, info, "color", Colours::getColourAsString (c));
+    }
+
+    static void addParameter (juce::ValueTree& group,
+        const juce::String& item,
+        const juce::String& text,
+        const juce::String& info,
+        int n)
+    {
+        return addParameter (group, item, text, info, "integer", n);
+    }
+
+    static void addParameter (juce::ValueTree& group,
+        const juce::String& item,
+        const juce::String& text,
+        const juce::String& info,
+        double f)
+    {
+        return addParameter (group, item, text, info, "float", f);
+    }
+
+    static void addParameter (juce::ValueTree& group,
+        const juce::String& item,
+        const juce::String& text,
+        const juce::String& info,
+        const juce::String& s)
+    {
+        return addParameter (group, item, text, info, "text", s);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 private:
-    static juce::ValueTree addParameter (juce::ValueTree& group,
+    static void addParameter (juce::ValueTree& group,
         const juce::String& item,
         const juce::String& text,
         const juce::String& info,
@@ -81,61 +154,13 @@ private:
         parameter.setProperty (Ids::value, v, nullptr);
         
         group.appendChild (parameter, nullptr);
-        
-        return parameter;
     }
-
-public:
-    static juce::ValueTree addParameter (juce::ValueTree& group,
-        const juce::String& item,
-        const juce::String& text,
-        const juce::String& info,
-        bool b)
-    {
-        return addParameter (group, item, text, info, "boolean", b);
-    }
-
-    static juce::ValueTree addParameter (juce::ValueTree& group,
-        const juce::String& item,
-        const juce::String& text,
-        const juce::String& info,
-        juce::Colour c)
-    {
-        return addParameter (group, item, text, info, "color", Colours::getColourAsString (c));
-    }
-
-    static juce::ValueTree addParameter (juce::ValueTree& group,
-        const juce::String& item,
-        const juce::String& text,
-        const juce::String& info,
-        int n)
-    {
-        return addParameter (group, item, text, info, "integer", n);
-    }
-
-    static juce::ValueTree addParameter (juce::ValueTree& group,
-        const juce::String& item,
-        const juce::String& text,
-        const juce::String& info,
-        double f)
-    {
-        return addParameter (group, item, text, info, "float", f);
-    }
-
-    static juce::ValueTree addParameter (juce::ValueTree& group,
-        const juce::String& item,
-        const juce::String& text,
-        const juce::String& info,
-        const juce::String& s)
-    {
-        return addParameter (group, item, text, info, "text", s);
-    }
-
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     static bool isValid (const juce::ValueTree& group)
     {
         return (group.hasType (Ids::GROUP) && group.getProperty (Ids::name).isString());
@@ -157,26 +182,15 @@ struct Tree {
 // MARK: -
 
 public:
-    static const juce::var getValueByItem (const juce::ValueTree& tree, const juce::String& item)
+    static juce::ValueTree getGroup (const juce::ValueTree& tree, const juce::String& name)
     {
         for (const auto& group : tree) {
-        for (const auto& parameter : group) {
-            if (parameter.getProperty (Ids::item).equalsWithSameType (item)) {
-                return parameter.getProperty (Ids::value);
-            }
-        }
+            if (group.getProperty (Ids::name).equalsWithSameType (name)) { return group; }
         }
         
-        jassertfalse;
-        
-        return juce::var();
+        return juce::ValueTree();
     }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
+    
     static juce::ValueTree addGroup (juce::ValueTree& tree, const juce::String& name)
     {
         juce::ValueTree group (Ids::GROUP); group.setProperty (Ids::name, name, nullptr);

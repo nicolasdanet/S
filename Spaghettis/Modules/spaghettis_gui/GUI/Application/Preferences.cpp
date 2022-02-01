@@ -12,9 +12,28 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+const juce::var getValueByItem (const juce::ValueTree& tree, const juce::String& item)
+{
+    for (const auto& group : tree) {
+    for (const auto& parameter : group) {
+        if (parameter.getProperty (Ids::item).equalsWithSameType (item)) {
+            return parameter.getProperty (Ids::value);
+        }
+    }
+    }
+    
+    jassertfalse;
+    
+    return juce::var();
+}
+
+}
+
 const juce::var Preferences::getValue (const juce::String& item) const
 {
-    return core::Tree::getValueByItem (tree_, item);
+    return getValueByItem (tree_, item);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -23,8 +42,6 @@ const juce::var Preferences::getValue (const juce::String& item) const
 
 void Preferences::valueTreePropertyChanged (juce::ValueTree& parameter, const juce::Identifier& identifier)
 {
-    if (core::Parameter::isValid (parameter)) {
-    //
     const juce::String key (core::Parameter::getItem (parameter));
     
     if (key == "SnapToGrid") {
@@ -34,8 +51,6 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& parameter, const ju
     }
         
     if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }
-    //
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
