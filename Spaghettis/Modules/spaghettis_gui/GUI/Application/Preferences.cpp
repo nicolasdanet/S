@@ -12,28 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-const juce::var getValueByItem (const juce::ValueTree& tree, const juce::String& item)
+const juce::var Preferences::getValue (const juce::String& group, const juce::String& item) const
 {
-    for (const auto& group : tree) {
-    for (const auto& parameter : group) {
-        if (parameter.getProperty (Ids::item).equalsWithSameType (item)) {
-            return parameter.getProperty (Ids::value);
-        }
-    }
-    }
-    
-    jassertfalse;
-    
-    return juce::var();
-}
-
-}
-
-const juce::var Preferences::getValue (const juce::String& item) const
-{
-    return getValueByItem (tree_, item);
+    return juce::var (false);
 }
 
 // -----------------------------------------------------------------------------------------------------------
