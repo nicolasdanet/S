@@ -58,26 +58,6 @@ struct Group {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static juce::ValueTree addParameter (juce::ValueTree& group,
-    const juce::String& item,
-    const juce::String& text,
-    const juce::String& info,
-    const juce::String& type,
-    juce::var v)
-{
-    juce::ValueTree parameter (Ids::PARAMETER);
-    
-    parameter.setProperty (Ids::item,  item, nullptr);
-    parameter.setProperty (Ids::text,  text, nullptr);
-    parameter.setProperty (Ids::info,  info, nullptr);
-    parameter.setProperty (Ids::type,  type, nullptr);
-    parameter.setProperty (Ids::value, v, nullptr);
-    
-    group.appendChild (parameter, nullptr);
-    
-    return parameter;
-}
-
 static juce::ValueTree addBooleanParameter (juce::ValueTree& group,
     const juce::String& item,
     const juce::String& text,
@@ -121,6 +101,26 @@ static juce::ValueTree addTextParameter (juce::ValueTree& group,
     const juce::String& s)
 {
     return addParameter (group, item, text, info, "text", s);
+}
+
+static juce::ValueTree addParameter (juce::ValueTree& group,
+    const juce::String& item,
+    const juce::String& text,
+    const juce::String& info,
+    const juce::String& type,
+    juce::var v)
+{
+    juce::ValueTree parameter (Ids::PARAMETER);
+    
+    parameter.setProperty (Ids::item,  item, nullptr);
+    parameter.setProperty (Ids::text,  text, nullptr);
+    parameter.setProperty (Ids::info,  info, nullptr);
+    parameter.setProperty (Ids::type,  type, nullptr);
+    parameter.setProperty (Ids::value, v, nullptr);
+    
+    group.appendChild (parameter, nullptr);
+    
+    return parameter;
 }
 
 static bool isValid (const juce::ValueTree& group)
