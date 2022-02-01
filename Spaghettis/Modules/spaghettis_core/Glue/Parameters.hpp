@@ -23,25 +23,31 @@ struct Parameter {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static juce::String getItem (const juce::ValueTree& parameter)
-{
-    return parameter.getProperty (Ids::item).toString();
-}
+public:
+    static juce::String getItem (const juce::ValueTree& parameter)
+    {
+        return parameter.getProperty (Ids::item).toString();
+    }
 
-static juce::var getValue (const juce::ValueTree& parameter)
-{
-    return parameter.getProperty (Ids::value);
-}
+    static juce::var getValue (const juce::ValueTree& parameter)
+    {
+        return parameter.getProperty (Ids::value);
+    }
 
-static bool isValid (const juce::ValueTree& parameter)
-{
-    return (parameter.hasType (Ids::PARAMETER)
-                && parameter.getProperty (Ids::item).isString()
-                && parameter.getProperty (Ids::text).isString()
-                && parameter.getProperty (Ids::info).isString()
-                && parameter.getProperty (Ids::type).isString()
-                && parameter.hasProperty (Ids::value));
-}
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static bool isValid (const juce::ValueTree& parameter)
+    {
+        return (parameter.hasType (Ids::PARAMETER)
+                    && parameter.getProperty (Ids::item).isString()
+                    && parameter.getProperty (Ids::text).isString()
+                    && parameter.getProperty (Ids::info).isString()
+                    && parameter.getProperty (Ids::type).isString()
+                    && parameter.hasProperty (Ids::value));
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -58,75 +64,82 @@ struct Group {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static juce::ValueTree addBooleanParameter (juce::ValueTree& group,
-    const juce::String& item,
-    const juce::String& text,
-    const juce::String& info,
-    bool b)
-{
-    return addParameter (group, item, text, info, "boolean", b);
-}
+private:
+    static juce::ValueTree addParameter (juce::ValueTree& group,
+        const juce::String& item,
+        const juce::String& text,
+        const juce::String& info,
+        const juce::String& type,
+        juce::var v)
+    {
+        juce::ValueTree parameter (Ids::PARAMETER);
+        
+        parameter.setProperty (Ids::item,  item, nullptr);
+        parameter.setProperty (Ids::text,  text, nullptr);
+        parameter.setProperty (Ids::info,  info, nullptr);
+        parameter.setProperty (Ids::type,  type, nullptr);
+        parameter.setProperty (Ids::value, v, nullptr);
+        
+        group.appendChild (parameter, nullptr);
+        
+        return parameter;
+    }
 
-static juce::ValueTree addColourParameter (juce::ValueTree& group,
-    const juce::String& item,
-    const juce::String& text,
-    const juce::String& info,
-    juce::Colour c)
-{
-    return addParameter (group, item, text, info, "color", Colours::getColourAsString (c));
-}
+public:
+    static juce::ValueTree addParameter (juce::ValueTree& group,
+        const juce::String& item,
+        const juce::String& text,
+        const juce::String& info,
+        bool b)
+    {
+        return addParameter (group, item, text, info, "boolean", b);
+    }
 
-static juce::ValueTree addIntegerParameter (juce::ValueTree& group,
-    const juce::String& item,
-    const juce::String& text,
-    const juce::String& info,
-    juce::int64 n)
-{
-    return addParameter (group, item, text, info, "integer", n);
-}
+    static juce::ValueTree addParameter (juce::ValueTree& group,
+        const juce::String& item,
+        const juce::String& text,
+        const juce::String& info,
+        juce::Colour c)
+    {
+        return addParameter (group, item, text, info, "color", Colours::getColourAsString (c));
+    }
 
-static juce::ValueTree addFloatParameter (juce::ValueTree& group,
-    const juce::String& item,
-    const juce::String& text,
-    const juce::String& info,
-    double f)
-{
-    return addParameter (group, item, text, info, "float", f);
-}
+    static juce::ValueTree addParameter (juce::ValueTree& group,
+        const juce::String& item,
+        const juce::String& text,
+        const juce::String& info,
+        int n)
+    {
+        return addParameter (group, item, text, info, "integer", n);
+    }
 
-static juce::ValueTree addTextParameter (juce::ValueTree& group,
-    const juce::String& item,
-    const juce::String& text,
-    const juce::String& info,
-    const juce::String& s)
-{
-    return addParameter (group, item, text, info, "text", s);
-}
+    static juce::ValueTree addParameter (juce::ValueTree& group,
+        const juce::String& item,
+        const juce::String& text,
+        const juce::String& info,
+        double f)
+    {
+        return addParameter (group, item, text, info, "float", f);
+    }
 
-static juce::ValueTree addParameter (juce::ValueTree& group,
-    const juce::String& item,
-    const juce::String& text,
-    const juce::String& info,
-    const juce::String& type,
-    juce::var v)
-{
-    juce::ValueTree parameter (Ids::PARAMETER);
-    
-    parameter.setProperty (Ids::item,  item, nullptr);
-    parameter.setProperty (Ids::text,  text, nullptr);
-    parameter.setProperty (Ids::info,  info, nullptr);
-    parameter.setProperty (Ids::type,  type, nullptr);
-    parameter.setProperty (Ids::value, v, nullptr);
-    
-    group.appendChild (parameter, nullptr);
-    
-    return parameter;
-}
+    static juce::ValueTree addParameter (juce::ValueTree& group,
+        const juce::String& item,
+        const juce::String& text,
+        const juce::String& info,
+        const juce::String& s)
+    {
+        return addParameter (group, item, text, info, "text", s);
+    }
 
-static bool isValid (const juce::ValueTree& group)
-{
-    return (group.hasType (Ids::GROUP) && group.getProperty (Ids::name).isString());
-}
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static bool isValid (const juce::ValueTree& group)
+    {
+        return (group.hasType (Ids::GROUP) && group.getProperty (Ids::name).isString());
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -143,48 +156,59 @@ struct Tree {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static const juce::var getValueByItem (const juce::ValueTree& tree, const juce::String& item)
-{
-    for (const auto& group : tree) {
-    for (const auto& parameter : group) {
-        if (parameter.getProperty (Ids::item).equalsWithSameType (item)) {
-            return parameter.getProperty (Ids::value);
+public:
+    static const juce::var getValueByItem (const juce::ValueTree& tree, const juce::String& item)
+    {
+        for (const auto& group : tree) {
+        for (const auto& parameter : group) {
+            if (parameter.getProperty (Ids::item).equalsWithSameType (item)) {
+                return parameter.getProperty (Ids::value);
+            }
         }
-    }
-    }
-    
-    jassertfalse;
-    
-    return juce::var();
-}
-
-static juce::ValueTree addGroup (juce::ValueTree& tree, const juce::String& name)
-{
-    juce::ValueTree group (Ids::GROUP); group.setProperty (Ids::name, name, nullptr);
-    
-    tree.appendChild (group, nullptr);
-    
-    return group;
-}
-
-static bool isValid (const juce::ValueTree& tree, const juce::Identifier& identifier)
-{
-    if (tree.isValid() && tree.hasType (identifier)) {
-    //
-    for (const auto& group : tree) {
-    //
-    if (Group::isValid (group)) {
-        for (const auto& parameter : group)  {
-            if (!Parameter::isValid (parameter)) { return false; }
         }
-    } else { return false; }
-    //
+        
+        jassertfalse;
+        
+        return juce::var();
     }
-    //
-    } else { return false; }
-    
-    return true;
-}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static juce::ValueTree addGroup (juce::ValueTree& tree, const juce::String& name)
+    {
+        juce::ValueTree group (Ids::GROUP); group.setProperty (Ids::name, name, nullptr);
+        
+        tree.appendChild (group, nullptr);
+        
+        return group;
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static bool isValid (const juce::ValueTree& tree, const juce::Identifier& identifier)
+    {
+        if (tree.isValid() && tree.hasType (identifier)) {
+        //
+        for (const auto& group : tree) {
+        //
+        if (Group::isValid (group)) {
+            for (const auto& parameter : group)  {
+                if (!Parameter::isValid (parameter)) { return false; }
+            }
+        } else { return false; }
+        //
+        }
+        //
+        } else { return false; }
+        
+        return true;
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

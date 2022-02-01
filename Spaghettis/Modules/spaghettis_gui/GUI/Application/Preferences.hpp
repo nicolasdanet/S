@@ -50,7 +50,7 @@ private:
 // MARK: -
 
 public:
-    const juce::var getValueByItem (const juce::String& item) const;
+    const juce::var getValue (const juce::String& item) const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const juce::var Preferences::getValueByItem (const juce::String& item) const
+const juce::var Preferences::getValue (const juce::String& item) const
 {
     return core::Tree::getValueByItem (tree_, item);
 }
