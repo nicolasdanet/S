@@ -48,12 +48,7 @@ static juce::Colour getColourFromString (const juce::String& s)
 
 static juce::Colour getColourFromValue (const juce::Value& v)
 {
-    const juce::String name (v.toString());
-    
-    if (name.length() == 8) { return juce::Colour::fromString (name); }
-    else {
-        jassertfalse; return juce::Colours::black;
-    }
+    return getColourFromString (v.toString());
 }
 
 static void setValueWithColour (juce::Value& v, const juce::Colour& c)
