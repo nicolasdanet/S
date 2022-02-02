@@ -42,94 +42,77 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& parameter, const ju
 
 juce::ValueTree Preferences::getDefault()
 {
-    juce::ValueTree tree { Ids::PREFERENCES, { }, {
-    //
-    { Ids::GROUP, { { Ids::name, "General" } },
-        {
-            { Ids::PARAMETER, {
-                { Ids::item,    "AskBeforeQuit" },
-                { Ids::text,    NEEDS_TRANS ("Ask Before Quitting") },
-                { Ids::info,    NEEDS_TRANS ("Show dialog box to confirm quitting") },
-                { Ids::type,    "boolean" },
-                { Ids::value,   true }
-            } },
-            { Ids::PARAMETER, {
-                { Ids::item,    "DefaultIsRunView" },
-                { Ids::text,    NEEDS_TRANS ("Default Is Run View") },
-                { Ids::info,    NEEDS_TRANS ("Open a patch into a run view") },
-                { Ids::type,    "boolean" },
-                { Ids::value,   false }
-            } }
-        }
-    },
-    { Ids::GROUP, { { Ids::name, "Editing" } },
-        {
-            { Ids::PARAMETER, {
-                { Ids::item,    "SnapToGrid" },
-                { Ids::text,    NEEDS_TRANS ("Snap To Grid") },
-                { Ids::info,    NEEDS_TRANS ("Enable magnetic grid") },
-                { Ids::type,    "boolean" },
-                { Ids::value,   true }
-            } },
-            { Ids::PARAMETER, {
-                { Ids::item,    "GridSize" },
-                { Ids::text,    NEEDS_TRANS ("Grid Size") },
-                { Ids::info,    NEEDS_TRANS ("Set magnetic grid spacing") },
-                { Ids::type,    "integer" },
-                { Ids::minimum, 1 },
-                { Ids::maximum, 64 },
-                { Ids::value,   "12" }
-            } }
-        }
-    },
-    { Ids::GROUP, { { Ids::name, "Nuclear" } },
-        {
-            { Ids::PARAMETER, {
-                { Ids::item,    "Engine" },
-                { Ids::text,    NEEDS_TRANS ("Kind Of Engine") },
-                { Ids::info,    NEEDS_TRANS ("Set kind of stuff") },
-                { Ids::type,    "text" },
-                { Ids::value,   "Submarine" }
-            } },
-            { Ids::PARAMETER, {
-                { Ids::item,    "Power" },
-                { Ids::text,    NEEDS_TRANS ("Power Of Engine") },
-                { Ids::info,    NEEDS_TRANS ("Set power of engine") },
-                { Ids::type,    "float" },
-                { Ids::value,   "99.5" }
-            } },
-            { Ids::PARAMETER, {
-                { Ids::item,    "Launcher" },
-                { Ids::text,    NEEDS_TRANS ("Launcher Efficiency") },
-                { Ids::info,    NEEDS_TRANS ("Set tenderness of button") },
-                { Ids::type,    "float" },
-                { Ids::value,   "99.5" }
-            } },
-            { Ids::PARAMETER, {
-                { Ids::item,    "Random" },
-                { Ids::text,    NEEDS_TRANS ("Random Rate") },
-                { Ids::info,    NEEDS_TRANS ("Set entropy in life") },
-                { Ids::type,    "float" },
-                { Ids::minimum, 0 },
-                { Ids::maximum, 1 },
-                { Ids::value,   "0.5" }
-            } }
-        }
-    },
-    { Ids::GROUP, { { Ids::name, "Colors" } },
-        {
-            { Ids::PARAMETER, {
-                { Ids::item,    "PatchBackground" },
-                { Ids::text,    NEEDS_TRANS ("Patch Background") },
-                { Ids::info,    NEEDS_TRANS ("Set background color of patch") },
-                { Ids::type,    "color" },
-                { Ids::value,   "ff1f2029" }
-            } }
-        }
-    }
-    //
-    } };
+    juce::ValueTree tree (Ids::PREFERENCES);
+    
+    {
+        juce::ValueTree group = core::Tree::addGroup (tree, "General");
 
+        core::Tree::addParameter (group,
+            "AskBeforeQuit",
+            NEEDS_TRANS ("Ask Before Quitting"),
+            NEEDS_TRANS ("Show dialog box to confirm quitting"),
+            true);
+        core::Tree::addParameter (group,
+            "DefaultIsRunView",
+            NEEDS_TRANS ("Default Is Run View"),
+            NEEDS_TRANS ("Open a patch into a run view"),
+            false);
+    }
+    
+    {
+        juce::ValueTree group = core::Tree::addGroup (tree, "Editing");
+
+        core::Tree::addParameter (group,
+            "SnapToGrid",
+            NEEDS_TRANS ("Snap To Grid"),
+            NEEDS_TRANS ("Enable magnetic grid"),
+            true);
+        core::Tree::addParameter (group,
+            "GridSize",
+            NEEDS_TRANS ("Grid Size"),
+            NEEDS_TRANS ("Set magnetic grid spacing"),
+            12);
+            // { Ids::minimum, 1 }
+            // { Ids::maximum, 64 }
+    }
+    
+    {
+        juce::ValueTree group = core::Tree::addGroup (tree, "Nuclear");
+
+        core::Tree::addParameter (group,
+            "Engine",
+            NEEDS_TRANS ("Kind Of Engine"),
+            NEEDS_TRANS ("Set kind of stuff"),
+            "Submarine");
+        core::Tree::addParameter (group,
+            "Power",
+            NEEDS_TRANS ("Power Of Engine"),
+            NEEDS_TRANS ("Set power of engine"),
+            99.5);
+        core::Tree::addParameter (group,
+            "Launcher",
+            NEEDS_TRANS ("Launcher Efficiency"),
+            NEEDS_TRANS ("Set tenderness of button"),
+            99.5);
+        core::Tree::addParameter (group,
+            "Random",
+            NEEDS_TRANS ("Random Rate"),
+            NEEDS_TRANS ("Set entropy in life"),
+            0.5);
+            // { Ids::minimum, 0 }
+            // { Ids::maximum, 1 }
+    }
+    
+    {
+        juce::ValueTree group = core::Tree::addGroup (tree, "Colors");
+
+        core::Tree::addParameter (group,
+            "PatchBackground",
+            NEEDS_TRANS ("Patch Background"),
+            NEEDS_TRANS ("Set background color of patch"),
+            juce::Colour (0xff1f2029));
+    }
+    
     jassert (core::Tree::isValid (tree, Ids::PREFERENCES));
     
     return tree;
