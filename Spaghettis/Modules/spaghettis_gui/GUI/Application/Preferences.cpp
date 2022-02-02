@@ -42,12 +42,12 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& parameter, const ju
 
 juce::ValueTree Preferences::getDefault()
 {
-    juce::ValueTree tree (Ids::PREFERENCES);
+    core::Tree t (Ids::PREFERENCES);
     
-    core::Group general (core::Tree::addGroup (tree, "General"));
-    core::Group editing (core::Tree::addGroup (tree, "Editing"));
-    core::Group nuclear (core::Tree::addGroup (tree, "Editing"));
-    core::Group colors  (core::Tree::addGroup (tree, "Colors"));
+    core::Group general (t.addGroup ("General"));
+    core::Group editing (t.addGroup ("Editing"));
+    core::Group nuclear (t.addGroup ("Editing"));
+    core::Group colors  (t.addGroup ("Colors"));
         
     general.addParameter ("AskBeforeQuit",
         NEEDS_TRANS ("Ask Before Quitting"),
@@ -89,9 +89,7 @@ juce::ValueTree Preferences::getDefault()
         NEEDS_TRANS ("Set background color of patch"),
         juce::Colour (0xff1f2029));
     
-    jassert (core::Tree::isValid (tree, Ids::PREFERENCES));
-    
-    return tree;
+    return t.getTree();
 }
 
 // -----------------------------------------------------------------------------------------------------------

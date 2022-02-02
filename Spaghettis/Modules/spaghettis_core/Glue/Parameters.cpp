@@ -102,11 +102,11 @@ Parameter Group::addParameter (const juce::String& key, const juce::String& text
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Group Tree::addGroup (juce::ValueTree& tree, const juce::String& name)
+Group Tree::addGroup (const juce::String& name)
 {
     juce::ValueTree group (Ids::GROUP); group.setProperty (Ids::name, name, nullptr);
         
-    tree.appendChild (group, nullptr);
+    tree_.appendChild (group, nullptr);
         
     return Group (group);
 }
