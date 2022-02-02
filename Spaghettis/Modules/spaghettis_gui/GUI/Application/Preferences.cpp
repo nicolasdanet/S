@@ -69,9 +69,7 @@ juce::ValueTree Preferences::getDefault()
         "GridSize",
         NEEDS_TRANS ("Grid Size"),
         NEEDS_TRANS ("Set magnetic grid spacing"),
-        12);
-        // { Ids::minimum, 1 }
-        // { Ids::maximum, 64 }
+        12).setRange (juce::Range<int> (1, 64));
     
     core::Tree::addParameter (nuclear,
         "Engine",
@@ -92,9 +90,7 @@ juce::ValueTree Preferences::getDefault()
         "Random",
         NEEDS_TRANS ("Random Rate"),
         NEEDS_TRANS ("Set entropy in life"),
-        0.5);
-        // { Ids::minimum, 0 }
-        // { Ids::maximum, 1 }
+        0.5).setRange (juce::Range<double> (0, 1));
     
     core::Tree::addParameter (colors,
         "PatchBackground",

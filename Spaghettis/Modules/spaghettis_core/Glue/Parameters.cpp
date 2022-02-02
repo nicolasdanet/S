@@ -22,7 +22,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void addParameterWithType (juce::ValueTree& group,
+Parameter addParameterWithType (juce::ValueTree& group,
     const juce::String& item,
     const juce::String& text,
     const juce::String& info,
@@ -38,6 +38,8 @@ void addParameterWithType (juce::ValueTree& group,
     parameter.setProperty (Ids::value, v, nullptr);
     
     group.appendChild (parameter, nullptr);
+    
+    return Parameter (parameter);
 }
 
 /*
@@ -71,7 +73,7 @@ juce::ValueTree getGroup (const juce::ValueTree& tree, const juce::String& name)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Tree::addParameter (juce::ValueTree& group,
+Parameter Tree::addParameter (juce::ValueTree& group,
     const juce::String& item,
     const juce::String& text,
     const juce::String& info,
@@ -80,7 +82,7 @@ void Tree::addParameter (juce::ValueTree& group,
     return addParameterWithType (group, item, text, info, "boolean", b);
 }
 
-void Tree::addParameter (juce::ValueTree& group,
+Parameter Tree::addParameter (juce::ValueTree& group,
     const juce::String& item,
     const juce::String& text,
     const juce::String& info,
@@ -89,7 +91,7 @@ void Tree::addParameter (juce::ValueTree& group,
     return addParameterWithType (group, item, text, info, "color", Colours::getColourAsString (c));
 }
 
-void Tree::addParameter (juce::ValueTree& group,
+Parameter Tree::addParameter (juce::ValueTree& group,
     const juce::String& item,
     const juce::String& text,
     const juce::String& info,
@@ -98,7 +100,7 @@ void Tree::addParameter (juce::ValueTree& group,
     return addParameterWithType (group, item, text, info, "integer", n);
 }
 
-void Tree::addParameter (juce::ValueTree& group,
+Parameter Tree::addParameter (juce::ValueTree& group,
     const juce::String& item,
     const juce::String& text,
     const juce::String& info,
@@ -107,7 +109,7 @@ void Tree::addParameter (juce::ValueTree& group,
     return addParameterWithType (group, item, text, info, "float", f);
 }
 
-void Tree::addParameter (juce::ValueTree& group,
+Parameter Tree::addParameter (juce::ValueTree& group,
     const juce::String& item,
     const juce::String& text,
     const juce::String& info,
