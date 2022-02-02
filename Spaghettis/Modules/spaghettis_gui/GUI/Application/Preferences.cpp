@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const juce::var Preferences::getValue (const juce::String& group, const juce::String& item) const
+const juce::var Preferences::getValue (const juce::String& group, const juce::String& key) const
 {
     return juce::var (false);
 }
@@ -115,7 +115,7 @@ namespace {
 void setPropertyFrom (juce::ValueTree& tree, const juce::ValueTree& group, const juce::ValueTree& parameter)
 {
     juce::ValueTree t = tree.getChildWithProperty (Ids::name, group.getProperty (Ids::name))
-                            .getChildWithProperty (Ids::item, parameter.getProperty (Ids::item));
+                            .getChildWithProperty (Ids::key, parameter.getProperty (Ids::key));
     
     if (t.isValid()) {
     //

@@ -23,7 +23,7 @@ namespace {
 // MARK: -
 
 Parameter addParameterWithType (juce::ValueTree& group,
-    const juce::String& item,
+    const juce::String& key,
     const juce::String& text,
     const juce::String& info,
     const juce::String& type,
@@ -31,7 +31,7 @@ Parameter addParameterWithType (juce::ValueTree& group,
 {
     juce::ValueTree parameter (Ids::PARAMETER);
     
-    parameter.setProperty (Ids::item,  item, nullptr);
+    parameter.setProperty (Ids::key,   key,  nullptr);
     parameter.setProperty (Ids::text,  text, nullptr);
     parameter.setProperty (Ids::info,  info, nullptr);
     parameter.setProperty (Ids::type,  type, nullptr);
@@ -44,10 +44,10 @@ Parameter addParameterWithType (juce::ValueTree& group,
 
 /*
 
-juce::ValueTree getParameter (const juce::ValueTree& group, const juce::String& item)
+juce::ValueTree getParameter (const juce::ValueTree& group, const juce::String& key)
 {
     for (const auto& parameter : group) {
-        if (parameter.getProperty (Ids::item).equalsWithSameType (item)) { return parameter; }
+        if (parameter.getProperty (Ids::key).equalsWithSameType (key)) { return parameter; }
     }
     
     return juce::ValueTree();
@@ -74,48 +74,48 @@ juce::ValueTree getGroup (const juce::ValueTree& tree, const juce::String& name)
 // MARK: -
 
 Parameter Tree::addParameter (juce::ValueTree& group,
-    const juce::String& item,
+    const juce::String& key,
     const juce::String& text,
     const juce::String& info,
     bool b)
 {
-    return addParameterWithType (group, item, text, info, "boolean", b);
+    return addParameterWithType (group, key, text, info, "boolean", b);
 }
 
 Parameter Tree::addParameter (juce::ValueTree& group,
-    const juce::String& item,
+    const juce::String& key,
     const juce::String& text,
     const juce::String& info,
     juce::Colour c)
 {
-    return addParameterWithType (group, item, text, info, "color", Colours::getColourAsString (c));
+    return addParameterWithType (group, key, text, info, "color", Colours::getColourAsString (c));
 }
 
 Parameter Tree::addParameter (juce::ValueTree& group,
-    const juce::String& item,
+    const juce::String& key,
     const juce::String& text,
     const juce::String& info,
     int n)
 {
-    return addParameterWithType (group, item, text, info, "integer", n);
+    return addParameterWithType (group, key, text, info, "integer", n);
 }
 
 Parameter Tree::addParameter (juce::ValueTree& group,
-    const juce::String& item,
+    const juce::String& key,
     const juce::String& text,
     const juce::String& info,
     double f)
 {
-    return addParameterWithType (group, item, text, info, "float", f);
+    return addParameterWithType (group, key, text, info, "float", f);
 }
 
 Parameter Tree::addParameter (juce::ValueTree& group,
-    const juce::String& item,
+    const juce::String& key,
     const juce::String& text,
     const juce::String& info,
     const juce::String& s)
 {
-    return addParameterWithType (group, item, text, info, "text", s);
+    return addParameterWithType (group, key, text, info, "text", s);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -143,7 +143,7 @@ namespace {
 bool isValidParameter (const juce::ValueTree& parameter)
 {
     return (parameter.hasType (Ids::PARAMETER)
-                && parameter.getProperty (Ids::item).isString()
+                && parameter.getProperty (Ids::key).isString()
                 && parameter.getProperty (Ids::text).isString()
                 && parameter.getProperty (Ids::info).isString()
                 && parameter.getProperty (Ids::type).isString()

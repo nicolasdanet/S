@@ -59,31 +59,31 @@ struct Tree {
 
 public:
     static Parameter addParameter (juce::ValueTree& group,
-        const juce::String& item,
+        const juce::String& key,
         const juce::String& text,
         const juce::String& info,
         bool b);
 
     static Parameter addParameter (juce::ValueTree& group,
-        const juce::String& item,
+        const juce::String& key,
         const juce::String& text,
         const juce::String& info,
         juce::Colour c);
         
     static Parameter addParameter (juce::ValueTree& group,
-        const juce::String& item,
+        const juce::String& key,
         const juce::String& text,
         const juce::String& info,
         int n);
 
     static Parameter addParameter (juce::ValueTree& group,
-        const juce::String& item,
+        const juce::String& key,
         const juce::String& text,
         const juce::String& info,
         double f);
 
     static Parameter addParameter (juce::ValueTree& group,
-        const juce::String& item,
+        const juce::String& key,
         const juce::String& text,
         const juce::String& info,
         const juce::String& s);

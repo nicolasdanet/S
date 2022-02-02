@@ -35,6 +35,7 @@ namespace Identifiers {
     DECLARE_ID (info);
     DECLARE_ID (inlets);
     DECLARE_ID (item);
+    DECLARE_ID (key);
     DECLARE_ID (maximum);
     DECLARE_ID (minimum);
     DECLARE_ID (name);
