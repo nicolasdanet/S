@@ -42,28 +42,6 @@ Parameter addParameterWithType (juce::ValueTree& group,
     return Parameter (parameter);
 }
 
-/*
-
-juce::ValueTree getParameter (const juce::ValueTree& group, const juce::String& key)
-{
-    for (const auto& parameter : group) {
-        if (parameter.getProperty (Ids::key).equalsWithSameType (key)) { return parameter; }
-    }
-    
-    return juce::ValueTree();
-}
-
-juce::ValueTree getGroup (const juce::ValueTree& tree, const juce::String& name)
-{
-    for (const auto& group : tree) {
-        if (group.getProperty (Ids::name).equalsWithSameType (name)) { return group; }
-    }
-        
-    return juce::ValueTree();
-}
-    
-*/
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -98,71 +76,6 @@ Parameter Group::addParameter (const juce::String& key, const juce::String& text
     return addParameterWithType (group_, key, text, info, "text", s);
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-Group Tree::addGroup (const juce::String& name)
-{
-    juce::ValueTree group (Ids::GROUP); group.setProperty (Ids::name, name, nullptr);
-        
-    tree_.appendChild (group, nullptr);
-        
-    return Group (group);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-bool isValidParameter (const juce::ValueTree& parameter)
-{
-    return (parameter.hasType (Ids::PARAMETER)
-                && parameter.getProperty (Ids::key).isString()
-                && parameter.getProperty (Ids::text).isString()
-                && parameter.getProperty (Ids::info).isString()
-                && parameter.getProperty (Ids::type).isString()
-                && parameter.hasProperty (Ids::value));
-}
-
-bool isValidGroup (const juce::ValueTree& group)
-{
-    return (group.hasType (Ids::GROUP) && group.getProperty (Ids::name).isString());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool Tree::isValid (const juce::ValueTree& tree, const juce::Identifier& identifier)
-{
-    if (tree.isValid() && tree.hasType (identifier)) {
-    //
-    for (const auto& group : tree) {
-    //
-    if (isValidGroup (group)) {
-        for (const auto& parameter : group)  {
-            if (!isValidParameter (parameter)) { return false; }
-        }
-    } else { return false; }
-    //
-    }
-    //
-    } else { return false; }
-    
-    return true;
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

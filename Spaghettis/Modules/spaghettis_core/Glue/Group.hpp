@@ -1,82 +1,65 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-// ====================================
-
-/*************************************************************************************************************
-
- BEGIN_JUCE_MODULE_DECLARATION
-
-  ID:                 spaghettis_core
-  vendor:             Spaghettis
-  version:            0.9
-  name:               Core
-  description:        The control and DSP engines of Spaghettis.
-  website:            https://github.com/Spaghettis
-  license:            BSD
-
-  dependencies:       juce_core juce_data_structures juce_events juce_graphics juce_gui_basics
-  OSXFrameworks:      Carbon CoreMIDI CoreAudio AudioUnit
-  OSXLibs:            dl pthread
-  linuxLibs:          dl pthread m asound jack
-
- END_JUCE_MODULE_DECLARATION
-
-*************************************************************************************************************/
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#pragma once
+namespace core {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+class Group {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit Group (const juce::ValueTree& group) : group_ (group)
+    {
+    }
+    
+    ~Group() = default;
+    
+public:
+    Group (const Group&) = default;
+    Group (Group&&) = default;
+    Group& operator = (const Group&) = default;
+    Group& operator = (Group&&) = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, bool);
+    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, juce::Colour c);
+    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, int n);
+    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, double f);
+    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, const juce::String& s);
+        
+private:
+    juce::ValueTree group_;
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "juce_core/juce_core.h"
-#include "juce_data_structures/juce_data_structures.h"
-#include "juce_events/juce_events.h"
-#include "juce_gui_basics/juce_gui_basics.h"
+} // namespace core
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Glue/Identifiers.hpp"
-#include "Glue/Glue.hpp"
-#include "Glue/Unique.hpp"
-#include "Glue/Colours.hpp"
-#include "Glue/Parameter.hpp"
-#include "Glue/Group.hpp"
-#include "Glue/Tree.hpp"
-#include "Glue/Description.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Wrap/Debug.hpp"
-#include "Wrap/Devices.hpp"
-#include "Wrap/Logger.hpp"
-#include "Wrap/Post.hpp"
-#include "Wrap/Queues.hpp"
-#include "Wrap/Inputs.hpp"
-#include "Wrap/Outputs.hpp"
-#include "Wrap/Wrapper.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#define PD_BUILDING_APPLICATION
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if DEBUG
-    #define PD_WITH_DEBUG   1
-#endif
+} // namespace spaghettis
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
