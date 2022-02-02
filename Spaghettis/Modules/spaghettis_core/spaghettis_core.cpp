@@ -18,6 +18,7 @@
 
 #include "Glue/Glue.cpp"
 #include "Glue/Unique.cpp"
+#include "Glue/Parameters.cpp"
 #include "Glue/Description.cpp"
 
 // -----------------------------------------------------------------------------------------------------------

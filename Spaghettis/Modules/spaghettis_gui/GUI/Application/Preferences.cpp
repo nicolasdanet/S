@@ -23,6 +23,7 @@ const juce::var Preferences::getValue (const juce::String& group, const juce::St
 
 void Preferences::valueTreePropertyChanged (juce::ValueTree& parameter, const juce::Identifier& identifier)
 {
+    /*
     const juce::String key (core::Parameter::getItem (parameter));
     
     if (key == "SnapToGrid") {
@@ -32,6 +33,7 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& parameter, const ju
     }
         
     if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }
+    */
 }
 
 // -----------------------------------------------------------------------------------------------------------
