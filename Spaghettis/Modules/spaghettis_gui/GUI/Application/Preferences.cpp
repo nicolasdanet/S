@@ -44,56 +44,47 @@ juce::ValueTree Preferences::getDefault()
 {
     juce::ValueTree tree (Ids::PREFERENCES);
     
-    juce::ValueTree general (core::Tree::addGroup (tree, "General"));
-    juce::ValueTree editing (core::Tree::addGroup (tree, "Editing"));
-    juce::ValueTree nuclear (core::Tree::addGroup (tree, "Editing"));
-    juce::ValueTree colors  (core::Tree::addGroup (tree, "Colors"));
+    core::Group general (core::Tree::addGroup (tree, "General"));
+    core::Group editing (core::Tree::addGroup (tree, "Editing"));
+    core::Group nuclear (core::Tree::addGroup (tree, "Editing"));
+    core::Group colors  (core::Tree::addGroup (tree, "Colors"));
         
-    core::Tree::addParameter (general,
-        "AskBeforeQuit",
+    general.addParameter ("AskBeforeQuit",
         NEEDS_TRANS ("Ask Before Quitting"),
         NEEDS_TRANS ("Show dialog box to confirm quitting"),
         true);
-    core::Tree::addParameter (general,
-        "DefaultIsRunView",
+    general.addParameter ("DefaultIsRunView",
         NEEDS_TRANS ("Default Is Run View"),
         NEEDS_TRANS ("Open a patch into a run view"),
         false);
     
-    core::Tree::addParameter (editing,
-        "SnapToGrid",
+    editing.addParameter ("SnapToGrid",
         NEEDS_TRANS ("Snap To Grid"),
         NEEDS_TRANS ("Enable magnetic grid"),
         true);
-    core::Tree::addParameter (editing,
-        "GridSize",
+    editing.addParameter ("GridSize",
         NEEDS_TRANS ("Grid Size"),
         NEEDS_TRANS ("Set magnetic grid spacing"),
         12).setRange (juce::Range<int> (1, 64));
     
-    core::Tree::addParameter (nuclear,
-        "Engine",
+    nuclear.addParameter ("Engine",
         NEEDS_TRANS ("Kind Of Engine"),
         NEEDS_TRANS ("Set kind of stuff"),
         "Submarine");
-    core::Tree::addParameter (nuclear,
-        "Power",
+    nuclear.addParameter ("Power",
         NEEDS_TRANS ("Power Of Engine"),
         NEEDS_TRANS ("Set power of engine"),
         99.5);
-    core::Tree::addParameter (nuclear,
-        "Launcher",
+    nuclear.addParameter ("Launcher",
         NEEDS_TRANS ("Launcher Efficiency"),
         NEEDS_TRANS ("Set tenderness of button"),
         99.5);
-    core::Tree::addParameter (nuclear,
-        "Random",
+    nuclear.addParameter ("Random",
         NEEDS_TRANS ("Random Rate"),
         NEEDS_TRANS ("Set entropy in life"),
         0.5).setRange (juce::Range<double> (0, 1));
     
-    core::Tree::addParameter (colors,
-        "PatchBackground",
+    colors.addParameter ("PatchBackground",
         NEEDS_TRANS ("Patch Background"),
         NEEDS_TRANS ("Set background color of patch"),
         juce::Colour (0xff1f2029));

@@ -24,11 +24,15 @@ class Parameter {
 // MARK: -
 
 public:
-    Parameter (const juce::ValueTree& parameter) : parameter_ (parameter)
+    explicit Parameter (const juce::ValueTree& parameter) : parameter_ (parameter)
     {
     }
     
     ~Parameter() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     template <class T> void setRange (juce::Range<T> range)
@@ -51,6 +55,44 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class Group {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit Group (const juce::ValueTree& group) : group_ (group)
+    {
+    }
+    
+    ~Group() = default;
+    
+public:
+    Group (const Group&) = default;
+    Group (Group&&) = default;
+    Group& operator = (const Group&) = default;
+    Group& operator = (Group&&) = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, bool);
+    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, juce::Colour c);
+    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, int n);
+    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, double f);
+    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, const juce::String& s);
+        
+private:
+    juce::ValueTree group_;
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 struct Tree {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -58,42 +100,7 @@ struct Tree {
 // MARK: -
 
 public:
-    static Parameter addParameter (juce::ValueTree& group,
-        const juce::String& key,
-        const juce::String& text,
-        const juce::String& info,
-        bool b);
-
-    static Parameter addParameter (juce::ValueTree& group,
-        const juce::String& key,
-        const juce::String& text,
-        const juce::String& info,
-        juce::Colour c);
-        
-    static Parameter addParameter (juce::ValueTree& group,
-        const juce::String& key,
-        const juce::String& text,
-        const juce::String& info,
-        int n);
-
-    static Parameter addParameter (juce::ValueTree& group,
-        const juce::String& key,
-        const juce::String& text,
-        const juce::String& info,
-        double f);
-
-    static Parameter addParameter (juce::ValueTree& group,
-        const juce::String& key,
-        const juce::String& text,
-        const juce::String& info,
-        const juce::String& s);
-        
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static juce::ValueTree addGroup (juce::ValueTree& tree, const juce::String& name);
+    static Group addGroup (juce::ValueTree& tree, const juce::String& name);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

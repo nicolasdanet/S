@@ -73,62 +73,42 @@ juce::ValueTree getGroup (const juce::ValueTree& tree, const juce::String& name)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter Tree::addParameter (juce::ValueTree& group,
-    const juce::String& key,
-    const juce::String& text,
-    const juce::String& info,
-    bool b)
+Parameter Group::addParameter (const juce::String& key, const juce::String& text, const juce::String& info, bool b)
 {
-    return addParameterWithType (group, key, text, info, "boolean", b);
+    return addParameterWithType (group_, key, text, info, "boolean", b);
 }
 
-Parameter Tree::addParameter (juce::ValueTree& group,
-    const juce::String& key,
-    const juce::String& text,
-    const juce::String& info,
-    juce::Colour c)
+Parameter Group::addParameter (const juce::String& key, const juce::String& text, const juce::String& info, juce::Colour c)
 {
-    return addParameterWithType (group, key, text, info, "color", Colours::getColourAsString (c));
+    return addParameterWithType (group_, key, text, info, "color", Colours::getColourAsString (c));
 }
 
-Parameter Tree::addParameter (juce::ValueTree& group,
-    const juce::String& key,
-    const juce::String& text,
-    const juce::String& info,
-    int n)
+Parameter Group::addParameter (const juce::String& key, const juce::String& text, const juce::String& info, int n)
 {
-    return addParameterWithType (group, key, text, info, "integer", n);
+    return addParameterWithType (group_, key, text, info, "integer", n);
 }
 
-Parameter Tree::addParameter (juce::ValueTree& group,
-    const juce::String& key,
-    const juce::String& text,
-    const juce::String& info,
-    double f)
+Parameter Group::addParameter (const juce::String& key, const juce::String& text, const juce::String& info, double f)
 {
-    return addParameterWithType (group, key, text, info, "float", f);
+    return addParameterWithType (group_, key, text, info, "float", f);
 }
 
-Parameter Tree::addParameter (juce::ValueTree& group,
-    const juce::String& key,
-    const juce::String& text,
-    const juce::String& info,
-    const juce::String& s)
+Parameter Group::addParameter (const juce::String& key, const juce::String& text, const juce::String& info, const juce::String& s)
 {
-    return addParameterWithType (group, key, text, info, "text", s);
+    return addParameterWithType (group_, key, text, info, "text", s);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Tree::addGroup (juce::ValueTree& tree, const juce::String& name)
+Group Tree::addGroup (juce::ValueTree& tree, const juce::String& name)
 {
     juce::ValueTree group (Ids::GROUP); group.setProperty (Ids::name, name, nullptr);
         
     tree.appendChild (group, nullptr);
         
-    return group;
+    return Group (group);
 }
 
 // -----------------------------------------------------------------------------------------------------------
