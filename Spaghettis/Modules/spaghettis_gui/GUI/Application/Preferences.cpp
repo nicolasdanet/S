@@ -44,74 +44,63 @@ juce::ValueTree Preferences::getDefault()
 {
     juce::ValueTree tree (Ids::PREFERENCES);
     
-    {
-        juce::ValueTree group = core::Tree::addGroup (tree, "General");
-
-        core::Tree::addParameter (group,
-            "AskBeforeQuit",
-            NEEDS_TRANS ("Ask Before Quitting"),
-            NEEDS_TRANS ("Show dialog box to confirm quitting"),
-            true);
-        core::Tree::addParameter (group,
-            "DefaultIsRunView",
-            NEEDS_TRANS ("Default Is Run View"),
-            NEEDS_TRANS ("Open a patch into a run view"),
-            false);
-    }
+    juce::ValueTree general (core::Tree::addGroup (tree, "General"));
+    juce::ValueTree editing (core::Tree::addGroup (tree, "Editing"));
+    juce::ValueTree nuclear (core::Tree::addGroup (tree, "Editing"));
+    juce::ValueTree colors  (core::Tree::addGroup (tree, "Colors"));
+        
+    core::Tree::addParameter (general,
+        "AskBeforeQuit",
+        NEEDS_TRANS ("Ask Before Quitting"),
+        NEEDS_TRANS ("Show dialog box to confirm quitting"),
+        true);
+    core::Tree::addParameter (general,
+        "DefaultIsRunView",
+        NEEDS_TRANS ("Default Is Run View"),
+        NEEDS_TRANS ("Open a patch into a run view"),
+        false);
     
-    {
-        juce::ValueTree group = core::Tree::addGroup (tree, "Editing");
-
-        core::Tree::addParameter (group,
-            "SnapToGrid",
-            NEEDS_TRANS ("Snap To Grid"),
-            NEEDS_TRANS ("Enable magnetic grid"),
-            true);
-        core::Tree::addParameter (group,
-            "GridSize",
-            NEEDS_TRANS ("Grid Size"),
-            NEEDS_TRANS ("Set magnetic grid spacing"),
-            12);
-            // { Ids::minimum, 1 }
-            // { Ids::maximum, 64 }
-    }
+    core::Tree::addParameter (editing,
+        "SnapToGrid",
+        NEEDS_TRANS ("Snap To Grid"),
+        NEEDS_TRANS ("Enable magnetic grid"),
+        true);
+    core::Tree::addParameter (editing,
+        "GridSize",
+        NEEDS_TRANS ("Grid Size"),
+        NEEDS_TRANS ("Set magnetic grid spacing"),
+        12);
+        // { Ids::minimum, 1 }
+        // { Ids::maximum, 64 }
     
-    {
-        juce::ValueTree group = core::Tree::addGroup (tree, "Nuclear");
-
-        core::Tree::addParameter (group,
-            "Engine",
-            NEEDS_TRANS ("Kind Of Engine"),
-            NEEDS_TRANS ("Set kind of stuff"),
-            "Submarine");
-        core::Tree::addParameter (group,
-            "Power",
-            NEEDS_TRANS ("Power Of Engine"),
-            NEEDS_TRANS ("Set power of engine"),
-            99.5);
-        core::Tree::addParameter (group,
-            "Launcher",
-            NEEDS_TRANS ("Launcher Efficiency"),
-            NEEDS_TRANS ("Set tenderness of button"),
-            99.5);
-        core::Tree::addParameter (group,
-            "Random",
-            NEEDS_TRANS ("Random Rate"),
-            NEEDS_TRANS ("Set entropy in life"),
-            0.5);
-            // { Ids::minimum, 0 }
-            // { Ids::maximum, 1 }
-    }
+    core::Tree::addParameter (nuclear,
+        "Engine",
+        NEEDS_TRANS ("Kind Of Engine"),
+        NEEDS_TRANS ("Set kind of stuff"),
+        "Submarine");
+    core::Tree::addParameter (nuclear,
+        "Power",
+        NEEDS_TRANS ("Power Of Engine"),
+        NEEDS_TRANS ("Set power of engine"),
+        99.5);
+    core::Tree::addParameter (nuclear,
+        "Launcher",
+        NEEDS_TRANS ("Launcher Efficiency"),
+        NEEDS_TRANS ("Set tenderness of button"),
+        99.5);
+    core::Tree::addParameter (nuclear,
+        "Random",
+        NEEDS_TRANS ("Random Rate"),
+        NEEDS_TRANS ("Set entropy in life"),
+        0.5);
+        // { Ids::minimum, 0 }
+        // { Ids::maximum, 1 }
     
-    {
-        juce::ValueTree group = core::Tree::addGroup (tree, "Colors");
-
-        core::Tree::addParameter (group,
-            "PatchBackground",
-            NEEDS_TRANS ("Patch Background"),
-            NEEDS_TRANS ("Set background color of patch"),
-            juce::Colour (0xff1f2029));
-    }
+    core::Tree::addParameter (colors,
+        "PatchBackground",
+        NEEDS_TRANS ("Patch Background"),
+        NEEDS_TRANS ("Set background color of patch"),
+        juce::Colour (0xff1f2029));
     
     jassert (core::Tree::isValid (tree, Ids::PREFERENCES));
     
