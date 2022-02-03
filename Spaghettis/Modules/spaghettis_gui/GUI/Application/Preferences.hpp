@@ -30,7 +30,7 @@ public:
         tree_ (Preferences::getDefault()),
         isReading_ (false)
     {
-        tree_.addListener (this);
+        // tree_.addListener (this);
     }
     
     ~Preferences() = default;
@@ -39,10 +39,10 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    juce::ValueTree getTree() const
+public:
+    juce::ValueTree getTree()
     {
-        return tree_;
+        return tree_.getTree();
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -82,11 +82,11 @@ public:
 // MARK: -
 
 private:
-    static juce::ValueTree getDefault();
+    static core::Tree getDefault();
 
 private:
     juce::File file_;
-    juce::ValueTree tree_;
+    core::Tree tree_;
     bool isReading_;
     
 private:

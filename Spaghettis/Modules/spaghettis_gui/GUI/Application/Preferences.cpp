@@ -40,7 +40,7 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& parameter, const ju
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Preferences::getDefault()
+core::Tree Preferences::getDefault()
 {
     core::Tree t (Ids::PREFERENCES);
     
@@ -89,7 +89,7 @@ juce::ValueTree Preferences::getDefault()
     
     jassert (t.isValid (Ids::PREFERENCES));
     
-    return t.getTree();
+    return t;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -161,9 +161,11 @@ void Preferences::read()
 
 void Preferences::write()
 {
+    /*
     std::unique_ptr<juce::XmlElement> xml (tree_.createXml());
     
     if (xml) { xml->writeTo (file_); }
+    */
 }
 
 // -----------------------------------------------------------------------------------------------------------
