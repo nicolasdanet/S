@@ -35,10 +35,16 @@ public:
 // MARK: -
 
 public:
-    template <class T> void setRange (juce::Range<T> range)
+    Parameter& setText (const juce::String&);
+    Parameter& setInfo (const juce::String&);
+    
+public:
+    template <class T> Parameter& setRange (juce::Range<T> range)
     {
         parameter_.setProperty (Ids::minimum, range.getStart(), nullptr);
         parameter_.setProperty (Ids::maximum, range.getEnd(), nullptr);
+        
+        return *this;
     }
     
 public:

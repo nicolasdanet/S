@@ -24,16 +24,14 @@ namespace {
 
 Parameter addParameterWithType (juce::ValueTree& group,
     const juce::String& key,
-    const juce::String& text,
-    const juce::String& info,
     const juce::String& type,
     juce::var v)
 {
     juce::ValueTree parameter (Ids::PARAMETER);
     
     parameter.setProperty (Ids::key,   key,  nullptr);
-    parameter.setProperty (Ids::text,  text, nullptr);
-    parameter.setProperty (Ids::info,  info, nullptr);
+    // parameter.setProperty (Ids::text,  text, nullptr);
+    // parameter.setProperty (Ids::info,  info, nullptr);
     parameter.setProperty (Ids::type,  type, nullptr);
     parameter.setProperty (Ids::value, v, nullptr);
     
@@ -51,29 +49,29 @@ Parameter addParameterWithType (juce::ValueTree& group,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter Group::addParameter (const juce::String& key, const juce::String& text, const juce::String& info, bool b)
+Parameter Group::addParameter (const juce::String& key, bool b)
 {
-    return addParameterWithType (group_, key, text, info, "boolean", b);
+    return addParameterWithType (group_, key, "boolean", b);
 }
 
-Parameter Group::addParameter (const juce::String& key, const juce::String& text, const juce::String& info, juce::Colour c)
+Parameter Group::addParameter (const juce::String& key, juce::Colour c)
 {
-    return addParameterWithType (group_, key, text, info, "color", Colours::getColourAsString (c));
+    return addParameterWithType (group_, key, "color", Colours::getColourAsString (c));
 }
 
-Parameter Group::addParameter (const juce::String& key, const juce::String& text, const juce::String& info, int n)
+Parameter Group::addParameter (const juce::String& key, int n)
 {
-    return addParameterWithType (group_, key, text, info, "integer", n);
+    return addParameterWithType (group_, key, "integer", n);
 }
 
-Parameter Group::addParameter (const juce::String& key, const juce::String& text, const juce::String& info, double f)
+Parameter Group::addParameter (const juce::String& key, double f)
 {
-    return addParameterWithType (group_, key, text, info, "float", f);
+    return addParameterWithType (group_, key, "float", f);
 }
 
-Parameter Group::addParameter (const juce::String& key, const juce::String& text, const juce::String& info, const juce::String& s)
+Parameter Group::addParameter (const juce::String& key, const juce::String& s)
 {
-    return addParameterWithType (group_, key, text, info, "text", s);
+    return addParameterWithType (group_, key, "text", s);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -49,45 +49,43 @@ juce::ValueTree Preferences::getDefault()
     core::Group nuclear (t.addGroup ("Editing"));
     core::Group colors  (t.addGroup ("Colors"));
         
-    general.addParameter ("AskBeforeQuit",
-        NEEDS_TRANS ("Ask Before Quitting"),
-        NEEDS_TRANS ("Show dialog box to confirm quitting"),
-        true);
-    general.addParameter ("DefaultIsRunView",
-        NEEDS_TRANS ("Default Is Run View"),
-        NEEDS_TRANS ("Open a patch into a run view"),
-        false);
+    general.addParameter ("AskBeforeQuit", true)
+                .setText (NEEDS_TRANS ("Ask Before Quitting"))
+                .setInfo (NEEDS_TRANS ("Show dialog box to confirm quitting"));
+        
+    general.addParameter ("DefaultIsRunView", false)
+                .setText (NEEDS_TRANS ("Default Is Run View"))
+                .setInfo (NEEDS_TRANS ("Open a patch into a run view"));
     
-    editing.addParameter ("SnapToGrid",
-        NEEDS_TRANS ("Snap To Grid"),
-        NEEDS_TRANS ("Enable magnetic grid"),
-        true);
-    editing.addParameter ("GridSize",
-        NEEDS_TRANS ("Grid Size"),
-        NEEDS_TRANS ("Set magnetic grid spacing"),
-        12).setRange (juce::Range<int> (1, 64));
+    editing.addParameter ("SnapToGrid", true)
+                .setText (NEEDS_TRANS ("Snap To Grid"))
+                .setInfo (NEEDS_TRANS ("Enable magnetic grid"));
+
+    editing.addParameter ("GridSize", 12)
+                .setText (NEEDS_TRANS ("Grid Size"))
+                .setInfo (NEEDS_TRANS ("Set magnetic grid spacing"))
+                .setRange (juce::Range<int> (1, 64));
     
-    nuclear.addParameter ("Engine",
-        NEEDS_TRANS ("Kind Of Engine"),
-        NEEDS_TRANS ("Set kind of stuff"),
-        "Submarine");
-    nuclear.addParameter ("Power",
-        NEEDS_TRANS ("Power Of Engine"),
-        NEEDS_TRANS ("Set power of engine"),
-        99.5);
-    nuclear.addParameter ("Launcher",
-        NEEDS_TRANS ("Launcher Efficiency"),
-        NEEDS_TRANS ("Set tenderness of button"),
-        99.5);
-    nuclear.addParameter ("Random",
-        NEEDS_TRANS ("Random Rate"),
-        NEEDS_TRANS ("Set entropy in life"),
-        0.5).setRange (juce::Range<double> (0, 1));
+    nuclear.addParameter ("Engine", "Yellow Submarine")
+                .setText (NEEDS_TRANS ("Kind Of Engine"))
+                .setInfo (NEEDS_TRANS ("Set kind of stuff"));
+                
+    nuclear.addParameter ("Power", 99.5)
+                .setText (NEEDS_TRANS ("Power Of Engine"))
+                .setInfo (NEEDS_TRANS ("Set power of engine"));
+
+    nuclear.addParameter ("Launcher", 99.5)
+                .setText (NEEDS_TRANS ("Launcher Efficiency"))
+                .setInfo (NEEDS_TRANS ("Set tenderness of button"));
+
+    nuclear.addParameter ("Random", 0.5)
+                .setText (NEEDS_TRANS ("Random Rate"))
+                .setInfo (NEEDS_TRANS ("Set entropy in life"))
+                .setRange (juce::Range<double> (0, 1));
     
-    colors.addParameter ("PatchBackground",
-        NEEDS_TRANS ("Patch Background"),
-        NEEDS_TRANS ("Set background color of patch"),
-        juce::Colour (0xff1f2029));
+    colors.addParameter ("PatchBackground", juce::Colour (0xff1f2029))
+                .setText (NEEDS_TRANS ("Patch Background"))
+                .setInfo (NEEDS_TRANS ("Set background color of patch"));
     
     return t.getTree();
 }

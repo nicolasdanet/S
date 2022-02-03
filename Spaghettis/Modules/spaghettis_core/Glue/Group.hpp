@@ -41,11 +41,11 @@ public:
 // MARK: -
 
 public:
-    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, bool);
-    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, juce::Colour c);
-    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, int n);
-    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, double f);
-    Parameter addParameter (const juce::String&, const juce::String&, const juce::String&, const juce::String& s);
+    Parameter addParameter (const juce::String&, bool);
+    Parameter addParameter (const juce::String&, juce::Colour c);
+    Parameter addParameter (const juce::String&, int n);
+    Parameter addParameter (const juce::String&, double f);
+    Parameter addParameter (const juce::String&, const juce::String& s);
         
 private:
     juce::ValueTree group_;
