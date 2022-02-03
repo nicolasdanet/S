@@ -36,6 +36,10 @@ juce::String Parameter::getKey() const
 {
     return parameter_.getProperty (Ids::key).toString();
 }
+juce::String Parameter::getType() const
+{
+    return parameter_.getProperty (Ids::type);
+}
 
 juce::var Parameter::getValue() const
 {
@@ -58,6 +62,60 @@ Parameter& Parameter::setInfo (const juce::String& s)
     parameter_.setProperty (Ids::info, s, nullptr);
     
     return *this;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool Parameter::hasRange() const
+{
+    return (parameter_.hasProperty (Ids::minimum) && parameter_.hasProperty (Ids::maximum));
+}
+
+double Parameter::getMinimumAsDouble() const
+{
+    double m = static_cast<double> (parameter_.getProperty (Ids::minimum));
+    double n = static_cast<double> (parameter_.getProperty (Ids::maximum));
+    
+    return juce::jmin (m, n);
+}
+
+double Parameter::getMaximumAsDouble() const
+{
+    double m = static_cast<double> (parameter_.getProperty (Ids::minimum));
+    double n = static_cast<double> (parameter_.getProperty (Ids::maximum));
+    
+    return juce::jmax (m, n);
+}
+
+double Parameter::getStep() const
+{
+    return 0.001;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::var Parameter::constrained (const juce::var& v) const
+{
+    const juce::String type = getType();
+    
+    if (type == "boolean") {
+        bool b = static_cast<bool> (v);
+        return juce::var (b);
+    } else if (type == "color") {
+        return juce::var (core::Colours::getColourFromString (v.toString()).toString());
+    } else if (type == "integer" && hasRange()) {
+        int i = juce::Range<int> (*this).clipValue (static_cast<int> (v));
+        return juce::var (juce::String (i));
+    } else if (type == "float" && hasRange()) {
+        double f = juce::Range<double> (*this).clipValue (static_cast<double> (v));
+        return juce::var (juce::String (f));
+    }
+    
+    return juce::var (v);
 }
 
 // -----------------------------------------------------------------------------------------------------------

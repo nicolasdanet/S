@@ -43,6 +43,7 @@ public:
 
 public:
     juce::String getKey() const;
+    juce::String getType() const;
     juce::var getValue() const;
     
 // -----------------------------------------------------------------------------------------------------------
@@ -53,10 +54,6 @@ public:
     Parameter& setText (const juce::String&);
     Parameter& setInfo (const juce::String&);
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 public:
     template <class T> Parameter& setRange (juce::Range<T> range)
     {
@@ -65,7 +62,38 @@ public:
         
         return *this;
     }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
+public:
+    bool hasRange() const;
+    double getMinimumAsDouble() const;
+    double getMaximumAsDouble() const;
+    double getStep() const;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    template <class T> operator juce::Range<T>() const
+    {
+        auto m = static_cast<T> (parameter_.getProperty (Ids::minimum));
+        auto n = static_cast<T> (parameter_.getProperty (Ids::maximum));
+        auto minimum = juce::jmin (m, n);
+        auto maximum = juce::jmax (m, n);
+            
+        if (minimum != maximum) { return juce::Range<T> (minimum, maximum); }
+        else {
+            return juce::Range<T>();
+        }
+    }
+
+private:
+    juce::var constrained (const juce::var& v) const;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
