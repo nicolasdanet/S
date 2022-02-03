@@ -87,6 +87,8 @@ juce::ValueTree Preferences::getDefault()
                 .setText (NEEDS_TRANS ("Patch Background"))
                 .setInfo (NEEDS_TRANS ("Set background color of patch"));
     
+    jassert (t.isValid (Ids::PREFERENCES));
+    
     return t.getTree();
 }
 
@@ -139,12 +141,14 @@ void Preferences::read()
     if (file_.existsAsFile() && file_.hasFileExtension (".xml")) {
         std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file_));
         if (xml) {
+            /*
             juce::ValueTree t (juce::ValueTree::fromXml (*xml));
             if (core::Tree::isValid (t, Ids::PREFERENCES)) {
                 juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
                 setPropertiesFrom (tree_, t);
                 return;
             }
+            */
         }
     }
     

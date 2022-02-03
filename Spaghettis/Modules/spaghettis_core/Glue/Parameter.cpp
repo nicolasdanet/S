@@ -15,6 +15,7 @@ namespace core {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 Parameter& Parameter::setText (const juce::String& s)
 {
@@ -28,6 +29,20 @@ Parameter& Parameter::setInfo (const juce::String& s)
     parameter_.setProperty (Ids::info, s, nullptr);
     
     return *this;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool Parameter::isValid() const
+{
+    return (parameter_.hasType (Ids::PARAMETER)
+                && parameter_.getProperty (Ids::key).isString()
+                && parameter_.getProperty (Ids::text).isString()
+                && parameter_.getProperty (Ids::info).isString()
+                && parameter_.getProperty (Ids::type).isString()
+                && parameter_.hasProperty (Ids::value));
 }
 
 // -----------------------------------------------------------------------------------------------------------

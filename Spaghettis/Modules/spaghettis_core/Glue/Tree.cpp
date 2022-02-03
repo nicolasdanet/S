@@ -30,51 +30,14 @@ Group Tree::addGroup (const juce::String& name)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-bool isValidParameter (const juce::ValueTree& parameter)
+bool Tree::isValid (const juce::Identifier& identifier) const
 {
-    return (parameter.hasType (Ids::PARAMETER)
-                && parameter.getProperty (Ids::key).isString()
-                && parameter.getProperty (Ids::text).isString()
-                && parameter.getProperty (Ids::info).isString()
-                && parameter.getProperty (Ids::type).isString()
-                && parameter.hasProperty (Ids::value));
-}
-
-bool isValidGroup (const juce::ValueTree& group)
-{
-    return (group.hasType (Ids::GROUP) && group.getProperty (Ids::name).isString());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool Tree::isValid (const juce::ValueTree& tree, const juce::Identifier& identifier)
-{
-    if (tree.isValid() && tree.hasType (identifier)) {
-    //
-    for (const auto& group : tree) {
-    //
-    if (isValidGroup (group)) {
-        for (const auto& parameter : group)  {
-            if (!isValidParameter (parameter)) { return false; }
-        }
-    } else { return false; }
-    //
-    }
-    //
-    } else { return false; }
+    if (!tree_.isValid() || !tree_.hasType (identifier)) { return false; }
     
+    for (const auto& group : tree_) {
+        if (!Group (group).isValid()) { return false; }
+    }
+
     return true;
 }
 

@@ -58,7 +58,7 @@ public:
 // MARK: -
 
 public:
-    static bool isValid (const juce::ValueTree& tree, const juce::Identifier& identifier);
+    bool isValid (const juce::Identifier& identifier) const;
 
 private:
     juce::ValueTree tree_;

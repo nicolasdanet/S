@@ -46,7 +46,14 @@ public:
     Parameter addParameter (const juce::String&, int n);
     Parameter addParameter (const juce::String&, double f);
     Parameter addParameter (const juce::String&, const juce::String& s);
-        
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool isValid() const;
+
 private:
     juce::ValueTree group_;
 };
