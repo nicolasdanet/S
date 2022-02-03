@@ -96,63 +96,15 @@ core::Tree Preferences::getDefault()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-void setPropertyFrom (juce::ValueTree& tree, const juce::ValueTree& group, const juce::ValueTree& parameter)
-{
-    juce::ValueTree t = tree.getChildWithProperty (Ids::name, group.getProperty (Ids::name))
-                            .getChildWithProperty (Ids::key, parameter.getProperty (Ids::key));
-    
-    if (t.isValid()) {
-    //
-    const juce::var& newValue (parameter.getProperty (Ids::value));
-    const juce::var& oldValue (t.getProperty (Ids::value));
-    
-    if (!oldValue.equals (newValue)) {
-        t.setProperty (Ids::value, Parameters::Base (t).constrained (newValue), nullptr);
-    }
-    //
-    }
-}
-
-void setPropertiesFrom (juce::ValueTree& tree, const juce::ValueTree& other)
-{
-    for (const auto& group : other) {
-    for (const auto& parameter : group) {
-        setPropertyFrom (tree, group, parameter);
-    }
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-*/
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void Preferences::read()
 {
     if (file_.existsAsFile() && file_.hasFileExtension (".xml")) {
         std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file_));
         if (xml) {
-            /*
             juce::ValueTree t (juce::ValueTree::fromXml (*xml));
-            if (core::Tree::isValid (t, Ids::PREFERENCES)) {
-                juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
-                setPropertiesFrom (tree_, t);
-                return;
-            }
-            */
+            juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
+            tree_.setPropertiesFrom (t);
+            return;
         }
     }
     
