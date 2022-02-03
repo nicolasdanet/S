@@ -17,6 +17,20 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::var Tree::getValue (const juce::String& group, const juce::String& key) const
+{
+    return juce::var();
+}
+    
+void Tree::setValue (const juce::String& group, const juce::String& key, const juce::var& v)
+{
+
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 Group Tree::addGroup (const juce::String& name)
 {
     juce::ValueTree group (Ids::GROUP); group.setProperty (Ids::name, name, nullptr);
@@ -30,38 +44,16 @@ Group Tree::addGroup (const juce::String& name)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
-void setPropertyFrom (juce::ValueTree& tree, const juce::ValueTree& group, const juce::ValueTree& parameter)
+void Tree::setParametersFrom (const juce::ValueTree& other)
 {
-    juce::ValueTree t = tree.getChildWithProperty (Ids::name, group.getProperty (Ids::name))
-                            .getChildWithProperty (Ids::key, parameter.getProperty (Ids::key));
-    
-    if (t.isValid()) {
+    if (Tree (other).isValid (tree_.getType())) {
     //
-    const juce::var& newValue (parameter.getProperty (Ids::value));
-    const juce::var& oldValue (t.getProperty (Ids::value));
-    
-    if (!oldValue.equals (newValue)) {
-        t.setProperty (Ids::value, Parameters::Base (t).constrained (newValue), nullptr);
+    for (const auto& group : other) {
+        const juce::String name (Group (group).getName());
+        for (const auto& parameter : group) {
+            setValue (name, Parameter (parameter).getKey(), Parameter (parameter).getValue());
+        }
     }
-    //
-    }
-}
-*/
-
-void Tree::setPropertiesFrom (const juce::ValueTree& other)
-{
-    const Tree t (other);
-    
-    if (t.isValid (tree_.getType())) {
-    //
-    /*
-    for (const auto& group : t) {
-    for (const auto& parameter : group) {
-        // setPropertyFrom (tree, group, parameter);
-    }
-    }
-    */
     //
     }
 }

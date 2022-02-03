@@ -41,6 +41,13 @@ public:
 // MARK: -
 
 public:
+    juce::String getName() const;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     Parameter addParameter (const juce::String&, bool);
     Parameter addParameter (const juce::String&, juce::Colour c);
     Parameter addParameter (const juce::String&, int n);

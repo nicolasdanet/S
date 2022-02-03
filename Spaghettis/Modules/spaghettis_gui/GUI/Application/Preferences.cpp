@@ -12,9 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const juce::var Preferences::getValue (const juce::String& group, const juce::String& key) const
+juce::var Preferences::getValue (const juce::String& group, const juce::String& key) const
 {
-    return juce::var (false);
+    return tree_.getValue (group, key);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ void Preferences::read()
         if (xml) {
             juce::ValueTree t (juce::ValueTree::fromXml (*xml));
             juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
-            tree_.setPropertiesFrom (t);
+            tree_.setParametersFrom (t);
             return;
         }
     }

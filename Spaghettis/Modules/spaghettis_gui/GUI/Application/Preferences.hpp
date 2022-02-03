@@ -50,7 +50,7 @@ public:
 // MARK: -
 
 public:
-    const juce::var getValue (const juce::String& group, const juce::String& key) const;
+    juce::var getValue (const juce::String& group, const juce::String& key) const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
