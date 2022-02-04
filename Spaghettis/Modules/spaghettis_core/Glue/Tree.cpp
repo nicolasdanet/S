@@ -19,14 +19,14 @@ namespace core {
 
 juce::var Tree::getValue (const juce::String& group, const juce::String& key) const
 {
-    return juce::var();
+    return getGroup (group).getParameter (key).getValue();
 }
     
-void Tree::setValue (const juce::String& group, const juce::String& key, const juce::var& v)
+void Tree::changeValue (const juce::String& group, const juce::String& key, const juce::var& v)
 {
-
+    if (getGroup (group).hasParameter (key)) { getGroup (group).getParameter (key).changeValue (v); }
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -44,6 +44,24 @@ Group Tree::addGroup (const juce::String& name)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool Tree::hasGroup (const juce::String& group) const
+{
+    return getGroup (group).isValid();
+}
+
+Group Tree::getGroup (const juce::String& name) const
+{
+    for (const auto& group : tree_) {
+        if (Group (group).getName() == name) { return Group (group); }
+    }
+    
+    return Group();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void Tree::setParametersFrom (const juce::ValueTree& other)
 {
     if (Tree (other).isValid (tree_.getType())) {
@@ -51,11 +69,18 @@ void Tree::setParametersFrom (const juce::ValueTree& other)
     for (const auto& group : other) {
         const juce::String name (Group (group).getName());
         for (const auto& parameter : group) {
-            setValue (name, Parameter (parameter).getKey(), Parameter (parameter).getValue());
+            changeValue (name, Parameter (parameter).getKey(), Parameter (parameter).getValue());
         }
     }
     //
     }
+}
+
+void Tree::write (const juce::File& file) const
+{
+    std::unique_ptr<juce::XmlElement> xml (tree_.createXml());
+    
+    if (xml) { xml->writeTo (file); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

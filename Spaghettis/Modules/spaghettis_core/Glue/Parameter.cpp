@@ -19,13 +19,7 @@ namespace core {
 
 void Parameter::changeValue (const juce::var& v)
 {
-    /*
-    const juce::var& oldValue (t.getProperty (Ids::value));
-    
-    if (!oldValue.equals (newValue)) {
-        t.setProperty (Ids::value, Parameters::Base (t).constrained (newValue), nullptr);
-    }
-    */
+    if (!getValue().equals (v)) { setValue (constrained (v)); }
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -60,6 +54,13 @@ Parameter& Parameter::setText (const juce::String& s)
 Parameter& Parameter::setInfo (const juce::String& s)
 {
     parameter_.setProperty (Ids::info, s, nullptr);
+    
+    return *this;
+}
+
+Parameter& Parameter::setValue (juce::var v)
+{
+    parameter_.setProperty (Ids::value, v, nullptr);
     
     return *this;
 }
@@ -124,6 +125,8 @@ juce::var Parameter::constrained (const juce::var& v) const
 
 bool Parameter::isValid() const
 {
+    if (!parameter_.isValid()) { return false; }
+    
     return (parameter_.hasType (Ids::PARAMETER)
                 && parameter_.getProperty (Ids::key).isString()
                 && parameter_.getProperty (Ids::text).isString()

@@ -24,7 +24,7 @@ class Group {
 // MARK: -
 
 public:
-    explicit Group (const juce::ValueTree& group) : group_ (group)
+    explicit Group (const juce::ValueTree& group = juce::ValueTree()) : group_ (group)
     {
     }
     
@@ -48,12 +48,18 @@ public:
 // MARK: -
 
 public:
+    bool hasParameter (const juce::String&) const;
+    
+public:
     Parameter addParameter (const juce::String&, bool);
     Parameter addParameter (const juce::String&, juce::Colour c);
     Parameter addParameter (const juce::String&, int n);
     Parameter addParameter (const juce::String&, double f);
     Parameter addParameter (const juce::String&, const juce::String& s);
 
+public:
+    Parameter getParameter (const juce::String&) const;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

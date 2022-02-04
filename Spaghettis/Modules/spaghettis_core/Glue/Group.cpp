@@ -39,8 +39,6 @@ Parameter addParameterWithType (juce::ValueTree& group,
     juce::ValueTree parameter (Ids::PARAMETER);
     
     parameter.setProperty (Ids::key,   key,  nullptr);
-    // parameter.setProperty (Ids::text,  text, nullptr);
-    // parameter.setProperty (Ids::info,  info, nullptr);
     parameter.setProperty (Ids::type,  type, nullptr);
     parameter.setProperty (Ids::value, v, nullptr);
     
@@ -52,6 +50,15 @@ Parameter addParameterWithType (juce::ValueTree& group,
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool Group::hasParameter (const juce::String& key) const
+{
+    return getParameter (key).isValid();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -81,6 +88,19 @@ Parameter Group::addParameter (const juce::String& key, double f)
 Parameter Group::addParameter (const juce::String& key, const juce::String& s)
 {
     return addParameterWithType (group_, key, "text", s);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Parameter Group::getParameter (const juce::String& key) const
+{
+    for (const auto& parameter : group_) {
+        if (Parameter (parameter).getKey() == key) { return Parameter (parameter); }
+    }
+    
+    return Parameter();
 }
 
 // -----------------------------------------------------------------------------------------------------------

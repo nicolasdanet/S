@@ -31,9 +31,9 @@ void Preferences::valueTreePropertyChanged (juce::ValueTree& parameter, const ju
     } else if (key == "GridSize") {
         Spaghettis()->handle (Inputs::setSnapToGridSize (core::Parameter::getValue (parameter)));
     }
-        
-    if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }
     */
+    
+    if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ core::Tree Preferences::getDefault()
     
     core::Group general (t.addGroup ("General"));
     core::Group editing (t.addGroup ("Editing"));
-    core::Group nuclear (t.addGroup ("Editing"));
+    core::Group nuclear (t.addGroup ("Nuclear"));
     core::Group colors  (t.addGroup ("Colors"));
         
     general.addParameter ("AskBeforeQuit", true)
@@ -113,11 +113,7 @@ void Preferences::read()
 
 void Preferences::write()
 {
-    /*
-    std::unique_ptr<juce::XmlElement> xml (tree_.createXml());
-    
-    if (xml) { xml->writeTo (file_); }
-    */
+    tree_.write (file_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

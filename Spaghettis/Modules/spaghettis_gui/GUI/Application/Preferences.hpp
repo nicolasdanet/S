@@ -30,7 +30,7 @@ public:
         tree_ (Preferences::getDefault()),
         isReading_ (false)
     {
-        // tree_.addListener (this);
+        tree_.addListener (this);
     }
     
     ~Preferences() = default;

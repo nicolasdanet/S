@@ -46,6 +46,12 @@ private:
 // MARK: -
 
 public:
+    void addListener (juce::ValueTree::Listener* listener)
+    {
+        tree_.addListener (listener);
+    }
+    
+public:
     juce::ValueTree getTree() const
     {
         return tree_;
@@ -58,28 +64,38 @@ public:
 public:
     juce::var getValue (const juce::String&, const juce::String&) const;
     
-    void setValue (const juce::String&, const juce::String&, const juce::var&);
+    void changeValue (const juce::String&, const juce::String&, const juce::var&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Group addGroup (const juce::String& name);
+    Group addGroup (const juce::String&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    void setParametersFrom (const juce::ValueTree& tree);
+private:
+    bool  hasGroup (const juce::String&) const;
+    Group getGroup (const juce::String&) const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    bool isValid (const juce::Identifier& identifier) const;
+    void setParametersFrom (const juce::ValueTree&);
+    
+    void write (const juce::File&) const;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool isValid (const juce::Identifier&) const;
 
 private:
     juce::ValueTree tree_;

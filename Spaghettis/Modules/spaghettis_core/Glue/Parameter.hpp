@@ -24,7 +24,7 @@ class Parameter {
 // MARK: -
 
 public:
-    explicit Parameter (const juce::ValueTree& parameter) : parameter_ (parameter)
+    explicit Parameter (const juce::ValueTree& parameter = juce::ValueTree()) : parameter_ (parameter)
     {
     }
     
@@ -71,6 +71,7 @@ public:
 public:
     Parameter& setText (const juce::String&);
     Parameter& setInfo (const juce::String&);
+    Parameter& setValue (juce::var v);
 
 public:
     template <class T> Parameter& setRange (juce::Range<T> range)
