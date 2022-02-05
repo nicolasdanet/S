@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Preferences : private juce::ValueTree::Listener,
+class Preferences : private core::Tree::Listener,
                     private juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ public:
 // MARK: -
 
 public:
-    void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override;
+    void treeHasChanged() override;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

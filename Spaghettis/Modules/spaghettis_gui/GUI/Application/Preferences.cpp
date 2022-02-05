@@ -21,7 +21,7 @@ juce::var Preferences::getValue (const juce::String& group, const juce::String& 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Preferences::valueTreePropertyChanged (juce::ValueTree& parameter, const juce::Identifier& identifier)
+void Preferences::treeHasChanged()
 {
     /*
     const juce::String key (core::Parameter::getItem (parameter));
