@@ -24,33 +24,6 @@ class Tree {
 // MARK: -
 
 public:
-    class Listener : public juce::ValueTree::Listener
-    {
-        public:
-            Listener()  = default;
-            ~Listener() = default;
-        
-        public:
-            Listener (const Listener&) = default;
-            Listener (Listener&&) = default;
-            Listener& operator = (const Listener&) = default;
-            Listener& operator = (Listener&&) = default;
-    
-        public:
-            void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override
-            {
-                treeHasChanged();
-            }
-        
-        private:
-            virtual void treeHasChanged() = 0;
-    };
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     explicit Tree (const juce::Identifier& type) : tree_ (type)
     {
     }

@@ -1,83 +1,61 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-// ====================================
-
-/*************************************************************************************************************
-
- BEGIN_JUCE_MODULE_DECLARATION
-
-  ID:                 spaghettis_core
-  vendor:             Spaghettis
-  version:            0.9
-  name:               Core
-  description:        The control and DSP engines of Spaghettis.
-  website:            https://github.com/Spaghettis
-  license:            BSD
-
-  dependencies:       juce_core juce_data_structures juce_events juce_graphics juce_gui_basics
-  OSXFrameworks:      Carbon CoreMIDI CoreAudio AudioUnit
-  OSXLibs:            dl pthread
-  linuxLibs:          dl pthread m asound jack
-
- END_JUCE_MODULE_DECLARATION
-
-*************************************************************************************************************/
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#pragma once
+namespace core {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+class Listener : public juce::ValueTree::Listener {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Listener()  = default;
+    ~Listener() = default;
+
+public:
+    Listener (const Listener&) = default;
+    Listener (Listener&&) = default;
+    Listener& operator = (const Listener&) = default;
+    Listener& operator = (Listener&&) = default;
+
+public:
+    void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override
+    {
+        treeHasChanged();
+    }
+
+private:
+    virtual void treeHasChanged() = 0;
+        
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "juce_core/juce_core.h"
-#include "juce_data_structures/juce_data_structures.h"
-#include "juce_events/juce_events.h"
-#include "juce_gui_basics/juce_gui_basics.h"
+} // namespace core
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Glue/Identifiers.hpp"
-#include "Glue/Glue.hpp"
-#include "Glue/Unique.hpp"
-#include "Glue/Colours.hpp"
-#include "Glue/Parameter.hpp"
-#include "Glue/Group.hpp"
-#include "Glue/Listener.hpp"
-#include "Glue/Tree.hpp"
-#include "Glue/Description.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Wrap/Debug.hpp"
-#include "Wrap/Devices.hpp"
-#include "Wrap/Logger.hpp"
-#include "Wrap/Post.hpp"
-#include "Wrap/Queues.hpp"
-#include "Wrap/Inputs.hpp"
-#include "Wrap/Outputs.hpp"
-#include "Wrap/Wrapper.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#define PD_BUILDING_APPLICATION
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if DEBUG
-    #define PD_WITH_DEBUG   1
-#endif
+} // namespace spaghettis
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Preferences : private core::Tree::Listener,
+class Preferences : private core::Listener,
                     private juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
