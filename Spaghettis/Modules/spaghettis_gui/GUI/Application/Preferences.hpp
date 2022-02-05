@@ -25,13 +25,7 @@ friend class PreferencesComponent;
 // MARK: -
 
 public:
-    explicit Preferences (const juce::File& file) :
-        file_ (file),
-        tree_ (Preferences::getDefault()),
-        isReading_ (false)
-    {
-        tree_.addListener (this);
-    }
+    explicit Preferences (const juce::File&);
     
     ~Preferences() = default;
 

@@ -17,6 +17,22 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void Listener::addHandler (const juce::String& key, std::function<void (const Parameter&)> f)
+{
+    handlers_.emplace_back (key, f);
+}
+
+void Listener::callHandlers (const juce::ValueTree& tree)
+{
+    const Parameter parameter (tree);
+    
+    jassert (parameter.isValid());
+    
+    const juce::String key (parameter.getKey());
+    
+    for (const auto& h : handlers_) { if (h.key_ == key) { h.f_ (parameter); } }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

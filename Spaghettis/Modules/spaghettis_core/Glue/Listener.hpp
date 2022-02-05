@@ -23,6 +23,34 @@ class Listener : public juce::ValueTree::Listener {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class Handler {
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit Handler (const juce::String& key, std::function<void (const Parameter&)> f) : key_ (key), f_ (f)
+    {
+    }
+    
+    ~Handler() = default;
+
+public:
+    Handler (const Handler&) = default;
+    Handler (Handler&&) = default;
+    Handler& operator = (const Handler&) = default;
+    Handler& operator = (Handler&&) = default;
+    
+public:
+    juce::String key_;
+    std::function<void (const Parameter&)> f_;
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     Listener()  = default;
     ~Listener() = default;
@@ -34,13 +62,21 @@ public:
     Listener& operator = (Listener&&) = default;
 
 public:
-    void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override
+    void valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier&) override
     {
-        treeHasChanged();
+        callHandlers (tree); treeHasChanged();
     }
 
+    void addHandler (const juce::String& key, std::function<void (const Parameter&)> f);
+
+private:
+    void callHandlers (const juce::ValueTree& tree);
+    
 private:
     virtual void treeHasChanged() = 0;
+
+private:
+    std::vector<Handler> handlers_;
         
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

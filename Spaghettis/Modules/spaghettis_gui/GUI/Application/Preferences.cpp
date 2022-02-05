@@ -12,16 +12,10 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::var Preferences::getValue (const juce::String& group, const juce::String& key) const
-{
-    return tree_.getValue (group, key);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void Preferences::treeHasChanged()
+Preferences::Preferences (const juce::File& file) :
+    file_ (file),
+    tree_ (Preferences::getDefault()),
+    isReading_ (false)
 {
     /*
     const juce::String key (core::Parameter::getItem (parameter));
@@ -33,6 +27,27 @@ void Preferences::treeHasChanged()
     }
     */
     
+    addHandler ("SnapToGrid",   [](const core::Parameter&) { DBG ("?"); });
+    addHandler ("GridSize",     [](const core::Parameter&) { DBG ("?"); });
+    
+    tree_.addListener (this);
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::var Preferences::getValue (const juce::String& group, const juce::String& key) const
+{
+    return tree_.getValue (group, key);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Preferences::treeHasChanged()
+{
     if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }
 }
 
