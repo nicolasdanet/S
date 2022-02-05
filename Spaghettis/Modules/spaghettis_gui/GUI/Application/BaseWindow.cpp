@@ -23,8 +23,6 @@ void BaseWindow::timerCallback()
     
     const int h = Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
     
-    DBG (h);
-    
     if (h != 0) {
     //
     BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());

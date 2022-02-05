@@ -33,6 +33,8 @@ void Tree::changeValue (const juce::String& group, const juce::String& key, cons
 
 Group Tree::addGroup (const juce::String& name)
 {
+    jassert (!hasGroup (name));
+    
     juce::ValueTree group (Ids::GROUP); group.setProperty (Ids::name, name, nullptr);
         
     tree_.appendChild (group, nullptr);

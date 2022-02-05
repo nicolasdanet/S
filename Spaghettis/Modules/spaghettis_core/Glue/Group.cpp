@@ -36,6 +36,8 @@ Parameter addParameterWithType (juce::ValueTree& group,
     const juce::String& type,
     juce::var v)
 {
+    jassert (!Group (group).hasParameter (key));
+    
     juce::ValueTree parameter (Ids::PARAMETER);
     
     parameter.setProperty (Ids::key,   key,  nullptr);
