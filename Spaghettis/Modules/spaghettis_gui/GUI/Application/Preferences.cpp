@@ -17,18 +17,15 @@ Preferences::Preferences (const juce::File& file) :
     tree_ (Preferences::getDefault()),
     isReading_ (false)
 {
-    /*
-    const juce::String key (core::Parameter::getItem (parameter));
-    
-    if (key == "SnapToGrid") {
-        Spaghettis()->handle (Inputs::setSnapToGrid (core::Parameter::getValue (parameter)));
-    } else if (key == "GridSize") {
-        Spaghettis()->handle (Inputs::setSnapToGridSize (core::Parameter::getValue (parameter)));
-    }
-    */
-    
-    addHandler ("SnapToGrid",   [](const core::Parameter&) { DBG ("?"); });
-    addHandler ("GridSize",     [](const core::Parameter&) { DBG ("?"); });
+    addHandler ("SnapToGrid", [] (const core::Parameter& p)
+        {
+            Spaghettis()->handle (Inputs::setSnapToGrid (p.getValue()));
+        });
+        
+    addHandler ("GridSize",   [] (const core::Parameter& p)
+        {
+            Spaghettis()->handle (Inputs::setSnapToGridSize (p.getValue()));
+        });
     
     tree_.addListener (this);
 }
