@@ -123,7 +123,9 @@ int LookAndFeel::getWindowTitleHeight (juce::Component *c)
     
     jassert (p);
     
-    windowTitleHeight_ = p->getFrameSize().getTop();
+    const juce::ComponentPeer::OptionalBorderSize frameSize = p->getFrameSizeIfPresent();
+    
+    if (frameSize) { windowTitleHeight_ = frameSize->getTop(); }
     //
     }
     

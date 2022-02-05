@@ -136,7 +136,7 @@ private:
 // MARK: -
 
 private:
-    void setMinimumHeightCallback (int h);
+    void setMinimumHeight (int h);
 
 private:
     juce::String keyName_;

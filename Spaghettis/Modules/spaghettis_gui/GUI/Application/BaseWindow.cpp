@@ -23,11 +23,13 @@ void BaseWindow::timerCallback()
     
     const int h = Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
     
+    DBG (h);
+    
     if (h != 0) {
     //
     BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());
         
-    if (!c || c->tryGrabFocus()) { setMinimumHeightCallback (mimimumHeight_); stopTimer(); }
+    if (!c || c->tryGrabFocus()) { setMinimumHeight (h); stopTimer(); }
     //
     }
     //
@@ -63,23 +65,25 @@ void BaseWindow::makeVisible (juce::Rectangle<int> window)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseWindow::setMinimumHeightCallback (int h)
+void BaseWindow::setMinimumHeight (int h)
 {
-    if (h) {
+    if (mimimumHeight_) {
     //
+    int n = mimimumHeight_;
+    
     juce::ComponentBoundsConstrainer *c = getConstrainer();
     
     jassert (c);
     
     #if SPAGHETTIS_MENUBAR
     
-    h += Spaghettis()->getLookAndFeel().getDefaultMenuBarHeight();
+    n += Spaghettis()->getLookAndFeel().getDefaultMenuBarHeight();
     
     #endif
     
-    h += Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
+    n += h;
     
-    c->setMinimumHeight (h);
+    c->setMinimumHeight (n);
     //
     }
 }
