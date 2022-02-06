@@ -83,13 +83,11 @@ Preferences::Preferences (const juce::File& file) :
     tree_ (getDefaultPreferences()),
     isReading_ (false)
 {
-    addHandler ("SnapToGrid", [] (const core::Parameter& p)
-        {
+    addHandler ("SnapToGrid", [] (const core::Parameter& p) {
             Spaghettis()->handle (Inputs::setSnapToGrid (p.getValue()));
         });
         
-    addHandler ("GridSize",   [] (const core::Parameter& p)
-        {
+    addHandler ("GridSize",   [] (const core::Parameter& p) {
             Spaghettis()->handle (Inputs::setSnapToGridSize (p.getValue()));
         });
     
