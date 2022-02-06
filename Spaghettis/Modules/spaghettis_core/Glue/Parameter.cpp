@@ -17,6 +17,35 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool Parameter::isBoolean() const
+{
+    return (getType() == "boolean");
+}
+
+bool Parameter::isColour() const
+{
+    return (getType() == "color");
+}
+
+bool Parameter::isInteger() const
+{
+    return (getType() == "integer");
+}
+
+bool Parameter::isFloat() const
+{
+    return (getType() == "float");
+}
+
+bool Parameter::isText() const
+{
+    return (getType() == "text");
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void Parameter::changeValue (const juce::var& v)
 {
     if (!getValue().equals (v)) { setValue (constrained (v)); }

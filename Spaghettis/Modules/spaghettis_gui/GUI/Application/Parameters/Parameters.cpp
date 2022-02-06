@@ -14,12 +14,10 @@ namespace spaghettis {
 
 std::unique_ptr<juce::PropertyComponent> Parameters::Base::createPropertyComponent()
 {
-    const juce::String type = p_.getType();
-    
-    if (type == "boolean")      { return std::make_unique<Parameters::Boolean> (p_); }
-    if (type == "color")        { return std::make_unique<Parameters::Colour> (p_);  }
-    else if (type == "integer") { return std::make_unique<Parameters::Integer> (p_); }
-    else if (type == "float")   {
+    if (p_.isBoolean())         { return std::make_unique<Parameters::Boolean> (p_); }
+    if (p_.isColour())          { return std::make_unique<Parameters::Colour> (p_);  }
+    else if (p_.isInteger())    { return std::make_unique<Parameters::Integer> (p_); }
+    else if (p_.isFloat())      {
         if (p_.hasRange()) {
             return std::make_unique<Parameters::Slider> (p_);
         } else {
