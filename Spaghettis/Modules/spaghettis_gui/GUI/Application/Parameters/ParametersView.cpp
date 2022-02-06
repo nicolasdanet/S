@@ -76,14 +76,27 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<juce::PropertyComponent> buildConcertinaPanelParameterGet (juce::ValueTree parameter)
+std::unique_ptr<juce::PropertyComponent> createPropertyComponent (juce::ValueTree parameter)
 {
-    return Parameters::Base (parameter).createPropertyComponent();
+    core::Parameter p (parameter);
+    
+    if (p.isBoolean())         { return std::make_unique<Parameters::Boolean> (p); }
+    if (p.isColour())          { return std::make_unique<Parameters::Colour> (p);  }
+    else if (p.isInteger())    { return std::make_unique<Parameters::Integer> (p); }
+    else if (p.isFloat())      {
+        if (p.hasRange()) {
+            return std::make_unique<Parameters::Slider> (p);
+        } else {
+            return std::make_unique<Parameters::Float> (p);
+        }
+    } else {
+        return std::make_unique<Parameters::Text> (p);
+    }
 }
 
 void buildConcertinaPanelParameter (juce::ValueTree parameter, juce::Array<juce::PropertyComponent*>& c)
 {
-    std::unique_ptr<juce::PropertyComponent> p (buildConcertinaPanelParameterGet (parameter));
+    std::unique_ptr<juce::PropertyComponent> p (createPropertyComponent (parameter));
     
     p->setPreferredHeight (Spaghettis()->getLookAndFeel().getPropertyPanelHeight());
     p->setTooltip (parameter.getProperty (Ids::info).toString());

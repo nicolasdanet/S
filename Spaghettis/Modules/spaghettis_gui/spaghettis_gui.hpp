@@ -71,7 +71,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Parameters/Parameters.hpp"
 #include "GUI/Application/Parameters/ParametersHeader.hpp"
 #include "GUI/Application/Parameters/ParametersView.hpp"
 #include "GUI/Application/Parameters/ParametersBoolean.hpp"

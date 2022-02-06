@@ -35,7 +35,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Parameters/Parameters.cpp"
 #include "GUI/Application/Parameters/ParametersHeader.cpp"
 #include "GUI/Application/Parameters/ParametersView.cpp"
 #include "GUI/Application/Parameters/ParametersColour.cpp"
