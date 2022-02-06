@@ -34,7 +34,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
+public:
     template <class T> operator juce::Range<T>() const
     {
         auto m = static_cast<T> (parameter_.getProperty (Ids::minimum));
@@ -62,7 +62,10 @@ public:
 public:
     juce::String getKey() const;
     juce::String getType() const;
+    juce::String getText() const;
+    juce::String getInfo() const;
     juce::var getValue() const;
+    juce::Value getValueAsValue();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

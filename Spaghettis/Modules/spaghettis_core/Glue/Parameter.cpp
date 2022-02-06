@@ -30,14 +30,30 @@ juce::String Parameter::getKey() const
 {
     return parameter_.getProperty (Ids::key).toString();
 }
+
 juce::String Parameter::getType() const
 {
-    return parameter_.getProperty (Ids::type);
+    return parameter_.getProperty (Ids::type).toString();
+}
+
+juce::String Parameter::getText() const
+{
+    return parameter_.getProperty (Ids::text).toString();
+}
+
+juce::String Parameter::getInfo() const
+{
+    return parameter_.getProperty (Ids::info).toString();
 }
 
 juce::var Parameter::getValue() const
 {
     return parameter_.getProperty (Ids::value);
+}
+
+juce::Value Parameter::getValueAsValue()
+{
+    return parameter_.getPropertyAsValue (Ids::value, nullptr);
 }
  
 // -----------------------------------------------------------------------------------------------------------

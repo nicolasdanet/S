@@ -82,8 +82,8 @@ class Colour : public juce::PropertyComponent {
 // MARK: -
 
 public:
-    explicit Colour (juce::ValueTree p) : juce::PropertyComponent (p.getProperty (Ids::text).toString()),
-        editor_ (p.getPropertyAsValue (Ids::value, nullptr))
+    explicit Colour (core::Parameter& p) :
+        juce::PropertyComponent (p.getText()), editor_ (p.getValueAsValue())
     {
         addAndMakeVisible (editor_);
     }

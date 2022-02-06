@@ -24,7 +24,7 @@ class Base {
 // MARK: -
 
 public:
-    explicit Base (const juce::ValueTree& p) : p_ (p), type_ (p.getProperty (Ids::type).toString())
+    explicit Base (const juce::ValueTree& p) : p_ (p)
     {
     }
 
@@ -33,62 +33,10 @@ public:
 // MARK: -
 
 public:
-    std::unique_ptr<juce::PropertyComponent> createPropertyComponent() const;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    juce::var constrained (const juce::var& v) const;
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    bool hasRange() const
-    {
-        return (p_.hasProperty (Ids::minimum) && p_.hasProperty (Ids::maximum));
-    }
-    
-    double getMinimumAsDouble() const
-    {
-        double m = static_cast<double> (p_.getProperty (Ids::minimum));
-        double n = static_cast<double> (p_.getProperty (Ids::maximum));
-        
-        return juce::jmin (m, n);
-    }
-    
-    double getMaximumAsDouble() const
-    {
-        double m = static_cast<double> (p_.getProperty (Ids::minimum));
-        double n = static_cast<double> (p_.getProperty (Ids::maximum));
-        
-        return juce::jmax (m, n);
-    }
-    
-    double getStep() const
-    {
-        return 0.001;
-    }
-    
-    template <class T> operator juce::Range<T>() const
-    {
-        auto m = static_cast<T> (p_.getProperty (Ids::minimum));
-        auto n = static_cast<T> (p_.getProperty (Ids::maximum));
-        auto minimum = juce::jmin (m, n);
-        auto maximum = juce::jmax (m, n);
-            
-        if (minimum != maximum) { return juce::Range<T> (minimum, maximum); }
-        else {
-            return juce::Range<T>();
-        }
-    }
+    std::unique_ptr<juce::PropertyComponent> createPropertyComponent();
 
 private:
-    const juce::ValueTree p_;
-    const juce::String type_;
+    core::Parameter p_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

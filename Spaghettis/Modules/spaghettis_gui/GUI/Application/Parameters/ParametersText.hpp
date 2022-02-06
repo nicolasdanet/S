@@ -23,11 +23,8 @@ class Text : public juce::TextPropertyComponent {
 // MARK: -
 
 public:
-    explicit Text (juce::ValueTree p) :
-        juce::TextPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
-            p.getProperty (Ids::text).toString(),
-            64,
-            false)
+    explicit Text (core::Parameter& p) :
+        juce::TextPropertyComponent (p.getValueAsValue(), p.getText(), 64, false)
     {
         setInterestedInFileDrag (false);
     }

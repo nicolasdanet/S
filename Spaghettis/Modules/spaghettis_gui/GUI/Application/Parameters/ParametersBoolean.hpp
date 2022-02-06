@@ -24,10 +24,8 @@ class Boolean : public juce::BooleanPropertyComponent {
 // MARK: -
 
 public:
-    explicit Boolean (juce::ValueTree p) :
-        juce::BooleanPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
-            p.getProperty (Ids::text).toString(),
-            "")
+    explicit Boolean (core::Parameter& p) :
+        juce::BooleanPropertyComponent (p.getValueAsValue(), p.getText(), "")
     {
     }
     

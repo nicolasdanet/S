@@ -24,13 +24,10 @@ template <class T> class Number : public juce::TextPropertyComponent {
 // MARK: -
 
 public:
-    explicit Number (juce::ValueTree p, const Base& b) :
-        juce::TextPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
-            p.getProperty (Ids::text).toString(),
-            32,
-            false),
+    explicit Number (core::Parameter& p) :
+        juce::TextPropertyComponent (p.getValueAsValue(), p.getText(), 32, false),
         v_(),
-        range_ (b)
+        range_ (p)
     {
     }
 
@@ -64,7 +61,7 @@ public:
     
     static T parsedWithDefault (const juce::String& s, T t)
     {
-        if (s.isNotEmpty() && s.containsOnly ("-.e+0123456789")) { return convert (s); }    // --
+        if (s.isNotEmpty() && s.containsOnly ("-.e+0123456789")) { return convert (s); }
         else {
             return t;
         }
@@ -109,12 +106,12 @@ class Slider : public juce::SliderPropertyComponent {
 // MARK: -
 
 public:
-    explicit Slider (juce::ValueTree p, const Base& b) :
-        SliderPropertyComponent (p.getPropertyAsValue (Ids::value, nullptr),
-            p.getProperty (Ids::text).toString(),
-            b.getMinimumAsDouble(),
-            b.getMaximumAsDouble(),
-            b.getStep())
+    explicit Slider (core::Parameter& p) :
+        SliderPropertyComponent (p.getValueAsValue(),
+            p.getText(),
+            p.getMinimumAsDouble(),
+            p.getMaximumAsDouble(),
+            p.getStep())
     {
         slider.valueFromTextFunction = [this] (const juce::String& text)
         {
