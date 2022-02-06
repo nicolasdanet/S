@@ -78,17 +78,11 @@ class Iter {
 // MARK: -
 
 public:
-    Iter (const juce::ValueTree& t, bool isEnd) : iterator_ (t, isEnd) { }
+    Iter (const juce::ValueTree::Iterator& iterator) : iterator_ (iterator) { }
     Iter& operator ++() { ++iterator_; return *this; }
     bool operator == (const Iter& iter) const { return iterator_ == iter.iterator_; }
     bool operator != (const Iter& iter) const { return iterator_ != iter.iterator_; }
     Parameter operator *() const { return Parameter (*iterator_); }
-
-    //using difference_type    = std::ptrdiff_t;
-    //using value_type         = ValueTree;
-    //using reference          = ValueTree&;
-    //using pointer            = ValueTree*;
-    //using iterator_category  = std::forward_iterator_tag;
 
 private:
     juce::ValueTree::Iterator iterator_;
@@ -99,8 +93,8 @@ private:
 // MARK: -
 
 public:
-    Iter begin() const { return Iter (group_, false); }
-    Iter end() const   { return Iter (group_, true);  }
+    Iter begin() const { return Iter (group_.begin()); }
+    Iter end() const   { return Iter (group_.end());   }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
