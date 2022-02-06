@@ -52,7 +52,7 @@ public:
     }
     
 public:
-    juce::ValueTree getTree() const
+    juce::ValueTree getValueTree() const
     {
         return tree_;
     }

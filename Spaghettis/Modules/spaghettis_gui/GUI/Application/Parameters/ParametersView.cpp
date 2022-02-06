@@ -76,30 +76,28 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<juce::PropertyComponent> createPropertyComponent (juce::ValueTree parameter)
+std::unique_ptr<juce::PropertyComponent> createPropertyComponent (core::Parameter parameter)
 {
-    core::Parameter p (parameter);
-    
-    if (p.isBoolean())         { return std::make_unique<Parameters::Boolean> (p); }
-    if (p.isColour())          { return std::make_unique<Parameters::Colour> (p);  }
-    else if (p.isInteger())    { return std::make_unique<Parameters::Integer> (p); }
-    else if (p.isFloat())      {
-        if (p.hasRange()) {
-            return std::make_unique<Parameters::Slider> (p);
+    if (parameter.isBoolean())      { return std::make_unique<Parameters::Boolean> (parameter); }
+    if (parameter.isColour())       { return std::make_unique<Parameters::Colour> (parameter);  }
+    else if (parameter.isInteger()) { return std::make_unique<Parameters::Integer> (parameter); }
+    else if (parameter.isFloat())   {
+        if (parameter.hasRange())   {
+            return std::make_unique<Parameters::Slider> (parameter);
         } else {
-            return std::make_unique<Parameters::Float> (p);
+            return std::make_unique<Parameters::Float> (parameter);
         }
     } else {
-        return std::make_unique<Parameters::Text> (p);
+        return std::make_unique<Parameters::Text> (parameter);
     }
 }
 
-void buildConcertinaPanelParameter (juce::ValueTree parameter, juce::Array<juce::PropertyComponent*>& c)
+void buildConcertinaPanelParameter (core::Parameter parameter, juce::Array<juce::PropertyComponent*>& c)
 {
     std::unique_ptr<juce::PropertyComponent> p (createPropertyComponent (parameter));
     
     p->setPreferredHeight (Spaghettis()->getLookAndFeel().getPropertyPanelHeight());
-    p->setTooltip (parameter.getProperty (Ids::info).toString());
+    p->setTooltip (parameter.getInfo());
     
     c.add (p.release());
 }
@@ -113,19 +111,19 @@ void buildConcertinaPanelParameter (juce::ValueTree parameter, juce::Array<juce:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Parameters::View::buildConcertinaPanel (const juce::ValueTree& tree, View& v)
+void Parameters::View::buildConcertinaPanel (const core::Tree& tree, View& v)
 {
-    for (const auto& group : tree) {
+    for (const auto& group : tree.getValueTree()) {
     //
-    auto panel = std::make_unique<juce::PropertyPanel> (group.getProperty (Ids::name).toString());
+    auto panel = std::make_unique<juce::PropertyPanel> (core::Group (group).getName());
     
-    {
-        juce::Array<juce::PropertyComponent*> components;
+    juce::Array<juce::PropertyComponent*> components;
     
-        for (const auto& parameter : group) { buildConcertinaPanelParameter (parameter, components); }
-    
-        panel->addProperties (components);
+    for (const auto& parameter : group) {
+        buildConcertinaPanelParameter (core::Parameter (parameter), components);
     }
+    
+    panel->addProperties (components);
     
     v.addPanel (panel.release());
     //

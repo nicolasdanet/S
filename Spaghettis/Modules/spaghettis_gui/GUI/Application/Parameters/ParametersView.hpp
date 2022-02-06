@@ -29,7 +29,7 @@ friend class Header;
 // MARK: -
 
 public:
-    explicit View (const juce::ValueTree& tree) : tree_ (tree), expanded_ (0), expandedLast_ (0)
+    explicit View (const core::Tree& tree) : tree_ (tree), expanded_ (0), expandedLast_ (0)
     {
         buildConcertinaPanel (tree_, *this);
         
@@ -59,13 +59,13 @@ private:
 // MARK: -
 
 private:
-    static void buildConcertinaPanel (const juce::ValueTree&, View&);
+    static void buildConcertinaPanel (const core::Tree&, View&);
 
 protected:
     juce::ConcertinaPanel panel_;
 
 private:
-    juce::ValueTree tree_;
+    core::Tree tree_;
     int expanded_;
     int expandedLast_;
     

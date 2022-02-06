@@ -34,9 +34,9 @@ public:
 // MARK: -
 
 public:
-    juce::ValueTree getTree()
+    core::Tree getTree()
     {
-        return tree_.getTree();
+        return tree_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
