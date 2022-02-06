@@ -113,14 +113,14 @@ void buildConcertinaPanelParameter (core::Parameter parameter, juce::Array<juce:
 
 void Parameters::View::buildConcertinaPanel (const core::Tree& tree, View& v)
 {
-    for (const auto& group : tree.getValueTree()) {
+    for (const auto& group : tree) {
     //
-    auto panel = std::make_unique<juce::PropertyPanel> (core::Group (group).getName());
+    auto panel = std::make_unique<juce::PropertyPanel> (group.getName());
     
     juce::Array<juce::PropertyComponent*> components;
     
     for (const auto& parameter : group) {
-        buildConcertinaPanelParameter (core::Parameter (parameter), components);
+        buildConcertinaPanelParameter (parameter, components);
     }
     
     panel->addProperties (components);

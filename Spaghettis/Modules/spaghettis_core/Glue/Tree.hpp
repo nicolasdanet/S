@@ -97,6 +97,44 @@ public:
 public:
     bool isValid (const juce::Identifier&) const;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+struct Iter {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Iter (const juce::ValueTree& t, bool isEnd) : iterator_ (t, isEnd) { }
+    Iter& operator ++() { ++iterator_; return *this; }
+    bool operator == (const Iter& iter) const { return iterator_ == iter.iterator_; }
+    bool operator != (const Iter& iter) const { return iterator_ != iter.iterator_; }
+    Group operator *() const { return Group (*iterator_); }
+
+    //using difference_type    = std::ptrdiff_t;
+    //using value_type         = ValueTree;
+    //using reference          = ValueTree&;
+    //using pointer            = ValueTree*;
+    //using iterator_category  = std::forward_iterator_tag;
+
+private:
+    juce::ValueTree::Iterator iterator_;
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Iter begin() const { return Iter (tree_, false); }
+    Iter end() const   { return Iter (tree_, true);  }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 private:
     juce::ValueTree tree_;
     
