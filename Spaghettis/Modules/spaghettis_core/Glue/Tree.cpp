@@ -53,7 +53,7 @@ bool Tree::hasGroup (const juce::String& group) const
 
 Group Tree::getGroup (const juce::String& name) const
 {
-    for (const auto& group : tree_) { if (Group (group).getName() == name) { return Group (group); } }
+    for (const auto& group : *this) { if (group.getName() == name) { return group; } }
     
     return Group();
 }

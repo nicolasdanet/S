@@ -70,7 +70,8 @@ public:
 
 public:
     juce::var getValue (const juce::String&, const juce::String&) const;
-    
+
+private:
     void changeValue (const juce::String&, const juce::String&, const juce::var&);
     
 // -----------------------------------------------------------------------------------------------------------
