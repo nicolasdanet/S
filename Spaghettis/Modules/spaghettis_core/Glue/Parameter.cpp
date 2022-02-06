@@ -51,7 +51,7 @@ juce::var Parameter::getValue() const
     return parameter_.getProperty (Ids::value);
 }
 
-juce::Value Parameter::getValueAsValue()
+juce::Value Parameter::getSource()
 {
     return parameter_.getPropertyAsValue (Ids::value, nullptr);
 }

@@ -25,7 +25,7 @@ template <class T> class Number : public juce::TextPropertyComponent {
 
 public:
     explicit Number (core::Parameter& p) :
-        juce::TextPropertyComponent (p.getValueAsValue(), p.getText(), 32, false),
+        juce::TextPropertyComponent (p.getSource(), p.getText(), 32, false),
         v_(),
         range_ (p)
     {
@@ -107,7 +107,7 @@ class Slider : public juce::SliderPropertyComponent {
 
 public:
     explicit Slider (core::Parameter& p) :
-        SliderPropertyComponent (p.getValueAsValue(),
+        SliderPropertyComponent (p.getSource(),
             p.getText(),
             p.getMinimumAsDouble(),
             p.getMaximumAsDouble(),

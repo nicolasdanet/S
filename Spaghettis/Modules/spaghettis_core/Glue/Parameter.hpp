@@ -65,7 +65,7 @@ public:
     juce::String getText() const;
     juce::String getInfo() const;
     juce::var getValue() const;
-    juce::Value getValueAsValue();
+    juce::Value getSource();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
