@@ -10,49 +10,14 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-Preferences::Preferences (const juce::File& file) :
-    file_ (file),
-    tree_ (Preferences::getDefault()),
-    isReading_ (false)
-{
-    addHandler ("SnapToGrid", [] (const core::Parameter& p)
-        {
-            Spaghettis()->handle (Inputs::setSnapToGrid (p.getValue()));
-        });
-        
-    addHandler ("GridSize",   [] (const core::Parameter& p)
-        {
-            Spaghettis()->handle (Inputs::setSnapToGridSize (p.getValue()));
-        });
-    
-    tree_.addListener (this);
-}
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::var Preferences::getValue (const juce::String& group, const juce::String& key) const
-{
-    return tree_.getValue (group, key);
-}
+namespace {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Preferences::treeHasChanged()
-{
-    if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-core::Tree Preferences::getDefault()
+core::Tree getDefaultPreferences()
 {
     core::Tree t (Ids::PREFERENCES);
     
@@ -102,6 +67,51 @@ core::Tree Preferences::getDefault()
     jassert (t.isValid (Ids::PREFERENCES));
     
     return t;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Preferences::Preferences (const juce::File& file) :
+    file_ (file),
+    tree_ (getDefaultPreferences()),
+    isReading_ (false)
+{
+    addHandler ("SnapToGrid", [] (const core::Parameter& p)
+        {
+            Spaghettis()->handle (Inputs::setSnapToGrid (p.getValue()));
+        });
+        
+    addHandler ("GridSize",   [] (const core::Parameter& p)
+        {
+            Spaghettis()->handle (Inputs::setSnapToGridSize (p.getValue()));
+        });
+    
+    tree_.addListener (this);
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::var Preferences::getValue (const juce::String& group, const juce::String& key) const
+{
+    return tree_.getValue (group, key);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Preferences::treeHasChanged()
+{
+    if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

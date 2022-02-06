@@ -64,12 +64,14 @@ Group Tree::getGroup (const juce::String& name) const
 
 void Tree::setParametersFrom (const juce::ValueTree& other)
 {
-    if (Tree (other).isValid (tree_.getType())) {
+    const Tree tree (other);
+    
+    if (tree.isValid (tree_.getType())) {
     //
-    for (const auto& group : other) {
-        const juce::String name (Group (group).getName());
+    for (const auto& group : tree) {
+        const juce::String name (group.getName());
         for (const auto& parameter : group) {
-            changeValue (name, Parameter (parameter).getKey(), Parameter (parameter).getValue());
+            changeValue (name, parameter.getKey(), parameter.getValue());
         }
     }
     //
