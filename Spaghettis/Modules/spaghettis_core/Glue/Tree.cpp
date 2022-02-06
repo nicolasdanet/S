@@ -93,8 +93,8 @@ bool Tree::isValid (const juce::Identifier& identifier) const
 {
     if (!tree_.isValid() || !tree_.hasType (identifier)) { return false; }
     
-    for (const auto& group : tree_) {
-        if (!Group (group).isValid()) { return false; }
+    for (const auto& group : *this) {
+        if (!group.isValid()) { return false; }
     }
 
     return true;
