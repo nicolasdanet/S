@@ -35,24 +35,6 @@ public:
 // MARK: -
 
 public:
-    template <class T> operator juce::Range<T>() const
-    {
-        auto m = static_cast<T> (parameter_.getProperty (Ids::minimum));
-        auto n = static_cast<T> (parameter_.getProperty (Ids::maximum));
-        auto minimum = juce::jmin (m, n);
-        auto maximum = juce::jmax (m, n);
-            
-        if (minimum != maximum) { return juce::Range<T> (minimum, maximum); }
-        else {
-            return juce::Range<T>();
-        }
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     bool isBoolean() const;
     bool isColour() const;
     bool isInteger() const;
@@ -68,8 +50,8 @@ public:
     juce::String getType() const;
     juce::String getText() const;
     juce::String getInfo() const;
-    juce::var getValue() const;
-    juce::Value getSource();
+    juce::var    getValue() const;
+    juce::Value  getSource();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -80,6 +62,10 @@ public:
     Parameter& setInfo (const juce::String&);
     Parameter& setValue (const juce::var&);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     template <class T> Parameter& setRange (juce::Range<T> range)
     {
@@ -87,6 +73,19 @@ public:
         parameter_.setProperty (Ids::maximum, range.getEnd(), nullptr);
         
         return *this;
+    }
+
+    template <class T> operator juce::Range<T>() const
+    {
+        auto m = static_cast<T> (parameter_.getProperty (Ids::minimum));
+        auto n = static_cast<T> (parameter_.getProperty (Ids::maximum));
+        auto minimum = juce::jmin (m, n);
+        auto maximum = juce::jmax (m, n);
+            
+        if (minimum != maximum) { return juce::Range<T> (minimum, maximum); }
+        else {
+            return juce::Range<T>();
+        }
     }
     
 // -----------------------------------------------------------------------------------------------------------

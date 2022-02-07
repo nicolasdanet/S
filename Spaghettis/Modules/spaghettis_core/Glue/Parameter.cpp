@@ -137,17 +137,15 @@ double Parameter::getStep() const
 
 juce::var Parameter::constrained (const juce::var& v) const
 {
-    const juce::String type = getType();
-    
-    if (type == "boolean") {
+    if (isBoolean()) {
         bool b = static_cast<bool> (v);
         return juce::var (b);
-    } else if (type == "color") {
+    } else if (isColour()) {
         return juce::var (core::Colours::getColourFromString (v.toString()).toString());
-    } else if (type == "integer" && hasRange()) {
+    } else if (isInteger() && hasRange()) {
         int i = juce::Range<int> (*this).clipValue (static_cast<int> (v));
         return juce::var (juce::String (i));
-    } else if (type == "float" && hasRange()) {
+    } else if (isFloat() && hasRange()) {
         double f = juce::Range<double> (*this).clipValue (static_cast<double> (v));
         return juce::var (juce::String (f));
     }
