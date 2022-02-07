@@ -147,6 +147,10 @@ double Parameter::getStep() const
 
 const juce::var& Parameter::get (const juce::Identifier& identifier) const
 {
+    // juce::ValueTree prototype (parameter_.getChildWithName (Ids::PROTOTYPE));
+    
+    // if (prototype.isValid()) { return prototype.getProperty (identifier); }
+    
     return parameter_.getProperty (identifier);
 }
 
@@ -180,7 +184,7 @@ bool Parameter::isValid() const
     if (!parameter_.isValid()) { return false; }
     else if (!parameter_.hasType (Ids::PARAMETER)) { return false; }
 
-    return (get (Ids::key).isString() && get (Ids::type).isString() && getValue().isVoid() == false);
+    return (get (Ids::key).isString() && get (Ids::type).isString() && !getValue().isVoid());
 }
 
 // -----------------------------------------------------------------------------------------------------------
