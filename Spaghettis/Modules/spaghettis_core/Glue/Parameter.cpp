@@ -46,15 +46,6 @@ bool Parameter::isText() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Parameter::changeValue (const juce::var& v)
-{
-    if (!getValue().equals (v)) { setValue (constrained (v)); }
-}
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 juce::String Parameter::getKey() const
 {
     return parameter_.getProperty (Ids::key).toString();
@@ -103,9 +94,9 @@ Parameter& Parameter::setInfo (const juce::String& s)
     return *this;
 }
 
-Parameter& Parameter::setValue (juce::var v)
+Parameter& Parameter::setValue (const juce::var& v)
 {
-    parameter_.setProperty (Ids::value, v, nullptr);
+    if (!getValue().equals (v)) { parameter_.setProperty (Ids::value, constrained (v), nullptr); }
     
     return *this;
 }

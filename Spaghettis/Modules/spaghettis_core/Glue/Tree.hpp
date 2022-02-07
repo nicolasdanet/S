@@ -71,9 +71,6 @@ public:
 public:
     juce::var getValue (const juce::String&, const juce::String&) const;
 
-private:
-    void changeValue (const juce::String&, const juce::String&, const juce::var&);
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -85,7 +82,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
+public:
     bool  hasGroup (const juce::String&) const;
     Group getGroup (const juce::String&) const;
     

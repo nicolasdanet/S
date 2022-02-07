@@ -22,11 +22,6 @@ juce::var Tree::getValue (const juce::String& group, const juce::String& key) co
     return getGroup (group).getParameter (key).getValue();
 }
     
-void Tree::changeValue (const juce::String& group, const juce::String& key, const juce::var& v)
-{
-    if (getGroup (group).hasParameter (key)) { getGroup (group).getParameter (key).changeValue (v); }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -62,16 +57,40 @@ Group Tree::getGroup (const juce::String& name) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Tree::setParametersFrom (const juce::ValueTree& other)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void setParametersFromProceed (core::Tree& tree,
+    const juce::String& group,
+    const juce::String& key,
+    const juce::var& v)
 {
-    const Tree tree (other);
+    if (tree.getGroup (group).hasParameter (key)) {
+        tree.getGroup (group).getParameter (key).setValue (v);
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Tree::setParametersFrom (const juce::ValueTree& tree)
+{
+    const Tree other (tree);
     
-    if (tree.isValid (tree_.getType())) {
+    if (other.isValid (tree_.getType())) {
     //
-    for (const auto& group : tree) {
+    for (const auto& group : other) {
         const juce::String name (group.getName());
         for (const auto& parameter : group) {
-            changeValue (name, parameter.getKey(), parameter.getValue());
+            setParametersFromProceed (*this, name, parameter.getKey(), parameter.getValue());
         }
     }
     //

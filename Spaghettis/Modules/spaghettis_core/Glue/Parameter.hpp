@@ -64,13 +64,6 @@ public:
 // MARK: -
 
 public:
-    void changeValue (const juce::var&);
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     juce::String getKey() const;
     juce::String getType() const;
     juce::String getText() const;
@@ -85,7 +78,7 @@ public:
 public:
     Parameter& setText (const juce::String&);
     Parameter& setInfo (const juce::String&);
-    Parameter& setValue (juce::var v);
+    Parameter& setValue (const juce::var&);
 
 public:
     template <class T> Parameter& setRange (juce::Range<T> range)
