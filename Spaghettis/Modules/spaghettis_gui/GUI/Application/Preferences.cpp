@@ -64,8 +64,6 @@ core::Tree getDefaultPreferences()
                 .setText (NEEDS_TRANS ("Patch Background"))
                 .setInfo (NEEDS_TRANS ("Set background color of patch"));
     
-    jassert (t.isValid (Ids::PREFERENCES));
-    
     return t;
 }
 

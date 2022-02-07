@@ -62,7 +62,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void setParametersFromProceed (core::Tree& tree,
+void setValueOfParameter (core::Tree& tree,
     const juce::String& group,
     const juce::String& key,
     const juce::var& v)
@@ -70,6 +70,15 @@ void setParametersFromProceed (core::Tree& tree,
     if (tree.getGroup (group).hasParameter (key)) {
         tree.getGroup (group).getParameter (key).setValue (v);
     }
+}
+
+bool isValidTree (const Tree& other)
+{
+    for (const auto& group : other) {
+        if (!group.isValid()) { return false; }
+    }
+
+    return true;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -83,15 +92,19 @@ void setParametersFromProceed (core::Tree& tree,
 
 void Tree::setParametersFrom (const juce::ValueTree& tree)
 {
+    if (tree.isValid() && tree.hasType (tree_.getType())) {
+    //
     const Tree other (tree);
     
-    if (other.isValid (tree_.getType())) {
+    if (isValidTree (other)) {
     //
     for (const auto& group : other) {
         const juce::String name (group.getName());
         for (const auto& parameter : group) {
-            setParametersFromProceed (*this, name, parameter.getKey(), parameter.getValue());
+            setValueOfParameter (*this, name, parameter.getKey(), parameter.getValue());
         }
+    }
+    //
     }
     //
     }
@@ -102,21 +115,6 @@ void Tree::write (const juce::File& file) const
     std::unique_ptr<juce::XmlElement> xml (tree_.createXml());
     
     if (xml) { xml->writeTo (file); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool Tree::isValid (const juce::Identifier& identifier) const
-{
-    if (!tree_.isValid() || !tree_.hasType (identifier)) { return false; }
-    
-    for (const auto& group : *this) {
-        if (!group.isValid()) { return false; }
-    }
-
-    return true;
 }
 
 // -----------------------------------------------------------------------------------------------------------
