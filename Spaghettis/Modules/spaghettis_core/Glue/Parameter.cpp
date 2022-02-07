@@ -48,34 +48,24 @@ bool Parameter::isText() const
 
 juce::String Parameter::getKey() const
 {
-    return parameter_.getProperty (Ids::key).toString();
+    return get (Ids::key).toString();
 }
 
 juce::String Parameter::getType() const
 {
-    return parameter_.getProperty (Ids::type).toString();
+    return get (Ids::type).toString();
 }
 
 juce::String Parameter::getText() const
 {
-    return parameter_.getProperty (Ids::text).toString();
+    return get (Ids::text).toString();
 }
 
 juce::String Parameter::getInfo() const
 {
-    return parameter_.getProperty (Ids::info).toString();
+    return get (Ids::info).toString();
 }
 
-juce::var Parameter::getValue() const
-{
-    return parameter_.getProperty (Ids::value);
-}
-
-juce::Value Parameter::getSource()
-{
-    return parameter_.getPropertyAsValue (Ids::value, nullptr);
-}
- 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -94,11 +84,31 @@ Parameter& Parameter::setInfo (const juce::String& s)
     return *this;
 }
 
-Parameter& Parameter::setValue (const juce::var& v)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::var Parameter::getValue() const
 {
-    if (!getValue().equals (v)) { parameter_.setProperty (Ids::value, constrained (v), nullptr); }
-    
-    return *this;
+    return parameter_.getProperty (Ids::value);
+}
+
+void Parameter::setValue (const juce::var& v)
+{
+    if (!parameter_.getProperty (Ids::value).equals (v)) {
+    //
+    parameter_.setProperty (Ids::value, constrained (v), nullptr);
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Value Parameter::getSource()
+{
+    return parameter_.getPropertyAsValue (Ids::value, nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -107,21 +117,21 @@ Parameter& Parameter::setValue (const juce::var& v)
 
 bool Parameter::hasRange() const
 {
-    return (parameter_.hasProperty (Ids::minimum) && parameter_.hasProperty (Ids::maximum));
+    return (!get (Ids::minimum).isVoid() && !get (Ids::maximum).isVoid());
 }
 
 double Parameter::getMinimumAsDouble() const
 {
-    double m = static_cast<double> (parameter_.getProperty (Ids::minimum));
-    double n = static_cast<double> (parameter_.getProperty (Ids::maximum));
+    double m = static_cast<double> (get (Ids::minimum));
+    double n = static_cast<double> (get (Ids::maximum));
     
     return juce::jmin (m, n);
 }
 
 double Parameter::getMaximumAsDouble() const
 {
-    double m = static_cast<double> (parameter_.getProperty (Ids::minimum));
-    double n = static_cast<double> (parameter_.getProperty (Ids::maximum));
+    double m = static_cast<double> (get (Ids::minimum));
+    double n = static_cast<double> (get (Ids::maximum));
     
     return juce::jmax (m, n);
 }
@@ -134,6 +144,14 @@ double Parameter::getStep() const
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+const juce::var& Parameter::get (const juce::Identifier& identifier) const
+{
+    return parameter_.getProperty (identifier);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 juce::var Parameter::constrained (const juce::var& v) const
 {
@@ -160,11 +178,9 @@ juce::var Parameter::constrained (const juce::var& v) const
 bool Parameter::isValid() const
 {
     if (!parameter_.isValid()) { return false; }
-    
-    return (parameter_.hasType (Ids::PARAMETER)
-                && parameter_.getProperty (Ids::key).isString()
-                && parameter_.getProperty (Ids::type).isString()
-                && parameter_.hasProperty (Ids::value));
+    else if (!parameter_.hasType (Ids::PARAMETER)) { return false; }
+
+    return (get (Ids::key).isString() && get (Ids::type).isString() && getValue().isVoid() == false);
 }
 
 // -----------------------------------------------------------------------------------------------------------
