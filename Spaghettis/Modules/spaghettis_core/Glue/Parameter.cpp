@@ -163,8 +163,6 @@ bool Parameter::isValid() const
     
     return (parameter_.hasType (Ids::PARAMETER)
                 && parameter_.getProperty (Ids::key).isString()
-                && parameter_.getProperty (Ids::text).isString()
-                && parameter_.getProperty (Ids::info).isString()
                 && parameter_.getProperty (Ids::type).isString()
                 && parameter_.hasProperty (Ids::value));
 }
