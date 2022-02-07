@@ -36,8 +36,6 @@ Parameter addParameterWithType (juce::ValueTree& group,
     const juce::String& type,
     juce::var v)
 {
-    jassert (!Group (group).hasParameter (key));
-    
     juce::ValueTree parameter (Ids::PARAMETER);
     
     parameter.setProperty (Ids::key,   key,  nullptr);
@@ -58,37 +56,38 @@ Parameter addParameterWithType (juce::ValueTree& group,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool Group::hasParameter (const juce::String& key) const
-{
-    return getParameter (key).isValid();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 Parameter Group::addParameter (const juce::String& key, bool b)
 {
+    jassert (!hasParameter (key));
+    
     return addParameterWithType (group_, key, "boolean", b);
 }
 
 Parameter Group::addParameter (const juce::String& key, juce::Colour c)
 {
+    jassert (!hasParameter (key));
+        
     return addParameterWithType (group_, key, "color", Colours::getColourAsString (c));
 }
 
 Parameter Group::addParameter (const juce::String& key, int n)
 {
+    jassert (!hasParameter (key));
+    
     return addParameterWithType (group_, key, "integer", n);
 }
 
 Parameter Group::addParameter (const juce::String& key, double f)
 {
+    jassert (!hasParameter (key));
+    
     return addParameterWithType (group_, key, "float", f);
 }
 
 Parameter Group::addParameter (const juce::String& key, const juce::String& s)
 {
+    jassert (!hasParameter (key));
+    
     return addParameterWithType (group_, key, "text", s);
 }
 
@@ -96,11 +95,14 @@ Parameter Group::addParameter (const juce::String& key, const juce::String& s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool Group::hasParameter (const juce::String& key) const
+{
+    return getParameter (key).isValid();
+}
+
 Parameter Group::getParameter (const juce::String& key) const
 {
-    for (const auto& parameter : group_) {
-        if (Parameter (parameter).getKey() == key) { return Parameter (parameter); }
-    }
+    for (const auto& parameter : *this) { if (parameter.getKey() == key) { return parameter; } }
     
     return Parameter();
 }
@@ -115,8 +117,8 @@ bool Group::isValid() const
     else if (!group_.hasType (Ids::GROUP)) { return false; }
     else if (!group_.getProperty (Ids::name).isString()) { return false; }
     
-    for (const auto& parameter : group_) {
-        if (!Parameter (parameter).isValid()) { return false; }
+    for (const auto& parameter : *this) {
+        if (!parameter.isValid()) { return false; }
     }
     
     return true;

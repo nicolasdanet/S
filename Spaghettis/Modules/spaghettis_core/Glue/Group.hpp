@@ -61,9 +61,6 @@ public:
 // MARK: -
 
 public:
-    bool hasParameter (const juce::String&) const;
-    
-public:
     Parameter addParameter (const juce::String&, bool);
     Parameter addParameter (const juce::String&, juce::Colour c);
     Parameter addParameter (const juce::String&, int n);
@@ -71,6 +68,7 @@ public:
     Parameter addParameter (const juce::String&, const juce::String& s);
 
 public:
+    bool      hasParameter (const juce::String&) const;
     Parameter getParameter (const juce::String&) const;
     
 // -----------------------------------------------------------------------------------------------------------
