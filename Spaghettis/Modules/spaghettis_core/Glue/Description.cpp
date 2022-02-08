@@ -63,29 +63,14 @@ juce::String getWindow (t_glist* glist)
     return juce::Rectangle<int> (x, y, w, h).toString();
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
- 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-Description Description::view (const Unique& u, struct _object* o)
+juce::ValueTree getAttributes (struct _object* o)
 {
-    juce::ValueTree t (Ids::OBJECT);
+    juce::ValueTree a (Ids::ATTRIBUTES);
     
-    t.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
-    
-    if (o) {
-    //
     const bool isPatch = object_isCanvas (o);
     const bool hasView = class_hasViewFunction (pd_class (o));
     
     const juce::String type (isPatch ? "patch" : (hasView ? "graphic" : "box"));
-    
-    juce::ValueTree a (Ids::ATTRIBUTES);
     
     a.setProperty (Ids::type,       juce::var (type), nullptr);
     a.setProperty (Ids::name,       juce::var (juce::String (class_getNameAsString (pd_class (o)))), nullptr);
@@ -110,17 +95,37 @@ Description Description::view (const Unique& u, struct _object* o)
     //
     }
     
-    t.appendChild (a, nullptr);
+    return a;
+}
+
+Tree getParameters (struct _object* o)
+{
+    Tree p (Ids::PARAMETERS);
     
-    if (hasView) {
-        /*
-        juce::ValueTree p (Ids::PARAMETERS);
-        
-        (*class_getViewFunction (pd_class (o))) (o, p);
-        
-        t.appendChild (p, nullptr);
-        */
-    }
+    if (class_hasViewFunction (pd_class (o))) { (*class_getViewFunction (pd_class (o))) (o, p); }
+    
+    return p;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+ 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Description Description::view (const Unique& u, struct _object* o)
+{
+    juce::ValueTree t (Ids::OBJECT);
+    
+    t.setProperty (Ids::identifier, core::Unique::Converter::toVar (u.getIdentifier()), nullptr);
+    
+    if (o) {
+    //
+    t.appendChild (getAttributes (o), nullptr);
+    t.appendChild (getParameters (o), nullptr);
     //
     }
     
