@@ -81,6 +81,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Application/Tags.hpp"
 #include "GUI/Application/Commands.hpp"
 #include "GUI/Application/Icons.hpp"
 #include "GUI/Application/MenuModel.hpp"

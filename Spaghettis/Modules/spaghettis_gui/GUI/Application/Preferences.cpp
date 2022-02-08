@@ -21,28 +21,35 @@ core::Tree getDefaultPreferences()
 {
     core::Tree t (Ids::PREFERENCES);
     
-    core::Group general (t.addGroup ("General"));
-    core::Group editing (t.addGroup ("Editing"));
-    core::Group nuclear (t.addGroup ("Nuclear"));
-    core::Group colors  (t.addGroup ("Colors"));
+    core::Group general (t.addGroup (Tags::General));
+    core::Group editing (t.addGroup (Tags::Editing));
+    core::Group colors  (t.addGroup (Tags::Colors));
         
-    general.addParameter ("AskBeforeQuit", true)
+    general.addParameter (Tags::AskBeforeQuit, true)
                 .setText (NEEDS_TRANS ("Ask Before Quitting"))
                 .setInfo (NEEDS_TRANS ("Show dialog box to confirm quitting"));
         
-    general.addParameter ("DefaultIsRunView", false)
+    general.addParameter (Tags::DefaultIsRunView, false)
                 .setText (NEEDS_TRANS ("Default Is Run View"))
                 .setInfo (NEEDS_TRANS ("Open a patch into a run view"));
     
-    editing.addParameter ("SnapToGrid", true)
+    editing.addParameter (Tags::SnapToGrid, true)
                 .setText (NEEDS_TRANS ("Snap To Grid"))
                 .setInfo (NEEDS_TRANS ("Enable magnetic grid"));
 
-    editing.addParameter ("GridSize", 12)
+    editing.addParameter (Tags::GridSize, 12)
                 .setText (NEEDS_TRANS ("Grid Size"))
                 .setInfo (NEEDS_TRANS ("Set magnetic grid spacing"))
                 .setRange (juce::Range<int> (1, 64));
     
+    colors.addParameter (Tags::PatchBackground, juce::Colour (0xff1f2029))
+                .setText (NEEDS_TRANS ("Patch Background"))
+                .setInfo (NEEDS_TRANS ("Set background color of patch"));
+
+    /* Just for testing. */
+    
+    core::Group nuclear (t.addGroup ("Nuclear"));
+        
     nuclear.addParameter ("Engine", "Yellow Submarine")
                 .setText (NEEDS_TRANS ("Kind Of Engine"))
                 .setInfo (NEEDS_TRANS ("Set kind of stuff"));
@@ -59,10 +66,6 @@ core::Tree getDefaultPreferences()
                 .setText (NEEDS_TRANS ("Random Rate"))
                 .setInfo (NEEDS_TRANS ("Set entropy in life"))
                 .setRange (juce::Range<double> (0, 1));
-    
-    colors.addParameter ("PatchBackground", juce::Colour (0xff1f2029))
-                .setText (NEEDS_TRANS ("Patch Background"))
-                .setInfo (NEEDS_TRANS ("Set background color of patch"));
     
     return t;
 }
@@ -81,11 +84,11 @@ Preferences::Preferences (const juce::File& file) :
     tree_ (getDefaultPreferences()),
     isReading_ (false)
 {
-    addHandler ("SnapToGrid", [] (const core::Parameter& p) {
+    addHandler (Tags::SnapToGrid, [] (const core::Parameter& p) {
             Spaghettis()->handle (Inputs::setSnapToGrid (p.getValue()));
         });
         
-    addHandler ("GridSize",   [] (const core::Parameter& p) {
+    addHandler (Tags::GridSize,   [] (const core::Parameter& p) {
             Spaghettis()->handle (Inputs::setSnapToGridSize (p.getValue()));
         });
     
