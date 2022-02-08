@@ -34,6 +34,8 @@ public:
 
     ~Patch()
     {
+        DBG (tree_.toXmlString());
+        
         releaseAllWindows();
     }
 

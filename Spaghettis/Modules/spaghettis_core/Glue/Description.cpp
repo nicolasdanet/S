@@ -53,6 +53,16 @@ juce::File getPatchFile (t_glist* glist)
     return juce::File (directory).getChildFile (filename);
 }
 
+juce::String getWindow (t_glist* glist)
+{
+    const int x = rectangle_getTopLeftX (glist_getWindow (glist));
+    const int y = rectangle_getTopLeftY (glist_getWindow (glist));
+    const int w = rectangle_getWidth (glist_getWindow (glist));
+    const int h = rectangle_getHeight (glist_getWindow (glist));
+
+    return juce::Rectangle<int> (x, y, w, h).toString();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -75,45 +85,41 @@ Description Description::view (const Unique& u, struct _object* o)
     
     const juce::String type (isPatch ? "patch" : (hasView ? "graphic" : "box"));
     
-    t.setProperty (Ids::type,       juce::var (type), nullptr);
-    t.setProperty (Ids::name,       juce::var (juce::String (class_getNameAsString (pd_class (o)))), nullptr);
-    t.setProperty (Ids::buffer,     juce::var (getContentBuffer (o)), nullptr);
-    t.setProperty (Ids::inlets,     juce::var (object_getNumberOfInlets (o)), nullptr);
-    t.setProperty (Ids::outlets,    juce::var (object_getNumberOfOutlets (o)), nullptr);
-    t.setProperty (Ids::x,          juce::var (object_getX (o)), nullptr);
-    t.setProperty (Ids::y,          juce::var (object_getY (o)), nullptr);
-    t.setProperty (Ids::width,      juce::var (object_getWidth (o)), nullptr);
-    t.setProperty (Ids::selected,   juce::var (object_getSelected (o)), nullptr);
+    juce::ValueTree a (Ids::ATTRIBUTES);
+    
+    a.setProperty (Ids::type,       juce::var (type), nullptr);
+    a.setProperty (Ids::name,       juce::var (juce::String (class_getNameAsString (pd_class (o)))), nullptr);
+    a.setProperty (Ids::buffer,     juce::var (getContentBuffer (o)), nullptr);
+    a.setProperty (Ids::inlets,     juce::var (object_getNumberOfInlets (o)), nullptr);
+    a.setProperty (Ids::outlets,    juce::var (object_getNumberOfOutlets (o)), nullptr);
+    a.setProperty (Ids::x,          juce::var (object_getX (o)), nullptr);
+    a.setProperty (Ids::y,          juce::var (object_getY (o)), nullptr);
+    a.setProperty (Ids::width,      juce::var (object_getWidth (o)), nullptr);
+    a.setProperty (Ids::selected,   juce::var (object_getSelected (o)), nullptr);
     
     if (isPatch) {
+    //
+    t_glist* g = cast_glist (o);
+        
+    a.setProperty (Ids::title,      juce::var (glist_getName (g)->s_name), nullptr);
+    a.setProperty (Ids::window,     juce::var (getWindow (g)), nullptr);
     
-        juce::ValueTree p (Ids::PARAMETERS);
-        
-        t_glist* g = cast_glist (o);
-        
-        p.setProperty (Ids::title, juce::var (glist_getName (g)->s_name), nullptr);
-        
-        const int x = rectangle_getTopLeftX (glist_getWindow (g));
-        const int y = rectangle_getTopLeftY (glist_getWindow (g));
-        const int w = rectangle_getWidth (glist_getWindow (g));
-        const int h = rectangle_getHeight (glist_getWindow (g));
-    
-        p.setProperty (Ids::window, juce::var (juce::Rectangle<int> (x, y, w, h).toString()), nullptr);
-        
-        if (glist_isRoot (g)) {
-            p.setProperty (Ids::path, juce::var (getPatchFile (g).getFullPathName()), nullptr);
-        }
-        
-        t.appendChild (p, nullptr);
+    if (glist_isRoot (g)) {
+        a.setProperty (Ids::path,   juce::var (getPatchFile (g).getFullPathName()), nullptr);
+    }
+    //
     }
     
-    if (hasView) {
+    t.appendChild (a, nullptr);
     
+    if (hasView) {
+        /*
         juce::ValueTree p (Ids::PARAMETERS);
         
         (*class_getViewFunction (pd_class (o))) (o, p);
         
         t.appendChild (p, nullptr);
+        */
     }
     //
     }
@@ -127,7 +133,7 @@ Description Description::view (const Unique& u, struct _object* o)
 
 const juce::var& Description::getAttribute (const juce::ValueTree& t, const juce::Identifier &name)
 {
-    return t.getChildWithName (Ids::PARAMETERS).getProperty (name);
+    return t.getChildWithName (Ids::ATTRIBUTES).getProperty (name);
 }
 
 // -----------------------------------------------------------------------------------------------------------
