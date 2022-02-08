@@ -48,9 +48,11 @@ namespace Identifiers {
     DECLARE_ID (type);
     DECLARE_ID (value);
     DECLARE_ID (width);
+    DECLARE_ID (window);
     DECLARE_ID (x);
     DECLARE_ID (y);
     
+    DECLARE_ID (ATTRIBUTES);
     DECLARE_ID (BUTTON);
     DECLARE_ID (BUTTONS);
     DECLARE_ID (GROUP);

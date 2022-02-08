@@ -66,7 +66,7 @@ public:
 // MARK: -
 
 public:
-    static const juce::var& getParameter (const juce::ValueTree&, const juce::Identifier &);
+    static const juce::var& getAttribute (const juce::ValueTree&, const juce::Identifier &);
     
 private:
     juce::ValueTree t_;

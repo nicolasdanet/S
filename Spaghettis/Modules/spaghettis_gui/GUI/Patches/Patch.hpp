@@ -109,7 +109,7 @@ public:
 
     juce::File getFile() const
     {
-        return juce::File (core::Description::getParameter (tree_, Ids::path).toString());
+        return juce::File (core::Description::getAttribute (tree_, Ids::path).toString());
     }
 
 // -----------------------------------------------------------------------------------------------------------

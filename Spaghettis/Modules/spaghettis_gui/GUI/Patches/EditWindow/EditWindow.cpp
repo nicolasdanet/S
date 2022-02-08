@@ -14,10 +14,10 @@ namespace spaghettis {
 
 juce::Rectangle<int> EditWindow::getEditWindowPosition (const juce::ValueTree& content)
 {
-    const int x = core::Description::getParameter (content, Ids::x);
-    const int y = core::Description::getParameter (content, Ids::y);
-    const int w = core::Description::getParameter (content, Ids::width);
-    const int h = core::Description::getParameter (content, Ids::height);
+    const int x = core::Description::getAttribute (content, Ids::x);
+    const int y = core::Description::getAttribute (content, Ids::y);
+    const int w = core::Description::getAttribute (content, Ids::width);
+    const int h = core::Description::getAttribute (content, Ids::height);
     
     return juce::Rectangle<int> (x, y, w, h);
 }

@@ -128,7 +128,7 @@ Description Description::view (const Unique& u, struct _object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const juce::var& Description::getParameter (const juce::ValueTree& t, const juce::Identifier &name)
+const juce::var& Description::getAttribute (const juce::ValueTree& t, const juce::Identifier &name)
 {
     return t.getChildWithName (Ids::PARAMETERS).getProperty (name);
 }
