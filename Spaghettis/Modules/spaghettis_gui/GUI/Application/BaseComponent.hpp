@@ -67,7 +67,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+protected:
     static bool tryGrabFocusForComponent (juce::Component *c)
     {
         c->grabKeyboardFocus(); return c->hasKeyboardFocus (true);
