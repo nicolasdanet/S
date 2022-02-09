@@ -71,6 +71,9 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
+    void getApplicationCommands (juce::Array<juce::CommandID>&);
+    
+public:
     virtual void getCommandInfo (const juce::CommandID, juce::ApplicationCommandInfo&) = 0;
     virtual void getAllCommands (juce::Array<juce::CommandID>&) = 0;
     virtual bool perform (const juce::ApplicationCommandTarget::InvocationInfo&) = 0;
