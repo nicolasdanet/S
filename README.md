@@ -1,5 +1,5 @@
 
-# S
+# Spaghettis
 
 This a WIP version of [Spaghettis](https://github.com/Spaghettis/Spaghettis) that aims to use [JUCE](https://github.com/juce-framework/JUCE) for the GUI.
 
