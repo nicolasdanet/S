@@ -47,6 +47,7 @@ namespace Identifiers {
     DECLARE_ID (title);
     DECLARE_ID (type);
     DECLARE_ID (value);
+    DECLARE_ID (view);
     DECLARE_ID (width);
     DECLARE_ID (window);
     DECLARE_ID (x);

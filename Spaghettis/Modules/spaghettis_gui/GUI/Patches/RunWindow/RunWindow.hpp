@@ -23,11 +23,18 @@ public:
     {
         setContentOwned (new RunComponent(), true);
         
-        makeVisible();
+        makeVisible (getRunWindowPosition (content));
     }
 
     ~RunWindow() = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    static juce::Rectangle<int> getRunWindowPosition (const juce::ValueTree&);
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunWindow)
 };

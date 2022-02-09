@@ -87,6 +87,7 @@ juce::ValueTree getAttributes (struct _object* o)
     t_glist* g = cast_glist (o);
         
     a.setProperty (Ids::title,      juce::var (glist_getName (g)->s_name), nullptr);
+    a.setProperty (Ids::view,       juce::var (getWindow (g)), nullptr);
     a.setProperty (Ids::window,     juce::var (getWindow (g)), nullptr);
     
     if (glist_isRoot (g)) {

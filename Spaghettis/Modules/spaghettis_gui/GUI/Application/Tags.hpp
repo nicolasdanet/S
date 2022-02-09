@@ -23,15 +23,15 @@ namespace Tags {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-    DECLARE_STRING(Colors);
-    DECLARE_STRING(Editing);
-    DECLARE_STRING(General);
+    DECLARE_STRING (Colors);
+    DECLARE_STRING (Editing);
+    DECLARE_STRING (General);
         
-    DECLARE_STRING(AskBeforeQuit);
-    DECLARE_STRING(DefaultIsRunView);
-    DECLARE_STRING(GridSize);
-    DECLARE_STRING(PatchBackground);
-    DECLARE_STRING(SnapToGrid);
+    DECLARE_STRING (AskBeforeQuit);
+    DECLARE_STRING (DefaultIsRunView);
+    DECLARE_STRING (GridSize);
+    DECLARE_STRING (PatchBackground);
+    DECLARE_STRING (SnapToGrid);
                 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
