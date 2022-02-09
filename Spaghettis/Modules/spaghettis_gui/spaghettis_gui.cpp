@@ -11,8 +11,13 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/BaseComponent.cpp"
-#include "GUI/Application/BaseWindow.cpp"
+#include "GUI/Application/Base/BaseCommands.cpp"
+#include "GUI/Application/Base/BaseComponent.cpp"
+#include "GUI/Application/Base/BaseWindow.cpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Application/Commands.cpp"
 #include "GUI/Application/Icons.cpp"
 #include "GUI/Application/MenuModel.cpp"
