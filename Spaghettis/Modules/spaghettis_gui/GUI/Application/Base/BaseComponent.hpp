@@ -131,23 +131,24 @@ public:
 
     void getAllCommands (juce::Array<juce::CommandID>& c) override
     {
-        Commands::getAllCommands (c);
+        commands_.getAllCommands (c);
     }
 
     void getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r) override
     {
-        Commands::getCommandInfo (c, r);
+        commands_.getCommandInfo (c, r);
     }
 
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo& info) override
     {
-        return Commands::perform (info);
+        return commands_.perform (info);
     }
 
 private:
     juce::String keyName_;
     std::unique_ptr<juce::Toolbar> toolbar_;
-    
+    BaseCommands commands_;
+        
 #if SPAGHETTIS_MENUBAR
 
 private:
