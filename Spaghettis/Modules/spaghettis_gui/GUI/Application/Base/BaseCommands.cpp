@@ -12,6 +12,21 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
+{
+    Commands::getAllCommands (c);
+}
+
+void BaseCommands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r)
+{
+    Commands::getCommandInfo (c, r);
+}
+
+bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
+{
+    return Commands::perform (info);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
