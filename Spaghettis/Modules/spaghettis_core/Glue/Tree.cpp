@@ -26,12 +26,15 @@ juce::var Tree::getValue (const juce::String& group, const juce::String& key) co
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Group Tree::addGroup (const juce::String& name)
+Group Tree::addGroup (const juce::String& name, bool isHidden)
 {
     jassert (!hasGroup (name));
     
-    juce::ValueTree group (Ids::GROUP); group.setProperty (Ids::name, name, nullptr);
-        
+    juce::ValueTree group (Ids::GROUP);
+    
+    group.setProperty (Ids::name, name, nullptr);
+    group.setProperty (Ids::hidden, isHidden, nullptr);
+    
     tree_.appendChild (group, nullptr);
         
     return Group (group);

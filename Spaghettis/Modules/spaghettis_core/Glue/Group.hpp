@@ -55,17 +55,22 @@ public:
 
 public:
     juce::String getName() const;
+    bool isHidden() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Parameter addParameter (const juce::String&, bool);
-    Parameter addParameter (const juce::String&, juce::Colour c);
-    Parameter addParameter (const juce::String&, int n);
-    Parameter addParameter (const juce::String&, double f);
-    Parameter addParameter (const juce::String&, const juce::String& s);
+    Parameter addBoolean (const juce::String&, bool);
+    Parameter addColour (const juce::String&, juce::Colour c);
+    Parameter addInteger (const juce::String&, int n);
+    Parameter addFloat (const juce::String&, double f);
+    Parameter addText (const juce::String&, const juce::String& s);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     bool      hasParameter (const juce::String&) const;

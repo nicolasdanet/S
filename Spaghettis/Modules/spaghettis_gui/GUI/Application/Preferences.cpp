@@ -25,24 +25,24 @@ core::Tree getDefaultPreferences()
     core::Group editing (t.addGroup (Tags::Editing));
     core::Group colors  (t.addGroup (Tags::Colors));
         
-    general.addParameter (Tags::AskBeforeQuit, true)
+    general.addBoolean (Tags::AskBeforeQuit, true)
                 .setText (NEEDS_TRANS ("Ask Before Quitting"))
                 .setInfo (NEEDS_TRANS ("Show dialog box to confirm quitting"));
         
-    general.addParameter (Tags::DefaultIsRunView, false)
+    general.addBoolean (Tags::DefaultIsRunView, false)
                 .setText (NEEDS_TRANS ("Default Is Run View"))
                 .setInfo (NEEDS_TRANS ("Open a patch into a run view"));
     
-    editing.addParameter (Tags::SnapToGrid, true)
+    editing.addBoolean (Tags::SnapToGrid, true)
                 .setText (NEEDS_TRANS ("Snap To Grid"))
                 .setInfo (NEEDS_TRANS ("Enable magnetic grid"));
 
-    editing.addParameter (Tags::GridSize, 12)
+    editing.addInteger (Tags::GridSize, 12)
                 .setText (NEEDS_TRANS ("Grid Size"))
                 .setInfo (NEEDS_TRANS ("Set magnetic grid spacing"))
                 .setRange (juce::Range<int> (1, 64));
     
-    colors.addParameter (Tags::PatchBackground, juce::Colour (0xff1f2029))
+    colors.addColour (Tags::PatchBackground, juce::Colour (0xff1f2029))
                 .setText (NEEDS_TRANS ("Patch Background"))
                 .setInfo (NEEDS_TRANS ("Set background color of patch"));
 
@@ -50,22 +50,28 @@ core::Tree getDefaultPreferences()
     
     core::Group nuclear (t.addGroup ("Nuclear"));
         
-    nuclear.addParameter ("Engine", "Yellow Submarine")
+    nuclear.addText ("Engine", "Yellow Submarine")
                 .setText (NEEDS_TRANS ("Kind Of Engine"))
                 .setInfo (NEEDS_TRANS ("Set kind of stuff"));
                 
-    nuclear.addParameter ("Power", 99.5)
+    nuclear.addFloat ("Power", 99.5)
                 .setText (NEEDS_TRANS ("Power Of Engine"))
                 .setInfo (NEEDS_TRANS ("Set power of engine"));
 
-    nuclear.addParameter ("Launcher", 99.5)
+    nuclear.addFloat ("Launcher", 99.5)
                 .setText (NEEDS_TRANS ("Launcher Efficiency"))
                 .setInfo (NEEDS_TRANS ("Set tenderness of button"));
 
-    nuclear.addParameter ("Random", 0.5)
+    nuclear.addFloat ("Random", 0.5)
                 .setText (NEEDS_TRANS ("Random Rate"))
                 .setInfo (NEEDS_TRANS ("Set entropy in life"))
                 .setRange (juce::Range<double> (0, 1));
+    
+    core::Group secret (t.addGroup ("Secret", true));
+    
+    secret.addText ("Password", "000000000000")
+                .setText (NEEDS_TRANS ("Password"))
+                .setInfo (NEEDS_TRANS ("Password for nuclear suitcase"));
     
     return t;
 }

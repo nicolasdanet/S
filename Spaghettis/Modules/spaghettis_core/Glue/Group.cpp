@@ -22,6 +22,11 @@ juce::String Group::getName() const
     return group_.getProperty (Ids::name).toString();
 }
 
+bool Group::isHidden() const
+{
+    return static_cast<bool> (group_.getProperty (Ids::hidden));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -31,7 +36,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter addParameterWithType (juce::ValueTree& group,
+Parameter addParameter (juce::ValueTree& group,
     const juce::String& key,
     const juce::String& type,
     juce::var v)
@@ -58,39 +63,39 @@ Parameter addParameterWithType (juce::ValueTree& group,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter Group::addParameter (const juce::String& key, bool b)
+Parameter Group::addBoolean (const juce::String& key, bool b)
 {
     jassert (!hasParameter (key));
     
-    return addParameterWithType (group_, key, "boolean", b);
+    return addParameter (group_, key, "boolean", b);
 }
 
-Parameter Group::addParameter (const juce::String& key, juce::Colour c)
+Parameter Group::addColour (const juce::String& key, juce::Colour c)
 {
     jassert (!hasParameter (key));
         
-    return addParameterWithType (group_, key, "color", Colours::getColourAsString (c));
+    return addParameter (group_, key, "color", Colours::getColourAsString (c));
 }
 
-Parameter Group::addParameter (const juce::String& key, int n)
+Parameter Group::addInteger (const juce::String& key, int n)
 {
     jassert (!hasParameter (key));
     
-    return addParameterWithType (group_, key, "integer", n);
+    return addParameter (group_, key, "integer", n);
 }
 
-Parameter Group::addParameter (const juce::String& key, double f)
+Parameter Group::addFloat (const juce::String& key, double f)
 {
     jassert (!hasParameter (key));
     
-    return addParameterWithType (group_, key, "float", f);
+    return addParameter (group_, key, "float", f);
 }
 
-Parameter Group::addParameter (const juce::String& key, const juce::String& s)
+Parameter Group::addText (const juce::String& key, const juce::String& s)
 {
     jassert (!hasParameter (key));
     
-    return addParameterWithType (group_, key, "text", s);
+    return addParameter (group_, key, "text", s);
 }
 
 // -----------------------------------------------------------------------------------------------------------

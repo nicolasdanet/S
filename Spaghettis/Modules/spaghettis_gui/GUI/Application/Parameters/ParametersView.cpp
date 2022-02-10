@@ -115,6 +115,8 @@ void Parameters::View::buildConcertinaPanel (const core::Tree& tree, View& v)
 {
     for (const auto& group : tree) {
     //
+    if (group.isHidden() == false) {
+    //
     auto panel = std::make_unique<juce::PropertyPanel> (group.getName());
     
     juce::Array<juce::PropertyComponent*> components;
@@ -126,6 +128,8 @@ void Parameters::View::buildConcertinaPanel (const core::Tree& tree, View& v)
     panel->addProperties (components);
     
     v.addPanel (panel.release());
+    //
+    }
     //
     }
 }
