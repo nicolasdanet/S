@@ -46,6 +46,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "Glue/Identifiers.hpp"
+#include "Glue/Tags.hpp"
 #include "Glue/Iterator.hpp"
 #include "Glue/Glue.hpp"
 #include "Glue/Unique.hpp"
