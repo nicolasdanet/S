@@ -63,10 +63,10 @@ public:
 
 public:
     Parameter addBoolean (const juce::String&, bool);
-    Parameter addColour (const juce::String&, juce::Colour c);
-    Parameter addInteger (const juce::String&, int n);
-    Parameter addFloat (const juce::String&, double f);
-    Parameter addText (const juce::String&, const juce::String& s);
+    Parameter addColour (const juce::String&, juce::Colour);
+    Parameter addInteger (const juce::String&, int);
+    Parameter addFloat (const juce::String&, double);
+    Parameter addText (const juce::String&, const juce::String&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
