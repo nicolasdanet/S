@@ -41,12 +41,12 @@ public:
     static void setProperties (juce::ValueTree& t,
         const juce::String& key,
         const juce::String& type,
-        const juce::String& text,
+        const juce::String& label,
         const juce::String& info)
     {
-        t.setProperty (Ids::key,  key,  nullptr);
+        t.setProperty (Ids::key, key, nullptr);
         t.setProperty (Ids::type, type, nullptr);
-        t.setProperty (Ids::text, text, nullptr);
+        t.setProperty (Ids::label, label, nullptr);
         t.setProperty (Ids::info, info, nullptr);
     }
     

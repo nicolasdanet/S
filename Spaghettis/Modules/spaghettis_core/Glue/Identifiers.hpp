@@ -37,6 +37,7 @@ namespace Identifiers {
     DECLARE_ID (inlets);
     DECLARE_ID (item);
     DECLARE_ID (key);
+    DECLARE_ID (label);
     DECLARE_ID (maximum);
     DECLARE_ID (minimum);
     DECLARE_ID (name);
@@ -44,7 +45,6 @@ namespace Identifiers {
     DECLARE_ID (path);
     DECLARE_ID (selected);
     DECLARE_ID (state);
-    DECLARE_ID (text);
     DECLARE_ID (title);
     DECLARE_ID (type);
     DECLARE_ID (value);

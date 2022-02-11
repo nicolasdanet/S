@@ -39,13 +39,13 @@ namespace {
 Parameter addParameter (juce::ValueTree& group,
     const juce::String& key,
     const juce::String& type,
-    const juce::String& text,
+    const juce::String& label,
     const juce::String& info,
     juce::var v)
 {
     juce::ValueTree parameter (Ids::PARAMETER);
     
-    Prototype::setProperties (parameter, key, type, text, info);
+    Prototype::setProperties (parameter, key, type, label, info);
     
     parameter.setProperty (Ids::value, v, nullptr);
     
@@ -65,52 +65,52 @@ Parameter addParameter (juce::ValueTree& group,
 
 Parameter Group::addBoolean (const juce::String& key,
     bool b,
-    const juce::String& text,
+    const juce::String& label,
     const juce::String& info)
 {
     jassert (!hasParameter (key));
     
-    return addParameter (group_, key, "boolean", text, info, b);
+    return addParameter (group_, key, "boolean", label, info, b);
 }
 
 Parameter Group::addColour (const juce::String& key,
     juce::Colour c,
-    const juce::String& text,
+    const juce::String& label,
     const juce::String& info)
 {
     jassert (!hasParameter (key));
         
-    return addParameter (group_, key, "color", text, info, Colours::getColourAsString (c));
+    return addParameter (group_, key, "color", label, info, Colours::getColourAsString (c));
 }
 
 Parameter Group::addInteger (const juce::String& key,
     int n,
-    const juce::String& text,
+    const juce::String& label,
     const juce::String& info)
 {
     jassert (!hasParameter (key));
     
-    return addParameter (group_, key, "integer", text, info, n);
+    return addParameter (group_, key, "integer", label, info, n);
 }
 
 Parameter Group::addFloat (const juce::String& key,
     double f,
-    const juce::String& text,
+    const juce::String& label,
     const juce::String& info)
 {
     jassert (!hasParameter (key));
     
-    return addParameter (group_, key, "float", text, info, f);
+    return addParameter (group_, key, "float", label, info, f);
 }
 
 Parameter Group::addText (const juce::String& key,
     const juce::String& s,
-    const juce::String& text,
+    const juce::String& label,
     const juce::String& info)
 {
     jassert (!hasParameter (key));
     
-    return addParameter (group_, key, "text", text, info, s);
+    return addParameter (group_, key, "text", label, info, s);
 }
 
 // -----------------------------------------------------------------------------------------------------------

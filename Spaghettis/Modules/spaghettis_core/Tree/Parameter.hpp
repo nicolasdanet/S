@@ -48,7 +48,7 @@ public:
 public:
     juce::String getKey() const;
     juce::String getType() const;
-    juce::String getText() const;
+    juce::String getLabel() const;
     juce::String getInfo() const;
     
 // -----------------------------------------------------------------------------------------------------------

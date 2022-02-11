@@ -56,9 +56,9 @@ juce::String Parameter::getType() const
     return get (Ids::type).toString();
 }
 
-juce::String Parameter::getText() const
+juce::String Parameter::getLabel() const
 {
-    return get (Ids::text).toString();
+    return get (Ids::label).toString();
 }
 
 juce::String Parameter::getInfo() const
