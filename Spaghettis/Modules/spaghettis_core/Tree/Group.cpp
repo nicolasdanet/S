@@ -45,8 +45,10 @@ Parameter addParameter (juce::ValueTree& group,
 {
     juce::ValueTree parameter (Ids::PARAMETER);
     
-    Prototype::setProperties (parameter, key, type, label, info);
-    
+    parameter.setProperty (Ids::key, key, nullptr);
+    parameter.setProperty (Ids::type, type, nullptr);
+    parameter.setProperty (Ids::label, label, nullptr);
+    parameter.setProperty (Ids::info, info, nullptr);
     parameter.setProperty (Ids::value, v, nullptr);
     
     group.appendChild (parameter, nullptr);

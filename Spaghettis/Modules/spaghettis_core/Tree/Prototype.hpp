@@ -33,23 +33,6 @@ public:
     Prototype& operator = (const Prototype&) = default;
     Prototype& operator = (Prototype&&) = default;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static void setProperties (juce::ValueTree& t,
-        const juce::String& key,
-        const juce::String& type,
-        const juce::String& label,
-        const juce::String& info)
-    {
-        t.setProperty (Ids::key, key, nullptr);
-        t.setProperty (Ids::type, type, nullptr);
-        t.setProperty (Ids::label, label, nullptr);
-        t.setProperty (Ids::info, info, nullptr);
-    }
-    
 private:
     juce::ValueTree prototype_;
 };
