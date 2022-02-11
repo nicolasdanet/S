@@ -51,6 +51,7 @@
 #include "Glue/Glue.hpp"
 #include "Glue/Unique.hpp"
 #include "Glue/Colours.hpp"
+#include "Glue/Prototype.hpp"
 #include "Glue/Parameter.hpp"
 #include "Glue/Group.hpp"
 #include "Glue/Listener.hpp"
