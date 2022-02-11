@@ -88,11 +88,6 @@ Parameter& Parameter::setInfo (const juce::String& s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::var Parameter::getValue() const
-{
-    return parameter_.getProperty (Ids::value);
-}
-
 void Parameter::setValue (const juce::var& v)
 {
     if (!parameter_.getProperty (Ids::value).equals (v)) {
@@ -102,13 +97,17 @@ void Parameter::setValue (const juce::var& v)
     }
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::Value Parameter::getSource()
+juce::var Parameter::getValue() const
 {
-    return parameter_.getPropertyAsValue (Ids::value, nullptr);
+    return parameter_.getProperty (Ids::value);
+}
+
+juce::Value Parameter::getSource() const
+{
+    /* Make a temporary copy of the ValueTree as a workaround to get that method const. */
+    /* < https://forum.juce.com/t/why-valuetree-getpropertyasvalue-is-not-const/50117 > */
+    
+    return juce::ValueTree (parameter_).getPropertyAsValue (Ids::value, nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -147,9 +146,13 @@ double Parameter::getStep() const
 
 const juce::var& Parameter::get (const juce::Identifier& identifier) const
 {
-    // juce::ValueTree prototype (parameter_.getChildWithName (Ids::PROTOTYPE));
+    if (parameter_.hasProperty (identifier) == false) {
+    //
+    juce::ValueTree prototype (parameter_.getChildWithName (Ids::PROTOTYPE));
     
-    // if (prototype.isValid()) { return prototype.getProperty (identifier); }
+    if (prototype.isValid()) { return prototype.getProperty (identifier); }
+    //
+    }
     
     return parameter_.getProperty (identifier);
 }

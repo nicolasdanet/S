@@ -76,30 +76,30 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<juce::PropertyComponent> createPropertyComponent (core::Parameter parameter)
+std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const core::Parameter& p)
 {
-    if (parameter.isBoolean())      { return std::make_unique<Parameters::Boolean> (parameter); }
-    if (parameter.isColour())       { return std::make_unique<Parameters::Colour> (parameter);  }
-    else if (parameter.isInteger()) { return std::make_unique<Parameters::Integer> (parameter); }
-    else if (parameter.isFloat())   {
-        if (parameter.hasRange())   {
-            return std::make_unique<Parameters::Slider> (parameter);
+    if (p.isBoolean())      { return std::make_unique<Parameters::Boolean> (p); }
+    if (p.isColour())       { return std::make_unique<Parameters::Colour> (p);  }
+    else if (p.isInteger()) { return std::make_unique<Parameters::Integer> (p); }
+    else if (p.isFloat())   {
+        if (p.hasRange())   {
+            return std::make_unique<Parameters::Slider> (p);
         } else {
-            return std::make_unique<Parameters::Float> (parameter);
+            return std::make_unique<Parameters::Float> (p);
         }
     } else {
-        return std::make_unique<Parameters::Text> (parameter);
+        return std::make_unique<Parameters::Text> (p);
     }
 }
 
-void buildConcertinaPanelParameter (core::Parameter parameter, juce::Array<juce::PropertyComponent*>& c)
+void buildConcertinaPanelParameter (const core::Parameter& p, juce::Array<juce::PropertyComponent*>& c)
 {
-    std::unique_ptr<juce::PropertyComponent> p (createPropertyComponent (parameter));
+    std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p));
     
-    p->setPreferredHeight (Spaghettis()->getLookAndFeel().getPropertyPanelHeight());
-    p->setTooltip (parameter.getInfo());
+    t->setPreferredHeight (Spaghettis()->getLookAndFeel().getPropertyPanelHeight());
+    t->setTooltip (p.getInfo());
     
-    c.add (p.release());
+    c.add (t.release());
 }
 
 // -----------------------------------------------------------------------------------------------------------

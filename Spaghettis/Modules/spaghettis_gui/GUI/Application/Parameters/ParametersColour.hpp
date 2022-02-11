@@ -82,7 +82,8 @@ class Colour : public juce::PropertyComponent {
 // MARK: -
 
 public:
-    explicit Colour (core::Parameter& p) : juce::PropertyComponent (p.getText()), editor_ (p.getSource())
+    explicit Colour (const core::Parameter& p) :
+        juce::PropertyComponent (p.getText()), editor_ (p.getSource())
     {
         addAndMakeVisible (editor_);
     }

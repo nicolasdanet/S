@@ -65,7 +65,7 @@ public:
 
 public:
     juce::var    getValue() const;
-    juce::Value  getSource();
+    juce::Value  getSource() const;
 
 public:
     void setValue (const juce::var&);
