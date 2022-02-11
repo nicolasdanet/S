@@ -29,15 +29,9 @@ bool Group::isHidden() const
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter addParameter (juce::ValueTree& group,
-    const juce::String& key,
+Parameter Group::addParameter (const juce::String& key,
     const juce::String& type,
     const juce::String& label,
     const juce::String& info,
@@ -51,14 +45,11 @@ Parameter addParameter (juce::ValueTree& group,
     parameter.setProperty (Ids::info, info, nullptr);
     parameter.setProperty (Ids::value, v, nullptr);
     
-    group.appendChild (parameter, nullptr);
+    jassert (!hasParameter (key));
+    
+    group_.appendChild (parameter, nullptr);
     
     return Parameter (parameter);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -70,9 +61,7 @@ Parameter Group::addBoolean (const juce::String& key,
     const juce::String& label,
     const juce::String& info)
 {
-    jassert (!hasParameter (key));
-    
-    return addParameter (group_, key, "boolean", label, info, b);
+    return addParameter (key, "boolean", label, info, b);
 }
 
 Parameter Group::addColour (const juce::String& key,
@@ -80,9 +69,7 @@ Parameter Group::addColour (const juce::String& key,
     const juce::String& label,
     const juce::String& info)
 {
-    jassert (!hasParameter (key));
-        
-    return addParameter (group_, key, "color", label, info, Colours::getColourAsString (c));
+    return addParameter (key, "color", label, info, Colours::getColourAsString (c));
 }
 
 Parameter Group::addInteger (const juce::String& key,
@@ -90,9 +77,7 @@ Parameter Group::addInteger (const juce::String& key,
     const juce::String& label,
     const juce::String& info)
 {
-    jassert (!hasParameter (key));
-    
-    return addParameter (group_, key, "integer", label, info, n);
+    return addParameter (key, "integer", label, info, n);
 }
 
 Parameter Group::addFloat (const juce::String& key,
@@ -100,9 +85,7 @@ Parameter Group::addFloat (const juce::String& key,
     const juce::String& label,
     const juce::String& info)
 {
-    jassert (!hasParameter (key));
-    
-    return addParameter (group_, key, "float", label, info, f);
+    return addParameter (key, "float", label, info, f);
 }
 
 Parameter Group::addText (const juce::String& key,
@@ -110,9 +93,7 @@ Parameter Group::addText (const juce::String& key,
     const juce::String& label,
     const juce::String& info)
 {
-    jassert (!hasParameter (key));
-    
-    return addParameter (group_, key, "text", label, info, s);
+    return addParameter (key, "text", label, info, s);
 }
 
 // -----------------------------------------------------------------------------------------------------------

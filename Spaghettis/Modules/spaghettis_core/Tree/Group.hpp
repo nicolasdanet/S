@@ -68,6 +68,13 @@ public:
     Parameter addFloat (const juce::String&, double, const juce::String&, const juce::String&);
     Parameter addText (const juce::String&, const juce::String&, const juce::String&, const juce::String&);
 
+private:
+    Parameter addParameter (const juce::String&,
+        const juce::String&,
+        const juce::String&,
+        const juce::String&,
+        juce::var v);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
