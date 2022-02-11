@@ -56,14 +56,6 @@ public:
 // MARK: -
 
 public:
-    Parameter& setText (const juce::String&);
-    Parameter& setInfo (const juce::String&);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     juce::var    getValue() const;
     juce::Value  getSource() const;
 

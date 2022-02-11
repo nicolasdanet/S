@@ -38,12 +38,16 @@ public:
 // MARK: -
 
 public:
-    static void setDefaultProperties (juce::ValueTree& t, const juce::String& key, const juce::String& type)
+    static void setProperties (juce::ValueTree& t,
+        const juce::String& key,
+        const juce::String& type,
+        const juce::String& text,
+        const juce::String& info)
     {
-        t.setProperty (Ids::key,   key,  nullptr);
-        t.setProperty (Ids::type,  type, nullptr);
-        t.setProperty (Ids::text,  "Parameter", nullptr);
-        t.setProperty (Ids::info,  "Parameter", nullptr);
+        t.setProperty (Ids::key,  key,  nullptr);
+        t.setProperty (Ids::type, type, nullptr);
+        t.setProperty (Ids::text, text, nullptr);
+        t.setProperty (Ids::info, info, nullptr);
     }
     
 private:

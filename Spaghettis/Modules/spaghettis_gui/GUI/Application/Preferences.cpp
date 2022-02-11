@@ -25,53 +25,63 @@ core::Tree getDefaultPreferences()
     core::Group editing (t.addGroup (Tags::Editing));
     core::Group colors  (t.addGroup (Tags::Colors));
         
-    general.addBoolean (Tags::AskBeforeQuit, true)
-                .setText (NEEDS_TRANS ("Ask Before Quitting"))
-                .setInfo (NEEDS_TRANS ("Show dialog box to confirm quitting"));
+    general.addBoolean (Tags::AskBeforeQuit,
+        true,
+        NEEDS_TRANS ("Ask Before Quitting"),
+        NEEDS_TRANS ("Show dialog box to confirm quitting"));
         
-    general.addBoolean (Tags::DefaultIsRunView, false)
-                .setText (NEEDS_TRANS ("Default Is Run View"))
-                .setInfo (NEEDS_TRANS ("Open a patch into a run view"));
+    general.addBoolean (Tags::DefaultIsRunView,
+        false,
+        NEEDS_TRANS ("Default Is Run View"),
+        NEEDS_TRANS ("Open a patch into a run view"));
     
-    editing.addBoolean (Tags::SnapToGrid, true)
-                .setText (NEEDS_TRANS ("Snap To Grid"))
-                .setInfo (NEEDS_TRANS ("Enable magnetic grid"));
+    editing.addBoolean (Tags::SnapToGrid,
+        true,
+        NEEDS_TRANS ("Snap To Grid"),
+        NEEDS_TRANS ("Enable magnetic grid"));
 
-    editing.addInteger (Tags::GridSize, 12)
-                .setText (NEEDS_TRANS ("Grid Size"))
-                .setInfo (NEEDS_TRANS ("Set magnetic grid spacing"))
-                .setRange (juce::Range<int> (1, 64));
+    editing.addInteger (Tags::GridSize,
+        12,
+        NEEDS_TRANS ("Grid Size"),
+        NEEDS_TRANS ("Set magnetic grid spacing"))
+        .setRange (juce::Range<int> (1, 64));
     
-    colors.addColour (Tags::PatchBackground, juce::Colour (0xff1f2029))
-                .setText (NEEDS_TRANS ("Patch Background"))
-                .setInfo (NEEDS_TRANS ("Set background color of patch"));
+    colors.addColour (Tags::PatchBackground,
+        juce::Colour (0xff1f2029),
+        NEEDS_TRANS ("Patch Background"),
+        NEEDS_TRANS ("Set background color of patch"));
 
     /* Just for testing. */
     
     core::Group nuclear (t.addGroup ("Nuclear"));
         
-    nuclear.addText ("Engine", "Yellow Submarine")
-                .setText (NEEDS_TRANS ("Kind Of Engine"))
-                .setInfo (NEEDS_TRANS ("Set kind of stuff"));
+    nuclear.addText ("Engine",
+        "Yellow Submarine",
+        NEEDS_TRANS ("Kind Of Engine"),
+        NEEDS_TRANS ("Set kind of stuff"));
                 
-    nuclear.addFloat ("Power", 99.5)
-                .setText (NEEDS_TRANS ("Power Of Engine"))
-                .setInfo (NEEDS_TRANS ("Set power of engine"));
+    nuclear.addFloat ("Power",
+        99.5,
+        NEEDS_TRANS ("Power Of Engine"),
+        NEEDS_TRANS ("Set power of engine"));
 
-    nuclear.addFloat ("Launcher", 99.5)
-                .setText (NEEDS_TRANS ("Launcher Efficiency"))
-                .setInfo (NEEDS_TRANS ("Set tenderness of button"));
+    nuclear.addFloat ("Launcher",
+        99.5,
+        NEEDS_TRANS ("Launcher Efficiency"),
+        NEEDS_TRANS ("Set tenderness of button"));
 
-    nuclear.addFloat ("Random", 0.5)
-                .setText (NEEDS_TRANS ("Random Rate"))
-                .setInfo (NEEDS_TRANS ("Set entropy in life"))
-                .setRange (juce::Range<double> (0, 1));
+    nuclear.addFloat ("Random",
+        0.5,
+        NEEDS_TRANS ("Random Rate"),
+        NEEDS_TRANS ("Set entropy in life"))
+        .setRange (juce::Range<double> (0, 1));
     
     core::Group secret (t.addGroup ("Secret", true));
     
-    secret.addText ("Password", "000000000000")
-                .setText (NEEDS_TRANS ("Password"))
-                .setInfo (NEEDS_TRANS ("Password for nuclear suitcase"));
+    secret.addText ("Password",
+        "000000000000",
+        NEEDS_TRANS ("Password"),
+        NEEDS_TRANS ("Password for nuclear suitcase"));
     
     return t;
 }

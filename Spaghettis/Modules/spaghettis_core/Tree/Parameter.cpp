@@ -70,24 +70,6 @@ juce::String Parameter::getInfo() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter& Parameter::setText (const juce::String& s)
-{
-    parameter_.setProperty (Ids::text, s, nullptr);
-    
-    return *this;
-}
-
-Parameter& Parameter::setInfo (const juce::String& s)
-{
-    parameter_.setProperty (Ids::info, s, nullptr);
-    
-    return *this;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void Parameter::setValue (const juce::var& v)
 {
     if (!parameter_.getProperty (Ids::value).equals (v)) {
