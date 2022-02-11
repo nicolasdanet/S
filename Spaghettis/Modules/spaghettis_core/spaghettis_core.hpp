@@ -47,15 +47,23 @@
 
 #include "Glue/Identifiers.hpp"
 #include "Glue/Tags.hpp"
-#include "Glue/Iterator.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#include "Tree/Iterator.hpp"
+#include "Tree/Prototype.hpp"
+#include "Tree/Parameter.hpp"
+#include "Tree/Group.hpp"
+#include "Tree/Listener.hpp"
+#include "Tree/Tree.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#include "Glue/Colours.hpp"
 #include "Glue/Glue.hpp"
 #include "Glue/Unique.hpp"
-#include "Glue/Colours.hpp"
-#include "Glue/Prototype.hpp"
-#include "Glue/Parameter.hpp"
-#include "Glue/Group.hpp"
-#include "Glue/Listener.hpp"
-#include "Glue/Tree.hpp"
 #include "Glue/Description.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
