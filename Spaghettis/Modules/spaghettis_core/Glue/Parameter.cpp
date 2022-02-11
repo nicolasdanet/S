@@ -102,11 +102,10 @@ juce::var Parameter::getValue() const
     return parameter_.getProperty (Ids::value);
 }
 
+/* Make a temporary copy of the ValueTree as a workaround to get that method const. */
+
 juce::Value Parameter::getSource() const
 {
-    /* Make a temporary copy of the ValueTree as a workaround to get that method const. */
-    /* < https://forum.juce.com/t/why-valuetree-getpropertyasvalue-is-not-const/50117 > */
-    
     return juce::ValueTree (parameter_).getPropertyAsValue (Ids::value, nullptr);
 }
 
