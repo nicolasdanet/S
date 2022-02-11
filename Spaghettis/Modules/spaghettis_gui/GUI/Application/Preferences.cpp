@@ -17,6 +17,39 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void getDefaultTest (core::Tree& t)
+{
+    core::Group nuclear (t.addGroup ("Nuclear"));
+        
+    nuclear.addText ("Engine",
+        "Yellow Submarine",
+        NEEDS_TRANS ("Kind Of Engine"),
+        NEEDS_TRANS ("Set kind of stuff"));
+                
+    nuclear.addFloat ("Power",
+        99.5,
+        NEEDS_TRANS ("Power Of Engine"),
+        NEEDS_TRANS ("Set power of engine"));
+
+    nuclear.addFloat ("Launcher",
+        99.5,
+        NEEDS_TRANS ("Launcher Efficiency"),
+        NEEDS_TRANS ("Set tenderness of button"));
+
+    nuclear.addFloat ("Random",
+        0.5,
+        NEEDS_TRANS ("Random Rate"),
+        NEEDS_TRANS ("Set entropy in life"))
+        .setRange (juce::Range<double> (0, 1));
+    
+    core::Group secret (t.addGroup ("Secret", true));
+    
+    secret.addText ("Password",
+        "000000000000",
+        NEEDS_TRANS ("Password"),
+        NEEDS_TRANS ("Password for nuclear suitcase"));
+}
+    
 core::Tree getDefaultPreferences()
 {
     core::Tree t (Ids::PREFERENCES);
@@ -51,37 +84,7 @@ core::Tree getDefaultPreferences()
         NEEDS_TRANS ("Patch Background"),
         NEEDS_TRANS ("Set background color of patch"));
 
-    /* Just for testing. */
-    
-    core::Group nuclear (t.addGroup ("Nuclear"));
-        
-    nuclear.addText ("Engine",
-        "Yellow Submarine",
-        NEEDS_TRANS ("Kind Of Engine"),
-        NEEDS_TRANS ("Set kind of stuff"));
-                
-    nuclear.addFloat ("Power",
-        99.5,
-        NEEDS_TRANS ("Power Of Engine"),
-        NEEDS_TRANS ("Set power of engine"));
-
-    nuclear.addFloat ("Launcher",
-        99.5,
-        NEEDS_TRANS ("Launcher Efficiency"),
-        NEEDS_TRANS ("Set tenderness of button"));
-
-    nuclear.addFloat ("Random",
-        0.5,
-        NEEDS_TRANS ("Random Rate"),
-        NEEDS_TRANS ("Set entropy in life"))
-        .setRange (juce::Range<double> (0, 1));
-    
-    core::Group secret (t.addGroup ("Secret", true));
-    
-    secret.addText ("Password",
-        "000000000000",
-        NEEDS_TRANS ("Password"),
-        NEEDS_TRANS ("Password for nuclear suitcase"));
+    getDefaultTest (t);
     
     return t;
 }
