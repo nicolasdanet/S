@@ -24,19 +24,30 @@ class Prototypes : private juce::DeletedAtShutdown {
 // MARK: -
 
 public:
-    explicit Prototypes() : prototypes_ (Ids::PROTOTYPES)
-    {
-        DBG ("???");
-    }
+    Prototypes()  = default;
+    ~Prototypes() = default;
     
-    ~Prototypes()
-    {
-        DBG ("!!!");
-    }
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-private:
-    juce::ValueTree prototypes_;
+public:
+    juce::ValueTree getOrCreate (const juce::String& key,
+        const juce::String& type,
+        const juce::String& label,
+        const juce::String& info);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static void setProperties (juce::ValueTree& t,
+        const juce::String& key,
+        const juce::String& type,
+        const juce::String& label,
+        const juce::String& info);
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Prototypes)
 };

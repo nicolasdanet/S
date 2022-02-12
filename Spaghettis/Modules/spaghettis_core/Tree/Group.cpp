@@ -40,12 +40,10 @@ Parameter Group::add (Prototypes* p,
 {
     juce::ValueTree parameter (Ids::PARAMETER);
     
-    if (p) { DBG ("Prototypes"); }
+    // if (p) { parameter.appendChild (p->getOrCreate (key, type, label, info), nullptr); }
     
-    parameter.setProperty (Ids::key, key, nullptr);
-    parameter.setProperty (Ids::type, type, nullptr);
-    parameter.setProperty (Ids::label, label, nullptr);
-    parameter.setProperty (Ids::info, info, nullptr);
+    core::Prototypes::setProperties (parameter, key, type, label, info);
+
     parameter.setProperty (Ids::value, v, nullptr);
     
     jassert (!hasParameter (key));
