@@ -56,52 +56,6 @@ Parameter Group::add (const juce::String& key,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
-Parameter Group::addBoolean (const juce::String& key,
-    const juce::String& label,
-    const juce::String& info,
-    bool b)
-{
-    return addParameter (key, "boolean", label, info, b);
-}
-
-Parameter Group::addColour (const juce::String& key,
-    const juce::String& label,
-    const juce::String& info,
-    juce::Colour c)
-{
-    return addParameter (key, "color", label, info, Colours::getColourAsString (c));
-}
-
-Parameter Group::addInteger (const juce::String& key,
-    const juce::String& label,
-    const juce::String& info,
-    int n)
-{
-    return addParameter (key, "integer", label, info, n);
-}
-
-Parameter Group::addFloat (const juce::String& key,
-    const juce::String& label,
-    const juce::String& info,
-    double f)
-{
-    return addParameter (key, "float", label, info, f);
-}
-
-Parameter Group::addText (const juce::String& key,
-    const juce::String& label,
-    const juce::String& info,
-    const juce::String& s)
-{
-    return addParameter (key, "text", label, info, s);
-}
-*/
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 bool Group::hasParameter (const juce::String& key) const
 {
     return getParameter (key).isValid();

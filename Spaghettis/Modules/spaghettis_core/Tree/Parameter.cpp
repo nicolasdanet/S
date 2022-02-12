@@ -19,27 +19,27 @@ namespace core {
 
 bool Parameter::isBoolean() const
 {
-    return (getType() == "boolean");
+    return (getType() == ParameterType<bool>::get());
 }
 
 bool Parameter::isColour() const
 {
-    return (getType() == "color");
+    return (getType() == ParameterType<juce::Colour>::get());
 }
 
 bool Parameter::isInteger() const
 {
-    return (getType() == "integer");
+    return (getType() == ParameterType<int>::get());
 }
 
 bool Parameter::isFloat() const
 {
-    return (getType() == "float");
+    return (getType() == ParameterType<double>::get());
 }
 
 bool Parameter::isText() const
 {
-    return (getType() == "text");
+    return (getType() == ParameterType<juce::String>::get());
 }
 
 // -----------------------------------------------------------------------------------------------------------

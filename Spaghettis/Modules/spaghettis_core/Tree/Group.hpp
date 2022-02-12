@@ -69,15 +69,6 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
-public:
-    Parameter addBoolean (const juce::String&, const juce::String&, const juce::String&, bool);
-    Parameter addColour (const juce::String&, const juce::String&, const juce::String&, juce::Colour);
-    Parameter addInteger (const juce::String&, const juce::String&, const juce::String&, int);
-    Parameter addFloat (const juce::String&, const juce::String&, const juce::String&, double);
-    Parameter addText (const juce::String&, const juce::String&, const juce::String&, const juce::String&);
-*/
-
 public:
     template <class T> Parameter addParameter (const juce::String& key,
         const juce::String& label,
