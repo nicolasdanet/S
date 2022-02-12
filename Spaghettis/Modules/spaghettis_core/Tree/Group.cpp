@@ -31,7 +31,7 @@ bool Group::isHidden() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter Group::addParameter (const juce::String& key,
+Parameter Group::add (const juce::String& key,
     const juce::String& type,
     const juce::String& label,
     const juce::String& info,
@@ -56,6 +56,7 @@ Parameter Group::addParameter (const juce::String& key,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/*
 Parameter Group::addBoolean (const juce::String& key,
     const juce::String& label,
     const juce::String& info,
@@ -95,6 +96,7 @@ Parameter Group::addText (const juce::String& key,
 {
     return addParameter (key, "text", label, info, s);
 }
+*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

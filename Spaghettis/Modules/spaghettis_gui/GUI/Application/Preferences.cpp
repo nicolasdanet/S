@@ -21,33 +21,32 @@ void getDefaultTest (core::Tree& t)
 {
     core::Group nuclear (t.addGroup ("Nuclear"));
         
-    nuclear.addText ("Engine",
+    nuclear.addParameter ("Engine",
         NEEDS_TRANS ("Kind Of Engine"),
         NEEDS_TRANS ("Set kind of stuff"),
-        "Yellow Submarine");
+        juce::String("Yellow Submarine"));
                 
-    nuclear.addFloat ("Power",
+    nuclear.addParameter ("Power",
         NEEDS_TRANS ("Power Of Engine"),
         NEEDS_TRANS ("Set power of engine"),
         99.5);
 
-    nuclear.addFloat ("Launcher",
+    nuclear.addParameter ("Launcher",
         NEEDS_TRANS ("Launcher Efficiency"),
         NEEDS_TRANS ("Set tenderness of button"),
         99.5);
 
-    nuclear.addFloat ("Random",
+    nuclear.addParameter ("Random",
         NEEDS_TRANS ("Random Rate"),
         NEEDS_TRANS ("Set entropy in life"),
-        0.5)
-        .setRange (juce::Range<double> (0, 1));
+        0.5).setRange (juce::Range<double> (0, 1));
     
     core::Group secret (t.addGroup ("Secret", true));
     
-    secret.addText ("Password",
+    secret.addParameter ("Password",
         NEEDS_TRANS ("Password"),
         NEEDS_TRANS ("Password for nuclear suitcase"),
-        "000000000000");
+        juce::String ("000000000000"));
 }
     
 core::Tree getDefaultPreferences()
@@ -58,28 +57,27 @@ core::Tree getDefaultPreferences()
     core::Group editing (t.addGroup (Tags::Editing));
     core::Group colors  (t.addGroup (Tags::Colors));
         
-    general.addBoolean (Tags::AskBeforeQuit,
+    general.addParameter (Tags::AskBeforeQuit,
         NEEDS_TRANS ("Ask Before Quitting"),
         NEEDS_TRANS ("Show dialog box to confirm quitting"),
         true);
         
-    general.addBoolean (Tags::DefaultIsRunView,
+    general.addParameter (Tags::DefaultIsRunView,
         NEEDS_TRANS ("Default Is Run View"),
         NEEDS_TRANS ("Open a patch into a run view"),
         false);
     
-    editing.addBoolean (Tags::SnapToGrid,
+    editing.addParameter (Tags::SnapToGrid,
         NEEDS_TRANS ("Snap To Grid"),
         NEEDS_TRANS ("Enable magnetic grid"),
         true);
 
-    editing.addInteger (Tags::GridSize,
+    editing.addParameter (Tags::GridSize,
         NEEDS_TRANS ("Grid Size"),
         NEEDS_TRANS ("Set magnetic grid spacing"),
-        12)
-        .setRange (juce::Range<int> (1, 64));
+        12).setRange (juce::Range<int> (1, 64));
     
-    colors.addColour (Tags::PatchBackground,
+    colors.addParameter (Tags::PatchBackground,
         NEEDS_TRANS ("Patch Background"),
         NEEDS_TRANS ("Set background color of patch"),
         juce::Colour (0xff1f2029));

@@ -17,6 +17,41 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+template <class T> struct ParameterType { };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+template<> struct ParameterType<bool>
+{
+    static juce::String get() { return "boolean"; }
+};
+
+template<> struct ParameterType<juce::Colour>
+{
+    static juce::String get() { return "color"; }
+};
+
+template<> struct ParameterType<int>
+{
+    static juce::String get() { return "integer"; }
+};
+
+template<> struct ParameterType<double>
+{
+    static juce::String get() { return "float"; }
+};
+
+template<> struct ParameterType<juce::String>
+{
+    static juce::String get() { return "text"; }
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class Parameter {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -25,7 +60,7 @@ class Parameter {
 friend class Group;
 friend class Listener;
 
-template<class T> friend struct Iterator;
+template <class T> friend struct Iterator;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
