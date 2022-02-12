@@ -20,11 +20,14 @@ namespace {
 void getDefaultTest (core::Tree& t)
 {
     core::Group nuclear (t.addGroup ("Nuclear"));
-        
+    
+    static core::Delegate delegate;
+    
     nuclear.addParameter ("Engine",
         NEEDS_TRANS ("Kind Of Engine"),
         NEEDS_TRANS ("Set kind of stuff"),
-        juce::String("Yellow Submarine"));
+        juce::String("Yellow Submarine"),
+        delegate);
                 
     nuclear.addParameter ("Power",
         NEEDS_TRANS ("Power Of Engine"),

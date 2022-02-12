@@ -73,13 +73,15 @@ public:
     template <class T> Parameter addParameter (const juce::String& key,
         const juce::String& label,
         const juce::String& info,
-        T t)
+        T t,
+        Prototypes* p = nullptr)
     {
-        return add (key, ParameterType<T>::get(), label, info, juce::VariantConverter<T>::toVar (t));
+        return add (p, key, ParameterType<T>::get(), label, info, juce::VariantConverter<T>::toVar (t));
     }
     
 private:
-    Parameter add (const juce::String&,
+    Parameter add (Prototypes* p,
+        const juce::String&,
         const juce::String&,
         const juce::String&,
         const juce::String&,

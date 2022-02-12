@@ -17,24 +17,50 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Prototype {
+class Prototypes : private juce::DeletedAtShutdown {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Prototype()  = default;
-    ~Prototype() = default;
-
-public:
-    Prototype (const Prototype&) = default;
-    Prototype (Prototype&&) = default;
-    Prototype& operator = (const Prototype&) = default;
-    Prototype& operator = (Prototype&&) = default;
+    explicit Prototypes() : prototypes_ (Ids::PROTOTYPES)
+    {
+        DBG ("???");
+    }
+    
+    ~Prototypes()
+    {
+        DBG ("!!!");
+    }
 
 private:
-    juce::ValueTree prototype_;
+    juce::ValueTree prototypes_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Prototypes)
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+class Delegate {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    operator Prototypes*() const
+    {
+        if (p_ == nullptr) { p_ = new Prototypes(); }
+        
+        return p_;
+    }
+    
+private:
+    mutable Prototypes* p_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

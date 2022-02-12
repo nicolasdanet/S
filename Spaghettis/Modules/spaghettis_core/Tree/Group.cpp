@@ -31,13 +31,16 @@ bool Group::isHidden() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter Group::add (const juce::String& key,
+Parameter Group::add (Prototypes* p,
+    const juce::String& key,
     const juce::String& type,
     const juce::String& label,
     const juce::String& info,
     juce::var v)
 {
     juce::ValueTree parameter (Ids::PARAMETER);
+    
+    if (p) { DBG ("Prototypes"); }
     
     parameter.setProperty (Ids::key, key, nullptr);
     parameter.setProperty (Ids::type, type, nullptr);
