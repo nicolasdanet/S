@@ -57,41 +57,41 @@ Parameter Group::addParameter (const juce::String& key,
 // MARK: -
 
 Parameter Group::addBoolean (const juce::String& key,
-    bool b,
     const juce::String& label,
-    const juce::String& info)
+    const juce::String& info,
+    bool b)
 {
     return addParameter (key, "boolean", label, info, b);
 }
 
 Parameter Group::addColour (const juce::String& key,
-    juce::Colour c,
     const juce::String& label,
-    const juce::String& info)
+    const juce::String& info,
+    juce::Colour c)
 {
     return addParameter (key, "color", label, info, Colours::getColourAsString (c));
 }
 
 Parameter Group::addInteger (const juce::String& key,
-    int n,
     const juce::String& label,
-    const juce::String& info)
+    const juce::String& info,
+    int n)
 {
     return addParameter (key, "integer", label, info, n);
 }
 
 Parameter Group::addFloat (const juce::String& key,
-    double f,
     const juce::String& label,
-    const juce::String& info)
+    const juce::String& info,
+    double f)
 {
     return addParameter (key, "float", label, info, f);
 }
 
 Parameter Group::addText (const juce::String& key,
-    const juce::String& s,
     const juce::String& label,
-    const juce::String& info)
+    const juce::String& info,
+    const juce::String& s)
 {
     return addParameter (key, "text", label, info, s);
 }

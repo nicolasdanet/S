@@ -70,10 +70,10 @@ public:
 // MARK: -
 
 public:
-    Parameter addBoolean (const juce::String&, bool, const juce::String&, const juce::String&);
-    Parameter addColour (const juce::String&, juce::Colour, const juce::String&, const juce::String&);
-    Parameter addInteger (const juce::String&, int, const juce::String&, const juce::String&);
-    Parameter addFloat (const juce::String&, double, const juce::String&, const juce::String&);
+    Parameter addBoolean (const juce::String&, const juce::String&, const juce::String&, bool);
+    Parameter addColour (const juce::String&, const juce::String&, const juce::String&, juce::Colour);
+    Parameter addInteger (const juce::String&, const juce::String&, const juce::String&, int);
+    Parameter addFloat (const juce::String&, const juce::String&, const juce::String&, double);
     Parameter addText (const juce::String&, const juce::String&, const juce::String&, const juce::String&);
 
 private:
