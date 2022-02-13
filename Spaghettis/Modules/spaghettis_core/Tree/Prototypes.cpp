@@ -17,19 +17,20 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Prototypes::getOrCreate (const Invariant& i)
+juce::ValueTree Prototypes::create (const Invariant& i)
 {
-    /*
-    for (const auto& p : prototypes_) { if (p.getProperty (Ids::key).toString() == key) { return p; } }
+    juce::ValueTree t (Ids::PROTOTYPE);
     
-    juce::ValueTree t (Ids::PROTOTYPE); setProperties (t, properties);
-    
-    prototypes_.appendChild (t, nullptr);
+    Invariant::setProperties (t, i); prototypes_.push_back (t);
     
     return t;
-    */
+}
+
+juce::ValueTree Prototypes::getOrCreate (const Invariant& i)
+{
+    for (const auto& p : prototypes_) { if (p.getProperty (Ids::key).toString() == i.key) { return p; } }
     
-    return juce::ValueTree();
+    return create (i);
 }
 
 // -----------------------------------------------------------------------------------------------------------

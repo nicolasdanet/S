@@ -30,12 +30,18 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    juce::ValueTree create (const Invariant&);
+    
 public:
     juce::ValueTree getOrCreate (const Invariant&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+private:
+    std::vector<juce::ValueTree> prototypes_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Prototypes)
 };
