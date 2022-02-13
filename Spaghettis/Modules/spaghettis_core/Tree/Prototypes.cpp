@@ -17,15 +17,12 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Prototypes::getOrCreate (const juce::String& key,
-    const juce::String& type,
-    const juce::String& label,
-    const juce::String& info)
+juce::ValueTree Prototypes::getOrCreate (const Invariant& i)
 {
     /*
     for (const auto& p : prototypes_) { if (p.getProperty (Ids::key).toString() == key) { return p; } }
     
-    juce::ValueTree t (Ids::PROTOTYPE); setProperties (t, key, type, label, info);
+    juce::ValueTree t (Ids::PROTOTYPE); setProperties (t, properties);
     
     prototypes_.appendChild (t, nullptr);
     
@@ -35,22 +32,6 @@ juce::ValueTree Prototypes::getOrCreate (const juce::String& key,
     return juce::ValueTree();
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void Prototypes::setProperties (juce::ValueTree& t,
-    const juce::String& key,
-    const juce::String& type,
-    const juce::String& label,
-    const juce::String& info)
-{
-    t.setProperty (Ids::key, key, nullptr);
-    t.setProperty (Ids::type, type, nullptr);
-    t.setProperty (Ids::label, label, nullptr);
-    t.setProperty (Ids::info, info, nullptr);
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

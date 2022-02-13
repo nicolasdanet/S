@@ -76,16 +76,13 @@ public:
         T t,
         Prototypes* p = nullptr)
     {
-        return add (p, key, ParameterType<T>::get(), label, info, juce::VariantConverter<T>::toVar (t));
+        const core::Invariant i = { key, ParameterType<T>::get(), label, info };
+
+        return add (p, i, juce::VariantConverter<T>::toVar (t));
     }
     
 private:
-    Parameter add (Prototypes* p,
-        const juce::String&,
-        const juce::String&,
-        const juce::String&,
-        const juce::String&,
-        juce::var v);
+    Parameter add (Prototypes*, const core::Invariant&, juce::var);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

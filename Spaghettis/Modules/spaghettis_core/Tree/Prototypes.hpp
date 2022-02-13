@@ -21,7 +21,6 @@ class Prototypes : private juce::DeletedAtShutdown {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
     Prototypes()  = default;
@@ -32,22 +31,11 @@ public:
 // MARK: -
 
 public:
-    juce::ValueTree getOrCreate (const juce::String& key,
-        const juce::String& type,
-        const juce::String& label,
-        const juce::String& info);
+    juce::ValueTree getOrCreate (const Invariant&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-public:
-    static void setProperties (juce::ValueTree& t,
-        const juce::String& key,
-        const juce::String& type,
-        const juce::String& label,
-        const juce::String& info);
-    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Prototypes)
 };

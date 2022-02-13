@@ -167,8 +167,9 @@ bool Parameter::isValid() const
 {
     if (!parameter_.isValid()) { return false; }
     else if (!parameter_.hasType (Ids::PARAMETER)) { return false; }
-
-    return (get (Ids::key).isString() && get (Ids::type).isString() && !getValue().isVoid());
+    else {
+        return (get (Ids::key).isString() && get (Ids::type).isString() && !getValue().isVoid());
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

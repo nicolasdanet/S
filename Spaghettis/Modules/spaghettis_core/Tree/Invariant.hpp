@@ -17,70 +17,28 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String Group::getName() const
-{
-    return group_.getProperty (Ids::name).toString();
-}
-
-bool Group::isHidden() const
-{
-    return static_cast<bool> (group_.getProperty (Ids::hidden));
-}
+struct Invariant {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter Group::add (Prototypes* p, const core::Invariant& i, juce::var v)
-{
-    jassert (!hasParameter (i.key));
-    
-    juce::ValueTree parameter (Ids::PARAMETER);
-    
-    // if (p) { parameter.appendChild (p->getOrCreate (properties), nullptr); }
-    
-    core::Invariant::setProperties (parameter, i);
-
-    parameter.setProperty (Ids::value, v, nullptr);
-    
-    group_.appendChild (parameter, nullptr);
-    
-    return Parameter (parameter);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool Group::hasParameter (const juce::String& key) const
-{
-    return getParameter (key).isValid();
-}
-
-Parameter Group::getParameter (const juce::String& key) const
-{
-    for (const auto& parameter : *this) { if (parameter.getKey() == key) { return parameter; } }
-    
-    return Parameter();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool Group::isValid() const
-{
-    if (!group_.isValid()) { return false; }
-    else if (!group_.hasType (Ids::GROUP)) { return false; }
-    else if (!group_.getProperty (Ids::name).isString()) { return false; }
-    
-    for (const auto& parameter : *this) {
-        if (!parameter.isValid()) { return false; }
+public:
+    static void setProperties (juce::ValueTree& t, const Invariant& i)
+    {
+        t.setProperty (Ids::key,   i.key,   nullptr);
+        t.setProperty (Ids::type,  i.type,  nullptr);
+        t.setProperty (Ids::label, i.label, nullptr);
+        t.setProperty (Ids::info,  i.info,  nullptr);
     }
     
-    return true;
-}
-
+public:
+    juce::String key;
+    juce::String type;
+    juce::String label;
+    juce::String info;
+};
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

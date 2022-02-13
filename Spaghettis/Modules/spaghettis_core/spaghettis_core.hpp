@@ -52,6 +52,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "Tree/Iterator.hpp"
+#include "Tree/Invariant.hpp"
 #include "Tree/Prototypes.hpp"
 #include "Tree/Parameter.hpp"
 #include "Tree/Group.hpp"
