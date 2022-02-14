@@ -57,15 +57,30 @@ class Delegate {
 // MARK: -
 
 public:
+    Delegate() : p_ (new Prototypes())
+    {
+    }
+    
+    ~Delegate() = default;
+
+public:
+    Delegate (const Delegate&) = delete;
+    Delegate (Delegate&&) = delete;
+    Delegate& operator = (const Delegate&) = delete;
+    Delegate& operator = (Delegate&&) = delete;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     operator Prototypes*() const
     {
-        if (p_ == nullptr) { p_ = new Prototypes(); }
-        
         return p_;
     }
     
 private:
-    mutable Prototypes* p_;
+    Prototypes* p_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
