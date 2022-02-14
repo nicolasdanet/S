@@ -18,7 +18,6 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 
 struct _object;
-struct _glist;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -32,7 +31,6 @@ class Description {
 private:
     explicit Description (const juce::ValueTree& t) : t_ (t)
     {
-    
     }
 
 public:
@@ -66,7 +64,7 @@ public:
 // MARK: -
 
 public:
-    static const juce::var& getAttribute (const juce::ValueTree&, const juce::Identifier &);
+    static juce::var getAttribute (const juce::ValueTree&, const juce::String &);
     
 private:
     juce::ValueTree t_;

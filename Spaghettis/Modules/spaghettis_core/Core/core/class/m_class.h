@@ -47,7 +47,7 @@ typedef void (*t_savefn)    (t_object *x, t_buffer *b, int flags);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-typedef void (*t_viewfn)    (t_object *x, core::Tree& t);
+typedef void (*t_viewfn)    (t_object *x, core::Group& t);
 
 #endif
 

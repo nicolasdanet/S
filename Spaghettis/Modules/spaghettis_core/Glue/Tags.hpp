@@ -37,7 +37,24 @@ namespace Keywords {
     DECLARE_STRING (GridSize);
     DECLARE_STRING (PatchBackground);
     DECLARE_STRING (SnapToGrid);
-                
+    
+    DECLARE_STRING (Attributes);
+    DECLARE_STRING (Parameters);
+    
+    DECLARE_STRING (Buffer);
+    DECLARE_STRING (EditView);
+    DECLARE_STRING (Inlets);
+    DECLARE_STRING (Name);
+    DECLARE_STRING (Outlets);
+    DECLARE_STRING (Path);
+    DECLARE_STRING (RunView);
+    DECLARE_STRING (Selected);
+    DECLARE_STRING (Title);
+    DECLARE_STRING (Type);
+    DECLARE_STRING (Width);
+    DECLARE_STRING (X);
+    DECLARE_STRING (Y);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

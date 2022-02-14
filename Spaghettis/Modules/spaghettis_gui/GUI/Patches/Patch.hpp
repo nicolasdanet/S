@@ -34,6 +34,8 @@ public:
 
     ~Patch()
     {
+        DBG (tree_.toXmlString());
+        
         releaseAllWindows();
     }
 
@@ -109,7 +111,7 @@ public:
 
     juce::File getFile() const
     {
-        return juce::File (core::Description::getAttribute (tree_, Ids::path).toString());
+        return juce::File (core::Description::getAttribute (tree_, Tags::Path).toString());
     }
 
 // -----------------------------------------------------------------------------------------------------------

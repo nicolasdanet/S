@@ -28,39 +28,26 @@ namespace Identifiers {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-    DECLARE_ID (buffer);
-    DECLARE_ID (directory);
-    DECLARE_ID (height);
     DECLARE_ID (hidden);
     DECLARE_ID (identifier);
     DECLARE_ID (info);
-    DECLARE_ID (inlets);
     DECLARE_ID (item);
     DECLARE_ID (key);
     DECLARE_ID (label);
     DECLARE_ID (maximum);
     DECLARE_ID (minimum);
     DECLARE_ID (name);
-    DECLARE_ID (outlets);
     DECLARE_ID (path);
-    DECLARE_ID (selected);
     DECLARE_ID (state);
-    DECLARE_ID (title);
     DECLARE_ID (type);
     DECLARE_ID (value);
-    DECLARE_ID (view);
-    DECLARE_ID (width);
-    DECLARE_ID (window);
-    DECLARE_ID (x);
-    DECLARE_ID (y);
     
-    DECLARE_ID (ATTRIBUTES);
     DECLARE_ID (BUTTON);
     DECLARE_ID (BUTTONS);
+    DECLARE_ID (DATA);
     DECLARE_ID (GROUP);
     DECLARE_ID (OBJECT);
     DECLARE_ID (PARAMETER);
-    DECLARE_ID (PARAMETERS);
     DECLARE_ID (POSITION);
     DECLARE_ID (PREFERENCES);
     DECLARE_ID (PROTOTYPE);

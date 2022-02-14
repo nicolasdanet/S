@@ -22,7 +22,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String getContentBuffer (struct _object* o)
+juce::String getContentBuffer (t_object* o)
 {
     juce::String s;
     
@@ -63,49 +63,109 @@ juce::String getWindow (t_glist* glist)
     return juce::Rectangle<int> (x, y, w, h).toString();
 }
 
-juce::ValueTree getAttributes (struct _object* o)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void setAttributesForObject (Group& group, const juce::String& type, t_object* o)
 {
-    juce::ValueTree a (Ids::ATTRIBUTES);
+    group.addParameter (Tags::Type,
+        NEEDS_TRANS ("Type"),
+        NEEDS_TRANS ("Graphic type"),
+        juce::String (type));
     
+    group.addParameter (Tags::Name,
+        NEEDS_TRANS ("Name"),
+        NEEDS_TRANS ("Class name"),
+        juce::String (class_getNameAsString (pd_class (o))));
+    
+    group.addParameter (Tags::Buffer,
+        NEEDS_TRANS ("Buffer"),
+        NEEDS_TRANS ("Content of the box"),
+        juce::String (getContentBuffer (o)));
+    
+    group.addParameter (Tags::Inlets,
+        NEEDS_TRANS ("Inlets"),
+        NEEDS_TRANS ("Number of inlets"),
+        object_getNumberOfInlets (o));
+    
+    group.addParameter (Tags::Outlets,
+        NEEDS_TRANS ("Outlets"),
+        NEEDS_TRANS ("Number of outlets"),
+        object_getNumberOfOutlets (o));
+    
+    group.addParameter (Tags::X,
+        NEEDS_TRANS ("X"),
+        NEEDS_TRANS ("Position abscissa"),
+        object_getX (o));
+    
+    group.addParameter (Tags::Y,
+        NEEDS_TRANS ("Y"),
+        NEEDS_TRANS ("Position ordinate"),
+        object_getY (o));
+    
+    group.addParameter (Tags::Width,
+        NEEDS_TRANS ("Width"),
+        NEEDS_TRANS ("Width in characters"),
+        object_getWidth (o));
+    
+    group.addParameter (Tags::Selected,
+        NEEDS_TRANS ("Selected"),
+        NEEDS_TRANS ("Selected state"),
+        static_cast<bool> (object_getSelected (o)));
+}
+
+void setAttributesForPatch (Group& group, t_glist* g)
+{
+    group.addParameter (Tags::Title,
+        NEEDS_TRANS ("Title"),
+        NEEDS_TRANS ("Patch name"),
+        juce::String (glist_getName (g)->s_name));
+    
+    group.addParameter (Tags::EditView,
+        NEEDS_TRANS ("Edit View"),
+        NEEDS_TRANS ("Edit window geometry"),
+        juce::String (getWindow (g)));
+    
+    if (glist_isRoot (g)) {
+    //
+    group.addParameter (Tags::RunView,
+        NEEDS_TRANS ("Run View"),
+        NEEDS_TRANS ("Run window geometry"),
+        juce::String (getWindow (g)));
+    
+    group.addParameter (Tags::Path,
+        NEEDS_TRANS ("Path"),
+        NEEDS_TRANS ("File path"),
+        juce::String (getPatchFile (g).getFullPathName()));
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void setAttributes (Tree& tree, t_object* o)
+{
     const bool isPatch = object_isCanvas (o);
     const bool hasView = class_hasViewFunction (pd_class (o));
     
-    const juce::String type (isPatch ? "patch" : (hasView ? "graphic" : "box"));
+    Group group (tree.addGroup (Tags::Attributes, true));
     
-    a.setProperty (Ids::type,       juce::var (type), nullptr);
-    a.setProperty (Ids::name,       juce::var (juce::String (class_getNameAsString (pd_class (o)))), nullptr);
-    a.setProperty (Ids::buffer,     juce::var (getContentBuffer (o)), nullptr);
-    a.setProperty (Ids::inlets,     juce::var (object_getNumberOfInlets (o)), nullptr);
-    a.setProperty (Ids::outlets,    juce::var (object_getNumberOfOutlets (o)), nullptr);
-    a.setProperty (Ids::x,          juce::var (object_getX (o)), nullptr);
-    a.setProperty (Ids::y,          juce::var (object_getY (o)), nullptr);
-    a.setProperty (Ids::width,      juce::var (object_getWidth (o)), nullptr);
-    a.setProperty (Ids::selected,   juce::var (object_getSelected (o)), nullptr);
+    setAttributesForObject (group, (isPatch ? "patch" : (hasView ? "graphic" : "box")), o);
     
-    if (isPatch) {
-    //
-    t_glist* g = cast_glist (o);
-        
-    a.setProperty (Ids::title,      juce::var (glist_getName (g)->s_name), nullptr);
-    a.setProperty (Ids::view,       juce::var (getWindow (g)), nullptr);
-    a.setProperty (Ids::window,     juce::var (getWindow (g)), nullptr);
-    
-    if (glist_isRoot (g)) {
-        a.setProperty (Ids::path,   juce::var (getPatchFile (g).getFullPathName()), nullptr);
-    }
-    //
-    }
-    
-    return a;
+    if (isPatch) { setAttributesForPatch (group, cast_glist (o)); }
 }
 
-Tree getParameters (struct _object* o)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void setParameters (Tree& tree, t_object* o)
 {
-    Tree p (Ids::PARAMETERS);
-    
-    if (class_hasViewFunction (pd_class (o))) { (*class_getViewFunction (pd_class (o))) (o, p); }
-    
-    return p;
+    Group group (tree.addGroup (Tags::Parameters));
+
+    if (class_hasViewFunction (pd_class (o))) { (*class_getViewFunction (pd_class (o))) (o, group); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -125,8 +185,12 @@ Description Description::view (const Unique& u, struct _object* o)
     
     if (o) {
     //
-    t.appendChild (getAttributes (o), nullptr);
-    t.appendChild (getParameters (o), nullptr);
+    Tree tree (Ids::DATA);
+    
+    setAttributes (tree, o);
+    setParameters (tree, o);
+    
+    t.appendChild (tree, nullptr);
     //
     }
     
@@ -137,9 +201,9 @@ Description Description::view (const Unique& u, struct _object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const juce::var& Description::getAttribute (const juce::ValueTree& t, const juce::Identifier &name)
+juce::var Description::getAttribute (const juce::ValueTree& t, const juce::String &name)
 {
-    return t.getChildWithName (Ids::ATTRIBUTES).getProperty (name);
+    return Tree (t.getChildWithName (Ids::DATA)).getValue (Tags::Attributes, name);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -14,7 +14,7 @@ namespace spaghettis {
 
 juce::Rectangle<int> EditWindow::getEditWindowPosition (const juce::ValueTree& t)
 {
-    return juce::Rectangle<int>::fromString (core::Description::getAttribute (t, Ids::window).toString());
+    return juce::Rectangle<int>::fromString (core::Description::getAttribute (t, Tags::EditView).toString());
 }
     
 // -----------------------------------------------------------------------------------------------------------
