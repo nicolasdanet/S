@@ -129,9 +129,11 @@ const juce::var& Parameter::get (const juce::Identifier& identifier) const
 {
     if (parameter_.hasProperty (identifier) == false) {
     //
-    juce::ValueTree prototype (parameter_.getChildWithName (Ids::PROTOTYPE));
+    auto p = dynamic_cast<Prototype*> (parameter_.getProperty (Ids::prototype).getObject());
     
-    if (prototype.isValid()) { return prototype.getProperty (identifier); }
+    if (p) {
+        return p->getProperty (identifier);
+    }
     //
     }
     

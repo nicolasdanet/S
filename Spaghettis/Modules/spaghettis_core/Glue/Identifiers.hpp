@@ -38,6 +38,7 @@ namespace Identifiers {
     DECLARE_ID (minimum);
     DECLARE_ID (name);
     DECLARE_ID (path);
+    DECLARE_ID (prototype);
     DECLARE_ID (state);
     DECLARE_ID (type);
     DECLARE_ID (value);

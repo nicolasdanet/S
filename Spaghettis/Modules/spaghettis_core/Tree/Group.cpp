@@ -37,7 +37,7 @@ Parameter Group::add (Prototypes* p, const core::Invariant& i, juce::var v)
     
     juce::ValueTree parameter (Ids::PARAMETER);
     
-    if (p) { parameter.appendChild (p->getOrCreate (i), nullptr); }
+    if (p) { parameter.setProperty (Ids::prototype, p->getOrCreate (i), nullptr); }
     else {
         core::Invariant::setProperties (parameter, i);
     }

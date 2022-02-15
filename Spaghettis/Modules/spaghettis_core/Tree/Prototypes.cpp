@@ -17,18 +17,34 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Prototypes::create (const Invariant& i)
+Prototype::Prototype (const Invariant& i) : prototype_ (Ids::PROTOTYPE)
 {
-    juce::ValueTree t (Ids::PROTOTYPE);
-    
-    Invariant::setProperties (t, i); prototypes_.push_back (t);
-    
-    return t;
+    Invariant::setProperties (prototype_, i);
 }
 
-juce::ValueTree Prototypes::getOrCreate (const Invariant& i)
+const juce::var& Prototype::getProperty (const juce::Identifier& identifier) const
 {
-    for (const auto& p : prototypes_) { if (p.getProperty (Ids::key).toString() == i.key) { return p; } }
+    return prototype_.getProperty (identifier);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Prototype* Prototypes::create (const Invariant& i)
+{
+    Prototype::Ptr p (new Prototype (i));
+    
+    prototypes_.push_back (p);
+    
+    return p.get();
+}
+
+Prototype* Prototypes::getOrCreate (const Invariant& i)
+{
+    for (const auto& p : prototypes_) {
+        if (p->prototype_.getProperty (Ids::key).toString() == i.key) { return p.get(); }
+    }
     
     return create (i);
 }
