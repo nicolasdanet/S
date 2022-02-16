@@ -31,7 +31,7 @@ bool Group::isHidden() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter Group::add (Manager* p, const core::Invariant& i, juce::var v)
+Parameter Group::add (Delegate::Manager* p, const core::Invariant& i, juce::var v)
 {
     jassert (!hasParameter (i.key));
     

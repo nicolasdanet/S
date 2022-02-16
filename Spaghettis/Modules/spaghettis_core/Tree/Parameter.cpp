@@ -129,7 +129,7 @@ const juce::var& Parameter::get (const juce::Identifier& identifier) const
 {
     if (parameter_.hasProperty (identifier) == false) {
     //
-    auto p = dynamic_cast<Shared*> (parameter_.getProperty (Ids::prototype).getObject());
+    auto p = dynamic_cast<Delegate::Shared*> (parameter_.getProperty (Ids::prototype).getObject());
     
     if (p) {
         return p->getProperty (identifier);
