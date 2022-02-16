@@ -124,11 +124,11 @@ void Tree::write (const juce::File& file) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Tree::substituteDelegates (juce::ValueTree& tree)
+void Tree::substitute (juce::ValueTree& tree)
 {
     if (tree.hasType (Ids::GROUP)) { Group (tree).substitute(); }
     else {
-        for (auto child : tree) { substituteDelegates (child); }
+        for (auto child : tree) { substitute (child); }
     }
 }
 
@@ -136,7 +136,7 @@ juce::ValueTree Tree::getCopyWithSubstitutedDelegates (const juce::ValueTree& tr
 {
     juce::ValueTree t (tree.createCopy());
     
-    substituteDelegates (t);
+    substitute (t);
     
     return t;
 }

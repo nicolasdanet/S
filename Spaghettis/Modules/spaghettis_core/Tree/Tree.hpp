@@ -115,7 +115,7 @@ public:
 // MARK: -
 
 private:
-    static void substituteDelegates (juce::ValueTree&);
+    static void substitute (juce::ValueTree&);
 
 public:
     static juce::ValueTree getCopyWithSubstitutedDelegates (const juce::ValueTree&);
