@@ -17,27 +17,27 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Prototype : public juce::ReferenceCountedObject {
+class Shared : public juce::ReferenceCountedObject {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-friend class Prototypes;
+friend class Manager;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using Ptr = juce::ReferenceCountedObjectPtr<Prototype>;
+using Ptr = juce::ReferenceCountedObjectPtr<Shared>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    explicit Prototype (const Invariant& i);
+    explicit Shared (const Invariant& i);
 
 public:
-    ~Prototype() = default;
+    ~Shared() = default;
 
 public:
     const juce::var& getProperty (const juce::Identifier&) const;
@@ -46,84 +46,77 @@ private:
     juce::ValueTree prototype_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Prototype)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Shared)
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Prototypes : private juce::DeletedAtShutdown {
+class Manager : private juce::DeletedAtShutdown {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-friend class Delegate;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-private:
-    Prototypes()  = default;
 
 public:
-    ~Prototypes() = default;
+    Manager()  = default;
+    ~Manager() = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    Prototype* create (const Invariant&);
+    Shared* create (const Invariant&);
     
 public:
-    Prototype* getOrCreate (const Invariant&);
+    Shared* getOrCreate (const Invariant&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    std::vector<Prototype::Ptr> prototypes_;
+    std::vector<Shared::Ptr> prototypes_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Prototypes)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Manager)
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Delegate {
+class Cache {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Delegate() : p_ (new Prototypes())
+    Cache() : p_ (new Manager())
     {
     }
     
-    ~Delegate() = default;
+    ~Cache() = default;
 
 public:
-    Delegate (const Delegate&) = delete;
-    Delegate (Delegate&&) = delete;
-    Delegate& operator = (const Delegate&) = delete;
-    Delegate& operator = (Delegate&&) = delete;
+    Cache (const Cache&) = delete;
+    Cache (Cache&&) = delete;
+    Cache& operator = (const Cache&) = delete;
+    Cache& operator = (Cache&&) = delete;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    operator Prototypes*() const
+    operator Manager*() const
     {
         return p_;
     }
     
 private:
-    Prototypes* p_;
+    Manager* p_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

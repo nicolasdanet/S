@@ -17,12 +17,12 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Prototype::Prototype (const Invariant& i) : prototype_ (Ids::PROTOTYPE)
+Shared::Shared (const Invariant& i) : prototype_ (Ids::PROTOTYPE)
 {
     Invariant::setProperties (prototype_, i);
 }
 
-const juce::var& Prototype::getProperty (const juce::Identifier& identifier) const
+const juce::var& Shared::getProperty (const juce::Identifier& identifier) const
 {
     return prototype_.getProperty (identifier);
 }
@@ -31,16 +31,16 @@ const juce::var& Prototype::getProperty (const juce::Identifier& identifier) con
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Prototype* Prototypes::create (const Invariant& i)
+Shared* Manager::create (const Invariant& i)
 {
-    Prototype::Ptr p (new Prototype (i));
+    Shared::Ptr p (new Shared (i));
     
     prototypes_.push_back (p);
     
     return p.get();
 }
 
-Prototype* Prototypes::getOrCreate (const Invariant& i)
+Shared* Manager::getOrCreate (const Invariant& i)
 {
     for (const auto& p : prototypes_) {
         if (p->prototype_.getProperty (Ids::key).toString() == i.key) { return p.get(); }
