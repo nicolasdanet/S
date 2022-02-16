@@ -149,6 +149,8 @@ public:
 private:
     const juce::var& get (const juce::Identifier&) const;
     
+    void substitute();
+    
 private:
     juce::var constrained (const juce::var& v) const;
     

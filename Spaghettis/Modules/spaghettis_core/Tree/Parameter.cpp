@@ -140,6 +140,15 @@ const juce::var& Parameter::get (const juce::Identifier& identifier) const
     return parameter_.getProperty (identifier);
 }
 
+void Parameter::substitute()
+{
+    auto p = dynamic_cast<Delegate::Shared*> (parameter_.getProperty (Ids::DELEGATE).getObject());
+    
+    if (p) { parameter_.setProperty (Ids::key, p->getProperty (Ids::key), nullptr); }
+    
+    parameter_.removeProperty (Ids::DELEGATE, nullptr);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
