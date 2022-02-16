@@ -37,7 +37,7 @@ Parameter Group::add (Delegate::Manager* p, const core::Invariant& i, juce::var 
     
     juce::ValueTree parameter (Ids::PARAMETER);
     
-    if (p) { parameter.setProperty (Ids::prototype, p->getOrCreate (i), nullptr); }
+    if (p) { parameter.setProperty (Ids::DELEGATE, p->getOrCreate (i), nullptr); }
     else {
         core::Invariant::setProperties (parameter, i);
     }

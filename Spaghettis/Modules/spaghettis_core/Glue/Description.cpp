@@ -69,75 +69,92 @@ juce::String getWindow (t_glist* glist)
 
 void setAttributesForObject (Group& group, const juce::String& type, t_object* o)
 {
+    static Delegate::Cache delegate;
+    
     group.addParameter (Tags::Type,
         NEEDS_TRANS ("Type"),
-        NEEDS_TRANS ("Graphic type"),
-        juce::String (type));
+        NEEDS_TRANS ("Object type"),
+        juce::String (type),
+        delegate);
     
     group.addParameter (Tags::Name,
         NEEDS_TRANS ("Name"),
         NEEDS_TRANS ("Class name"),
-        juce::String (class_getNameAsString (pd_class (o))));
+        juce::String (class_getNameAsString (pd_class (o))),
+        delegate);
     
     group.addParameter (Tags::Buffer,
         NEEDS_TRANS ("Buffer"),
         NEEDS_TRANS ("Content of the box"),
-        juce::String (getContentBuffer (o)));
+        juce::String (getContentBuffer (o)),
+        delegate);
     
     group.addParameter (Tags::Inlets,
         NEEDS_TRANS ("Inlets"),
         NEEDS_TRANS ("Number of inlets"),
-        object_getNumberOfInlets (o));
+        object_getNumberOfInlets (o),
+        delegate);
     
     group.addParameter (Tags::Outlets,
         NEEDS_TRANS ("Outlets"),
         NEEDS_TRANS ("Number of outlets"),
-        object_getNumberOfOutlets (o));
+        object_getNumberOfOutlets (o),
+        delegate);
     
     group.addParameter (Tags::X,
         NEEDS_TRANS ("X"),
-        NEEDS_TRANS ("Position abscissa"),
-        object_getX (o));
+        NEEDS_TRANS ("Abscissa of position"),
+        object_getX (o),
+        delegate);
     
     group.addParameter (Tags::Y,
         NEEDS_TRANS ("Y"),
-        NEEDS_TRANS ("Position ordinate"),
-        object_getY (o));
+        NEEDS_TRANS ("Ordinate of position"),
+        object_getY (o),
+        delegate);
     
     group.addParameter (Tags::Width,
         NEEDS_TRANS ("Width"),
         NEEDS_TRANS ("Width in characters"),
-        object_getWidth (o));
+        object_getWidth (o),
+        delegate);
     
     group.addParameter (Tags::Selected,
         NEEDS_TRANS ("Selected"),
         NEEDS_TRANS ("Selected state"),
-        static_cast<bool> (object_getSelected (o)));
+        static_cast<bool> (object_getSelected (o)),
+        delegate);
 }
 
 void setAttributesForPatch (Group& group, t_glist* g)
 {
+    static Delegate::Cache delegate;
+    
     group.addParameter (Tags::Title,
         NEEDS_TRANS ("Title"),
         NEEDS_TRANS ("Patch name"),
-        juce::String (glist_getName (g)->s_name));
+        juce::String (glist_getName (g)->s_name),
+        delegate);
     
     group.addParameter (Tags::EditView,
         NEEDS_TRANS ("Edit View"),
         NEEDS_TRANS ("Edit window geometry"),
-        juce::String (getWindow (g)));
+        juce::String (getWindow (g)),
+        delegate);
     
     if (glist_isRoot (g)) {
     //
     group.addParameter (Tags::RunView,
         NEEDS_TRANS ("Run View"),
         NEEDS_TRANS ("Run window geometry"),
-        juce::String (getWindow (g)));
+        juce::String (getWindow (g)),
+        delegate);
     
     group.addParameter (Tags::Path,
         NEEDS_TRANS ("Path"),
         NEEDS_TRANS ("File path"),
-        juce::String (getPatchFile (g).getFullPathName()));
+        juce::String (getPatchFile (g).getFullPathName()),
+        delegate);
     //
     }
 }

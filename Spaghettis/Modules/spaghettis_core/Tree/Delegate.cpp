@@ -17,14 +17,14 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Delegate::Shared::Shared (const Invariant& i) : prototype_ (Ids::PROTOTYPE)
+Delegate::Shared::Shared (const Invariant& i) : delegate_ (Ids::DELEGATE)
 {
-    Invariant::setProperties (prototype_, i);
+    Invariant::setProperties (delegate_, i);
 }
 
 const juce::var& Delegate::Shared::getProperty (const juce::Identifier& identifier) const
 {
-    return prototype_.getProperty (identifier);
+    return delegate_.getProperty (identifier);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -35,19 +35,71 @@ Delegate::Shared* Delegate::Manager::create (const Invariant& i)
 {
     Shared::Ptr p (new Shared (i));
     
-    prototypes_.push_back (p);
+    delegates_.push_back (p);
     
     return p.get();
 }
 
 Delegate::Shared* Delegate::Manager::getOrCreate (const Invariant& i)
 {
-    for (const auto& p : prototypes_) {
-        if (p->prototype_.getProperty (Ids::key).toString() == i.key) { return p.get(); }
+    for (const auto& p : delegates_) {
+        if (p->delegate_.getProperty (Ids::key).toString() == i.key) { return p.get(); }
     }
     
     return create (i);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if JUCE_DEBUG
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void substituteDelegates (juce::ValueTree& tree)
+{
+    if (tree.hasProperty (Ids::DELEGATE)) {
+    //
+    auto p = dynamic_cast<Delegate::Shared*> (tree.getProperty (Ids::DELEGATE).getObject());
+    
+    if (p) {
+        tree.setProperty (Ids::DELEGATE, p->getProperty (Ids::key), nullptr);
+    }
+    //
+    }
+    
+    for (auto child : tree) { substituteDelegates (child); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::ValueTree Delegate::getCopyWithSubstitutedDelegates (const juce::ValueTree& tree)
+{
+    juce::ValueTree t (tree.createCopy());
+    
+    substituteDelegates (t);
+    
+    return t;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

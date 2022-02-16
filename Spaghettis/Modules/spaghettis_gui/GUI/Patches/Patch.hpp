@@ -34,7 +34,7 @@ public:
 
     ~Patch()
     {
-        DBG (tree_.toXmlString());
+        DBG (core::Delegate::getCopyWithSubstitutedDelegates (tree_).toXmlString());
         
         releaseAllWindows();
     }

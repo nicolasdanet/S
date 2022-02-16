@@ -38,7 +38,6 @@ namespace Identifiers {
     DECLARE_ID (minimum);
     DECLARE_ID (name);
     DECLARE_ID (path);
-    DECLARE_ID (prototype);
     DECLARE_ID (state);
     DECLARE_ID (type);
     DECLARE_ID (value);
@@ -46,12 +45,12 @@ namespace Identifiers {
     DECLARE_ID (BUTTON);
     DECLARE_ID (BUTTONS);
     DECLARE_ID (DATA);
+    DECLARE_ID (DELEGATE);
     DECLARE_ID (GROUP);
     DECLARE_ID (OBJECT);
     DECLARE_ID (PARAMETER);
     DECLARE_ID (POSITION);
     DECLARE_ID (PREFERENCES);
-    DECLARE_ID (PROTOTYPE);
     DECLARE_ID (RECENTFILE);
     DECLARE_ID (RECENTFILES);
     DECLARE_ID (SEARCHPATH);

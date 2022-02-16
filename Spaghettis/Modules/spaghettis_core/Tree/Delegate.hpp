@@ -48,7 +48,7 @@ public:
     const juce::var& getProperty (const juce::Identifier&) const;
     
 private:
-    juce::ValueTree prototype_;
+    juce::ValueTree delegate_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Shared)
@@ -81,7 +81,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    std::vector<Shared::Ptr> prototypes_;
+    std::vector<Shared::Ptr> delegates_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Manager)
@@ -123,6 +123,15 @@ public:
 private:
     Manager* p_;
 };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if JUCE_DEBUG
+
+juce::ValueTree getCopyWithSubstitutedDelegates (const juce::ValueTree&);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
