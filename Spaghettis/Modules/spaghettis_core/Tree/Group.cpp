@@ -64,24 +64,7 @@ Parameter Group::getParameter (const juce::String& key) const
 {
     for (const auto& parameter : *this) { if (parameter.getKey() == key) { return parameter; } }
     
-    return Parameter();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool Group::isValid() const
-{
-    if (!group_.isValid()) { return false; }
-    else if (!group_.hasType (Ids::GROUP)) { return false; }
-    else if (!group_.getProperty (Ids::name).isString()) { return false; }
-    
-    for (const auto& parameter : *this) {
-        if (!parameter.isValid()) { return false; }
-    }
-    
-    return true;
+    jassertfalse; return Parameter();
 }
 
 // -----------------------------------------------------------------------------------------------------------

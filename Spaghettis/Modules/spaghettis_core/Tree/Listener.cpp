@@ -24,7 +24,7 @@ void Listener::addHandler (const juce::String& key, std::function<void (const Pa
 
 void Listener::callHandlers (const juce::ValueTree& tree)
 {
-    const Parameter parameter (tree); jassert (parameter.isValid());
+    const Parameter parameter (tree);
     
     const juce::String key (parameter.getKey());
     

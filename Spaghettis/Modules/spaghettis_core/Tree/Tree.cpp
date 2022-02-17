@@ -55,7 +55,7 @@ Group Tree::getGroup (const juce::String& name) const
 {
     for (const auto& group : *this) { if (group.getName() == name) { return group; } }
     
-    return Group();
+    jassertfalse; return Group();
 }
 
 // -----------------------------------------------------------------------------------------------------------

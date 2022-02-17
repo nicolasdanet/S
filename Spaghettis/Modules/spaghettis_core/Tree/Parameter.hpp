@@ -157,9 +157,6 @@ private:
 // MARK: -
 
 public:
-    bool isValid() const;
-
-public:
     static void substitute (juce::ValueTree&);
 
 public:
