@@ -78,14 +78,6 @@ void setValueOfParameter (core::Tree& tree,
     }
 }
 
-bool isValidTree (const Tree& other)
-{
-    for (const auto& group : other) {
-        if (!group.isValid()) { return false; }
-    }
-
-    return true;
-}
 */
 
 // -----------------------------------------------------------------------------------------------------------
@@ -121,11 +113,9 @@ void Tree::setParametersFrom (const juce::ValueTree& tree)
 
 void Tree::write (const juce::File& file) const
 {
-    /*
-    std::unique_ptr<juce::XmlElement> xml (tree_.createXml());
+    std::unique_ptr<juce::XmlElement> xml (getCopyWithSubstitutedDelegates (tree_).createXml());
     
     if (xml) { xml->writeTo (file); }
-    */
 }
 
 // -----------------------------------------------------------------------------------------------------------
