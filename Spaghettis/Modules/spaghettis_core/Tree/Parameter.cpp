@@ -66,10 +66,16 @@ juce::String Parameter::getInfo() const
     return get (Ids::info).toString();
 }
 
+juce::var Parameter::getValue() const
+{
+    return get (Ids::value);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/*
 void Parameter::setValue (const juce::var& v)
 {
     if (!parameter_.getProperty (Ids::value).equals (v)) {
@@ -78,11 +84,7 @@ void Parameter::setValue (const juce::var& v)
     //
     }
 }
-
-juce::var Parameter::getValue() const
-{
-    return parameter_.getProperty (Ids::value);
-}
+*/
 
 /* Make a temporary copy of the ValueTree as a workaround to get that method const. */
 
