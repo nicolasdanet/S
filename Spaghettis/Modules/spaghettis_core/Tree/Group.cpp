@@ -37,11 +37,7 @@ Parameter Group::add (Delegate::Manager* p, const core::Invariant& i, juce::var 
     
     juce::ValueTree parameter (Ids::PARAMETER);
     
-    if (p) { parameter.setProperty (Ids::DELEGATE, p->getOrCreate (i), nullptr); }
-    else {
-        core::Invariant::setProperties (parameter, i);
-    }
-
+    parameter.setProperty (Ids::DELEGATE, (p ? p->getOrCreate (i) : new Delegate::Shared (i)), nullptr);
     parameter.setProperty (Ids::value, v, nullptr);
     
     group_.appendChild (parameter, nullptr);

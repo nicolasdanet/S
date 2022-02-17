@@ -70,6 +70,7 @@ juce::String Parameter::getInfo() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/*
 void Parameter::setValue (const juce::var& v)
 {
     if (!parameter_.getProperty (Ids::value).equals (v)) {
@@ -78,6 +79,7 @@ void Parameter::setValue (const juce::var& v)
     //
     }
 }
+*/
 
 juce::var Parameter::getValue() const
 {

@@ -38,10 +38,9 @@ using Ptr = juce::ReferenceCountedObjectPtr<Shared>;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    explicit Shared (const Invariant& i);
-
 public:
+    explicit Shared (const Invariant& i);
+    
     ~Shared() = default;
 
 public:
