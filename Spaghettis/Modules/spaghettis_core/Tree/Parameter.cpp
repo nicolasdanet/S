@@ -140,6 +140,10 @@ const juce::var& Parameter::get (const juce::Identifier& identifier) const
     return parameter_.getProperty (identifier);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void Parameter::substitute (juce::ValueTree& tree)
 {
     if (tree.hasType (Ids::PARAMETER) && tree.hasProperty (Ids::DELEGATE)) {

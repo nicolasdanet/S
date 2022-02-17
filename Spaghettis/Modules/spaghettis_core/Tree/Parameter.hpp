@@ -121,8 +121,8 @@ public:
 
     template <class T> operator juce::Range<T>() const
     {
-        auto m = static_cast<T> (parameter_.getProperty (Ids::minimum));
-        auto n = static_cast<T> (parameter_.getProperty (Ids::maximum));
+        auto m = static_cast<T> (get (Ids::minimum));
+        auto n = static_cast<T> (get (Ids::maximum));
         auto minimum = juce::jmin (m, n);
         auto maximum = juce::jmax (m, n);
             
