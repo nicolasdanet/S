@@ -49,11 +49,6 @@ Parameter Group::add (Delegate::Manager* p, const core::Invariant& i, juce::var 
     return Parameter (parameter);
 }
 
-void Group::substitute()
-{
-    for (auto parameter : *this) { parameter.substitute(); }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

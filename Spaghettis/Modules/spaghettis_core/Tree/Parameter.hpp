@@ -149,8 +149,6 @@ public:
 private:
     const juce::var& get (const juce::Identifier&) const;
     
-    void substitute();
-    
 private:
     juce::var constrained (const juce::var& v) const;
     
@@ -160,7 +158,10 @@ private:
 
 public:
     bool isValid() const;
-    
+
+public:
+    static void substitute (juce::ValueTree&);
+
 public:
     Parameter (const Parameter&) = default;
     Parameter (Parameter&&) = default;
