@@ -44,10 +44,13 @@ public:
     ~Shared() = default;
 
 public:
-    const juce::var& getProperty (const juce::Identifier&) const;
+    juce::ValueTree getTree() const
+    {
+        return shared_;
+    }
     
 private:
-    juce::ValueTree delegate_;
+    juce::ValueTree shared_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Shared)

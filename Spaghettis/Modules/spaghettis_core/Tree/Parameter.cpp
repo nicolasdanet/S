@@ -127,19 +127,38 @@ double Parameter::getStep() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const juce::var& Parameter::get (const juce::Identifier& identifier) const
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::ValueTree getBase (const juce::ValueTree& tree, const juce::Identifier& identifier)
 {
-    if (parameter_.hasProperty (identifier) == false) {
+    if (tree.hasProperty (identifier) == false) {
     //
-    auto p = dynamic_cast<Delegate::Shared*> (parameter_.getProperty (Ids::DELEGATE).getObject());
+    auto p = dynamic_cast<Delegate::Shared*> (tree.getProperty (Ids::DELEGATE).getObject());
     
     if (p) {
-        return p->getProperty (identifier);
+        return p->getTree();
     }
     //
     }
     
-    return parameter_.getProperty (identifier);
+    return tree;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+const juce::var& Parameter::get (const juce::Identifier& identifier) const
+{
+    return getBase (parameter_, identifier).getProperty (identifier);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -152,7 +171,7 @@ void Parameter::substitute (juce::ValueTree& tree)
     //
     auto p = dynamic_cast<Delegate::Shared*> (tree.getProperty (Ids::DELEGATE).getObject());
     
-    if (p) { tree.setProperty (Ids::key, p->getProperty (Ids::key), nullptr); }
+    if (p) { tree.setProperty (Ids::key, p->getTree().getProperty (Ids::key), nullptr); }
     
     tree.removeProperty (Ids::DELEGATE, nullptr);
     //
