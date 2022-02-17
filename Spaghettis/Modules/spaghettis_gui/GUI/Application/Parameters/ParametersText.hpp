@@ -24,7 +24,7 @@ class Text : public juce::TextPropertyComponent {
 
 public:
     explicit Text (const core::Parameter& p)
-        : juce::TextPropertyComponent (p.getSource(), p.getLabel(), 64, false)
+        : juce::TextPropertyComponent (p.getValueSource(), p.getLabel(), 64, false)
     {
         setInterestedInFileDrag (false);
     }

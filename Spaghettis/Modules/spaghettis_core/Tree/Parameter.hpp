@@ -101,7 +101,7 @@ public:
 // MARK: -
 
 public:
-    juce::Value getSource() const;
+    juce::Value getValueSource() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -145,6 +145,7 @@ public:
 
 private:
     const juce::var& get (const juce::Identifier&) const;
+    juce::Value getSource (const juce::Identifier& identifier) const;
     
 private:
     juce::var constrained (const juce::var& v) const;

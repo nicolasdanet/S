@@ -75,6 +75,11 @@ juce::var Parameter::getValue() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Value Parameter::getValueSource() const
+{
+    return getSource (Ids::value);
+}
+
 /*
 void Parameter::setValue (const juce::var& v)
 {
@@ -85,13 +90,6 @@ void Parameter::setValue (const juce::var& v)
     }
 }
 */
-
-/* Make a temporary copy of the ValueTree as a workaround to get that method const. */
-
-juce::Value Parameter::getSource() const
-{
-    return juce::ValueTree (parameter_).getPropertyAsValue (Ids::value, nullptr);
-}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -159,6 +157,11 @@ juce::ValueTree getBase (const juce::ValueTree& tree, const juce::Identifier& id
 const juce::var& Parameter::get (const juce::Identifier& identifier) const
 {
     return getBase (parameter_, identifier).getProperty (identifier);
+}
+
+juce::Value Parameter::getSource (const juce::Identifier& identifier) const
+{
+    return getBase (parameter_, identifier).getPropertyAsValue (identifier, nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------

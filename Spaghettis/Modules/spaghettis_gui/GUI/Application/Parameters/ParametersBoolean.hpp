@@ -25,7 +25,7 @@ class Boolean : public juce::BooleanPropertyComponent {
 
 public:
     explicit Boolean (const core::Parameter& p) :
-        juce::BooleanPropertyComponent (p.getSource(), p.getLabel(), "")
+        juce::BooleanPropertyComponent (p.getValueSource(), p.getLabel(), "")
     {
     }
     
