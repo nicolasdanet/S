@@ -55,7 +55,9 @@ Parameter Group::add (Delegate::Manager* p, const core::Invariant& i, juce::var 
 
 bool Group::hasParameter (const juce::String& key) const
 {
-    return getParameter (key).isValid();
+    for (const auto& parameter : *this) { if (parameter.getKey() == key) { return true; } }
+    
+    return false;
 }
 
 Parameter Group::getParameter (const juce::String& key) const

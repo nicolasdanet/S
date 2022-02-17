@@ -44,9 +44,11 @@ Group Tree::addGroup (const juce::String& name, bool isHidden)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool Tree::hasGroup (const juce::String& group) const
+bool Tree::hasGroup (const juce::String& name) const
 {
-    return getGroup (group).isValid();
+    for (const auto& group : *this) { if (group.getName() == name) { return true; } }
+    
+    return false;
 }
 
 Group Tree::getGroup (const juce::String& name) const
@@ -65,6 +67,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+/*
 void setValueOfParameter (core::Tree& tree,
     const juce::String& group,
     const juce::String& key,
@@ -83,6 +86,7 @@ bool isValidTree (const Tree& other)
 
     return true;
 }
+*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -95,6 +99,7 @@ bool isValidTree (const Tree& other)
 
 void Tree::setParametersFrom (const juce::ValueTree& tree)
 {
+    /*
     if (tree.isValid() && tree.hasType (tree_.getType())) {
     //
     const Tree other (tree);
@@ -111,6 +116,7 @@ void Tree::setParametersFrom (const juce::ValueTree& tree)
     }
     //
     }
+    */
 }
 
 void Tree::write (const juce::File& file) const
