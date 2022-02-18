@@ -67,66 +67,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/*
-void setValueOfParameter (core::Tree& tree,
-    const juce::String& group,
-    const juce::String& key,
-    const juce::var& v)
-{
-    if (tree.getGroup (group).hasParameter (key)) {
-        tree.getGroup (group).getParameter (key).setValue (v);
-    }
-}
-
-*/
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void Tree::setParametersFrom (const juce::ValueTree& tree)
-{
-    /*
-    if (tree.isValid() && tree.hasType (tree_.getType())) {
-    //
-    const Tree other (tree);
-    
-    if (isValidTree (other)) {
-    //
-    for (const auto& group : other) {
-        const juce::String name (group.getName());
-        for (const auto& parameter : group) {
-            setValueOfParameter (*this, name, parameter.getKey(), parameter.getValue());
-        }
-    }
-    //
-    }
-    //
-    }
-    */
-}
-
-void Tree::write (const juce::File& file) const
-{
-    std::unique_ptr<juce::XmlElement> xml (getCopyWithSubstitutedDelegates (tree_).createXml());
-    
-    if (xml) { xml->writeTo (file); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 void substitute (juce::ValueTree& tree)
 {
     Parameter::substitute (tree); for (auto child : tree) { substitute (child); }
@@ -148,6 +88,22 @@ juce::ValueTree Tree::getCopyWithSubstitutedDelegates (const juce::ValueTree& tr
     substitute (t);
     
     return t;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Tree::setValuesFrom (const juce::ValueTree& tree)
+{
+    // for (auto child : tree) { setValuesFrom (child); }
+}
+
+void Tree::write (const juce::File& file) const
+{
+    std::unique_ptr<juce::XmlElement> xml (getCopyWithSubstitutedDelegates (tree_).createXml());
+    
+    if (xml) { xml->writeTo (file); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
