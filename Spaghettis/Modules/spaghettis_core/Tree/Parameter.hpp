@@ -110,8 +110,8 @@ public:
 public:
     template <class T> Parameter& setRange (juce::Range<T> range)
     {
-        parameter_.setProperty (Ids::minimum, range.getStart(), nullptr);
-        parameter_.setProperty (Ids::maximum, range.getEnd(), nullptr);
+        set (Ids::minimum, range.getStart());
+        set (Ids::maximum, range.getEnd());
         
         return *this;
     }
@@ -144,8 +144,9 @@ public:
 // MARK: -
 
 private:
-    const juce::var& get (const juce::Identifier&) const;
     juce::Value getSource (const juce::Identifier& identifier) const;
+    const juce::var& get (const juce::Identifier&) const;
+    void set (const juce::Identifier&, const juce::var&);
     
 private:
     juce::var constrained (const juce::var& v) const;

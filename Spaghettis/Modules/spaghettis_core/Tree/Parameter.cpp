@@ -80,17 +80,6 @@ juce::Value Parameter::getValueSource() const
     return getSource (Ids::value);
 }
 
-/*
-void Parameter::setValue (const juce::var& v)
-{
-    if (!parameter_.getProperty (Ids::value).equals (v)) {
-    //
-    parameter_.setProperty (Ids::value, constrained (v), nullptr);
-    //
-    }
-}
-*/
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -154,14 +143,28 @@ juce::ValueTree getBase (const juce::ValueTree& tree, const juce::Identifier& id
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Value Parameter::getSource (const juce::Identifier& identifier) const
+{
+    return getBase (parameter_, identifier).getPropertyAsValue (identifier, nullptr);
+}
+
 const juce::var& Parameter::get (const juce::Identifier& identifier) const
 {
     return getBase (parameter_, identifier).getProperty (identifier);
 }
 
-juce::Value Parameter::getSource (const juce::Identifier& identifier) const
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Parameter::set (const juce::Identifier& identifier, const juce::var& v)
 {
-    return getBase (parameter_, identifier).getPropertyAsValue (identifier, nullptr);
+    juce::ValueTree t (getBase (parameter_, identifier));
+    
+    if (!t.hasProperty (identifier)) { t.setProperty (identifier, v, nullptr); }
+    else if (!t.getProperty (identifier).equals (v)) {
+        parameter_.setProperty (identifier, constrained (v), nullptr);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
