@@ -17,11 +17,23 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool Tree::hasValue (const juce::String& group, const juce::String& key) const
+{
+    if (getGroup (group).hasParameter (key)) { return true; }
+    
+    return false;
+}
+
 juce::var Tree::getValue (const juce::String& group, const juce::String& key) const
 {
-    return getGroup (group).getParameter (key).getValue();
+    jassert (hasValue (group, key)); return getGroup (group).getParameter (key).getValue();
 }
-    
+
+void Tree::changeValue (const juce::String& group, const juce::String& key, const juce::var& v)
+{
+    jassert (hasValue (group, key)); getGroup (group).getParameter (key).changeValue (v);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -55,8 +67,13 @@ Group Tree::getGroup (const juce::String& name) const
 {
     for (const auto& group : *this) { if (group.getName() == name) { return group; } }
     
-    jassertfalse; return Group();
+    return Group();
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+/* Note that for serialization only the key/value pairs are kept. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -69,7 +86,17 @@ namespace {
 
 void substitute (juce::ValueTree& tree)
 {
-    Parameter::substitute (tree); for (auto child : tree) { substitute (child); }
+    if (tree.hasType (Ids::PARAMETER) && tree.hasProperty (Ids::DELEGATE)) {
+    //
+    auto p = dynamic_cast<Delegate::Shared*> (tree.getProperty (Ids::DELEGATE).getObject());
+    
+    if (p) { tree.setProperty (Ids::key, p->getTree().getProperty (Ids::key), nullptr); }
+    
+    tree.removeProperty (Ids::DELEGATE, nullptr);
+    //
+    }
+    
+    for (auto child : tree) { substitute (child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

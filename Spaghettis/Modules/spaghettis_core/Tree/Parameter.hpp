@@ -108,6 +108,13 @@ public:
 // MARK: -
 
 public:
+    void changeValue (const juce::var&);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     template <class T> Parameter& setRange (juce::Range<T> range)
     {
         set (Ids::minimum, range.getStart());
@@ -147,6 +154,7 @@ private:
     juce::Value getSource (const juce::Identifier& identifier) const;
     const juce::var& get (const juce::Identifier&) const;
     void set (const juce::Identifier&, const juce::var&);
+    void change (const juce::Identifier&, const juce::var&);
     
 private:
     juce::var constrained (const juce::var& v) const;
@@ -154,9 +162,6 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-public:
-    static void substitute (juce::ValueTree&);
 
 public:
     Parameter (const Parameter&) = default;

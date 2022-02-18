@@ -60,7 +60,7 @@ Parameter Group::getParameter (const juce::String& key) const
 {
     for (const auto& parameter : *this) { if (parameter.getKey() == key) { return parameter; } }
     
-    jassertfalse; return Parameter();
+    return Parameter();
 }
 
 // -----------------------------------------------------------------------------------------------------------

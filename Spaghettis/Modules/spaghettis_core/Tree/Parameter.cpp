@@ -84,6 +84,15 @@ juce::Value Parameter::getValueSource() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void Parameter::changeValue (const juce::var& v)
+{
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 bool Parameter::hasRange() const
 {
     return (!get (Ids::minimum).isVoid() && !get (Ids::maximum).isVoid());
@@ -121,7 +130,7 @@ namespace {
 
 juce::ValueTree getBase (const juce::ValueTree& tree, const juce::Identifier& identifier)
 {
-    if (tree.hasProperty (identifier) == false) {
+    if (!tree.hasProperty (identifier)) {
     //
     auto p = dynamic_cast<Delegate::Shared*> (tree.getProperty (Ids::DELEGATE).getObject());
     
@@ -153,39 +162,23 @@ const juce::var& Parameter::get (const juce::Identifier& identifier) const
     return getBase (parameter_, identifier).getProperty (identifier);
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void Parameter::set (const juce::Identifier& identifier, const juce::var& v)
+{
+    getBase (parameter_, identifier).setProperty (identifier, v, nullptr);
+}
+
+void Parameter::change (const juce::Identifier& identifier, const juce::var& v)
 {
     juce::ValueTree t (getBase (parameter_, identifier));
     
-    if (!t.hasProperty (identifier)) { t.setProperty (identifier, v, nullptr); }
-    else if (!t.getProperty (identifier).equals (v)) {
-        parameter_.setProperty (identifier, constrained (v), nullptr);
+    if (t.hasProperty (identifier) && !t.getProperty (identifier).equals (v)) {
+        t.setProperty (identifier, constrained (v), nullptr);
     }
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void Parameter::substitute (juce::ValueTree& tree)
-{
-    if (tree.hasType (Ids::PARAMETER) && tree.hasProperty (Ids::DELEGATE)) {
-    //
-    auto p = dynamic_cast<Delegate::Shared*> (tree.getProperty (Ids::DELEGATE).getObject());
-    
-    if (p) { tree.setProperty (Ids::key, p->getTree().getProperty (Ids::key), nullptr); }
-    
-    tree.removeProperty (Ids::DELEGATE, nullptr);
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 juce::var Parameter::constrained (const juce::var& v) const
 {

@@ -55,7 +55,12 @@ private:
     explicit Tree (const juce::ValueTree& tree) : tree_ (tree)
     {
     }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
     operator juce::ValueTree() const
     {
         return tree_;
@@ -84,8 +89,12 @@ public:
 // MARK: -
 
 public:
+    bool      hasValue (const juce::String&, const juce::String&) const;
     juce::var getValue (const juce::String&, const juce::String&) const;
 
+public:
+    void changeValue (const juce::String&, const juce::String&, const juce::var&);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
