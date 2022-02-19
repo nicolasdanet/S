@@ -25,27 +25,27 @@ template <class T> struct ParameterType { };
 
 template<> struct ParameterType<bool>
 {
-    static juce::String get() { return "boolean"; }
+    static const char* get() { return "boolean"; }
 };
 
 template<> struct ParameterType<juce::Colour>
 {
-    static juce::String get() { return "color"; }
+    static const char* get() { return "color"; }
 };
 
 template<> struct ParameterType<int>
 {
-    static juce::String get() { return "integer"; }
+    static const char* get() { return "integer"; }
 };
 
 template<> struct ParameterType<double>
 {
-    static juce::String get() { return "float"; }
+    static const char* get() { return "float"; }
 };
 
 template<> struct ParameterType<juce::String>
 {
-    static juce::String get() { return "text"; }
+    static const char* get() { return "text"; }
 };
 
 // -----------------------------------------------------------------------------------------------------------
