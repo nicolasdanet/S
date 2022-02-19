@@ -24,7 +24,7 @@ void getDefaultTest (core::Tree& t)
     nuclear.addParameter ("Engine",
         NEEDS_TRANS ("Kind Of Engine"),
         NEEDS_TRANS ("Set kind of stuff"),
-        juce::String("Yellow Submarine"));
+        juce::String ("Yellow Submarine"));
                 
     nuclear.addParameter ("Power",
         NEEDS_TRANS ("Power Of Engine"),

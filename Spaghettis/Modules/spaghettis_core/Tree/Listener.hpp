@@ -65,10 +65,7 @@ public:
 // MARK: -
 
 public:
-    void valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier&) override
-    {
-        callHandlers (tree); treeHasChanged();
-    }
+    void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
