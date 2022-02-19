@@ -90,33 +90,15 @@ void substituteDelegates (juce::ValueTree& tree)
     //
     auto p = dynamic_cast<Delegate::Shared*> (tree.getProperty (Ids::DELEGATE).getObject());
     
-    if (p) { tree.setProperty (Ids::key, p->getTree().getProperty (Ids::key), nullptr); }
+    if (p) {
+        tree.setProperty (Ids::key, p->getTree().getProperty (Ids::key), nullptr);
+    }
     
     tree.removeProperty (Ids::DELEGATE, nullptr);
     //
     }
     
     for (auto child : tree) { substituteDelegates (child); }
-}
-
-bool readValuesFrom (const juce::ValueTree& tree)
-{
-    if (tree.hasType (Ids::GROUP)) {
-    //
-    const juce::String name (tree.getProperty (Ids::name).toString());
-    
-    DBG (name);
-    
-    return true;
-    //
-    }
-    
-    return false;
-}
-
-void readFrom (Tree& tree, const juce::ValueTree& other)
-{
-    if (!readValuesFrom (other)) { for (auto child : other) { readValuesFrom (child); } }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -135,6 +117,35 @@ juce::ValueTree Tree::getCopyWithSubstitutedDelegates (const juce::ValueTree& tr
     substituteDelegates (t);
     
     return t;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void readFrom (Tree& tree, const juce::ValueTree& other)
+{
+    if (other.hasType (Ids::PARAMETER)) {
+    //
+    const juce::String group (other.getParent().getProperty (Ids::name).toString());
+    const juce::String key (other.getProperty (Ids::key).toString());
+    const juce::var v (other.getProperty (Ids::value));
+    
+    if (tree.hasValue (group, key)) { tree.changeValue (group, key, v); }
+    //
+    }
+    
+    for (auto child : other) { readFrom (tree, child); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 }
 
 // -----------------------------------------------------------------------------------------------------------

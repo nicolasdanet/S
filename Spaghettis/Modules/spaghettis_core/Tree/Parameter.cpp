@@ -86,7 +86,7 @@ juce::Value Parameter::getValueSource() const
 
 void Parameter::changeValue (const juce::var& v)
 {
-
+    change (Ids::value, v);
 }
 
 // -----------------------------------------------------------------------------------------------------------
