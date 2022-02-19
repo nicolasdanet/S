@@ -70,19 +70,19 @@ public:
 // MARK: -
 
 public:
-    template <class T> Parameter addParameter (const juce::String& key,
-        const juce::String& label,
-        const juce::String& info,
+    template <class T> Parameter addParameter (juce::StringRef key,
+        juce::StringRef label,
+        juce::StringRef info,
         T t,
         Delegate::Manager* p = nullptr)
     {
-        const core::Invariant i = { key, ParameterType<T>::get(), label, info };
+        const Invariant i = { key, ParameterType<T>::get(), label, info };
 
         return add (p, i, juce::VariantConverter<T>::toVar (t));
     }
     
 private:
-    Parameter add (Delegate::Manager*, const core::Invariant&, juce::var);
+    Parameter add (Delegate::Manager*, const Invariant&, juce::var);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

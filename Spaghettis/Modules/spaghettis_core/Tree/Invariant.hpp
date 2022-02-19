@@ -26,17 +26,17 @@ struct Invariant {
 public:
     static void setProperties (juce::ValueTree& t, const Invariant& i)
     {
-        t.setProperty (Ids::key,   i.key,   nullptr);
-        t.setProperty (Ids::type,  i.type,  nullptr);
-        t.setProperty (Ids::label, i.label, nullptr);
-        t.setProperty (Ids::info,  i.info,  nullptr);
+        t.setProperty (Ids::key,   juce::String (i.key),   nullptr);
+        t.setProperty (Ids::type,  juce::String (i.type),  nullptr);
+        t.setProperty (Ids::label, juce::String (i.label), nullptr);
+        t.setProperty (Ids::info,  juce::String (i.info),  nullptr);
     }
     
 public:
-    juce::String key;
-    juce::String type;
-    juce::String label;
-    juce::String info;
+    juce::StringRef key;
+    juce::StringRef type;
+    juce::StringRef label;
+    juce::StringRef info;
 };
     
 // -----------------------------------------------------------------------------------------------------------
