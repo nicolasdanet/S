@@ -141,7 +141,7 @@ void Preferences::read()
         if (xml) {
             juce::ValueTree t (juce::ValueTree::fromXml (*xml));
             juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
-            tree_.setValuesFrom (t);
+            tree_.read (t);
             return;
         }
     }

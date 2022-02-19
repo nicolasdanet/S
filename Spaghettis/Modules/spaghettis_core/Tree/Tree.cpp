@@ -84,7 +84,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void substitute (juce::ValueTree& tree)
+void substituteDelegates (juce::ValueTree& tree)
 {
     if (tree.hasType (Ids::PARAMETER) && tree.hasProperty (Ids::DELEGATE)) {
     //
@@ -96,7 +96,22 @@ void substitute (juce::ValueTree& tree)
     //
     }
     
-    for (auto child : tree) { substitute (child); }
+    for (auto child : tree) { substituteDelegates (child); }
+}
+
+bool setValuesFrom (const juce::ValueTree& tree)
+{
+    if (tree.hasType (Ids::GROUP)) {
+    //
+    const juce::String name (tree.getProperty (Ids::name).toString());
+    
+    DBG (name);
+    
+    return true;
+    //
+    }
+    
+    return false;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -112,7 +127,7 @@ juce::ValueTree Tree::getCopyWithSubstitutedDelegates (const juce::ValueTree& tr
 {
     juce::ValueTree t (tree.createCopy());
     
-    substitute (t);
+    substituteDelegates (t);
     
     return t;
 }
@@ -121,9 +136,11 @@ juce::ValueTree Tree::getCopyWithSubstitutedDelegates (const juce::ValueTree& tr
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Tree::setValuesFrom (const juce::ValueTree& tree)
+void Tree::read (const juce::ValueTree& tree)
 {
-    // for (auto child : tree) { setValuesFrom (child); }
+    if (!setValuesFrom (tree)) {
+        for (auto child : tree) { read (child); }
+    }
 }
 
 void Tree::write (const juce::File& file) const

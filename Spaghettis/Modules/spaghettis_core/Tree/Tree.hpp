@@ -115,7 +115,7 @@ public:
 // MARK: -
 
 public:
-    void setValuesFrom (const juce::ValueTree&);
+    void read (const juce::ValueTree&);
     
     void write (const juce::File&) const;
 
