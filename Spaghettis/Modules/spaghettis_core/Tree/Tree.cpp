@@ -99,7 +99,7 @@ void substituteDelegates (juce::ValueTree& tree)
     for (auto child : tree) { substituteDelegates (child); }
 }
 
-bool setValuesFrom (const juce::ValueTree& tree)
+bool readValuesFrom (const juce::ValueTree& tree)
 {
     if (tree.hasType (Ids::GROUP)) {
     //
@@ -112,6 +112,11 @@ bool setValuesFrom (const juce::ValueTree& tree)
     }
     
     return false;
+}
+
+void readFrom (Tree& tree, const juce::ValueTree& other)
+{
+    if (!readValuesFrom (other)) { for (auto child : other) { readValuesFrom (child); } }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -136,11 +141,18 @@ juce::ValueTree Tree::getCopyWithSubstitutedDelegates (const juce::ValueTree& tr
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Tree::read (const juce::ValueTree& tree)
+bool Tree::read (const juce::File& file)
 {
-    if (!setValuesFrom (tree)) {
-        for (auto child : tree) { read (child); }
+    if (file.existsAsFile() && file.hasFileExtension (".xml")) {
+        std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file));
+        if (xml) {
+            juce::ValueTree t (juce::ValueTree::fromXml (*xml));
+            readFrom (*this, t);
+            return true;
+        }
     }
+    
+    return false;
 }
 
 void Tree::write (const juce::File& file) const

@@ -136,14 +136,10 @@ void Preferences::treeHasChanged()
 
 void Preferences::read()
 {
-    if (file_.existsAsFile() && file_.hasFileExtension (".xml")) {
-        std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file_));
-        if (xml) {
-            juce::ValueTree t (juce::ValueTree::fromXml (*xml));
-            juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
-            tree_.read (t);
-            return;
-        }
+    {
+        juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
+
+        if (tree_.read (file_)) { return; }
     }
     
     write();
