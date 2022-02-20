@@ -183,19 +183,21 @@ void Parameter::change (const juce::Identifier& identifier, const juce::var& v)
 juce::var Parameter::constrained (const juce::var& v) const
 {
     if (isBoolean()) {
-        bool b = static_cast<bool> (v);
-        return juce::var (b);
+        return juce::var (static_cast<bool> (v));
+        
     } else if (isColour()) {
         return juce::var (core::Colours::getColourFromString (v.toString()).toString());
-    } else if (isInteger() && hasRange()) {
-        int i = juce::Range<int> (*this).clipValue (static_cast<int> (v));
-        return juce::var (juce::String (i));
-    } else if (isFloat() && hasRange()) {
-        double f = juce::Range<double> (*this).clipValue (static_cast<double> (v));
-        return juce::var (juce::String (f));
+        
+    } else if (isInteger()) {
+        int i = static_cast<int> (v); if (hasRange()) { i = juce::Range<int> (*this).clipValue (i); }
+        return juce::var (i);
+        
+    } else if (isFloat()) {
+        double f = static_cast<double> (v); if (hasRange()) { f = juce::Range<double> (*this).clipValue (f); }
+        return juce::var (f);
     }
     
-    return juce::var (v);
+    return juce::var (v.toString());
 }
 
 // -----------------------------------------------------------------------------------------------------------

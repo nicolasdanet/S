@@ -25,7 +25,7 @@ template <class T> class Number : public juce::TextPropertyComponent {
 
 public:
     explicit Number (const core::Parameter& p) :
-        juce::TextPropertyComponent (p.getValueSource(), p.getLabel(), 32, false),
+        juce::TextPropertyComponent (core::Filter<T>::make (p.getValueSource()), p.getLabel(), 32, false),
         v_(),
         range_ (p)
     {

@@ -1,96 +1,104 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-// ====================================
-
-/*************************************************************************************************************
-
- BEGIN_JUCE_MODULE_DECLARATION
-
-  ID:                 spaghettis_core
-  vendor:             Spaghettis
-  version:            0.9
-  name:               Core
-  description:        The control and DSP engines of Spaghettis.
-  website:            https://github.com/Spaghettis
-  license:            BSD
-
-  dependencies:       juce_core juce_data_structures juce_events juce_graphics juce_gui_basics
-  OSXFrameworks:      Carbon CoreMIDI CoreAudio AudioUnit
-  OSXLibs:            dl pthread
-  linuxLibs:          dl pthread m asound jack
-
- END_JUCE_MODULE_DECLARATION
-
-*************************************************************************************************************/
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#pragma once
+namespace core {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+template <class T> class Filter : public juce::Value::ValueSource, private juce::Value::Listener {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit Filter (const juce::Value& origin) : origin_ (origin)
+    {
+        origin_.addListener (this);
+    }
+
+    ~Filter() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::var getValue() const override
+    {
+        return origin_.getValue();
+    }
+
+    juce::String getType (const juce::var& v)
+    {
+        if (v.isInt())      { return juce::String ("isInt");    }
+        if (v.isInt64())    { return juce::String ("isInt64");  }
+        if (v.isBool())     { return juce::String ("isBool");   }
+        if (v.isDouble())   { return juce::String ("isDouble"); }
+        if (v.isString())   { return juce::String ("isString"); }
+        
+        return juce::String ("undefined");
+    }
+    
+    void setValue (const juce::var& newValue) override
+    {
+        juce::var t (static_cast<T> (newValue));
+        juce::var v (origin_.getValue());
+        
+        DBG (t.toString() + " -> " + v.toString());
+        DBG (getType (t) + " -> " + getType (v));
+        
+        if (!t.equals (v)) {
+            DBG ("!");
+            origin_ = t;
+            sendChangeMessage (false);
+        }
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void valueChanged (juce::Value&) override
+    {
+        sendChangeMessage (true);
+    }
+
+public:
+    static juce::Value make (const juce::Value& value)
+    {
+        return juce::Value (new Filter<T> (value));
+    }
+    
+private:
+    juce::Value origin_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Filter)
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "juce_core/juce_core.h"
-#include "juce_data_structures/juce_data_structures.h"
-#include "juce_events/juce_events.h"
-#include "juce_gui_basics/juce_gui_basics.h"
+} // namespace core
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Glue/Identifiers.hpp"
-#include "Glue/Tags.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Tree/Iterator.hpp"
-#include "Tree/Invariant.hpp"
-#include "Tree/Delegate.hpp"
-#include "Tree/Parameter.hpp"
-#include "Tree/Group.hpp"
-#include "Tree/Listener.hpp"
-#include "Tree/Filter.hpp"
-#include "Tree/Tree.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Glue/Colours.hpp"
-#include "Glue/Glue.hpp"
-#include "Glue/Unique.hpp"
-#include "Glue/Description.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Wrap/Debug.hpp"
-#include "Wrap/Devices.hpp"
-#include "Wrap/Logger.hpp"
-#include "Wrap/Post.hpp"
-#include "Wrap/Queues.hpp"
-#include "Wrap/Inputs.hpp"
-#include "Wrap/Outputs.hpp"
-#include "Wrap/Wrapper.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#define PD_BUILDING_APPLICATION
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if DEBUG
-    #define PD_WITH_DEBUG   1
-#endif
+} // namespace spaghettis
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
