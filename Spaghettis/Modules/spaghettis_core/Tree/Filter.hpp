@@ -17,30 +17,25 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> class Filter : public juce::Value::ValueSource, private juce::Value::Listener {
+class FilterBase : public juce::Value::ValueSource, private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    explicit Filter (const juce::Value& origin) : origin_ (origin)
+protected:
+    explicit FilterBase (const juce::Value& origin) : origin_ (origin)
     {
         origin_.addListener (this);
     }
 
-    ~Filter() = default;
+    ~FilterBase() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    juce::var getValue() const override
-    {
-        return origin_.getValue();
-    }
-
     juce::String getType (const juce::var& v)
     {
         if (v.isInt())      { return juce::String ("isInt");    }
@@ -51,40 +46,76 @@ public:
         
         return juce::String ("undefined");
     }
-    
-    void setValue (const juce::var& newValue) override
+
+protected:
+    void setValueProceed (const juce::var& newValue)
     {
-        const juce::var old (origin_.getValue());
-        const juce::var t (static_cast<T> (newValue));
+        const juce::var oldValue (origin_.getValue());
                 
-        DBG (t.toString() + " -> " + old.toString());
-        DBG (getType (t) + " -> " + getType (old));
+        DBG (newValue.toString() + " -> " + oldValue.toString());
+        DBG (getType (newValue) + " -> " + getType (oldValue));
         
-        if (!t.equals (old)) {
+        if (!newValue.equals (oldValue)) {
             DBG ("!");
-            origin_ = t;
+            origin_ = newValue;
             sendChangeMessage (false);
         }
+    }
+    
+private:
+    juce::var getValue() const override
+    {
+        return origin_.getValue();
+    }
+
+    void valueChanged (juce::Value&) override
+    {
+        sendChangeMessage (true);
+    }
+
+private:
+    juce::Value origin_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FilterBase)
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+template <class T> class Filter : FilterBase {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit Filter (const juce::Value& origin) : FilterBase (origin)
+    {
+    }
+
+    ~Filter() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void setValue (const juce::var& newValue) override
+    {
+        setValueProceed (juce::var (static_cast<T> (newValue)));
     }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    void valueChanged (juce::Value&) override
-    {
-        sendChangeMessage (true);
-    }
-
 public:
     static juce::Value make (const juce::Value& value)
     {
         return juce::Value (new Filter<T> (value));
     }
-    
-private:
-    juce::Value origin_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Filter)
