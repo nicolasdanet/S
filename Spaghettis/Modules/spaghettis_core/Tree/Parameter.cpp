@@ -215,8 +215,7 @@ juce::Value Parameter::filtered (const juce::Value& v) const
     else if (isInteger()) { return core::Filter<int>::make (v);    }
     else if (isFloat())   { return core::Filter<double>::make (v); }
     else {
-        // return core::Filter<juce::String>::make (v);
-        return v;
+        return core::Filter<juce::String>::make (v);
     }
 }
 

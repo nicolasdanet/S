@@ -48,6 +48,28 @@ public:
     }
 
 protected:
+    template <class T> juce::var cast (const juce::var& v)
+    {
+        return juce::var (static_cast<T> (v));
+    }
+    
+    template <> juce::var cast<juce::String> (const juce::var& v)
+    {
+        return juce::var (v.toString());
+    }
+    
+    /*
+    template <class T>
+    using EnableNotString = typename std::enable_if<!std::is_same<juce::String, T>::value>::type*;
+    
+    template <class T, EnableNotString<T> = nullptr>
+    static juce::var cast (const juce::var& v)
+    {
+        return juce::var (static_cast<T> (v));
+    }
+    */
+    
+protected:
     void setValueProceed (const juce::var& newValue)
     {
         const juce::var oldValue (origin_.getValue());
@@ -104,7 +126,7 @@ public:
 public:
     void setValue (const juce::var& newValue) override
     {
-        setValueProceed (juce::var (static_cast<T> (newValue)));
+        setValueProceed (FilterBase::cast<T> (newValue));
     }
 
 // -----------------------------------------------------------------------------------------------------------
