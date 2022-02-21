@@ -196,8 +196,10 @@ juce::var Parameter::forceRange (const juce::var& v) const
 {
     if (hasRange())  {
     //
-    if (isInteger()) { return juce::var (juce::Range<int> (*this).clipValue (static_cast<int> (v)));       }
-    if (isFloat())   { return juce::var (juce::Range<double> (*this).clipValue (static_cast<double> (v))); }
+    if (isInteger()) { return juce::var (juce::Range<int> (*this).clipValue (static_cast<int> (v))); }
+    else if (isFloat()) {
+        return juce::var (juce::Range<double> (*this).clipValue (static_cast<double> (v)));
+    }
     //
     }
     

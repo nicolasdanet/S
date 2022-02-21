@@ -54,13 +54,13 @@ public:
     
     void setValue (const juce::var& newValue) override
     {
-        juce::var t (static_cast<T> (newValue));
-        juce::var v (origin_.getValue());
+        const juce::var old (origin_.getValue());
+        const juce::var t (static_cast<T> (newValue));
+                
+        DBG (t.toString() + " -> " + old.toString());
+        DBG (getType (t) + " -> " + getType (old));
         
-        DBG (t.toString() + " -> " + v.toString());
-        DBG (getType (t) + " -> " + getType (v));
-        
-        if (!t.equals (v)) {
+        if (!t.equals (old)) {
             DBG ("!");
             origin_ = t;
             sendChangeMessage (false);
