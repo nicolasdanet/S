@@ -86,7 +86,7 @@ juce::Value Parameter::getValueSource() const
 
 void Parameter::changeValue (const juce::var& v)
 {
-    change (Ids::value, v);
+    change (Ids::value, forceRange (forceType (v)));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -172,7 +172,8 @@ void Parameter::change (const juce::Identifier& identifier, const juce::var& v)
     juce::ValueTree t (getBase (parameter_, identifier));
     
     if (t.hasProperty (identifier) && !t.getProperty (identifier).equals (v)) {
-        t.setProperty (identifier, constrained (v), nullptr);
+        jassert (t.getProperty (identifier).hasSameTypeAs (v));
+        t.setProperty (identifier, v, nullptr);
     }
 }
 
@@ -180,24 +181,27 @@ void Parameter::change (const juce::Identifier& identifier, const juce::var& v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::var Parameter::constrained (const juce::var& v) const
+juce::var Parameter::forceType (const juce::var& v) const
 {
-    if (isBoolean()) {
-        return juce::var (static_cast<bool> (v));
-        
-    } else if (isColour()) {
-        return juce::var (core::Colours::getColourFromString (v.toString()).toString());
-        
-    } else if (isInteger()) {
-        int i = static_cast<int> (v); if (hasRange()) { i = juce::Range<int> (*this).clipValue (i); }
-        return juce::var (i);
-        
-    } else if (isFloat()) {
-        double f = static_cast<double> (v); if (hasRange()) { f = juce::Range<double> (*this).clipValue (f); }
-        return juce::var (f);
+    if (isBoolean())      { return juce::var (static_cast<bool> (v));   }
+    else if (isInteger()) { return juce::var (static_cast<int> (v));    }
+    else if (isFloat())   { return juce::var (static_cast<double> (v)); }
+    else if (isColour())  { return juce::var (core::Colours::getColourFromString (v.toString()).toString()); }
+    else {
+        return juce::var (v.toString());
+    }
+}
+
+juce::var Parameter::forceRange (const juce::var& v) const
+{
+    if (hasRange())  {
+    //
+    if (isInteger()) { return juce::var (juce::Range<int> (*this).clipValue (static_cast<int> (v)));       }
+    if (isFloat())   { return juce::var (juce::Range<double> (*this).clipValue (static_cast<double> (v))); }
+    //
     }
     
-    return juce::var (v.toString());
+    return v;
 }
 
 // -----------------------------------------------------------------------------------------------------------

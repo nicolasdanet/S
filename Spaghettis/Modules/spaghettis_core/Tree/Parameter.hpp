@@ -157,7 +157,8 @@ private:
     void change (const juce::Identifier&, const juce::var&);
     
 private:
-    juce::var constrained (const juce::var& v) const;
+    juce::var forceType (const juce::var& v) const;
+    juce::var forceRange (const juce::var& v) const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
