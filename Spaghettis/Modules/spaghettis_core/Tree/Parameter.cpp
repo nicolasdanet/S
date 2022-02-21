@@ -77,7 +77,7 @@ juce::var Parameter::getValue() const
 
 juce::Value Parameter::getValueSource() const
 {
-    return getSource (Ids::value);
+    return filtered (getSource (Ids::value));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -172,8 +172,11 @@ void Parameter::change (const juce::Identifier& identifier, const juce::var& v)
     juce::ValueTree t (getBase (parameter_, identifier));
     
     if (t.hasProperty (identifier) && !t.getProperty (identifier).equals (v)) {
-        jassert (t.getProperty (identifier).hasSameTypeAs (v));
-        t.setProperty (identifier, v, nullptr);
+    //
+    jassert (t.getProperty (identifier).hasSameTypeAs (v));
+    
+    t.setProperty (identifier, v, nullptr);
+    //
     }
 }
 
@@ -204,6 +207,17 @@ juce::var Parameter::forceRange (const juce::var& v) const
     }
     
     return v;
+}
+
+juce::Value Parameter::filtered (const juce::Value& v) const
+{
+    if (isBoolean())      { return core::Filter<bool>::make (v);   }
+    else if (isInteger()) { return core::Filter<int>::make (v);    }
+    else if (isFloat())   { return core::Filter<double>::make (v); }
+    else {
+        // return core::Filter<juce::String>::make (v);
+        return v;
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
