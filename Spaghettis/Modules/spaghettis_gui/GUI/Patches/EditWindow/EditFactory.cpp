@@ -30,10 +30,10 @@ void EditFactory::setToolbarButton (IconsButton* button)
     
     switch (button->getItemId()) {
     //
-    case Icons::zoomIn      : button->onClick = []() { DBG ("Zoom In"); };      break;
-    case Icons::zoomOut     : button->onClick = []() { DBG ("Zoom Out"); };     break;
-    case Icons::help        : button->onClick = []() { DBG ("Help"); };         break;
-    case Icons::inspector   : button->onClick = []() { DBG ("Inspector"); };    break;
+    case Icons::zoomIn      : button->onClick = []() { DBG ("?"); }; break;
+    case Icons::zoomOut     : button->onClick = []() { DBG ("?"); }; break;
+    case Icons::help        : button->onClick = []() { DBG ("?"); }; break;
+    case Icons::inspector   : button->onClick = []() { DBG ("?"); }; break;
     case Icons::edit        : button->onClick = [this]() {
                                     PatchWindow::getOwner (owner_).openEditWindow();
                                 }; break;

@@ -35,17 +35,36 @@ protected:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    juce::String getType (const juce::var& v)
+private:
+    juce::var getValue() const override
     {
-        if (v.isInt())      { return juce::String ("isInt");    }
-        if (v.isInt64())    { return juce::String ("isInt64");  }
-        if (v.isBool())     { return juce::String ("isBool");   }
-        if (v.isDouble())   { return juce::String ("isDouble"); }
-        if (v.isString())   { return juce::String ("isString"); }
-        
-        return juce::String ("undefined");
+        return origin_.getValue();
     }
+
+    void valueChanged (juce::Value&) override
+    {
+        sendChangeMessage (true);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+protected:
+    void setValueProceed (const juce::var& newValue)
+    {
+        const juce::var oldValue (origin_.getValue());
+        
+        if (!newValue.equals (oldValue)) {
+            jassert (oldValue.hasSameTypeAs (newValue));
+            origin_ = newValue;
+            sendChangeMessage (false);
+        }
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 protected:
     template <class T> juce::var cast (const juce::var& v)
@@ -58,43 +77,6 @@ protected:
         return juce::var (v.toString());
     }
     
-    /*
-    template <class T>
-    using EnableNotString = typename std::enable_if<!std::is_same<juce::String, T>::value>::type*;
-    
-    template <class T, EnableNotString<T> = nullptr>
-    static juce::var cast (const juce::var& v)
-    {
-        return juce::var (static_cast<T> (v));
-    }
-    */
-    
-protected:
-    void setValueProceed (const juce::var& newValue)
-    {
-        const juce::var oldValue (origin_.getValue());
-                
-        DBG (newValue.toString() + " -> " + oldValue.toString());
-        DBG (getType (newValue) + " -> " + getType (oldValue));
-        
-        if (!newValue.equals (oldValue)) {
-            DBG ("!");
-            origin_ = newValue;
-            sendChangeMessage (false);
-        }
-    }
-    
-private:
-    juce::var getValue() const override
-    {
-        return origin_.getValue();
-    }
-
-    void valueChanged (juce::Value&) override
-    {
-        sendChangeMessage (true);
-    }
-
 private:
     juce::Value origin_;
 
