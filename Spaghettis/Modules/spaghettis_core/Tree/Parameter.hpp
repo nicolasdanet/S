@@ -155,7 +155,7 @@ private:
     const juce::var& get (const juce::Identifier&) const;
     void set (const juce::Identifier&, const juce::var&);
     void change (const juce::Identifier&, const juce::var&);
-    
+
 private:
     juce::var forceType (const juce::var&) const;
     juce::var forceRange (const juce::var&) const;
