@@ -17,7 +17,7 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Listener::addHandler (const juce::String& key, std::function<void (const Parameter&)> f)
+void Listener::addParameterHandler (const juce::String& key, std::function<void (const Parameter&)> f)
 {
     handlers_.emplace_back (key, f);
 }
@@ -26,10 +26,12 @@ void Listener::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Iden
 {
     DBG (Tree::getCopyWithSubstitutedDelegates (tree).toXmlString (juce::XmlElement::TextFormat().singleLine().withoutHeader()));
         
-    callHandlers (tree); treeHasChanged();
+    if (tree.hasType (Ids::PARAMETER)) { callParameterHandlers (tree); }
+    
+    treeHasChanged();
 }
     
-void Listener::callHandlers (const juce::ValueTree& tree)
+void Listener::callParameterHandlers (const juce::ValueTree& tree)
 {
     const Parameter parameter (tree);
     

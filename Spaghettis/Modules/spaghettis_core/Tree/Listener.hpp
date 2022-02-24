@@ -72,14 +72,14 @@ public:
 // MARK: -
 
 public:
-    void addHandler (const juce::String& key, std::function<void (const Parameter&)> f);
+    void addParameterHandler (const juce::String& key, std::function<void (const Parameter&)> f);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    void callHandlers (const juce::ValueTree& tree);
+    void callParameterHandlers (const juce::ValueTree& tree);
     
 private:
     virtual void treeHasChanged() = 0;
