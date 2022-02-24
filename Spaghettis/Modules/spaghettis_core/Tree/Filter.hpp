@@ -22,12 +22,12 @@ namespace Cast {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> inline juce::var force (const juce::var& v)
+template <class T> inline juce::var forceType (const juce::var& v)
 {
     return juce::var (static_cast<T> (v));
 }
 
-template <> inline juce::var force<juce::String> (const juce::var& v)
+template <> inline juce::var forceType<juce::String> (const juce::var& v)
 {
     return juce::var (v.toString());
 }
@@ -117,7 +117,7 @@ public:
 public:
     void setValue (const juce::var& newValue) override
     {
-        setValueProceed (Cast::force<T> (newValue));
+        setValueProceed (Cast::forceType<T> (newValue));
     }
 
 // -----------------------------------------------------------------------------------------------------------
