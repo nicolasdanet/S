@@ -41,6 +41,7 @@ namespace Keywords {
     DECLARE_STRING (Attributes);
     DECLARE_STRING (Parameters);
     
+    DECLARE_STRING (Bounds);
     DECLARE_STRING (Buffer);
     DECLARE_STRING (Class);
     DECLARE_STRING (EditView);
@@ -51,9 +52,6 @@ namespace Keywords {
     DECLARE_STRING (Selected);
     DECLARE_STRING (Title);
     DECLARE_STRING (Type);
-    DECLARE_STRING (Width);
-    DECLARE_STRING (X);
-    DECLARE_STRING (Y);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

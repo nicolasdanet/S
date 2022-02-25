@@ -63,6 +63,16 @@ juce::String getWindow (t_glist* glist)
     return juce::Rectangle<int> (x, y, w, h).toString();
 }
 
+juce::String getBounds (t_object* o)
+{
+    const int x = object_getX (o);
+    const int y = object_getY (o);
+    const int w = object_getWidth (o);
+    const int h = 0;
+
+    return juce::Rectangle<int> (x, y, w, h).toString();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -91,7 +101,7 @@ void setAttributesBox (Group& group, t_object* o)
     group.addParameter (Tags::Buffer,
         NEEDS_TRANS ("Buffer"),
         NEEDS_TRANS ("Content of the box"),
-        juce::String (getContentBuffer (o)),
+        getContentBuffer (o),
         delegate);
     
     group.addParameter (Tags::Inlets,
@@ -106,22 +116,10 @@ void setAttributesBox (Group& group, t_object* o)
         object_getNumberOfOutlets (o),
         delegate);
     
-    group.addParameter (Tags::X,
-        NEEDS_TRANS ("X"),
-        NEEDS_TRANS ("Abscissa of position"),
-        object_getX (o),
-        delegate);
-    
-    group.addParameter (Tags::Y,
-        NEEDS_TRANS ("Y"),
-        NEEDS_TRANS ("Ordinate of position"),
-        object_getY (o),
-        delegate);
-    
-    group.addParameter (Tags::Width,
-        NEEDS_TRANS ("Width"),
-        NEEDS_TRANS ("Width in characters"),
-        object_getWidth (o),
+    group.addParameter (Tags::Bounds,
+        NEEDS_TRANS ("Bounds"),
+        NEEDS_TRANS ("Box rectangle"),
+        getBounds (o),
         delegate);
     
     group.addParameter (Tags::Selected,
@@ -146,7 +144,7 @@ void setAttributesPatch (Group& group, t_object *o)
     
     const bool isRoot = glist_isRoot (g);
     
-    setAttributesType (group, "patch");
+    setAttributesType (group, isRoot ? "patch" : "subpatch");
     
     group.addParameter (Tags::Title,
         NEEDS_TRANS ("Title"),
@@ -157,7 +155,7 @@ void setAttributesPatch (Group& group, t_object *o)
     group.addParameter (Tags::EditView,
         NEEDS_TRANS ("Edit View"),
         NEEDS_TRANS ("Edit window geometry"),
-        juce::String (getWindow (g)),
+        getWindow (g),
         delegate);
     
     if (!isRoot) { setAttributesBox (group, o); }
@@ -166,13 +164,13 @@ void setAttributesPatch (Group& group, t_object *o)
     group.addParameter (Tags::RunView,
         NEEDS_TRANS ("Run View"),
         NEEDS_TRANS ("Run window geometry"),
-        juce::String (getWindow (g)),
+        getWindow (g),
         delegate);
     
     group.addParameter (Tags::Path,
         NEEDS_TRANS ("Path"),
         NEEDS_TRANS ("File path"),
-        juce::String (getPatchFile (g).getFullPathName()),
+        getPatchFile (g).getFullPathName(),
         delegate);
     //
     }
