@@ -42,9 +42,9 @@ namespace Keywords {
     DECLARE_STRING (Parameters);
     
     DECLARE_STRING (Buffer);
+    DECLARE_STRING (Class);
     DECLARE_STRING (EditView);
     DECLARE_STRING (Inlets);
-    DECLARE_STRING (Name);
     DECLARE_STRING (Outlets);
     DECLARE_STRING (Path);
     DECLARE_STRING (RunView);

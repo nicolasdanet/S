@@ -67,18 +67,23 @@ juce::String getWindow (t_glist* glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setAttributesForObject (Group& group, const juce::String& type, t_object* o)
+void setAttributesType (Group& group, const juce::String& type)
 {
     static Delegate::Cache delegate;
     
     group.addParameter (Tags::Type,
         NEEDS_TRANS ("Type"),
         NEEDS_TRANS ("Object type"),
-        juce::String (type),
+        type,
         delegate);
+}
+
+void setAttributesBox (Group& group, t_object* o)
+{
+    static Delegate::Cache delegate;
     
-    group.addParameter (Tags::Name,
-        NEEDS_TRANS ("Name"),
+    group.addParameter (Tags::Class,
+        NEEDS_TRANS ("Class"),
         NEEDS_TRANS ("Class name"),
         juce::String (class_getNameAsString (pd_class (o))),
         delegate);
@@ -126,9 +131,22 @@ void setAttributesForObject (Group& group, const juce::String& type, t_object* o
         delegate);
 }
 
-void setAttributesForPatch (Group& group, t_glist* g)
+void setAttributesObject (Group& group, t_object* o)
+{
+    setAttributesType (group, "box");
+    
+    setAttributesBox (group, o);
+}
+
+void setAttributesPatch (Group& group, t_object *o)
 {
     static Delegate::Cache delegate;
+        
+    t_glist *g = cast_glist (o);
+    
+    const bool isRoot = glist_isRoot (g);
+    
+    setAttributesType (group, isRoot? "patch": "subpatch");
     
     group.addParameter (Tags::Title,
         NEEDS_TRANS ("Title"),
@@ -142,7 +160,8 @@ void setAttributesForPatch (Group& group, t_glist* g)
         juce::String (getWindow (g)),
         delegate);
     
-    if (glist_isRoot (g)) {
+    if (!isRoot) { setAttributesBox (group, o); }
+    else {
     //
     group.addParameter (Tags::RunView,
         NEEDS_TRANS ("Run View"),
@@ -161,28 +180,16 @@ void setAttributesForPatch (Group& group, t_glist* g)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void setAttributes (Tree& tree, t_object* o)
 {
-    const bool isPatch = object_isCanvas (o);
-    const bool hasView = class_hasViewFunction (pd_class (o));
-    
     Group group (tree.addGroup (Tags::Attributes, true));
     
-    setAttributesForObject (group, (isPatch ? "patch" : (hasView ? "graphic" : "box")), o);
-    
-    if (isPatch) { setAttributesForPatch (group, cast_glist (o)); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void setParameters (Tree& tree, t_object* o)
-{
-    Group group (tree.addGroup (Tags::Parameters));
-
-    if (class_hasViewFunction (pd_class (o))) { (*class_getViewFunction (pd_class (o))) (o, group); }
+    if (object_isCanvas (o)) { setAttributesPatch (group, o); }
+    else {
+        setAttributesObject (group, o);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -205,7 +212,6 @@ Description Description::view (const Unique& u, struct _object* o)
     Tree tree (Ids::DATA);
     
     setAttributes (tree, o);
-    setParameters (tree, o);
     
     t.appendChild (tree, nullptr);
     //
