@@ -19,24 +19,24 @@ namespace {
 
 void getDefaultTest (core::Tree& t)
 {
-    core::Group nuclear (t.addGroup ("Nuclear"));
+    core::Group peace (t.addGroup ("Peace"));
     
-    nuclear.addParameter ("Engine",
+    peace.addParameter ("Engine",
         NEEDS_TRANS ("Kind Of Engine"),
         NEEDS_TRANS ("Set kind of stuff"),
-        juce::String ("Yellow Submarine"));
+        juce::String ("Flowers"));
                 
-    nuclear.addParameter ("Power",
+    peace.addParameter ("Power",
         NEEDS_TRANS ("Power Of Engine"),
         NEEDS_TRANS ("Set power of engine"),
         99.5);
 
-    nuclear.addParameter ("Launcher",
-        NEEDS_TRANS ("Launcher Efficiency"),
-        NEEDS_TRANS ("Set tenderness of button"),
+    peace.addParameter ("Launcher",
+        NEEDS_TRANS ("Love Efficiency"),
+        NEEDS_TRANS ("Set love impact"),
         99.5);
 
-    nuclear.addParameter ("Random",
+    peace.addParameter ("Random",
         NEEDS_TRANS ("Random Rate"),
         NEEDS_TRANS ("Set entropy in life"),
         0.5).setRange (juce::Range<double> (0, 1));
@@ -45,8 +45,8 @@ void getDefaultTest (core::Tree& t)
     
     secret.addParameter ("Password",
         NEEDS_TRANS ("Password"),
-        NEEDS_TRANS ("Password for nuclear suitcase"),
-        juce::String ("000000000000"));
+        NEEDS_TRANS ("Word for magic attack"),
+        juce::String ("iloveyou"));
 }
     
 core::Tree getDefaultPreferences()
