@@ -146,7 +146,7 @@ void setAttributesPatch (Group& group, t_object *o)
     
     const bool isRoot = glist_isRoot (g);
     
-    setAttributesType (group, isRoot? "patch": "subpatch");
+    setAttributesType (group, "patch");
     
     group.addParameter (Tags::Title,
         NEEDS_TRANS ("Title"),
@@ -192,6 +192,17 @@ void setAttributes (Tree& tree, t_object* o)
     }
 }
 
+void setParameters (Tree& tree, t_object* o)
+{
+    t_class* c = pd_class (o);
+    
+    if (class_hasParametersFunction (c)) {
+    //
+    Group group (tree.addGroup (Tags::Parameters)); (*class_getParametersFunction (c)) (o, group);
+    //
+    }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -212,6 +223,7 @@ Description Description::view (const Unique& u, struct _object* o)
     Tree tree (Ids::DATA);
     
     setAttributes (tree, o);
+    setParameters (tree, o);
     
     t.appendChild (tree, nullptr);
     //
