@@ -254,6 +254,11 @@ static inline int class_hasDismissFunction (t_class *c)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+static inline int class_hasViewFunction (t_class *c)
+{
+    return (c->c_fnView != NULL);
+}
+
 static inline int class_hasParametersFunction (t_class *c)
 {
     return (c->c_fnParameters != NULL);
