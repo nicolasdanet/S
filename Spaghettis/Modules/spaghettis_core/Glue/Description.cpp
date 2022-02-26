@@ -65,12 +65,9 @@ juce::String getWindow (t_glist* glist)
 
 juce::String getBounds (t_object* o)
 {
-    const int x = object_getX (o);
-    const int y = object_getY (o);
-    const int w = object_getWidth (o);
-    const int h = 0;
-
-    return juce::Rectangle<int> (x, y, w, h).toString();
+    juce::Rectangle<int> bounds; (*class_getViewFunction (pd_class (o))) (o, bounds);
+    
+    return bounds.toString();
 }
 
 // -----------------------------------------------------------------------------------------------------------
