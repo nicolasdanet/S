@@ -47,7 +47,7 @@ typedef void (*t_savefn)    (t_object *x, t_buffer *b, int flags);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-typedef void (*t_viewfn)        (t_object *x, juce::Rectangle<int>& r);
+typedef void (*t_viewfn)        (t_object *x, const juce::String& buffer, juce::Rectangle<int>& r);
 typedef void (*t_parametersfn)  (t_object *x, core::Group& t);
 
 #endif
@@ -253,11 +253,6 @@ static inline int class_hasDismissFunction (t_class *c)
 }
 
 #if defined ( PD_BUILDING_APPLICATION )
-
-static inline int class_hasViewFunction (t_class *c)
-{
-    return (c->c_fnView != NULL);
-}
 
 static inline int class_hasParametersFunction (t_class *c)
 {

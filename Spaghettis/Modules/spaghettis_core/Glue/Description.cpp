@@ -63,27 +63,11 @@ juce::String getWindow (t_glist* glist)
     return juce::Rectangle<int> (x, y, w, h).toString();
 }
 
-juce::Rectangle<int> getBox (t_object *o, const juce::String& buffer)
-{
-    const int k = 15;
-    const int x = object_getX (o);
-    const int y = object_getY (o);
-    const int w = object_getWidth (o) * k;
-    const int h = 0;
-    
-    return juce::Rectangle<int> (x, y, w, h);
-}
- 
 juce::String getBounds (t_object* o, const juce::String& buffer)
 {
-    t_class* c = pd_class (o);
-    
     juce::Rectangle<int> bounds;
     
-    if (class_hasViewFunction (c)) { (*class_getViewFunction (pd_class (o))) (o, bounds); }
-    else {
-        bounds = getBox (o, buffer);
-    }
+    (*class_getViewFunction (pd_class (o))) (o, buffer, bounds);
     
     return bounds.toString();
 }
@@ -107,7 +91,7 @@ void setAttributesBox (Group& group, t_object* o)
 {
     static Delegate::Cache delegate;
     
-    const juce::String content (getContentBuffer (o));
+    const juce::String buffer (getContentBuffer (o));
     
     group.addParameter (Tags::Class,
         NEEDS_TRANS ("Class"),
@@ -118,7 +102,7 @@ void setAttributesBox (Group& group, t_object* o)
     group.addParameter (Tags::Buffer,
         NEEDS_TRANS ("Buffer"),
         NEEDS_TRANS ("Content of the box"),
-        content,
+        buffer,
         delegate);
     
     group.addParameter (Tags::Inlets,
@@ -136,7 +120,7 @@ void setAttributesBox (Group& group, t_object* o)
     group.addParameter (Tags::Bounds,
         NEEDS_TRANS ("Bounds"),
         NEEDS_TRANS ("Box rectangle"),
-        getBounds (o, content),
+        getBounds (o, buffer),
         delegate);
     
     group.addParameter (Tags::Selected,

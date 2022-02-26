@@ -133,6 +133,29 @@ static void class_defaultSave (t_object *x, t_buffer *b, int flags)
     object_saveIdentifiers (x, b, flags);
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void class_defaultView (t_object *o, const juce::String& buffer, juce::Rectangle<int>& r)
+{
+    if (r.isEmpty()) {
+    //
+    const int characterWidth  = 15;     // TODO: Fetch proper values?
+    const int characterHeigth = 15;
+    
+    const int t = object_getWidth (o);
+    
+    const int x = object_getX (o);
+    const int y = object_getY (o);
+    const int w = ((t > 0) ? t : buffer.length()) * characterWidth;
+    const int h = characterHeigth;
+    
+    r = juce::Rectangle<int> (x, y, w, h);
+    //
+    }
+}
+
+#endif
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -192,7 +215,7 @@ PD_LOCAL t_class *class_new (t_symbol *s,
     c->c_fnData             = NULL;
     c->c_fnDismiss          = NULL;
     #if defined ( PD_BUILDING_APPLICATION )
-    c->c_fnView             = NULL;
+    c->c_fnView             = class_defaultView;
     c->c_fnParameters       = NULL;
     #endif
     c->c_hasSignal          = hasSignal;
