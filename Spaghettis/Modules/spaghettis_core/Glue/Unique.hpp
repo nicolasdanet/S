@@ -23,15 +23,18 @@ struct _glist;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+using Id = uint64_t;  /* t_id */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 class Unique {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    using Identifier = uint64_t;                                            /* t_id */
-    
-    using Converter  = juce::VariantConverter<Unique::Identifier>;
+    using Converter = juce::VariantConverter<Id>;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -73,12 +76,12 @@ public:
         return r_ == 0;
     }
 
-    Unique::Identifier getRoot() const
+    Id getRoot() const
     {
         return isRoot() ? u_ : r_;
     }
     
-    Unique::Identifier getIdentifier() const
+    Id getIdentifier() const
     {
         return u_;
     }
@@ -88,7 +91,7 @@ public:
         return (path_ != nullptr);
     }
     
-    const std::vector<Unique::Identifier>& getPath() const
+    const std::vector<Id>& getPath() const
     {
         jassert (hasPath()); return *path_;
     }
@@ -104,11 +107,11 @@ public:
     }
 
 private:
-    Unique::Identifier u_;
-    Unique::Identifier r_;
+    Id u_;
+    Id r_;
         
 private:
-    std::shared_ptr<std::vector<Unique::Identifier>> path_;
+    std::shared_ptr<std::vector<Id>> path_;
 
 private:
     JUCE_LEAK_DETECTOR (Unique)
@@ -133,14 +136,14 @@ namespace juce {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template<> struct VariantConverter<spaghettis::core::Unique::Identifier> {
+template<> struct VariantConverter<spaghettis::core::Id> {
 
-static spaghettis::core::Unique::Identifier fromVar (const var& v)
+static spaghettis::core::Id fromVar (const var& v)
 {
-    return static_cast<spaghettis::core::Unique::Identifier> (static_cast<int64> (v));
+    return static_cast<spaghettis::core::Id> (static_cast<int64> (v));
 }
     
-static var toVar (const spaghettis::core::Unique::Identifier& i)
+static var toVar (const spaghettis::core::Id& i)
 {
     return var (static_cast<int64> (i));
 }

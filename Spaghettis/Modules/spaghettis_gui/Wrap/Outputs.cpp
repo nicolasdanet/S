@@ -111,7 +111,7 @@ Perform Outputs::objectRemoved (core::Unique unique)
     };
 }
 
-Perform Outputs::objectRenamed (core::Unique unique, core::Unique::Identifier i)
+Perform Outputs::objectRenamed (core::Unique unique, core::Id i)
 {
     return [i, u = std::move (unique)]()
     {

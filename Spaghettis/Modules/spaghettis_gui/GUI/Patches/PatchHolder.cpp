@@ -115,7 +115,7 @@ void PatchHolder::removeObject (const core::Unique& u)
     }
 }
 
-void PatchHolder::renameObject (const core::Unique& u, core::Unique::Identifier i)
+void PatchHolder::renameObject (const core::Unique& u, core::Id i)
 {
 
 }

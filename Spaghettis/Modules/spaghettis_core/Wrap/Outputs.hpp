@@ -40,7 +40,7 @@ static Perform patchDirty                   (core::Unique, bool);
 static Perform objectAdded                  (core::Unique, core::Description);
 static Perform objectChanged                (core::Unique, core::Description);
 static Perform objectRemoved                (core::Unique);
-static Perform objectRenamed                (core::Unique, core::Unique::Identifier);
+static Perform objectRenamed                (core::Unique, core::Id);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

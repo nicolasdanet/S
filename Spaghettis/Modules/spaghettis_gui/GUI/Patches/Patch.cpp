@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Unique::Identifier i)
+juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Id i)
 {
     return t.getChildWithProperty (Ids::identifier, core::Unique::Converter::toVar (i));
 }
