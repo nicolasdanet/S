@@ -29,6 +29,8 @@ public:
         tree_ (v),
         dirty_ (false)
     {
+        jassert (unique_.isRoot());
+        
         openWindow();
     }
 
@@ -119,7 +121,7 @@ public:
 // MARK: -
 
 private:
-    core::Unique unique_;
+    core::Unique unique_;           /* Cached for efficiency. */
     juce::ValueTree tree_;
     bool dirty_;
 

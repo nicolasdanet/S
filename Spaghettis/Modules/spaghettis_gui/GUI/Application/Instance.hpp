@@ -15,7 +15,7 @@ class ConsoleWindow;
 class DevicesWindow;
 class PreferencesWindow;
 class SearchPathsWindow;
-class PatchHolder;
+class PatchesHolder;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ public:
         alertRegister_ (std::make_unique<AlertWindowRegister>()),
         audioDevices_ (std::make_unique<AudioDevices>()),
         midiDevices_ (std::make_unique<MidiDevices>()),
-        patches_ (std::make_unique<PatchHolder>()),
+        patches_ (std::make_unique<PatchesHolder>()),
         currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory)),
         dspIsRunning_ (false),
         quit_ (QuitStatus::quit)
@@ -284,7 +284,7 @@ public:
         return *midiDevices_;
     }
     
-    PatchHolder& getPatches()
+    PatchesHolder& getPatches()
     {
         return *patches_;
     }
@@ -312,7 +312,7 @@ private:
     const std::unique_ptr<AlertWindowRegister> alertRegister_;              /* Only used on Linux. */
     const std::unique_ptr<AudioDevices> audioDevices_;
     const std::unique_ptr<MidiDevices> midiDevices_;
-    const std::unique_ptr<PatchHolder> patches_;
+    const std::unique_ptr<PatchesHolder> patches_;
 
 private:
     juce::File currentOpenDirectory_;

@@ -59,7 +59,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Patches/Patch.cpp"
-#include "GUI/Patches/PatchHolder.cpp"
+#include "GUI/Patches/PatchesHolder.cpp"
 
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
