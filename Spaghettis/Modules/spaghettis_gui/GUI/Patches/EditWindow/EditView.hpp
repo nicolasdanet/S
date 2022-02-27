@@ -12,16 +12,24 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditView {
+class EditView :    public juce::Component,
+                    public juce::ValueTree::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    EditView()  = default;
+    EditView() : content_ (PatchWindow::getContent (this))
+    {
+        content_.addListener (this);
+    }
+    
     ~EditView() = default;
 
+private:
+    juce::ValueTree content_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
 };
