@@ -29,10 +29,10 @@ void RunFactory::setToolbarButton (IconsButton* button)
     //
     case Icons::presets : button->onClick = []() { DBG ("?"); }; break;
     case Icons::edit    : button->onClick = [this]() {
-                                PatchWindow::getOwner (owner_).openEditWindow();
+                                owner_->getPatch().openEditWindow();
                             }; break;
     case Icons::run     : button->onClick = [this]() {
-                                PatchWindow::getOwner (owner_).openRunWindow();
+                                owner_->getPatch().openRunWindow();
                             }; break;
     default             : break;
     //

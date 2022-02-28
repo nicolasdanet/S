@@ -20,7 +20,10 @@ class EditComponent :   protected EditFactoryHelper,    /* MUST be the first. */
 // MARK: -
 
 public:
-    explicit EditComponent() : EditFactoryHelper (this), BaseComponent (getIconsFactory())
+    explicit EditComponent (Patch& owner, const juce::ValueTree& content) :
+        EditFactoryHelper (this),
+        BaseComponent (getIconsFactory()),
+        owner_ (owner)
     {
         addAndMakeVisible (editView_);
         
@@ -46,6 +49,19 @@ public:
         editView_.setBounds (bounds);
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Patch& getPatch() const
+    {
+        return owner_;
+    }
+    
+private:
+    Patch& owner_;
+    
 private:
     EditView editView_;
     

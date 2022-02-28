@@ -21,7 +21,7 @@ class RunWindow : public PatchWindow {
 public:
     explicit RunWindow (Patch& owner, const juce::ValueTree& content) : PatchWindow (owner, content)
     {
-        setContentOwned (new RunComponent(), true);
+        setContentOwned (new RunComponent (owner, content), true);
         
         makeVisible (getRunWindowPosition (content));
     }

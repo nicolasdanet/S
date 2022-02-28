@@ -20,7 +20,10 @@ class RunComponent :    protected RunFactoryHelper,    /* MUST be the first. */
 // MARK: -
 
 public:
-    explicit RunComponent() : RunFactoryHelper (this), BaseComponent (getIconsFactory())
+    explicit RunComponent (Patch& owner, const juce::ValueTree& content) :
+        RunFactoryHelper (this),
+        BaseComponent (getIconsFactory()),
+        owner_ (owner)
     {
         setOpaque (true); setSize (600, 300);
     }
@@ -42,6 +45,19 @@ public:
         setBarsBoundsAndGetRemaining();
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Patch& getPatch() const
+    {
+        return owner_;
+    }
+    
+private:
+    Patch& owner_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunComponent)
 };
