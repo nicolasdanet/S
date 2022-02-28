@@ -62,15 +62,6 @@ public:
         return w->owner_;
     }
     
-    static juce::ValueTree getContent (juce::Component *c)
-    {
-        PatchWindow* w = dynamic_cast<PatchWindow*> (c->getTopLevelComponent());
-        
-        jassert (w);
-        
-        return w->content_;
-    }
-    
 private:
     Patch& owner_;
 

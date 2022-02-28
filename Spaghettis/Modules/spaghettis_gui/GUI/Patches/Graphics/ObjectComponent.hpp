@@ -12,50 +12,18 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditView :    public juce::Component,
-                    public juce::ValueTree::Listener {
+class ObjectComponent : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    EditView() : content_()
-    {
-        content_.addListener (this);
-        
-        setOpaque (true); setSize (600, 300);
-    }
-    
-    ~EditView() = default;
+    ObjectComponent()  = default;
+    ~ObjectComponent() = default;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void paint (juce::Graphics& g) override
-    {
-        g.fillAll (juce::Colours::orange);
-    }
-    
-    void resized() override
-    {
-        // setBounds (getLocalBounds());
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override;
-    
 private:
-    juce::ValueTree content_;
-    
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ObjectComponent)
 };
 
 // -----------------------------------------------------------------------------------------------------------

@@ -61,6 +61,8 @@
 #include "GUI/Patches/Patch.cpp"
 #include "GUI/Patches/PatchesHolder.cpp"
 
+#include "GUI/Patches/Graphics/ObjectComponent.cpp"
+
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
 #include "GUI/Patches/EditWindow/EditWindow.cpp"

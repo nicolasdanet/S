@@ -22,6 +22,8 @@ class EditComponent :   protected EditFactoryHelper,    /* MUST be the first. */
 public:
     explicit EditComponent() : EditFactoryHelper (this), BaseComponent (getIconsFactory())
     {
+        addAndMakeVisible (editView_);
+        
         setOpaque (true); setSize (600, 300);
     }
     
@@ -39,9 +41,14 @@ public:
     
     void resized() override
     {
-        setBarsBoundsAndGetRemaining();
+        juce::Rectangle<int> bounds (setBarsBoundsAndGetRemaining());
+        
+        editView_.setBounds (bounds);
     }
 
+private:
+    EditView editView_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditComponent)
 };
