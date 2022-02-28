@@ -20,7 +20,7 @@ class EditView :    public juce::Component,
 // MARK: -
 
 public:
-    EditView() : content_()
+    EditView (const juce::ValueTree& content) : content_ (content)
     {
         content_.addListener (this);
         
@@ -41,7 +41,7 @@ public:
     
     void resized() override
     {
-        // setBounds (getLocalBounds());
+        
     }
 
 // -----------------------------------------------------------------------------------------------------------

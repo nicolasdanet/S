@@ -23,7 +23,8 @@ public:
     explicit EditComponent (Patch& owner, const juce::ValueTree& content) :
         EditFactoryHelper (this),
         BaseComponent (getIconsFactory()),
-        owner_ (owner)
+        owner_ (owner),
+        editView_ (content)
     {
         addAndMakeVisible (editView_);
         
