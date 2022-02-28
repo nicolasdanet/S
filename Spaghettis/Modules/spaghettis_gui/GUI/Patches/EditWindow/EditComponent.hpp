@@ -28,7 +28,7 @@ public:
     {
         addAndMakeVisible (editView_);
         
-        setOpaque (true); setSize (600, 300);
+        setDefaultSize (this, 600, 300);
     }
     
     ~EditComponent() = default;

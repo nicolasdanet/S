@@ -24,7 +24,7 @@ public:
     {
         content_.addListener (this);
         
-        setOpaque (true); setSize (600, 300);
+        BaseComponent::setDefaultSize (this);
     }
     
     ~EditView() = default;

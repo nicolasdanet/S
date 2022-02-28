@@ -26,7 +26,7 @@ public:
     {
         addAndMakeVisible (getPanel());
         
-        setOpaque (true); setSize (600, 400);
+        setDefaultSize (this, 600, 400);
     }
     
     ~PreferencesComponent() = default;

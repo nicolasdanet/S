@@ -32,7 +32,7 @@ public:
         ListBoxFunctions::update (listBox_, paths_, false);
         addAndMakeVisible (listBox_);
         
-        setOpaque (true); setSize (400, 500);
+        setDefaultSize (this, 400, 500);
     }
     
     ~SearchPathsComponent() = default;

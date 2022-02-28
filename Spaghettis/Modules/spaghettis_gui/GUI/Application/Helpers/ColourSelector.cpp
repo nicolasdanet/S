@@ -39,6 +39,44 @@ void HueSelector::mouseDrag (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+ColourSelector::ColourSelector (const juce::Value& v) :
+    value_ (v),
+    h_ (0.0f),
+    s_ (0.0f),
+    v_ (0.0f),
+    a_ (0.0f),
+    edge_ (6),
+    colourSpace_ (std::make_unique<ColourSpace> (*this, edge_, h_, s_, v_)),
+    hueSelector_ (std::make_unique<HueSelector> (*this, edge_, h_))
+{
+    fetchColour(); updateHSV();
+    
+    std::get<0> (sliders_).reset (new ColourSlider());
+    std::get<1> (sliders_).reset (new ColourSlider());
+    std::get<2> (sliders_).reset (new ColourSlider());
+    std::get<3> (sliders_).reset (new ColourSlider());
+
+    for (auto& slider : sliders_) {
+        slider->onValueChange = [this] { setColour(); };
+    }
+    
+    addAndMakeVisible (colourSpace_.get());
+    addAndMakeVisible (hueSelector_.get());
+
+    addAndMakeVisible (std::get<0> (sliders_).get());
+    addAndMakeVisible (std::get<1> (sliders_).get());
+    addAndMakeVisible (std::get<2> (sliders_).get());
+    addAndMakeVisible (std::get<3> (sliders_).get());
+    
+    BaseComponent::setDefaultSize (this, 300, 280);
+    
+    updateViews();
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ColourSelector::paint (juce::Graphics& g)
 {
     g.fillAll (Spaghettis()->getColour (Colours::callOutBoxBackground));
