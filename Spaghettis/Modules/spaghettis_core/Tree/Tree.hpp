@@ -98,6 +98,9 @@ public:
     juce::var getValue (const juce::String&, const juce::String&) const;
 
 public:
+    juce::Value getValueSource (const juce::String&, const juce::String&) const;
+
+public:
     void changeValue (const juce::String&, const juce::String&, const juce::var&);
     
 // -----------------------------------------------------------------------------------------------------------

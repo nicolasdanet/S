@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -12,64 +12,41 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditComponent :   protected EditFactoryHelper,    /* MUST be the first. */
-                        public    BaseComponent {
+class CachedColour : private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit EditComponent (Patch& owner, const juce::ValueTree& content) :
-        EditFactoryHelper (this),
-        BaseComponent (getIconsFactory()),
-        owner_ (owner),
-        editView_ (content),
-        backgroundColour_ (Spaghettis()->getColour (Tags::Colors, Tags::PatchBackground))
+    CachedColour (const core::Tree& tree, const juce::String& group, const juce::String& key) :
+        value_ (tree.getValueSource (group, key))
     {
-        addAndMakeVisible (editView_);
-        
-        setDefaultSize (this, 600, 300);
+        value_.addListener (this);
     }
     
-    ~EditComponent() = default;
+    ~CachedColour() = default;
+
+public:
+    CachedColour (CachedColour&&) = default;
+    CachedColour& operator = (CachedColour&&) = default;
+    
+public:
+    CachedColour (const CachedColour&) = delete;
+    CachedColour& operator = (const CachedColour&) = delete;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void paint (juce::Graphics& g) override
+    void valueChanged (juce::Value& value) override
     {
-        g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
-    }
-    
-    void resized() override
-    {
-        juce::Rectangle<int> bounds (setBarsBoundsAndGetRemaining());
-        
-        editView_.setBounds (bounds);
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    Patch& getPatch() const
-    {
-        return owner_;
+        DBG ("?");
     }
     
 private:
-    Patch& owner_;
-    
-private:
-    EditView editView_;
-    CachedColour backgroundColour_;
-    
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditComponent)
+    juce::Value value_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

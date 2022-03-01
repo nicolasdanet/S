@@ -29,6 +29,11 @@ juce::var Tree::getValue (const juce::String& group, const juce::String& key) co
     jassert (hasValue (group, key)); return getGroup (group).getParameter (key).getValue();
 }
 
+juce::Value Tree::getValueSource (const juce::String& group, const juce::String& key) const
+{
+    jassert (hasValue (group, key)); return getGroup (group).getParameter (key).getValueSource();
+}
+
 void Tree::changeValue (const juce::String& group, const juce::String& key, const juce::var& v)
 {
     jassert (hasValue (group, key)); getGroup (group).getParameter (key).changeValue (v);

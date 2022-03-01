@@ -45,6 +45,9 @@ public:
 
 public:
     juce::var getValue (const juce::String& group, const juce::String& key) const;
+
+public:
+    CachedColour getCachedColour (const juce::String& group, const juce::String& key) const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

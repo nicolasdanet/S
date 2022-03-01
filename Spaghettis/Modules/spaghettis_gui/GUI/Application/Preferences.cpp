@@ -128,6 +128,11 @@ juce::var Preferences::getValue (const juce::String& group, const juce::String& 
     return tree_.getValue (group, key);
 }
 
+CachedColour Preferences::getCachedColour (const juce::String& group, const juce::String& key) const
+{
+    return CachedColour (tree_, group, key);
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -82,7 +82,7 @@ private:
     void callParameterHandlers (const juce::ValueTree& tree);
     
 private:
-    virtual void treeHasChanged() = 0;
+    virtual void treeHasChanged() { };
 
 private:
     std::vector<Handler> handlers_;

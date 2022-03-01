@@ -293,12 +293,19 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Save some keyboard typing and line width. */
+
 public:
     juce::Colour getColour (int colourId) const
     {
         return lookAndFeel_->findColour (colourId);
     }
 
+    CachedColour getColour (const juce::String& group, const juce::String& key) const
+    {
+        return preferences_->getCachedColour (group, key);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
