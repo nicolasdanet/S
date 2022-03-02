@@ -17,7 +17,7 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Cached : private juce::Value::Listener {
+template <class T> class Cached : private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ public:
     Cached (const core::Tree& tree, const juce::String& group, const juce::String& key) :
         value_ (tree.getParameter (group, key).getValueSource())
     {
-        // ParameterType<T>::get()
+        jassert (juce::String (ParameterType<T>::get()) == tree.getParameter (group, key).getType());
         
         value_.addListener (this);
     }
