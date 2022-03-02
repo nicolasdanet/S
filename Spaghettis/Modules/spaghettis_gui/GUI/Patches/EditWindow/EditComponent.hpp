@@ -24,8 +24,7 @@ public:
         EditFactoryHelper (this),
         BaseComponent (getIconsFactory()),
         owner_ (owner),
-        editView_ (content),
-        backgroundColour_ (Spaghettis()->getColour (Tags::Colors, Tags::PatchBackground))
+        editView_ (content)
     {
         addAndMakeVisible (editView_);
         
@@ -66,7 +65,6 @@ private:
     
 private:
     EditView editView_;
-    core::Cached<juce::Colour> backgroundColour_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditComponent)

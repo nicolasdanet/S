@@ -20,7 +20,8 @@ class EditView :    public juce::Component,
 // MARK: -
 
 public:
-    EditView (const juce::ValueTree& content) : content_ (content)
+    EditView (const juce::ValueTree& content) : content_ (content),
+        backgroundColour_ (Spaghettis()->getColour (Tags::Colors, Tags::PatchBackground))
     {
         content_.addListener (this);
         
@@ -53,7 +54,10 @@ public:
     
 private:
     juce::ValueTree content_;
-    
+
+private:
+    core::Cached<juce::Colour> backgroundColour_;
+        
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
 };
