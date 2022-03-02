@@ -23,15 +23,14 @@ template <class T> class Cached : private juce::Value::Listener {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     Cached (const core::Tree& tree, const juce::String& group, const juce::String& key) :
         value_ (tree.getParameter (group, key).getValueSource())
     {
-        jassert (tree.getParameter (group, key).getType() == ParameterType<T>::get());
-        
         value_.addListener (this);
     }
-    
+
+public:
     ~Cached() = default;
 
 public:
@@ -47,9 +46,31 @@ public:
 // MARK: -
 
 public:
+    T get() const
+    {
+        return juce::VariantConverter<T>::fromVar (value_.getValue());
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
     void valueChanged (juce::Value& value) override
     {
         DBG ("?");
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static Cached make (const core::Tree& tree, const juce::String& group, const juce::String& key)
+    {
+        jassert (tree.getParameter (group, key).getType() == ParameterType<T>::get());
+
+        return Cached (tree, group, key);
     }
     
 private:

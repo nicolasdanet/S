@@ -37,7 +37,7 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        g.fillAll (juce::Colours::orange);
+        g.fillAll (backgroundColour_.get());
     }
     
     void resized() override
