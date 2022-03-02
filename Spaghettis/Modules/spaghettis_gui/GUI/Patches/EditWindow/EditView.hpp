@@ -25,6 +25,8 @@ public:
     {
         content_.addListener (this);
         
+        backgroundColour_.onChange = [this]() { repaint(); };
+        
         BaseComponent::setDefaultSize (this);
     }
     

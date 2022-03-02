@@ -58,7 +58,7 @@ public:
 private:
     void valueChanged (juce::Value& value) override
     {
-        DBG ("?");
+        if (onChange != nullptr) { onChange(); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -72,9 +72,15 @@ public:
 
         return Cached (tree, group, key);
     }
+
+public:
+    std::function<void()> onChange;
     
 private:
     juce::Value value_;
+    
+private:
+    JUCE_LEAK_DETECTOR (Cached)
 };
 
 // -----------------------------------------------------------------------------------------------------------
