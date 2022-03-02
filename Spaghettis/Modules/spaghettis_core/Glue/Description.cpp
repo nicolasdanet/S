@@ -237,7 +237,7 @@ Description Description::view (const Unique& u, struct _object* o)
 
 juce::var Description::getAttribute (const juce::ValueTree& t, const juce::String &name)
 {
-    return Tree (t.getChildWithName (Ids::DATA)).getValue (Tags::Attributes, name);
+    return Tree (t.getChildWithName (Ids::DATA)).getParameter (Tags::Attributes, name).getValue();
 }
 
 // -----------------------------------------------------------------------------------------------------------

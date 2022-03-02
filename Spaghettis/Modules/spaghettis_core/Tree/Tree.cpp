@@ -17,26 +17,16 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool Tree::hasValue (const juce::String& group, const juce::String& key) const
+bool Tree::hasParameter (const juce::String& group, const juce::String& key) const
 {
     if (getGroup (group).hasParameter (key)) { return true; }
     
     return false;
 }
 
-juce::var Tree::getValue (const juce::String& group, const juce::String& key) const
+Parameter Tree::getParameter (const juce::String& group, const juce::String& key) const
 {
-    jassert (hasValue (group, key)); return getGroup (group).getParameter (key).getValue();
-}
-
-juce::Value Tree::getValueSource (const juce::String& group, const juce::String& key) const
-{
-    jassert (hasValue (group, key)); return getGroup (group).getParameter (key).getValueSource();
-}
-
-void Tree::changeValue (const juce::String& group, const juce::String& key, const juce::var& v)
-{
-    jassert (hasValue (group, key)); getGroup (group).getParameter (key).changeValue (v);
+    jassert (hasParameter (group, key)); return getGroup (group).getParameter (key);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -141,7 +131,7 @@ void readFrom (Tree& tree, const juce::ValueTree& other)
     const juce::String key (other.getProperty (Ids::key).toString());
     const juce::var v (other.getProperty (Ids::value));
     
-    if (tree.hasValue (group, key)) { tree.changeValue (group, key, v); }
+    if (tree.hasParameter (group, key)) { tree.getParameter (group, key).changeValue (v); }
     //
     }
     

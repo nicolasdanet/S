@@ -125,7 +125,7 @@ Preferences::~Preferences()
 
 juce::var Preferences::getValue (const juce::String& group, const juce::String& key) const
 {
-    return tree_.getValue (group, key);
+    return tree_.getParameter (group, key).getValue();
 }
 
 core::Cached Preferences::getCached (const juce::String& group, const juce::String& key) const

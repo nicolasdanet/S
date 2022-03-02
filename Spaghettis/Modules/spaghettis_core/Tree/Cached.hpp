@@ -25,7 +25,7 @@ class Cached : private juce::Value::Listener {
 
 public:
     Cached (const core::Tree& tree, const juce::String& group, const juce::String& key) :
-        value_ (tree.getValueSource (group, key))
+        value_ (tree.getParameter (group, key).getValueSource())
     {
         // ParameterType<T>::get()
         
