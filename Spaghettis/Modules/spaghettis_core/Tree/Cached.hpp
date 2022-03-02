@@ -27,7 +27,7 @@ public:
     Cached (const core::Tree& tree, const juce::String& group, const juce::String& key) :
         value_ (tree.getParameter (group, key).getValueSource())
     {
-        jassert (juce::String (ParameterType<T>::get()) == tree.getParameter (group, key).getType());
+        jassert (tree.getParameter (group, key).getType() == ParameterType<T>::get());
         
         value_.addListener (this);
     }

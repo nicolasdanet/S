@@ -47,8 +47,11 @@ public:
     juce::var getValue (const juce::String& group, const juce::String& key) const;
 
 public:
-    core::Cached<juce::Colour> getCachedColour (const juce::String& group, const juce::String& key) const;
-    
+    template <class T> core::Cached<T> getCached (const juce::String& group, const juce::String& key) const
+    {
+        return core::Cached<T> (tree_, group, key);
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

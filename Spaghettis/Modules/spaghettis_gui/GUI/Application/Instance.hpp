@@ -303,7 +303,7 @@ public:
 
     core::Cached<juce::Colour> getColour (const juce::String& group, const juce::String& key) const
     {
-        return preferences_->getCachedColour (group, key);
+        return preferences_->getCached<juce::Colour> (group, key);
     }
     
 // -----------------------------------------------------------------------------------------------------------
