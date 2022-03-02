@@ -57,7 +57,6 @@
 
 #include "GUI/Application/Helpers/SafeRegister.hpp"
 #include "GUI/Application/Helpers/AlertWindowRegister.hpp"
-#include "GUI/Application/Helpers/CachedColour.hpp"
 #include "GUI/Application/Helpers/CallOutBoxRegister.hpp"
 #include "GUI/Application/Helpers/CallOutBoxTracker.hpp"
 #include "GUI/Application/Helpers/ColourSelector.hpp"

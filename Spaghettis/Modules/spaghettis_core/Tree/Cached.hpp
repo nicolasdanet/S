@@ -10,30 +10,37 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+namespace core {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class CachedColour : private juce::Value::Listener {
+class Cached : private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    CachedColour (const core::Tree& tree, const juce::String& group, const juce::String& key) :
+    Cached (const core::Tree& tree, const juce::String& group, const juce::String& key) :
         value_ (tree.getValueSource (group, key))
     {
+        // ParameterType<T>::get()
+        
         value_.addListener (this);
     }
     
-    ~CachedColour() = default;
+    ~Cached() = default;
 
 public:
-    CachedColour (CachedColour&&) = default;
-    CachedColour& operator = (CachedColour&&) = default;
+    Cached (Cached&&) = default;
+    Cached& operator = (Cached&&) = default;
     
 public:
-    CachedColour (const CachedColour&) = delete;
-    CachedColour& operator = (const CachedColour&) = delete;
+    Cached (const Cached&) = delete;
+    Cached& operator = (const Cached&) = delete;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -48,6 +55,11 @@ public:
 private:
     juce::Value value_;
 };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+} // namespace core
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

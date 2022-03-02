@@ -66,7 +66,7 @@ private:
     
 private:
     EditView editView_;
-    CachedColour backgroundColour_;
+    core::Cached backgroundColour_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditComponent)

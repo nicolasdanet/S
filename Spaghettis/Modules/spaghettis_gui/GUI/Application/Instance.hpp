@@ -301,9 +301,9 @@ public:
         return lookAndFeel_->findColour (colourId);
     }
 
-    CachedColour getColour (const juce::String& group, const juce::String& key) const
+    core::Cached getColour (const juce::String& group, const juce::String& key) const
     {
-        return preferences_->getCachedColour (group, key);
+        return preferences_->getCached (group, key);
     }
     
 // -----------------------------------------------------------------------------------------------------------
