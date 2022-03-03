@@ -103,6 +103,16 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    bool tryGrabFocus() override
+    {
+        return tryGrabFocusForComponent (this);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     template <class T>
     void updateViewProceed (const T& devices, std::array<juce::ComboBox, numberOfDevices()>& a, bool b)
