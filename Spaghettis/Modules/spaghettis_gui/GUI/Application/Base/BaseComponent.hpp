@@ -70,7 +70,12 @@ public:
 protected:
     static bool tryGrabFocusForComponent (juce::Component *c)
     {
-        c->grabKeyboardFocus(); return c->hasKeyboardFocus (true);
+        c->grabKeyboardFocus();
+        
+        if (juce::ModalComponentManager::getInstance()->getNumModalComponents() > 0) { return true; }
+        else {
+            return c->hasKeyboardFocus (true);
+        }
     }
     
 public:
