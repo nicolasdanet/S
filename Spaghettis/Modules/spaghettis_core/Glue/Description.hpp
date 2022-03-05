@@ -57,7 +57,7 @@ public:
 // MARK: -
 
 public:
-    static Description view (const Unique& u, struct _object* o);
+    static Description view (const UniquePath& u, struct _object* o);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

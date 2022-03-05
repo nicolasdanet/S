@@ -105,7 +105,7 @@ PD_LOCAL void inputs_setMidiDevices (const std::vector<MidiDevice>& i, const std
     settings_save();
 }
 
-PD_LOCAL void inputs_closePatch (core::Id i)
+PD_LOCAL void inputs_closePatch (core::UniqueId i)
 {
     t_object *o = instance_registerGetObject (i);
     
@@ -118,7 +118,7 @@ PD_LOCAL void inputs_closePatch (core::Id i)
     } else { jassertfalse; }
 }
 
-PD_LOCAL void inputs_savePatch (core::Id i)
+PD_LOCAL void inputs_savePatch (core::UniqueId i)
 {
     t_object *o = instance_registerGetObject (i);
     

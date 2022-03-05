@@ -17,11 +17,11 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto hasEqualRoot (const core::Unique& u)
+auto hasEqualRoot (const core::UniquePath& u)
 {
     return [i = u.getRoot()] (const std::shared_ptr<Patch>& p)
     {
-        return (p->getUnique().getRoot() == i);
+        return (p->getUniquePath().getRoot() == i);
     };
 }
     
@@ -29,7 +29,7 @@ auto toUnique()
 {
     return [] (const std::shared_ptr<Patch>& p)
     {
-        return p->getUnique();
+        return p->getUniquePath();
     };
 }
 
@@ -37,14 +37,14 @@ auto toUnique()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::shared_ptr<Patch> fetchPatch (std::vector<std::shared_ptr<Patch>>& v, const core::Unique& u)
+std::shared_ptr<Patch> fetchPatch (std::vector<std::shared_ptr<Patch>>& v, const core::UniquePath& u)
 {
     auto r = std::find_if (v.cbegin(), v.cend(), hasEqualRoot (u));
     
     return std::shared_ptr<Patch> (r != v.cend() ? *r : nullptr);
 }
 
-void removePatch (std::vector<std::shared_ptr<Patch>>& v, const core::Unique& u)
+void removePatch (std::vector<std::shared_ptr<Patch>>& v, const core::UniquePath& u)
 {
     v.erase (std::remove_if (v.begin(), v.end(), hasEqualRoot (u)), v.end());
 }
@@ -80,7 +80,7 @@ CloseResult getCloseResult (CloseType notify, int result)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> void PatchesHolder::perform (const core::Unique& u, T f) const
+template <class T> void PatchesHolder::perform (const core::UniquePath& u, T f) const
 {
     auto r = std::find_if (roots_.cbegin(), roots_.cend(), hasEqualRoot (u));
     
@@ -91,7 +91,7 @@ template <class T> void PatchesHolder::perform (const core::Unique& u, T f) cons
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchesHolder::addObject (const core::Unique& u, const core::Description& v)
+void PatchesHolder::addObject (const core::UniquePath& u, const core::Description& v)
 {
     if (u.isRoot()) { roots_.push_back (std::make_shared<Patch> (u, v)); }
     else {
@@ -99,7 +99,7 @@ void PatchesHolder::addObject (const core::Unique& u, const core::Description& v
     }
 }
 
-void PatchesHolder::changeObject (const core::Unique& u, const core::Description& v)
+void PatchesHolder::changeObject (const core::UniquePath& u, const core::Description& v)
 {
     if (u.isRoot()) { }
     else {
@@ -107,7 +107,7 @@ void PatchesHolder::changeObject (const core::Unique& u, const core::Description
     }
 }
 
-void PatchesHolder::removeObject (const core::Unique& u)
+void PatchesHolder::removeObject (const core::UniquePath& u)
 {
     if (u.isRoot()) { requestClosePatch (u, CloseType::none); }
     else {
@@ -115,7 +115,7 @@ void PatchesHolder::removeObject (const core::Unique& u)
     }
 }
 
-void PatchesHolder::renameObject (const core::Unique& u, core::Id i)
+void PatchesHolder::renameObject (const core::UniquePath& u, core::UniqueId i)
 {
 
 }
@@ -124,7 +124,7 @@ void PatchesHolder::renameObject (const core::Unique& u, core::Id i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchesHolder::setDirty (const core::Unique& u, bool isDirty)
+void PatchesHolder::setDirty (const core::UniquePath& u, bool isDirty)
 {
     perform (u, [&] (const std::shared_ptr<Patch>& p) { p->setDirty (isDirty); });
 }
@@ -141,7 +141,7 @@ void PatchesHolder::showSaveRequest (const std::shared_ptr<Patch>& p, CloseType 
     
     window->toFront (false);
     
-    auto f = [notify, u = p->getUnique()] (int result)
+    auto f = [notify, u = p->getUniquePath()] (int result)
     {
         Spaghettis()->getPatches().handleSaveRequest (u, getCloseResult (notify, result));
     };
@@ -164,7 +164,7 @@ void PatchesHolder::showSaveRequest (const std::shared_ptr<Patch>& p, CloseType 
     requests_.push_back (p);
 }
 
-void PatchesHolder::handleSaveRequest (const core::Unique& u, CloseResult result)
+void PatchesHolder::handleSaveRequest (const core::UniquePath& u, CloseResult result)
 {
     std::shared_ptr<Patch> p (fetchPatch (requests_, u));
     
@@ -195,7 +195,7 @@ bool PatchesHolder::isEmpty() const
 
 /* To avoid bad loops remove first the patch from the roots before to release it. */
 
-void PatchesHolder::requestClosePatch (const core::Unique& u, CloseType notify)
+void PatchesHolder::requestClosePatch (const core::UniquePath& u, CloseType notify)
 {
     std::shared_ptr<Patch> p (fetchPatch (roots_, u));
             
@@ -210,7 +210,7 @@ void PatchesHolder::requestClosePatch (const core::Unique& u, CloseType notify)
 
 void PatchesHolder::closeAllPatches()
 {
-    std::vector<core::Unique> t;
+    std::vector<core::UniquePath> t;
     
     std::transform (roots_.cbegin(), roots_.cend(), std::back_inserter (t), toUnique());
     

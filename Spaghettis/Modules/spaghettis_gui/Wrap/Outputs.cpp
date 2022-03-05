@@ -75,7 +75,7 @@ Perform Outputs::reportCurrentMidiDevices (std::vector<MidiDevice>&& i, std::vec
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Outputs::patchDirty (core::Unique unique, bool isDirty)
+Perform Outputs::patchDirty (core::UniquePath unique, bool isDirty)
 {
     return [u = std::move (unique), b = isDirty]()
     {
@@ -87,7 +87,7 @@ Perform Outputs::patchDirty (core::Unique unique, bool isDirty)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Outputs::objectAdded (core::Unique unique, core::Description view)
+Perform Outputs::objectAdded (core::UniquePath unique, core::Description view)
 {
     return [u = std::move (unique), v = std::move (view)]()
     {
@@ -95,7 +95,7 @@ Perform Outputs::objectAdded (core::Unique unique, core::Description view)
     };
 }
 
-Perform Outputs::objectChanged (core::Unique unique, core::Description view)
+Perform Outputs::objectChanged (core::UniquePath unique, core::Description view)
 {
     return [u = std::move (unique), v = std::move (view)]()
     {
@@ -103,7 +103,7 @@ Perform Outputs::objectChanged (core::Unique unique, core::Description view)
     };
 }
 
-Perform Outputs::objectRemoved (core::Unique unique)
+Perform Outputs::objectRemoved (core::UniquePath unique)
 {
     return [u = std::move (unique)]()
     {
@@ -111,7 +111,7 @@ Perform Outputs::objectRemoved (core::Unique unique)
     };
 }
 
-Perform Outputs::objectRenamed (core::Unique unique, core::Id i)
+Perform Outputs::objectRenamed (core::UniquePath unique, core::UniqueId i)
 {
     return [i, u = std::move (unique)]()
     {

@@ -39,8 +39,8 @@ static Perform setSnapToGridSize (int);
 static Perform rescanDevices (void);
 static Perform setAudioDevices (std::vector<AudioDevice>&&, std::vector<AudioDevice>&&);
 static Perform setMidiDevices (std::vector<MidiDevice>&&, std::vector<MidiDevice>&&);
-static Perform closePatch (core::Id);
-static Perform savePatch (core::Id);
+static Perform closePatch (core::UniqueId);
+static Perform savePatch (core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

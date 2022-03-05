@@ -22,9 +22,9 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::vector<Id> fetchIdentifiersFromRoot (struct _object* o, struct _glist* owner)
+std::vector<UniqueId> fetchIdentifiersFromRoot (struct _object* o, struct _glist* owner)
 {
-    std::vector<Id> t;
+    std::vector<UniqueId> t;
     
     while (owner) {
     //
@@ -46,19 +46,19 @@ std::vector<Id> fetchIdentifiersFromRoot (struct _object* o, struct _glist* owne
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Unique::Unique() : u_ (0), r_ (0)
+UniquePath::UniquePath() : u_ (0), r_ (0)
 {
 
 }
 
-Unique::Unique (struct _object* o, struct _glist* owner) : u_ (object_getUnique (o)), r_ (0)
+UniquePath::UniquePath (struct _object* o, struct _glist* owner) : u_ (object_getUnique (o)), r_ (0)
 {
     if (owner) {
     //
-    std::vector<Id> t (fetchIdentifiersFromRoot (o, owner));
+    std::vector<UniqueId> t (fetchIdentifiersFromRoot (o, owner));
     
     if (!t.empty()) { r_ = t.front(); t.erase (t.cbegin()); }
-    if (!t.empty()) { path_ = std::make_shared<std::vector<Id>> (std::move (t)); }
+    if (!t.empty()) { path_ = std::make_shared<std::vector<UniqueId>> (std::move (t)); }
     //
     }
 }
@@ -67,7 +67,7 @@ Unique::Unique (struct _object* o, struct _glist* owner) : u_ (object_getUnique 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String Unique::asString() const
+juce::String UniquePath::asString() const
 {
     juce::StringArray s;
     

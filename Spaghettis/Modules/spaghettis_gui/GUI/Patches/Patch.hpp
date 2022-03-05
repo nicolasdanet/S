@@ -24,7 +24,7 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (const core::Unique& u, const core::Description& v) :
+    explicit Patch (const core::UniquePath& u, const core::Description& v) :
         unique_ (u),
         tree_ (v),
         dirty_ (false)
@@ -70,9 +70,9 @@ public:
 // MARK: -
 
 public:
-    void addObject (const core::Unique& u, const core::Description& v);
-    void changeObject (const core::Unique& u, const core::Description& v);
-    void removeObject (const core::Unique& u);
+    void addObject (const core::UniquePath& u, const core::Description& v);
+    void changeObject (const core::UniquePath& u, const core::Description& v);
+    void removeObject (const core::UniquePath& u);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -99,14 +99,14 @@ private:
 // MARK: -
 
 private:
-    juce::ValueTree getParent (const core::Unique& u) const;
+    juce::ValueTree getParent (const core::UniquePath& u) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    core::Unique getUnique() const
+    core::UniquePath getUniquePath() const
     {
         return unique_;
     }
@@ -121,7 +121,7 @@ public:
 // MARK: -
 
 private:
-    core::Unique unique_;           /* Cached for efficiency. */
+    core::UniquePath unique_;           /* Cached for efficiency. */
     juce::ValueTree tree_;
     bool dirty_;
 

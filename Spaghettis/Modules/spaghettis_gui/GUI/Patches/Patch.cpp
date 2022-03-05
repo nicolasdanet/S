@@ -17,9 +17,9 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::Id i)
+juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::UniqueId i)
 {
-    return t.getChildWithProperty (Ids::identifier, core::Unique::Converter::toVar (i));
+    return t.getChildWithProperty (Ids::identifier, core::UniquePath::Converter::toVar (i));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ bool Patch::isDirty() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::addObject (const core::Unique& u, const core::Description& v)
+void Patch::addObject (const core::UniquePath& u, const core::Description& v)
 {
     juce::ValueTree parent (getParent (u));
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
@@ -62,12 +62,12 @@ void Patch::addObject (const core::Unique& u, const core::Description& v)
     }
 }
 
-void Patch::changeObject (const core::Unique& u, const core::Description& v)
+void Patch::changeObject (const core::UniquePath& u, const core::Description& v)
 {
     
 }
 
-void Patch::removeObject (const core::Unique& u)
+void Patch::removeObject (const core::UniquePath& u)
 {
     juce::ValueTree parent (getParent (u));
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
@@ -83,7 +83,7 @@ void Patch::removeObject (const core::Unique& u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Patch::getParent (const core::Unique& u) const
+juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 {
     juce::ValueTree t (tree_);
     

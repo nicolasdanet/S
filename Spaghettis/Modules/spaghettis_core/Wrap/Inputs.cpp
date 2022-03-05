@@ -79,12 +79,12 @@ Perform Inputs::setMidiDevices (std::vector<MidiDevice>&& i, std::vector<MidiDev
     return f;
 }
 
-Perform Inputs::closePatch (core::Id i)
+Perform Inputs::closePatch (core::UniqueId i)
 {
     return [i]() { core::inputs_closePatch (i); };
 }
 
-Perform Inputs::savePatch (core::Id i)
+Perform Inputs::savePatch (core::UniqueId i)
 {
     return [i]() { core::inputs_savePatch (i); };
 }

@@ -33,17 +33,17 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void addObject (const core::Unique& u, const core::Description& v);
-    void changeObject (const core::Unique& u, const core::Description& v);
-    void removeObject (const core::Unique& u);
-    void renameObject (const core::Unique& u, core::Id i);
+    void addObject (const core::UniquePath& u, const core::Description& v);
+    void changeObject (const core::UniquePath& u, const core::Description& v);
+    void removeObject (const core::UniquePath& u);
+    void renameObject (const core::UniquePath& u, core::UniqueId i);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void setDirty (const core::Unique& u, bool isDirty);
+    void setDirty (const core::UniquePath& u, bool isDirty);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -53,8 +53,8 @@ private:
     void showSaveRequest (const std::shared_ptr<Patch>&, CloseType notify);
     
 public:
-    void requestClosePatch (const core::Unique& u, CloseType notify);
-    void handleSaveRequest (const core::Unique& u, CloseResult result);
+    void requestClosePatch (const core::UniquePath& u, CloseType notify);
+    void handleSaveRequest (const core::UniquePath& u, CloseResult result);
     
     bool isAllRequestsDone()
     {
@@ -74,7 +74,7 @@ public:
 // MARK: -
 
 private:
-    template <class T> void perform (const core::Unique& u, T f) const;
+    template <class T> void perform (const core::UniquePath& u, T f) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

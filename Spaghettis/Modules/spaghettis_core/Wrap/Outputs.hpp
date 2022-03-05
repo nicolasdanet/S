@@ -31,16 +31,16 @@ static Perform reportCurrentMidiDevices     (std::vector<MidiDevice>&&, std::vec
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform patchDirty                   (core::Unique, bool);
+static Perform patchDirty                   (core::UniquePath, bool);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform objectAdded                  (core::Unique, core::Description);
-static Perform objectChanged                (core::Unique, core::Description);
-static Perform objectRemoved                (core::Unique);
-static Perform objectRenamed                (core::Unique, core::Id);
+static Perform objectAdded                  (core::UniquePath, core::Description);
+static Perform objectChanged                (core::UniquePath, core::Description);
+static Perform objectRemoved                (core::UniquePath);
+static Perform objectRenamed                (core::UniquePath, core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

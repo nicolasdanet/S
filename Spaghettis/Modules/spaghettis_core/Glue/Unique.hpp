@@ -23,36 +23,36 @@ struct _glist;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using Id = uint64_t;  /* t_id */
+using UniqueId = uint64_t;  /* t_id */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class Unique {
+class UniquePath {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    using Converter = juce::VariantConverter<Id>;
+    using Converter = juce::VariantConverter<UniqueId>;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
         
 public:
-    explicit Unique (struct _object* o, struct _glist* owner);
+    explicit UniquePath (struct _object* o, struct _glist* owner);
     
-    ~Unique() = default;
+    ~UniquePath() = default;
 
 private:
-    explicit Unique();
+    explicit UniquePath();
     
 public:
-    Unique (const Unique&) = default;
-    Unique (Unique&&) = default;
-    Unique& operator = (const Unique&) = default;
-    Unique& operator = (Unique&&) = default;
+    UniquePath (const UniquePath&) = default;
+    UniquePath (UniquePath&&) = default;
+    UniquePath& operator = (const UniquePath&) = default;
+    UniquePath& operator = (UniquePath&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -76,12 +76,12 @@ public:
         return r_ == 0;
     }
 
-    Id getRoot() const
+    UniqueId getRoot() const
     {
         return isRoot() ? u_ : r_;
     }
     
-    Id getIdentifier() const
+    UniqueId getIdentifier() const
     {
         return u_;
     }
@@ -91,7 +91,7 @@ public:
         return (path_ != nullptr);
     }
     
-    const std::vector<Id>& getPath() const
+    const std::vector<UniqueId>& getPath() const
     {
         jassert (hasPath()); return *path_;
     }
@@ -101,20 +101,20 @@ public:
 // MARK: -
 
 public:
-    static Unique invalid()
+    static UniquePath invalid()
     {
-        return Unique();
+        return UniquePath();
     }
 
 private:
-    Id u_;
-    Id r_;
+    UniqueId u_;
+    UniqueId r_;
         
 private:
-    std::shared_ptr<std::vector<Id>> path_;
+    std::shared_ptr<std::vector<UniqueId>> path_;
 
 private:
-    JUCE_LEAK_DETECTOR (Unique)
+    JUCE_LEAK_DETECTOR (UniquePath)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -136,14 +136,14 @@ namespace juce {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template<> struct VariantConverter<spaghettis::core::Id> {
+template<> struct VariantConverter<spaghettis::core::UniqueId> {
 
-static spaghettis::core::Id fromVar (const var& v)
+static spaghettis::core::UniqueId fromVar (const var& v)
 {
-    return static_cast<spaghettis::core::Id> (static_cast<int64> (v));
+    return static_cast<spaghettis::core::UniqueId> (static_cast<int64> (v));
 }
     
-static var toVar (const spaghettis::core::Id& i)
+static var toVar (const spaghettis::core::UniqueId& i)
 {
     return var (static_cast<int64> (i));
 }
