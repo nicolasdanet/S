@@ -72,9 +72,9 @@ static void post_console (t_object *o, int k, char *s, Logger::Type type)
     //
     post_toUpperCase (k, s, type);
     
-    UniquePath u = o ?
-        UniquePath (o, instance_registerGetOwner (object_getUnique (o))) :
-        UniquePath::invalid();
+    UniquePath u = o
+        ? UniquePath (o, instance_registerGetOwner (object_getUnique (o)))
+        : UniquePath::invalid();
     
     main_wrapper->post (juce::String (s), type, u);
     //
