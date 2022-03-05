@@ -19,7 +19,7 @@ namespace {
 
 juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::UniqueId i)
 {
-    return t.getChildWithProperty (Ids::identifier, core::UniquePath::Converter::toVar (i));
+    return t.getChildWithProperty (Ids::identifier, juce::VariantConverter<core::UniqueId>::toVar (i));
 }
 
 // -----------------------------------------------------------------------------------------------------------

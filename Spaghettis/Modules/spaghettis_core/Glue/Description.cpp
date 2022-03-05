@@ -215,7 +215,7 @@ Description Description::view (UniqueId identifier, struct _object* o)
 {
     juce::ValueTree t (Ids::OBJECT);
     
-    t.setProperty (Ids::identifier, core::UniquePath::Converter::toVar (identifier), nullptr);
+    t.setProperty (Ids::identifier, juce::VariantConverter<UniqueId>::toVar (identifier), nullptr);
     
     if (o) {
     //
