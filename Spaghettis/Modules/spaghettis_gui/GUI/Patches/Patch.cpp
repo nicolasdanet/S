@@ -31,21 +31,17 @@ juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::UniqueId
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::setDirty (bool isDirty)
+juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 {
-    dirty_ = isDirty; setDirtyFlagIfRequired();
-}
-
-void Patch::updateDirty() const
-{
-    setDirtyFlagIfRequired();
-}
-
-bool Patch::isDirty() const
-{
-    return dirty_;
-}
+    juce::ValueTree t (tree_);
     
+    if (u.hasPath()) {
+        for (const auto& i : u.getPath()) { t = getChildWithIdentifier (t, i); }
+    }
+    
+    return t;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -57,6 +53,7 @@ void Patch::addObject (const core::UniquePath& u, const core::Description& v)
     
     if (object.isValid()) {
         object.copyPropertiesAndChildrenFrom (v, nullptr);
+        jassertfalse;                                                   /* Is this possible? */
     } else {
         parent.appendChild (v, nullptr);
     }
@@ -75,7 +72,7 @@ void Patch::removeObject (const core::UniquePath& u)
     if (object.isValid()) {
         parent.removeChild (object, nullptr);
     } else {
-        jassertfalse;       /* Is this possible? */
+        jassertfalse;                                                   /* Is this possible? */
     }
 }
 
@@ -83,15 +80,19 @@ void Patch::removeObject (const core::UniquePath& u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Patch::getParent (const core::UniquePath& u) const
+void Patch::setDirty (bool isDirty)
 {
-    juce::ValueTree t (tree_);
-    
-    if (u.hasPath()) {
-        for (const auto& i : u.getPath()) { t = getChildWithIdentifier (t, i); }
-    }
-    
-    return t;
+    dirty_ = isDirty; setDirtyFlagIfRequired();
+}
+
+void Patch::updateDirty() const
+{
+    setDirtyFlagIfRequired();
+}
+
+bool Patch::isDirty() const
+{
+    return dirty_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
