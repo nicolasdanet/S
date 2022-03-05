@@ -24,13 +24,11 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (const core::UniquePath& u, const core::Description& v) :
-        unique_ (u),
+    explicit Patch (core::UniqueId identifier, const core::Description& v) :
+        identifier_ (identifier),
         tree_ (v),
         dirty_ (false)
     {
-        jassert (unique_.isRoot());
-        
         openWindow();
     }
 
@@ -57,12 +55,12 @@ public:
 public:
     void save() const
     {
-        Spaghettis()->handle (Inputs::savePatch (unique_.getRoot()));
+        Spaghettis()->handle (Inputs::savePatch (getIdentifier()));
     }
     
     void close (bool saveFirst = false) const
     {
-        if (saveFirst) { save(); } Spaghettis()->handle (Inputs::closePatch (unique_.getRoot()));
+        if (saveFirst) { save(); } Spaghettis()->handle (Inputs::closePatch (getIdentifier()));
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -106,9 +104,9 @@ private:
 // MARK: -
 
 public:
-    core::UniquePath getUniquePath() const
+    core::UniqueId getIdentifier() const
     {
-        return unique_;
+        return identifier_;
     }
 
     juce::File getFile() const
@@ -121,7 +119,7 @@ public:
 // MARK: -
 
 private:
-    core::UniquePath unique_;           /* Cached for efficiency. */
+    core::UniqueId identifier_;     /* Cached for efficiency. */
     juce::ValueTree tree_;
     bool dirty_;
 

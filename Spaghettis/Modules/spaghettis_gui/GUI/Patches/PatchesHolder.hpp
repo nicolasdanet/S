@@ -53,8 +53,8 @@ private:
     void showSaveRequest (const std::shared_ptr<Patch>&, CloseType notify);
     
 public:
-    void requestClosePatch (const core::UniquePath& u, CloseType notify);
-    void handleSaveRequest (const core::UniquePath& u, CloseResult result);
+    void requestClosePatch (core::UniqueId i, CloseType notify);
+    void handleSaveRequest (core::UniqueId i, CloseResult result);
     
     bool isAllRequestsDone()
     {

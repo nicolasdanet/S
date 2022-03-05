@@ -127,7 +127,7 @@ void Patch::closeWindowButtonPressed (PatchWindow* w)
     if (windows_.size() > 1) { removeWindow (w); }
     else {
     //
-    Spaghettis()->getPatches().requestClosePatch (unique_, CloseType::yesNoCancel);
+    Spaghettis()->getPatches().requestClosePatch (getIdentifier(), CloseType::yesNoCancel);
     //
     }
 }
