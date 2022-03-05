@@ -211,11 +211,11 @@ void setParameters (Tree& tree, t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Description Description::view (const UniquePath& u, struct _object* o)
+Description Description::view (UniqueId identifier, struct _object* o)
 {
     juce::ValueTree t (Ids::OBJECT);
     
-    t.setProperty (Ids::identifier, core::UniquePath::Converter::toVar (u.getIdentifier()), nullptr);
+    t.setProperty (Ids::identifier, core::UniquePath::Converter::toVar (identifier), nullptr);
     
     if (o) {
     //
