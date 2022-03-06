@@ -10,21 +10,16 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-namespace Parameters {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> class Number : public juce::TextPropertyComponent {
+template <class T> class ParameterNumber : public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Number (const core::Parameter& p) :
+    explicit ParameterNumber (const core::Parameter& p) :
         juce::TextPropertyComponent (p.getValueSource(), p.getLabel(), 32, false),
         v_(),
         range_ (p)
@@ -82,7 +77,7 @@ private:
     juce::Range<T> range_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Number)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterNumber)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -92,21 +87,21 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using Integer = Number<int>;
-using Float   = Number<double>;
+using ParameterInteger = ParameterNumber<int>;
+using ParameterFloat   = ParameterNumber<double>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Slider : public juce::SliderPropertyComponent {
+class ParameterSlider : public juce::SliderPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Slider (const core::Parameter& p) :
+    explicit ParameterSlider (const core::Parameter& p) :
         SliderPropertyComponent (p.getValueSource(),
             p.getLabel(),
             p.getMinimumAsDouble(),
@@ -115,18 +110,13 @@ public:
     {
         slider.valueFromTextFunction = [this] (const juce::String& text)
         {
-            return Number<double>::parsedWithDefault (text, slider.getValue());
+            return ParameterNumber<double>::parsedWithDefault (text, slider.getValue());
         };
     }
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Slider)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterSlider)
 };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-} // namespace Parameters
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

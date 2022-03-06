@@ -10,26 +10,21 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-namespace Parameters {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ColourEditor : public juce::Component, private juce::Value::Listener {
+class ParameterColourEditor : public juce::Component, private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ColourEditor (const juce::Value& v) : tracker_ (this), value_ (v)
+    explicit ParameterColourEditor (const juce::Value& v) : tracker_ (this), value_ (v)
     {
         value_.addListener (this);
     }
 
-    ~ColourEditor() = default;
+    ~ParameterColourEditor() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -68,27 +63,27 @@ private:
     juce::Value value_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterColourEditor)
 };
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Colour : public juce::PropertyComponent {
+class ParameterColour : public juce::PropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Colour (const core::Parameter& p) :
+    explicit ParameterColour (const core::Parameter& p) :
         juce::PropertyComponent (p.getLabel()), editor_ (p.getValueSource())
     {
         addAndMakeVisible (editor_);
     }
 
-    ~Colour() = default;
+    ~ParameterColour() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -105,16 +100,11 @@ public:
     }
 
 private:
-    ColourEditor editor_;
+    ParameterColourEditor editor_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Colour)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterColour)
 };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-} // namespace Parameters
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

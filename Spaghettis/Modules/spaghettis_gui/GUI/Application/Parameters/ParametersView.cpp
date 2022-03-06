@@ -12,12 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ConcertinaPanel& Parameters::View::getPanel()
+juce::ConcertinaPanel& ParameterView::getPanel()
 {
     return panel_;
 }
 
-void Parameters::View::resizePanel (const juce::Rectangle<int>& bounds)
+void ParameterView::resizePanel (const juce::Rectangle<int>& bounds)
 {
     panel_.setBounds (bounds);
 }
@@ -26,7 +26,7 @@ void Parameters::View::resizePanel (const juce::Rectangle<int>& bounds)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Parameters::View::expandPanel (int i)
+void ParameterView::expandPanel (int i)
 {
     if (panel_.getNumPanels() > 1) {
     //
@@ -40,12 +40,12 @@ void Parameters::View::expandPanel (int i)
     }
 }
 
-bool Parameters::View::isExpanded (int i)
+bool ParameterView::isExpanded (int i)
 {
     return (i == expanded_);
 }
 
-void Parameters::View::timerCallback()
+void ParameterView::timerCallback()
 {
     stopTimer(); expandPanel (0);
 }
@@ -54,11 +54,11 @@ void Parameters::View::timerCallback()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Parameters::View::addPanel (juce::PropertyPanel* p)
+void ParameterView::addPanel (juce::PropertyPanel* p)
 {
     const int headerSize = Spaghettis()->getLookAndFeel().getPropertyPanelHeight() + 6;
     const int i = panel_.getNumPanels();
-    auto h = std::make_unique<Header> (p->getName(), i, this);
+    auto h = std::make_unique<ParameterHeader> (p->getName(), i, this);
     
     panel_.addPanel (-1, p, true);
     panel_.setCustomPanelHeader (p, h.release(), true);
@@ -78,17 +78,17 @@ namespace {
 
 std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const core::Parameter& p)
 {
-    if (p.isBoolean())      { return std::make_unique<Parameters::Boolean> (p); }
-    if (p.isColour())       { return std::make_unique<Parameters::Colour> (p);  }
-    else if (p.isInteger()) { return std::make_unique<Parameters::Integer> (p); }
+    if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p); }
+    if (p.isColour())       { return std::make_unique<ParameterColour> (p);  }
+    else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p); }
     else if (p.isFloat())   {
         if (p.hasRange())   {
-            return std::make_unique<Parameters::Slider> (p);
+            return std::make_unique<ParameterSlider> (p);
         } else {
-            return std::make_unique<Parameters::Float> (p);
+            return std::make_unique<ParameterFloat> (p);
         }
     } else {
-        return std::make_unique<Parameters::Text> (p);
+        return std::make_unique<ParameterText> (p);
     }
 }
 
@@ -111,7 +111,7 @@ void buildConcertinaPanelParameter (const core::Parameter& p, juce::Array<juce::
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Parameters::View::buildConcertinaPanel (const core::Tree& tree, View& v)
+void ParameterView::buildConcertinaPanel (const core::Tree& tree, ParameterView& v)
 {
     for (const auto& group : tree) {
     //
