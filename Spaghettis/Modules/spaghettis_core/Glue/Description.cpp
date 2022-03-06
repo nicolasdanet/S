@@ -78,7 +78,7 @@ juce::String getBounds (t_object* o, const juce::String& buffer)
 
 void setAttributesType (Group& group, const juce::String& type)
 {
-    static Delegate::Cache delegate;
+    static DelegateCache delegate;
     
     group.addParameter (Tags::Type,
         NEEDS_TRANS ("Type"),
@@ -89,7 +89,7 @@ void setAttributesType (Group& group, const juce::String& type)
 
 void setAttributesBox (Group& group, t_object* o)
 {
-    static Delegate::Cache delegate;
+    static DelegateCache delegate;
     
     const juce::String buffer (getContentBuffer (o));
     
@@ -139,7 +139,7 @@ void setAttributesObject (Group& group, t_object* o)
 
 void setAttributesPatch (Group& group, t_object *o)
 {
-    static Delegate::Cache delegate;
+    static DelegateCache delegate;
         
     t_glist *g = cast_glist (o);
     

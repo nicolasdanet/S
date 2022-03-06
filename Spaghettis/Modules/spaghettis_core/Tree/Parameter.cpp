@@ -132,7 +132,7 @@ juce::ValueTree getBase (const juce::ValueTree& tree, const juce::Identifier& id
 {
     if (!tree.hasProperty (identifier)) {
     //
-    auto p = dynamic_cast<Delegate::Shared*> (tree.getProperty (Ids::DELEGATE).getObject());
+    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Ids::DELEGATE).getObject());
     
     if (p) {
         return p->getTree();

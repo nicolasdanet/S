@@ -17,7 +17,7 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Delegate::Shared::Shared (const Invariant& i) : shared_ (Ids::DELEGATE)
+DelegateShared::DelegateShared (const Invariant& i) : shared_ (Ids::DELEGATE)
 {
     Invariant::setProperties (shared_, i);
 }
@@ -26,16 +26,16 @@ Delegate::Shared::Shared (const Invariant& i) : shared_ (Ids::DELEGATE)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Delegate::Shared* Delegate::Manager::create (const Invariant& i)
+DelegateShared* DelegateManager::create (const Invariant& i)
 {
-    Shared::Ptr p (new Shared (i));
+    DelegateShared::Ptr p (new DelegateShared (i));
     
     delegates_.push_back (p);
     
     return p.get();
 }
 
-Delegate::Shared* Delegate::Manager::getOrCreate (const Invariant& i)
+DelegateShared* DelegateManager::getOrCreate (const Invariant& i)
 {
     for (const auto& p : delegates_) {
         if (p->shared_.getProperty (Ids::key).toString() == i.key) { return p.get(); }

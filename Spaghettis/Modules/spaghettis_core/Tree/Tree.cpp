@@ -83,7 +83,7 @@ void substituteDelegates (juce::ValueTree& tree)
 {
     if (tree.hasType (Ids::PARAMETER) && tree.hasProperty (Ids::DELEGATE)) {
     //
-    auto p = dynamic_cast<Delegate::Shared*> (tree.getProperty (Ids::DELEGATE).getObject());
+    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Ids::DELEGATE).getObject());
     
     if (p) {
         tree.setProperty (Ids::key, p->getTree().getProperty (Ids::key), nullptr);

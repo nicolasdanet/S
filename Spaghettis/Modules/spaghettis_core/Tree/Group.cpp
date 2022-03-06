@@ -31,13 +31,13 @@ bool Group::isHidden() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter Group::add (Delegate::Manager* p, const Invariant& i, juce::var v)
+Parameter Group::add (DelegateManager* p, const Invariant& i, juce::var v)
 {
     jassert (!hasParameter (i.key));
     
     juce::ValueTree parameter (Ids::PARAMETER);
     
-    parameter.setProperty (Ids::DELEGATE, (p ? p->getOrCreate (i) : new Delegate::Shared (i)), nullptr);
+    parameter.setProperty (Ids::DELEGATE, (p ? p->getOrCreate (i) : new DelegateShared (i)), nullptr);
     parameter.setProperty (Ids::value, v, nullptr);
     
     group_.appendChild (parameter, nullptr);

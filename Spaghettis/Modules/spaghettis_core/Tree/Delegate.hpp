@@ -15,33 +15,28 @@ namespace core {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-namespace Delegate {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Shared : public juce::ReferenceCountedObject {
+class DelegateShared : public juce::ReferenceCountedObject {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-friend class Manager;
+friend class DelegateManager;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using Ptr = juce::ReferenceCountedObjectPtr<Shared>;
+using Ptr = juce::ReferenceCountedObjectPtr<DelegateShared>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Shared (const Invariant& i);
+    explicit DelegateShared (const Invariant& i);
     
-    ~Shared() = default;
+    ~DelegateShared() = default;
 
 public:
     juce::ValueTree getTree() const
@@ -53,83 +48,78 @@ private:
     juce::ValueTree shared_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Shared)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelegateShared)
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Manager : private juce::DeletedAtShutdown {
+class DelegateManager : private juce::DeletedAtShutdown {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    Manager()  = default;
-    ~Manager() = default;
+    DelegateManager()  = default;
+    ~DelegateManager() = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    Shared* create (const Invariant&);
+    DelegateShared* create (const Invariant&);
     
 public:
-    Shared* getOrCreate (const Invariant&);
+    DelegateShared* getOrCreate (const Invariant&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    std::vector<Shared::Ptr> delegates_;
+    std::vector<DelegateShared::Ptr> delegates_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Manager)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelegateManager)
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Cache {
+class DelegateCache {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Cache() : p_ (new Manager())
+    DelegateCache() : p_ (new DelegateManager())
     {
     }
     
-    ~Cache() = default;
+    ~DelegateCache() = default;
 
 public:
-    Cache (const Cache&) = delete;
-    Cache (Cache&&) = delete;
-    Cache& operator = (const Cache&) = delete;
-    Cache& operator = (Cache&&) = delete;
+    DelegateCache (const DelegateCache&) = delete;
+    DelegateCache (DelegateCache&&) = delete;
+    DelegateCache& operator = (const DelegateCache&) = delete;
+    DelegateCache& operator = (DelegateCache&&) = delete;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    operator Manager*() const
+    operator DelegateManager*() const
     {
         return p_;
     }
     
 private:
-    Manager* p_;
+    DelegateManager* p_;
 };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-} // namespace Delegate
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

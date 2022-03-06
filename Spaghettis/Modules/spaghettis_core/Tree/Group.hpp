@@ -74,7 +74,7 @@ public:
         juce::StringRef label,
         juce::StringRef info,
         T t,
-        Delegate::Manager* p = nullptr)
+        DelegateManager* p = nullptr)
     {
         const Invariant i = { key, ParameterType<T>::get(), label, info };
 
@@ -82,7 +82,7 @@ public:
     }
     
 private:
-    Parameter add (Delegate::Manager*, const Invariant&, juce::var);
+    Parameter add (DelegateManager*, const Invariant&, juce::var);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
