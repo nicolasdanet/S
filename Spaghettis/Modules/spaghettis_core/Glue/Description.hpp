@@ -64,6 +64,7 @@ public:
 // MARK: -
 
 public:
+    static UniqueId getIdentifier (const juce::ValueTree&);
     static juce::var getAttribute (const juce::ValueTree&, const juce::String &);
     
 private:

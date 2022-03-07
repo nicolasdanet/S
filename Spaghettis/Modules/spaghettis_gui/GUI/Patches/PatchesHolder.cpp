@@ -93,7 +93,7 @@ template <class T> void PatchesHolder::perform (const core::UniquePath& u, T f) 
 
 void PatchesHolder::addObject (const core::UniquePath& u, const core::Description& v)
 {
-    if (u.isRoot()) { roots_.push_back (std::make_shared<Patch> (u.getRoot(), v)); }
+    if (u.isRoot()) { roots_.push_back (std::make_shared<Patch> (v)); }
     else {
         perform (u, [&] (const std::shared_ptr<Patch>& p) { p->addObject (u, v); });
     }

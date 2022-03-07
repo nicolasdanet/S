@@ -24,10 +24,7 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (core::UniqueId identifier, const core::Description& v) :
-        identifier_ (identifier),
-        tree_ (v),
-        dirty_ (false)
+    explicit Patch (const core::Description& v) : tree_ (v), dirty_ (false)
     {
         openWindow();
     }
@@ -108,7 +105,7 @@ private:
 public:
     core::UniqueId getIdentifier() const
     {
-        return identifier_;
+        return core::Description::getIdentifier (tree_);
     }
 
     juce::File getFile() const
@@ -121,7 +118,6 @@ public:
 // MARK: -
 
 private:
-    core::UniqueId identifier_;     /* Cached for efficiency. */
     juce::ValueTree tree_;
     bool dirty_;
 
