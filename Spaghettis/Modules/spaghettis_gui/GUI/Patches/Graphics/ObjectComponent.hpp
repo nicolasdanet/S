@@ -21,7 +21,9 @@ class ObjectComponent : public juce::Component {
 public:
     ObjectComponent (const juce::ValueTree& content) : content_ (content)
     {
-        setOpaque (true); setBounds (getPosition (content_));
+        setOpaque (true);
+        
+        setBounds (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Bounds));
     }
     
     ~ObjectComponent() = default;
@@ -40,9 +42,6 @@ public:
     {
         
     }
-
-private:
-    static juce::Rectangle<int> getPosition (const juce::ValueTree&);
 
 private:
     juce::ValueTree content_;
