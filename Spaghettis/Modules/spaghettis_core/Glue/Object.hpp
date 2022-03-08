@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -17,66 +17,25 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-struct _object;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-class Description {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-friend struct Object;
+struct Object {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    explicit Description (const juce::ValueTree& t) : t_ (t)
-    {
-    }
+static UniqueId getIdentifier (const juce::ValueTree& t)
+{
+    return Description::getIdentifier (t);
+}
 
-public:
-    ~Description() = default;
-
-public:
-    Description (const Description&) = default;
-    Description (Description&&) = default;
-    Description& operator = (const Description&) = default;
-    Description& operator = (Description&&) = default;
+template <class T> static T getAttribute (const juce::ValueTree& t, const juce::String &s)
+{
+    return Cast::get<T> (Description::getAttribute (t, s));
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-public:
-    operator juce::ValueTree() const
-    {
-        return t_;
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static Description view (UniqueId, struct _object*);
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static UniqueId  getIdentifier (const juce::ValueTree&);
-    static juce::var getAttribute  (const juce::ValueTree&, const juce::String &);
-    
-private:
-    juce::ValueTree t_;
-    
-private:
-    JUCE_LEAK_DETECTOR (Description)
 };
 
 // -----------------------------------------------------------------------------------------------------------

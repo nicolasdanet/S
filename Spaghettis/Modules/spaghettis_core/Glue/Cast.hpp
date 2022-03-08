@@ -21,16 +21,24 @@ namespace Cast {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+template <class T> inline T get (const juce::var& v)
+{
+    return static_cast<T> (v);
+}
+
+template <> inline juce::String get<juce::String> (const juce::var& v)
+{
+    return v.toString();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 template <class T> inline juce::var forceType (const juce::var& v)
 {
-    return juce::var (static_cast<T> (v));
-}
-
-template <> inline juce::var forceType<juce::String> (const juce::var& v)
-{
-    return juce::var (v.toString());
+    return juce::var (get<T> (v));
 }
 
 // -----------------------------------------------------------------------------------------------------------
