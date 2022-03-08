@@ -21,10 +21,7 @@ class ObjectComponent : public juce::Component {
 public:
     ObjectComponent (const juce::ValueTree& content) : content_ (content)
     {
-        setOpaque (true);
-        
-        // setPaintingIsUnclipped
-        // setBufferedToImage
+        setOpaque (true); setBounds (getPosition (content_));
     }
     
     ~ObjectComponent() = default;
@@ -43,7 +40,10 @@ public:
     {
         
     }
-    
+
+private:
+    static juce::Rectangle<int> getPosition (const juce::ValueTree&);
+
 private:
     juce::ValueTree content_;
     

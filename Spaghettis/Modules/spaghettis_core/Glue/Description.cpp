@@ -237,11 +237,15 @@ Description Description::view (UniqueId identifier, struct _object* o)
 
 UniqueId Description::getIdentifier (const juce::ValueTree& t)
 {
+    jassert (t.hasType (Ids::OBJECT));
+    
     return juce::VariantConverter<core::UniqueId>::fromVar (t.getProperty (Ids::identifier));
 }
 
 juce::var Description::getAttribute (const juce::ValueTree& t, const juce::String &name)
 {
+    jassert (t.hasType (Ids::OBJECT));
+    
     return Tree (t.getChildWithName (Ids::DATA)).getParameter (Tags::Attributes, name).getValue();
 }
 
