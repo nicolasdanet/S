@@ -32,6 +32,11 @@ template <> inline juce::String get<juce::String> (const juce::var& v)
     return v.toString();
 }
 
+template <> inline juce::Rectangle<int> get<juce::Rectangle<int>> (const juce::var& v)
+{
+    return juce::Rectangle<int>::fromString (v.toString());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

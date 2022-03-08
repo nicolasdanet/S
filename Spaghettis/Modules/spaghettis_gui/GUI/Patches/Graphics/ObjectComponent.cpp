@@ -14,7 +14,7 @@ namespace spaghettis {
 
 juce::Rectangle<int> ObjectComponent::getPosition (const juce::ValueTree& t)
 {
-    return juce::Rectangle<int>::fromString (core::Description::getAttribute (t, Tags::Bounds).toString());
+    return core::Object::getAttribute<juce::Rectangle<int>> (t, Tags::Bounds);
 }
 
 // -----------------------------------------------------------------------------------------------------------
