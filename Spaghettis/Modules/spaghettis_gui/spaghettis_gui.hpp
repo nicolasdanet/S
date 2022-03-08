@@ -124,6 +124,7 @@
 #include "GUI/Patches/PatchWindow.hpp"
 
 #include "GUI/Patches/Graphics/ObjectComponent.hpp"
+#include "GUI/Patches/Graphics/ObjectsList.hpp"
 
 #include "GUI/Patches/EditWindow/EditFactory.hpp"
 #include "GUI/Patches/EditWindow/EditView.hpp"
