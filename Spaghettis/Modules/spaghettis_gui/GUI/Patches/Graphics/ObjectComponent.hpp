@@ -19,9 +19,34 @@ class ObjectComponent : public juce::Component {
 // MARK: -
 
 public:
-    ObjectComponent()  = default;
+    ObjectComponent (const juce::ValueTree& content) : content_ (content)
+    {
+        setOpaque (true);
+        
+        // setPaintingIsUnclipped
+        // setBufferedToImage
+    }
+    
     ~ObjectComponent() = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics& g) override
+    {
+        g.fillAll (juce::Colours::orange);
+    }
+    
+    void resized() override
+    {
+        
+    }
+    
+private:
+    juce::ValueTree content_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ObjectComponent)
 };
