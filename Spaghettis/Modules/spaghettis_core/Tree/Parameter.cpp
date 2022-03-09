@@ -27,6 +27,11 @@ bool Parameter::isColour() const
     return (getType() == ParameterType<juce::Colour>::get());
 }
 
+bool Parameter::isRectangle() const
+{
+    return (getType() == ParameterType<juce::Rectangle<int>>::get());
+}
+
 bool Parameter::isInteger() const
 {
     return (getType() == ParameterType<int>::get());

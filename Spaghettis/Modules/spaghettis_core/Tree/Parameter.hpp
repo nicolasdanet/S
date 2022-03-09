@@ -33,6 +33,11 @@ template<> struct ParameterType<juce::Colour>
     static const char* get() { return "color"; }
 };
 
+template<> struct ParameterType<juce::Rectangle<int>>
+{
+    static const char* get() { return "rectangle"; }
+};
+
 template<> struct ParameterType<int>
 {
     static const char* get() { return "integer"; }
@@ -81,6 +86,7 @@ public:
 public:
     bool isBoolean() const;
     bool isColour() const;
+    bool isRectangle() const;
     bool isInteger() const;
     bool isFloat() const;
     bool isText() const;

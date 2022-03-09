@@ -80,16 +80,30 @@ namespace juce {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template<> struct VariantConverter<juce::Colour> {
+template<> struct VariantConverter<Colour> {
 
-static juce::Colour fromVar (const var& v)
+static Colour fromVar (const var& v)
 {
-    return juce::Colour (spaghettis::core::Colours::getColourFromString (v.toString()));
+    return Colour (spaghettis::core::Colours::getColourFromString (v.toString()));
 }
     
 static var toVar (const juce::Colour& c)
 {
     return var (spaghettis::core::Colours::getColourAsString (c));
+}
+
+};
+
+template<> struct VariantConverter<Rectangle<int>> {
+
+static Rectangle<int> fromVar (const var& v)
+{
+    return Rectangle<int>::fromString (v.toString());
+}
+    
+static var toVar (const Rectangle<int>& r)
+{
+    return var (r.toString());
 }
 
 };
