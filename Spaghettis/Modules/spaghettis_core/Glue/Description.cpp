@@ -53,23 +53,23 @@ juce::File getPatchFile (t_glist* glist)
     return juce::File (directory).getChildFile (filename);
 }
 
-juce::String getWindow (t_glist* glist)
+juce::Rectangle<int> getWindow (t_glist* glist)
 {
     const int x = rectangle_getTopLeftX (glist_getWindow (glist));
     const int y = rectangle_getTopLeftY (glist_getWindow (glist));
     const int w = rectangle_getWidth (glist_getWindow (glist));
     const int h = rectangle_getHeight (glist_getWindow (glist));
 
-    return juce::Rectangle<int> (x, y, w, h).toString();
+    return juce::Rectangle<int> (x, y, w, h);
 }
 
-juce::String getBounds (t_object* o, const juce::String& buffer)
+juce::Rectangle<int> getBounds (t_object* o, const juce::String& buffer)
 {
     juce::Rectangle<int> bounds;
     
     (*class_getViewFunction (pd_class (o))) (o, buffer, bounds);
     
-    return bounds.toString();
+    return bounds;
 }
 
 // -----------------------------------------------------------------------------------------------------------
