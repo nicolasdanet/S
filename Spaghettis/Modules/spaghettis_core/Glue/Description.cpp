@@ -215,7 +215,7 @@ Description Description::view (UniqueId identifier, struct _object* o)
 {
     juce::ValueTree t (Ids::OBJECT);
     
-    t.setProperty (Ids::identifier, juce::VariantConverter<UniqueId>::toVar (identifier), nullptr);
+    t.setProperty (Ids::identifier, cast::toVar<UniqueId> (identifier), nullptr);
     
     if (o) {
     //
@@ -239,7 +239,7 @@ UniqueId Description::getIdentifier (const juce::ValueTree& t)
 {
     jassert (t.hasType (Ids::OBJECT));
     
-    return juce::VariantConverter<core::UniqueId>::fromVar (t.getProperty (Ids::identifier));
+    return cast::fromVar<core::UniqueId> (t.getProperty (Ids::identifier));
 }
 
 juce::var Description::getAttribute (const juce::ValueTree& t, const juce::String &name)

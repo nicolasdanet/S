@@ -48,7 +48,7 @@ public:
 public:
     T get() const
     {
-        return juce::VariantConverter<T>::fromVar (value_.getValue());
+        return cast::fromVar<T> (value_.getValue());
     }
     
 // -----------------------------------------------------------------------------------------------------------

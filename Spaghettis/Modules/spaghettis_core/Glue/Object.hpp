@@ -30,7 +30,7 @@ static UniqueId getIdentifier (const juce::ValueTree& t)
 
 template <class T> static T getAttribute (const juce::ValueTree& t, const juce::String &s)
 {
-    return Cast::get<T> (Description::getAttribute (t, s));
+    return cast::fromVar<T> (Description::getAttribute (t, s));
 }
 
 // -----------------------------------------------------------------------------------------------------------

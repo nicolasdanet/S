@@ -93,7 +93,7 @@ public:
 public:
     void setValue (const juce::var& newValue) override
     {
-        setValueProceed (Cast::force<T> (newValue));
+        setValueProceed (cast::force<T> (newValue));
     }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -78,7 +78,7 @@ public:
     {
         const Invariant i = { key, ParameterType<T>::get(), label, info };
 
-        return add (p, i, juce::VariantConverter<T>::toVar (t));
+        return add (p, i, cast::toVar<T> (t));
     }
     
 private:

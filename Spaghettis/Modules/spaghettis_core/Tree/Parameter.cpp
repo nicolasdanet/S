@@ -191,12 +191,12 @@ void Parameter::change (const juce::Identifier& identifier, const juce::var& v)
 
 juce::var Parameter::forceType (const juce::var& v) const
 {
-    if (isBoolean())      { return Cast::force<bool> (v);   }
-    else if (isInteger()) { return Cast::force<int> (v);    }
-    else if (isFloat())   { return Cast::force<double> (v); }
-    else if (isColour())  { return Cast::force<juce::Colour> (v); }
+    if (isBoolean())      { return cast::force<bool> (v);   }
+    else if (isInteger()) { return cast::force<int> (v);    }
+    else if (isFloat())   { return cast::force<double> (v); }
+    else if (isColour())  { return cast::force<juce::Colour> (v); }
     else {
-        return Cast::force<juce::String> (v);
+        return cast::force<juce::String> (v);
     }
 }
 
