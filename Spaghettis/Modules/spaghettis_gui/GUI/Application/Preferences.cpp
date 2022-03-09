@@ -41,6 +41,11 @@ void getDefaultTest (core::Tree& t)
         NEEDS_TRANS ("Set entropy in life"),
         0.5).setRange (juce::Range<double> (0, 1));
     
+    peace.addParameter ("Guernica",
+        NEEDS_TRANS ("Picasso"),
+        NEEDS_TRANS ("Set size of picture"),
+        juce::Rectangle<int> (0, 0, 349, 776));
+    
     core::Group secret (t.addGroup ("Secret", true));
     
     secret.addParameter ("Password",
