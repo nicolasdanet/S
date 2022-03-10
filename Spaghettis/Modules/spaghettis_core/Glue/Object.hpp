@@ -30,11 +30,11 @@ static UniqueId getIdentifier (const juce::ValueTree& t)
     return cast::fromVar<core::UniqueId> (t.getProperty (Ids::identifier));
 }
 
-template <class T> static T getAttribute (const juce::ValueTree& t, const juce::String &s)
+template <class T> static T getAttribute (const juce::ValueTree& t, const juce::String &name)
 {
     jassert (t.hasType (Ids::OBJECT));
     
-    const Parameter p (Tree (t.getChildWithName (Ids::DATA)).getParameter (Tags::Attributes, s));
+    const Parameter p (Tree (t.getChildWithName (Ids::DATA)).getParameter (Tags::Attributes, name));
     
     jassert (p.getType() == ParameterType<T>::get());
 
