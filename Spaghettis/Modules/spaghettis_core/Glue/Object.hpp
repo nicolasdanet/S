@@ -25,12 +25,20 @@ struct Object {
 
 static UniqueId getIdentifier (const juce::ValueTree& t)
 {
-    return Description::getIdentifier (t);
+    jassert (t.hasType (Ids::OBJECT));
+    
+    return cast::fromVar<core::UniqueId> (t.getProperty (Ids::identifier));
 }
 
 template <class T> static T getAttribute (const juce::ValueTree& t, const juce::String &s)
 {
-    return cast::fromVar<T> (Description::getAttribute (t, s));
+    jassert (t.hasType (Ids::OBJECT));
+    
+    const Parameter p (Tree (t.getChildWithName (Ids::DATA)).getParameter (Tags::Attributes, s));
+    
+    jassert (p.getType() == ParameterType<T>::get());
+
+    return cast::fromVar<T> (p.getValue());
 }
 
 // -----------------------------------------------------------------------------------------------------------
