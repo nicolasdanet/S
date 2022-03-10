@@ -101,10 +101,9 @@ bool Patch::isDirty() const
 
 void Patch::openWindow()
 {
-    const bool runView = Spaghettis()->getPreferences().getValue (Tags::General, Tags::DefaultIsRunView);
-    
-    if (runView) { openRunWindow(); }
-    else {
+    if (Spaghettis()->getPreferences().getValue<bool> (Tags::General, Tags::DefaultIsRunView)) {
+        openRunWindow();
+    } else {
         openEditWindow();
     }
 }
