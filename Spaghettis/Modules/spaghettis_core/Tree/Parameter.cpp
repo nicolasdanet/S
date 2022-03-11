@@ -217,9 +217,10 @@ juce::var Parameter::forceRange (const juce::var& v) const
 
 juce::Value Parameter::filtered (const juce::Value& v) const
 {
-    if (isBoolean())      { return core::Filter<bool>::make (v);   }
-    else if (isInteger()) { return core::Filter<int>::make (v);    }
-    else if (isFloat())   { return core::Filter<double>::make (v); }
+    if (isBoolean())        { return core::Filter<bool>::make (v);   }
+    else if (isInteger())   { return core::Filter<int>::make (v);    }
+    else if (isFloat())     { return core::Filter<double>::make (v); }
+    else if (isRectangle()) { return core::Filter<juce::Rectangle<int>>::make (v); }
     else {
         return core::Filter<juce::String>::make (v);
     }
