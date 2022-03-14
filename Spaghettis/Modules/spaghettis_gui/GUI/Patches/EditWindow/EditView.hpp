@@ -20,7 +20,8 @@ class EditView :    public juce::Component,
 // MARK: -
 
 public:
-    EditView (const juce::ValueTree& content) : content_ (content),
+    EditView (const juce::ValueTree& content) :
+        content_ (content),
         backgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground))
     {
         content_.addListener (this);
@@ -53,9 +54,12 @@ public:
 
 public:
     void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override;
-    
+    void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
+    void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
+                                            
 private:
     juce::ValueTree content_;
+    ObjectsList objects_;
 
 private:
     core::Cached<juce::Colour> backgroundColour_;
