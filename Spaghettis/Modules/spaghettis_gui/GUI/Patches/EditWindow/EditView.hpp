@@ -21,7 +21,7 @@ class EditView :    public juce::Component,
 
 public:
     EditView (const juce::ValueTree& content) : content_ (content),
-        backgroundColour_ (Spaghettis()->getCachedColour (Tags::Colors, Tags::PatchBackground))
+        backgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground))
     {
         content_.addListener (this);
         
