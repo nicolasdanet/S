@@ -19,9 +19,25 @@ class ObjectsList {
 // MARK: -
 
 public:
-    ObjectsList()  = default;
-    ~ObjectsList() = default;
+    ObjectsList (juce::Component& owner) : owner_ (owner)
+    {
+    }
+    
+    ~ObjectsList()
+    {
+        clear();
+    }
 
+public:
+    void clear();
+    
+public:
+    void add (const juce::ValueTree&);
+    void remove (const juce::ValueTree&);
+
+private:
+    juce::Component& owner_;
+    
 private:
     std::vector<std::unique_ptr<ObjectComponent>> v_;
     

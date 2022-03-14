@@ -12,6 +12,21 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void ObjectsList::clear()
+{
+
+}
+
+void ObjectsList::add (const juce::ValueTree& t)
+{
+    DBG (juce::String ("Added / ") + juce::String (core::Object::getIdentifier (t)));
+}
+
+void ObjectsList::remove (const juce::ValueTree& t)
+{
+    DBG (juce::String ("Removed / ") + juce::String (core::Object::getIdentifier (t)));
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
