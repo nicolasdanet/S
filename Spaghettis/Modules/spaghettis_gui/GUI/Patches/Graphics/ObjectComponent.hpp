@@ -19,12 +19,7 @@ class ObjectComponent : public juce::Component {
 // MARK: -
 
 public:
-    ObjectComponent (const juce::ValueTree& content) : content_ (content)
-    {
-        setOpaque (true);
-        
-        setBounds (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Bounds));
-    }
+    ObjectComponent (juce::Component&, const juce::ValueTree&);
     
     ~ObjectComponent() = default;
 
@@ -33,15 +28,18 @@ public:
 // MARK: -
 
 public:
-    void paint (juce::Graphics& g) override
-    {
-        g.fillAll (juce::Colours::orange);
-    }
+    core::UniqueId getIdentifier() const;
     
-    void resized() override
-    {
-        
-    }
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics&) override;
+    void resized() override;
+
+private:
+    juce::Component& owner_;
 
 private:
     juce::ValueTree content_;

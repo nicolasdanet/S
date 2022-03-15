@@ -12,6 +12,40 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+ObjectComponent::ObjectComponent (juce::Component& owner, const juce::ValueTree& content) :
+    owner_ (owner),
+    content_ (content)
+{
+    setOpaque (true);
+        
+    setBounds (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Bounds));
+        
+    owner_.addAndMakeVisible (this);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+core::UniqueId ObjectComponent::getIdentifier() const
+{
+    return core::Object::getIdentifier (content_);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ObjectComponent::paint (juce::Graphics& g)
+{
+    g.setColour (juce::Colours::orange); g.fillRect (getLocalBounds());
+}
+    
+void ObjectComponent::resized()
+{
+
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
