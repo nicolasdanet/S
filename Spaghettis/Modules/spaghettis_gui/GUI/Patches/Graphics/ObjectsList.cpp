@@ -10,21 +10,22 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/*
-auto hasEqualIdentifier (const juce::ValueTree& t)
+auto isSameObjectAs (const juce::ValueTree& t)
 {
-    return [i = identifier] (const std::shared_ptr<Patch>& p)
+    const core::UniqueId identifier = core::Object::getIdentifier (t);
+    
+    return [i = identifier] (const std::unique_ptr<ObjectComponent>& p)
     {
         return (p->getIdentifier() == i);
     };
 }
-*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -35,11 +36,6 @@ auto hasEqualIdentifier (const juce::ValueTree& t)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ObjectsList::clear()
-{
-
-}
-
 void ObjectsList::add (const juce::ValueTree& t)
 {
     v_.push_back (std::make_unique<ObjectComponent> (owner_, t));
@@ -47,7 +43,7 @@ void ObjectsList::add (const juce::ValueTree& t)
 
 void ObjectsList::remove (const juce::ValueTree& t)
 {
-    // v_.erase (std::remove_if (v_.begin(), v_.end(), hasEqualIdentifier (i)), v_.end());
+    v_.erase (std::remove_if (v_.begin(), v_.end(), isSameObjectAs (t)), v_.end());
 }
     
 // -----------------------------------------------------------------------------------------------------------

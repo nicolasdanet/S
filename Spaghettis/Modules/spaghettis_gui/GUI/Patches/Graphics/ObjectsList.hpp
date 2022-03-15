@@ -23,13 +23,7 @@ public:
     {
     }
     
-    ~ObjectsList()
-    {
-        clear();
-    }
-
-public:
-    void clear();
+    ~ObjectsList() = default;
     
 public:
     void add (const juce::ValueTree&);

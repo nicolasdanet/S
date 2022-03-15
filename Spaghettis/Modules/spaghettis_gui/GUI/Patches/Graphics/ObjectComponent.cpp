@@ -16,11 +16,14 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const juce::ValueTree&
     owner_ (owner),
     content_ (content)
 {
-    setOpaque (true);
-        
-    setBounds (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Bounds));
+    setOpaque (true); setBounds (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Bounds));
         
     owner_.addAndMakeVisible (this);
+}
+
+ObjectComponent::~ObjectComponent()
+{
+    owner_.removeChildComponent (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

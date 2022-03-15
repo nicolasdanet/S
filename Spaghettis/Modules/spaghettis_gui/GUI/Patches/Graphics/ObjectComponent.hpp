@@ -21,7 +21,7 @@ class ObjectComponent : public juce::Component {
 public:
     ObjectComponent (juce::Component&, const juce::ValueTree&);
     
-    ~ObjectComponent() = default;
+    ~ObjectComponent();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

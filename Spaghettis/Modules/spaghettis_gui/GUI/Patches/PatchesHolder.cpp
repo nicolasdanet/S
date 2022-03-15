@@ -17,19 +17,11 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto hasEqualIdentifier (core::UniqueId identifier)
+auto isSamePatchAs (core::UniqueId identifier)
 {
     return [i = identifier] (const std::shared_ptr<Patch>& p)
     {
         return (p->getIdentifier() == i);
-    };
-}
-    
-auto toIdentifier()
-{
-    return [] (const std::shared_ptr<Patch>& p)
-    {
-        return p->getIdentifier();
     };
 }
 
@@ -39,14 +31,14 @@ auto toIdentifier()
 
 std::shared_ptr<Patch> fetchPatch (std::vector<std::shared_ptr<Patch>>& v, core::UniqueId i)
 {
-    auto r = std::find_if (v.cbegin(), v.cend(), hasEqualIdentifier (i));
+    auto r = std::find_if (v.cbegin(), v.cend(), isSamePatchAs (i));
     
     return std::shared_ptr<Patch> (r != v.cend() ? *r : nullptr);
 }
 
 void removePatch (std::vector<std::shared_ptr<Patch>>& v, core::UniqueId i)
 {
-    v.erase (std::remove_if (v.begin(), v.end(), hasEqualIdentifier (i)), v.end());
+    v.erase (std::remove_if (v.begin(), v.end(), isSamePatchAs (i)), v.end());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -82,7 +74,7 @@ CloseResult getCloseResult (CloseType notify, int result)
 
 template <class T> void PatchesHolder::perform (const core::UniquePath& u, T f) const
 {
-    auto r = std::find_if (roots_.cbegin(), roots_.cend(), hasEqualIdentifier (u.getRoot()));
+    auto r = std::find_if (roots_.cbegin(), roots_.cend(), isSamePatchAs (u.getRoot()));
     
     if (r != roots_.cend()) { f (*r); }
 }
@@ -212,7 +204,12 @@ void PatchesHolder::closeAllPatches()
 {
     std::vector<core::UniqueId> t;
     
-    std::transform (roots_.cbegin(), roots_.cend(), std::back_inserter (t), toIdentifier());
+    auto f = [] (const std::shared_ptr<Patch>& p)
+    {
+        return p->getIdentifier();
+    };
+    
+    std::transform (roots_.cbegin(), roots_.cend(), std::back_inserter (t), f);
     
     for (const auto& i : t) { requestClosePatch (i, CloseType::yesNo); }
 }
