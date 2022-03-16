@@ -18,7 +18,8 @@ class BoxPainter : public PainterPolicy {
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    explicit BoxPainter() = default;
+    explicit BoxPainter (const juce::ValueTree&);
+    
     ~BoxPainter() = default;
     
 public:
@@ -33,6 +34,9 @@ public:
 
 public:
     void paint (juce::Graphics&) override;
+
+private:
+    juce::ValueTree content_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
