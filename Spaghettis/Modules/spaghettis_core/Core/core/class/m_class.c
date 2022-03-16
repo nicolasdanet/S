@@ -139,8 +139,8 @@ static void class_defaultView (t_object *o, const juce::String& buffer, juce::Re
 {
     if (r.isEmpty()) {
     //
-    const int characterWidth  = 15;     // TODO: Fetch proper values?
-    const int characterHeigth = 15;
+    const int characterWidth  = 16;     // TODO: Fetch proper values?
+    const int characterHeigth = 24;
     
     const int t = object_getWidth (o);
     
