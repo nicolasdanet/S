@@ -14,7 +14,8 @@ namespace spaghettis {
 
 ObjectComponent::ObjectComponent (juce::Component& owner, const juce::ValueTree& content) :
     owner_ (owner),
-    content_ (content)
+    content_ (content),
+    painter_ (std::make_unique<BoxPainter>())
 {
     setOpaque (true); setBounds (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Bounds));
         
@@ -41,7 +42,7 @@ core::UniqueId ObjectComponent::getIdentifier() const
 
 void ObjectComponent::paint (juce::Graphics& g)
 {
-    g.setColour (juce::Colours::orange); g.fillRect (getLocalBounds());
+    painter_->paint (g);
 }
     
 void ObjectComponent::resized()

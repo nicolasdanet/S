@@ -61,7 +61,7 @@
 #include "GUI/Patches/Patch.cpp"
 #include "GUI/Patches/PatchesHolder.cpp"
 
-#include "GUI/Patches/Graphics/PainterBox.cpp"
+#include "GUI/Patches/Graphics/BoxPainter.cpp"
 #include "GUI/Patches/Graphics/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/ObjectsList.cpp"
 
