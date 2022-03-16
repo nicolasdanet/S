@@ -123,6 +123,7 @@
 #include "GUI/Patches/PatchesHolder.hpp"
 #include "GUI/Patches/PatchWindow.hpp"
 
+#include "GUI/Patches/Graphics/PainterPolicy.hpp"
 #include "GUI/Patches/Graphics/ObjectComponent.hpp"
 #include "GUI/Patches/Graphics/ObjectsList.hpp"
 

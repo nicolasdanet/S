@@ -20,7 +20,7 @@ class EditView :    public juce::Component,
 // MARK: -
 
 public:
-    EditView (const juce::ValueTree& content) :
+    explicit EditView (const juce::ValueTree& content) :
         content_ (content),
         backgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
         objects_ (*this)

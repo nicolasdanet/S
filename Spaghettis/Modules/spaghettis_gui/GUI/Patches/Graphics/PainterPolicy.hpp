@@ -12,40 +12,24 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ObjectComponent : public juce::Component {
+class PainterPolicy {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
-    explicit ObjectComponent (juce::Component&, const juce::ValueTree&);
+    PainterPolicy() = default;
     
-    ~ObjectComponent();
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
+    virtual ~PainterPolicy() = default;
 
 public:
-    core::UniqueId getIdentifier() const;
+    virtual void paint (juce::Graphics&) = 0;
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 public:
-    void paint (juce::Graphics&) override;
-    void resized() override;
-
-private:
-    juce::Component& owner_;
-
-private:
-    juce::ValueTree content_;
-    
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ObjectComponent)
+    PainterPolicy (const PainterPolicy&) = default;
+    PainterPolicy (PainterPolicy&&) = default;
+    PainterPolicy& operator = (const PainterPolicy&) = default;
+    PainterPolicy& operator = (PainterPolicy&&) = default;
 };
 
 // -----------------------------------------------------------------------------------------------------------
