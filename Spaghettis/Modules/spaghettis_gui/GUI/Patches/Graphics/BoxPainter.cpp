@@ -24,9 +24,9 @@ BoxPainter::BoxPainter (juce::Component& owner, const juce::ValueTree& content) 
 
 void BoxPainter::paint (juce::Graphics& g)
 {
-    g.fillAll (juce::Colours::red);
+    g.setColour (juce::Colours::orange); g.drawRect (g.getClipBounds());
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
