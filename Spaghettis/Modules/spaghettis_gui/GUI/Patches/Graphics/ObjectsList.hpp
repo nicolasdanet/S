@@ -31,8 +31,6 @@ public:
 
 private:
     juce::Component& owner_;
-    
-private:
     std::vector<std::unique_ptr<ObjectComponent>> v_;
     
 private:
