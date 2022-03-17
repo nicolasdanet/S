@@ -26,9 +26,7 @@ public:
         objects_ (*this)
     {
         content_.addListener (this);
-        
-        backgroundColour_.onChange = [this]() { repaint(); };
-        
+        backgroundColour_.attach (this);
         BaseComponent::setDefaultSize (this);
     }
     

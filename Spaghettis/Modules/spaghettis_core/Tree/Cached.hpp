@@ -60,6 +60,17 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    void attach (juce::Component* component)
+    {
+        auto f = [c = juce::Component::SafePointer<juce::Component>(component)]()
+        {
+            if (c.getComponent()) { c->repaint(); } else { jassertfalse; }
+        };
+        
+        onChange = f;
+    }
+    
 private:
     void valueChanged (juce::Value& value) override
     {
@@ -78,7 +89,7 @@ public:
         return Cached (tree, group, key);
     }
 
-public:
+private:
     std::function<void()> onChange;
     
 private:
