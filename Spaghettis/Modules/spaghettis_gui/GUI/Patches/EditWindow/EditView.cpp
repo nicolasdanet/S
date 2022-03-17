@@ -10,21 +10,39 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+bool isChildOf (const juce::ValueTree& t, juce::ValueTree& child)
+{
+    return (child.getParent() == t);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&)
+void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
 {
-    ;
+
 }
 
-void EditView::valueTreeChildAdded (juce::ValueTree&, juce::ValueTree& child)
+void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    if (child.hasType (Ids::OBJECT)) { objects_.add (child); }
+    if (isChildOf (t, child) && child.hasType (Ids::OBJECT)) { objects_.add (child); }
 }
 
-void EditView::valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree& child, int)
+void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    if (child.hasType (Ids::OBJECT)) { objects_.remove (child); }
+    if (isChildOf (t, child) && child.hasType (Ids::OBJECT)) { objects_.remove (child); }
 }
  
 // -----------------------------------------------------------------------------------------------------------
