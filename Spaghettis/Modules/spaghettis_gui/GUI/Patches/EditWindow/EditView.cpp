@@ -30,9 +30,9 @@ bool isChildOf (const juce::ValueTree& t, juce::ValueTree& child)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
+void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier& i)
 {
-
+    DBG (i.toString());
 }
 
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
