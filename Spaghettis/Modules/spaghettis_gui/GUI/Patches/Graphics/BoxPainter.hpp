@@ -18,15 +18,9 @@ class BoxPainter : public PainterPolicy {
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    explicit BoxPainter (const juce::ValueTree&);
+    explicit BoxPainter (juce::Component& owner, const juce::ValueTree&);
     
     ~BoxPainter() = default;
-    
-public:
-    BoxPainter (const BoxPainter&) = default;
-    BoxPainter (BoxPainter&&) = default;
-    BoxPainter& operator = (const BoxPainter&) = default;
-    BoxPainter& operator = (BoxPainter&&) = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -36,7 +30,11 @@ public:
     void paint (juce::Graphics&) override;
 
 private:
+    juce::Component& owner_;
     juce::ValueTree content_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoxPainter)
 };
 
 // -----------------------------------------------------------------------------------------------------------

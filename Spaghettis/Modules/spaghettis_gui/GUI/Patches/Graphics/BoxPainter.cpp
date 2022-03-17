@@ -11,7 +11,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-BoxPainter::BoxPainter (const juce::ValueTree& content) : content_ (content)
+BoxPainter::BoxPainter (juce::Component& owner, const juce::ValueTree& content) :
+    owner_ (owner),
+    content_ (content)
 {
 
 }
