@@ -41,7 +41,7 @@ public:
         TextPropertyComponent::setText (parsed (s));
     }
 
-public:
+private:
     template <class Q = T>
     static typename std::enable_if<std::is_same<int, Q>::value, T>::type convert (const juce::String& s)
     {
@@ -53,7 +53,8 @@ public:
     {
         return s.getDoubleValue();
     }
-    
+
+public:
     static T parsedWithDefault (const juce::String& s, T t)
     {
         if (s.isNotEmpty() && s.containsOnly ("-.e+0123456789")) { return convert (s); }
