@@ -24,7 +24,7 @@ template <class T> class Cached : private juce::Value::Listener {
 // MARK: -
 
 private:
-    Cached (const core::Tree& tree, const juce::String& group, const juce::String& key) :
+    explicit Cached (const core::Tree& tree, const juce::String& group, const juce::String& key) :
         value_ (tree.getParameter (group, key).getValueSource())
     {
         value_.addListener (this);
