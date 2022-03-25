@@ -33,6 +33,7 @@ namespace Keywords {
     DECLARE_STRING (General);
         
     DECLARE_STRING (AskBeforeQuit);
+    DECLARE_STRING (BoxBackground);
     DECLARE_STRING (DefaultIsRunView);
     DECLARE_STRING (GridSize);
     DECLARE_STRING (PatchBackground);
