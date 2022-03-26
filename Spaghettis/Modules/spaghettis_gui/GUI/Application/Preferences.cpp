@@ -17,6 +17,43 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void getDefaultTest (core::Tree& t)
+{
+    core::Group peace (t.addGroup ("Peace"));
+    
+    peace.addParameter ("Engine",
+        NEEDS_TRANS ("Kind Of Engine"),
+        NEEDS_TRANS ("Set kind of stuff"),
+        juce::String ("Flowers"));
+                
+    peace.addParameter ("Power",
+        NEEDS_TRANS ("Power Of Engine"),
+        NEEDS_TRANS ("Set power of engine"),
+        99.5);
+
+    peace.addParameter ("Launcher",
+        NEEDS_TRANS ("Love Efficiency"),
+        NEEDS_TRANS ("Set love impact"),
+        99.5);
+
+    peace.addParameter ("Random",
+        NEEDS_TRANS ("Random Rate"),
+        NEEDS_TRANS ("Set entropy in life"),
+        0.5).setRange (juce::Range<double> (0, 1));
+    
+    peace.addParameter ("Guernica",
+        NEEDS_TRANS ("Picasso"),
+        NEEDS_TRANS ("Set size of picture"),
+        juce::Rectangle<int> (0, 0, 349, 776));
+    
+    core::Group secret (t.addGroup ("Secret", true));
+    
+    secret.addParameter ("Password",
+        NEEDS_TRANS ("Password"),
+        NEEDS_TRANS ("Word for magic attack"),
+        juce::String ("iloveyou"));
+}
+
 core::Tree getDefaultPreferences()
 {
     core::Tree t (Ids::PREFERENCES);
@@ -54,7 +91,9 @@ core::Tree getDefaultPreferences()
         NEEDS_TRANS ("Box Background"),
         NEEDS_TRANS ("Set background color of objects"),
         juce::Colour (0xff1f2029));
-        
+    
+    getDefaultTest (t);
+    
     return t;
 }
 
