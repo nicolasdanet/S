@@ -35,42 +35,40 @@ public:
     {
         /* < https://ethanschoonover.com/solarized/ > */
     
-        // const juce::Colour base03                = juce::Colour (0xff002b36);
-        // const juce::Colour base02                = juce::Colour (0xff073642);
-        const juce::Colour base01                   = juce::Colour (0xff586e75);
-        // const juce::Colour base00                = juce::Colour (0xff657b83);
-        // const juce::Colour base0                 = juce::Colour (0xff839496);
-        const juce::Colour base1                    = juce::Colour (0xff93a1a1);
-        // const juce::Colour base2                 = juce::Colour (0xffeee8d5);
-        // const juce::Colour base3                 = juce::Colour (0xfffdf6e3);
-        const juce::Colour yellow                   = juce::Colour (0xffb58900);
-        const juce::Colour orange                   = juce::Colour (0xffcb4b16);
-        // const juce::Colour red                   = juce::Colour (0xffdc322f);
-        // const juce::Colour magenta               = juce::Colour (0xffd33682);
-        // const juce::Colour violet                = juce::Colour (0xff6c71c4);
-        // const juce::Colour blue                  = juce::Colour (0xff268bd2);
-        // const juce::Colour cyan                  = juce::Colour (0xff2aa198);
-        const juce::Colour green                    = juce::Colour (0xff859900);
+        // const juce::Colour base03    = juce::Colour (0xff002b36);
+        // const juce::Colour base02    = juce::Colour (0xff073642);
+        const juce::Colour base01       = juce::Colour (0xff586e75);
+        // const juce::Colour base00    = juce::Colour (0xff657b83);
+        // const juce::Colour base0     = juce::Colour (0xff839496);
+        const juce::Colour base1        = juce::Colour (0xff93a1a1);
+        // const juce::Colour base2     = juce::Colour (0xffeee8d5);
+        // const juce::Colour base3     = juce::Colour (0xfffdf6e3);
+        const juce::Colour yellow       = juce::Colour (0xffb58900);
+        const juce::Colour orange       = juce::Colour (0xffcb4b16);
+        // const juce::Colour red       = juce::Colour (0xffdc322f);
+        // const juce::Colour magenta   = juce::Colour (0xffd33682);
+        // const juce::Colour violet    = juce::Colour (0xff6c71c4);
+        // const juce::Colour blue      = juce::Colour (0xff268bd2);
+        // const juce::Colour cyan      = juce::Colour (0xff2aa198);
+        const juce::Colour green        = juce::Colour (0xff859900);
         
-        const juce::Colour background               = juce::Colour (0xff1f2029);
-
+        text                            = base1;
+        textAlternate                   = base01;
+        textWarning                     = yellow;
+        textError                       = orange;
+        textHighlighted                 = green;
+        
+        background                      = juce::Colour (0xff1f2029);
+        backgroundAlternate             = background.darker (0.10);
+        backgroundPopup                 = background.brighter (0.15);
+        
         #if JUCE_LINUX
-        const juce::Colour backgroundDark2          = background.darker (0.75);
-        const juce::Colour backgroundDark1          = background.darker (0.50);
-        const juce::Colour backgroundDark           = background.darker (0.10);
-        const juce::Colour backgroundBright         = background.brighter (0.15);
+        backgroundAlert                 = background.darker (0.50);
+        backgroundWidget                = background.darker (0.75);
         #else
-        const juce::Colour backgroundDark2          = background.darker (0.50);
-        const juce::Colour backgroundDark1          = background.darker (0.25);
-        const juce::Colour backgroundDark           = background.darker (0.10);
-        const juce::Colour backgroundBright         = background.brighter (0.15);
+        backgroundAlert                 = background.darker (0.25);
+        backgroundWidget                = background.darker (0.50);
         #endif
-        
-        windowBackground            = background;
-        windowBackgroundAlternate   = backgroundDark;
-        alertBackground             = backgroundDark1;
-        widgetBackground            = backgroundDark2;
-        popupBackground             = backgroundBright;
     }
 
     ~Palette() = default;
@@ -82,11 +80,16 @@ public:
     Palette& operator = (Palette&&) = default;
     
 public:
-    juce::Colour windowBackground;
-    juce::Colour windowBackgroundAlternate;
-    juce::Colour alertBackground;
-    juce::Colour widgetBackground;
-    juce::Colour popupBackground;
+    juce::Colour text;
+    juce::Colour textAlternate;
+    juce::Colour textWarning;
+    juce::Colour textError;
+    juce::Colour textHighlighted;
+    juce::Colour background;
+    juce::Colour backgroundAlternate;
+    juce::Colour backgroundPopup;
+    juce::Colour backgroundAlert;
+    juce::Colour backgroundWidget;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -164,78 +167,59 @@ enum ColourIds : int {
 
 static void initialize (juce::LookAndFeel* lf)
 {
-    /* < https://ethanschoonover.com/solarized/ > */
-    
-    // const juce::Colour base03                = juce::Colour (0xff002b36);
-    // const juce::Colour base02                = juce::Colour (0xff073642);
-    const juce::Colour base01                   = juce::Colour (0xff586e75);
-    // const juce::Colour base00                = juce::Colour (0xff657b83);
-    // const juce::Colour base0                 = juce::Colour (0xff839496);
-    const juce::Colour base1                    = juce::Colour (0xff93a1a1);
-    // const juce::Colour base2                 = juce::Colour (0xffeee8d5);
-    // const juce::Colour base3                 = juce::Colour (0xfffdf6e3);
-    const juce::Colour yellow                   = juce::Colour (0xffb58900);
-    const juce::Colour orange                   = juce::Colour (0xffcb4b16);
-    // const juce::Colour red                   = juce::Colour (0xffdc322f);
-    // const juce::Colour magenta               = juce::Colour (0xffd33682);
-    // const juce::Colour violet                = juce::Colour (0xff6c71c4);
-    // const juce::Colour blue                  = juce::Colour (0xff268bd2);
-    // const juce::Colour cyan                  = juce::Colour (0xff2aa198);
-    const juce::Colour green                    = juce::Colour (0xff859900);
-
     const Palette* t = getPalette();
     
-    lf->setColour (consoleTextDefault,                                  base01);
-    lf->setColour (consoleTextSystem,                                   base1);
-    lf->setColour (consoleTextWarning,                                  yellow);
-    lf->setColour (consoleTextError,                                    orange);
-    lf->setColour (consoleTextHighlighted,                              green);
-    lf->setColour (consoleBackground,                                   t->windowBackground);
-    lf->setColour (consoleBackgroundAlternate,                          t->windowBackgroundAlternate);
-    lf->setColour (menubarBackground,                                   t->alertBackground);
+    lf->setColour (consoleTextDefault,                                  t->textAlternate);
+    lf->setColour (consoleTextSystem,                                   t->text);
+    lf->setColour (consoleTextWarning,                                  t->textWarning);
+    lf->setColour (consoleTextError,                                    t->textError);
+    lf->setColour (consoleTextHighlighted,                              t->textHighlighted);
+    lf->setColour (consoleBackground,                                   t->background);
+    lf->setColour (consoleBackgroundAlternate,                          t->backgroundAlternate);
+    lf->setColour (menubarBackground,                                   t->backgroundAlert);
     lf->setColour (menubarText,                                         juce::Colours::white);
-    lf->setColour (menubarPopupBackground,                              t->popupBackground);
-    lf->setColour (menubarPopupBackgroundHighlighted,                   orange);
+    lf->setColour (menubarPopupBackground,                              t->backgroundPopup);
+    lf->setColour (menubarPopupBackgroundHighlighted,                   t->textError);
     lf->setColour (menubarPopupText,                                    juce::Colours::lightgrey);
     lf->setColour (menubarPopupTextHighlighted,                         juce::Colours::white);
     lf->setColour (menubarPopupSeparator,                               juce::Colours::black);
-    lf->setColour (toolbarBackground,                                   t->alertBackground);
-    lf->setColour (toolbarBackgroundDown,                               orange);
-    lf->setColour (toolbarBackgroundOver,                               t->alertBackground);
+    lf->setColour (toolbarBackground,                                   t->backgroundAlert);
+    lf->setColour (toolbarBackgroundDown,                               t->textError);
+    lf->setColour (toolbarBackgroundOver,                               t->backgroundAlert);
     lf->setColour (toolbarIconOn,                                       juce::Colours::white);
     lf->setColour (toolbarIconOff,                                      juce::Colours::grey);
-    lf->setColour (searchpathsBackground,                               t->windowBackground);
-    lf->setColour (searchpathsBackgroundAlternate,                      t->windowBackgroundAlternate);
-    lf->setColour (searchpathsText,                                     base1);
-    lf->setColour (searchpathsTextHighlighted,                          green);
-    lf->setColour (devicesParameterBackground,                          t->windowBackground);
-    lf->setColour (devicesParameterText,                                base1);
-    lf->setColour (devicesComboBoxBackground,                           t->windowBackground);
-    lf->setColour (devicesComboBoxBackgroundActive,                     t->windowBackgroundAlternate);
-    lf->setColour (devicesComboBoxArrow,                                base1);
-    lf->setColour (tooltipBackground,                                   t->alertBackground);
+    lf->setColour (searchpathsBackground,                               t->background);
+    lf->setColour (searchpathsBackgroundAlternate,                      t->backgroundAlternate);
+    lf->setColour (searchpathsText,                                     t->text);
+    lf->setColour (searchpathsTextHighlighted,                          t->textHighlighted);
+    lf->setColour (devicesParameterBackground,                          t->background);
+    lf->setColour (devicesParameterText,                                t->text);
+    lf->setColour (devicesComboBoxBackground,                           t->background);
+    lf->setColour (devicesComboBoxBackgroundActive,                     t->backgroundAlternate);
+    lf->setColour (devicesComboBoxArrow,                                t->text);
+    lf->setColour (tooltipBackground,                                   t->backgroundAlert);
     lf->setColour (tooltipText,                                         juce::Colours::white);
-    lf->setColour (callOutBoxBackground,                                t->alertBackground);
-    lf->setColour (callOutBoxOutline,                                   base1);
-    lf->setColour (alertWindowBackground,                               t->alertBackground);
-    lf->setColour (alertWindowOutline,                                  base1);
+    lf->setColour (callOutBoxBackground,                                t->backgroundAlert);
+    lf->setColour (callOutBoxOutline,                                   t->text);
+    lf->setColour (alertWindowBackground,                               t->backgroundAlert);
+    lf->setColour (alertWindowOutline,                                  t->text);
     lf->setColour (alertWindowText,                                     juce::Colours::white);
-    lf->setColour (alertWindowIcon,                                     orange);
-    lf->setColour (alertWindowButtonBackground,                         t->widgetBackground);
-    lf->setColour (alertWindowButtonBackgroundOver,                     orange);
-    lf->setColour (alertWindowButtonOutline,                            base1);
-    lf->setColour (alertWindowButtonText,                               base1);
+    lf->setColour (alertWindowIcon,                                     t->textError);
+    lf->setColour (alertWindowButtonBackground,                         t->backgroundWidget);
+    lf->setColour (alertWindowButtonBackgroundOver,                     t->textError);
+    lf->setColour (alertWindowButtonOutline,                            t->text);
+    lf->setColour (alertWindowButtonText,                               t->text);
     lf->setColour (alertWindowButtonTextHighlighted,                    juce::Colours::white);
-    lf->setColour (parametersHeaderBackground,                          t->windowBackground);
+    lf->setColour (parametersHeaderBackground,                          t->background);
     lf->setColour (parametersHeaderText,                                juce::Colours::white);
-    lf->setColour (parametersHeaderArrow,                               base1);
-    lf->setColour (parametersParameterBackground,                       t->windowBackground);
-    lf->setColour (parametersParameterText,                             base1);
-    lf->setColour (parametersSliderBackground,                          t->windowBackgroundAlternate);
-    lf->setColour (parametersSliderTrack,                               t->widgetBackground);
-    lf->setColour (parametersColourBackground,                          t->windowBackgroundAlternate);
-    lf->setColour (parametersColourText,                                base1);
-    lf->setColour (parametersBoolean,                                   base1);
+    lf->setColour (parametersHeaderArrow,                               t->text);
+    lf->setColour (parametersParameterBackground,                       t->background);
+    lf->setColour (parametersParameterText,                             t->text);
+    lf->setColour (parametersSliderBackground,                          t->backgroundAlternate);
+    lf->setColour (parametersSliderTrack,                               t->backgroundWidget);
+    lf->setColour (parametersColourBackground,                          t->backgroundAlternate);
+    lf->setColour (parametersColourText,                                t->text);
+    lf->setColour (parametersBoolean,                                   t->text);
     lf->setColour (parametersBooleanTick,                               juce::Colours::white);
     
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
@@ -243,39 +227,39 @@ static void initialize (juce::LookAndFeel* lf)
     /* Scroll bar. */
     
     lf->setColour (juce::ScrollBar::thumbColourId,                      juce::Colours::grey);
-    lf->setColour (juce::ListBox::backgroundColourId,                   t->windowBackground);
+    lf->setColour (juce::ListBox::backgroundColourId,                   t->background);
     
     /* Text based parameters. */
     
-    lf->setColour (juce::TextPropertyComponent::textColourId,           base1);
+    lf->setColour (juce::TextPropertyComponent::textColourId,           t->text);
     lf->setColour (juce::TextPropertyComponent::outlineColourId,        juce::Colours::transparentBlack);
-    lf->setColour (juce::TextPropertyComponent::backgroundColourId,     t->windowBackgroundAlternate);
+    lf->setColour (juce::TextPropertyComponent::backgroundColourId,     t->backgroundAlternate);
                    
     lf->setColour (juce::TextEditor::highlightColourId,                 juce::Colours::transparentBlack);
-    lf->setColour (juce::TextEditor::highlightedTextColourId,           green);
+    lf->setColour (juce::TextEditor::highlightedTextColourId,           t->textHighlighted);
     lf->setColour (juce::CaretComponent::caretColourId,                 juce::Colours::white);
     lf->setColour (juce::Label::backgroundWhenEditingColourId,          juce::Colours::transparentBlack);
-    lf->setColour (juce::Label::textWhenEditingColourId,                base1);
+    lf->setColour (juce::Label::textWhenEditingColourId,                t->text);
     lf->setColour (juce::Label::outlineWhenEditingColourId,             juce::Colours::transparentBlack);
     
     /* Boolean parameters. */
     
     lf->setColour (juce::BooleanPropertyComponent::outlineColourId,     juce::Colours::transparentBlack);
-    lf->setColour (juce::BooleanPropertyComponent::backgroundColourId,  t->windowBackgroundAlternate);
+    lf->setColour (juce::BooleanPropertyComponent::backgroundColourId,  t->backgroundAlternate);
     
     /* Slider parameters. */
     
-    lf->setColour (juce::Label::textColourId,                           base1);
+    lf->setColour (juce::Label::textColourId,                           t->text);
     
     /* Colour selector sliders. */
     
-    lf->setColour (juce::Slider::backgroundColourId,                    t->widgetBackground);
-    lf->setColour (juce::Slider::trackColourId,                         t->windowBackground);
+    lf->setColour (juce::Slider::backgroundColourId,                    t->backgroundWidget);
+    lf->setColour (juce::Slider::trackColourId,                         t->background);
     lf->setColour (juce::Slider::thumbColourId,                         juce::Colours::grey);
     
     /* Devices combo box. */
     
-    lf->setColour (juce::ComboBox::textColourId,                        base1);
+    lf->setColour (juce::ComboBox::textColourId,                        t->text);
 }
 
 // -----------------------------------------------------------------------------------------------------------
