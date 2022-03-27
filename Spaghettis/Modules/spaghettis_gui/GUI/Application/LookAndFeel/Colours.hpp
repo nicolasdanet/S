@@ -52,16 +52,15 @@ public:
         // const juce::Colour cyan      = juce::Colour (0xff2aa198);
         const juce::Colour green        = juce::Colour (0xff859900);
         
-        text                            = base1;
-        textAlternate                   = base01;
+        textDefault                     = base01;
+        textSystem                      = base1;
         textWarning                     = yellow;
         textError                       = orange;
         textHighlighted                 = green;
-        
-        white                           = juce::Colours::white;
-        black                           = juce::Colours::black;
-        grey                            = juce::Colours::grey;
-        lightgrey                       = juce::Colours::lightgrey;
+        textMenu                        = juce::Colours::white;
+        textPopup                       = juce::Colours::lightgrey;
+        separator                       = juce::Colours::black;
+        thumb                           = juce::Colours::grey;
         transparent                     = juce::Colours::transparentBlack;
         
         background                      = juce::Colour (0xff1f2029);
@@ -69,10 +68,10 @@ public:
         backgroundPopup                 = background.brighter (0.15);
         
         #if JUCE_LINUX
-        backgroundAlert                 = background.darker (0.50);
+        backgroundMenu                  = background.darker (0.50);
         backgroundWidget                = background.darker (0.75);
         #else
-        backgroundAlert                 = background.darker (0.25);
+        backgroundMenu                  = background.darker (0.25);
         backgroundWidget                = background.darker (0.50);
         #endif
     }
@@ -86,20 +85,20 @@ public:
     Palette& operator = (Palette&&) = default;
     
 public:
-    juce::Colour text;
-    juce::Colour textAlternate;
+    juce::Colour textDefault;
+    juce::Colour textSystem;
     juce::Colour textWarning;
     juce::Colour textError;
     juce::Colour textHighlighted;
-    juce::Colour white;
-    juce::Colour black;
-    juce::Colour grey;
-    juce::Colour lightgrey;
+    juce::Colour textMenu;
+    juce::Colour textPopup;
+    juce::Colour separator;
+    juce::Colour thumb;
     juce::Colour transparent;
     juce::Colour background;
     juce::Colour backgroundAlternate;
     juce::Colour backgroundPopup;
-    juce::Colour backgroundAlert;
+    juce::Colour backgroundMenu;
     juce::Colour backgroundWidget;
 };
 
@@ -180,77 +179,77 @@ static void initialize (juce::LookAndFeel* lf)
 {
     const Palette* t = getPalette();
     
-    lf->setColour (consoleTextDefault,                                  t->textAlternate);
-    lf->setColour (consoleTextSystem,                                   t->text);
+    lf->setColour (consoleTextDefault,                                  t->textDefault);
+    lf->setColour (consoleTextSystem,                                   t->textSystem);
     lf->setColour (consoleTextWarning,                                  t->textWarning);
     lf->setColour (consoleTextError,                                    t->textError);
     lf->setColour (consoleTextHighlighted,                              t->textHighlighted);
     lf->setColour (consoleBackground,                                   t->background);
     lf->setColour (consoleBackgroundAlternate,                          t->backgroundAlternate);
-    lf->setColour (menubarBackground,                                   t->backgroundAlert);
-    lf->setColour (menubarText,                                         t->white);
+    lf->setColour (menubarBackground,                                   t->backgroundMenu);
+    lf->setColour (menubarText,                                         t->textMenu);
     lf->setColour (menubarPopupBackground,                              t->backgroundPopup);
     lf->setColour (menubarPopupBackgroundHighlighted,                   t->textError);
-    lf->setColour (menubarPopupText,                                    t->lightgrey);
-    lf->setColour (menubarPopupTextHighlighted,                         t->white);
-    lf->setColour (menubarPopupSeparator,                               t->black);
-    lf->setColour (toolbarBackground,                                   t->backgroundAlert);
+    lf->setColour (menubarPopupText,                                    t->textPopup);
+    lf->setColour (menubarPopupTextHighlighted,                         t->textMenu);
+    lf->setColour (menubarPopupSeparator,                               t->separator);
+    lf->setColour (toolbarBackground,                                   t->backgroundMenu);
     lf->setColour (toolbarBackgroundDown,                               t->textError);
-    lf->setColour (toolbarBackgroundOver,                               t->backgroundAlert);
-    lf->setColour (toolbarIconOn,                                       t->white);
-    lf->setColour (toolbarIconOff,                                      t->grey);
+    lf->setColour (toolbarBackgroundOver,                               t->backgroundMenu);
+    lf->setColour (toolbarIconOn,                                       t->textMenu);
+    lf->setColour (toolbarIconOff,                                      t->thumb);
     lf->setColour (searchpathsBackground,                               t->background);
     lf->setColour (searchpathsBackgroundAlternate,                      t->backgroundAlternate);
-    lf->setColour (searchpathsText,                                     t->text);
+    lf->setColour (searchpathsText,                                     t->textSystem);
     lf->setColour (searchpathsTextHighlighted,                          t->textHighlighted);
     lf->setColour (devicesParameterBackground,                          t->background);
-    lf->setColour (devicesParameterText,                                t->text);
+    lf->setColour (devicesParameterText,                                t->textSystem);
     lf->setColour (devicesComboBoxBackground,                           t->background);
     lf->setColour (devicesComboBoxBackgroundActive,                     t->backgroundAlternate);
-    lf->setColour (devicesComboBoxArrow,                                t->text);
-    lf->setColour (tooltipBackground,                                   t->backgroundAlert);
-    lf->setColour (tooltipText,                                         t->white);
-    lf->setColour (callOutBoxBackground,                                t->backgroundAlert);
-    lf->setColour (callOutBoxOutline,                                   t->text);
-    lf->setColour (alertWindowBackground,                               t->backgroundAlert);
-    lf->setColour (alertWindowOutline,                                  t->text);
-    lf->setColour (alertWindowText,                                     t->white);
+    lf->setColour (devicesComboBoxArrow,                                t->textSystem);
+    lf->setColour (tooltipBackground,                                   t->backgroundMenu);
+    lf->setColour (tooltipText,                                         t->textMenu);
+    lf->setColour (callOutBoxBackground,                                t->backgroundMenu);
+    lf->setColour (callOutBoxOutline,                                   t->textSystem);
+    lf->setColour (alertWindowBackground,                               t->backgroundMenu);
+    lf->setColour (alertWindowOutline,                                  t->textSystem);
+    lf->setColour (alertWindowText,                                     t->textMenu);
     lf->setColour (alertWindowIcon,                                     t->textError);
     lf->setColour (alertWindowButtonBackground,                         t->backgroundWidget);
     lf->setColour (alertWindowButtonBackgroundOver,                     t->textError);
-    lf->setColour (alertWindowButtonOutline,                            t->text);
-    lf->setColour (alertWindowButtonText,                               t->text);
-    lf->setColour (alertWindowButtonTextHighlighted,                    t->white);
+    lf->setColour (alertWindowButtonOutline,                            t->textSystem);
+    lf->setColour (alertWindowButtonText,                               t->textSystem);
+    lf->setColour (alertWindowButtonTextHighlighted,                    t->textMenu);
     lf->setColour (parametersHeaderBackground,                          t->background);
-    lf->setColour (parametersHeaderText,                                t->white);
-    lf->setColour (parametersHeaderArrow,                               t->text);
+    lf->setColour (parametersHeaderText,                                t->textMenu);
+    lf->setColour (parametersHeaderArrow,                               t->textSystem);
     lf->setColour (parametersParameterBackground,                       t->background);
-    lf->setColour (parametersParameterText,                             t->text);
+    lf->setColour (parametersParameterText,                             t->textSystem);
     lf->setColour (parametersSliderBackground,                          t->backgroundAlternate);
     lf->setColour (parametersSliderTrack,                               t->backgroundWidget);
     lf->setColour (parametersColourBackground,                          t->backgroundAlternate);
-    lf->setColour (parametersColourText,                                t->text);
-    lf->setColour (parametersBoolean,                                   t->text);
-    lf->setColour (parametersBooleanTick,                               t->white);
+    lf->setColour (parametersColourText,                                t->textSystem);
+    lf->setColour (parametersBoolean,                                   t->textSystem);
+    lf->setColour (parametersBooleanTick,                               t->textMenu);
     
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
     
     /* Scroll bar. */
     
-    lf->setColour (juce::ScrollBar::thumbColourId,                      t->grey);
+    lf->setColour (juce::ScrollBar::thumbColourId,                      t->thumb);
     lf->setColour (juce::ListBox::backgroundColourId,                   t->background);
     
     /* Text based parameters. */
     
-    lf->setColour (juce::TextPropertyComponent::textColourId,           t->text);
+    lf->setColour (juce::TextPropertyComponent::textColourId,           t->textSystem);
     lf->setColour (juce::TextPropertyComponent::outlineColourId,        t->transparent);
     lf->setColour (juce::TextPropertyComponent::backgroundColourId,     t->backgroundAlternate);
                    
     lf->setColour (juce::TextEditor::highlightColourId,                 t->transparent);
     lf->setColour (juce::TextEditor::highlightedTextColourId,           t->textHighlighted);
-    lf->setColour (juce::CaretComponent::caretColourId,                 t->white);
+    lf->setColour (juce::CaretComponent::caretColourId,                 t->textMenu);
     lf->setColour (juce::Label::backgroundWhenEditingColourId,          t->transparent);
-    lf->setColour (juce::Label::textWhenEditingColourId,                t->text);
+    lf->setColour (juce::Label::textWhenEditingColourId,                t->textSystem);
     lf->setColour (juce::Label::outlineWhenEditingColourId,             t->transparent);
     
     /* Boolean parameters. */
@@ -260,17 +259,17 @@ static void initialize (juce::LookAndFeel* lf)
     
     /* Slider parameters. */
     
-    lf->setColour (juce::Label::textColourId,                           t->text);
+    lf->setColour (juce::Label::textColourId,                           t->textSystem);
     
     /* Colour selector sliders. */
     
     lf->setColour (juce::Slider::backgroundColourId,                    t->backgroundWidget);
     lf->setColour (juce::Slider::trackColourId,                         t->background);
-    lf->setColour (juce::Slider::thumbColourId,                         t->grey);
+    lf->setColour (juce::Slider::thumbColourId,                         t->thumb);
     
     /* Devices combo box. */
     
-    lf->setColour (juce::ComboBox::textColourId,                        t->text);
+    lf->setColour (juce::ComboBox::textColourId,                        t->textSystem);
 }
 
 // -----------------------------------------------------------------------------------------------------------
