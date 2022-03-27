@@ -17,6 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/*
 void getDefaultTest (core::Tree& t)
 {
     core::Group peace (t.addGroup ("Peace"));
@@ -53,6 +54,7 @@ void getDefaultTest (core::Tree& t)
         NEEDS_TRANS ("Word for magic attack"),
         juce::String ("iloveyou"));
 }
+*/
 
 core::Tree getDefaultPreferences()
 {
@@ -85,14 +87,14 @@ core::Tree getDefaultPreferences()
     colors.addParameter (Tags::PatchBackground,
         NEEDS_TRANS ("Patch Background"),
         NEEDS_TRANS ("Set background color of patch"),
-        juce::Colour (0xff1f2029));
+        Colours::getPalette()->background);
 
     colors.addParameter (Tags::BoxBackground,
         NEEDS_TRANS ("Box Background"),
         NEEDS_TRANS ("Set background color of objects"),
-        juce::Colour (0xff1f2029));
+        Colours::getPalette()->backgroundAlternate);
     
-    getDefaultTest (t);
+    // getDefaultTest (t);
     
     return t;
 }
