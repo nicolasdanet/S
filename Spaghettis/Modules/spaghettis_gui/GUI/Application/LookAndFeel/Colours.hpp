@@ -59,7 +59,6 @@ public:
         textHighlighted                 = green;
         textMenu                        = juce::Colours::white;
         textPopup                       = juce::Colours::lightgrey;
-        separator                       = juce::Colours::black;
         thumb                           = juce::Colours::grey;
         transparent                     = juce::Colours::transparentBlack;
         
@@ -92,7 +91,6 @@ public:
     juce::Colour textHighlighted;
     juce::Colour textMenu;
     juce::Colour textPopup;
-    juce::Colour separator;
     juce::Colour thumb;
     juce::Colour transparent;
     juce::Colour background;
@@ -192,7 +190,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarPopupBackgroundHighlighted,                   t->textError);
     lf->setColour (menubarPopupText,                                    t->textPopup);
     lf->setColour (menubarPopupTextHighlighted,                         t->textMenu);
-    lf->setColour (menubarPopupSeparator,                               t->separator);
+    lf->setColour (menubarPopupSeparator,                               t->thumb);
     lf->setColour (toolbarBackground,                                   t->backgroundMenu);
     lf->setColour (toolbarBackgroundDown,                               t->textError);
     lf->setColour (toolbarBackgroundOver,                               t->backgroundMenu);
