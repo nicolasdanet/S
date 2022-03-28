@@ -27,7 +27,7 @@ public:
 // MARK: -
 
 public:
-    void paint (juce::Graphics&) override;
+    void paint (const juce::Rectangle<int>&, juce::Graphics&) override;
 
 private:
     juce::Component& owner_;

@@ -22,9 +22,9 @@ BoxPainter::BoxPainter (juce::Component& owner, const juce::ValueTree& content) 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BoxPainter::paint (juce::Graphics& g)
+void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    g.setColour (juce::Colours::orange); g.drawRect (g.getClipBounds());
+    g.setColour (juce::Colours::orange); g.drawRect (r);
 }
 
 // -----------------------------------------------------------------------------------------------------------

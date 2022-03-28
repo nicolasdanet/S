@@ -28,7 +28,7 @@ public:
     PainterPolicy& operator = (PainterPolicy&&) = default;
 
 public:
-    virtual void paint (juce::Graphics&) = 0;
+    virtual void paint (const juce::Rectangle<int>&, juce::Graphics&) = 0;
 };
 
 // -----------------------------------------------------------------------------------------------------------

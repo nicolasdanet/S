@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<PainterPolicy> makePainter (juce::Component& owner, const juce::ValueTree& content)
+std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const juce::ValueTree& content)
 {
     return std::make_unique<BoxPainter> (owner, content);
 }
@@ -34,7 +34,7 @@ std::unique_ptr<PainterPolicy> makePainter (juce::Component& owner, const juce::
 ObjectComponent::ObjectComponent (juce::Component& owner, const juce::ValueTree& content) :
     owner_ (owner),
     content_ (content),
-    painter_ (makePainter (owner, content))
+    painter_ (createPainter (owner, content))
 {
     setOpaque (true); setBounds (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Bounds));
         
@@ -61,7 +61,7 @@ core::UniqueId ObjectComponent::getIdentifier() const
 
 void ObjectComponent::paint (juce::Graphics& g)
 {
-    painter_->paint (g);
+    painter_->paint (getLocalBounds(), g);
 }
     
 void ObjectComponent::resized()
