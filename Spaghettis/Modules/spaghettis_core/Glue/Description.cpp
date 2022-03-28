@@ -76,18 +76,7 @@ juce::Rectangle<int> getBounds (t_object* o, const juce::String& buffer)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setAttributesType (Group& group, const juce::String& type)
-{
-    static DelegateCache delegate;
-    
-    group.addParameter (Tags::Type,
-        NEEDS_TRANS ("Type"),
-        NEEDS_TRANS ("Object type"),
-        type,
-        delegate);
-}
-
-void setAttributesBox (Group& group, t_object* o)
+void setAttributesObject (Group& group, t_object* o)
 {
     static DelegateCache delegate;
     
@@ -130,22 +119,11 @@ void setAttributesBox (Group& group, t_object* o)
         delegate);
 }
 
-void setAttributesObject (Group& group, t_object* o)
-{
-    setAttributesType (group, "box");
-    
-    setAttributesBox (group, o);
-}
-
 void setAttributesPatch (Group& group, t_object *o)
 {
     static DelegateCache delegate;
         
     t_glist *g = cast_glist (o);
-    
-    const bool isRoot = glist_isRoot (g);
-    
-    setAttributesType (group, isRoot ? "patch" : "subpatch");
     
     group.addParameter (Tags::Title,
         NEEDS_TRANS ("Title"),
@@ -159,7 +137,7 @@ void setAttributesPatch (Group& group, t_object *o)
         getWindow (g),
         delegate);
     
-    if (!isRoot) { setAttributesBox (group, o); }
+    if (!glist_isRoot (g)) { setAttributesObject (group, o); }
     else {
     //
     group.addParameter (Tags::RunView,
