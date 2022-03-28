@@ -32,6 +32,7 @@ public:
 private:
     juce::Component& owner_;
     juce::ValueTree content_;
+    core::Cached<juce::Colour> backgroundColour_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoxPainter)

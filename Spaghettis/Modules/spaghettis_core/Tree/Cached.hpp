@@ -71,6 +71,11 @@ public:
         onChange = f;
     }
     
+    void attach (juce::Component& component)
+    {
+        attach (&component);
+    }
+    
 private:
     void valueChanged (juce::Value& value) override
     {

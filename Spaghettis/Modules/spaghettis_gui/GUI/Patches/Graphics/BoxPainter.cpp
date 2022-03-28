@@ -13,9 +13,10 @@ namespace spaghettis {
 
 BoxPainter::BoxPainter (juce::Component& owner, const juce::ValueTree& content) :
     owner_ (owner),
-    content_ (content)
+    content_ (content),
+    backgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxBackground))
 {
-
+    backgroundColour_.attach (owner_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -24,7 +25,7 @@ BoxPainter::BoxPainter (juce::Component& owner, const juce::ValueTree& content) 
 
 void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    g.setColour (juce::Colours::orange); g.drawRect (r);
+    g.setColour (backgroundColour_.get()); g.fillRect (r);
 }
 
 // -----------------------------------------------------------------------------------------------------------
