@@ -82,12 +82,6 @@ void setAttributesObject (Group& group, t_object* o)
     
     const juce::String buffer (getContentBuffer (o));
     
-    group.addParameter (Tags::Class,
-        NEEDS_TRANS ("Class"),
-        NEEDS_TRANS ("Class name"),
-        juce::String (class_getNameAsString (pd_class (o))),
-        delegate);
-    
     group.addParameter (Tags::Buffer,
         NEEDS_TRANS ("Buffer"),
         NEEDS_TRANS ("Content of the box"),
