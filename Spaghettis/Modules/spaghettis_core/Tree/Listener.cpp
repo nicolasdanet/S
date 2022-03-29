@@ -24,7 +24,7 @@ void Listener::addParameterHandler (const juce::String& key, std::function<void 
 
 void Listener::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier&)
 {
-    DBG (Tree::getCopyWithSubstitutedDelegates (tree).toXmlString (juce::XmlElement::TextFormat().singleLine().withoutHeader()));
+    DBG (Tree::getCopyPruned (tree).toXmlString (juce::XmlElement::TextFormat().singleLine().withoutHeader()));
         
     if (tree.hasType (Ids::PARAMETER)) { callParameterHandlers (tree); }
     

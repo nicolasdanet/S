@@ -126,7 +126,7 @@ public:
 // MARK: -
 
 public:
-    static juce::ValueTree getCopyWithSubstitutedDelegates (const juce::ValueTree&);
+    static juce::ValueTree getCopyPruned (const juce::ValueTree&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

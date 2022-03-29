@@ -105,7 +105,7 @@ void substituteDelegates (juce::ValueTree& tree)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Tree::getCopyWithSubstitutedDelegates (const juce::ValueTree& tree)
+juce::ValueTree Tree::getCopyPruned (const juce::ValueTree& tree)
 {
     juce::ValueTree t (tree.createCopy());
     
@@ -163,7 +163,7 @@ bool Tree::read (const juce::File& file)
 
 void Tree::write (const juce::File& file) const
 {
-    std::unique_ptr<juce::XmlElement> xml (getCopyWithSubstitutedDelegates (tree_).createXml());
+    std::unique_ptr<juce::XmlElement> xml (getCopyPruned (tree_).createXml());
     
     if (xml) { xml->writeTo (file); }
 }
