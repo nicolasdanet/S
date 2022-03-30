@@ -39,6 +39,7 @@ public:
     const juce::Font& getColourFont() const;
     const juce::Font& getMenuShortcutsFont() const;
     const juce::Font& getTooltipsFont() const;
+    const juce::Font& getObjectsFont() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
