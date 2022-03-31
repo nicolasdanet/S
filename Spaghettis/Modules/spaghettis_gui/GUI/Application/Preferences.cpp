@@ -97,7 +97,7 @@ core::Tree getDefaultPreferences()
     colors.addParameter (Tags::BoxText,
         NEEDS_TRANS ("Box Text"),
         NEEDS_TRANS ("Set text color of objects"),
-        Colours::getPalette()->textDefault);
+        Colours::getPalette()->textSystem);
         
     // getDefaultTest (t);
     
