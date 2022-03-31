@@ -131,9 +131,17 @@ private:
     }
 
 public:
-    int getWidthForString (const juce::String& s) const
+    int getWidthForString (const juce::String& s, int minimumCharacters) const
     {
-        return font_.getStringWidth (s);
+        int w = font_.getStringWidth (s);
+        
+        if (minimumCharacters > 0) {
+        //
+        // TODO: Extand width of the box.
+        //
+        }
+        
+        return w;
     }
     
     int getHeightForString (const juce::String&) const

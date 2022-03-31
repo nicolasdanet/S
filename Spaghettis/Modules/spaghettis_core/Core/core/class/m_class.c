@@ -141,11 +141,9 @@ static void class_defaultView (t_object *o, const juce::String& buffer, juce::Re
 {
     if (r.isEmpty()) {
     //
-    // object_getWidth (o)
-    
     const int x = object_getX (o);
     const int y = object_getY (o);
-    const int w = main_wrapper->getWidthForString (buffer);
+    const int w = main_wrapper->getWidthForString (buffer, object_getWidth (o));
     const int h = main_wrapper->getHeightForString (buffer);
     
     r = juce::Rectangle<int> (x, y, w + 8, h + 8);
