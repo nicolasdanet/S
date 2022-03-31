@@ -34,7 +34,7 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
     g.fillRect (r);
     g.setColour (textColour_.get());
     g.setFont (font_);
-    g.drawText (text, r.reduced (2), juce::Justification::centredLeft, true);
+    g.drawText (text, r.reduced (4), juce::Justification::centredLeft, true);
 }
 
 // -----------------------------------------------------------------------------------------------------------

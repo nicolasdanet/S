@@ -25,8 +25,8 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
     juce::MenuBarModel::setMacMainMenu (menu_.get(), &menu);
         
     #endif
-        
-    core_->start (commandLine);
+    
+    core_->start (commandLine, getLookAndFeel().getObjectsFont());
     
     updateSearchPaths (getSearchPaths(), Inputs::Logged::none);
     

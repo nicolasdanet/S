@@ -135,21 +135,20 @@ static void class_defaultSave (t_object *x, t_buffer *b, int flags)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+extern Wrapper *main_wrapper;
+
 static void class_defaultView (t_object *o, const juce::String& buffer, juce::Rectangle<int>& r)
 {
     if (r.isEmpty()) {
     //
-    const int characterWidth  = 10;     // TODO: Fetch proper values?
-    const int characterHeigth = 24;
-    
-    const int t = object_getWidth (o);
+    // object_getWidth (o)
     
     const int x = object_getX (o);
     const int y = object_getY (o);
-    const int w = ((t > 0) ? t : buffer.length()) * characterWidth;
-    const int h = characterHeigth;
+    const int w = main_wrapper->getWidthForString (buffer);
+    const int h = main_wrapper->getHeightForString (buffer);
     
-    r = juce::Rectangle<int> (x, y, w, h);
+    r = juce::Rectangle<int> (x, y, w + 8, h + 8);
     //
     }
 }

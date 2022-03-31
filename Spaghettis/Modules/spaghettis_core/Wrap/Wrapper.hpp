@@ -21,7 +21,6 @@ class Wrapper : private juce::AsyncUpdater, private juce::Thread {
 public:
     explicit Wrapper() : juce::Thread (juce::String ("Core"))
     {
-    
     }
     
     ~Wrapper() override
@@ -41,9 +40,9 @@ private:
 // MARK: -
 
 public:
-    void start (const juce::StringArray& commandLine)
+    void start (const juce::StringArray& commandLine, const juce::Font& font)
     {
-        setCommandLine (commandLine);
+        setCommandLine (commandLine); setFont (font);
         
         startThread();
     }
@@ -126,10 +125,31 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
+    void setFont (const juce::Font& font)
+    {
+        font_ = font;
+    }
+
+public:
+    int getWidthForString (const juce::String& s) const
+    {
+        return font_.getStringWidth (s);
+    }
+    
+    int getHeightForString (const juce::String&) const
+    {
+        return static_cast <int> (font_.getHeight());
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+private:
     Logger *logger_;
     Post post_;
     juce::StringArray commandLine_;
     Queues queues_;
+    juce::Font font_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Wrapper)
