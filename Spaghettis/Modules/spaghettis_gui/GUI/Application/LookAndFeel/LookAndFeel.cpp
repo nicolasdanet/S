@@ -111,7 +111,7 @@ const juce::Font& LookAndFeel::getTooltipsFont() const
 
 const juce::Font& LookAndFeel::getObjectsFont() const
 {
-    return font18Monospaced_;
+    return font18_;
 }
 
 // -----------------------------------------------------------------------------------------------------------

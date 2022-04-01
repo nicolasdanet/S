@@ -192,7 +192,6 @@ PD_LOCAL t_class *class_new (t_symbol *s,
     c->c_fnData             = NULL;
     c->c_fnDismiss          = NULL;
     #if defined ( PD_BUILDING_APPLICATION )
-    c->c_fnView             = NULL;
     c->c_fnParameters       = NULL;
     #endif
     c->c_hasSignal          = hasSignal;

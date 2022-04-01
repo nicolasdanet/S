@@ -47,7 +47,6 @@ typedef void (*t_savefn)    (t_object *x, t_buffer *b, int flags);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-typedef void (*t_viewfn)        (t_object *x, juce::Rectangle<int>& r);
 typedef void (*t_parametersfn)  (t_object *x, core::Group& t);
 
 #endif
@@ -82,7 +81,6 @@ struct _class {
     t_datafn                c_fnData;
     t_dismissfn             c_fnDismiss;
     #if defined ( PD_BUILDING_APPLICATION )
-    t_viewfn                c_fnView;
     t_parametersfn          c_fnParameters;
     #endif
     int                     c_requirePending;
@@ -254,11 +252,6 @@ static inline int class_hasDismissFunction (t_class *c)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-static inline int class_hasViewFunction (t_class *c)
-{
-    return (c->c_fnView != NULL);
-}
-
 static inline int class_hasParametersFunction (t_class *c)
 {
     return (c->c_fnParameters != NULL);
@@ -287,11 +280,6 @@ static inline t_dismissfn class_getDismissFunction (t_class *c)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-static inline t_viewfn class_getViewFunction (t_class *c)
-{
-    return c->c_fnView;
-}
-
 static inline t_parametersfn class_getParametersFunction (t_class *c)
 {
     return c->c_fnParameters;
@@ -309,11 +297,6 @@ static inline void class_setSaveFunction (t_class *c, t_savefn f)
 }
 
 #if defined ( PD_BUILDING_APPLICATION )
-
-static inline void class_setViewFunction (t_class *c, t_viewfn f)
-{
-    c->c_fnView = f;
-}
 
 static inline void class_setParametersFunction (t_class *c, t_parametersfn f)
 {

@@ -43,11 +43,11 @@ juce::Rectangle<int> BoxPainter::getBounds()
     const int w = font_.getStringWidth (text);
     const int h = static_cast <int> (font_.getHeight());
     
-    juce::Rectangle<int> bounds (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Bounds));
+    juce::Rectangle<int> r (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Position));
     
-    bounds.setSize (w + 8, h + 8);
+    r.setSize (w + 8, h + 8);
     
-    return bounds;
+    return r;
 }
 
 // -----------------------------------------------------------------------------------------------------------
