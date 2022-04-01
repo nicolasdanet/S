@@ -40,9 +40,9 @@ private:
 // MARK: -
 
 public:
-    void start (const juce::StringArray& commandLine, const juce::Font& font)
+    void start (const juce::StringArray& commandLine)
     {
-        setCommandLine (commandLine); setFont (font);
+        setCommandLine (commandLine);
         
         startThread();
     }
@@ -125,40 +125,11 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    void setFont (const juce::Font& font)
-    {
-        font_ = font;
-    }
-
-public:
-    int getWidthForString (const juce::String& s, int minimumCharacters) const
-    {
-        int w = font_.getStringWidth (s);
-        
-        if (minimumCharacters > 0) {
-        //
-        // TODO: Extand width of the box.
-        //
-        }
-        
-        return w;
-    }
-    
-    int getHeightForString (const juce::String&) const
-    {
-        return static_cast <int> (font_.getHeight());
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-private:
     Logger *logger_;
     Post post_;
     juce::StringArray commandLine_;
     Queues queues_;
-    juce::Font font_;
-    
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Wrapper)
 };

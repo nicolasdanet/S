@@ -26,7 +26,7 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
         
     #endif
     
-    core_->start (commandLine, getLookAndFeel().getObjectsFont());
+    core_->start (commandLine);
     
     updateSearchPaths (getSearchPaths(), Inputs::Logged::none);
     

@@ -63,11 +63,16 @@ juce::Rectangle<int> getWindow (t_glist* glist)
     return juce::Rectangle<int> (x, y, w, h);
 }
 
-juce::Rectangle<int> getBounds (t_object* o, const juce::String& buffer)
+juce::Rectangle<int> getBounds (t_object* o)
 {
-    juce::Rectangle<int> bounds;
+    const int x = object_getX (o);
+    const int y = object_getY (o);
+    const int w = 0;
+    const int h = 0;
     
-    (*class_getViewFunction (pd_class (o))) (o, buffer, bounds);
+    juce::Rectangle<int> bounds (x, y, w, h);
+    
+    if (class_hasViewFunction (pd_class (o))) { (*class_getViewFunction (pd_class (o))) (o, bounds); }
     
     return bounds;
 }
@@ -100,16 +105,16 @@ void setAttributesObject (Group& group, t_object* o)
         object_getNumberOfOutlets (o),
         delegate);
     
-    group.addParameter (Tags::Bounds,
-        NEEDS_TRANS ("Bounds"),
-        NEEDS_TRANS ("Box rectangle"),
-        getBounds (o, buffer),
-        delegate);
-    
     group.addParameter (Tags::Selected,
         NEEDS_TRANS ("Selected"),
         NEEDS_TRANS ("Selected state"),
         static_cast<bool> (object_getSelected (o)),
+        delegate);
+    
+    group.addParameter (Tags::Bounds,
+        NEEDS_TRANS ("Bounds"),
+        NEEDS_TRANS ("Box rectangle"),
+        getBounds (o),
         delegate);
 }
 
