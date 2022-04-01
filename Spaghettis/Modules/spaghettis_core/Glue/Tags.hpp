@@ -48,10 +48,12 @@ namespace Keywords {
     DECLARE_STRING (Inlets);
     DECLARE_STRING (Outlets);
     DECLARE_STRING (Path);
-    DECLARE_STRING (Position);
     DECLARE_STRING (RunView);
     DECLARE_STRING (Selected);
     DECLARE_STRING (Title);
+    DECLARE_STRING (Width);
+    DECLARE_STRING (X);
+    DECLARE_STRING (Y);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
