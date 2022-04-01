@@ -39,11 +39,15 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 
 juce::Rectangle<int> BoxPainter::getBounds()
 {
+    juce::Rectangle<int> r (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Position));
     const juce::String text (core::Object::getAttribute<juce::String> (content_, Tags::Buffer));
     const int w = font_.getStringWidth (text);
     const int h = static_cast <int> (font_.getHeight());
+    const int characters = r.getWidth();
     
-    juce::Rectangle<int> r (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Position));
+    if (characters != 0) {
+        // TODO: Implement required size in characters.
+    }
     
     r.setSize (w + 8, h + 8);
     
