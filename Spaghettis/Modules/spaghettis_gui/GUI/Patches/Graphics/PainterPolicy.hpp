@@ -29,6 +29,7 @@ public:
 
 public:
     virtual void paint (const juce::Rectangle<int>&, juce::Graphics&) = 0;
+    virtual juce::Rectangle<int> getBounds() = 0;
 };
 
 // -----------------------------------------------------------------------------------------------------------

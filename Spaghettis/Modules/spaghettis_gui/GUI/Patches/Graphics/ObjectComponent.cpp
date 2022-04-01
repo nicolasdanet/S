@@ -36,9 +36,7 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const juce::ValueTree&
     content_ (content),
     painter_ (createPainter (owner, content))
 {
-    setOpaque (true);
-    
-    setBounds (core::Object::getAttribute<juce::Rectangle<int>> (content_, Tags::Bounds));
+    setOpaque (true); setBounds (painter_->getBounds());
         
     owner_.addAndMakeVisible (this);
 }

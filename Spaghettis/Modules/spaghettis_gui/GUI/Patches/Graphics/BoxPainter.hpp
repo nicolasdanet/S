@@ -29,6 +29,9 @@ public:
 public:
     void paint (const juce::Rectangle<int>&, juce::Graphics&) override;
 
+public:
+    juce::Rectangle<int> getBounds() override;
+
 private:
     juce::Component& owner_;
     juce::ValueTree content_;
