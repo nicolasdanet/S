@@ -31,8 +31,6 @@ public:
 
     ~Patch()
     {
-        DBG (core::Tree::getCopyPruned (tree_).toXmlString());
-        
         releaseAllWindows();
     }
 

@@ -41,6 +41,13 @@ template <class T> static T getAttribute (const juce::ValueTree& t, const juce::
     return cast::fromVar<T> (p.getValue());
 }
 
+static void copyFrom (juce::ValueTree& t, const core::Description& v)
+{
+    jassert (t.hasType (Ids::OBJECT));
+    
+    Tree (t.getChildWithName (Ids::DATA)).copyFrom (v);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
