@@ -67,16 +67,25 @@ juce::Rectangle<int> getWindow (t_glist* glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void setAttributesClass (Group& group, t_object* o)
+{
+    static DelegateCache delegate;
+    
+    group.addParameter (Tags::Class,
+        NEEDS_TRANS ("Class"),
+        NEEDS_TRANS ("Class of the object"),
+        juce::String (class_getNameAsString (pd_class (o))),
+        delegate);
+}
+
 void setAttributesObject (Group& group, t_object* o)
 {
     static DelegateCache delegate;
     
-    const juce::String buffer (getContentBuffer (o));
-    
     group.addParameter (Tags::Buffer,
         NEEDS_TRANS ("Buffer"),
         NEEDS_TRANS ("Content of the box"),
-        buffer,
+        getContentBuffer (o),
         delegate);
     
     group.addParameter (Tags::Inlets,
@@ -159,6 +168,8 @@ void setAttributesPatch (Group& group, t_object *o)
 void setAttributes (Tree& tree, t_object* o)
 {
     Group group (tree.addGroup (Tags::Attributes, true));
+    
+    setAttributesClass (group, o);
     
     if (object_isCanvas (o)) { setAttributesPatch (group, o); }
     else {

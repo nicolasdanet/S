@@ -44,6 +44,7 @@ namespace Keywords {
     DECLARE_STRING (Parameters);
     
     DECLARE_STRING (Buffer);
+    DECLARE_STRING (Class);
     DECLARE_STRING (EditView);
     DECLARE_STRING (Inlets);
     DECLARE_STRING (Outlets);

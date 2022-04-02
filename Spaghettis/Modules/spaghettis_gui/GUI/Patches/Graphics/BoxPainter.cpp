@@ -26,9 +26,34 @@ BoxPainter::BoxPainter (juce::Component& owner, const juce::ValueTree& content) 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::String getTextToDraw (const juce::ValueTree& t)
+{
+    juce::String text (core::Object::getAttribute<juce::String> (t, Tags::Buffer));
+    
+    if (text.isEmpty()) {
+        text = core::Object::getAttribute<juce::String> (t, Tags::Class);
+    }
+    
+    return text;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    const juce::String text (core::Object::getAttribute<juce::String> (content_, Tags::Buffer));
+    const juce::String text (getTextToDraw (content_));
     
     g.setColour (backgroundColour_.get());
     g.fillRect (r);
@@ -39,7 +64,7 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 
 juce::Rectangle<int> BoxPainter::getBounds()
 {
-    const juce::String text (core::Object::getAttribute<juce::String> (content_, Tags::Buffer));
+    const juce::String text (getTextToDraw (content_));
     
     const int x = core::Object::getAttribute<int> (content_, Tags::X);
     const int y = core::Object::getAttribute<int> (content_, Tags::Y);
