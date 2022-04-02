@@ -32,7 +32,7 @@ bool isChildOf (const juce::ValueTree& t, juce::ValueTree& child)
 
 void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier& i)
 {
-    DBG (i.toString());
+    DBG ("Property Changed");
 }
 
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
@@ -44,7 +44,22 @@ void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child
 {
     if (isChildOf (content_, child) && child.hasType (Ids::OBJECT)) { objects_.remove (child); }
 }
- 
+
+void EditView::valueTreeChildOrderChanged (juce::ValueTree&, int, int)
+{
+    DBG ("Order Changed");
+}
+
+void EditView::valueTreeParentChanged (juce::ValueTree&)
+{
+    DBG ("Parent Changed");
+}
+
+void EditView::valueTreeRedirected (juce::ValueTree&)
+{
+    DBG ("Tree Redirected");
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
