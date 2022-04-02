@@ -37,12 +37,12 @@ void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identif
 
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    if (isChildOf (t, child) && child.hasType (Ids::OBJECT)) { objects_.add (child); }
+    if (isChildOf (content_, child) && child.hasType (Ids::OBJECT)) { objects_.add (child); }
 }
 
 void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    if (isChildOf (t, child) && child.hasType (Ids::OBJECT)) { objects_.remove (child); }
+    if (isChildOf (content_, child) && child.hasType (Ids::OBJECT)) { objects_.remove (child); }
 }
  
 // -----------------------------------------------------------------------------------------------------------

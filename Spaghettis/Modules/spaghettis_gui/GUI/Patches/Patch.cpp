@@ -53,7 +53,6 @@ void Patch::addObject (const core::UniquePath& u, const core::Description& v)
     
     if (object.isValid()) {
         object.copyPropertiesAndChildrenFrom (v, nullptr);
-        jassertfalse;                                                   /* Is this possible? */
     } else {
         parent.appendChild (v, nullptr);
     }
