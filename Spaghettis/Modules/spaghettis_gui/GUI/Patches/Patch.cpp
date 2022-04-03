@@ -54,7 +54,7 @@ void Patch::add (const core::UniquePath& u, const core::Description& v)
     if (object.isValid()) {
         core::Object (object).copyFrom (v);
     } else {
-        parent.appendChild (v.toTree(), nullptr);
+        parent.appendChild (v.asValueTree(), nullptr);
     }
 }
 

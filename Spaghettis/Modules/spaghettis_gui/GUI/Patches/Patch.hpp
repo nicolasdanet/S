@@ -24,7 +24,7 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (const core::Description& v) : tree_ (v.toTree()), dirty_ (false)
+    explicit Patch (const core::Description& v) : tree_ (v.asValueTree()), dirty_ (false)
     {
         openWindow();
     }

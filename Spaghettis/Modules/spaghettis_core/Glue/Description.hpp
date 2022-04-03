@@ -47,7 +47,7 @@ public:
 // MARK: -
 
 public:
-    juce::ValueTree toTree() const
+    juce::ValueTree asValueTree() const
     {
         return t_;
     }

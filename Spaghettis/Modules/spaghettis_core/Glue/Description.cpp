@@ -210,7 +210,7 @@ Description Description::object (UniqueId identifier, struct _object* o)
     setAttributes (tree, o);
     setParameters (tree, o);
     
-    t.appendChild (tree, nullptr);
+    t.appendChild (tree.asValueTree(), nullptr);
     //
     }
     

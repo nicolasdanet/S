@@ -62,7 +62,7 @@ private:
 // MARK: -
 
 private:
-    operator juce::ValueTree() const
+    juce::ValueTree asValueTree() const
     {
         return tree_;
     }
