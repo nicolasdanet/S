@@ -31,10 +31,10 @@ std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const juce
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ObjectComponent::ObjectComponent (juce::Component& owner, const juce::ValueTree& content) :
+ObjectComponent::ObjectComponent (juce::Component& owner, const juce::ValueTree& tree) :
     owner_ (owner),
-    content_ (content),
-    painter_ (createPainter (owner, content))
+    tree_ (tree),
+    painter_ (createPainter (owner, tree))
 {
     setOpaque (true); setBounds (painter_->getBounds());
         
@@ -52,7 +52,7 @@ ObjectComponent::~ObjectComponent()
 
 core::UniqueId ObjectComponent::getIdentifier() const
 {
-    return core::Object (content_).getIdentifier();
+    return core::Object (tree_).getIdentifier();
 }
 
 // -----------------------------------------------------------------------------------------------------------

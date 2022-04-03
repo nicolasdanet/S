@@ -19,10 +19,10 @@ class PatchWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit PatchWindow (Patch& owner, const juce::ValueTree& content) :
-        BaseWindow (core::Object (content).getAttribute<juce::String> (Tags::Title)),
+    explicit PatchWindow (Patch& owner, const juce::ValueTree& tree) :
+        BaseWindow (core::Object (tree).getAttribute<juce::String> (Tags::Title)),
         owner_ (owner),
-        content_ (content)
+        tree_ (tree)
     {
     }
 
@@ -35,7 +35,7 @@ public:
 public:
     bool isRoot() const
     {
-        return (content_.getParent().isValid() == false);
+        return (tree_.getParent().isValid() == false);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ private:
     Patch& owner_;
 
 private:
-    juce::ValueTree content_;
+    juce::ValueTree tree_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchWindow)
