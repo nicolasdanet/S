@@ -197,7 +197,7 @@ void setParameters (Tree& tree, t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Description Description::view (UniqueId identifier, struct _object* o)
+Description Description::object (UniqueId identifier, struct _object* o)
 {
     juce::ValueTree t (Ids::OBJECT);
     

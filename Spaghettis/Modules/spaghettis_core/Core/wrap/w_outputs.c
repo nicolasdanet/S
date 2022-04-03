@@ -124,7 +124,7 @@ PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
     const UniquePath u (x, owner);
     
-    wrapper_send (Outputs::objectAdded (u, Description::view (u.getIdentifier(), x)));
+    wrapper_send (Outputs::objectAdded (u, Description::object (u.getIdentifier(), x)));
 }
 
 PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)

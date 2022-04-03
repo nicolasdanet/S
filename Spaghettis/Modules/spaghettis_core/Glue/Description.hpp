@@ -47,17 +47,17 @@ public:
 // MARK: -
 
 public:
-    operator juce::ValueTree() const
+    juce::ValueTree toTree() const
     {
         return t_;
     }
-
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    static Description view (UniqueId, struct _object*);
+    static Description object (UniqueId, struct _object*);
       
 private:
     juce::ValueTree t_;
