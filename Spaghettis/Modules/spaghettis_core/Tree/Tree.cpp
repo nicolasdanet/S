@@ -152,7 +152,7 @@ void readFrom (Tree& tree, const juce::ValueTree& other)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Tree::copyFrom (const juce::ValueTree& t)
+void Tree::copyFrom (const Description& t)
 {
     readFrom (*this, getCopyPruned (t));
 }
