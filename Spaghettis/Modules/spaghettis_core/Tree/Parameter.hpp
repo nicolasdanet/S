@@ -79,6 +79,12 @@ private:
 public:
     ~Parameter() = default;
 
+public:
+    Parameter (const Parameter&) = default;
+    Parameter (Parameter&&) = default;
+    Parameter& operator = (const Parameter&) = default;
+    Parameter& operator = (Parameter&&) = default;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -171,14 +177,11 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    Parameter (const Parameter&) = default;
-    Parameter (Parameter&&) = default;
-    Parameter& operator = (const Parameter&) = default;
-    Parameter& operator = (Parameter&&) = default;
-    
 private:
     juce::ValueTree parameter_;
+
+private:
+    JUCE_LEAK_DETECTOR (Parameter)
 };
 
 // -----------------------------------------------------------------------------------------------------------
