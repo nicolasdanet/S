@@ -19,11 +19,11 @@ class EditWindow : public PatchWindow {
 // MARK: -
 
 public:
-    explicit EditWindow (Patch& owner, const juce::ValueTree& content) : PatchWindow (owner, content)
+    explicit EditWindow (Patch& owner, const juce::ValueTree& tree) : PatchWindow (owner, tree)
     {
-        setContentOwned (new EditComponent (owner, content), true);
+        setContentOwned (new EditComponent (owner, tree), true);
         
-        makeVisible (getEditWindowPosition (content));
+        makeVisible (getEditWindowPosition (tree));
     }
 
     ~EditWindow() = default;

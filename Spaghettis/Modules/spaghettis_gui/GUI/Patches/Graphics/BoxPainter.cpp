@@ -11,9 +11,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-BoxPainter::BoxPainter (juce::Component& owner, const juce::ValueTree& content) :
+BoxPainter::BoxPainter (juce::Component& owner, const juce::ValueTree& tree) :
     owner_ (owner),
-    content_ (content),
+    object_ (tree),
     font_ (Spaghettis()->getLookAndFeel().getObjectsFont()),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxBackground)),
     textColour_ (Spaghettis()->getCachedColour (Tags::BoxText))
@@ -31,12 +31,12 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::String getTextToDraw (const juce::ValueTree& t)
+juce::String getTextToDraw (const core::Object& o)
 {
-    juce::String text (core::Object (t).getAttribute<juce::String> (Tags::Buffer));
+    juce::String text (o.getAttribute<juce::String> (Tags::Buffer));
     
     if (text.isEmpty()) {
-        text = core::Object (t).getAttribute<juce::String> (Tags::Class);
+        text = o.getAttribute<juce::String> (Tags::Class);
     }
     
     return text;
@@ -53,7 +53,7 @@ juce::String getTextToDraw (const juce::ValueTree& t)
 
 void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    const juce::String text (getTextToDraw (content_));
+    const juce::String text (getTextToDraw (object_));
     
     g.setColour (backgroundColour_.get());
     g.fillRect (r);
@@ -64,10 +64,10 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 
 juce::Rectangle<int> BoxPainter::getBounds()
 {
-    const juce::String text (getTextToDraw (content_));
+    const juce::String text (getTextToDraw (object_));
     
-    const int x = core::Object (content_).getAttribute<int> (Tags::X);
-    const int y = core::Object (content_).getAttribute<int> (Tags::Y);
+    const int x = object_.getAttribute<int> (Tags::X);
+    const int y = object_.getAttribute<int> (Tags::Y);
     const int w = font_.getStringWidth (text);
     const int h = static_cast <int> (font_.getHeight());
 

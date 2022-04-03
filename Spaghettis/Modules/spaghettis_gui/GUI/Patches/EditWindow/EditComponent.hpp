@@ -20,11 +20,11 @@ class EditComponent :   protected EditFactoryHelper,    /* MUST be the first. */
 // MARK: -
 
 public:
-    explicit EditComponent (Patch& owner, const juce::ValueTree& content) :
+    explicit EditComponent (Patch& owner, const juce::ValueTree& tree) :
         EditFactoryHelper (this),
         BaseComponent (getIconsFactory()),
         owner_ (owner),
-        editView_ (content)
+        editView_ (tree)
     {
         addAndMakeVisible (editView_);
         

@@ -19,11 +19,11 @@ class RunWindow : public PatchWindow {
 // MARK: -
 
 public:
-    explicit RunWindow (Patch& owner, const juce::ValueTree& content) : PatchWindow (owner, content)
+    explicit RunWindow (Patch& owner, const juce::ValueTree& tree) : PatchWindow (owner, tree)
     {
-        setContentOwned (new RunComponent (owner, content), true);
+        setContentOwned (new RunComponent (owner, tree), true);
         
-        makeVisible (getRunWindowPosition (content));
+        makeVisible (getRunWindowPosition (tree));
     }
 
     ~RunWindow() = default;

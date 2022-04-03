@@ -34,7 +34,7 @@ public:
 
 private:
     juce::Component& owner_;
-    juce::ValueTree content_;
+    core::Object object_;
     juce::Font font_;
     core::Cached<juce::Colour> backgroundColour_;
     core::Cached<juce::Colour> textColour_;

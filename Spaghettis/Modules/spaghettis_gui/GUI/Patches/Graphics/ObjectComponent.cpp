@@ -17,9 +17,9 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const juce::ValueTree& content)
+std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const juce::ValueTree& tree)
 {
-    return std::make_unique<BoxPainter> (owner, content);
+    return std::make_unique<BoxPainter> (owner, tree);
 }
 
 // -----------------------------------------------------------------------------------------------------------

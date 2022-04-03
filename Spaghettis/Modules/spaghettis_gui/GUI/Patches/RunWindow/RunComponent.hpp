@@ -20,7 +20,7 @@ class RunComponent :    protected RunFactoryHelper,    /* MUST be the first. */
 // MARK: -
 
 public:
-    explicit RunComponent (Patch& owner, const juce::ValueTree& content) :
+    explicit RunComponent (Patch& owner, const juce::ValueTree& tree) :
         RunFactoryHelper (this),
         BaseComponent (getIconsFactory()),
         owner_ (owner)
