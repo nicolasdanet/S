@@ -24,9 +24,9 @@ class Object {
 // MARK: -
 
 public:
-    explicit Object (const juce::ValueTree& t) : t_ (t), o_ (t.getChildWithName (Ids::DATA))
+    explicit Object (const juce::ValueTree& t) : tree_ (t), o_ (t.getChildWithName (Ids::DATA))
     {
-        jassert (t_.hasType (Ids::OBJECT));
+        jassert (tree_.hasType (Ids::OBJECT));
     }
 
 public:
@@ -45,7 +45,7 @@ public:
 public:
     UniqueId getIdentifier() const
     {
-        return cast::fromVar<UniqueId> (t_.getProperty (Ids::identifier));
+        return cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
     }
 
     template <class T> T getAttribute (const juce::String &name) const
@@ -68,7 +68,7 @@ public:
     }
 
 private:
-    juce::ValueTree t_;
+    juce::ValueTree tree_;
     Tree o_;
     
 private:

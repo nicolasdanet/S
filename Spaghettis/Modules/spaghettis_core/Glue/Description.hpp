@@ -29,7 +29,7 @@ class Description {
 // MARK: -
 
 private:
-    explicit Description (const juce::ValueTree& t) : t_ (t)
+    explicit Description (const juce::ValueTree& t) : tree_ (t)
     {
     }
 
@@ -49,7 +49,7 @@ public:
 public:
     juce::ValueTree asValueTree() const
     {
-        return t_;
+        return tree_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ public:
     static Description object (UniqueId, struct _object*);
       
 private:
-    juce::ValueTree t_;
+    juce::ValueTree tree_;
     
 private:
     JUCE_LEAK_DETECTOR (Description)
