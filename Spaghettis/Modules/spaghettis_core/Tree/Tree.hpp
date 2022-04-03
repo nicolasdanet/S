@@ -133,7 +133,6 @@ public:
 // MARK: -
 
 public:
-    static juce::ValueTree getCopyPruned (const juce::ValueTree&);
     static juce::String debug (const juce::ValueTree&);
     
 // -----------------------------------------------------------------------------------------------------------

@@ -96,6 +96,15 @@ void substituteDelegates (juce::ValueTree& tree)
     for (auto child : tree) { substituteDelegates (child); }
 }
 
+juce::ValueTree getCopyPruned (const juce::ValueTree& tree)
+{
+    juce::ValueTree t (tree.createCopy());
+    
+    substituteDelegates (t);
+    
+    return t;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -104,15 +113,6 @@ void substituteDelegates (juce::ValueTree& tree)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-juce::ValueTree Tree::getCopyPruned (const juce::ValueTree& tree)
-{
-    juce::ValueTree t (tree.createCopy());
-    
-    substituteDelegates (t);
-    
-    return t;
-}
 
 juce::String Tree::debug (const juce::ValueTree& tree)
 {
