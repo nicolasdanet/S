@@ -124,17 +124,17 @@ PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
     const UniquePath u (x, owner);
     
-    wrapper_send (Outputs::objectAdded (u, Description::object (u.getIdentifier(), x)));
+    wrapper_send (Outputs::added (u, Description::object (u.getIdentifier(), x)));
 }
 
 PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)
 {
-    wrapper_send (Outputs::objectRemoved (UniquePath (x, owner)));
+    wrapper_send (Outputs::removed (UniquePath (x, owner)));
 }
 
 PD_LOCAL void outputs_objectRenamed (t_object *x, t_glist *owner, t_id t)
 {
-    wrapper_send (Outputs::objectRenamed (UniquePath (x, owner), t));
+    wrapper_send (Outputs::renamed (UniquePath (x, owner), t));
 }
 
 PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)

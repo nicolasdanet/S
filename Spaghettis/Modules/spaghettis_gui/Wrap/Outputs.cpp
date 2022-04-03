@@ -87,35 +87,35 @@ Perform Outputs::patchDirty (core::UniquePath unique, bool isDirty)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Outputs::objectAdded (core::UniquePath unique, core::Description view)
+Perform Outputs::added (core::UniquePath unique, core::Description view)
 {
     return [u = std::move (unique), v = std::move (view)]()
     {
-        Spaghettis()->getPatches().addObject (u, v);
+        Spaghettis()->getPatches().add (u, v);
     };
 }
 
-Perform Outputs::objectChanged (core::UniquePath unique, core::Description view)
+Perform Outputs::changed (core::UniquePath unique, core::Description view)
 {
     return [u = std::move (unique), v = std::move (view)]()
     {
-        Spaghettis()->getPatches().changeObject (u, v);
+        Spaghettis()->getPatches().change (u, v);
     };
 }
 
-Perform Outputs::objectRemoved (core::UniquePath unique)
+Perform Outputs::removed (core::UniquePath unique)
 {
     return [u = std::move (unique)]()
     {
-        Spaghettis()->getPatches().removeObject (u);
+        Spaghettis()->getPatches().remove (u);
     };
 }
 
-Perform Outputs::objectRenamed (core::UniquePath unique, core::UniqueId i)
+Perform Outputs::renamed (core::UniquePath unique, core::UniqueId i)
 {
     return [i, u = std::move (unique)]()
     {
-        Spaghettis()->getPatches().renameObject (u, i);
+        Spaghettis()->getPatches().rename (u, i);
     };
 }
 

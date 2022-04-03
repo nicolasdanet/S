@@ -37,10 +37,10 @@ static Perform patchDirty                   (core::UniquePath, bool);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform objectAdded                  (core::UniquePath, core::Description);
-static Perform objectChanged                (core::UniquePath, core::Description);
-static Perform objectRemoved                (core::UniquePath);
-static Perform objectRenamed                (core::UniquePath, core::UniqueId);
+static Perform added                        (core::UniquePath, core::Description);
+static Perform changed                      (core::UniquePath, core::Description);
+static Perform removed                      (core::UniquePath);
+static Perform renamed                      (core::UniquePath, core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

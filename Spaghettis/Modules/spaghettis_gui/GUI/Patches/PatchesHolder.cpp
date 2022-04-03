@@ -83,31 +83,31 @@ template <class T> void PatchesHolder::perform (const core::UniquePath& u, T f) 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchesHolder::addObject (const core::UniquePath& u, const core::Description& v)
+void PatchesHolder::add (const core::UniquePath& u, const core::Description& v)
 {
     if (u.isRoot()) { roots_.push_back (std::make_shared<Patch> (v)); }
     else {
-        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->addObject (u, v); });
+        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->add (u, v); });
     }
 }
 
-void PatchesHolder::changeObject (const core::UniquePath& u, const core::Description& v)
+void PatchesHolder::change (const core::UniquePath& u, const core::Description& v)
 {
     if (u.isRoot()) { }
     else {
-        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->changeObject (u, v); });
+        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->change (u, v); });
     }
 }
 
-void PatchesHolder::removeObject (const core::UniquePath& u)
+void PatchesHolder::remove (const core::UniquePath& u)
 {
     if (u.isRoot()) { requestClosePatch (u.getRoot(), CloseType::none); }
     else {
-        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->removeObject (u); });
+        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->remove (u); });
     }
 }
 
-void PatchesHolder::renameObject (const core::UniquePath& u, core::UniqueId i)
+void PatchesHolder::rename (const core::UniquePath& u, core::UniqueId i)
 {
 
 }

@@ -46,7 +46,7 @@ juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::addObject (const core::UniquePath& u, const core::Description& v)
+void Patch::add (const core::UniquePath& u, const core::Description& v)
 {
     juce::ValueTree parent (getParent (u));
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
@@ -58,12 +58,12 @@ void Patch::addObject (const core::UniquePath& u, const core::Description& v)
     }
 }
 
-void Patch::changeObject (const core::UniquePath& u, const core::Description& v)
+void Patch::change (const core::UniquePath& u, const core::Description& v)
 {
     
 }
 
-void Patch::removeObject (const core::UniquePath& u)
+void Patch::remove (const core::UniquePath& u)
 {
     juce::ValueTree parent (getParent (u));
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));

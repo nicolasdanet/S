@@ -67,9 +67,9 @@ public:
 // MARK: -
 
 public:
-    void addObject (const core::UniquePath& u, const core::Description& v);
-    void changeObject (const core::UniquePath& u, const core::Description& v);
-    void removeObject (const core::UniquePath& u);
+    void add (const core::UniquePath& u, const core::Description& v);
+    void change (const core::UniquePath& u, const core::Description& v);
+    void remove (const core::UniquePath& u);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
