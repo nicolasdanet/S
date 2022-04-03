@@ -21,7 +21,7 @@ class PreferencesComponent :    public  ParameterView,
 
 public:
     explicit PreferencesComponent (const juce::String& keyName) :
-        ParameterView (Spaghettis()->getPreferences().getTree()),
+        ParameterView (Spaghettis()->getPreferences().getTable()),
         BaseComponent (nullptr, keyName)
     {
         addAndMakeVisible (getPanel());

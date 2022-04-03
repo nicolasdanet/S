@@ -34,7 +34,7 @@ public:
 // MARK: -
 
 public:
-    core::Tree getTree()
+    core::Tree getTable()
     {
         return tree_;
     }

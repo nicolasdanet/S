@@ -39,7 +39,7 @@ public:
     ~DelegateShared() = default;
 
 public:
-    juce::ValueTree getTree() const
+    juce::ValueTree getValueTree() const
     {
         return shared_;
     }
