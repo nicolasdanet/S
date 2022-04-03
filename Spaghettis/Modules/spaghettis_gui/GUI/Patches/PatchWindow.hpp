@@ -20,7 +20,7 @@ class PatchWindow : public BaseWindow {
 
 public:
     explicit PatchWindow (Patch& owner, const juce::ValueTree& content) :
-        BaseWindow (core::Object::getAttribute<juce::String> (content, Tags::Title)),
+        BaseWindow (core::Object (content).getAttribute<juce::String> (Tags::Title)),
         owner_ (owner),
         content_ (content)
     {

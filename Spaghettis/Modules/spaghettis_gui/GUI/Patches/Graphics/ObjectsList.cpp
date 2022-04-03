@@ -19,7 +19,7 @@ namespace {
 
 auto isSameObjectAs (const juce::ValueTree& t)
 {
-    const core::UniqueId identifier = core::Object::getIdentifier (t);
+    const core::UniqueId identifier = core::Object (t).getIdentifier();
     
     return [i = identifier] (const std::unique_ptr<ObjectComponent>& p)
     {

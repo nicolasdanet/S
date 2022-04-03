@@ -52,7 +52,7 @@ ObjectComponent::~ObjectComponent()
 
 core::UniqueId ObjectComponent::getIdentifier() const
 {
-    return core::Object::getIdentifier (content_);
+    return core::Object (content_).getIdentifier();
 }
 
 // -----------------------------------------------------------------------------------------------------------

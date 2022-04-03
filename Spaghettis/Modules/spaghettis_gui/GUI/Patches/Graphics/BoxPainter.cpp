@@ -33,10 +33,10 @@ namespace {
 
 juce::String getTextToDraw (const juce::ValueTree& t)
 {
-    juce::String text (core::Object::getAttribute<juce::String> (t, Tags::Buffer));
+    juce::String text (core::Object (t).getAttribute<juce::String> (Tags::Buffer));
     
     if (text.isEmpty()) {
-        text = core::Object::getAttribute<juce::String> (t, Tags::Class);
+        text = core::Object (t).getAttribute<juce::String> (Tags::Class);
     }
     
     return text;
@@ -66,8 +66,8 @@ juce::Rectangle<int> BoxPainter::getBounds()
 {
     const juce::String text (getTextToDraw (content_));
     
-    const int x = core::Object::getAttribute<int> (content_, Tags::X);
-    const int y = core::Object::getAttribute<int> (content_, Tags::Y);
+    const int x = core::Object (content_).getAttribute<int> (Tags::X);
+    const int y = core::Object (content_).getAttribute<int> (Tags::Y);
     const int w = font_.getStringWidth (text);
     const int h = static_cast <int> (font_.getHeight());
 

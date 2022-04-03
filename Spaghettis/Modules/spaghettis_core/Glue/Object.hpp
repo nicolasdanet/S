@@ -16,7 +16,7 @@ namespace core {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-/*
+
 class Object {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -24,8 +24,9 @@ class Object {
 // MARK: -
 
 public:
-    explicit Object (const juce::ValueTree& t) : t_ (t)
+    explicit Object (const juce::ValueTree& t) : t_ (t), o_ (t.getChildWithName (Ids::DATA))
     {
+        jassert (t_.hasType (Ids::OBJECT));
     }
 
 public:
@@ -37,46 +38,41 @@ public:
     Object& operator = (const Object&) = default;
     Object& operator = (Object&&) = default;
 
-private:
-    juce::ValueTree t_;
-    
-private:
-    JUCE_LEAK_DETECTOR (Object)
-};
-
- */
- 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-struct Object {
+public:
+    UniqueId getIdentifier() const
+    {
+        return cast::fromVar<UniqueId> (t_.getProperty (Ids::identifier));
+    }
 
-static UniqueId getIdentifier (const juce::ValueTree& t)
-{
-    jassert (t.hasType (Ids::OBJECT));
+    template <class T> T getAttribute (const juce::String &name) const
+    {
+        const Parameter p (o_.getParameter (Tags::Attributes, name));
+        
+        jassert (p.getType() == ParameterType<T>::get());
+
+        return cast::fromVar<T> (p.getValue());
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void copyFrom (const core::Description& v)
+    {
+        o_.copyFrom (v);
+    }
+
+private:
+    juce::ValueTree t_;
+    Tree o_;
     
-    return cast::fromVar<core::UniqueId> (t.getProperty (Ids::identifier));
-}
-
-template <class T> static T getAttribute (const juce::ValueTree& t, const juce::String &name)
-{
-    jassert (t.hasType (Ids::OBJECT));
-    
-    const Parameter p (Tree (t.getChildWithName (Ids::DATA)).getParameter (Tags::Attributes, name));
-    
-    jassert (p.getType() == ParameterType<T>::get());
-
-    return cast::fromVar<T> (p.getValue());
-}
-
-static void copyFrom (juce::ValueTree& t, const core::Description& v)
-{
-    jassert (t.hasType (Ids::OBJECT));
-    
-    Tree (t.getChildWithName (Ids::DATA)).copyFrom (v);
-}
-
+private:
+    JUCE_LEAK_DETECTOR (Object)
 };
 
 // -----------------------------------------------------------------------------------------------------------

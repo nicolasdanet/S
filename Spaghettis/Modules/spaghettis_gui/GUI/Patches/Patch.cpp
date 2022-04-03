@@ -52,7 +52,7 @@ void Patch::add (const core::UniquePath& u, const core::Description& v)
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
     
     if (object.isValid()) {
-        core::Object::copyFrom (object, v);
+        core::Object (object).copyFrom (v);
     } else {
         parent.appendChild (v.toTree(), nullptr);
     }

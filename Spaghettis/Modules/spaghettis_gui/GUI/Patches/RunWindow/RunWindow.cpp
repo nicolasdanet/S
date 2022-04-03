@@ -14,7 +14,7 @@ namespace spaghettis {
 
 juce::Rectangle<int> RunWindow::getRunWindowPosition (const juce::ValueTree& t)
 {
-    return core::Object::getAttribute<juce::Rectangle<int>> (t, Tags::RunView);
+    return core::Object (t).getAttribute<juce::Rectangle<int>> (Tags::RunView);
 }
     
 // -----------------------------------------------------------------------------------------------------------
