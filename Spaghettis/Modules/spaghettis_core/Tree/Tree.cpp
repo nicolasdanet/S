@@ -114,6 +114,11 @@ juce::ValueTree Tree::getCopyPruned (const juce::ValueTree& tree)
     return t;
 }
 
+juce::String Tree::debug (const juce::ValueTree& tree)
+{
+    return getCopyPruned (tree).toXmlString();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -149,9 +154,7 @@ void readFrom (Tree& tree, const juce::ValueTree& other)
 
 void Tree::copyFrom (const juce::ValueTree& t)
 {
-    // getCopyPruned()
-    
-    readFrom (*this, t);
+    readFrom (*this, getCopyPruned (t));
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -163,7 +166,7 @@ bool Tree::read (const juce::File& file)
     if (file.existsAsFile() && file.hasFileExtension (".xml")) {
         std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file));
         if (xml) {
-            copyFrom (juce::ValueTree::fromXml (*xml));
+            readFrom (*this, juce::ValueTree::fromXml (*xml));
             return true;
         }
     }

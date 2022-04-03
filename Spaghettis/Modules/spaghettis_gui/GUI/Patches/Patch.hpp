@@ -31,6 +31,8 @@ public:
 
     ~Patch()
     {
+        DBG (core::Tree::debug (tree_));
+        
         releaseAllWindows();
     }
 

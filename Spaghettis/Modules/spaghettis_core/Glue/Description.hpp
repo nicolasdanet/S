@@ -57,16 +57,6 @@ public:
 // MARK: -
 
 public:
-    juce::String asString() const
-    {
-        return Tree::getCopyPruned (t_).toXmlString();
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     static Description view (UniqueId, struct _object*);
       
 private:
