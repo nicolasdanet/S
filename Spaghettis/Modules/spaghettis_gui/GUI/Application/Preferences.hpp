@@ -34,7 +34,7 @@ public:
 // MARK: -
 
 public:
-    core::Tree getTable()
+    core::Data getTable()
     {
         return tree_;
     }
@@ -76,7 +76,7 @@ public:
 
 private:
     juce::File file_;
-    core::Tree tree_;
+    core::Data tree_;
     bool isReading_;
     
 private:

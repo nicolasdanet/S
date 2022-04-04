@@ -15,171 +15,139 @@ namespace core {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-bool Tree::hasParameter (const juce::String& group, const juce::String& key) const
-{
-    if (getGroup (group).hasParameter (key)) { return true; }
-    
-    return false;
-}
-
-Parameter Tree::getParameter (const juce::String& group, const juce::String& key) const
-{
-    jassert (hasParameter (group, key)); return getGroup (group).getParameter (key);
-}
+class Description;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Group Tree::addGroup (const juce::String& name, bool isHidden)
-{
-    jassert (!hasGroup (name));
+class Data {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+friend class Object;
+friend class Description;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+using Iter = core::Iterator<Group>;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit Data (const juce::Identifier& type) : tree_ (type)
+    {
+    }
     
-    juce::ValueTree group (Ids::GROUP);
-    
-    group.setProperty (Ids::name, name, nullptr);
-    group.setProperty (Ids::hidden, isHidden, nullptr);
-    
-    tree_.appendChild (group, nullptr);
+    ~Data() = default;
         
-    return Group (group);
-}
+public:
+    Data (const Data&) = default;
+    Data (Data&&) = default;
+    Data& operator = (const Data&) = default;
+    Data& operator = (Data&&) = default;
+
+private:
+    explicit Data (const juce::ValueTree& tree) : tree_ (tree)
+    {
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool Tree::hasGroup (const juce::String& name) const
-{
-    for (const auto& group : *this) { if (group.getName() == name) { return true; } }
-    
-    return false;
-}
-
-Group Tree::getGroup (const juce::String& name) const
-{
-    for (const auto& group : *this) { if (group.getName() == name) { return group; } }
-    
-    return Group();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-/* Note that for serialization only the key/value pairs are kept. */
+private:
+    juce::ValueTree asValueTree() const
+    {
+        return tree_;
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-void substituteDelegates (juce::ValueTree& tree)
-{
-    if (tree.hasType (Ids::PARAMETER) && tree.hasProperty (Ids::DELEGATE)) {
-    //
-    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Ids::DELEGATE).getObject());
+public:
+    Iter begin() const { return Iter (tree_.begin()); }
+    Iter end() const   { return Iter (tree_.end());   }
     
-    if (p) {
-        tree.setProperty (Ids::key, p->getValueTree().getProperty (Ids::key), nullptr);
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void addListener (Listener* listener)
+    {
+        tree_.addListener (listener);
     }
     
-    tree.removeProperty (Ids::DELEGATE, nullptr);
-    //
+    void removeListener (Listener* listener)
+    {
+        tree_.removeListener (listener);
     }
-    
-    for (auto child : tree) { substituteDelegates (child); }
-}
-
-juce::ValueTree getCopyPruned (const juce::ValueTree& tree)
-{
-    juce::ValueTree t (tree.createCopy());
-    
-    substituteDelegates (t);
-    
-    return t;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String Tree::debug (const juce::ValueTree& tree)
-{
-    return getCopyPruned (tree).toXmlString();
-}
+public:
+    bool      hasParameter (const juce::String&, const juce::String&) const;
+    Parameter getParameter (const juce::String&, const juce::String&) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-void readFrom (Tree& tree, const juce::ValueTree& other)
-{
-    if (other.hasType (Ids::PARAMETER)) {
-    //
-    const juce::String group (other.getParent().getProperty (Ids::name).toString());
-    const juce::String key (other.getProperty (Ids::key).toString());
-    const juce::var v (other.getProperty (Ids::value));
-    
-    if (tree.hasParameter (group, key)) { tree.getParameter (group, key).changeValue (v); }
-    //
-    }
-    
-    for (auto child : other) { readFrom (tree, child); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
+public:
+    Group addGroup (const juce::String&, bool isHidden = false);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Tree::copyFrom (const Description& t)
-{
-    readFrom (*this, getCopyPruned (t.asValueTree()));
-}
+public:
+    bool  hasGroup (const juce::String&) const;
+    Group getGroup (const juce::String&) const;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void copyFrom (const Description&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool Tree::read (const juce::File& file)
-{
-    if (file.existsAsFile() && file.hasFileExtension (".xml")) {
-        std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file));
-        if (xml) {
-            readFrom (*this, juce::ValueTree::fromXml (*xml));
-            return true;
-        }
-    }
-    
-    return false;
-}
+public:
+    bool read  (const juce::File&);
+    void write (const juce::File&) const;
 
-void Tree::write (const juce::File& file) const
-{
-    std::unique_ptr<juce::XmlElement> xml (getCopyPruned (tree_).createXml());
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static juce::String debug (const juce::ValueTree&);
     
-    if (xml) { xml->writeTo (file); }
-}
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+private:
+    juce::ValueTree tree_;
+
+private:
+    JUCE_LEAK_DETECTOR (Data)
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

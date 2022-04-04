@@ -18,7 +18,7 @@ namespace {
 // MARK: -
 
 /*
-void getDefaultTest (core::Tree& t)
+void getDefaultTest (core::Data& t)
 {
     core::Group peace (t.addGroup ("Peace"));
     
@@ -56,9 +56,9 @@ void getDefaultTest (core::Tree& t)
 }
 */
 
-core::Tree getDefaultPreferences()
+core::Data getDefaultPreferences()
 {
-    core::Tree t (Ids::PREFERENCES);
+    core::Data t (Ids::PREFERENCES);
     
     core::Group general (t.addGroup (Tags::General));
     core::Group editing (t.addGroup (Tags::Editing));

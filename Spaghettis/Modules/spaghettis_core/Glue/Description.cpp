@@ -165,7 +165,7 @@ void setAttributesPatch (Group& group, t_object *o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setAttributes (Tree& tree, t_object* o)
+void setAttributes (Data& tree, t_object* o)
 {
     Group group (tree.addGroup (Tags::Attributes, true));
     
@@ -177,7 +177,7 @@ void setAttributes (Tree& tree, t_object* o)
     }
 }
 
-void setParameters (Tree& tree, t_object* o)
+void setParameters (Data& tree, t_object* o)
 {
     t_class* c = pd_class (o);
     
@@ -205,7 +205,7 @@ Description Description::object (UniqueId identifier, struct _object* o)
     
     if (o) {
     //
-    Tree tree (Ids::DATA);
+    Data tree (Ids::DATA);
     
     setAttributes (tree, o);
     setParameters (tree, o);

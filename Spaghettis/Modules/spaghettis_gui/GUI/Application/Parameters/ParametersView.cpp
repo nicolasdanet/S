@@ -111,7 +111,7 @@ void buildConcertinaPanelParameter (const core::Parameter& p, juce::Array<juce::
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParameterView::buildConcertinaPanel (const core::Tree& tree, ParameterView& v)
+void ParameterView::buildConcertinaPanel (const core::Data& tree, ParameterView& v)
 {
     for (const auto& group : tree) {
     //

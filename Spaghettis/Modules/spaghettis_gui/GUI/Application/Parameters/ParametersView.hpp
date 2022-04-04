@@ -24,7 +24,7 @@ friend class ParameterHeader;
 // MARK: -
 
 public:
-    explicit ParameterView (const core::Tree& tree) : tree_ (tree), expanded_ (0), expandedLast_ (0)
+    explicit ParameterView (const core::Data& tree) : tree_ (tree), expanded_ (0), expandedLast_ (0)
     {
         buildConcertinaPanel (tree_, *this);
         
@@ -54,13 +54,13 @@ private:
 // MARK: -
 
 private:
-    static void buildConcertinaPanel (const core::Tree&, ParameterView&);
+    static void buildConcertinaPanel (const core::Data&, ParameterView&);
 
 protected:
     juce::ConcertinaPanel panel_;
 
 private:
-    core::Tree tree_;
+    core::Data tree_;
     int expanded_;
     int expandedLast_;
     

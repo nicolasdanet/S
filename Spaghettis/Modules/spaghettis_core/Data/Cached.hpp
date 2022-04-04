@@ -17,89 +17,89 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Group {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-friend class Tree;
-
-template <class T> friend struct Iterator;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-using Iter = core::Iterator<Parameter>;
+template <class T> class Cached : private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    explicit Group (const juce::ValueTree& group = juce::ValueTree()) : group_ (group)
+    explicit Cached (const core::Data& tree, const juce::String& group, const juce::String& key) :
+        value_ (tree.getParameter (group, key).getValueSource())
     {
+        value_.addListener (this);
     }
 
 public:
-    ~Group() = default;
-    
+    ~Cached() = default;
+
 public:
-    Group (const Group&) = default;
-    Group (Group&&) = default;
-    Group& operator = (const Group&) = default;
-    Group& operator = (Group&&) = default;
+    Cached (Cached&&) = default;
+    Cached& operator = (Cached&&) = default;
+    Cached (const Cached&) = delete;
+    Cached& operator = (const Cached&) = delete;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Iter begin() const { return Iter (group_.begin()); }
-    Iter end() const   { return Iter (group_.end());   }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    juce::String getName() const;
-    bool isHidden() const;
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    template <class T> Parameter addParameter (juce::StringRef key,
-        juce::StringRef label,
-        juce::StringRef info,
-        T t,
-        DelegateManager* p = nullptr)
+    T get() const
     {
-        const Invariant i = { key, ParameterType<T>::get(), label, info };
+        return cast::fromVar<T> (value_.getValue());
+    }
+    
+    operator T() const
+    {
+        return get();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-        return add (p, i, cast::toVar<T> (t));
+public:
+    void attach (juce::Component* component)
+    {
+        auto f = [c = juce::Component::SafePointer<juce::Component>(component)]()
+        {
+            if (c.getComponent()) { c->repaint(); } else { jassertfalse; }
+        };
+        
+        onChange = f;
+    }
+    
+    void attach (juce::Component& component)
+    {
+        attach (&component);
     }
     
 private:
-    Parameter add (DelegateManager*, const Invariant&, juce::var);
-    
+    void valueChanged (juce::Value& value) override
+    {
+        if (onChange != nullptr) { onChange(); }
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    bool      hasParameter (const juce::String&) const;
-    Parameter getParameter (const juce::String&) const;
+    static Cached make (const core::Data& data, const juce::String& group, const juce::String& key)
+    {
+        jassert (data.getParameter (group, key).getType() == ParameterType<T>::get());
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-private:
-    juce::ValueTree group_;
+        return Cached (data, group, key);
+    }
 
 private:
-    JUCE_LEAK_DETECTOR (Group)
+    std::function<void()> onChange;
+    
+private:
+    juce::Value value_;
+    
+private:
+    JUCE_LEAK_DETECTOR (Cached)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -114,3 +114,4 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+

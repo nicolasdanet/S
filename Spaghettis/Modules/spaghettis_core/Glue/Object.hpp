@@ -69,7 +69,7 @@ public:
 
 private:
     juce::ValueTree tree_;
-    Tree o_;
+    Data o_;
     
 private:
     JUCE_LEAK_DETECTOR (Object)
