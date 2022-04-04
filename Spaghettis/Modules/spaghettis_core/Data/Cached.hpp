@@ -36,6 +36,8 @@ public:
 public:
     Cached (Cached&&) = default;
     Cached& operator = (Cached&&) = default;
+
+public:
     Cached (const Cached&) = delete;
     Cached& operator = (const Cached&) = delete;
 
