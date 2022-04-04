@@ -17,9 +17,9 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto isSameObjectAs (const juce::ValueTree& t)
+auto isSameObjectAs (const core::Object& object)
 {
-    const core::UniqueId identifier = core::Object (t).getIdentifier();
+    const core::UniqueId identifier = object.getIdentifier();
     
     return [i = identifier] (const std::unique_ptr<ObjectComponent>& p)
     {
@@ -36,14 +36,14 @@ auto isSameObjectAs (const juce::ValueTree& t)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ObjectsList::add (const juce::ValueTree& t)
+void ObjectsList::add (const core::Object& object)
 {
-    v_.push_back (std::make_unique<ObjectComponent> (owner_, t));
+    v_.push_back (std::make_unique<ObjectComponent> (owner_, object));
 }
 
-void ObjectsList::remove (const juce::ValueTree& t)
+void ObjectsList::remove (const core::Object& object)
 {
-    v_.erase (std::remove_if (v_.begin(), v_.end(), isSameObjectAs (t)), v_.end());
+    v_.erase (std::remove_if (v_.begin(), v_.end(), isSameObjectAs (object)), v_.end());
 }
 
 // -----------------------------------------------------------------------------------------------------------

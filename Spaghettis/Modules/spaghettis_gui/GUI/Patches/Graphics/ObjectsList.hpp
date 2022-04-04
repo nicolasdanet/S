@@ -26,8 +26,8 @@ public:
     ~ObjectsList() = default;
     
 public:
-    void add (const juce::ValueTree&);
-    void remove (const juce::ValueTree&);
+    void add (const core::Object&);
+    void remove (const core::Object&);
 
 private:
     juce::Component& owner_;

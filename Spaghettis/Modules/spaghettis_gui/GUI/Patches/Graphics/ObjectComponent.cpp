@@ -31,10 +31,10 @@ std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const core
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ObjectComponent::ObjectComponent (juce::Component& owner, const juce::ValueTree& tree) :
+ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& object) :
     owner_ (owner),
-    object_ (tree),
-    painter_ (createPainter (owner, object_))
+    object_ (object),
+    painter_ (createPainter (owner, object))
 {
     setOpaque (true); setBounds (painter_->getBounds());
         

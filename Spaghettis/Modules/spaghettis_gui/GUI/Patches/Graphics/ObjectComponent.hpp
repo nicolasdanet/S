@@ -19,7 +19,7 @@ class ObjectComponent : public juce::Component {
 // MARK: -
 
 public:
-    explicit ObjectComponent (juce::Component&, const juce::ValueTree&);
+    explicit ObjectComponent (juce::Component&, const core::Object&);
     
     ~ObjectComponent();
 
