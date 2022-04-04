@@ -40,7 +40,7 @@ public:
 
 private:
     juce::Component& owner_;
-    juce::ValueTree tree_;
+    core::Object object_;
     std::unique_ptr<PainterPolicy> painter_;
     
 private:

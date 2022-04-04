@@ -11,9 +11,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-BoxPainter::BoxPainter (juce::Component& owner, const juce::ValueTree& tree) :
+BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) :
     owner_ (owner),
-    object_ (tree),
+    object_ (object),
     font_ (Spaghettis()->getLookAndFeel().getObjectsFont()),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxBackground)),
     textColour_ (Spaghettis()->getCachedColour (Tags::BoxText))

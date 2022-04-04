@@ -18,7 +18,7 @@ class BoxPainter : public PainterPolicy {
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    explicit BoxPainter (juce::Component& owner, const juce::ValueTree&);
+    explicit BoxPainter (juce::Component& owner, const core::Object&);
     
     ~BoxPainter() = default;
     
