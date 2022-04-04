@@ -18,8 +18,8 @@ BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) :
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxBackground)),
     textColour_ (Spaghettis()->getCachedColour (Tags::BoxText))
 {
-    backgroundColour_.attach (owner_);
-    textColour_.attach (owner_);
+    backgroundColour_.attach (&owner_);
+    textColour_.attach (&owner_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
