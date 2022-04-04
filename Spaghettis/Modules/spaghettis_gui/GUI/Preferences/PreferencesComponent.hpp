@@ -12,8 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PreferencesComponent :    public  ParameterView,
-                                public  BaseComponent {
+class PreferencesComponent :    public ParameterView,
+                                public BaseComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ class PreferencesComponent :    public  ParameterView,
 
 public:
     explicit PreferencesComponent (const juce::String& keyName) :
-        ParameterView (Spaghettis()->getPreferences().getTable()),
+        ParameterView (Spaghettis()->getPreferences().getData()),
         BaseComponent (nullptr, keyName)
     {
         addAndMakeVisible (getPanel());

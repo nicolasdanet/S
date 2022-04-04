@@ -24,7 +24,7 @@ class Object {
 // MARK: -
 
 public:
-    explicit Object (const juce::ValueTree& t) : tree_ (t), o_ (t.getChildWithName (Ids::DATA))
+    explicit Object (const juce::ValueTree& t) : tree_ (t), data_ (t.getChildWithName (Ids::DATA))
     {
         jassert (tree_.hasType (Ids::OBJECT));
     }
@@ -50,7 +50,7 @@ public:
 
     template <class T> T getAttribute (const juce::String &name) const
     {
-        const Parameter p (o_.getParameter (Tags::Attributes, name));
+        const Parameter p (data_.getParameter (Tags::Attributes, name));
         
         jassert (p.getType() == ParameterType<T>::get());
 
@@ -64,12 +64,12 @@ public:
 public:
     void copyFrom (const core::Description& v)
     {
-        o_.copyFrom (v);
+        data_.copyFrom (v);
     }
 
 private:
     juce::ValueTree tree_;
-    Data o_;
+    core::Data data_;
     
 private:
     JUCE_LEAK_DETECTOR (Object)

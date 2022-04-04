@@ -128,7 +128,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void readFrom (Data& tree, const juce::ValueTree& other)
+void readFrom (Data& data, const juce::ValueTree& other)
 {
     if (other.hasType (Ids::PARAMETER)) {
     //
@@ -136,11 +136,11 @@ void readFrom (Data& tree, const juce::ValueTree& other)
     const juce::String key (other.getProperty (Ids::key).toString());
     const juce::var v (other.getProperty (Ids::value));
     
-    if (tree.hasParameter (group, key)) { tree.getParameter (group, key).changeValue (v); }
+    if (data.hasParameter (group, key)) { data.getParameter (group, key).changeValue (v); }
     //
     }
     
-    for (auto child : other) { readFrom (tree, child); }
+    for (auto child : other) { readFrom (data, child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

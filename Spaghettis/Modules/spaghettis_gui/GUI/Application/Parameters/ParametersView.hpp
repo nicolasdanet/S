@@ -24,9 +24,9 @@ friend class ParameterHeader;
 // MARK: -
 
 public:
-    explicit ParameterView (const core::Data& tree) : tree_ (tree), expanded_ (0), expandedLast_ (0)
+    explicit ParameterView (const core::Data& data) : data_ (data), expanded_ (0), expandedLast_ (0)
     {
-        buildConcertinaPanel (tree_, *this);
+        buildConcertinaPanel (data_, *this);
         
         const int primeInterval = 307; startTimer (primeInterval);
     }
@@ -60,7 +60,7 @@ protected:
     juce::ConcertinaPanel panel_;
 
 private:
-    core::Data tree_;
+    core::Data data_;
     int expanded_;
     int expandedLast_;
     

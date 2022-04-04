@@ -34,9 +34,9 @@ public:
 // MARK: -
 
 public:
-    core::Data getTable()
+    core::Data getData()
     {
-        return tree_;
+        return data_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ public:
 public:
     template <class T> core::Cached<T> getCached (const juce::String& group, const juce::String& key) const
     {
-        return core::Cached<T>::make (tree_, group, key);
+        return core::Cached<T>::make (data_, group, key);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ public:
 
 private:
     juce::File file_;
-    core::Data tree_;
+    core::Data data_;
     bool isReading_;
     
 private:

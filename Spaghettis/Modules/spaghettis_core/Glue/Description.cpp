@@ -165,9 +165,9 @@ void setAttributesPatch (Group& group, t_object *o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setAttributes (Data& tree, t_object* o)
+void setAttributes (Data& data, t_object* o)
 {
-    Group group (tree.addGroup (Tags::Attributes, true));
+    Group group (data.addGroup (Tags::Attributes, true));
     
     setAttributesClass (group, o);
     
@@ -177,13 +177,13 @@ void setAttributes (Data& tree, t_object* o)
     }
 }
 
-void setParameters (Data& tree, t_object* o)
+void setParameters (Data& data, t_object* o)
 {
     t_class* c = pd_class (o);
     
     if (class_hasParametersFunction (c)) {
     //
-    Group group (tree.addGroup (Tags::Parameters)); (*class_getParametersFunction (c)) (o, group);
+    Group group (data.addGroup (Tags::Parameters)); (*class_getParametersFunction (c)) (o, group);
     //
     }
 }
@@ -205,12 +205,12 @@ Description Description::object (UniqueId identifier, struct _object* o)
     
     if (o) {
     //
-    Data tree (Ids::DATA);
+    Data data (Ids::DATA);
     
-    setAttributes (tree, o);
-    setParameters (tree, o);
+    setAttributes (data, o);
+    setParameters (data, o);
     
-    t.appendChild (tree.asValueTree(), nullptr);
+    t.appendChild (data.asValueTree(), nullptr);
     //
     }
     

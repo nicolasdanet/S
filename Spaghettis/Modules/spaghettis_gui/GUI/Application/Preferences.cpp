@@ -18,9 +18,9 @@ namespace {
 // MARK: -
 
 /*
-void getDefaultTest (core::Data& t)
+void getDefaultTest (core::Data& data)
 {
-    core::Group peace (t.addGroup ("Peace"));
+    core::Group peace (data.addGroup ("Peace"));
     
     peace.addParameter ("Engine",
         NEEDS_TRANS ("Kind Of Engine"),
@@ -58,11 +58,11 @@ void getDefaultTest (core::Data& t)
 
 core::Data getDefaultPreferences()
 {
-    core::Data t (Ids::PREFERENCES);
+    core::Data data (Ids::PREFERENCES);
     
-    core::Group general (t.addGroup (Tags::General));
-    core::Group editing (t.addGroup (Tags::Editing));
-    core::Group colors  (t.addGroup (Tags::Colors));
+    core::Group general (data.addGroup (Tags::General));
+    core::Group editing (data.addGroup (Tags::Editing));
+    core::Group colors  (data.addGroup (Tags::Colors));
         
     general.addParameter (Tags::AskBeforeQuit,
         NEEDS_TRANS ("Ask Before Quitting"),
@@ -99,9 +99,9 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set text color of objects"),
         Colours::getPalette()->textSystem);
         
-    // getDefaultTest (t);
+    // getDefaultTest (data);
     
-    return t;
+    return data;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ core::Data getDefaultPreferences()
 
 Preferences::Preferences (const juce::File& file) :
     file_ (file),
-    tree_ (getDefaultPreferences()),
+    data_ (getDefaultPreferences()),
     isReading_ (false)
 {
     addParameterHandler (Tags::SnapToGrid, [] (const core::Parameter& p) {
@@ -126,12 +126,12 @@ Preferences::Preferences (const juce::File& file) :
             Spaghettis()->handle (Inputs::setSnapToGridSize (p.getValue()));
         });
     
-    tree_.addListener (this);
+    data_.addListener (this);
 }
 
 Preferences::~Preferences()
 {
-    tree_.removeListener (this);
+    data_.removeListener (this);
     
     write();
 }
@@ -154,7 +154,7 @@ void Preferences::read()
     {
         juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
 
-        if (tree_.read (file_)) { return; }
+        if (data_.read (file_)) { return; }
     }
     
     write();
@@ -162,7 +162,7 @@ void Preferences::read()
 
 void Preferences::write()
 {
-    tree_.write (file_);
+    data_.write (file_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
