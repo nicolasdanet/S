@@ -10,6 +10,7 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) :
     owner_ (owner),
@@ -33,11 +34,20 @@ BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::String BoxPainter::getText() const
+{
+    juce::String text (text_.get()); if (text.isEmpty()) { text = class_.get(); }
+    
+    return text;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    juce::String text (text_.get());
-    
-    if (text.isEmpty()) { text = class_.get(); }
+    const juce::String text (getText());
     
     g.setColour (backgroundColour_.get());
     g.fillRect (r);
@@ -48,9 +58,7 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 
 juce::Rectangle<int> BoxPainter::getBounds()
 {
-    juce::String text (text_.get());
-    
-    if (text.isEmpty()) { text = class_.get(); }
+    const juce::String text (getText());
     
     const int x = x_.get();
     const int y = y_.get();

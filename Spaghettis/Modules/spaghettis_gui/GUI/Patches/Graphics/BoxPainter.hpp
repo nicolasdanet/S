@@ -33,6 +33,9 @@ public:
     juce::Rectangle<int> getBounds() override;
 
 private:
+    juce::String getText() const;
+    
+private:
     juce::Component& owner_;
     juce::Font font_;
     core::Cached<juce::Colour> backgroundColour_;
