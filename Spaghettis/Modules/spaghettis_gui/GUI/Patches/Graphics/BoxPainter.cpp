@@ -26,8 +26,8 @@ BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) :
     textColour_.attach (Painter::repaint (&owner_));
     text_.attach (Painter::repaint (&owner_));
     class_.attach (Painter::repaint (&owner_));
-    //x_.attach (&owner_);
-    //y_.attach (&owner_);
+    x_.attach (Painter::resize (&owner_, this));
+    y_.attach (Painter::resize (&owner_, this));
 }
 
 // -----------------------------------------------------------------------------------------------------------

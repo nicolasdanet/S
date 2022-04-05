@@ -34,7 +34,7 @@ std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const core
 ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& object) :
     owner_ (owner),
     object_ (object),
-    painter_ (createPainter (owner, object))
+    painter_ (createPainter (*this, object))
 {
     setOpaque (true); setBounds (painter_->getBounds());
         
