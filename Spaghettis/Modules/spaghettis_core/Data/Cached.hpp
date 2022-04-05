@@ -25,7 +25,7 @@ template <class T> class Cached : private juce::Value::Listener {
 
 private:
     explicit Cached (const core::Data& data, const juce::String& group, const juce::String& key) :
-        value_ (data.getParameter (group, key).getValueSource())
+        value_ (data.getParameter (group, key).getValueAsValue())
     {
         value_.addListener (this);
     }
@@ -38,7 +38,7 @@ public:
     Cached& operator = (Cached&&) = default;
 
 public:
-    Cached (const Cached&) = delete;
+    Cached (const Cached&) = delete;                            /* Movable only. */
     Cached& operator = (const Cached&) = delete;
 
 // -----------------------------------------------------------------------------------------------------------

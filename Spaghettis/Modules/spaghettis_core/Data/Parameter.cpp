@@ -80,7 +80,7 @@ juce::var Parameter::getValue() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Value Parameter::getValueSource() const
+juce::Value Parameter::getValueAsValue() const
 {
     return filtered (getSource (Ids::value));
 }

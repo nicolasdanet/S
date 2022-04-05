@@ -20,7 +20,7 @@ template <class T> class ParameterNumber : public juce::TextPropertyComponent {
 
 public:
     explicit ParameterNumber (const core::Parameter& p) :
-        juce::TextPropertyComponent (p.getValueSource(), p.getLabel(), 32, false),
+        juce::TextPropertyComponent (p.getValueAsValue(), p.getLabel(), 32, false),
         v_(),
         range_ (p)
     {
@@ -103,7 +103,7 @@ class ParameterSlider : public juce::SliderPropertyComponent {
 
 public:
     explicit ParameterSlider (const core::Parameter& p) :
-        SliderPropertyComponent (p.getValueSource(),
+        SliderPropertyComponent (p.getValueAsValue(),
             p.getLabel(),
             p.getMinimumAsDouble(),
             p.getMaximumAsDouble(),

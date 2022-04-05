@@ -19,7 +19,7 @@ class ParameterText : public juce::TextPropertyComponent {
 
 public:
     explicit ParameterText (const core::Parameter& p)
-        : juce::TextPropertyComponent (p.getValueSource(), p.getLabel(), 64, false)
+        : juce::TextPropertyComponent (p.getValueAsValue(), p.getLabel(), 64, false)
     {
         setInterestedInFileDrag (false);
     }
