@@ -22,10 +22,10 @@ BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) :
     x_ (object.getCachedAttribute<int> (Tags::X)),
     y_ (object.getCachedAttribute<int> (Tags::Y))
 {
-    backgroundColour_.attach (core::Functors::repaint (&owner_));
-    textColour_.attach (core::Functors::repaint (&owner_));
-    text_.attach (core::Functors::repaint (&owner_));
-    class_.attach (core::Functors::repaint (&owner_));
+    backgroundColour_.attach (Painter::repaint (&owner_));
+    textColour_.attach (Painter::repaint (&owner_));
+    text_.attach (Painter::repaint (&owner_));
+    class_.attach (Painter::repaint (&owner_));
     //x_.attach (&owner_);
     //y_.attach (&owner_);
 }

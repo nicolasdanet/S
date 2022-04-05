@@ -56,7 +56,6 @@
 #include "Data/Invariant.hpp"
 #include "Data/Delegate.hpp"
 #include "Data/Filter.hpp"
-#include "Data/Functors.hpp"
 #include "Data/Parameter.hpp"
 #include "Data/Group.hpp"
 #include "Data/Observer.hpp"
