@@ -13,38 +13,20 @@ namespace spaghettis {
 
 BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) :
     owner_ (owner),
-    object_ (object),
     font_ (Spaghettis()->getLookAndFeel().getObjectsFont()),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxBackground)),
-    textColour_ (Spaghettis()->getCachedColour (Tags::BoxText))
+    textColour_ (Spaghettis()->getCachedColour (Tags::BoxText)),
+    text_ (object.getCachedAttribute<juce::String> (Tags::Buffer)),
+    class_ (object.getCachedAttribute<juce::String> (Tags::Class)),
+    x_ (object.getCachedAttribute<int> (Tags::X)),
+    y_ (object.getCachedAttribute<int> (Tags::Y))
 {
     backgroundColour_.attach (&owner_);
     textColour_.attach (&owner_);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-juce::String getTextToDraw (const core::Object& o)
-{
-    juce::String text (o.getAttribute<juce::String> (Tags::Buffer));
-    
-    if (text.isEmpty()) {
-        text = o.getAttribute<juce::String> (Tags::Class);
-    }
-    
-    return text;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
+    //text_.attach (&owner_);
+    //class_.attach (&owner_);
+    //x_.attach (&owner_);
+    //y_.attach (&owner_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -53,7 +35,9 @@ juce::String getTextToDraw (const core::Object& o)
 
 void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    const juce::String text (getTextToDraw (object_));
+    juce::String text (text_.get());
+    
+    if (text.isEmpty()) { text = class_.get(); }
     
     g.setColour (backgroundColour_.get());
     g.fillRect (r);
@@ -64,10 +48,12 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 
 juce::Rectangle<int> BoxPainter::getBounds()
 {
-    const juce::String text (getTextToDraw (object_));
+    juce::String text (text_.get());
     
-    const int x = object_.getAttribute<int> (Tags::X);
-    const int y = object_.getAttribute<int> (Tags::Y);
+    if (text.isEmpty()) { text = class_.get(); }
+    
+    const int x = x_.get();
+    const int y = y_.get();
     const int w = font_.getStringWidth (text);
     const int h = static_cast <int> (font_.getHeight());
 
