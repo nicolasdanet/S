@@ -45,21 +45,6 @@ void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child
     if (isChildOf (tree_, child) && child.hasType (Ids::OBJECT)) { objects_.remove (core::Object (child)); }
 }
 
-void EditView::valueTreeChildOrderChanged (juce::ValueTree&, int, int)
-{
-    DBG ("Order Changed");
-}
-
-void EditView::valueTreeParentChanged (juce::ValueTree&)
-{
-    DBG ("Parent Changed");
-}
-
-void EditView::valueTreeRedirected (juce::ValueTree&)
-{
-    DBG ("Tree Redirected");
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

@@ -55,10 +55,6 @@ public:
     void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override;
     void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
     void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
-                  
-    void valueTreeChildOrderChanged (juce::ValueTree&, int, int) override;
-    void valueTreeParentChanged (juce::ValueTree&) override;
-    void valueTreeRedirected (juce::ValueTree&) override;
         
 private:
     juce::ValueTree tree_;
