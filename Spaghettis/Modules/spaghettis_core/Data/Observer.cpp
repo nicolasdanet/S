@@ -17,19 +17,19 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Listener::addParameterHandler (const juce::String& key, std::function<void (const Parameter&)> f)
+void Observer::addParameterHandler (const juce::String& key, std::function<void (const Parameter&)> f)
 {
     handlers_.emplace_back (key, f);
 }
 
-void Listener::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier&)
+void Observer::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier&)
 {
     if (tree.hasType (Ids::PARAMETER)) { callParameterHandlers (tree); }
     
     treeHasChanged();
 }
     
-void Listener::callParameterHandlers (const juce::ValueTree& tree)
+void Observer::callParameterHandlers (const juce::ValueTree& tree)
 {
     const Parameter parameter (tree);
     

@@ -48,6 +48,11 @@ public:
         return cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     template <class T> T getAttribute (const juce::String &name) const
     {
         const Parameter p (data_.getParameter (Tags::Attributes, name));
@@ -57,6 +62,11 @@ public:
         return cast::fromVar<T> (p.getValue());
     }
 
+    template <class T> core::Cached<T> getCachedAttribute (const juce::String& name) const
+    {
+        return core::Cached<T>::make (data_, Tags::Attributes, name);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

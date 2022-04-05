@@ -17,7 +17,7 @@ namespace core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Listener : public juce::ValueTree::Listener {
+class Observer : public juce::ValueTree::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -51,14 +51,14 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    Listener()  = default;
-    ~Listener() = default;
+    Observer()  = default;
+    ~Observer() = default;
 
 public:
-    Listener (const Listener&) = default;
-    Listener (Listener&&) = default;
-    Listener& operator = (const Listener&) = default;
-    Listener& operator = (Listener&&) = default;
+    Observer (const Observer&) = default;
+    Observer (Observer&&) = default;
+    Observer& operator = (const Observer&) = default;
+    Observer& operator = (Observer&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -88,7 +88,7 @@ private:
     std::vector<Handler> handlers_;
 
 private:
-    JUCE_LEAK_DETECTOR (Listener)
+    JUCE_LEAK_DETECTOR (Observer)
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

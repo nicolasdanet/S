@@ -126,12 +126,12 @@ Preferences::Preferences (const juce::File& file) :
             Spaghettis()->handle (Inputs::setSnapToGridSize (p.getValue()));
         });
     
-    data_.addListener (this);
+    data_.addObserver (this);
 }
 
 Preferences::~Preferences()
 {
-    data_.removeListener (this);
+    data_.removeObserver (this);
     
     write();
 }

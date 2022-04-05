@@ -80,14 +80,14 @@ public:
 // MARK: -
 
 public:
-    void addListener (Listener* listener)
+    void addObserver (Observer* observer)
     {
-        tree_.addListener (listener);
+        tree_.addListener (observer);
     }
     
-    void removeListener (Listener* listener)
+    void removeObserver (Observer* observer)
     {
-        tree_.removeListener (listener);
+        tree_.removeListener (observer);
     }
 
 // -----------------------------------------------------------------------------------------------------------

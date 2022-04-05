@@ -63,7 +63,7 @@ class Parameter {
 // -----------------------------------------------------------------------------------------------------------
 
 friend class Group;
-friend class Listener;
+friend class Observer;
 
 template <class T> friend struct Iterator;
 
