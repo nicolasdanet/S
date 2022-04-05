@@ -26,7 +26,7 @@ public:
         objects_ (*this)
     {
         tree_.addListener (this);
-        backgroundColour_.attach (this);
+        backgroundColour_.attach (core::Functors::repaint (this));
         BaseComponent::setDefaultSize (this);
     }
     
