@@ -63,14 +63,38 @@ juce::Rectangle<int> getWindow (t_glist* glist)
     return juce::Rectangle<int> (x, y, w, h);
 }
 
+/* Subpatches are created in two steps. */
+/* First a dummy one, in order to let objects contained inside to be added. */
+/* And again with the properly set values. */
+/* Hide it during the process. */
+
+bool getVisible (t_object* o)
+{
+    if (object_isCanvas (o)) {
+    //
+    t_glist* g = cast_glist (o);
+    
+    if (!glist_isRoot (g)) { return (buffer_getSize (object_getBuffer (o)) != 0) ? true : false; }
+    //
+    }
+    
+    return true;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setAttributesClass (Group& group, t_object* o)
+void setAttributesCommon (Group& group, t_object* o)
 {
     static DelegateCache delegate;
     
+    group.addParameter (Tags::Visible,
+        NEEDS_TRANS ("Visible"),
+        NEEDS_TRANS ("Is visible state"),
+        getVisible (o),
+        delegate);
+        
     group.addParameter (Tags::Class,
         NEEDS_TRANS ("Class"),
         NEEDS_TRANS ("Class of the object"),
@@ -125,11 +149,11 @@ void setAttributesObject (Group& group, t_object* o)
         delegate);
 }
 
-void setAttributesPatch (Group& group, t_object *o)
+void setAttributesPatch (Group& group, t_object* o)
 {
     static DelegateCache delegate;
         
-    t_glist *g = cast_glist (o);
+    t_glist* g = cast_glist (o);
     
     group.addParameter (Tags::Title,
         NEEDS_TRANS ("Title"),
@@ -169,7 +193,7 @@ void setAttributes (Data& data, t_object* o)
 {
     Group group (data.addGroup (Tags::Attributes, true));
     
-    setAttributesClass (group, o);
+    setAttributesCommon (group, o);
     
     if (object_isCanvas (o)) { setAttributesPatch (group, o); }
     else {

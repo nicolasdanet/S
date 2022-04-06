@@ -119,6 +119,11 @@ juce::String Data::debug (const juce::ValueTree& tree)
     return getCopyPruned (tree).toXmlString();
 }
 
+juce::String Data::debug (const Description& v)
+{
+    return debug (v.asValueTree());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

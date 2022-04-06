@@ -52,6 +52,7 @@ namespace Keywords {
     DECLARE_STRING (RunView);
     DECLARE_STRING (Selected);
     DECLARE_STRING (Title);
+    DECLARE_STRING (Visible);
     DECLARE_STRING (Width);
     DECLARE_STRING (X);
     DECLARE_STRING (Y);

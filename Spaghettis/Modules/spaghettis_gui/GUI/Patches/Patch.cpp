@@ -52,7 +52,7 @@ void Patch::add (const core::UniquePath& u, const core::Description& v)
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
     
     if (object.isValid()) {
-        core::Object (object).copyFrom (v);
+        core::Object (object).copyFrom (v);             /* Two step creation for subpatches. */
     } else {
         parent.appendChild (v.asValueTree(), nullptr);
     }
@@ -71,7 +71,7 @@ void Patch::remove (const core::UniquePath& u)
     if (object.isValid()) {
         parent.removeChild (object, nullptr);
     } else {
-        jassertfalse;                                                   /* Is this possible? */
+        jassertfalse;                                   /* Is this possible? */
     }
 }
 
