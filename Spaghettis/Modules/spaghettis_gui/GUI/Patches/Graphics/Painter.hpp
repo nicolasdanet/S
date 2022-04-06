@@ -17,11 +17,13 @@ struct Painter {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#if JUCE_DEBUG
+
 static std::function<void()> repaint (juce::Component* component)
 {
     return [c = juce::Component::SafePointer<juce::Component> (component)]()
     {
-        if (c.getComponent()) { c->repaint(); }
+        if (c.getComponent()) { c->repaint(); } else { jassertfalse; }
     };
 }
 
@@ -29,9 +31,23 @@ static std::function<void()> resize (juce::Component* component, PainterPolicy *
 {
     return [c = juce::Component::SafePointer<juce::Component> (component), p = painter]()
     {
-        if (c.getComponent()) { c->setBounds (p->getBounds()); }
+        if (c.getComponent()) { c->setBounds (p->getBounds()); } else { jassertfalse; }
     };
 }
+
+#else
+
+static std::function<void()> repaint (juce::Component* component)
+{
+    return [c = component]() { c->repaint(); };
+}
+
+static std::function<void()> resize (juce::Component* component, PainterPolicy *painter)
+{
+    return [c = component, p = painter]() { c->setBounds (p->getBounds()); };
+}
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
