@@ -30,11 +30,6 @@ bool isChildOf (const juce::ValueTree& t, juce::ValueTree& child)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier& i)
-{
-    DBG ("Property Changed");
-}
-
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
     if (isChildOf (tree_, child) && child.hasType (Ids::OBJECT)) { objects_.add (core::Object (child)); }

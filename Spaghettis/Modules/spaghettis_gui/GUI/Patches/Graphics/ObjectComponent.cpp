@@ -36,14 +36,20 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     object_ (object),
     painter_ (createPainter (*this, object))
 {
-    setOpaque (true); setBounds (painter_->getBounds());
-        
-    owner_.addAndMakeVisible (this);
+    object_.addObserver (this);
+    
+    setOpaque (true);
+    setVisible (object_.getAttribute<bool> (Tags::Visible));
+    setBounds (painter_->getBounds());
+    
+    owner_.addChildComponent (this);
 }
 
 ObjectComponent::~ObjectComponent()
 {
     owner_.removeChildComponent (this);
+    
+    object_.removeObserver (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

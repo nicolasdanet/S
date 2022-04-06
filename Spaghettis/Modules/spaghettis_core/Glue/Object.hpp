@@ -43,16 +43,26 @@ public:
 // MARK: -
 
 public:
-    UniqueId getIdentifier() const
+    void addObserver (Observer* observer)
     {
-        return cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
+        data_.addObserver (observer);
     }
-
+    
+    void removeObserver (Observer* observer)
+    {
+        data_.removeObserver (observer);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
+    UniqueId getIdentifier() const
+    {
+        return cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
+    }
+
     template <class T> T getAttribute (const juce::String &name) const
     {
         const Parameter p (data_.getParameter (Tags::Attributes, name));
