@@ -38,6 +38,8 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     painter_ (createPainter (*this, object))
 {
     setOpaque (true);
+    setPaintingIsUnclipped (true);
+    // setBufferedToImage (true);
     visible();
     setBounds (painter_->getBounds());
     
