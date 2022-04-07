@@ -43,21 +43,6 @@ public:
 // MARK: -
 
 public:
-    void addObserver (Observer* observer)
-    {
-        data_.addObserver (observer);
-    }
-    
-    void removeObserver (Observer* observer)
-    {
-        data_.removeObserver (observer);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     UniqueId getIdentifier() const
     {
         return cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));

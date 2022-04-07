@@ -34,24 +34,21 @@ std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const core
 ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& object) :
     owner_ (owner),
     object_ (object),
+    visible_ (object.getCachedAttribute<bool> (Tags::Visible)),
     painter_ (createPainter (*this, object))
 {
-    addParameterHandler (Tags::Visible, Painter::visible (this));
-    
-    object_.addObserver (this);
-    
     setOpaque (true);
-    setVisible (object_.getAttribute<bool> (Tags::Visible));
+    visible();
     setBounds (painter_->getBounds());
     
     owner_.addChildComponent (this);
+
+    visible_.attach ([this]() { visible(); });
 }
 
 ObjectComponent::~ObjectComponent()
 {
     owner_.removeChildComponent (this);
-    
-    object_.removeObserver (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -75,6 +72,11 @@ void ObjectComponent::paint (juce::Graphics& g)
 void ObjectComponent::resized()
 {
 
+}
+
+void ObjectComponent::visible()
+{
+    setVisible (visible_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------

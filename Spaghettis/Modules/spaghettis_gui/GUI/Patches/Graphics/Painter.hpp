@@ -19,24 +19,12 @@ struct Painter {
 
 static auto repaint (juce::Component* component)
 {
-    return [c = component]() { DBG ("Repaint"); c->repaint(); };
+    return [c = component]() { c->repaint(); };
 }
 
 static auto resize (juce::Component* component, PainterPolicy *painter)
 {
-    return [c = component, p = painter]() { DBG ("Resize"); c->setBounds (p->getBounds()); };
-}
-
-static auto visible (juce::Component* component)
-{
-    return [c = component] (const core::Parameter& p) {
-        const bool visible = static_cast<bool> (p.getValue());
-        auto f = [safe = juce::Component::SafePointer<juce::Component> (c), b = visible]()
-        {
-            if (safe.getComponent()) { DBG ("Visible"); safe->setVisible (b); }
-        };
-        juce::Timer::callAfterDelay (10, f);
-    };
+    return [c = component, p = painter]() { c->setBounds (p->getBounds()); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

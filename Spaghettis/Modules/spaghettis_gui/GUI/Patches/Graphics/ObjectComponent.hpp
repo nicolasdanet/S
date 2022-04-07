@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ObjectComponent : private core::Observer, public juce::Component {
+class ObjectComponent : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -39,8 +39,12 @@ public:
     void resized() override;
 
 private:
+    void visible();
+
+private:
     juce::Component& owner_;
     core::Object object_;
+    core::Cached<bool> visible_;
     std::unique_ptr<PainterPolicy> painter_;
     
 private:
