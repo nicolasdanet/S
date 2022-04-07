@@ -85,23 +85,6 @@ bool getVisible (t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setAttributesCommon (Group& group, t_object* o)
-{
-    static DelegateCache delegate;
-    
-    group.addParameter (Tags::Visible,
-        NEEDS_TRANS ("Visible"),
-        NEEDS_TRANS ("Is visible state"),
-        getVisible (o),
-        delegate);
-        
-    group.addParameter (Tags::Class,
-        NEEDS_TRANS ("Class"),
-        NEEDS_TRANS ("Class of the object"),
-        juce::String (class_getNameAsString (pd_class (o))),
-        delegate);
-}
-
 void setAttributesObject (Group& group, t_object* o)
 {
     static DelegateCache delegate;
@@ -146,6 +129,18 @@ void setAttributesObject (Group& group, t_object* o)
         NEEDS_TRANS ("Selected"),
         NEEDS_TRANS ("Selected state"),
         static_cast<bool> (object_getSelected (o)),
+        delegate);
+    
+    group.addParameter (Tags::Visible,
+        NEEDS_TRANS ("Visible"),
+        NEEDS_TRANS ("Is visible state"),
+        getVisible (o),
+        delegate);
+        
+    group.addParameter (Tags::Class,
+        NEEDS_TRANS ("Class"),
+        NEEDS_TRANS ("Class of the object"),
+        juce::String (class_getNameAsString (pd_class (o))),
         delegate);
 }
 
@@ -197,8 +192,6 @@ void setAttributes (Data& data, t_object* o)
     else {
         setAttributesObject (group, o);
     }
-    
-    setAttributesCommon (group, o);
 }
 
 void setParameters (Data& data, t_object* o)
