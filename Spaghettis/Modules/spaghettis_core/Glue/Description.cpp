@@ -193,12 +193,12 @@ void setAttributes (Data& data, t_object* o)
 {
     Group group (data.addGroup (Tags::Attributes, true));
     
-    setAttributesCommon (group, o);
-    
     if (object_isCanvas (o)) { setAttributesPatch (group, o); }
     else {
         setAttributesObject (group, o);
     }
+    
+    setAttributesCommon (group, o);
 }
 
 void setParameters (Data& data, t_object* o)

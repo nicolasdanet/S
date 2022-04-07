@@ -17,37 +17,27 @@ struct Painter {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#if JUCE_DEBUG
-
-static std::function<void()> repaint (juce::Component* component)
+static auto repaint (juce::Component* component)
 {
-    return [c = juce::Component::SafePointer<juce::Component> (component)]()
-    {
-        if (c.getComponent()) { c->repaint(); } else { jassertfalse; }
+    return [c = component]() { DBG ("Repaint"); c->repaint(); };
+}
+
+static auto resize (juce::Component* component, PainterPolicy *painter)
+{
+    return [c = component, p = painter]() { DBG ("Resize"); c->setBounds (p->getBounds()); };
+}
+
+static auto visible (juce::Component* component)
+{
+    return [c = component] (const core::Parameter& p) {
+        const bool visible = static_cast<bool> (p.getValue());
+        auto f = [safe = juce::Component::SafePointer<juce::Component> (c), b = visible]()
+        {
+            if (safe.getComponent()) { DBG ("Visible"); safe->setVisible (b); }
+        };
+        juce::Timer::callAfterDelay (10, f);
     };
 }
-
-static std::function<void()> resize (juce::Component* component, PainterPolicy *painter)
-{
-    return [c = juce::Component::SafePointer<juce::Component> (component), p = painter]()
-    {
-        if (c.getComponent()) { c->setBounds (p->getBounds()); } else { jassertfalse; }
-    };
-}
-
-#else
-
-static std::function<void()> repaint (juce::Component* component)
-{
-    return [c = component]() { c->repaint(); };
-}
-
-static std::function<void()> resize (juce::Component* component, PainterPolicy *painter)
-{
-    return [c = component, p = painter]() { c->setBounds (p->getBounds()); };
-}
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

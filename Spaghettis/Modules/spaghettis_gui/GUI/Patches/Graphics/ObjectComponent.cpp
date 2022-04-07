@@ -36,6 +36,8 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     object_ (object),
     painter_ (createPainter (*this, object))
 {
+    addParameterHandler (Tags::Visible, Painter::visible (this));
+    
     object_.addObserver (this);
     
     setOpaque (true);
