@@ -46,6 +46,8 @@ namespace Keywords {
     DECLARE_STRING (Buffer);
     DECLARE_STRING (Class);
     DECLARE_STRING (EditView);
+    DECLARE_STRING (Flashed);
+    DECLARE_STRING (FlashTime);
     DECLARE_STRING (Inlets);
     DECLARE_STRING (Outlets);
     DECLARE_STRING (Path);

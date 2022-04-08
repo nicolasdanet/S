@@ -35,14 +35,20 @@ typedef struct _bng {
     t_outlet    *x_outlet;
     t_clock     *x_clock;
     } t_bng;
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void bng_flashed (t_bng *, int);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 static void bng_taskFlash (t_bng *x)
 {
-    x->x_flashed = 0;
+    bng_flashed (x, 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -51,7 +57,7 @@ static void bng_taskFlash (t_bng *x)
 
 static void bng_bang (t_bng *x)
 {
-    x->x_flashed = 1; clock_delay (x->x_clock, x->x_time);
+    bng_flashed (x, 1); clock_delay (x->x_clock, x->x_time);
 
     outlet_bang (x->x_outlet);
 }
@@ -90,9 +96,43 @@ static void bng_flashtime (t_bng *x, t_float f)
     x->x_time = PD_MAX ((int)f, BANG_TIME_MINIMUM);
 }
 
+static void bng_flashed (t_bng *x, int n)
+{
+    x->x_flashed = (n != 0);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void bng_functionParameters (t_object *z, core::Group& group)
+{
+    t_bng *x = (t_bng *)z;
+    
+    static DelegateCache delegate;
+    
+    group.addParameter (Tags::Flashed,
+        NEEDS_TRANS ("Flashed"),
+        NEEDS_TRANS ("Light is flashing"),
+        static_cast<bool> (x->x_flashed),
+        delegate);
+    
+    group.addParameter (Tags::FlashTime,
+        NEEDS_TRANS ("Flash Time"),
+        NEEDS_TRANS ("Duration of the flash"),
+        x->x_time,
+        delegate);
+    
+    group.addParameter (Tags::Width,
+        NEEDS_TRANS ("Width"),
+        NEEDS_TRANS ("Border size of the object"),
+        x->x_width,
+        delegate);
+}
+
+#endif
 
 static void bng_functionSave (t_object *z, t_buffer *b, int flags)
 {
@@ -168,6 +208,12 @@ PD_LOCAL void bng_setup (void)
     class_addMethod (c, (t_method)bng_flashtime,    sym_flashtime,  A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)bng_restore,      sym__restore,   A_NULL);
 
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    class_setParametersFunction (c, bng_functionParameters);
+    
+    #endif
+    
     class_setSaveFunction (c, bng_functionSave);
     class_setDataFunction (c, object_functionData);
     class_requirePending (c);
