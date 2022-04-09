@@ -19,7 +19,12 @@ namespace {
 
 std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const core::Object& object)
 {
-    return std::make_unique<BoxPainter> (owner, object);
+    juce::String t (object.getAttribute<juce::String> (Tags::Class));
+    
+    if (t == "bng") { return std::make_unique<BangPainter> (owner, object); }
+    else {
+        return std::make_unique<BoxPainter> (owner, object);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -12,9 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-BangPainter::BangPainter (juce::Component& owner, const core::Object& object) : PainterPolicy (owner, object)
+BangPainter::BangPainter (juce::Component& owner, const core::Object& object) : PainterPolicy (owner, object),
+    flashed_ (object.getCachedParameter<bool> (Tags::Flashed)),
+    width_ (object.getCachedParameter<int> (Tags::Width))
 {
-
+    flashed_.attach (Painter::repaint (&owner_));
+    width_.attach (Painter::repaint (&owner_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -23,12 +26,17 @@ BangPainter::BangPainter (juce::Component& owner, const core::Object& object) : 
 
 void BangPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-
+    g.setColour (juce::Colours::orange);
+    g.fillRect (r);
 }
 
 juce::Rectangle<int> BangPainter::getBounds()
 {
-    return juce::Rectangle<int>();
+    const int x = x_.get();
+    const int y = y_.get();
+    const int w = width_.get();
+    
+    return juce::Rectangle<int> (x, y, w, w);
 }
 
 // -----------------------------------------------------------------------------------------------------------
