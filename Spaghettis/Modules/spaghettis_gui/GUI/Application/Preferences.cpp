@@ -98,7 +98,22 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Box Text"),
         NEEDS_TRANS ("Set text color of objects"),
         Colours::getPalette()->textSystem);
+    
+    colors.addParameter (Tags::BangBackground,
+        NEEDS_TRANS ("Bang Background"),
+        NEEDS_TRANS ("Set background color of bang widget"),
+        Colours::getPalette()->backgroundAlternate);
+    
+    colors.addParameter (Tags::BangFlashOff,
+        NEEDS_TRANS ("Bang Flash Off"),
+        NEEDS_TRANS ("Set color of bang flash off"),
+        Colours::getPalette()->background);
         
+    colors.addParameter (Tags::BangFlashOn,
+        NEEDS_TRANS ("Bang Flash On"),
+        NEEDS_TRANS ("Set color of bang flash on"),
+        Colours::getPalette()->textWarning);
+
     // getDefaultTest (data);
     
     return data;
