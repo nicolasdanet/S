@@ -36,14 +36,12 @@ private:
     juce::String getText() const;
     
 private:
-    juce::Component& owner_;
     juce::Font font_;
     core::Cached<juce::Colour> backgroundColour_;
     core::Cached<juce::Colour> textColour_;
     core::Cached<juce::String> text_;
     core::Cached<juce::String> class_;
-    core::Cached<int> x_;
-    core::Cached<int> y_;
+
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoxPainter)

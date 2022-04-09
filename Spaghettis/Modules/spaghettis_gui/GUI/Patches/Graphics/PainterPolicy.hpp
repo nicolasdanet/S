@@ -18,18 +18,24 @@ class PainterPolicy {
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    PainterPolicy() = default;
+    explicit PainterPolicy (juce::Component&, const core::Object&);
+    
     virtual ~PainterPolicy() = default;
     
 public:
-    PainterPolicy (const PainterPolicy&) = default;
-    PainterPolicy (PainterPolicy&&) = default;
-    PainterPolicy& operator = (const PainterPolicy&) = default;
-    PainterPolicy& operator = (PainterPolicy&&) = default;
+    PainterPolicy (const PainterPolicy&) = delete;
+    PainterPolicy (PainterPolicy&&) = delete;
+    PainterPolicy& operator = (const PainterPolicy&) = delete;
+    PainterPolicy& operator = (PainterPolicy&&) = delete;
 
 public:
     virtual void paint (const juce::Rectangle<int>&, juce::Graphics&) = 0;
     virtual juce::Rectangle<int> getBounds() = 0;
+
+protected:
+    juce::Component& owner_;
+    core::Cached<int> x_;
+    core::Cached<int> y_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
