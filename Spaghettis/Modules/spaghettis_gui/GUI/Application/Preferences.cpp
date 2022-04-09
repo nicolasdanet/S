@@ -102,12 +102,12 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tags::BangBackground,
         NEEDS_TRANS ("Bang Background"),
         NEEDS_TRANS ("Set background color of bang widget"),
-        Colours::getPalette()->backgroundAlternate);
+        Colours::getPalette()->thumb);
     
     colors.addParameter (Tags::BangFlashOff,
         NEEDS_TRANS ("Bang Flash Off"),
         NEEDS_TRANS ("Set color of bang flash off"),
-        Colours::getPalette()->background);
+        Colours::getPalette()->textPopup);
         
     colors.addParameter (Tags::BangFlashOn,
         NEEDS_TRANS ("Bang Flash On"),

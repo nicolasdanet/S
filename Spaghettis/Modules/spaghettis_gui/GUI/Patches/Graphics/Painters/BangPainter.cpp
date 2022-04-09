@@ -13,11 +13,17 @@ namespace spaghettis {
 // MARK: -
 
 BangPainter::BangPainter (juce::Component& owner, const core::Object& object) : PainterPolicy (owner, object),
+    backgroundColour_ (Spaghettis()->getCachedColour (Tags::BangBackground)),
+    flashOffColour_ (Spaghettis()->getCachedColour (Tags::BangFlashOff)),
+    flashOnColour_ (Spaghettis()->getCachedColour (Tags::BangFlashOn)),
     flashed_ (object.getCachedParameter<bool> (Tags::Flashed)),
     width_ (object.getCachedParameter<int> (Tags::Width))
 {
     flashed_.attach (Painter::repaint (&owner_));
     width_.attach (Painter::repaint (&owner_));
+    backgroundColour_.attach (Painter::repaint (&owner_));
+    flashOffColour_.attach (Painter::repaint (&owner_));
+    flashOnColour_.attach (Painter::repaint (&owner_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -26,8 +32,10 @@ BangPainter::BangPainter (juce::Component& owner, const core::Object& object) : 
 
 void BangPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    g.setColour (juce::Colours::orange);
+    g.setColour (backgroundColour_.get());
     g.fillRect (r);
+    g.setColour (flashed_.get() ? flashOnColour_.get() : flashOffColour_.get());
+    g.fillEllipse (r.reduced (1).toFloat());
 }
 
 juce::Rectangle<int> BangPainter::getBounds()

@@ -33,6 +33,9 @@ public:
     juce::Rectangle<int> getBounds() override;
 
 private:
+    core::Cached<juce::Colour> backgroundColour_;
+    core::Cached<juce::Colour> flashOffColour_;
+    core::Cached<juce::Colour> flashOnColour_;
     core::Cached<bool> flashed_;
     core::Cached<int> width_;
 
