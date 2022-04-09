@@ -15,8 +15,10 @@
 
 #define BANG_TIME_DEFAULT       250
 #define BANG_TIME_MINIMUM       10
+#define BANG_TIME_MAXIMUM       1000
 #define BANG_SIZE_DEFAULT       15
 #define BANG_SIZE_MINIMUM       8
+#define BANG_SIZE_MAXIMUM       256
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -88,12 +90,18 @@ static void bng_anything (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 
 static void bng_size (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) { int n = atom_getFloatAtIndex (0, argc, argv); x->x_width = PD_MAX (n, BANG_SIZE_MINIMUM); }
+    if (argc) {
+    //
+    int n = atom_getFloatAtIndex (0, argc, argv);
+    
+    x->x_width = PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM);
+    //
+    }
 }
 
 static void bng_flashtime (t_bng *x, t_float f)
 {
-    x->x_time = PD_MAX ((int)f, BANG_TIME_MINIMUM);
+    x->x_time = PD_CLAMP ((int)f, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM);
 }
 
 static void bng_flashed (t_bng *x, int n)
@@ -123,13 +131,13 @@ static void bng_functionParameters (t_object *z, core::Group& group)
         NEEDS_TRANS ("Flash Time"),
         NEEDS_TRANS ("Duration of the flash"),
         x->x_time,
-        delegate);
+        delegate).setRange (juce::Range<int> (BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM));
     
     group.addParameter (Tags::Width,
         NEEDS_TRANS ("Width"),
         NEEDS_TRANS ("Border size of the object"),
         x->x_width,
-        delegate);
+        delegate).setRange (juce::Range<int> (BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM));
 }
 
 #endif
@@ -168,8 +176,8 @@ static void *bng_new (t_symbol *s, int argc, t_atom *argv)
     int size = (argc > 1) ? (int)atom_getFloat (argv + 0) : BANG_SIZE_DEFAULT;
     int time = (argc > 1) ? (int)atom_getFloat (argv + 1) : BANG_TIME_DEFAULT;
 
-    x->x_width  = PD_MAX (size, BANG_SIZE_MINIMUM);
-    x->x_time   = PD_MAX (time, BANG_TIME_MINIMUM);
+    x->x_width  = PD_CLAMP (size, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM);
+    x->x_time   = PD_CLAMP (time, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM);
     
     x->x_outlet = outlet_newBang (cast_object (x));
     x->x_clock  = clock_new ((void *)x, (t_method)bng_taskFlash);
