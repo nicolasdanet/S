@@ -42,17 +42,17 @@ public:
 // MARK: -
 
 protected:
-    core::Cached<juce::Colour> getColour (const juce::String& key) const
+    core::Cached<juce::Colour> fetchColour (const juce::String& key) const
     {
         return Spaghettis()->getCachedColour (key);
     }
     
-    template <class T> core::Cached<T> getAttribute (const juce::String& key) const
+    template <class T> core::Cached<T> fetchAttribute (const juce::String& key) const
     {
         return object_.getCachedAttribute<T> (key);
     }
     
-    template <class T> core::Cached<T> getParameter (const juce::String& key) const
+    template <class T> core::Cached<T> fetchParameter (const juce::String& key) const
     {
         return object_.getCachedParameter<T> (key);
     }

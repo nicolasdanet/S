@@ -16,8 +16,8 @@ namespace spaghettis {
 PainterPolicy::PainterPolicy (juce::Component& owner, const core::Object& object) :
     owner_ (owner),
     object_ (object),
-    x_ (object.getCachedAttribute<int> (Tags::X)),
-    y_ (object.getCachedAttribute<int> (Tags::Y))
+    x_ (fetchAttribute<int> (Tags::X)),
+    y_ (fetchAttribute<int> (Tags::Y))
 {
     x_.attach (resizer (&owner_, this));
     y_.attach (resizer (&owner_, this));

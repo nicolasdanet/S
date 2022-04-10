@@ -14,10 +14,10 @@ namespace spaghettis {
 
 BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) : PainterPolicy (owner, object),
     font_ (Spaghettis()->getLookAndFeel().getObjectsFont()),
-    backgroundColour_ (getColour (Tags::BoxBackground)),
-    textColour_ (getColour (Tags::BoxText)),
-    text_ (getAttribute<juce::String> (Tags::Buffer)),
-    class_ (getAttribute<juce::String> (Tags::Class))
+    backgroundColour_ (fetchColour (Tags::BoxBackground)),
+    textColour_ (fetchColour (Tags::BoxText)),
+    text_ (fetchAttribute<juce::String> (Tags::Buffer)),
+    class_ (fetchAttribute<juce::String> (Tags::Class))
 {
     bind (backgroundColour_);
     bind (textColour_);
