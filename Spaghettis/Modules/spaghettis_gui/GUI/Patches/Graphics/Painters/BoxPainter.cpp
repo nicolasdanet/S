@@ -16,8 +16,8 @@ BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) : Pa
     font_ (Spaghettis()->getLookAndFeel().getObjectsFont()),
     backgroundColour_ (getColour (Tags::BoxBackground)),
     textColour_ (getColour (Tags::BoxText)),
-    text_ (object.getCachedAttribute<juce::String> (Tags::Buffer)),
-    class_ (object.getCachedAttribute<juce::String> (Tags::Class))
+    text_ (getAttribute<juce::String> (Tags::Buffer)),
+    class_ (getAttribute<juce::String> (Tags::Class))
 {
     bind (backgroundColour_);
     bind (textColour_);

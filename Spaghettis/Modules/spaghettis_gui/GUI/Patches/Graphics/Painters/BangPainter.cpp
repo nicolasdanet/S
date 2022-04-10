@@ -16,8 +16,8 @@ BangPainter::BangPainter (juce::Component& owner, const core::Object& object) : 
     backgroundColour_ (getColour (Tags::BangBackground)),
     flashOffColour_ (getColour (Tags::BangFlashOff)),
     flashOnColour_ (getColour (Tags::BangFlashOn)),
-    flashed_ (object.getCachedParameter<bool> (Tags::Flashed)),
-    width_ (object.getCachedParameter<int> (Tags::Width))
+    flashed_ (getParameter<bool> (Tags::Flashed)),
+    width_ (getParameter<int> (Tags::Width))
 {
     bind (backgroundColour_);
     bind (flashOffColour_);

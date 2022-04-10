@@ -34,6 +34,7 @@ public:
 
 public:
     virtual void paint (const juce::Rectangle<int>&, juce::Graphics&) = 0;
+    
     virtual juce::Rectangle<int> getBounds() = 0;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -44,6 +45,16 @@ protected:
     core::Cached<juce::Colour> getColour (const juce::String& key) const
     {
         return Spaghettis()->getCachedColour (key);
+    }
+    
+    template <class T> core::Cached<T> getAttribute (const juce::String& key) const
+    {
+        return object_.getCachedAttribute<T> (key);
+    }
+    
+    template <class T> core::Cached<T> getParameter (const juce::String& key) const
+    {
+        return object_.getCachedParameter<T> (key);
     }
     
 // -----------------------------------------------------------------------------------------------------------
