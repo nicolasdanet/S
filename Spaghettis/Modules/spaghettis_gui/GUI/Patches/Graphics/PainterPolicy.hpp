@@ -40,6 +40,16 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+protected:
+    core::Cached<juce::Colour> getColour (const juce::String& key) const
+    {
+        return Spaghettis()->getCachedColour (key);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     static auto repainter (juce::Component* component)
     {
@@ -55,7 +65,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+protected:
     template <class T> void bind (core::Cached<T>& t) const
     {
         t.attach (repainter (&owner_));
@@ -63,6 +73,7 @@ public:
     
 protected:
     juce::Component& owner_;
+    core::Object object_;
     core::Cached<int> x_;
     core::Cached<int> y_;
 };

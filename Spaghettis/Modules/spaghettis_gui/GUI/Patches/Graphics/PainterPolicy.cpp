@@ -13,7 +13,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PainterPolicy::PainterPolicy (juce::Component& owner, const core::Object& object) : owner_ (owner),
+PainterPolicy::PainterPolicy (juce::Component& owner, const core::Object& object) :
+    owner_ (owner),
+    object_ (object),
     x_ (object.getCachedAttribute<int> (Tags::X)),
     y_ (object.getCachedAttribute<int> (Tags::Y))
 {
