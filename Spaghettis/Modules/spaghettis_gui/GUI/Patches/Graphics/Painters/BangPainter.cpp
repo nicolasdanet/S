@@ -19,11 +19,11 @@ BangPainter::BangPainter (juce::Component& owner, const core::Object& object) : 
     flashed_ (object.getCachedParameter<bool> (Tags::Flashed)),
     width_ (object.getCachedParameter<int> (Tags::Width))
 {
-    flashed_.attach (Painter::repaint (&owner_));
-    width_.attach (Painter::repaint (&owner_));
-    backgroundColour_.attach (Painter::repaint (&owner_));
-    flashOffColour_.attach (Painter::repaint (&owner_));
-    flashOnColour_.attach (Painter::repaint (&owner_));
+    bind (backgroundColour_);
+    bind (flashOffColour_);
+    bind (flashOnColour_);
+    bind (flashed_);
+    bind (width_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

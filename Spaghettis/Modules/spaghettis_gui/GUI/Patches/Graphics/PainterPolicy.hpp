@@ -16,6 +16,7 @@ class PainterPolicy {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     explicit PainterPolicy (juce::Component&, const core::Object&);
@@ -27,11 +28,39 @@ public:
     PainterPolicy (PainterPolicy&&) = delete;
     PainterPolicy& operator = (const PainterPolicy&) = delete;
     PainterPolicy& operator = (PainterPolicy&&) = delete;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 public:
     virtual void paint (const juce::Rectangle<int>&, juce::Graphics&) = 0;
     virtual juce::Rectangle<int> getBounds() = 0;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static auto repainter (juce::Component* component)
+    {
+        return [c = component]() { c->repaint(); };
+    }
+
+    static auto resizer (juce::Component* component, PainterPolicy *painter)
+    {
+        return [c = component, p = painter]() { c->setBounds (p->getBounds()); };
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    template <class T> void bind (core::Cached<T>& t) const
+    {
+        t.attach (repainter (&owner_));
+    }
+    
 protected:
     juce::Component& owner_;
     core::Cached<int> x_;

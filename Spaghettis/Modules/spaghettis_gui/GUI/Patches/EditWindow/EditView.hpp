@@ -26,7 +26,7 @@ public:
         objects_ (*this)
     {
         tree_.addListener (this);
-        backgroundColour_.attach (Painter::repaint (this));
+        backgroundColour_.attach (PainterPolicy::repainter (this));
         BaseComponent::setDefaultSize (this);
     }
     

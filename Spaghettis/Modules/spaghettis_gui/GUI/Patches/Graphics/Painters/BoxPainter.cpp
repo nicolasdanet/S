@@ -19,9 +19,9 @@ BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) : Pa
     text_ (object.getCachedAttribute<juce::String> (Tags::Buffer)),
     class_ (object.getCachedAttribute<juce::String> (Tags::Class))
 {
-    backgroundColour_.attach (Painter::repaint (&owner_));
-    textColour_.attach (Painter::repaint (&owner_));
-    text_.attach (Painter::repaint (&owner_));
+    bind (backgroundColour_);
+    bind (textColour_);
+    bind (text_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

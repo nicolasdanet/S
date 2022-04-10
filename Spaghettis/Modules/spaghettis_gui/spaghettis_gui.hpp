@@ -124,7 +124,6 @@
 #include "GUI/Patches/PatchWindow.hpp"
 
 #include "GUI/Patches/Graphics/PainterPolicy.hpp"
-#include "GUI/Patches/Graphics/Painter.hpp"
 
 #include "GUI/Patches/Graphics/Painters/BangPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.hpp"
