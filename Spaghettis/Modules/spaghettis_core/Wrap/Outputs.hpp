@@ -37,8 +37,8 @@ static Perform patchDirty                   (core::UniquePath, bool);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform added                        (core::UniquePath, core::Description);
-static Perform changed                      (core::UniquePath, core::Description);
+static Perform added                        (core::UniquePath, core::Report);
+static Perform changed                      (core::UniquePath, core::Report);
 static Perform removed                      (core::UniquePath);
 static Perform renamed                      (core::UniquePath, core::UniqueId);
 

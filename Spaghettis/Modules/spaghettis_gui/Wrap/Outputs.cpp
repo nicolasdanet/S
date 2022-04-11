@@ -87,7 +87,7 @@ Perform Outputs::patchDirty (core::UniquePath unique, bool isDirty)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Outputs::added (core::UniquePath unique, core::Description view)
+Perform Outputs::added (core::UniquePath unique, core::Report view)
 {
     return [u = std::move (unique), v = std::move (view)]()
     {
@@ -95,7 +95,7 @@ Perform Outputs::added (core::UniquePath unique, core::Description view)
     };
 }
 
-Perform Outputs::changed (core::UniquePath unique, core::Description view)
+Perform Outputs::changed (core::UniquePath unique, core::Report view)
 {
     return [u = std::move (unique), v = std::move (view)]()
     {

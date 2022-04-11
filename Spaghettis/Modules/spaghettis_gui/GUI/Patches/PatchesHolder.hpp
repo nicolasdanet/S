@@ -33,8 +33,8 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void add (const core::UniquePath& u, const core::Description& v);
-    void change (const core::UniquePath& u, const core::Description& v);
+    void add (const core::UniquePath& u, const core::Report& v);
+    void change (const core::UniquePath& u, const core::Report& v);
     void remove (const core::UniquePath& u);
     void rename (const core::UniquePath& u, core::UniqueId i);
 

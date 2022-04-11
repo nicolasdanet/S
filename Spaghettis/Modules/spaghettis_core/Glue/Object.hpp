@@ -68,7 +68,7 @@ public:
 // MARK: -
 
 public:
-    void copyFrom (const core::Description& v)
+    void copyFrom (const core::Report& v)
     {
         data_.copyFrom (v);
     }

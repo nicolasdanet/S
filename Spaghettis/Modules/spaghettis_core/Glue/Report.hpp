@@ -22,25 +22,25 @@ struct _object;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class Description {
+class Report {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    explicit Description (const juce::ValueTree& t) : tree_ (t)
+    explicit Report (const juce::ValueTree& t) : tree_ (t)
     {
     }
 
 public:
-    ~Description() = default;
+    ~Report() = default;
 
 public:
-    Description (const Description&) = default;
-    Description (Description&&) = default;
-    Description& operator = (const Description&) = default;
-    Description& operator = (Description&&) = default;
+    Report (const Report&) = default;
+    Report (Report&&) = default;
+    Report& operator = (const Report&) = default;
+    Report& operator = (Report&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -57,14 +57,14 @@ public:
 // MARK: -
 
 public:
-    static Description object (const UniquePath&, struct _object*);
-    static Description parameters (const UniquePath&, struct _object*);
+    static Report object (const UniquePath&, struct _object*);
+    static Report parameters (const UniquePath&, struct _object*);
     
 private:
     juce::ValueTree tree_;
     
 private:
-    JUCE_LEAK_DETECTOR (Description)
+    JUCE_LEAK_DETECTOR (Report)
 };
 
 // -----------------------------------------------------------------------------------------------------------

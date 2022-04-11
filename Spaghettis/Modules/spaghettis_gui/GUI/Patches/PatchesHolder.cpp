@@ -83,7 +83,7 @@ template <class T> void PatchesHolder::perform (const core::UniquePath& u, T f) 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchesHolder::add (const core::UniquePath& u, const core::Description& v)
+void PatchesHolder::add (const core::UniquePath& u, const core::Report& v)
 {
     if (u.isRoot()) { roots_.push_back (std::make_shared<Patch> (v)); }
     else {
@@ -91,7 +91,7 @@ void PatchesHolder::add (const core::UniquePath& u, const core::Description& v)
     }
 }
 
-void PatchesHolder::change (const core::UniquePath& u, const core::Description& v)
+void PatchesHolder::change (const core::UniquePath& u, const core::Report& v)
 {
     if (u.isRoot()) { }
     else {

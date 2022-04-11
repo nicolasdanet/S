@@ -122,12 +122,12 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 
 PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
-    const UniquePath u (x, owner); wrapper_send (Outputs::added (u, Description::object (u, x)));
+    const UniquePath u (x, owner); wrapper_send (Outputs::added (u, Report::object (u, x)));
 }
 
 PD_LOCAL void outputs_objectChanged (t_object *x, t_glist *owner)
 {
-    const UniquePath u (x, owner); wrapper_send (Outputs::changed (u, Description::parameters (u, x)));
+    const UniquePath u (x, owner); wrapper_send (Outputs::changed (u, Report::parameters (u, x)));
 }
 
 PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)

@@ -209,7 +209,7 @@ void setParameters (Data& data, t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree getDescription (const UniquePath& u, struct _object* o, bool attributes, bool parameters)
+juce::ValueTree getReport (const UniquePath& u, struct _object* o, bool attributes, bool parameters)
 {
     juce::ValueTree t (Ids::OBJECT);
     
@@ -238,14 +238,14 @@ juce::ValueTree getDescription (const UniquePath& u, struct _object* o, bool att
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Description Description::object (const UniquePath& u, struct _object* o)
+Report Report::object (const UniquePath& u, struct _object* o)
 {
-    return Description (getDescription (u, o, true,  true));
+    return Report (getReport (u, o, true,  true));
 }
 
-Description Description::parameters (const UniquePath& u, struct _object* o)
+Report Report::parameters (const UniquePath& u, struct _object* o)
 {
-    return Description (getDescription (u, o, false, true));
+    return Report (getReport (u, o, false, true));
 }
 
 // -----------------------------------------------------------------------------------------------------------

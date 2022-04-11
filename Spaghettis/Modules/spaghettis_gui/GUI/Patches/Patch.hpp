@@ -24,7 +24,7 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (const core::Description& v) : tree_ (v.asValueTree()), dirty_ (false)
+    explicit Patch (const core::Report& v) : tree_ (v.asValueTree()), dirty_ (false)
     {
         openWindow();
     }
@@ -67,8 +67,8 @@ public:
 // MARK: -
 
 public:
-    void add (const core::UniquePath& u, const core::Description& v);
-    void change (const core::UniquePath& u, const core::Description& v);
+    void add (const core::UniquePath& u, const core::Report& v);
+    void change (const core::UniquePath& u, const core::Report& v);
     void remove (const core::UniquePath& u);
 
 // -----------------------------------------------------------------------------------------------------------
