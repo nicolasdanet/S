@@ -52,7 +52,7 @@ void Patch::add (const core::UniquePath& u, const core::Report& v)
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
     
     if (object.isValid()) {
-        core::Object (object).copyFrom (v);             /* Two step creation for subpatches. */
+        core::Object (object).copyFrom (v);     /* Two step creation for subpatches. */
     } else {
         parent.appendChild (v.asValueTree(), nullptr);
     }
@@ -60,7 +60,10 @@ void Patch::add (const core::UniquePath& u, const core::Report& v)
 
 void Patch::change (const core::UniquePath& u, const core::Report& v)
 {
-    DBG (core::Data::debug (v));
+    juce::ValueTree parent (getParent (u));
+    juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
+    
+    if (object.isValid()) { core::Object (object).copyFrom (v); }
 }
 
 void Patch::remove (const core::UniquePath& u)
@@ -68,11 +71,7 @@ void Patch::remove (const core::UniquePath& u)
     juce::ValueTree parent (getParent (u));
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
     
-    if (object.isValid()) {
-        parent.removeChild (object, nullptr);
-    } else {
-        jassertfalse;                                   /* Is this possible? */
-    }
+    if (object.isValid()) { parent.removeChild (object, nullptr); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

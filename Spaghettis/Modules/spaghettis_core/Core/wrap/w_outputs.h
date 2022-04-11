@@ -28,9 +28,9 @@ PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *);
 // MARK: -
 
 PD_LOCAL void outputs_objectAdded                   (t_object *x, t_glist *owner);
-PD_LOCAL void outputs_objectChanged                 (t_object *x, t_glist *owner);
 PD_LOCAL void outputs_objectRemoved                 (t_object *x, t_glist *owner);
 PD_LOCAL void outputs_objectRenamed                 (t_object *x, t_glist *owner, t_id t);
+PD_LOCAL void outputs_objectUpdateParameters        (t_object *x, t_glist *owner);
 
 PD_LOCAL void outputs_patchDirty                    (t_glist *g, int isDirty);
 
