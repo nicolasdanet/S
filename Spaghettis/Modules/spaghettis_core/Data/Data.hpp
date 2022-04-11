@@ -61,7 +61,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
+public:
     juce::ValueTree asValueTree() const
     {
         return tree_;

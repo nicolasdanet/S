@@ -207,14 +207,9 @@ void setParameters (Data& data, t_object* o)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Description Description::make (const UniquePath& u, struct _object* o, bool attributes, bool parameters)
+juce::ValueTree getDescription (const UniquePath& u, struct _object* o, bool attributes, bool parameters)
 {
     juce::ValueTree t (Ids::OBJECT);
     
@@ -231,7 +226,12 @@ Description Description::make (const UniquePath& u, struct _object* o, bool attr
     //
     }
     
-    return Description (t);
+    return t;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -240,12 +240,12 @@ Description Description::make (const UniquePath& u, struct _object* o, bool attr
 
 Description Description::object (const UniquePath& u, struct _object* o)
 {
-    return make (u, o, true,  true);
+    return Description (getDescription (u, o, true,  true));
 }
 
 Description Description::parameters (const UniquePath& u, struct _object* o)
 {
-    return make (u, o, false, true);
+    return Description (getDescription (u, o, false, true));
 }
 
 // -----------------------------------------------------------------------------------------------------------
