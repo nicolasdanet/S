@@ -240,7 +240,7 @@ Description Description::make (const UniquePath& u, struct _object* o, bool attr
 
 Description Description::object (const UniquePath& u, struct _object* o)
 {
-    return make (u, o, true, true);
+    return make (u, o, true,  true);
 }
 
 Description Description::parameters (const UniquePath& u, struct _object* o)
