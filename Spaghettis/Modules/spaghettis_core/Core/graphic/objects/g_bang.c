@@ -34,6 +34,7 @@ typedef struct _bng {
     int         x_flashed;
     int         x_width;
     int         x_time;
+    t_glist     *x_owner;
     t_outlet    *x_outlet;
     t_clock     *x_clock;
     } t_bng;
@@ -88,25 +89,30 @@ static void bng_anything (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void bng_update (t_bng *x, int *t, int n)
+{
+    if (n != *t) { *t = n; outputs_objectChanged (cast_object (x), x->x_owner); }
+}
+
 static void bng_size (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 {
     if (argc) {
     //
     int n = atom_getFloatAtIndex (0, argc, argv);
     
-    x->x_width = PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM);
+    bng_update (x, &x->x_width, PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM));
     //
     }
 }
 
 static void bng_flashtime (t_bng *x, t_float f)
 {
-    x->x_time = PD_CLAMP ((int)f, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM);
+    bng_update (x, &x->x_time, PD_CLAMP ((int)f, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM));
 }
 
 static void bng_flashed (t_bng *x, int n)
 {
-    x->x_flashed = (n != 0);
+    bng_update (x, &x->x_flashed, (n != 0));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -179,6 +185,7 @@ static void *bng_new (t_symbol *s, int argc, t_atom *argv)
     x->x_width  = PD_CLAMP (size, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM);
     x->x_time   = PD_CLAMP (time, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM);
     
+    x->x_owner  = instance_contextGetCurrent();
     x->x_outlet = outlet_newBang (cast_object (x));
     x->x_clock  = clock_new ((void *)x, (t_method)bng_taskFlash);
     

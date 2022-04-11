@@ -60,7 +60,7 @@ void Patch::add (const core::UniquePath& u, const core::Description& v)
 
 void Patch::change (const core::UniquePath& u, const core::Description& v)
 {
-    
+    DBG (core::Data::debug (v));
 }
 
 void Patch::remove (const core::UniquePath& u)

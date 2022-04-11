@@ -122,9 +122,12 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 
 PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
-    const UniquePath u (x, owner);
-    
-    wrapper_send (Outputs::added (u, Description::object (u.getIdentifier(), x)));
+    const UniquePath u (x, owner); wrapper_send (Outputs::added (u, Description::object (u, x)));
+}
+
+PD_LOCAL void outputs_objectChanged (t_object *x, t_glist *owner)
+{
+    const UniquePath u (x, owner); wrapper_send (Outputs::changed (u, Description::parameters (u, x)));
 }
 
 PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)
@@ -173,9 +176,10 @@ PD_LOCAL void outputs_reportCurrentAudioDevices     (t_deviceslist *l)          
 PD_LOCAL void outputs_reportAvailableMidiDevices    (t_deviceslist *l)                      { }
 PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *l)                      { }
 PD_LOCAL void outputs_objectAdded                   (t_object *x, t_glist *owner)           { }
+PD_LOCAL void outputs_objectChanged                 (t_object *x, t_glist *owner)           { }
 PD_LOCAL void outputs_objectRemoved                 (t_object *x, t_glist *owner)           { }
 PD_LOCAL void outputs_objectRenamed                 (t_object *x, t_glist *owner, t_id u)   { }
-PD_LOCAL void outputs_patchDirty                    (t_glist *g, int isDirty)                            { }
+PD_LOCAL void outputs_patchDirty                    (t_glist *g, int isDirty)               { }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -209,29 +209,43 @@ void setParameters (Data& data, t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 
 }
- 
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Description Description::object (UniqueId identifier, struct _object* o)
+Description Description::make (const UniquePath& u, struct _object* o, bool attributes, bool parameters)
 {
     juce::ValueTree t (Ids::OBJECT);
     
-    t.setProperty (Ids::identifier, cast::toVar (identifier), nullptr);
+    t.setProperty (Ids::identifier, cast::toVar (u.getIdentifier()), nullptr);
     
     if (o) {
     //
     Data data (Ids::DATA);
     
-    setAttributes (data, o);
-    setParameters (data, o);
+    if (attributes) { setAttributes (data, o); }
+    if (parameters) { setParameters (data, o); }
     
     t.appendChild (data.asValueTree(), nullptr);
     //
     }
     
     return Description (t);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Description Description::object (const UniquePath& u, struct _object* o)
+{
+    return make (u, o, true, true);
+}
+
+Description Description::parameters (const UniquePath& u, struct _object* o)
+{
+    return make (u, o, false, true);
 }
 
 // -----------------------------------------------------------------------------------------------------------

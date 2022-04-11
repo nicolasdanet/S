@@ -56,9 +56,13 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    static Description make (const UniquePath&, struct _object*, bool, bool);
+    
 public:
-    static Description object (UniqueId, struct _object*);
-      
+    static Description object (const UniquePath&, struct _object*);
+    static Description parameters (const UniquePath&, struct _object*);
+    
 private:
     juce::ValueTree tree_;
     
