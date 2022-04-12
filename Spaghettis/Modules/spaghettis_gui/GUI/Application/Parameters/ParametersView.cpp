@@ -122,7 +122,7 @@ void ParameterView::buildConcertinaPanel (const core::Data& data, ParameterView&
     juce::Array<juce::PropertyComponent*> components;
     
     for (const auto& parameter : group) {
-        buildConcertinaPanelParameter (parameter, components);
+        if (!parameter.isHidden()) { buildConcertinaPanelParameter (parameter, components); }
     }
     
     panel->addProperties (components);
