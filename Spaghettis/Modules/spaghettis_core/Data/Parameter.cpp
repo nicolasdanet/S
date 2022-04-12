@@ -98,6 +98,24 @@ void Parameter::changeValue (const juce::var& v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+Parameter& Parameter::setHidden (bool isHidden)
+{
+    set (Ids::hidden, isHidden); return *this;
+}
+    
+bool Parameter::isHidden() const
+{
+    const juce::var v (get (Ids::hidden));
+    
+    if (v.isBool()) { return static_cast<bool> (v); }
+    
+    return false;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 bool Parameter::hasRange() const
 {
     return (!get (Ids::minimum).isVoid() && !get (Ids::maximum).isVoid());

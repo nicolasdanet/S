@@ -17,7 +17,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
 void getDefaultTest (core::Data& data)
 {
     core::Group peace (data.addGroup ("Peace"));
@@ -35,7 +34,7 @@ void getDefaultTest (core::Data& data)
     peace.addParameter ("Launcher",
         NEEDS_TRANS ("Love Efficiency"),
         NEEDS_TRANS ("Set love impact"),
-        99.5);
+        99.5).setHidden (true);
 
     peace.addParameter ("Random",
         NEEDS_TRANS ("Random Rate"),
@@ -47,14 +46,13 @@ void getDefaultTest (core::Data& data)
         NEEDS_TRANS ("Set size of picture"),
         juce::Rectangle<int> (0, 0, 349, 776));
     
-    core::Group secret (t.addGroup ("Secret", true));
+    core::Group secret (data.addGroup ("Secret", true));
     
     secret.addParameter ("Password",
         NEEDS_TRANS ("Password"),
         NEEDS_TRANS ("Word for magic attack"),
         juce::String ("iloveyou"));
 }
-*/
 
 core::Data getDefaultPreferences()
 {
@@ -114,7 +112,7 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set color of bang flash on"),
         Colours::getPalette()->textWarning);
 
-    // getDefaultTest (data);
+    getDefaultTest (data);
     
     return data;
 }

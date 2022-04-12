@@ -131,7 +131,7 @@ static void bng_functionParameters (t_object *z, core::Group& group)
         NEEDS_TRANS ("Flashed"),
         NEEDS_TRANS ("Light is flashing"),
         static_cast<bool> (x->x_flashed),
-        delegate);
+        delegate).setHidden (true);
     
     group.addParameter (Tags::FlashTime,
         NEEDS_TRANS ("Flash Time"),
