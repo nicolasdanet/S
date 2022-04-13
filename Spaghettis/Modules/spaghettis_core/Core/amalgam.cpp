@@ -24,7 +24,7 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-namespace spaghettis { namespace core {
+namespace spaghettis::core {
 
 #endif
 
@@ -500,7 +500,7 @@ namespace spaghettis { namespace core {
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-} } // namespace
+}
 
 #endif
 

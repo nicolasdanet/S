@@ -239,7 +239,7 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-namespace spaghettis { namespace core {
+namespace spaghettis::core {
 
 #endif
 
@@ -759,7 +759,7 @@ PD_DLL void         spaghettis_spaceSetFloat7           (t_space *space, t_float
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-} } // namespace
+}
 
 #endif
 
