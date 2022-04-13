@@ -42,16 +42,10 @@ public:
     }
 
 private:
-    template <class Q = T>
-    static typename std::enable_if<std::is_same<int, Q>::value, T>::type convert (const juce::String& s)
+    static T convert (const juce::String& s)
     {
-        return s.getIntValue();
-    }
-    
-    template <class Q = T>
-    static typename std::enable_if<std::is_same<double, Q>::value, T>::type convert (const juce::String& s)
-    {
-        return s.getDoubleValue();
+        if constexpr (std::is_same_v<T, int>)    { return s.getIntValue();    }
+        if constexpr (std::is_same_v<T, double>) { return s.getDoubleValue(); }
     }
 
 public:
