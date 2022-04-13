@@ -4,7 +4,7 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="0.9"
               projectLineFeed="&#10;" companyName="Spaghettis" bundleIdentifier="org.puredata.spaghettis"
               companyCopyright="Copyright (c) 1997 Miller Puckette and others."
-              companyWebsite="https://github.com/Spaghettis">
+              companyWebsite="https://github.com/Spaghettis" cppLanguageStandard="17">
   <MAINGROUP id="FJGwhe" name="Spaghettis">
     <GROUP id="{2CB25DBA-D987-3F32-EEE6-6B67653E37F3}" name="Source">
       <FILE id="LekPt7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
