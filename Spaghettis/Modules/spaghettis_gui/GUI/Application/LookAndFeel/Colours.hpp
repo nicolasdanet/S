@@ -35,8 +35,8 @@ public:
     {
         /* < https://ethanschoonover.com/solarized/ > */
     
-        // const juce::Colour base03    = juce::Colour (0xff002b36);
-        // const juce::Colour base02    = juce::Colour (0xff073642);
+        // const juce::Colour base03       = juce::Colour (0xff002b36);
+        // const juce::Colour base02       = juce::Colour (0xff073642);
         const juce::Colour base01       = juce::Colour (0xff586e75);
         // const juce::Colour base00    = juce::Colour (0xff657b83);
         // const juce::Colour base0     = juce::Colour (0xff839496);
@@ -59,13 +59,15 @@ public:
         textHighlighted                 = green;
         textMenu                        = juce::Colours::white;
         textPopup                       = juce::Colours::lightgrey;
+        textBox                         = base1;
         thumb                           = juce::Colours::grey;
         transparent                     = juce::Colours::transparentBlack;
         
         background                      = juce::Colour (0xff1f2029);
         backgroundAlternate             = background.darker (0.10);
         backgroundPopup                 = background.brighter (0.15);
-        
+        backgroundBox                   = background.darker (0.25);
+
         #if JUCE_LINUX
         backgroundMenu                  = background.darker (0.50);
         backgroundWidget                = background.darker (0.75);
@@ -91,11 +93,13 @@ public:
     juce::Colour textHighlighted;
     juce::Colour textMenu;
     juce::Colour textPopup;
+    juce::Colour textBox;
     juce::Colour thumb;
     juce::Colour transparent;
     juce::Colour background;
     juce::Colour backgroundAlternate;
     juce::Colour backgroundPopup;
+    juce::Colour backgroundBox;
     juce::Colour backgroundMenu;
     juce::Colour backgroundWidget;
 };

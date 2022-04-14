@@ -90,22 +90,22 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tags::BoxBackground,
         NEEDS_TRANS ("Box Background"),
         NEEDS_TRANS ("Set background color of objects"),
-        Colours::getPalette()->backgroundAlternate);
+        Colours::getPalette()->backgroundBox);
     
     colors.addParameter (Tags::BoxText,
         NEEDS_TRANS ("Box Text"),
         NEEDS_TRANS ("Set text color of objects"),
-        Colours::getPalette()->textSystem);
+        Colours::getPalette()->textBox);
     
     colors.addParameter (Tags::BangBackground,
         NEEDS_TRANS ("Bang Background"),
         NEEDS_TRANS ("Set background color of bang widget"),
-        Colours::getPalette()->thumb);
+        Colours::getPalette()->backgroundWidget);
     
     colors.addParameter (Tags::BangFlashOff,
         NEEDS_TRANS ("Bang Flash Off"),
         NEEDS_TRANS ("Set color of bang flash off"),
-        Colours::getPalette()->textPopup);
+        Colours::getPalette()->background);
         
     colors.addParameter (Tags::BangFlashOn,
         NEEDS_TRANS ("Bang Flash On"),
