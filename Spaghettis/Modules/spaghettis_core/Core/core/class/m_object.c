@@ -408,7 +408,20 @@ PD_LOCAL int object_isSignalOutlet (t_object *x, int m)
 
 PD_LOCAL juce::String object_getTypeOfInlets (t_object *x)
 {
-    return juce::String();
+    juce::StringArray s;
+    
+    t_inlet *i = NULL;
+    
+    if (class_hasFirstInlet (pd_class (x))) {
+        if (class_hasFirstInletAsSignal (pd_class (x))) { s.add (s_signal.s_name); }
+        else {
+            s.add (s_anything.s_name);
+        }
+    }
+    
+    for (i = x->g_inlets; i; i = inlet_getNext (i)) { s.add (inlet_getType (i)->s_name); }
+    
+    return s.joinIntoString (" ");
 }
 
 PD_LOCAL juce::String object_getTypeOfOutlets (t_object *x)
