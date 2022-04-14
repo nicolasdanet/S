@@ -426,7 +426,13 @@ PD_LOCAL juce::String object_getTypeOfInlets (t_object *x)
 
 PD_LOCAL juce::String object_getTypeOfOutlets (t_object *x)
 {
-    return juce::String();
+    juce::StringArray s;
+    
+    t_outlet *o = NULL;
+    
+    for (o = x->g_outlets; o; o = outlet_getNext (o)) { s.add (outlet_getType (o)->s_name); }
+    
+    return s.joinIntoString (" ");
 }
 
 #endif

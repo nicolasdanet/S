@@ -67,7 +67,7 @@ static inline t_float64Atomic *inlet_getSignal (t_inlet *x)
 
 static inline t_symbol *inlet_getType (t_inlet *x)
 {
-    return x->i_type == NULL ? &s_anything : x->i_type;
+    return (x->i_type == NULL) ? &s_anything : x->i_type;
 }
 
 // -----------------------------------------------------------------------------------------------------------
