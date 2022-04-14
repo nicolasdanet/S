@@ -60,6 +60,13 @@ PD_LOCAL int    object_getIndexAsSignalOfOutlet     (t_object *x, int m);
 PD_FORCE int    object_isSignalInlet                (t_object *x, int m);
 PD_LOCAL int    object_isSignalOutlet               (t_object *x, int m);
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL juce::String object_getTypeOfInlets        (t_object *x);
+PD_LOCAL juce::String object_getTypeOfOutlets       (t_object *x);
+
+#endif
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

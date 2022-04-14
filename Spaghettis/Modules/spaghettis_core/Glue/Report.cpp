@@ -92,14 +92,14 @@ void setAttributesObject (Group& group, t_object* o)
     
     group.addParameter (Tags::Inlets,
         NEEDS_TRANS ("Inlets"),
-        NEEDS_TRANS ("Number of inlets"),
-        object_getNumberOfInlets (o),
+        NEEDS_TRANS ("List of inlets"),
+        object_getTypeOfInlets (o),
         delegate);
     
     group.addParameter (Tags::Outlets,
         NEEDS_TRANS ("Outlets"),
-        NEEDS_TRANS ("Number of outlets"),
-        object_getNumberOfOutlets (o),
+        NEEDS_TRANS ("List of outlets"),
+        object_getTypeOfOutlets (o),
         delegate);
         
     group.addParameter (Tags::X,

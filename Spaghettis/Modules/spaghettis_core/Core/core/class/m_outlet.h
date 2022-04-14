@@ -76,6 +76,11 @@ static inline t_outconnect *outlet_getConnections (t_outlet *x)
     return x->o_connections;
 }
 
+static inline t_symbol *outlet_getType (t_outlet *x)
+{
+    return x->o_type;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 #endif // M_OUTLET_H_

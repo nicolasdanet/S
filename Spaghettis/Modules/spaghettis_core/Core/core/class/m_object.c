@@ -404,6 +404,24 @@ PD_LOCAL int object_isSignalOutlet (t_object *x, int m)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL juce::String object_getTypeOfInlets (t_object *x)
+{
+    return juce::String();
+}
+
+PD_LOCAL juce::String object_getTypeOfOutlets (t_object *x)
+{
+    return juce::String();
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL t_buffer *object_functionData (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
