@@ -104,12 +104,12 @@ core::Data getDefaultPreferences()
     
     colors.addParameter (Tags::BangFlashOff,
         NEEDS_TRANS ("Bang Flash Off"),
-        NEEDS_TRANS ("Set color of bang flash off"),
+        NEEDS_TRANS ("Set color of bang widget for flash off"),
         Colours::getPalette()->background);
         
     colors.addParameter (Tags::BangFlashOn,
         NEEDS_TRANS ("Bang Flash On"),
-        NEEDS_TRANS ("Set color of bang flash on"),
+        NEEDS_TRANS ("Set color of bang widget for flash on"),
         Colours::getPalette()->textWarning);
 
     getDefaultTest (data);
