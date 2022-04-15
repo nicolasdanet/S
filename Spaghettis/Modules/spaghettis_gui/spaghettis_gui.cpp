@@ -66,6 +66,7 @@
 #include "GUI/Patches/Graphics/Painters/BangPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.cpp"
 
+#include "GUI/Patches/Graphics/PinComponent.cpp"
 #include "GUI/Patches/Graphics/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/ObjectsList.cpp"
 

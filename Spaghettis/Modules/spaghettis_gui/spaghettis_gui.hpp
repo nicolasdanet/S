@@ -128,6 +128,7 @@
 #include "GUI/Patches/Graphics/Painters/BangPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.hpp"
 
+#include "GUI/Patches/Graphics/PinComponent.hpp"
 #include "GUI/Patches/Graphics/ObjectComponent.hpp"
 #include "GUI/Patches/Graphics/ObjectsList.hpp"
 
