@@ -40,11 +40,11 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     owner_ (owner),
     object_ (object),
     visible_ (object.getCachedAttribute<bool> (Tags::Visible)),
-    painter_ (createPainter (*this, object))
+    painter_ (createPainter (*this, object)),
+    showPins_ (true)
 {
     setOpaque (true);
     setPaintingIsUnclipped (true);
-    // setBufferedToImage (true);
     visible();
     setBounds (painter_->getBounds());
     
