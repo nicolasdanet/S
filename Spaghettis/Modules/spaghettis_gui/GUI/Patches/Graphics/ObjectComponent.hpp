@@ -49,6 +49,9 @@ private:
     bool showPins_;
 
 private:
+    constexpr static int pinsHeight_ = 6;
+    
+private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ObjectComponent)
 };
 
