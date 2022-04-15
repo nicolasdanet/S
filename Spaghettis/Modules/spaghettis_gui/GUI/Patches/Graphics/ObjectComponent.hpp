@@ -46,7 +46,7 @@ private:
     core::Object object_;
     core::Cached<bool> visible_;
     std::unique_ptr<PainterPolicy> painter_;
-    
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ObjectComponent)
 };

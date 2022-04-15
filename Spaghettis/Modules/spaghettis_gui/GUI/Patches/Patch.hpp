@@ -33,6 +33,8 @@ public:
     {
         DBG (core::Data::debug (tree_));
         
+        Spaghettis()->appendRecentFile (getFile());
+        
         releaseAllWindows();
     }
 
