@@ -49,7 +49,7 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     
     owner_.addChildComponent (this);
 
-    updateVisible(); visible_.attach ([this]() { updateVisible(); });
+    update(); visible_.attach ([this]() { update(); });
     
     backgroundColour_.attach (PainterPolicy::repainter (this));
 }
@@ -74,9 +74,11 @@ core::UniqueId ObjectComponent::getIdentifier() const
 
 void ObjectComponent::paint (juce::Graphics& g)
 {
-    if (showPins_) { g.setColour (backgroundColour_.get()); g.fillRect (getLocalBounds()); }
+    const juce::Rectangle<int> bounds (getLocalBounds());
     
-    painter_->paint (getPainted(), g);
+    if (showPins_) { g.setColour (backgroundColour_.get()); g.fillRect (bounds); }
+    
+    painter_->paint (getPainted (bounds), g);
 }
     
 void ObjectComponent::resized()
@@ -88,23 +90,19 @@ void ObjectComponent::resized()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ObjectComponent::updateVisible()
+void ObjectComponent::update()
 {
-    setVisible (visible_.get()); updateBounds();
+    setVisible (visible_.get()); updateBounds (painter_->getBounds());
 }
 
-void ObjectComponent::updateBounds()
+void ObjectComponent::updateBounds (const juce::Rectangle<int>& painted)
 {
-    const juce::Rectangle<int> b = painter_->getBounds();
-    
-    setBounds (showPins_ ? b.expanded (0, pinsHeight_ * 2) : b);
+    setBounds (showPins_ ? painted.expanded (0, pinsHeight_ * 2) : painted);
 }
 
-juce::Rectangle<int> ObjectComponent::getPainted() const
+juce::Rectangle<int> ObjectComponent::getPainted (const juce::Rectangle<int>& bounds) const
 {
-    const juce::Rectangle<int> b = getLocalBounds();
-    
-    return showPins_ ? b.reduced (0, pinsHeight_ * 2) : b;
+    return showPins_ ? bounds.reduced (0, pinsHeight_ * 2) : bounds;
 }
     
 // -----------------------------------------------------------------------------------------------------------

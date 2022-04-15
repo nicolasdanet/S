@@ -39,9 +39,9 @@ public:
     void resized() override;
 
 private:
-    void updateVisible();
-    void updateBounds();
-    juce::Rectangle<int> getPainted() const;
+    void update();
+    void updateBounds (const juce::Rectangle<int>&);
+    juce::Rectangle<int> getPainted (const juce::Rectangle<int>&) const;
 
 private:
     juce::Component& owner_;
