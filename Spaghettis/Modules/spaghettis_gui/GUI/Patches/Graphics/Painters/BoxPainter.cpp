@@ -57,7 +57,7 @@ juce::Rectangle<int> BoxPainter::getBounds()
     const int x = x_.get();
     const int y = y_.get();
     const int w = font_.getStringWidth (text);
-    const int h = static_cast <int> (font_.getHeight());
+    const int h = static_cast<int> (font_.getHeight());
 
     return juce::Rectangle<int> (x, y, w + margins_ + margins_, h + margins_ + margins_);
 }

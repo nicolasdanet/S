@@ -39,7 +39,9 @@ public:
     void resized() override;
 
 private:
-    void visible();
+    void updateVisible();
+    void updateBounds();
+    juce::Rectangle<int> getPainted() const;
 
 private:
     juce::Component& owner_;
@@ -49,7 +51,7 @@ private:
     bool showPins_;
 
 private:
-    constexpr static int pinsHeight_ = 6;
+    constexpr static int pinsHeight_ = 2;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ObjectComponent)

@@ -36,7 +36,7 @@ void main_threadLoopFakeCommandLine (const juce::StringArray& cmd)
     for (int i = 0; i < n; ++i) {
         const juce::String& s = cmd[i];
         const size_t size = s.getNumBytesAsUTF8() + 1;
-        main_argv[i] = static_cast <char*> (malloc (size));
+        main_argv[i] = static_cast<char*> (malloc (size));
         s.copyToUTF8 (main_argv[i], size);
     }
     //

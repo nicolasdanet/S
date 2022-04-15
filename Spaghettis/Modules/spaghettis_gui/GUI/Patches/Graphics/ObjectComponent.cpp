@@ -45,12 +45,11 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
 {
     setOpaque (true);
     setPaintingIsUnclipped (true);
-    visible();
-    setBounds (painter_->getBounds());
+    updateVisible();
     
     owner_.addChildComponent (this);
 
-    visible_.attach ([this]() { visible(); });
+    visible_.attach ([this]() { updateVisible(); });
 }
 
 ObjectComponent::~ObjectComponent()
@@ -73,7 +72,7 @@ core::UniqueId ObjectComponent::getIdentifier() const
 
 void ObjectComponent::paint (juce::Graphics& g)
 {
-    painter_->paint (getLocalBounds(), g);
+    painter_->paint (getPainted(), g);
 }
     
 void ObjectComponent::resized()
@@ -81,11 +80,29 @@ void ObjectComponent::resized()
 
 }
 
-void ObjectComponent::visible()
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ObjectComponent::updateVisible()
 {
-    setVisible (visible_.get());
+    setVisible (visible_.get()); updateBounds();
 }
 
+void ObjectComponent::updateBounds()
+{
+    const juce::Rectangle<int> b = painter_->getBounds();
+    
+    setBounds (showPins_ ? b.expanded (0, pinsHeight_ * 2) : b);
+}
+
+juce::Rectangle<int> ObjectComponent::getPainted() const
+{
+    const juce::Rectangle<int> b = getLocalBounds();
+    
+    return showPins_ ? b.reduced (0, pinsHeight_ * 2) : b;
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
