@@ -87,6 +87,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set background color of patch"),
         Colours::getPalette()->background);
 
+    colors.addParameter (Tags::PinBackground,
+        NEEDS_TRANS ("Pin Background"),
+        NEEDS_TRANS ("Set background color of inlets and outlets"),
+        Colours::getPalette()->backgroundBox);
+        
     colors.addParameter (Tags::BoxBackground,
         NEEDS_TRANS ("Box Background"),
         NEEDS_TRANS ("Set background color of objects"),

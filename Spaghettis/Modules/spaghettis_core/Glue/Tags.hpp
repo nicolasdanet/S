@@ -31,6 +31,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (DefaultIsRunView);
     DECLARE_STRING (GridSize);
     DECLARE_STRING (PatchBackground);
+    DECLARE_STRING (PinBackground);
     DECLARE_STRING (SnapToGrid);
     
     DECLARE_STRING (Attributes);

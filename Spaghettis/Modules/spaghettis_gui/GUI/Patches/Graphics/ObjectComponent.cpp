@@ -40,6 +40,7 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     owner_ (owner),
     object_ (object),
     visible_ (object.getCachedAttribute<bool> (Tags::Visible)),
+    backgroundColour_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
     painter_ (createPainter (*this, object)),
     showPins_ (true)
 {
@@ -50,6 +51,7 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     owner_.addChildComponent (this);
 
     visible_.attach ([this]() { updateVisible(); });
+    backgroundColour_.attach (PainterPolicy::repainter (this));
 }
 
 ObjectComponent::~ObjectComponent()
@@ -72,6 +74,8 @@ core::UniqueId ObjectComponent::getIdentifier() const
 
 void ObjectComponent::paint (juce::Graphics& g)
 {
+    if (showPins_) { g.setColour (backgroundColour_.get()); g.fillRect (getLocalBounds()); }
+    
     painter_->paint (getPainted(), g);
 }
     

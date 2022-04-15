@@ -47,6 +47,7 @@ private:
     juce::Component& owner_;
     core::Object object_;
     core::Cached<bool> visible_;
+    core::Cached<juce::Colour> backgroundColour_;
     std::unique_ptr<PainterPolicy> painter_;
     bool showPins_;
 
