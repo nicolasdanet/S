@@ -46,11 +46,11 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
 {
     setOpaque (true);
     setPaintingIsUnclipped (true);
-    updateVisible();
     
     owner_.addChildComponent (this);
 
-    visible_.attach ([this]() { updateVisible(); });
+    updateVisible(); visible_.attach ([this]() { updateVisible(); });
+    
     backgroundColour_.attach (PainterPolicy::repainter (this));
 }
 
