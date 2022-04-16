@@ -40,22 +40,31 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     owner_ (owner),
     object_ (object),
     visible_ (object.getCachedAttribute<bool> (Tags::Visible)),
+    inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets)),
+    outlets_ (object.getCachedAttribute<juce::String> (Tags::Outlets)),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
     painter_ (createPainter (*this, object)),
     showPins_ (true)
 {
-    setOpaque (true);
-    setPaintingIsUnclipped (true);
+    setOpaque (true); setPaintingIsUnclipped (true);
     
     owner_.addChildComponent (this);
 
-    update(); visible_.attach ([this]() { update(); });
+    update();
+    
+    auto f = [this]() { update(); };
+    
+    visible_.attach (f);
+    inlets_.attach  (f);
+    outlets_.attach (f);
     
     backgroundColour_.attach (PainterPolicy::repainter (this));
 }
 
 ObjectComponent::~ObjectComponent()
 {
+    removeInletsAndOultets();
+    
     owner_.removeChildComponent (this);
 }
 
@@ -92,7 +101,9 @@ void ObjectComponent::resized()
 
 void ObjectComponent::update()
 {
-    setVisible (visible_.get()); updateBounds (painter_->getBounds());
+    setVisible (visible_.get());
+    updateBounds (painter_->getBounds());
+    updateInletsAndOutlets();
 }
 
 void ObjectComponent::updateBounds (const juce::Rectangle<int>& painted)
@@ -104,7 +115,17 @@ juce::Rectangle<int> ObjectComponent::getPainted (const juce::Rectangle<int>& bo
 {
     return showPins_ ? bounds.reduced (0, pinsHeight_ * 2) : bounds;
 }
-    
+
+void ObjectComponent::updateInletsAndOutlets()
+{
+    DBG ("? I/O");
+}
+
+void ObjectComponent::removeInletsAndOultets()
+{
+    DBG ("! I/O");
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

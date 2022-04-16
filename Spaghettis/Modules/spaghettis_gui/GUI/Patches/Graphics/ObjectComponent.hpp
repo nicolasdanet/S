@@ -42,11 +42,16 @@ private:
     void update();
     void updateBounds (const juce::Rectangle<int>&);
     juce::Rectangle<int> getPainted (const juce::Rectangle<int>&) const;
-
+    void updateInletsAndOutlets();
+    void removeInletsAndOultets();
+    
+    
 private:
     juce::Component& owner_;
     core::Object object_;
     core::Cached<bool> visible_;
+    core::Cached<juce::String> inlets_;
+    core::Cached<juce::String> outlets_;
     core::Cached<juce::Colour> backgroundColour_;
     std::unique_ptr<PainterPolicy> painter_;
     bool showPins_;
