@@ -12,6 +12,25 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PinComponent::PinComponent (juce::Component& owner, const juce::String& type, int index) :
+    owner_ (owner),
+    type_ (type),
+    index_ (index)
+{
+    setOpaque (true); setPaintingIsUnclipped (true);
+    
+    owner_.addChildComponent (this);
+}
+
+PinComponent::~PinComponent()
+{
+    owner_.removeChildComponent (this);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void PinComponent::paint (juce::Graphics& g)
 {
     g.setColour (juce::Colours::orange);

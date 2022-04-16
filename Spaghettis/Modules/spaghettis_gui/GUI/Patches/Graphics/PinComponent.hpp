@@ -18,8 +18,9 @@ class PinComponent : public juce::Component {
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    PinComponent()  = default;
-    ~PinComponent() = default;
+    explicit PinComponent (juce::Component&, const juce::String&, int);
+
+    ~PinComponent();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -29,6 +30,11 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+private:
+    juce::Component& owner_;
+    juce::String type_;
+    int index_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PinComponent)
 };

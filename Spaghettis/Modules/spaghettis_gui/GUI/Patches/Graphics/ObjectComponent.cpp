@@ -83,11 +83,9 @@ core::UniqueId ObjectComponent::getIdentifier() const
 
 void ObjectComponent::paint (juce::Graphics& g)
 {
-    const juce::Rectangle<int> bounds (getLocalBounds());
+    if (showPins_) { g.setColour (background_.get()); g.fillRect (getLocalBounds()); }
     
-    if (showPins_) { g.setColour (background_.get()); g.fillRect (bounds); }
-    
-    painter_->paint (getPainted (bounds), g);
+    painter_->paint (getPaintedBounds(), g);
 }
     
 void ObjectComponent::resized()
@@ -102,28 +100,61 @@ void ObjectComponent::resized()
 void ObjectComponent::update()
 {
     setVisible (visible_.get());
-    updateBounds (painter_->getBounds());
+    updateBounds();
     updateInletsAndOutlets();
 }
 
-void ObjectComponent::updateBounds (const juce::Rectangle<int>& painted)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ObjectComponent::updateBounds()
 {
+    const juce::Rectangle<int> painted (painter_->getBounds());
+    
     setBounds (showPins_ ? painted.expanded (0, pinsHeight_ * 2) : painted);
 }
 
-juce::Rectangle<int> ObjectComponent::getPainted (const juce::Rectangle<int>& bounds) const
+juce::Rectangle<int> ObjectComponent::getPaintedBounds() const
 {
+    const juce::Rectangle<int> bounds (getLocalBounds());
+    
     return showPins_ ? bounds.reduced (0, pinsHeight_ * 2) : bounds;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ObjectComponent::updateInlets (const juce::StringArray& a)
+{
+    const int n = a.size();
+    
+    for (int i = 0; i < n; ++i) {
+        //std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (owner_, a[i], i);
+        //iPins.push_back (std::move (p));
+    }
 }
 
 void ObjectComponent::updateInletsAndOutlets()
 {
-    DBG ("? I/O");
+    removeInletsAndOultets();
+    
+    if (showPins_) {
+    //
+    juce::StringArray i (juce::StringArray::fromTokens (inlets_.get(), true));
+    juce::StringArray o (juce::StringArray::fromTokens (outlets_.get(), true));
+    
+    if (!i.isEmpty()) { updateInlets (i); }
+    if (!o.isEmpty()) { }
+    //
+    }
 }
 
 void ObjectComponent::removeInletsAndOultets()
 {
-    DBG ("! I/O");
+    iPins_.clear();
+    oPins_.clear();
 }
 
 // -----------------------------------------------------------------------------------------------------------
