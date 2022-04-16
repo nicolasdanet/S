@@ -13,15 +13,15 @@ namespace spaghettis {
 // MARK: -
 
 BangPainter::BangPainter (juce::Component& owner, const core::Object& object) : PainterPolicy (owner, object),
-    backgroundColour_ (fetchColour (Tags::BangBackground)),
-    flashOffColour_ (fetchColour (Tags::BangFlashOff)),
-    flashOnColour_ (fetchColour (Tags::BangFlashOn)),
+    background_ (fetchColour (Tags::BangBackground)),
+    flashOff_ (fetchColour (Tags::BangFlashOff)),
+    flashOn_ (fetchColour (Tags::BangFlashOn)),
     flashed_ (fetchParameter<bool> (Tags::Flashed)),
     width_ (fetchParameter<int> (Tags::Width))
 {
-    bind (backgroundColour_);
-    bind (flashOffColour_);
-    bind (flashOnColour_);
+    bind (background_);
+    bind (flashOff_);
+    bind (flashOn_);
     bind (flashed_);
     bind (width_);
 }
@@ -32,9 +32,9 @@ BangPainter::BangPainter (juce::Component& owner, const core::Object& object) : 
 
 void BangPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    g.setColour (backgroundColour_.get());
+    g.setColour (background_.get());
     g.fillRect (r);
-    g.setColour (flashed_.get() ? flashOnColour_.get() : flashOffColour_.get());
+    g.setColour (flashed_.get() ? flashOn_.get() : flashOff_.get());
     g.fillEllipse (r.reduced (1).toFloat());
 }
 

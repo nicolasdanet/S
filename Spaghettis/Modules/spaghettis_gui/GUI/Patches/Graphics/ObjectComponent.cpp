@@ -42,7 +42,7 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     visible_ (object.getCachedAttribute<bool> (Tags::Visible)),
     inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets)),
     outlets_ (object.getCachedAttribute<juce::String> (Tags::Outlets)),
-    backgroundColour_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
+    background_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
     painter_ (createPainter (*this, object)),
     showPins_ (true)
 {
@@ -58,7 +58,7 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     inlets_.attach  (f);
     outlets_.attach (f);
     
-    backgroundColour_.attach (PainterPolicy::repainter (this));
+    background_.attach (PainterPolicy::repainter (this));
 }
 
 ObjectComponent::~ObjectComponent()
@@ -85,7 +85,7 @@ void ObjectComponent::paint (juce::Graphics& g)
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
     
-    if (showPins_) { g.setColour (backgroundColour_.get()); g.fillRect (bounds); }
+    if (showPins_) { g.setColour (background_.get()); g.fillRect (bounds); }
     
     painter_->paint (getPainted (bounds), g);
 }
