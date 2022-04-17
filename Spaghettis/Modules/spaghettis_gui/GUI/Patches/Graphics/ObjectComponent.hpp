@@ -57,6 +57,7 @@ private:
 
 private:
     void updateInlets (const juce::StringArray&);
+    void updateOutlets (const juce::StringArray&);
     void updateInletsAndOutlets();
     void removeInletsAndOultets();
     
