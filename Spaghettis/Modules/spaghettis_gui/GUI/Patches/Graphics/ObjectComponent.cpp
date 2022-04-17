@@ -163,6 +163,26 @@ juce::Rectangle<int> ObjectComponent::getOutletBounds (int index) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/*
+std::vector<std::unique_ptr<PinComponent>> ObjectComponent::updatePins (const juce::StringArray& a, bool b)
+{
+    const juce::Rectangle<int> bounds (getBounds());
+    
+    const int n = a.size();
+    
+    std::vector<std::unique_ptr<PinComponent>> pins;
+    
+    for (int i = 0; i < n; ++i) {
+        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (owner_, a[i], i);
+        p->setBounds (getPinBounds (bounds, i, b));
+        p->setVisible (true);
+        pins.push_back (std::move (p));
+    }
+    
+    return pins;
+}
+*/
+
 void ObjectComponent::updateInlets (const juce::StringArray& a)
 {
     const int n = a.size();
@@ -192,8 +212,13 @@ void ObjectComponent::updateInletsAndOutlets()
     removeInletsAndOultets();
     
     if (showPins_ && visible_.get()) {
-        updateInlets (juce::StringArray::fromTokens (inlets_.get(), true));
-        updateOutlets (juce::StringArray::fromTokens (outlets_.get(), true));
+    //
+    const juce::StringArray i (juce::StringArray::fromTokens (inlets_.get(), true));
+    const juce::StringArray o (juce::StringArray::fromTokens (outlets_.get(), true));
+    
+    if (!i.isEmpty()) { updateInlets (i);  }
+    if (!o.isEmpty()) { updateOutlets (o); }
+    //
     }
 }
 
