@@ -120,12 +120,10 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, bool 
     bounds.setX (x);
     bounds.setWidth (PainterPolicy::pinWidth());
     
-    if (isOutlet) { }
+    if (isOutlet) { return bounds.removeFromBottom (PainterPolicy::pinHeight()); }
     else {
-        bounds.setHeight (PainterPolicy::pinHeight());
+        return bounds.removeFromTop (PainterPolicy::pinHeight());
     }
-    
-    return bounds;
 }
 
 // -----------------------------------------------------------------------------------------------------------
