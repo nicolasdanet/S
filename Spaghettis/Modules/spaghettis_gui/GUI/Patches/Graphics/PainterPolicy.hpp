@@ -89,10 +89,10 @@ protected:
     core::Cached<int> y_;
 
 public:
-    constexpr static int pinHeight_ = 4;
-    constexpr static int pinWidth_  = 8;
-    constexpr static int pinSpace_  = 2;
-    constexpr static int margins_   = 2;
+    constexpr static int pinHeight() { return 4; }
+    constexpr static int pinWidth()  { return 8; }
+    constexpr static int pinSpace()  { return 2; }
+    constexpr static int margins()   { return 2; }
 };
 
 // -----------------------------------------------------------------------------------------------------------

@@ -115,15 +115,15 @@ namespace {
 
 juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, bool isOutlet)
 {
-    const int k = index * (PainterPolicy::pinSpace_ + PainterPolicy::pinWidth_);
-    const int x = bounds.getX() + k + PainterPolicy::pinSpace_;
+    const int k = index * (PainterPolicy::pinSpace() + PainterPolicy::pinWidth());
+    const int x = bounds.getX() + k + PainterPolicy::pinSpace();
     
     bounds.setX (x);
-    bounds.setWidth (PainterPolicy::pinWidth_);
+    bounds.setWidth (PainterPolicy::pinWidth());
     
     if (isOutlet) { }
     else {
-        bounds.setHeight (PainterPolicy::pinHeight_);
+        bounds.setHeight (PainterPolicy::pinHeight());
     }
     
     return bounds;
@@ -142,14 +142,14 @@ void ObjectComponent::updateBounds()
 {
     juce::Rectangle<int> painted (painter_->getBounds());
     
-    setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight_) : painted);
+    setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted);
 }
 
 juce::Rectangle<int> ObjectComponent::getPaintedBounds() const
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
     
-    return showPins_ ? bounds.reduced (0, PainterPolicy::pinHeight_) : bounds;
+    return showPins_ ? bounds.reduced (0, PainterPolicy::pinHeight()) : bounds;
 }
 
 juce::Rectangle<int> ObjectComponent::getInletBounds (int index) const

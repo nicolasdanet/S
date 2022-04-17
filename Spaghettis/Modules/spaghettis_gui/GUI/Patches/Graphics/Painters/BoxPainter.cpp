@@ -47,7 +47,7 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
     g.fillRect (r);
     g.setColour (text_.get());
     g.setFont (font_);
-    g.drawText (text, r.reduced (PainterPolicy::margins_), juce::Justification::centredLeft, true);
+    g.drawText (text, r.reduced (PainterPolicy::margins()), juce::Justification::centredLeft, true);
 }
 
 juce::Rectangle<int> BoxPainter::getBounds()
@@ -58,7 +58,7 @@ juce::Rectangle<int> BoxPainter::getBounds()
     const int y = y_.get();
     const int w = font_.getStringWidth (text);
     const int h = static_cast<int> (font_.getHeight());
-    const int k = PainterPolicy::margins_ * 2;
+    const int k = PainterPolicy::margins() * 2;
     
     return juce::Rectangle<int> (x, y, w + k, h + k);
 }
