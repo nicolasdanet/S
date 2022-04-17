@@ -113,12 +113,18 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Rectangle<int> getPinPosition (juce::Rectangle<int> bounds, int index)
+juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, bool isOutlet)
 {
     const int k = index * (PainterPolicy::pinSpace_ + PainterPolicy::pinWidth_);
     const int x = bounds.getX() + k + PainterPolicy::pinSpace_;
     
-    bounds.setX (x); bounds.setWidth (PainterPolicy::pinWidth_);
+    bounds.setX (x);
+    bounds.setWidth (PainterPolicy::pinWidth_);
+    
+    if (isOutlet) { }
+    else {
+        bounds.setHeight (PainterPolicy::pinHeight_);
+    }
     
     return bounds;
 }
@@ -148,16 +154,12 @@ juce::Rectangle<int> ObjectComponent::getPaintedBounds() const
 
 juce::Rectangle<int> ObjectComponent::getInletBounds (int index) const
 {
-    juce::Rectangle<int> p (getPinPosition (getBounds(), index));
-    
-    p.setHeight (PainterPolicy::pinHeight_);
-    
-    return p;
+    return getPinBounds (getBounds(), index, false);
 }
 
 juce::Rectangle<int> ObjectComponent::getOutletBounds (int index) const
 {
-    return getPinPosition (getBounds(), index);
+    return getPinBounds (getBounds(), index, true);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -92,6 +92,7 @@ public:
     constexpr static int pinHeight_ = 4;
     constexpr static int pinWidth_  = 8;
     constexpr static int pinSpace_  = 2;
+    constexpr static int margins_   = 2;
 };
 
 // -----------------------------------------------------------------------------------------------------------
