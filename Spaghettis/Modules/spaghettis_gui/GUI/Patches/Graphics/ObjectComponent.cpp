@@ -108,18 +108,47 @@ void ObjectComponent::update()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::Rectangle<int> getPinPosition (const juce::Rectangle<int>& bounds, int index)
+{
+    return bounds;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ObjectComponent::updateBounds()
 {
     const juce::Rectangle<int> painted (painter_->getBounds());
     
-    setBounds (showPins_ ? painted.expanded (0, pinsHeight_ * 2) : painted);
+    setBounds (showPins_ ? painted.expanded (0, extraHeight_ * 2) : painted);
 }
 
 juce::Rectangle<int> ObjectComponent::getPaintedBounds() const
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
     
-    return showPins_ ? bounds.reduced (0, pinsHeight_ * 2) : bounds;
+    return showPins_ ? bounds.reduced (0, extraHeight_ * 2) : bounds;
+}
+
+juce::Rectangle<int> ObjectComponent::getInletBounds (int index) const
+{
+    return getPinPosition (getLocalBounds(), index);
+}
+
+juce::Rectangle<int> ObjectComponent::getOutletBounds (int index) const
+{
+    return getPinPosition (getLocalBounds(), index);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -131,8 +160,10 @@ void ObjectComponent::updateInlets (const juce::StringArray& a)
     const int n = a.size();
     
     for (int i = 0; i < n; ++i) {
-        //std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (owner_, a[i], i);
-        //iPins.push_back (std::move (p));
+        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (owner_, a[i], i);
+        p->setBounds (getInletBounds (i));
+        p->setVisible (true);
+        iPins_.push_back (std::move (p));
     }
 }
 
@@ -140,7 +171,7 @@ void ObjectComponent::updateInletsAndOutlets()
 {
     removeInletsAndOultets();
     
-    if (showPins_) {
+    if (showPins_ && visible_.get()) {
     //
     juce::StringArray i (juce::StringArray::fromTokens (inlets_.get(), true));
     juce::StringArray o (juce::StringArray::fromTokens (outlets_.get(), true));

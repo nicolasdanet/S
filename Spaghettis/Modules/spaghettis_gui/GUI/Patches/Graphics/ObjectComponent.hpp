@@ -38,10 +38,24 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     void update();
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
     void updateBounds();
     juce::Rectangle<int> getPaintedBounds() const;
+    juce::Rectangle<int> getInletBounds (int) const;
+    juce::Rectangle<int> getOutletBounds (int) const;
+
+private:
     void updateInlets (const juce::StringArray&);
     void updateInletsAndOutlets();
     void removeInletsAndOultets();
@@ -59,7 +73,9 @@ private:
     bool showPins_;
 
 private:
-    constexpr static int pinsHeight_ = 2;
+    constexpr static int extraHeight_   = 2;
+    constexpr static int pinWidth_      = 4;
+    constexpr static int pinSpace_      = 2;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ObjectComponent)
