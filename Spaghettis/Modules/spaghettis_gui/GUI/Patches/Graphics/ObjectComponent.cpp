@@ -113,8 +113,13 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Rectangle<int> getPinPosition (const juce::Rectangle<int>& bounds, int index)
+juce::Rectangle<int> getPinPosition (juce::Rectangle<int> bounds, int index)
 {
+    const int k = index * (PainterPolicy::pinSpace_ + PainterPolicy::pinWidth_);
+    const int x = bounds.getX() + k + PainterPolicy::pinSpace_;
+    
+    bounds.setX (x); bounds.setWidth (PainterPolicy::pinWidth_);
+    
     return bounds;
 }
 
@@ -131,24 +136,28 @@ void ObjectComponent::updateBounds()
 {
     juce::Rectangle<int> painted (painter_->getBounds());
     
-    setBounds (showPins_ ? painted.expanded (0, painter_->pinHeight_) : painted);
+    setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight_) : painted);
 }
 
 juce::Rectangle<int> ObjectComponent::getPaintedBounds() const
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
     
-    return showPins_ ? bounds.reduced (0, painter_->pinHeight_) : bounds;
+    return showPins_ ? bounds.reduced (0, PainterPolicy::pinHeight_) : bounds;
 }
 
 juce::Rectangle<int> ObjectComponent::getInletBounds (int index) const
 {
-    return getPinPosition (getLocalBounds(), index);
+    juce::Rectangle<int> p (getPinPosition (getBounds(), index));
+    
+    p.setHeight (PainterPolicy::pinHeight_);
+    
+    return p;
 }
 
 juce::Rectangle<int> ObjectComponent::getOutletBounds (int index) const
 {
-    return getPinPosition (getLocalBounds(), index);
+    return getPinPosition (getBounds(), index);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -176,7 +185,7 @@ void ObjectComponent::updateInletsAndOutlets()
         const juce::StringArray i (juce::StringArray::fromTokens (inlets_.get(), true));
         const juce::StringArray o (juce::StringArray::fromTokens (outlets_.get(), true));
     
-        // updateInlets (i);
+        updateInlets (i);
     }
 }
 
