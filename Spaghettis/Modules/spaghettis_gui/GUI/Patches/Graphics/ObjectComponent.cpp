@@ -115,8 +115,7 @@ namespace {
 
 juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, bool isOutlet)
 {
-    const int k = index * (PainterPolicy::pinSpace() + PainterPolicy::pinWidth());
-    const int x = bounds.getX() + k + PainterPolicy::pinSpace();
+    const int x = bounds.getX() + (index * (PainterPolicy::pinSpace() + PainterPolicy::pinWidth()));
     
     bounds.setX (x);
     bounds.setWidth (PainterPolicy::pinWidth());
