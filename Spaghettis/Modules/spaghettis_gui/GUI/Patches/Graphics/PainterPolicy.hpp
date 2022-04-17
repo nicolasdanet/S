@@ -87,6 +87,11 @@ protected:
     core::Object object_;
     core::Cached<int> x_;
     core::Cached<int> y_;
+
+public:
+    constexpr static int pinHeight_ = 4;
+    constexpr static int pinWidth_  = 4;
+    constexpr static int pinSpace_  = 2;
 };
 
 // -----------------------------------------------------------------------------------------------------------

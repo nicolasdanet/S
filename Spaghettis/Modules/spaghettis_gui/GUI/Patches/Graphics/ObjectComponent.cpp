@@ -131,14 +131,14 @@ void ObjectComponent::updateBounds()
 {
     juce::Rectangle<int> painted (painter_->getBounds());
     
-    setBounds (showPins_ ? painted.expanded (0, extraHeight_ * 2) : painted);
+    setBounds (showPins_ ? painted.expanded (0, painter_->pinHeight_) : painted);
 }
 
 juce::Rectangle<int> ObjectComponent::getPaintedBounds() const
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
     
-    return showPins_ ? bounds.reduced (0, extraHeight_ * 2) : bounds;
+    return showPins_ ? bounds.reduced (0, painter_->pinHeight_) : bounds;
 }
 
 juce::Rectangle<int> ObjectComponent::getInletBounds (int index) const
@@ -176,7 +176,7 @@ void ObjectComponent::updateInletsAndOutlets()
         const juce::StringArray i (juce::StringArray::fromTokens (inlets_.get(), true));
         const juce::StringArray o (juce::StringArray::fromTokens (outlets_.get(), true));
     
-        updateInlets (i);
+        // updateInlets (i);
     }
 }
 

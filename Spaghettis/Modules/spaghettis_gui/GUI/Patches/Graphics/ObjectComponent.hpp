@@ -73,11 +73,6 @@ private:
     bool showPins_;
 
 private:
-    constexpr static int extraHeight_   = 2;
-    constexpr static int pinWidth_      = 4;
-    constexpr static int pinSpace_      = 2;
-    
-private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ObjectComponent)
 };
 
