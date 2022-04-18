@@ -126,6 +126,25 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, bool 
     }
 }
 
+std::vector<std::unique_ptr<PinComponent>> updatePins (const juce::StringArray& a,
+    const juce::Rectangle<int>& bounds,
+    juce::Component& owner,
+    bool isOutlet)
+{
+    const int n = a.size();
+    
+    std::vector<std::unique_ptr<PinComponent>> pins;
+    
+    for (int i = 0; i < n; ++i) {
+        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (owner, a[i], i);
+        p->setBounds (getPinBounds (bounds, i, isOutlet));
+        p->setVisible (true);
+        pins.push_back (std::move (p));
+    }
+    
+    return pins;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -153,24 +172,6 @@ juce::Rectangle<int> ObjectComponent::getPaintedBounds() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::vector<std::unique_ptr<PinComponent>> ObjectComponent::updatePins (const juce::StringArray& a, bool b)
-{
-    const juce::Rectangle<int> bounds (getBounds());
-    
-    const int n = a.size();
-    
-    std::vector<std::unique_ptr<PinComponent>> pins;
-    
-    for (int i = 0; i < n; ++i) {
-        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (owner_, a[i], i);
-        p->setBounds (getPinBounds (bounds, i, b));
-        p->setVisible (true);
-        pins.push_back (std::move (p));
-    }
-    
-    return pins;
-}
-
 void ObjectComponent::updateInletsAndOutlets()
 {
     removeInletsAndOultets();
@@ -180,8 +181,10 @@ void ObjectComponent::updateInletsAndOutlets()
     const juce::StringArray i (juce::StringArray::fromTokens (inlets_.get(), true));
     const juce::StringArray o (juce::StringArray::fromTokens (outlets_.get(), true));
     
-    if (!i.isEmpty()) { iPins_ = updatePins (i, false); }
-    if (!o.isEmpty()) { oPins_ = updatePins (o, true);  }
+    const juce::Rectangle<int> bounds (getBounds());
+    
+    if (!i.isEmpty()) { iPins_ = updatePins (i, bounds, owner_, false); }
+    if (!o.isEmpty()) { oPins_ = updatePins (o, bounds, owner_, true);  }
     //
     }
 }
