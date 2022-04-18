@@ -13,9 +13,9 @@ namespace spaghettis {
 // MARK: -
 
 BangPainter::BangPainter (juce::Component& owner, const core::Object& object) : PainterPolicy (owner, object),
-    background_ (fetchColour (Tags::BangBackground)),
-    flashOff_ (fetchColour (Tags::BangFlashOff)),
-    flashOn_ (fetchColour (Tags::BangFlashOn)),
+    background_ (Spaghettis()->getCachedColour (Tags::BangBackground)),
+    flashOff_ (Spaghettis()->getCachedColour (Tags::BangFlashOff)),
+    flashOn_ (Spaghettis()->getCachedColour (Tags::BangFlashOn)),
     flashed_ (fetchParameter<bool> (Tags::Flashed)),
     width_ (fetchParameter<int> (Tags::Width))
 {

@@ -101,10 +101,9 @@ void ObjectComponent::resized()
 
 void ObjectComponent::update()
 {
-    setVisible (visible_.get());
-    
     juce::Rectangle<int> painted (painter_->getBounds());
     
+    setVisible (visible_.get());
     setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted);
     
     updateInletsAndOutlets();

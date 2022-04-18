@@ -89,9 +89,39 @@ core::Data getDefaultPreferences()
 
     colors.addParameter (Tags::PinBackground,
         NEEDS_TRANS ("Pin Background"),
-        NEEDS_TRANS ("Set background color of inlets and outlets"),
+        NEEDS_TRANS ("Set background color of inlets/outlets"),
         Colours::getPalette()->backgroundBox);
+    
+    colors.addParameter (Tags::PinSignal,
+        NEEDS_TRANS ("Pin Signal"),
+        NEEDS_TRANS ("Set color of signal inlets/outlets"),
+        Colours::getPalette()->textWarning);
+    
+    colors.addParameter (Tags::PinBang,
+        NEEDS_TRANS ("Pin Bang"),
+        NEEDS_TRANS ("Set color of bang inlets/outlets"),
+        Colours::getPalette()->textWarning);
+    
+    colors.addParameter (Tags::PinFloat,
+        NEEDS_TRANS ("Pin Float"),
+        NEEDS_TRANS ("Set color of float inlets/outlets"),
+        Colours::getPalette()->textWarning);
+    
+    colors.addParameter (Tags::PinSymbol,
+        NEEDS_TRANS ("Pin Symbol"),
+        NEEDS_TRANS ("Set color of symbol inlets/outlets"),
+        Colours::getPalette()->textWarning);
+    
+    colors.addParameter (Tags::PinList,
+        NEEDS_TRANS ("Pin List"),
+        NEEDS_TRANS ("Set color of list inlets/outlets"),
+        Colours::getPalette()->textWarning);
         
+    colors.addParameter (Tags::PinAnything,
+        NEEDS_TRANS ("Pin Anything"),
+        NEEDS_TRANS ("Set color of anything inlets/outlets"),
+        Colours::getPalette()->textWarning);
+    
     colors.addParameter (Tags::BoxBackground,
         NEEDS_TRANS ("Box Background"),
         NEEDS_TRANS ("Set background color of objects"),

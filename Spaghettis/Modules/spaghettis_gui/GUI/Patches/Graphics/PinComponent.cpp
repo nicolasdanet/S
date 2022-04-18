@@ -12,12 +12,43 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+core::Cached<juce::Colour> getColourFromType (const juce::String& type)
+{
+    juce::String key = Tags::PinSignal;
+    
+    if (type == "bang")          { key = Tags::PinBang;     }
+    else if (type == "float")    { key = Tags::PinFloat;    }
+    else if (type == "symbol")   { key = Tags::PinSymbol;   }
+    else if (type == "list")     { key = Tags::PinList;     }
+    else if (type == "anything") { key = Tags::PinAnything; }
+            
+    return Spaghettis()->getCachedColour (key);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+        
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PinComponent::PinComponent (juce::Component& owner, const juce::String& type, int index) :
     owner_ (owner),
     type_ (type),
-    index_ (index)
+    index_ (index),
+    pin_ (getColourFromType (type))
 {
     setOpaque (true); setPaintingIsUnclipped (true);
+    
+    pin_.attach (PainterPolicy::repainter (this));
     
     owner_.addChildComponent (this);
 }
@@ -33,7 +64,7 @@ PinComponent::~PinComponent()
 
 void PinComponent::paint (juce::Graphics& g)
 {
-    g.setColour (juce::Colours::orange);
+    g.setColour (pin_.get());
     g.fillRect (getLocalBounds());
 }
     
