@@ -149,21 +149,10 @@ juce::Rectangle<int> ObjectComponent::getPaintedBounds() const
     return showPins_ ? bounds.reduced (0, PainterPolicy::pinHeight()) : bounds;
 }
 
-juce::Rectangle<int> ObjectComponent::getInletBounds (int index) const
-{
-    return getPinBounds (getBounds(), index, false);
-}
-
-juce::Rectangle<int> ObjectComponent::getOutletBounds (int index) const
-{
-    return getPinBounds (getBounds(), index, true);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
 std::vector<std::unique_ptr<PinComponent>> ObjectComponent::updatePins (const juce::StringArray& a, bool b)
 {
     const juce::Rectangle<int> bounds (getBounds());
@@ -181,31 +170,6 @@ std::vector<std::unique_ptr<PinComponent>> ObjectComponent::updatePins (const ju
     
     return pins;
 }
-*/
-
-void ObjectComponent::updateInlets (const juce::StringArray& a)
-{
-    const int n = a.size();
-    
-    for (int i = 0; i < n; ++i) {
-        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (owner_, a[i], i);
-        p->setBounds (getInletBounds (i));
-        p->setVisible (true);
-        iPins_.push_back (std::move (p));
-    }
-}
-
-void ObjectComponent::updateOutlets (const juce::StringArray& a)
-{
-    const int n = a.size();
-    
-    for (int i = 0; i < n; ++i) {
-        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (owner_, a[i], i);
-        p->setBounds (getOutletBounds (i));
-        p->setVisible (true);
-        oPins_.push_back (std::move (p));
-    }
-}
 
 void ObjectComponent::updateInletsAndOutlets()
 {
@@ -216,8 +180,8 @@ void ObjectComponent::updateInletsAndOutlets()
     const juce::StringArray i (juce::StringArray::fromTokens (inlets_.get(), true));
     const juce::StringArray o (juce::StringArray::fromTokens (outlets_.get(), true));
     
-    if (!i.isEmpty()) { updateInlets (i);  }
-    if (!o.isEmpty()) { updateOutlets (o); }
+    if (!i.isEmpty()) { iPins_ = updatePins (i, false); }
+    if (!o.isEmpty()) { oPins_ = updatePins (o, true);  }
     //
     }
 }

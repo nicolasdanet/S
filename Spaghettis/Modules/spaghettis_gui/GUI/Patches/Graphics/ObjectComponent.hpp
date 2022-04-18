@@ -52,13 +52,9 @@ private:
 private:
     void updateBounds();
     juce::Rectangle<int> getPaintedBounds() const;
-    juce::Rectangle<int> getInletBounds (int) const;
-    juce::Rectangle<int> getOutletBounds (int) const;
 
 private:
     std::vector<std::unique_ptr<PinComponent>> updatePins (const juce::StringArray&, bool);
-    void updateInlets (const juce::StringArray&);
-    void updateOutlets (const juce::StringArray&);
     void updateInletsAndOutlets();
     void removeInletsAndOultets();
     
