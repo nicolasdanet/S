@@ -83,9 +83,15 @@ core::UniqueId ObjectComponent::getIdentifier() const
 
 void ObjectComponent::paint (juce::Graphics& g)
 {
-    if (showPins_) { g.setColour (background_.get()); g.fillRect (getLocalBounds()); }
-    
-    painter_->paint (getPaintedBounds(), g);
+    const juce::Rectangle<int> bounds (getLocalBounds());
+        
+    if (showPins_) {
+        g.setColour (background_.get());
+        g.fillRect (bounds);
+        painter_->paint (bounds.reduced (0, PainterPolicy::pinHeight()), g);
+    } else {
+        painter_->paint (bounds, g);
+    }
 }
     
 void ObjectComponent::resized()
@@ -93,14 +99,14 @@ void ObjectComponent::resized()
 
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void ObjectComponent::update()
 {
     setVisible (visible_.get());
-    updateBounds();
+    
+    juce::Rectangle<int> painted (painter_->getBounds());
+    
+    setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted);
+    
     updateInletsAndOutlets();
 }
 
@@ -148,24 +154,6 @@ std::vector<std::unique_ptr<PinComponent>> updatePins (const juce::StringArray& 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void ObjectComponent::updateBounds()
-{
-    juce::Rectangle<int> painted (painter_->getBounds());
-    
-    setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted);
-}
-
-juce::Rectangle<int> ObjectComponent::getPaintedBounds() const
-{
-    const juce::Rectangle<int> bounds (getLocalBounds());
-    
-    return showPins_ ? bounds.reduced (0, PainterPolicy::pinHeight()) : bounds;
 }
 
 // -----------------------------------------------------------------------------------------------------------

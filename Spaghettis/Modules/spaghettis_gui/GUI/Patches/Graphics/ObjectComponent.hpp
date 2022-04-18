@@ -50,10 +50,6 @@ private:
 // MARK: -
 
 private:
-    void updateBounds();
-    juce::Rectangle<int> getPaintedBounds() const;
-
-private:
     void updateInletsAndOutlets();
     void removeInletsAndOultets();
     
