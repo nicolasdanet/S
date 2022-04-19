@@ -30,10 +30,14 @@ core::Cached<juce::Colour> getColourFromType (const juce::String& type)
     return Spaghettis()->getCachedColour (key);
 }
 
+juce::String getTooltipText (const juce::String& type)
+{
+    return type.substring (0, 1).toUpperCase() + type.substring (1);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-        
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -47,6 +51,8 @@ PinComponent::PinComponent (juce::Component& owner, const juce::String& type, in
     pin_ (getColourFromType (type))
 {
     setOpaque (true); setPaintingIsUnclipped (true);
+    
+    setTooltip (getTooltipText (type_));
     
     pin_.attach (PainterPolicy::repainter (this));
     
