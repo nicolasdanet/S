@@ -87,7 +87,7 @@ public:
     constexpr static int pinHeight() { return 4; }
     constexpr static int pinWidth()  { return 8; }
     constexpr static int pinSpace()  { return 2; }
-    constexpr static int margins()   { return 2; }
+    constexpr static int margins()   { return 3; }
 };
 
 // -----------------------------------------------------------------------------------------------------------

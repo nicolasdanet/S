@@ -42,12 +42,13 @@ juce::String BoxPainter::getText() const
 void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
     const juce::String text (getText());
+    const juce::Rectangle<int> t (r.reduced (PainterPolicy::margins()).translated (0, -1));
     
     g.setColour (background_.get());
     g.fillRect (r);
     g.setColour (text_.get());
     g.setFont (font_);
-    g.drawText (text, r.reduced (PainterPolicy::margins()), juce::Justification::centredLeft, true);
+    g.drawText (text, t, juce::Justification::centredLeft, true);
 }
 
 juce::Rectangle<int> BoxPainter::getBounds()

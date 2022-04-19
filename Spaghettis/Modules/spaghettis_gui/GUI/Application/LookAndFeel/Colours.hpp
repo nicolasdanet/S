@@ -62,6 +62,7 @@ public:
         textBox                         = base1;
         thumb                           = juce::Colours::grey;
         transparent                     = juce::Colours::transparentBlack;
+        signal                          = yellow;
         
         background                      = juce::Colour (0xff1f2029);
         backgroundAlternate             = background.darker (0.10);
@@ -96,6 +97,7 @@ public:
     juce::Colour textBox;
     juce::Colour thumb;
     juce::Colour transparent;
+    juce::Colour signal;
     juce::Colour background;
     juce::Colour backgroundAlternate;
     juce::Colour backgroundPopup;
