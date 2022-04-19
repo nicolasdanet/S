@@ -95,13 +95,12 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tags::PinSignal,
         NEEDS_TRANS ("Pin Signal"),
         NEEDS_TRANS ("Set color of signal inlets/outlets"),
-        //Colours::getPalette()->backgroundBox.contrasting (0.25));
         Colours::getPalette()->signal);
     
     colors.addParameter (Tags::PinBang,
         NEEDS_TRANS ("Pin Bang"),
         NEEDS_TRANS ("Set color of bang inlets/outlets"),
-        Colours::getPalette()->backgroundBox.contrasting (0.25));
+        Colours::getPalette()->bang);
     
     colors.addParameter (Tags::PinFloat,
         NEEDS_TRANS ("Pin Float"),

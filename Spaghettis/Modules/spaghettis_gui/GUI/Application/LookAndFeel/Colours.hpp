@@ -35,8 +35,8 @@ public:
     {
         /* < https://ethanschoonover.com/solarized/ > */
     
-        // const juce::Colour base03       = juce::Colour (0xff002b36);
-        // const juce::Colour base02       = juce::Colour (0xff073642);
+        // const juce::Colour base03    = juce::Colour (0xff002b36);
+        // const juce::Colour base02    = juce::Colour (0xff073642);
         const juce::Colour base01       = juce::Colour (0xff586e75);
         // const juce::Colour base00    = juce::Colour (0xff657b83);
         // const juce::Colour base0     = juce::Colour (0xff839496);
@@ -47,7 +47,7 @@ public:
         const juce::Colour orange       = juce::Colour (0xffcb4b16);
         // const juce::Colour red       = juce::Colour (0xffdc322f);
         // const juce::Colour magenta   = juce::Colour (0xffd33682);
-        // const juce::Colour violet    = juce::Colour (0xff6c71c4);
+        const juce::Colour violet       = juce::Colour (0xff6c71c4);
         // const juce::Colour blue      = juce::Colour (0xff268bd2);
         // const juce::Colour cyan      = juce::Colour (0xff2aa198);
         const juce::Colour green        = juce::Colour (0xff859900);
@@ -63,6 +63,7 @@ public:
         thumb                           = juce::Colours::grey;
         transparent                     = juce::Colours::transparentBlack;
         signal                          = yellow;
+        bang                            = violet;
         
         background                      = juce::Colour (0xff1f2029);
         backgroundAlternate             = background.darker (0.10);
@@ -98,6 +99,7 @@ public:
     juce::Colour thumb;
     juce::Colour transparent;
     juce::Colour signal;
+    juce::Colour bang;
     juce::Colour background;
     juce::Colour backgroundAlternate;
     juce::Colour backgroundPopup;
