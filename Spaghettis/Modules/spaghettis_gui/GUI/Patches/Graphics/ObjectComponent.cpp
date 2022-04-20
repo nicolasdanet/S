@@ -120,15 +120,18 @@ namespace {
 
 juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, bool isOutlet)
 {
-    const int x = bounds.getX() + (index * (PainterPolicy::pinSpace() + PainterPolicy::pinWidth()));
+    const int x = bounds.getX() + (index * ((PainterPolicy::pinGripX() * 2) + PainterPolicy::pinWidth()));
     
     bounds.setX (x);
     bounds.setWidth (PainterPolicy::pinWidth());
     
-    if (isOutlet) { return bounds.removeFromBottom (PainterPolicy::pinHeight()); }
-    else {
-        return bounds.removeFromTop (PainterPolicy::pinHeight());
+    if (isOutlet) {
+        bounds = bounds.removeFromBottom (PainterPolicy::pinHeight());
+    } else {
+        bounds = bounds.removeFromTop (PainterPolicy::pinHeight());
     }
+    
+    return bounds.expanded (PainterPolicy::pinGripX(), PainterPolicy::pinGripY());
 }
 
 std::vector<std::unique_ptr<PinComponent>> updatePins (const juce::StringArray& a,

@@ -52,7 +52,7 @@ PinComponent::PinComponent (juce::Component& owner, const juce::String& type, in
     pinOver_ (Spaghettis()->getCachedColour (Tags::PinOver)),
     isOver_ (false)
 {
-    setOpaque (true); setPaintingIsUnclipped (true);
+    setOpaque (false); setPaintingIsUnclipped (true);
     
     setTooltip (getTooltipText (type_));
     
@@ -72,8 +72,12 @@ PinComponent::~PinComponent()
 
 void PinComponent::paint (juce::Graphics& g)
 {
+    juce::Rectangle<int> r (getLocalBounds());
+    
+    r.reduce (PainterPolicy::pinGripX(), PainterPolicy::pinGripY());
+    
     g.setColour (isOver_ ? pinOver_.get() : pin_.get());
-    g.fillRect (getLocalBounds());
+    g.fillRect (r);
 }
     
 void PinComponent::resized()
