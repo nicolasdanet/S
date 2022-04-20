@@ -30,11 +30,17 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+public:
+    void mouseEnter (const juce::MouseEvent&) override;
+    void mouseExit (const juce::MouseEvent&) override;
+    
 private:
     juce::Component& owner_;
     juce::String type_;
     int index_;
     core::Cached<juce::Colour> pin_;
+    core::Cached<juce::Colour> pinOver_;
+    bool isOver_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PinComponent)

@@ -48,7 +48,9 @@ PinComponent::PinComponent (juce::Component& owner, const juce::String& type, in
     owner_ (owner),
     type_ (type),
     index_ (index),
-    pin_ (getColourFromType (type))
+    pin_ (getColourFromType (type)),
+    pinOver_ (Spaghettis()->getCachedColour (Tags::PinOver)),
+    isOver_ (false)
 {
     setOpaque (true); setPaintingIsUnclipped (true);
     
@@ -70,13 +72,26 @@ PinComponent::~PinComponent()
 
 void PinComponent::paint (juce::Graphics& g)
 {
-    g.setColour (pin_.get());
+    g.setColour (isOver_ ? pinOver_.get() : pin_.get());
     g.fillRect (getLocalBounds());
 }
     
 void PinComponent::resized()
 {
 
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void PinComponent::mouseEnter (const juce::MouseEvent&)
+{
+    isOver_ = true;  repaint();
+}
+
+void PinComponent::mouseExit (const juce::MouseEvent&)
+{
+    isOver_ = false; repaint();
 }
 
 // -----------------------------------------------------------------------------------------------------------

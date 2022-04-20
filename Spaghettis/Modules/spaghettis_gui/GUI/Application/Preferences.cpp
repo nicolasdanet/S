@@ -89,37 +89,42 @@ core::Data getDefaultPreferences()
 
     colors.addParameter (Tags::PinBackground,
         NEEDS_TRANS ("Pin Background"),
-        NEEDS_TRANS ("Set background color of inlets/outlets"),
+        NEEDS_TRANS ("Set background color of pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.05));
     
+    colors.addParameter (Tags::PinOver,
+        NEEDS_TRANS ("Pin Over"),
+        NEEDS_TRANS ("Set color of pins while mouse is over"),
+        Colours::getPalette()->textHighlighted);
+        
     colors.addParameter (Tags::PinSignal,
         NEEDS_TRANS ("Pin Signal"),
-        NEEDS_TRANS ("Set color of signal inlets/outlets"),
+        NEEDS_TRANS ("Set color of signal pins"),
         Colours::getPalette()->signal);
     
     colors.addParameter (Tags::PinBang,
         NEEDS_TRANS ("Pin Bang"),
-        NEEDS_TRANS ("Set color of bang inlets/outlets"),
+        NEEDS_TRANS ("Set color of bang pins"),
         Colours::getPalette()->bang);
     
     colors.addParameter (Tags::PinFloat,
         NEEDS_TRANS ("Pin Float"),
-        NEEDS_TRANS ("Set color of float inlets/outlets"),
+        NEEDS_TRANS ("Set color of float pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.25));
     
     colors.addParameter (Tags::PinSymbol,
         NEEDS_TRANS ("Pin Symbol"),
-        NEEDS_TRANS ("Set color of symbol inlets/outlets"),
+        NEEDS_TRANS ("Set color of symbol pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.25));
     
     colors.addParameter (Tags::PinList,
         NEEDS_TRANS ("Pin List"),
-        NEEDS_TRANS ("Set color of list inlets/outlets"),
+        NEEDS_TRANS ("Set color of list pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.25));
         
     colors.addParameter (Tags::PinAnything,
         NEEDS_TRANS ("Pin Anything"),
-        NEEDS_TRANS ("Set color of anything inlets/outlets"),
+        NEEDS_TRANS ("Set color of anything pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.25));
     
     colors.addParameter (Tags::BoxBackground,

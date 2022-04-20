@@ -36,6 +36,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (PinBang);
     DECLARE_STRING (PinFloat);
     DECLARE_STRING (PinList);
+    DECLARE_STRING (PinOver);
     DECLARE_STRING (PinSignal);
     DECLARE_STRING (PinSymbol);
     DECLARE_STRING (SnapToGrid);
