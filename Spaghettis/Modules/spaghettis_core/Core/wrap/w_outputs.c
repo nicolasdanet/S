@@ -140,7 +140,7 @@ PD_LOCAL void outputs_objectRenamed (t_object *x, t_glist *owner, t_id t)
     wrapper_send (Outputs::renamed (UniquePath (x, owner), t));
 }
 
-PD_LOCAL void outputs_lineAdded (t_outconnect *x, t_object *src, int m, t_object *dest, int n, t_glist *g)
+PD_LOCAL void outputs_lineAdded (t_outconnect *x, t_object *src, int m, t_object *dest, int n, t_glist *owner)
 {
 
 }
@@ -160,6 +160,10 @@ PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
 // MARK: -
 
 PD_LOCAL void main_exit (void);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 PD_LOCAL void outputs_quit (void)
 {
