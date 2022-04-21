@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::vector<UniqueId> fetchIdentifiersFromRoot (struct _object* o, struct _glist* owner)
+std::vector<UniqueId> fetchIdentifiersFromRoot (struct _glist* owner)
 {
     std::vector<UniqueId> t;
     
@@ -30,6 +30,18 @@ std::vector<UniqueId> fetchIdentifiersFromRoot (struct _object* o, struct _glist
     }
     
     return t;
+}
+
+void fetchUniquePath (struct _glist* owner, UniqueId& r, std::shared_ptr<std::vector<UniqueId>>& path)
+{
+    if (owner) {
+    //
+    std::vector<UniqueId> t (fetchIdentifiersFromRoot (owner));
+    
+    if (!t.empty()) { r = t.front(); t.erase (t.cbegin()); }
+    if (!t.empty()) { path = std::make_shared<std::vector<UniqueId>> (std::move (t)); }
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -48,19 +60,12 @@ UniquePath::UniquePath() : u_ (0), r_ (0)
 
 UniquePath::UniquePath (struct _object* o, struct _glist* owner) : u_ (object_getUnique (o)), r_ (0)
 {
-    if (owner) {
-    //
-    std::vector<UniqueId> t (fetchIdentifiersFromRoot (o, owner));
-    
-    if (!t.empty()) { r_ = t.front(); t.erase (t.cbegin()); }
-    if (!t.empty()) { path_ = std::make_shared<std::vector<UniqueId>> (std::move (t)); }
-    //
-    }
+    fetchUniquePath (owner, r_, path_);
 }
 
 UniquePath::UniquePath (struct _outconnect* o, struct _glist* owner) : u_ (connection_getUnique (o)), r_ (0)
 {
-
+    fetchUniquePath (owner, r_, path_); jassert (!isRoot());
 }
 
 // -----------------------------------------------------------------------------------------------------------
