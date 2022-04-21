@@ -170,7 +170,7 @@ PD_LOCAL void object_distributeAtomsOnInlets (t_object *x, int argc, t_atom *arg
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_outconnect *object_connect (t_object *src, int m, t_object *dest, int n)
+PD_LOCAL t_outconnect *object_connect (t_object *src, int m, t_object *dest, int n, t_glist *glist)
 {
     t_outconnect *oc = NULL;
     t_outlet *o = NULL;
@@ -198,7 +198,7 @@ PD_LOCAL t_outconnect *object_connect (t_object *src, int m, t_object *dest, int
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    if (oc) { DBG (juce::String ("+ / ") + juce::String (connection_getIdentifier (oc))); }
+    if (oc) { jassert (glist); outputs_lineAdded (oc, src, m, dest, n, glist); }
     
     #endif
     
@@ -209,7 +209,7 @@ PD_LOCAL t_outconnect *object_connect (t_object *src, int m, t_object *dest, int
     return oc;
 }
 
-PD_LOCAL t_error object_disconnect (t_object *src, int m, t_object *dest, int n)
+PD_LOCAL t_error object_disconnect (t_object *src, int m, t_object *dest, int n, t_glist *glist)
 {
     t_error err = PD_ERROR;
     
@@ -240,7 +240,7 @@ PD_LOCAL t_error object_disconnect (t_object *src, int m, t_object *dest, int n)
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    if (!err) { DBG (juce::String ("- / ") + juce::String (u)); }
+    if (!err) { jassert (glist); }
     
     #endif
     

@@ -140,6 +140,11 @@ PD_LOCAL void outputs_objectRenamed (t_object *x, t_glist *owner, t_id t)
     wrapper_send (Outputs::renamed (UniquePath (x, owner), t));
 }
 
+PD_LOCAL void outputs_lineAdded (t_outconnect *x, t_object *src, int m, t_object *dest, int n, t_glist *g)
+{
+
+}
+
 PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
 {
     wrapper_send (Outputs::patchDirty (UniquePath (cast_object (g), nullptr), isDirty));
@@ -168,18 +173,57 @@ PD_LOCAL void outputs_quit (void)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_clearConsole                  (void)                                  { }
-PD_LOCAL void outputs_reportDsp                     (int n)                                 { }
-PD_LOCAL void outputs_patchOpened                   (t_symbol *name, t_symbol *directory)   { }
-PD_LOCAL void outputs_reportAvailableAudioDevices   (t_deviceslist *l)                      { }
-PD_LOCAL void outputs_reportCurrentAudioDevices     (t_deviceslist *l)                      { }
-PD_LOCAL void outputs_reportAvailableMidiDevices    (t_deviceslist *l)                      { }
-PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *l)                      { }
-PD_LOCAL void outputs_objectAdded                   (t_object *x, t_glist *owner)           { }
-PD_LOCAL void outputs_objectRemoved                 (t_object *x, t_glist *owner)           { }
-PD_LOCAL void outputs_objectRenamed                 (t_object *x, t_glist *owner, t_id u)   { }
-PD_LOCAL void outputs_objectUpdateParameters        (t_object *x, t_glist *owner)           { }
-PD_LOCAL void outputs_patchDirty                    (t_glist *g, int isDirty)               { }
+PD_LOCAL void outputs_clearConsole (void)
+{
+}
+
+PD_LOCAL void outputs_reportDsp (int n)
+{
+}
+
+PD_LOCAL void outputs_patchOpened (t_symbol *name, t_symbol *directory)
+{
+}
+
+PD_LOCAL void outputs_reportAvailableAudioDevices (t_deviceslist *l)
+{
+}
+
+PD_LOCAL void outputs_reportCurrentAudioDevices (t_deviceslist *l)
+{
+}
+
+PD_LOCAL void outputs_reportAvailableMidiDevices (t_deviceslist *l)
+{
+}
+
+PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
+{
+}
+
+PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
+{
+}
+
+PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)
+{
+}
+
+PD_LOCAL void outputs_objectRenamed (t_object *x, t_glist *owner, t_id u)
+{
+}
+
+PD_LOCAL void outputs_objectUpdateParameters (t_object *x, t_glist *owner)
+{
+}
+
+PD_LOCAL void outputs_lineAdded (t_outconnect *x, t_object *src, int m, t_object *dest, int n, t_glist *g)
+{
+}
+
+PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
+{
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -41,9 +41,9 @@ PD_LOCAL int    object_hasDsp                       (t_object *x);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_outconnect   *object_connect             (t_object *src, int m, t_object *dest, int n);
+PD_LOCAL t_outconnect   *object_connect             (t_object *src, int m, t_object *dest, int n, t_glist *g);
 
-PD_LOCAL t_error        object_disconnect           (t_object *src, int m, t_object *dest, int n);
+PD_LOCAL t_error        object_disconnect           (t_object *src, int m, t_object *dest, int n, t_glist *g);
 
 PD_FORCE void           object_help                 (t_object *x);
 

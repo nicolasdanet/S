@@ -131,7 +131,7 @@ PD_LOCAL void glist_objectDeleteLines (t_glist *glist, t_object *o)
 
 PD_LOCAL t_error glist_objectConnect (t_glist *glist, t_object *src, int m, t_object *dest, int n)
 {
-    if (object_connect (src, m, dest, n)) {
+    if (object_connect (src, m, dest, n, glist)) {
     //
     if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undoconnect_new (src, m, dest, n)); }
 

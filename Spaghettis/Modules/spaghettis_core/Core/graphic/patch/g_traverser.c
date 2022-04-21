@@ -129,7 +129,7 @@ PD_LOCAL t_error traverser_disconnect (t_traverser *t, t_glist *glist)
     int m = t->tr_srcIndexOfOutlet;
     int n = t->tr_destIndexOfInlet;
     
-    t_error err = object_disconnect (src, m, dest, n);
+    t_error err = object_disconnect (src, m, dest, n, glist);
     
     if (!err && glist) {
         if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undodisconnect_new (src, m, dest, n)); }
