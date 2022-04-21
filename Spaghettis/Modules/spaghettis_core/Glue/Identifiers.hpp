@@ -37,6 +37,7 @@ namespace spaghettis::core::Identifiers {
     DECLARE_ID (DATA);
     DECLARE_ID (DELEGATE);
     DECLARE_ID (GROUP);
+    DECLARE_ID (LINE);
     DECLARE_ID (OBJECT);
     DECLARE_ID (PARAMETER);
     DECLARE_ID (POSITION);

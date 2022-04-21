@@ -42,6 +42,21 @@ public:
 // MARK: -
 
 public:
+    bool isObject() const
+    {
+        return tree_.hasType (Ids::OBJECT);
+    }
+    
+    bool isLine() const
+    {
+        return tree_.hasType (Ids::LINE);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     juce::ValueTree asValueTree() const
     {
         return tree_;
@@ -54,6 +69,7 @@ public:
 public:
     static Report object (const UniquePath&, struct _object*);
     static Report parameters (const UniquePath&, struct _object*);
+    static Report line (const UniquePath&, struct _object*, int, struct _object*, int);
     
 private:
     juce::ValueTree tree_;

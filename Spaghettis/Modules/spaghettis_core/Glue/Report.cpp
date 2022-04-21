@@ -204,7 +204,7 @@ void setParameters (Data& data, t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree getReport (const UniquePath& u, struct _object* o, bool attributes, bool parameters)
+juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attributes, bool parameters)
 {
     juce::ValueTree t (Ids::OBJECT);
     
@@ -235,12 +235,44 @@ juce::ValueTree getReport (const UniquePath& u, struct _object* o, bool attribut
 
 Report Report::object (const UniquePath& u, struct _object* o)
 {
-    return Report (getReport (u, o, true,  true));
+    return Report (getObject (u, o, true,  true));
 }
 
 Report Report::parameters (const UniquePath& u, struct _object* o)
 {
-    return Report (getReport (u, o, false, true));
+    return Report (getObject (u, o, false, true));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::ValueTree getLine (const UniquePath& u)
+{
+    juce::ValueTree t (Ids::LINE);
+    
+    t.setProperty (Ids::identifier, Cast::toVar (u.getIdentifier()), nullptr);
+    
+    return t;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Report Report::line (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n)
+{
+    jassert (!u.isRoot()); return Report (getLine (u));
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -52,7 +52,7 @@ void Patch::add (const core::UniquePath& u, const core::Report& v)
     juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
     
     if (object.isValid()) {
-        core::Object (object).copyFrom (v);     /* Two step creation for subpatches. */
+        jassert (v.isObject()); core::Object (object).copyFrom (v);     /* Two-step phase for subpatches. */
     } else {
         parent.appendChild (v.asValueTree(), nullptr);
     }
