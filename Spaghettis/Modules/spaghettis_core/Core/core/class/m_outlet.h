@@ -17,6 +17,7 @@
 struct _outconnect {
     struct _outconnect  *oc_next;
     t_pd                *oc_receiver;
+    t_id                oc_id;
     };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -31,6 +32,11 @@ static inline t_outconnect *connection_getNext (t_outconnect *x)
 static inline t_pd *connection_getReceiver (t_outconnect *x)
 {
     return x->oc_receiver;
+}
+
+static inline t_id connection_getIdentifier (t_outconnect *x)
+{
+    return x->oc_id;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -50,7 +56,7 @@ struct _outlet {
 
 PD_LOCAL t_outconnect   *outlet_addConnection       (t_outlet *x, t_pd *receiver);
 
-PD_LOCAL t_error        outlet_removeConnection     (t_outlet *x, t_pd *receiver);
+PD_LOCAL t_error        outlet_removeConnection     (t_outlet *x, t_pd *receiver, t_id *u);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

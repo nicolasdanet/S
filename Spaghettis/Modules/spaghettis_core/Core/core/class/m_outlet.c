@@ -39,6 +39,7 @@ PD_LOCAL t_outconnect *outlet_addConnection (t_outlet *x, t_pd *receiver)
     oc1 = (t_outconnect *)PD_MEMORY_GET (sizeof (t_outconnect));
     oc1->oc_next = NULL;
     oc1->oc_receiver = receiver;
+    oc1->oc_id = utils_unique();
 
     if ((oc2 = x->o_connections)) { while (oc2->oc_next) { oc2 = oc2->oc_next; } oc2->oc_next = oc1; }
     else {
@@ -52,7 +53,7 @@ PD_LOCAL t_outconnect *outlet_addConnection (t_outlet *x, t_pd *receiver)
     return NULL;
 }
 
-PD_LOCAL t_error outlet_removeConnection (t_outlet *x, t_pd *receiver)
+PD_LOCAL t_error outlet_removeConnection (t_outlet *x, t_pd *receiver, t_id *u)
 {
     t_outconnect *oc1 = NULL;
     t_outconnect *oc2 = NULL;
@@ -60,19 +61,19 @@ PD_LOCAL t_error outlet_removeConnection (t_outlet *x, t_pd *receiver)
     if ((oc1 = x->o_connections)) {
 
         if (oc1->oc_receiver == receiver) {
-            x->o_connections = oc1->oc_next; PD_MEMORY_FREE (oc1); return PD_ERROR_NONE;
+            x->o_connections = oc1->oc_next;     *u = oc1->oc_id; PD_MEMORY_FREE (oc1); return PD_ERROR_NONE;
             
         } else {
             while ((oc2 = oc1->oc_next)) {
                 if (oc2->oc_receiver != receiver) { oc1 = oc2; }
                 else {
-                    oc1->oc_next = oc2->oc_next; PD_MEMORY_FREE (oc2); return PD_ERROR_NONE;
+                    oc1->oc_next = oc2->oc_next; *u = oc2->oc_id; PD_MEMORY_FREE (oc2); return PD_ERROR_NONE;
                 }
             }
         }
     }
     
-    return PD_ERROR;
+    *u = 0; return PD_ERROR;
 }
 
 // -----------------------------------------------------------------------------------------------------------

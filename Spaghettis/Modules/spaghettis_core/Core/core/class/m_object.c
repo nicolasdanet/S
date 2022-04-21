@@ -196,6 +196,12 @@ PD_LOCAL t_outconnect *object_connect (t_object *src, int m, t_object *dest, int
 
     oc = outlet_addConnection (o, receiver);            /* Can be NULL if connection already exists. */
     
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    if (oc) { DBG (juce::String ("+ / ") + juce::String (connection_getIdentifier (oc))); }
+    
+    #endif
+    
     if (oc && outlet_isSignal (o)) { dsp_update(); }
     //
     }
@@ -218,6 +224,8 @@ PD_LOCAL t_error object_disconnect (t_object *src, int m, t_object *dest, int n)
     //
     t_pd *receiver = NULL;
     
+    t_id u = 0;
+    
     if (class_hasFirstInlet (pd_class (dest))) { if (!n) { receiver = cast_pd (dest); } else { n--; } }
     
     if (receiver == NULL) {
@@ -228,7 +236,13 @@ PD_LOCAL t_error object_disconnect (t_object *src, int m, t_object *dest, int n)
         }
     }
 
-    err = outlet_removeConnection (o, receiver);
+    err = outlet_removeConnection (o, receiver, &u);
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    if (!err) { DBG (juce::String ("- / ") + juce::String (u)); }
+    
+    #endif
     
     if (!err && outlet_isSignal (o)) { dsp_update(); }
     //
