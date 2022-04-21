@@ -80,7 +80,7 @@ bool getVisible (t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setAttributesObject (Group& group, t_object* o)
+void setObjectAttributesForObject (Group& group, t_object* o)
 {
     static DelegateCache delegate;
     
@@ -139,7 +139,7 @@ void setAttributesObject (Group& group, t_object* o)
         delegate);
 }
 
-void setAttributesPatch (Group& group, t_object* o)
+void setObjectAttributesForPatch (Group& group, t_object* o)
 {
     static DelegateCache delegate;
         
@@ -157,7 +157,7 @@ void setAttributesPatch (Group& group, t_object* o)
         getWindow (g),
         delegate);
     
-    if (!glist_isRoot (g)) { setAttributesObject (group, o); }
+    if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o); }
     else {
     //
     group.addParameter (Tags::RunView,
@@ -177,19 +177,18 @@ void setAttributesPatch (Group& group, t_object* o)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-void setAttributes (Data& data, t_object* o)
+void setObjectAttributes (Data& data, t_object* o)
 {
     Group group (data.addGroup (Tags::Attributes, true));
     
-    if (object_isCanvas (o)) { setAttributesPatch (group, o); }
+    if (object_isCanvas (o)) { setObjectAttributesForPatch (group, o); }
     else {
-        setAttributesObject (group, o);
+        setObjectAttributesForObject (group, o);
     }
 }
 
-void setParameters (Data& data, t_object* o)
+void setObjectParameters (Data& data, t_object* o)
 {
     t_class* c = pd_class (o);
     
@@ -214,8 +213,8 @@ juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attribut
     //
     Data data (Ids::DATA);
     
-    if (attributes) { setAttributes (data, o); }
-    if (parameters) { setParameters (data, o); }
+    if (attributes) { setObjectAttributes (data, o); }
+    if (parameters) { setObjectParameters (data, o); }
     
     t.appendChild (data.asValueTree(), nullptr);
     //
@@ -238,7 +237,7 @@ Report Report::object (const UniquePath& u, struct _object* o)
     return Report (getObject (u, o, true,  true));
 }
 
-Report Report::parameters (const UniquePath& u, struct _object* o)
+Report Report::objectParameters (const UniquePath& u, struct _object* o)
 {
     return Report (getObject (u, o, false, true));
 }

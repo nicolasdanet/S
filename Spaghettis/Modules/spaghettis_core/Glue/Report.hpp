@@ -68,7 +68,7 @@ public:
 
 public:
     static Report object (const UniquePath&, struct _object*);
-    static Report parameters (const UniquePath&, struct _object*);
+    static Report objectParameters (const UniquePath&, struct _object*);
     static Report line (const UniquePath&, struct _object*, int, struct _object*, int);
     
 private:
