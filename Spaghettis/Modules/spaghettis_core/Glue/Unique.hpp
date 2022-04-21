@@ -31,6 +31,7 @@ class UniquePath {
         
 public:
     explicit UniquePath (struct _object* o, struct _glist* owner);
+    explicit UniquePath (struct _outconnect* o, struct _glist* owner);
     
     ~UniquePath() = default;
 

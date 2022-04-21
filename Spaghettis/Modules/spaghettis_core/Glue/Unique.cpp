@@ -58,6 +58,11 @@ UniquePath::UniquePath (struct _object* o, struct _glist* owner) : u_ (object_ge
     }
 }
 
+UniquePath::UniquePath (struct _outconnect* o, struct _glist* owner) : u_ (connection_getUnique (o)), r_ (0)
+{
+
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -34,7 +34,7 @@ static inline t_pd *connection_getReceiver (t_outconnect *x)
     return x->oc_receiver;
 }
 
-static inline t_id connection_getIdentifier (t_outconnect *x)
+static inline t_id connection_getUnique (t_outconnect *x)
 {
     return x->oc_id;
 }
