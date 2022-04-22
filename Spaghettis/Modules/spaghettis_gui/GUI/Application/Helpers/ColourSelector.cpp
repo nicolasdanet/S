@@ -68,7 +68,7 @@ ColourSelector::ColourSelector (const juce::Value& v) :
     addAndMakeVisible (std::get<2> (sliders_).get());
     addAndMakeVisible (std::get<3> (sliders_).get());
     
-    BaseComponent::setDefaultSize (this, 300, 280);
+    BaseComponent::setDefaultWithSize (this, 300, 280);
     
     updateViews();
 }

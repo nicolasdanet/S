@@ -27,7 +27,7 @@ public:
     {
         tree_.addListener (this);
         background_.attach (PainterPolicy::repainter (this));
-        BaseComponent::setDefaultSize (this);
+        BaseComponent::setDefaultWithSize (this);
     }
     
     ~EditView() = default;

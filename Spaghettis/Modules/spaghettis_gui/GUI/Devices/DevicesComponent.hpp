@@ -44,7 +44,7 @@ public:
         
         initialize();
         
-        setDefaultSize (this, 700, getTotalHeight());
+        setDefaultWithSize (this, 700, getTotalHeight());
         
         Spaghettis()->handle (Inputs::rescanDevices());
     }

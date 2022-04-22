@@ -151,7 +151,7 @@ public:
 // MARK: -
 
 public:
-    static void setDefaultSize (juce::Component *c, int w = 0, int h = 0)
+    static void setDefaultWithSize (juce::Component *c, int w = 0, int h = 0)
     {
         c->setOpaque (true); c->setSize (w, h);
     }
