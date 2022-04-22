@@ -251,11 +251,15 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::ValueTree getLine (const UniquePath& u)
+juce::ValueTree getLine (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n)
 {
     juce::ValueTree t (Ids::LINE);
     
-    t.setProperty (Ids::identifier, Cast::toVar (u.getIdentifier()), nullptr);
+    t.setProperty (Ids::identifier,     Cast::toVar (u.getIdentifier()), nullptr);
+    t.setProperty (Ids::source,         Cast::toVar (object_getUnique (src)), nullptr);
+    t.setProperty (Ids::outlet,         m, nullptr);
+    t.setProperty (Ids::destination,    Cast::toVar (object_getUnique (dest)), nullptr);
+    t.setProperty (Ids::inlet,          n, nullptr);
     
     return t;
 }
@@ -271,7 +275,7 @@ juce::ValueTree getLine (const UniquePath& u)
 
 Report Report::line (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n)
 {
-    jassert (!u.isRoot()); return Report (getLine (u));
+    jassert (!u.isRoot()); return Report (getLine (u, src, m, dest, n));
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -18,17 +18,21 @@ namespace spaghettis::core::Identifiers {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+    DECLARE_ID (destination);
     DECLARE_ID (hidden);
     DECLARE_ID (identifier);
     DECLARE_ID (info);
+    DECLARE_ID (inlet);
     DECLARE_ID (item);
     DECLARE_ID (key);
     DECLARE_ID (label);
     DECLARE_ID (maximum);
     DECLARE_ID (minimum);
     DECLARE_ID (name);
+    DECLARE_ID (outlet);
     DECLARE_ID (path);
     DECLARE_ID (state);
+    DECLARE_ID (source);
     DECLARE_ID (type);
     DECLARE_ID (value);
     
