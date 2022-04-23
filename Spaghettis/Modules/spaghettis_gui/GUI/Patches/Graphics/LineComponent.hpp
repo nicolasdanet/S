@@ -48,8 +48,9 @@ public:
 
 private:
     juce::Component& owner_;
-    EditView* view_;
     core::Line line_;
+    juce::Component::SafePointer<ObjectComponent> source_;
+    juce::Component::SafePointer<ObjectComponent> destination_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LineComponent)

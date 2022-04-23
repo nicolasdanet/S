@@ -12,16 +12,47 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+ObjectComponent* getSource (juce::Component& owner, const core::Line& line)
+{
+    EditView* view = dynamic_cast<EditView*> (&owner);
+    
+    jassert (view);
+    
+    return nullptr;
+}
+
+ObjectComponent* getDestination (juce::Component& owner, const core::Line& line)
+{
+    EditView* view = dynamic_cast<EditView*> (&owner);
+    
+    jassert (view);
+    
+    return nullptr;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
     owner_ (owner),
-    view_ (dynamic_cast<EditView*> (&owner)),
-    line_ (line)
+    line_ (line),
+    source_ (getSource (owner, line)),
+    destination_ (getDestination (owner, line))
 {
-    jassert (view_ != nullptr);
-    
     setPaintingIsUnclipped (true);
     
-    // owner_.addChildComponent (this);
+    // owner_.addAndMakeVisible (this);
 }
 
 LineComponent::~LineComponent()
