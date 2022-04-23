@@ -5,65 +5,50 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-namespace spaghettis {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditView :    public juce::Component,
-                    public juce::ValueTree::Listener {
+namespace spaghettis::core {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+class Line {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit EditView (const juce::ValueTree& tree) :
-        tree_ (tree),
-        background_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
-        objects_ (*this),
-        lines_ (*this)
+    explicit Line (const juce::ValueTree& t) : tree_ (t)
     {
-        tree_.addListener (this);
-        background_.attach (PainterPolicy::repainter (this));
-        BaseComponent::setDefaultWithSize (this);
+        jassert (tree_.hasType (Ids::LINE));
+    }
+
+public:
+    ~Line() = default;
+
+public:
+    Line (const Line&) = default;
+    Line (Line&&) = default;
+    Line& operator = (const Line&) = default;
+    Line& operator = (Line&&) = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    UniqueId getIdentifier() const
+    {
+        return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
     }
     
-    ~EditView() = default;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void paint (juce::Graphics& g) override
-    {
-        g.fillAll (background_.get());
-    }
-    
-    void resized() override
-    {
-        
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
-    void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
-        
 private:
     juce::ValueTree tree_;
-    core::Cached<juce::Colour> background_;
-    ObjectsList objects_;
-    LineList lines_;
-        
+    
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
+    JUCE_LEAK_DETECTOR (Line)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -73,4 +58,3 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-

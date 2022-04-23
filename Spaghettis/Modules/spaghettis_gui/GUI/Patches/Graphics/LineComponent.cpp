@@ -12,59 +12,37 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditView :    public juce::Component,
-                    public juce::ValueTree::Listener {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    explicit EditView (const juce::ValueTree& tree) :
-        tree_ (tree),
-        background_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
-        objects_ (*this),
-        lines_ (*this)
-    {
-        tree_.addListener (this);
-        background_.attach (PainterPolicy::repainter (this));
-        BaseComponent::setDefaultWithSize (this);
-    }
+LineComponent::LineComponent (juce::Component& owner, const core::Line& line) : owner_ (owner), line_ (line)
+{
+    setPaintingIsUnclipped (true);
     
-    ~EditView() = default;
+    DBG ("+");
+    // owner_.addChildComponent (this);
+}
+
+LineComponent::~LineComponent()
+{
+    DBG ("-");
+    // owner_.removeChildComponent (this);
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    void paint (juce::Graphics& g) override
-    {
-        g.fillAll (background_.get());
-    }
-    
-    void resized() override
-    {
-        
-    }
+core::UniqueId LineComponent::getIdentifier() const
+{
+    return line_.getIdentifier();
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
-    void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
-        
-private:
-    juce::ValueTree tree_;
-    core::Cached<juce::Colour> background_;
-    ObjectsList objects_;
-    LineList lines_;
-        
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
-};
+void LineComponent::paint (juce::Graphics& g)
+{
+    g.setColour (juce::Colours::orange); g.fillRect (getLocalBounds());
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -73,4 +51,3 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-

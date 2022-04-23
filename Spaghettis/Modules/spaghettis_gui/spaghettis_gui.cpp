@@ -69,6 +69,8 @@
 #include "GUI/Patches/Graphics/PinComponent.cpp"
 #include "GUI/Patches/Graphics/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/ObjectsList.cpp"
+#include "GUI/Patches/Graphics/LineComponent.cpp"
+#include "GUI/Patches/Graphics/LineList.cpp"
 
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"

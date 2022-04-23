@@ -12,58 +12,41 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditView :    public juce::Component,
-                    public juce::ValueTree::Listener {
+class LineComponent : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit EditView (const juce::ValueTree& tree) :
-        tree_ (tree),
-        background_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
-        objects_ (*this),
-        lines_ (*this)
-    {
-        tree_.addListener (this);
-        background_.attach (PainterPolicy::repainter (this));
-        BaseComponent::setDefaultWithSize (this);
-    }
+    explicit LineComponent (juce::Component&, const core::Line&);
     
-    ~EditView() = default;
+    ~LineComponent();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void paint (juce::Graphics& g) override
-    {
-        g.fillAll (background_.get());
-    }
+    core::UniqueId getIdentifier() const;
     
-    void resized() override
-    {
-        
-    }
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
-    void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
-        
+    void paint (juce::Graphics&) override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
-    juce::ValueTree tree_;
-    core::Cached<juce::Colour> background_;
-    ObjectsList objects_;
-    LineList lines_;
-        
+    juce::Component& owner_;
+    core::Line line_;
+
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LineComponent)
 };
 
 // -----------------------------------------------------------------------------------------------------------

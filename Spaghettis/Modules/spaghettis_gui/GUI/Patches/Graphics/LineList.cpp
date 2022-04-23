@@ -12,59 +12,20 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditView :    public juce::Component,
-                    public juce::ValueTree::Listener {
+namespace {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-public:
-    explicit EditView (const juce::ValueTree& tree) :
-        tree_ (tree),
-        background_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
-        objects_ (*this),
-        lines_ (*this)
-    {
-        tree_.addListener (this);
-        background_.attach (PainterPolicy::repainter (this));
-        BaseComponent::setDefaultWithSize (this);
-    }
+auto isSameLineAs (const core::Line& line)
+{
+    const core::UniqueId identifier = line.getIdentifier();
     
-    ~EditView() = default;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void paint (juce::Graphics& g) override
+    return [i = identifier] (const std::unique_ptr<LineComponent>& p)
     {
-        g.fillAll (background_.get());
-    }
-    
-    void resized() override
-    {
-        
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
-    void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
-        
-private:
-    juce::ValueTree tree_;
-    core::Cached<juce::Colour> background_;
-    ObjectsList objects_;
-    LineList lines_;
-        
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
-};
+        return (p->getIdentifier() == i);
+    };
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -73,4 +34,22 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
+void LineList::add (const core::Line& line)
+{
+    v_.push_back (std::make_unique<LineComponent> (owner_, line));
+}
+
+void LineList::remove (const core::Line& line)
+{
+    v_.erase (std::remove_if (v_.begin(), v_.end(), isSameLineAs (line)), v_.end());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------

@@ -131,6 +131,8 @@
 #include "GUI/Patches/Graphics/PinComponent.hpp"
 #include "GUI/Patches/Graphics/ObjectComponent.hpp"
 #include "GUI/Patches/Graphics/ObjectsList.hpp"
+#include "GUI/Patches/Graphics/LineComponent.hpp"
+#include "GUI/Patches/Graphics/LineList.hpp"
 
 #include "GUI/Patches/EditWindow/EditFactory.hpp"
 #include "GUI/Patches/EditWindow/EditView.hpp"
