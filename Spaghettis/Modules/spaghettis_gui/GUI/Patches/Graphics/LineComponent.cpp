@@ -16,13 +16,11 @@ LineComponent::LineComponent (juce::Component& owner, const core::Line& line) : 
 {
     setPaintingIsUnclipped (true);
     
-    DBG ("+");
     // owner_.addChildComponent (this);
 }
 
 LineComponent::~LineComponent()
 {
-    DBG ("-");
     // owner_.removeChildComponent (this);
 }
 

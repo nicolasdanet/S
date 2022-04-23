@@ -140,12 +140,12 @@ PD_LOCAL void outputs_objectRenamed (t_object *x, t_glist *owner, t_id t)
     wrapper_send (Outputs::renamed (UniquePath (x, owner), t));
 }
 
-PD_LOCAL void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)
+PD_GUARD void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)
 {
     const UniquePath p (u, owner); wrapper_send (Outputs::added (p, Report::line (p, src, m, dest, n)));
 }
 
-PD_LOCAL void outputs_lineRemoved (t_id u, t_glist *owner)
+PD_GUARD void outputs_lineRemoved (t_id u, t_glist *owner)
 {
     wrapper_send (Outputs::removed (UniquePath (u, owner)));
 }
@@ -226,11 +226,11 @@ PD_LOCAL void outputs_objectUpdated (t_object *x, t_glist *owner)
 {
 }
 
-PD_LOCAL void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g)
+PD_GUARD void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g)
 {
 }
 
-PD_LOCAL void outputs_lineRemoved (t_id u, t_glist *owner)
+PD_GUARD void outputs_lineRemoved (t_id u, t_glist *owner)
 {
 }
 

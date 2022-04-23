@@ -35,6 +35,11 @@ juce::String getTooltipText (const juce::String& type)
     return type.substring (0, 1).toUpperCase() + type.substring (1);
 }
 
+juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r)
+{
+    return r.reduced (PainterPolicy::pinGripX(), PainterPolicy::pinGripY());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -72,12 +77,8 @@ PinComponent::~PinComponent()
 
 void PinComponent::paint (juce::Graphics& g)
 {
-    juce::Rectangle<int> r (getLocalBounds());
-    
-    r.reduce (PainterPolicy::pinGripX(), PainterPolicy::pinGripY());
-    
     g.setColour (isOver_ ? pinOver_.get() : pin_.get());
-    g.fillRect (r);
+    g.fillRect (getBoundWithoutGrip (getLocalBounds()));
 }
     
 void PinComponent::resized()
