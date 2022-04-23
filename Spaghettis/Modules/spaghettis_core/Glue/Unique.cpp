@@ -63,11 +63,6 @@ UniquePath::UniquePath (struct _object* o, struct _glist* owner) : u_ (object_ge
     fetchUniquePath (owner, r_, path_);
 }
 
-UniquePath::UniquePath (struct _outconnect* o, struct _glist* owner) : u_ (connection_getUnique (o)), r_ (0)
-{
-    fetchUniquePath (owner, r_, path_);
-}
-
 UniquePath::UniquePath (UniqueId u, struct _glist* owner) : u_ (u), r_ (0)
 {
     fetchUniquePath (owner, r_, path_);

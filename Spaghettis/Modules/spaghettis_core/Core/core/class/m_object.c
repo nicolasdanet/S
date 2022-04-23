@@ -178,12 +178,12 @@ PD_LOCAL t_outconnect *object_connect (t_object *src, int m, t_object *dest, int
     PD_ASSERT (m >= 0);
     PD_ASSERT (n >= 0);
     
-        #if defined ( PD_BUILDING_APPLICATION )
+    #if defined ( PD_BUILDING_APPLICATION )
         
-        int mCached = m;
-        int nCached = n;
+    int mCached = m;
+    int nCached = n;
         
-        #endif
+    #endif
     
     for (o = src->g_outlets; o && m; o = outlet_getNext (o), m--) { }
     
@@ -203,11 +203,13 @@ PD_LOCAL t_outconnect *object_connect (t_object *src, int m, t_object *dest, int
 
     oc = outlet_addConnection (o, receiver);            /* Can be NULL if connection already exists. */
     
-        #if defined ( PD_BUILDING_APPLICATION )
+    #if defined ( PD_BUILDING_APPLICATION )
         
-        if (oc) { jassert (glist); outputs_lineAdded (oc, src, mCached, dest, nCached, glist); }
+    if (oc) {
+        jassert (glist); outputs_lineAdded (connection_getUnique (oc), src, mCached, dest, nCached, glist);
+    }
         
-        #endif
+    #endif
     
     if (oc && outlet_isSignal (o)) { dsp_update(); }
     //
