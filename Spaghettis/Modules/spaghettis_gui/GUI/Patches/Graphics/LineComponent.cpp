@@ -12,8 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-LineComponent::LineComponent (juce::Component& owner, const core::Line& line) : owner_ (owner), line_ (line)
+LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
+    owner_ (owner),
+    view_ (dynamic_cast<EditView*> (&owner)),
+    line_ (line)
 {
+    jassert (view_ != nullptr);
+    
     setPaintingIsUnclipped (true);
     
     // owner_.addChildComponent (this);
