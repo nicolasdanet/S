@@ -145,6 +145,11 @@ PD_LOCAL void outputs_lineAdded (t_outconnect *x, t_object *src, int m, t_object
     const UniquePath u (x, owner); wrapper_send (Outputs::added (u, Report::line (u, src, m, dest, n)));
 }
 
+PD_LOCAL void outputs_lineRemoved (t_id u, t_glist *owner)
+{
+    // wrapper_send (Outputs::removed (UniquePath (x, owner)));
+}
+
 PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
 {
     wrapper_send (Outputs::patchDirty (UniquePath (cast_object (g), nullptr), isDirty));
@@ -222,6 +227,10 @@ PD_LOCAL void outputs_objectUpdated (t_object *x, t_glist *owner)
 }
 
 PD_LOCAL void outputs_lineAdded (t_outconnect *x, t_object *src, int m, t_object *dest, int n, t_glist *g)
+{
+}
+
+PD_LOCAL void outputs_lineRemoved (t_id u, t_glist *owner)
 {
 }
 

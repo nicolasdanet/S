@@ -49,10 +49,10 @@ juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 void Patch::add (const core::UniquePath& u, const core::Report& v)
 {
     juce::ValueTree parent (getParent (u));
-    juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
+    juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
-    if (object.isValid()) {
-        jassert (v.isObject()); core::Object (object).copyFrom (v);     /* Two-step phase for subpatches. */
+    if (child.isValid()) {
+        jassert (v.isObject()); core::Object (child).copyFrom (v);      /* Two-step phase for subpatches. */
     } else {
         parent.appendChild (v.asValueTree(), nullptr);
     }
@@ -61,17 +61,17 @@ void Patch::add (const core::UniquePath& u, const core::Report& v)
 void Patch::change (const core::UniquePath& u, const core::Report& v)
 {
     juce::ValueTree parent (getParent (u));
-    juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
+    juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
-    if (object.isValid()) {  jassert (v.isObject()); core::Object (object).copyFrom (v); }
+    if (child.isValid()) { jassert (v.isObject()); core::Object (child).copyFrom (v); }
 }
 
 void Patch::remove (const core::UniquePath& u)
 {
     juce::ValueTree parent (getParent (u));
-    juce::ValueTree object (getChildWithIdentifier (parent, u.getIdentifier()));
+    juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
-    if (object.isValid()) { parent.removeChild (object, nullptr); }
+    if (child.isValid()) { parent.removeChild (child, nullptr); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

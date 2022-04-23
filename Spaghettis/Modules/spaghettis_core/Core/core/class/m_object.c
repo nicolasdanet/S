@@ -224,7 +224,7 @@ PD_LOCAL t_error object_disconnect (t_object *src, int m, t_object *dest, int n,
     
     PD_ASSERT (m >= 0);
     PD_ASSERT (n >= 0);
-    
+        
     for (o = src->g_outlets; o && m; o = outlet_getNext (o), m--) { }
     
     if (o != NULL) {
@@ -247,7 +247,7 @@ PD_LOCAL t_error object_disconnect (t_object *src, int m, t_object *dest, int n,
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    if (!err) { jassert (glist); }
+    if (!err) { jassert (glist); outputs_lineRemoved (u, glist); }
     
     #endif
     
