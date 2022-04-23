@@ -23,7 +23,7 @@ ObjectComponent* getSource (juce::Component& owner, const core::Line& line)
     
     jassert (view);
     
-    return nullptr;
+    return view->getObject (line.getSource());
 }
 
 ObjectComponent* getDestination (juce::Component& owner, const core::Line& line)
@@ -32,7 +32,7 @@ ObjectComponent* getDestination (juce::Component& owner, const core::Line& line)
     
     jassert (view);
     
-    return nullptr;
+    return view->getObject (line.getDestination());
 }
 
 // -----------------------------------------------------------------------------------------------------------

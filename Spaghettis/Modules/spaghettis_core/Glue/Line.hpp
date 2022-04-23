@@ -42,8 +42,17 @@ public:
     {
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
     }
-    
 
+    UniqueId getSource() const
+    {
+        return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::source));
+    }
+    
+    UniqueId getDestination() const
+    {
+        return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::destination));
+    }
+    
 private:
     juce::ValueTree tree_;
     
