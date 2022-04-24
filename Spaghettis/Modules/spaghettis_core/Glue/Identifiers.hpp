@@ -44,6 +44,7 @@ namespace spaghettis::core::Identifiers {
     DECLARE_ID (LINE);
     DECLARE_ID (OBJECT);
     DECLARE_ID (PARAMETER);
+    DECLARE_ID (PATCH);
     DECLARE_ID (POSITION);
     DECLARE_ID (PREFERENCES);
     DECLARE_ID (RECENTFILE);

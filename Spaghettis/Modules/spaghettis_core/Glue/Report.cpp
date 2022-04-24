@@ -205,7 +205,7 @@ void setObjectParameters (Data& data, t_object* o)
 
 juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attributes, bool parameters)
 {
-    juce::ValueTree t (Ids::OBJECT);
+    juce::ValueTree t (object_isCanvas (o) ? Ids::PATCH : Ids::OBJECT);
     
     t.setProperty (Ids::identifier, Cast::toVar (u.getIdentifier()), nullptr);
     

@@ -21,7 +21,7 @@ class Object {
 public:
     explicit Object (const juce::ValueTree& t) : tree_ (t), data_ (t.getChildWithName (Ids::DATA))
     {
-        jassert (tree_.hasType (Ids::OBJECT));
+        jassert (tree_.hasType (Ids::OBJECT) || tree_.hasType (Ids::PATCH));
     }
 
 public:
