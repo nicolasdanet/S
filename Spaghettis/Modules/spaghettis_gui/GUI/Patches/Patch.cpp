@@ -50,12 +50,10 @@ void Patch::add (const core::UniquePath& u, const core::Report& v)
 {
     juce::ValueTree parent (getParent (u));
     
-    /* Two-step phase for subpatches. */
-    
     if (v.isPatch()) {
         juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
         if (child.isValid()) {
-            core::Object (child).copyFrom (v); return;
+            core::Object (child).copyFrom (v); return;      /* Two-step creation for subpatches. */
         }
     }
     
