@@ -42,21 +42,6 @@ public:
 // MARK: -
 
 public:
-    bool isObject() const
-    {
-        return tree_.hasType (Ids::OBJECT);
-    }
-    
-    bool isLine() const
-    {
-        return tree_.hasType (Ids::LINE);
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     juce::ValueTree asValueTree() const
     {
         return tree_;
