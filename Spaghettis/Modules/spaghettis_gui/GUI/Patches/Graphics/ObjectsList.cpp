@@ -17,10 +17,8 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto isSameObjectAs (const core::Object& object)
+auto isSameObjectAs (core::UniqueId identifier)
 {
-    const core::UniqueId identifier = object.getIdentifier();
-    
     return [i = identifier] (const std::unique_ptr<ObjectComponent>& p)
     {
         return (p->getIdentifier() == i);
@@ -43,7 +41,7 @@ void ObjectsList::add (const core::Object& object)
 
 void ObjectsList::remove (const core::Object& object)
 {
-    v_.erase (std::remove_if (v_.begin(), v_.end(), isSameObjectAs (object)), v_.end());
+    v_.erase (std::remove_if (v_.begin(), v_.end(), isSameObjectAs (object.getIdentifier())), v_.end());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -17,10 +17,8 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto isSameLineAs (const core::Line& line)
+auto isSameLineAs (core::UniqueId identifier)
 {
-    const core::UniqueId identifier = line.getIdentifier();
-    
     return [i = identifier] (const std::unique_ptr<LineComponent>& p)
     {
         return (p->getIdentifier() == i);
@@ -43,7 +41,7 @@ void LineList::add (const core::Line& line)
 
 void LineList::remove (const core::Line& line)
 {
-    v_.erase (std::remove_if (v_.begin(), v_.end(), isSameLineAs (line)), v_.end());
+    v_.erase (std::remove_if (v_.begin(), v_.end(), isSameLineAs (line.getIdentifier())), v_.end());
 }
 
 // -----------------------------------------------------------------------------------------------------------
