@@ -49,13 +49,19 @@ juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 void Patch::add (const core::UniquePath& u, const core::Report& v)
 {
     juce::ValueTree parent (getParent (u));
-    juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
-    if (child.isValid()) {
-        core::Object (child).copyFrom (v);      /* Two-step phase for subpatches. */
-    } else {
-        parent.appendChild (v.asValueTree(), nullptr);
+    /* Two-step phase for subpatches. */
+    
+    if (v.isPatch()) {
+        juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
+        if (child.isValid()) {
+            core::Object (child).copyFrom (v); return;
+        }
     }
+    
+    jassert (getChildWithIdentifier (parent, u.getIdentifier()).isValid() == false);
+    
+    parent.appendChild (v.asValueTree(), nullptr);
 }
 
 void Patch::change (const core::UniquePath& u, const core::Report& v)
