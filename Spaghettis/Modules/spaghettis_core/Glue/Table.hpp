@@ -37,7 +37,7 @@ public:
 
     void remove (const T& t)
     {
-        v_.erase (std::remove_if (v_.begin(), v_.end(), hasSameIdentifier (t)), v_.end());
+        v_.erase (std::remove_if (v_.begin(), v_.end(), hasSameIdentifier (t.getIdentifier())), v_.end());
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -45,9 +45,11 @@ public:
 // MARK: -
 
 public:
-    U* get (UniqueId u)
+    U* get (UniqueId identifier)
     {
-        return nullptr;
+        auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (identifier));
+        
+        return (r != v_.cend()) ? r->get() : nullptr;
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -55,9 +57,9 @@ public:
 // MARK: -
 
 private:
-    static auto hasSameIdentifier (const T& t)
+    static auto hasSameIdentifier (UniqueId identifier)
     {
-        return [i = t.getIdentifier()] (const std::unique_ptr<U>& p)
+        return [i = identifier] (const std::unique_ptr<U>& p)
         {
             return (p->getIdentifier() == i);
         };
