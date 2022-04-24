@@ -28,7 +28,7 @@ void EditView::resized()
 
 ObjectComponent* EditView::getObject (core::UniqueId u)
 {
-    return objects_.getObject (u);
+    return objects_.get (u);
 }
     
 // -----------------------------------------------------------------------------------------------------------

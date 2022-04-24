@@ -5,65 +5,62 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-namespace spaghettis {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditView :    public juce::Component,
-                    public juce::ValueTree::Listener {
+namespace spaghettis::core {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+template <class T, class U> class Table {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit EditView (const juce::ValueTree& tree) :
-        tree_ (tree),
-        background_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
-        objects_ (*this),
-        lines_ (*this)
+    explicit Table (juce::Component& owner) : owner_ (owner)
     {
-        tree_.addListener (this);
-        background_.attach (PainterPolicy::repainter (this));
-        BaseComponent::setDefaultWithSize (this);
     }
     
-    ~EditView() = default;
+    ~Table() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void paint (juce::Graphics&) override;
-    void resized() override;
+    void add (const T& t)
+    {
+        v_.push_back (std::make_unique<U> (owner_, t));
+    }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    ObjectComponent* getObject (core::UniqueId);
+    void remove (const T& t)
+    {
+        auto f = [i = t.getIdentifier()] (const std::unique_ptr<U>& p)
+        {
+            return (p->getIdentifier() == i);
+        };
     
+        v_.erase (std::remove_if (v_.begin(), v_.end(), f), v_.end());
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
-    void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
-        
+    U* get (UniqueId u)
+    {
+        return nullptr;
+    }
+
 private:
-    juce::ValueTree tree_;
-    core::Cached<juce::Colour> background_;
-    core::Table<core::Object, ObjectComponent> objects_;
-    core::Table<core::Line, LineComponent> lines_;
-        
+    juce::Component& owner_;
+    std::vector<std::unique_ptr<U>> v_;
+    
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Table)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -73,4 +70,3 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
