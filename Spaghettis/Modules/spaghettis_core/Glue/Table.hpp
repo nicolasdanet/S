@@ -37,12 +37,7 @@ public:
 
     void remove (const T& t)
     {
-        auto f = [i = t.getIdentifier()] (const std::unique_ptr<U>& p)
-        {
-            return (p->getIdentifier() == i);
-        };
-    
-        v_.erase (std::remove_if (v_.begin(), v_.end(), f), v_.end());
+        v_.erase (std::remove_if (v_.begin(), v_.end(), hasSameIdentifier (t)), v_.end());
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -55,6 +50,19 @@ public:
         return nullptr;
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    static auto hasSameIdentifier (const T& t)
+    {
+        return [i = t.getIdentifier()] (const std::unique_ptr<U>& p)
+        {
+            return (p->getIdentifier() == i);
+        };
+    }
+    
 private:
     juce::Component& owner_;
     std::vector<std::unique_ptr<U>> v_;
