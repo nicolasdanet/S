@@ -54,7 +54,9 @@ LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
     
     if (source_.getComponent())      { source_->addChangeListener (this);      }
     if (destination_.getComponent()) { destination_->addChangeListener (this); }
-        
+    
+    update();
+    
     // owner_.addAndMakeVisible (this);
 }
 
@@ -86,7 +88,21 @@ void LineComponent::paint (juce::Graphics& g)
 
 void LineComponent::changeListenerCallback (juce::ChangeBroadcaster* broadcaster)
 {
-    DBG ("?");
+    DBG ("?"); update(); repaint();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LineComponent::update()
+{
+    if (source_.getComponent() && destination_.getComponent()) {
+    //
+    PinComponent *outlet = source_->getOutletAt (line_.getOutlet());
+    PinComponent *inlet  = destination_->getInletAt (line_.getInlet());
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

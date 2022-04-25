@@ -53,6 +53,16 @@ public:
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::destination));
     }
     
+    int getInlet() const
+    {
+        return tree_.getProperty (Ids::inlet);
+    }
+    
+    int getOutlet() const
+    {
+        return tree_.getProperty (Ids::outlet);
+    }
+    
 private:
     juce::ValueTree tree_;
     

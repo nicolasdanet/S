@@ -82,6 +82,45 @@ core::UniqueId ObjectComponent::getIdentifier() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+PinComponent* getPinAt (const std::vector<std::unique_ptr<PinComponent>>& v, int n)
+{
+    jassert (n >= 0);
+    
+    if (static_cast<std::vector<std::unique_ptr<PinComponent>>::size_type> (n) < v.size()) {
+        return v[n].get();
+    } else {
+        return nullptr;
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PinComponent* ObjectComponent::getInletAt (int n) const
+{
+    return getPinAt (iPins_, n);
+}
+
+PinComponent* ObjectComponent::getOutletAt (int n) const
+{
+    return getPinAt (oPins_, n);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ObjectComponent::paint (juce::Graphics& g)
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
@@ -105,10 +144,10 @@ void ObjectComponent::update()
     juce::Rectangle<int> painted (painter_->getBounds());
     
     setVisible (visible_.get());
+    
     setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted);
     
-    updateInletsAndOutlets();
-    sendChangeMessage();
+    updateInletsAndOutlets(); sendChangeMessage();
 }
 
 // -----------------------------------------------------------------------------------------------------------
