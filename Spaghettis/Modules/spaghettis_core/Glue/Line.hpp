@@ -43,12 +43,12 @@ public:
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
     }
 
-    UniqueId getSource() const
+    UniqueId getIdentifierOfSource() const
     {
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::source));
     }
     
-    UniqueId getDestination() const
+    UniqueId getIdentifierOfDestination() const
     {
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::destination));
     }

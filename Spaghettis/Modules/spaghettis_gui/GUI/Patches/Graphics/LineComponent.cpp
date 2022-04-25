@@ -17,22 +17,22 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-ObjectComponent* getSource (juce::Component& owner, const core::Line& line)
+ObjectComponent* getSourceComponent (juce::Component& owner, const core::Line& line)
 {
     EditView* view = dynamic_cast<EditView*> (&owner);
     
     jassert (view);
     
-    return view->getObject (line.getSource());
+    return view->getObject (line.getIdentifierOfSource());
 }
 
-ObjectComponent* getDestination (juce::Component& owner, const core::Line& line)
+ObjectComponent* getDestinationComponent (juce::Component& owner, const core::Line& line)
 {
     EditView* view = dynamic_cast<EditView*> (&owner);
     
     jassert (view);
     
-    return view->getObject (line.getDestination());
+    return view->getObject (line.getIdentifierOfDestination());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -47,8 +47,8 @@ ObjectComponent* getDestination (juce::Component& owner, const core::Line& line)
 LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
     owner_ (owner),
     line_ (line),
-    source_ (getSource (owner, line)),
-    destination_ (getDestination (owner, line))
+    source_ (getSourceComponent (owner, line)),
+    destination_ (getDestinationComponent (owner, line))
 {
     setPaintingIsUnclipped (true);
     
