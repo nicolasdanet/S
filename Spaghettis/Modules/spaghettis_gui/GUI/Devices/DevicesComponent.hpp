@@ -18,9 +18,9 @@ constexpr int numberOfDevices() { return 2; }
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DevicesComponent :    public BaseComponent,
-                            public juce::ComboBox::Listener,
-                            public juce::ChangeListener {
+class DevicesComponent :    public  BaseComponent,
+                            private juce::ComboBox::Listener,
+                            private juce::ChangeListener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

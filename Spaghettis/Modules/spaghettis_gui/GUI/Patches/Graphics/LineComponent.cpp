@@ -52,12 +52,18 @@ LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
 {
     setPaintingIsUnclipped (true);
     
+    if (source_.getComponent())      { source_->addChangeListener (this);      }
+    if (destination_.getComponent()) { destination_->addChangeListener (this); }
+        
     // owner_.addAndMakeVisible (this);
 }
 
 LineComponent::~LineComponent()
 {
     // owner_.removeChildComponent (this);
+    
+    if (destination_.getComponent()) { destination_->removeChangeListener (this); }
+    if (source_.getComponent())      { source_->removeChangeListener (this);      }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -76,6 +82,11 @@ core::UniqueId LineComponent::getIdentifier() const
 void LineComponent::paint (juce::Graphics& g)
 {
     g.setColour (juce::Colours::orange); g.fillRect (getLocalBounds());
+}
+
+void LineComponent::changeListenerCallback (juce::ChangeBroadcaster* broadcaster)
+{
+    DBG ("?");
 }
 
 // -----------------------------------------------------------------------------------------------------------

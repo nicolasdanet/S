@@ -63,6 +63,7 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
 
 ObjectComponent::~ObjectComponent()
 {
+    removeAllChangeListeners();
     removeInletsAndOultets();
     
     owner_.removeChildComponent (this);
@@ -107,6 +108,7 @@ void ObjectComponent::update()
     setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted);
     
     updateInletsAndOutlets();
+    sendChangeMessage();
 }
 
 // -----------------------------------------------------------------------------------------------------------
