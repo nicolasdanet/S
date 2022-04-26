@@ -45,12 +45,12 @@ public:
 
     template <class T> core::Cached<T> getCachedAttribute (const juce::String& name) const
     {
-        return core::Cached<T>::make (data_, Tags::Attributes, name);
+        return core::Cached<T>::make (data_, Tags::Attributes, name, false);
     }
     
     template <class T> core::Cached<T> getCachedParameter (const juce::String& name) const
     {
-        return core::Cached<T>::make (data_, Tags::Parameters, name);
+        return core::Cached<T>::make (data_, Tags::Parameters, name, false);
     }
     
     template <class T> T getAttribute (const juce::String &name) const

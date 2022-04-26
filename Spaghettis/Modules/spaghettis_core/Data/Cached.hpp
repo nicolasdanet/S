@@ -12,15 +12,18 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T, bool updateSynchronously = false> class Cached : private juce::Value::Listener {
+template <class T> class Cached : private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    explicit Cached (const core::Data& data, const juce::String& group, const juce::String& key) :
-        value_ (data.getParameter (group, key).getValueAsValue (updateSynchronously))
+    explicit Cached (const core::Data& data,
+        const juce::String& group,
+        const juce::String& key,
+        bool updateSynchronously) :
+            value_ (data.getParameter (group, key).getValueAsValue (updateSynchronously))
     {
         value_.addListener (this);
     }
@@ -72,11 +75,14 @@ private:
 // MARK: -
 
 public:
-    static Cached make (const core::Data& data, const juce::String& group, const juce::String& key)
+    static Cached make (const core::Data& data,
+        const juce::String& group,
+        const juce::String& key,
+        bool updateSynchronously)
     {
         jassert (data.getParameter (group, key).getType() == ParameterType<T>::get());
 
-        return Cached (data, group, key);
+        return Cached (data, group, key, updateSynchronously);
     }
 
 private:

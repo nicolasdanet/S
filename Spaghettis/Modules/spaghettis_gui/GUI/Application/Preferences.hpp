@@ -46,7 +46,7 @@ public:
 public:
     template <class T> core::Cached<T> getCached (const juce::String& group, const juce::String& key) const
     {
-        return core::Cached<T>::make (data_, group, key);
+        return core::Cached<T>::make (data_, group, key, false);
     }
 
 // -----------------------------------------------------------------------------------------------------------
