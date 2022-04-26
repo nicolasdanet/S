@@ -79,7 +79,7 @@ class ParameterColour : public juce::PropertyComponent {
 
 public:
     explicit ParameterColour (const core::Parameter& p) :
-        juce::PropertyComponent (p.getLabel()), editor_ (p.getValueAsValue())
+        juce::PropertyComponent (p.getLabel()), editor_ (p.getValueAsValue (false))
     {
         addAndMakeVisible (editor_);
     }

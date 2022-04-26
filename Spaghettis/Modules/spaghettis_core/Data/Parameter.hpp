@@ -108,7 +108,7 @@ public:
 // MARK: -
 
 public:
-    juce::Value getValueAsValue (bool updateSynchronously = false) const;
+    juce::Value getValueAsValue (bool updateSynchronously) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

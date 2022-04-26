@@ -43,17 +43,20 @@ public:
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
     }
 
-    template <class T> core::Cached<T> getCachedAttribute (const juce::String& name) const
+    template <class T>
+    core::Cached<T> getCachedAttribute (const juce::String& name, bool updateSynchronously = false) const
     {
-        return core::Cached<T>::make (data_, Tags::Attributes, name, false);
+        return core::Cached<T>::make (data_, Tags::Attributes, name, updateSynchronously);
     }
     
-    template <class T> core::Cached<T> getCachedParameter (const juce::String& name) const
+    template <class T>
+    core::Cached<T> getCachedParameter (const juce::String& name, bool updateSynchronously = false) const
     {
-        return core::Cached<T>::make (data_, Tags::Parameters, name, false);
+        return core::Cached<T>::make (data_, Tags::Parameters, name, updateSynchronously);
     }
     
-    template <class T> T getAttribute (const juce::String &name) const
+    template <class T>
+    T getAttribute (const juce::String &name) const
     {
         return getCachedAttribute<T> (name).get();
     }

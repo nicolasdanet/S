@@ -20,7 +20,7 @@ class ParameterBoolean : public juce::BooleanPropertyComponent {
 
 public:
     explicit ParameterBoolean (const core::Parameter& p) :
-        juce::BooleanPropertyComponent (p.getValueAsValue(), p.getLabel(), "")
+        juce::BooleanPropertyComponent (p.getValueAsValue (false), p.getLabel(), "")
     {
     }
     
