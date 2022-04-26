@@ -64,7 +64,7 @@ private:
 // MARK: -
 
 private:
-    void updateInletsAndOutlets();
+    void createInletsAndOutlets();
     void removeInletsAndOultets();
     
 private:

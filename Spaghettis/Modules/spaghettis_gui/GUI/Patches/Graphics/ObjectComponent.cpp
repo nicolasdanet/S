@@ -141,13 +141,20 @@ void ObjectComponent::resized()
 
 void ObjectComponent::update()
 {
-    juce::Rectangle<int> painted (painter_->getBounds());
+    const bool isVisible = visible_.get();
     
-    setVisible (visible_.get());
+    removeInletsAndOultets();
     
-    setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted);
+    if (isVisible) {
+        juce::Rectangle<int> painted (painter_->getBounds());
+        setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted);
+        setVisible (true);
+        if (showPins_) { createInletsAndOutlets(); }
+    } else {
+        setVisible (false);
+    }
     
-    updateInletsAndOutlets(); sendChangeMessage();
+    sendChangeMessage();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -175,7 +182,7 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, bool 
     return bounds.expanded (PainterPolicy::pinGripX(), PainterPolicy::pinGripY());
 }
 
-std::vector<std::unique_ptr<PinComponent>> updatePins (const juce::StringArray& a,
+std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& a,
     const juce::Rectangle<int>& bounds,
     juce::Component& owner,
     bool isOutlet)
@@ -203,21 +210,15 @@ std::vector<std::unique_ptr<PinComponent>> updatePins (const juce::StringArray& 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ObjectComponent::updateInletsAndOutlets()
+void ObjectComponent::createInletsAndOutlets()
 {
-    removeInletsAndOultets();
-    
-    if (showPins_ && visible_.get()) {
-    //
     const juce::StringArray i (juce::StringArray::fromTokens (inlets_.get(), true));
     const juce::StringArray o (juce::StringArray::fromTokens (outlets_.get(), true));
     
     const juce::Rectangle<int> bounds (getBounds());
     
-    if (!i.isEmpty()) { iPins_ = updatePins (i, bounds, owner_, false); }
-    if (!o.isEmpty()) { oPins_ = updatePins (o, bounds, owner_, true);  }
-    //
-    }
+    if (!i.isEmpty()) { iPins_ = createPins (i, bounds, owner_, false); }
+    if (!o.isEmpty()) { oPins_ = createPins (o, bounds, owner_, true);  }
 }
 
 void ObjectComponent::removeInletsAndOultets()
