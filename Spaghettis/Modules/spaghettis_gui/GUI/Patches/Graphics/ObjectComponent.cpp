@@ -54,9 +54,9 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     
     auto f = [this]() { update(); };
     
-    visible_.attach (f);
     inlets_.attach  (f);
     outlets_.attach (f);
+    visible_.attach (f);
     
     background_.attach (PainterPolicy::repainter (this));
 }
@@ -94,7 +94,7 @@ PinComponent* getPinAt (const std::vector<std::unique_ptr<PinComponent>>& v, int
     if (static_cast<std::vector<std::unique_ptr<PinComponent>>::size_type> (n) < v.size()) {
         return v[n].get();
     } else {
-        return nullptr;
+        DBG ("NULLPTR"); return nullptr;
     }
 }
 

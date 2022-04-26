@@ -108,7 +108,7 @@ public:
 // MARK: -
 
 public:
-    juce::Value getValueAsValue() const;
+    juce::Value getValueAsValue (bool updateSynchronously = false) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -167,7 +167,7 @@ public:
 // MARK: -
 
 private:
-    juce::Value getSource (const juce::Identifier& identifier) const;
+    juce::Value getSource (const juce::Identifier&, bool) const;
     const juce::var& get (const juce::Identifier&) const;
     void set (const juce::Identifier&, const juce::var&);
     void change (const juce::Identifier&, const juce::var&);

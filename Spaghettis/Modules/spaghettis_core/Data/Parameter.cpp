@@ -75,9 +75,9 @@ juce::var Parameter::getValue() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Value Parameter::getValueAsValue() const
+juce::Value Parameter::getValueAsValue (bool updateSynchronously) const
 {
-    return filtered (getSource (Ids::value));
+    return filtered (getSource (Ids::value, updateSynchronously));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -170,9 +170,9 @@ juce::ValueTree getBase (const juce::ValueTree& tree, const juce::Identifier& id
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Value Parameter::getSource (const juce::Identifier& identifier) const
+juce::Value Parameter::getSource (const juce::Identifier& identifier, bool updateSynchronously) const
 {
-    return getBase (parameter_, identifier).getPropertyAsValue (identifier, nullptr);
+    return getBase (parameter_, identifier).getPropertyAsValue (identifier, nullptr, updateSynchronously);
 }
 
 const juce::var& Parameter::get (const juce::Identifier& identifier) const

@@ -84,6 +84,12 @@ void setObjectAttributesForObject (Group& group, t_object* o)
 {
     static DelegateCache delegate;
     
+    group.addParameter (Tags::Class,
+        NEEDS_TRANS ("Class"),
+        NEEDS_TRANS ("Class of the object"),
+        juce::String (class_getNameAsString (pd_class (o))),
+        delegate);
+        
     group.addParameter (Tags::Buffer,
         NEEDS_TRANS ("Buffer"),
         NEEDS_TRANS ("Content of the box"),
@@ -122,7 +128,7 @@ void setObjectAttributesForObject (Group& group, t_object* o)
     
     group.addParameter (Tags::Selected,
         NEEDS_TRANS ("Selected"),
-        NEEDS_TRANS ("Selected state"),
+        NEEDS_TRANS ("Is selected state"),
         static_cast<bool> (object_getSelected (o)),
         delegate);
     
@@ -130,12 +136,6 @@ void setObjectAttributesForObject (Group& group, t_object* o)
         NEEDS_TRANS ("Visible"),
         NEEDS_TRANS ("Is visible state"),
         getVisible (o),
-        delegate);
-        
-    group.addParameter (Tags::Class,
-        NEEDS_TRANS ("Class"),
-        NEEDS_TRANS ("Class of the object"),
-        juce::String (class_getNameAsString (pd_class (o))),
         delegate);
 }
 

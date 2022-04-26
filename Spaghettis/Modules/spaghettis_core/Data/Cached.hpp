@@ -12,7 +12,7 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> class Cached : private juce::Value::Listener {
+template <class T, bool updateSynchronously = false> class Cached : private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ template <class T> class Cached : private juce::Value::Listener {
 
 private:
     explicit Cached (const core::Data& data, const juce::String& group, const juce::String& key) :
-        value_ (data.getParameter (group, key).getValueAsValue())
+        value_ (data.getParameter (group, key).getValueAsValue (updateSynchronously))
     {
         value_.addListener (this);
     }
