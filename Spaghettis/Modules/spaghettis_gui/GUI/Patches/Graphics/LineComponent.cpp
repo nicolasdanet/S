@@ -88,7 +88,7 @@ void LineComponent::paint (juce::Graphics& g)
 
 void LineComponent::changeListenerCallback (juce::ChangeBroadcaster* broadcaster)
 {
-    DBG ("?"); update(); repaint();
+    update();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -97,12 +97,22 @@ void LineComponent::changeListenerCallback (juce::ChangeBroadcaster* broadcaster
 
 void LineComponent::update()
 {
+    bool isVisible = false;
+    
     if (source_.getComponent() && destination_.getComponent()) {
     //
     PinComponent *outlet = source_->getOutletAt (line_.getOutlet());
     PinComponent *inlet  = destination_->getInletAt (line_.getInlet());
+    
+    if (outlet && inlet) {
+    //
+    
     //
     }
+    //
+    }
+    
+    setVisible (isVisible);
 }
 
 // -----------------------------------------------------------------------------------------------------------

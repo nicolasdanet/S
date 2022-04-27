@@ -39,9 +39,9 @@ std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const core
 ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& object) :
     owner_ (owner),
     object_ (object),
-    visible_ (object.getCachedAttribute<bool> (Tags::Visible)),
-    inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets)),
-    outlets_ (object.getCachedAttribute<juce::String> (Tags::Outlets)),
+    visible_ (object.getCachedAttribute<bool> (Tags::Visible, true)),
+    inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets, true)),
+    outlets_ (object.getCachedAttribute<juce::String> (Tags::Outlets, true)),
     background_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
     painter_ (createPainter (*this, object)),
     showPins_ (true)
@@ -94,7 +94,7 @@ PinComponent* getPinAt (const std::vector<std::unique_ptr<PinComponent>>& v, int
     if (static_cast<std::vector<std::unique_ptr<PinComponent>>::size_type> (n) < v.size()) {
         return v[n].get();
     } else {
-        DBG ("NULLPTR"); return nullptr;
+        return nullptr;     /* If not visible or ill-formed (e.g. subpatch two-step creation). */
     }
 }
 
