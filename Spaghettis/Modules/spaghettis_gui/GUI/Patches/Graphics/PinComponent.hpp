@@ -12,8 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PinComponent :    public  juce::Component,
-                        private juce::SettableTooltipClient {
+class PinComponent :    public juce::Component,
+                        public juce::SettableTooltipClient {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
