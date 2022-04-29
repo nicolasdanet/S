@@ -94,7 +94,7 @@ PinComponent* getPinAt (const std::vector<std::unique_ptr<PinComponent>>& v, int
     if (static_cast<std::vector<std::unique_ptr<PinComponent>>::size_type> (n) < v.size()) {
         return v[n].get();
     } else {
-        return nullptr;     /* If not visible or ill-formed (e.g. subpatch two-step creation). */
+        return nullptr;     /* If not visible or ill-formed (e.g. subpatch two-phase creation). */
     }
 }
 
