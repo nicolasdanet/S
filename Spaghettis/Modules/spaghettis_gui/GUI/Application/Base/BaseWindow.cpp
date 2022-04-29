@@ -54,9 +54,20 @@ void BaseWindow::makeVisible (juce::Rectangle<int> window)
         }
     }
     //
+    } else {
+        jassertfalse;
     }
     
-    setVisible (true); addToDesktop(); toFront (true);
+    auto f = [p = juce::Component::SafePointer<BaseWindow> (this)]()
+    {
+        if (p.getComponent()) { p->setVisible (true); p->addToDesktop(); p->toFront (true); }
+    };
+    
+    #if JUCE_LINUX
+        Timer::callAfterDelay (100, f);
+    #else
+        f();
+    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------
