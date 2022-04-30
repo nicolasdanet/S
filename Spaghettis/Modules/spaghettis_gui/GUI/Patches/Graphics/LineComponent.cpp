@@ -111,7 +111,7 @@ void LineComponent::update()
     o_          = outlet->getHook();
     i_          = inlet->getHook();
     
-    setBounds (o_.getUnion (i_)); isVisible = true;
+    setBounds (o_.getUnion (i_).reduced (0, i_.getHeight())); isVisible = true;
     //
     }
     //
