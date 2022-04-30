@@ -63,6 +63,8 @@ private:
     juce::Component::SafePointer<ObjectComponent> destination_;
     core::Cached<juce::Colour> control_;
     core::Cached<juce::Colour> signal_;
+    juce::Path linePath_;
+    juce::Path hitPath_;
     bool isSignal_;
 
 private:
