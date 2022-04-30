@@ -112,11 +112,12 @@ void LineComponent::update()
     
     if (outlet && inlet) {
     //
-    isSignal_   = outlet->isSignal() && inlet->isSignal();
-    o_          = outlet->getPinBoundsInParent();
-    i_          = inlet->getPinBoundsInParent();
+    const juce::Rectangle<int> r1 (inlet->getPinBoundsInParent());
+    const juce::Rectangle<int> r2 (outlet->getPinBoundsInParent());
     
-    setBounds (o_.getUnion (i_).reduced (0, i_.getHeight())); isVisible = true;
+    isSignal_ = outlet->isSignal() && inlet->isSignal();
+    
+    setBounds (r2.getUnion (r1).reduced (0, r1.getHeight())); isVisible = true;
     //
     }
     //
