@@ -48,7 +48,8 @@ LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
     owner_ (owner),
     line_ (line),
     source_ (getSourceComponent (owner, line)),
-    destination_ (getDestinationComponent (owner, line))
+    destination_ (getDestinationComponent (owner, line)),
+    isSignal_ (false)
 {
     setPaintingIsUnclipped (true);
     
@@ -57,12 +58,12 @@ LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
     
     update();
     
-    // owner_.addAndMakeVisible (this);
+    owner_.addChildComponent (this);
 }
 
 LineComponent::~LineComponent()
 {
-    // owner_.removeChildComponent (this);
+    owner_.removeChildComponent (this);
     
     if (destination_.getComponent()) { destination_->removeChangeListener (this); }
     if (source_.getComponent())      { source_->removeChangeListener (this);      }
@@ -83,7 +84,7 @@ core::UniqueId LineComponent::getIdentifier() const
 
 void LineComponent::paint (juce::Graphics& g)
 {
-    g.setColour (juce::Colours::orange); g.fillRect (getLocalBounds());
+    g.setColour (juce::Colours::orange); g.drawRect (getLocalBounds());
 }
 
 void LineComponent::changeListenerCallback (juce::ChangeBroadcaster* broadcaster)
@@ -106,7 +107,10 @@ void LineComponent::update()
     
     if (outlet && inlet) {
     //
+    isSignal_   = outlet->isSignal() && inlet->isSignal();
+    area_       = outlet->getHook().getUnion (inlet->getHook());
     
+    setBounds (area_); isVisible = true;
     //
     }
     //

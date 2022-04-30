@@ -58,6 +58,8 @@ void BaseWindow::makeVisible (juce::Rectangle<int> window)
         jassertfalse;
     }
     
+    /* < https://forum.juce.com/t/br-wrong-position-for-top-window-when-opened/49805/12 > */
+    
     auto f = [p = juce::Component::SafePointer<BaseWindow> (this)]()
     {
         if (p.getComponent()) { p->setVisible (true); p->addToDesktop(); p->toFront (true); }

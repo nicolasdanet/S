@@ -192,7 +192,7 @@ std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& 
     std::vector<std::unique_ptr<PinComponent>> pins;
     
     for (int i = 0; i < n; ++i) {
-        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (owner, a[i], i);
+        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (owner, a[i]);
         p->setBounds (getPinBounds (bounds, i, isOutlet));
         p->setVisible (true);
         pins.push_back (std::move (p));

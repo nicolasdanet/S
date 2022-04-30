@@ -19,10 +19,20 @@ class PinComponent :    public juce::Component,
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    explicit PinComponent (juce::Component&, const juce::String&, int);
+    explicit PinComponent (juce::Component&, const juce::String&);
 
     ~PinComponent();
 
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool isSignal() const;
+    
+    juce::Rectangle<int> getHook() const;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -37,10 +47,9 @@ public:
     
 private:
     juce::Component& owner_;
-    juce::String type_;
-    int index_;
     core::Cached<juce::Colour> pin_;
     core::Cached<juce::Colour> pinOver_;
+    bool isSignal_;
     bool isOver_;
     
 private:

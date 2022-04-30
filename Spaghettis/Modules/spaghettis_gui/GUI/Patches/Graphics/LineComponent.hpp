@@ -61,6 +61,8 @@ private:
     core::Line line_;
     juce::Component::SafePointer<ObjectComponent> source_;
     juce::Component::SafePointer<ObjectComponent> destination_;
+    juce::Rectangle<int> area_;
+    bool isSignal_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LineComponent)

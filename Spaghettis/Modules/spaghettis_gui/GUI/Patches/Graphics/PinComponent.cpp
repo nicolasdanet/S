@@ -30,6 +30,11 @@ core::Cached<juce::Colour> getColourFromType (const juce::String& type)
     return Spaghettis()->getCachedColour (key);
 }
 
+bool isPinSignal (const juce::String& type)
+{
+    return (type == "signal");
+}
+
 juce::String getTooltipText (const juce::String& type)
 {
     return type.substring (0, 1).toUpperCase() + type.substring (1);
@@ -49,17 +54,16 @@ juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PinComponent::PinComponent (juce::Component& owner, const juce::String& type, int index) :
+PinComponent::PinComponent (juce::Component& owner, const juce::String& type) :
     owner_ (owner),
-    type_ (type),
-    index_ (index),
     pin_ (getColourFromType (type)),
     pinOver_ (Spaghettis()->getCachedColour (Tags::PinOver)),
+    isSignal_ (isPinSignal (type)),
     isOver_ (false)
 {
     setOpaque (false); setPaintingIsUnclipped (true);
     
-    setTooltip (getTooltipText (type_));
+    setTooltip (getTooltipText (type));
     
     pin_.attach (PainterPolicy::repainter (this));
     
@@ -69,6 +73,20 @@ PinComponent::PinComponent (juce::Component& owner, const juce::String& type, in
 PinComponent::~PinComponent()
 {
     owner_.removeChildComponent (this);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool PinComponent::isSignal() const
+{
+    return isSignal_;
+}
+
+juce::Rectangle<int> PinComponent::getHook() const
+{
+    return getBoundWithoutGrip (getBoundsInParent());
 }
 
 // -----------------------------------------------------------------------------------------------------------
