@@ -61,6 +61,8 @@ private:
     core::Line line_;
     juce::Component::SafePointer<ObjectComponent> source_;
     juce::Component::SafePointer<ObjectComponent> destination_;
+    core::Cached<juce::Colour> control_;
+    core::Cached<juce::Colour> signal_;
     juce::Rectangle<int> o_;
     juce::Rectangle<int> i_;
     bool isSignal_;

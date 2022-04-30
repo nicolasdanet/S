@@ -49,9 +49,14 @@ LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
     line_ (line),
     source_ (getSourceComponent (owner, line)),
     destination_ (getDestinationComponent (owner, line)),
+    control_ (Spaghettis()->getCachedColour (Tags::Line)),
+    signal_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
     isSignal_ (false)
 {
     setPaintingIsUnclipped (true);
+    
+    control_.attach (PainterPolicy::repainter (this));
+    signal_.attach (PainterPolicy::repainter (this));
     
     if (source_.getComponent())      { source_->addChangeListener (this);      }
     if (destination_.getComponent()) { destination_->addChangeListener (this); }
@@ -84,7 +89,7 @@ core::UniqueId LineComponent::getIdentifier() const
 
 void LineComponent::paint (juce::Graphics& g)
 {
-    g.setColour (juce::Colours::orange); g.drawRect (getLocalBounds());
+    g.setColour (isSignal_ ? signal_.get() : control_.get()); g.drawRect (getLocalBounds());
 }
 
 void LineComponent::changeListenerCallback (juce::ChangeBroadcaster* broadcaster)

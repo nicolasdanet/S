@@ -87,6 +87,26 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set background color of patch"),
         Colours::getPalette()->background);
 
+    colors.addParameter (Tags::BoxBackground,
+        NEEDS_TRANS ("Box Background"),
+        NEEDS_TRANS ("Set background color of objects"),
+        Colours::getPalette()->backgroundBox);
+    
+    colors.addParameter (Tags::BoxText,
+        NEEDS_TRANS ("Box Text"),
+        NEEDS_TRANS ("Set text color of objects"),
+        Colours::getPalette()->textBox);
+    
+    colors.addParameter (Tags::Line,
+        NEEDS_TRANS ("Line"),
+        NEEDS_TRANS ("Set color of connections"),
+        Colours::getPalette()->signal);
+    
+    colors.addParameter (Tags::LineSignal,
+        NEEDS_TRANS ("Line Signal"),
+        NEEDS_TRANS ("Set color of signal connections"),
+        Colours::getPalette()->signal);
+        
     colors.addParameter (Tags::PinBackground,
         NEEDS_TRANS ("Pin Background"),
         NEEDS_TRANS ("Set background color of pins"),
@@ -126,16 +146,6 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Pin Anything"),
         NEEDS_TRANS ("Set color of anything pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.25));
-    
-    colors.addParameter (Tags::BoxBackground,
-        NEEDS_TRANS ("Box Background"),
-        NEEDS_TRANS ("Set background color of objects"),
-        Colours::getPalette()->backgroundBox);
-    
-    colors.addParameter (Tags::BoxText,
-        NEEDS_TRANS ("Box Text"),
-        NEEDS_TRANS ("Set text color of objects"),
-        Colours::getPalette()->textBox);
     
     colors.addParameter (Tags::BangBackground,
         NEEDS_TRANS ("Bang Background"),
