@@ -108,9 +108,10 @@ void LineComponent::update()
     if (outlet && inlet) {
     //
     isSignal_   = outlet->isSignal() && inlet->isSignal();
-    area_       = outlet->getHook().getUnion (inlet->getHook());
+    o_          = outlet->getHook();
+    i_          = inlet->getHook();
     
-    setBounds (area_); isVisible = true;
+    setBounds (o_.getUnion (i_)); isVisible = true;
     //
     }
     //
