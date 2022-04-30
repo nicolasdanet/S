@@ -113,8 +113,8 @@ void LineComponent::update()
     if (outlet && inlet) {
     //
     isSignal_   = outlet->isSignal() && inlet->isSignal();
-    o_          = outlet->getHook();
-    i_          = inlet->getHook();
+    o_          = outlet->getPinBoundsInParent();
+    i_          = inlet->getPinBoundsInParent();
     
     setBounds (o_.getUnion (i_).reduced (0, i_.getHeight())); isVisible = true;
     //
@@ -122,7 +122,7 @@ void LineComponent::update()
     //
     }
     
-    setVisible (isVisible);
+    setVisible (isVisible); repaint();
 }
 
 // -----------------------------------------------------------------------------------------------------------
