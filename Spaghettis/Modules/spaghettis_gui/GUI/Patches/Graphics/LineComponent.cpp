@@ -91,9 +91,14 @@ void LineComponent::paint (juce::Graphics& g)
     g.fillPath (linePath_);
 }
 
+bool LineComponent::hitTest (int x, int y)
+{
+    return hitPath_.contains (juce::Point<float> (x, y));
+}
+
 void LineComponent::changeListenerCallback (juce::ChangeBroadcaster* broadcaster)
 {
-    update();
+    update(); repaint();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -139,7 +144,7 @@ void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& li
     line.startNewSubPath (p1);
     line.cubicTo (controlPoint1, controlPoint2, p2);
 
-    const juce::PathStrokeType s1 (8.0f); s1.createStrokedPath (hit, line);
+    const juce::PathStrokeType s1 (5.0f); s1.createStrokedPath (hit,  line);
     const juce::PathStrokeType s2 (2.5f); s2.createStrokedPath (line, line);
 }
 
@@ -179,7 +184,7 @@ void LineComponent::update()
     //
     }
     
-    setVisible (isVisible); repaint();
+    setVisible (isVisible);
 }
 
 // -----------------------------------------------------------------------------------------------------------

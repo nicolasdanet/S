@@ -42,7 +42,7 @@ public:
 
 public:
     void paint (juce::Graphics&) override;
-    
+    bool hitTest (int, int) override;
     void changeListenerCallback (juce::ChangeBroadcaster*) override;
 
 // -----------------------------------------------------------------------------------------------------------
