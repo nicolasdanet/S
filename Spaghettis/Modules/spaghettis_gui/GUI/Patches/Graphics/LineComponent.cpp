@@ -89,12 +89,52 @@ core::UniqueId LineComponent::getIdentifier() const
 
 void LineComponent::paint (juce::Graphics& g)
 {
-    g.setColour (isSignal_ ? signal_.get() : control_.get()); g.drawRect (getLocalBounds());
+    g.setColour (isSignal_ ? signal_.get() : control_.get());
+    g.fillPath (linePath_);
 }
 
 void LineComponent::changeListenerCallback (juce::ChangeBroadcaster* broadcaster)
 {
     update();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+auto getLineStartAndEnd (juce::Point<int> position,
+    const juce::Rectangle<int>& iPin,
+    const juce::Rectangle<int>& oPin)
+{
+    const float f = PainterPolicy::pinHeight() / 2.0f;
+    
+    const juce::Point<float> p1 (oPin.toFloat().getCentre().translated (0,  f) - position.toFloat());
+    const juce::Point<float> p2 (iPin.toFloat().getCentre().translated (0, -f) - position.toFloat());
+    
+    return std::make_tuple (p1, p2);
+}
+
+void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& line, juce::Path& hit)
+{
+    const juce::Point<float> controlPoint1 (p1.x, p1.y + (p2.y - p1.y) * 0.33f);
+    const juce::Point<float> controlPoint2 (p2.x, p1.y + (p2.y - p1.y) * 0.66f);
+    
+    line.clear();
+    line.startNewSubPath (p1);
+    line.cubicTo (controlPoint1, controlPoint2, p2);
+
+    const juce::PathStrokeType s1 (8.0f); s1.createStrokedPath (hit, line);
+    const juce::PathStrokeType s2 (2.5f); s2.createStrokedPath (line, line);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,9 +155,17 @@ void LineComponent::update()
     const juce::Rectangle<int> iPin (inlet->getPinBoundsInParent());
     const juce::Rectangle<int> oPin (outlet->getPinBoundsInParent());
     
+    setBounds (oPin.getUnion (iPin));
+    
+    {
+        const auto [start, end] = getLineStartAndEnd (getPosition(), iPin, oPin);
+    
+        makeLinePaths (start, end, linePath_, hitPath_);
+    }
+    
     isSignal_ = outlet->isSignal() && inlet->isSignal();
     
-    setBounds (oPin.getUnion (iPin)); isVisible = true;
+    isVisible = true;
     //
     }
     //
