@@ -109,14 +109,24 @@ auto getLineStartAndEnd (const juce::Rectangle<int>& bounds,
     const juce::Rectangle<int>& iPin,
     const juce::Rectangle<int>& oPin)
 {
-    const float f = PainterPolicy::pinHeight() / 2.0f;
-    
     const juce::Point<float> position (bounds.getPosition().toFloat());
 
     juce::Point<float> p1 (oPin.toFloat().getCentre() - position);
     juce::Point<float> p2 (iPin.toFloat().getCentre() - position);
     
-    return std::make_tuple (p1.translated (0,  f), p2.translated (0, -f));
+    /* If horizontally closed, use the centre of pins. */
+    /* If the inlet is above the outlet, use the inside borders of pins. */
+    
+    const float f = PainterPolicy::pinHeight() / 2.0f;
+    
+    if (bounds.getHeight() <= PainterPolicy::pinHeight() * 2) { return std::make_tuple (p1, p2); }
+    else if (iPin.getY() < oPin.getY()) {
+        return std::make_tuple (p1.translated (0, -f), p2.translated (0, f));
+    }
+
+    /* Normal case, use the outside borders. */
+    
+    return std::make_tuple (p1.translated (0, f), p2.translated (0, -f));
 }
 
 void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& line, juce::Path& hit)
