@@ -100,7 +100,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tags::Line,
         NEEDS_TRANS ("Line"),
         NEEDS_TRANS ("Set color of connections"),
-        Colours::getPalette()->signal);
+        Colours::getPalette()->backgroundBox.contrasting (0.25));
     
     colors.addParameter (Tags::LineSignal,
         NEEDS_TRANS ("Line Signal"),
