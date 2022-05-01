@@ -53,8 +53,6 @@ LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
     signal_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
     isSignal_ (false)
 {
-    setPaintingIsUnclipped (true);
-    
     control_.attach (PainterPolicy::repainter (this));
     signal_.attach (PainterPolicy::repainter (this));
     
@@ -107,14 +105,15 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto getLineStartAndEnd (juce::Point<int> position,
+auto getLineStartAndEnd (const juce::Rectangle<int>& bounds,
     const juce::Rectangle<int>& iPin,
     const juce::Rectangle<int>& oPin)
 {
     const float f = PainterPolicy::pinHeight() / 2.0f;
     
-    const juce::Point<float> p1 (oPin.toFloat().getCentre().translated (0,  f) - position.toFloat());
-    const juce::Point<float> p2 (iPin.toFloat().getCentre().translated (0, -f) - position.toFloat());
+    const juce::Point<float> position (bounds.getPosition().toFloat());
+    const juce::Point<float> p1 (oPin.toFloat().getCentre().translated (0,  f) - position);
+    const juce::Point<float> p2 (iPin.toFloat().getCentre().translated (0, -f) - position);
     
     return std::make_tuple (p1, p2);
 }
@@ -154,18 +153,15 @@ void LineComponent::update()
     //
     const juce::Rectangle<int> iPin (inlet->getPinBoundsInParent());
     const juce::Rectangle<int> oPin (outlet->getPinBoundsInParent());
+    const juce::Rectangle<int> bounds (oPin.getUnion (iPin));
     
-    setBounds (oPin.getUnion (iPin));
+    const auto [start, end] = getLineStartAndEnd (bounds, iPin, oPin);
     
-    {
-        const auto [start, end] = getLineStartAndEnd (getPosition(), iPin, oPin);
-    
-        makeLinePaths (start, end, linePath_, hitPath_);
-    }
+    makeLinePaths (start, end, linePath_, hitPath_);
     
     isSignal_ = outlet->isSignal() && inlet->isSignal();
     
-    isVisible = true;
+    setBounds (bounds); isVisible = true;
     //
     }
     //
