@@ -51,7 +51,8 @@ LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
     destination_ (getDestinationComponent (owner, line)),
     control_ (Spaghettis()->getCachedColour (Tags::Line)),
     signal_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
-    isSignal_ (false)
+    isSignal_ (false),
+    isOver_ (false)
 {
     control_.attach (PainterPolicy::repainter (this));
     signal_.attach (PainterPolicy::repainter (this));
@@ -87,7 +88,10 @@ core::UniqueId LineComponent::getIdentifier() const
 
 void LineComponent::paint (juce::Graphics& g)
 {
-    g.setColour (isSignal_ ? signal_.get() : control_.get());
+    const juce::Colour c (isSignal_ ? signal_.get() : control_.get());
+    
+    g.setColour (isOver_ ? c.contrasting (0.35) : c);
+    
     g.fillPath (linePath_);
 }
 
@@ -96,9 +100,19 @@ bool LineComponent::hitTest (int x, int y)
     return hitPath_.contains (juce::Point<float> (x, y));
 }
 
-void LineComponent::changeListenerCallback (juce::ChangeBroadcaster* broadcaster)
+void LineComponent::changeListenerCallback (juce::ChangeBroadcaster*)
 {
     update(); repaint();
+}
+
+void LineComponent::mouseEnter (const juce::MouseEvent&)
+{
+    isOver_ = true;  repaint();
+}
+
+void LineComponent::mouseExit (const juce::MouseEvent&)
+{
+    isOver_ = false; repaint();
 }
 
 // -----------------------------------------------------------------------------------------------------------

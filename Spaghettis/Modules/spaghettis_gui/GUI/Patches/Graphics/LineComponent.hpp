@@ -45,6 +45,10 @@ public:
     bool hitTest (int, int) override;
     void changeListenerCallback (juce::ChangeBroadcaster*) override;
 
+public:
+    void mouseEnter (const juce::MouseEvent&) override;
+    void mouseExit (const juce::MouseEvent&) override;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -66,6 +70,7 @@ private:
     juce::Path linePath_;
     juce::Path hitPath_;
     bool isSignal_;
+    bool isOver_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LineComponent)
