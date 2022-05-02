@@ -54,24 +54,30 @@ bool isChildOf (const juce::ValueTree& t, juce::ValueTree& child)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditView::addComponent (juce::ValueTree& child)
+{
+    if (child.hasType (Ids::OBJECT))    { objects_.add (core::Object (child)); }
+    else if (child.hasType (Ids::LINE)) { lines_.add (core::Line (child));     }
+}
+
+void EditView::removeComponent (juce::ValueTree& child)
+{
+    if (child.hasType (Ids::OBJECT))    { objects_.remove (core::Object (child)); }
+    else if (child.hasType (Ids::LINE)) { lines_.remove (core::Line (child));     }
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    if (isChildOf (tree_, child)) {
-        if (!child.hasType (Ids::LINE)) { objects_.add (core::Object (child)); }
-        else {
-            lines_.add (core::Line (child));
-        }
-    }
+    if (isChildOf (tree_, child)) { addComponent (child); }
 }
 
 void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    if (isChildOf (tree_, child)) {
-        if (!child.hasType (Ids::LINE)) { objects_.remove (core::Object (child)); }
-        else {
-            lines_.remove (core::Line (child));
-        }
-    }
+    if (isChildOf (tree_, child)) { removeComponent (child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

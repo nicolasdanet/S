@@ -58,7 +58,11 @@ public:
 public:
     void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
     void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
-        
+
+private:
+    void addComponent (juce::ValueTree&);
+    void removeComponent (juce::ValueTree&);
+    
 private:
     juce::ValueTree tree_;
     core::Cached<juce::Colour> background_;
