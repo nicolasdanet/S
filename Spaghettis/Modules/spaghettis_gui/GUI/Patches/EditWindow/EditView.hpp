@@ -28,6 +28,7 @@ public:
     {
         tree_.addListener (this);
         background_.attach (PainterPolicy::repainter (this));
+        initialize();
         BaseComponent::setDefaultWithSize (this);
     }
     
@@ -60,8 +61,9 @@ public:
     void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
 
 private:
-    void addComponent (juce::ValueTree&);
-    void removeComponent (juce::ValueTree&);
+    void addComponent (const juce::ValueTree&);
+    void removeComponent (const juce::ValueTree&);
+    void initialize();
     
 private:
     juce::ValueTree tree_;

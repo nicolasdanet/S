@@ -54,18 +54,23 @@ bool isChildOf (const juce::ValueTree& t, juce::ValueTree& child)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::addComponent (juce::ValueTree& child)
+void EditView::addComponent (const juce::ValueTree& child)
 {
     if (child.hasType (Ids::OBJECT))    { objects_.add (core::Object (child)); }
     else if (child.hasType (Ids::LINE)) { lines_.add (core::Line (child));     }
 }
 
-void EditView::removeComponent (juce::ValueTree& child)
+void EditView::removeComponent (const juce::ValueTree& child)
 {
     if (child.hasType (Ids::OBJECT))    { objects_.remove (core::Object (child)); }
     else if (child.hasType (Ids::LINE)) { lines_.remove (core::Line (child));     }
 }
-    
+
+void EditView::initialize()
+{
+    for (const auto& child : tree_) { addComponent (child); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
