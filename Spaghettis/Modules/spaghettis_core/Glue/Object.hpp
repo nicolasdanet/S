@@ -38,6 +38,16 @@ public:
 // MARK: -
 
 public:
+    bool isPatch() const
+    {
+        return tree_.hasType (Ids::PATCH);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     UniqueId getIdentifier() const
     {
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));

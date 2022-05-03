@@ -56,14 +56,22 @@ bool isChildOf (const juce::ValueTree& t, juce::ValueTree& child)
 
 void EditView::addComponent (const juce::ValueTree& child)
 {
-    if (child.hasType (Ids::OBJECT))    { objects_.add (core::Object (child)); }
-    else if (child.hasType (Ids::LINE)) { lines_.add (core::Line (child));     }
+    const juce::Identifier t (child.getType());
+    
+    if (t == Ids::OBJECT || t == Ids::PATCH) { objects_.add (core::Object (child)); }
+    else if (t == Ids::LINE) {
+        lines_.add (core::Line (child));
+    }
 }
 
 void EditView::removeComponent (const juce::ValueTree& child)
 {
-    if (child.hasType (Ids::OBJECT))    { objects_.remove (core::Object (child)); }
-    else if (child.hasType (Ids::LINE)) { lines_.remove (core::Line (child));     }
+    const juce::Identifier t (child.getType());
+    
+    if (t == Ids::OBJECT || t == Ids::PATCH) { objects_.remove (core::Object (child)); }
+    else if (t == Ids::LINE) {
+        lines_.remove (core::Line (child));
+    }
 }
 
 void EditView::initialize()
