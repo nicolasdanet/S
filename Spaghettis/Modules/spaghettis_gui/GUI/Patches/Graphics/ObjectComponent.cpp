@@ -152,7 +152,7 @@ juce::Rectangle<int> ObjectComponent::getRequiredBounds() const
 
 void ObjectComponent::updateBoundsIfRequired()
 {
-    DBG ("!");
+    if (getRequiredBounds() != getBounds()) { DBG ("?"); }
 }
 
 void ObjectComponent::update()
