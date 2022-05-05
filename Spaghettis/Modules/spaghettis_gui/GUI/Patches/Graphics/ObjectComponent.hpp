@@ -57,6 +57,7 @@ public:
 // MARK: -
 
 public:
+    juce::Rectangle<int> getRequiredBounds() const;
     void updateBoundsIfRequired();
     
 private:

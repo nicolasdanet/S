@@ -143,6 +143,13 @@ void ObjectComponent::resized()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Rectangle<int> ObjectComponent::getRequiredBounds() const
+{
+    juce::Rectangle<int> painted (painter_->getRequiredBounds());
+    
+    return showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted;
+}
+
 void ObjectComponent::updateBoundsIfRequired()
 {
     DBG ("!");
@@ -155,8 +162,7 @@ void ObjectComponent::update()
     removeInletsAndOultets();
     
     if (isVisible) {
-        juce::Rectangle<int> painted (painter_->getRequiredBounds());
-        setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted);
+        setBounds (getRequiredBounds());
         setVisible (true);
         if (showPins_) { createInletsAndOutlets(); }
     } else {
