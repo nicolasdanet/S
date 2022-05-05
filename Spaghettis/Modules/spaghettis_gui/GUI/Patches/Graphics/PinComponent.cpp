@@ -56,8 +56,8 @@ juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r)
 
 PinComponent::PinComponent (juce::Component& owner, const juce::String& type) :
     owner_ (owner),
-    pin_ (getColourFromType (type)),
-    pinOver_ (Spaghettis()->getCachedColour (Tags::PinOver)),
+    pinColour_ (getColourFromType (type)),
+    pinOverColour_ (Spaghettis()->getCachedColour (Tags::PinOver)),
     isSignal_ (isPinSignal (type)),
     isOver_ (false)
 {
@@ -65,7 +65,7 @@ PinComponent::PinComponent (juce::Component& owner, const juce::String& type) :
     
     setTooltip (getTooltipText (type));
     
-    pin_.attach (PainterPolicy::repainter (this));
+    pinColour_.attach (PainterPolicy::repainter (this));
     
     owner_.addChildComponent (this);
 }
@@ -95,7 +95,7 @@ juce::Rectangle<int> PinComponent::getPinBoundsInParent() const
 
 void PinComponent::paint (juce::Graphics& g)
 {
-    g.setColour (isOver_ ? pinOver_.get() : pin_.get());
+    g.setColour (isOver_ ? pinOverColour_.get() : pinColour_.get());
     g.fillRect (getBoundWithoutGrip (getLocalBounds()));
 }
     

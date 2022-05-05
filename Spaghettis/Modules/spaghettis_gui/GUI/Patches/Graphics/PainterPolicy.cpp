@@ -19,8 +19,8 @@ PainterPolicy::PainterPolicy (juce::Component& owner, const core::Object& object
     x_ (fetchAttribute<int> (Tags::X)),
     y_ (fetchAttribute<int> (Tags::Y))
 {
-    x_.attach (resizer (&owner_, this));
-    y_.attach (resizer (&owner_, this));
+    // x_.attach (resizer (&owner_, this));
+    // y_.attach (resizer (&owner_, this));
 }
     
 // -----------------------------------------------------------------------------------------------------------

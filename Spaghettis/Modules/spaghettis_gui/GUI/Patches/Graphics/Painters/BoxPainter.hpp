@@ -37,8 +37,8 @@ private:
     
 private:
     juce::Font font_;
-    core::Cached<juce::Colour> background_;
-    core::Cached<juce::Colour> text_;
+    core::Cached<juce::Colour> backgroundColour_;
+    core::Cached<juce::Colour> textColour_;
     core::Cached<juce::String> buffer_;
     core::Cached<juce::String> class_;
 

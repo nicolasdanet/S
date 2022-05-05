@@ -47,8 +47,8 @@ public:
     
 private:
     juce::Component& owner_;
-    core::Cached<juce::Colour> pin_;
-    core::Cached<juce::Colour> pinOver_;
+    core::Cached<juce::Colour> pinColour_;
+    core::Cached<juce::Colour> pinOverColour_;
     bool isSignal_;
     bool isOver_;
     

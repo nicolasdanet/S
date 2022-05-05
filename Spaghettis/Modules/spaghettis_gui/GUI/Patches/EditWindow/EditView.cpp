@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void EditView::paint (juce::Graphics& g)
 {
-    g.fillAll (background_.get());
+    g.fillAll (backgroundColour_.get());
 }
     
 void EditView::resized()

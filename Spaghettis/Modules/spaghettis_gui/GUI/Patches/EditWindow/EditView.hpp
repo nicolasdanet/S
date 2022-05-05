@@ -22,12 +22,12 @@ class EditView :    public  juce::Component,
 public:
     explicit EditView (const juce::ValueTree& tree) :
         tree_ (tree),
-        background_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
+        backgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
         objects_ (*this),
         lines_ (*this)
     {
         tree_.addListener (this);
-        background_.attach (PainterPolicy::repainter (this));
+        backgroundColour_.attach (PainterPolicy::repainter (this));
         initialize();
         BaseComponent::setDefaultWithSize (this);
     }
@@ -67,7 +67,7 @@ private:
     
 private:
     juce::ValueTree tree_;
-    core::Cached<juce::Colour> background_;
+    core::Cached<juce::Colour> backgroundColour_;
     core::Table<core::Object, ObjectComponent> objects_;
     core::Table<core::Line, LineComponent> lines_;
         
