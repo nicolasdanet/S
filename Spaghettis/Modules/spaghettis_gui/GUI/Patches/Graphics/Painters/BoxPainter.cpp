@@ -22,6 +22,8 @@ BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) : Pa
     bind (backgroundColour_);
     bind (textColour_);
     bind (buffer_);
+    
+    owner_.setBufferedToImage (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
