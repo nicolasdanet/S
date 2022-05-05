@@ -54,8 +54,8 @@ LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
     isSignal_ (false),
     isOver_ (false)
 {
-    controlColour_.attach (PainterPolicy::repainter (this));
-    signalColour_.attach (PainterPolicy::repainter (this));
+    controlColour_.attach (PainterPolicy::repaint (this));
+    signalColour_.attach (PainterPolicy::repaint (this));
     
     if (source_.getComponent())      { source_->addChangeListener (this);      }
     if (destination_.getComponent()) { destination_->addChangeListener (this); }

@@ -65,7 +65,7 @@ PinComponent::PinComponent (juce::Component& owner, const juce::String& type) :
     
     setTooltip (getTooltipText (type));
     
-    pinColour_.attach (PainterPolicy::repainter (this));
+    pinColour_.attach (PainterPolicy::repaint (this));
     
     owner_.addChildComponent (this);
 }

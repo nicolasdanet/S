@@ -57,14 +57,9 @@ protected:
 // MARK: -
 
 public:
-    static auto repainter (juce::Component* component)
+    static auto repaint (juce::Component* component)
     {
         return [c = component]() { c->repaint(); };
-    }
-
-    static auto resizer (juce::Component* component, PainterPolicy *painter)
-    {
-        return [c = component, p = painter]() { c->setBounds (p->getRequiredBounds()); };
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -74,7 +69,7 @@ public:
 protected:
     template <class T> void bind (core::Cached<T>& t) const
     {
-        t.attach (repainter (&owner_));
+        t.attach (repaint (&owner_));
     }
     
 protected:

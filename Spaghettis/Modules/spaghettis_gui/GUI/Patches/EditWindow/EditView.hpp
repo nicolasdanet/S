@@ -27,7 +27,7 @@ public:
         lines_ (*this)
     {
         tree_.addListener (this);
-        backgroundColour_.attach (PainterPolicy::repainter (this));
+        backgroundColour_.attach (PainterPolicy::repaint (this));
         initialize();
         BaseComponent::setDefaultWithSize (this);
     }

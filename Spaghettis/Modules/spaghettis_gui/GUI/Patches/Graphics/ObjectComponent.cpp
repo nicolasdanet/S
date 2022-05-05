@@ -58,7 +58,7 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
     outlets_.attach (f);
     visible_.attach (f);
     
-    backgroundColour_.attach (PainterPolicy::repainter (this));
+    backgroundColour_.attach (PainterPolicy::repaint (this));
 }
 
 ObjectComponent::~ObjectComponent()
