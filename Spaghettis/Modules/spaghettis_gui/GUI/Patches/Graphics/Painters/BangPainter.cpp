@@ -38,7 +38,7 @@ void BangPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
     g.fillEllipse (r.reduced (1).toFloat());
 }
 
-juce::Rectangle<int> BangPainter::getBounds()
+juce::Rectangle<int> BangPainter::getRequiredBounds()
 {
     const int x = x_.get();
     const int y = y_.get();

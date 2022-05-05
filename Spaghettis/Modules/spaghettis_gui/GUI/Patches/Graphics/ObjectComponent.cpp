@@ -146,7 +146,7 @@ void ObjectComponent::update()
     removeInletsAndOultets();
     
     if (isVisible) {
-        juce::Rectangle<int> painted (painter_->getBounds());
+        juce::Rectangle<int> painted (painter_->getRequiredBounds());
         setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted);
         setVisible (true);
         if (showPins_) { createInletsAndOutlets(); }

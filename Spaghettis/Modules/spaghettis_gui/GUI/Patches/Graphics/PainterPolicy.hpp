@@ -35,7 +35,7 @@ public:
 public:
     virtual void paint (const juce::Rectangle<int>&, juce::Graphics&) = 0;
     
-    virtual juce::Rectangle<int> getBounds() = 0;
+    virtual juce::Rectangle<int> getRequiredBounds() = 0;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ public:
 
     static auto resizer (juce::Component* component, PainterPolicy *painter)
     {
-        return [c = component, p = painter]() { c->setBounds (p->getBounds()); };
+        return [c = component, p = painter]() { c->setBounds (p->getRequiredBounds()); };
     }
 
 // -----------------------------------------------------------------------------------------------------------
