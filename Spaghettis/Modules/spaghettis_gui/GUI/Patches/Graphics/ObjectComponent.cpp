@@ -139,6 +139,15 @@ void ObjectComponent::resized()
 
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ObjectComponent::updateBoundsIfRequired()
+{
+    DBG ("!");
+}
+
 void ObjectComponent::update()
 {
     const bool isVisible = visible_.get();
