@@ -57,20 +57,20 @@ LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
     controlColour_.attach (PainterPolicy::repaint (this));
     signalColour_.attach (PainterPolicy::repaint (this));
     
-    if (source_.getComponent())      { source_->addChangeListener (this);      }
-    if (destination_.getComponent()) { destination_->addChangeListener (this); }
-    
     update();
     
     owner_.addChildComponent (this);
+    
+    if (source_.getComponent())      { source_->addChangeListener (this);         }
+    if (destination_.getComponent()) { destination_->addChangeListener (this);    }
 }
 
 LineComponent::~LineComponent()
 {
-    owner_.removeChildComponent (this);
-    
     if (destination_.getComponent()) { destination_->removeChangeListener (this); }
     if (source_.getComponent())      { source_->removeChangeListener (this);      }
+    
+    owner_.removeChildComponent (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
