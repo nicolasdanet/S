@@ -134,6 +134,7 @@
 
 #include "GUI/Patches/EditWindow/EditFactory.hpp"
 #include "GUI/Patches/EditWindow/EditView.hpp"
+#include "GUI/Patches/EditWindow/EditPort.hpp"
 #include "GUI/Patches/EditWindow/EditComponent.hpp"
 #include "GUI/Patches/EditWindow/EditWindow.hpp"
 #include "GUI/Patches/RunWindow/RunFactory.hpp"

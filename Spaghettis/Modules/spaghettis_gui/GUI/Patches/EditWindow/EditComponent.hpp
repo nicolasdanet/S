@@ -24,9 +24,10 @@ public:
         EditFactoryHelper (this),
         BaseComponent (getIconsFactory()),
         owner_ (owner),
-        editView_ (tree)
+        editView_ (tree),
+        editPort_ (editView_)
     {
-        addAndMakeVisible (editView_);
+        addAndMakeVisible (editPort_);
         
         setDefaultWithSize (this, 600, 300);
     }
@@ -47,7 +48,7 @@ public:
     {
         juce::Rectangle<int> bounds (setBarsBoundsAndGetRemaining());
         
-        editView_.setBounds (bounds);
+        editPort_.setBounds (bounds);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -75,6 +76,7 @@ private:
     
 private:
     EditView editView_;
+    EditPort editPort_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditComponent)
