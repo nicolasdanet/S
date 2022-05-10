@@ -39,6 +39,11 @@ public:
         view_.setBounds (getLocalBounds());
     }
     
+    void paint (juce::Graphics& g) override
+    {
+        g.fillAll (juce::Colours::orange);
+    }
+
 private:
     EditView& view_;
         
