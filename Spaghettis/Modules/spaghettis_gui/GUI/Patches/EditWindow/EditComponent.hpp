@@ -29,7 +29,7 @@ public:
     {
         addAndMakeVisible (editPort_);
         
-        setDefaultWithSize (this, 600, 300);
+        setOpaque (true); setSize (600, 300);
     }
     
     ~EditComponent() = default;

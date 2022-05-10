@@ -25,7 +25,7 @@ public:
         BaseComponent (getIconsFactory()),
         owner_ (owner)
     {
-        setDefaultWithSize (this, 600, 300);
+        setOpaque (true); setSize (600, 300);
     }
     
     ~RunComponent() = default;

@@ -29,7 +29,6 @@ public:
         tree_.addListener (this);
         backgroundColour_.attach (PainterPolicy::repaint (this));
         initialize();
-        BaseComponent::setDefaultWithSize (this);
     }
     
     ~EditView()

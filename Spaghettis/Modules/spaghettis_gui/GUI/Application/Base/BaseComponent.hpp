@@ -146,16 +146,6 @@ public:
         return commands_.perform (info);
     }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static void setDefaultWithSize (juce::Component *c, int w = 0, int h = 0)
-    {
-        c->setOpaque (true); c->setSize (w, h);
-    }
-    
 private:
     juce::String keyName_;
     std::unique_ptr<juce::Toolbar> toolbar_;

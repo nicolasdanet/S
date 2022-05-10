@@ -36,7 +36,7 @@ public:
         
         loadToolbarButtonsStates();
         
-        setDefaultWithSize (this, 600, 300);
+        setOpaque (true); setSize (600, 300);
     }
     
     ~ConsoleComponent() override
