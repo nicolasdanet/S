@@ -111,13 +111,13 @@ void setObjectAttributesForObject (Group& group, t_object* o)
     group.addParameter (Tags::X,
         NEEDS_TRANS ("Position X"),
         NEEDS_TRANS ("Box ordinate"),
-        object_getX (o),
+        Canvas::addOffset (object_getX (o)),
         delegate);
     
     group.addParameter (Tags::Y,
         NEEDS_TRANS ("Position Y"),
         NEEDS_TRANS ("Box abscissa"),
-        object_getY (o),
+        Canvas::addOffset (object_getY (o)),
         delegate);
     
     group.addParameter (Tags::Width,
