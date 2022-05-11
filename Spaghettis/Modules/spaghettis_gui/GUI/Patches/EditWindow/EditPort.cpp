@@ -12,39 +12,28 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditPort : public juce::Component {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    explicit EditPort (EditView& view) : view_ (view), x_ (0), y_ (0), z_ (0.0)
-    {
-        addAndMakeVisible (&view_);
-    }
+void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
+{
+    const float x = wheel.isReversed ? -wheel.deltaX : wheel.deltaX;
+    const float y = wheel.isReversed ? -wheel.deltaY : wheel.deltaY;
     
-    ~EditPort()
-    {
-        removeChildComponent (&view_);
-    }
+    scroll (x, y);
+}
 
-public:
-    void mouseWheelMove (const juce::MouseEvent &, const juce::MouseWheelDetails &) override;
-
-private:
-    void scroll (float, float);
-    void apply();
+void EditPort::scroll (float x, float y)
+{
+    const float step = 100.0f;
     
-private:
-    EditView& view_;
-    int x_;
-    int y_;
-    double z_;
-        
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditPort)
-};
+    x_ += static_cast<int> (x * step);
+    y_ += static_cast<int> (y * step);
+    
+    apply();
+}
+
+void EditPort::apply()
+{
+    view_.setBounds (core::Canvas::getBounds().translated (x_, y_));
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -53,4 +42,3 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-

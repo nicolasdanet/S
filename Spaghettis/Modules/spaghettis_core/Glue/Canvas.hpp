@@ -30,7 +30,7 @@ struct Canvas {
 
 static constexpr int getSize()
 {
-    return 65536;   /* Arbitrary. */
+    return 65536;               /* Arbitrary. */
 }
 
 static constexpr int getOffset()
