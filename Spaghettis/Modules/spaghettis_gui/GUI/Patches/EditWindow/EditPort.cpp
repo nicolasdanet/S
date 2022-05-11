@@ -36,8 +36,9 @@ float computeDeltaFromMove (float f)
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
     const float step = 100.0f;
-    const float x    = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
-    const float y    = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
+    
+    float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
+    float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
 
     #if JUCE_LINUX
     
