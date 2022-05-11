@@ -39,6 +39,12 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     const float x    = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
     const float y    = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
 
+    #if JUCE_LINUX
+    
+    if (e.mods.isShiftDown()) { x = y; y = 0.0f; }
+    
+    #endif
+    
     scroll (x, y);
 }
 
