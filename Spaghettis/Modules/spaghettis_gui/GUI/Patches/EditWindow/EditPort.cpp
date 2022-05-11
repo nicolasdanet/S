@@ -12,20 +12,40 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+float computeDeltaFromMove (float f)
+{
+    /* At least one step increment. */
+    
+    return std::signbit (f) ? juce::jmin (-1.0f, f) : juce::jmax (1.0f, f);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
-    const float x = wheel.isReversed ? -wheel.deltaX : wheel.deltaX;
-    const float y = wheel.isReversed ? -wheel.deltaY : wheel.deltaY;
-    
+    const float step = 100.0f;
+    const float x    = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
+    const float y    = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
+
     scroll (x, y);
 }
 
 void EditPort::scroll (float x, float y)
 {
-    const float step = 100.0f;
-    
-    x_ += static_cast<int> (x * step);
-    y_ += static_cast<int> (y * step);
+    if (x) { x_ += static_cast<int> (computeDeltaFromMove (x)); }
+    if (y) { y_ += static_cast<int> (computeDeltaFromMove (y)); }
     
     apply();
 }
