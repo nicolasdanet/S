@@ -98,11 +98,6 @@ void PinComponent::paint (juce::Graphics& g)
     g.setColour (isOver_ ? pinOverColour_.get() : pinColour_.get());
     g.fillRect (getBoundWithoutGrip (getLocalBounds()));
 }
-    
-void PinComponent::resized()
-{
-
-}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

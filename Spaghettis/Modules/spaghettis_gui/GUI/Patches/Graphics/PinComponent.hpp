@@ -39,7 +39,6 @@ public:
 
 public:
     void paint (juce::Graphics&) override;
-    void resized() override;
 
 public:
     void mouseEnter (const juce::MouseEvent&) override;
