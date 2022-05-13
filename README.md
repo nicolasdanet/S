@@ -1,7 +1,7 @@
 
 # Spaghettis
 
-This a WIP version of [Spaghettis](https://github.com/Spaghettis/Spaghettis) that aims to use [JUCE](https://github.com/juce-framework/JUCE) for the GUI.
+Yet another fork of [Pure Data](http://msp.ucsd.edu/) with [JUCE](https://github.com/juce-framework/JUCE).
 
 ## Platforms
 
