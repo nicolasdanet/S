@@ -62,7 +62,6 @@ public:
 
 public:
     juce::Rectangle<int> getRequiredBounds() const;
-    void updateBoundsIfRequired();
     
 private:
     void update();

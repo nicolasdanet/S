@@ -155,11 +155,6 @@ juce::Rectangle<int> ObjectComponent::getRequiredBounds() const
     return showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted;
 }
 
-void ObjectComponent::updateBoundsIfRequired()
-{
-    if (getRequiredBounds() != getBounds()) { DBG ("?"); }
-}
-
 void ObjectComponent::update()
 {
     const bool isVisible = visible_.get();

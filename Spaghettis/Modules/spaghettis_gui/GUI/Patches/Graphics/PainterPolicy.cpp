@@ -21,7 +21,7 @@ PainterPolicy::PainterPolicy (juce::Component& owner, const core::Object& object
 {
     auto f = [c = dynamic_cast<ObjectComponent*> (&owner_)] ()
     {
-        jassert (c); c->updateBoundsIfRequired();
+        jassert (c); DBG ("?");
     };
     
     x_.attach (f);
