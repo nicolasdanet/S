@@ -56,6 +56,21 @@ public:
 // MARK: -
 
 public:
+    void zoomIn()
+    {
+        editPort_.zoomIn();
+    }
+    
+    void zoomOut()
+    {
+        editPort_.zoomOut();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     bool tryGrabFocus() override
     {
         return tryGrabFocusForComponent (this);

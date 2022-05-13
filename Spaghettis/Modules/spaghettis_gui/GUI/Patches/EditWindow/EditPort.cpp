@@ -33,6 +33,24 @@ float computeDeltaFromMove (float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditPort::zoomIn()
+{
+    auto r = std::find_if (steps_.cbegin(), steps_.cend(),   [n = zoom_](int i) { return (i > n); });
+    
+    zoom ((r != steps_.cend()) ? *r : steps_.back());
+}
+
+void EditPort::zoomOut()
+{
+    auto r = std::find_if (steps_.crbegin(), steps_.crend(), [n = zoom_](int i) { return (i < n); });
+    
+    zoom ((r != steps_.crend()) ? *r : steps_.front());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
     const float step = 100.0f;
@@ -49,12 +67,26 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     scroll (x, y);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditPort::scroll (float x, float y)
 {
     if (x) { x_ += static_cast<int> (computeDeltaFromMove (x)); }
     if (y) { y_ += static_cast<int> (computeDeltaFromMove (y)); }
     
     apply();
+}
+
+void EditPort::zoom (int n)
+{
+    constexpr int min = steps_.front();
+    constexpr int max = steps_.back();
+    
+    zoom_ = juce::jlimit (min, max, n);
+    
+    DBG (zoom_);
 }
 
 void EditPort::apply()

@@ -19,7 +19,7 @@ class EditPort : public juce::Component {
 // MARK: -
 
 public:
-    explicit EditPort (EditView& view) : view_ (view), x_ (0), y_ (0), z_ (0.0)
+    explicit EditPort (EditView& view) : view_ (view), zoom_ (100), x_ (0), y_ (0)
     {
         addAndMakeVisible (&view_);
     }
@@ -29,18 +29,41 @@ public:
         removeChildComponent (&view_);
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void zoomIn();
+    void zoomOut();
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     void mouseWheelMove (const juce::MouseEvent &, const juce::MouseWheelDetails &) override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     void scroll (float, float);
+    void zoom (int n);
     void apply();
     
 private:
     EditView& view_;
+    int zoom_;
     int x_;
     int y_;
-    double z_;
+
+private:
+    static constexpr std::array<int, 16> steps_ =
+        {
+            30, 50, 67, 80, 90, 100, 110, 120, 133, 150, 170, 200, 240, 300, 400, 500
+        };
         
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditPort)
