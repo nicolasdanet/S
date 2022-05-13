@@ -17,7 +17,8 @@ class EditView;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class LineComponent :   public  juce::Component,
+class LineComponent :   public  Scalable,
+                        public  juce::Component,
                         private juce::ChangeListener {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -48,6 +49,9 @@ public:
 public:
     void mouseEnter (const juce::MouseEvent&) override;
     void mouseExit (const juce::MouseEvent&) override;
+
+public:
+    void scaleChanged() override;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

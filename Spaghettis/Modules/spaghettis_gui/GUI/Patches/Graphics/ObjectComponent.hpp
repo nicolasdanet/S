@@ -17,7 +17,8 @@ class PinComponent;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ObjectComponent : public juce::Component,
+class ObjectComponent : public Scalable,
+                        public juce::Component,
                         public juce::ChangeBroadcaster {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -52,6 +53,9 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+public:
+    void scaleChanged() override;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
