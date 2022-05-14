@@ -23,8 +23,6 @@ public:
     explicit EditView (const juce::ValueTree& tree) :
         tree_ (tree),
         backgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
-        objects_ (*this),
-        lines_ (*this),
         scale_ (1.0f)
     {
         tree_.addListener (this);

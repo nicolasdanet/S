@@ -19,10 +19,7 @@ template <class T, class U> class Table {
 // MARK: -
 
 public:
-    explicit Table (juce::Component& owner) : owner_ (owner)
-    {
-    }
-    
+    Table()  = default;
     ~Table() = default;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -40,9 +37,9 @@ public:
 // MARK: -
 
 public:
-    void add (const T& t)
+    void add (juce::Component& owner, const T& t)
     {
-        v_.push_back (std::make_unique<U> (owner_, t));
+        v_.push_back (std::make_unique<U> (owner, t));
     }
 
     void remove (const T& t)
@@ -81,7 +78,6 @@ private:
     }
     
 private:
-    juce::Component& owner_;
     std::vector<std::unique_ptr<U>> v_;
     
 private:
