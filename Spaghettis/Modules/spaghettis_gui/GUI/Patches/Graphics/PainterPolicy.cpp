@@ -13,13 +13,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PainterPolicy::PainterPolicy (juce::Component& owner, const core::Object& object) :
+PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object) :
     owner_ (owner),
     object_ (object),
     x_ (fetchAttribute<int> (Tags::X)),
     y_ (fetchAttribute<int> (Tags::Y))
 {
-    auto f = [c = dynamic_cast<ObjectComponent*> (&owner_)] ()
+    auto f = [c = owner]()
     {
         jassert (c); DBG ("?");
     };

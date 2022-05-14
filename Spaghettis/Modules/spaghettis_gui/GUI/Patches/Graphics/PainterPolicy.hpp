@@ -10,6 +10,11 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+class ObjectComponent;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 class PainterPolicy {
@@ -19,7 +24,7 @@ class PainterPolicy {
 // MARK: -
 
 public:
-    explicit PainterPolicy (juce::Component&, const core::Object&);
+    explicit PainterPolicy (ObjectComponent*, const core::Object&);
     
     virtual ~PainterPolicy() = default;
     
@@ -67,13 +72,7 @@ public:
 // MARK: -
 
 protected:
-    template <class T> void bind (core::Cached<T>& t) const
-    {
-        t.attach (repaint (&owner_));
-    }
-    
-protected:
-    juce::Component& owner_;
+    ObjectComponent* owner_;
     core::Object object_;
     core::Cached<int> x_;
     core::Cached<int> y_;

@@ -18,7 +18,7 @@ class BangPainter : public PainterPolicy {
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    explicit BangPainter (juce::Component&, const core::Object&);
+    explicit BangPainter (ObjectComponent*, const core::Object&);
     
     ~BangPainter() = default;
     

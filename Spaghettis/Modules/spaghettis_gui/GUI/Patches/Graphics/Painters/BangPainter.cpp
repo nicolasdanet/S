@@ -12,18 +12,18 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-BangPainter::BangPainter (juce::Component& owner, const core::Object& object) : PainterPolicy (owner, object),
+BangPainter::BangPainter (ObjectComponent* owner, const core::Object& object) : PainterPolicy (owner, object),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::BangBackground)),
     flashOffColour_ (Spaghettis()->getCachedColour (Tags::BangFlashOff)),
     flashOnColour_ (Spaghettis()->getCachedColour (Tags::BangFlashOn)),
     flashed_ (fetchParameter<bool> (Tags::Flashed)),
     width_ (fetchParameter<int> (Tags::Width))
 {
-    bind (backgroundColour_);
-    bind (flashOffColour_);
-    bind (flashOnColour_);
-    bind (flashed_);
-    bind (width_);
+    backgroundColour_.attach (repaint (owner_));
+    flashOffColour_.attach (repaint (owner_));
+    flashOnColour_.attach (repaint (owner_));
+    flashed_.attach (repaint (owner_));
+    width_.attach (repaint (owner_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

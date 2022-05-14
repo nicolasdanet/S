@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const core::Object& object)
+std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core::Object& object)
 {
     juce::String t (object.getAttribute<juce::String> (Tags::Class));
     
@@ -43,7 +43,7 @@ ObjectComponent::ObjectComponent (EditView* view, const core::Object& object) :
     inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets, true)),
     outlets_ (object.getCachedAttribute<juce::String> (Tags::Outlets, true)),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
-    painter_ (createPainter (*this, object)),
+    painter_ (createPainter (this, object)),
     showPins_ (true)
 {
     setOpaque (true); setPaintingIsUnclipped (true);

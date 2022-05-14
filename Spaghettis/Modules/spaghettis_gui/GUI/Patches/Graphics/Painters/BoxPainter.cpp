@@ -12,18 +12,18 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-BoxPainter::BoxPainter (juce::Component& owner, const core::Object& object) : PainterPolicy (owner, object),
+BoxPainter::BoxPainter (ObjectComponent* owner, const core::Object& object) : PainterPolicy (owner, object),
     font_ (Spaghettis()->getLookAndFeel().getObjectsFont()),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxBackground)),
     textColour_ (Spaghettis()->getCachedColour (Tags::BoxText)),
     buffer_ (fetchAttribute<juce::String> (Tags::Buffer)),
     class_ (fetchAttribute<juce::String> (Tags::Class))
 {
-    bind (backgroundColour_);
-    bind (textColour_);
-    bind (buffer_);
+    backgroundColour_.attach (repaint (owner_));
+    textColour_.attach (repaint (owner_));
+    buffer_.attach (repaint (owner_));
     
-    owner_.setBufferedToImage (true);
+    owner_->setBufferedToImage (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
