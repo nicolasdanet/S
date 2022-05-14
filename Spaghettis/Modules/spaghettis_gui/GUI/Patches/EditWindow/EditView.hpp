@@ -78,8 +78,8 @@ private:
 private:
     juce::ValueTree tree_;
     core::Cached<juce::Colour> backgroundColour_;
-    core::Table<core::Object, ObjectComponent> objects_;
-    core::Table<core::Line, LineComponent> lines_;
+    Table<core::Object, ObjectComponent> objects_;
+    Table<core::Line, LineComponent> lines_;
     float scale_;
         
 private:
