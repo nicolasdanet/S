@@ -24,7 +24,8 @@ public:
         tree_ (tree),
         backgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
         objects_ (*this),
-        lines_ (*this)
+        lines_ (*this),
+        scale_ (1.0f)
     {
         tree_.addListener (this);
         backgroundColour_.attach (PainterPolicy::repaint (this));
@@ -50,6 +51,18 @@ public:
 
 public:
     ObjectComponent* getObject (core::UniqueId);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void setScale (float f);
+    
+    float getScale() const
+    {
+        return scale_;
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -69,6 +82,7 @@ private:
     core::Cached<juce::Colour> backgroundColour_;
     core::Table<core::Object, ObjectComponent> objects_;
     core::Table<core::Line, LineComponent> lines_;
+    float scale_;
         
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
