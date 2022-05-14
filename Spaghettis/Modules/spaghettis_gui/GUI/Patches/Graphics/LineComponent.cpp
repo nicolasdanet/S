@@ -12,35 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-ObjectComponent* getSourceComponent (EditView* owner, const core::Line& line)
-{
-    return owner->getObject (line.getIdentifierOfSource());
-}
-
-ObjectComponent* getDestinationComponent (EditView* owner, const core::Line& line)
-{
-    return owner->getObject (line.getIdentifierOfDestination());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 LineComponent::LineComponent (EditView* owner, const core::Line& line) :
     owner_ (owner),
     line_ (line),
-    source_ (getSourceComponent (owner, line)),
-    destination_ (getDestinationComponent (owner, line)),
+    source_ (owner->getObject (line.getIdentifierOfSource())),
+    destination_ (owner->getObject (line.getIdentifierOfDestination())),
     controlColour_ (Spaghettis()->getCachedColour (Tags::Line)),
     signalColour_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
     isSignal_ (false),
