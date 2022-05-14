@@ -12,11 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-LineComponent::LineComponent (EditView* owner, const core::Line& line) :
-    owner_ (owner),
+LineComponent::LineComponent (EditView* view, const core::Line& line) :
+    view_ (view),
     line_ (line),
-    source_ (owner->getObject (line.getIdentifierOfSource())),
-    destination_ (owner->getObject (line.getIdentifierOfDestination())),
+    source_ (view->getObject (line.getIdentifierOfSource())),
+    destination_ (view->getObject (line.getIdentifierOfDestination())),
     controlColour_ (Spaghettis()->getCachedColour (Tags::Line)),
     signalColour_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
     isSignal_ (false),
@@ -27,7 +27,7 @@ LineComponent::LineComponent (EditView* owner, const core::Line& line) :
     
     update();
     
-    owner_->addChildComponent (this);
+    view_->addChildComponent (this);
     
     if (source_.getComponent())      { source_->addChangeListener (this);         }
     if (destination_.getComponent()) { destination_->addChangeListener (this);    }
@@ -38,7 +38,7 @@ LineComponent::~LineComponent()
     if (destination_.getComponent()) { destination_->removeChangeListener (this); }
     if (source_.getComponent())      { source_->removeChangeListener (this);      }
     
-    owner_->removeChildComponent (this);
+    view_->removeChildComponent (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ void LineComponent::mouseExit (const juce::MouseEvent&)
 
 void LineComponent::scaleChanged()
 {
-    DBG (owner_->getScale());
+    DBG (view_->getScale());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -45,7 +45,7 @@ public:
     void mouseExit (const juce::MouseEvent&) override;
     
 private:
-    EditView* owner_;
+    EditView* view_;
     core::Cached<juce::Colour> pinColour_;
     core::Cached<juce::Colour> pinOverColour_;
     bool isSignal_;

@@ -54,8 +54,8 @@ juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PinComponent::PinComponent (EditView* owner, const juce::String& type) :
-    owner_ (owner),
+PinComponent::PinComponent (EditView* view, const juce::String& type) :
+    view_ (view),
     pinColour_ (getColourFromType (type)),
     pinOverColour_ (Spaghettis()->getCachedColour (Tags::PinOver)),
     isSignal_ (isPinSignal (type)),
@@ -67,12 +67,12 @@ PinComponent::PinComponent (EditView* owner, const juce::String& type) :
     
     pinColour_.attach (PainterPolicy::repaint (this));
     
-    owner_->addChildComponent (this);
+    view_->addChildComponent (this);
 }
 
 PinComponent::~PinComponent()
 {
-    owner_->removeChildComponent (this);
+    view_->removeChildComponent (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

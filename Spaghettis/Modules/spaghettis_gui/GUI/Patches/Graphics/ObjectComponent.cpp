@@ -36,8 +36,8 @@ std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const core
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ObjectComponent::ObjectComponent (EditView* owner, const core::Object& object) :
-    owner_ (owner),
+ObjectComponent::ObjectComponent (EditView* view, const core::Object& object) :
+    view_ (view),
     object_ (object),
     visible_ (object.getCachedAttribute<bool> (Tags::Visible, true)),
     inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets, true)),
@@ -48,7 +48,7 @@ ObjectComponent::ObjectComponent (EditView* owner, const core::Object& object) :
 {
     setOpaque (true); setPaintingIsUnclipped (true);
     
-    owner_->addChildComponent (this);
+    view_->addChildComponent (this);
 
     update();
     
@@ -66,7 +66,7 @@ ObjectComponent::~ObjectComponent()
     removeAllChangeListeners();
     removeInletsAndOultets();
     
-    owner_->removeChildComponent (this);
+    view_->removeChildComponent (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -141,7 +141,7 @@ void ObjectComponent::resized()
 
 void ObjectComponent::scaleChanged()
 {
-    DBG (owner_->getScale());
+    DBG (view_->getScale());
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -193,7 +193,7 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, bool 
 
 std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& a,
     const juce::Rectangle<int>& bounds,
-    EditView* owner,
+    EditView* view,
     bool isOutlet)
 {
     const int n = a.size();
@@ -201,7 +201,7 @@ std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& 
     std::vector<std::unique_ptr<PinComponent>> pins;
     
     for (int i = 0; i < n; ++i) {
-        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (owner, a[i]);
+        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (view, a[i]);
         p->setBounds (getPinBounds (bounds, i, isOutlet));
         p->setVisible (true);
         pins.push_back (std::move (p));
@@ -226,8 +226,8 @@ void ObjectComponent::createInletsAndOutlets()
     
     const juce::Rectangle<int> bounds (getBounds());
     
-    if (!i.isEmpty()) { iPins_ = createPins (i, bounds, owner_, false); }
-    if (!o.isEmpty()) { oPins_ = createPins (o, bounds, owner_, true);  }
+    if (!i.isEmpty()) { iPins_ = createPins (i, bounds, view_, false); }
+    if (!o.isEmpty()) { oPins_ = createPins (o, bounds, view_, true);  }
 }
 
 void ObjectComponent::removeInletsAndOultets()

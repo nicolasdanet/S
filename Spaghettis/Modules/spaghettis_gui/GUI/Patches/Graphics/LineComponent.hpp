@@ -65,7 +65,7 @@ private:
 // MARK: -
 
 private:
-    EditView* owner_;
+    EditView* view_;
     core::Line line_;
     juce::Component::SafePointer<ObjectComponent> source_;
     juce::Component::SafePointer<ObjectComponent> destination_;

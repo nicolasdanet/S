@@ -72,7 +72,7 @@ private:
     void removeInletsAndOultets();
     
 private:
-    EditView* owner_;
+    EditView* view_;
     core::Object object_;
     core::Cached<bool> visible_;
     core::Cached<juce::String> inlets_;
