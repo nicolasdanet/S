@@ -47,6 +47,13 @@ public:
 // MARK: -
 
 protected:
+    float getScale() const;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+protected:
     template <class T> core::Cached<T> fetchAttribute (const juce::String& key) const
     {
         return object_.getCachedAttribute<T> (key);

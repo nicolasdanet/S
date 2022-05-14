@@ -19,6 +19,8 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
     x_ (fetchAttribute<int> (Tags::X)),
     y_ (fetchAttribute<int> (Tags::Y))
 {
+    jassert (owner);
+    
     auto f = [c = owner]()
     {
         jassert (c); DBG ("?");
@@ -27,7 +29,16 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
     x_.attach (f);
     y_.attach (f);
 }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+float PainterPolicy::getScale() const
+{
+    return owner_->getScale();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

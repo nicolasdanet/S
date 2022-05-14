@@ -22,6 +22,8 @@ LineComponent::LineComponent (EditView* view, const core::Line& line) :
     isSignal_ (false),
     isOver_ (false)
 {
+    jassert (view);
+    
     controlColour_.attach (PainterPolicy::repaint (this));
     signalColour_.attach (PainterPolicy::repaint (this));
     
@@ -83,9 +85,19 @@ void LineComponent::mouseExit (const juce::MouseEvent&)
     isOver_ = false; repaint();
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+
 void LineComponent::scaleChanged()
 {
-    DBG (view_->getScale());
+
+}
+
+float LineComponent::getScale() const
+{
+    return view_->getScale();
 }
 
 // -----------------------------------------------------------------------------------------------------------

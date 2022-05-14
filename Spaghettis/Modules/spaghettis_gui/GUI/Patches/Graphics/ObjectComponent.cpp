@@ -46,6 +46,8 @@ ObjectComponent::ObjectComponent (EditView* view, const core::Object& object) :
     painter_ (createPainter (this, object)),
     showPins_ (true)
 {
+    jassert (view);
+    
     setOpaque (true); setPaintingIsUnclipped (true);
     
     view_->addChildComponent (this);
@@ -139,9 +141,18 @@ void ObjectComponent::resized()
 
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ObjectComponent::scaleChanged()
 {
-    DBG (view_->getScale());
+
+}
+
+float ObjectComponent::getScale() const
+{
+    return view_->getScale();
 }
     
 // -----------------------------------------------------------------------------------------------------------
