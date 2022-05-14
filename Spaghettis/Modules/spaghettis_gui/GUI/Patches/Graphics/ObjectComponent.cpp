@@ -141,7 +141,7 @@ void ObjectComponent::resized()
 
 void ObjectComponent::scaleChanged()
 {
-    
+    DBG (owner_->getScale());
 }
     
 // -----------------------------------------------------------------------------------------------------------

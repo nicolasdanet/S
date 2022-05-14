@@ -85,7 +85,7 @@ void LineComponent::mouseExit (const juce::MouseEvent&)
 
 void LineComponent::scaleChanged()
 {
-    
+    DBG (owner_->getScale());
 }
 
 // -----------------------------------------------------------------------------------------------------------
