@@ -148,7 +148,7 @@ void ObjectComponent::scaleChanged()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ObjectComponent::update()
+void ObjectComponent::update (bool notify)
 {
     const bool isVisible = visible_.get();
     
@@ -163,7 +163,7 @@ void ObjectComponent::update()
         setVisible (false);
     }
     
-    sendChangeMessage();
+    if (notify) { sendChangeMessage(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
