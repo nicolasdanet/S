@@ -43,12 +43,22 @@ public:
 
 public:
     void paint (juce::Graphics&) override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     bool hitTest (int, int) override;
     void changeListenerCallback (juce::ChangeBroadcaster*) override;
 
 public:
     void mouseEnter (const juce::MouseEvent&) override;
     void mouseExit (const juce::MouseEvent&) override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     void scaleChanged() override;

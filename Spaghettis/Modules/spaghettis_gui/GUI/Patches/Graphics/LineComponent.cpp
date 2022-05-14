@@ -65,6 +65,10 @@ void LineComponent::paint (juce::Graphics& g)
     g.fillPath (linePath_);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 bool LineComponent::hitTest (int x, int y)
 {
     return hitPath_.contains (juce::Point<float> (x, y));
