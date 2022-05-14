@@ -26,7 +26,7 @@ class ObjectComponent : public Scalable,
 // MARK: -
 
 public:
-    explicit ObjectComponent (juce::Component&, const core::Object&);
+    explicit ObjectComponent (EditView*, const core::Object&);
     
     ~ObjectComponent();
 
@@ -72,7 +72,7 @@ private:
     void removeInletsAndOultets();
     
 private:
-    juce::Component& owner_;
+    EditView* owner_;
     core::Object object_;
     core::Cached<bool> visible_;
     core::Cached<juce::String> inlets_;

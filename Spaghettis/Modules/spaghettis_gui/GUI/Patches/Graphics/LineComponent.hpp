@@ -26,7 +26,7 @@ class LineComponent :   public  Scalable,
 // MARK: -
 
 public:
-    explicit LineComponent (juce::Component&, const core::Line&);
+    explicit LineComponent (EditView*, const core::Line&);
     
     ~LineComponent();
 
@@ -65,7 +65,7 @@ private:
 // MARK: -
 
 private:
-    juce::Component& owner_;
+    EditView* owner_;
     core::Line line_;
     juce::Component::SafePointer<ObjectComponent> source_;
     juce::Component::SafePointer<ObjectComponent> destination_;

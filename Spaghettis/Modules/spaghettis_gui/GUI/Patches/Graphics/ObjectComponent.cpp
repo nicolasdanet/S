@@ -36,7 +36,7 @@ std::unique_ptr<PainterPolicy> createPainter (juce::Component& owner, const core
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& object) :
+ObjectComponent::ObjectComponent (EditView* owner, const core::Object& object) :
     owner_ (owner),
     object_ (object),
     visible_ (object.getCachedAttribute<bool> (Tags::Visible, true)),
@@ -48,7 +48,7 @@ ObjectComponent::ObjectComponent (juce::Component& owner, const core::Object& ob
 {
     setOpaque (true); setPaintingIsUnclipped (true);
     
-    owner_.addChildComponent (this);
+    owner_->addChildComponent (this);
 
     update();
     
@@ -66,7 +66,7 @@ ObjectComponent::~ObjectComponent()
     removeAllChangeListeners();
     removeInletsAndOultets();
     
-    owner_.removeChildComponent (this);
+    owner_->removeChildComponent (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -193,7 +193,7 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, bool 
 
 std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& a,
     const juce::Rectangle<int>& bounds,
-    juce::Component& owner,
+    EditView* owner,
     bool isOutlet)
 {
     const int n = a.size();

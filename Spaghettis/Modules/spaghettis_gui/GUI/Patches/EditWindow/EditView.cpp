@@ -68,9 +68,9 @@ void EditView::addComponent (const juce::ValueTree& child)
 {
     const juce::Identifier t (child.getType());
     
-    if (t == Ids::OBJECT || t == Ids::PATCH) { objects_.add (*this, core::Object (child)); }
+    if (t == Ids::OBJECT || t == Ids::PATCH) { objects_.add (this, core::Object (child)); }
     else if (t == Ids::LINE) {
-        lines_.add (*this, core::Line (child));
+        lines_.add (this, core::Line (child));
     }
 }
 

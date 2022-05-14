@@ -17,22 +17,14 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-ObjectComponent* getSourceComponent (juce::Component& owner, const core::Line& line)
+ObjectComponent* getSourceComponent (EditView* owner, const core::Line& line)
 {
-    EditView* view = dynamic_cast<EditView*> (&owner);
-    
-    jassert (view);
-    
-    return view->getObject (line.getIdentifierOfSource());
+    return owner->getObject (line.getIdentifierOfSource());
 }
 
-ObjectComponent* getDestinationComponent (juce::Component& owner, const core::Line& line)
+ObjectComponent* getDestinationComponent (EditView* owner, const core::Line& line)
 {
-    EditView* view = dynamic_cast<EditView*> (&owner);
-    
-    jassert (view);
-    
-    return view->getObject (line.getIdentifierOfDestination());
+    return owner->getObject (line.getIdentifierOfDestination());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -44,7 +36,7 @@ ObjectComponent* getDestinationComponent (juce::Component& owner, const core::Li
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
+LineComponent::LineComponent (EditView* owner, const core::Line& line) :
     owner_ (owner),
     line_ (line),
     source_ (getSourceComponent (owner, line)),
@@ -59,7 +51,7 @@ LineComponent::LineComponent (juce::Component& owner, const core::Line& line) :
     
     update();
     
-    owner_.addChildComponent (this);
+    owner_->addChildComponent (this);
     
     if (source_.getComponent())      { source_->addChangeListener (this);         }
     if (destination_.getComponent()) { destination_->addChangeListener (this);    }
@@ -70,7 +62,7 @@ LineComponent::~LineComponent()
     if (destination_.getComponent()) { destination_->removeChangeListener (this); }
     if (source_.getComponent())      { source_->removeChangeListener (this);      }
     
-    owner_.removeChildComponent (this);
+    owner_->removeChildComponent (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

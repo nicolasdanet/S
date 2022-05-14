@@ -41,7 +41,7 @@ public:
 // MARK: -
 
 public:
-    void add (juce::Component& owner, const T& t)
+    void add (EditView* owner, const T& t)
     {
         v_.push_back (std::make_unique<U> (owner, t));
     }
