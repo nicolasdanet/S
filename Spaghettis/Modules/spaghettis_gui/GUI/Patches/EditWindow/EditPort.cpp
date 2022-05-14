@@ -58,6 +58,9 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
     float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
 
+    if (e.mods.isCommandDown()) { const int n = (y > 0.0f) ? 10 : -10; zoom (zoom_ + n); }
+    else {
+    //
     #if JUCE_LINUX
     
     if (e.mods.isShiftDown()) { x = y; y = 0.0f; }
@@ -65,6 +68,8 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     #endif
     
     scroll (x, y);
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
