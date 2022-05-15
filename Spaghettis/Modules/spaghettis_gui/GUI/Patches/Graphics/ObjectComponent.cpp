@@ -130,9 +130,9 @@ void ObjectComponent::paint (juce::Graphics& g)
     if (showPins_) {
         g.setColour (backgroundColour_.get());
         g.fillRect (bounds);
-        painter_->paint (bounds.reduced (0, PainterPolicy::pinHeight()), g);
+        // painter_->paint (bounds.reduced (0, PainterPolicy::pinHeight()), g);
     } else {
-        painter_->paint (bounds, g);
+        // painter_->paint (bounds, g);
     }
 }
     
@@ -147,7 +147,7 @@ void ObjectComponent::resized()
 
 void ObjectComponent::scaleChanged()
 {
-
+    update (false); repaint();
 }
 
 float ObjectComponent::getScale() const
