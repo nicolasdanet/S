@@ -85,10 +85,10 @@ protected:
     core::Cached<int> y_;
 
 public:
-    static int pinHeight (float f = 1.0f) { return static_cast<int> (std::round (4 * f)); }
-    static int pinWidth  (float f = 1.0f) { return static_cast<int> (std::round (8 * f)); }
-    static int pinGripX  (float f = 1.0f) { return static_cast<int> (std::round (1 * f)); }
-    static int pinGripY  (float f = 1.0f) { return static_cast<int> (std::round (3 * f)); }
+    static int pinHeight (float f) { return static_cast<int> (std::round (4 * f)); }
+    static int pinWidth  (float f) { return static_cast<int> (std::round (8 * f)); }
+    static int pinGripX  (float f) { return static_cast<int> (std::round (1 * f)); }
+    static int pinGripY  (float f) { return static_cast<int> (std::round (3 * f)); }
     static int margins   (float f = 1.0f) { return static_cast<int> (std::round (3 * f)); }
 };
 

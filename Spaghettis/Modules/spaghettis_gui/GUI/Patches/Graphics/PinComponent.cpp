@@ -40,9 +40,9 @@ juce::String getTooltipText (const juce::String& type)
     return type.substring (0, 1).toUpperCase() + type.substring (1);
 }
 
-juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r)
+juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r, float scale)
 {
-    return r.reduced (PainterPolicy::pinGripX(), PainterPolicy::pinGripY());
+    return r.reduced (PainterPolicy::pinGripX (scale), PainterPolicy::pinGripY (scale));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -86,7 +86,16 @@ bool PinComponent::isSignal() const
 
 juce::Rectangle<int> PinComponent::getPinBoundsInParent() const
 {
-    return getBoundWithoutGrip (getBoundsInParent());
+    return getBoundWithoutGrip (getBoundsInParent(), getScale());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+float PinComponent::getScale() const
+{
+    return view_->getScale();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -96,7 +105,7 @@ juce::Rectangle<int> PinComponent::getPinBoundsInParent() const
 void PinComponent::paint (juce::Graphics& g)
 {
     g.setColour (isOver_ ? pinOverColour_.get() : pinColour_.get());
-    g.fillRect (getBoundWithoutGrip (getLocalBounds()));
+    g.fillRect (getBoundWithoutGrip (getLocalBounds(), getScale()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
