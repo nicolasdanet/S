@@ -13,7 +13,6 @@ namespace spaghettis {
 // MARK: -
 
 BoxPainter::BoxPainter (ObjectComponent* owner, const core::Object& object) : PainterPolicy (owner, object),
-    font_ (Spaghettis()->getLookAndFeel().getObjectsFont()),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxBackground)),
     textColour_ (Spaghettis()->getCachedColour (Tags::BoxText)),
     buffer_ (fetchAttribute<juce::String> (Tags::Buffer)),
@@ -37,6 +36,11 @@ juce::String BoxPainter::getText() const
     return text;
 }
 
+const juce::Font& BoxPainter::getFont() const
+{
+    return Spaghettis()->getLookAndFeel().getObjectsFont();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -51,7 +55,7 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
     g.setColour (backgroundColour_.get());
     g.fillRect (r);
     g.setColour (textColour_.get());
-    g.setFont (font_);
+    g.setFont (getFont());
     g.drawText (text, t, juce::Justification::centredLeft, true);
 }
 
@@ -63,8 +67,8 @@ juce::Rectangle<int> BoxPainter::getRequiredBounds()
     
     const int x = x_.get();
     const int y = y_.get();
-    const int w = font_.getStringWidth (text);
-    const int h = static_cast<int> (font_.getHeight());
+    const int w = getFont().getStringWidth (text);
+    const int h = static_cast<int> (getFont().getHeight());
     const int k = PainterPolicy::margins (f) * 2;
     
     return juce::Rectangle<int> (x, y, w + k, h + k);
