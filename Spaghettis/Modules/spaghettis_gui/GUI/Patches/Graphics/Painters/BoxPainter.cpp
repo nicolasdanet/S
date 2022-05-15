@@ -43,8 +43,10 @@ juce::String BoxPainter::getText() const
 
 void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
+    const float f = getScale();
+    
     const juce::String text (getText());
-    const juce::Rectangle<int> t (r.reduced (PainterPolicy::margins()).translated (0, -1));
+    const juce::Rectangle<int> t (r.reduced (PainterPolicy::margins (f)).translated (0, -1));
     
     g.setColour (backgroundColour_.get());
     g.fillRect (r);
@@ -55,13 +57,15 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 
 juce::Rectangle<int> BoxPainter::getRequiredBounds()
 {
+    const float f = getScale();
+    
     const juce::String text (getText());
     
     const int x = x_.get();
     const int y = y_.get();
     const int w = font_.getStringWidth (text);
     const int h = static_cast<int> (font_.getHeight());
-    const int k = PainterPolicy::margins() * 2;
+    const int k = PainterPolicy::margins (f) * 2;
     
     return juce::Rectangle<int> (x, y, w + k, h + k);
 }
