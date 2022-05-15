@@ -130,9 +130,9 @@ void ObjectComponent::paint (juce::Graphics& g)
     if (showPins_) {
         g.setColour (backgroundColour_.get());
         g.fillRect (bounds);
-        // painter_->paint (bounds.reduced (0, PainterPolicy::pinHeight()), g);
+        painter_->paint (bounds.reduced (0, PainterPolicy::pinHeight (getScale())), g);
     } else {
-        // painter_->paint (bounds, g);
+        painter_->paint (bounds, g);
     }
 }
     
@@ -167,7 +167,7 @@ void ObjectComponent::update (bool notify)
     
     if (isVisible) {
         const juce::Rectangle<int> painted (painter_->getRequiredBounds());
-        setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight()) : painted);
+        setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight (getScale())) : painted);
         setVisible (true);
         if (showPins_) { createInletsAndOutlets(); }
     } else {
@@ -186,25 +186,27 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, bool isOutlet)
+juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float scale, bool isOutlet)
 {
-    const int x = bounds.getX() + (index * ((PainterPolicy::pinGripX() * 2) + PainterPolicy::pinWidth()));
+    const int offset = index * ((PainterPolicy::pinGripX (scale) * 2) + PainterPolicy::pinWidth (scale));
+    const int x = bounds.getX() + offset;
     
     bounds.setX (x);
-    bounds.setWidth (PainterPolicy::pinWidth());
+    bounds.setWidth (PainterPolicy::pinWidth (scale));
     
     if (isOutlet) {
-        bounds = bounds.removeFromBottom (PainterPolicy::pinHeight());
+        bounds = bounds.removeFromBottom (PainterPolicy::pinHeight (scale));
     } else {
-        bounds = bounds.removeFromTop (PainterPolicy::pinHeight());
+        bounds = bounds.removeFromTop (PainterPolicy::pinHeight (scale));
     }
     
-    return bounds.expanded (PainterPolicy::pinGripX(), PainterPolicy::pinGripY());
+    return bounds.expanded (PainterPolicy::pinGripX (scale), PainterPolicy::pinGripY (scale));
 }
 
 std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& a,
     const juce::Rectangle<int>& bounds,
     EditView* view,
+    float scale,
     bool isOutlet)
 {
     const int n = a.size();
@@ -213,7 +215,7 @@ std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& 
     
     for (int i = 0; i < n; ++i) {
         std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (view, a[i]);
-        p->setBounds (getPinBounds (bounds, i, isOutlet));
+        p->setBounds (getPinBounds (bounds, i, scale, isOutlet));
         p->setVisible (true);
         pins.push_back (std::move (p));
     }
@@ -232,13 +234,15 @@ std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& 
 
 void ObjectComponent::createInletsAndOutlets()
 {
+    const float scale = getScale();
+        
     const juce::StringArray i (juce::StringArray::fromTokens (inlets_.get(), true));
     const juce::StringArray o (juce::StringArray::fromTokens (outlets_.get(), true));
     
     const juce::Rectangle<int> bounds (getBounds());
     
-    if (!i.isEmpty()) { iPins_ = createPins (i, bounds, view_, false); }
-    if (!o.isEmpty()) { oPins_ = createPins (o, bounds, view_, true);  }
+    if (!i.isEmpty()) { iPins_ = createPins (i, bounds, view_, scale, false); }
+    if (!o.isEmpty()) { oPins_ = createPins (o, bounds, view_, scale, true);  }
 }
 
 void ObjectComponent::removeInletsAndOultets()
