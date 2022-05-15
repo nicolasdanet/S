@@ -34,7 +34,7 @@ public:
 
 private:
     juce::String getText() const;
-    const juce::Font& getFont() const;
+    juce::Font getFont (float) const;
     
 private:
     core::Cached<juce::Colour> backgroundColour_;

@@ -36,7 +36,7 @@ juce::String BoxPainter::getText() const
     return text;
 }
 
-const juce::Font& BoxPainter::getFont() const
+juce::Font BoxPainter::getFont (float scale) const
 {
     return Spaghettis()->getLookAndFeel().getObjectsFont();
 }
@@ -49,13 +49,15 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
     const float f = getScale();
     
+    const juce::Font font (getFont (f));
     const juce::String text (getText());
+    
     const juce::Rectangle<int> t (r.reduced (PainterPolicy::margins (f)).translated (0, -1));
     
     g.setColour (backgroundColour_.get());
     g.fillRect (r);
     g.setColour (textColour_.get());
-    g.setFont (getFont());
+    g.setFont (getFont (f));
     g.drawText (text, t, juce::Justification::centredLeft, true);
 }
 
@@ -63,12 +65,13 @@ juce::Rectangle<int> BoxPainter::getRequiredBounds()
 {
     const float f = getScale();
     
+    const juce::Font font (getFont (f));
     const juce::String text (getText());
     
     const int x = x_.get();
     const int y = y_.get();
-    const int w = getFont().getStringWidth (text);
-    const int h = static_cast<int> (getFont().getHeight());
+    const int w = font.getStringWidth (text);
+    const int h = static_cast<int> (font.getHeight());
     const int k = PainterPolicy::margins (f) * 2;
     
     return juce::Rectangle<int> (x, y, w + k, h + k);
