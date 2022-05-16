@@ -60,7 +60,7 @@ void LineComponent::paint (juce::Graphics& g)
 {
     const juce::Colour c (isSignal_ ? signalColour_.get() : controlColour_.get());
     
-    g.setColour (isOver_ ? c.contrasting (0.35) : c);
+    g.setColour (isOver_ ? c.contrasting ((isSignal_ ? 0.50 : 0.35)) : c);
     
     g.fillPath (linePath_);
 }
