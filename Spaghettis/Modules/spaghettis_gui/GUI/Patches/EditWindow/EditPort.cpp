@@ -78,9 +78,11 @@ float computeDeltaFromMove (float f)
 
 void EditPort::scroll (float x, float y)
 {
-    if (x) { x_ += static_cast<int> (computeDeltaFromMove (x)); }
-    if (y) { y_ += static_cast<int> (computeDeltaFromMove (y)); }
+    const float f = zoom_ / 100.0f;
     
+    if (x) { x_ += static_cast<int> (computeDeltaFromMove (x / f)); }
+    if (y) { y_ += static_cast<int> (computeDeltaFromMove (y / f)); }
+        
     apply();
 }
 
@@ -92,11 +94,18 @@ void EditPort::zoom (int n)
     zoom_ = juce::jlimit (min, max, n);
     
     view_.setScale (zoom_ / 100.0f);
+    
+    apply();
 }
 
 void EditPort::apply()
 {
-    view_.setBounds (core::Canvas::getBounds().translated (x_, y_));
+    const float f = zoom_ / 100.0f;
+    
+    const int x = static_cast<int> (x_ * f);
+    const int y = static_cast<int> (y_ * f);
+    
+    view_.setBounds (core::Canvas::getBounds().translated (x, y));
 }
 
 // -----------------------------------------------------------------------------------------------------------

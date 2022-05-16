@@ -35,7 +35,9 @@ static constexpr int getSize()
 
 static constexpr int getOffset()
 {
-    return getSize() / 2;
+    return 100;
+    
+    // return getSize() / 2;
 }
 
 static juce::Rectangle<int> getBounds()
