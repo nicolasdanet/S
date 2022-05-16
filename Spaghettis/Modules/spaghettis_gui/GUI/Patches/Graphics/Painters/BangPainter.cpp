@@ -40,8 +40,8 @@ void BangPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 
 juce::Rectangle<int> BangPainter::getRequiredBounds()
 {
-    const int x = x_.get();
-    const int y = y_.get();
+    const int x = scaled (x_.get());
+    const int y = scaled (y_.get());
     const int w = scaled (width_.get());
     
     return juce::Rectangle<int> (x, y, w, w);

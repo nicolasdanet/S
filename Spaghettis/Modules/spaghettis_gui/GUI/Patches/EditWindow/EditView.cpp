@@ -34,8 +34,6 @@ void EditView::setScale (float scale)
 {
     jassert (scale > 0.0f);
     
-    DBG (scale);
-    
     scale_ = scale;
     
     auto f = [](const auto& p) { p->scaleChanged(); };
