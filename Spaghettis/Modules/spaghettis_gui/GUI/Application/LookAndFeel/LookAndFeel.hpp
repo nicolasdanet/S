@@ -39,7 +39,8 @@ public:
     const juce::Font& getColourFont() const;
     const juce::Font& getMenuShortcutsFont() const;
     const juce::Font& getTooltipsFont() const;
-    const juce::Font& getObjectsFont() const;
+    
+    juce::Font getObjectsFont (float);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -253,6 +254,9 @@ private:
     juce::Font font18_;
     juce::Font font18Monospaced_;
     juce::Font font16Bold_;
+
+private:
+    std::vector<std::tuple<int, juce::Font>> fonts_;
 
 private:
     int windowTitleHeight_;

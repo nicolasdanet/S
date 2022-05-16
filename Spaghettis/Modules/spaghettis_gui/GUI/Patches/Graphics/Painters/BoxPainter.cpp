@@ -38,7 +38,7 @@ juce::String BoxPainter::getText() const
 
 juce::Font BoxPainter::getFont (float scale) const
 {
-    return Spaghettis()->getLookAndFeel().getObjectsFont();
+    return Spaghettis()->getLookAndFeel().getObjectsFont (scale);
 }
 
 // -----------------------------------------------------------------------------------------------------------
