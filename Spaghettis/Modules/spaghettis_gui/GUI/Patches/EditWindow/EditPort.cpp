@@ -32,7 +32,7 @@ void EditPort::zoomOut()
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
-    const float step = 100.0f;
+    const float step = 100.0f / getScale();
     
     float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
     float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
@@ -55,33 +55,15 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-float computeDeltaFromMove (float f)
-{
-    /* At least one step increment. */
-    
-    return std::signbit (f) ? juce::jmin (-1.0f, f) : juce::jmax (1.0f, f);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void EditPort::scroll (float x, float y)
 {
-    const float f = getScale();
+    auto map = [](float f)      /* At least one step increment. */
+    {
+        return std::signbit (f) ? juce::jmin (-1.0f, f) : juce::jmax (1.0f, f);
+    };
     
-    if (x) { x_ += static_cast<int> (computeDeltaFromMove (x / f)); }
-    if (y) { y_ += static_cast<int> (computeDeltaFromMove (y / f)); }
+    if (x) { x_ += static_cast<int> (map (x)); }
+    if (y) { y_ += static_cast<int> (map (y)); }
         
     apply();
 }
