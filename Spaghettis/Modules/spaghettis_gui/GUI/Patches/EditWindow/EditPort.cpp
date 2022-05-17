@@ -80,6 +80,28 @@ void EditPort::setZoom (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Point<int> EditPort::getScaled (juce::Point<int> pt) const
+{
+    const float f = getScale();
+    const int x   = static_cast<int> (pt.getX() * f);
+    const int y   = static_cast<int> (pt.getY() * f);
+    
+    return juce::Point (x, y);
+}
+
+juce::Point<int> EditPort::getScaledInverted (juce::Point<int> pt) const
+{
+    const float f = getScale();
+    const int x   = static_cast<int> (pt.getX() / f);
+    const int y   = static_cast<int> (pt.getY() / f);
+    
+    return juce::Point (x, y);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::Point<int> EditPort::getTopLeft() const
 {
     return origin_;
@@ -106,10 +128,7 @@ void EditPort::setCentre (juce::Point<int> pt)
 
 void EditPort::update()
 {
-    const int x = static_cast<int> (origin_.getX() * getScale());
-    const int y = static_cast<int> (origin_.getY() * getScale());
-    
-    view_.setBounds (core::Canvas::getBounds().translated (-x, -y));
+    view_.setBounds (core::Canvas::getBounds() - getScaled (origin_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
