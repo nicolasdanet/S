@@ -46,7 +46,16 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     
     #endif
     
-    scroll (x, y);
+    auto map = [](float f)      /* At least one step increment. */
+    {
+        if (f) {
+            return static_cast<int> (std::signbit (f) ? juce::jmin (-1.0f, f) : juce::jmax (1.0f, f));
+        }
+        
+        return 0;
+    };
+    
+    setTopLeft (getTopLeft().translated (-map (x), -map (y)));
     //
     }
 }
@@ -54,19 +63,6 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void EditPort::scroll (float x, float y)
-{
-    auto map = [](float f)      /* At least one step increment. */
-    {
-        return std::signbit (f) ? juce::jmin (-1.0f, f) : juce::jmax (1.0f, f);
-    };
-    
-    if (x) { x_ += static_cast<int> (map (x)); }
-    if (y) { y_ += static_cast<int> (map (y)); }
-        
-    apply();
-}
 
 void EditPort::setZoom (int n)
 {
@@ -77,17 +73,43 @@ void EditPort::setZoom (int n)
     
     view_.setScale (getScale());
     
-    apply();
+    update();
 }
 
-void EditPort::apply()
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Point<int> EditPort::getTopLeft() const
 {
-    const float f = getScale();
+    return origin_;
+}
+
+juce::Point<int> EditPort::getCentre() const
+{
+    return juce::Point<int>();
+}
+
+void EditPort::setTopLeft (juce::Point<int> pt)
+{
+    origin_ = pt; update();
+}
+
+void EditPort::setCentre (juce::Point<int> pt)
+{
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditPort::update()
+{
+    const int x = static_cast<int> (origin_.getX() * getScale());
+    const int y = static_cast<int> (origin_.getY() * getScale());
     
-    const int x = static_cast<int> (x_ * f);
-    const int y = static_cast<int> (y_ * f);
-    
-    view_.setBounds (core::Canvas::getBounds().translated (x, y));
+    view_.setBounds (core::Canvas::getBounds().translated (-x, -y));
 }
 
 // -----------------------------------------------------------------------------------------------------------

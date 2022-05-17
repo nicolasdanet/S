@@ -19,7 +19,7 @@ class EditPort : public juce::Component {
 // MARK: -
 
 public:
-    explicit EditPort (EditView& view) : view_ (view), zoom_ (100), x_ (0), y_ (0)
+    explicit EditPort (EditView& view) : view_ (view), zoom_ (100)
     {
         addAndMakeVisible (&view_);
     }
@@ -64,15 +64,25 @@ public:
 // MARK: -
 
 private:
-    void scroll (float, float);
     void setZoom (int n);
-    void apply();
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    juce::Point<int> getTopLeft() const;
+    juce::Point<int> getCentre() const;
+    void setTopLeft (juce::Point<int>);
+    void setCentre (juce::Point<int>);
+
+private:
+    void update();
     
 private:
     EditView& view_;
     int zoom_;
-    int x_;
-    int y_;
+    juce::Point<int> origin_;
 
 private:
     static constexpr std::array<int, 16> steps_ =
