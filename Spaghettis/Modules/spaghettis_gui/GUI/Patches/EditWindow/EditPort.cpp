@@ -14,16 +14,16 @@ namespace spaghettis {
 
 void EditPort::zoomIn()
 {
-    auto r = std::find_if (steps_.cbegin(), steps_.cend(),   [n = zoom_](int i) { return (i > n); });
+    auto r = std::find_if (steps_.cbegin(), steps_.cend(),   [n = getZoom()](int i) { return (i > n); });
     
-    zoom ((r != steps_.cend()) ? *r : steps_.back());
+    setZoom ((r != steps_.cend()) ? *r : steps_.back());
 }
 
 void EditPort::zoomOut()
 {
-    auto r = std::find_if (steps_.crbegin(), steps_.crend(), [n = zoom_](int i) { return (i < n); });
+    auto r = std::find_if (steps_.crbegin(), steps_.crend(), [n = getZoom()](int i) { return (i < n); });
     
-    zoom ((r != steps_.crend()) ? *r : steps_.front());
+    setZoom ((r != steps_.crend()) ? *r : steps_.front());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
     float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
 
-    if (e.mods.isCommandDown()) { const int n = (y > 0.0f) ? 10 : -10; zoom (zoom_ + n); }
+    if (e.mods.isCommandDown()) { const int n = (y > 0.0f) ? 10 : -10; setZoom (getZoom() + n); }
     else {
     //
     #if JUCE_LINUX
@@ -78,7 +78,7 @@ float computeDeltaFromMove (float f)
 
 void EditPort::scroll (float x, float y)
 {
-    const float f = zoom_ / 100.0f;
+    const float f = getScale();
     
     if (x) { x_ += static_cast<int> (computeDeltaFromMove (x / f)); }
     if (y) { y_ += static_cast<int> (computeDeltaFromMove (y / f)); }
@@ -86,21 +86,21 @@ void EditPort::scroll (float x, float y)
     apply();
 }
 
-void EditPort::zoom (int n)
+void EditPort::setZoom (int n)
 {
     constexpr int min = steps_.front();
     constexpr int max = steps_.back();
     
     zoom_ = juce::jlimit (min, max, n);
     
-    view_.setScale (zoom_ / 100.0f);
+    view_.setScale (getScale());
     
     apply();
 }
 
 void EditPort::apply()
 {
-    const float f = zoom_ / 100.0f;
+    const float f = getScale();
     
     const int x = static_cast<int> (x_ * f);
     const int y = static_cast<int> (y_ * f);

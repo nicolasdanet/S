@@ -34,6 +34,21 @@ public:
 // MARK: -
 
 public:
+    int getZoom() const
+    {
+        return zoom_;
+    }
+    
+    float getScale() const
+    {
+        return zoom_ / 100.0f;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void zoomIn();
     void zoomOut();
 
@@ -50,7 +65,7 @@ public:
 
 private:
     void scroll (float, float);
-    void zoom (int n);
+    void setZoom (int n);
     void apply();
     
 private:
