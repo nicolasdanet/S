@@ -71,10 +71,10 @@ private:
 // MARK: -
 
 private:
-    juce::Point<int> getTopLeft() const;
-    juce::Point<int> getCentre() const;
-    void setTopLeft (juce::Point<int>);
-    void setCentre (juce::Point<int>);
+    juce::Point<float> getTopLeft() const;
+    juce::Point<float> getCentre() const;
+    void setTopLeft (juce::Point<float>);
+    void setCentre (juce::Point<float>);
 
 private:
     void update();
@@ -82,7 +82,7 @@ private:
 private:
     EditView& view_;
     int zoom_;
-    juce::Point<int> origin_;
+    juce::Point<float> origin_;
 
 private:
     static constexpr std::array<int, 16> steps_ =

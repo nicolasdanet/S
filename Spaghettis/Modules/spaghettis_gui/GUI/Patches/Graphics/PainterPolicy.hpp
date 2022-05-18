@@ -84,17 +84,14 @@ public:
         return static_cast<int> (std::round (n * f));
     }
     
-    static juce::Point<int> scaled (juce::Point<int> pt, float f)
+    static juce::Point<float> scaled (juce::Point<float> pt, float f)
     {
-        const int x = static_cast<int> (std::round (pt.getX() * f));
-        const int y = static_cast<int> (std::round (pt.getY() * f));
-    
-        return juce::Point (x, y);
+        return juce::Point (pt.x * f, pt.y * f);
     }
 
-    static juce::Point<int> unscaled (juce::Point<int> pt, float f)
+    static juce::Point<float> unscaled (juce::Point<float> pt, float f)
     {
-        return scaled (pt, 1.0f / f);
+        return juce::Point (pt.x / f, pt.y / f);
     }
     
 // -----------------------------------------------------------------------------------------------------------
