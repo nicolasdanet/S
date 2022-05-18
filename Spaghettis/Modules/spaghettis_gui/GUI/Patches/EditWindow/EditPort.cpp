@@ -69,11 +69,13 @@ void EditPort::setZoom (int n)
     constexpr int min = steps_.front();
     constexpr int max = steps_.back();
     
+    const juce::Point pt = getCentre();
+    
     zoom_ = juce::jlimit (min, max, n);
     
     view_.setScale (getScale());
     
-    update();
+    setCentre (pt);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -109,7 +111,7 @@ juce::Point<int> EditPort::getTopLeft() const
 
 juce::Point<int> EditPort::getCentre() const
 {
-    return juce::Point<int>();
+    return origin_ + getScaledInverted (getBounds().getCentre());
 }
 
 void EditPort::setTopLeft (juce::Point<int> pt)
@@ -119,7 +121,7 @@ void EditPort::setTopLeft (juce::Point<int> pt)
 
 void EditPort::setCentre (juce::Point<int> pt)
 {
-
+    setTopLeft (getScaledInverted (getScaled (pt) - getBounds().getCentre()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
