@@ -89,19 +89,21 @@ void EditPort::setOrigin (juce::Point<float> pt)
 {
     origin_ = pt;
     
-    view_.setBounds (core::Canvas::getBounds() - PainterPolicy::scaled (origin_, getScale()).toInt());
+    view_.setBounds (core::Canvas::getArea() - PainterPolicy::scaled (origin_, getScale()).toInt());
 }
 
 juce::Point<float> EditPort::getCentralPoint() const
 {
+    DBG (getScale());
+    
     return origin_ + PainterPolicy::unscaled (getBounds().getCentre().toFloat(), getScale());
 }
 
 void EditPort::setCentralPoint (juce::Point<float> pt)
 {
-    const float f = getScale();
+    DBG (getScale());
     
-    setOrigin (PainterPolicy::unscaled (PainterPolicy::scaled (pt, f) - getBounds().getCentre().toFloat(), f));
+    setOrigin (pt - PainterPolicy::unscaled (getBounds().getCentre().toFloat(), getScale()));
 }
 
 // -----------------------------------------------------------------------------------------------------------

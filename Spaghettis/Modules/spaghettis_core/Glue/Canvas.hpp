@@ -40,7 +40,7 @@ static constexpr int getOffset()
     // return getSize() / 2;
 }
 
-static juce::Rectangle<int> getBounds()
+static juce::Rectangle<int> getArea()
 {
     return juce::Rectangle<int> (-getOffset(), -getOffset(), getSize(), getSize());
 }
