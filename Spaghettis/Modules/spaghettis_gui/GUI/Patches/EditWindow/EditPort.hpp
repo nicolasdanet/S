@@ -71,14 +71,11 @@ private:
 // MARK: -
 
 private:
-    juce::Point<float> getTopLeft() const;
-    juce::Point<float> getCentre() const;
-    void setTopLeft (juce::Point<float>);
-    void setCentre (juce::Point<float>);
+    juce::Point<float> getOrigin() const;
+    juce::Point<float> getCentralPoint() const;
+    void setOrigin (juce::Point<float>);
+    void setCentralPoint (juce::Point<float>);
 
-private:
-    void update();
-    
 private:
     EditView& view_;
     int zoom_;

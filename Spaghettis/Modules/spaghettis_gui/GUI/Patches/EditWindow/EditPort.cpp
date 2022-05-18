@@ -53,7 +53,7 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
         return f;
     };
     
-    setTopLeft (getTopLeft().translated (-map (x), -map (y)));
+    setOrigin (getOrigin().translated (-map (x), -map (y)));
     //
     }
 }
@@ -67,52 +67,41 @@ void EditPort::setZoom (int n)
     constexpr int min = steps_.front();
     constexpr int max = steps_.back();
     
-    const juce::Point<float> pt = getCentre();
+    const juce::Point<float> pt = getCentralPoint();
     
     zoom_ = juce::jlimit (min, max, n);
     
     view_.setScale (getScale());
     
-    setCentre (pt);
+    setCentralPoint (pt);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Point<float> EditPort::getTopLeft() const
+juce::Point<float> EditPort::getOrigin() const
 {
     return origin_;
 }
 
-juce::Point<float> EditPort::getCentre() const
+void EditPort::setOrigin (juce::Point<float> pt)
+{
+    origin_ = pt;
+    
+    view_.setBounds (core::Canvas::getBounds() - PainterPolicy::scaled (origin_, getScale()).toInt());
+}
+
+juce::Point<float> EditPort::getCentralPoint() const
+{
+    return origin_ + PainterPolicy::unscaled (getBounds().getCentre().toFloat(), getScale());
+}
+
+void EditPort::setCentralPoint (juce::Point<float> pt)
 {
     const float f = getScale();
     
-    return origin_ + PainterPolicy::unscaled (getBounds().getCentre().toFloat(), f);
-}
-
-void EditPort::setTopLeft (juce::Point<float> pt)
-{
-    origin_ = pt; update();
-}
-
-void EditPort::setCentre (juce::Point<float> pt)
-{
-    const float f = getScale();
-    
-    setTopLeft (PainterPolicy::unscaled (PainterPolicy::scaled (pt, f) - getBounds().getCentre().toFloat(), f));
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditPort::update()
-{
-    const float f = getScale();
-    
-    view_.setBounds (core::Canvas::getBounds() - PainterPolicy::scaled (origin_, f).toInt());
+    setOrigin (PainterPolicy::unscaled (PainterPolicy::scaled (pt, f) - getBounds().getCentre().toFloat(), f));
 }
 
 // -----------------------------------------------------------------------------------------------------------
