@@ -39,11 +39,6 @@ float PainterPolicy::getScale() const
     return owner_->getScale();
 }
 
-int PainterPolicy::scaled (int n) const
-{
-    return static_cast<int> (std::round (n * getScale()));
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

@@ -71,10 +71,6 @@ private:
 // MARK: -
 
 private:
-    juce::Point<int> getScaled (juce::Point<int>) const;
-    juce::Point<int> getScaledInverted (juce::Point<int>) const;
-    
-private:
     juce::Point<int> getTopLeft() const;
     juce::Point<int> getCentre() const;
     void setTopLeft (juce::Point<int>);

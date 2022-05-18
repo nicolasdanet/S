@@ -68,8 +68,8 @@ juce::Rectangle<int> BoxPainter::getRequiredBounds()
     const juce::Font font (getFont (f));
     const juce::String text (getText());
     
-    const int x = scaled (x_.get());
-    const int y = scaled (y_.get());
+    const int x = scaled (x_.get(), f);
+    const int y = scaled (y_.get(), f);
     const int w = font.getStringWidth (text);
     const int h = static_cast<int> (font.getHeight());
     const int k = PainterPolicy::margins (f) * 2;

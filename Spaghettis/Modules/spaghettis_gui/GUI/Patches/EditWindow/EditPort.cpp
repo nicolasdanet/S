@@ -82,28 +82,6 @@ void EditPort::setZoom (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Point<int> EditPort::getScaled (juce::Point<int> pt) const
-{
-    const float f = getScale();
-    const int x   = static_cast<int> (pt.getX() * f);
-    const int y   = static_cast<int> (pt.getY() * f);
-    
-    return juce::Point (x, y);
-}
-
-juce::Point<int> EditPort::getScaledInverted (juce::Point<int> pt) const
-{
-    const float f = getScale();
-    const int x   = static_cast<int> (pt.getX() / f);
-    const int y   = static_cast<int> (pt.getY() / f);
-    
-    return juce::Point (x, y);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 juce::Point<int> EditPort::getTopLeft() const
 {
     return origin_;
@@ -111,7 +89,9 @@ juce::Point<int> EditPort::getTopLeft() const
 
 juce::Point<int> EditPort::getCentre() const
 {
-    return origin_ + getScaledInverted (getBounds().getCentre());
+    const float f = getScale();
+    
+    return origin_ + PainterPolicy::unscaled (getBounds().getCentre(), f);
 }
 
 void EditPort::setTopLeft (juce::Point<int> pt)
@@ -121,7 +101,9 @@ void EditPort::setTopLeft (juce::Point<int> pt)
 
 void EditPort::setCentre (juce::Point<int> pt)
 {
-    setTopLeft (getScaledInverted (getScaled (pt) - getBounds().getCentre()));
+    const float f = getScale();
+    
+    setTopLeft (PainterPolicy::unscaled (PainterPolicy::scaled (pt, f) - getBounds().getCentre(), f));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -130,7 +112,9 @@ void EditPort::setCentre (juce::Point<int> pt)
 
 void EditPort::update()
 {
-    view_.setBounds (core::Canvas::getBounds() - getScaled (origin_));
+    const float f = getScale();
+    
+    view_.setBounds (core::Canvas::getBounds() - PainterPolicy::scaled (origin_, f));
 }
 
 // -----------------------------------------------------------------------------------------------------------
