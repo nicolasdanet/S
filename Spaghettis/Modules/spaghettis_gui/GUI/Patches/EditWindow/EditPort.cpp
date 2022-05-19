@@ -53,7 +53,7 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
         return f;
     };
     
-    setOffset (getOffset().translated (-map (x), -map (y)));
+    setOrigin (getOrigin().translated (-map (x), -map (y)));
     //
     }
 }
@@ -71,21 +71,21 @@ void EditPort::setZoom (int n)
     
     view_.setScale (getScale());
     
-    setOffset (getOffset());
+    setOrigin (getOrigin());
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Point<float> EditPort::getOffset() const
+juce::Point<float> EditPort::getOrigin() const
 {
-    return offset_;
+    return origin_;
 }
 
-void EditPort::setOffset (juce::Point<float> pt)
+void EditPort::setOrigin (juce::Point<float> pt)
 {
-    offset_ = pt; view_.setBounds (core::Canvas::getArea() - offset_.toInt());
+    origin_ = pt; view_.setBounds (core::Canvas::getBoundsAlignedOnZero() - origin_.toInt());
 }
 
 // -----------------------------------------------------------------------------------------------------------

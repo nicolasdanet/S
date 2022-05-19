@@ -71,13 +71,13 @@ private:
 // MARK: -
 
 private:
-    juce::Point<float> getOffset() const;
-    void setOffset (juce::Point<float>);
+    juce::Point<float> getOrigin() const;
+    void setOrigin (juce::Point<float>);
 
 private:
     EditView& view_;
     int zoom_;
-    juce::Point<float> offset_;
+    juce::Point<float> origin_;
 
 private:
     static constexpr std::array<int, 16> steps_ =
