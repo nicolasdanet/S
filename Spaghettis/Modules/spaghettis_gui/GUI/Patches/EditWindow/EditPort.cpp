@@ -69,9 +69,11 @@ void EditPort::setZoom (int n)
     
     zoom_ = juce::jlimit (min, max, n);
     
+    juce::Point<float> centre = getCentralPoint();
+    
     view_.setScale (getScale());
     
-    setOrigin (getOrigin());
+    setCentralPoint (centre);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -82,10 +84,7 @@ void EditPort::update()
 {
     const float f = getScale();
     
-    const juce::Rectangle<int> r  = core::Canvas::getBoundsAlignedToZero (f);
-    const juce::Point<int> offset = PainterPolicy::scaled (origin_, f).toInt();
-    
-    view_.setBounds (r - offset);
+    view_.setBounds (core::Canvas::getArea (f) - PainterPolicy::scaled (origin_, f).toInt());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -99,7 +98,17 @@ juce::Point<float> EditPort::getOrigin() const
 
 void EditPort::setOrigin (juce::Point<float> pt)
 {
-    origin_ = pt; update(); DBG (origin_.toString());
+    origin_ = pt; update();
+}
+
+juce::Point<float> EditPort::getCentralPoint() const
+{
+    return origin_;
+}
+
+void EditPort::setCentralPoint (juce::Point<float> pt)
+{
+    setOrigin (pt);
 }
 
 // -----------------------------------------------------------------------------------------------------------

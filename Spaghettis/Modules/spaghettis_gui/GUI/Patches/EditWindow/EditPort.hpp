@@ -75,7 +75,9 @@ private:
     
 private:
     juce::Point<float> getOrigin() const;
+    juce::Point<float> getCentralPoint() const;
     void setOrigin (juce::Point<float>);
+    void setCentralPoint (juce::Point<float>);
 
 private:
     EditView& view_;

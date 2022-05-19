@@ -32,7 +32,8 @@ public:
     {
         tree_.addListener (this);
         backgroundColour_.attach (PainterPolicy::repaint (this));
-        setOpaque (true); setBounds (core::Canvas::getBoundsAlignedToZero (scale_));
+        setOpaque (true);
+        setBounds (core::Canvas::getArea (scale_));
         initialize();
     }
     

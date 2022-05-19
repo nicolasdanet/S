@@ -35,7 +35,7 @@ static constexpr int getSize()
 
 static constexpr int getOffset()
 {
-    return getSize() >> 8;
+    return getSize() >> 8;      /* Much smaller to allow zooming. */
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -56,7 +56,9 @@ static int removeOffset (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static juce::Rectangle<int> getBoundsAlignedToZero (float scale)
+/* Get bounds with compensated offset. */
+
+static juce::Rectangle<int> getArea (float scale)
 {
     const int n = static_cast<int> (getOffset() * scale);
     const int s = getSize();
