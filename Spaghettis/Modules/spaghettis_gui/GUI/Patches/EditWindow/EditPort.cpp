@@ -32,7 +32,7 @@ void EditPort::zoomOut()
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
-    const float step = 100.0f;
+    const float step = 100.0f / getScale();
     
     float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
     float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
@@ -78,6 +78,20 @@ void EditPort::setZoom (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditPort::update()
+{
+    const float f = getScale();
+    
+    const juce::Rectangle<int> r  = core::Canvas::getBoundsAlignedToZero (f);
+    const juce::Point<int> offset = PainterPolicy::scaled (origin_, f).toInt();
+    
+    view_.setBounds (r - offset);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::Point<float> EditPort::getOrigin() const
 {
     return origin_;
@@ -85,7 +99,7 @@ juce::Point<float> EditPort::getOrigin() const
 
 void EditPort::setOrigin (juce::Point<float> pt)
 {
-    origin_ = pt; view_.setBounds (core::Canvas::getBoundsAlignedOnZero() - origin_.toInt());
+    origin_ = pt; update(); DBG (origin_.toString());
 }
 
 // -----------------------------------------------------------------------------------------------------------

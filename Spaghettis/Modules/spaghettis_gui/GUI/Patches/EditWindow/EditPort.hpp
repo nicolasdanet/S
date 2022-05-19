@@ -71,6 +71,9 @@ private:
 // MARK: -
 
 private:
+    void update();
+    
+private:
     juce::Point<float> getOrigin() const;
     void setOrigin (juce::Point<float>);
 

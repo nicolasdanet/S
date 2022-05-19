@@ -30,14 +30,12 @@ struct Canvas {
 
 static constexpr int getSize()
 {
-    return (2 << 24);               /* Arbitrary. */
+    return (2 << 24);           /* Arbitrary. */
 }
 
 static constexpr int getOffset()
 {
-    return 1000;
-    
-    // return getSize() / 2;
+    return getSize() >> 8;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -58,9 +56,12 @@ static int removeOffset (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static juce::Rectangle<int> getBoundsAlignedOnZero()
+static juce::Rectangle<int> getBoundsAlignedToZero (float scale)
 {
-    return juce::Rectangle<int> (-getOffset(), -getOffset(), getSize(), getSize());
+    const int n = static_cast<int> (getOffset() * scale);
+    const int s = getSize();
+    
+    return juce::Rectangle<int> (-n, -n, s, s);
 }
 
 // -----------------------------------------------------------------------------------------------------------
