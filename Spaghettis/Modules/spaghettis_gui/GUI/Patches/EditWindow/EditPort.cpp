@@ -68,7 +68,7 @@ void EditPort::zoom (int n)
 {
     const juce::Point<float> p = getCentralPoint();
     
-        setZoom (n); view_.setScale (getScale());
+    setZoom (n);
     
     setCentralPoint (p);
 }

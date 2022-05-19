@@ -39,7 +39,7 @@ public:
         constexpr int min = steps_.front();
         constexpr int max = steps_.back();
     
-        zoom_ = juce::jlimit (min, max, n);
+        zoom_ = juce::jlimit (min, max, n); view_.setScale (getScale());
     }
     
     int getZoom() const
