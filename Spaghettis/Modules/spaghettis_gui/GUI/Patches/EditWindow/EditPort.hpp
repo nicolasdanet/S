@@ -57,8 +57,8 @@ public:
 // MARK: -
 
 public:
-    void mouseWheelMove (const juce::MouseEvent &, const juce::MouseWheelDetails &) override;
-
+    void mouseWheelMove (const juce::MouseEvent&, const juce::MouseWheelDetails&) override;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -71,15 +71,13 @@ private:
 // MARK: -
 
 private:
-    juce::Point<float> getOrigin() const;
-    juce::Point<float> getCentralPoint() const;
-    void setOrigin (juce::Point<float>);
-    void setCentralPoint (juce::Point<float>);
+    juce::Point<float> getOffset() const;
+    void setOffset (juce::Point<float>);
 
 private:
     EditView& view_;
     int zoom_;
-    juce::Point<float> origin_;
+    juce::Point<float> offset_;
 
 private:
     static constexpr std::array<int, 16> steps_ =

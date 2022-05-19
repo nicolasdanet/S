@@ -32,7 +32,7 @@ void EditPort::zoomOut()
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
-    const float step = 100.0f / getScale();
+    const float step = 100.0f;
     
     float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
     float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
@@ -53,7 +53,7 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
         return f;
     };
     
-    setOrigin (getOrigin().translated (-map (x), -map (y)));
+    setOffset (getOffset().translated (-map (x), -map (y)));
     //
     }
 }
@@ -67,43 +67,25 @@ void EditPort::setZoom (int n)
     constexpr int min = steps_.front();
     constexpr int max = steps_.back();
     
-    const juce::Point<float> pt = getCentralPoint();
-    
     zoom_ = juce::jlimit (min, max, n);
     
     view_.setScale (getScale());
     
-    setCentralPoint (pt);
+    setOffset (getOffset());
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Point<float> EditPort::getOrigin() const
+juce::Point<float> EditPort::getOffset() const
 {
-    return origin_;
+    return offset_;
 }
 
-void EditPort::setOrigin (juce::Point<float> pt)
+void EditPort::setOffset (juce::Point<float> pt)
 {
-    origin_ = pt;
-    
-    view_.setBounds (core::Canvas::getArea() - PainterPolicy::scaled (origin_, getScale()).toInt());
-}
-
-juce::Point<float> EditPort::getCentralPoint() const
-{
-    DBG (getScale());
-    
-    return origin_ + PainterPolicy::unscaled (getBounds().getCentre().toFloat(), getScale());
-}
-
-void EditPort::setCentralPoint (juce::Point<float> pt)
-{
-    DBG (getScale());
-    
-    setOrigin (pt - PainterPolicy::unscaled (getBounds().getCentre().toFloat(), getScale()));
+    offset_ = pt; view_.setBounds (core::Canvas::getArea() - offset_.toInt());
 }
 
 // -----------------------------------------------------------------------------------------------------------
