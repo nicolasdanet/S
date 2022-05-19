@@ -34,6 +34,14 @@ public:
 // MARK: -
 
 public:
+    void setZoom (int n)
+    {
+        constexpr int min = steps_.front();
+        constexpr int max = steps_.back();
+    
+        zoom_ = juce::jlimit (min, max, n);
+    }
+    
     int getZoom() const
     {
         return zoom_;
@@ -64,7 +72,7 @@ public:
 // MARK: -
 
 private:
-    void setZoom (int n);
+    void zoom (int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
