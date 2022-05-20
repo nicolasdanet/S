@@ -26,6 +26,11 @@ void EditPort::zoomOut()
     zoom ((r != steps_.crend()) ? *r : steps_.front());
 }
 
+void EditPort::zoomReset()
+{
+    zoom (100);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -66,11 +71,15 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
 
 void EditPort::zoom (int n)
 {
+    if (getZoom() != n) {
+    //
     const juce::Point<float> p = getCentralPoint();
     
     setZoom (n);
     
     setCentralPoint (p);
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
