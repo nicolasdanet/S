@@ -125,14 +125,12 @@ PinComponent* ObjectComponent::getOutletAt (int n) const
 
 void ObjectComponent::paint (juce::Graphics& g)
 {
-    const float f = getScale();
-    
     const juce::Rectangle<int> bounds (getLocalBounds());
     
     g.setColour (backgroundColour_.get());
     g.fillRect (bounds);
     
-    painter_->paint (showPins_ ? bounds.reduced (0, PainterPolicy::pinHeight (f)) : bounds, g);
+    painter_->paint (showPins_ ? bounds.reduced (0, PainterPolicy::pinHeight (getScale())) : bounds, g);
 }
     
 void ObjectComponent::resized()

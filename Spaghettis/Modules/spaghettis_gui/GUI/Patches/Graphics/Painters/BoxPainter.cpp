@@ -48,17 +48,22 @@ juce::Font BoxPainter::getFont (float scale) const
 void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
     const float f = getScale();
-    
-    const juce::Font font (getFont (f));
-    const juce::String text (getText());
-    
-    const juce::Rectangle<int> t (r.reduced (PainterPolicy::margins (f)).translated (0, -1));
-    
+
     g.setColour (backgroundColour_.get());
     g.fillRect (r);
+    
+    if (f > 0.75) {
+    //
+    const juce::Rectangle<int> t (r.reduced (PainterPolicy::margins (f)).translated (0, -1));
+
+    const juce::Font font (getFont (f));
+    const juce::String text (getText());
+
     g.setColour (textColour_.get());
     g.setFont (getFont (f));
     g.drawText (text, t, juce::Justification::centredLeft, true);
+    //
+    }
 }
 
 juce::Rectangle<int> BoxPainter::getRequiredBounds()
