@@ -32,7 +32,7 @@ void EditPort::zoomOut()
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
-    const float step = 100.0f / getScale();
+    const float step = 200.0f / getScale();
     
     float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
     float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;

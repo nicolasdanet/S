@@ -52,7 +52,7 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
     g.setColour (backgroundColour_.get());
     g.fillRect (r);
     
-    if (f > 0.75) {
+    if (f > 0.5) {
     //
     const juce::Rectangle<int> t (r.reduced (PainterPolicy::margins (f)).translated (0, -1));
 
