@@ -22,6 +22,7 @@
         <FILE id="v09zib" name="mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/mail.svg"/>
         <FILE id="D9nQfi" name="place.svg" compile="0" resource="1" file="Resources/Icons/SVG/place.svg"/>
         <FILE id="WYGHhC" name="restore.svg" compile="0" resource="1" file="Resources/Icons/SVG/restore.svg"/>
+        <FILE id="VJ2tR3" name="search_off.svg" compile="0" resource="1" file="Resources/Icons/SVG/search_off.svg"/>
         <FILE id="uexYI2" name="sync.svg" compile="0" resource="1" file="Resources/Icons/SVG/sync.svg"/>
         <FILE id="JrIvGS" name="system_update_alt.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/system_update_alt.svg"/>

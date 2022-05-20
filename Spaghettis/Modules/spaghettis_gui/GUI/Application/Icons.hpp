@@ -61,7 +61,8 @@ public:
         sortUp,
         sortDown,
         zoomIn,
-        zoomOut
+        zoomOut,
+        zoomReset
     };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -88,6 +89,7 @@ public:
         addIconAction ("SortDown",      0, "text_rotation_down_svg");
         addIconAction ("ZoomIn",        0, "zoom_in_svg");
         addIconAction ("ZoomOut",       0, "zoom_out_svg");
+        addIconAction ("ZoomReset",     0, "search_off_svg");
     }
 
 public:

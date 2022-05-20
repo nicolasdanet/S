@@ -57,6 +57,7 @@
 		A1056AE48F0DFF9EC3445D0E /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
 		A3A861B41BD91C2AFB7F1175 /* Foundation.framework */ /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A56CB13A5C065878D9CCD781 /* QuartzCore.framework */ /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A74E726D26C3A935E141D8B9 /* search_off.svg */ /* search_off.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = search_off.svg; path = ../../Resources/Icons/SVG/search_off.svg; sourceTree = SOURCE_ROOT; };
 		A7D9C0FA0907BC5117638CCC /* include_juce_gui_basics.mm */ /* include_juce_gui_basics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_basics.mm; path = ../../JuceLibraryCode/include_juce_gui_basics.mm; sourceTree = SOURCE_ROOT; };
 		AC0F7B372E537DAB267F5FA4 /* help_outline.svg */ /* help_outline.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = help_outline.svg; path = ../../Resources/Icons/SVG/help_outline.svg; sourceTree = SOURCE_ROOT; };
 		AE0F38C45226A973F2BA01E2 /* add.svg */ /* add.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = add.svg; path = ../../Resources/Icons/SVG/add.svg; sourceTree = SOURCE_ROOT; };
@@ -116,6 +117,7 @@
 				042B5CF305973FFD5571D23B,
 				C165063F783EB92398410471,
 				B9F040988535C506C0795C1D,
+				A74E726D26C3A935E141D8B9,
 				23E635BF79136575BCB8FACE,
 				7A5361F3DC6AEDFD1ABF5D15,
 				EDBC7364DA4A3F17718C64B9,

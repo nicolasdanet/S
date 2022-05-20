@@ -20,6 +20,7 @@ void EditFactory::setToolbarButton (IconsButton* button)
     //
     case Icons::zoomIn      : button->setTooltip (NEEDS_TRANS ("Zoom in"));                 break;
     case Icons::zoomOut     : button->setTooltip (NEEDS_TRANS ("Zoom out"));                break;
+    case Icons::zoomReset   : button->setTooltip (NEEDS_TRANS ("Reset zoom"));              break;
     case Icons::help        : button->setTooltip (NEEDS_TRANS ("Hide or show help"));       break;
     case Icons::inspector   : button->setTooltip (NEEDS_TRANS ("Hide or show inspector"));  break;
     case Icons::edit        : button->setTooltip (NEEDS_TRANS ("Open an edit view"));       break;
@@ -32,6 +33,7 @@ void EditFactory::setToolbarButton (IconsButton* button)
     //
     case Icons::zoomIn      : button->onClick = [this]() { owner_->zoomIn();  }; break;
     case Icons::zoomOut     : button->onClick = [this]() { owner_->zoomOut(); }; break;
+    case Icons::zoomReset   : button->onClick = []() { DBG ("?"); }; break;
     case Icons::help        : button->onClick = []() { DBG ("?"); }; break;
     case Icons::inspector   : button->onClick = []() { DBG ("?"); }; break;
     case Icons::edit        : button->onClick = [this]() {
