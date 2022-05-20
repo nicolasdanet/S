@@ -107,8 +107,8 @@ protected:
 public:
     static int pinHeight (float f) { return static_cast<int> (std::round (4 * f)); }
     static int pinWidth  (float f) { return static_cast<int> (std::round (8 * f)); }
-    static int pinGripX  (float f) { return static_cast<int> (std::round (1 * f)); }
-    static int pinGripY  (float f) { return static_cast<int> (std::round (3 * f)); }
+    static int pinGripX  (float f) { return (f >= 1.0f) ? 1 : 0; }
+    static int pinGripY  (float f) { return (f >= 1.0f) ? 3 : 0; }
     static int margins   (float f) { return static_cast<int> (std::round (3 * f)); }
 };
 
