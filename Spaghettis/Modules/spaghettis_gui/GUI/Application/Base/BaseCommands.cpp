@@ -17,6 +17,11 @@ void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
     Commands::getAllCommands (c);
 }
 
+void BaseCommands::getApplicationCommands (juce::Array<juce::CommandID>& c)
+{
+    Commands::getApplicationCommands (c);
+}
+
 void BaseCommands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r)
 {
     Commands::getCommandInfo (c, r);
