@@ -12,30 +12,6 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Commands::getAllCommands (juce::Array<juce::CommandID>& c)
-{
-    juce::Array<juce::CommandID> commands
-        {
-            Commands::preferences,
-            Commands::newPatch,
-            Commands::openPatch,
-            Commands::clearRecentFiles,
-            Commands::paths,
-            Commands::rescan,
-            Commands::rescanLogged,
-            Commands::clearConsole,
-            Commands::devices,
-            Commands::dspSwitch
-        };
-        
-    c.addArray (commands);
-}
-
-void Commands::getApplicationCommands (juce::Array<juce::CommandID>& c)
-{
-    c.add (Commands::preferences);
-}
-
 void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r)
 {
     const char* const general = NEEDS_TRANS ("General");
@@ -85,6 +61,30 @@ void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommand
     default : break;
     //
     }
+}
+
+void Commands::getAllCommands (juce::Array<juce::CommandID>& c)
+{
+    juce::Array<juce::CommandID> commands
+        {
+            Commands::preferences,
+            Commands::newPatch,
+            Commands::openPatch,
+            Commands::clearRecentFiles,
+            Commands::paths,
+            Commands::rescan,
+            Commands::rescanLogged,
+            Commands::clearConsole,
+            Commands::devices,
+            Commands::dspSwitch
+        };
+        
+    c.addArray (commands);
+}
+
+void Commands::getApplicationCommands (juce::Array<juce::CommandID>& c)
+{
+    c.add (Commands::preferences);
 }
 
 bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
