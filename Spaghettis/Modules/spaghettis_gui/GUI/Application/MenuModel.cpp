@@ -45,6 +45,13 @@ juce::PopupMenu MenuModel::getMenuForIndex (int n, const juce::String&)
     //
     } else if (n == 2) {
     //
+    menu.addCommandItem (commandManager_, Commands::zoomIn);
+    menu.addCommandItem (commandManager_, Commands::zoomOut);
+    menu.addSeparator();
+    menu.addCommandItem (commandManager_, Commands::zoomReset);
+    //
+    } else if (n == 3) {
+    //
     menu.addCommandItem (commandManager_, Commands::devices);
     menu.addSeparator();
     menu.addCommandItem (commandManager_, Commands::dspSwitch);

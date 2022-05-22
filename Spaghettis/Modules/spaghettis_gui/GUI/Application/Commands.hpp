@@ -33,6 +33,9 @@ enum CommandIds : juce::CommandID {
     rescan,
     rescanLogged,
     clearConsole,
+    zoomIn,
+    zoomOut,
+    zoomReset,
     devices,
     dspSwitch
 };

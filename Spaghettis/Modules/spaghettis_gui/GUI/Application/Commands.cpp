@@ -14,10 +14,11 @@ namespace spaghettis {
 
 void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r)
 {
-    const char* const general = NEEDS_TRANS ("General");
-    const char* const file    = NEEDS_TRANS ("File");
-    const char* const edit    = NEEDS_TRANS ("Edit");
-    const char* const media   = NEEDS_TRANS ("Media");
+    const juce::String general = NEEDS_TRANS ("General");
+    const juce::String file    = NEEDS_TRANS ("File");
+    const juce::String edit    = NEEDS_TRANS ("Edit");
+    const juce::String view    = NEEDS_TRANS ("View");
+    const juce::String media   = NEEDS_TRANS ("Media");
 
     switch (c) {
     //
@@ -50,6 +51,17 @@ void Commands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommand
         r.setInfo (NEEDS_TRANS ("Clear Console"),   NEEDS_TRANS ("Clear the console"),          edit, 0);
         r.addDefaultKeypress ('l', juce::ModifierKeys::commandModifier);
         break;
+    case Commands::zoomIn :
+        r.setInfo (NEEDS_TRANS ("Zoom In"),         NEEDS_TRANS ("Increase magnification"),     view, 0);
+        r.addDefaultKeypress ('+', juce::ModifierKeys::commandModifier);
+        break;
+    case Commands::zoomOut :
+        r.setInfo (NEEDS_TRANS ("Zoom Out"),        NEEDS_TRANS ("Decrease magnification"),     view, 0);
+        r.addDefaultKeypress ('-', juce::ModifierKeys::commandModifier);
+        break;
+    case Commands::zoomReset :
+        r.setInfo (NEEDS_TRANS ("Actual size"),     NEEDS_TRANS ("Reset to original size"),     view, 0);
+        break;
     case Commands::devices :
         r.setInfo (NEEDS_TRANS ("Devices..."),      NEEDS_TRANS ("Audio/MIDI devices"),         media, 0);
         break;
@@ -75,6 +87,9 @@ void Commands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::rescan,
             Commands::rescanLogged,
             Commands::clearConsole,
+            Commands::zoomIn,
+            Commands::zoomOut,
+            Commands::zoomReset,
             Commands::devices,
             Commands::dspSwitch
         };
@@ -106,6 +121,12 @@ bool Commands::perform (const juce::ApplicationCommandTarget::InvocationInfo& in
     case Commands::rescanLogged     : Spaghettis()->handle (Inputs::rescanSearchPaths (Inputs::Logged::full));
                                       return true;
     case Commands::clearConsole     : Spaghettis()->clearConsole();
+                                      return true;
+    case Commands::zoomIn           : DBG ("ZOOM IN");
+                                      return true;
+    case Commands::zoomOut          : DBG ("ZOOM OUT");
+                                      return true;
+    case Commands::zoomReset        : DBG ("ZOOM RESET");
                                       return true;
     case Commands::devices          : Spaghettis()->openDevicesWindow();
                                       return true;
