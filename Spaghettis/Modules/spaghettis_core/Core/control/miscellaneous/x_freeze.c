@@ -31,8 +31,6 @@ typedef struct _freeze {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Notice that it is usable only with a debug build. */
-
 static void *freeze_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_freeze *x = (t_freeze *)pd_new (freeze_class);
@@ -41,6 +39,8 @@ static void *freeze_new (t_symbol *s, int argc, t_atom *argv)
     
     if (!argc) {
     
+        /* Notice that it is usable only with a release build. */
+        
         #if ! ( PD_WITH_DEBUG )
         
         glist_setFrozen (instance_contextGetCurrent(), 1);
