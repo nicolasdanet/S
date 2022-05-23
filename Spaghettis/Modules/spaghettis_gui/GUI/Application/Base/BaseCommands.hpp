@@ -16,23 +16,30 @@ class BaseCommands {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
     BaseCommands()  = default;
     ~BaseCommands() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void setCommand (const juce::CommandID, std::function<void()>);
+    void hasCommand (const juce::CommandID);
+    void unsetCommand (const juce::CommandID);
+    bool performCommand (const juce::CommandID);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     void getCommandInfo (const juce::CommandID, juce::ApplicationCommandInfo&);
     void getAllCommands (juce::Array<juce::CommandID>&);
     void getApplicationCommands (juce::Array<juce::CommandID>&);
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
-
-private:
-    bool performCommand (const juce::ApplicationCommandTarget::InvocationInfo&);
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaseCommands)

@@ -104,7 +104,16 @@ void BaseCommands::getApplicationCommands (juce::Array<juce::CommandID>& c)
     c.add (Commands::preferences);
 }
 
-bool BaseCommands::performCommand (const juce::ApplicationCommandTarget::InvocationInfo& info)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+bool performDefaultCommand (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
     switch (info.commandID) {
     //
@@ -135,9 +144,18 @@ bool BaseCommands::performCommand (const juce::ApplicationCommandTarget::Invocat
     return false;
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
-    return performCommand (info);
+    return performDefaultCommand (info);
 }
 
 // -----------------------------------------------------------------------------------------------------------
