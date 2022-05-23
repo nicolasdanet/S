@@ -12,6 +12,30 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void BaseCommands::set (const juce::CommandID c, std::function<void()> f)
+{
+
+}
+
+bool BaseCommands::has (const juce::CommandID c)
+{
+    return false;
+}
+
+void BaseCommands::unset (const juce::CommandID c)
+{
+
+}
+
+bool BaseCommands::invoke (const juce::CommandID c)
+{
+    return false;
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void BaseCommands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r)
 {
     const juce::String general = NEEDS_TRANS ("General");
@@ -155,7 +179,9 @@ bool performDefaultCommand (const juce::ApplicationCommandTarget::InvocationInfo
 
 bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
-    return performDefaultCommand (info);
+    if (invoke (info.commandID) == false) { return performDefaultCommand (info); }
+    
+    return true;
 }
 
 // -----------------------------------------------------------------------------------------------------------

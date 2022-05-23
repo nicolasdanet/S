@@ -26,10 +26,10 @@ public:
 // MARK: -
 
 public:
-    void setCommand (const juce::CommandID, std::function<void()>);
-    void hasCommand (const juce::CommandID);
-    void unsetCommand (const juce::CommandID);
-    bool performCommand (const juce::CommandID);
+    void set (const juce::CommandID, std::function<void()>);
+    bool has (const juce::CommandID);
+    void unset (const juce::CommandID);
+    bool invoke (const juce::CommandID);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
