@@ -49,13 +49,16 @@ void BaseCommands::getCommandInfo (const juce::CommandID c, juce::ApplicationCom
     case Commands::zoomIn :
         r.setInfo (NEEDS_TRANS ("Zoom In"),         NEEDS_TRANS ("Increase magnification"),     view, 0);
         r.addDefaultKeypress ('+', juce::ModifierKeys::commandModifier);
+        r.setActive (false);
         break;
     case Commands::zoomOut :
         r.setInfo (NEEDS_TRANS ("Zoom Out"),        NEEDS_TRANS ("Decrease magnification"),     view, 0);
         r.addDefaultKeypress ('-', juce::ModifierKeys::commandModifier);
+        r.setActive (false);
         break;
     case Commands::zoomReset :
         r.setInfo (NEEDS_TRANS ("Actual size"),     NEEDS_TRANS ("Reset to original size"),     view, 0);
+        r.setActive (false);
         break;
     case Commands::clearConsole :
         r.setInfo (NEEDS_TRANS ("Clear Console"),   NEEDS_TRANS ("Clear the console"),          view, 0);
@@ -101,7 +104,7 @@ void BaseCommands::getApplicationCommands (juce::Array<juce::CommandID>& c)
     c.add (Commands::preferences);
 }
 
-bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
+bool BaseCommands::performCommand (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
     switch (info.commandID) {
     //
@@ -130,6 +133,11 @@ bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo
     }
 
     return false;
+}
+
+bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
+{
+    return performCommand (info);
 }
 
 // -----------------------------------------------------------------------------------------------------------

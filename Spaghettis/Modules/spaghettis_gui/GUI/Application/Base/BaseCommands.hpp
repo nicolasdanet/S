@@ -30,7 +30,10 @@ public:
     void getAllCommands (juce::Array<juce::CommandID>&);
     void getApplicationCommands (juce::Array<juce::CommandID>&);
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
-    
+
+private:
+    bool performCommand (const juce::ApplicationCommandTarget::InvocationInfo&);
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaseCommands)
 };
