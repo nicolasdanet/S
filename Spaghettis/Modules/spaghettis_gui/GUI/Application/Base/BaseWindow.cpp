@@ -27,7 +27,7 @@ void BaseWindow::timerCallback()
     //
     BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());
         
-    if (!c || c->tryGrabFocus()) { setMinimumHeight (h); stopTimer(); }
+    if (!c || c->tryGrabFocus()) { setMinimumHeight (h); updateMenuBar(); stopTimer(); }
     //
     }
     //
@@ -57,19 +57,8 @@ void BaseWindow::makeVisible (juce::Rectangle<int> window)
     } else {
         jassertfalse;
     }
-    
-    /* < https://forum.juce.com/t/br-wrong-position-for-top-window-when-opened/49805/12 > */
-    
-    auto f = [p = juce::Component::SafePointer<BaseWindow> (this)]()
-    {
-        if (p.getComponent()) { p->setVisible (true); p->addToDesktop(); p->toFront (true); }
-    };
-    
-    #if JUCE_LINUX
-        Timer::callAfterDelay (100, f);
-    #else
-        f();
-    #endif
+
+    setVisible (true); addToDesktop(); toFront (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
