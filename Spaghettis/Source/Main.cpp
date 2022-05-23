@@ -134,7 +134,7 @@ public:
         juce::JUCEApplication::getAllCommands (c); commands_.getApplicationCommands (c);
     }
 
-    void getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r) override
+    void getCommandInfo (juce::CommandID c, juce::ApplicationCommandInfo& r) override
     {
         juce::JUCEApplication::getCommandInfo (c, r); commands_.getCommandInfo (c, r);
     }

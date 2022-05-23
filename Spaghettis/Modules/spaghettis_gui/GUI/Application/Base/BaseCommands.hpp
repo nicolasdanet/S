@@ -26,21 +26,24 @@ public:
 // MARK: -
 
 public:
-    void set (const juce::CommandID, std::function<void()>);
-    bool has (const juce::CommandID);
-    void unset (const juce::CommandID);
-    bool invoke (const juce::CommandID);
+    void set (juce::CommandID, std::function<void()>);
+
+private:
+    bool get (juce::CommandID, bool invoke = false);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void getCommandInfo (const juce::CommandID, juce::ApplicationCommandInfo&);
+    void getCommandInfo (juce::CommandID, juce::ApplicationCommandInfo&);
     void getAllCommands (juce::Array<juce::CommandID>&);
     void getApplicationCommands (juce::Array<juce::CommandID>&);
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
 
+private:
+    std::vector<std::tuple<juce::CommandID, std::function<void()>>> commands_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaseCommands)
 };

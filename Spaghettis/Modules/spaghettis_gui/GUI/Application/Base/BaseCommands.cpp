@@ -12,23 +12,19 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseCommands::set (const juce::CommandID c, std::function<void()> f)
+void BaseCommands::set (juce::CommandID command, std::function<void()> f)
 {
-
+    jassert (!get (command)); commands_.emplace_back (command, f);
 }
 
-bool BaseCommands::has (const juce::CommandID c)
+bool BaseCommands::get (juce::CommandID command, bool invoke)
 {
-    return false;
-}
-
-void BaseCommands::unset (const juce::CommandID c)
-{
-
-}
-
-bool BaseCommands::invoke (const juce::CommandID c)
-{
+    for (const auto& [c, f] : commands_) {
+        if (c == command) {
+            if (invoke) { f(); } return true;
+        }
+    }
+    
     return false;
 }
     
@@ -36,14 +32,14 @@ bool BaseCommands::invoke (const juce::CommandID c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseCommands::getCommandInfo (const juce::CommandID c, juce::ApplicationCommandInfo& r)
+void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCommandInfo& r)
 {
     const juce::String general = NEEDS_TRANS ("General");
     const juce::String file    = NEEDS_TRANS ("File");
     const juce::String view    = NEEDS_TRANS ("View");
     const juce::String media   = NEEDS_TRANS ("Media");
 
-    switch (c) {
+    switch (command) {
     //
     case Commands::preferences :
         r.setInfo (NEEDS_TRANS ("Preferences..."),  NEEDS_TRANS ("Set preferences"),            general, 0);
@@ -73,16 +69,16 @@ void BaseCommands::getCommandInfo (const juce::CommandID c, juce::ApplicationCom
     case Commands::zoomIn :
         r.setInfo (NEEDS_TRANS ("Zoom In"),         NEEDS_TRANS ("Increase magnification"),     view, 0);
         r.addDefaultKeypress ('+', juce::ModifierKeys::commandModifier);
-        r.setActive (has (c));
+        r.setActive (get (command));
         break;
     case Commands::zoomOut :
         r.setInfo (NEEDS_TRANS ("Zoom Out"),        NEEDS_TRANS ("Decrease magnification"),     view, 0);
         r.addDefaultKeypress ('-', juce::ModifierKeys::commandModifier);
-        r.setActive (has (c));
+        r.setActive (get (command));
         break;
     case Commands::zoomReset :
         r.setInfo (NEEDS_TRANS ("Actual size"),     NEEDS_TRANS ("Reset to original size"),     view, 0);
-        r.setActive (has (c));
+        r.setActive (get (command));
         break;
     case Commands::clearConsole :
         r.setInfo (NEEDS_TRANS ("Clear Console"),   NEEDS_TRANS ("Clear the console"),          view, 0);
@@ -179,7 +175,7 @@ bool performDefaultCommand (const juce::ApplicationCommandTarget::InvocationInfo
 
 bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
-    if (invoke (info.commandID) == false) { return performDefaultCommand (info); }
+    if (get (info.commandID, true) == false) { return performDefaultCommand (info); }
     
     return true;
 }
