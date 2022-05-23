@@ -119,12 +119,6 @@ bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo
                                       return true;
     case Commands::rescanLogged     : Spaghettis()->handle (Inputs::rescanSearchPaths (Inputs::Logged::full));
                                       return true;
-    case Commands::zoomIn           : DBG ("ZOOM IN");
-                                      return true;
-    case Commands::zoomOut          : DBG ("ZOOM OUT");
-                                      return true;
-    case Commands::zoomReset        : DBG ("ZOOM RESET");
-                                      return true;
     case Commands::clearConsole     : Spaghettis()->clearConsole();
                                       return true;
     case Commands::devices          : Spaghettis()->openDevicesWindow();
