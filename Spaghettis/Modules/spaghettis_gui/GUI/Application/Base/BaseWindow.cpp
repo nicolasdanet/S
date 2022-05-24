@@ -12,6 +12,60 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+BaseWindow::BaseWindow (const juce::String& name, const juce::String& s) :
+    juce::DocumentWindow (name,
+        Spaghettis()->getColour (Colours::windowBackground),
+        DocumentWindow::allButtons,
+        false),
+    keyName_ (s),
+    timerCount_ (0),
+    mimimumHeight_ (0)
+{
+    setUsingNativeTitleBar (true);
+    setResizable (true, true);
+}
+
+BaseWindow::~BaseWindow()
+{
+    if (keyName_.isNotEmpty()) {
+    //
+    juce::PropertiesFile& p = Spaghettis()->getProperties();
+    
+    auto e = std::make_unique<juce::XmlElement> (Ids::POSITION);
+    
+    e->setAttribute (Ids::value, getWindowStateAsString());
+    
+    p.setValue (keyName_ + "Position", e.get());
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::String BaseWindow::getPropertiesKeyName() const
+{
+    return keyName_;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void BaseWindow::setDirtyFlag (bool isDirty) const
+{
+    juce::ComponentPeer* peer = getPeer();
+    
+    if (peer) {
+        peer->setHasChangedSinceSaved (isDirty);
+    }
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void BaseWindow::timerCallback()
 {
     const int timerAttempts = 10;
@@ -34,10 +88,30 @@ void BaseWindow::timerCallback()
     }
 }
 
+void BaseWindow::timerStart()
+{
+    const int primeInterval = 19; timerCount_ = 0; startTimer (primeInterval);
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void BaseWindow::activeWindowStatusChanged()
+{
+    if (isActiveWindow()) { ensureAlertWindowsAlwaysOnTop(); timerStart(); }
+}
+
+void BaseWindow::moved()
+{
+    juce::ResizableWindow::moved(); ensureAlertWindowsAlwaysOnTop();
+}
+
+void BaseWindow::resized()
+{
+    juce::ResizableWindow::resized(); ensureAlertWindowsAlwaysOnTop();
+}
+    
 void BaseWindow::makeVisible (juce::Rectangle<int> window)
 {
     if (!window.isEmpty()) { setBounds (window); }
@@ -88,6 +162,29 @@ void BaseWindow::setMinimumHeight (int h)
     }
 }
 
+void BaseWindow::requireMinimumHeight (int h)
+{
+    jassert (h > 0); mimimumHeight_ = h;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void BaseWindow::ensureAlertWindowsAlwaysOnTop()
+{
+    #if JUCE_LINUX
+    
+    Spaghettis()->getAlertRegister().ensureAlertWindowsAlwaysOnTop();
+    
+    #endif
+}
+
+void BaseWindow::updateMenuBar()
+{
+    Spaghettis()->getCommandManager().commandStatusChanged();
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
