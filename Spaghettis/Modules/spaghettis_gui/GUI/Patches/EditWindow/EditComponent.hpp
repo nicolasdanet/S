@@ -29,6 +29,10 @@ public:
     {
         addAndMakeVisible (editPort_);
         
+        addMenuBarCommand (Commands::zoomIn,    [this]() { zoomIn();    } );
+        addMenuBarCommand (Commands::zoomOut,   [this]() { zoomOut();   } );
+        addMenuBarCommand (Commands::zoomReset, [this]() { zoomReset(); } );
+        
         setOpaque (true); setSize (600, 300);
     }
     

@@ -214,6 +214,15 @@ juce::Rectangle<int> BaseComponent::setBarsBoundsAndGetRemaining()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void BaseComponent::addMenuBarCommand (juce::CommandID command, std::function<void()> f)
+{
+    commands_.set (command, f);
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::ApplicationCommandTarget* BaseComponent::getNextCommandTarget()
 {
     return findFirstTargetParentComponent();
