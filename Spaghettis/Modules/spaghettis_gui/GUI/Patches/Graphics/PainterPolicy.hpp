@@ -40,7 +40,7 @@ public:
 public:
     virtual void paint (const juce::Rectangle<int>&, juce::Graphics&) = 0;
     
-    virtual juce::Rectangle<int> getRequiredBounds() = 0;
+    virtual juce::Rectangle<float> getRequiredBounds() = 0;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

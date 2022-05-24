@@ -85,7 +85,7 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
     }
 }
 
-juce::Rectangle<int> BoxPainter::getRequiredBounds()
+juce::Rectangle<float> BoxPainter::getRequiredBounds()
 {
     const float f = getScale();
     
@@ -98,7 +98,7 @@ juce::Rectangle<int> BoxPainter::getRequiredBounds()
     const float h = font.getHeight();
     const float k = getTextMargins (f) * 2.0f;
     
-    return juce::Rectangle<float> (x, y, w + k, h + k).toNearestInt();
+    return juce::Rectangle<float> (x, y, w + k, h + k);
 }
 
 // -----------------------------------------------------------------------------------------------------------

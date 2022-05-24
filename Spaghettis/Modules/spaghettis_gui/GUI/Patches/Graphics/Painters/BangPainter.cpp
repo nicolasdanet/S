@@ -38,14 +38,14 @@ void BangPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
     g.fillEllipse (r.toFloat().reduced (scaled (1, getScale())));
 }
 
-juce::Rectangle<int> BangPainter::getRequiredBounds()
+juce::Rectangle<float> BangPainter::getRequiredBounds()
 {
     const float f = getScale();
     const float x = scaled (x_.get(), f);
     const float y = scaled (y_.get(), f);
     const float w = scaled (width_.get(), f);
     
-    return juce::Rectangle<float> (x, y, w, w).toNearestInt();
+    return juce::Rectangle<float> (x, y, w, w);
 }
 
 // -----------------------------------------------------------------------------------------------------------

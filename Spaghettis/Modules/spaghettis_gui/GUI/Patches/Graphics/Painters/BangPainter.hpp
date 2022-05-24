@@ -30,7 +30,7 @@ public:
     void paint (const juce::Rectangle<int>&, juce::Graphics&) override;
 
 public:
-    juce::Rectangle<int> getRequiredBounds() override;
+    juce::Rectangle<float> getRequiredBounds() override;
 
 private:
     core::Cached<juce::Colour> backgroundColour_;
