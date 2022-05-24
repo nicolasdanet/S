@@ -79,9 +79,9 @@ public:
 // MARK: -
 
 public:
-    static int scaled (int n, float f)
+    static float scaled (int n, float f)
     {
-        return static_cast<int> (std::round (n * f));
+        return std::round (n * f);
     }
     
     static juce::Point<float> scaled (juce::Point<float> pt, float f)
@@ -109,7 +109,6 @@ public:
     static int pinWidth  (float f) { return static_cast<int> (std::round (8 * f)); }
     static int pinGripX  (float f) { return (f >= 1.0f) ? 1 : 0; }
     static int pinGripY  (float f) { return (f >= 1.0f) ? 3 : 0; }
-    static int margins   (float f) { return static_cast<int> (std::round (3 * f)); }
 };
 
 // -----------------------------------------------------------------------------------------------------------

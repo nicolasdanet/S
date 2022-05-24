@@ -45,6 +45,25 @@ juce::Font BoxPainter::getFont (float scale) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+float getTextMargins (float f)
+{
+    return std::round (3 * f);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
     const float f = getScale();
@@ -54,9 +73,9 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
     
     if (f > 0.5) {
     //
-    const juce::Rectangle<int> t (r.reduced (PainterPolicy::margins (f)).translated (0, -1));
+    const juce::Rectangle<int> t (r.reduced (static_cast<int> (getTextMargins (f))).translated (0, -1));
 
-    const juce::Font font (getFont (f));
+    const juce::Font   font (getFont (f));
     const juce::String text (getText());
 
     g.setColour (textColour_.get());
@@ -70,16 +89,16 @@ juce::Rectangle<int> BoxPainter::getRequiredBounds()
 {
     const float f = getScale();
     
-    const juce::Font font (getFont (f));
+    const juce::Font   font (getFont (f));
     const juce::String text (getText());
     
-    const int x = scaled (x_.get(), f);
-    const int y = scaled (y_.get(), f);
-    const int w = font.getStringWidth (text);
-    const int h = static_cast<int> (font.getHeight());
-    const int k = PainterPolicy::margins (f) * 2;
+    const float x = scaled (x_.get(), f);
+    const float y = scaled (y_.get(), f);
+    const float w = font.getStringWidthFloat (text);
+    const float h = font.getHeight();
+    const float k = getTextMargins (f) * 2.0f;
     
-    return juce::Rectangle<int> (x, y, w + k, h + k);
+    return juce::Rectangle<float> (x, y, w + k, h + k).toNearestInt();
 }
 
 // -----------------------------------------------------------------------------------------------------------
