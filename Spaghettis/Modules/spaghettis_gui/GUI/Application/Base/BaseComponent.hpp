@@ -20,63 +20,16 @@ class BaseComponent :   public juce::Component,
 // MARK: -
 
 public:
-    explicit BaseComponent (IconsFactory* factory, const juce::String& s = juce::String()) : keyName_ (s)
-    {
-        Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
-        
-        addKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
-        
-        #if SPAGHETTIS_MENUBAR
-        
-        menubar_ = std::make_unique<juce::MenuBarComponent> (&Spaghettis()->getMenuBarModel());
-        
-        addAndMakeVisible (menubar_.get());
-        
-        #endif
-        
-        if (factory) {
-        //
-        toolbar_ = std::make_unique<juce::Toolbar>();
-        
-        toolbar_->setVertical (false);
-        toolbar_->setStyle (juce::Toolbar::ToolbarItemStyle::iconsOnly);
-        toolbar_->setEditingActive (false);
-        toolbar_->addDefaultItems (*factory);
-        
-        addAndMakeVisible (toolbar_.get());
-        //
-        }
-        
-        setWantsKeyboardFocus (true);
-    }
+    BaseComponent (IconsFactory* factory, const juce::String& s = juce::String());
     
-    ~BaseComponent() override
-    {
-        #if SPAGHETTIS_MENUBAR
-        
-        juce::PopupMenu::dismissAllActiveMenus();
-        
-        #endif
-        
-        saveToolbarButtonsStates();
-        
-        removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
-    }
+    ~BaseComponent() override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 protected:
-    static bool tryGrabFocusForComponent (juce::Component *c)
-    {
-        c->grabKeyboardFocus();
-        
-        if (juce::ModalComponentManager::getInstance()->getNumModalComponents() > 0) { return true; }
-        else {
-            return c->hasKeyboardFocus (true);
-        }
-    }
+    static bool tryGrabFocusForComponent (juce::Component*);
     
 public:
     virtual bool tryGrabFocus() = 0;
@@ -88,6 +41,10 @@ public:
 public:
     bool getButtonState (int itemId);
     void loadToolbarButtonsStates();
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 private:
     void setButtonState (int itemId, bool shouldBeOn);
@@ -98,53 +55,17 @@ private:
 // MARK: -
 
 protected:
-    juce::Rectangle<int> setBarsBoundsAndGetRemaining()
-    {
-        juce::Rectangle<int> b = getLocalBounds();
-
-        #if SPAGHETTIS_MENUBAR
-        
-        menubar_->setBounds (b.removeFromTop (Spaghettis()->getLookAndFeel().getDefaultMenuBarHeight()));
-        
-        #endif
-
-        if (toolbar_) {
-        //
-        const int border = 2;
-        
-        auto t = b.removeFromBottom (Spaghettis()->getLookAndFeel().getToolbarHeight());
-        
-        toolbar_->setBounds (t.reduced (border));
-        //
-        }
-        
-        return b;
-    }
+    juce::Rectangle<int> setBarsBoundsAndGetRemaining();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    juce::ApplicationCommandTarget* getNextCommandTarget() override
-    {
-        return findFirstTargetParentComponent();
-    }
-
-    void getAllCommands (juce::Array<juce::CommandID>& c) override
-    {
-        commands_.getAllCommands (c);
-    }
-
-    void getCommandInfo (juce::CommandID c, juce::ApplicationCommandInfo& r) override
-    {
-        commands_.getCommandInfo (c, r);
-    }
-
-    bool perform (const juce::ApplicationCommandTarget::InvocationInfo& info) override
-    {
-        return commands_.perform (info);
-    }
+    juce::ApplicationCommandTarget* getNextCommandTarget() override;
+    void getAllCommands (juce::Array<juce::CommandID>&) override;
+    void getCommandInfo (juce::CommandID, juce::ApplicationCommandInfo&) override;
+    bool perform (const juce::ApplicationCommandTarget::InvocationInfo&) override;
 
 private:
     juce::String keyName_;

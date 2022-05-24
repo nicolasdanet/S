@@ -10,6 +10,67 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+BaseComponent::BaseComponent (IconsFactory* factory, const juce::String& s) : keyName_ (s)
+{
+    Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
+    
+    addKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
+    
+    #if SPAGHETTIS_MENUBAR
+    
+    menubar_ = std::make_unique<juce::MenuBarComponent> (&Spaghettis()->getMenuBarModel());
+    
+    addAndMakeVisible (menubar_.get());
+    
+    #endif
+    
+    if (factory) {
+    //
+    toolbar_ = std::make_unique<juce::Toolbar>();
+    
+    toolbar_->setVertical (false);
+    toolbar_->setStyle (juce::Toolbar::ToolbarItemStyle::iconsOnly);
+    toolbar_->setEditingActive (false);
+    toolbar_->addDefaultItems (*factory);
+    
+    addAndMakeVisible (toolbar_.get());
+    //
+    }
+    
+    setWantsKeyboardFocus (true);
+}
+
+BaseComponent::~BaseComponent()
+{
+    #if SPAGHETTIS_MENUBAR
+    
+    juce::PopupMenu::dismissAllActiveMenus();
+    
+    #endif
+    
+    saveToolbarButtonsStates();
+    
+    removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool BaseComponent::tryGrabFocusForComponent (juce::Component *c)
+{
+    c->grabKeyboardFocus();
+    
+    if (juce::ModalComponentManager::getInstance()->getNumModalComponents() > 0) { return true; }
+    else {
+        return c->hasKeyboardFocus (true);
+    }
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 namespace {
 
@@ -120,6 +181,57 @@ void BaseComponent::loadToolbarButtonsStates()
     }
     //
     }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Rectangle<int> BaseComponent::setBarsBoundsAndGetRemaining()
+{
+    juce::Rectangle<int> b = getLocalBounds();
+
+    #if SPAGHETTIS_MENUBAR
+    
+    menubar_->setBounds (b.removeFromTop (Spaghettis()->getLookAndFeel().getDefaultMenuBarHeight()));
+    
+    #endif
+
+    if (toolbar_) {
+    //
+    const int border = 2;
+    
+    auto t = b.removeFromBottom (Spaghettis()->getLookAndFeel().getToolbarHeight());
+    
+    toolbar_->setBounds (t.reduced (border));
+    //
+    }
+    
+    return b;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::ApplicationCommandTarget* BaseComponent::getNextCommandTarget()
+{
+    return findFirstTargetParentComponent();
+}
+
+void BaseComponent::getAllCommands (juce::Array<juce::CommandID>& c)
+{
+    commands_.getAllCommands (c);
+}
+
+void BaseComponent::getCommandInfo (juce::CommandID c, juce::ApplicationCommandInfo& r)
+{
+    commands_.getCommandInfo (c, r);
+}
+
+bool BaseComponent::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
+{
+    return commands_.perform (info);
 }
     
 // -----------------------------------------------------------------------------------------------------------
