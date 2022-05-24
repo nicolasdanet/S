@@ -21,7 +21,7 @@ class ConsoleWindow : public BaseWindow {
 public:
     explicit ConsoleWindow() : BaseWindow (core::getApplicationName(), "ConsoleWindow")
     {
-        content_ = std::make_unique<ConsoleComponent> (getPropertiesKeyName());
+        content_ = std::make_unique<ConsoleComponent> (getKeyName());
         
         setContentNonOwned (content_.get(), true);
 

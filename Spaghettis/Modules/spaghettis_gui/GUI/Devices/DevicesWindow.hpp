@@ -21,7 +21,7 @@ class DevicesWindow : public BaseWindow {
 public:
     explicit DevicesWindow() : BaseWindow ("Devices", "DevicesWindow")
     {
-        setContentOwned (new DevicesComponent (getPropertiesKeyName()), true);
+        setContentOwned (new DevicesComponent (getKeyName()), true);
         
         requireMinimumHeight (DevicesComponent::getTotalHeight());
         

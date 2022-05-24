@@ -44,7 +44,7 @@ BaseWindow::~BaseWindow()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String BaseWindow::getPropertiesKeyName() const
+juce::String BaseWindow::getKeyName() const
 {
     return keyName_;
 }

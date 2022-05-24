@@ -21,7 +21,7 @@ class SearchPathsWindow : public BaseWindow {
 public:
     explicit SearchPathsWindow() : BaseWindow ("Paths", "SearchPathsWindow")
     {
-        setContentOwned (new SearchPathsComponent (getPropertiesKeyName()), true);
+        setContentOwned (new SearchPathsComponent (getKeyName()), true);
 
         makeVisible();
     }

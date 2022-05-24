@@ -21,7 +21,7 @@ class PreferencesWindow : public BaseWindow {
 public:
     explicit PreferencesWindow() : BaseWindow ("Preferences", "PreferencesWindow")
     {
-        setContentOwned (new PreferencesComponent (getPropertiesKeyName()), true);
+        setContentOwned (new PreferencesComponent (getKeyName()), true);
 
         makeVisible();
     }
