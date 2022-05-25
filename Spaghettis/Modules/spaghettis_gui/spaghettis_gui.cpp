@@ -69,6 +69,7 @@
 #include "GUI/Patches/Graphics/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/LineComponent.cpp"
 
+#include "GUI/Patches/EditWindow/ZoomComponent.cpp"
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
 #include "GUI/Patches/EditWindow/EditPort.cpp"
