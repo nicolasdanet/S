@@ -81,7 +81,7 @@ public:
 public:
     static float scaled (int n, float f)
     {
-        return std::round (n * f);
+        return (n * f);
     }
     
     static juce::Point<float> scaled (juce::Point<float> pt, float f)
