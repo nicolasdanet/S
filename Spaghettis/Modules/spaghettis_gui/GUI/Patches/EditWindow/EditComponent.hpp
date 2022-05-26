@@ -50,9 +50,11 @@ public:
     
     void resized() override
     {
-        juce::Rectangle<int> bounds (setBarsBoundsAndGetRemaining());
+        juce::Rectangle<int> bounds (setBoundsForBarsAndGetRemaining());
         
         editPort_.setBounds (bounds);
+        
+        zoomUpdate();
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -62,17 +64,23 @@ public:
 public:
     void zoomIn()
     {
-        editPort_.zoomIn();
+        editPort_.zoomIn();     zoomUpdate();
     }
     
     void zoomOut()
     {
-        editPort_.zoomOut();
+        editPort_.zoomOut();    zoomUpdate();
     }
     
     void zoomReset()
     {
-        editPort_.zoomReset();
+        editPort_.zoomReset();  zoomUpdate();
+    }
+
+private:
+    void zoomUpdate()
+    {
+        DBG (editPort_.getZoom());
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -101,6 +109,7 @@ private:
 private:
     EditView editView_;
     EditPort editPort_;
+    ZoomComponent zoom_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditComponent)

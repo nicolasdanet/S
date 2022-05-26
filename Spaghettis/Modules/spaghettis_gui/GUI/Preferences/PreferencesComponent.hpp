@@ -43,7 +43,7 @@ public:
     
     void resized() override
     {
-        resizePanel (setBarsBoundsAndGetRemaining());
+        resizePanel (setBoundsForBarsAndGetRemaining());
     }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -42,7 +42,7 @@ public:
     
     void resized() override
     {
-        setBarsBoundsAndGetRemaining();
+        setBoundsForBarsAndGetRemaining();
     }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -187,7 +187,7 @@ void BaseComponent::loadToolbarButtonsStates()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> BaseComponent::setBarsBoundsAndGetRemaining()
+juce::Rectangle<int> BaseComponent::setBoundsForBarsAndGetRemaining()
 {
     juce::Rectangle<int> b = getLocalBounds();
 
@@ -208,6 +208,11 @@ juce::Rectangle<int> BaseComponent::setBarsBoundsAndGetRemaining()
     }
     
     return b;
+}
+
+juce::Rectangle<int> BaseComponent::getBoundsForToolBar() const
+{
+    return toolbar_->getBounds();
 }
 
 // -----------------------------------------------------------------------------------------------------------

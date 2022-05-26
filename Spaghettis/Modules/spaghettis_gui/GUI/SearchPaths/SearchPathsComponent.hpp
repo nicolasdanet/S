@@ -136,7 +136,7 @@ public:
     
     void resized() override
     {
-        listBox_.setBounds (setBarsBoundsAndGetRemaining());
+        listBox_.setBounds (setBoundsForBarsAndGetRemaining());
         
         ListBoxFunctions::update (listBox_, paths_, false);
     }

@@ -54,7 +54,8 @@ private:
 // MARK: -
 
 protected:
-    juce::Rectangle<int> setBarsBoundsAndGetRemaining();
+    juce::Rectangle<int> setBoundsForBarsAndGetRemaining();
+    juce::Rectangle<int> getBoundsForToolBar() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
