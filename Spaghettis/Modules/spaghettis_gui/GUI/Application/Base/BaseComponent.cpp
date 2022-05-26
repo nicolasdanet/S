@@ -210,7 +210,7 @@ juce::Rectangle<int> BaseComponent::setBoundsForBarsAndGetRemaining()
     return b;
 }
 
-juce::Rectangle<int> BaseComponent::getBoundsForToolBar() const
+juce::Rectangle<int> BaseComponent::getBoundsForToolbar() const
 {
     return toolbar_->getBounds();
 }

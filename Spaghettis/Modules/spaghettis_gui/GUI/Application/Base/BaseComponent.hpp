@@ -55,7 +55,7 @@ private:
 
 protected:
     juce::Rectangle<int> setBoundsForBarsAndGetRemaining();
-    juce::Rectangle<int> getBoundsForToolBar() const;
+    juce::Rectangle<int> getBoundsForToolbar() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
