@@ -88,6 +88,7 @@ private:
         if (n == 100 || b.getWidth() < 350) { zoom_.setVisible (false); }
         else {
         //
+        zoom_.setZoom (n);
         zoom_.setBounds (b.removeFromRight (80));
         zoom_.setVisible (true);
         //

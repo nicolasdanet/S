@@ -16,9 +16,13 @@ class ZoomComponent : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
-    ZoomComponent();
+    ZoomComponent() : v_ (0)
+    {
+        setOpaque (false); setPaintingIsUnclipped (true); setBufferedToImage (true);
+    }
     
     ~ZoomComponent() = default;
 
@@ -27,7 +31,24 @@ public:
 // MARK: -
 
 public:
-    void paint (juce::Graphics&) override;
+    void setZoom (int n)
+    {
+        if (v_ != n) { v_ = n; repaint(); }
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics& g) override
+    {
+        g.setColour (juce::Colours::orange);
+        g.fillRect (getLocalBounds());
+    }
+
+private:
+    int v_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ZoomComponent)
