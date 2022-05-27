@@ -12,16 +12,19 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ZoomComponent : public juce::Component {
+class ZoomComponent :   public juce::Component,
+                        private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    ZoomComponent()
+    ZoomComponent (const juce::Value& v) : v_ (v)
     {
         setOpaque (false); setPaintingIsUnclipped (true); setBufferedToImage (true);
+        
+        v_.addListener (this);
     }
     
     ~ZoomComponent() = default;
@@ -37,6 +40,19 @@ public:
         g.setFont (Spaghettis()->getLookAndFeel().getColourFont());
         g.drawText (juce::String ("100"), getLocalBounds(), juce::Justification::centredRight, true);
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void valueChanged (juce::Value&) override
+    {
+        DBG (v_.toString());
+    }
+
+private:
+    juce::Value v_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ZoomComponent)

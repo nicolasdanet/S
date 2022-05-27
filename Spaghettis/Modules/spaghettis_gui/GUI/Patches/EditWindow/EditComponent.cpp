@@ -17,7 +17,8 @@ EditComponent::EditComponent (Patch& owner, const juce::ValueTree& tree) :
     BaseComponent (getIconsFactory()),
     owner_ (owner),
     editView_ (tree),
-    editPort_ (editView_)
+    editPort_ (editView_),
+    zoomComponent_ (editPort_.getZoomAsValue())
 {
     addAndMakeVisible (editPort_);
     addChildComponent (zoomComponent_);

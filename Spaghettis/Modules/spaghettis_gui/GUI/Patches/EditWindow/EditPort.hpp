@@ -42,6 +42,11 @@ public:
         zoom_ = juce::var (juce::jlimit (min, max, n)); view_.setScale (getScale());
     }
     
+    juce::Value getZoomAsValue() const
+    {
+        return zoom_;
+    }
+    
     int getZoom() const
     {
         return static_cast <int> (zoom_.getValue());
