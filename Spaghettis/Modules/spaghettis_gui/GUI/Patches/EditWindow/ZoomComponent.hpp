@@ -38,7 +38,7 @@ public:
     {
         g.setColour (Spaghettis()->getColour (Colours::toolbarText));
         g.setFont (Spaghettis()->getLookAndFeel().getColourFont());
-        g.drawText (juce::String ("100"), getLocalBounds(), juce::Justification::centredRight, true);
+        g.drawText (v_.toString(), getLocalBounds(), juce::Justification::centredRight, true);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ public:
 private:
     void valueChanged (juce::Value&) override
     {
-        DBG (v_.toString());
+        repaint();
     }
 
 private:
