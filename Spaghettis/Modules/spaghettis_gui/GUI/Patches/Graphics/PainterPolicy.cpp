@@ -21,9 +21,9 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
 {
     jassert (owner);
     
-    auto f = [c = owner]()
+    auto f = []()
     {
-        jassert (c);
+        
     };
     
     x_.attach (f);
