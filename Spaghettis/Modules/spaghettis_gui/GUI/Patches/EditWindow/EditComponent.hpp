@@ -28,7 +28,7 @@ public:
         editPort_ (editView_)
     {
         addAndMakeVisible (editPort_);
-        addChildComponent (zoom_);
+        addChildComponent (zoomComponent_);
         
         addMenuBarCommand (Commands::zoomIn,    [this]() { zoomIn();    } );
         addMenuBarCommand (Commands::zoomOut,   [this]() { zoomOut();   } );
@@ -55,7 +55,7 @@ public:
         
         editPort_.setBounds (bounds);
         
-        zoomUpdate();
+        updateZoomComponent();
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -65,32 +65,36 @@ public:
 public:
     void zoomIn()
     {
-        editPort_.zoomIn();     zoomUpdate();
+        editPort_.zoomIn();
     }
     
     void zoomOut()
     {
-        editPort_.zoomOut();    zoomUpdate();
+        editPort_.zoomOut();
     }
     
     void zoomReset()
     {
-        editPort_.zoomReset();  zoomUpdate();
+        editPort_.zoomReset();
     }
 
-private:
-    void zoomUpdate()
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void updateZoomComponent()
     {
         const int n = editPort_.getZoom();
         
         juce::Rectangle<int> b (getBoundsForToolbar());
         
-        if (n == 100 || b.getWidth() < 350) { zoom_.setVisible (false); }
+        if (b.getWidth() < 300) { zoomComponent_.setVisible (false); }
         else {
         //
-        zoom_.setZoom (n);
-        zoom_.setBounds (b.removeFromRight (80));
-        zoom_.setVisible (true);
+        zoomComponent_.setValue (n);
+        zoomComponent_.setBounds (b.removeFromRight (80).reduced (10, 0));
+        zoomComponent_.setVisible (true);
         //
         }
     }
@@ -121,7 +125,7 @@ private:
 private:
     EditView editView_;
     EditPort editPort_;
-    ZoomComponent zoom_;
+    ZoomComponent zoomComponent_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditComponent)

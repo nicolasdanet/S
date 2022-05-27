@@ -31,7 +31,7 @@ public:
 // MARK: -
 
 public:
-    void setZoom (int n)
+    void setValue (int n)
     {
         if (v_ != n) { v_ = n; repaint(); }
     }
@@ -43,8 +43,9 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        g.setColour (juce::Colours::orange);
-        g.fillRect (getLocalBounds());
+        g.setColour (Spaghettis()->getColour (Colours::toolbarText));
+        g.setFont (Spaghettis()->getLookAndFeel().getColourFont());
+        g.drawText (juce::String (v_), getLocalBounds(), juce::Justification::centredRight, true);
     }
 
 private:
