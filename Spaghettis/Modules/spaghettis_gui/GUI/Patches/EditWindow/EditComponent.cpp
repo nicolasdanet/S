@@ -38,13 +38,40 @@ void EditComponent::paint (juce::Graphics& g)
     g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void resizedZoom (ZoomComponent& c, juce::Rectangle<int> bounds)
+{
+    if (bounds.getWidth() < 300) { c.setVisible (false); }
+    else {
+    //
+    c.setBounds (bounds.removeFromRight (80).reduced (10, 0));
+    c.setVisible (true);
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditComponent::resized()
 {
-    juce::Rectangle<int> bounds (setBoundsForBarsAndGetRemaining());
+    editPort_.setBounds (setBoundsForBarsAndGetRemaining());    /* Must be the first. */
     
-    editPort_.setBounds (bounds);
-    
-    updateZoomComponent();
+    resizedZoom (zoomComponent_, getBoundsForToolbar());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -66,26 +93,6 @@ void EditComponent::zoomReset()
     editPort_.zoomReset();
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditComponent::updateZoomComponent()
-{
-    const int n = editPort_.getZoom();
-    
-    juce::Rectangle<int> b (getBoundsForToolbar());
-    
-    if (b.getWidth() < 300) { zoomComponent_.setVisible (false); }
-    else {
-    //
-    zoomComponent_.setValue (n);
-    zoomComponent_.setBounds (b.removeFromRight (80).reduced (10, 0));
-    zoomComponent_.setVisible (true);
-    //
-    }
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

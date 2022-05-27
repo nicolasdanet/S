@@ -19,7 +19,7 @@ class ZoomComponent : public juce::Component {
 // MARK: -
 
 public:
-    ZoomComponent() : v_ (0)
+    ZoomComponent()
     {
         setOpaque (false); setPaintingIsUnclipped (true); setBufferedToImage (true);
     }
@@ -31,25 +31,12 @@ public:
 // MARK: -
 
 public:
-    void setValue (int n)
-    {
-        if (v_ != n) { v_ = n; repaint(); }
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void paint (juce::Graphics& g) override
     {
         g.setColour (Spaghettis()->getColour (Colours::toolbarText));
         g.setFont (Spaghettis()->getLookAndFeel().getColourFont());
-        g.drawText (juce::String (v_), getLocalBounds(), juce::Justification::centredRight, true);
+        g.drawText (juce::String ("100"), getLocalBounds(), juce::Justification::centredRight, true);
     }
-
-private:
-    int v_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ZoomComponent)
