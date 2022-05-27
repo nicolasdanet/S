@@ -53,7 +53,7 @@ void resizedZoom (ZoomComponent& c, juce::Rectangle<int> bounds)
     if (bounds.getWidth() < 300) { c.setVisible (false); }
     else {
     //
-    c.setBounds (bounds.removeFromRight (80).reduced (10, 0));
+    c.setBounds (bounds.removeFromRight (80).reduced (15, 0));
     c.setVisible (true);
     //
     }

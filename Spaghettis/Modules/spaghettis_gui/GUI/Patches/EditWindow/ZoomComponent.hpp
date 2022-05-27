@@ -36,9 +36,13 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        g.setColour (Spaghettis()->getColour (Colours::toolbarText));
-        g.setFont (Spaghettis()->getLookAndFeel().getColourFont());
-        g.drawText (v_.toString(), getLocalBounds(), juce::Justification::centredRight, true);
+        if (v_ != 100) {
+        //
+        g.setColour (Spaghettis()->getColour (Colours::toolbarZoom));
+        g.setFont (Spaghettis()->getLookAndFeel().getTooltipsFont());
+        g.drawText (v_.toString() + " %", getLocalBounds(), juce::Justification::centredRight, true);
+        //
+        }
     }
 
 // -----------------------------------------------------------------------------------------------------------
