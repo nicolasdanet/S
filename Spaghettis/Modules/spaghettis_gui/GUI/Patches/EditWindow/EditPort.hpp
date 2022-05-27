@@ -39,12 +39,12 @@ public:
         constexpr int min = steps_.front();
         constexpr int max = steps_.back();
     
-        zoom_ = juce::jlimit (min, max, n); view_.setScale (getScale());
+        zoom_ = juce::var (juce::jlimit (min, max, n)); view_.setScale (getScale());
     }
     
     int getZoom() const
     {
-        return zoom_;
+        return static_cast <int> (zoom_.getValue());
     }
     
     float getScale() const
@@ -90,7 +90,7 @@ private:
 
 private:
     EditView& view_;
-    int zoom_;
+    juce::Value zoom_;
     juce::Point<float> origin_;
 
 private:
