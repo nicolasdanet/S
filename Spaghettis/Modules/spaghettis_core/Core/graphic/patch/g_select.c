@@ -35,7 +35,7 @@ PD_FORCE void glist_objectDeselectAll (t_glist *glist)
 
 PD_LOCAL int glist_objectIsSelected (t_glist *glist, t_object *y)
 {
-    return (object_getSelected (y) != 0);
+    return (object_isSelected (y) != 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------

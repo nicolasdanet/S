@@ -533,7 +533,6 @@ static t_glist *encapsulate_encapsulateNewSubpatch (t_glist *owner, t_point *pos
     object_setBuffer (cast_object (x), t);
     object_setSnappedX (cast_object (x), a);
     object_setSnappedY (cast_object (x), b);
-    object_setWidth (cast_object (x), 0);
     object_setType (cast_object (x), TYPE_OBJECT);
     
     glist_objectAdd (owner, cast_object (x));

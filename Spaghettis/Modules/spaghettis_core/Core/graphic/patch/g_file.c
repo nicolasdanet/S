@@ -89,7 +89,6 @@ static void glist_serializeFooter (t_glist *glist, t_buffer *b)
     buffer_appendFloat (b, object_getY (cast_object (glist)));
     buffer_serialize (b, object_getBuffer (cast_object (glist)));
     buffer_appendSemicolon (b);
-    object_serializeWidth (cast_object (glist), b);
     //
     }
 }

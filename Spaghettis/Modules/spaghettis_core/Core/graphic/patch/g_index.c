@@ -117,5 +117,21 @@ PD_LOCAL t_object *glist_objectGetAt (t_glist *glist, int n)
     return NULL;
 }
 
+PD_LOCAL t_object *glist_objectGetLast (t_glist *g)
+{
+    if (g->gl_graphics) {
+    //
+    t_object *t1 = NULL;
+    t_object *t2 = NULL;
+    
+    for ((t1 = g->gl_graphics); (t2 = t1->g_next); (t1 = t2)) { }
+    
+    return t1;
+    //
+    }
+    
+    return NULL;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

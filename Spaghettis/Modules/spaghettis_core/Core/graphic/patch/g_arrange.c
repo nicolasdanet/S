@@ -42,14 +42,5 @@ PD_FORCE void glist_objectSnap (t_glist *glist, t_object *y)
     }
 }
 
-PD_LOCAL void glist_objectResizeBox (t_glist *glist, t_object *y, int n)
-{
-    int m = object_getWidth (y);
-    
-    object_setWidth (y, n); glist_setDirty (glist, 1);
-    
-    if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undoresize_new (y, m, n)); }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

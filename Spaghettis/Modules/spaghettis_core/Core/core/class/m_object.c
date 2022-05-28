@@ -504,13 +504,12 @@ PD_LOCAL void object_saveIdentifiers (t_object *x, t_buffer *b, int flags)
     if (flags & SAVE_UPDATE)      { object_serializeSource (x, sym__tagobjectsource, b); }
 }
 
-PD_LOCAL void object_serializeWidth (t_object *x, t_buffer *b)
+PD_LOCAL void object_serializeView (t_object *x, t_buffer *b)
 {
-    if (object_getWidth (x)) {
+    if (object_isViewed (x)) {
     //
     buffer_appendSymbol (b, sym___hash__X);
-    buffer_appendSymbol (b, sym_f);
-    buffer_appendFloat (b, object_getWidth (x));
+    buffer_appendSymbol (b, sym_view);
     buffer_appendSemicolon (b);
     //
     }

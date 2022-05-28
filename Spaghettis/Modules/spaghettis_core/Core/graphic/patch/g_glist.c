@@ -98,7 +98,6 @@ PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window, int isOpe
     object_setBuffer (cast_object (x), buffer_new());
     object_setX (cast_object (x), 0);
     object_setY (cast_object (x), 0);
-    object_setWidth (cast_object (x), 0);
     object_setType (cast_object (x), TYPE_OBJECT);
     
     glist_setOpened (x, isOpened);
@@ -161,7 +160,6 @@ PD_LOCAL void glist_makeObjectProceed (t_glist *glist, int a, int b, t_buffer *t
     object_setBuffer (x, t);
     object_setX (x, a);
     object_setY (x, b);
-    object_setWidth (x, 0);
     object_setType (x, TYPE_OBJECT);
     
     glist_objectAdd (glist, x);

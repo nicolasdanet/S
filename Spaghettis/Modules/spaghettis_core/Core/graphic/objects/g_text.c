@@ -45,7 +45,6 @@ PD_LOCAL void text_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *ar
     object_setBuffer (x, t);
     object_setX (x, a);
     object_setY (x, b);
-    object_setWidth (x, 0);
     object_setType (x, TYPE_COMMENT);
     
     glist_objectAdd (glist, x);

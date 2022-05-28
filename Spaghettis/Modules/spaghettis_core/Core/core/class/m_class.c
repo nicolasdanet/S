@@ -128,7 +128,7 @@ static void class_defaultSave (t_object *x, t_buffer *b, int flags)
     
     buffer_serialize (b, object_getBuffer (x));
     buffer_appendSemicolon (b);
-    object_serializeWidth (x, b);
+    object_serializeView (x, b);
     
     object_saveIdentifiers (x, b, flags);
 }

@@ -87,24 +87,6 @@ PD_LOCAL t_error unique_objectMoveAt (t_id u, int n)
     return PD_ERROR;
 }
 
-PD_LOCAL t_error unique_objectResizeBox (t_id u, int n)
-{
-    if (n >= 0) {
-    //
-    t_object *object = instance_registerGetObject (u);
-    t_glist *glist   = instance_registerGetOwner (u);
-
-    if (object && glist) {
-    //
-    glist_objectResizeBox (glist, object, n); return PD_ERROR_NONE;
-    //
-    }
-    //
-    }
-    
-    return PD_ERROR;
-}
-
 PD_FORCE t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *argv)
 {
     t_object *object = instance_registerGetObject (u);

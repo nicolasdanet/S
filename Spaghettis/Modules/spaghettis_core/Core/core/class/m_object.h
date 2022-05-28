@@ -73,7 +73,7 @@ PD_LOCAL juce::String object_getTypeOfOutlets       (t_object *x);
 
 PD_LOCAL void   object_save                         (t_object *x, t_buffer *b, int flags);
 PD_LOCAL void   object_saveIdentifiers              (t_object *x, t_buffer *b, int flags);
-PD_LOCAL void   object_serializeWidth               (t_object *x, t_buffer *b);
+PD_LOCAL void   object_serializeView                (t_object *x, t_buffer *b);
 PD_LOCAL void   object_distributeAtomsOnInlets      (t_object *x, int argc, t_atom *argv);
 PD_LOCAL void   object_setSignalValues              (t_object *x, int argc, t_atom *argv);
 
@@ -145,12 +145,12 @@ static inline t_point object_getPoint (t_object *x)
     return point_make (object_getX (x), object_getY (x));
 }
 
-static inline int object_getWidth (t_object *x)
+static inline int object_isViewed (t_object *x)
 {
-    return x->g_width;
+    return x->g_viewed;
 }
 
-static inline int object_getSelected (t_object *x)
+static inline int object_isSelected (t_object *x)
 {
     return x->g_selected;
 }
@@ -174,14 +174,14 @@ static inline void object_setY (t_object *x, int n)
     x->g_y = n;
 }
 
-static inline void object_setWidth (t_object *x, int n)
+static inline void object_setViewed (t_object *x, int n)
 {
-    x->g_width = n;
+    x->g_viewed = (n != 0);
 }
 
 static inline void object_setSelected (t_object *x, int n)
 {
-    x->g_selected = n;
+    x->g_selected = (n != 0);
 }
 
 static inline void object_setType (t_object *x, t_objecttype n)

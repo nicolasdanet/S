@@ -45,23 +45,27 @@ PD_LOCAL void undoresize_collapse (t_undoaction *kept, t_undoaction *deleted)
 
 static void undoresize_undo (t_undoresize *z, t_symbol *s, int argc, t_atom *argv)
 {
-    t_undoaction *x = (t_undoaction *)z;
+    // t_undoaction *x = (t_undoaction *)z;
     
-    unique_objectResizeBox (undoaction_getUnique (x), z->x_old);
+    /* ??? */
+    
+    // unique_objectResizeBox (undoaction_getUnique (x), z->x_old);
 }
 
 static void undoresize_redo (t_undoresize *z, t_symbol *s, int argc, t_atom *argv)
 {
-    t_undoaction *x = (t_undoaction *)z;
+    // t_undoaction *x = (t_undoaction *)z;
     
-    unique_objectResizeBox (undoaction_getUnique (x), z->x_new);
+    /* ??? */
+    
+    // unique_objectResizeBox (undoaction_getUnique (x), z->x_new);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undoresize_new (t_object *o, int m, int n)
+PD_FORCE t_undoaction *undoresize_new (t_object *o, int m, int n)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undoresize_class);
     t_undoresize *z = (t_undoresize *)x;

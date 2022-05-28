@@ -152,10 +152,10 @@ PD_LOCAL int    glist_objectGetIndexOf                  (t_glist *g, t_object *y
 PD_LOCAL int    glist_objectGetIndexOfAmongSelected     (t_glist *g, t_object *y);
 
 PD_LOCAL t_object   *glist_objectGetAt                  (t_glist *g, int n);
+PD_LOCAL t_object   *glist_objectGetLast                (t_glist *g);
 
 PD_LOCAL void   glist_objectDisplace                    (t_glist *g, t_object *y, int deltaX, int deltaY);
 PD_FORCE void   glist_objectSnap                        (t_glist *g, t_object *y);
-PD_LOCAL void   glist_objectResizeBox                   (t_glist *g, t_object *y, int n);
 
 PD_LOCAL void   glist_objectDeleteLinesByOutlet         (t_glist *g, t_object *o, t_outlet *outlet);
 PD_LOCAL void   glist_objectDeleteLinesByInlet          (t_glist *g, t_object *o, t_inlet  *inlet);

@@ -120,16 +120,10 @@ void setObjectAttributesForObject (Group& group, t_object* o)
         Canvas::addOffset (object_getY (o)),
         delegate);
     
-    group.addParameter (Tags::Width,
-        NEEDS_TRANS ("Width"),
-        NEEDS_TRANS ("Box width in characters"),
-        object_getWidth (o),
-        delegate);
-    
     group.addParameter (Tags::Selected,
         NEEDS_TRANS ("Selected"),
         NEEDS_TRANS ("Is selected state"),
-        static_cast<bool> (object_getSelected (o)),
+        static_cast<bool> (object_isSelected (o)),
         delegate);
     
     group.addParameter (Tags::Visible,

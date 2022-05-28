@@ -27,6 +27,7 @@ t_class *gatom_class;           /* Shared. */
 struct _gatom {
     t_object    a_obj;          /* MUST be the first. */
     t_atom      a_atom;
+    int         a_width;
     t_float     a_lowRange;
     t_float     a_highRange;
     t_glist     *a_owner;
@@ -92,13 +93,13 @@ static void gatom_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendSymbol (b, sym_floatatom);
     buffer_appendFloat (b,  object_getX (cast_object (x)));
     buffer_appendFloat (b,  object_getY (cast_object (x)));
-    buffer_appendFloat (b,  object_getWidth (cast_object (x)));
+    buffer_appendFloat (b,  x->a_width);
     buffer_appendFloat (b,  x->a_lowRange);
     buffer_appendFloat (b,  x->a_highRange);
     if (SAVED_DEEP (flags)) { buffer_appendAtom (b, &x->a_atom); }
     buffer_appendSemicolon (b);
     
-    object_serializeWidth (cast_object (x), b);
+    object_serializeView (cast_object (x), b);
     
     object_saveIdentifiers (z, b, flags);
 }
@@ -138,15 +139,13 @@ static void gatom_restore (t_gatom *x)
 static void gatom_makeObjectProceed (t_gatom *x, int argc, t_atom *argv)
 {
     int width = (int)atom_getFloatAtIndex (2, argc, argv);
-
-    width = PD_CLAMP (width, 0, ATOM_WIDTH_MAXIMUM);
     
     object_setBuffer (cast_object (x), buffer_new());
-    object_setWidth (cast_object (x),  width);
     object_setType (cast_object (x),   TYPE_ATOM);
     object_setX (cast_object (x),      atom_getFloatAtIndex (0, argc, argv));
     object_setY (cast_object (x),      atom_getFloatAtIndex (1, argc, argv));
     
+    x->a_width     = PD_CLAMP (width, 0, ATOM_WIDTH_MAXIMUM);
     x->a_lowRange  = atom_getFloatAtIndex (3, argc, argv);
     x->a_highRange = atom_getFloatAtIndex (4, argc, argv);
     

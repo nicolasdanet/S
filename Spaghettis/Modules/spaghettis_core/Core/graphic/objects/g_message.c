@@ -260,7 +260,6 @@ static void message_makeObjectProceed (t_message *x, int argc, t_atom *argv)
     object_setBuffer (cast_object (x), t);
     object_setX (cast_object (x), atom_getFloatAtIndex (0, argc, argv));
     object_setY (cast_object (x), atom_getFloatAtIndex (1, argc, argv));
-    object_setWidth (cast_object (x), 0);
     object_setType (cast_object (x), TYPE_MESSAGE);
     
     glist_objectAdd (x->m_owner, cast_object (x));

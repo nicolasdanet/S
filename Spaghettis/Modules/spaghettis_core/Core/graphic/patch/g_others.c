@@ -42,53 +42,40 @@ PD_LOCAL int glist_fileOpen (t_glist *glist, const char *name, const char *exten
 
 PD_LOCAL void glist_setUniqueAndSourceOfLast (t_glist *glist, int argc, t_atom *argv)
 {
-    if (glist->gl_graphics) {
-    //
-    t_object *g1 = NULL;
-    t_object *g2 = NULL;
+    t_object *o = glist_objectGetLast (glist);
     
+    if (o) {
+    //
     t_id u; t_error err = utils_uniqueWithAtoms (argc, argv, &u);
     
     PD_ASSERT (!err); PD_UNUSED (err);
-    
-    for ((g1 = glist->gl_graphics); (g2 = g1->g_next); (g1 = g2)) { }
-    
-    object_changeUnique (g1, u);
-    object_changeSource (g1, u);
+
+    object_changeUnique (o, u);
+    object_changeSource (o, u);
     //
     }
 }
 
 PD_LOCAL void glist_setSourceOfLast (t_glist *glist, int argc, t_atom *argv)
 {
-    if (glist->gl_graphics) {
-    //
-    t_object *g1 = NULL;
-    t_object *g2 = NULL;
+    t_object *o = glist_objectGetLast (glist);
     
+    if (o) {
+    //
     t_id u; t_error err = utils_uniqueWithAtoms (argc, argv, &u);
     
     PD_ASSERT (!err); PD_UNUSED (err);
     
-    for ((g1 = glist->gl_graphics); (g2 = g1->g_next); (g1 = g2)) { }
-    
-    object_changeSource (g1, u);
+    object_changeSource (o, u);
     //
     }
 }
 
-PD_LOCAL void glist_setWidthOfLast (t_glist *glist, int w)
+PD_LOCAL void glist_setViewedOfLast (t_glist *glist, int v)
 {
-    if (glist->gl_graphics) {
-    //
-    t_object *g1 = NULL;
-    t_object *g2 = NULL;
+    t_object *o = glist_objectGetLast (glist);
     
-    for ((g1 = glist->gl_graphics); (g2 = g1->g_next); (g1 = g2)) { }
-    
-    object_setWidth (g1, PD_MAX (1, w));
-    //
-    }
+    if (o) { object_setViewed (o, PD_MAX (1, v)); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
