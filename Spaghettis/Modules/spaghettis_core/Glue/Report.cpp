@@ -188,7 +188,15 @@ void setObjectParameters (Data& data, t_object* o)
     
     if (class_hasParametersFunction (c)) {
     //
+    static DelegateCache delegate;
+    
     Group group (data.addGroup (Tags::Parameters)); (*class_getParametersFunction (c)) (o, group);
+    
+    group.addParameter (Tags::Included,
+        NEEDS_TRANS ("Included"),
+        NEEDS_TRANS ("Is included in run view"),
+        static_cast<bool> (object_isIncluded (o)),
+        delegate);
     //
     }
 }

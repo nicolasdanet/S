@@ -71,11 +71,11 @@ PD_LOCAL void glist_setSourceOfLast (t_glist *glist, int argc, t_atom *argv)
     }
 }
 
-PD_LOCAL void glist_setViewedOfLast (t_glist *glist, int v)
+PD_LOCAL void glist_setIncludedOfLast (t_glist *glist, int v)
 {
     t_object *o = glist_objectGetLast (glist);
     
-    if (o) { object_setViewed (o, PD_MAX (1, v)); }
+    if (o) { object_setIncluded (o, PD_MAX (1, v)); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

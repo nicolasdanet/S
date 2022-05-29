@@ -428,7 +428,7 @@ typedef struct _object {
     t_float64Atomic g_f;
     int             g_x;
     int             g_y;
-    int             g_viewed;
+    int             g_included;
     int             g_selected;
     t_objecttype    g_type;
     t_buffer        *g_buffer;

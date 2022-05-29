@@ -28,7 +28,7 @@ PD_LOCAL void       glist_undoDisable                   (t_glist *);
 PD_LOCAL void       glist_setUniqueAndSource            (t_glist *, int, t_atom *);
 PD_LOCAL void       glist_setUniqueAndSourceOfLast      (t_glist *, int, t_atom *);
 PD_LOCAL void       glist_setSourceOfLast               (t_glist *, int, t_atom *);
-PD_LOCAL void       glist_setViewedOfLast               (t_glist *, int);
+PD_LOCAL void       glist_setIncludedOfLast             (t_glist *, int);
 PD_LOCAL t_error    glist_lineConnectByIndex            (t_glist *, int, int, int, int);
 PD_LOCAL t_error    glist_lineDisconnectByIndex         (t_glist *, int, int, int, int);
 
@@ -101,9 +101,9 @@ static void canvas_width (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
     
 }
 
-static void canvas_viewed (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
+static void canvas_include (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 {
-    glist_setViewedOfLast (glist, 1);
+    glist_setIncludedOfLast (glist, 1);
 }
 
 static void canvas_connect (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
@@ -276,12 +276,12 @@ PD_LOCAL void canvas_setup (void)
     class_addMethod (c, (t_method)canvas_tagdollarzero,         sym__tagdollarzero,     A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_tagobject,             sym__tagobject,         A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_tagobjectsource,       sym__tagobjectsource,   A_GIMME, A_NULL);
-    
+    class_addMethod (c, (t_method)canvas_include,               sym__include,           A_GIMME, A_NULL);
+
     /* Ensure compatibility with Pure Data file format. */
     
     class_addMethod (c, (t_method)canvas_restore,               sym_restore,            A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_width,                 sym_f,                  A_GIMME, A_NULL);
-    class_addMethod (c, (t_method)canvas_viewed,                sym_view,               A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_connect,               sym_connect,            A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_disconnect,            sym_disconnect,         A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_obj,                   sym_obj,                A_GIMME, A_NULL);

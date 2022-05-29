@@ -506,10 +506,10 @@ PD_LOCAL void object_saveIdentifiers (t_object *x, t_buffer *b, int flags)
 
 PD_LOCAL void object_serializeView (t_object *x, t_buffer *b)
 {
-    if (object_isViewed (x)) {
+    if (object_isIncluded (x)) {
     //
     buffer_appendSymbol (b, sym___hash__X);
-    buffer_appendSymbol (b, sym_view);
+    buffer_appendSymbol (b, sym__include);
     buffer_appendSemicolon (b);
     //
     }

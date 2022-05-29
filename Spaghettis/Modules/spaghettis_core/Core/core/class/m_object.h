@@ -145,9 +145,9 @@ static inline t_point object_getPoint (t_object *x)
     return point_make (object_getX (x), object_getY (x));
 }
 
-static inline int object_isViewed (t_object *x)
+static inline int object_isIncluded (t_object *x)
 {
-    return x->g_viewed;
+    return x->g_included;
 }
 
 static inline int object_isSelected (t_object *x)
@@ -174,9 +174,9 @@ static inline void object_setY (t_object *x, int n)
     x->g_y = n;
 }
 
-static inline void object_setViewed (t_object *x, int n)
+static inline void object_setIncluded (t_object *x, int n)
 {
-    x->g_viewed = (n != 0);
+    x->g_included = (n != 0);
 }
 
 static inline void object_setSelected (t_object *x, int n)
