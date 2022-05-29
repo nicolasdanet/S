@@ -74,8 +74,10 @@
 #include "GUI/Patches/EditWindow/EditPort.cpp"
 #include "GUI/Patches/EditWindow/EditComponent.cpp"
 #include "GUI/Patches/EditWindow/EditWindow.cpp"
+
 #include "GUI/Patches/RunWindow/RunFactory.cpp"
 #include "GUI/Patches/RunWindow/RunView.cpp"
+#include "GUI/Patches/RunWindow/RunComponent.cpp"
 #include "GUI/Patches/RunWindow/RunWindow.cpp"
 
 // -----------------------------------------------------------------------------------------------------------

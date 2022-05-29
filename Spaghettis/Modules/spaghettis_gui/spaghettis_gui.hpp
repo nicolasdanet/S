@@ -140,6 +140,7 @@
 #include "GUI/Patches/EditWindow/ZoomComponent.hpp"
 #include "GUI/Patches/EditWindow/EditComponent.hpp"
 #include "GUI/Patches/EditWindow/EditWindow.hpp"
+
 #include "GUI/Patches/RunWindow/RunFactory.hpp"
 #include "GUI/Patches/RunWindow/RunView.hpp"
 #include "GUI/Patches/RunWindow/RunComponent.hpp"
