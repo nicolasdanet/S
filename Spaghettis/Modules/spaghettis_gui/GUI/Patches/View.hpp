@@ -41,8 +41,8 @@ public:
 // MARK: -
 
 public:
-    juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>&) const;
-    juce::Rectangle<int> getBoundsFromPaintedArea (const juce::Rectangle<int>&) const;
+    juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>&);
+    juce::Rectangle<int> getBoundsFromPaintedArea (const juce::Rectangle<int>&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

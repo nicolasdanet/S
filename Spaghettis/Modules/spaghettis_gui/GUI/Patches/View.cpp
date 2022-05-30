@@ -12,12 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> View::getPaintedAreaFromBounds (const juce::Rectangle<int>& bounds) const
+juce::Rectangle<int> View::getPaintedAreaFromBounds (const juce::Rectangle<int>& bounds)
 {
     return (showPins() ? bounds.reduced (0, PainterPolicy::pinHeight (getScale())) : bounds);
 }
 
-juce::Rectangle<int> View::getBoundsFromPaintedArea (const juce::Rectangle<int>& painted) const
+juce::Rectangle<int> View::getBoundsFromPaintedArea (const juce::Rectangle<int>& painted)
 {
     return (showPins() ? painted.expanded (0, PainterPolicy::pinHeight (getScale())) : painted);
 }
