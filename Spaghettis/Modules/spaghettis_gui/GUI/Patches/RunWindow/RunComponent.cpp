@@ -16,9 +16,9 @@ RunComponent::RunComponent (Patch& owner, const juce::ValueTree& tree) :
     RunFactoryHelper (this),
     BaseComponent (getIconsFactory()),
     owner_ (owner),
-    runView_()
+    runView_ (tree)
 {
-    // addAndMakeVisible (runView_);
+    addAndMakeVisible (runView_);
     
     setOpaque (true); setSize (600, 300);
 }
@@ -34,9 +34,7 @@ void RunComponent::paint (juce::Graphics& g)
 
 void RunComponent::resized()
 {
-    setBoundsForBarsAndGetRemaining();
-    
-    // runView_.setBounds (setBoundsForBarsAndGetRemaining());
+    runView_.setBounds (setBoundsForBarsAndGetRemaining());
 }
     
 // -----------------------------------------------------------------------------------------------------------

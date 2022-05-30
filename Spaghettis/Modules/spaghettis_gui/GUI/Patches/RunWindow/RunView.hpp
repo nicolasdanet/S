@@ -12,16 +12,43 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class RunView {
+class RunView :     public  juce::Component,
+                    private juce::ValueTree::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    RunView()  = default;
-    ~RunView() = default;
+    explicit RunView (const juce::ValueTree& tree);
+    
+    ~RunView();
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics&) override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
+    void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
+
+private:
+    void addComponent (const juce::ValueTree&);
+    void removeComponent (const juce::ValueTree&);
+    void initialize();
+    
+private:
+    juce::ValueTree tree_;
+    core::Cached<juce::Colour> backgroundColour_;
+    Table<core::Object, ObjectComponent> objects_;
+        
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunView)
 };
