@@ -54,7 +54,7 @@ juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r, float scale)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PinComponent::PinComponent (EditView* view, const juce::String& type) :
+PinComponent::PinComponent (View* view, const juce::String& type) :
     view_ (view),
     pinColour_ (getColourFromType (type)),
     pinOverColour_ (Spaghettis()->getCachedColour (Tags::PinOver)),

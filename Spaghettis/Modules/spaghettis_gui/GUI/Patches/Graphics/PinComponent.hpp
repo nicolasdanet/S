@@ -19,7 +19,7 @@ class PinComponent :    public juce::Component,
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    explicit PinComponent (EditView*, const juce::String&);
+    explicit PinComponent (View*, const juce::String&);
 
     ~PinComponent();
 
@@ -51,7 +51,7 @@ public:
     void mouseExit (const juce::MouseEvent&) override;
     
 private:
-    EditView* view_;
+    View* view_;
     core::Cached<juce::Colour> pinColour_;
     core::Cached<juce::Colour> pinOverColour_;
     bool isSignal_;

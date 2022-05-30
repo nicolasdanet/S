@@ -36,7 +36,7 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ObjectComponent::ObjectComponent (EditView* view, const core::Object& object) :
+ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     view_ (view),
     object_ (object),
     visible_ (object.getCachedAttribute<bool> (Tags::Visible, true)),
@@ -202,7 +202,7 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float
 
 std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& a,
     const juce::Rectangle<int>& bounds,
-    EditView* view,
+    View* view,
     float scale,
     bool isOutlet)
 {

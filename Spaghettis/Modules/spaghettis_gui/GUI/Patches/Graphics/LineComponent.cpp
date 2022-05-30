@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-LineComponent::LineComponent (EditView* view, const core::Line& line) :
+LineComponent::LineComponent (View* view, const core::Line& line) :
     view_ (view),
     line_ (line),
     source_ (view->getObject (line.getIdentifierOfSource())),
@@ -92,7 +92,6 @@ void LineComponent::mouseExit (const juce::MouseEvent&)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
 
 void LineComponent::scaleChanged()
 {

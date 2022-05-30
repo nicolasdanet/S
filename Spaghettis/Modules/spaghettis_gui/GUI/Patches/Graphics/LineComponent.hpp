@@ -10,11 +10,6 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-class EditView;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 class LineComponent :   public  Scalable,
@@ -26,7 +21,7 @@ class LineComponent :   public  Scalable,
 // MARK: -
 
 public:
-    explicit LineComponent (EditView*, const core::Line&);
+    explicit LineComponent (View*, const core::Line&);
     
     ~LineComponent();
 
@@ -76,7 +71,7 @@ private:
 // MARK: -
 
 private:
-    EditView* view_;
+    View* view_;
     core::Line line_;
     juce::Component::SafePointer<ObjectComponent> source_;
     juce::Component::SafePointer<ObjectComponent> destination_;
