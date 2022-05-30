@@ -43,8 +43,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets, true)),
     outlets_ (object.getCachedAttribute<juce::String> (Tags::Outlets, true)),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
-    painter_ (createPainter (this, object)),
-    showPins_ (true)
+    painter_ (createPainter (this, object))
 {
     jassert (view);
     
@@ -130,7 +129,9 @@ void ObjectComponent::paint (juce::Graphics& g)
     g.setColour (backgroundColour_.get());
     g.fillRect (bounds);
     
-    painter_->paint (showPins_ ? bounds.reduced (0, PainterPolicy::pinHeight (getScale())) : bounds, g);
+    const bool showPins = view_->showPins();
+    
+    painter_->paint (showPins ? bounds.reduced (0, PainterPolicy::pinHeight (getScale())) : bounds, g);
 }
     
 void ObjectComponent::resized()
@@ -164,9 +165,10 @@ void ObjectComponent::update (bool notify)
     
     if (isVisible) {
         const juce::Rectangle<int> painted (painter_->getRequiredBounds().toNearestInt());
-        setBounds (showPins_ ? painted.expanded (0, PainterPolicy::pinHeight (getScale())) : painted);
+        const bool showPins = view_->showPins();
+        setBounds (showPins ? painted.expanded (0, PainterPolicy::pinHeight (getScale())) : painted);
         setVisible (true);
-        if (showPins_) { createInletsAndOutlets(); }
+        if (showPins) { createInletsAndOutlets(); }
     } else {
         setVisible (false);
     }

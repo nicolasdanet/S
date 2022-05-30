@@ -49,15 +49,6 @@ ObjectComponent* RunView::getObject (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-float RunView::getScale()
-{
-    return 1.0f;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void RunView::addComponent (const juce::ValueTree& child)
 {
     // if (child.getType() == Ids::OBJECT) { objects_.add (this, core::Object (child)); }
