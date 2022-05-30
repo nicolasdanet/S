@@ -42,12 +42,12 @@ public:
 // MARK: -
 
 public:
-    float getScale() override
+    float getScale() const override
     {
         return 1.0f;
     }
 
-    bool showPins() override
+    bool showPins() const override
     {
         return false;
     }

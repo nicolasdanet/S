@@ -129,9 +129,7 @@ void ObjectComponent::paint (juce::Graphics& g)
     g.setColour (backgroundColour_.get());
     g.fillRect (bounds);
     
-    const bool showPins = view_->showPins();
-    
-    painter_->paint (showPins ? bounds.reduced (0, PainterPolicy::pinHeight (getScale())) : bounds, g);
+    painter_->paint (view_->getPaintedArea (bounds), g);
 }
     
 void ObjectComponent::resized()

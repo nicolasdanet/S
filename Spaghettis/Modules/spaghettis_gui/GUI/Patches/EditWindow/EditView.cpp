@@ -62,7 +62,7 @@ void EditView::setScale (float scale)
     objects_.perform (f); lines_.perform (f);
 }
 
-float EditView::getScale()
+float EditView::getScale() const
 {
     return scale_;
 }

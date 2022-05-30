@@ -47,7 +47,7 @@ public:
 // MARK: -
 
 public:
-    float getScale() override;
+    float getScale() const override;
     
 private:
     void setScale (float f);
@@ -57,7 +57,7 @@ private:
 // MARK: -
 
 public:
-    bool showPins() override
+    bool showPins() const override
     {
         return true;
     }
