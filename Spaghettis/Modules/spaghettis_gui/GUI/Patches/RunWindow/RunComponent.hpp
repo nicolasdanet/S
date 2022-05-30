@@ -20,13 +20,7 @@ class RunComponent :    protected RunFactoryHelper,    /* MUST be the first. */
 // MARK: -
 
 public:
-    explicit RunComponent (Patch& owner, const juce::ValueTree& tree) :
-        RunFactoryHelper (this),
-        BaseComponent (getIconsFactory()),
-        owner_ (owner)
-    {
-        setOpaque (true); setSize (600, 300);
-    }
+    explicit RunComponent (Patch&, const juce::ValueTree&);
     
     ~RunComponent() = default;
 
@@ -35,15 +29,8 @@ public:
 // MARK: -
 
 public:
-    void paint (juce::Graphics& g) override
-    {
-        g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
-    }
-    
-    void resized() override
-    {
-        setBoundsForBarsAndGetRemaining();
-    }
+    void paint (juce::Graphics&) override;
+    void resized() override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -67,6 +54,9 @@ public:
     
 private:
     Patch& owner_;
+
+private:
+    RunView runView_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunComponent)

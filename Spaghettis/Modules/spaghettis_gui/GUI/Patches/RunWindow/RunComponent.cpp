@@ -12,6 +12,33 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+RunComponent::RunComponent (Patch& owner, const juce::ValueTree& tree) :
+    RunFactoryHelper (this),
+    BaseComponent (getIconsFactory()),
+    owner_ (owner),
+    runView_()
+{
+    // addAndMakeVisible (runView_);
+    
+    setOpaque (true); setSize (600, 300);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunComponent::paint (juce::Graphics& g)
+{
+    g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
+}
+
+void RunComponent::resized()
+{
+    setBoundsForBarsAndGetRemaining();
+    
+    // runView_.setBounds (setBoundsForBarsAndGetRemaining());
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
