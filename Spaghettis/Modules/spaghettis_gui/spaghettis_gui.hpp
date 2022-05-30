@@ -122,6 +122,7 @@
 #include "GUI/Patches/Patch.hpp"
 #include "GUI/Patches/PatchesHolder.hpp"
 #include "GUI/Patches/PatchWindow.hpp"
+#include "GUI/Patches/View.hpp"
 
 #include "GUI/Patches/Graphics/Scalable.hpp"
 #include "GUI/Patches/Graphics/Table.hpp"

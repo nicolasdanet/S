@@ -12,68 +12,36 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditView : public View {
+class ObjectComponent;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-friend class EditPort;
+class View :    public juce::Component,
+                public juce::ValueTree::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit EditView (const juce::ValueTree& tree);
+    View() = default;
     
-    ~EditView();
+    virtual ~View() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
-    void paint (juce::Graphics&) override;
+    virtual ObjectComponent* getObject (core::UniqueId) = 0;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    ObjectComponent* getObject (core::UniqueId) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    float getScale() override;
-
-private:
-    void setScale (float f);
+    virtual float getScale() = 0;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
-    void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
 
 private:
-    void addComponent (const juce::ValueTree&);
-    void removeComponent (const juce::ValueTree&);
-    void initialize();
-    
-private:
-    juce::ValueTree tree_;
-    core::Cached<juce::Colour> backgroundColour_;
-    Table<core::Object, ObjectComponent> objects_;
-    Table<core::Line, LineComponent> lines_;
-    float scale_;
-        
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (View)
 };
 
 // -----------------------------------------------------------------------------------------------------------
