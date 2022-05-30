@@ -33,8 +33,7 @@ RunView::~RunView()
 
 void RunView::paint (juce::Graphics& g)
 {
-    g.fillAll (juce::Colours::orange);
-    // g.fillAll (backgroundColour_.get());
+    g.fillAll (backgroundColour_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -43,26 +42,12 @@ void RunView::paint (juce::Graphics& g)
 
 void RunView::addComponent (const juce::ValueTree& child)
 {
-    /*
-    const juce::Identifier t (child.getType());
-    
-    if (t == Ids::OBJECT || t == Ids::PATCH) { objects_.add (this, core::Object (child)); }
-    else if (t == Ids::LINE) {
-        lines_.add (this, core::Line (child));
-    }
-    */
+    // if (child.getType() == Ids::OBJECT) { objects_.add (this, core::Object (child)); }
 }
 
 void RunView::removeComponent (const juce::ValueTree& child)
 {
-    /*
-    const juce::Identifier t (child.getType());
-    
-    if (t == Ids::OBJECT || t == Ids::PATCH) { objects_.remove (core::Object (child)); }
-    else if (t == Ids::LINE) {
-        lines_.remove (core::Line (child));
-    }
-    */
+    // if (child.getType() == Ids::OBJECT) { objects_.remove (core::Object (child)); }
 }
 
 void RunView::initialize()
@@ -76,12 +61,12 @@ void RunView::initialize()
 
 void RunView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    // if (isChildOf (tree_, child)) { addComponent (child); }
+    // addComponent (child);
 }
 
 void RunView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    // if (isChildOf (tree_, child)) { removeComponent (child); }
+    // removeComponent (child);
 }
 
 // -----------------------------------------------------------------------------------------------------------
