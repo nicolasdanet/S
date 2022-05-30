@@ -47,9 +47,9 @@ public:
         return 1.0f;
     }
 
-    bool showPins() const override
+    bool isPresentation() const override
     {
-        return false;
+        return true;
     }
 
 // -----------------------------------------------------------------------------------------------------------

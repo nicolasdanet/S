@@ -57,9 +57,9 @@ private:
 // MARK: -
 
 public:
-    bool showPins() const override
+    bool isPresentation() const override
     {
-        return true;
+        return false;
     }
     
 // -----------------------------------------------------------------------------------------------------------

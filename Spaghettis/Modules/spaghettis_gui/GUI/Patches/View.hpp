@@ -34,7 +34,7 @@ public:
 public:
     virtual ObjectComponent* getObject (core::UniqueId) = 0;
     virtual float getScale() const = 0;
-    virtual bool  showPins() const = 0;
+    virtual bool  isPresentation() const = 0;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

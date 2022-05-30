@@ -165,7 +165,7 @@ void ObjectComponent::update (bool notify)
         const juce::Rectangle<int> painted (painter_->getRequiredBounds().toNearestInt());
         setBounds (view_->getBoundsFromPaintedArea (painted));
         setVisible (true);
-        if (view_->showPins()) { createInletsAndOutlets(); }
+        if (!view_->isPresentation()) { createInletsAndOutlets(); }
     } else {
         setVisible (false);
     }
