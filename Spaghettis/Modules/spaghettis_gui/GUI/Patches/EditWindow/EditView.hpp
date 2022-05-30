@@ -25,22 +25,9 @@ friend class EditPort;
 // MARK: -
 
 public:
-    explicit EditView (const juce::ValueTree& tree) :
-        tree_ (tree),
-        backgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
-        scale_ (1.0f)
-    {
-        tree_.addListener (this);
-        backgroundColour_.attach (PainterPolicy::repaint (this));
-        setOpaque (true);
-        setBounds (core::Canvas::getArea (scale_));
-        initialize();
-    }
+    explicit EditView (const juce::ValueTree& tree);
     
-    ~EditView()
-    {
-        lines_.clear(); objects_.clear();
-    }
+    ~EditView();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
