@@ -129,7 +129,7 @@ void ObjectComponent::paint (juce::Graphics& g)
     g.setColour (backgroundColour_.get());
     g.fillRect (bounds);
     
-    painter_->paint (view_->getPaintedArea (bounds), g);
+    painter_->paint (view_->getPaintedAreaFromBounds (bounds), g);
 }
     
 void ObjectComponent::resized()
@@ -163,10 +163,9 @@ void ObjectComponent::update (bool notify)
     
     if (isVisible) {
         const juce::Rectangle<int> painted (painter_->getRequiredBounds().toNearestInt());
-        const bool showPins = view_->showPins();
-        setBounds (showPins ? painted.expanded (0, PainterPolicy::pinHeight (getScale())) : painted);
+        setBounds (view_->getBoundsFromPaintedArea (painted));
         setVisible (true);
-        if (showPins) { createInletsAndOutlets(); }
+        if (view_->showPins()) { createInletsAndOutlets(); }
     } else {
         setVisible (false);
     }
