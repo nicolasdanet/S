@@ -19,7 +19,6 @@ RunView::RunView (const juce::ValueTree& tree) :
     tree_.addListener (this);
     backgroundColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
-        setBounds (core::Canvas::getArea (getScale()));
     initialize (tree_);
 }
 

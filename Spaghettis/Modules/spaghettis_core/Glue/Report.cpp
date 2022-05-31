@@ -177,6 +177,7 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void setObjectAttributes (Data& data, t_object* o)
 {
@@ -235,6 +236,11 @@ juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attribut
 Report Report::object (const UniquePath& u, struct _object* o)
 {
     return Report (getObject (u, o, true,  true));
+}
+
+Report Report::objectAttributes (const UniquePath& u, struct _object* o)
+{
+    return Report (getObject (u, o, true, false));
 }
 
 Report Report::objectParameters (const UniquePath& u, struct _object* o)

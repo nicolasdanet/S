@@ -75,7 +75,7 @@ PD_LOCAL void glist_setIncludedOfLast (t_glist *glist, int v)
 {
     t_object *o = glist_objectGetLast (glist);
     
-    if (o) { object_setIncluded (o, PD_MAX (1, v)); }
+    if (o) { object_setIncluded (o, PD_MAX (1, v)); outputs_objectUpdateAttributes (o, glist); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
