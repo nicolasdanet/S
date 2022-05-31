@@ -53,7 +53,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
 
     update();
     
-    if (!view_->isPresentation()) {
+    if (!View::isRunView (view_)) {
     //
     auto f = [this]() { update(); };
     
@@ -169,7 +169,7 @@ void ObjectComponent::update (bool notify)
         const juce::Rectangle<int> painted (painter_->getRequiredBounds().toNearestInt());
         setBounds (view_->getBoundsFromPaintedArea (painted));
         setVisible (true);
-        if (!view_->isPresentation()) { createInletsAndOutlets(); }
+        if (!View::isRunView (view_)) { createInletsAndOutlets(); }
     } else {
         setVisible (false);
     }

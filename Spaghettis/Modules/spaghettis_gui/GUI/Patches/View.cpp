@@ -14,12 +14,21 @@ namespace spaghettis {
 
 juce::Rectangle<int> View::getPaintedAreaFromBounds (const juce::Rectangle<int>& bounds)
 {
-    return (isPresentation() ? bounds : bounds.reduced (0, PainterPolicy::pinHeight (getScale())));
+    return (isRunView (this) ? bounds : bounds.reduced (0, PainterPolicy::pinHeight (getScale())));
 }
 
 juce::Rectangle<int> View::getBoundsFromPaintedArea (const juce::Rectangle<int>& painted)
 {
-    return (isPresentation() ? painted : painted.expanded (0, PainterPolicy::pinHeight (getScale())));
+    return (isRunView (this) ? painted : painted.expanded (0, PainterPolicy::pinHeight (getScale())));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool View::isRunView (View* view)
+{
+    return (dynamic_cast<RunView*> (view) != nullptr);
 }
     
 // -----------------------------------------------------------------------------------------------------------
