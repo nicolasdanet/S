@@ -39,6 +39,7 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core
 ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     view_ (view),
     object_ (object),
+    included_ (object.getCachedAttribute<bool> (Tags::Included, true)),
     visible_ (object.getCachedAttribute<bool> (Tags::Visible, true)),
     inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets, true)),
     outlets_ (object.getCachedAttribute<juce::String> (Tags::Outlets, true)),
@@ -53,15 +54,11 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
 
     update();
     
-    if (!View::isRunView (view_)) {
-    //
     auto f = [this]() { update(); };
     
     inlets_.attach  (f);
     outlets_.attach (f);
     visible_.attach (f);
-    //
-    }
     
     backgroundColour_.attach (PainterPolicy::repaint (this));
 }
@@ -161,7 +158,8 @@ float ObjectComponent::getScale() const
 
 void ObjectComponent::update (bool notify)
 {
-    const bool isVisible = visible_.get();
+    const bool isRunView = View::isRunView (view_);
+    const bool isVisible = isRunView ? (visible_.get() && included_.get()) : visible_.get();
     
     removeInletsAndOultets();
     
@@ -169,7 +167,7 @@ void ObjectComponent::update (bool notify)
         const juce::Rectangle<int> painted (painter_->getRequiredBounds().toNearestInt());
         setBounds (view_->getBoundsFromPaintedArea (painted));
         setVisible (true);
-        if (!View::isRunView (view_)) { createInletsAndOutlets(); }
+        if (!isRunView) { createInletsAndOutlets(); }
     } else {
         setVisible (false);
     }

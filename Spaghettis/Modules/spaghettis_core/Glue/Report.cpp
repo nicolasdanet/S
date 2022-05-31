@@ -126,6 +126,12 @@ void setObjectAttributesForObject (Group& group, t_object* o)
         static_cast<bool> (object_isSelected (o)),
         delegate);
     
+    group.addParameter (Tags::Included,
+        NEEDS_TRANS ("Included"),
+        NEEDS_TRANS ("Is included in run view"),
+        static_cast<bool> (object_isIncluded (o)),
+        delegate);
+        
     group.addParameter (Tags::Visible,
         NEEDS_TRANS ("Visible"),
         NEEDS_TRANS ("Is visible state"),
@@ -188,17 +194,7 @@ void setObjectParameters (Data& data, t_object* o)
     
     if (class_hasParametersFunction (c)) {
     //
-    static DelegateCache delegate;
-    
-    Group group (data.addGroup (Tags::Parameters));
-    
-    group.addParameter (Tags::Included,
-        NEEDS_TRANS ("Included"),
-        NEEDS_TRANS ("Is included in run view"),
-        static_cast<bool> (object_isIncluded (o)),
-        delegate);
-        
-    (*class_getParametersFunction (c)) (o, group);
+    Group group (data.addGroup (Tags::Parameters)); (*class_getParametersFunction (c)) (o, group);
     //
     }
 }
