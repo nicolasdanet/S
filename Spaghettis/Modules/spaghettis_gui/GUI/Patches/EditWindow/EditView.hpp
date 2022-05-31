@@ -63,7 +63,7 @@ public:
 private:
     void addComponent (const juce::ValueTree&);
     void removeComponent (const juce::ValueTree&);
-    void initialize();
+    void initialize (const juce::ValueTree&);
     
 private:
     juce::ValueTree tree_;

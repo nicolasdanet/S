@@ -21,7 +21,7 @@ EditView::EditView (const juce::ValueTree& tree) :
     backgroundColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
     setBounds (core::Canvas::getArea (scale_));
-    initialize();
+    initialize (tree_);
 }
 
 EditView::~EditView()
@@ -110,9 +110,9 @@ void EditView::removeComponent (const juce::ValueTree& child)
     }
 }
 
-void EditView::initialize()
+void EditView::initialize (const juce::ValueTree& tree)
 {
-    for (const auto& child : tree_) { addComponent (child); }
+    for (const auto& child : tree) { addComponent (child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

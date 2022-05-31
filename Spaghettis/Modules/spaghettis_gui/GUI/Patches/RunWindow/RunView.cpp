@@ -19,7 +19,8 @@ RunView::RunView (const juce::ValueTree& tree) :
     tree_.addListener (this);
     backgroundColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
-    initialize();
+        setBounds (core::Canvas::getArea (getScale()));
+    initialize (tree_);
 }
 
 RunView::~RunView()
@@ -51,17 +52,29 @@ ObjectComponent* RunView::getObject (core::UniqueId u)
 
 void RunView::addComponent (const juce::ValueTree& child)
 {
-    // if (child.getType() == Ids::OBJECT) { objects_.add (this, core::Object (child)); }
+    if (child.getType() == Ids::OBJECT) {
+    //
+    const core::Object object (child);
+    
+    if (object.isGUI()) { objects_.add (this, object); }
+    //
+    }
 }
 
 void RunView::removeComponent (const juce::ValueTree& child)
 {
-    // if (child.getType() == Ids::OBJECT) { objects_.remove (core::Object (child)); }
+    if (child.getType() == Ids::OBJECT) {
+    //
+    const core::Object object (child);
+    
+    if (object.isGUI()) { objects_.remove (object); }
+    //
+    }
 }
 
-void RunView::initialize()
+void RunView::initialize (const juce::ValueTree& tree)
 {
-    // for (const auto& child : tree_) { addComponent (child); }
+    for (const auto& child : tree) { addComponent (child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -70,12 +83,12 @@ void RunView::initialize()
 
 void RunView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    // addComponent (child);
+    addComponent (child);
 }
 
 void RunView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    // removeComponent (child);
+    removeComponent (child);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -56,9 +56,10 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     
     auto f = [this]() { update(); };
     
-    inlets_.attach  (f);
+    inlets_.attach (f);
     outlets_.attach (f);
     visible_.attach (f);
+    included_.attach (f);
     
     backgroundColour_.attach (PainterPolicy::repaint (this));
 }
