@@ -53,11 +53,15 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
 
     update();
     
+    if (!view_->isPresentation()) {
+    //
     auto f = [this]() { update(); };
     
     inlets_.attach  (f);
     outlets_.attach (f);
     visible_.attach (f);
+    //
+    }
     
     backgroundColour_.attach (PainterPolicy::repaint (this));
 }
