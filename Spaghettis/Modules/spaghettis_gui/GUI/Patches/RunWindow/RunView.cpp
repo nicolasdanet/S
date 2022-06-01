@@ -73,7 +73,7 @@ void RunView::removeComponent (const juce::ValueTree& child)
 
 void RunView::initialize (const juce::ValueTree& tree)
 {
-    for (const auto& child : tree) { addComponent (child); }
+    for (const auto& child : tree) { addComponent (child); initialize (child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
