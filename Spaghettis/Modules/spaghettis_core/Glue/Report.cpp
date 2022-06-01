@@ -235,7 +235,7 @@ juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attribut
 
 Report Report::object (const UniquePath& u, struct _object* o)
 {
-    return Report (getObject (u, o, true,  true));
+    return Report (getObject (u, o, true, true));
 }
 
 Report Report::objectAttributes (const UniquePath& u, struct _object* o)
