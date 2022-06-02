@@ -16,6 +16,23 @@ class RunView : public View {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+public:
+    using ViewedElement   = std::tuple<core::UniqueId, juce::Rectangle<int>>;
+    using ViewedContainer = std::vector<ViewedElement>;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    enum {
+        VIEWED_ID   = 0,
+        VIEWED_AREA = 1
+    };
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
@@ -72,6 +89,7 @@ private:
     juce::ValueTree tree_;
     core::Cached<juce::Colour> backgroundColour_;
     Table<core::Object, ObjectComponent> objects_;
+    ViewedContainer viewed_;
         
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunView)

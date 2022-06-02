@@ -49,14 +49,43 @@ ObjectComponent* RunView::getObject (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RunView::show (ObjectComponent* o, const juce::Rectangle<int>& r)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+auto isIdentifierOfObject (ObjectComponent* o)
 {
-    o->setBounds (r); o->setVisible (true);
+    return [u = o->getIdentifier()](const RunView::ViewedElement& e)
+    {
+        return (std::get<RunView::VIEWED_ID> (e) == u);
+    };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunView::show (ObjectComponent* o, const juce::Rectangle<int>& area)
+{
+    auto r = std::find_if (viewed_.cbegin(), viewed_.cend(), isIdentifierOfObject (o));
+    
+    if (r != viewed_.cend()) { }
+    else {
+        viewed_.emplace_back (o->getIdentifier(), area);
+    }
 }
 
 void RunView::hide (ObjectComponent* o)
 {
     o->setVisible (false);
+    
+    viewed_.erase (std::remove_if (viewed_.begin(), viewed_.end(), isIdentifierOfObject (o)), viewed_.end());
 }
 
 // -----------------------------------------------------------------------------------------------------------

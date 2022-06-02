@@ -34,9 +34,7 @@ void RunComponent::paint (juce::Graphics& g)
 
 void RunComponent::resized()
 {
-    runView_.setBounds (core::Canvas::getArea (1.0f));
-    
-    // runView_.setBounds (setBoundsForBarsAndGetRemaining());
+    runView_.setBounds (setBoundsForBarsAndGetRemaining());
 }
     
 // -----------------------------------------------------------------------------------------------------------
