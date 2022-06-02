@@ -51,7 +51,7 @@ ObjectComponent* RunView::getObject (core::UniqueId u)
 
 void RunView::show (ObjectComponent* o, const juce::Rectangle<int>& r)
 {
-    o->setBounds (getBoundsFromPaintedArea (r)); o->setVisible (true);
+    o->setBounds (r); o->setVisible (true);
 }
 
 void RunView::hide (ObjectComponent* o)

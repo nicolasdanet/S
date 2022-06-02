@@ -53,7 +53,7 @@ ObjectComponent* EditView::getObject (core::UniqueId u)
 
 void EditView::show (ObjectComponent* o, const juce::Rectangle<int>& r)
 {
-    o->setBounds (getBoundsFromPaintedArea (r)); o->setVisible (true);
+    o->setBounds (r); o->setVisible (true);
 }
 
 void EditView::hide (ObjectComponent* o)
