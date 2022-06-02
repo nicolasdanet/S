@@ -51,6 +51,20 @@ ObjectComponent* EditView::getObject (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditView::show (ObjectComponent* o, const juce::Rectangle<int>& r)
+{
+    o->setBounds (getBoundsFromPaintedArea (r)); o->setVisible (true);
+}
+
+void EditView::hide (ObjectComponent* o)
+{
+    o->setVisible (false);
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::setScale (float scale)
 {
     jassert (scale > 0.0f);

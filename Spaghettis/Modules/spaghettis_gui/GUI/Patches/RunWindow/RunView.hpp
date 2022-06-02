@@ -42,6 +42,14 @@ public:
 // MARK: -
 
 public:
+    void show (ObjectComponent*, const juce::Rectangle<int>&) override;
+    void hide (ObjectComponent*) override;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     float getScale() const override
     {
         return 1.0f;

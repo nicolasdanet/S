@@ -32,8 +32,14 @@ public:
 
 public:
     virtual ObjectComponent* getObject (core::UniqueId) = 0;
-    virtual float getScale() const = 0;
 
+public:
+    virtual void show (ObjectComponent*, const juce::Rectangle<int>&) = 0;
+    virtual void hide (ObjectComponent*) = 0;
+
+public:
+    virtual float getScale() const = 0;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

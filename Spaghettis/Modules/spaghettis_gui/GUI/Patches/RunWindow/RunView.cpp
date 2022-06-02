@@ -49,6 +49,20 @@ ObjectComponent* RunView::getObject (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void RunView::show (ObjectComponent* o, const juce::Rectangle<int>& r)
+{
+    o->setBounds (getBoundsFromPaintedArea (r)); o->setVisible (true);
+}
+
+void RunView::hide (ObjectComponent* o)
+{
+    o->setVisible (false);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void RunView::addComponent (const juce::ValueTree& child)
 {
     if (child.getType() == Ids::OBJECT) {
