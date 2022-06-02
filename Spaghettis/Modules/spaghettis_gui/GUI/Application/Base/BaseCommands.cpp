@@ -14,12 +14,12 @@ namespace spaghettis {
 
 void BaseCommands::set (juce::CommandID command, std::function<void()> f)
 {
-    jassert (!get (command)); commands_.emplace_back (command, f);
+    jassert (!get (command)); enabled_.emplace_back (command, f);
 }
 
 bool BaseCommands::get (juce::CommandID command, bool invoke)
 {
-    for (const auto& [c, f] : commands_) {
+    for (const auto& [c, f] : enabled_) {
         if (c == command) {
             if (invoke) { f(); } return true;
         }

@@ -42,7 +42,7 @@ public:
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
 
 private:
-    std::vector<std::tuple<juce::CommandID, std::function<void()>>> commands_;
+    std::vector<std::tuple<juce::CommandID, std::function<void()>>> enabled_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaseCommands)
