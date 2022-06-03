@@ -69,6 +69,7 @@ ObjectComponent::~ObjectComponent()
     removeAllChangeListeners();
     removeInletsAndOultets();
     
+    view_->hide (this);
     view_->removeChildComponent (this);
 }
 
