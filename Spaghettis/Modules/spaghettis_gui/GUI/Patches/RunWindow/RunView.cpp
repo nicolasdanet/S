@@ -61,9 +61,9 @@ namespace {
 
 auto isObject (ObjectComponent* o)
 {
-    return [o](const RunView::ViewedElement& e)
+    return [o](const RunLayout::LayoutElement& e)
     {
-        return (std::get<RunView::VIEWED_POINTER> (e) == o);
+        return (std::get<RunLayout::LAYOUT_POINTER> (e) == o);
     };
 }
 
@@ -80,7 +80,7 @@ void RunView::show (ObjectComponent* o, const juce::Rectangle<int>& bounds)
 {
     auto r = std::find_if (viewed_.begin(), viewed_.end(), isObject (o));
     
-    if (r != viewed_.end()) { std::get<RunView::VIEWED_BOUNDS> (*r) = bounds.withZeroOrigin(); }
+    if (r != viewed_.end()) { std::get<RunLayout::LAYOUT_BOUNDS> (*r) = bounds.withZeroOrigin(); }
     else {
         viewed_.emplace_back (o, bounds.withZeroOrigin());
     }
@@ -104,14 +104,6 @@ void RunView::hide (ObjectComponent* o)
 void RunView::update()
 {
     DBG (getLocalBounds().toString());
-    
-    /*
-    for (auto [p, bounds] : viewed_) {
-    //
-    p->setBounds (bounds); p->setVisible (true);
-    //
-    }
-    */
 }
 
 // -----------------------------------------------------------------------------------------------------------
