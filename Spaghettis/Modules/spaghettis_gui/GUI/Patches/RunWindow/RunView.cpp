@@ -54,11 +54,11 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto isIdentifierOfObject (ObjectComponent* o)
+auto isObject (ObjectComponent* o)
 {
-    return [u = o->getIdentifier()](const RunView::ViewedElement& e)
+    return [o](const RunView::ViewedElement& e)
     {
-        return (std::get<RunView::VIEWED_ID> (e) == u);
+        return (std::get<RunView::VIEWED_POINTER> (e) == o);
     };
 }
 
@@ -71,13 +71,13 @@ auto isIdentifierOfObject (ObjectComponent* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RunView::show (ObjectComponent* o, const juce::Rectangle<int>& area)
+void RunView::show (ObjectComponent* o, const juce::Rectangle<int>& bounds)
 {
-    auto r = std::find_if (viewed_.begin(), viewed_.end(), isIdentifierOfObject (o));
+    auto r = std::find_if (viewed_.begin(), viewed_.end(), isObject (o));
     
-    if (r != viewed_.end()) { std::get<RunView::VIEWED_AREA> (*r) = area.withZeroOrigin(); }
+    if (r != viewed_.end()) { std::get<RunView::VIEWED_BOUNDS> (*r) = bounds.withZeroOrigin(); }
     else {
-        viewed_.emplace_back (o->getIdentifier(), area.withZeroOrigin());
+        viewed_.emplace_back (o, bounds.withZeroOrigin());
     }
     
     triggerAsyncUpdate();
@@ -87,7 +87,7 @@ void RunView::hide (ObjectComponent* o)
 {
     o->setVisible (false);
     
-    viewed_.erase (std::remove_if (viewed_.begin(), viewed_.end(), isIdentifierOfObject (o)), viewed_.end());
+    viewed_.erase (std::remove_if (viewed_.begin(), viewed_.end(), isObject (o)), viewed_.end());
     
     triggerAsyncUpdate();
 }
@@ -98,11 +98,9 @@ void RunView::hide (ObjectComponent* o)
 
 void RunView::update()
 {
-    for (auto [id, bounds] : viewed_) {
+    for (auto [p, bounds] : viewed_) {
     //
-    ObjectComponent* o = getObject (id); jassert (o);
-    
-    o->setBounds (bounds); o->setVisible (true);
+    p->setBounds (bounds); p->setVisible (true);
     //
     }
 }

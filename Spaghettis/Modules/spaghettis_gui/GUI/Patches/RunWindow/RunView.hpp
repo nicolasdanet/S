@@ -19,7 +19,7 @@ class RunView : public  View,
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    using ViewedElement   = std::tuple<core::UniqueId, juce::Rectangle<int>>;
+    using ViewedElement   = std::tuple<ObjectComponent*, juce::Rectangle<int>>;
     using ViewedContainer = std::vector<ViewedElement>;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -28,8 +28,8 @@ public:
 
 public:
     enum {
-        VIEWED_ID   = 0,
-        VIEWED_AREA = 1
+        VIEWED_POINTER  = 0,
+        VIEWED_BOUNDS   = 1
     };
     
 // -----------------------------------------------------------------------------------------------------------
