@@ -98,7 +98,13 @@ void RunView::hide (ObjectComponent* o)
 
 void RunView::update()
 {
-    for (const auto& e : viewed_) { DBG (std::get<RunView::VIEWED_AREA> (e).toString()); }
+    for (auto [id, bounds] : viewed_) {
+    //
+    ObjectComponent* o = getObject (id); jassert (o);
+    
+    o->setBounds (bounds); o->setVisible (true);
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
