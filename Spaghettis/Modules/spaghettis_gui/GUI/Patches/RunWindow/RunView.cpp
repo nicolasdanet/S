@@ -73,12 +73,14 @@ auto isIdentifierOfObject (ObjectComponent* o)
 
 void RunView::show (ObjectComponent* o, const juce::Rectangle<int>& area)
 {
-    auto r = std::find_if (viewed_.cbegin(), viewed_.cend(), isIdentifierOfObject (o));
+    auto r = std::find_if (viewed_.begin(), viewed_.end(), isIdentifierOfObject (o));
     
-    if (r != viewed_.cend()) { }
+    if (r != viewed_.end()) { std::get<RunView::VIEWED_AREA> (*r) = area.withZeroOrigin(); }
     else {
-        viewed_.emplace_back (o->getIdentifier(), area);
+        viewed_.emplace_back (o->getIdentifier(), area.withZeroOrigin());
     }
+    
+    triggerAsyncUpdate();
 }
 
 void RunView::hide (ObjectComponent* o)
@@ -86,6 +88,17 @@ void RunView::hide (ObjectComponent* o)
     o->setVisible (false);
     
     viewed_.erase (std::remove_if (viewed_.begin(), viewed_.end(), isIdentifierOfObject (o)), viewed_.end());
+    
+    triggerAsyncUpdate();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunView::update()
+{
+    for (const auto& e : viewed_) { DBG (std::get<RunView::VIEWED_AREA> (e).toString()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
