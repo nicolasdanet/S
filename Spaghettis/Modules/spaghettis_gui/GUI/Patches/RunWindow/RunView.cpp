@@ -36,6 +36,11 @@ void RunView::paint (juce::Graphics& g)
     g.fillAll (backgroundColour_.get());
 }
 
+void RunView::resized()
+{
+    triggerAsyncUpdate();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -98,11 +103,15 @@ void RunView::hide (ObjectComponent* o)
 
 void RunView::update()
 {
+    DBG (getLocalBounds().toString());
+    
+    /*
     for (auto [p, bounds] : viewed_) {
     //
     p->setBounds (bounds); p->setVisible (true);
     //
     }
+    */
 }
 
 // -----------------------------------------------------------------------------------------------------------
