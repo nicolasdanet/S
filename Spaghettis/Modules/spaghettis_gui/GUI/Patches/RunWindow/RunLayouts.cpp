@@ -19,9 +19,9 @@ namespace {
 
 auto isObject (ObjectComponent* o)
 {
-    return [o](const RunLayout::LayoutElement& e)
+    return [o](const GridLayout::LayoutElement& e)
     {
-        return (std::get<RunLayout::LAYOUT_POINTER> (e) == o);
+        return (std::get<GridLayout::LAYOUT_POINTER> (e) == o);
     };
 }
 
@@ -34,17 +34,17 @@ auto isObject (ObjectComponent* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RunLayout::add (ObjectComponent* o, const juce::Rectangle<int>& bounds)
+void GridLayout::add (ObjectComponent* o, const juce::Rectangle<int>& bounds)
 {
     auto r = std::find_if (viewed_.begin(), viewed_.end(), isObject (o));
     
-    if (r != viewed_.end()) { std::get<RunLayout::LAYOUT_BOUNDS> (*r) = bounds.withZeroOrigin(); }
+    if (r != viewed_.end()) { std::get<GridLayout::LAYOUT_BOUNDS> (*r) = bounds.withZeroOrigin(); }
     else {
         viewed_.emplace_back (o, bounds.withZeroOrigin());
     }
 }
 
-void RunLayout::remove (ObjectComponent* o)
+void GridLayout::remove (ObjectComponent* o)
 {
     o->setVisible (false);
     
@@ -55,7 +55,7 @@ void RunLayout::remove (ObjectComponent* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RunLayout::arrange (const juce::Rectangle<int>& bounds)
+void GridLayout::arrange (const juce::Rectangle<int>& bounds)
 {
     for (auto& [o, bounds] : viewed_) { DBG (bounds.toString()); }
 }
