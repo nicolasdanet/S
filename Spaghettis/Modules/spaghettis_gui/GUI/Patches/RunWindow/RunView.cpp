@@ -54,47 +54,14 @@ ObjectComponent* RunView::getObject (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-auto isObject (ObjectComponent* o)
-{
-    return [o](const RunLayout::LayoutElement& e)
-    {
-        return (std::get<RunLayout::LAYOUT_POINTER> (e) == o);
-    };
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void RunView::show (ObjectComponent* o, const juce::Rectangle<int>& bounds)
 {
-    auto r = std::find_if (viewed_.begin(), viewed_.end(), isObject (o));
-    
-    if (r != viewed_.end()) { std::get<RunLayout::LAYOUT_BOUNDS> (*r) = bounds.withZeroOrigin(); }
-    else {
-        viewed_.emplace_back (o, bounds.withZeroOrigin());
-    }
-    
-    triggerAsyncUpdate();
+    layout_.add (o, bounds); triggerAsyncUpdate();
 }
 
 void RunView::hide (ObjectComponent* o)
 {
-    o->setVisible (false);
-    
-    viewed_.erase (std::remove_if (viewed_.begin(), viewed_.end(), isObject (o)), viewed_.end());
-    
-    triggerAsyncUpdate();
+    layout_.remove (o); triggerAsyncUpdate();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -103,7 +70,7 @@ void RunView::hide (ObjectComponent* o)
 
 void RunView::update()
 {
-    DBG (getLocalBounds().toString());
+    layout_.arrange (getLocalBounds());
 }
 
 // -----------------------------------------------------------------------------------------------------------
