@@ -73,9 +73,9 @@ juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& vie
     const int wSpan = static_cast<int> (w / GridLayout::cellSize_) + 1;
     const int hSpan = static_cast<int> (h / GridLayout::cellSize_) + 1;
 
-    items.add (Item (o).withArea (Item::Span (wSpan), Item::Span (hSpan)).withSize (w, h));
-    
     o->setVisible (true);
+    
+    items.add (Item (o).withArea (Item::Span (wSpan), Item::Span (hSpan)).withSize (w, h));
     //
     }
     
@@ -103,7 +103,7 @@ void GridLayout::arrange (const juce::Rectangle<int>& bounds)
     grid.justifyContent     = Grid::JustifyContent::start;
     grid.alignContent       = Grid::AlignContent::start;
     grid.autoFlow           = Grid::AutoFlow::columnDense;
-    grid.templateRows       = { Track (Grid::Px (cellSize_)) };
+    grid.templateRows       = { Track (Grid::Px (cellSize_)), Track (Grid::Px (cellSize_)), Track (Grid::Px (cellSize_)) };
     grid.templateColumns    = { Track (Grid::Px (cellSize_)) };
     grid.autoColumns        = Track (Grid::Px (cellSize_));
     grid.autoRows           = Track (Grid::Px (cellSize_));
