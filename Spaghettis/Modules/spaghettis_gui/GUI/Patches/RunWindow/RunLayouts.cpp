@@ -62,20 +62,18 @@ namespace {
 
 juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& viewed)
 {
-    using Item = juce::GridItem;
-    
     juce::Array<juce::GridItem> items;
     
     for (const auto& [o, bounds] : viewed) {
     //
     const int w = bounds.getWidth();
     const int h = bounds.getHeight();
-    const int wSpan = static_cast<int> (w / GridLayout::cellSize_) + 1;
-    const int hSpan = static_cast<int> (h / GridLayout::cellSize_) + 1;
+    const juce::GridItem::Span wSpan (static_cast<int> (w / GridLayout::cellSize_) + 1);
+    const juce::GridItem::Span hSpan (static_cast<int> (h / GridLayout::cellSize_) + 1);
 
     o->setVisible (true);
     
-    items.add (Item (o).withArea (Item::Span (wSpan), Item::Span (hSpan)).withSize (w, h));
+    items.add (juce::GridItem (o).withArea (wSpan, hSpan).withSize (w, h));
     //
     }
     
