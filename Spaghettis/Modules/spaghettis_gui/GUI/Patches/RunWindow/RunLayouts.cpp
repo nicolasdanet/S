@@ -80,6 +80,29 @@ juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& vie
     return items;
 }
 
+juce::Grid::TrackInfo getTrack()
+{
+    return juce::Grid::TrackInfo (juce::Grid::Px (GridLayout::cellSize_));
+}
+
+juce::Array<juce::Grid::TrackInfo> getRows (const juce::Rectangle<int>& bounds)
+{
+    juce::Array<juce::Grid::TrackInfo> t;
+    
+    t.insertMultiple (-1, getTrack(), (bounds.getHeight() / GridLayout::cellSpace_));
+    
+    return t;
+}
+
+juce::Array<juce::Grid::TrackInfo> getColumns (const juce::Rectangle<int>& bounds)
+{
+    juce::Array<juce::Grid::TrackInfo> t;
+    
+    t.insertMultiple (-1, getTrack(), (bounds.getWidth() / GridLayout::cellSpace_));
+    
+    return t;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -91,22 +114,19 @@ juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& vie
 
 void GridLayout::arrange (const juce::Rectangle<int>& bounds)
 {
-    using Grid  = juce::Grid;
-    using Track = juce::Grid::TrackInfo;
+    juce::Grid grid;
     
-    Grid grid;
-    
-    grid.justifyItems       = Grid::JustifyItems::center;
-    grid.alignItems         = Grid::AlignItems::center;
-    grid.justifyContent     = Grid::JustifyContent::start;
-    grid.alignContent       = Grid::AlignContent::start;
-    grid.autoFlow           = Grid::AutoFlow::columnDense;
-    grid.templateRows       = { Track (Grid::Px (cellSize_)), Track (Grid::Px (cellSize_)), Track (Grid::Px (cellSize_)) };
-    grid.templateColumns    = { Track (Grid::Px (cellSize_)) };
-    grid.autoColumns        = Track (Grid::Px (cellSize_));
-    grid.autoRows           = Track (Grid::Px (cellSize_));
-    grid.rowGap             = Grid::Px (1);
-    grid.columnGap          = Grid::Px (1);
+    grid.justifyItems       = juce::Grid::JustifyItems::center;
+    grid.alignItems         = juce::Grid::AlignItems::center;
+    grid.justifyContent     = juce::Grid::JustifyContent::start;
+    grid.alignContent       = juce::Grid::AlignContent::start;
+    grid.autoFlow           = juce::Grid::AutoFlow::rowDense;
+    grid.templateRows       = getRows (bounds);
+    grid.templateColumns    = getColumns (bounds);
+    grid.autoColumns        = getTrack();
+    grid.autoRows           = getTrack();
+    grid.rowGap             = juce::Grid::Px (cellGap_);
+    grid.columnGap          = juce::Grid::Px (cellGap_);
     grid.items              = getGridItems (viewed_);
     
     grid.performLayout (bounds);

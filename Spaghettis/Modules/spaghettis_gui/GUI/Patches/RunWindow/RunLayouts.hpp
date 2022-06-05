@@ -56,8 +56,10 @@ private:
     LayoutContainer viewed_;
     
 public:
-    static constexpr int cellSize_ = 20;
-
+    static constexpr int cellGap_   = 1;
+    static constexpr int cellSize_  = 20;
+    static constexpr int cellSpace_ = cellGap_ + cellSize_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GridLayout)
 };
