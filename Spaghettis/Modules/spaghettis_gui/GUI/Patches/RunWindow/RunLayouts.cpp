@@ -60,6 +60,30 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+juce::Grid::TrackInfo getTrack()
+{
+    return juce::Grid::TrackInfo (juce::Grid::Px (GridLayout::cellSize_));
+}
+
+juce::Array<juce::Grid::TrackInfo> getTracks (int n)
+{
+    juce::Array<juce::Grid::TrackInfo> t;
+    
+    t.insertMultiple (-1, getTrack(), n);
+    
+    return t;
+}
+
+juce::Array<juce::Grid::TrackInfo> getRows (const juce::Rectangle<int>& bounds)
+{
+    return getTracks (bounds.getHeight() / GridLayout::cellSpace_);
+}
+
+juce::Array<juce::Grid::TrackInfo> getColumns (const juce::Rectangle<int>& bounds)
+{
+    return getTracks (bounds.getWidth() / GridLayout::cellSpace_);
+}
+
 juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& viewed)
 {
     juce::Array<juce::GridItem> items;
@@ -78,29 +102,6 @@ juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& vie
     }
     
     return items;
-}
-
-juce::Grid::TrackInfo getTrack()
-{
-    return juce::Grid::TrackInfo (juce::Grid::Px (GridLayout::cellSize_));
-}
-
-juce::Array<juce::Grid::TrackInfo> getRows (const juce::Rectangle<int>& bounds)
-{
-    juce::Array<juce::Grid::TrackInfo> t;
-    
-    t.insertMultiple (-1, getTrack(), (bounds.getHeight() / GridLayout::cellSpace_));
-    
-    return t;
-}
-
-juce::Array<juce::Grid::TrackInfo> getColumns (const juce::Rectangle<int>& bounds)
-{
-    juce::Array<juce::Grid::TrackInfo> t;
-    
-    t.insertMultiple (-1, getTrack(), (bounds.getWidth() / GridLayout::cellSpace_));
-    
-    return t;
 }
 
 // -----------------------------------------------------------------------------------------------------------
