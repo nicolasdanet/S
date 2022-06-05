@@ -54,6 +54,9 @@ public:
 
 private:
     LayoutContainer viewed_;
+    
+public:
+    static constexpr int cellSize_ = 20;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GridLayout)

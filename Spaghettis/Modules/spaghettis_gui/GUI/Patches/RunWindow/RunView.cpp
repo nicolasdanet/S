@@ -70,7 +70,7 @@ void RunView::hide (ObjectComponent* o)
 
 void RunView::update()
 {
-    layout_.arrange (getLocalBounds());
+    layout_.arrange (getLocalBounds().reduced (1));
 }
 
 // -----------------------------------------------------------------------------------------------------------

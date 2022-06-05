@@ -55,9 +55,63 @@ void GridLayout::remove (ObjectComponent* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& viewed)
+{
+    using Item = juce::GridItem;
+    
+    juce::Array<juce::GridItem> items;
+    
+    for (const auto& [o, bounds] : viewed) {
+    //
+    const int w = bounds.getWidth();
+    const int h = bounds.getHeight();
+    const int wSpan = static_cast<int> (w / GridLayout::cellSize_) + 1;
+    const int hSpan = static_cast<int> (h / GridLayout::cellSize_) + 1;
+
+    items.add (Item (o).withArea (Item::Span (wSpan), Item::Span (hSpan)).withSize (w, h));
+    
+    o->setVisible (true);
+    //
+    }
+    
+    return items;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void GridLayout::arrange (const juce::Rectangle<int>& bounds)
 {
-    for (auto& [o, bounds] : viewed_) { DBG (bounds.toString()); }
+    using Grid  = juce::Grid;
+    using Track = juce::Grid::TrackInfo;
+    
+    Grid grid;
+    
+    grid.justifyItems       = Grid::JustifyItems::center;
+    grid.alignItems         = Grid::AlignItems::center;
+    grid.justifyContent     = Grid::JustifyContent::start;
+    grid.alignContent       = Grid::AlignContent::start;
+    grid.autoFlow           = Grid::AutoFlow::columnDense;
+    grid.templateRows       = { Track (Grid::Px (cellSize_)) };
+    grid.templateColumns    = { Track (Grid::Px (cellSize_)) };
+    grid.autoColumns        = Track (Grid::Px (cellSize_));
+    grid.autoRows           = Track (Grid::Px (cellSize_));
+    grid.rowGap             = Grid::Px (1);
+    grid.columnGap          = Grid::Px (1);
+    grid.items              = getGridItems (viewed_);
+    
+    grid.performLayout (bounds);
 }
 
 // -----------------------------------------------------------------------------------------------------------
