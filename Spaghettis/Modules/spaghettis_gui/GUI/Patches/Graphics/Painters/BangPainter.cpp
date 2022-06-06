@@ -35,7 +35,7 @@ void BangPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
     g.setColour (backgroundColour_.get());
     g.fillRect (r);
     g.setColour (flashed_.get() ? flashOnColour_.get() : flashOffColour_.get());
-    g.fillEllipse (r.toFloat().reduced (scaled (1, getScale())));
+    g.fillEllipse (r.toFloat().reduced (scaled (std::round (width_.get() / 15.0f), getScale())));
 }
 
 juce::Rectangle<float> BangPainter::getRequiredBounds()
