@@ -56,7 +56,7 @@ private:
     LayoutContainer viewed_;
     
 public:
-    static constexpr int cellGap_   = 1;
+    static constexpr int cellGap_   = 2;
     static constexpr int cellSize_  = 20;
     static constexpr int cellSpace_ = cellGap_ + cellSize_;
     

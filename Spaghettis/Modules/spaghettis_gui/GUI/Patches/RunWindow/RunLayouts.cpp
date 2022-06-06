@@ -90,14 +90,12 @@ juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& vie
     
     for (const auto& [o, bounds] : viewed) {
     //
-    const int w = bounds.getWidth();
-    const int h = bounds.getHeight();
-    const juce::GridItem::Span wSpan (static_cast<int> (w / GridLayout::cellSize_) + 1);
-    const juce::GridItem::Span hSpan (static_cast<int> (h / GridLayout::cellSize_) + 1);
+    const juce::GridItem::Span wSpan (static_cast<int> (bounds.getWidth()  / GridLayout::cellSpace_) + 1);
+    const juce::GridItem::Span hSpan (static_cast<int> (bounds.getHeight() / GridLayout::cellSpace_) + 1);
 
     o->setVisible (true);
     
-    items.add (juce::GridItem (o).withArea (wSpan, hSpan).withSize (w, h));
+    items.add (juce::GridItem (o).withArea (wSpan, hSpan));
     //
     }
     
@@ -117,8 +115,8 @@ void GridLayout::arrange (const juce::Rectangle<int>& bounds)
 {
     juce::Grid grid;
     
-    grid.justifyItems       = juce::Grid::JustifyItems::center;
-    grid.alignItems         = juce::Grid::AlignItems::center;
+    grid.justifyItems       = juce::Grid::JustifyItems::stretch;
+    grid.alignItems         = juce::Grid::AlignItems::stretch;
     grid.justifyContent     = juce::Grid::JustifyContent::start;
     grid.alignContent       = juce::Grid::AlignContent::start;
     grid.autoFlow           = juce::Grid::AutoFlow::rowDense;
