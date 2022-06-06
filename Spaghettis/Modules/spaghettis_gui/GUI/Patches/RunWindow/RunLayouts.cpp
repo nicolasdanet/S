@@ -95,7 +95,7 @@ juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& vie
 
     o->setVisible (true);
     
-    items.add (juce::GridItem (o).withArea (wSpan, hSpan));
+    items.add (juce::GridItem (o).withArea (hSpan, wSpan));
     //
     }
     
