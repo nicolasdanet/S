@@ -126,10 +126,10 @@ void setObjectAttributesForObject (Group& group, t_object* o)
         static_cast<bool> (object_isSelected (o)),
         delegate);
     
-    group.addParameter (Tags::Included,
-        NEEDS_TRANS ("Included"),
-        NEEDS_TRANS ("Is included in run view"),
-        static_cast<bool> (object_hasLabel (o)),
+    group.addParameter (Tags::Label,
+        NEEDS_TRANS ("Label"),
+        NEEDS_TRANS ("Parameter name in run view"),
+        juce::String (symbol_getName (object_getLabel (o))),
         delegate);
         
     group.addParameter (Tags::Visible,
@@ -148,7 +148,7 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
     group.addParameter (Tags::Title,
         NEEDS_TRANS ("Title"),
         NEEDS_TRANS ("Patch name"),
-        juce::String (glist_getName (g)->s_name),
+        juce::String (symbol_getName (glist_getName (g))),
         delegate);
     
     group.addParameter (Tags::EditView,

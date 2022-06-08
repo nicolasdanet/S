@@ -51,8 +51,8 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (EditView);
     DECLARE_STRING (Flashed);
     DECLARE_STRING (FlashTime);
-    DECLARE_STRING (Included);
     DECLARE_STRING (Inlets);
+    DECLARE_STRING (Label);
     DECLARE_STRING (Outlets);
     DECLARE_STRING (Path);
     DECLARE_STRING (RunView);

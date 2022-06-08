@@ -75,8 +75,8 @@ private:
 private:
     View* view_;
     core::Object object_;
-    core::Cached<bool> included_;
     core::Cached<bool> visible_;
+    core::Cached<juce::String> label_;
     core::Cached<juce::String> inlets_;
     core::Cached<juce::String> outlets_;
     core::Cached<juce::Colour> backgroundColour_;

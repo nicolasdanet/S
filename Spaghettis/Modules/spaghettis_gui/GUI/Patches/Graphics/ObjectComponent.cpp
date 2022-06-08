@@ -39,8 +39,8 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core
 ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     view_ (view),
     object_ (object),
-    included_ (object.getCachedAttribute<bool> (Tags::Included, true)),
     visible_ (object.getCachedAttribute<bool> (Tags::Visible, true)),
+    label_ (object.getCachedAttribute<juce::String> (Tags::Label, true)),
     inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets, true)),
     outlets_ (object.getCachedAttribute<juce::String> (Tags::Outlets, true)),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
@@ -59,7 +59,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     inlets_.attach (f);
     outlets_.attach (f);
     visible_.attach (f);
-    included_.attach (f);
+    label_.attach (f);
     
     backgroundColour_.attach (PainterPolicy::repaint (this));
 }
@@ -160,8 +160,9 @@ float ObjectComponent::getScale() const
 
 void ObjectComponent::update (bool notify)
 {
-    const bool isRunView = View::isRunView (view_);
-    const bool isVisible = isRunView ? (visible_.get() && included_.get()) : visible_.get();
+    const bool isRunView  = View::isRunView (view_);
+    const bool isIncluded = label_.get().isNotEmpty();
+    const bool isVisible  = isRunView ? (visible_.get() && isIncluded) : visible_.get();
     
     removeInletsAndOultets();
     
