@@ -129,7 +129,7 @@ void setObjectAttributesForObject (Group& group, t_object* o)
     group.addParameter (Tags::Included,
         NEEDS_TRANS ("Included"),
         NEEDS_TRANS ("Is included in run view"),
-        static_cast<bool> (object_isIncluded (o)),
+        static_cast<bool> (object_hasLabel (o)),
         delegate);
         
     group.addParameter (Tags::Visible,

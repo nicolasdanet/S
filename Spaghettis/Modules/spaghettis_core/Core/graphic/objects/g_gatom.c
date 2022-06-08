@@ -99,7 +99,7 @@ static void gatom_functionSave (t_object *z, t_buffer *b, int flags)
     if (SAVED_DEEP (flags)) { buffer_appendAtom (b, &x->a_atom); }
     buffer_appendSemicolon (b);
     
-    object_serializeView (cast_object (x), b);
+    object_serializeLabel (cast_object (x), b);
     
     object_saveIdentifiers (z, b, flags);
 }

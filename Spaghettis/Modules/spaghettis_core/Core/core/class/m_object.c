@@ -504,12 +504,13 @@ PD_LOCAL void object_saveIdentifiers (t_object *x, t_buffer *b, int flags)
     if (flags & SAVE_UPDATE)      { object_serializeSource (x, sym__tagobjectsource, b); }
 }
 
-PD_LOCAL void object_serializeView (t_object *x, t_buffer *b)
+PD_LOCAL void object_serializeLabel (t_object *x, t_buffer *b)
 {
-    if (object_isIncluded (x)) {
+    if (object_hasLabel (x)) {
     //
     buffer_appendSymbol (b, sym___hash__X);
     buffer_appendSymbol (b, sym__include);
+    buffer_appendSymbol (b, object_getLabel (x));
     buffer_appendSemicolon (b);
     //
     }

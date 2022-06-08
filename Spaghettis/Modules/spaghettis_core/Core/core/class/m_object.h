@@ -73,7 +73,7 @@ PD_LOCAL juce::String object_getTypeOfOutlets       (t_object *x);
 
 PD_LOCAL void   object_save                         (t_object *x, t_buffer *b, int flags);
 PD_LOCAL void   object_saveIdentifiers              (t_object *x, t_buffer *b, int flags);
-PD_LOCAL void   object_serializeView                (t_object *x, t_buffer *b);
+PD_LOCAL void   object_serializeLabel               (t_object *x, t_buffer *b);
 PD_LOCAL void   object_distributeAtomsOnInlets      (t_object *x, int argc, t_atom *argv);
 PD_LOCAL void   object_setSignalValues              (t_object *x, int argc, t_atom *argv);
 
@@ -145,9 +145,14 @@ static inline t_point object_getPoint (t_object *x)
     return point_make (object_getX (x), object_getY (x));
 }
 
-static inline int object_isIncluded (t_object *x)
+static inline t_symbol *object_getLabel (t_object *x)
 {
-    return x->g_included;
+    return (x->g_label == NULL ? &s_ : x->g_label);
+}
+
+static inline int object_hasLabel (t_object *x)
+{
+    return (object_getLabel (x) != &s_);
 }
 
 static inline int object_isSelected (t_object *x)
@@ -174,9 +179,9 @@ static inline void object_setY (t_object *x, int n)
     x->g_y = n;
 }
 
-static inline void object_setIncluded (t_object *x, int n)
+static inline void object_setLabel (t_object *x, t_symbol *s)
 {
-    x->g_included = (n != 0);
+    x->g_label = s;
 }
 
 static inline void object_setSelected (t_object *x, int n)

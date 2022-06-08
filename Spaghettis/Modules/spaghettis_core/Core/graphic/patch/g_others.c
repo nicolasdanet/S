@@ -71,11 +71,11 @@ PD_LOCAL void glist_setSourceOfLast (t_glist *glist, int argc, t_atom *argv)
     }
 }
 
-PD_LOCAL void glist_setIncludedOfLast (t_glist *glist, int v)
+PD_LOCAL void glist_setLabelOfLast (t_glist *glist, t_symbol *s)
 {
     t_object *o = glist_objectGetLast (glist);
     
-    if (o) { object_setIncluded (o, PD_MAX (1, v)); outputs_objectUpdateAttributes (o, glist); }
+    if (o) { object_setLabel (o, s); outputs_objectUpdateAttributes (o, glist); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
