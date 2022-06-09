@@ -255,6 +255,8 @@ juce::StringArray getFilesShortIfPossible (const juce::StringArray& a)
 
 void SpaghettisInstance::appendRecentFile (const juce::File& file)
 {
+    if (file.existsAsFile()) {
+    //
     const int maximum = 16;
     
     juce::String s (file.getFullPathName());
@@ -265,6 +267,8 @@ void SpaghettisInstance::appendRecentFile (const juce::File& file)
     while (recentFiles_.size() > maximum) { recentFiles_.remove (recentFiles_.size() - 1); }
     
     menu_->menuItemsChanged(); saveRecentFiles();
+    //
+    }
 }
 
 int SpaghettisInstance::getNumberOfRecentFiles() const
