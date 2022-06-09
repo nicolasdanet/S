@@ -28,6 +28,11 @@ private:
         value_.addListener (this);
     }
 
+    explicit Cached()
+    {
+    
+    }
+    
 public:
     ~Cached() = default;
 
@@ -80,11 +85,16 @@ public:
         const juce::String& key,
         bool updateSynchronously)
     {
+        if (!data.hasParameter (group, key)) { return Cached(); }
+        else {
+        //
         jassert (data.getParameter (group, key).getType() == ParameterType<T>::get());
-
+        
         return Cached (data, group, key, updateSynchronously);
+        //
+        }
     }
-
+    
 private:
     std::function<void()> onChange;
     
