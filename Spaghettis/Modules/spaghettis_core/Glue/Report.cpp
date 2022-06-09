@@ -126,12 +126,6 @@ void setObjectAttributesForObject (Group& group, t_object* o)
         static_cast<bool> (object_isSelected (o)),
         delegate);
     
-    group.addParameter (Tags::Label,
-        NEEDS_TRANS ("Label"),
-        NEEDS_TRANS ("Parameter name in run view"),
-        juce::String (symbol_getName (object_getLabel (o))),
-        delegate);
-        
     group.addParameter (Tags::Visible,
         NEEDS_TRANS ("Visible"),
         NEEDS_TRANS ("Is visible state"),
@@ -195,7 +189,17 @@ void setObjectParameters (Data& data, t_object* o)
     
     if (class_hasParametersFunction (c)) {
     //
-    Group group (data.addGroup (Tags::Parameters)); (*class_getParametersFunction (c)) (o, group);
+    static DelegateCache delegate;
+    
+    Group group (data.addGroup (Tags::Parameters));
+    
+    group.addParameter (Tags::Label,
+        NEEDS_TRANS ("Label"),
+        NEEDS_TRANS ("Parameter name in run view"),
+        juce::String (symbol_getName (object_getLabel (o))),
+        delegate);
+    
+    (*class_getParametersFunction (c)) (o, group);
     //
     }
 }

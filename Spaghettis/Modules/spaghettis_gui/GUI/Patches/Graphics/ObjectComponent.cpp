@@ -40,9 +40,9 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     view_ (view),
     object_ (object),
     visible_ (object.getCachedAttribute<bool> (Tags::Visible, true)),
-    label_ (object.getCachedAttribute<juce::String> (Tags::Label, true)),
     inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets, true)),
     outlets_ (object.getCachedAttribute<juce::String> (Tags::Outlets, true)),
+    label_ (object.getCachedParameter<juce::String> (Tags::Label, true)),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
     painter_ (createPainter (this, object))
 {
@@ -161,8 +161,8 @@ float ObjectComponent::getScale() const
 void ObjectComponent::update (bool notify)
 {
     const bool isRunView  = View::isRunView (view_);
-    const bool isIncluded = label_.get().isNotEmpty();
-    const bool isVisible  = isRunView ? (visible_.get() && isIncluded) : visible_.get();
+    const bool isIncluded = label_.isValid() && label_.get().isNotEmpty();
+    const bool isVisible  = isRunView ? (isIncluded && visible_.get()) : visible_.get();
     
     removeInletsAndOultets();
     
