@@ -19,7 +19,8 @@ class PinComponent;
 
 class ObjectComponent : public Scalable,
                         public juce::Component,
-                        public juce::ChangeBroadcaster {
+                        public juce::ChangeBroadcaster,
+                        public juce::SettableTooltipClient {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

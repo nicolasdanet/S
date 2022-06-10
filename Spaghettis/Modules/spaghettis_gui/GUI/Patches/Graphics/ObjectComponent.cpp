@@ -169,7 +169,10 @@ void ObjectComponent::update (bool notify)
     if (isVisible) {
         const juce::Rectangle<int> painted (painter_->getRequiredBounds().toNearestInt());
         view_->show (this, view_->getBoundsFromPaintedArea (painted));
-        if (!isRunView) { createInletsAndOutlets(); }
+        if (!isRunView) {
+            if (label_.isValid()) { setTooltip (label_.get()); }
+            createInletsAndOutlets();
+        }
     } else {
         view_->hide (this);
     }
