@@ -60,28 +60,37 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Grid::TrackInfo getTrack()
+juce::Grid::TrackInfo getRowTrack()
 {
-    return juce::Grid::TrackInfo (juce::Grid::Px (GridLayout::cellSize_));
+    return juce::Grid::TrackInfo (juce::Grid::Px (GridLayout::height_));
 }
 
-juce::Array<juce::Grid::TrackInfo> getTracks (int n)
+juce::Grid::TrackInfo getColumnTrack()
+{
+    return juce::Grid::TrackInfo (juce::Grid::Px (GridLayout::width_));
+}
+
+juce::Array<juce::Grid::TrackInfo> getTracks (int n, const juce::Grid::TrackInfo& track)
 {
     juce::Array<juce::Grid::TrackInfo> t;
     
-    t.insertMultiple (-1, getTrack(), n);
+    t.insertMultiple (-1, track, n);
     
     return t;
 }
 
 juce::Array<juce::Grid::TrackInfo> getRows (const juce::Rectangle<int>& bounds)
 {
-    return getTracks (bounds.getHeight() / GridLayout::cellSpace_);
+    const int n = bounds.getHeight() / (GridLayout::gap_ + GridLayout::height_);
+    
+    return getTracks (n, getRowTrack());
 }
 
 juce::Array<juce::Grid::TrackInfo> getColumns (const juce::Rectangle<int>& bounds)
 {
-    return getTracks (bounds.getWidth() / GridLayout::cellSpace_);
+    const int n = bounds.getWidth() / (GridLayout::gap_ + GridLayout::width_);
+    
+    return getTracks (n, getColumnTrack());
 }
 
 juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& viewed)
@@ -92,8 +101,10 @@ juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& vie
     //
     const int w = bounds.getWidth();
     const int h = bounds.getHeight();
-    const juce::GridItem::Span wSpan (static_cast<int> (w / GridLayout::cellSpace_) + 1);
-    const juce::GridItem::Span hSpan (static_cast<int> (h / GridLayout::cellSpace_) + 1);
+    const int wSpace = GridLayout::gap_ + GridLayout::width_;
+    const int hSpace = GridLayout::gap_ + GridLayout::height_;
+    const juce::GridItem::Span wSpan (static_cast<int> (w / wSpace) + 1);
+    const juce::GridItem::Span hSpan (static_cast<int> (h / hSpace) + 1);
 
     o->setVisible (true);
     
@@ -121,13 +132,13 @@ void GridLayout::arrange (const juce::Rectangle<int>& bounds)
     grid.alignItems         = juce::Grid::AlignItems::center;
     grid.justifyContent     = juce::Grid::JustifyContent::start;
     grid.alignContent       = juce::Grid::AlignContent::start;
-    grid.autoFlow           = juce::Grid::AutoFlow::rowDense;
+    grid.autoFlow           = juce::Grid::AutoFlow::columnDense;
     grid.templateRows       = getRows (bounds);
     grid.templateColumns    = getColumns (bounds);
-    grid.autoColumns        = getTrack();
-    grid.autoRows           = getTrack();
-    grid.rowGap             = juce::Grid::Px (cellGap_);
-    grid.columnGap          = juce::Grid::Px (cellGap_);
+    grid.autoColumns        = getColumnTrack();
+    grid.autoRows           = getRowTrack();
+    grid.rowGap             = juce::Grid::Px (gap_);
+    grid.columnGap          = juce::Grid::Px (gap_);
     grid.items              = getGridItems (viewed_);
     
     grid.performLayout (bounds);
