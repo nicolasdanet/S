@@ -56,9 +56,9 @@ private:
     LayoutContainer viewed_;
     
 public:
-    static constexpr int gap_       = 2;
-    static constexpr int width_     = 80;
-    static constexpr int height_    = 20;
+    static constexpr int gap_    = 1;
+    static constexpr int width_  = 80;
+    static constexpr int height_ = 20;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GridLayout)

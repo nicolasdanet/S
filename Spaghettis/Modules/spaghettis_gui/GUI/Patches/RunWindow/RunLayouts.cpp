@@ -128,7 +128,7 @@ void GridLayout::arrange (const juce::Rectangle<int>& bounds)
 {
     juce::Grid grid;
     
-    grid.justifyItems       = juce::Grid::JustifyItems::center;
+    grid.justifyItems       = juce::Grid::JustifyItems::start;
     grid.alignItems         = juce::Grid::AlignItems::center;
     grid.justifyContent     = juce::Grid::JustifyContent::start;
     grid.alignContent       = juce::Grid::AlignContent::start;
