@@ -65,6 +65,14 @@ private:
 // MARK: -
 
 public:
+    juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>&) override;
+    juce::Rectangle<int> getBoundsFromPaintedArea (const juce::Rectangle<int>&) override;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
     void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
 

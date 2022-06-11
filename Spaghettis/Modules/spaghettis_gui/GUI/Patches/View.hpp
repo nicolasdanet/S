@@ -40,13 +40,9 @@ public:
 public:
     virtual float getScale() const = 0;
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 public:
-    juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>&);
-    juce::Rectangle<int> getBoundsFromPaintedArea (const juce::Rectangle<int>&);
+    virtual juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>&) = 0;
+    virtual juce::Rectangle<int> getBoundsFromPaintedArea (const juce::Rectangle<int>&) = 0;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

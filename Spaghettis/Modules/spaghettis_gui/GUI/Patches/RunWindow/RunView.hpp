@@ -71,6 +71,21 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>& bounds) override
+    {
+        return bounds;
+    }
+    
+    juce::Rectangle<int> getBoundsFromPaintedArea (const juce::Rectangle<int>& painted) override
+    {
+        return painted;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     void update();
     
