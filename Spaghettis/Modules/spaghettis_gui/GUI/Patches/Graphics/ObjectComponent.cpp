@@ -44,7 +44,8 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     outlets_ (object.getCachedAttribute<juce::String> (Tags::Outlets, true)),
     label_ (object.getCachedParameter<juce::String> (Tags::Label, true)),
     backgroundColour_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
-    painter_ (createPainter (this, object))
+    painter_ (createPainter (this, object)),
+    isRunView_ (View::isRunView (view_))
 {
     jassert (view);
     
@@ -160,16 +161,15 @@ float ObjectComponent::getScale() const
 
 void ObjectComponent::update (bool notify)
 {
-    const bool isRunView  = View::isRunView (view_);
-    const bool isIncluded = label_.isValid() && label_.get().isNotEmpty();
-    const bool isVisible  = isRunView ? (isIncluded && visible_.get()) : visible_.get();
+    const bool hasLabel  = label_.isValid() && label_.get().isNotEmpty();
+    const bool isVisible = isRunView_ ? (hasLabel && visible_.get()) : visible_.get();
     
     removeInletsAndOultets();
     
     if (isVisible) {
         const juce::Rectangle<int> painted (painter_->getRequiredBounds().toNearestInt());
         view_->show (this, view_->getBoundsFromPaintedArea (painted));
-        if (!isRunView) {
+        if (!isRunView_) {
             if (label_.isValid()) { setTooltip (label_.get()); }
             createInletsAndOutlets();
         }
