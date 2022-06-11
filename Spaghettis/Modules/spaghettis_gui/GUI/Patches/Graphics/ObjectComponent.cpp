@@ -154,24 +154,41 @@ float ObjectComponent::getScale() const
 {
     return view_->getScale();
 }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool ObjectComponent::isInsideRunView() const
+{
+    return isRunView_;
+}
+
+bool ObjectComponent::hasLabel() const
+{
+    return label_.isValid() && label_.get().isNotEmpty();
+}
+
+juce::String ObjectComponent::getLabel() const
+{
+    return label_.get();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void ObjectComponent::update (bool notify)
 {
-    const bool hasLabel  = label_.isValid() && label_.get().isNotEmpty();
-    const bool isVisible = isRunView_ ? (hasLabel && visible_.get()) : visible_.get();
+    const bool isVisible = isInsideRunView() ? (hasLabel() && visible_.get()) : visible_.get();
     
     removeInletsAndOultets();
     
     if (isVisible) {
         const juce::Rectangle<int> painted (painter_->getRequiredBounds().toNearestInt());
         view_->show (this, view_->getBoundsFromPaintedArea (painted));
-        if (!isRunView_) {
-            if (label_.isValid()) { setTooltip (label_.get()); }
-            createInletsAndOutlets();
+        if (!isInsideRunView()) {
+            setTooltip (getLabel()); createInletsAndOutlets();
         }
     } else {
         view_->hide (this);
