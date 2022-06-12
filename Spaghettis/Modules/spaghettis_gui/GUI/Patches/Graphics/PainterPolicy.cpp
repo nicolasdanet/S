@@ -36,12 +36,12 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
 
 void PainterPolicy::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    paintPerform (r, g);
+    paintObject (r.toFloat(), g);
 }
     
-juce::Rectangle<float> PainterPolicy::getRequiredBounds()
+juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 {
-    return getRequiredBoundsPerform();
+    return getRequiredBoundsForObject().toNearestInt();
 }
     
 // -----------------------------------------------------------------------------------------------------------

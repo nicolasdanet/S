@@ -30,15 +30,15 @@ BangPainter::BangPainter (ObjectComponent* owner, const core::Object& object) : 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BangPainter::paintPerform (const juce::Rectangle<int>& r, juce::Graphics& g)
+void BangPainter::paintObject (const juce::Rectangle<float>& r, juce::Graphics& g)
 {
     g.setColour (backgroundColour_.get());
     g.fillRect (r);
     g.setColour (flashed_.get() ? flashOnColour_.get() : flashOffColour_.get());
-    g.fillEllipse (r.toFloat().reduced (scaled (std::round (width_.get() / 15.0f), getScale())));
+    g.fillEllipse (r.reduced (scaled (std::round (width_.get() / 15.0f), getScale())));
 }
 
-juce::Rectangle<float> BangPainter::getRequiredBoundsPerform()
+juce::Rectangle<float> BangPainter::getRequiredBoundsForObject()
 {
     const float f = getScale();
     const float x = scaled (x_.get(), f);

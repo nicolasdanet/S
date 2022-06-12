@@ -185,7 +185,7 @@ void ObjectComponent::update (bool notify)
     removeInletsAndOultets();
     
     if (isVisible) {
-        const juce::Rectangle<int> painted (painter_->getRequiredBounds().toNearestInt());
+        const juce::Rectangle<int> painted (painter_->getRequiredBounds());
         view_->show (this, view_->getBoundsFromPaintedArea (painted));
         if (!isInsideRunView()) {
             setTooltip (getLabel()); createInletsAndOutlets();
