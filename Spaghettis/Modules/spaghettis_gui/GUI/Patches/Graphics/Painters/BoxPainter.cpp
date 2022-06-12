@@ -64,7 +64,7 @@ float getTextMargins (float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
+void BoxPainter::paintPerform (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
     const float f = getScale();
 
@@ -85,7 +85,7 @@ void BoxPainter::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
     }
 }
 
-juce::Rectangle<float> BoxPainter::getRequiredBounds()
+juce::Rectangle<float> BoxPainter::getRequiredBoundsPerform()
 {
     const float f = getScale();
     

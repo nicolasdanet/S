@@ -27,10 +27,10 @@ public:
 // MARK: -
 
 public:
-    void paint (const juce::Rectangle<int>&, juce::Graphics&) override;
+    void paintPerform (const juce::Rectangle<int>&, juce::Graphics&) override;
 
 public:
-    juce::Rectangle<float> getRequiredBounds() override;
+    juce::Rectangle<float> getRequiredBoundsPerform() override;
 
 private:
     core::Cached<juce::Colour> backgroundColour_;

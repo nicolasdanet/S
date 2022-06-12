@@ -34,6 +34,20 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PainterPolicy::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
+{
+    paintPerform (r, g);
+}
+    
+juce::Rectangle<float> PainterPolicy::getRequiredBounds()
+{
+    return getRequiredBoundsPerform();
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 float PainterPolicy::getScale() const
 {
     return owner_->getScale();
