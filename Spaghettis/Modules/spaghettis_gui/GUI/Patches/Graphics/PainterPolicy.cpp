@@ -36,12 +36,34 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
 
 void PainterPolicy::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    paintObject (r.toFloat(), g);
+    juce::Rectangle<float> t = r.toFloat();
+    
+    if (owner_->isInsideRunView()) { t = paintLabel (t, g); }
+    
+    paintObject (t, g);
 }
     
 juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 {
-    return getRequiredBoundsForObject().toNearestInt();
+    juce::Rectangle<float> t = getRequiredBoundsForObject();
+    
+    if (owner_->isInsideRunView()) { t = getRequiredBoundsWithLabel (t); }
+    
+    return t.toNearestInt();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce::Graphics& g)
+{
+    return r;
+}
+    
+juce::Rectangle<float> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangle<float> r)
+{
+    return r;
 }
     
 // -----------------------------------------------------------------------------------------------------------
