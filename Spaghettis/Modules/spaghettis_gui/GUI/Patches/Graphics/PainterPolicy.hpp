@@ -63,7 +63,7 @@ private:
 
 private:
     juce::Rectangle<float> paintLabel (juce::Rectangle<float>, juce::Graphics&);
-    juce::Rectangle<float> getRequiredBoundsForLabel();
+    juce::Rectangle<float> getRequiredBoundsForLabel (juce::Rectangle<float>);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
