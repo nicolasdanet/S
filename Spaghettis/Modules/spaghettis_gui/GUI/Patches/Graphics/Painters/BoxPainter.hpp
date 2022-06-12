@@ -27,7 +27,7 @@ public:
 // MARK: -
 
 public:
-    void paintObject (const juce::Rectangle<float>&, juce::Graphics&) override;
+    void paintObject (juce::Rectangle<float>, juce::Graphics&) override;
 
 public:
     juce::Rectangle<float> getRequiredBoundsForObject() override;

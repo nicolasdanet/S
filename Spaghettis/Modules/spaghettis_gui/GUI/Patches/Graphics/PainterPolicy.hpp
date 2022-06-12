@@ -55,8 +55,7 @@ protected:
 // MARK: -
 
 private:
-    virtual void paintObject (const juce::Rectangle<float>&, juce::Graphics&) = 0;
-    
+    virtual void paintObject (juce::Rectangle<float>, juce::Graphics&) = 0;
     virtual juce::Rectangle<float> getRequiredBoundsForObject() = 0;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -64,8 +63,7 @@ private:
 
 private:
     juce::Rectangle<float> paintLabel (juce::Rectangle<float>, juce::Graphics&);
-    
-    juce::Rectangle<float> getRequiredBoundsWithLabel (juce::Rectangle<float>);
+    juce::Rectangle<float> getRequiredBoundsForLabel();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

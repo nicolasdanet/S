@@ -30,7 +30,7 @@ BangPainter::BangPainter (ObjectComponent* owner, const core::Object& object) : 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BangPainter::paintObject (const juce::Rectangle<float>& r, juce::Graphics& g)
+void BangPainter::paintObject (juce::Rectangle<float> r, juce::Graphics& g)
 {
     g.setColour (backgroundColour_.get());
     g.fillRect (r);

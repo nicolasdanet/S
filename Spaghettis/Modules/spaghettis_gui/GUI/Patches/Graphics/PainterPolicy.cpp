@@ -47,7 +47,7 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 {
     juce::Rectangle<float> t = getRequiredBoundsForObject();
     
-    if (owner_->isInsideRunView()) { t = getRequiredBoundsWithLabel (t); }
+    if (owner_->isInsideRunView()) { }
     
     return t.toNearestInt();
 }
@@ -61,9 +61,9 @@ juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce
     return r;
 }
     
-juce::Rectangle<float> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangle<float> r)
+juce::Rectangle<float> PainterPolicy::getRequiredBoundsForLabel()
 {
-    return r;
+    return juce::Rectangle<float> ();
 }
     
 // -----------------------------------------------------------------------------------------------------------
