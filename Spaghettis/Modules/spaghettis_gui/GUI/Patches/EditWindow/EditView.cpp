@@ -14,11 +14,11 @@ namespace spaghettis {
 
 EditView::EditView (const juce::ValueTree& tree) :
     tree_ (tree),
-    backgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
+    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
     scale_ (1.0f)
 {
     tree_.addListener (this);
-    backgroundColour_.attach (PainterPolicy::repaint (this));
+    patchBackgroundColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
     setBounds (core::Canvas::getArea (scale_));
     initialize (tree_);
@@ -35,7 +35,7 @@ EditView::~EditView()
 
 void EditView::paint (juce::Graphics& g)
 {
-    g.fillAll (backgroundColour_.get());
+    g.fillAll (patchBackgroundColour_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------

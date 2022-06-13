@@ -104,7 +104,7 @@ private:
     
 private:
     juce::ValueTree tree_;
-    core::Cached<juce::Colour> backgroundColour_;
+    core::Cached<juce::Colour> patchBackgroundColour_;
     Table<core::Object, ObjectComponent> objects_;
     GridLayout layout_;
         

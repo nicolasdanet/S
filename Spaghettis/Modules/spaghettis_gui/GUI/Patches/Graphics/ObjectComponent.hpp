@@ -89,7 +89,7 @@ private:
     core::Cached<juce::String> inlets_;
     core::Cached<juce::String> outlets_;
     core::Cached<juce::String> label_;
-    core::Cached<juce::Colour> backgroundColour_;
+    core::Cached<juce::Colour> pinBackgroundColour_;
     std::unique_ptr<PainterPolicy> painter_;
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;

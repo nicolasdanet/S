@@ -33,9 +33,9 @@ public:
     juce::Rectangle<float> getRequiredBoundsForObject() override;
 
 private:
-    core::Cached<juce::Colour> backgroundColour_;
-    core::Cached<juce::Colour> flashOffColour_;
-    core::Cached<juce::Colour> flashOnColour_;
+    core::Cached<juce::Colour> bangBackgroundColour_;
+    core::Cached<juce::Colour> bangFlashOffColour_;
+    core::Cached<juce::Colour> bangFlashOnColour_;
     core::Cached<bool> flashed_;
     core::Cached<int> width_;
 

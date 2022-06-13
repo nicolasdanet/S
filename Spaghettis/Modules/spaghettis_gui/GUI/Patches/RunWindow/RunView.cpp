@@ -14,10 +14,10 @@ namespace spaghettis {
 
 RunView::RunView (const juce::ValueTree& tree) :
     tree_ (tree),
-    backgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground))
+    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground))
 {
     tree_.addListener (this);
-    backgroundColour_.attach (PainterPolicy::repaint (this));
+    patchBackgroundColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
     initialize (tree_);
 }
@@ -33,7 +33,7 @@ RunView::~RunView()
 
 void RunView::paint (juce::Graphics& g)
 {
-    g.fillAll (backgroundColour_.get());
+    g.fillAll (patchBackgroundColour_.get());
 }
 
 void RunView::resized()
