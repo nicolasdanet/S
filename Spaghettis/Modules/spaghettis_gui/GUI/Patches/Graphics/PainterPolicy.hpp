@@ -63,7 +63,7 @@ private:
 
 private:
     juce::Rectangle<float> paintLabel (juce::Rectangle<float>, juce::Graphics&);
-    juce::Rectangle<float> getRequiredBoundsForLabel (juce::Rectangle<float>);
+    juce::Rectangle<float> getRequiredBoundsWithLabel (juce::Rectangle<float>);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -119,6 +119,7 @@ protected:
     core::Object object_;
     core::Cached<int> x_;
     core::Cached<int> y_;
+    float labelWidth_;
 
 public:
     static int pinHeight (float f) { return static_cast<int> (std::round (4 * f)); }

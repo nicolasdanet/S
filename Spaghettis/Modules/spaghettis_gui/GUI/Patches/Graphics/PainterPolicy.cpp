@@ -47,7 +47,7 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 {
     juce::Rectangle<float> t = getRequiredBoundsForObject();
     
-    if (owner_->isInsideRunView()) { t = getRequiredBoundsForLabel (t); }
+    if (owner_->isInsideRunView()) { t = getRequiredBoundsWithLabel (t); }
     
     return t.toNearestInt();
 }
@@ -58,12 +58,20 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 
 juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce::Graphics& g)
 {
-    return r;
+    return r.withTrimmedRight (labelWidth_);
 }
     
-juce::Rectangle<float> PainterPolicy::getRequiredBoundsForLabel (juce::Rectangle<float> r)
+juce::Rectangle<float> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangle<float> r)
 {
-    return r;
+    const juce::Font font (Spaghettis()->getLookAndFeel().getConsoleFont());
+    
+    if (owner_->hasLabel() && (r.getHeight() >= font.getHeight())) {
+        labelWidth_ = font.getStringWidthFloat (owner_->getLabel());
+    } else {
+        labelWidth_ = 0.0f;
+    }
+    
+    return r.withTrimmedRight (-labelWidth_);
 }
     
 // -----------------------------------------------------------------------------------------------------------
