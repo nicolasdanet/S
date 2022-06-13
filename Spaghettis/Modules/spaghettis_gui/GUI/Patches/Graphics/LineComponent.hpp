@@ -75,8 +75,8 @@ private:
     core::Line line_;
     juce::Component::SafePointer<ObjectComponent> source_;
     juce::Component::SafePointer<ObjectComponent> destination_;
-    core::Cached<juce::Colour> controlColour_;
-    core::Cached<juce::Colour> signalColour_;
+    core::Cached<juce::Colour> lineColour_;
+    core::Cached<juce::Colour> lineSignalColour_;
     juce::Path linePath_;
     juce::Path hitPath_;
     bool isSignal_;

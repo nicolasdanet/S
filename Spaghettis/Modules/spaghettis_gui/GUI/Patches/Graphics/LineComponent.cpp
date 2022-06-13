@@ -17,15 +17,15 @@ LineComponent::LineComponent (View* view, const core::Line& line) :
     line_ (line),
     source_ (view->getObject (line.getIdentifierOfSource())),
     destination_ (view->getObject (line.getIdentifierOfDestination())),
-    controlColour_ (Spaghettis()->getCachedColour (Tags::Line)),
-    signalColour_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
+    lineColour_ (Spaghettis()->getCachedColour (Tags::Line)),
+    lineSignalColour_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
     isSignal_ (false),
     isOver_ (false)
 {
     jassert (view);
     
-    controlColour_.attach (PainterPolicy::repaint (this));
-    signalColour_.attach (PainterPolicy::repaint (this));
+    lineColour_.attach (PainterPolicy::repaint (this));
+    lineSignalColour_.attach (PainterPolicy::repaint (this));
     
     update();
     
@@ -58,7 +58,7 @@ core::UniqueId LineComponent::getIdentifier() const
 
 void LineComponent::paint (juce::Graphics& g)
 {
-    const juce::Colour c (isSignal_ ? signalColour_.get() : controlColour_.get());
+    const juce::Colour c (isSignal_ ? lineSignalColour_.get() : lineColour_.get());
     
     g.setColour (isOver_ ? c.contrasting ((isSignal_ ? 0.50 : 0.35)) : c);
     
