@@ -119,6 +119,7 @@ protected:
     core::Object object_;
     core::Cached<int> x_;
     core::Cached<int> y_;
+    core::Cached<juce::Colour> patchBackgroundColour_;
     float labelWidth_;
 
 public:
