@@ -11,7 +11,6 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object) :
     owner_ (owner),
@@ -58,11 +57,18 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce::Graphics& g)
 {
-    return r.withTrimmedRight (labelWidth_);
+    const juce::Rectangle<float> t (r.removeFromRight (labelWidth_));
+    
+    g.setColour (boxBackgroundColour_.get());
+    g.fillRect (t);
+    g.setColour (boxTextColour_.get());
+    g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
+    g.drawText (owner_->getLabel(), t, juce::Justification::centredLeft, true);
+    
+    return r;
 }
     
 juce::Rectangle<float> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangle<float> r)
