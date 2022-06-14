@@ -15,8 +15,6 @@ namespace spaghettis {
 PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object) :
     owner_ (owner),
     object_ (object),
-    boxBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxBackground)),
-    boxTextColour_ (Spaghettis()->getCachedColour (Tags::BoxText)),
     x_ (fetchAttribute<int> (Tags::X)),
     y_ (fetchAttribute<int> (Tags::Y))
 {
@@ -27,8 +25,6 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
         
     };
     
-    boxBackgroundColour_.attach (repaint (owner_));
-    boxTextColour_.attach (repaint (owner_));
     x_.attach (f);
     y_.attach (f);
 }
@@ -62,11 +58,13 @@ juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce
 {
     const juce::Rectangle<float> t (r.removeFromRight (labelWidth_));
     
+    /*
     g.setColour (boxBackgroundColour_.get());
     g.fillRect (t);
     g.setColour (boxTextColour_.get());
     g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
     g.drawText (owner_->getLabel(), t, juce::Justification::centredLeft, true);
+    */
     
     return r;
 }

@@ -117,8 +117,6 @@ public:
 protected:
     ObjectComponent* owner_;
     core::Object object_;
-    core::Cached<juce::Colour> boxBackgroundColour_;
-    core::Cached<juce::Colour> boxTextColour_;
     core::Cached<int> x_;
     core::Cached<int> y_;
     float labelWidth_;

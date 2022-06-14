@@ -37,6 +37,8 @@ private:
     juce::Font getFont (float) const;
     
 private:
+    core::Cached<juce::Colour> boxBackgroundColour_;
+    core::Cached<juce::Colour> boxTextColour_;
     core::Cached<juce::String> buffer_;
     core::Cached<juce::String> class_;
 
