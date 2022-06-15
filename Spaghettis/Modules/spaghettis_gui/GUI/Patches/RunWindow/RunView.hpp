@@ -106,7 +106,7 @@ private:
     juce::ValueTree tree_;
     core::Cached<juce::Colour> patchBackgroundColour_;
     Table<core::Object, ObjectComponent> objects_;
-    GridLayout layout_;
+    RunLayout layout_;
         
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunView)

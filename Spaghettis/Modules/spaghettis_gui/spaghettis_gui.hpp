@@ -143,7 +143,7 @@
 #include "GUI/Patches/EditWindow/EditWindow.hpp"
 
 #include "GUI/Patches/RunWindow/RunFactory.hpp"
-#include "GUI/Patches/RunWindow/RunLayouts.hpp"
+#include "GUI/Patches/RunWindow/RunLayout.hpp"
 #include "GUI/Patches/RunWindow/RunView.hpp"
 #include "GUI/Patches/RunWindow/RunComponent.hpp"
 #include "GUI/Patches/RunWindow/RunWindow.hpp"

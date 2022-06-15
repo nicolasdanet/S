@@ -77,7 +77,7 @@
 #include "GUI/Patches/EditWindow/EditWindow.cpp"
 
 #include "GUI/Patches/RunWindow/RunFactory.cpp"
-#include "GUI/Patches/RunWindow/RunLayouts.cpp"
+#include "GUI/Patches/RunWindow/RunLayout.cpp"
 #include "GUI/Patches/RunWindow/RunView.cpp"
 #include "GUI/Patches/RunWindow/RunComponent.cpp"
 #include "GUI/Patches/RunWindow/RunWindow.cpp"
