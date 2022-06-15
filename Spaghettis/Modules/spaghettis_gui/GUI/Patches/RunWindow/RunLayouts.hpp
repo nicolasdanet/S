@@ -46,6 +46,10 @@ public:
     void add (ObjectComponent*, const juce::Rectangle<int>&);
     void remove (ObjectComponent*);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     void arrange (const juce::Rectangle<int>& bounds);
     

@@ -120,7 +120,7 @@ protected:
     core::Cached<int> x_;
     core::Cached<int> y_;
     core::Cached<juce::Colour> patchBackgroundColour_;
-    float labelWidth_;
+    float objectWidth_;
 
 public:
     static int pinHeight (float f) { return static_cast<int> (std::round (4 * f)); }

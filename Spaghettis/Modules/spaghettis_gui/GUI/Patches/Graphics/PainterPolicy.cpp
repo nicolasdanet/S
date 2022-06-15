@@ -79,7 +79,7 @@ juce::Font getLabelFont()
 
 juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce::Graphics& g)
 {
-    const juce::Rectangle<float> t (r.removeFromRight (labelWidth_));
+    const juce::Rectangle<float> t (r.removeFromLeft (objectWidth_));
     
     // g.setColour (patchBackgroundColour_.get());
     // g.fillRect (t);
@@ -87,20 +87,20 @@ juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce
     // g.setFont (getLabelFont());
     // g.drawText (owner_->getLabel(), t, juce::Justification::centredLeft, true);
     
-    return r;
+    return t;
 }
     
 juce::Rectangle<float> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangle<float> r)
 {
     const juce::Font font (getLabelFont());
     
+    objectWidth_ = r.getWidth();
+    
     if (owner_->hasLabel() && (r.getHeight() >= font.getHeight())) {
-        labelWidth_ = font.getStringWidthFloat (owner_->getLabel());
-    } else {
-        labelWidth_ = 0.0f;
+        r.setWidth (r.getWidth() + font.getStringWidthFloat (owner_->getLabel()));
     }
     
-    return r.withWidth (r.getWidth() + labelWidth_);
+    return r;
 }
 
 // -----------------------------------------------------------------------------------------------------------
