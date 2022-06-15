@@ -93,6 +93,20 @@ juce::Array<juce::Grid::TrackInfo> getColumns (const juce::Rectangle<int>& bound
     return getTracks (n, getColumnTrack());
 }
 
+juce::GridItem::Span getRowSpan (int h)
+{
+    const int hSpace = GridLayout::gap_ + GridLayout::height_;
+    
+    return juce::GridItem::Span (static_cast<int> (h / hSpace) + 1);
+}
+
+juce::GridItem::Span getColumnSpan (int w)
+{
+    const int wSpace = GridLayout::gap_ + GridLayout::width_;
+    
+    return juce::GridItem::Span (static_cast<int> (w / wSpace) + 1);
+}
+
 juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& viewed)
 {
     juce::Array<juce::GridItem> items;
@@ -101,14 +115,10 @@ juce::Array<juce::GridItem> getGridItems (const GridLayout::LayoutContainer& vie
     //
     const int w = bounds.getWidth();
     const int h = bounds.getHeight();
-    const int wSpace = GridLayout::gap_ + GridLayout::width_;
-    const int hSpace = GridLayout::gap_ + GridLayout::height_;
-    const juce::GridItem::Span wSpan (static_cast<int> (w / wSpace) + 1);
-    const juce::GridItem::Span hSpan (static_cast<int> (h / hSpace) + 1);
 
     o->setVisible (true);
     
-    items.add (juce::GridItem (o).withArea (hSpan, wSpan).withSize (w, h));
+    items.add (juce::GridItem (o).withArea (getRowSpan (h), getColumnSpan (w)).withSize (w, h));
     //
     }
     
@@ -129,7 +139,7 @@ void GridLayout::arrange (const juce::Rectangle<int>& bounds)
     juce::Grid grid;
     
     grid.justifyItems       = juce::Grid::JustifyItems::start;
-    grid.alignItems         = juce::Grid::AlignItems::center;
+    grid.alignItems         = juce::Grid::AlignItems::start;
     grid.justifyContent     = juce::Grid::JustifyContent::start;
     grid.alignContent       = juce::Grid::AlignContent::start;
     grid.autoFlow           = juce::Grid::AutoFlow::columnDense;

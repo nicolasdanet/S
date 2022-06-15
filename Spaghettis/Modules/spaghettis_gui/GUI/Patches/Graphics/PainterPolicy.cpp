@@ -81,11 +81,11 @@ juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce
 {
     const juce::Rectangle<float> t (r.removeFromRight (labelWidth_));
     
-    g.setColour (patchBackgroundColour_.get());
-    g.fillRect (t);
-    g.setColour (juce::Colours::orange);
-    g.setFont (getLabelFont());
-    g.drawText (owner_->getLabel(), t, juce::Justification::centredLeft, true);
+    // g.setColour (patchBackgroundColour_.get());
+    // g.fillRect (t);
+    // g.setColour (juce::Colours::white);
+    // g.setFont (getLabelFont());
+    // g.drawText (owner_->getLabel(), t, juce::Justification::centredLeft, true);
     
     return r;
 }
@@ -102,7 +102,7 @@ juce::Rectangle<float> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangl
     
     return r.withWidth (r.getWidth() + labelWidth_);
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
