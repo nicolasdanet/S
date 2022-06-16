@@ -95,16 +95,12 @@ juce::Array<juce::Grid::TrackInfo> getColumns (const juce::Rectangle<int>& bound
 
 juce::GridItem::Span getRowSpan (int h)
 {
-    const int hSpace = RunLayout::gap_ + RunLayout::height_;
-    
-    return juce::GridItem::Span (static_cast<int> (h / hSpace) + 1);
+    return juce::GridItem::Span (static_cast<int> (h / RunLayout::height_) + 1);
 }
 
 juce::GridItem::Span getColumnSpan (int w)
 {
-    const int wSpace = RunLayout::gap_ + RunLayout::width_;
-    
-    return juce::GridItem::Span (static_cast<int> (w / wSpace) + 1);
+    return juce::GridItem::Span (static_cast<int> (w / RunLayout::width_) + 1);
 }
 
 juce::Array<juce::GridItem> getGridItems (const RunLayout::LayoutContainer& viewed)
