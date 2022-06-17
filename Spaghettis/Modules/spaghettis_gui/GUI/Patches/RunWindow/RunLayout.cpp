@@ -95,14 +95,7 @@ juce::Array<juce::Grid::TrackInfo> getColumns (const juce::Rectangle<int>& bound
 
 int getRowSpan (int h)
 {
-    const int n = static_cast<int> (h / RunLayout::height_) + 1;
-    
-    /* Try to gain some empty space using the unnecessary gaps. */
-    
-    const int howManyGapPerSpan = static_cast<int> (RunLayout::height_ / RunLayout::gap_);
-    const int superfluousSpan   = static_cast<int> (n / howManyGapPerSpan);
-    
-    return n - superfluousSpan;
+    return static_cast<int> (h / RunLayout::height_) + 1;
 }
 
 int getColumnSpan (int w)
@@ -139,15 +132,26 @@ juce::Array<juce::GridItem> getGridItems (const RunLayout::LayoutContainer& view
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int RunLayout::snapWidthToFitColumns (int w)
+{
+    const int width = getColumnSpan (w) * RunLayout::width_;
+    
+    return juce::jmax (w, width - 1);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void RunLayout::arrange (const juce::Rectangle<int>& bounds)
 {
     juce::Grid grid;
     
     grid.justifyItems       = juce::Grid::JustifyItems::start;
-    grid.alignItems         = juce::Grid::AlignItems::center;
+    grid.alignItems         = juce::Grid::AlignItems::start;
     grid.justifyContent     = juce::Grid::JustifyContent::start;
     grid.alignContent       = juce::Grid::AlignContent::start;
-    grid.autoFlow           = juce::Grid::AutoFlow::columnDense;
+    grid.autoFlow           = juce::Grid::AutoFlow::column;
     grid.templateRows       = getRows (bounds);
     grid.templateColumns    = getColumns (bounds);
     grid.autoColumns        = getColumnTrack();
@@ -158,7 +162,7 @@ void RunLayout::arrange (const juce::Rectangle<int>& bounds)
     
     grid.performLayout (bounds);
 }
- 
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

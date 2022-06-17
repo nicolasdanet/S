@@ -97,7 +97,8 @@ juce::Rectangle<float> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangl
     objectWidth_ = r.getWidth();
     
     if (owner_->hasLabel() && (r.getHeight() >= font.getHeight())) {
-        r.setWidth (r.getWidth() + font.getStringWidthFloat (owner_->getLabel()));
+        const int w = objectWidth_ + font.getStringWidthFloat (owner_->getLabel());
+        r.setWidth (RunLayout::snapWidthToFitColumns (w));
     }
     
     return r;
