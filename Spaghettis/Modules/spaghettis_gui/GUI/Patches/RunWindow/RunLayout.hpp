@@ -68,7 +68,7 @@ private:
     
 public:
     static constexpr int gap_    = 2;
-    static constexpr int width_  = 60;
+    static constexpr int width_  = 120;
     static constexpr int height_ = 10;
     
 private:
