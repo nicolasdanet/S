@@ -93,14 +93,21 @@ juce::Array<juce::Grid::TrackInfo> getColumns (const juce::Rectangle<int>& bound
     return getTracks (n, getColumnTrack());
 }
 
-juce::GridItem::Span getRowSpan (int h)
+int getRowSpan (int h)
 {
-    return juce::GridItem::Span (static_cast<int> (h / RunLayout::height_) + 1);
+    const int n = static_cast<int> (h / RunLayout::height_) + 1;
+    
+    /* Try to gain some empty space using the unnecessary gaps. */
+    
+    const int howManyGapPerSpan = static_cast<int> (RunLayout::height_ / RunLayout::gap_);
+    const int superfluousSpan   = static_cast<int> (n / howManyGapPerSpan);
+    
+    return n - superfluousSpan;
 }
 
-juce::GridItem::Span getColumnSpan (int w)
+int getColumnSpan (int w)
 {
-    return juce::GridItem::Span (static_cast<int> (w / RunLayout::width_) + 1);
+    return static_cast<int> (w / RunLayout::width_) + 1;
 }
 
 juce::Array<juce::GridItem> getGridItems (const RunLayout::LayoutContainer& viewed)
@@ -111,10 +118,12 @@ juce::Array<juce::GridItem> getGridItems (const RunLayout::LayoutContainer& view
     //
     const int w = bounds.getWidth();
     const int h = bounds.getHeight();
-
+    const juce::GridItem::Span rSpan (getRowSpan (h));
+    const juce::GridItem::Span cSpan (getColumnSpan (w));
+    
     o->setVisible (true);
     
-    items.add (juce::GridItem (o).withArea (getRowSpan (h), getColumnSpan (w)).withSize (w, h));
+    items.add (juce::GridItem (o).withArea (rSpan, cSpan).withSize (w, h));
     //
     }
     
@@ -135,7 +144,7 @@ void RunLayout::arrange (const juce::Rectangle<int>& bounds)
     juce::Grid grid;
     
     grid.justifyItems       = juce::Grid::JustifyItems::start;
-    grid.alignItems         = juce::Grid::AlignItems::start;
+    grid.alignItems         = juce::Grid::AlignItems::center;
     grid.justifyContent     = juce::Grid::JustifyContent::start;
     grid.alignContent       = juce::Grid::AlignContent::start;
     grid.autoFlow           = juce::Grid::AutoFlow::columnDense;
