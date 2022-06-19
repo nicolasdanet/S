@@ -97,6 +97,16 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set text color of objects"),
         Colours::getPalette()->textBox);
     
+    colors.addParameter (Tags::LabelBackground,
+        NEEDS_TRANS ("Label Background"),
+        NEEDS_TRANS ("Set background color of labels"),
+        Colours::getPalette()->backgroundBox);
+        
+    colors.addParameter (Tags::LabelText,
+        NEEDS_TRANS ("Label Text"),
+        NEEDS_TRANS ("Set text color of labels"),
+        Colours::getPalette()->textLabel);
+        
     colors.addParameter (Tags::Line,
         NEEDS_TRANS ("Line"),
         NEEDS_TRANS ("Set color of connections"),
