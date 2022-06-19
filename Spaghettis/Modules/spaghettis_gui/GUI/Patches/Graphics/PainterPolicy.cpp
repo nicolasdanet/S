@@ -17,6 +17,7 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
     object_ (object),
     x_ (fetchAttribute<int> (Tags::X)),
     y_ (fetchAttribute<int> (Tags::Y)),
+    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
     labelBackgroundColour_ (Spaghettis()->getCachedColour (Tags::LabelBackground)),
     labelTextColour_ (Spaghettis()->getCachedColour (Tags::LabelText))
 {
@@ -30,6 +31,7 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
     x_.attach (f);
     y_.attach (f);
     
+    patchBackgroundColour_.attach (repaint (owner_));
     labelBackgroundColour_.attach (repaint (owner_));
     labelTextColour_.attach (repaint (owner_));
 }
@@ -83,11 +85,13 @@ juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce
 {
     const juce::Rectangle<float> t (r.removeFromLeft (objectWidth_));
     
-    g.setColour (labelBackgroundColour_.get());
+    g.setColour (patchBackgroundColour_.get());
     g.fillRect (r);
+    g.setColour (labelBackgroundColour_.get());
+    g.fillRect (r.withTrimmedLeft (2));
     g.setColour (labelTextColour_.get());
     g.setFont (getLabelFont());
-    g.drawText (owner_->getLabel(), r, juce::Justification::bottomRight, true);
+    g.drawText (owner_->getLabel(), r.translated (-1.0f, -1.0f), juce::Justification::bottomRight, true);
     
     return t;
 }
