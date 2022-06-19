@@ -67,9 +67,10 @@ private:
     LayoutContainer viewed_;
     
 public:
-    static constexpr int gap_    = 2;
     static constexpr int width_  = 120;
+    static constexpr int wGap_   = 8;
     static constexpr int height_ = 10;
+    static constexpr int hGap_   = 2;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunLayout)

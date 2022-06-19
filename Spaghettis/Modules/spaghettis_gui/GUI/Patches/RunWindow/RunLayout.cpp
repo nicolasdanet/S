@@ -81,14 +81,14 @@ juce::Array<juce::Grid::TrackInfo> getTracks (int n, const juce::Grid::TrackInfo
 
 juce::Array<juce::Grid::TrackInfo> getRows (const juce::Rectangle<int>& bounds)
 {
-    const int n = bounds.getHeight() / (RunLayout::gap_ + RunLayout::height_);
+    const int n = bounds.getHeight() / (RunLayout::hGap_ + RunLayout::height_);
     
     return getTracks (n, getRowTrack());
 }
 
 juce::Array<juce::Grid::TrackInfo> getColumns (const juce::Rectangle<int>& bounds)
 {
-    const int n = bounds.getWidth() / (RunLayout::gap_ + RunLayout::width_);
+    const int n = bounds.getWidth() / (RunLayout::wGap_ + RunLayout::width_);
     
     return getTracks (n, getColumnTrack());
 }
@@ -156,8 +156,8 @@ void RunLayout::arrange (const juce::Rectangle<int>& bounds)
     grid.templateColumns    = getColumns (bounds);
     grid.autoColumns        = getColumnTrack();
     grid.autoRows           = getRowTrack();
-    grid.rowGap             = juce::Grid::Px (gap_);
-    grid.columnGap          = juce::Grid::Px (gap_);
+    grid.rowGap             = juce::Grid::Px (hGap_);
+    grid.columnGap          = juce::Grid::Px (wGap_);
     grid.items              = getGridItems (viewed_);
     
     grid.performLayout (bounds);
