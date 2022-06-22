@@ -105,7 +105,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tags::LabelText,
         NEEDS_TRANS ("Label Text"),
         NEEDS_TRANS ("Set text color of labels"),
-        Colours::getPalette()->textLabel.withAlpha (0.5f));
+        Colours::getPalette()->textLabel);
         
     colors.addParameter (Tags::Line,
         NEEDS_TRANS ("Line"),
