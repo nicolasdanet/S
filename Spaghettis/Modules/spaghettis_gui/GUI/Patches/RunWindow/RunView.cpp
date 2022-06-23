@@ -14,10 +14,12 @@ namespace spaghettis {
 
 RunView::RunView (const juce::ValueTree& tree) :
     tree_ (tree),
-    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground))
+    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
+    patchTextColour_ (Spaghettis()->getCachedColour (Tags::PatchText))
 {
     tree_.addListener (this);
     patchBackgroundColour_.attach (PainterPolicy::repaint (this));
+    patchTextColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
     initialize (tree_);
 }
@@ -34,6 +36,16 @@ RunView::~RunView()
 void RunView::paint (juce::Graphics& g)
 {
     g.fillAll (patchBackgroundColour_.get());
+    
+    if (layout_.isEmpty()) {
+    //
+    juce::String text (NEEDS_TRANS ("No widget to show!"));
+    
+    g.setColour (patchTextColour_.get());
+    g.setFont (Spaghettis()->getLookAndFeel().getObjectsFont (1.5f));
+    g.drawText (text, getLocalBounds(), juce::Justification::centred, true);
+    //
+    }
 }
 
 void RunView::resized()
@@ -70,7 +82,7 @@ void RunView::hide (ObjectComponent* o)
 
 void RunView::update()
 {
-    layout_.arrange (getLocalBounds().reduced (10));
+    repaint(); layout_.arrange (getLocalBounds().reduced (10));
 }
 
 // -----------------------------------------------------------------------------------------------------------

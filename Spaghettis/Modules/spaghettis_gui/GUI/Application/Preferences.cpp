@@ -87,6 +87,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set background color of patch"),
         Colours::getPalette()->background);
 
+    colors.addParameter (Tags::PatchText,
+        NEEDS_TRANS ("Patch Text"),
+        NEEDS_TRANS ("Set text color of patch"),
+        Colours::getPalette()->backgroundPopup);
+        
     colors.addParameter (Tags::BoxBackground,
         NEEDS_TRANS ("Box Background"),
         NEEDS_TRANS ("Set background color of objects"),
