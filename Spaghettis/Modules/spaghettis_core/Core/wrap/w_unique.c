@@ -177,3 +177,37 @@ PD_LOCAL t_error unique_objectLineDisconnect (t_id u, int indexOfOutlet, t_id v,
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_GUARD t_error unique_patchClose (t_id u)
+{
+    t_object *o = instance_registerGetObject (u);
+    
+    if (object_isCanvas (o)) {
+    //
+    t_glist *g = cast_glist (o); jassert (glist_isRoot (g));
+
+    glist_close (g); return PD_ERROR_NONE;
+    //
+    }
+    
+    return PD_ERROR;
+}
+
+PD_GUARD t_error unique_patchSave (t_id u)
+{
+    t_object *o = instance_registerGetObject (u);
+    
+    if (object_isCanvas (o)) {
+    //
+    t_glist *g = cast_glist (o); jassert (glist_isRoot (g));
+
+    glist_save (g); return PD_ERROR_NONE;
+    //
+    }
+    
+    return PD_ERROR;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
