@@ -179,32 +179,42 @@ PD_LOCAL t_error unique_objectLineDisconnect (t_id u, int indexOfOutlet, t_id v,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUARD t_error unique_patchClose (t_id u)
+static t_glist *unique_getPatch (t_id u)
 {
     t_object *o = instance_registerGetObject (u);
     
-    if (object_isCanvas (o)) {
-    //
-    t_glist *g = cast_glist (o); jassert (glist_isRoot (g));
+    if (object_isCanvas (o)) { return cast_glist (o); }
+    
+    return NULL;
+}
 
-    glist_close (g); return PD_ERROR_NONE;
-    //
-    }
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_GUARD t_error unique_patchClose (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g && glist_isRoot (g)) { glist_close (g); return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }
 
 PD_GUARD t_error unique_patchSave (t_id u)
 {
-    t_object *o = instance_registerGetObject (u);
+    t_glist *g = unique_getPatch (u);
     
-    if (object_isCanvas (o)) {
-    //
-    t_glist *g = cast_glist (o); jassert (glist_isRoot (g));
+    if (g && glist_isRoot (g)) { glist_save (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
 
-    glist_save (g); return PD_ERROR_NONE;
-    //
-    }
+PD_GUARD t_error unique_patchSetEditWindow (t_id u, t_rectangle *r)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_setEditWindow (g, r); return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }

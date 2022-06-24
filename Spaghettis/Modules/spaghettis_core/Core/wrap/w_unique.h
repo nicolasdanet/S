@@ -41,6 +41,8 @@ PD_LOCAL t_error    unique_objectLineDisconnect (t_id u, int m, t_id v, int n);
 PD_GUARD t_error    unique_patchClose           (t_id u);
 PD_GUARD t_error    unique_patchSave            (t_id u);
 
+PD_GUARD t_error    unique_patchSetEditWindow   (t_id u, t_rectangle *r);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

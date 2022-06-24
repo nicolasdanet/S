@@ -57,6 +57,10 @@ public:
     void moved() override;
     void resized() override;
 
+private:
+    virtual void hasBeenResized();
+    
+protected:
     void makeVisible (juce::Rectangle<int> window = juce::Rectangle<int>());
 
 // -----------------------------------------------------------------------------------------------------------
@@ -67,7 +71,7 @@ public:
     void requireMinimumHeight (int h);
 
 private:
-    void setMinimumHeight (int h);
+    void applyMinimumHeight (int h);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

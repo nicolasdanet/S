@@ -29,6 +29,7 @@ PD_LOCAL void inputs_setAudioDevices    (const std::vector<AudioDevice>&, const 
 PD_LOCAL void inputs_setMidiDevices     (const std::vector<MidiDevice>&, const std::vector<MidiDevice>&);
 PD_LOCAL void inputs_closePatch         (core::UniqueId);
 PD_LOCAL void inputs_savePatch          (core::UniqueId);
+PD_LOCAL void inputs_setEditView        (core::UniqueId, juce::Rectangle<int>);
 
 #endif
 

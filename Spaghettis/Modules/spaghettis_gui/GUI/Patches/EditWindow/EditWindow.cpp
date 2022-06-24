@@ -12,6 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditWindow::hasBeenResized()
+{
+    DBG ("?");
+    
+    // Spaghettis()->handle (Inputs::setEditView (owner_.getIdentifier()));
+}
+    
 juce::Rectangle<int> EditWindow::getEditWindowPosition (const juce::ValueTree& t)
 {
     return core::Object (t).getAttribute<juce::Rectangle<int>> (Tags::EditView);

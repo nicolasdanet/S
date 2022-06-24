@@ -33,6 +33,13 @@ public:
 // MARK: -
 
 private:
+    void hasBeenResized() override;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
     static juce::Rectangle<int> getEditWindowPosition (const juce::ValueTree&);
     
 private:

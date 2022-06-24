@@ -48,7 +48,7 @@ public:
         owner_.closeWindowButtonPressed (this);
     }
 
-private:
+protected:
     Patch& owner_;
 
 private:

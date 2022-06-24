@@ -25,7 +25,7 @@ struct _glist {
     t_symbol        *gl_name;
     t_buffer        *gl_sorterObjects;
     t_buffer        *gl_sorterIndexes;
-    t_rectangle     gl_window;
+    t_rectangle     gl_editWindow;
     int             gl_undoEnabled;
     int             gl_isDirty;
     int             gl_isFrozen;
@@ -69,7 +69,7 @@ PD_LOCAL t_symbol           *glist_getUnexpandedName    (t_glist *g);
 PD_LOCAL t_environment      *glist_getEnvironment       (t_glist *g);
 PD_LOCAL t_undomanager      *glist_getUndoManager       (t_glist *g);
 PD_LOCAL t_abstractions     *glist_getAbstractions      (t_glist *g);
-PD_LOCAL t_rectangle        *glist_getWindow            (t_glist *g);
+PD_LOCAL t_rectangle        *glist_getEditWindow        (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -78,7 +78,7 @@ PD_LOCAL t_rectangle        *glist_getWindow            (t_glist *g);
 PD_LOCAL void   glist_setName                           (t_glist *g, t_symbol *name);
 PD_LOCAL void   glist_setDirty                          (t_glist *g, int n);
 PD_LOCAL void   glist_setFrozen                         (t_glist *g, int n);
-PD_LOCAL void   glist_setWindow                         (t_glist *g, t_rectangle *r);
+PD_LOCAL void   glist_setEditWindow                     (t_glist *g, t_rectangle *r);
 PD_LOCAL void   glist_setOpened                         (t_glist *g, int n);
 
 // -----------------------------------------------------------------------------------------------------------

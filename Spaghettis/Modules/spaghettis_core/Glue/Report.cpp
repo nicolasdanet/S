@@ -48,12 +48,12 @@ juce::File getPatchFile (t_glist* glist)
     return juce::File (directory).getChildFile (filename);
 }
 
-juce::Rectangle<int> getWindow (t_glist* glist)
+juce::Rectangle<int> getEditWindow (t_glist* glist)
 {
-    const int x = rectangle_getTopLeftX (glist_getWindow (glist));
-    const int y = rectangle_getTopLeftY (glist_getWindow (glist));
-    const int w = rectangle_getWidth (glist_getWindow (glist));
-    const int h = rectangle_getHeight (glist_getWindow (glist));
+    const int x = rectangle_getTopLeftX (glist_getEditWindow (glist));
+    const int y = rectangle_getTopLeftY (glist_getEditWindow (glist));
+    const int w = rectangle_getWidth (glist_getEditWindow (glist));
+    const int h = rectangle_getHeight (glist_getEditWindow (glist));
 
     return juce::Rectangle<int> (x, y, w, h);
 }
@@ -148,7 +148,7 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
     group.addParameter (Tags::EditView,
         NEEDS_TRANS ("Edit View"),
         NEEDS_TRANS ("Edit window geometry"),
-        getWindow (g),
+        getEditWindow (g),
         delegate);
     
     if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o); }
@@ -157,7 +157,7 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
     group.addParameter (Tags::RunView,
         NEEDS_TRANS ("Run View"),
         NEEDS_TRANS ("Run window geometry"),
-        getWindow (g),
+        getEditWindow (g),
         delegate);
     
     group.addParameter (Tags::Path,

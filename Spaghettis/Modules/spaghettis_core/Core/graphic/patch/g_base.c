@@ -67,9 +67,9 @@ PD_LOCAL t_abstractions *glist_getAbstractions (t_glist *glist)
     return glist_getRoot (glist)->gl_abstractions;
 }
 
-PD_LOCAL t_rectangle *glist_getWindow (t_glist *g)
+PD_LOCAL t_rectangle *glist_getEditWindow (t_glist *g)
 {
-    return &g->gl_window;
+    return &g->gl_editWindow;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -111,9 +111,9 @@ PD_LOCAL void glist_setFrozen (t_glist *glist, int n)
     glist_getTop (glist)->gl_isFrozen = (n != 0);
 }
 
-PD_LOCAL void glist_setWindow (t_glist *glist, t_rectangle *r)
+PD_LOCAL void glist_setEditWindow (t_glist *glist, t_rectangle *r)
 {
-    rectangle_setCopy (glist_getWindow (glist), r);
+    rectangle_setCopy (glist_getEditWindow (glist), r);
 }
 
 PD_LOCAL void glist_setOpened (t_glist *g, int n)

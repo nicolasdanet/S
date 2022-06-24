@@ -81,7 +81,7 @@ void BaseWindow::timerCallback()
     //
     BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());
         
-    if (!c || c->tryGrabFocus()) { setMinimumHeight (h); updateMenuBar(); stopTimer(); }
+    if (!c || c->tryGrabFocus()) { applyMinimumHeight (h); updateMenuBar(); stopTimer(); }
     //
     }
     //
@@ -109,9 +109,21 @@ void BaseWindow::moved()
 
 void BaseWindow::resized()
 {
-    juce::ResizableWindow::resized(); ensureAlertWindowsAlwaysOnTop();
+    juce::ResizableWindow::resized(); ensureAlertWindowsAlwaysOnTop(); hasBeenResized();
 }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void BaseWindow::hasBeenResized()
+{
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void BaseWindow::makeVisible (juce::Rectangle<int> window)
 {
     if (!window.isEmpty()) { setBounds (window); }
@@ -139,7 +151,7 @@ void BaseWindow::makeVisible (juce::Rectangle<int> window)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseWindow::setMinimumHeight (int h)
+void BaseWindow::applyMinimumHeight (int h)
 {
     if (mimimumHeight_) {
     //

@@ -115,6 +115,12 @@ PD_LOCAL void inputs_savePatch (core::UniqueId i)
     if (unique_patchSave (i)  != PD_ERROR_NONE) { jassertfalse; }
 }
 
+PD_LOCAL void inputs_setEditView (core::UniqueId i, juce::Rectangle<int> r)
+{
+    DBG (r.toString());
+    // unique_patchSetEditWindow
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
