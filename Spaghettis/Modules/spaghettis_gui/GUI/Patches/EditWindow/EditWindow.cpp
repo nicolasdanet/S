@@ -12,11 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditWindow::hasBeenResized()
+void EditWindow::hasBeenChanged()
 {
-    DBG ("?");
-    
-    // Spaghettis()->handle (Inputs::setEditView (owner_.getIdentifier()));
+    Spaghettis()->handle (Inputs::setEditView (owner_.getIdentifier(), getBounds()));
 }
     
 juce::Rectangle<int> EditWindow::getEditWindowPosition (const juce::ValueTree& t)

@@ -118,7 +118,7 @@ PD_LOCAL void inputs_savePatch (core::UniqueId i)
 PD_LOCAL void inputs_setEditView (core::UniqueId i, juce::Rectangle<int> r)
 {
     DBG (r.toString());
-    // unique_patchSetEditWindow
+    // unique_patchSetEditView
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -23,10 +23,10 @@ static void glist_serializeHeader (t_glist *glist, t_buffer *b)
 {
     buffer_appendSymbol (b, sym___hash__N);
     buffer_appendSymbol (b, sym_canvas);
-    buffer_appendFloat (b,  rectangle_getTopLeftX (glist_getEditWindow (glist)));
-    buffer_appendFloat (b,  rectangle_getTopLeftY (glist_getEditWindow (glist)));
-    buffer_appendFloat (b,  rectangle_getWidth (glist_getEditWindow (glist)));
-    buffer_appendFloat (b,  rectangle_getHeight (glist_getEditWindow (glist)));
+    buffer_appendFloat (b,  rectangle_getTopLeftX (glist_getEditView (glist)));
+    buffer_appendFloat (b,  rectangle_getTopLeftY (glist_getEditView (glist)));
+    buffer_appendFloat (b,  rectangle_getWidth (glist_getEditView (glist)));
+    buffer_appendFloat (b,  rectangle_getHeight (glist_getEditView (glist)));
     
     // TODO: Remove dummy font size.
     

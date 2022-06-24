@@ -104,19 +104,19 @@ void BaseWindow::activeWindowStatusChanged()
 
 void BaseWindow::moved()
 {
-    juce::ResizableWindow::moved(); ensureAlertWindowsAlwaysOnTop();
+    juce::ResizableWindow::moved();   ensureAlertWindowsAlwaysOnTop(); hasBeenChanged();
 }
 
 void BaseWindow::resized()
 {
-    juce::ResizableWindow::resized(); ensureAlertWindowsAlwaysOnTop(); hasBeenResized();
+    juce::ResizableWindow::resized(); ensureAlertWindowsAlwaysOnTop(); hasBeenChanged();
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseWindow::hasBeenResized()
+void BaseWindow::hasBeenChanged()
 {
 }
 

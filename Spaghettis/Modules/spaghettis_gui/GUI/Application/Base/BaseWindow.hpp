@@ -58,7 +58,7 @@ public:
     void resized() override;
 
 private:
-    virtual void hasBeenResized();
+    virtual void hasBeenChanged();
     
 protected:
     void makeVisible (juce::Rectangle<int> window = juce::Rectangle<int>());
