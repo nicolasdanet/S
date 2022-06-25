@@ -111,9 +111,13 @@ PD_LOCAL void glist_setFrozen (t_glist *glist, int n)
     glist_getTop (glist)->gl_isFrozen = (n != 0);
 }
 
-PD_LOCAL void glist_setEditView (t_glist *glist, t_rectangle *r)
+PD_LOCAL void glist_setEditView (t_glist *glist, t_rectangle *r, int notify)
 {
     rectangle_setCopy (glist_getEditView (glist), r);
+    
+    if (notify) {
+        outputs_objectUpdateAttributes (cast_object (glist), glist_getParent (glist));
+    }
 }
 
 PD_LOCAL void glist_setOpened (t_glist *g, int n)

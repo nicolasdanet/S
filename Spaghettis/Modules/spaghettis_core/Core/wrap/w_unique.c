@@ -214,7 +214,7 @@ PD_GUARD t_error unique_patchSetEditView (t_id u, t_rectangle *r)
 {
     t_glist *g = unique_getPatch (u);
     
-    if (g) { glist_setEditView (g, r); return PD_ERROR_NONE; }
+    if (g) { glist_setEditView (g, r, 1); return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }

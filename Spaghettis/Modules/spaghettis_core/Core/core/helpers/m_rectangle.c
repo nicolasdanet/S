@@ -36,6 +36,19 @@ PD_LOCAL void rectangle_setCopy (t_rectangle *r, t_rectangle *toCopy)
     r->rect_isNothing    = toCopy->rect_isNothing;
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void rectangle_setCopy (t_rectangle *r, const juce::Rectangle<int>& toCopy)
+{
+    rectangle_set (r,
+        toCopy.getTopLeft().getX(),
+        toCopy.getTopLeft().getY(),
+        toCopy.getBottomRight().getX(),
+        toCopy.getBottomRight().getY());
+}
+
+#endif
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

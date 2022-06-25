@@ -45,7 +45,7 @@ static t_glist *glist_new (t_glist *owner, t_symbol *name, t_rectangle *window)
     x->gl_sorterObjects = buffer_new();
     x->gl_sorterIndexes = buffer_new();
     
-    if (window) { glist_setEditView (x, window); }
+    if (window) { glist_setEditView (x, window, 0); }
     
     if (glist_isRoot (x)) { x->gl_abstractions = abstractions_new(); }
 

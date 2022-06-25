@@ -78,7 +78,7 @@ PD_LOCAL t_rectangle        *glist_getEditView          (t_glist *g);
 PD_LOCAL void   glist_setName                           (t_glist *g, t_symbol *name);
 PD_LOCAL void   glist_setDirty                          (t_glist *g, int n);
 PD_LOCAL void   glist_setFrozen                         (t_glist *g, int n);
-PD_LOCAL void   glist_setEditView                       (t_glist *g, t_rectangle *r);
+PD_LOCAL void   glist_setEditView                       (t_glist *g, t_rectangle *r, int notify);
 PD_LOCAL void   glist_setOpened                         (t_glist *g, int n);
 
 // -----------------------------------------------------------------------------------------------------------
