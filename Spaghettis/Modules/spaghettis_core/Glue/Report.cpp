@@ -292,7 +292,7 @@ Report Report::line (const UniquePath& u, struct _object* src, int m, struct _ob
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String Report::asString() const
+juce::String Report::debug() const
 {
     return Data::debug (*this);
 }

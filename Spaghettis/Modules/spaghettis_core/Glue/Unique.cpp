@@ -72,7 +72,7 @@ UniquePath::UniquePath (UniqueId u, struct _glist* owner) : u_ (u), r_ (0)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String UniquePath::asString() const
+juce::String UniquePath::debug() const
 {
     juce::StringArray s;
     
