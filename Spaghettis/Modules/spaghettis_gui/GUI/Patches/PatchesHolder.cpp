@@ -93,10 +93,7 @@ void PatchesHolder::add (const core::UniquePath& u, const core::Report& v)
 
 void PatchesHolder::change (const core::UniquePath& u, const core::Report& v)
 {
-    if (u.isRoot()) { DBG (v.debug()); }
-    else {
-        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->change (u, v); });
-    }
+    perform (u, [&] (const std::shared_ptr<Patch>& p) { p->change (u, v); });
 }
 
 void PatchesHolder::remove (const core::UniquePath& u)
