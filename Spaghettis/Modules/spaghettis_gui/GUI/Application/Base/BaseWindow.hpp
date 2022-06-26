@@ -43,16 +43,18 @@ public:
 // MARK: -
 
 public:
+    bool isFullyInitialized() const;
+    
+private:
     void timerCallback() override;
 
-private:
     void timerStart();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     void activeWindowStatusChanged() override;
     void moved() override;
     void resized() override;
@@ -89,6 +91,7 @@ private:
     juce::String keyName_;
     int timerCount_;
     int mimimumHeight_;
+    bool initialized_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaseWindow)

@@ -14,7 +14,9 @@ namespace spaghettis {
 
 void EditWindow::hasBeenChanged()
 {
-    Spaghettis()->handle (Inputs::setEditView (owner_.getIdentifier(), getBounds()));
+    if (isFullyInitialized()) {
+        Spaghettis()->handle (Inputs::setEditView (owner_.getIdentifier(), getBounds()));
+    }
 }
     
 juce::Rectangle<int> EditWindow::getEditWindowPosition (const juce::ValueTree& t)

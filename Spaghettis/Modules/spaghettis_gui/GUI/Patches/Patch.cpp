@@ -69,7 +69,7 @@ void Patch::change (const core::UniquePath& u, const core::Report& v)
     
     if (child.isValid()) { core::Object (child).copyFrom (v); }
     else {
-        jassert (u.isRoot()); DBG (v.debug());
+        jassert (u.isRoot()); core::Object (parent).copyFrom (v);
     }
 }
 

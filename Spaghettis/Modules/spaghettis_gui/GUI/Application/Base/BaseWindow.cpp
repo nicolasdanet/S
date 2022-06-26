@@ -19,7 +19,8 @@ BaseWindow::BaseWindow (const juce::String& name, const juce::String& s) :
         false),
     keyName_ (s),
     timerCount_ (0),
-    mimimumHeight_ (0)
+    mimimumHeight_ (0),
+    initialized_ (false)
 {
     setUsingNativeTitleBar (true);
     setResizable (true, true);
@@ -66,6 +67,11 @@ void BaseWindow::setDirtyFlag (bool isDirty) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool BaseWindow::isFullyInitialized() const
+{
+    return initialized_;
+}
+
 void BaseWindow::timerCallback()
 {
     const int timerAttempts = 10;
@@ -81,7 +87,9 @@ void BaseWindow::timerCallback()
     //
     BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());
         
-    if (!c || c->tryGrabFocus()) { applyMinimumHeight (h); updateMenuBar(); stopTimer(); }
+    if (!c || c->tryGrabFocus()) {
+        applyMinimumHeight (h); updateMenuBar(); stopTimer(); initialized_ = true;
+    }
     //
     }
     //
