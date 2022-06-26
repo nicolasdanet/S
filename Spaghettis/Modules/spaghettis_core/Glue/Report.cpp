@@ -50,12 +50,26 @@ juce::File getPatchFile (t_glist* glist)
 
 juce::Rectangle<int> getEditView (t_glist* glist)
 {
-    const int x = rectangle_getTopLeftX (glist_getEditView (glist));
-    const int y = rectangle_getTopLeftY (glist_getEditView (glist));
-    const int w = rectangle_getWidth (glist_getEditView (glist));
-    const int h = rectangle_getHeight (glist_getEditView (glist));
+    t_rectangle* view = glist_getEditView (glist);
+    
+    const int x = rectangle_getTopLeftX (view);
+    const int y = rectangle_getTopLeftY (view);
+    const int w = rectangle_getWidth (view);
+    const int h = rectangle_getHeight (view);
 
     return juce::Rectangle<int> (x, y, w, h);
+}
+
+juce::Rectangle<int> getRunView (t_glist* glist)
+{
+    t_rectangle* view = glist_getRunView (glist);
+    
+    if (rectangle_isNothing (view)) { DBG ("!"); }
+    else {
+        DBG ("?");
+    }
+    
+    return getEditView (glist);
 }
 
 /* Subpatches are created in two steps. */
@@ -157,7 +171,7 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
     group.addParameter (Tags::RunView,
         NEEDS_TRANS ("Run View"),
         NEEDS_TRANS ("Run window geometry"),
-        getEditView (g),
+        getRunView (g),
         delegate);
     
     group.addParameter (Tags::Path,

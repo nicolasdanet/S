@@ -26,9 +26,10 @@ struct _glist {
     t_buffer        *gl_sorterObjects;
     t_buffer        *gl_sorterIndexes;
     t_rectangle     gl_editView;
+    t_rectangle     gl_runView;                 /* Root. */
     int             gl_undoEnabled;
-    int             gl_isDirty;                 /* Top. */
-    int             gl_isFrozen;                /* Top. */
+    int             gl_isDirty;                 /* Top.  */
+    int             gl_isFrozen;                /* Top.  */
     int             gl_isLoading;
     int             gl_isDeleting;
     int             gl_isCloseBanged;
@@ -79,6 +80,7 @@ PD_LOCAL void   glist_setName                           (t_glist *g, t_symbol *n
 PD_LOCAL void   glist_setDirty                          (t_glist *g, int n);
 PD_LOCAL void   glist_setFrozen                         (t_glist *g, int n);
 PD_LOCAL void   glist_setEditView                       (t_glist *g, t_rectangle *r, int notify);
+PD_LOCAL void   glist_setRunView                        (t_glist *g, t_rectangle *r, int notify);
 PD_LOCAL void   glist_setOpened                         (t_glist *g, int n);
 
 // -----------------------------------------------------------------------------------------------------------

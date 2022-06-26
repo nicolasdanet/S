@@ -42,6 +42,7 @@ PD_GUARD t_error    unique_patchClose           (t_id u);
 PD_GUARD t_error    unique_patchSave            (t_id u);
 
 PD_GUARD t_error    unique_patchSetEditView     (t_id u, t_rectangle *r);
+PD_GUARD t_error    unique_patchSetRunView      (t_id u, t_rectangle *r);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

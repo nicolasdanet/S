@@ -67,9 +67,14 @@ PD_LOCAL t_abstractions *glist_getAbstractions (t_glist *glist)
     return glist_getRoot (glist)->gl_abstractions;
 }
 
-PD_LOCAL t_rectangle *glist_getEditView (t_glist *g)
+PD_LOCAL t_rectangle *glist_getEditView (t_glist *glist)
 {
-    return &g->gl_editView;
+    return &glist->gl_editView;
+}
+
+PD_LOCAL t_rectangle *glist_getRunView (t_glist *glist)
+{
+    return &glist_getRoot (glist)->gl_runView;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,9 +120,14 @@ PD_LOCAL void glist_setEditView (t_glist *glist, t_rectangle *r, int notify)
 {
     rectangle_setCopy (glist_getEditView (glist), r);
     
-    if (notify) {
-        outputs_objectUpdateAttributes (cast_object (glist), glist_getParent (glist));
-    }
+    if (notify) { outputs_objectUpdateAttributes (cast_object (glist), glist_getParent (glist)); }
+}
+
+PD_LOCAL void glist_setRunView (t_glist *glist, t_rectangle *r, int notify)
+{
+    rectangle_setCopy (glist_getRunView (glist), r);
+    
+    if (notify) { outputs_objectUpdateAttributes (cast_object (glist_getRoot (glist)), NULL); }
 }
 
 PD_LOCAL void glist_setOpened (t_glist *g, int n)
