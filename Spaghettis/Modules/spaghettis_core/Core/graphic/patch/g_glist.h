@@ -19,16 +19,16 @@ struct _glist {
     t_object        *gl_graphics;
     t_glist         *gl_parent;
     t_glist         *gl_next;
-    t_abstractions  *gl_abstractions;
-    t_environment   *gl_environment;
+    t_abstractions  *gl_abstractions;           /* Root. */
+    t_environment   *gl_environment;            /* Top.  */
     t_undomanager   *gl_undomanager;
     t_symbol        *gl_name;
     t_buffer        *gl_sorterObjects;
     t_buffer        *gl_sorterIndexes;
     t_rectangle     gl_editView;
     int             gl_undoEnabled;
-    int             gl_isDirty;
-    int             gl_isFrozen;
+    int             gl_isDirty;                 /* Top. */
+    int             gl_isFrozen;                /* Top. */
     int             gl_isLoading;
     int             gl_isDeleting;
     int             gl_isCloseBanged;

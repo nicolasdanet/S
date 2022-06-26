@@ -17,7 +17,7 @@
 /* An abstraction has a parent and an environment. */
 /* A subpatch has a parent also but no environment. */
 /* A top patch is either a root or an abstraction. */
-/* Dirty bit is always owned by the top patch. */
+/* Dirty and frozen bits are always owned by the top patch. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
