@@ -12,6 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void RunWindow::hasBeenChanged()
+{
+    if (isFullyInitialized()) {
+        Spaghettis()->handle (Inputs::setRunView (owner_.getIdentifier(), getBounds()));
+    }
+}
+
 juce::Rectangle<int> RunWindow::getRunWindowPosition (const juce::ValueTree& t)
 {
     return core::Object (t).getAttribute<juce::Rectangle<int>> (Tags::RunView);

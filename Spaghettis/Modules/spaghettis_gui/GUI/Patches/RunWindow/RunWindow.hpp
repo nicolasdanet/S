@@ -33,6 +33,13 @@ public:
 // MARK: -
 
 private:
+    void hasBeenChanged() override;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
     static juce::Rectangle<int> getRunWindowPosition (const juce::ValueTree&);
     
 private:

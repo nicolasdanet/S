@@ -30,6 +30,7 @@ PD_LOCAL void inputs_setMidiDevices     (const std::vector<MidiDevice>&, const s
 PD_LOCAL void inputs_closePatch         (core::UniqueId);
 PD_LOCAL void inputs_savePatch          (core::UniqueId);
 PD_LOCAL void inputs_setEditView        (core::UniqueId, juce::Rectangle<int>);
+PD_LOCAL void inputs_setRunView         (core::UniqueId, juce::Rectangle<int>);
 
 #endif
 

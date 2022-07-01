@@ -64,12 +64,17 @@ juce::Rectangle<int> getRunView (t_glist* glist)
 {
     t_rectangle* view = glist_getRunView (glist);
     
-    if (rectangle_isNothing (view)) { DBG ("!"); }
+    if (rectangle_isNothing (view)) { return getEditView (glist); }
     else {
-        DBG ("?");
+    //
+    const int x = rectangle_getTopLeftX (view);
+    const int y = rectangle_getTopLeftY (view);
+    const int w = rectangle_getWidth (view);
+    const int h = rectangle_getHeight (view);
+
+    return juce::Rectangle<int> (x, y, w, h);
+    //
     }
-    
-    return getEditView (glist);
 }
 
 /* Subpatches are created in two steps. */

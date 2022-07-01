@@ -122,6 +122,13 @@ PD_LOCAL void inputs_setEditView (core::UniqueId i, juce::Rectangle<int> bounds)
     if (unique_patchSetEditView (i, &r) != PD_ERROR_NONE) { jassertfalse; }
 }
 
+PD_LOCAL void inputs_setRunView (core::UniqueId i, juce::Rectangle<int> bounds)
+{
+    t_rectangle r; rectangle_setCopy (&r, bounds);
+    
+    if (unique_patchSetRunView (i, &r) != PD_ERROR_NONE) { jassertfalse; }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
