@@ -72,9 +72,9 @@ PD_LOCAL void glist_free (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_glist *glist_newPatchPop (t_symbol *name, t_rectangle *window, int isOpened)
+PD_LOCAL t_glist *glist_newPatchPop (t_symbol *name, t_rectangle *window)
 {
-    t_glist *x = glist_newPatch (name, window, isOpened);
+    t_glist *x = glist_newPatch (name, window);
         
     PD_ASSERT (instance_contextGetCurrent() == x);
     
@@ -83,7 +83,7 @@ PD_LOCAL t_glist *glist_newPatchPop (t_symbol *name, t_rectangle *window, int is
     return x;
 }
 
-PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window, int isOpened)
+PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window)
 {
     t_glist *owner = instance_contextGetCurrent();
     
@@ -91,7 +91,7 @@ PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window, int isOpe
     
     rectangle_set (&t, GLIST_X, GLIST_Y, GLIST_X + GLIST_WIDTH, GLIST_Y + GLIST_HEIGHT);
     
-    if (window) { rectangle_setCopy (&t, window); }
+    if (window && !rectangle_isNothing (window)) { rectangle_setCopy (&t, window); }
     
     {
     //
@@ -101,8 +101,6 @@ PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window, int isOpe
     object_setX (cast_object (x), 0);
     object_setY (cast_object (x), 0);
     object_setType (cast_object (x), TYPE_OBJECT);
-    
-    glist_setOpened (x, isOpened);
     
     if (glist_isRoot (x)) { instance_rootsAdd (x); } else { outputs_objectAdded (cast_object (x), owner); }
     

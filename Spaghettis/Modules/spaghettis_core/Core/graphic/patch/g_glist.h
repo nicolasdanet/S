@@ -33,15 +33,14 @@ struct _glist {
     int             gl_isLoading;
     int             gl_isDeleting;
     int             gl_isCloseBanged;
-    int             gl_isOpened;
     };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_glist    *glist_newPatchPop  (t_symbol *name, t_rectangle *window, int isOpened);
-PD_LOCAL t_glist    *glist_newPatch     (t_symbol *name, t_rectangle *window, int isOpened);
+PD_LOCAL t_glist    *glist_newPatchPop  (t_symbol *name, t_rectangle *window);
+PD_LOCAL t_glist    *glist_newPatch     (t_symbol *name, t_rectangle *window);
 
 PD_LOCAL void       glist_free          (t_glist *g);
 
@@ -81,7 +80,6 @@ PD_LOCAL void   glist_setDirty                          (t_glist *g, int n);
 PD_LOCAL void   glist_setFrozen                         (t_glist *g, int n);
 PD_LOCAL void   glist_setEditView                       (t_glist *g, t_rectangle *r, int notify);
 PD_LOCAL void   glist_setRunView                        (t_glist *g, t_rectangle *r, int notify);
-PD_LOCAL void   glist_setOpened                         (t_glist *g, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -95,7 +93,6 @@ PD_LOCAL int    glist_isSubpatch                        (t_glist *g);
 PD_GUARD int    glist_isDirty                           (t_glist *g);
 PD_LOCAL int    glist_isFrozen                          (t_glist *g);
 PD_LOCAL int    glist_isLoading                         (t_glist *g);
-PD_LOCAL int    glist_isOpened                          (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

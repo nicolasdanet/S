@@ -130,11 +130,6 @@ PD_LOCAL void glist_setRunView (t_glist *glist, t_rectangle *r, int notify)
     if (notify) { outputs_objectUpdateAttributes (cast_object (glist_getRoot (glist)), NULL); }
 }
 
-PD_LOCAL void glist_setOpened (t_glist *g, int n)
-{
-    g->gl_isOpened = (n != 0);
-}
-
 PD_LOCAL void glist_setNext (t_glist *g, t_glist *next)
 {
     g->gl_next = next;
@@ -194,11 +189,6 @@ PD_LOCAL int glist_isFrozen (t_glist *glist)
 PD_LOCAL int glist_isLoading (t_glist *g)
 {
     return g->gl_isLoading;
-}
-
-PD_LOCAL int glist_isOpened (t_glist *g)
-{
-    return g->gl_isOpened;
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -220,12 +220,12 @@ static void canvas_functionSave (t_object *x, t_buffer *b, int flags)
 
 PD_LOCAL void *canvas_newSubpatch (t_symbol *s)
 {
-    return glist_newPatchPop (s, NULL, 0);
+    return glist_newPatchPop (s, NULL);
 }
 
 PD_LOCAL void canvas_new (void *dummy, t_symbol *s, int argc, t_atom *argv)
 {  
-    t_rectangle r;
+    t_rectangle r; rectangle_setNothing (&r);
     
     if (argc && argv) {
     //
@@ -238,9 +238,7 @@ PD_LOCAL void canvas_new (void *dummy, t_symbol *s, int argc, t_atom *argv)
     //
     }
     
-    glist_newPatch (atom_getSymbolAtIndex (4, argc, argv),
-        &r, 
-        (int)atom_getFloatAtIndex (5, argc, argv));
+    glist_newPatch (atom_getSymbolAtIndex (4, argc, argv), &r);
 }
 
 static void canvas_free (t_glist *glist)
