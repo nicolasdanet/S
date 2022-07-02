@@ -98,38 +98,18 @@ int getColumnSpan (int w)
     return static_cast<int> (w / RunLayout::width_) + 1;
 }
 
-/* https://forum.juce.com/t/br-juce-grid-hangs-performing-layout/51878/6 */
-
-int getMaximumRowSpan (const RunLayout::LayoutContainer& viewed)
-{
-    int m = 1;
-    
-    for (const auto& [o, bounds] : viewed) { m = juce::jmax (m, getRowSpan (bounds.getHeight())); }
-    
-    return m;
-}
-
-int getMaximumColumnSpan (const RunLayout::LayoutContainer& viewed)
-{
-    int m = 1;
-    
-    for (const auto& [o, bounds] : viewed) { m = juce::jmax (m, getColumnSpan (bounds.getWidth())); }
-    
-    return m;
-}
-
-auto getRows (const juce::Rectangle<int>& bounds, const RunLayout::LayoutContainer& viewed)
+juce::Array<juce::Grid::TrackInfo> getRows (const juce::Rectangle<int>& bounds)
 {
     const int n = bounds.getHeight() / (RunLayout::hGap_ + RunLayout::height_);
         
-    return getTracks (juce::jmax (n, getMaximumRowSpan (viewed)), getRowTrack());
+    return getTracks (juce::jmax (n, 1), getRowTrack());
 }
 
-auto getColumns (const juce::Rectangle<int>& bounds, const RunLayout::LayoutContainer& viewed)
+juce::Array<juce::Grid::TrackInfo> getColumns (const juce::Rectangle<int>& bounds)
 {
     const int n = bounds.getWidth() / (RunLayout::wGap_ + RunLayout::width_);
     
-    return getTracks (juce::jmax (n, getMaximumColumnSpan (viewed)), getColumnTrack());
+    return getTracks (juce::jmax (n, 1), getColumnTrack());
 }
 
 juce::Array<juce::GridItem> getGridItems (const RunLayout::LayoutContainer& viewed)
@@ -181,8 +161,8 @@ void RunLayout::arrange (const juce::Rectangle<int>& bounds)
     grid.justifyContent     = juce::Grid::JustifyContent::start;
     grid.alignContent       = juce::Grid::AlignContent::start;
     grid.autoFlow           = juce::Grid::AutoFlow::column;
-    grid.templateRows       = getRows (bounds, viewed_);
-    grid.templateColumns    = getColumns (bounds, viewed_);
+    grid.templateRows       = getRows (bounds);
+    grid.templateColumns    = getColumns (bounds);
     grid.autoColumns        = getColumnTrack();
     grid.autoRows           = getRowTrack();
     grid.rowGap             = juce::Grid::Px (hGap_);
