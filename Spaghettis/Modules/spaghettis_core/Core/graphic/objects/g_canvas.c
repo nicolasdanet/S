@@ -71,6 +71,33 @@ static void canvas_tagobjectsource (t_glist *glist, t_symbol *s, int argc, t_ato
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void canvas_include (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
+{
+    glist_setLabelOfLast (glist, atom_getSymbolAtIndex (0, argc, argv));
+}
+
+static void canvas_view (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
+{
+    t_rectangle r; rectangle_setNothing (&r);
+    
+    if (argc && argv) {
+    //
+    int a = atom_getFloatAtIndex (0, argc, argv);
+    int b = atom_getFloatAtIndex (1, argc, argv);
+    int w = atom_getFloatAtIndex (2, argc, argv);
+    int h = atom_getFloatAtIndex (3, argc, argv);
+    
+    rectangle_set (&r, a, b, a + PD_ABS (w), b + PD_ABS (h));
+    
+    glist_setRunView (glist, &r, 1);
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void canvas_restore (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 {
     PD_ASSERT (glist_hasParent (glist));
@@ -98,12 +125,6 @@ static void canvas_restore (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 
 static void canvas_width (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 {
-    
-}
-
-static void canvas_include (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
-{
-    glist_setLabelOfLast (glist, atom_getSymbolAtIndex (0, argc, argv));
 }
 
 static void canvas_connect (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
@@ -274,8 +295,12 @@ PD_LOCAL void canvas_setup (void)
     class_addMethod (c, (t_method)canvas_tagdollarzero,         sym__tagdollarzero,     A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_tagobject,             sym__tagobject,         A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_tagobjectsource,       sym__tagobjectsource,   A_GIMME, A_NULL);
+    
+    /* Used for run view. */
+    
     class_addMethod (c, (t_method)canvas_include,               sym__include,           A_GIMME, A_NULL);
-
+    class_addMethod (c, (t_method)canvas_view,                  sym__view,              A_GIMME, A_NULL);
+    
     /* Ensure compatibility with Pure Data file format. */
     
     class_addMethod (c, (t_method)canvas_restore,               sym_restore,            A_GIMME, A_NULL);
