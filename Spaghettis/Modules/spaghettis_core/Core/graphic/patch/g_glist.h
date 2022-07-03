@@ -70,6 +70,7 @@ PD_LOCAL t_environment      *glist_getEnvironment       (t_glist *g);
 PD_LOCAL t_undomanager      *glist_getUndoManager       (t_glist *g);
 PD_LOCAL t_abstractions     *glist_getAbstractions      (t_glist *g);
 PD_LOCAL t_rectangle        *glist_getEditView          (t_glist *g);
+PD_LOCAL t_rectangle        *glist_getRunView           (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

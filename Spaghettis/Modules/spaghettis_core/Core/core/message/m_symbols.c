@@ -151,6 +151,7 @@ t_symbol *sym__tagdollarzero;
 t_symbol *sym__tagobject;
 t_symbol *sym__tagobjectsource;
 t_symbol *sym__touchin;
+t_symbol *sym__view;
 t_symbol *sym_a;
 t_symbol *sym_abs;
 t_symbol *sym_abs__tilde__;
@@ -735,6 +736,7 @@ PD_LOCAL void symbols_initialize (void)
     sym__tagobject                              = gensym ("_tagobject");
     sym__tagobjectsource                        = gensym ("_tagobjectsource");
     sym__touchin                                = gensym ("_touchin");
+    sym__view                                   = gensym ("_view");
     sym_a                                       = gensym ("a");
     sym_abs                                     = gensym ("abs");
     sym_abs__tilde__                            = gensym ("abs~");

@@ -151,6 +151,7 @@ extern t_symbol *sym__tagdollarzero;
 extern t_symbol *sym__tagobject;
 extern t_symbol *sym__tagobjectsource;
 extern t_symbol *sym__touchin;
+extern t_symbol *sym__view;
 extern t_symbol *sym_a;
 extern t_symbol *sym_abs;
 extern t_symbol *sym_abs__tilde__;

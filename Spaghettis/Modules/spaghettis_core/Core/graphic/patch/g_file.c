@@ -21,12 +21,14 @@ PD_LOCAL void legacy_version (t_buffer *);
 
 static void glist_serializeHeader (t_glist *glist, t_buffer *b)
 {
+    t_rectangle *t = glist_getEditView (glist);
+    
     buffer_appendSymbol (b, sym___hash__N);
     buffer_appendSymbol (b, sym_canvas);
-    buffer_appendFloat (b,  rectangle_getTopLeftX (glist_getEditView (glist)));
-    buffer_appendFloat (b,  rectangle_getTopLeftY (glist_getEditView (glist)));
-    buffer_appendFloat (b,  rectangle_getWidth (glist_getEditView (glist)));
-    buffer_appendFloat (b,  rectangle_getHeight (glist_getEditView (glist)));
+    buffer_appendFloat (b,  rectangle_getTopLeftX (t));
+    buffer_appendFloat (b,  rectangle_getTopLeftY (t));
+    buffer_appendFloat (b,  rectangle_getWidth (t));
+    buffer_appendFloat (b,  rectangle_getHeight (t));
     
     if (glist_isSubpatch (glist)) {
     //
@@ -35,6 +37,25 @@ static void glist_serializeHeader (t_glist *glist, t_buffer *b)
     }
     
     buffer_appendSemicolon (b);
+}
+
+static void glist_serializeView (t_glist *glist, t_buffer *b)
+{
+    if (glist_isRoot (glist)) {
+    //
+    t_rectangle *t = glist_getRunView (glist);
+    
+    if (rectangle_isNothing (t)) { return; }
+    
+    buffer_appendSymbol (b, sym___hash__X);
+    buffer_appendSymbol (b, sym__view);
+    buffer_appendFloat (b,  rectangle_getTopLeftX (t));
+    buffer_appendFloat (b,  rectangle_getTopLeftY (t));
+    buffer_appendFloat (b,  rectangle_getWidth (t));
+    buffer_appendFloat (b,  rectangle_getHeight (t));
+    buffer_appendSemicolon (b);
+    //
+    }
 }
 
 static void glist_serializeObjects (t_glist *glist, t_buffer *b, int flags)
@@ -104,6 +125,7 @@ PD_LOCAL void glist_serialize (t_glist *glist, t_buffer *b, int flags, int isAbs
     } else {
     //
     glist_serializeHeader (glist, b);
+    glist_serializeView (glist, b);
     glist_serializeObjects (glist, b, flags);
     glist_serializeLines (glist, b);
     glist_serializeTag (glist, b, flags);
