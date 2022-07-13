@@ -39,25 +39,6 @@ static void glist_serializeHeader (t_glist *glist, t_buffer *b)
     buffer_appendSemicolon (b);
 }
 
-static void glist_serializeView (t_glist *glist, t_buffer *b)
-{
-    if (glist_isRoot (glist)) {
-    //
-    t_rectangle *t = glist_getRunView (glist);
-    
-    if (rectangle_isNothing (t)) { return; }
-    
-    buffer_appendSymbol (b, sym___hash__X);
-    buffer_appendSymbol (b, sym__view);
-    buffer_appendFloat (b,  rectangle_getTopLeftX (t));
-    buffer_appendFloat (b,  rectangle_getTopLeftY (t));
-    buffer_appendFloat (b,  rectangle_getWidth (t));
-    buffer_appendFloat (b,  rectangle_getHeight (t));
-    buffer_appendSemicolon (b);
-    //
-    }
-}
-
 static void glist_serializeObjects (t_glist *glist, t_buffer *b, int flags)
 {
     t_object *y = NULL; for (y = glist->gl_graphics; y; y = y->g_next) { object_save (y, b, flags); }
@@ -125,7 +106,6 @@ PD_LOCAL void glist_serialize (t_glist *glist, t_buffer *b, int flags, int isAbs
     } else {
     //
     glist_serializeHeader (glist, b);
-    glist_serializeView (glist, b);
     glist_serializeObjects (glist, b, flags);
     glist_serializeLines (glist, b);
     glist_serializeTag (glist, b, flags);

@@ -1,6 +1,5 @@
 #N spaghettis 0 9 0;
 #N canvas 281 228 911 372;
-#X _view 779 308 414 195;
 #X obj 48 252 menubutton 8 1;
 #A _restore genou \; bijou \; chou \; joujou \; hibou \; caillou \; pou \;;
 #X obj 48 36 loadbang;
