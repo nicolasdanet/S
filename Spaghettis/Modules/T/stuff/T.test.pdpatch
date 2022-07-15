@@ -1,4 +1,5 @@
 #N spaghettis 0 9 0;
+#N view 250 250 500 250;
 #N canvas 396 117 890 614;
 #X floatatom 48 336 5 0 0;
 #X obj 216 156 dial 5 40 0 127 0 127;

@@ -102,7 +102,12 @@ PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window)
     object_setY (cast_object (x), 0);
     object_setType (cast_object (x), TYPE_OBJECT);
     
-    if (glist_isRoot (x)) { instance_rootsAdd (x); } else { outputs_objectAdded (cast_object (x), owner); }
+    /* Behaware that below order matters. */
+    
+    if (glist_isRoot (x)) { glist_setRunView (x, instance_viewGet(), 0); instance_rootsAdd (x); }
+    else {
+        outputs_objectAdded (cast_object (x), owner);
+    }
     
     glist_loadBegin (x); instance_stackPush (x);
     

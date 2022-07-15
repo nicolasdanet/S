@@ -48,6 +48,7 @@ typedef struct _pdinstance {
     int             pd_hasPending;
     int             pd_hasGrid;
     int             pd_gridSize;
+    t_rectangle     pd_view;
     t_int32Atomic   pd_chainRetain;
     t_pointerAtomic pd_chain;
     t_chain         *pd_build;
@@ -218,6 +219,15 @@ PD_LOCAL void       instance_environmentSetFile             (t_symbol *name, t_s
 PD_LOCAL void       instance_environmentSetArguments        (int argc, t_atom *argv);
 PD_LOCAL void       instance_environmentResetFile           (void);
 PD_LOCAL void       instance_environmentResetArguments      (void);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void       instance_viewReset                      (void);
+PD_LOCAL void       instance_viewSet                        (t_rectangle *view);
+
+PD_LOCAL t_rectangle    *instance_viewGet                   (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

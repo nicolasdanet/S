@@ -337,11 +337,6 @@ PD_LOCAL void legacy_convert (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void legacy_dummy (void *dummy, t_symbol *s, int argc, t_atom *argv)
-{
-
-}
-
 PD_LOCAL void legacy_version (t_buffer *x)
 {
     buffer_appendSymbol (x, sym___hash__N);
@@ -350,6 +345,33 @@ PD_LOCAL void legacy_version (t_buffer *x)
     buffer_appendFloat (x,  PD_VERSION_MINOR);
     buffer_appendFloat (x,  PD_VERSION_PATCH);
     buffer_appendSemicolon (x);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void legacy_start (void *dummy, t_symbol *s, int argc, t_atom *argv)
+{
+    instance_viewReset();
+}
+
+PD_LOCAL void legacy_view (void *dummy, t_symbol *s, int argc, t_atom *argv)
+{
+    t_rectangle r; rectangle_setNothing (&r);
+    
+    if (argc && argv) {
+    //
+    int a = atom_getFloatAtIndex (0, argc, argv);
+    int b = atom_getFloatAtIndex (1, argc, argv);
+    int w = atom_getFloatAtIndex (2, argc, argv);
+    int h = atom_getFloatAtIndex (3, argc, argv);
+    
+    rectangle_set (&r, a, b, a + PD_ABS (w), b + PD_ABS (h));
+    
+    instance_viewSet (&r);
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
