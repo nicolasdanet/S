@@ -24,6 +24,7 @@ public:
         owner_ (owner),
         tree_ (tree)
     {
+        jassert (core::Object (tree_).isPatch());
     }
 
     ~PatchWindow() = default;
