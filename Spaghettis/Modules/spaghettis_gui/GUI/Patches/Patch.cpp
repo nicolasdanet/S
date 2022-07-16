@@ -164,14 +164,16 @@ juce::Component* Patch::getMainWindow() const
 {
     jassert (windows_.empty() == false);
     
-    for (const auto& p : windows_) { if (p->isRoot()) { return dynamic_cast<juce::Component*> (p.get()); } }
+    for (const auto& p : windows_) {
+        if (!p->isSubPatch()) { return dynamic_cast<juce::Component*> (p.get()); }
+    }
     
     return dynamic_cast<juce::Component*> (windows_.front().get());
 }
 
 void Patch::setDirtyFlagIfRequired() const
 {
-    for (const auto& p : windows_) { if (p->isRoot()) { p->setDirtyFlag (dirty_); } }
+    for (const auto& p : windows_) { p->setDirtyFlag (dirty_); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -33,7 +33,7 @@ public:
 // MARK: -
 
 public:
-    bool isRoot() const
+    bool isSubPatch() const
     {
         return (tree_.getParent().isValid() == false);
     }
