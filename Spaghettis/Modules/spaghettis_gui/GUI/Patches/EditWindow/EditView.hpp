@@ -24,7 +24,7 @@ friend class EditPort;
 // MARK: -
 
 public:
-    explicit EditView (const juce::ValueTree& tree);
+    explicit EditView (Patch&, const juce::ValueTree&);
     
     ~EditView();
 

@@ -20,7 +20,7 @@ class RunView : public  View,
 // MARK: -
 
 public:
-    explicit RunView (const juce::ValueTree& tree);
+    explicit RunView (Patch&, const juce::ValueTree&);
     
     ~RunView();
 

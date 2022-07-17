@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-RunView::RunView (const juce::ValueTree& tree) :
+RunView::RunView (Patch& patch, const juce::ValueTree& tree) :
+    View (patch),
     tree_ (tree),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
     patchTextColour_ (Spaghettis()->getCachedColour (Tags::PatchText))

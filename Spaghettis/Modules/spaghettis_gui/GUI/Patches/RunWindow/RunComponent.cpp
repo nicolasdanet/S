@@ -16,7 +16,7 @@ RunComponent::RunComponent (Patch& patch, const juce::ValueTree& tree) :
     RunFactoryHelper (this),
     BaseComponent (getIconsFactory()),
     patch_ (patch),
-    runView_ (tree)
+    runView_ (patch, tree)
 {
     addAndMakeVisible (runView_);
     
