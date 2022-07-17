@@ -58,11 +58,11 @@ public:
 public:
     Patch& getPatch() const
     {
-        return owner_;
+        return patch_;
     }
     
 private:
-    Patch& owner_;
+    Patch& patch_;
     
 private:
     EditView editView_;

@@ -12,10 +12,10 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditComponent::EditComponent (Patch& owner, const juce::ValueTree& tree) :
+EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     EditFactoryHelper (this),
     BaseComponent (getIconsFactory()),
-    owner_ (owner),
+    patch_ (patch),
     editView_ (tree),
     editPort_ (editView_),
     zoomComponent_ (editPort_.getZoomAsValue())

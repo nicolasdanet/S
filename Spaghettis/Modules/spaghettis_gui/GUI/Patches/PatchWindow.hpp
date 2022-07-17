@@ -19,9 +19,9 @@ class PatchWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit PatchWindow (Patch& owner, const juce::ValueTree& tree) :
+    explicit PatchWindow (Patch& patch, const juce::ValueTree& tree) :
         BaseWindow (core::Object (tree).getAttribute<juce::String> (Tags::Title)),
-        owner_ (owner),
+        patch_ (patch),
         tree_ (tree)
     {
         jassert (core::Object (tree_).isPatch());
@@ -46,11 +46,11 @@ public:
 public:
     void closeButtonPressed() override
     {
-        owner_.closeWindowButtonPressed (this);
+        patch_.closeWindowButtonPressed (this);
     }
 
 protected:
-    Patch& owner_;
+    Patch& patch_;
 
 private:
     juce::ValueTree tree_;
