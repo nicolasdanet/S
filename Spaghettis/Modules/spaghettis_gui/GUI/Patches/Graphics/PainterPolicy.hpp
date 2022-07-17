@@ -115,7 +115,7 @@ public:
 // MARK: -
 
 protected:
-    ObjectComponent* owner_;
+    ObjectComponent* component_;
     core::Object object_;
     core::Cached<int> x_;
     core::Cached<int> y_;

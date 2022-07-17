@@ -18,11 +18,11 @@ BoxPainter::BoxPainter (ObjectComponent* owner, const core::Object& object) : Pa
     buffer_ (fetchAttribute<juce::String> (Tags::Buffer)),
     class_ (fetchAttribute<juce::String> (Tags::Class))
 {
-    boxBackgroundColour_.attach (repaint (owner_));
-    boxTextColour_.attach (repaint (owner_));
-    buffer_.attach (repaint (owner_));
+    boxBackgroundColour_.attach (repaint (component_));
+    boxTextColour_.attach (repaint (component_));
+    buffer_.attach (repaint (component_));
     
-    owner_->setBufferedToImage (true);
+    component_->setBufferedToImage (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------

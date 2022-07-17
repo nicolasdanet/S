@@ -13,7 +13,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 
 PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object) :
-    owner_ (owner),
+    component_ (owner),
     object_ (object),
     x_ (fetchAttribute<int> (Tags::X)),
     y_ (fetchAttribute<int> (Tags::Y)),
@@ -31,9 +31,9 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
     x_.attach (f);
     y_.attach (f);
     
-    patchBackgroundColour_.attach (repaint (owner_));
-    labelBackgroundColour_.attach (repaint (owner_));
-    labelTextColour_.attach (repaint (owner_));
+    patchBackgroundColour_.attach (repaint (component_));
+    labelBackgroundColour_.attach (repaint (component_));
+    labelTextColour_.attach (repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ void PainterPolicy::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
     juce::Rectangle<float> t = r.toFloat();
     
-    if (owner_->isInsideRunView()) { t = paintLabel (t, g); }
+    if (component_->isInsideRunView()) { t = paintLabel (t, g); }
     
     paintObject (t, g);
 }
@@ -53,7 +53,7 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 {
     juce::Rectangle<float> t = getRequiredBoundsForObject();
     
-    if (owner_->isInsideRunView()) { t = getRequiredBoundsWithLabel (t); }
+    if (component_->isInsideRunView()) { t = getRequiredBoundsWithLabel (t); }
     
     return t.toNearestInt();
 }
@@ -91,7 +91,7 @@ juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce
     g.fillRect (r.withTrimmedLeft (2));
     g.setColour (labelTextColour_.get());
     g.setFont (getLabelFont());
-    g.drawText (owner_->getLabel(), r.translated (-1.0f, -1.0f), juce::Justification::bottomRight, true);
+    g.drawText (component_->getLabel(), r.translated (-1.0f, -1.0f), juce::Justification::bottomRight, true);
     
     return t;
 }
@@ -102,8 +102,8 @@ juce::Rectangle<float> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangl
     
     objectWidth_ = r.getWidth();
     
-    if (owner_->hasLabel() && (r.getHeight() >= font.getHeight())) {
-        const int w = objectWidth_ + font.getStringWidthFloat (owner_->getLabel());
+    if (component_->hasLabel() && (r.getHeight() >= font.getHeight())) {
+        const int w = objectWidth_ + font.getStringWidthFloat (component_->getLabel());
         r.setWidth (RunLayout::snapWidthToFitColumns (w));
     }
     
@@ -116,7 +116,7 @@ juce::Rectangle<float> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangl
 
 float PainterPolicy::getScale() const
 {
-    return owner_->getScale();
+    return component_->getScale();
 }
 
 // -----------------------------------------------------------------------------------------------------------
