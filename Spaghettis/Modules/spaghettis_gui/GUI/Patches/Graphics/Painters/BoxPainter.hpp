@@ -35,7 +35,14 @@ public:
 private:
     juce::String getText() const;
     juce::Font getFont (float) const;
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void mouseDoubleClick (const juce::MouseEvent&) override;
+
 private:
     core::Cached<juce::Colour> boxBackgroundColour_;
     core::Cached<juce::Colour> boxTextColour_;

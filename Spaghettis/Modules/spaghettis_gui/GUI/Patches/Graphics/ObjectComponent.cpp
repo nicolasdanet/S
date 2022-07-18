@@ -63,10 +63,14 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     label_.attach (f);
     
     pinBackgroundColour_.attach (PainterPolicy::repaint (this));
+    
+    addMouseListener (painter_.get(), true);
 }
 
 ObjectComponent::~ObjectComponent()
 {
+    removeMouseListener (painter_.get());
+    
     removeAllChangeListeners();
     removeInletsAndOultets();
     
