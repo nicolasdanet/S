@@ -87,6 +87,11 @@ core::UniqueId ObjectComponent::getIdentifier() const
     return object_.getIdentifier();
 }
 
+Patch& ObjectComponent::getPatch() const
+{
+    return view_->getPatch();
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
