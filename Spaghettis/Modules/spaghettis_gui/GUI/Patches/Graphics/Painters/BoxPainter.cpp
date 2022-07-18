@@ -107,7 +107,7 @@ juce::Rectangle<float> BoxPainter::getRequiredBoundsForObject()
 
 void BoxPainter::mouseDoubleClick (const juce::MouseEvent&)
 {
-    DBG (class_.get());
+    if (object_.isPatch()) { getPatch().openSubPatchWindow (object_.getIdentifier()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

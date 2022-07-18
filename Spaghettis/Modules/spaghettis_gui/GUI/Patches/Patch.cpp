@@ -113,6 +113,11 @@ void Patch::openWindow()
     }
 }
 
+void Patch::openSubPatchWindow (core::UniqueId i)
+{
+    DBG ("???");
+}
+
 void Patch::openEditWindow()
 {
     windows_.push_back (std::make_unique<EditWindow> (*this, tree_));
