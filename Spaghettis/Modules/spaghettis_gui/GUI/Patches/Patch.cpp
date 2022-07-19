@@ -22,6 +22,21 @@ juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::UniqueId
     return t.getChildWithProperty (Ids::identifier, core::Cast::toVar (i));
 }
 
+juce::ValueTree getChildRecursiveWithIdentifier (const juce::ValueTree& t, core::UniqueId i)
+{
+    juce::ValueTree found (getChildWithIdentifier (t, i));
+    
+    if (!found.isValid()) {
+        for (const auto& child : t) {
+            if (child.hasType (Ids::PATCH)) {
+                found = getChildRecursiveWithIdentifier (child, i); if (found.isValid()) { return found; }
+            }
+        }
+    }
+    
+    return found;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -115,7 +130,11 @@ void Patch::openWindow()
 
 void Patch::openSubPatchWindow (core::UniqueId i)
 {
-    DBG ("???");
+    juce::ValueTree t (getChildRecursiveWithIdentifier (tree_, i));
+    
+    jassert (t.isValid());
+    
+    DBG (core::Data::debug (t));
 }
 
 void Patch::openEditWindow()
