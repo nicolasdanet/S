@@ -51,8 +51,6 @@ public:
 
 protected:
     Patch& patch_;
-
-private:
     juce::ValueTree tree_;
 
 private:
