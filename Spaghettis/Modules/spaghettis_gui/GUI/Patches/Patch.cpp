@@ -134,7 +134,9 @@ void Patch::openSubPatchWindow (core::UniqueId i)
     
     jassert (t.isValid());
     
-    DBG (core::Data::debug (t));
+    windows_.push_back (std::make_unique<EditWindow> (*this, t));
+    
+    updateDirty();
 }
 
 void Patch::openEditWindow()
