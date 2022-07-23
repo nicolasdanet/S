@@ -80,6 +80,10 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    int getNumberOfInlets() const;
+    int getNumberOfOutlets() const;
+    
 private:
     void createInletsAndOutlets();
     void removeInletsAndOultets();

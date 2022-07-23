@@ -55,6 +55,16 @@ float getTextMargins (float f)
     return std::round (3 * f);
 }
 
+float getMinimumWidth (float f, int m, int n)
+{
+    const int pins = juce::jmax (m, n);
+    float w = pins * PainterPolicy::pinWidth (f);
+    
+    if (pins > 1) { w += (pins - 1) * PainterPolicy::pinGripX (f) * 2; }
+    
+    return w;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -98,7 +108,9 @@ juce::Rectangle<float> BoxPainter::getRequiredBoundsForObject()
     const float h = font.getHeight();
     const float k = getTextMargins (f) * 2.0f;
     
-    return juce::Rectangle<float> (x, y, w + k, h + k);
+    const float m = getMinimumWidth (f, component_->getNumberOfInlets(), component_->getNumberOfOutlets());
+    
+    return juce::Rectangle<float> (x, y, juce::jmax (m, w + k), h + k);
 }
 
 // -----------------------------------------------------------------------------------------------------------

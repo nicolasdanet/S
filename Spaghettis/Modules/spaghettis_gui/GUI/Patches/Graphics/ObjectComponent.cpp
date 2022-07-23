@@ -217,8 +217,8 @@ namespace {
 
 juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float f, bool isOutlet)
 {
-    const int offset = index * ((PainterPolicy::pinGripX (f) * 2) + PainterPolicy::pinWidth (f));
-    const int x = bounds.getX() + offset;
+    const int w = PainterPolicy::pinGripX (f) * 2 + PainterPolicy::pinWidth (f);
+    const int x = bounds.getX() + (index * w);
     
     bounds.setX (x);
     bounds.setWidth (PainterPolicy::pinWidth (f));
@@ -255,6 +255,20 @@ std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int ObjectComponent::getNumberOfInlets() const
+{
+    return juce::StringArray::fromTokens (inlets_.get(), true).size();
+}
+
+int ObjectComponent::getNumberOfOutlets() const
+{
+    return juce::StringArray::fromTokens (outlets_.get(), true).size();
 }
 
 // -----------------------------------------------------------------------------------------------------------
