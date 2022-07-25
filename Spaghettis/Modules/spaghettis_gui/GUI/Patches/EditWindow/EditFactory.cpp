@@ -35,7 +35,12 @@ void EditFactory::setToolbarButton (IconsButton* button)
     case Icons::zoomOut     : button->onClick = [this]() { owner_->zoomOut();   }; break;
     case Icons::zoomReset   : button->onClick = [this]() { owner_->zoomReset(); }; break;
     case Icons::help        : button->onClick = []() { DBG ("?"); }; break;
-    case Icons::inspector   : button->onClick = []() { DBG ("?"); }; break;
+    case Icons::inspector   : button->onClick = [this, button]() {
+                                    if (button->getState()) { owner_->showInspector(); }
+                                    else {
+                                        owner_->hideInspector();
+                                    }
+                                }; break;
     case Icons::edit        : button->onClick = [this]() {
                                     owner_->getPatch().openEditWindow();
                                 }; break;
