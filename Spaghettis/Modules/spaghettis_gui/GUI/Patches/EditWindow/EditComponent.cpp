@@ -23,6 +23,7 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
 {
     addAndMakeVisible (editPort_);
     addChildComponent (zoomComponent_);
+    addChildComponent (inspectorComponent_);
     
     addMenuBarCommand (Commands::zoomIn,    [this]() { zoomIn();    } );
     addMenuBarCommand (Commands::zoomOut,   [this]() { zoomOut();   } );
@@ -70,12 +71,12 @@ void EditComponent::zoomReset()
 
 void EditComponent::showInspector()
 {
-    hasInspector_ = true;  DBG ("SHOW");
+    hasInspector_ = true;  updateLayout(); DBG ("SHOW");
 }
 
 void EditComponent::hideInspector()
 {
-    hasInspector_ = false; DBG ("HIDE");
+    hasInspector_ = false; updateLayout(); DBG ("HIDE");
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -109,7 +110,13 @@ void updateZoom (ZoomComponent& c, juce::Rectangle<int> bounds)
 
 void EditComponent::updateLayout()
 {
-    editPort_.setBounds (setBoundsForBarsAndGetRemaining());    /* Must be the first. */
+    juce::Rectangle<int> bounds (setBoundsForBarsAndGetRemaining());
+    
+    if (hasInspector_) { inspectorComponent_.setBounds (bounds.removeFromRight (200)); }
+    
+    inspectorComponent_.setVisible (hasInspector_);
+    
+    editPort_.setBounds (bounds);
     
     updateZoom (zoomComponent_, getBoundsForToolbar());
 }
