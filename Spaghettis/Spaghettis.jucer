@@ -16,8 +16,6 @@
               file="Resources/Icons/SVG/delete_forever.svg"/>
         <FILE id="YbQGbR" name="error_outline.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/error_outline.svg"/>
-        <FILE id="n2y0sA" name="help_outline.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/help_outline.svg"/>
         <FILE id="MftGP7" name="info.svg" compile="0" resource="1" file="Resources/Icons/SVG/info.svg"/>
         <FILE id="v09zib" name="mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/mail.svg"/>
         <FILE id="D9nQfi" name="place.svg" compile="0" resource="1" file="Resources/Icons/SVG/place.svg"/>

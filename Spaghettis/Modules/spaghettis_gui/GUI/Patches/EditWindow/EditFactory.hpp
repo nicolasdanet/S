@@ -38,9 +38,7 @@ public:
         ids.add (Icons::zoomOut);
         ids.add (Icons::zoomReset);
         ids.add (ToolbarItemFactory::spacerId);
-        ids.add (Icons::help);
         ids.add (Icons::inspector);
-        ids.add (ToolbarItemFactory::spacerId);
         ids.add (Icons::edit);
         ids.add (Icons::run);
     }

@@ -51,7 +51,6 @@ public:
         edit,
         error,
         find,
-        help,
         inspector,
         message,
         presets,
@@ -78,7 +77,6 @@ public:
         addIconAction ("Edit",          0, "construction_svg");
         addIconToggle ("Error",         4, "error_outline_svg");
         addIconAction ("Find",          0, "place_svg");
-        addIconToggle ("Help",          1, "help_outline_svg", false);
         addIconToggle ("Inspector",     1, "info_svg", false);
         addIconToggle ("Message",       2, "mail_svg");
         addIconToggle ("Presets",       0, "tune_svg", false);
