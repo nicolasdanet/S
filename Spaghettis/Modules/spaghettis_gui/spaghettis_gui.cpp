@@ -33,6 +33,7 @@
 #include "GUI/Application/LookAndFeel/LookAndFeelMenubar.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelPopup.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelPreferences.cpp"
+#include "GUI/Application/LookAndFeel/LookAndFeelResizer.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelToolbar.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelTooltip.cpp"
 
