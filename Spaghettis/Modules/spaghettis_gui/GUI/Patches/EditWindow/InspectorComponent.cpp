@@ -32,7 +32,7 @@ InspectorComponent::InspectorComponent() :
 
 void InspectorComponent::paint (juce::Graphics& g)
 {
-    g.fillAll (juce::Colours::grey);
+    g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
 }
 
 void InspectorComponent::resized()

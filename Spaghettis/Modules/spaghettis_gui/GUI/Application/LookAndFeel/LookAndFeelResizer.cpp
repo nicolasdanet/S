@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void LookAndFeel::drawStretchableLayoutResizerBar (juce::Graphics& g, int, int, bool, bool over, bool drag)
 {
-    if (over || drag) { g.fillAll (juce::Colours::orange); }
+    if (over || drag) { g.fillAll (Spaghettis()->getColour (Colours::resizerHighlighted)); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
