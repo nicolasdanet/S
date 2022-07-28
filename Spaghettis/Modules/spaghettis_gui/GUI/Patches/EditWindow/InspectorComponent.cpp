@@ -12,18 +12,20 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-InspectorComponent::InspectorComponent()
+InspectorComponent::InspectorComponent() :
+    resizer_ (this, &constrainer_, juce::ResizableEdgeComponent::leftEdge)
 {
-    // inspectorResizer_ (&inspectorComponent_, &inspectorConstrainer_, juce::ResizableEdgeComponent::leftEdge),
+    const int w = 160;
     
-    // addChildComponent (inspectorResizer_);
-    // inspectorConstrainer_.setMinimumWidth (50);
-    // inspectorConstrainer_.setMaximumWidth (500);
-    // inspectorResizer_.setAlwaysOnTop (true);
+    constrainer_.setMinimumWidth (w);
     
-    setOpaque (true); setSize (200, 400);
+    resizer_.setAlwaysOnTop (true);
+    
+    addAndMakeVisible (resizer_);
+    
+    setOpaque (true); setSize (w, 400);
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -35,8 +37,7 @@ void InspectorComponent::paint (juce::Graphics& g)
 
 void InspectorComponent::resized()
 {
-    // inspectorResizer_.setVisible (hasInspector_);
-    // inspectorResizer_.setBounds (bounds.withTrimmedLeft (bounds.getWidth() - 4));
+    resizer_.setBounds (getLocalBounds().withWidth (4));
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -31,8 +31,8 @@ public:
     void resized() override;
 
 private:
-    // juce::ComponentBoundsConstrainer constrainer_;
-    // juce::ResizableEdgeComponent resizer_;
+    juce::ComponentBoundsConstrainer constrainer_;
+    juce::ResizableEdgeComponent resizer_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InspectorComponent)
