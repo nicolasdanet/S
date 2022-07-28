@@ -21,7 +21,7 @@ InspectorComponent::InspectorComponent()
     // inspectorConstrainer_.setMaximumWidth (500);
     // inspectorResizer_.setAlwaysOnTop (true);
     
-    setOpaque (true);
+    setOpaque (true); setSize (200, 400);
 }
     
 // -----------------------------------------------------------------------------------------------------------

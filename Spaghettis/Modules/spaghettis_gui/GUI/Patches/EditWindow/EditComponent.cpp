@@ -114,9 +114,7 @@ void EditComponent::updateLayout()
     
     if (hasInspector_) {
     //
-    const int w = inspectorComponent_.getWidth() != 0 ? inspectorComponent_.getWidth() : 200;
-    
-    inspectorComponent_.setBounds (bounds.removeFromRight (w));
+    inspectorComponent_.setBounds (bounds.removeFromRight (inspectorComponent_.getWidth()));
     //
     }
     
