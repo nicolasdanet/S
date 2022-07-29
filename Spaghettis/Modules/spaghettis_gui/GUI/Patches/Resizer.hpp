@@ -12,24 +12,46 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-InspectorComponent::InspectorComponent() : resizer_ (*this)
-{
-    setOpaque (true);
-}
+class Resizer {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void InspectorComponent::paint (juce::Graphics& g)
-{
-    g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
-}
+public:
+    explicit Resizer (juce::Component& c) :
+        owner_ (c),
+        edge_ (&c, &constrainer_, juce::ResizableEdgeComponent::leftEdge)
+    {
+        constrainer_.setMinimumWidth (minimumWidth_);
+        edge_.setAlwaysOnTop (true);
+        owner_.addAndMakeVisible (edge_);
+        owner_.setSize (minimumWidth_, 0);
+    }
+    
+    ~Resizer() = default;
 
-void InspectorComponent::resized()
-{
-    resizer_.update();
-}
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void update()
+    {
+        edge_.setBounds (owner_.getLocalBounds().withWidth (4));
+    }
+
+private:
+    juce::Component& owner_;
+    juce::ComponentBoundsConstrainer constrainer_;
+    juce::ResizableEdgeComponent edge_;
+
+private:
+    static constexpr int minimumWidth_ = 200;
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Resizer)
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -38,3 +60,4 @@ void InspectorComponent::resized()
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
