@@ -79,7 +79,7 @@ private:
     EditView editView_;
     EditPort editPort_;
     ZoomComponent zoomComponent_;
-    InspectorComponent inspectorComponent_;
+    EditInspector editInspector_;
     bool hasInspector_;
     
 private:

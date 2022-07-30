@@ -23,7 +23,7 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
 {
     addAndMakeVisible (editPort_);
     addChildComponent (zoomComponent_);
-    addChildComponent (inspectorComponent_);
+    addChildComponent (editInspector_);
     
     addMenuBarCommand (Commands::zoomIn,    [this]() { zoomIn();    } );
     addMenuBarCommand (Commands::zoomOut,   [this]() { zoomOut();   } );
@@ -114,13 +114,13 @@ void EditComponent::updateLayout()
     
     if (hasInspector_) {
     //
-    const int w = bounds.getWidth() - inspectorComponent_.getWidth();
+    const int w = bounds.getWidth() - editInspector_.getWidth();
     
-    inspectorComponent_.setBounds (bounds.withTrimmedLeft (w));
+    editInspector_.setBounds (bounds.withTrimmedLeft (w));
     //
     }
     
-    inspectorComponent_.setVisible (hasInspector_);
+    editInspector_.setVisible (hasInspector_);
 
     editPort_.setBounds (bounds);
     
