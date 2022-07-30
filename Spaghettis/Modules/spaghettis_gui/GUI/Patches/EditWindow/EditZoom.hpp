@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ZoomComponent :   public juce::Component,
+class EditZoom :   public juce::Component,
                         private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -20,14 +20,14 @@ class ZoomComponent :   public juce::Component,
 // MARK: -
 
 public:
-    ZoomComponent (const juce::Value& v) : v_ (v)
+    EditZoom (const juce::Value& v) : v_ (v)
     {
         setOpaque (false); setPaintingIsUnclipped (true); setBufferedToImage (true);
         
         v_.addListener (this);
     }
     
-    ~ZoomComponent() = default;
+    ~EditZoom() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ private:
     juce::Value v_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ZoomComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditZoom)
 };
 
 // -----------------------------------------------------------------------------------------------------------

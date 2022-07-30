@@ -140,7 +140,7 @@
 #include "GUI/Patches/EditWindow/EditView.hpp"
 #include "GUI/Patches/EditWindow/EditPort.hpp"
 #include "GUI/Patches/EditWindow/EditInspector.hpp"
-#include "GUI/Patches/EditWindow/ZoomComponent.hpp"
+#include "GUI/Patches/EditWindow/EditZoom.hpp"
 #include "GUI/Patches/EditWindow/EditComponent.hpp"
 #include "GUI/Patches/EditWindow/EditWindow.hpp"
 
