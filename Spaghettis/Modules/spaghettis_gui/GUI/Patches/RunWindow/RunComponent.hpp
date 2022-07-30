@@ -68,7 +68,7 @@ private:
 
 private:
     RunView runView_;
-    PresetsComponent presetsComponent_;
+    RunPresets runPresets_;
     bool hasPresets_;
     
 private:

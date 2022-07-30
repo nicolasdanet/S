@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PresetsComponent::PresetsComponent() : resizer_ (*this)
+RunPresets::RunPresets() : resizer_ (*this)
 {
     setOpaque (true);
 }
@@ -21,12 +21,12 @@ PresetsComponent::PresetsComponent() : resizer_ (*this)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PresetsComponent::paint (juce::Graphics& g)
+void RunPresets::paint (juce::Graphics& g)
 {
     g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
 }
 
-void PresetsComponent::resized()
+void RunPresets::resized()
 {
     resizer_.update();
 }

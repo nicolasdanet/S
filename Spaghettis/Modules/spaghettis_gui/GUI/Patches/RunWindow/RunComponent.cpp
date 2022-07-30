@@ -20,7 +20,7 @@ RunComponent::RunComponent (Patch& patch, const juce::ValueTree& tree) :
     hasPresets_ (false)
 {
     addAndMakeVisible (runView_);
-    addChildComponent (presetsComponent_);
+    addChildComponent (runPresets_);
     
     setOpaque (true); setSize (600, 300);
 }
@@ -63,13 +63,13 @@ void RunComponent::updateLayout()
     
     if (hasPresets_) {
     //
-    const int w = bounds.getWidth() - presetsComponent_.getWidth();
+    const int w = bounds.getWidth() - runPresets_.getWidth();
     
-    presetsComponent_.setBounds (bounds.withTrimmedLeft (w));
+    runPresets_.setBounds (bounds.withTrimmedLeft (w));
     //
     }
     
-    presetsComponent_.setVisible (hasPresets_);
+    runPresets_.setVisible (hasPresets_);
     
     runView_.setBounds (bounds);
 }

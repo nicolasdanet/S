@@ -147,7 +147,7 @@
 #include "GUI/Patches/RunWindow/RunFactory.hpp"
 #include "GUI/Patches/RunWindow/RunLayout.hpp"
 #include "GUI/Patches/RunWindow/RunView.hpp"
-#include "GUI/Patches/RunWindow/PresetsComponent.hpp"
+#include "GUI/Patches/RunWindow/RunPresets.hpp"
 #include "GUI/Patches/RunWindow/RunComponent.hpp"
 #include "GUI/Patches/RunWindow/RunWindow.hpp"
 
