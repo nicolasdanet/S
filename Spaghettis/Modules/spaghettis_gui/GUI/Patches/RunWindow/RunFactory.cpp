@@ -27,7 +27,12 @@ void RunFactory::setToolbarButton (IconsButton* button)
     
     switch (button->getItemId()) {
     //
-    case Icons::presets : button->onClick = []() { DBG ("?"); }; break;
+    case Icons::presets : button->onClick = [this, button]() {
+                                    if (button->getState()) { owner_->showPresets(); }
+                                    else {
+                                        owner_->hidePresets();
+                                    }
+                                }; break;
     case Icons::edit    : button->onClick = [this]() {
                                 owner_->getPatch().openEditWindow();
                             }; break;

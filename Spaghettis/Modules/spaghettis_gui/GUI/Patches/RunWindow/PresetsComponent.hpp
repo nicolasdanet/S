@@ -12,67 +12,29 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class RunComponent :    protected RunFactoryHelper,    /* MUST be the first. */
-                        public    BaseComponent {
+class PresetsComponent : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit RunComponent (Patch&, const juce::ValueTree&);
+    explicit PresetsComponent();
     
-    ~RunComponent() = default;
+    ~PresetsComponent() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void showPresets();
-    void hidePresets();
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    bool tryGrabFocus() override
-    {
-        return tryGrabFocusForComponent (this);
-    }
+private:
+    Resizer resizer_;
 
 private:
-    void updateLayout();
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    Patch& getPatch() const
-    {
-        return patch_;
-    }
-    
-private:
-    Patch& patch_;
-
-private:
-    RunView runView_;
-    PresetsComponent presetsComponent_;
-    bool hasPresets_;
-    
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetsComponent)
 };
 
 // -----------------------------------------------------------------------------------------------------------

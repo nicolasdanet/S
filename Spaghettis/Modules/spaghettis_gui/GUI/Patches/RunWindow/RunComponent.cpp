@@ -16,9 +16,11 @@ RunComponent::RunComponent (Patch& patch, const juce::ValueTree& tree) :
     RunFactoryHelper (this),
     BaseComponent (getIconsFactory()),
     patch_ (patch),
-    runView_ (patch, tree)
+    runView_ (patch, tree),
+    hasPresets_ (false)
 {
     addAndMakeVisible (runView_);
+    addChildComponent (presetsComponent_);
     
     setOpaque (true); setSize (600, 300);
 }
@@ -34,9 +36,44 @@ void RunComponent::paint (juce::Graphics& g)
 
 void RunComponent::resized()
 {
-    runView_.setBounds (setBoundsForBarsAndGetRemaining());
+    updateLayout();
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunComponent::showPresets()
+{
+    hasPresets_ = true;  updateLayout();
+}
+
+void RunComponent::hidePresets()
+{
+    hasPresets_ = false; updateLayout();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunComponent::updateLayout()
+{
+    juce::Rectangle<int> bounds (setBoundsForBarsAndGetRemaining());
     
+    if (hasPresets_) {
+    //
+    const int w = bounds.getWidth() - presetsComponent_.getWidth();
+    
+    presetsComponent_.setBounds (bounds.withTrimmedLeft (w));
+    //
+    }
+    
+    presetsComponent_.setVisible (hasPresets_);
+    
+    runView_.setBounds (bounds);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
