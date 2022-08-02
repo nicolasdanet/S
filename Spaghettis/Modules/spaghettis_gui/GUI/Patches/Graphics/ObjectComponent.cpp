@@ -64,12 +64,18 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     
     pinBackgroundColour_.attach (PainterPolicy::repaint (this));
     
-    addMouseListener (painter_.get(), true);
+    if (isInsideRunView()) { addMouseListener (painter_.get(), true); }
+    else {
+        
+    }
 }
 
 ObjectComponent::~ObjectComponent()
 {
-    removeMouseListener (painter_.get());
+    if (isInsideRunView()) { removeMouseListener (painter_.get()); }
+    else {
+        
+    }
     
     removeAllChangeListeners();
     removeInletsAndOultets();
@@ -91,7 +97,7 @@ Patch& ObjectComponent::getPatch() const
 {
     return view_->getPatch();
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
