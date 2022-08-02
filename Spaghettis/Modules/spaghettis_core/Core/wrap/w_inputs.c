@@ -105,6 +105,10 @@ PD_LOCAL void inputs_setMidiDevices (const std::vector<MidiDevice>& i, const std
     settings_save();
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void inputs_closePatch (core::UniqueId i)
 {
     if (unique_patchClose (i) != PD_ERROR_NONE) { jassertfalse; }
@@ -127,6 +131,20 @@ PD_LOCAL void inputs_setRunView (core::UniqueId i, juce::Rectangle<int> bounds)
     t_rectangle r; rectangle_setCopy (&r, bounds);
     
     if (unique_patchSetRunView (i, &r) != PD_ERROR_NONE) { jassertfalse; }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void inputs_selectObject (core::UniqueId i)
+{
+    unique_objectSelect (i);
+}
+
+PD_LOCAL void inputs_deselectObject (core::UniqueId i)
+{
+    unique_objectDeselect (i);
 }
 
 // -----------------------------------------------------------------------------------------------------------

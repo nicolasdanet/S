@@ -136,10 +136,8 @@ PD_LOCAL void   glist_objectRemoveSelected              (t_glist *g);
 PD_LOCAL int    glist_objectGetNumberOf                 (t_glist *g);
 PD_LOCAL int    glist_objectGetNumberOfSelected         (t_glist *g);
 
-PD_FORCE void   glist_objectSelect                      (t_glist *g, t_object *y);
-PD_FORCE void   glist_objectSelectAll                   (t_glist *g);
-PD_FORCE void   glist_objectDeselect                    (t_glist *g, t_object *y);
-PD_FORCE void   glist_objectDeselectAll                 (t_glist *g);
+PD_GUARD void   glist_objectSelect                      (t_glist *g, t_object *y);
+PD_GUARD void   glist_objectDeselect                    (t_glist *g, t_object *y);
 PD_LOCAL int    glist_objectIsSelected                  (t_glist *g, t_object *y);
 
 PD_LOCAL void   glist_objectMoveAtFirst                 (t_glist *g, t_object *y);

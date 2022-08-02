@@ -13,6 +13,38 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_GUARD t_error unique_objectSelect (t_id u)
+{
+    t_object *object = instance_registerGetObject (u);
+    t_glist *glist   = instance_registerGetOwner (u);
+
+    if (object && glist) {
+    //
+    glist_objectSelect (glist, object); return PD_ERROR_NONE;
+    //
+    }
+
+    return PD_ERROR;
+}
+
+PD_GUARD t_error unique_objectDeselect (t_id u)
+{
+    t_object *object = instance_registerGetObject (u);
+    t_glist *glist   = instance_registerGetOwner (u);
+
+    if (object && glist) {
+    //
+    glist_objectDeselect (glist, object); return PD_ERROR_NONE;
+    //
+    }
+
+    return PD_ERROR;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL t_error unique_objectRemove (t_id u)
 {
     t_object *object = instance_registerGetObject (u);

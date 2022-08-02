@@ -79,6 +79,10 @@ Perform Inputs::setMidiDevices (std::vector<MidiDevice>&& i, std::vector<MidiDev
     return f;
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 Perform Inputs::closePatch (core::UniqueId i)
 {
     return [i]() { core::inputs_closePatch (i); };
@@ -97,6 +101,20 @@ Perform Inputs::setEditView (core::UniqueId i, juce::Rectangle<int> bounds)
 Perform Inputs::setRunView (core::UniqueId i, juce::Rectangle<int> bounds)
 {
     return [i, bounds]() { core::inputs_setRunView (i, bounds); };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Perform Inputs::selectObject (core::UniqueId i)
+{
+    return [i]() { core::inputs_selectObject (i); };
+}
+
+Perform Inputs::deselectObject (core::UniqueId i)
+{
+    return [i]() { core::inputs_deselectObject (i); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

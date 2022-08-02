@@ -13,24 +13,15 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_FORCE void glist_objectSelect (t_glist *glist, t_object *y)
+PD_GUARD void glist_objectSelect (t_glist *glist, t_object *y)
 {
-    object_setSelected (y, 1);
+    object_setSelected (y, 1); outputs_objectUpdateAttributes (y, glist);
+
 }
 
-PD_FORCE void glist_objectSelectAll (t_glist *glist)
+PD_GUARD void glist_objectDeselect (t_glist *glist, t_object *y)
 {
-    t_object *y = NULL; for (y = glist->gl_graphics; y; y = y->g_next) { glist_objectSelect (glist, y); }
-}
-
-PD_FORCE void glist_objectDeselect (t_glist *glist, t_object *y)
-{
-    object_setSelected (y, 0);
-}
-
-PD_FORCE void glist_objectDeselectAll (t_glist *glist)
-{
-    t_object *y = NULL; for (y = glist->gl_graphics; y; y = y->g_next) { glist_objectDeselect (glist, y); }
+    object_setSelected (y, 0); outputs_objectUpdateAttributes (y, glist);
 }
 
 PD_LOCAL int glist_objectIsSelected (t_glist *glist, t_object *y)

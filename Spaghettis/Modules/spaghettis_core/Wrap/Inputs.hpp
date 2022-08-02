@@ -39,11 +39,22 @@ static Perform setSnapToGridSize (int);
 static Perform rescanDevices (void);
 static Perform setAudioDevices (std::vector<AudioDevice>&&, std::vector<AudioDevice>&&);
 static Perform setMidiDevices (std::vector<MidiDevice>&&, std::vector<MidiDevice>&&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static Perform closePatch (core::UniqueId);
 static Perform savePatch (core::UniqueId);
 static Perform setEditView (core::UniqueId, juce::Rectangle<int>);
 static Perform setRunView (core::UniqueId, juce::Rectangle<int>);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static Perform selectObject (core::UniqueId);
+static Perform deselectObject (core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

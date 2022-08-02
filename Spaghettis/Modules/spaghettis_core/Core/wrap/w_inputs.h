@@ -27,10 +27,14 @@ PD_LOCAL void inputs_setSnapSize        (int);
 PD_LOCAL void inputs_rescanDevices      (void);
 PD_LOCAL void inputs_setAudioDevices    (const std::vector<AudioDevice>&, const std::vector<AudioDevice>&);
 PD_LOCAL void inputs_setMidiDevices     (const std::vector<MidiDevice>&, const std::vector<MidiDevice>&);
+
 PD_LOCAL void inputs_closePatch         (core::UniqueId);
 PD_LOCAL void inputs_savePatch          (core::UniqueId);
 PD_LOCAL void inputs_setEditView        (core::UniqueId, juce::Rectangle<int>);
 PD_LOCAL void inputs_setRunView         (core::UniqueId, juce::Rectangle<int>);
+
+PD_LOCAL void inputs_selectObject       (core::UniqueId);
+PD_LOCAL void inputs_deselectObject     (core::UniqueId);
 
 #endif
 
