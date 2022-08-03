@@ -101,6 +101,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Box Pin Background"),
         NEEDS_TRANS ("Set background color of pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.05));
+    
+    colors.addParameter (Tags::BoxSelected,
+        NEEDS_TRANS ("Box Selected"),
+        NEEDS_TRANS ("Set highlight color for selected object"),
+        Colours::getPalette()->textHighlighted);
         
     colors.addParameter (Tags::BoxText,
         NEEDS_TRANS ("Box Text"),
