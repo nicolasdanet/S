@@ -39,11 +39,12 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core
 ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     view_ (view),
     object_ (object),
+    selected_ (object.getCachedAttribute<bool> (Tags::Selected)),
     visible_ (object.getCachedAttribute<bool> (Tags::Visible, true)),
     inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets, true)),
     outlets_ (object.getCachedAttribute<juce::String> (Tags::Outlets, true)),
     label_ (object.getCachedParameter<juce::String> (Tags::Label, true)),
-    pinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
+    boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxPinBackground)),
     painter_ (createPainter (this, object)),
     mouse_ (std::make_unique<MousePolicy> (this, object)),
     isRunView_ (View::isRunView (view_))
@@ -58,12 +59,13 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     
     auto f = [this]() { update(); };
     
+    selected_.attach (f);
+    visible_.attach (f);
     inlets_.attach (f);
     outlets_.attach (f);
-    visible_.attach (f);
     label_.attach (f);
     
-    pinBackgroundColour_.attach (PainterPolicy::repaint (this));
+    boxPinBackgroundColour_.attach (PainterPolicy::repaint (this));
     
     addMouseListener (getMousePolicy(), true);
 }
@@ -140,7 +142,7 @@ void ObjectComponent::paint (juce::Graphics& g)
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
     
-    g.setColour (pinBackgroundColour_.get());
+    g.setColour (boxPinBackgroundColour_.get());
     g.fillRect (bounds);
     
     painter_->paint (view_->getPaintedAreaFromBounds (bounds), g);

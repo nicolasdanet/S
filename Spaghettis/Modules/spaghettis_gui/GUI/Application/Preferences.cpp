@@ -97,6 +97,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set background color of objects"),
         Colours::getPalette()->backgroundBox);
     
+    colors.addParameter (Tags::BoxPinBackground,
+        NEEDS_TRANS ("Box Pin Background"),
+        NEEDS_TRANS ("Set background color of pins"),
+        Colours::getPalette()->backgroundBox.contrasting (0.05));
+        
     colors.addParameter (Tags::BoxText,
         NEEDS_TRANS ("Box Text"),
         NEEDS_TRANS ("Set text color of objects"),
@@ -121,11 +126,6 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Line Signal"),
         NEEDS_TRANS ("Set color of signal connections"),
         Colours::getPalette()->signal);
-        
-    colors.addParameter (Tags::PinBackground,
-        NEEDS_TRANS ("Pin Background"),
-        NEEDS_TRANS ("Set background color of pins"),
-        Colours::getPalette()->backgroundBox.contrasting (0.05));
     
     colors.addParameter (Tags::PinOver,
         NEEDS_TRANS ("Pin Over"),
