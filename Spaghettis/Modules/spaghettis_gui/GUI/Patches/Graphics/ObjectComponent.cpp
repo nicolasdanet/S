@@ -45,6 +45,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     label_ (object.getCachedParameter<juce::String> (Tags::Label, true)),
     pinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
     painter_ (createPainter (this, object)),
+    mouse_ (std::make_unique<MousePolicy> (this)),
     isRunView_ (View::isRunView (view_))
 {
     jassert (view);
@@ -64,18 +65,12 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     
     pinBackgroundColour_.attach (PainterPolicy::repaint (this));
     
-    if (isInsideRunView()) { addMouseListener (painter_.get(), true); }
-    else {
-        
-    }
+    addMouseListener (getMousePolicy(), true);
 }
 
 ObjectComponent::~ObjectComponent()
 {
-    if (isInsideRunView()) { removeMouseListener (painter_.get()); }
-    else {
-        
-    }
+    removeMouseListener (getMousePolicy());
     
     removeAllChangeListeners();
     removeInletsAndOultets();
@@ -210,6 +205,18 @@ void ObjectComponent::update (bool notify)
     }
     
     if (notify) { sendChangeMessage(); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::MouseListener* ObjectComponent::getMousePolicy() const
+{
+    if (isInsideRunView()) { return static_cast<juce::MouseListener*> (painter_.get()); }
+    else {
+        return static_cast<juce::MouseListener*> (mouse_.get());
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

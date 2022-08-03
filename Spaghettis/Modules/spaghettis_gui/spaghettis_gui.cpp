@@ -63,6 +63,7 @@
 #include "GUI/Patches/View.cpp"
 
 #include "GUI/Patches/Graphics/PainterPolicy.cpp"
+#include "GUI/Patches/Graphics/MousePolicy.cpp"
 
 #include "GUI/Patches/Graphics/Painters/BangPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.cpp"

@@ -76,6 +76,9 @@ public:
 private:
     void update (bool notify = true);
 
+private:
+    juce::MouseListener* getMousePolicy() const;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -97,6 +100,7 @@ private:
     core::Cached<juce::String> label_;
     core::Cached<juce::Colour> pinBackgroundColour_;
     std::unique_ptr<PainterPolicy> painter_;
+    std::unique_ptr<MousePolicy> mouse_;
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;
     bool isRunView_;
