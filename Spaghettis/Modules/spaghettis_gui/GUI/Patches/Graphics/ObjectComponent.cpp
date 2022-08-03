@@ -45,7 +45,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     label_ (object.getCachedParameter<juce::String> (Tags::Label, true)),
     pinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PinBackground)),
     painter_ (createPainter (this, object)),
-    mouse_ (std::make_unique<MousePolicy> (this)),
+    mouse_ (std::make_unique<MousePolicy> (this, object)),
     isRunView_ (View::isRunView (view_))
 {
     jassert (view);

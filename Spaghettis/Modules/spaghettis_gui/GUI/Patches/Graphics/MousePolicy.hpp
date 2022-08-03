@@ -24,7 +24,7 @@ class MousePolicy : public juce::MouseListener {
 // MARK: -
 
 public:
-    explicit MousePolicy (ObjectComponent*);
+    explicit MousePolicy (ObjectComponent*, const core::Object&);
     
     ~MousePolicy() = default;
     
@@ -33,6 +33,13 @@ public:
     MousePolicy (MousePolicy&&) = delete;
     MousePolicy& operator = (const MousePolicy&) = delete;
     MousePolicy& operator = (MousePolicy&&) = delete;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void mouseDoubleClick (const juce::MouseEvent&) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -40,6 +47,7 @@ public:
 
 private:
     ObjectComponent* component_;
+    core::Object object_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

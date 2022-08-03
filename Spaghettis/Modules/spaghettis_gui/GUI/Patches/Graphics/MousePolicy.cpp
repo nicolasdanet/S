@@ -12,9 +12,20 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-MousePolicy::MousePolicy (ObjectComponent* owner) : component_ (owner)
+MousePolicy::MousePolicy (ObjectComponent* owner, const core::Object& object) :
+    component_ (owner),
+    object_ (object)
 {
     jassert (owner);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void MousePolicy::mouseDoubleClick (const juce::MouseEvent&)
+{
+    if (object_.isPatch()) { component_->getPatch().openSubPatchWindow (object_.getIdentifier()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
