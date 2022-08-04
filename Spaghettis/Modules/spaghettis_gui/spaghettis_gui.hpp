@@ -137,6 +137,7 @@
 #include "GUI/Patches/Graphics/ObjectComponent.hpp"
 #include "GUI/Patches/Graphics/LineComponent.hpp"
 
+#include "GUI/Patches/EditWindow/EditCommands.hpp"
 #include "GUI/Patches/EditWindow/EditFactory.hpp"
 #include "GUI/Patches/EditWindow/EditView.hpp"
 #include "GUI/Patches/EditWindow/EditPort.hpp"

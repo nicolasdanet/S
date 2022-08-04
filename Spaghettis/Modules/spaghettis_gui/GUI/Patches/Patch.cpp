@@ -128,9 +128,9 @@ void Patch::openWindow()
     }
 }
 
-void Patch::openSubPatchWindow (core::UniqueId i)
+void Patch::openSubPatchWindow (const core::Object& object)
 {
-    juce::ValueTree t (getChildRecursiveWithIdentifier (tree_, i));
+    juce::ValueTree t (getChildRecursiveWithIdentifier (tree_, object.getIdentifier()));
     
     jassert (t.isValid());
     

@@ -5,60 +5,28 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-MousePolicy::MousePolicy (ObjectComponent* owner, const core::Object& object) :
-    component_ (owner),
-    object_ (object)
-{
-    jassert (owner);
-}
+struct EditCommands {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void MousePolicy::mouseMove (const juce::MouseEvent&)
+static void selectObject (const core::Object& object)
 {
-    DBG ("Move");
+    Spaghettis()->handle (Inputs::selectObject (object.getIdentifier()));
 }
 
-void MousePolicy::mouseEnter (const juce::MouseEvent&)
-{
-    DBG ("Enter");
-}
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
-void MousePolicy::mouseExit (const juce::MouseEvent&)
-{
-    DBG ("Exit");
-}
-
-void MousePolicy::mouseDown (const juce::MouseEvent&)
-{
-    DBG ("Down");
-    
-    EditCommands::selectObject (object_);
-}
-
-void MousePolicy::mouseDrag (const juce::MouseEvent&)
-{
-    DBG ("Drag");
-}
-
-void MousePolicy::mouseUp (const juce::MouseEvent&)
-{
-    DBG ("Up");
-}
-    
-void MousePolicy::mouseDoubleClick (const juce::MouseEvent&)
-{
-    if (object_.isPatch()) { component_->getPatch().openSubPatchWindow (object_); }
-}
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -67,3 +35,4 @@ void MousePolicy::mouseDoubleClick (const juce::MouseEvent&)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+

@@ -60,12 +60,12 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     
     auto f = [this]() { update(); };
     
-    selected_.attach (f);
     visible_.attach (f);
     inlets_.attach (f);
     outlets_.attach (f);
     label_.attach (f);
     
+    selected_.attach (PainterPolicy::repaint (this));
     boxPinBackgroundColour_.attach (PainterPolicy::repaint (this));
     boxSelectedColour_.attach (PainterPolicy::repaint (this));
     
