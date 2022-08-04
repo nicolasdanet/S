@@ -23,6 +23,36 @@ MousePolicy::MousePolicy (ObjectComponent* owner, const core::Object& object) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void MousePolicy::mouseMove (const juce::MouseEvent&)
+{
+    DBG ("Move");
+}
+
+void MousePolicy::mouseEnter (const juce::MouseEvent&)
+{
+    DBG ("Enter");
+}
+
+void MousePolicy::mouseExit (const juce::MouseEvent&)
+{
+    DBG ("Exit");
+}
+
+void MousePolicy::mouseDown (const juce::MouseEvent&)
+{
+    DBG ("Down");
+}
+
+void MousePolicy::mouseDrag (const juce::MouseEvent&)
+{
+    DBG ("Drag");
+}
+
+void MousePolicy::mouseUp (const juce::MouseEvent&)
+{
+    DBG ("Up");
+}
+    
 void MousePolicy::mouseDoubleClick (const juce::MouseEvent&)
 {
     if (object_.isPatch()) { component_->getPatch().openSubPatchWindow (object_.getIdentifier()); }
