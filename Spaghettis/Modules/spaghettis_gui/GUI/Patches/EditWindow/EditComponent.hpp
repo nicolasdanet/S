@@ -69,11 +69,8 @@ private:
 public:
     Patch& getPatch() const
     {
-        return patch_;
+        return editView_.getPatch();
     }
-    
-private:
-    Patch& patch_;
     
 private:
     EditView editView_;

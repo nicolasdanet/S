@@ -60,11 +60,8 @@ private:
 public:
     Patch& getPatch() const
     {
-        return patch_;
+        return runView_.getPatch();
     }
-    
-private:
-    Patch& patch_;
 
 private:
     RunView runView_;
