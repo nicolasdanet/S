@@ -13,8 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
-    View (patch),
-    tree_ (tree),
+    View (patch, tree),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
     scale_ (1.0f)
 {

@@ -82,7 +82,6 @@ private:
     void initialize (const juce::ValueTree&);
     
 private:
-    juce::ValueTree tree_;
     core::Cached<juce::Colour> patchBackgroundColour_;
     Table<core::Object, ObjectComponent> objects_;
     Table<core::Line, LineComponent> lines_;
