@@ -23,6 +23,11 @@ static void selectObject (const core::Object& object)
     Spaghettis()->handle (Inputs::selectObject (object.getIdentifier()));
 }
 
+static void deselectObject (const core::Object& object)
+{
+    Spaghettis()->handle (Inputs::deselectObject (object.getIdentifier()));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

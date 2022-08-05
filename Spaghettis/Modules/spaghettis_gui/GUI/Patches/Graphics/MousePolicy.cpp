@@ -25,34 +25,34 @@ MousePolicy::MousePolicy (ObjectComponent* owner, const core::Object& object) :
 
 void MousePolicy::mouseMove (const juce::MouseEvent&)
 {
-    DBG ("Move");
+    // DBG ("Move");
 }
 
 void MousePolicy::mouseEnter (const juce::MouseEvent&)
 {
-    DBG ("Enter");
+    // DBG ("Enter");
 }
 
 void MousePolicy::mouseExit (const juce::MouseEvent&)
 {
-    DBG ("Exit");
+    // DBG ("Exit");
 }
 
 void MousePolicy::mouseDown (const juce::MouseEvent&)
 {
-    DBG ("Down");
+    // DBG ("Down");
     
     EditCommands::selectObject (object_);
 }
 
 void MousePolicy::mouseDrag (const juce::MouseEvent&)
 {
-    DBG ("Drag");
+    // DBG ("Drag");
 }
 
 void MousePolicy::mouseUp (const juce::MouseEvent&)
 {
-    DBG ("Up");
+    // DBG ("Up");
 }
     
 void MousePolicy::mouseDoubleClick (const juce::MouseEvent&)
