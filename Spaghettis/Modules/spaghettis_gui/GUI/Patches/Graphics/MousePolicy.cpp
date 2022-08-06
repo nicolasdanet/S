@@ -12,9 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-MousePolicy::MousePolicy (ObjectComponent* owner, const core::Object& object) :
-    component_ (owner),
-    object_ (object)
+MousePolicy::MousePolicy (ObjectComponent* owner) : p_ (owner)
 {
     jassert (owner);
 }
@@ -42,7 +40,7 @@ void MousePolicy::mouseDown (const juce::MouseEvent&)
 {
     // DBG ("Down");
     
-    EditCommands::selectObject (object_);
+    EditCommands::selectObject (p_->object_);
 }
 
 void MousePolicy::mouseDrag (const juce::MouseEvent&)
@@ -57,7 +55,7 @@ void MousePolicy::mouseUp (const juce::MouseEvent&)
     
 void MousePolicy::mouseDoubleClick (const juce::MouseEvent&)
 {
-    if (object_.isPatch()) { component_->getPatch().openSubPatchWindow (object_); }
+    if (p_->object_.isPatch()) { p_->view_->getPatch().openSubPatchWindow (p_->object_); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

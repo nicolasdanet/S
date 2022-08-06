@@ -47,7 +47,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tags::BoxSelected)),
     painter_ (createPainter (this, object)),
-    mouse_ (std::make_unique<MousePolicy> (this, object)),
+    mouse_ (std::make_unique<MousePolicy> (this)),
     isRunView_ (View::isRunView (view_))
 {
     jassert (view);
@@ -90,11 +90,6 @@ ObjectComponent::~ObjectComponent()
 core::UniqueId ObjectComponent::getIdentifier() const
 {
     return object_.getIdentifier();
-}
-
-Patch& ObjectComponent::getPatch() const
-{
-    return view_->getPatch();
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -24,7 +24,7 @@ class MousePolicy : public juce::MouseListener {
 // MARK: -
 
 public:
-    explicit MousePolicy (ObjectComponent*, const core::Object&);
+    explicit MousePolicy (ObjectComponent*);
     
     ~MousePolicy() = default;
     
@@ -52,8 +52,7 @@ public:
 // MARK: -
 
 private:
-    ObjectComponent* component_;
-    core::Object object_;
+    ObjectComponent* p_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
