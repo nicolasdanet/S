@@ -12,50 +12,71 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-MousePolicy::MousePolicy (ObjectComponent* owner) : p_ (owner)
+void ObjectComponent::mouseMove (const juce::MouseEvent&)
 {
-    jassert (owner);
+    if (!isRunView_) {
+    //
+    DBG ("MOVE");
+    //
+    }
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void MousePolicy::mouseMove (const juce::MouseEvent&)
+void ObjectComponent::mouseEnter (const juce::MouseEvent&)
 {
-    // DBG ("Move");
+    if (!isRunView_) {
+    //
+    DBG ("ENTER");
+    //
+    }
 }
 
-void MousePolicy::mouseEnter (const juce::MouseEvent&)
+void ObjectComponent::mouseExit (const juce::MouseEvent&)
 {
-    // DBG ("Enter");
+    if (!isRunView_) {
+    //
+    DBG ("EXIT");
+    //
+    }
 }
 
-void MousePolicy::mouseExit (const juce::MouseEvent&)
+void ObjectComponent::mouseDown (const juce::MouseEvent&)
 {
-    // DBG ("Exit");
-}
-
-void MousePolicy::mouseDown (const juce::MouseEvent&)
-{
-    // DBG ("Down");
+    if (!isRunView_) {
+    //
+    DBG ("DOWN");
+    //
+    }
     
-    EditCommands::selectObject (p_->object_);
+    // EditCommands::selectObject (p_->object_);
 }
 
-void MousePolicy::mouseDrag (const juce::MouseEvent&)
+void ObjectComponent::mouseDrag (const juce::MouseEvent&)
 {
-    // DBG ("Drag");
+    if (!isRunView_) {
+    //
+    DBG ("DRAG");
+    //
+    }
 }
 
-void MousePolicy::mouseUp (const juce::MouseEvent&)
+void ObjectComponent::mouseUp (const juce::MouseEvent&)
 {
-    // DBG ("Up");
+    if (!isRunView_) {
+    //
+    DBG ("UP");
+    //
+    }
 }
     
-void MousePolicy::mouseDoubleClick (const juce::MouseEvent&)
+void ObjectComponent::mouseDoubleClick (const juce::MouseEvent&)
 {
-    if (p_->object_.isPatch()) { p_->view_->getPatch().openSubPatchWindow (p_->object_); }
+    if (!isRunView_) {
+    //
+    DBG ("DBL CLICK");
+    //
+    }
+    
+    // if (p_->object_.isPatch()) { p_->view_->getPatch().openSubPatchWindow (p_->object_); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -128,7 +128,6 @@
 #include "GUI/Patches/Graphics/Scalable.hpp"
 #include "GUI/Patches/Graphics/Table.hpp"
 #include "GUI/Patches/Graphics/PainterPolicy.hpp"
-#include "GUI/Patches/Graphics/MousePolicy.hpp"
 
 #include "GUI/Patches/Graphics/Painters/BangPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.hpp"

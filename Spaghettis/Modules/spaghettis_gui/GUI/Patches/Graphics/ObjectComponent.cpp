@@ -47,7 +47,6 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tags::BoxSelected)),
     painter_ (createPainter (this, object)),
-    mouse_ (std::make_unique<MousePolicy> (this)),
     isRunView_ (View::isRunView (view_))
 {
     jassert (view);
@@ -69,12 +68,12 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     boxPinBackgroundColour_.attach (PainterPolicy::repaint (this));
     boxSelectedColour_.attach (PainterPolicy::repaint (this));
     
-    addMouseListener (getMousePolicy(), true);
+    if (isRunView_) { addMouseListener (painter_.get(), true); }
 }
 
 ObjectComponent::~ObjectComponent()
 {
-    removeMouseListener (getMousePolicy());
+    if (isRunView_) { removeMouseListener (painter_.get()); }
     
     removeAllChangeListeners();
     removeInletsAndOultets();
@@ -204,18 +203,6 @@ void ObjectComponent::update (bool notify)
     }
     
     if (notify) { sendChangeMessage(); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::MouseListener* ObjectComponent::getMousePolicy() const
-{
-    if (isInsideRunView()) { return static_cast<juce::MouseListener*> (painter_.get()); }
-    else {
-        return static_cast<juce::MouseListener*> (mouse_.get());
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -24,11 +24,6 @@ class ObjectComponent : public Scalable,
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-friend class MousePolicy;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
@@ -36,6 +31,19 @@ public:
     
     ~ObjectComponent();
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void mouseMove (const juce::MouseEvent&) override;
+    void mouseEnter (const juce::MouseEvent&) override;
+    void mouseExit (const juce::MouseEvent&) override;
+    void mouseDown (const juce::MouseEvent&) override;
+    void mouseDrag (const juce::MouseEvent&) override;
+    void mouseUp (const juce::MouseEvent&) override;
+    void mouseDoubleClick (const juce::MouseEvent&) override;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -79,9 +87,6 @@ public:
 private:
     void update (bool notify = true);
 
-private:
-    juce::MouseListener* getMousePolicy() const;
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -105,7 +110,6 @@ private:
     core::Cached<juce::Colour> boxPinBackgroundColour_;
     core::Cached<juce::Colour> boxSelectedColour_;
     std::unique_ptr<PainterPolicy> painter_;
-    std::unique_ptr<MousePolicy> mouse_;
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;
     bool isRunView_;
