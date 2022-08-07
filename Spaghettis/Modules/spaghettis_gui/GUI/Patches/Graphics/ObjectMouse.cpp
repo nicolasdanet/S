@@ -12,11 +12,29 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void openSubPatch (View* v, const core::Object& o)
+{
+    if (o.isPatch()) { v->getPatch().openSubPatchWindow (o); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ObjectComponent::mouseMove (const juce::MouseEvent&)
 {
     if (!isRunView_) {
     //
-    DBG ("MOVE");
     //
     }
 }
@@ -25,7 +43,6 @@ void ObjectComponent::mouseEnter (const juce::MouseEvent&)
 {
     if (!isRunView_) {
     //
-    DBG ("ENTER");
     //
     }
 }
@@ -34,27 +51,26 @@ void ObjectComponent::mouseExit (const juce::MouseEvent&)
 {
     if (!isRunView_) {
     //
-    DBG ("EXIT");
     //
     }
 }
 
-void ObjectComponent::mouseDown (const juce::MouseEvent&)
+void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 {
     if (!isRunView_) {
     //
-    DBG ("DOWN");
+    if (e.mods.isLeftButtonDown()) {
+        if (e.getNumberOfClicks() == 1)      { EditCommands::selectObject (object_); }
+        else if (e.getNumberOfClicks() == 2) { openSubPatch (view_, object_); }
+    }
     //
     }
-    
-    // EditCommands::selectObject (p_->object_);
 }
 
 void ObjectComponent::mouseDrag (const juce::MouseEvent&)
 {
     if (!isRunView_) {
     //
-    DBG ("DRAG");
     //
     }
 }
@@ -63,20 +79,8 @@ void ObjectComponent::mouseUp (const juce::MouseEvent&)
 {
     if (!isRunView_) {
     //
-    DBG ("UP");
     //
     }
-}
-    
-void ObjectComponent::mouseDoubleClick (const juce::MouseEvent&)
-{
-    if (!isRunView_) {
-    //
-    DBG ("DBL CLICK");
-    //
-    }
-    
-    // if (p_->object_.isPatch()) { p_->view_->getPatch().openSubPatchWindow (p_->object_); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
