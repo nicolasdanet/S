@@ -17,11 +17,11 @@ RunView::RunView (Patch& patch, const juce::ValueTree& tree) :
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
     patchTextColour_ (Spaghettis()->getCachedColour (Tags::PatchText))
 {
-    tree_.addListener (this);
+    viewTree_.addListener (this);
     patchBackgroundColour_.attach (PainterPolicy::repaint (this));
     patchTextColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
-    initialize (tree_);
+    initialize (viewTree_);
 }
 
 RunView::~RunView()

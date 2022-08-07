@@ -17,11 +17,11 @@ EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
     scale_ (1.0f)
 {
-    tree_.addListener (this);
+    viewTree_.addListener (this);
     patchBackgroundColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
     setBounds (core::Canvas::getArea (scale_));
-    initialize (tree_);
+    initialize (viewTree_);
 }
 
 EditView::~EditView()
@@ -149,12 +149,12 @@ void EditView::initialize (const juce::ValueTree& tree)
 
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    if (isChildOf (tree_, child)) { addComponent (child); }
+    if (isChildOf (viewTree_, child)) { addComponent (child); }
 }
 
 void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    if (isChildOf (tree_, child)) { removeComponent (child); }
+    if (isChildOf (viewTree_, child)) { removeComponent (child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -24,7 +24,7 @@ class View :    public juce::Component,
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    explicit View (Patch& patch, const juce::ValueTree& tree) : patch_ (patch), tree_ (tree)
+    explicit View (Patch& patch, const juce::ValueTree& tree) : patch_ (patch), viewTree_ (tree)
     {
     }
     
@@ -74,7 +74,7 @@ private:
     Patch& patch_;
     
 protected:
-    juce::ValueTree tree_;
+    juce::ValueTree viewTree_;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
