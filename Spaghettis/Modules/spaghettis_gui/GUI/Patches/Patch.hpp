@@ -24,14 +24,14 @@ class Patch {
 // MARK: -
 
 public:
-    explicit Patch (const core::Report& v) : tree_ (v.asValueTree()), dirty_ (false)
+    explicit Patch (const core::Report& v) : rootTree_ (v.asValueTree()), dirty_ (false)
     {
         openWindow();
     }
 
     ~Patch()
     {
-        DBG (core::Data::debug (tree_));
+        DBG (core::Data::debug (rootTree_));
         
         Spaghettis()->appendRecentFile (getFile());
         
@@ -108,12 +108,12 @@ private:
 public:
     core::UniqueId getIdentifier() const
     {
-        return core::Object (tree_).getIdentifier();
+        return core::Object (rootTree_).getIdentifier();
     }
 
     juce::File getFile() const
     {
-        return juce::File (core::Object (tree_).getAttribute<juce::String> (Tags::Path));
+        return juce::File (core::Object (rootTree_).getAttribute<juce::String> (Tags::Path));
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -121,7 +121,7 @@ public:
 // MARK: -
 
 private:
-    juce::ValueTree tree_;
+    juce::ValueTree rootTree_;
     bool dirty_;
 
 private:

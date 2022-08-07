@@ -48,7 +48,7 @@ juce::ValueTree getChildRecursiveWithIdentifier (const juce::ValueTree& t, core:
 
 juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 {
-    juce::ValueTree t (tree_);
+    juce::ValueTree t (rootTree_);
     
     if (u.hasPath()) {
         for (const auto& i : u.getPath()) { t = getChildWithIdentifier (t, i); }
@@ -130,7 +130,7 @@ void Patch::openWindow()
 
 void Patch::openSubPatchWindow (const core::Object& object)
 {
-    juce::ValueTree t (getChildRecursiveWithIdentifier (tree_, object.getIdentifier()));
+    juce::ValueTree t (getChildRecursiveWithIdentifier (rootTree_, object.getIdentifier()));
     
     jassert (t.isValid());
     
@@ -141,14 +141,14 @@ void Patch::openSubPatchWindow (const core::Object& object)
 
 void Patch::openEditWindow()
 {
-    windows_.push_back (std::make_unique<EditWindow> (*this, tree_));
+    windows_.push_back (std::make_unique<EditWindow> (*this, rootTree_));
     
     updateDirty();
 }
 
 void Patch::openRunWindow()
 {
-    windows_.push_back (std::make_unique<RunWindow> (*this, tree_));
+    windows_.push_back (std::make_unique<RunWindow> (*this, rootTree_));
     
     updateDirty();
 }
