@@ -67,9 +67,9 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
     if (e.mods.isLeftButtonDown()) {
         if (e.getNumberOfClicks() == 1) {
             if (e.mods.isShiftDown() == false) { deselectAll (view_); }
-            if (e.mods.isShiftDown() && selected_.get()) { EditCommands::deselect (object_); }
+            if (e.mods.isShiftDown() && selected_.get()) { EditCommands::deselect (object_.getIdentifier()); }
             else {
-                EditCommands::select (object_);
+                EditCommands::select (object_.getIdentifier());
             }
         } else if (e.getNumberOfClicks() == 2) {
             openSubPatch (view_, object_);
