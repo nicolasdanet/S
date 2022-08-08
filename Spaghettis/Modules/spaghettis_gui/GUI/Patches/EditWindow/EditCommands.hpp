@@ -18,12 +18,12 @@ struct EditCommands {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void selectObject (const core::Object& object)
+static void select (const core::Object& object)
 {
     Spaghettis()->handle (Inputs::selectObject (object.getIdentifier()));
 }
 
-static void deselectObject (const core::Object& object)
+static void deselect (const core::Object& object)
 {
     Spaghettis()->handle (Inputs::deselectObject (object.getIdentifier()));
 }

@@ -68,12 +68,12 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     boxPinBackgroundColour_.attach (PainterPolicy::repaint (this));
     boxSelectedColour_.attach (PainterPolicy::repaint (this));
     
-    if (isRunView_) { addMouseListener (painter_.get(), true); }
+    if (isInsideRunView()) { addMouseListener (painter_.get(), true); }
 }
 
 ObjectComponent::~ObjectComponent()
 {
-    if (isRunView_) { removeMouseListener (painter_.get()); }
+    if (isInsideRunView()) { removeMouseListener (painter_.get()); }
     
     removeAllChangeListeners();
     removeInletsAndOultets();
