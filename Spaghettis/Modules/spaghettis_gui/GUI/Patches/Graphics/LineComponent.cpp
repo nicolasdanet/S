@@ -15,8 +15,8 @@ namespace spaghettis {
 LineComponent::LineComponent (View* view, const core::Line& line) :
     view_ (view),
     line_ (line),
-    source_ (view->getObject (line.getIdentifierOfSource())),
-    destination_ (view->getObject (line.getIdentifierOfDestination())),
+    source_ (view->getObjectComponent (line.getIdentifierOfSource())),
+    destination_ (view->getObjectComponent (line.getIdentifierOfDestination())),
     lineColour_ (Spaghettis()->getCachedColour (Tags::Line)),
     lineSignalColour_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
     isSignal_ (false),

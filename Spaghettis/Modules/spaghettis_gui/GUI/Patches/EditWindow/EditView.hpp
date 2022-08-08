@@ -40,7 +40,7 @@ public:
 // MARK: -
 
 public:
-    ObjectComponent* getObject (core::UniqueId) override;
+    ObjectComponent* getObjectComponent (core::UniqueId) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

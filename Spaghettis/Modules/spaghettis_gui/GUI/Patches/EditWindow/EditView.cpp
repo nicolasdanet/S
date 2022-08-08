@@ -42,7 +42,7 @@ void EditView::paint (juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ObjectComponent* EditView::getObject (core::UniqueId u)
+ObjectComponent* EditView::getObjectComponent (core::UniqueId u)
 {
     return objects_.get (u);
 }
