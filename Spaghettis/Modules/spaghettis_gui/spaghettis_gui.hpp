@@ -119,6 +119,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Patches/Mouse.hpp"
 #include "GUI/Patches/Patch.hpp"
 #include "GUI/Patches/PatchesHolder.hpp"
 #include "GUI/Patches/PatchWindow.hpp"

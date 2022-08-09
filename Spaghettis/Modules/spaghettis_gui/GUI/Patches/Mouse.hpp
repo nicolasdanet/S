@@ -12,20 +12,25 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-struct EditCommands {
+struct Mouse {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void select (core::UniqueId i)
+static bool isClick (const juce::MouseEvent& e)
 {
-    Spaghettis()->handle (Inputs::selectObject (i));
+    return (e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 1 && (e.mods.isShiftDown() == false));
 }
 
-static void deselect (core::UniqueId i)
+static bool isShiftClick (const juce::MouseEvent& e)
 {
-    Spaghettis()->handle (Inputs::deselectObject (i));
+    return (e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 1 && (e.mods.isShiftDown() == true));
+}
+
+static bool isDoubleClick (const juce::MouseEvent& e)
+{
+    return (e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 2);
 }
 
 // -----------------------------------------------------------------------------------------------------------
