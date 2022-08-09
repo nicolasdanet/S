@@ -18,6 +18,20 @@ struct EditCommands {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static bool isClick (const juce::MouseEvent& e)
+{
+    return (e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 1);
+}
+
+static bool isDoubleClick (const juce::MouseEvent& e)
+{
+    return (e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 2);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void select (core::UniqueId i)
 {
     Spaghettis()->handle (Inputs::selectObject (i));

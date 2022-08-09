@@ -22,11 +22,6 @@ void openSubPatch (View* v, const core::Object& o)
     if (o.isPatch()) { v->getPatch().openSubPatchWindow (o); }
 }
 
-void deselectAll (View* v)
-{
-
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -64,16 +59,17 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 {
     if (!isInsideRunView()) {
     //
-    if (e.mods.isLeftButtonDown()) {
-        if (e.getNumberOfClicks() == 1) {
-            if (e.mods.isShiftDown() == false) { deselectAll (view_); }
-            if (e.mods.isShiftDown() && selected_.get()) { EditCommands::deselect (object_.getIdentifier()); }
-            else {
-                EditCommands::select (object_.getIdentifier());
-            }
-        } else if (e.getNumberOfClicks() == 2) {
-            openSubPatch (view_, object_);
+    view_->mouseDown (e);
+    
+    if (EditCommands::isClick (e)) {
+        if (e.mods.isShiftDown() && selected_.get()) { EditCommands::deselect (object_.getIdentifier()); }
+        else {
+            EditCommands::select (object_.getIdentifier());
         }
+    }
+    
+    if (EditCommands::isDoubleClick (e)) {
+        openSubPatch (view_, object_);
     }
     //
     }
