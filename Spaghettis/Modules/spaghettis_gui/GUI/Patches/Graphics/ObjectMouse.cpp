@@ -61,15 +61,13 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
     //
     view_->mouseDown (e);
     
-    if (EditCommands::isClick (e)) {
-        if (e.mods.isShiftDown() && selected_.get()) { EditCommands::deselect (object_.getIdentifier()); }
+    if (Mouse::isClick (e))            { EditCommands::select (object_.getIdentifier()); }
+    else if (Mouse::isDoubleClick (e)) { openSubPatch (view_, object_); }
+    else if (Mouse::isShiftClick (e))  {
+        if (selected_.get()) { EditCommands::deselect (object_.getIdentifier()); }
         else {
             EditCommands::select (object_.getIdentifier());
         }
-    }
-    
-    if (EditCommands::isDoubleClick (e)) {
-        openSubPatch (view_, object_);
     }
     //
     }
