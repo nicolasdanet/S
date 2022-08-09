@@ -17,16 +17,26 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::vector<core::UniqueId> getAllSelectedObject (const juce::ValueTree& tree)
+std::vector<core::UniqueId> getAllSelectedObjects (const juce::ValueTree& tree)
 {
     std::vector<core::UniqueId> v;
     
+    for (const auto& t : tree) {
+    //
+    if (t.hasType (Ids::OBJECT) || t.hasType (Ids::PATCH)) {
+        core::Object o (t); if (o.getAttribute<bool> (Tags::Selected)) { v.push_back (o.getIdentifier()); }
+    }
+    //
+    }
+        
     return v;
 }
 
 void deselectAll (const juce::ValueTree& tree)
 {
-    std::vector<core::UniqueId> v (getAllSelectedObject (tree));
+    std::vector<core::UniqueId> v (getAllSelectedObjects (tree));
+    
+    for (const auto& i : v) { EditCommands::deselect (i); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
