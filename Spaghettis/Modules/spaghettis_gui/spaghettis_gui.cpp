@@ -74,6 +74,7 @@
 
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
+#include "GUI/Patches/EditWindow/EditMouse.cpp"
 #include "GUI/Patches/EditWindow/EditPort.cpp"
 #include "GUI/Patches/EditWindow/EditInspector.cpp"
 #include "GUI/Patches/EditWindow/EditComponent.cpp"
