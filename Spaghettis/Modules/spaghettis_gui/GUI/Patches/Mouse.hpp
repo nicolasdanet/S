@@ -20,17 +20,31 @@ struct Mouse {
 
 static bool isClick (const juce::MouseEvent& e)
 {
-    return (e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 1 && (e.mods.isShiftDown() == false));
-}
-
-static bool isShiftClick (const juce::MouseEvent& e)
-{
-    return (e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 1 && (e.mods.isShiftDown() == true));
+    return e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 1;
 }
 
 static bool isDoubleClick (const juce::MouseEvent& e)
 {
-    return (e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 2);
+    return e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 2;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static bool isShiftClick (const juce::MouseEvent& e)
+{
+    return isClick (e) && e.mods.isShiftDown();
+}
+
+static bool isCommandClick (const juce::MouseEvent& e)
+{
+    return isClick (e) && e.mods.isCommandDown();
+}
+
+static bool isSimpleClick (const juce::MouseEvent& e)
+{
+    return isClick (e) && !isShiftClick (e) && !isCommandClick (e);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -50,7 +50,7 @@ void deselectAll (const juce::ValueTree& tree)
 
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
-    if (Mouse::isClick (e)) { deselectAll (viewTree_); }
+    if (Mouse::isSimpleClick (e)) { deselectAll (viewTree_); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
