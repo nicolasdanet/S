@@ -84,7 +84,7 @@ bool PinComponent::isSignal() const
     return isSignal_;
 }
 
-juce::Rectangle<int> PinComponent::getPinBoundsInParent() const
+juce::Rectangle<int> PinComponent::getPinBoundsInView() const
 {
     return getBoundWithoutGrip (getBoundsInParent(), getScale());
 }

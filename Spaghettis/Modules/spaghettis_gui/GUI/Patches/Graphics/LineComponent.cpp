@@ -173,8 +173,8 @@ void LineComponent::update()
     //
     const float scale = getScale();
     
-    const juce::Rectangle<int> iPin (inlet->getPinBoundsInParent());
-    const juce::Rectangle<int> oPin (outlet->getPinBoundsInParent());
+    const juce::Rectangle<int> iPin (inlet->getPinBoundsInView());
+    const juce::Rectangle<int> oPin (outlet->getPinBoundsInView());
     const juce::Rectangle<int> bounds (oPin.getUnion (iPin));
     
     const auto [start, end] = getLineStartAndEnd (bounds, iPin, oPin, scale);

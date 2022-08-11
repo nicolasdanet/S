@@ -30,7 +30,7 @@ public:
 public:
     bool isSignal() const;
     
-    juce::Rectangle<int> getPinBoundsInParent() const;
+    juce::Rectangle<int> getPinBoundsInView() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
