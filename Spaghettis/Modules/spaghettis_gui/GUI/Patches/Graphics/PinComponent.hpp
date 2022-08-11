@@ -19,7 +19,7 @@ class PinComponent :    public juce::Component,
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    explicit PinComponent (View*, const juce::String&);
+    explicit PinComponent (View*, const core::Object&, const juce::String&);
 
     ~PinComponent();
 
@@ -56,8 +56,10 @@ public:
     
 private:
     View* view_;
+    core::Cached<bool> selected_;                   /* Is owning object selected? */
     core::Cached<juce::Colour> pinColour_;
     core::Cached<juce::Colour> pinOverColour_;
+    core::Cached<juce::Colour> pinSelectedColour_;
     bool isSignal_;
     bool isOver_;
     

@@ -100,7 +100,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tags::BoxPinBackground,
         NEEDS_TRANS ("Box Pin Background"),
         NEEDS_TRANS ("Set background color of pins"),
-        Colours::getPalette()->backgroundBox.contrasting (0.05));
+        Colours::getPalette()->backgroundBox.contrasting (0.05f));
     
     colors.addParameter (Tags::BoxSelected,
         NEEDS_TRANS ("Box Selected"),
@@ -125,7 +125,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tags::Line,
         NEEDS_TRANS ("Line"),
         NEEDS_TRANS ("Set color of connections"),
-        Colours::getPalette()->backgroundBox.contrasting (0.25));
+        Colours::getPalette()->backgroundBox.contrasting (0.25f));
     
     colors.addParameter (Tags::LineSignal,
         NEEDS_TRANS ("Line Signal"),
@@ -136,6 +136,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Pin Over"),
         NEEDS_TRANS ("Set color of pins while mouse is over"),
         Colours::getPalette()->textHighlighted);
+    
+    colors.addParameter (Tags::PinSelected,
+        NEEDS_TRANS ("Pin Selected"),
+        NEEDS_TRANS ("Set color of pins while object is selected"),
+        Colours::getPalette()->textHighlighted.contrasting (0.25f));
         
     colors.addParameter (Tags::PinSignal,
         NEEDS_TRANS ("Pin Signal"),
@@ -150,22 +155,22 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tags::PinFloat,
         NEEDS_TRANS ("Pin Float"),
         NEEDS_TRANS ("Set color of float pins"),
-        Colours::getPalette()->backgroundBox.contrasting (0.25));
+        Colours::getPalette()->backgroundBox.contrasting (0.25f));
     
     colors.addParameter (Tags::PinSymbol,
         NEEDS_TRANS ("Pin Symbol"),
         NEEDS_TRANS ("Set color of symbol pins"),
-        Colours::getPalette()->backgroundBox.contrasting (0.25));
+        Colours::getPalette()->backgroundBox.contrasting (0.25f));
     
     colors.addParameter (Tags::PinList,
         NEEDS_TRANS ("Pin List"),
         NEEDS_TRANS ("Set color of list pins"),
-        Colours::getPalette()->backgroundBox.contrasting (0.25));
+        Colours::getPalette()->backgroundBox.contrasting (0.25f));
         
     colors.addParameter (Tags::PinAnything,
         NEEDS_TRANS ("Pin Anything"),
         NEEDS_TRANS ("Set color of anything pins"),
-        Colours::getPalette()->backgroundBox.contrasting (0.25));
+        Colours::getPalette()->backgroundBox.contrasting (0.25f));
     
     colors.addParameter (Tags::BangBackground,
         NEEDS_TRANS ("Bang Background"),

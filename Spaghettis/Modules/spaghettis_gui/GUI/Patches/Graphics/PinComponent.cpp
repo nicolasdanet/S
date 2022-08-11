@@ -54,10 +54,12 @@ juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r, float scale)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PinComponent::PinComponent (View* view, const juce::String& type) :
+PinComponent::PinComponent (View* view, const core::Object& object, const juce::String& type) :
     view_ (view),
+    selected_ (object.getCachedAttribute<bool> (Tags::Selected)),
     pinColour_ (getColourFromType (type)),
     pinOverColour_ (Spaghettis()->getCachedColour (Tags::PinOver)),
+    pinSelectedColour_ (Spaghettis()->getCachedColour (Tags::PinSelected)),
     isSignal_ (isPinSignal (type)),
     isOver_ (false)
 {
@@ -65,7 +67,9 @@ PinComponent::PinComponent (View* view, const juce::String& type) :
     
     setTooltip (getTooltipText (type));
     
+    selected_.attach (PainterPolicy::repaint (this));
     pinColour_.attach (PainterPolicy::repaint (this));
+    pinSelectedColour_.attach (PainterPolicy::repaint (this));
     
     view_->addChildComponent (this);
 }
@@ -104,7 +108,10 @@ float PinComponent::getScale() const
 
 void PinComponent::paint (juce::Graphics& g)
 {
-    g.setColour (isOver_ ? pinOverColour_.get() : pinColour_.get());
+    juce::Colour c (selected_.get() ? pinSelectedColour_.get() : pinColour_.get());
+        
+    g.setColour (isOver_ ? pinOverColour_.get() : c);
+    
     g.fillRect (getBoundWithoutGrip (getLocalBounds(), getScale()));
 }
 
