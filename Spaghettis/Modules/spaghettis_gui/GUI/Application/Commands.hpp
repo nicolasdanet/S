@@ -32,6 +32,7 @@ enum CommandIds : juce::CommandID {
     paths,
     rescan,
     rescanLogged,
+    selectAll,
     zoomIn,
     zoomOut,
     zoomReset,

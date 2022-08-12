@@ -36,6 +36,7 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
 {
     const juce::String general = NEEDS_TRANS ("General");
     const juce::String file    = NEEDS_TRANS ("File");
+    const juce::String edit    = NEEDS_TRANS ("Edit");
     const juce::String view    = NEEDS_TRANS ("View");
     const juce::String media   = NEEDS_TRANS ("Media");
 
@@ -65,6 +66,11 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         break;
     case Commands::rescanLogged :
         r.setInfo (NEEDS_TRANS ("Rescan Logged"),   NEEDS_TRANS ("Rescan search paths"),        file, 0);
+        break;
+    case Commands::selectAll :
+        r.setInfo (NEEDS_TRANS ("Select All"),      NEEDS_TRANS ("Select all"),                 edit, 0);
+        r.addDefaultKeypress ('a', juce::ModifierKeys::commandModifier);
+        r.setActive (get (command));
         break;
     case Commands::zoomIn :
         r.setInfo (NEEDS_TRANS ("Zoom In"),         NEEDS_TRANS ("Increase magnification"),     view, 0);
@@ -108,6 +114,7 @@ void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::paths,
             Commands::rescan,
             Commands::rescanLogged,
+            Commands::selectAll,
             Commands::zoomIn,
             Commands::zoomOut,
             Commands::zoomReset,
