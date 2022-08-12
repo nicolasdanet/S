@@ -24,6 +24,7 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     addChildComponent (editZoom_);
     addChildComponent (editInspector_);
     
+    addMenuBarCommand (Commands::selectAll, [this]() { selectAll(); } );
     addMenuBarCommand (Commands::zoomIn,    [this]() { zoomIn();    } );
     addMenuBarCommand (Commands::zoomOut,   [this]() { zoomOut();   } );
     addMenuBarCommand (Commands::zoomReset, [this]() { zoomReset(); } );
@@ -64,6 +65,11 @@ void EditComponent::zoomReset()
     editPort_.zoomReset();
 }
 
+void EditComponent::selectAll()
+{
+    editView_.selectAll();
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
