@@ -17,14 +17,17 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::vector<core::UniqueId> getAllSelectedObjects (const juce::ValueTree& tree)
+std::vector<core::UniqueId> getAllObjects (const juce::ValueTree& tree, bool selected)
 {
     std::vector<core::UniqueId> v;
     
     for (const auto& t : tree) {
     //
     if (t.hasType (Ids::OBJECT) || t.hasType (Ids::PATCH)) {
-        core::Object o (t); if (o.getAttribute<bool> (Tags::Selected)) { v.push_back (o.getIdentifier()); }
+        core::Object o (t);
+        if (o.getAttribute<bool> (Tags::Selected) == selected) {
+            v.push_back (o.getIdentifier());
+        }
     }
     //
     }
@@ -32,11 +35,18 @@ std::vector<core::UniqueId> getAllSelectedObjects (const juce::ValueTree& tree)
     return v;
 }
 
-void deselectAll (const juce::ValueTree& tree)
+void deselectAllObjects (const juce::ValueTree& tree)
 {
-    std::vector<core::UniqueId> v (getAllSelectedObjects (tree));
+    std::vector<core::UniqueId> v (getAllObjects (tree, true));
     
     for (const auto& i : v) { EditCommands::deselect (i); }
+}
+
+void selectAllObjects (const juce::ValueTree& tree)
+{
+    std::vector<core::UniqueId> v (getAllObjects (tree, false));
+    
+    for (const auto& i : v) { EditCommands::select (i); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -50,7 +60,7 @@ void deselectAll (const juce::ValueTree& tree)
 
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
-    if (Mouse::isSimpleClick (e)) { deselectAll (viewTree_); }
+    if (Mouse::isSimpleClick (e)) { deselectAllObjects (viewTree_); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -59,7 +69,7 @@ void EditView::mouseDown (const juce::MouseEvent& e)
 
 void EditView::selectAll()
 {
-    DBG ("???");
+    selectAllObjects (viewTree_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
