@@ -18,6 +18,7 @@ LineComponent::LineComponent (View* view, const core::Line& line) :
     source_ (view->getObjectComponent (line.getIdentifierOfSource())),
     destination_ (view->getObjectComponent (line.getIdentifierOfDestination())),
     lineColour_ (Spaghettis()->getCachedColour (Tags::Line)),
+    lineSelectedColour_ (Spaghettis()->getCachedColour (Tags::LineSelected)),
     lineSignalColour_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
     isSignal_ (false),
     isOver_ (false)
@@ -25,6 +26,7 @@ LineComponent::LineComponent (View* view, const core::Line& line) :
     jassert (view);
     
     lineColour_.attach (PainterPolicy::repaint (this));
+    lineSelectedColour_.attach (PainterPolicy::repaint (this));
     lineSignalColour_.attach (PainterPolicy::repaint (this));
     
     update();

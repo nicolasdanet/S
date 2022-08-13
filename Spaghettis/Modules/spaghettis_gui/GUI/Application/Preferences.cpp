@@ -132,6 +132,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set color of signal connections"),
         Colours::getPalette()->signal);
     
+    colors.addParameter (Tags::LineSelected,
+        NEEDS_TRANS ("Line Selected"),
+        NEEDS_TRANS ("Set highlight color for selected lines"),
+        Colours::getPalette()->textHighlighted);
+        
     colors.addParameter (Tags::PinOver,
         NEEDS_TRANS ("Pin Over"),
         NEEDS_TRANS ("Set color of pins while mouse is over"),
