@@ -114,12 +114,12 @@ core::Data getDefaultPreferences()
     
     colors.addParameter (Tags::LabelBackground,
         NEEDS_TRANS ("Label Background"),
-        NEEDS_TRANS ("Set background color of labels"),
+        NEEDS_TRANS ("Set background color of run view labels"),
         Colours::getPalette()->backgroundBox);
         
     colors.addParameter (Tags::LabelText,
         NEEDS_TRANS ("Label Text"),
-        NEEDS_TRANS ("Set text color of labels"),
+        NEEDS_TRANS ("Set text color of run view labels"),
         Colours::getPalette()->textLabel);
         
     colors.addParameter (Tags::Line,
@@ -137,11 +137,6 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set color of pins while mouse is over"),
         Colours::getPalette()->textHighlighted);
     
-    colors.addParameter (Tags::PinSelected,
-        NEEDS_TRANS ("Pin Selected"),
-        NEEDS_TRANS ("Set color of pins while object is selected"),
-        Colours::getPalette()->textHighlighted.contrasting (0.25f));
-        
     colors.addParameter (Tags::PinSignal,
         NEEDS_TRANS ("Pin Signal"),
         NEEDS_TRANS ("Set color of signal pins"),
