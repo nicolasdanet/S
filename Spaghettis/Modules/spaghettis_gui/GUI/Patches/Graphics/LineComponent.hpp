@@ -50,6 +50,7 @@ public:
 public:
     void mouseEnter (const juce::MouseEvent&) override;
     void mouseExit (const juce::MouseEvent&) override;
+    void mouseDown (const juce::MouseEvent&) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -65,6 +66,9 @@ public:
 
 private:
     void update();
+    
+private:
+    juce::Colour getLineColour() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -82,6 +86,7 @@ private:
     juce::Path hitPath_;
     bool isSignal_;
     bool isOver_;
+    bool isSelected_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LineComponent)

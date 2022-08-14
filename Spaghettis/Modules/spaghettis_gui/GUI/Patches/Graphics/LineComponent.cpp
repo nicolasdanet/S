@@ -21,7 +21,8 @@ LineComponent::LineComponent (View* view, const core::Line& line) :
     lineSelectedColour_ (Spaghettis()->getCachedColour (Tags::LineSelected)),
     lineSignalColour_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
     isSignal_ (false),
-    isOver_ (false)
+    isOver_ (false),
+    isSelected_ (false)
 {
     jassert (view);
     
@@ -60,10 +61,9 @@ core::UniqueId LineComponent::getIdentifier() const
 
 void LineComponent::paint (juce::Graphics& g)
 {
-    const juce::Colour c (isSignal_ ? lineSignalColour_.get() : lineColour_.get());
+    const juce::Colour c (getLineColour());
     
-    g.setColour (isOver_ ? c.contrasting ((isSignal_ ? 0.50 : 0.35)) : c);
-    
+    g.setColour (isOver_ ? (c.contrasting (isSignal_ ? 0.5f : 0.35f)) : c);
     g.fillPath (linePath_);
 }
 
@@ -89,6 +89,18 @@ void LineComponent::mouseEnter (const juce::MouseEvent&)
 void LineComponent::mouseExit (const juce::MouseEvent&)
 {
     isOver_ = false; repaint();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LineComponent::mouseDown (const juce::MouseEvent& e)
+{
+    view_->mouseDown (e);
+
+    if (Mouse::isShiftClick (e))        { isSelected_ = !isSelected_; repaint(); }
+    else if (Mouse::isSimpleClick (e))  { isSelected_ = true;         repaint(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -192,6 +204,15 @@ void LineComponent::update()
     }
     
     setVisible (isVisible);
+}
+
+juce::Colour LineComponent::getLineColour() const
+{
+    if (isSelected_)    { return lineSelectedColour_.get(); }
+    else if (isSignal_) { return lineSignalColour_.get(); }
+    else {
+        return lineColour_.get();
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
