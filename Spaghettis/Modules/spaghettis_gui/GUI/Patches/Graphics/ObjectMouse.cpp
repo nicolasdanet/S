@@ -22,14 +22,6 @@ void openSubPatch (const core::Object& o, View* v)
     if (o.isPatch()) { v->getPatch().openSubPatchWindow (o); }
 }
 
-void toggleSelection (const core::Object& o, bool isSelected)
-{
-    if (isSelected) { EditCommands::deselect (o.getIdentifier()); }
-    else {
-        EditCommands::select (o.getIdentifier());
-    }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -72,9 +64,9 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
     //
     view_->mouseDown (e);
     
-    if (Mouse::isDoubleClick (e))     { openSubPatch (object_, view_);                  }
-    else if (Mouse::isShiftClick (e)) { toggleSelection (object_, selected_.get());     }
-    else if (Mouse::isClick (e))      { EditCommands::select (object_.getIdentifier()); }
+    if (Mouse::isDoubleClick (e))     { openSubPatch (object_, view_);  }
+    else if (Mouse::isShiftClick (e)) { setSelected (!selected_.get()); }
+    else if (Mouse::isClick (e))      { setSelected (true); }
     //
     }
     //
@@ -97,6 +89,18 @@ void ObjectComponent::mouseUp (const juce::MouseEvent&)
     }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ObjectComponent::setSelected (bool isSelected)
+{
+    if (isSelected) { EditCommands::select (object_.getIdentifier()); }
+    else {
+        EditCommands::deselect (object_.getIdentifier());
+    }
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
