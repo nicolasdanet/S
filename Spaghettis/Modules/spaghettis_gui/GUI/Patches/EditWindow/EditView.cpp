@@ -33,6 +33,30 @@ EditView::~EditView()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditView::mouseDown (const juce::MouseEvent& e)
+{
+    if (Mouse::isSimpleClick (e)) { deselectAll(); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditView::deselectAll()
+{
+    lines_.perform   ([](const auto& p) { p->setSelected (false); });
+    objects_.perform ([](const auto& p) { p->setSelected (false); });
+}
+
+void EditView::selectAll()
+{
+    objects_.perform ([](const auto& p) { p->setSelected (true); });
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::paint (juce::Graphics& g)
 {
     g.fillAll (patchBackgroundColour_.get());

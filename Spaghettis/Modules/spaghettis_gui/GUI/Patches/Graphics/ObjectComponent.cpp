@@ -167,10 +167,28 @@ float ObjectComponent::getScale() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void ObjectComponent::setSelected (bool isSelected)
+{
+    if (selected_.get() != isSelected) {
+        if (isSelected) { EditCommands::select (object_.getIdentifier()); }
+        else {
+            EditCommands::deselect (object_.getIdentifier());
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 bool ObjectComponent::isInsideRunView() const
 {
     return isRunView_;
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 bool ObjectComponent::hasLabel() const
 {
