@@ -12,52 +12,6 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-std::vector<core::UniqueId> getAllObjects (const juce::ValueTree& tree, bool selected)
-{
-    std::vector<core::UniqueId> v;
-    
-    for (const auto& t : tree) {
-    //
-    if (t.hasType (Ids::OBJECT) || t.hasType (Ids::PATCH)) {
-        core::Object o (t);
-        if (o.getAttribute<bool> (Tags::Selected) == selected) {
-            v.push_back (o.getIdentifier());
-        }
-    }
-    //
-    }
-        
-    return v;
-}
-
-void deselectAllObjects (const juce::ValueTree& tree)
-{
-    std::vector<core::UniqueId> v (getAllObjects (tree, true));
-    
-    for (const auto& i : v) { EditCommands::deselect (i); }
-}
-
-void selectAllObjects (const juce::ValueTree& tree)
-{
-    std::vector<core::UniqueId> v (getAllObjects (tree, false));
-    
-    for (const auto& i : v) { EditCommands::select (i); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
     if (Mouse::isSimpleClick (e)) { deselectAll(); }
@@ -69,16 +23,13 @@ void EditView::mouseDown (const juce::MouseEvent& e)
 
 void EditView::deselectAll()
 {
-    auto f = [](const auto& p) { p->setSelected (false); };
-    
-    lines_.perform (f);
-    
-    deselectAllObjects (viewTree_);
+    lines_.perform   ([](const auto& p) { p->setSelected (false); });
+    objects_.perform ([](const auto& p) { p->setSelected (false); });
 }
 
 void EditView::selectAll()
 {
-    selectAllObjects (viewTree_);
+    objects_.perform ([](const auto& p) { p->setSelected (true); });
 }
 
 // -----------------------------------------------------------------------------------------------------------
