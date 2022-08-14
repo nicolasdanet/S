@@ -99,8 +99,8 @@ void LineComponent::mouseDown (const juce::MouseEvent& e)
 {
     view_->mouseDown (e);
 
-    if (Mouse::isShiftClick (e))        { isSelected_ = !isSelected_; repaint(); }
-    else if (Mouse::isSimpleClick (e))  { isSelected_ = true;         repaint(); }
+    if (Mouse::isShiftClick (e))       { setSelected (!isSelected_); }
+    else if (Mouse::isSimpleClick (e)) { setSelected (true); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,6 +115,15 @@ void LineComponent::scaleChanged()
 float LineComponent::getScale() const
 {
     return view_->getScale();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LineComponent::setSelected (bool isSelected)
+{
+    isSelected_ = isSelected; repaint();
 }
 
 // -----------------------------------------------------------------------------------------------------------

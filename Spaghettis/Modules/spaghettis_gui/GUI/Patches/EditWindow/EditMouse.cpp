@@ -60,12 +60,21 @@ void selectAllObjects (const juce::ValueTree& tree)
 
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
-    if (Mouse::isSimpleClick (e)) { deselectAllObjects (viewTree_); }
+    if (Mouse::isSimpleClick (e)) { deselectAll(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+void EditView::deselectAll()
+{
+    auto f = [](const auto& p) { p->setSelected (false); };
+    
+    lines_.perform (f);
+    
+    deselectAllObjects (viewTree_);
+}
 
 void EditView::selectAll()
 {
