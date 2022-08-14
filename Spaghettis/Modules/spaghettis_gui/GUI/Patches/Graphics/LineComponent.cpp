@@ -123,7 +123,7 @@ float LineComponent::getScale() const
 
 void LineComponent::setSelected (bool isSelected)
 {
-    isSelected_ = isSelected; repaint();
+    if (isSelected_ != isSelected) { isSelected_ = isSelected; repaint(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

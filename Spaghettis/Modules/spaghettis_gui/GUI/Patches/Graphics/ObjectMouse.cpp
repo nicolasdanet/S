@@ -95,9 +95,11 @@ void ObjectComponent::mouseUp (const juce::MouseEvent&)
 
 void ObjectComponent::setSelected (bool isSelected)
 {
-    if (isSelected) { EditCommands::select (object_.getIdentifier()); }
-    else {
-        EditCommands::deselect (object_.getIdentifier());
+    if (selected_.get() != isSelected) {
+        if (isSelected) { EditCommands::select (object_.getIdentifier()); }
+        else {
+            EditCommands::deselect (object_.getIdentifier());
+        }
     }
 }
     
