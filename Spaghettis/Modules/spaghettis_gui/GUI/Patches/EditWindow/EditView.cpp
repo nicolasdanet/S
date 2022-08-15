@@ -55,7 +55,12 @@ void EditView::selectAll()
 
 void EditView::snapToGrid()
 {
-    DBG ("Snap");
+    auto f = [](const auto& p)
+    {
+        if (p->isSelected()) { p->snap(); }
+    };
+    
+    objects_.perform (f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
