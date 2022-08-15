@@ -26,7 +26,7 @@ PD_LOCAL void glist_objectDisplace (t_glist *glist, t_object *object, int deltaX
     if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undomotion_new (object, deltaX, deltaY)); }
 }
 
-PD_FORCE void glist_objectSnap (t_glist *glist, t_object *y)
+PD_LOCAL void glist_objectSnap (t_glist *glist, t_object *y)
 {
     int a = object_getX (y);
     int b = object_getY (y);

@@ -59,6 +59,20 @@ PD_LOCAL t_error unique_objectRemove (t_id u)
     return PD_ERROR;
 }
 
+PD_GUARD t_error unique_objectSnap (t_id u)
+{
+    t_object *object = instance_registerGetObject (u);
+    t_glist *glist   = instance_registerGetOwner (u);
+
+    if (object && glist) {
+    //
+    glist_objectSnap (glist, object); return PD_ERROR_NONE;
+    //
+    }
+
+    return PD_ERROR;
+}
+
 PD_LOCAL t_error unique_objectDisplace (t_id u, int deltaX, int deltaY)
 {
     if (deltaX || deltaY) {
