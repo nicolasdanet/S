@@ -35,6 +35,7 @@ PD_LOCAL void inputs_setRunView         (core::UniqueId, juce::Rectangle<int>);
 
 PD_LOCAL void inputs_selectObject       (core::UniqueId);
 PD_LOCAL void inputs_deselectObject     (core::UniqueId);
+PD_LOCAL void inputs_snapObject         (core::UniqueId);
 
 #endif
 

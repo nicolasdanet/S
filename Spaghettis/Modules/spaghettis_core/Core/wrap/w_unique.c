@@ -66,7 +66,7 @@ PD_GUARD t_error unique_objectSnap (t_id u)
 
     if (object && glist) {
     //
-    glist_objectSnap (glist, object); return PD_ERROR_NONE;
+    glist_objectSnap (glist, object, 1); return PD_ERROR_NONE;
     //
     }
 
@@ -82,7 +82,7 @@ PD_LOCAL t_error unique_objectDisplace (t_id u, int deltaX, int deltaY)
 
     if (object && glist) {
     //
-    glist_objectDisplace (glist, object, deltaX, deltaY); return PD_ERROR_NONE;
+    glist_objectDisplace (glist, object, deltaX, deltaY, 1); return PD_ERROR_NONE;
     //
     }
     //

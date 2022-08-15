@@ -30,7 +30,7 @@ static void deselect (core::UniqueId i)
 
 static void snap (core::UniqueId i)
 {
-    DBG ("???");
+    Spaghettis()->handle (Inputs::snapObject (i));
 }
 
 // -----------------------------------------------------------------------------------------------------------

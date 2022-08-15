@@ -147,6 +147,11 @@ PD_LOCAL void inputs_deselectObject (core::UniqueId i)
     unique_objectDeselect (i);
 }
 
+PD_LOCAL void inputs_snapObject (core::UniqueId i)
+{
+    unique_objectSnap (i);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
