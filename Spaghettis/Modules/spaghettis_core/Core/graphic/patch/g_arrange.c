@@ -18,7 +18,7 @@ PD_LOCAL void glist_objectDisplace (t_glist *glist, t_object *object, int deltaX
     object_setSnappedX (object, object_getX (object) + deltaX);
     object_setSnappedY (object, object_getY (object) + deltaY);
     
-    if (notify) { DBG ("???"); }
+    if (notify) { outputs_objectUpdateAttributes (object, glist); }
     
     if (pd_class (object) == vinlet_class)  { glist_inletSort (glist);   }
     if (pd_class (object) == voutlet_class) { glist_outletSort (glist);  }

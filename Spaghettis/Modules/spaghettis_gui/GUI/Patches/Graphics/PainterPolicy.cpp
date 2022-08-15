@@ -25,7 +25,7 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
     
     auto f = []()
     {
-        
+        DBG ("???");
     };
     
     x_.attach (f);
