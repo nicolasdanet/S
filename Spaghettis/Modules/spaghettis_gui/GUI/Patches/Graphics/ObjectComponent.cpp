@@ -221,7 +221,7 @@ juce::String ObjectComponent::getLabel() const
 
 void ObjectComponent::updatePositions()
 {
-    update();
+    if (!isInsideRunView()) { update(); }
 }
 
 void ObjectComponent::update (bool notify)
