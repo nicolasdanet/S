@@ -23,9 +23,9 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
 {
     jassert (owner);
     
-    auto f = []()
+    auto f = [c = component_]()
     {
-        DBG ("???");
+        c->updatePositions();
     };
     
     x_.attach (f);

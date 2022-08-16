@@ -108,6 +108,9 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    void updatePositions();
+    
 private:
     void update (bool notify = true);
 

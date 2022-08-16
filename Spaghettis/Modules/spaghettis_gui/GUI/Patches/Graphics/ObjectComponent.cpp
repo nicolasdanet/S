@@ -219,6 +219,11 @@ juce::String ObjectComponent::getLabel() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void ObjectComponent::updatePositions()
+{
+    update();
+}
+
 void ObjectComponent::update (bool notify)
 {
     const bool isVisible = isInsideRunView() ? (hasLabel() && visible_.get()) : visible_.get();
