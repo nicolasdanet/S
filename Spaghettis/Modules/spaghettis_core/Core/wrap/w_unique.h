@@ -23,6 +23,7 @@ PD_GUARD t_error    unique_objectDeselect       (t_id u);
 
 PD_LOCAL t_error    unique_objectRemove         (t_id u);
 PD_GUARD t_error    unique_objectSnap           (t_id u);
+PD_GUARD t_error    unique_objectPosition       (t_id u, int x, int y);
 PD_LOCAL t_error    unique_objectDisplace       (t_id u, int deltaX, int deltaY);
 PD_LOCAL t_error    unique_objectMoveAtFirst    (t_id u);
 PD_LOCAL t_error    unique_objectMoveAtLast     (t_id u);

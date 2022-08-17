@@ -33,6 +33,11 @@ static void snap (core::UniqueId i)
     Spaghettis()->handle (Inputs::snapObject (i));
 }
 
+static void position (core::UniqueId i, juce::Point<int> pt)
+{
+    Spaghettis()->handle (Inputs::positionObject (i, pt));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

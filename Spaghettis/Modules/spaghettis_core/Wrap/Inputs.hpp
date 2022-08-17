@@ -56,6 +56,7 @@ static Perform setRunView (core::UniqueId, juce::Rectangle<int>);
 static Perform selectObject (core::UniqueId);
 static Perform deselectObject (core::UniqueId);
 static Perform snapObject (core::UniqueId);
+static Perform positionObject (core::UniqueId, juce::Point<int>);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

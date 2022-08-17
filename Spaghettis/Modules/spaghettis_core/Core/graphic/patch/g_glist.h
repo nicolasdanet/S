@@ -128,32 +128,33 @@ PD_LOCAL void   glist_undoAppend                        (t_glist *g, t_undoactio
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   glist_objectAdd                         (t_glist *g, t_object *y);
-PD_LOCAL void   glist_objectRemove                      (t_glist *g, t_object *y);
+PD_LOCAL void   glist_objectAdd                         (t_glist *g, t_object *o);
+PD_LOCAL void   glist_objectRemove                      (t_glist *g, t_object *o);
 PD_LOCAL void   glist_objectRemoveAll                   (t_glist *g);
 PD_LOCAL void   glist_objectRemoveSelected              (t_glist *g);
 
 PD_LOCAL int    glist_objectGetNumberOf                 (t_glist *g);
 PD_LOCAL int    glist_objectGetNumberOfSelected         (t_glist *g);
 
-PD_GUARD void   glist_objectSelect                      (t_glist *g, t_object *y);
-PD_GUARD void   glist_objectDeselect                    (t_glist *g, t_object *y);
-PD_LOCAL int    glist_objectIsSelected                  (t_glist *g, t_object *y);
+PD_GUARD void   glist_objectSelect                      (t_glist *g, t_object *o);
+PD_GUARD void   glist_objectDeselect                    (t_glist *g, t_object *o);
+PD_LOCAL int    glist_objectIsSelected                  (t_glist *g, t_object *o);
 
-PD_LOCAL void   glist_objectMoveAtFirst                 (t_glist *g, t_object *y);
-PD_LOCAL void   glist_objectMoveAtLast                  (t_glist *g, t_object *y);
-PD_LOCAL void   glist_objectMoveAt                      (t_glist *g, t_object *y, int n);
-PD_FORCE void   glist_objectMoveFront                   (t_glist *g, t_object *y);
-PD_FORCE void   glist_objectMoveBackward                (t_glist *g, t_object *y);
+PD_LOCAL void   glist_objectMoveAtFirst                 (t_glist *g, t_object *o);
+PD_LOCAL void   glist_objectMoveAtLast                  (t_glist *g, t_object *o);
+PD_LOCAL void   glist_objectMoveAt                      (t_glist *g, t_object *o, int n);
+PD_FORCE void   glist_objectMoveFront                   (t_glist *g, t_object *o);
+PD_FORCE void   glist_objectMoveBackward                (t_glist *g, t_object *o);
 
-PD_LOCAL int    glist_objectGetIndexOf                  (t_glist *g, t_object *y);
-PD_LOCAL int    glist_objectGetIndexOfAmongSelected     (t_glist *g, t_object *y);
+PD_LOCAL int    glist_objectGetIndexOf                  (t_glist *g, t_object *o);
+PD_LOCAL int    glist_objectGetIndexOfAmongSelected     (t_glist *g, t_object *o);
 
 PD_LOCAL t_object   *glist_objectGetAt                  (t_glist *g, int n);
 PD_LOCAL t_object   *glist_objectGetLast                (t_glist *g);
 
-PD_LOCAL void   glist_objectDisplace                    (t_glist *g, t_object *y, int dX, int dY, int notify);
-PD_LOCAL void   glist_objectSnap                        (t_glist *g, t_object *y, int notify);
+PD_LOCAL void   glist_objectPosition                    (t_glist *g, t_object *o, int x, int y, int notify);
+PD_LOCAL void   glist_objectDisplace                    (t_glist *g, t_object *o, int dX, int dY, int notify);
+PD_LOCAL void   glist_objectSnap                        (t_glist *g, t_object *o, int notify);
 
 PD_LOCAL void   glist_objectDeleteLinesByOutlet         (t_glist *g, t_object *o, t_outlet *outlet);
 PD_LOCAL void   glist_objectDeleteLinesByInlet          (t_glist *g, t_object *o, t_inlet  *inlet);

@@ -122,6 +122,11 @@ Perform Inputs::snapObject (core::UniqueId i)
     return [i]() { core::inputs_snapObject (i); };
 }
 
+Perform Inputs::positionObject (core::UniqueId i, juce::Point<int> pt)
+{
+    return [i, pt]() { core::inputs_positionObject (i, pt); };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
