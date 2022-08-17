@@ -73,10 +73,14 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
     }
 }
 
-void ObjectComponent::mouseDrag (const juce::MouseEvent&)
+void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
     if (!isInsideRunView()) {
     //
+    int x = e.getDistanceFromDragStartX();
+    int y = e.getDistanceFromDragStartY();
+    
+    DBG (juce::String (x) + " / " + juce::String (y));
     //
     }
 }
