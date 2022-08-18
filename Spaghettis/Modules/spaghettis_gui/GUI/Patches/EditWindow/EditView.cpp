@@ -35,7 +35,7 @@ EditView::~EditView()
 
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
-    if (Mouse::isSimpleClick (e)) { deselectAll(); }
+    dragStart(); if (Mouse::isSimpleClick (e)) { deselectAll(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -53,14 +53,14 @@ void EditView::selectAll()
     objects_.perform ([](const auto& p) { p->setSelected (true); });
 }
 
+void EditView::dragStart()
+{
+    objects_.perform ([](const auto& p) { p->dragStart(); });
+}
+
 void EditView::snapToGrid()
 {
-    auto f = [](const auto& p)
-    {
-        if (p->isSelected()) { p->snap(); }
-    };
-    
-    objects_.perform (f);
+    objects_.perform ([](const auto& p) { if (p->isSelected()) { p->snap(); } });
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -93,6 +93,104 @@ ObjectComponent::~ObjectComponent()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void openSubPatch (const core::Object& o, View* v)
+{
+    if (o.isPatch()) { v->getPatch().openSubPatchWindow (o); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ObjectComponent::mouseMove (const juce::MouseEvent&)
+{
+    if (!isInsideRunView()) {
+    //
+    //
+    }
+}
+
+void ObjectComponent::mouseEnter (const juce::MouseEvent&)
+{
+    if (!isInsideRunView()) {
+    //
+    //
+    }
+}
+
+void ObjectComponent::mouseExit (const juce::MouseEvent&)
+{
+    if (!isInsideRunView()) {
+    //
+    //
+    }
+}
+
+void ObjectComponent::mouseDown (const juce::MouseEvent& e)
+{
+    if (!isInsideRunView()) {
+    //
+    if (Mouse::isCommandClick (e))    { painter_->mouseDown (e); }
+    else {
+    //
+    view_->mouseDown (e);
+    
+    if (Mouse::isDoubleClick (e))     { openSubPatch (object_, view_);  }
+    else if (Mouse::isShiftClick (e)) { setSelected (!selected_.get()); }
+    else if (Mouse::isClick (e))      { setSelected (true); }
+    //
+    }
+    //
+    }
+}
+
+void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
+{
+    if (!isInsideRunView()) {
+    //
+    // view_->drag (e.getOffsetFromDragStart());
+    //
+    }
+}
+
+void ObjectComponent::mouseUp (const juce::MouseEvent&)
+{
+    if (!isInsideRunView()) {
+    //
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ObjectComponent::dragStart()
+{
+    DBG ("???");
+    
+    origin_ = juce::Point<int> (getPositionX(), getPositionY());
+}
+
+void ObjectComponent::drag (juce::Point<int> pt)
+{
+    DBG (juce::String (pt.x) + " / " + juce::String (pt.y));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 core::UniqueId ObjectComponent::getIdentifier() const
 {
     return object_.getIdentifier();
@@ -183,7 +281,7 @@ int ObjectComponent::getPositionY() const
 {
     return y_.get();
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
