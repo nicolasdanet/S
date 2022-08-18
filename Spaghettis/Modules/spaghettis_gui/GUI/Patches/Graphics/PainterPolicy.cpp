@@ -15,21 +15,11 @@ namespace spaghettis {
 PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object) :
     component_ (owner),
     object_ (object),
-    x_ (object_.getCachedAttribute<int> (Tags::X)),
-    y_ (object_.getCachedAttribute<int> (Tags::Y)),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
     labelBackgroundColour_ (Spaghettis()->getCachedColour (Tags::LabelBackground)),
     labelTextColour_ (Spaghettis()->getCachedColour (Tags::LabelText))
 {
     jassert (owner);
-    
-    auto f = [c = component_]()
-    {
-        c->updatePositions();
-    };
-    
-    x_.attach (f);
-    y_.attach (f);
     
     patchBackgroundColour_.attach (repaint (component_));
     labelBackgroundColour_.attach (repaint (component_));
@@ -118,7 +108,21 @@ float PainterPolicy::getScale() const
 {
     return component_->getScale();
 }
- 
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int PainterPolicy::getPositionX() const
+{
+    return component_->getPositionX();
+}
+
+int PainterPolicy::getPositionY() const
+{
+    return component_->getPositionY();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

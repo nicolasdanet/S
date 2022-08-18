@@ -49,6 +49,14 @@ public:
 
 protected:
     float getScale() const;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+protected:
+    int getPositionX() const;
+    int getPositionY() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -102,8 +110,6 @@ public:
 protected:
     ObjectComponent* component_;
     core::Object object_;
-    core::Cached<int> x_;
-    core::Cached<int> y_;
     core::Cached<juce::Colour> patchBackgroundColour_;
     core::Cached<juce::Colour> labelBackgroundColour_;
     core::Cached<juce::Colour> labelTextColour_;

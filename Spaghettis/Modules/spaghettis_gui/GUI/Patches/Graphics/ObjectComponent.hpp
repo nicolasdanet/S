@@ -79,6 +79,14 @@ public:
 // MARK: -
 
 public:
+    int getPositionX() const;
+    int getPositionY() const;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void setSelected (bool);
     bool isSelected() const;
 
@@ -108,9 +116,6 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    void updatePositions();
-    
 private:
     void update (bool notify = true);
 
@@ -129,6 +134,8 @@ private:
 private:
     View* view_;
     core::Object object_;
+    core::Cached<int> x_;
+    core::Cached<int> y_;
     core::Cached<bool> selected_;
     core::Cached<bool> visible_;
     core::Cached<juce::String> inlets_;

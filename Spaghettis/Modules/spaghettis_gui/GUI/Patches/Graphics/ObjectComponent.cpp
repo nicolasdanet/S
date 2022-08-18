@@ -39,6 +39,8 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core
 ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     view_ (view),
     object_ (object),
+    x_ (object.getCachedAttribute<int> (Tags::X)),
+    y_ (object.getCachedAttribute<int> (Tags::Y)),
     selected_ (object.getCachedAttribute<bool> (Tags::Selected)),
     visible_ (object.getCachedAttribute<bool> (Tags::Visible, true)),
     inlets_ (object.getCachedAttribute<juce::String> (Tags::Inlets, true)),
@@ -64,6 +66,10 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     outlets_.attach (f);
     
     if (isInsideRunView()) { label_.attach (f); }
+    else {
+        x_.attach (f);
+        y_.attach (f);
+    }
     
     selected_.attach (PainterPolicy::repaint (this));
     boxPinBackgroundColour_.attach (PainterPolicy::repaint (this));
@@ -168,6 +174,20 @@ float ObjectComponent::getScale() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int ObjectComponent::getPositionX() const
+{
+    return x_.get();
+}
+
+int ObjectComponent::getPositionY() const
+{
+    return y_.get();
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ObjectComponent::setSelected (bool isSelected)
 {
     if (selected_.get() != isSelected) {
@@ -218,11 +238,6 @@ juce::String ObjectComponent::getLabel() const
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void ObjectComponent::updatePositions()
-{
-    if (!isInsideRunView()) { update(); }
-}
 
 void ObjectComponent::update (bool notify)
 {
