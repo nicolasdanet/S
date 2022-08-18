@@ -15,8 +15,8 @@ namespace spaghettis {
 PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object) :
     component_ (owner),
     object_ (object),
-    x_ (fetchAttribute<int> (Tags::X)),
-    y_ (fetchAttribute<int> (Tags::Y)),
+    x_ (object_.getCachedAttribute<int> (Tags::X)),
+    y_ (object_.getCachedAttribute<int> (Tags::Y)),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
     labelBackgroundColour_ (Spaghettis()->getCachedColour (Tags::LabelBackground)),
     labelTextColour_ (Spaghettis()->getCachedColour (Tags::LabelText))

@@ -16,8 +16,8 @@ BangPainter::BangPainter (ObjectComponent* owner, const core::Object& object) : 
     bangBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BangBackground)),
     bangFlashOffColour_ (Spaghettis()->getCachedColour (Tags::BangFlashOff)),
     bangFlashOnColour_ (Spaghettis()->getCachedColour (Tags::BangFlashOn)),
-    flashed_ (fetchParameter<bool> (Tags::Flashed)),
-    width_ (fetchParameter<int> (Tags::Width))
+    flashed_ (object_.getCachedParameter<bool> (Tags::Flashed)),
+    width_ (object_.getCachedParameter<int> (Tags::Width))
 {
     bangBackgroundColour_.attach (repaint (component_));
     bangFlashOffColour_.attach (repaint (component_));

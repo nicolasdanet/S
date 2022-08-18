@@ -69,21 +69,6 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-protected:
-    template <class T> core::Cached<T> fetchAttribute (const juce::String& key) const
-    {
-        return object_.getCachedAttribute<T> (key);
-    }
-    
-    template <class T> core::Cached<T> fetchParameter (const juce::String& key) const
-    {
-        return object_.getCachedParameter<T> (key);
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 public:
     static auto repaint (juce::Component* component)
     {
