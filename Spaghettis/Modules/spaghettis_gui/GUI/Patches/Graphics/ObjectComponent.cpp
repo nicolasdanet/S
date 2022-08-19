@@ -48,8 +48,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     label_ (object.getCachedParameter<juce::String> (Tags::Label, true)),
     boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tags::BoxSelected)),
-    painter_ (createPainter (this, object)),
-    isRunView_ (View::isRunView (view_))
+    painter_ (createPainter (this, object))
 {
     jassert (view);
     
@@ -316,7 +315,7 @@ void ObjectComponent::snap()
 
 bool ObjectComponent::isInsideRunView() const
 {
-    return isRunView_;
+    return (dynamic_cast<RunView*> (view_) != nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------

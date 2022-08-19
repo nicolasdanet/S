@@ -60,7 +60,6 @@
 
 #include "GUI/Patches/Patch.cpp"
 #include "GUI/Patches/PatchesHolder.cpp"
-#include "GUI/Patches/View.cpp"
 
 #include "GUI/Patches/Graphics/PainterPolicy.cpp"
 

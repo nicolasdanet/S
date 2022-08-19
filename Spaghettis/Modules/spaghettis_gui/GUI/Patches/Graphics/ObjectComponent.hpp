@@ -154,7 +154,6 @@ private:
     std::unique_ptr<PainterPolicy> painter_;
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;
-    bool isRunView_;
     juce::Point<int> origin_;
     
 private:
