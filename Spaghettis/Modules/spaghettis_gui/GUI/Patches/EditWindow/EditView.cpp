@@ -35,7 +35,7 @@ EditView::~EditView()
 
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
-    dragStart(); if (Mouse::isSimpleClick (e)) { deselectAll(); }
+    if (Mouse::isSimpleClick (e)) { deselectAll(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -143,7 +143,7 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
     if (Mouse::isCommandClick (e))    { painter_->mouseDown (e); }
     else {
     //
-    view_->mouseDown (e);
+    // view_->dragStart();
     
     if (Mouse::isDoubleClick (e))     { openSubPatch (object_, view_);  }
     else if (Mouse::isShiftClick (e)) { setSelected (!selected_.get()); }
@@ -158,7 +158,7 @@ void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
     if (!isInsideRunView()) {
     //
-    // view_->drag (e.getOffsetFromDragStart());
+
     //
     }
 }
@@ -177,14 +177,14 @@ void ObjectComponent::mouseUp (const juce::MouseEvent&)
 
 void ObjectComponent::dragStart()
 {
-    DBG ("???");
-    
     origin_ = juce::Point<int> (getPositionX(), getPositionY());
 }
 
 void ObjectComponent::drag (juce::Point<int> pt)
 {
-    DBG (juce::String (pt.x) + " / " + juce::String (pt.y));
+    // juce::Point<int> pt (e.getOffsetFromDragStart());
+    
+    // DBG (juce::String (pt.x) + " / " + juce::String (pt.y));
 }
 
 // -----------------------------------------------------------------------------------------------------------
