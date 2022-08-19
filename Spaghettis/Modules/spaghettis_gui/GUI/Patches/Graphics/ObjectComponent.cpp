@@ -102,6 +102,11 @@ void openSubPatch (const core::Object& o, View* v)
     if (o.isPatch()) { v->getPatch().openSubPatchWindow (o); }
 }
 
+EditView* asEditView (View* view)
+{
+    return dynamic_cast<EditView*> (view);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -128,14 +133,14 @@ void ObjectComponent::mouseExit (const juce::MouseEvent&)
 
 void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 {
-    if (!isInsideRunView()) {
+    if (auto view = asEditView (view_); view) {
     //
     if (Mouse::isCommandClick (e))    { painter_->mouseDown (e); }
     else {
     //
     // view_->dragStart();
     
-    if (Mouse::isDoubleClick (e))     { openSubPatch (object_, view_);  }
+    if (Mouse::isDoubleClick (e))     { openSubPatch (object_, view);  }
     else if (Mouse::isShiftClick (e)) { setSelected (!selected_.get()); }
     else if (Mouse::isClick (e))      { setSelected (true); }
     //
