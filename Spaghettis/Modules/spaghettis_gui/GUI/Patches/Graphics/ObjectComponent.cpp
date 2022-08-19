@@ -133,16 +133,19 @@ void ObjectComponent::mouseExit (const juce::MouseEvent&)
 
 void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 {
-    if (auto view = asEditView (view_); view) {
+    if (auto view = asEditView (view_)) {
     //
-    if (Mouse::isCommandClick (e))    { painter_->mouseDown (e); }
+    if (Mouse::isCommandClick (e))     { painter_->mouseDown (e); }
     else {
     //
-    // view_->dragStart();
-    
-    if (Mouse::isDoubleClick (e))     { openSubPatch (object_, view);  }
-    else if (Mouse::isShiftClick (e)) { setSelected (!selected_.get()); }
-    else if (Mouse::isClick (e))      { setSelected (true); }
+    if (Mouse::isDoubleClick (e))      { openSubPatch (object_, view);  }
+    else if (Mouse::isShiftClick (e))  { setSelected (!selected_.get()); }
+    else if (Mouse::isSimpleClick (e)) {
+        if (isSelected()) { view->dragStart(); }
+        else {
+            view->deselectAll(); setSelected (true);
+        }
+    }
     //
     }
     //
