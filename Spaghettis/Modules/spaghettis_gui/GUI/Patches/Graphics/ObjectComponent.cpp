@@ -113,26 +113,17 @@ void openSubPatch (const core::Object& o, View* v)
 
 void ObjectComponent::mouseMove (const juce::MouseEvent&)
 {
-    if (!isInsideRunView()) {
-    //
-    //
-    }
+
 }
 
 void ObjectComponent::mouseEnter (const juce::MouseEvent&)
 {
-    if (!isInsideRunView()) {
-    //
-    //
-    }
+
 }
 
 void ObjectComponent::mouseExit (const juce::MouseEvent&)
 {
-    if (!isInsideRunView()) {
-    //
-    //
-    }
+
 }
 
 void ObjectComponent::mouseDown (const juce::MouseEvent& e)
@@ -155,19 +146,12 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    if (!isInsideRunView()) {
-    //
 
-    //
-    }
 }
 
 void ObjectComponent::mouseUp (const juce::MouseEvent&)
 {
-    if (!isInsideRunView()) {
-    //
-    //
-    }
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -338,14 +322,15 @@ juce::String ObjectComponent::getLabel() const
 
 void ObjectComponent::update (bool notify)
 {
-    const bool isVisible = isInsideRunView() ? (hasLabel() && visible_.get()) : visible_.get();
+    const bool isRunView = isInsideRunView();
+    const bool isVisible = isRunView ? (hasLabel() && visible_.get()) : visible_.get();
     
     removeInletsAndOultets();
     
     if (isVisible) {
         const juce::Rectangle<int> painted (painter_->getRequiredBounds());
         view_->show (this, view_->getBoundsFromPaintedArea (painted));
-        if (!isInsideRunView()) {
+        if (!isRunView) {
             setTooltip (getLabel()); createInletsAndOutlets();
         }
     } else {
