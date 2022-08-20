@@ -58,6 +58,11 @@ void EditView::dragStart()
     objects_.perform ([](const auto& p) { p->dragStart(); });
 }
 
+void EditView::drag (juce::Point<int> offset)
+{
+    objects_.perform ([offset](const auto& p) { if (p->isSelected()) { p->drag (offset); } });
+}
+
 void EditView::snapToGrid()
 {
     objects_.perform ([](const auto& p) { if (p->isSelected()) { p->snap(); } });

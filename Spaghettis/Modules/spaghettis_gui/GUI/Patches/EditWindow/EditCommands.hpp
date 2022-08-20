@@ -35,7 +35,7 @@ static void snap (core::UniqueId i)
 
 static void position (core::UniqueId i, juce::Point<int> pt)
 {
-    Spaghettis()->handle (Inputs::positionObject (i, pt));
+    Spaghettis()->handle (Inputs::positionObject (i, core::Canvas::removeOffset (pt)));
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -47,9 +47,9 @@ static int addOffset (int n)
     return n + getOffset();
 }
 
-static int removeOffset (int n)
+static juce::Point<int> removeOffset (juce::Point<int> pt)
 {
-    return n - getOffset();
+    return pt.translated (-getOffset(), -getOffset());
 }
 
 // -----------------------------------------------------------------------------------------------------------

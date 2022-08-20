@@ -48,7 +48,8 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     label_ (object.getCachedParameter<juce::String> (Tags::Label, true)),
     boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tags::BoxSelected)),
-    painter_ (createPainter (this, object))
+    painter_ (createPainter (this, object)),
+    isSelected_ (false)
 {
     jassert (view);
     
@@ -138,11 +139,12 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
     if (Mouse::isCommandClick (e))     { painter_->mouseDown (e); }
     else {
     //
+    view->dragStart();
+    
     if (Mouse::isDoubleClick (e))      { openSubPatch (object_, view);  }
-    else if (Mouse::isShiftClick (e))  { setSelected (!selected_.get()); }
+    else if (Mouse::isShiftClick (e))  { setSelected (!isSelected_); }
     else if (Mouse::isSimpleClick (e)) {
-        if (isSelected()) { view->dragStart(); }
-        else {
+        if (!isSelected()) {
             view->deselectAll(); setSelected (true);
         }
     }
@@ -154,7 +156,11 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
-
+    if (auto view = asEditView (view_)) {
+    //
+    if (isSelected()) { view->drag (e.getOffsetFromDragStart()); }
+    //
+    }
 }
 
 void ObjectComponent::mouseUp (const juce::MouseEvent&)
@@ -171,11 +177,9 @@ void ObjectComponent::dragStart()
     origin_ = juce::Point<int> (getPositionX(), getPositionY());
 }
 
-void ObjectComponent::drag (juce::Point<int> pt)
+void ObjectComponent::drag (juce::Point<int> offset)
 {
-    // juce::Point<int> pt (e.getOffsetFromDragStart());
-    
-    // DBG (juce::String (pt.x) + " / " + juce::String (pt.y));
+    EditCommands::position (object_.getIdentifier(), origin_ + offset);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -277,19 +281,23 @@ int ObjectComponent::getPositionY() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* To avoid latency with core engine, we don't use the object's attribute there. */
+
 void ObjectComponent::setSelected (bool isSelected)
 {
-    if (selected_.get() != isSelected) {
+    if (isSelected_ != isSelected) {
         if (isSelected) { EditCommands::select (object_.getIdentifier()); }
         else {
             EditCommands::deselect (object_.getIdentifier());
         }
+        
+        isSelected_ = isSelected;
     }
 }
 
 bool ObjectComponent::isSelected() const
 {
-    return selected_.get();
+    return isSelected_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
