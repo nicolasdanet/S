@@ -25,7 +25,7 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     addChildComponent (editInspector_);
     
     addMenuBarCommand (Commands::selectAll,     [this]() { editView_.selectAll();  } );
-    addMenuBarCommand (Commands::snapToGrid,    [this]() { editView_.snapToGrid(); } );
+    addMenuBarCommand (Commands::snap,          [this]() { editView_.snapToGrid(); } );
     
     addMenuBarCommand (Commands::zoomIn,        [this]() { zoomIn();     } );
     addMenuBarCommand (Commands::zoomOut,       [this]() { zoomOut();    } );

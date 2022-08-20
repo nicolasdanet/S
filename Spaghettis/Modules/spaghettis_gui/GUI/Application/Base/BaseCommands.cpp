@@ -72,8 +72,8 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         r.addDefaultKeypress ('a', juce::ModifierKeys::commandModifier);
         r.setActive (get (command));
         break;
-    case Commands::snapToGrid :
-        r.setInfo (NEEDS_TRANS ("Snap To Grid"),    NEEDS_TRANS ("Snap objects to grid"),       edit, 0);
+    case Commands::snap :
+        r.setInfo (NEEDS_TRANS ("Snap"),            NEEDS_TRANS ("Snap objects to grid"),       edit, 0);
         r.setActive (get (command));
         break;
     case Commands::zoomIn :
@@ -119,7 +119,7 @@ void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::rescan,
             Commands::rescanLogged,
             Commands::selectAll,
-            Commands::snapToGrid,
+            Commands::snap,
             Commands::zoomIn,
             Commands::zoomOut,
             Commands::zoomReset,

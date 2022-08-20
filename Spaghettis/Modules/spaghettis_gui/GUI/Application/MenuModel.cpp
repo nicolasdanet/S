@@ -43,7 +43,7 @@ juce::PopupMenu MenuModel::getMenuForIndex (int n, const juce::String&)
     //
     menu.addCommandItem (commandManager_, Commands::selectAll);
     menu.addSeparator();
-    menu.addCommandItem (commandManager_, Commands::snapToGrid);
+    menu.addCommandItem (commandManager_, Commands::snap);
     //
     } else if (n == 2) {
     //
