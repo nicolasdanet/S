@@ -48,8 +48,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     label_ (object.getCachedParameter<juce::String> (Tags::Label, true)),
     boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tags::BoxSelected)),
-    painter_ (createPainter (this, object)),
-    isSelected_ (false)
+    painter_ (createPainter (this, object))
 {
     jassert (view);
     
@@ -141,8 +140,8 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
     //
     view->dragStart();
     
-    if (Mouse::isDoubleClick (e))      { openSubPatch (object_, view);  }
-    else if (Mouse::isShiftClick (e))  { setSelected (!isSelected_); }
+    if (Mouse::isDoubleClick (e))      { openSubPatch (object_, view); }
+    else if (Mouse::isShiftClick (e))  { setSelected (!isSelected());  }
     else if (Mouse::isSimpleClick (e)) {
         if (!isSelected()) {
             view->deselectAll(); setSelected (true);
@@ -281,23 +280,21 @@ int ObjectComponent::getPositionY() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* To avoid latency with core engine, we don't use the object's attribute there. */
-
 void ObjectComponent::setSelected (bool isSelected)
 {
-    if (isSelected_ != isSelected) {
+    if (selected_.get() != isSelected) {
         if (isSelected) { EditCommands::select (object_.getIdentifier()); }
         else {
             EditCommands::deselect (object_.getIdentifier());
         }
         
-        isSelected_ = isSelected;
+        // isSelected_ = isSelected;
     }
 }
 
 bool ObjectComponent::isSelected() const
 {
-    return isSelected_;
+    return selected_.get();
 }
 
 // -----------------------------------------------------------------------------------------------------------
