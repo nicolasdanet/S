@@ -54,6 +54,11 @@ public:
         return Cast::fromVar<T> (value_.getValue());
     }
     
+    void set (T v)
+    {
+        value_.setValue (Cast::toVar<T> (v));
+    }
+    
     operator T() const
     {
         return get();

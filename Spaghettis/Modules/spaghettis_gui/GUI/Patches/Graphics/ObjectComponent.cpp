@@ -288,7 +288,7 @@ void ObjectComponent::setSelected (bool isSelected)
             EditCommands::deselect (object_.getIdentifier());
         }
         
-        // isSelected_ = isSelected;
+        selected_.set (isSelected);         /* Don't wait core engine feedback. */
     }
 }
 
