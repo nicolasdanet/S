@@ -91,7 +91,7 @@ void RunView::update()
 
 void RunView::addComponent (const juce::ValueTree& child)
 {
-    if (child.getType() == Ids::OBJECT) {
+    if (core::Report::isObject (child)) {
     //
     const core::Object object (child);
     
@@ -102,7 +102,7 @@ void RunView::addComponent (const juce::ValueTree& child)
 
 void RunView::removeComponent (const juce::ValueTree& child)
 {
-    if (child.getType() == Ids::OBJECT) {
+    if (core::Report::isObject (child)) {
     //
     const core::Object object (child);
     
