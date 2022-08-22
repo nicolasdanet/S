@@ -38,6 +38,7 @@ PD_LOCAL void outputs_objectUpdateParameters        (t_object *x, t_glist *owner
 // MARK: -
 
 PD_GUARD void outputs_lineAdded     (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g);
+PD_GUARD void outputs_lineChanged   (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g);
 PD_GUARD void outputs_lineRemoved   (t_id u, t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------

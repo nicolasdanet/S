@@ -162,6 +162,8 @@ PD_LOCAL void   glist_objectDeleteLines                 (t_glist *g, t_object *o
 
 PD_LOCAL t_error    glist_objectConnect                 (t_glist *g, t_object *o, int m, t_object *d, int n);
 
+PD_LOCAL void   glist_updateLinesForObject              (t_glist *glist, t_object *o);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

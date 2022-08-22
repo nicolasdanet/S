@@ -56,9 +56,34 @@ public:
 public:
     bool isPatch() const
     {
-        return tree_.hasType (Ids::PATCH);
+        return isPatch (tree_);
     }
     
+    bool isLine() const
+    {
+        return isLine (tree_);
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static bool isPatch (const juce::ValueTree& tree)
+    {
+        return (tree.getType() == Ids::PATCH);
+    }
+    
+    static bool isObject (const juce::ValueTree& tree)
+    {
+        return (tree.getType() == Ids::OBJECT);
+    }
+    
+    static bool isLine (const juce::ValueTree& tree)
+    {
+        return (tree.getType() == Ids::LINE);
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

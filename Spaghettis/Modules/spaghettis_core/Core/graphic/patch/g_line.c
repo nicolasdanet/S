@@ -144,3 +144,40 @@ PD_LOCAL t_error glist_objectConnect (t_glist *glist, t_object *src, int m, t_ob
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void glist_updateLinesForObject (t_glist *glist, t_object *o)
+{
+    t_outconnect *c = NULL;
+    
+    t_traverser t;
+
+    traverser_start (&t, glist);
+    
+    while ((c = traverser_next (&t))) {
+    //
+    if (traverser_getSource (&t) == o || traverser_getDestination (&t) == o) {
+        outputs_lineChanged (connection_getUnique (c),
+            traverser_getSource (&t),
+            traverser_getIndexOfOutlet (&t),
+            traverser_getDestination (&t),
+            traverser_getIndexOfInlet (&t),
+            glist);
+    }
+    //
+    }
+}
+
+#else
+
+PD_LOCAL void glist_updateLinesForObject (t_glist *glist, t_object *o)
+{
+
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
