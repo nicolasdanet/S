@@ -28,7 +28,7 @@ juce::ValueTree getChildRecursiveWithIdentifier (const juce::ValueTree& t, core:
     
     if (!found.isValid()) {
         for (const auto& child : t) {
-            if (child.hasType (Ids::PATCH)) {
+            if (core::Report::isPatch (child)) {
                 found = getChildRecursiveWithIdentifier (child, i); if (found.isValid()) { return found; }
             }
         }

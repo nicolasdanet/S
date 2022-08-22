@@ -21,7 +21,7 @@ class Object {
 public:
     explicit Object (const juce::ValueTree& t) : tree_ (t), data_ (t.getChildWithName (Ids::DATA))
     {
-        jassert (tree_.hasType (Ids::OBJECT) || tree_.hasType (Ids::PATCH));
+        jassert (Report::isObject (tree_));
     }
 
 public:
@@ -40,7 +40,7 @@ public:
 public:
     bool isPatch() const
     {
-        return tree_.hasType (Ids::PATCH);
+        return Report::isPatch (tree_);
     }
     
     bool isGUI() const
