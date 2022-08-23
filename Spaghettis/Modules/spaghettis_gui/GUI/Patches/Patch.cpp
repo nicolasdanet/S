@@ -82,10 +82,12 @@ void Patch::change (const core::UniquePath& u, const core::Report& v)
     juce::ValueTree parent (getParent (u));
     juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
-    if (v.isLine()) { DBG (v.debug()); return; }
-    
-    if (child.isValid()) { core::Object (child).copyFrom (v); }
-    else {
+    if (child.isValid()) {
+        if (v.isLine()) { DBG (v.debug()); }
+        else {
+            core::Object (child).copyFrom (v);
+        }
+    } else {
         jassert (u.isRoot()); core::Object (parent).copyFrom (v);
     }
 }
