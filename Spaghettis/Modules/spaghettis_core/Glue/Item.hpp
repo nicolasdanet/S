@@ -12,44 +12,70 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class Object : public Item {
+class Item {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Object (const juce::ValueTree& t) : Item (t)
+    explicit Item (const juce::ValueTree& t) : tree_ (t), data_ (t.getChildWithName (Ids::DATA))
     {
-        jassert (Report::isObject (tree_));
     }
 
 public:
-    ~Object() = default;
+    ~Item() = default;
 
 public:
-    Object (const Object&) = default;
-    Object (Object&&) = default;
-    Object& operator = (const Object&) = default;
-    Object& operator = (Object&&) = default;
+    Item (const Item&) = default;
+    Item (Item&&) = default;
+    Item& operator = (const Item&) = default;
+    Item& operator = (Item&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    bool isPatch() const
+    UniqueId getIdentifier() const
     {
-        return Report::isPatch (tree_);
+        return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
+    }
+
+    template <class T>
+    core::Cached<T> getCachedAttribute (const juce::String& name, bool updateSynchronously = false) const
+    {
+        return core::Cached<T>::make (data_, Tags::Attributes, name, updateSynchronously);
     }
     
-    bool isGUI() const
+    template <class T>
+    core::Cached<T> getCachedParameter (const juce::String& name, bool updateSynchronously = false) const
     {
-        return data_.hasGroup (Tags::Parameters);
+        return core::Cached<T>::make (data_, Tags::Parameters, name, updateSynchronously);
     }
+    
+    template <class T>
+    T getAttribute (const juce::String &name) const
+    {
+        return getCachedAttribute<T> (name).get();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void copyFrom (const core::Report& v)
+    {
+        data_.copyFrom (v);
+    }
+
+protected:
+    juce::ValueTree tree_;
+    core::Data data_;
     
 private:
-    JUCE_LEAK_DETECTOR (Object)
+    JUCE_LEAK_DETECTOR (Item)
 };
 
 // -----------------------------------------------------------------------------------------------------------
