@@ -37,6 +37,26 @@ public:
 // MARK: -
 
 public:
+    bool isPatch() const
+    {
+        return Report::isPatch (tree_);
+    }
+    
+    bool isObject() const
+    {
+        return Report::isObject (tree_);
+    }
+    
+    bool isLine() const
+    {
+        return Report::isLine (tree_);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     UniqueId getIdentifier() const
     {
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));

@@ -21,7 +21,7 @@ class Object : public Item {
 public:
     explicit Object (const juce::ValueTree& t) : Item (t)
     {
-        jassert (Report::isObject (tree_));
+        jassert (isObject());
     }
 
 public:
@@ -38,11 +38,6 @@ public:
 // MARK: -
 
 public:
-    bool isPatch() const
-    {
-        return Report::isPatch (tree_);
-    }
-    
     bool isGUI() const
     {
         return data_.hasGroup (Tags::Parameters);
