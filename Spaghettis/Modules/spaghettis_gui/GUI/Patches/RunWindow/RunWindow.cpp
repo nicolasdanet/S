@@ -21,7 +21,7 @@ void RunWindow::hasBeenChanged()
 
 juce::Rectangle<int> RunWindow::getRunWindowPosition (const juce::ValueTree& t)
 {
-    return core::Object (t).getAttribute<juce::Rectangle<int>> (Tags::RunView);
+    return core::Object (t).get<juce::Rectangle<int>> (Tags::Attributes, Tags::RunView);
 }
     
 // -----------------------------------------------------------------------------------------------------------

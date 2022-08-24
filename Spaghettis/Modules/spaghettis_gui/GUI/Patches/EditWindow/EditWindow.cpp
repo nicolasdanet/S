@@ -21,7 +21,7 @@ void EditWindow::hasBeenChanged()
     
 juce::Rectangle<int> EditWindow::getEditWindowPosition (const juce::ValueTree& t)
 {
-    return core::Object (t).getAttribute<juce::Rectangle<int>> (Tags::EditView);
+    return core::Object (t).get<juce::Rectangle<int>> (Tags::Attributes, Tags::EditView);
 }
     
 // -----------------------------------------------------------------------------------------------------------

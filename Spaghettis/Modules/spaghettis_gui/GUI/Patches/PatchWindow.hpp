@@ -20,7 +20,7 @@ class PatchWindow : public BaseWindow {
 
 public:
     explicit PatchWindow (Patch& patch, const juce::ValueTree& tree) :
-        BaseWindow (core::Object (tree).getAttribute<juce::String> (Tags::Title)),
+        BaseWindow (core::Object (tree).get<juce::String> (Tags::Attributes, Tags::Title)),
         patch_ (patch),
         viewTree_ (tree),
         isSubPatch_ (tree.getParent().isValid() == false)

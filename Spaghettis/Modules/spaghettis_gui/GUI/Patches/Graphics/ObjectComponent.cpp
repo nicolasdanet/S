@@ -19,7 +19,7 @@ namespace {
 
 std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core::Object& object)
 {
-    juce::String t (object.getAttribute<juce::String> (Tags::Class));
+    juce::String t (object.get<juce::String> (Tags::Attributes, Tags::Class));
     
     if (t == "bng") { return std::make_unique<BangPainter> (owner, object); }
     else {

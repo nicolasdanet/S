@@ -43,6 +43,12 @@ public:
     }
 
     template <class T>
+    core::Cached<T> getCached (const juce::String& group, const juce::String& key, bool sync = false) const
+    {
+        return core::Cached<T>::make (data_, group, key, sync);
+    }
+    
+    template <class T>
     core::Cached<T> getCachedAttribute (const juce::String& name, bool updateSynchronously = false) const
     {
         return core::Cached<T>::make (data_, Tags::Attributes, name, updateSynchronously);
@@ -55,9 +61,9 @@ public:
     }
     
     template <class T>
-    T getAttribute (const juce::String &name) const
+    T get (const juce::String& group, const juce::String& key) const
     {
-        return getCachedAttribute<T> (name).get();
+        return getCached<T> (group, key).get();
     }
     
 // -----------------------------------------------------------------------------------------------------------

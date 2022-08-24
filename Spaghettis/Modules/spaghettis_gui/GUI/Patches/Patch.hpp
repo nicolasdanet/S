@@ -113,7 +113,7 @@ public:
 
     juce::File getFile() const
     {
-        return juce::File (core::Object (rootTree_).getAttribute<juce::String> (Tags::Path));
+        return juce::File (core::Object (rootTree_).get<juce::String> (Tags::Attributes, Tags::Path));
     }
 
 // -----------------------------------------------------------------------------------------------------------
