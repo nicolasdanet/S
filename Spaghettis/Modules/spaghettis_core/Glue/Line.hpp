@@ -21,7 +21,7 @@ class Line {
 public:
     explicit Line (const juce::ValueTree& t) : tree_ (t)
     {
-        Report::isLine (tree_);
+        jassert (Report::isLine (tree_));
     }
 
 public:
