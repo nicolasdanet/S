@@ -69,12 +69,6 @@ public:
     }
     
     template <class T>
-    core::Cached<T> getCachedAttribute (const juce::String& name, bool updateSynchronously = false) const
-    {
-        return core::Cached<T>::make (data_, Tags::Attributes, name, updateSynchronously);
-    }
-    
-    template <class T>
     core::Cached<T> getCachedParameter (const juce::String& name, bool updateSynchronously = false) const
     {
         return core::Cached<T>::make (data_, Tags::Parameters, name, updateSynchronously);

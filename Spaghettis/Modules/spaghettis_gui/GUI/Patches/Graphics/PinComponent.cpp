@@ -56,7 +56,7 @@ juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r, float scale)
 
 PinComponent::PinComponent (View* view, const core::Object& object, const juce::String& type) :
     view_ (view),
-    selected_ (object.getCachedAttribute<bool> (Tags::Selected)),
+    selected_ (object.getCached<bool> (Tags::Attributes, Tags::Selected)),
     pinColour_ (getColourFromType (type)),
     pinOverColour_ (Spaghettis()->getCachedColour (Tags::PinOver)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tags::BoxSelected)),
