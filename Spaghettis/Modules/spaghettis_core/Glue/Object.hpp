@@ -21,7 +21,7 @@ class Object : public Item {
 public:
     explicit Object (const juce::ValueTree& t) : Item (t)
     {
-        jassert (isObject());
+        jassert (Report::isObject (tree_));
     }
 
 public:
@@ -33,6 +33,21 @@ public:
     Object& operator = (const Object&) = default;
     Object& operator = (Object&&) = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool isPatch() const
+    {
+        return Report::isPatch (tree_);
+    }
+    
+    bool isGraphic() const
+    {
+        return data_.hasGroup (Tags::Parameters);
+    }
+    
 private:
     JUCE_LEAK_DETECTOR (Object)
 };

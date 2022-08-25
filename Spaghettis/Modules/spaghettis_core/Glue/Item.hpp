@@ -37,31 +37,6 @@ public:
 // MARK: -
 
 public:
-    bool isPatch() const
-    {
-        return Report::isPatch (tree_);
-    }
-    
-    bool isObject() const
-    {
-        return Report::isObject (tree_);
-    }
-    
-    bool isGraphic() const
-    {
-        jassert (isObject()); return data_.hasGroup (Tags::Parameters);
-    }
-    
-    bool isLine() const
-    {
-        return Report::isLine (tree_);
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     UniqueId getIdentifier() const
     {
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
