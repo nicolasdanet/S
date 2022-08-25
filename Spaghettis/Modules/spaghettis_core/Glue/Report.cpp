@@ -280,15 +280,36 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+void setLineAttributes (Data& data, int m, int n)
+{
+    static DelegateCache delegate;
+    
+    Group group (data.addGroup (Tags::Attributes, true));
+    
+    group.addParameter (Tags::Outlet,
+        NEEDS_TRANS ("Outlet"),
+        NEEDS_TRANS ("Index of source outlet"),
+        m,
+        delegate);
+    
+    group.addParameter (Tags::Inlet,
+        NEEDS_TRANS ("Inlet"),
+        NEEDS_TRANS ("Index of destination inlet"),
+        n,
+        delegate);
+}
+
 juce::ValueTree getLine (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n)
 {
     juce::ValueTree t (Ids::LINE);
     
     t.setProperty (Ids::identifier,     Cast::toVar (u.getIdentifier()), nullptr);
     t.setProperty (Ids::source,         Cast::toVar (object_getUnique (src)), nullptr);
-    t.setProperty (Ids::outlet,         m, nullptr);
     t.setProperty (Ids::destination,    Cast::toVar (object_getUnique (dest)), nullptr);
-    t.setProperty (Ids::inlet,          n, nullptr);
+    
+    Data data (Ids::DATA); setLineAttributes (data, m, n);
+    
+    t.appendChild (data.asValueTree(), nullptr);
     
     return t;
 }

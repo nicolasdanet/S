@@ -32,11 +32,13 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (BangFlashOn);
     DECLARE_STRING (DefaultIsRunView);
     DECLARE_STRING (GridSize);
+    DECLARE_STRING (Inlet);
     DECLARE_STRING (LabelBackground);
     DECLARE_STRING (LabelText);
     DECLARE_STRING (Line);
     DECLARE_STRING (LineSelected);
     DECLARE_STRING (LineSignal);
+    DECLARE_STRING (Outlet);
     DECLARE_STRING (PatchBackground);
     DECLARE_STRING (PatchText);
     DECLARE_STRING (PinAnything);

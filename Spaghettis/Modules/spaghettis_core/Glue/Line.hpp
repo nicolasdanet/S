@@ -12,14 +12,14 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class Line {
+class Line : public Item {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Line (const juce::ValueTree& t) : tree_ (t)
+    explicit Line (const juce::ValueTree& t) : Item (t)
     {
         jassert (Report::isLine (tree_));
     }
@@ -38,11 +38,6 @@ public:
 // MARK: -
 
 public:
-    UniqueId getIdentifier() const
-    {
-        return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
-    }
-
     UniqueId getIdentifierOfSource() const
     {
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::source));
@@ -52,19 +47,6 @@ public:
     {
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::destination));
     }
-    
-    int getInlet() const
-    {
-        return tree_.getProperty (Ids::inlet);
-    }
-    
-    int getOutlet() const
-    {
-        return tree_.getProperty (Ids::outlet);
-    }
-    
-private:
-    juce::ValueTree tree_;
     
 private:
     JUCE_LEAK_DETECTOR (Line)
