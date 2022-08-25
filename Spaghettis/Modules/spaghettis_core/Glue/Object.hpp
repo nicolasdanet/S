@@ -33,16 +33,6 @@ public:
     Object& operator = (const Object&) = default;
     Object& operator = (Object&&) = default;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    bool isGUI() const
-    {
-        return data_.hasGroup (Tags::Parameters);
-    }
-    
 private:
     JUCE_LEAK_DETECTOR (Object)
 };

@@ -47,11 +47,16 @@ public:
         return Report::isObject (tree_);
     }
     
+    bool isGraphic() const
+    {
+        jassert (isObject()); return data_.hasGroup (Tags::Parameters);
+    }
+    
     bool isLine() const
     {
         return Report::isLine (tree_);
     }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -63,9 +68,9 @@ public:
     }
 
     template <class T>
-    core::Cached<T> getCached (const juce::String& group, const juce::String& key, bool sync = false) const
+    Cached<T> getCached (const juce::String& group, const juce::String& key, bool synchronous = false) const
     {
-        return core::Cached<T>::make (data_, group, key, sync);
+        return Cached<T>::make (data_, group, key, synchronous);
     }
     
     template <class T>

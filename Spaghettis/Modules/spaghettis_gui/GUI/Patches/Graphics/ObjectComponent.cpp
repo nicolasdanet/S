@@ -23,7 +23,7 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core
     
     if (t == "bng") { return std::make_unique<BangPainter> (owner, object); }
     else {
-        jassert (object.isGUI() == false); return std::make_unique<BoxPainter> (owner, object);
+        return std::make_unique<BoxPainter> (owner, object);
     }
 }
 

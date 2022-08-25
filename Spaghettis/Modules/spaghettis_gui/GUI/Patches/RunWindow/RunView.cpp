@@ -95,7 +95,7 @@ void RunView::addComponent (const juce::ValueTree& child)
     //
     const core::Object object (child);
     
-    if (object.isGUI()) { objects_.add (this, object); }
+    if (object.isGraphic()) { objects_.add (this, object); }
     //
     }
 }
@@ -106,7 +106,7 @@ void RunView::removeComponent (const juce::ValueTree& child)
     //
     const core::Object object (child);
     
-    if (object.isGUI()) { objects_.remove (object); }
+    if (object.isGraphic()) { objects_.remove (object); }
     //
     }
 }
