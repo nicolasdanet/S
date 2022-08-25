@@ -192,8 +192,8 @@ void LineComponent::update()
     jassert (source_->getIdentifier()      == line_.getIdentifierOfSource());
     jassert (destination_->getIdentifier() == line_.getIdentifierOfDestination());
     
-    PinComponent *outlet = source_->getOutletAt (0);        /* ??? */
-    PinComponent *inlet  = destination_->getInletAt (0);
+    PinComponent *outlet = source_->getOutletAt (line_.get<int> (Tags::Attributes, Tags::Outlet));
+    PinComponent *inlet  = destination_->getInletAt (line_.get<int> (Tags::Attributes, Tags::Inlet));
     
     if (outlet && inlet) {
     //
