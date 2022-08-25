@@ -45,7 +45,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     visible_ (object.getCached<bool> (Tags::Attributes, Tags::Visible, true)),
     inlets_ (object.getCached<juce::String> (Tags::Attributes, Tags::Inlets, true)),
     outlets_ (object.getCached<juce::String> (Tags::Attributes, Tags::Outlets, true)),
-    label_ (object.getCachedParameter<juce::String> (Tags::Label, true)),
+    label_ (object.getCached<juce::String> (Tags::Parameters, Tags::Label, true)),
     boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tags::BoxSelected)),
     painter_ (createPainter (this, object))
