@@ -189,7 +189,7 @@ void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& li
 
 void LineComponent::treeHasChanged()
 {
-    DBG ("???");
+    update(); repaint();
 }
 
 void LineComponent::update()

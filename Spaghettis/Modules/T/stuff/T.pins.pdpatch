@@ -1,9 +1,9 @@
 #N spaghettis 0 9 0;
-#N canvas 517 272 450 300;
-#N canvas 751 350 484 207 Untitled;
-#X obj 48 36 inlet;
+#N canvas 817 303 450 300;
+#N canvas 1042 328 484 207 Untitled;
+#X obj 72 36 inlet;
 #X obj 132 36 inlet;
-#X obj 48 84 outlet;
+#X obj 72 84 outlet;
 #X obj 132 84 outlet;
 #X connect 0 0 2 0;
 #X connect 1 0 3 0;
