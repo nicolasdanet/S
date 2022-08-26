@@ -36,10 +36,14 @@ LineComponent::LineComponent (View* view, const core::Line& line) :
     
     if (source_.getComponent())      { source_->addChangeListener (this);         }
     if (destination_.getComponent()) { destination_->addChangeListener (this);    }
+    
+    line_.addObserver (this);
 }
 
 LineComponent::~LineComponent()
 {
+    line_.removeObserver (this);
+    
     if (destination_.getComponent()) { destination_->removeChangeListener (this); }
     if (source_.getComponent())      { source_->removeChangeListener (this);      }
     
@@ -182,6 +186,11 @@ void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& li
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+void LineComponent::treeHasChanged()
+{
+    DBG ("???");
+}
 
 void LineComponent::update()
 {

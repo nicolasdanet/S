@@ -83,7 +83,7 @@ void Patch::change (const core::UniquePath& u, const core::Report& v)
     juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
     if (child.isValid()) {
-        if (v.isLine()) { DBG (v.debug()); }
+        if (core::Report::isLine (child)) { core::Line (child).copyFrom (v); }
         else {
             core::Object (child).copyFrom (v);
         }
