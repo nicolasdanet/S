@@ -69,8 +69,8 @@
 #include "Glue/Colours.hpp"
 #include "Glue/Glue.hpp"
 #include "Glue/Unique.hpp"
-#include "Glue/Report.hpp"
 #include "Glue/Item.hpp"
+#include "Glue/Report.hpp"
 #include "Glue/Line.hpp"
 #include "Glue/Object.hpp"
 
