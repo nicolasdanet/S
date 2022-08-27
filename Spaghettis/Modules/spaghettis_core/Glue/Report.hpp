@@ -56,40 +56,17 @@ public:
 public:
     bool isObject() const
     {
-        return isObject (tree_);
+        return Item::isObject (tree_);
     }
     
     bool isLine() const
     {
-        return isLine (tree_);
+        return Item::isLine (tree_);
     }
 
     bool isPatch() const
     {
-        return isPatch (tree_);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-/* An object can be a patch. */
-/* A patch is a kind of object. */
-
-public:
-    static bool isObject (const juce::ValueTree& tree)
-    {
-        return (tree.getType() == Ids::OBJECT || tree.getType() == Ids::PATCH);
-    }
-    
-    static bool isLine (const juce::ValueTree& tree)
-    {
-        return (tree.getType() == Ids::LINE);
-    }
-
-    static bool isPatch (const juce::ValueTree& tree)
-    {
-        return (tree.getType() == Ids::PATCH);
+        return Item::isPatch (tree_);
     }
     
 // -----------------------------------------------------------------------------------------------------------

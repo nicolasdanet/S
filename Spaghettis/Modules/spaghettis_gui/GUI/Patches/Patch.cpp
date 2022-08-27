@@ -28,7 +28,7 @@ juce::ValueTree getChildRecursiveWithIdentifier (const juce::ValueTree& t, core:
     
     if (!found.isValid()) {
         for (const auto& child : t) {
-            if (core::Report::isPatch (child)) {
+            if (core::Item::isPatch (child)) {
                 found = getChildRecursiveWithIdentifier (child, i); if (found.isValid()) { return found; }
             }
         }
@@ -83,7 +83,7 @@ void Patch::change (const core::UniquePath& u, const core::Report& v)
     juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
     if (child.isValid()) {
-        if (core::Report::isLine (child)) { core::Line (child).copyFrom (v); }
+        if (core::Item::isLine (child)) { core::Line (child).copyFrom (v); }
         else {
             core::Object (child).copyFrom (v);
         }

@@ -21,7 +21,7 @@ class Object : public Item {
 public:
     explicit Object (const juce::ValueTree& t) : Item (t)
     {
-        jassert (Report::isObject (tree_));
+        jassert (Item::isObject (tree_));
     }
 
 public:
@@ -40,7 +40,7 @@ public:
 public:
     bool isPatch() const
     {
-        return Report::isPatch (tree_);
+        return Item::isPatch (tree_);
     }
     
     bool isGraphic() const
