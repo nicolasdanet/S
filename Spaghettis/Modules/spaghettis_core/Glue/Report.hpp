@@ -17,14 +17,14 @@ struct _object;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class Report {
+class Report : public Item {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    explicit Report (const juce::ValueTree& t) : tree_ (t)
+    explicit Report (const juce::ValueTree& t) : Item (t)
     {
     }
 
@@ -78,9 +78,6 @@ public:
     static Report objectAttributes (const UniquePath&, struct _object*);
     static Report objectParameters (const UniquePath&, struct _object*);
     static Report line (const UniquePath&, struct _object*, int, struct _object*, int);
-    
-private:
-    juce::ValueTree tree_;
     
 private:
     JUCE_LEAK_DETECTOR (Report)
