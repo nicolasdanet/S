@@ -114,9 +114,9 @@ juce::String Data::debug (const juce::ValueTree& tree)
     return getCopyPruned (tree).toXmlString();
 }
 
-juce::String Data::debug (const Report& v)
+juce::String Data::debug (const Item& item)
 {
-    return debug (v.asValueTree());
+    return debug (item.asValueTree());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -152,9 +152,9 @@ void readFrom (Data& data, const juce::ValueTree& other)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Data::copyFrom (const Report& t)
+void Data::copyFrom (const Item& item)
 {
-    readFrom (*this, getCopyPruned (t.asValueTree()));
+    readFrom (*this, getCopyPruned (item.asValueTree()));
 }
     
 // -----------------------------------------------------------------------------------------------------------

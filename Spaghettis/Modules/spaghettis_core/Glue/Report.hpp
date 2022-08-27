@@ -42,18 +42,6 @@ public:
 // MARK: -
 
 public:
-    juce::ValueTree asValueTree() const
-    {
-        return tree_;
-    }
-
-    juce::String debug() const;
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     static Report object (const UniquePath&, struct _object*);
     static Report objectAttributes (const UniquePath&, struct _object*);
     static Report objectParameters (const UniquePath&, struct _object*);
