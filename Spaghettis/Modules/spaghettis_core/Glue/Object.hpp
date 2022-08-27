@@ -38,11 +38,6 @@ public:
 // MARK: -
 
 public:
-    bool isPatch() const
-    {
-        return Item::isPatch (tree_);
-    }
-    
     bool isGraphic() const
     {
         return data_.hasGroup (Tags::Parameters);

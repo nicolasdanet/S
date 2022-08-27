@@ -54,26 +54,6 @@ public:
 // MARK: -
 
 public:
-    bool isObject() const
-    {
-        return Item::isObject (tree_);
-    }
-    
-    bool isLine() const
-    {
-        return Item::isLine (tree_);
-    }
-
-    bool isPatch() const
-    {
-        return Item::isPatch (tree_);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     static Report object (const UniquePath&, struct _object*);
     static Report objectAttributes (const UniquePath&, struct _object*);
     static Report objectParameters (const UniquePath&, struct _object*);

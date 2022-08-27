@@ -42,6 +42,26 @@ public:
 // MARK: -
 
 public:
+    bool isObject() const
+    {
+        return isObject (tree_);
+    }
+    
+    bool isLine() const
+    {
+        return isLine (tree_);
+    }
+
+    bool isPatch() const
+    {
+        return isPatch (tree_);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void addObserver (Observer* observer)
     {
         data_.addObserver (observer);
