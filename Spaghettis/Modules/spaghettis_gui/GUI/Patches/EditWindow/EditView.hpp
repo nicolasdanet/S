@@ -48,6 +48,8 @@ public:
     void drag (juce::Point<int>);
 
 public:
+    void moveBack();
+    void moveFront();
     void snapToGrid();
     
 // -----------------------------------------------------------------------------------------------------------

@@ -28,6 +28,16 @@ static void deselect (core::UniqueId i)
     Spaghettis()->handle (Inputs::deselectObject (i));
 }
 
+static void moveBack (core::UniqueId i)
+{
+    DBG ("BACK");
+}
+
+static void moveFront (core::UniqueId i)
+{
+    DBG ("FRONT");
+}
+
 static void snap (core::UniqueId i)
 {
     Spaghettis()->handle (Inputs::snapObject (i));

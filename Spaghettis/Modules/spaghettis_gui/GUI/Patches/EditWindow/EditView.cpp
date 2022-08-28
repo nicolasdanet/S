@@ -63,6 +63,16 @@ void EditView::drag (juce::Point<int> offset)
     objects_.perform ([offset](const auto& p) { if (p->isSelected()) { p->drag (offset); } });
 }
 
+void EditView::moveBack()
+{
+    objects_.perform ([](const auto& p) { if (p->isSelected()) { p->moveBack(); } });
+}
+
+void EditView::moveFront()
+{
+    objects_.perform ([](const auto& p) { if (p->isSelected()) { p->moveFront(); } });
+}
+
 void EditView::snapToGrid()
 {
     objects_.perform ([](const auto& p) { if (p->isSelected()) { p->snap(); } });

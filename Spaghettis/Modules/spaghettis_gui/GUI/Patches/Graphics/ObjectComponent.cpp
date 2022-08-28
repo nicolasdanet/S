@@ -301,6 +301,16 @@ bool ObjectComponent::isSelected() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void ObjectComponent::moveBack()
+{
+    EditCommands::moveBack (object_.getIdentifier());
+}
+
+void ObjectComponent::moveFront()
+{
+    EditCommands::moveFront (object_.getIdentifier());
+}
+
 void ObjectComponent::snap()
 {
     EditCommands::snap (object_.getIdentifier());
