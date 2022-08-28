@@ -147,6 +147,16 @@ PD_LOCAL void inputs_deselectObject (core::UniqueId i)
     unique_objectDeselect (i);
 }
 
+PD_LOCAL void inputs_moveBackObject (core::UniqueId i)
+{
+    unique_objectMoveBack (i);
+}
+
+PD_LOCAL void inputs_moveFrontObject (core::UniqueId i)
+{
+    unique_objectMoveFront (i);
+}
+
 PD_LOCAL void inputs_snapObject (core::UniqueId i)
 {
     unique_objectSnap (i);

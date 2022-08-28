@@ -117,6 +117,16 @@ Perform Inputs::deselectObject (core::UniqueId i)
     return [i]() { core::inputs_deselectObject (i); };
 }
 
+Perform Inputs::moveBackObject (core::UniqueId i)
+{
+    return [i]() { core::inputs_moveBackObject (i); };
+}
+
+Perform Inputs::moveFrontObject (core::UniqueId i)
+{
+    return [i]() { core::inputs_moveFrontObject (i); };
+}
+
 Perform Inputs::snapObject (core::UniqueId i)
 {
     return [i]() { core::inputs_snapObject (i); };

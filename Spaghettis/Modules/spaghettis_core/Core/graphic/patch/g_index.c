@@ -43,19 +43,11 @@ PD_LOCAL void glist_objectMoveAt (t_glist *glist, t_object *y, int n)
     }
 }
 
-PD_FORCE void glist_objectMoveFront (t_glist *glist, t_object *y)
+PD_LOCAL void glist_objectMoveBack (t_glist *glist, t_object *y)
 {
-    if (glist_undoIsOk (glist)) {
-    //
-    glist_undoAppend (glist, undofront_new (y, undosnippet_new (y, glist)));
-    //
-    }
-
-    glist_objectMoveAtLast (glist, y);
-}
-
-PD_FORCE void glist_objectMoveBackward (t_glist *glist, t_object *y)
-{
+    DBG ("BACK");
+    
+    /*
     if (glist_undoIsOk (glist)) {
     //
     glist_undoAppend (glist, undoback_new  (y, undosnippet_new (y, glist)));
@@ -63,6 +55,22 @@ PD_FORCE void glist_objectMoveBackward (t_glist *glist, t_object *y)
     }
 
     glist_objectMoveAtFirst (glist, y);
+    */
+}
+
+PD_LOCAL void glist_objectMoveFront (t_glist *glist, t_object *y)
+{
+    DBG ("FRONT");
+    
+    /*
+    if (glist_undoIsOk (glist)) {
+    //
+    glist_undoAppend (glist, undofront_new (y, undosnippet_new (y, glist)));
+    //
+    }
+
+    glist_objectMoveAtLast (glist, y);
+    */
 }
 
 // -----------------------------------------------------------------------------------------------------------

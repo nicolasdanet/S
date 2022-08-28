@@ -30,12 +30,12 @@ static void deselect (core::UniqueId i)
 
 static void moveBack (core::UniqueId i)
 {
-    DBG ("BACK");
+    Spaghettis()->handle (Inputs::moveBackObject (i));
 }
 
 static void moveFront (core::UniqueId i)
 {
-    DBG ("FRONT");
+    Spaghettis()->handle (Inputs::moveFrontObject (i));
 }
 
 static void snap (core::UniqueId i)
