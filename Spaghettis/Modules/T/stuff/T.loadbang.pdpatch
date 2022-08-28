@@ -1,0 +1,5 @@
+#N spaghettis 0 9 0;
+#N canvas 428 171 450 300;
+#X obj 144 87 loadbang;
+#X obj 180 156 print;
+#X connect 0 0 1 0;
