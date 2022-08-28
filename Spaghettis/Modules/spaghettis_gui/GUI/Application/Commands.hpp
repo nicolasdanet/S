@@ -33,6 +33,8 @@ enum CommandIds : juce::CommandID {
     rescan,
     rescanLogged,
     selectAll,
+    moveBack,
+    moveFront,
     snap,
     zoomIn,
     zoomOut,

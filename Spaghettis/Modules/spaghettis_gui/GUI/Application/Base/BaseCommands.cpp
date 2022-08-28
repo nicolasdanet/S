@@ -72,6 +72,14 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         r.addDefaultKeypress ('a', juce::ModifierKeys::commandModifier);
         r.setActive (get (command));
         break;
+    case Commands::moveBack :
+        r.setInfo (NEEDS_TRANS ("Move Back"),       NEEDS_TRANS ("Move backward"),              edit, 0);
+        r.setActive (get (command));
+        break;
+    case Commands::moveFront :
+        r.setInfo (NEEDS_TRANS ("Move Front"),      NEEDS_TRANS ("Move frontward"),             edit, 0);
+        r.setActive (get (command));
+        break;
     case Commands::snap :
         r.setInfo (NEEDS_TRANS ("Snap"),            NEEDS_TRANS ("Snap objects to grid"),       edit, 0);
         r.setActive (get (command));
@@ -119,6 +127,8 @@ void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::rescan,
             Commands::rescanLogged,
             Commands::selectAll,
+            Commands::moveBack,
+            Commands::moveFront,
             Commands::snap,
             Commands::zoomIn,
             Commands::zoomOut,
