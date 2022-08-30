@@ -255,3 +255,22 @@ PD_LOCAL int glist_objectGetNumberOfSelected (t_glist *glist)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL std::vector<UniqueId> glist_objectGetAll (t_glist *glist)
+{
+    std::vector<UniqueId> v;
+    
+    t_object *y = NULL;
+    
+    for (y = glist->gl_graphics; y; y = y->g_next) { v.push_back (object_getUnique (y)); }
+    
+    return v;
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------

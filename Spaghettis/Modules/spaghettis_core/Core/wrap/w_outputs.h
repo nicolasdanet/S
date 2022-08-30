@@ -45,6 +45,7 @@ PD_GUARD void outputs_lineRemoved   (t_id u, t_glist *g);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_GUARD void outputs_patchOrder                    (t_glist *g);
 PD_LOCAL void outputs_patchDirty                    (t_glist *g, int isDirty);
 
 // -----------------------------------------------------------------------------------------------------------

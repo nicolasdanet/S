@@ -160,6 +160,11 @@ PD_GUARD void outputs_lineRemoved (t_id u, t_glist *owner)
     wrapper_send (Outputs::removed (UniquePath (u, owner)));
 }
 
+PD_GUARD void outputs_patchOrder (t_glist *g)
+{
+    // wrapper_send (Outputs::patchOrder (UniquePath (cast_object (g), glist_getParent (g)), ));
+}
+
 PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
 {
     wrapper_send (Outputs::patchDirty (UniquePath (cast_object (g), nullptr), isDirty));
