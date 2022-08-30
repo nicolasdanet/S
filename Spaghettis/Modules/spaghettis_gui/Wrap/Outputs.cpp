@@ -75,6 +75,14 @@ Perform Outputs::reportCurrentMidiDevices (std::vector<MidiDevice>&& i, std::vec
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+Perform Outputs::patchOrder (core::UniquePath unique, std::vector<core::UniqueId>&& ids)
+{
+    return [u = std::move (unique), v = std::move (ids)]()
+    {
+        for (auto t : v) { DBG (t); }
+    };
+}
+
 Perform Outputs::patchDirty (core::UniquePath unique, bool isDirty)
 {
     return [u = std::move (unique), b = isDirty]()

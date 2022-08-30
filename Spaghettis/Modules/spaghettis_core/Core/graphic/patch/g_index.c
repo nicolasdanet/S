@@ -33,9 +33,7 @@ static void glist_objectMoveNotify (t_glist *g)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
-    // glist_objectGetAll
-    
-    outputs_patchOrder (g);
+    outputs_patchOrder (g, glist_objectGetAll (g));
     
     #endif
 }
