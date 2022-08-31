@@ -22,19 +22,28 @@ juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::UniqueId
     return t.getChildWithProperty (Ids::identifier, core::Cast::toVar (i));
 }
 
-juce::ValueTree getChildRecursiveWithIdentifier (const juce::ValueTree& t, core::UniqueId i)
+juce::ValueTree findChildWithIdentifier (const juce::ValueTree& t, core::UniqueId i)
 {
     juce::ValueTree found (getChildWithIdentifier (t, i));
     
     if (!found.isValid()) {
         for (const auto& child : t) {
             if (core::Item::isPatch (child)) {
-                found = getChildRecursiveWithIdentifier (child, i); if (found.isValid()) { return found; }
+                found = findChildWithIdentifier (child, i); if (found.isValid()) { return found; }
             }
         }
     }
     
     return found;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void sortChildsWithIdentifiers (juce::ValueTree& tree, const std::vector<core::UniqueId>& v)
+{
+    for (auto t : v) { DBG (t); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -63,7 +72,9 @@ juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 
 void Patch::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
 {
-    for (auto t : v) { DBG (t); }
+    juce::ValueTree parent (getParent (u));
+    
+    sortChildsWithIdentifiers (parent, v);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -143,7 +154,7 @@ void Patch::openWindow()
 
 void Patch::openSubPatchWindow (const core::Object& object)
 {
-    juce::ValueTree t (getChildRecursiveWithIdentifier (rootTree_, object.getIdentifier()));
+    juce::ValueTree t (findChildWithIdentifier (rootTree_, object.getIdentifier()));
     
     jassert (t.isValid());
     
