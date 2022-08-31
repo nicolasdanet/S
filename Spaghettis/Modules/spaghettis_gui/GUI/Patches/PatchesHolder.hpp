@@ -43,6 +43,7 @@ public:
 // MARK: -
 
 public:
+    void setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v);
     void setDirty (const core::UniquePath& u, bool isDirty);
 
 // -----------------------------------------------------------------------------------------------------------

@@ -61,6 +61,15 @@ juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void Patch::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
+{
+    for (auto t : v) { DBG (t); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void Patch::add (const core::UniquePath& u, const core::Report& v)
 {
     juce::ValueTree parent (getParent (u));

@@ -113,6 +113,11 @@ void PatchesHolder::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PatchesHolder::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
+{
+    perform (u, [&] (const std::shared_ptr<Patch>& p) { p->setOrder (u, v); });
+}
+
 void PatchesHolder::setDirty (const core::UniquePath& u, bool isDirty)
 {
     perform (u, [&] (const std::shared_ptr<Patch>& p) { p->setDirty (isDirty); });

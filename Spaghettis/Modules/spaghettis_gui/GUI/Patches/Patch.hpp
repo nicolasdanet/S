@@ -69,6 +69,13 @@ public:
 // MARK: -
 
 public:
+    void setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void add (const core::UniquePath& u, const core::Report& v);
     void change (const core::UniquePath& u, const core::Report& v);
     void remove (const core::UniquePath& u);

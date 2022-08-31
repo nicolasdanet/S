@@ -79,7 +79,7 @@ Perform Outputs::patchOrder (core::UniquePath unique, std::vector<core::UniqueId
 {
     return [u = std::move (unique), v = std::move (ids)]()
     {
-        for (auto t : v) { DBG (t); }
+        Spaghettis()->getPatches().setOrder (u, v);
     };
 }
 
