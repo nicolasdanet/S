@@ -41,9 +41,18 @@ juce::ValueTree findChildWithIdentifier (const juce::ValueTree& t, core::UniqueI
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void sortChildsWithIdentifiers (juce::ValueTree& tree, const std::vector<core::UniqueId>& v)
+// indexOf (const ValueTree &child)
+// moveChild (int currentIndex, int newIndex, UndoManager *undoManager)
+
+void moveChildToFront (juce::ValueTree& tree, core::UniqueId i)
 {
-    for (auto t : v) { DBG (t); }
+    // DBG (tree.indexOf (getChildWithIdentifier (tree, i)));
+}
+
+void sortChildsByIdentifiers (juce::ValueTree& tree, const std::vector<core::UniqueId>& v)
+{
+    DBG (core::Data::debug (tree));
+    // for (auto i : v) { DBG (i); moveChildToFront (tree, i); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -73,8 +82,12 @@ juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 void Patch::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
 {
     juce::ValueTree parent (getParent (u));
+    juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
-    sortChildsWithIdentifiers (parent, v);
+    if (child.isValid()) { sortChildsByIdentifiers (child, v); }
+    else {
+        sortChildsByIdentifiers (parent, v);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
