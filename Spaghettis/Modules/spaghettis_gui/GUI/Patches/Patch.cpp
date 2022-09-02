@@ -113,15 +113,19 @@ void Patch::add (const core::UniquePath& u, const core::Report& v)
 void Patch::change (const core::UniquePath& u, const core::Report& v)
 {
     juce::ValueTree parent (getParent (u));
-    juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
+    if (u.isRoot()) { core::Object (parent).copyFrom (v); }
+    else {
+    //
+    juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
+
     if (child.isValid()) {
         if (core::Item::isLine (child)) { core::Line (child).copyFrom (v); }
         else {
             core::Object (child).copyFrom (v);
         }
-    } else {
-        jassert (u.isRoot()); core::Object (parent).copyFrom (v);
+    }
+    //
     }
 }
 
