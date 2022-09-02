@@ -77,6 +77,7 @@ PD_LOCAL void glist_objectMoveBack (t_glist *glist, t_object *y)
     }
 
     glist_objectMoveAtFirst (glist, y);
+    glist_setDirty (glist, 1);
 }
 
 PD_LOCAL void glist_objectMoveFront (t_glist *glist, t_object *y)
@@ -88,6 +89,7 @@ PD_LOCAL void glist_objectMoveFront (t_glist *glist, t_object *y)
     }
 
     glist_objectMoveAtLast (glist, y);
+    glist_setDirty (glist, 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------

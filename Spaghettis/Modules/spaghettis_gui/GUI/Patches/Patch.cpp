@@ -82,11 +82,16 @@ juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 void Patch::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
 {
     juce::ValueTree parent (getParent (u));
+    
+    if (u.isRoot()) { sortChildsByIdentifiers (parent, v); }
+    else {
+    //
     juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
-    if (child.isValid()) { sortChildsByIdentifiers (child, v); }
-    else {
-        sortChildsByIdentifiers (parent, v);
+    if (child.isValid()) {
+        sortChildsByIdentifiers (child, v);
+    }
+    //
     }
 }
 
@@ -96,6 +101,8 @@ void Patch::setOrder (const core::UniquePath& u, const std::vector<core::UniqueI
 
 void Patch::add (const core::UniquePath& u, const core::Report& v)
 {
+    jassert (!u.isRoot());
+    
     juce::ValueTree parent (getParent (u));
     
     if (v.isPatch()) {
@@ -131,6 +138,8 @@ void Patch::change (const core::UniquePath& u, const core::Report& v)
 
 void Patch::remove (const core::UniquePath& u)
 {
+    jassert (!u.isRoot());
+    
     juce::ValueTree parent (getParent (u));
     juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
