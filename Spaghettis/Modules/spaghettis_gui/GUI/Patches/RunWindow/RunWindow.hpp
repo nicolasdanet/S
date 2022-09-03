@@ -23,7 +23,7 @@ public:
     {
         setContentOwned (new RunComponent (owner, tree), true);
         
-        makeVisible (getRunWindowPosition (tree));
+        makeVisible (core::Patch (tree).getRunView());
     }
 
     ~RunWindow() = default;
@@ -34,13 +34,6 @@ public:
 
 private:
     void hasBeenChanged() override;
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    static juce::Rectangle<int> getRunWindowPosition (const juce::ValueTree&);
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunWindow)

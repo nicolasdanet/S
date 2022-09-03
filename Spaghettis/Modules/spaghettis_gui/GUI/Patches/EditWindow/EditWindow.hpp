@@ -23,7 +23,7 @@ public:
     {
         setContentOwned (new EditComponent (owner, tree), true);
         
-        makeVisible (getEditWindowPosition (tree));
+        makeVisible (core::Patch (tree).getEditView());
     }
 
     ~EditWindow() = default;
@@ -34,14 +34,7 @@ public:
 
 private:
     void hasBeenChanged() override;
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-private:
-    static juce::Rectangle<int> getEditWindowPosition (const juce::ValueTree&);
-    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditWindow)
 };

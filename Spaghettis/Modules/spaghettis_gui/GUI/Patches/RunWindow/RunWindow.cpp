@@ -15,15 +15,10 @@ namespace spaghettis {
 void RunWindow::hasBeenChanged()
 {
     if (isFullyInitialized()) {
-        Spaghettis()->handle (Inputs::setRunView (core::Object (viewTree_).getIdentifier(), getBounds()));
+        Spaghettis()->handle (Inputs::setRunView (core::Patch (viewTree_).getIdentifier(), getBounds()));
     }
 }
 
-juce::Rectangle<int> RunWindow::getRunWindowPosition (const juce::ValueTree& t)
-{
-    return core::Object (t).get<juce::Rectangle<int>> (Tags::Attributes, Tags::RunView);
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
