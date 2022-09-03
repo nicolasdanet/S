@@ -18,7 +18,7 @@ class Item {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+protected:
     explicit Item (const juce::ValueTree& t) : tree_ (t), data_ (t.getChildWithName (Ids::DATA))
     {
     }
