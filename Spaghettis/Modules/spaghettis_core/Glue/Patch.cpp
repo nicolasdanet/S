@@ -19,11 +19,11 @@ namespace {
 
 void moveChildToFront (juce::ValueTree& tree, core::UniqueId i)
 {
-    // const int n = tree.indexOf (getChildWithIdentifier (tree, i));
+    const int n = tree.indexOf (Tree::getChild (tree, i));
     
-    // jassert (n != -1);
+    jassert (n != -1);
     
-    DBG (i);
+    DBG (n);
     
     // moveChild (int currentIndex, int newIndex, UndoManager *undoManager)
 }
