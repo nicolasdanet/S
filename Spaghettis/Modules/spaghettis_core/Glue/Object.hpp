@@ -21,7 +21,7 @@ class Object : public Item {
 public:
     explicit Object (const juce::ValueTree& t) : Item (t)
     {
-        jassert (Item::isObject (tree_));
+        jassert (isObject());
     }
 
 public:
@@ -42,6 +42,9 @@ public:
     {
         return data_.hasGroup (Tags::Parameters);
     }
+
+public:
+    void sortObjects (const std::vector<core::UniqueId>&);
     
 private:
     JUCE_LEAK_DETECTOR (Object)

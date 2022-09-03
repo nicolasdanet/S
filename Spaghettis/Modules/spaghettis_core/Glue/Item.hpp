@@ -130,7 +130,7 @@ public:
 
 public:
     void copyFrom (const core::Item&);
-
+    
 protected:
     juce::ValueTree tree_;
     core::Data data_;

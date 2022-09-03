@@ -28,6 +28,7 @@
 #include "Glue/Glue.cpp"
 #include "Glue/Unique.cpp"
 #include "Glue/Item.cpp"
+#include "Glue/Object.cpp"
 #include "Glue/Report.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
