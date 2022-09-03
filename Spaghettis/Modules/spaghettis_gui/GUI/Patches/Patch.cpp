@@ -90,7 +90,7 @@ void Patch::add (const core::UniquePath& u, const core::Report& v)
     if (v.isPatch()) {
         juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
         if (child.isValid()) {
-            core::Object (child).copyFrom (v); return;      /* Two-step creation for subpatches. */
+            core::Patch (child).copyFrom (v); return;      /* Two-step creation for subpatches. */
         }
     }
     
@@ -103,7 +103,7 @@ void Patch::change (const core::UniquePath& u, const core::Report& v)
 {
     juce::ValueTree parent (getParent (u));
     
-    if (u.isRoot()) { core::Object (parent).copyFrom (v); }
+    if (u.isRoot()) { core::Patch (parent).copyFrom (v); }
     else {
     //
     juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));

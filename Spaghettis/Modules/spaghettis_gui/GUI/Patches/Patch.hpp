@@ -115,12 +115,12 @@ private:
 public:
     core::UniqueId getIdentifier() const
     {
-        return core::Object (rootTree_).getIdentifier();
+        return core::Patch (rootTree_).getIdentifier();
     }
 
     juce::File getFile() const
     {
-        return juce::File (core::Object (rootTree_).get<juce::String> (Tags::Attributes, Tags::Path));
+        return juce::File (core::Patch (rootTree_).get<juce::String> (Tags::Attributes, Tags::Path));
     }
 
 // -----------------------------------------------------------------------------------------------------------
