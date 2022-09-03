@@ -12,39 +12,36 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class Object : public Item {
+class Patch : public Object {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Object (const juce::ValueTree& t) : Item (t)
+    explicit Patch (const juce::ValueTree& t) : Object (t)
     {
-        jassert (isObject());
+        jassert (isPatch());
     }
 
 public:
-    ~Object() = default;
+    ~Patch() = default;
 
 public:
-    Object (const Object&) = default;
-    Object (Object&&) = default;
-    Object& operator = (const Object&) = default;
-    Object& operator = (Object&&) = default;
+    Patch (const Patch&) = default;
+    Patch (Patch&&) = default;
+    Patch& operator = (const Patch&) = default;
+    Patch& operator = (Patch&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    bool isGraphic() const
-    {
-        return data_.hasGroup (Tags::Parameters);
-    }
-
+    void sortObjects (const std::vector<core::UniqueId>&);
+    
 private:
-    JUCE_LEAK_DETECTOR (Object)
+    JUCE_LEAK_DETECTOR (Patch)
 };
 
 // -----------------------------------------------------------------------------------------------------------

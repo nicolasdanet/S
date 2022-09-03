@@ -65,13 +65,13 @@ void Patch::setOrder (const core::UniquePath& u, const std::vector<core::UniqueI
 {
     juce::ValueTree parent (getParent (u));
     
-    if (u.isRoot()) { core::Object (parent).sortObjects (v); }
+    if (u.isRoot()) { core::Patch (parent).sortObjects (v); }
     else {
     //
     juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
     
     if (child.isValid()) {
-        core::Object (child).sortObjects (v);
+        core::Patch (child).sortObjects (v);
     }
     //
     }

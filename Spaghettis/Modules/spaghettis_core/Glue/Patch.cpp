@@ -37,10 +37,8 @@ void moveChildToFront (juce::ValueTree& tree, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Object::sortObjects (const std::vector<core::UniqueId>& v)
+void Patch::sortObjects (const std::vector<core::UniqueId>& v)
 {
-    jassert (isPatch());
-    
     for (auto i : v) { moveChildToFront (tree_, i); }
 }
 
