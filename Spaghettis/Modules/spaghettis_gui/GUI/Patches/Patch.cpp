@@ -160,9 +160,9 @@ void Patch::openWindow()
     }
 }
 
-void Patch::openSubPatchWindow (const core::Object& object)
+void Patch::openSubPatchWindow (core::UniqueId i)
 {
-    juce::ValueTree t (findChildWithIdentifier (rootTree_, object.getIdentifier()));
+    juce::ValueTree t (findChildWithIdentifier (rootTree_, i));
     
     jassert (t.isValid());
     

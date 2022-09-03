@@ -99,7 +99,7 @@ namespace {
 
 void openSubPatch (const core::Object& o, View* v)
 {
-    if (o.isPatch()) { v->getPatch().openSubPatchWindow (o); }
+    if (o.isPatch()) { v->getPatch().openSubPatchWindow (o.getIdentifier()); }
 }
 
 EditView* asEditView (View* view)

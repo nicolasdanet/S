@@ -86,7 +86,7 @@ public:
 
 public:
     void openWindow();
-    void openSubPatchWindow (const core::Object&);
+    void openSubPatchWindow (core::UniqueId);
     void openEditWindow();
     void openRunWindow();
     void closeWindowButtonPressed (PatchWindow*);
