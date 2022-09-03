@@ -38,21 +38,6 @@ public:
 // MARK: -
 
 public:
-    juce::Rectangle<int> getEditView() const
-    {
-        return get<juce::Rectangle<int>> (Tags::Attributes, Tags::EditView);
-    }
-
-    juce::Rectangle<int> getRunView() const
-    {
-        return get<juce::Rectangle<int>> (Tags::Attributes, Tags::RunView);
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void sortObjects (const std::vector<core::UniqueId>&);
     
 private:

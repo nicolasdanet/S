@@ -23,7 +23,7 @@ public:
     {
         setContentOwned (new EditComponent (owner, tree), true);
         
-        makeVisible (core::Patch (tree).getEditView());
+        makeVisible (core::Patch (tree).get<juce::Rectangle<int>> (Tags::Attributes, Tags::EditView));
     }
 
     ~EditWindow() = default;
