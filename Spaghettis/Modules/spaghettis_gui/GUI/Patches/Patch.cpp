@@ -10,49 +10,13 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::ValueTree getChildWithIdentifier (const juce::ValueTree& t, core::UniqueId i)
-{
-    return t.getChildWithProperty (Ids::identifier, core::Cast::toVar (i));
-}
-
-juce::ValueTree findChildWithIdentifier (const juce::ValueTree& t, core::UniqueId i)
-{
-    juce::ValueTree found (getChildWithIdentifier (t, i));
-    
-    if (!found.isValid()) {
-        for (const auto& child : t) {
-            if (Tree::isPatch (child)) {
-                found = findChildWithIdentifier (child, i); if (found.isValid()) { return found; }
-            }
-        }
-    }
-    
-    return found;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 {
     juce::ValueTree t (rootTree_);
     
-    if (u.hasPath()) {
-        for (const auto& i : u.getPath()) { t = getChildWithIdentifier (t, i); }
-    }
+    if (u.hasPath()) { for (const auto& i : u.getPath()) { t = Tree::getChild (t, i); } }
     
     return t;
 }
@@ -68,7 +32,7 @@ void Patch::setOrder (const core::UniquePath& u, const std::vector<core::UniqueI
     if (u.isRoot()) { core::Patch (parent).sortObjects (v); }
     else {
     //
-    juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
+    juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
     
     if (child.isValid()) {
         core::Patch (child).sortObjects (v);
@@ -88,13 +52,13 @@ void Patch::add (const core::UniquePath& u, const core::Report& v)
     juce::ValueTree parent (getParent (u));
     
     if (v.isPatch()) {
-        juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
+        juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
         if (child.isValid()) {
             core::Patch (child).copyFrom (v); return;      /* Two-step creation for subpatches. */
         }
     }
     
-    jassert (getChildWithIdentifier (parent, u.getIdentifier()).isValid() == false);
+    jassert (Tree::getChild (parent, u.getIdentifier()).isValid() == false);
     
     parent.appendChild (v.asValueTree(), nullptr);
 }
@@ -106,7 +70,7 @@ void Patch::change (const core::UniquePath& u, const core::Report& v)
     if (u.isRoot()) { core::Patch (parent).copyFrom (v); }
     else {
     //
-    juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
+    juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
 
     if (child.isValid()) {
         if (Tree::isLine (child)) { core::Line (child).copyFrom (v); }
@@ -123,7 +87,7 @@ void Patch::remove (const core::UniquePath& u)
     jassert (!u.isRoot());
     
     juce::ValueTree parent (getParent (u));
-    juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
+    juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
     
     if (child.isValid()) { parent.removeChild (child, nullptr); }
 }
@@ -162,7 +126,7 @@ void Patch::openWindow()
 
 void Patch::openSubPatchWindow (core::UniqueId i)
 {
-    juce::ValueTree t (findChildWithIdentifier (rootTree_, i));
+    juce::ValueTree t (Tree::findChild (rootTree_, i));
     
     jassert (t.isValid());
     

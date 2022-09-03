@@ -35,6 +35,30 @@ static bool isPatch (const juce::ValueTree& tree)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::ValueTree getChild (const juce::ValueTree& t, core::UniqueId i)
+{
+    return t.getChildWithProperty (Ids::identifier, core::Cast::toVar (i));
+}
+
+static juce::ValueTree findChild (const juce::ValueTree& t, core::UniqueId i)
+{
+    juce::ValueTree found (getChild (t, i));
+    
+    if (!found.isValid()) {
+        for (const auto& child : t) {
+            if (Tree::isPatch (child)) {
+                found = findChild (child, i); if (found.isValid()) { return found; }
+            }
+        }
+    }
+    
+    return found;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 };
 
