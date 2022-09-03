@@ -28,7 +28,7 @@ juce::ValueTree findChildWithIdentifier (const juce::ValueTree& t, core::UniqueI
     
     if (!found.isValid()) {
         for (const auto& child : t) {
-            if (core::Item::isPatch (child)) {
+            if (Tree::isPatch (child)) {
                 found = findChildWithIdentifier (child, i); if (found.isValid()) { return found; }
             }
         }
@@ -109,7 +109,7 @@ void Patch::change (const core::UniquePath& u, const core::Report& v)
     juce::ValueTree child (getChildWithIdentifier (parent, u.getIdentifier()));
 
     if (child.isValid()) {
-        if (core::Item::isLine (child)) { core::Line (child).copyFrom (v); }
+        if (Tree::isLine (child)) { core::Line (child).copyFrom (v); }
         else {
             core::Object (child).copyFrom (v);
         }
