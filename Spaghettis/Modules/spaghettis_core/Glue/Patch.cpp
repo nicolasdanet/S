@@ -23,9 +23,10 @@ void moveChildToFront (juce::ValueTree& tree, core::UniqueId i)
     
     jassert (n != -1);
     
-    DBG (n);
+    /* Notice that DATA node is the first. */
+    /* Check it? */
     
-    // moveChild (int currentIndex, int newIndex, UndoManager *undoManager)
+    tree.moveChild (n, 1, nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------

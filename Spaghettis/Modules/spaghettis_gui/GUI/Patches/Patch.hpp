@@ -43,17 +43,6 @@ public:
 // MARK: -
 
 public:
-    void setDirty (bool isDirty);
-    bool isDirty() const;
-    
-private:
-    void updateDirty() const;
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void save() const
     {
         Spaghettis()->handle (Inputs::savePatch (getIdentifier()));
@@ -69,6 +58,15 @@ public:
 // MARK: -
 
 public:
+    void add (const core::UniquePath& u, const core::Report& v);
+    void change (const core::UniquePath& u, const core::Report& v);
+    void remove (const core::UniquePath& u);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v);
 
 // -----------------------------------------------------------------------------------------------------------
@@ -76,10 +74,12 @@ public:
 // MARK: -
 
 public:
-    void add (const core::UniquePath& u, const core::Report& v);
-    void change (const core::UniquePath& u, const core::Report& v);
-    void remove (const core::UniquePath& u);
-
+    void setDirty (bool isDirty);
+    bool isDirty() const;
+    
+private:
+    void updateDirty() const;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
