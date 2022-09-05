@@ -188,6 +188,17 @@ void EditView::initialize (const juce::ValueTree& tree)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditView::handleAsyncUpdate()
+{
+    for (const auto& child : viewTree_) {
+        if (Tree::isObject (child)) { objects_.moveAtEnd (core::Object (child).getIdentifier()); }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
     if (isChildOf (viewTree_, child)) { addComponent (child); }
@@ -200,9 +211,7 @@ void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child
 
 void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int newIndex)
 {
-    if (t == viewTree_) {
-        DBG (juce::String ("? / ") + juce::String (oldIndex) + " -> " + juce::String (newIndex));
-    }
+    if (t == viewTree_) { triggerAsyncUpdate(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

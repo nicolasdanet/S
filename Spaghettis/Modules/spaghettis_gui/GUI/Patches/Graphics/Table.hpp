@@ -51,6 +51,18 @@ public:
 // MARK: -
 
 public:
+    void moveAtEnd (core::UniqueId identifier)
+    {
+        auto r = std::find_if (v_.begin(), v_.end(), hasSameIdentifier (identifier));
+        
+        if (r != v_.end()) { r->swap (v_.back()); }
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     template <class F> void perform (F f)
     {
         for_each (v_.cbegin(), v_.cend(), f);

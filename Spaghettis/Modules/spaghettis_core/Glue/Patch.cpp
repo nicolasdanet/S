@@ -17,16 +17,13 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void moveChildToFront (juce::ValueTree& tree, core::UniqueId i)
+void moveChildAt (juce::ValueTree& tree, int i, core::UniqueId u)
 {
-    const int n = tree.indexOf (Tree::getChild (tree, i));
+    const int n = tree.indexOf (Tree::getChild (tree, u));
     
     jassert (n != -1);
     
-    /* Notice that DATA node is the first. */
-    /* Check it? */
-    
-    tree.moveChild (n, 1, nullptr);
+    tree.moveChild (n, i, nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -40,7 +37,11 @@ void moveChildToFront (juce::ValueTree& tree, core::UniqueId i)
 
 void Patch::sortObjects (const std::vector<core::UniqueId>& v)
 {
-    for (auto i : v) { moveChildToFront (tree_, i); }
+    int i = 1;     /* Notice that DATA node is the first. */
+    
+    /* Check it? */
+    
+    for (auto u : v) { moveChildAt (tree_, i++, u); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
