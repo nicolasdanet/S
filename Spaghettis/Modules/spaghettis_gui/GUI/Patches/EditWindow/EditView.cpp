@@ -193,6 +193,8 @@ void EditView::handleAsyncUpdate()
     for (const auto& child : viewTree_) {
         if (Tree::isObject (child)) { objects_.moveAtEnd (core::Object (child).getIdentifier()); }
     }
+    
+    // objects_.perform ([](const auto& p) { p->toFront (false); });
 }
 
 // -----------------------------------------------------------------------------------------------------------
