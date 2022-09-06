@@ -301,6 +301,19 @@ bool ObjectComponent::isSelected() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void ObjectComponent::moveBehind (juce::Component* c)
+{
+    if (c) {
+        toBehind (c);
+        for (const auto& i : iPins_) { i->toBehind (c); }
+        for (const auto& o : oPins_) { o->toBehind (c); }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ObjectComponent::moveBack()
 {
     EditCommands::moveBack (object_.getIdentifier());

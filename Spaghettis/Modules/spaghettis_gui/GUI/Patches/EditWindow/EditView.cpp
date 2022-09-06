@@ -188,13 +188,23 @@ void EditView::initialize (const juce::ValueTree& tree)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::handleAsyncUpdate()
+void EditView::updateOrder()
 {
     for (const auto& child : viewTree_) {
         if (Tree::isObject (child)) { objects_.moveAtEnd (core::Object (child).getIdentifier()); }
     }
     
-    // objects_.perform ([](const auto& p) { p->toFront (false); });
+    auto f = [c = static_cast<juce::Component*> (nullptr)](const auto& p) mutable
+    {
+        p->moveBehind (c); c = p.get();
+    };
+    
+    objects_.performReversed (f);
+}
+
+void EditView::handleAsyncUpdate()
+{
+    updateOrder();
 }
 
 // -----------------------------------------------------------------------------------------------------------

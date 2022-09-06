@@ -114,6 +114,9 @@ private:
     void initialize (const juce::ValueTree&);
 
 private:
+    void updateOrder();
+
+private:
     core::Cached<juce::Colour> patchBackgroundColour_;
     Table<core::Object, ObjectComponent> objects_;
     Table<core::Line, LineComponent> lines_;
