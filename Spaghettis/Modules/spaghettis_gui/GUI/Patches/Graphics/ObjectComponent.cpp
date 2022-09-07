@@ -310,6 +310,15 @@ void ObjectComponent::moveBehind (juce::Component* c)
     }
 }
 
+void ObjectComponent::movePinsFront()
+{
+    for (const auto& i : iPins_) { i->toBehind (this); }
+    for (const auto& o : oPins_) { o->toBehind (this); }
+    
+    if (!iPins_.empty())      { toBehind (iPins_.front().get()); }
+    else if (!oPins_.empty()) { toBehind (oPins_.front().get()); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -457,6 +466,8 @@ void ObjectComponent::createInletsAndOutlets()
     
     if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, view_, scale, false); }
     if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, view_, scale, true);  }
+    
+    movePinsFront();
 }
 
 void ObjectComponent::removeInletsAndOultets()
