@@ -38,6 +38,8 @@ LineComponent::LineComponent (View* view, const core::Line& line) :
     if (destination_.getComponent()) { destination_->addChangeListener (this);    }
     
     line_.addObserver (this);
+    
+    updateOrder();
 }
 
 LineComponent::~LineComponent()
@@ -190,6 +192,11 @@ void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& li
 void LineComponent::treeHasChanged()
 {
     update(); repaint();
+}
+
+void LineComponent::updateOrder()
+{
+    juce::Component* c = destination_.getComponent(); if (c) { toBehind (c); }
 }
 
 void LineComponent::update()

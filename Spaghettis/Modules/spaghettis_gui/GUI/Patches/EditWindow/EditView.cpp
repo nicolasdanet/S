@@ -200,6 +200,8 @@ void EditView::updateOrder()
     };
     
     objects_.performReversed (f);
+    
+    lines_.performReversed ([](const auto& p) { p->updateOrder(); });
 }
 
 void EditView::handleAsyncUpdate()
