@@ -160,10 +160,14 @@ PD_GUARD void outputs_lineRemoved (t_id u, t_glist *owner)
     wrapper_send (Outputs::removed (UniquePath (u, owner)));
 }
 
-PD_GUARD void outputs_patchOrder (t_glist *g, std::vector<UniqueId>&& ids)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void outputs_patchOrder (t_glist *g, std::vector<UniqueId>&& ids)
 {
     wrapper_send (Outputs::patchOrder (UniquePath (cast_object (g), glist_getParent (g)), std::move (ids)));
 }
+
+#endif
 
 PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
 {
