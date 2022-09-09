@@ -219,11 +219,16 @@ juce::Rectangle<int> BaseComponent::getBoundsForToolbar() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseComponent::addMenuBarCommand (juce::CommandID command, std::function<void()> f)
+void BaseComponent::addMenuBarCommand (juce::CommandID c, std::function<void()> f)
 {
-    commands_.set (command, f);
+    commands_.set (c, f, []() { return true; });
 }
-    
+
+void BaseComponent::addMenuBarCommand (juce::CommandID c, std::function<void()> f, std::function<bool()> g)
+{
+    commands_.set (c, f, g);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

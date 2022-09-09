@@ -24,10 +24,12 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     addChildComponent (editZoom_);
     addChildComponent (editInspector_);
     
-    addMenuBarCommand (Commands::moveBack,      [this]() { editView_.moveBack();   } );
-    addMenuBarCommand (Commands::moveFront,     [this]() { editView_.moveFront();  } );
-    addMenuBarCommand (Commands::selectAll,     [this]() { editView_.selectAll();  } );
-    addMenuBarCommand (Commands::snap,          [this]() { editView_.snapToGrid(); } );
+    auto check = [this]() { return editView_.getNumberOfSelectedObject() > 0; };
+    
+    addMenuBarCommand (Commands::moveBack,      [this]() { editView_.moveBack();   }, check);
+    addMenuBarCommand (Commands::moveFront,     [this]() { editView_.moveFront();  }, check);
+    addMenuBarCommand (Commands::selectAll,     [this]() { editView_.selectAll();  });
+    addMenuBarCommand (Commands::snap,          [this]() { editView_.snapToGrid(); }, check);
     
     addMenuBarCommand (Commands::zoomIn,        [this]() { zoomIn();     } );
     addMenuBarCommand (Commands::zoomOut,       [this]() { zoomOut();    } );

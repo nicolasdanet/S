@@ -26,7 +26,6 @@ public:
 // MARK: -
 
 public:
-    void set (juce::CommandID, std::function<void()>);
     void set (juce::CommandID, std::function<void()>, std::function<bool()>);
     
 private:
