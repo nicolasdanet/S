@@ -310,7 +310,7 @@ void ObjectComponent::moveBehind (juce::Component* c)
     }
 }
 
-void ObjectComponent::movePinsFront()
+void ObjectComponent::moveAllPinsFront()
 {
     for (const auto& i : iPins_) { i->toBehind (this); }
     for (const auto& o : oPins_) { o->toBehind (this); }
@@ -467,7 +467,7 @@ void ObjectComponent::createInletsAndOutlets()
     if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, view_, scale, false); }
     if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, view_, scale, true);  }
     
-    movePinsFront();
+    moveAllPinsFront();
 }
 
 void ObjectComponent::removeInletsAndOultets()

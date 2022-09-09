@@ -56,7 +56,7 @@ public:
         for_each (v_.cbegin(), v_.cend(), f);
     }
 
-    template <class F> void performReversed (F f)
+    template <class F> void performBack (F f)
     {
         for_each (v_.crbegin(), v_.crend(), f);
     }
