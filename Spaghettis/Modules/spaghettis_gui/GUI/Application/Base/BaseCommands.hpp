@@ -27,7 +27,8 @@ public:
 
 public:
     void set (juce::CommandID, std::function<void()>);
-
+    void set (juce::CommandID, std::function<void()>, std::function<bool()>);
+    
 private:
     bool get (juce::CommandID, bool invoke = false);
     
@@ -42,7 +43,7 @@ public:
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
 
 private:
-    std::vector<std::tuple<juce::CommandID, std::function<void()>>> enabled_;
+    std::vector<std::tuple<juce::CommandID, std::function<void()>, std::function<bool()>>> enabled_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaseCommands)
