@@ -44,7 +44,7 @@ void EditView::mouseDown (const juce::MouseEvent& e)
 
 int EditView::getNumberOfSelectedObject()
 {
-    return 0;
+    return 1;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -208,9 +208,9 @@ void EditView::updateOrder()
         p->moveBehind (c); c = p.get();
     };
     
-    objects_.performBack (f);
+    objects_.perform<true> (f);
     
-    lines_.performBack ([](const auto& p) { p->updateOrder(); });
+    lines_.perform<true> ([](const auto& p) { p->updateOrder(); });
 }
 
 void EditView::handleAsyncUpdate()

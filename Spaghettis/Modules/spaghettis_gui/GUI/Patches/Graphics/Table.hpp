@@ -51,14 +51,12 @@ public:
 // MARK: -
 
 public:
-    template <class F> void perform (F f)
+    template <bool Back = false, class F> void perform (F f)
     {
-        for_each (v_.cbegin(), v_.cend(), f);
-    }
-
-    template <class F> void performBack (F f)
-    {
-        for_each (v_.crbegin(), v_.crend(), f);
+        if constexpr (Back) { for_each (v_.crbegin(), v_.crend(), f); }
+        else {
+            for_each (v_.cbegin(), v_.cend(), f);
+        }
     }
     
 // -----------------------------------------------------------------------------------------------------------
