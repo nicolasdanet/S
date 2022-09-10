@@ -45,10 +45,8 @@ void EditView::mouseDown (const juce::MouseEvent& e)
 int EditView::getNumberOfSelectedObject()
 {
     auto n = objects_.countIf ([](const auto& p) { return p->isSelected(); });
-    
-    DBG (n);
-    
-    return 1;
+
+    return static_cast<int> (n);
 }
 
 // -----------------------------------------------------------------------------------------------------------

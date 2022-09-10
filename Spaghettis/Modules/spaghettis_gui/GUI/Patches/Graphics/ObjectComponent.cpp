@@ -288,7 +288,9 @@ void ObjectComponent::setSelected (bool isSelected)
             EditCommands::deselect (object_.getIdentifier());
         }
         
-        selected_.set (isSelected);         /* Don't wait core engine feedback. */
+        /* Don't wait core engine feedback. */
+        
+        selected_.set (isSelected); Spaghettis()->updateMenuBar();
     }
 }
 
@@ -321,7 +323,6 @@ void ObjectComponent::moveAllPinsFront()
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 void ObjectComponent::moveBack()
 {

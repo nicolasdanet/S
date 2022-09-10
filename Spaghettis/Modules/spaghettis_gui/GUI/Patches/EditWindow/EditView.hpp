@@ -40,16 +40,12 @@ private:
 // MARK: -
 
 public:
-    int getNumberOfSelectedObject();
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void selectAll();
     void deselectAll();
 
+public:
+    int getNumberOfSelectedObject();
+        
 public:
     void dragStart();
     void drag (juce::Point<int>);
