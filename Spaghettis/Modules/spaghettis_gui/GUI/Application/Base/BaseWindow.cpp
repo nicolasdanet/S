@@ -88,7 +88,7 @@ void BaseWindow::timerCallback()
     BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());
         
     if (!c || c->tryGrabFocus()) {
-        applyMinimumHeight (h); updateMenuBar(); stopTimer(); initialized_ = true;
+        applyMinimumHeight (h); Spaghettis()->updateMenuBar(); stopTimer(); initialized_ = true;
     }
     //
     }
@@ -200,11 +200,6 @@ void BaseWindow::ensureAlertWindowsAlwaysOnTop()
     #endif
 }
 
-void BaseWindow::updateMenuBar()
-{
-    Spaghettis()->getCommandManager().commandStatusChanged();
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

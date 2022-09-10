@@ -197,9 +197,19 @@ public:
 // MARK: -
 
 public:
+    void updateMenuBar()
+    {
+        getCommandManager().commandStatusChanged();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void setDspState (bool isRunning)
     {
-        dspIsRunning_ = isRunning; getCommandManager().commandStatusChanged();
+        dspIsRunning_ = isRunning; updateMenuBar();
     }
     
     bool isDspRunning() const
