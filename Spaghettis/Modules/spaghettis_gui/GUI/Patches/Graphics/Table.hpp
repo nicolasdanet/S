@@ -50,13 +50,20 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Use C++20 range based approach? */
+
 public:
-    template <bool Back = false, class F> void perform (F f)
+    template <bool Back = false, class F> void forEach (F f)
     {
         if constexpr (Back) { for_each (v_.crbegin(), v_.crend(), f); }
         else {
             for_each (v_.cbegin(), v_.cend(), f);
         }
+    }
+    
+    template <class F> auto countIf (F f)
+    {
+        return count_if (v_.cbegin(), v_.cend(), f);
     }
     
 // -----------------------------------------------------------------------------------------------------------

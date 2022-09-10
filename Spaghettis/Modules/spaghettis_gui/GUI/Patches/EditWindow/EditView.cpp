@@ -44,6 +44,10 @@ void EditView::mouseDown (const juce::MouseEvent& e)
 
 int EditView::getNumberOfSelectedObject()
 {
+    auto n = objects_.countIf ([](const auto& p) { return p->isSelected(); });
+    
+    DBG (n);
+    
     return 1;
 }
 
@@ -53,38 +57,38 @@ int EditView::getNumberOfSelectedObject()
 
 void EditView::deselectAll()
 {
-    lines_.perform   ([](const auto& p) { p->setSelected (false); });
-    objects_.perform ([](const auto& p) { p->setSelected (false); });
+    lines_.forEach   ([](const auto& p) { p->setSelected (false); });
+    objects_.forEach ([](const auto& p) { p->setSelected (false); });
 }
 
 void EditView::selectAll()
 {
-    objects_.perform ([](const auto& p) { p->setSelected (true); });
+    objects_.forEach ([](const auto& p) { p->setSelected (true); });
 }
 
 void EditView::dragStart()
 {
-    objects_.perform ([](const auto& p) { p->dragStart(); });
+    objects_.forEach ([](const auto& p) { p->dragStart(); });
 }
 
 void EditView::drag (juce::Point<int> offset)
 {
-    objects_.perform ([offset](const auto& p) { if (p->isSelected()) { p->drag (offset); } });
+    objects_.forEach ([offset](const auto& p) { if (p->isSelected()) { p->drag (offset); } });
 }
 
 void EditView::moveBack()
 {
-    objects_.perform ([](const auto& p) { if (p->isSelected()) { p->moveBack(); } });
+    objects_.forEach ([](const auto& p) { if (p->isSelected()) { p->moveBack(); } });
 }
 
 void EditView::moveFront()
 {
-    objects_.perform ([](const auto& p) { if (p->isSelected()) { p->moveFront(); } });
+    objects_.forEach ([](const auto& p) { if (p->isSelected()) { p->moveFront(); } });
 }
 
 void EditView::snapToGrid()
 {
-    objects_.perform ([](const auto& p) { if (p->isSelected()) { p->snap(); } });
+    objects_.forEach ([](const auto& p) { if (p->isSelected()) { p->snap(); } });
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -131,7 +135,7 @@ void EditView::setScale (float scale)
     
     auto f = [](const auto& p) { p->scaleChanged(); };
     
-    objects_.perform (f); lines_.perform (f);
+    objects_.forEach (f); lines_.forEach (f);
 }
 
 float EditView::getScale() const
@@ -208,9 +212,9 @@ void EditView::updateOrder()
         p->moveBehind (c); c = p.get();
     };
     
-    objects_.perform<true> (f);
+    objects_.forEach<true> (f);
     
-    lines_.perform<true> ([](const auto& p) { p->updateOrder(); });
+    lines_.forEach<true> ([](const auto& p) { p->updateOrder(); });
 }
 
 void EditView::handleAsyncUpdate()
