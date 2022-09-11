@@ -12,22 +12,18 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditZoom :    public juce::Component,
-                    private juce::Value::Listener {
+class EditLasso : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit EditZoom (const juce::Value& v) : v_ (v)
+    explicit EditLasso()
     {
-        setOpaque (false); setPaintingIsUnclipped (true); setBufferedToImage (true);
-        
-        v_.addListener (this);
     }
     
-    ~EditZoom() = default;
+    ~EditLasso() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -36,30 +32,11 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        if (v_ != 100) {
-        //
-        g.setColour (Spaghettis()->getColour (Colours::toolbarZoom));
-        g.setFont (Spaghettis()->getLookAndFeel().getTooltipsFont());
-        g.drawText (v_.toString() + " %", getLocalBounds(), juce::Justification::centredRight, true);
-        //
-        }
-    }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    void valueChanged (juce::Value&) override
-    {
-        repaint();
     }
 
 private:
-    juce::Value v_;
-    
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditZoom)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditLasso)
 };
 
 // -----------------------------------------------------------------------------------------------------------
