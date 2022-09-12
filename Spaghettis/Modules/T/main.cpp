@@ -5,17 +5,10 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define PD_BUILDING_TESTS       1
+#define PD_BUILDING_TESTS               1
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-#define BELLE_COMPILE_INLINE
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "../spaghettis_belle/Belle/Source/Belle.hpp"
 
 #include "../spaghettis_core/Core/amalgam.cpp"
 
@@ -27,25 +20,21 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "t_random.c"
 #include "t_atomic.c"
+#include "t_benchmark.c"
+#include "t_buffer.c"
+#include "t_clocks.c"
+#include "t_expr.c"
 #include "t_float.c"
+#include "t_hoeldrich.c"
+#include "t_memory.c"
 #include "t_pointer32.c"
 #include "t_pointer64.c"
+#include "t_random.c"
 #include "t_ringbuffer.c"
-#include "t_clocks.c"
-#include "t_time.c"
 #include "t_soundfile.c"
-#include "t_memory.c"
-#include "t_benchmark.c"
-#include "t_hoeldrich.c"
-#include "t_buffer.c"
+#include "t_time.c"
 #include "t_utils.c"
-#include "t_expr.c"
-#include "t_prim.cpp"
-#include "t_MICA.cpp"
-#include "t_MIR.cpp"
-#include "t_corpus.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

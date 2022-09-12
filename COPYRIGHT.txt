@@ -1,10 +1,13 @@
 
+# Authors
+
+    < http://msp.ucsd.edu/Software/pd-README.txt >
+    
 # Copyright
 
     Copyright (c) 1997 Miller Puckette and others.
     Copyright (c) 2013 Jojo and others.
     
-    Copyright (c) 2007-2013 Andi Brae.
     Copyright (c) 2015-2019 Lewis Van Winkle.
     Copyright (c) 1996-2001 Takuya OOURA.
     Copyright (c) 1997-2004 Makoto Matsumoto and Takuji Nishimura.

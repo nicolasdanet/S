@@ -4,9 +4,6 @@ makefile.dependencies
 Spaghettis/Modules/T/tests
 Spaghettis/Modules/T/spaghettis
 Spaghettis/Modules/T/spaghettis.dSym
-Spaghettis/Modules/spaghettis_belle/Belle/Belle
-Spaghettis/Modules/spaghettis_belle/Belle/Resources/MICA/MicaData*.hpp
-Spaghettis/Modules/spaghettis_belle/Belle/Tools/Builds/Tools/
 *.pdobject
 *.sublime-workspace
 xcuserdata/
