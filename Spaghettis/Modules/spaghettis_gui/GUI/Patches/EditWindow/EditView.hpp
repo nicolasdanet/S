@@ -34,6 +34,7 @@ public:
 
 private:
     void mouseDown (const juce::MouseEvent&) override;
+    void mouseDrag (const juce::MouseEvent&) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -120,6 +121,7 @@ private:
     void updateOrder();
 
 private:
+    EditLasso lasso_;
     core::Cached<juce::Colour> patchBackgroundColour_;
     Table<core::Object, ObjectComponent> objects_;
     Table<core::Line, LineComponent> lines_;

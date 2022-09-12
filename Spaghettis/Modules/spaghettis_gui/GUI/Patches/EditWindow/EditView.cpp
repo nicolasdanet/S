@@ -35,7 +35,12 @@ EditView::~EditView()
 
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
-    if (Mouse::isSimpleClick (e)) { deselectAll(); }
+    if (Mouse::isSimpleClick (e)) { deselectAll(); lasso_.mouseDown (e); }
+}
+
+void EditView::mouseDrag (const juce::MouseEvent& e)
+{
+    lasso_.mouseDrag (e);
 }
 
 // -----------------------------------------------------------------------------------------------------------
