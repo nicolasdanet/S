@@ -157,7 +157,7 @@ void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
     if (auto view = asEditView (view_)) {
     //
-    if (isSelected()) { view->drag (e.getOffsetFromDragStart()); }
+    if (isSelected()) { view->drag (e.getOffsetFromDragStart() / getScale()); }
     //
     }
 }
