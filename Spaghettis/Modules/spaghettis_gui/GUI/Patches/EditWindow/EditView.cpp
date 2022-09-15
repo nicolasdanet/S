@@ -15,7 +15,8 @@ namespace spaghettis {
 EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
     View (patch, tree),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
-    scale_ (1.0f)
+    scale_ (1.0f),
+    lasso_ (this)
 {
     viewTree_.addListener (this);
     patchBackgroundColour_.attach (PainterPolicy::repaint (this));
@@ -36,11 +37,18 @@ EditView::~EditView()
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
     if (Mouse::isSimpleClick (e)) { deselectAll(); }
+    
+    if (Mouse::isClick (e)) { lasso_.mouseDown (e); }
 }
 
 void EditView::mouseDrag (const juce::MouseEvent& e)
 {
-    
+    lasso_.mouseDrag (e);
+}
+
+void EditView::mouseUp (const juce::MouseEvent& e)
+{
+    lasso_.mouseUp (e);
 }
 
 // -----------------------------------------------------------------------------------------------------------

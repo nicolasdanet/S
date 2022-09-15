@@ -35,6 +35,7 @@ public:
 private:
     void mouseDown (const juce::MouseEvent&) override;
     void mouseDrag (const juce::MouseEvent&) override;
+    void mouseUp (const juce::MouseEvent&) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -125,6 +126,7 @@ private:
     Table<core::Object, ObjectComponent> objects_;
     Table<core::Line, LineComponent> lines_;
     float scale_;
+    EditLasso lasso_;
         
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)

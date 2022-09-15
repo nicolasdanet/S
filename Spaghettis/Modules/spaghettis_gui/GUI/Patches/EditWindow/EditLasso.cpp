@@ -12,14 +12,31 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+EditLasso::EditLasso (EditView* view)
+{
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditLasso::mouseDown (const juce::MouseEvent&)
 {
-    // DBG ("DOWN");
+    DBG ("DOWN");
 }
 
 void EditLasso::mouseDrag (const juce::MouseEvent&)
 {
-    // DBG ("DRAG");
+    DBG (".");
+    
+    // getOffsetFromDragStart
+    // getMouseDownPosition
+}
+
+void EditLasso::mouseUp (const juce::MouseEvent&)
+{
+    DBG ("UP");
 }
 
 // -----------------------------------------------------------------------------------------------------------
