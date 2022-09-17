@@ -27,7 +27,7 @@ EditLassoComponent::EditLassoComponent (const juce::Rectangle<int>& bounds)
 
 void EditLassoComponent::paint (juce::Graphics& g)
 {
-    g.setColour (juce::Colours::orange); g.fillRect (getLocalBounds());
+    g.setColour (juce::Colours::orange); g.drawRect (getLocalBounds());
 }
 
 // -----------------------------------------------------------------------------------------------------------
