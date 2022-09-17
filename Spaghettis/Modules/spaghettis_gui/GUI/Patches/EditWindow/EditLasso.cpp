@@ -21,9 +21,23 @@ EditLasso::EditLasso (EditView* view) : view_ (view)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditLasso::update (const juce::Rectangle<int>& r)
+void EditLasso::createComponent (const juce::Rectangle<int>& r)
 {
-    DBG (r.toString());
+    const int area = r.getWidth() * r.getHeight();
+    const int k = 4;
+    
+    if (area > k) {
+        lassoComponent_ = std::make_unique<EditLassoComponent> (r);
+        view_->addAndMakeVisible (lassoComponent_.get());
+    }
+}
+
+void EditLasso::updateComponent (const juce::Rectangle<int>& r)
+{
+    if (lassoComponent_) { lassoComponent_->setBounds (r); }
+    else {
+        createComponent (r);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -41,12 +55,12 @@ void EditLasso::mouseDrag (const juce::MouseEvent& e)
     const juce::Point<int> b (a + e.getOffsetFromDragStart());
     const juce::Rectangle<int> r (a, b);
     
-    update (r);
+    updateComponent (r);
 }
 
 void EditLasso::mouseUp (const juce::MouseEvent&)
 {
-    DBG ("UP");
+    lassoComponent_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------

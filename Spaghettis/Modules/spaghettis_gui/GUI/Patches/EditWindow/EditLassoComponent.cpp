@@ -15,6 +15,10 @@ namespace spaghettis {
 EditLassoComponent::EditLassoComponent (const juce::Rectangle<int>& bounds)
 {
     setOpaque (false);
+    setPaintingIsUnclipped (true);
+    setAlwaysOnTop (true);
+    setInterceptsMouseClicks (false, true);
+    setBounds (bounds);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -23,7 +27,7 @@ EditLassoComponent::EditLassoComponent (const juce::Rectangle<int>& bounds)
 
 void EditLassoComponent::paint (juce::Graphics& g)
 {
-
+    g.setColour (juce::Colours::orange); g.fillRect (getLocalBounds());
 }
 
 // -----------------------------------------------------------------------------------------------------------
