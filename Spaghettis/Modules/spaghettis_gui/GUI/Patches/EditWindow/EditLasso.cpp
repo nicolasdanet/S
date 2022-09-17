@@ -21,6 +21,15 @@ EditLasso::EditLasso (EditView* view) : view_ (view)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditLasso::update (const juce::Rectangle<int>& r)
+{
+    DBG (r.toString());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditLasso::mouseDown (const juce::MouseEvent&)
 {
     DBG ("DOWN");
@@ -30,6 +39,9 @@ void EditLasso::mouseDrag (const juce::MouseEvent& e)
 {
     const juce::Point<int> a (e.getMouseDownPosition());
     const juce::Point<int> b (a + e.getOffsetFromDragStart());
+    const juce::Rectangle<int> r (a, b);
+    
+    update (r);
 }
 
 void EditLasso::mouseUp (const juce::MouseEvent&)
