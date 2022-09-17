@@ -35,6 +35,9 @@ public:
     void mouseDown (const juce::MouseEvent&);
     void mouseDrag (const juce::MouseEvent&);
     void mouseUp (const juce::MouseEvent&);
+
+private:
+    EditView* view_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditLasso)

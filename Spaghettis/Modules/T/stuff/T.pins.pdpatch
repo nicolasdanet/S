@@ -7,11 +7,11 @@
 #X obj 132 84 outlet;
 #X connect 0 0 2 0;
 #X connect 1 0 3 0;
-#X restore 84 84 pd;
-#X obj 36 24 bng 15 250;
-#X obj 144 24 bng 15 250;
-#X obj 36 168 bng 15 250;
-#X obj 144 168 bng 15 250;
+#X restore 60 84 pd;
+#X obj 0 0 bng 15 250;
+#X obj 132 0 bng 15 250;
+#X obj 0 168 bng 15 250;
+#X obj 132 168 bng 15 250;
 #X connect 0 0 3 0;
 #X connect 0 1 4 0;
 #X connect 1 0 0 0;
