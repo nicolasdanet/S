@@ -93,14 +93,14 @@ public:
         return (n * f);
     }
     
-    static juce::Point<float> scaled (juce::Point<float> pt, float f)
+    template <class T> static juce::Point<T> scaled (juce::Point<T> pt, float f)
     {
-        return juce::Point (pt.x * f, pt.y * f);
+        return juce::Point<T> (pt.x * f, pt.y * f);
     }
 
-    static juce::Point<float> unscaled (juce::Point<float> pt, float f)
+    template <class T> static juce::Point<T> unscaled (juce::Point<T> pt, float f)
     {
-        return juce::Point (pt.x / f, pt.y / f);
+        return juce::Point<T> (pt.x / f, pt.y / f);
     }
     
 // -----------------------------------------------------------------------------------------------------------

@@ -276,6 +276,11 @@ int ObjectComponent::getPositionY() const
     return y_.get();
 }
 
+juce::Point<int> ObjectComponent::getPosition() const
+{
+    return juce::Point<int> (getPositionX(), getPositionY());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

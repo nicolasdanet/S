@@ -41,7 +41,11 @@ void EditLasso::updateComponent (const juce::Rectangle<int>& r)
 
 void EditLasso::select (const juce::Rectangle<int>& r)
 {
-    DBG (r.toString());
+    const float f = view_->getScale();
+    const juce::Point<int> a (PainterPolicy::unscaled (r.getTopLeft(), f));
+    const juce::Point<int> b (PainterPolicy::unscaled (r.getBottomRight(), f));
+
+    view_->selectInside (juce::Rectangle (a, b));
 }
 
 // -----------------------------------------------------------------------------------------------------------

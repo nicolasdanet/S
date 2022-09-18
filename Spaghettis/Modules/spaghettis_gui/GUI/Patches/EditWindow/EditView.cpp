@@ -75,6 +75,16 @@ void EditView::selectAll()
     objects_.forEach ([](const auto& p) { p->setSelected (true); });
 }
 
+void EditView::selectInside (const juce::Rectangle<int>& r)
+{
+    auto f = [t = r](const auto& p)
+    {
+        if (t.contains (p->getPosition())) { p->setSelected (true); }
+    };
+
+    objects_.forEach (f);
+}
+
 void EditView::dragStart()
 {
     objects_.forEach ([](const auto& p) { p->dragStart(); });
