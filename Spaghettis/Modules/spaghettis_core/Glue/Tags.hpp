@@ -35,6 +35,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Inlet);
     DECLARE_STRING (LabelBackground);
     DECLARE_STRING (LabelText);
+    DECLARE_STRING (Lasso);
     DECLARE_STRING (Line);
     DECLARE_STRING (LineSelected);
     DECLARE_STRING (LineSignal);

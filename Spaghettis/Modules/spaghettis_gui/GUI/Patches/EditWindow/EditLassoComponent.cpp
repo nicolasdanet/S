@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditLassoComponent::EditLassoComponent (const juce::Rectangle<int>& bounds)
+EditLassoComponent::EditLassoComponent (const juce::Rectangle<int>& bounds) :
+    lassoColour_ (Spaghettis()->getCachedColour (Tags::Lasso))
 {
     setOpaque (false);
     setPaintingIsUnclipped (true);
@@ -27,7 +28,7 @@ EditLassoComponent::EditLassoComponent (const juce::Rectangle<int>& bounds)
 
 void EditLassoComponent::paint (juce::Graphics& g)
 {
-    g.setColour (juce::Colours::orange); g.drawRect (getLocalBounds());
+    g.setColour (lassoColour_.get()); g.drawRect (getLocalBounds());
 }
 
 // -----------------------------------------------------------------------------------------------------------

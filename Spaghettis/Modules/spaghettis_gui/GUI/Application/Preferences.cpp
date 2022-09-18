@@ -91,6 +91,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Patch Text"),
         NEEDS_TRANS ("Set text color of patch"),
         Colours::getPalette()->backgroundPopup);
+    
+    colors.addParameter (Tags::Lasso,
+        NEEDS_TRANS ("Lasso"),
+        NEEDS_TRANS ("Set color of lasso"),
+        Colours::getPalette()->textHighlighted);
         
     colors.addParameter (Tags::BoxBackground,
         NEEDS_TRANS ("Box Background"),
