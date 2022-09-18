@@ -21,7 +21,7 @@ EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
     viewTree_.addListener (this);
     patchBackgroundColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
-    setBounds (core::Canvas::getArea (scale_));
+    setBounds (core::Canvas::getAreaScaled (scale_));
     initialize (viewTree_);
 }
 
@@ -37,8 +37,6 @@ EditView::~EditView()
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
     if (Mouse::isSimpleClick (e)) { deselectAll(); }
-    
-    if (Mouse::isClick (e)) { lasso_.mouseDown (e); }
 }
 
 void EditView::mouseDrag (const juce::MouseEvent& e)

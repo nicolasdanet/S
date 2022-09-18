@@ -90,7 +90,7 @@ void EditPort::update()
 {
     const float f = getScale();
     
-    view_.setBounds (core::Canvas::getArea (f) - PainterPolicy::scaled (origin_, f).toInt());
+    view_.setBounds (core::Canvas::getAreaScaled (f) - PainterPolicy::scaled (origin_, f).toInt());
 }
 
 // -----------------------------------------------------------------------------------------------------------

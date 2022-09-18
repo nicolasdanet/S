@@ -56,9 +56,9 @@ static juce::Point<int> removeOffset (juce::Point<int> pt)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Get bounds with compensated offset. */
+/* Get bounds with compensated offset scaled. */
 
-static juce::Rectangle<int> getArea (float scale)
+static juce::Rectangle<int> getAreaScaled (float scale)
 {
     const int n = static_cast<int> (getOffset() * scale);
     const int s = getSize();

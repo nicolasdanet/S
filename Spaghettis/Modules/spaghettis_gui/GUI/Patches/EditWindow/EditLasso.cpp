@@ -14,7 +14,6 @@ namespace spaghettis {
 
 EditLasso::EditLasso (EditView* view) : view_ (view)
 {
-
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -40,14 +39,14 @@ void EditLasso::updateComponent (const juce::Rectangle<int>& r)
     }
 }
 
+void EditLasso::select (const juce::Rectangle<int>& r)
+{
+    DBG (r.toString());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void EditLasso::mouseDown (const juce::MouseEvent&)
-{
-    DBG ("DOWN");
-}
 
 void EditLasso::mouseDrag (const juce::MouseEvent& e)
 {
@@ -60,6 +59,8 @@ void EditLasso::mouseDrag (const juce::MouseEvent& e)
 
 void EditLasso::mouseUp (const juce::MouseEvent&)
 {
+    if (lassoComponent_) { select (lassoComponent_->getBounds()); }
+    
     lassoComponent_ = nullptr;
 }
 
