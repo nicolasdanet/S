@@ -75,11 +75,11 @@ void EditView::selectAll()
     objects_.forEach ([](const auto& p) { p->setSelected (true); });
 }
 
-void EditView::selectInside (const juce::Rectangle<int>& r)
+void EditView::select (const juce::Rectangle<int>& r)
 {
     auto f = [t = r](const auto& p)
     {
-        if (t.contains (p->getPosition())) { p->setSelected (true); }
+        if (t.intersects (p->getBounds())) { p->setSelected (true); }
     };
 
     objects_.forEach (f);

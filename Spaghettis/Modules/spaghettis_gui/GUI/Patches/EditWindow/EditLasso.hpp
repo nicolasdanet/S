@@ -43,7 +43,6 @@ public:
 private:
     void createComponent (const juce::Rectangle<int>&);
     void updateComponent (const juce::Rectangle<int>&);
-    void select (const juce::Rectangle<int>&);
     
 private:
     EditView* view_;

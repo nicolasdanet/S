@@ -44,7 +44,7 @@ private:
 public:
     void selectAll();
     void deselectAll();
-    void selectInside (const juce::Rectangle<int>&);
+    void select (const juce::Rectangle<int>&);
     int getNumberOfSelectedObject();
         
 public:

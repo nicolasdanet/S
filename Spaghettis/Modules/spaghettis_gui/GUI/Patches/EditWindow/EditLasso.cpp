@@ -39,15 +39,6 @@ void EditLasso::updateComponent (const juce::Rectangle<int>& r)
     }
 }
 
-void EditLasso::select (const juce::Rectangle<int>& r)
-{
-    const float f = view_->getScale();
-    const juce::Point<int> a (PainterPolicy::unscaled (r.getTopLeft(), f));
-    const juce::Point<int> b (PainterPolicy::unscaled (r.getBottomRight(), f));
-
-    view_->selectInside (juce::Rectangle (a, b));
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -63,7 +54,7 @@ void EditLasso::mouseDrag (const juce::MouseEvent& e)
 
 void EditLasso::mouseUp (const juce::MouseEvent&)
 {
-    if (lassoComponent_) { select (lassoComponent_->getBounds()); }
+    if (lassoComponent_) { view_->select (lassoComponent_->getBounds()); }
     
     lassoComponent_ = nullptr;
 }
