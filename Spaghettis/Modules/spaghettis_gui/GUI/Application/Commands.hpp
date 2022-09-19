@@ -29,6 +29,8 @@ enum CommandIds : juce::CommandID {
     newPatch,
     openPatch,
     clearRecentFiles,
+    save,
+    closeWindow,
     paths,
     rescan,
     rescanLogged,

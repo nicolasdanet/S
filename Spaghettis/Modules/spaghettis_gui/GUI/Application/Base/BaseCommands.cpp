@@ -62,6 +62,16 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         r.setInfo (NEEDS_TRANS ("Clear Menu"),      NEEDS_TRANS ("Clears all recent files"),    file, 0);
         r.setActive (Spaghettis()->getNumberOfRecentFiles() > 0);
         break;
+    case Commands::save :
+        r.setInfo (NEEDS_TRANS ("Save"),            NEEDS_TRANS ("Save file"),                  file, 0);
+        r.addDefaultKeypress ('s', juce::ModifierKeys::commandModifier);
+        r.setActive (get (command));
+        break;
+    case Commands::closeWindow :
+        r.setInfo (NEEDS_TRANS ("Close Window"),    NEEDS_TRANS ("Close active window"),        file, 0);
+        r.addDefaultKeypress ('w', juce::ModifierKeys::commandModifier);
+        r.setActive (get (command));
+        break;
     case Commands::paths :
         r.setInfo (NEEDS_TRANS ("Paths..."),        NEEDS_TRANS ("Set search paths"),           file, 0);
         break;
@@ -127,6 +137,8 @@ void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::newPatch,
             Commands::openPatch,
             Commands::clearRecentFiles,
+            Commands::save,
+            Commands::closeWindow,
             Commands::paths,
             Commands::rescan,
             Commands::rescanLogged,
