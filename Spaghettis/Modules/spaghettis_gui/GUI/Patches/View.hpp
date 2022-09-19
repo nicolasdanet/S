@@ -56,6 +56,15 @@ public:
     {
         return patch_;
     }
+    
+    PatchWindow& getPatchWindow() const
+    {
+        PatchWindow* w = dynamic_cast<PatchWindow*> (getTopLevelComponent());
+        
+        jassert (w != nullptr);
+        
+        return *w;
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
