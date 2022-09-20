@@ -36,6 +36,8 @@ public:
         
         loadToolbarButtonsStates();
         
+        addMenuBarCommand (Commands::closeWindow, [this]() { BaseWindow::getWindow (this)->close(); });
+
         setOpaque (true); setSize (600, 300);
     }
     

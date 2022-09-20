@@ -205,9 +205,9 @@ void BaseWindow::ensureAlertWindowsAlwaysOnTop()
     #endif
 }
 
-BaseWindow* BaseWindow::getWindow (const juce::Component& c)
+BaseWindow* BaseWindow::getWindow (juce::Component* c)
 {
-    BaseWindow* w = dynamic_cast<BaseWindow*> (c.getTopLevelComponent());
+    BaseWindow* w = dynamic_cast<BaseWindow*> (c->getTopLevelComponent());
         
     jassert (w != nullptr);
         
