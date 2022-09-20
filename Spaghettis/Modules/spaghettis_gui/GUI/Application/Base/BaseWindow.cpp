@@ -62,7 +62,12 @@ void BaseWindow::setDirtyFlag (bool isDirty) const
         peer->setHasChangedSinceSaved (isDirty);
     }
 }
-    
+
+void BaseWindow::close()
+{
+    closeButtonPressed();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -200,6 +205,15 @@ void BaseWindow::ensureAlertWindowsAlwaysOnTop()
     #endif
 }
 
+BaseWindow* BaseWindow::getWindow (const juce::Component& c)
+{
+    BaseWindow* w = dynamic_cast<BaseWindow*> (c.getTopLevelComponent());
+        
+    jassert (w != nullptr);
+        
+    return w;
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

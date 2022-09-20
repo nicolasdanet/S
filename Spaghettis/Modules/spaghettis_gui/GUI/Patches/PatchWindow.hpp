@@ -44,14 +44,9 @@ public:
 // MARK: -
 
 public:
-    void closeWindow()
-    {
-        patch_.closeWindowButtonPressed (this);
-    }
-    
     void closeButtonPressed() override
     {
-        closeWindow();
+        patch_.closeWindowButtonPressed (this);
     }
 
 protected:
