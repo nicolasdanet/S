@@ -27,7 +27,6 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     auto check = [this]() { return editView_.getNumberOfSelectedObject() > 0; };
     
     addMenuBarCommand (Commands::save,          [this]() { editView_.getPatch().save(); });
-    addMenuBarCommand (Commands::closeWindow,   [this]() { BaseWindow::getWindow (this)->close(); });
     
     addMenuBarCommand (Commands::moveBack,      [this]() { editView_.moveBack();   }, check);
     addMenuBarCommand (Commands::moveFront,     [this]() { editView_.moveFront();  }, check);

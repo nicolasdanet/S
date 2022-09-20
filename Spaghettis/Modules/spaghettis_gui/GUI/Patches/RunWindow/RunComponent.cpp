@@ -21,8 +21,7 @@ RunComponent::RunComponent (Patch& patch, const juce::ValueTree& tree) :
     addAndMakeVisible (runView_);
     addChildComponent (runPresets_);
     
-    addMenuBarCommand (Commands::save,          [this]() { runView_.getPatch().save(); });
-    addMenuBarCommand (Commands::closeWindow,   [this]() { BaseWindow::getWindow (this)->close(); });
+    addMenuBarCommand (Commands::save, [this]() { runView_.getPatch().save(); });
     
     setOpaque (true); setSize (600, 300);
 }
