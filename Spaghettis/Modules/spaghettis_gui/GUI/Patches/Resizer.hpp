@@ -26,7 +26,7 @@ public:
         constrainer_.setMinimumWidth (minimumWidth_);
         edge_.setAlwaysOnTop (true);
         owner_.addAndMakeVisible (edge_);
-        owner_.setSize (minimumWidth_, 0);
+        owner_.setSize (defaultWidth_, owner_.getHeight());
     }
     
     ~Resizer() = default;
@@ -38,7 +38,7 @@ public:
 public:
     void update()
     {
-        edge_.setBounds (owner_.getLocalBounds().withWidth (4));
+        edge_.setBounds (owner_.getLocalBounds().withWidth (minimumWidth_));
     }
 
 private:
@@ -47,7 +47,8 @@ private:
     juce::ResizableEdgeComponent edge_;
 
 private:
-    static constexpr int minimumWidth_ = 200;
+    static constexpr int defaultWidth_ = 200;
+    static constexpr int minimumWidth_ = 4;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Resizer)
