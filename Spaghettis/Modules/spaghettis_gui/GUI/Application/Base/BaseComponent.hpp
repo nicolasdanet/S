@@ -75,6 +75,13 @@ public:
     void getCommandInfo (juce::CommandID, juce::ApplicationCommandInfo&) override;
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo&) override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static BaseComponent* getComponent (juce::Component*);
+
 private:
     juce::String keyName_;
     std::unique_ptr<juce::Toolbar> toolbar_;

@@ -254,7 +254,21 @@ bool BaseComponent::perform (const juce::ApplicationCommandTarget::InvocationInf
 {
     return commands_.perform (info);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+BaseComponent* BaseComponent::getComponent (juce::Component* c)
+{
+    BaseWindow* w    = BaseWindow::getWindow (c);
+    BaseComponent* t = dynamic_cast<BaseComponent*> (w->getContentComponent());
     
+    jassert (t != nullptr);
+    
+    return t;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
