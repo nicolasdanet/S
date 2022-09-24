@@ -194,7 +194,7 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
 
 void setObjectAttributes (Data& data, t_object* o)
 {
-    Group group (data.addGroup (Tags::Attributes, true));
+    Group group (data.addGroup (Tags::Attributes));
     
     if (object_isCanvas (o)) { setObjectAttributesForPatch (group, o); }
     else {
@@ -284,7 +284,7 @@ void setLineAttributes (Data& data, int m, int n)
 {
     static DelegateCache delegate;
     
-    Group group (data.addGroup (Tags::Attributes, true));
+    Group group (data.addGroup (Tags::Attributes));
     
     group.addParameter (Tags::Outlet,
         NEEDS_TRANS ("Outlet"),
