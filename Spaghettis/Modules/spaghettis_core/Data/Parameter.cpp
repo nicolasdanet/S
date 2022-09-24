@@ -97,14 +97,28 @@ Parameter& Parameter::setHidden (bool isHidden)
 {
     set (Ids::hidden, isHidden); return *this;
 }
-    
+
+Parameter& Parameter::setEditable (bool isEditable)
+{
+    set (Ids::editable, isEditable); return *this;
+}
+
 bool Parameter::isHidden() const
 {
     const juce::var v (get (Ids::hidden));
     
     if (v.isBool()) { return static_cast<bool> (v); }
     
-    return false;
+    return false;   /* Default is false. */
+}
+
+bool Parameter::isEditable() const
+{
+    const juce::var v (get (Ids::editable));
+    
+    if (v.isBool()) { return static_cast<bool> (v); }
+    
+    return true;    /* Default is true. */
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -29,7 +29,7 @@ void getDefaultTest (core::Data& data)
     peace.addParameter ("Power",
         NEEDS_TRANS ("Power Of Engine"),
         NEEDS_TRANS ("Set power of engine"),
-        99.5);
+        99.5).setEditable (false);
 
     peace.addParameter ("Launcher",
         NEEDS_TRANS ("Love Efficiency"),
