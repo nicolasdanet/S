@@ -43,7 +43,9 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
 {
     const juce::Rectangle<int> r (getPropertyComponentContentPosition (c));
     
-    g.setColour (findColour (Colours::parametersParameterText));
+    const juce::Colour t (findColour (Colours::parametersParameterText));
+    
+    g.setColour (c.isEnabled() ? t : t.withAlpha (0.25f));
     g.setFont (getConsoleFont());
     g.drawText (c.getName(),
         juce::Rectangle<int> (r.getX(), h).reduced (4, 0).withTrimmedLeft (30),

@@ -24,6 +24,7 @@ public:
         v_(),
         range_ (p)
     {
+        setEnabled (p.isEditable());
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -107,6 +108,8 @@ public:
         {
             return ParameterNumber<double>::parsedWithDefault (text, slider.getValue());
         };
+        
+        setEnabled (p.isEditable());
     }
 
 private:

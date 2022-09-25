@@ -22,6 +22,7 @@ public:
     explicit ParameterBoolean (const core::Parameter& p) :
         juce::BooleanPropertyComponent (p.getValueAsValue (false), p.getLabel(), "")
     {
+        setEnabled (p.isEditable());
     }
     
 private:

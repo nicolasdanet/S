@@ -21,6 +21,7 @@ public:
     explicit ParameterText (const core::Parameter& p)
         : juce::TextPropertyComponent (p.getValueAsValue (false), p.getLabel(), 64, false)
     {
+        setEnabled (p.isEditable());
         setInterestedInFileDrag (false);
     }
     

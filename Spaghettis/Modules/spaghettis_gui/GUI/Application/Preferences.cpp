@@ -31,6 +31,16 @@ void getDefaultTest (core::Data& data)
         NEEDS_TRANS ("Set power of engine"),
         99.5).setEditable (false);
 
+    peace.addParameter ("Extra",
+        NEEDS_TRANS ("Extra Mode Activated"),
+        NEEDS_TRANS ("Enable the extra mode"),
+        true).setEditable (false);
+    
+    peace.addParameter ("Hello",
+        NEEDS_TRANS ("Hello World!"),
+        NEEDS_TRANS ("How to say hello"),
+        juce::String ("Slava Ukraini")).setEditable (false);
+        
     peace.addParameter ("Launcher",
         NEEDS_TRANS ("Love Efficiency"),
         NEEDS_TRANS ("Set love impact"),
@@ -41,6 +51,16 @@ void getDefaultTest (core::Data& data)
         NEEDS_TRANS ("Set entropy in life"),
         0.5).setRange (juce::Range<double> (0, 1));
     
+    peace.addParameter ("Future",
+        NEEDS_TRANS ("Hope"),
+        NEEDS_TRANS ("Set color of the future"),
+        juce::Colours::green).setEditable (false);
+        
+    peace.addParameter ("Truth",
+        NEEDS_TRANS ("Truth Rate"),
+        NEEDS_TRANS ("Set Trump's fake news policy"),
+        0.9).setRange (juce::Range<double> (0, 1)).setEditable (false);
+        
     peace.addParameter ("Guernica",
         NEEDS_TRANS ("Picasso"),
         NEEDS_TRANS ("Set size of picture"),
