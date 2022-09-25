@@ -37,7 +37,7 @@ void getDefaultTest (core::Data& data)
         true).setEditable (false);
     
     peace.addParameter ("Hello",
-        NEEDS_TRANS ("Hello World!"),
+        NEEDS_TRANS ("Hello World"),
         NEEDS_TRANS ("How to say hello"),
         juce::String ("Slava Ukraini")).setEditable (false);
         

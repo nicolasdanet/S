@@ -36,10 +36,14 @@ public:
 
     void mouseDown (const juce::MouseEvent&) override
     {
+        if (isEnabled()) {
+        //
         auto t = std::make_unique<ColourSelector> (value_);
         auto r = localAreaToGlobal (getColourBounds());
         
         tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), r, nullptr));
+        //
+        }
     }
 
 private:
@@ -82,6 +86,8 @@ public:
         juce::PropertyComponent (p.getLabel()), editor_ (p.getValueAsValue (false))
     {
         addAndMakeVisible (editor_);
+        setEnabled (p.isEditable());
+        editor_.setEnabled (p.isEditable());
     }
 
     ~ParameterColour() = default;
