@@ -59,9 +59,10 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override;
-
+    void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -75,9 +76,19 @@ public:
 
 private:
     void callParameterHandlers (const juce::ValueTree& tree);
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
-    virtual void treeHasChanged() { };
+    virtual void parameterHasChanged()
+    {
+    }
+    
+    virtual void treeHasChanged()
+    {
+    }
 
 private:
     std::vector<Handler> handlers_;

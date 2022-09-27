@@ -194,7 +194,7 @@ void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& li
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LineComponent::treeHasChanged()
+void LineComponent::parameterHasChanged()
 {
     update(); repaint();
 }

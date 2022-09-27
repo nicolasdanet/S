@@ -53,6 +53,13 @@ public:
 // MARK: -
 
 private:
+    virtual void treeHasChanged() override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
     void handleAsyncUpdate() override;
     
 private:
@@ -60,6 +67,9 @@ private:
     core::Patch observed_;
     Resizer resizer_;
     bool active_;
+
+private:
+    std::unique_ptr<ParameterView> parameters_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditInspector)

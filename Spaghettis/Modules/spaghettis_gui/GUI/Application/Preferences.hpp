@@ -72,7 +72,7 @@ public:
 // MARK: -
 
 public:
-    void treeHasChanged() override;
+    void parameterHasChanged() override;
 
 private:
     juce::File file_;
