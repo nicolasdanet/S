@@ -13,6 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 class EditInspector :   private core::Observer,
+                        private juce::AsyncUpdater,
                         public  juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -47,6 +48,13 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void handleAsyncUpdate() override;
+    
 private:
     EditView& view_;
     core::Patch observed_;

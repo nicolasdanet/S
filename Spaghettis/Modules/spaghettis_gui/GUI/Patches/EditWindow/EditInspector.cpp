@@ -18,7 +18,7 @@ EditInspector::EditInspector (EditView& view) :
     resizer_ (*this),
     active_ (false)
 {
-    addParameterHandler (Tags::Selected, [] (const core::Parameter& p) { DBG ("?"); });
+    addParameterHandler (Tags::Selected, [this] (const core::Parameter& p) { triggerAsyncUpdate(); });
     
     observed_.addObserver (this);
     
@@ -44,6 +44,15 @@ void EditInspector::resized()
     resizer_.update();
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditInspector::handleAsyncUpdate()
+{
+    DBG ("?");
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
