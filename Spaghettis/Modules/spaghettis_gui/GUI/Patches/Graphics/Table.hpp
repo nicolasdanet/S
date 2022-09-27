@@ -53,12 +53,14 @@ public:
 /* Use C++20 range based approach? */
 
 public:
-    template <bool Back = false, class F> void forEach (F f)
+    template <class F> void forEach (F f)
     {
-        if constexpr (Back) { for_each (v_.crbegin(), v_.crend(), f); }
-        else {
-            for_each (v_.cbegin(), v_.cend(), f);
-        }
+        for_each (v_.cbegin(), v_.cend(), f);
+    }
+    
+    template <class F> void forEachReversed (F f)
+    {
+        for_each (v_.crbegin(), v_.crend(), f);
     }
     
     template <class F> auto countIf (F f)

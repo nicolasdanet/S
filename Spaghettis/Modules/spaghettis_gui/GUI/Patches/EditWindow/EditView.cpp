@@ -231,9 +231,9 @@ void EditView::updateOrder()
         p->moveBehind (c); c = p.get();
     };
     
-    objects_.forEach<true> (f);
+    objects_.forEachReversed (f);
     
-    lines_.forEach<true> ([](const auto& p) { p->updateOrder(); });
+    lines_.forEachReversed ([](const auto& p) { p->updateOrder(); });
 }
 
 void EditView::handleAsyncUpdate()
