@@ -38,6 +38,14 @@ public:
 // MARK: -
 
 public:
+    virtual void addObserver (Observer*) override;
+    virtual void removeObserver (Observer*) override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void sortObjects (const std::vector<core::UniqueId>&);
     
 private:

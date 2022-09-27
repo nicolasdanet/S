@@ -12,9 +12,21 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditInspector::EditInspector() : resizer_ (*this)
+EditInspector::EditInspector (EditView& view) :
+    view_ (view),
+    observed_ (view.getViewTree()),
+    resizer_ (*this)
 {
+    addParameterHandler (Tags::Selected, [] (const core::Parameter& p) { DBG ("?"); });
+    
+    observed_.addObserver (this);
+    
     setOpaque (true);
+}
+
+EditInspector::~EditInspector()
+{
+    observed_.removeObserver (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

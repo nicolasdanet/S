@@ -12,25 +12,29 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditInspector : public juce::Component {
+class EditInspector :   private core::Observer,
+                        public  juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit EditInspector();
+    explicit EditInspector (EditView&);
     
-    ~EditInspector() = default;
+    ~EditInspector();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
 private:
+    EditView& view_;
+    core::Patch observed_;
     Resizer resizer_;
 
 private:

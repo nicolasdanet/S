@@ -24,7 +24,7 @@ protected:
     }
 
 public:
-    ~Item() = default;
+    virtual ~Item() = default;
 
 public:
     Item (const Item&) = default;
@@ -69,12 +69,12 @@ public:
 // MARK: -
 
 public:
-    void addObserver (Observer* observer)
+    virtual void addObserver (Observer* observer)
     {
         data_.addObserver (observer);
     }
     
-    void removeObserver (Observer* observer)
+    virtual void removeObserver (Observer* observer)
     {
         data_.removeObserver (observer);
     }

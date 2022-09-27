@@ -18,6 +18,7 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     editView_ (patch, tree),
     editPort_ (editView_),
     editZoom_ (editPort_.getZoomAsValue()),
+    editInspector_ (editView_),
     hasInspector_ (false)
 {
     addAndMakeVisible (editPort_);
