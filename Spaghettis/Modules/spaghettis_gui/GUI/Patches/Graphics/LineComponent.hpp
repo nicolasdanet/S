@@ -71,6 +71,7 @@ public:
 // MARK: -
 
 public:
+    bool isSelected() const;
     void setSelected (bool isSelected);
 
 // -----------------------------------------------------------------------------------------------------------

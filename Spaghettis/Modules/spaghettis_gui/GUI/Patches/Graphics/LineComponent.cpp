@@ -105,7 +105,7 @@ void LineComponent::mouseDown (const juce::MouseEvent& e)
 {
     view_->mouseDown (e);
 
-    if (Mouse::isShiftClick (e))       { setSelected (!isSelected_); }
+    if (Mouse::isShiftClick (e))       { setSelected (!isSelected()); }
     else if (Mouse::isSimpleClick (e)) { setSelected (true); }
 }
 
@@ -126,6 +126,11 @@ float LineComponent::getScale() const
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+bool LineComponent::isSelected() const
+{
+    return isSelected_;
+}
 
 void LineComponent::setSelected (bool isSelected)
 {
@@ -236,7 +241,7 @@ void LineComponent::update()
 
 juce::Colour LineComponent::getLineColour() const
 {
-    if (isSelected_)    { return lineSelectedColour_.get(); }
+    if (isSelected())   { return lineSelectedColour_.get(); }
     else if (isSignal_) { return lineSignalColour_.get(); }
     else {
         return lineColour_.get();
