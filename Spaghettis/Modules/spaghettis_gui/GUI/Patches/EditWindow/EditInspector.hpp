@@ -29,6 +29,21 @@ public:
 // MARK: -
 
 public:
+    bool isActive() const
+    {
+        return active_;
+    }
+    
+    void setActive (bool isActive)
+    {
+        active_ = isActive;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
@@ -36,6 +51,7 @@ private:
     EditView& view_;
     core::Patch observed_;
     Resizer resizer_;
+    bool active_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditInspector)

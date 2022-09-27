@@ -15,7 +15,8 @@ namespace spaghettis {
 EditInspector::EditInspector (EditView& view) :
     view_ (view),
     observed_ (view.getViewTree()),
-    resizer_ (*this)
+    resizer_ (*this),
+    active_ (false)
 {
     addParameterHandler (Tags::Selected, [] (const core::Parameter& p) { DBG ("?"); });
     

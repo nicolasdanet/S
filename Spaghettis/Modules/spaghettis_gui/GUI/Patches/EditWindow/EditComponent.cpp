@@ -18,8 +18,7 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     editView_ (patch, tree),
     editPort_ (editView_),
     editZoom_ (editPort_.getZoomAsValue()),
-    editInspector_ (editView_),
-    hasInspector_ (false)
+    editInspector_ (editView_)
 {
     addAndMakeVisible (editPort_);
     addChildComponent (editZoom_);
@@ -80,12 +79,12 @@ void EditComponent::zoomReset()
 
 void EditComponent::showInspector()
 {
-    hasInspector_ = true;  updateLayout();
+    editInspector_.setActive (true);    updateLayout();
 }
 
 void EditComponent::hideInspector()
 {
-    hasInspector_ = false; updateLayout();
+    editInspector_.setActive (false);   updateLayout();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -121,7 +120,7 @@ void EditComponent::updateLayout()
 {
     juce::Rectangle<int> bounds (setBoundsForBarsAndGetRemaining());
     
-    if (hasInspector_) {
+    if (editInspector_.isActive()) {
     //
     const int w = bounds.getWidth() - editInspector_.getWidth();
     
@@ -129,7 +128,7 @@ void EditComponent::updateLayout()
     //
     }
     
-    editInspector_.setVisible (hasInspector_);
+    editInspector_.setVisible (editInspector_.isActive());
 
     editPort_.setBounds (bounds);
     
