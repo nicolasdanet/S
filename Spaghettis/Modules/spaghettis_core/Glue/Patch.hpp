@@ -38,8 +38,8 @@ public:
 // MARK: -
 
 public:
-    virtual void addObserver (Observer*) override;
-    virtual void removeObserver (Observer*) override;
+    void addObserver (Observer*);
+    void removeObserver (Observer*);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

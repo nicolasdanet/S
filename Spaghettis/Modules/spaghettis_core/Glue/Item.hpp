@@ -24,7 +24,7 @@ protected:
     }
 
 public:
-    virtual ~Item() = default;
+    ~Item() = default;
 
 public:
     Item (const Item&) = default;
@@ -62,21 +62,6 @@ public:
     bool isPatch() const
     {
         return Tree::isPatch (tree_);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    virtual void addObserver (Observer* observer)
-    {
-        data_.addObserver (observer);
-    }
-    
-    virtual void removeObserver (Observer* observer)
-    {
-        data_.removeObserver (observer);
     }
     
 // -----------------------------------------------------------------------------------------------------------
