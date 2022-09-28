@@ -260,6 +260,11 @@ void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int
     if (t == viewTree_) { triggerAsyncUpdate(); }
 }
 
+void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
+{
+    DBG ("?");
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

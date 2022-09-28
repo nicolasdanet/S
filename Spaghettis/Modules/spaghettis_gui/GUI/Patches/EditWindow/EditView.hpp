@@ -111,7 +111,8 @@ public:
     void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
     void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
     void valueTreeChildOrderChanged (juce::ValueTree&, int, int) override;
-
+    void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override;
+    
 private:
     void addComponent (const juce::ValueTree&);
     void removeComponent (const juce::ValueTree&);
