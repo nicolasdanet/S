@@ -24,11 +24,6 @@ void Observer::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Iden
     parameterHasChanged();
 }
 
-void Observer::valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int)
-{
-    treeHasChanged();
-}
-
 void Observer::callParameterHandlers (const juce::ValueTree& tree)
 {
     const Parameter parameter (tree);

@@ -14,20 +14,15 @@ namespace spaghettis {
 
 EditInspector::EditInspector (EditView& view) :
     view_ (view),
-    observed_ (view.getViewTree()),
     resizer_ (*this),
     active_ (false)
 {
-    addParameterHandler (Tags::Selected, [this] (const core::Parameter& p) { triggerAsyncUpdate(); });
-    
-    observed_.addObserver (this);
-    
     setOpaque (true);
 }
 
 EditInspector::~EditInspector()
 {
-    observed_.removeObserver (this);
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -42,15 +37,6 @@ void EditInspector::paint (juce::Graphics& g)
 void EditInspector::resized()
 {
     resizer_.update();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditInspector::treeHasChanged()
-{
-    triggerAsyncUpdate();
 }
 
 // -----------------------------------------------------------------------------------------------------------

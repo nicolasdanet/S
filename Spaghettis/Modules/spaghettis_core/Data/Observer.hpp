@@ -61,7 +61,6 @@ public:
 
 private:
     void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override;
-    void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -83,10 +82,6 @@ private:
 
 private:
     virtual void parameterHasChanged()
-    {
-    }
-    
-    virtual void treeHasChanged()
     {
     }
 

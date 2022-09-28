@@ -12,8 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditInspector :   private core::Observer,
-                        private juce::AsyncUpdater,
+class EditInspector :   private juce::AsyncUpdater,
                         public  juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -53,18 +52,10 @@ public:
 // MARK: -
 
 private:
-    virtual void treeHasChanged() override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
     void handleAsyncUpdate() override;
     
 private:
     EditView& view_;
-    core::Patch observed_;
     Resizer resizer_;
     bool active_;
 

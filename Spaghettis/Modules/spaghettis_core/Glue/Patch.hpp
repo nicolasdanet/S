@@ -38,14 +38,6 @@ public:
 // MARK: -
 
 public:
-    void addObserver (Observer*);
-    void removeObserver (Observer*);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void sortObjects (const std::vector<core::UniqueId>&);
     
 private:
