@@ -262,7 +262,11 @@ void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int
 
 void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
 {
-    DBG ("?");
+    juce::ValueTree p (Tree::getParentIfParameterMatches (t, Tags::Selected));
+    
+    if (isChildOf (viewTree_, p)) {
+        DBG ("?");
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
