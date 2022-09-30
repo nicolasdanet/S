@@ -19,15 +19,13 @@ void Observer::addParameterHandler (const juce::String& key, std::function<void 
 
 void Observer::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier&)
 {
-    if (tree.hasType (Ids::PARAMETER)) { callParameterHandlers (tree); }
+    if (tree.hasType (Ids::PARAMETER)) { callParameterHandlers (Parameter (tree)); }
     
     parameterHasChanged();
 }
 
-void Observer::callParameterHandlers (const juce::ValueTree& tree)
+void Observer::callParameterHandlers (const Parameter& parameter)
 {
-    const Parameter parameter (tree);
-    
     const juce::String key (parameter.getKey());
     
     for (const auto& h : handlers_) { if (h.key_ == key) { h.f_ (parameter); } }
