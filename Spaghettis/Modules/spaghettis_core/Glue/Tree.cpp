@@ -12,11 +12,11 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Tree::getParentIfParameterMatches (const juce::ValueTree& t, juce::String key)
+juce::ValueTree Tree::getItemIfParameterMatches (const juce::ValueTree& t, juce::String key)
 {
-    if (t.hasType (Ids::PARAMETER)) {
+    if (t.hasType (Ids::PARAMETER) && (core::Parameter (t).getKey() == key)) {
     //
-
+    return t.getParent().getParent().getParent();
     //
     }
     

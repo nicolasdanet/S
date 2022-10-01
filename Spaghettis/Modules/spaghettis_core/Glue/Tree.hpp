@@ -61,7 +61,7 @@ static juce::ValueTree findChild (const juce::ValueTree& t, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static juce::ValueTree getParentIfParameterMatches (const juce::ValueTree& t, juce::String key);
+static juce::ValueTree getItemIfParameterMatches (const juce::ValueTree& t, juce::String key);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

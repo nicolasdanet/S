@@ -57,8 +57,9 @@ class Parameter {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-friend class Group;
-friend class Observer;
+friend class  Group;
+friend class  Observer;
+friend struct Tree;
 
 template <class T> friend struct Iterator;
 
