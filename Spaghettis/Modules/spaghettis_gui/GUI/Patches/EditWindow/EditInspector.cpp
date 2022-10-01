@@ -18,11 +18,13 @@ EditInspector::EditInspector (EditView& view) :
     active_ (false)
 {
     setOpaque (true);
+    
+    view_.attach (this);
 }
 
 EditInspector::~EditInspector()
 {
-
+    view_.detach (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -45,7 +47,7 @@ void EditInspector::resized()
 
 void EditInspector::handleAsyncUpdate()
 {
-    DBG ("?");
+    DBG ("UPDATE");
 }
 
 // -----------------------------------------------------------------------------------------------------------

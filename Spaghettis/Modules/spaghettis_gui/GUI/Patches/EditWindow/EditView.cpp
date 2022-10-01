@@ -34,6 +34,20 @@ EditView::~EditView()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditView::attach (EditInspector* inspector)
+{
+    inspector_ = inspector;
+}
+
+void EditView::detach (EditInspector* inspector)
+{
+    inspector_ = nullptr;
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
     if (Mouse::isSimpleClick (e)) { deselectAll(); }
@@ -262,11 +276,9 @@ void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int
 
 void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
 {
-    juce::ValueTree i (Tree::getItemIfParameterMatches (t, Tags::Selected));
+    juce::ValueTree i (Tree::getItemIfPropertyChangedEquals (t, Tags::Selected));
     
-    if (i.isValid() && isChildOf (viewTree_, i)) {
-        DBG ("?");
-    }
+    if (i.isValid() && isChildOf (viewTree_, i) && inspector_) { inspector_->update(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -51,6 +51,12 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    void update()
+    {
+        triggerAsyncUpdate();
+    }
+    
 private:
     void handleAsyncUpdate() override;
     
