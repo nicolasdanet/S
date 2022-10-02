@@ -70,7 +70,7 @@ void EditInspector::hide()
 
 // addAndMakeVisible (getPanel());
 // resizePanel ();
-// getItemForInspector
+// getDataForInspector();
 
 void EditInspector::handleAsyncUpdate()
 {

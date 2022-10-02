@@ -61,7 +61,7 @@ static juce::ValueTree findChild (const juce::ValueTree& t, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static juce::ValueTree getItemIfPropertyChangedEquals (const juce::ValueTree& t, juce::String key);
+static juce::ValueTree getParentIfPropertyChangedEquals (const juce::ValueTree& t, juce::String key);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
