@@ -58,7 +58,10 @@ public:
     void selectAll();
     void deselectAll();
     void select (const juce::Rectangle<int>&);
+
+public:
     int getNumberOfSelectedObject();
+    core::Item getItemForInspector();
         
 public:
     void dragStart();
