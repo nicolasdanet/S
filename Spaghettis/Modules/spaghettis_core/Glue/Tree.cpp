@@ -12,7 +12,7 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Tree::getParentIfPropertyChangedEquals (const juce::ValueTree& t, juce::String key)
+juce::ValueTree Tree::getParentIfChangedPropertyEquals (const juce::ValueTree& t, juce::String key)
 {
     if (t.hasType (Ids::PARAMETER) && (core::Parameter (t).getKey() == key)) {
     //

@@ -37,7 +37,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-protected:
+public:
     juce::ConcertinaPanel& getPanel();
     void resizePanel (const juce::Rectangle<int>&);
 

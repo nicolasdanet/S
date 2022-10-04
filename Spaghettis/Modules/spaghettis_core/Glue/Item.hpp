@@ -41,6 +41,11 @@ public:
     {
         return tree_;
     }
+    
+    core::Data getData() const
+    {
+        return data_;
+    }
 
     juce::String debug() const;
 

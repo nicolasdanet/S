@@ -61,6 +61,7 @@ public:
 
 public:
     int getNumberOfSelectedObject();
+    core::Item getItemForInspector();
         
 public:
     void dragStart();

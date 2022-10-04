@@ -74,6 +74,13 @@ int EditView::getNumberOfSelectedObject()
     return static_cast<int> (n);
 }
 
+core::Item EditView::getItemForInspector()
+{
+    if (getNumberOfSelectedObject() == 1) { }
+    
+    return core::Patch (viewTree_);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -276,7 +283,7 @@ void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int
 
 void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
 {
-    juce::ValueTree i (Tree::getParentIfPropertyChangedEquals (t, Tags::Selected));
+    juce::ValueTree i (Tree::getParentIfChangedPropertyEquals (t, Tags::Selected));
     
     if (i.isValid() && isChildOf (viewTree_, i) && inspector_) { inspector_->update(); }
 }

@@ -25,6 +25,8 @@ EditInspector::EditInspector (EditView& view) :
 EditInspector::~EditInspector()
 {
     view_.detach (this);
+    
+    hide();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -33,7 +35,7 @@ EditInspector::~EditInspector()
 
 void EditInspector::setActive (bool isActive)
 {
-    active_ = isActive; update();
+    active_ = isActive; triggerAsyncUpdate();
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -47,6 +49,8 @@ void EditInspector::paint (juce::Graphics& g)
 
 void EditInspector::resized()
 {
+    /* if (parameters_ != nullptr) { parameters_->resizePanel (getLocalBounds()); } */
+    
     resizer_.update();
 }
 
@@ -56,33 +60,36 @@ void EditInspector::resized()
 
 void EditInspector::show()
 {
-
+    /*
+    if (parameters_ == nullptr) {
+    //
+    parameters_ = std::make_unique<ParameterView> (view_.getItemForInspector().getData());
+    parameters_->resizePanel (getLocalBounds());
+    addAndMakeVisible (parameters_->getPanel());
+    //
+    }
+    */
 }
 
 void EditInspector::hide()
 {
-
+    /*
+    if (parameters_ != nullptr) {
+    //
+    removeChildComponent (&parameters_->getPanel());
+    parameters_ = nullptr;
+    //
+    }
+    */
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-// addAndMakeVisible (getPanel());
-// resizePanel ();
-// getDataForInspector();
-
 void EditInspector::handleAsyncUpdate()
 {
-    DBG ("?");
-    
-    hide();
-    
-    if (isActive()) {
-    //
-    
-    //
-    }
+    hide(); if (isActive()) { show(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
