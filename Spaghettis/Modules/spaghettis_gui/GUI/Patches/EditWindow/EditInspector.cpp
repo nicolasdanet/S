@@ -14,10 +14,10 @@ namespace spaghettis {
 
 EditInspector::EditInspector (EditView& view) :
     view_ (view),
-    resizer_ (*this),
-    active_ (false)
+    active_ (false),
+    resizer_ (*this)
 {
-    setOpaque (true);
+    setOpaque (true); setSize (resizer_.getDefaultWidth(), getHeight());
     
     view_.attach (this);
 }

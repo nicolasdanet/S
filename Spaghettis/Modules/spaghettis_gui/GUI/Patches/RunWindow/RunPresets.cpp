@@ -14,7 +14,7 @@ namespace spaghettis {
 
 RunPresets::RunPresets() : resizer_ (*this)
 {
-    setOpaque (true);
+    setOpaque (true); setSize (resizer_.getDefaultWidth(), getHeight());
 }
 
 // -----------------------------------------------------------------------------------------------------------
