@@ -18,6 +18,7 @@ class ParameterView : private juce::Timer {
 // -----------------------------------------------------------------------------------------------------------
 
 friend class ParameterHeader;
+friend class EditInspector;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -27,8 +28,6 @@ public:
     explicit ParameterView (const core::Data& data) : data_ (data), expanded_ (0), expandedLast_ (0)
     {
         buildConcertinaPanel (data_, *this);
-        
-        const int primeInterval = 307; startTimer (primeInterval);
     }
     
     virtual ~ParameterView() = default;
@@ -38,8 +37,19 @@ public:
 // MARK: -
 
 public:
+    void expandFirstPanel();
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+protected:
     juce::ConcertinaPanel& getPanel();
     void resizePanel (const juce::Rectangle<int>&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 private:
     void expandPanel (int);

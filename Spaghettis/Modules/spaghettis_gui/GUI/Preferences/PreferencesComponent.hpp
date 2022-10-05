@@ -26,6 +26,8 @@ public:
     {
         addAndMakeVisible (getPanel());
         
+        expandFirstPanel();
+        
         setOpaque (true); setSize (600, 400);
     }
     
