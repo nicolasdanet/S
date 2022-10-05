@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void ParameterHeader::paint (juce::Graphics& g)
 {
-    juce::Rectangle<int> b (getLocalBounds().reduced (2, 0).withTrimmedBottom (1));
+    juce::Rectangle<int> b (getLocalBounds().reduced (1, 0).withTrimmedBottom (1));
     
     g.setColour (Spaghettis()->getColour (Colours::parametersHeaderBackground));
     g.fillRoundedRectangle (b.toFloat(), 2.0f);
