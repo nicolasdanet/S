@@ -74,11 +74,26 @@ int EditView::getNumberOfSelectedObject()
     return static_cast<int> (n);
 }
 
+ObjectComponent* EditView::getSelectedObject()
+{
+    core::UniqueId u = 0;
+    
+    auto f = [&u](const auto& p)
+    {
+        if (p->isSelected()) { u = p->getIdentifier(); }
+    };
+
+    objects_.forEach (f);
+    
+    return u ? getObjectComponent (u) : nullptr;
+}
+
 core::Item EditView::getItemForInspector()
 {
     if (getNumberOfSelectedObject() == 1) {
-    
-    
+    //
+    ObjectComponent* o = getSelectedObject(); if (o) { return o->getObject(); }
+    //
     }
     
     return core::Patch (viewTree_);
