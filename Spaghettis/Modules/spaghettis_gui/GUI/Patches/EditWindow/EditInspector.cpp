@@ -49,7 +49,7 @@ void EditInspector::paint (juce::Graphics& g)
 
 void EditInspector::resized()
 {
-    /* if (parameters_ != nullptr) { parameters_->resizePanel (getLocalBounds()); } */
+    if (parameters_ != nullptr) { parameters_->resizePanel (getLocalBounds()); }
     
     resizer_.update();
 }
@@ -60,7 +60,6 @@ void EditInspector::resized()
 
 void EditInspector::show()
 {
-    /*
     if (parameters_ == nullptr) {
     //
     parameters_ = std::make_unique<ParameterView> (view_.getItemForInspector().getData());
@@ -68,19 +67,16 @@ void EditInspector::show()
     addAndMakeVisible (parameters_->getPanel());
     //
     }
-    */
 }
 
 void EditInspector::hide()
 {
-    /*
     if (parameters_ != nullptr) {
     //
     removeChildComponent (&parameters_->getPanel());
     parameters_ = nullptr;
     //
     }
-    */
 }
 
 // -----------------------------------------------------------------------------------------------------------
