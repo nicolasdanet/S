@@ -76,7 +76,10 @@ int EditView::getNumberOfSelectedObject()
 
 core::Item EditView::getItemForInspector()
 {
-    if (getNumberOfSelectedObject() == 1) { }
+    if (getNumberOfSelectedObject() == 1) {
+    
+    
+    }
     
     return core::Patch (viewTree_);
 }

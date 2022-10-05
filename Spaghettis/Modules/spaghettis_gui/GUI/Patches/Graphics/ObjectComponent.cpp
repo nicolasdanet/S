@@ -190,6 +190,11 @@ core::UniqueId ObjectComponent::getIdentifier() const
     return object_.getIdentifier();
 }
 
+core::Object ObjectComponent::getObject() const
+{
+    return object_;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
