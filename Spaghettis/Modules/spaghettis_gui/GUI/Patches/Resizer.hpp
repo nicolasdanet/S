@@ -40,6 +40,11 @@ public:
         return defaultWidth_;
     }
 
+    constexpr int getMinimumWidth()
+    {
+        return minimumWidth_;
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -47,7 +52,7 @@ public:
 public:
     void update()
     {
-        edge_.setBounds (owner_.getLocalBounds().withWidth (minimumWidth_));
+        edge_.setBounds (owner_.getLocalBounds().withWidth (edgeWidth_));
     }
 
 private:
@@ -56,8 +61,9 @@ private:
     juce::ResizableEdgeComponent edge_;
 
 private:
-    static constexpr int defaultWidth_ = 200;
-    static constexpr int minimumWidth_ = 4;
+    static constexpr int defaultWidth_ = 300;
+    static constexpr int minimumWidth_ = 150;
+    static constexpr int edgeWidth_    = 4;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Resizer)
