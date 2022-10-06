@@ -62,7 +62,8 @@ void EditInspector::show()
 {
     if (parameters_ == nullptr) {
     //
-    parameters_ = std::make_unique<ParameterView> (view_.getItemForInspector().getData(), 150);
+    const int w = resizer_.getMinimumWidth();
+    parameters_ = std::make_unique<ParameterView> (view_.getItemForInspector().getData(), w);
     parameters_->resizePanel (getLocalBounds());
     addAndMakeVisible (parameters_->getPanel());
     //

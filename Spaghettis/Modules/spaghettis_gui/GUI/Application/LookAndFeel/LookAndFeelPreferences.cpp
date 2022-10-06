@@ -12,15 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> LookAndFeel::getPropertyComponentContentPosition (juce::PropertyComponent& component)
+juce::Rectangle<int> LookAndFeel::getPropertyComponentContentPosition (juce::PropertyComponent& c)
 {
-    juce::Rectangle<int> r (component.getWidth(), component.getHeight() - 1);
-    
-    const int labelWidth = juce::jmin (250, r.getWidth() / 2);
-    
-    ParameterWidth* w = dynamic_cast<ParameterWidth*> (&component);
-    if (w) { DBG (w->getRequiredWidth()); }
-    
+    juce::Rectangle<int> r (c.getWidth(), c.getHeight() - 1);
+        
+    ParameterWidth* w = dynamic_cast<ParameterWidth*> (&c);
+    const int requiredWidth = w ? w->getRequiredWidth() : 250;
+    const int labelWidth    = juce::jmin (requiredWidth, r.getWidth());
+        
     return r.withTrimmedLeft (labelWidth);
 }
 
