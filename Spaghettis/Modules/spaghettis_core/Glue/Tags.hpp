@@ -54,8 +54,8 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Attributes);
     DECLARE_STRING (Parameters);
     
-    DECLARE_STRING (Buffer);
     DECLARE_STRING (Class);
+    DECLARE_STRING (Content);
     DECLARE_STRING (EditView);
     DECLARE_STRING (Flashed);
     DECLARE_STRING (FlashTime);

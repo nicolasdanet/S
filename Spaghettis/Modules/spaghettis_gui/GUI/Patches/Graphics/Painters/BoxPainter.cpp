@@ -15,12 +15,12 @@ namespace spaghettis {
 BoxPainter::BoxPainter (ObjectComponent* owner, const core::Object& object) : PainterPolicy (owner, object),
     boxBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxBackground)),
     boxTextColour_ (Spaghettis()->getCachedColour (Tags::BoxText)),
-    buffer_ (object_.getCached<juce::String> (Tags::Attributes, Tags::Buffer)),
+    content_ (object_.getCached<juce::String> (Tags::Attributes, Tags::Content)),
     class_ (object_.getCached<juce::String> (Tags::Attributes, Tags::Class))
 {
     boxBackgroundColour_.attach (repaint (component_));
     boxTextColour_.attach (repaint (component_));
-    buffer_.attach (repaint (component_));
+    content_.attach (repaint (component_));
     
     component_->setBufferedToImage (true);
 }
@@ -31,7 +31,7 @@ BoxPainter::BoxPainter (ObjectComponent* owner, const core::Object& object) : Pa
 
 juce::String BoxPainter::getText() const
 {
-    juce::String text (buffer_.get()); if (text.isEmpty()) { text = class_.get(); }
+    juce::String text (content_.get()); if (text.isEmpty()) { text = class_.get(); }
     
     return text;
 }

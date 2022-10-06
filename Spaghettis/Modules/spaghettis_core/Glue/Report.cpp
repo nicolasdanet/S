@@ -109,8 +109,8 @@ void setObjectAttributesForObject (Group& group, t_object* o)
         juce::String (class_getNameAsString (pd_class (o))),
         delegate).setEditable (false);
         
-    group.addParameter (Tags::Buffer,
-        NEEDS_TRANS ("Buffer"),
+    group.addParameter (Tags::Content,
+        NEEDS_TRANS ("Content"),
         NEEDS_TRANS ("Content of the box"),
         getContentBuffer (o),
         delegate).setEditable (false);
