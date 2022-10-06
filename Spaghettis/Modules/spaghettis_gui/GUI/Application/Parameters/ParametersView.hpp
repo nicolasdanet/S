@@ -25,12 +25,12 @@ friend class EditInspector;
 // MARK: -
 
 public:
-    explicit ParameterView (const core::Data& data) :
+    explicit ParameterView (const core::Data& data, int labelWidth) :
         data_ (data),
         expanded_ (0),
         expandedLast_ (0)
     {
-        buildConcertinaPanel (data_, *this, 150);
+        jassert (labelWidth > 0); buildConcertinaPanel (data_, *this, labelWidth);
     }
     
     virtual ~ParameterView() = default;
