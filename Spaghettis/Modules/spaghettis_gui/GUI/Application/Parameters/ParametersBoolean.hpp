@@ -12,18 +12,22 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterBoolean : public juce::BooleanPropertyComponent {
+class ParameterBoolean :    public ParameterWidth,
+                            public juce::BooleanPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterBoolean (const core::Parameter& p) :
+    explicit ParameterBoolean (const core::Parameter& p, int w) :
+        ParameterWidth (w),
         juce::BooleanPropertyComponent (p.getValueAsValue (false), p.getLabel(), "")
     {
         setEnabled (p.isEditable());
     }
+    
+    ~ParameterBoolean() = default;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterBoolean)

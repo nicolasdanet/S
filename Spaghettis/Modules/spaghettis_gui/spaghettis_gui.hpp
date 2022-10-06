@@ -73,6 +73,7 @@
 
 #include "GUI/Application/Parameters/ParametersHeader.hpp"
 #include "GUI/Application/Parameters/ParametersView.hpp"
+#include "GUI/Application/Parameters/ParametersWidth.hpp"
 #include "GUI/Application/Parameters/ParametersBoolean.hpp"
 #include "GUI/Application/Parameters/ParametersColour.hpp"
 #include "GUI/Application/Parameters/ParametersNumber.hpp"

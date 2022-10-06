@@ -12,14 +12,16 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> class ParameterNumber : public juce::TextPropertyComponent {
+template <class T> class ParameterNumber :  public ParameterWidth,
+                                            public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterNumber (const core::Parameter& p) :
+    explicit ParameterNumber (const core::Parameter& p, int w) :
+        ParameterWidth (w),
         juce::TextPropertyComponent (p.getValueAsValue (false), p.getLabel(), 32, false),
         v_(),
         range_ (p)
@@ -27,6 +29,8 @@ public:
         setEnabled (p.isEditable());
     }
 
+    ~ParameterNumber() = default;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -90,14 +94,16 @@ using ParameterFloat   = ParameterNumber<double>;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterSlider : public juce::SliderPropertyComponent {
+class ParameterSlider : public ParameterWidth,
+                        public juce::SliderPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterSlider (const core::Parameter& p) :
+    explicit ParameterSlider (const core::Parameter& p, int w) :
+        ParameterWidth (w),
         SliderPropertyComponent (p.getValueAsValue (false),
             p.getLabel(),
             p.getMinimumAsDouble(),
@@ -112,6 +118,8 @@ public:
         setEnabled (p.isEditable());
     }
 
+    ~ParameterSlider() = default;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterSlider)
 };

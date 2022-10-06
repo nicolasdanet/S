@@ -25,9 +25,12 @@ friend class EditInspector;
 // MARK: -
 
 public:
-    explicit ParameterView (const core::Data& data) : data_ (data), expanded_ (0), expandedLast_ (0)
+    explicit ParameterView (const core::Data& data) :
+        data_ (data),
+        expanded_ (0),
+        expandedLast_ (0)
     {
-        buildConcertinaPanel (data_, *this);
+        buildConcertinaPanel (data_, *this, 150);
     }
     
     virtual ~ParameterView() = default;
@@ -64,7 +67,7 @@ private:
 // MARK: -
 
 private:
-    static void buildConcertinaPanel (const core::Data&, ParameterView&);
+    static void buildConcertinaPanel (const core::Data&, ParameterView&, int w);
 
 protected:
     juce::ConcertinaPanel panel_;
