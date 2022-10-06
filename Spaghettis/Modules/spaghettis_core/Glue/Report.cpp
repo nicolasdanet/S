@@ -107,49 +107,49 @@ void setObjectAttributesForObject (Group& group, t_object* o)
         NEEDS_TRANS ("Class"),
         NEEDS_TRANS ("Class of the object"),
         juce::String (class_getNameAsString (pd_class (o))),
-        delegate);
+        delegate).setEditable (false);
         
     group.addParameter (Tags::Buffer,
         NEEDS_TRANS ("Buffer"),
         NEEDS_TRANS ("Content of the box"),
         getContentBuffer (o),
-        delegate);
+        delegate).setEditable (false);
     
     group.addParameter (Tags::Inlets,
         NEEDS_TRANS ("Inlets"),
         NEEDS_TRANS ("List of inlets"),
         object_getTypeOfInlets (o),
-        delegate);
+        delegate).setEditable (false);
     
     group.addParameter (Tags::Outlets,
         NEEDS_TRANS ("Outlets"),
         NEEDS_TRANS ("List of outlets"),
         object_getTypeOfOutlets (o),
-        delegate);
+        delegate).setEditable (false);
         
     group.addParameter (Tags::X,
         NEEDS_TRANS ("Position X"),
         NEEDS_TRANS ("Box ordinate"),
         Canvas::addOffset (object_getX (o)),
-        delegate);
+        delegate).setHidden (true);
     
     group.addParameter (Tags::Y,
         NEEDS_TRANS ("Position Y"),
         NEEDS_TRANS ("Box abscissa"),
         Canvas::addOffset (object_getY (o)),
-        delegate);
+        delegate).setHidden (true);
     
     group.addParameter (Tags::Selected,
         NEEDS_TRANS ("Selected"),
         NEEDS_TRANS ("Is selected state"),
         static_cast<bool> (object_isSelected (o)),
-        delegate);
+        delegate).setHidden (true);
     
     group.addParameter (Tags::Visible,
         NEEDS_TRANS ("Visible"),
         NEEDS_TRANS ("Is visible state"),
         getVisible (o),
-        delegate);
+        delegate).setHidden (true);
 }
 
 void setObjectAttributesForPatch (Group& group, t_object* o)
@@ -162,13 +162,13 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
         NEEDS_TRANS ("Title"),
         NEEDS_TRANS ("Patch name"),
         juce::String (symbol_getName (glist_getName (g))),
-        delegate);
+        delegate).setEditable (false);
     
     group.addParameter (Tags::EditView,
         NEEDS_TRANS ("Edit View"),
         NEEDS_TRANS ("Edit window geometry"),
         getEditView (g),
-        delegate);
+        delegate).setEditable (false);
     
     if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o); }
     else {
@@ -177,13 +177,13 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
         NEEDS_TRANS ("Run View"),
         NEEDS_TRANS ("Run window geometry"),
         getRunView (g),
-        delegate);
+        delegate).setEditable (false);
     
     group.addParameter (Tags::Path,
         NEEDS_TRANS ("Path"),
         NEEDS_TRANS ("File path"),
         getPatchFile (g).getFullPathName(),
-        delegate);
+        delegate).setEditable (false);
     //
     }
 }
@@ -290,13 +290,13 @@ void setLineAttributes (Data& data, int m, int n)
         NEEDS_TRANS ("Outlet"),
         NEEDS_TRANS ("Index of source outlet"),
         m,
-        delegate);
+        delegate).setEditable (false);
     
     group.addParameter (Tags::Inlet,
         NEEDS_TRANS ("Inlet"),
         NEEDS_TRANS ("Index of destination inlet"),
         n,
-        delegate);
+        delegate).setEditable (false);
 }
 
 juce::ValueTree getLine (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n)
