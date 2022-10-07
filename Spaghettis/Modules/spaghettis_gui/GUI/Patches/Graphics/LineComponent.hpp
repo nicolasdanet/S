@@ -101,6 +101,7 @@ private:
     core::Line line_;
     juce::Component::SafePointer<ObjectComponent> source_;
     juce::Component::SafePointer<ObjectComponent> destination_;
+    core::Cached<bool> selected_;
     core::Cached<juce::Colour> lineColour_;
     core::Cached<juce::Colour> lineSelectedColour_;
     core::Cached<juce::Colour> lineSignalColour_;
@@ -108,7 +109,6 @@ private:
     juce::Path hitPath_;
     bool isSignal_;
     bool isOver_;
-    bool isSelected_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LineComponent)

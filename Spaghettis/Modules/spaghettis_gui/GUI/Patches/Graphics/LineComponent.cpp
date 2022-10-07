@@ -17,12 +17,12 @@ LineComponent::LineComponent (View* view, const core::Line& line) :
     line_ (line),
     source_ (view->getObjectComponent (line.getIdentifierOfSource())),
     destination_ (view->getObjectComponent (line.getIdentifierOfDestination())),
+    selected_ (line.getCached<bool> (Tags::Attributes, Tags::Selected)),
     lineColour_ (Spaghettis()->getCachedColour (Tags::Line)),
     lineSelectedColour_ (Spaghettis()->getCachedColour (Tags::LineSelected)),
     lineSignalColour_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
     isSignal_ (false),
-    isOver_ (false),
-    isSelected_ (false)
+    isOver_ (false)
 {
     jassert (view);
     
@@ -129,12 +129,12 @@ float LineComponent::getScale() const
 
 bool LineComponent::isSelected() const
 {
-    return isSelected_;
+    return selected_.get();
 }
 
-void LineComponent::setSelected (bool isSelected)
+void LineComponent::setSelected (bool selected)
 {
-    if (isSelected_ != isSelected) { isSelected_ = isSelected; repaint(); }
+    if (selected != isSelected()) { selected_.set (selected); repaint(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -59,7 +59,7 @@ private:
 public:
     void update()
     {
-        triggerAsyncUpdate();
+        DBG ("UPDATE"); triggerAsyncUpdate();
     }
     
 private:
