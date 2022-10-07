@@ -45,7 +45,8 @@ public:
     static Report object (const UniquePath&, struct _object*);
     static Report objectAttributes (const UniquePath&, struct _object*);
     static Report objectParameters (const UniquePath&, struct _object*);
-    static Report line (const UniquePath&, struct _object*, int, struct _object*, int);
+    static Report lineAdded (const UniquePath&, struct _object*, int, struct _object*, int);
+    static Report lineChanged (const UniquePath&, struct _object*, int, struct _object*, int);
     
 private:
     JUCE_LEAK_DETECTOR (Report)

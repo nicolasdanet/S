@@ -280,7 +280,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void setLineAttributes (Data& data, int m, int n)
+void setLineAttributes (Data& data, int m, int n, bool b)
 {
     static DelegateCache delegate;
     
@@ -297,9 +297,19 @@ void setLineAttributes (Data& data, int m, int n)
         NEEDS_TRANS ("Index of destination inlet"),
         n,
         delegate).setEditable (false);
+    
+    if (b) {
+    //
+    group.addParameter (Tags::Selected,
+        NEEDS_TRANS ("Selected"),
+        NEEDS_TRANS ("Is selected state"),
+        false,
+        delegate).setHidden (true);
+    //
+    }
 }
 
-juce::ValueTree getLine (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n)
+juce::ValueTree getLine (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n, bool b)
 {
     juce::ValueTree t (Ids::LINE);
     
@@ -307,7 +317,7 @@ juce::ValueTree getLine (const UniquePath& u, struct _object* src, int m, struct
     t.setProperty (Ids::source,         Cast::toVar (object_getUnique (src)), nullptr);
     t.setProperty (Ids::destination,    Cast::toVar (object_getUnique (dest)), nullptr);
     
-    Data data (Ids::DATA); setLineAttributes (data, m, n);
+    Data data (Ids::DATA); setLineAttributes (data, m, n, b);
     
     t.appendChild (data.asValueTree(), nullptr);
     
@@ -323,9 +333,13 @@ juce::ValueTree getLine (const UniquePath& u, struct _object* src, int m, struct
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Report Report::line (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n)
+Report Report::lineAdded (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n)
 {
-    jassert (!u.isRoot()); return Report (getLine (u, src, m, dest, n));
+    jassert (!u.isRoot()); return Report (getLine (u, src, m, dest, n, true));
+}
+Report Report::lineChanged (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n)
+{
+    jassert (!u.isRoot()); return Report (getLine (u, src, m, dest, n, false));
 }
 
 // -----------------------------------------------------------------------------------------------------------
