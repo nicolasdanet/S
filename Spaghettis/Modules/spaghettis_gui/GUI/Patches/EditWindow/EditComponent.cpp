@@ -24,7 +24,7 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     addChildComponent (editZoom_);
     addChildComponent (editInspector_);
     
-    auto check = [this]() { return editView_.getNumberOfSelectedObject() > 0; };
+    auto check = [this]() { return editView_.getNumberOfSelectedObjects() > 0; };
     
     addMenuBarCommand (Commands::save,          [this]() { editView_.getPatch().save(); });
     

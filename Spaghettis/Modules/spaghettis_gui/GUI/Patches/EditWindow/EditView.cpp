@@ -67,9 +67,16 @@ void EditView::mouseUp (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int EditView::getNumberOfSelectedObject()
+int EditView::getNumberOfSelectedObjects()
 {
     auto n = objects_.countIf ([](const auto& p) { return p->isSelected(); });
+
+    return static_cast<int> (n);
+}
+
+int EditView::getNumberOfSelectedLines()
+{
+    auto n = lines_.countIf ([](const auto& p) { return p->isSelected(); });
 
     return static_cast<int> (n);
 }
@@ -90,10 +97,12 @@ ObjectComponent* EditView::getSelectedObject()
 
 core::Item EditView::getItemForInspector()
 {
-    if (getNumberOfSelectedObject() == 1) {
-    //
-    ObjectComponent* o = getSelectedObject(); if (o) { return o->getObject(); }
-    //
+    if (getNumberOfSelectedObjects() == 1) {
+        ObjectComponent* o = getSelectedObject(); if (o) { return o->getObject(); }
+    }
+        
+    if (getNumberOfSelectedLines() == 1) {
+        DBG ("?");
     }
     
     return core::Patch (viewTree_);
@@ -165,6 +174,11 @@ void EditView::paint (juce::Graphics& g)
 ObjectComponent* EditView::getObjectComponent (core::UniqueId u)
 {
     return objects_.get (u);
+}
+
+LineComponent* EditView::getLineComponent (core::UniqueId u)
+{
+    return lines_.get (u);
 }
 
 // -----------------------------------------------------------------------------------------------------------

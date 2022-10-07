@@ -60,11 +60,13 @@ public:
     void select (const juce::Rectangle<int>&);
 
 public:
-    int getNumberOfSelectedObject();
+    int getNumberOfSelectedObjects();
+    int getNumberOfSelectedLines();
     core::Item getItemForInspector();
 
 private:
     ObjectComponent* getSelectedObject();
+    LineComponent* getSelectedLine();
         
 public:
     void dragStart();
@@ -93,8 +95,9 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     ObjectComponent* getObjectComponent (core::UniqueId) override;
+    LineComponent* getLineComponent (core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
