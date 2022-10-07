@@ -67,18 +67,35 @@ void EditView::mouseUp (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int EditView::getNumberOfSelectedObjects()
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+template <class T> int getNumberOfSelected (T& t)
 {
-    auto n = objects_.countIf ([](const auto& p) { return p->isSelected(); });
+    auto n = t.countIf ([](const auto& p) { return p->isSelected(); });
 
     return static_cast<int> (n);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int EditView::getNumberOfSelectedObjects()
+{
+    return getNumberOfSelected (objects_);
+}
+
 int EditView::getNumberOfSelectedLines()
 {
-    auto n = lines_.countIf ([](const auto& p) { return p->isSelected(); });
-
-    return static_cast<int> (n);
+    return getNumberOfSelected (lines_);
 }
 
 ObjectComponent* EditView::getSelectedObject()
