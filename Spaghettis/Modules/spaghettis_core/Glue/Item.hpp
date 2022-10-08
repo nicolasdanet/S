@@ -111,7 +111,7 @@ public:
 // MARK: -
 
 public:
-    void copyFrom (const core::Item&);
+    void setWith (const core::Item&);
     
 protected:
     juce::ValueTree tree_;

@@ -152,7 +152,7 @@ void readFrom (Data& data, const juce::ValueTree& other)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Data::copyFrom (const Item& item)
+void Data::setWith (const Item& item)
 {
     readFrom (*this, getCopyPruned (item.asValueTree()));
 }

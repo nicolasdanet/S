@@ -21,9 +21,9 @@ juce::String Item::debug() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Item::copyFrom (const core::Item& item)
+void Item::setWith (const core::Item& item)
 {
-    data_.copyFrom (item);
+    data_.setWith (item);
 }
 
 // -----------------------------------------------------------------------------------------------------------
