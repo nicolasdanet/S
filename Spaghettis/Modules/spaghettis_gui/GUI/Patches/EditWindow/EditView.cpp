@@ -79,6 +79,20 @@ template <class T> int getNumberOfSelected (T& t)
     return static_cast<int> (n);
 }
 
+template <class T> core::UniqueId getSelected (T& t)
+{
+    core::UniqueId u = 0;
+    
+    auto f = [&u](const auto& p)
+    {
+        if (p->isSelected()) { u = p->getIdentifier(); }
+    };
+
+    t.forEach (f);
+    
+    return u;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -100,16 +114,12 @@ int EditView::getNumberOfSelectedLines()
 
 ObjectComponent* EditView::getSelectedObject()
 {
-    core::UniqueId u = 0;
-    
-    auto f = [&u](const auto& p)
-    {
-        if (p->isSelected()) { u = p->getIdentifier(); }
-    };
+    return getObjectComponent (getSelected (objects_));
+}
 
-    objects_.forEach (f);
-    
-    return u ? getObjectComponent (u) : nullptr;
+LineComponent* EditView::getSelectedLine()
+{
+    return getLineComponent (getSelected (lines_));
 }
 
 core::Item EditView::getItemForInspector()
@@ -119,7 +129,7 @@ core::Item EditView::getItemForInspector()
     }
         
     if (getNumberOfSelectedLines() == 1) {
-        DBG ("?");
+        LineComponent* l = getSelectedLine(); if (l) { return l->getLine(); }
     }
     
     return core::Patch (viewTree_);
