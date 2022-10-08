@@ -113,7 +113,7 @@ void setObjectAttributesForObject (Group& group, t_object* o)
         NEEDS_TRANS ("Content"),
         NEEDS_TRANS ("Content of the box"),
         getContentBuffer (o),
-        delegate).setEditable (false);
+        delegate).setHidden (true);
     
     group.addParameter (Tags::Inlets,
         NEEDS_TRANS ("Inlets"),
