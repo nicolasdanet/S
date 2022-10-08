@@ -62,6 +62,9 @@ public:
 public:
     int getNumberOfSelectedObjects();
     int getNumberOfSelectedLines();
+    core::Data getDataForInspector();
+    
+private:
     core::Item getItemForInspector();
 
 private:

@@ -126,13 +126,16 @@ core::Item EditView::getItemForInspector()
 {
     if (getNumberOfSelectedObjects() == 1) {
         ObjectComponent* o = getSelectedObject(); if (o) { return o->getObject(); }
-    }
-        
-    if (getNumberOfSelectedLines() == 1) {
+    } else if (getNumberOfSelectedLines() == 1) {
         LineComponent* l = getSelectedLine(); if (l) { return l->getLine(); }
     }
     
     return core::Patch (viewTree_);
+}
+
+core::Data EditView::getDataForInspector()
+{
+    return getItemForInspector().getData();
 }
 
 // -----------------------------------------------------------------------------------------------------------
