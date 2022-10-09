@@ -75,6 +75,7 @@
 #include "GUI/Patches/EditWindow/EditLasso.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
 #include "GUI/Patches/EditWindow/EditPort.cpp"
+#include "GUI/Patches/EditWindow/InspectorView.cpp"
 #include "GUI/Patches/EditWindow/EditInspector.cpp"
 #include "GUI/Patches/EditWindow/EditComponent.cpp"
 #include "GUI/Patches/EditWindow/EditWindow.cpp"

@@ -144,6 +144,7 @@
 #include "GUI/Patches/EditWindow/EditLasso.hpp"
 #include "GUI/Patches/EditWindow/EditView.hpp"
 #include "GUI/Patches/EditWindow/EditPort.hpp"
+#include "GUI/Patches/EditWindow/InspectorView.hpp"
 #include "GUI/Patches/EditWindow/EditInspector.hpp"
 #include "GUI/Patches/EditWindow/EditZoom.hpp"
 #include "GUI/Patches/EditWindow/EditComponent.hpp"

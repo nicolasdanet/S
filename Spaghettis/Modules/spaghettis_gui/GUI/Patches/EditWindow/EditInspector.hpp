@@ -71,7 +71,7 @@ private:
     Resizer resizer_;
     
 private:
-    std::unique_ptr<ParameterView> parameters_;
+    std::unique_ptr<InspectorView> parameters_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditInspector)

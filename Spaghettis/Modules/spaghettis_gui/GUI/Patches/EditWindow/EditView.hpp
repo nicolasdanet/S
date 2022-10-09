@@ -65,9 +65,6 @@ public:
     core::Item getItemForInspector();
     
 private:
-    core::Item fetchItemForInspector();
-
-private:
     ObjectComponent* getSelectedObject();
     LineComponent* getSelectedLine();
         
