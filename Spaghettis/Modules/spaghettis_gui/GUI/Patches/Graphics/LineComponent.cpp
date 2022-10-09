@@ -139,7 +139,7 @@ bool LineComponent::isSelected() const
 
 void LineComponent::setSelected (bool selected)
 {
-    if (selected != isSelected()) { selected_.set (selected); repaint(); }
+    if (selected != isSelected()) { selected_.set (selected); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -199,9 +199,11 @@ void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& li
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LineComponent::parameterHasChanged (const core::Parameter&)
+void LineComponent::parameterHasChanged (const core::Parameter& p)
 {
-    update(); repaint();
+    if (p.getKey() != Tags::Selected) { update(); }
+    
+    repaint();
 }
 
 void LineComponent::updateOrder()
