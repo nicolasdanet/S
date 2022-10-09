@@ -14,12 +14,21 @@ namespace spaghettis {
 
 InspectorView::InspectorView (const core::Item& item, int w) : ParameterView (item.getData(), w), item_ (item)
 {
-
+    item_.addObserver (this);
 }
 
 InspectorView::~InspectorView()
 {
+    item_.removeObserver (this);
+}
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void InspectorView::parameterHasChanged()
+{
+    DBG ("?");
 }
 
 // -----------------------------------------------------------------------------------------------------------
