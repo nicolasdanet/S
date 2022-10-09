@@ -72,7 +72,7 @@ public:
 // MARK: -
 
 public:
-    void parameterHasChanged() override;
+    void parameterHasChanged (const core::Parameter&) override;
 
 private:
     juce::File file_;

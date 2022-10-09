@@ -253,7 +253,7 @@ Preferences::~Preferences()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Preferences::parameterHasChanged()
+void Preferences::parameterHasChanged (const core::Parameter&)
 {
     if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }
 }

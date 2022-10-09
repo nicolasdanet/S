@@ -81,7 +81,7 @@ private:
 // MARK: -
 
 private:
-    virtual void parameterHasChanged()
+    virtual void parameterHasChanged (const core::Parameter&)
     {
     }
 
