@@ -84,6 +84,10 @@ private:
     virtual void parameterHasChanged (const core::Parameter&)
     {
     }
+    
+    virtual void groupHasChanged (const core::Group&)
+    {
+    }
 
 private:
     std::vector<Handler> handlers_;
