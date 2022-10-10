@@ -28,7 +28,7 @@ InspectorView::~InspectorView()
 
 void InspectorView::groupHasChanged (const core::Group& group)
 {
-    DBG (group.getName());
+    if (group.getName() == Tags::Parameters) { EditCommands::parameters (item_.getIdentifier(), group); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
