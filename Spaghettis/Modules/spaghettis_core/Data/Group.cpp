@@ -64,7 +64,11 @@ Parameter Group::getParameter (const juce::String& key) const
 
 Group Group::getFromParameter (const Parameter& p)
 {
-    return Group (p.parameter_.getParent());
+    const juce::ValueTree t (p.parameter_.getParent());
+    
+    jassert (t.isValid() && t.hasType (Ids::GROUP));
+    
+    return Group (t);
 }
 
 // -----------------------------------------------------------------------------------------------------------
