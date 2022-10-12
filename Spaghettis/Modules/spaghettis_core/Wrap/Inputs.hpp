@@ -64,7 +64,7 @@ static Perform positionObject (core::UniqueId, juce::Point<int>);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform changeParametersOfObject (core::UniqueId, core::Group);
+static Perform changeParameterOfObject (core::UniqueId, const core::Parameter&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

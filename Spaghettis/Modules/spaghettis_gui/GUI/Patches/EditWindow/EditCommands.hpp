@@ -48,9 +48,9 @@ static void position (core::UniqueId i, juce::Point<int> pt)
     Spaghettis()->handle (Inputs::positionObject (i, core::Canvas::removeOffset (pt)));
 }
 
-static void parameters (core::UniqueId i, const core::Group& group)
+static void parameter (core::UniqueId i, const core::Parameter& parameter)
 {
-    Spaghettis()->handle (Inputs::changeParametersOfObject (i, group));
+    Spaghettis()->handle (Inputs::changeParameterOfObject (i, parameter));
 }
 
 // -----------------------------------------------------------------------------------------------------------
