@@ -40,7 +40,7 @@ PD_LOCAL void inputs_moveFrontObject    (core::UniqueId);
 PD_LOCAL void inputs_snapObject         (core::UniqueId);
 PD_LOCAL void inputs_positionObject     (core::UniqueId, juce::Point<int> pt);
 
-PD_LOCAL void inputs_changeParameterOfObject (core::UniqueId, const core::Parameter&);
+PD_LOCAL void inputs_parameterObject    (core::UniqueId, const core::Parameter&);
 
 #endif
 
