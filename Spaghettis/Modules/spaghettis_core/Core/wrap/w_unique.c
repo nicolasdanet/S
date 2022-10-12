@@ -189,6 +189,21 @@ PD_FORCE t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *ar
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_GUARD t_error unique_objectParameter (t_id u, const core::Parameter& parameter)
+{
+    DBG (parameter.getKey());
+    
+    return PD_ERROR;
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL t_error unique_objectGetIndexOf (t_id u, int *n)
 {
     t_object *object = instance_registerGetObject (u);

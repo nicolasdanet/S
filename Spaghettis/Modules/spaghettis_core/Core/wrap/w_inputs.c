@@ -169,7 +169,7 @@ PD_LOCAL void inputs_positionObject (core::UniqueId i, juce::Point<int> pt)
 
 PD_LOCAL void inputs_parameterObject (core::UniqueId i, const core::Parameter& parameter)
 {
-    DBG (parameter.getKey());
+    unique_objectParameter (i, parameter);
 }
 
 // -----------------------------------------------------------------------------------------------------------
