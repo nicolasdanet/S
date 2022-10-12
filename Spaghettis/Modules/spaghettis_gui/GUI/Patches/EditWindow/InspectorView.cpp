@@ -26,7 +26,7 @@ InspectorView::~InspectorView()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void InspectorView::groupHasChanged (const core::Group& group)
+void InspectorView::parameterHasChanged (const core::Group& group, const core::Parameter& parameter)
 {
     if (group.getName() == Tags::Parameters) { EditCommands::parameters (item_.getIdentifier(), group); }
 }

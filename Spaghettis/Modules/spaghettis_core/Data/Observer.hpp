@@ -81,14 +81,10 @@ private:
 // MARK: -
 
 private:
-    virtual void parameterHasChanged (const core::Parameter&)
+    virtual void parameterHasChanged (const core::Group&, const core::Parameter&)
     {
     }
     
-    virtual void groupHasChanged (const core::Group&)
-    {
-    }
-
 private:
     std::vector<Handler> handlers_;
 

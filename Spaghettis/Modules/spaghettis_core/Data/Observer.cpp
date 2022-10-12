@@ -23,9 +23,7 @@ void Observer::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Iden
     //
     const Parameter p (tree);
     
-    callParameterHandlers (p);
-    parameterHasChanged (p);
-    groupHasChanged (core::Group::getFromParameter (p));
+    callParameterHandlers (p); parameterHasChanged (core::Group::getFromParameter (p), p);
     //
     }
 }

@@ -80,7 +80,7 @@ public:
 // MARK: -
 
 private:
-    virtual void parameterHasChanged (const core::Parameter&) override;
+    virtual void parameterHasChanged (const core::Group&, const core::Parameter&) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

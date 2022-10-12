@@ -29,7 +29,7 @@ public:
 // MARK: -
 
 private:
-    virtual void groupHasChanged (const core::Group&) override;
+    virtual void parameterHasChanged (const core::Group&, const core::Parameter&) override;
     
 private:
     core::Item item_;

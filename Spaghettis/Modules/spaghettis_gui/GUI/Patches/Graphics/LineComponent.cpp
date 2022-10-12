@@ -199,7 +199,7 @@ void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& li
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LineComponent::parameterHasChanged (const core::Parameter& p)
+void LineComponent::parameterHasChanged (const core::Group&, const core::Parameter& p)
 {
     if (p.getKey() != Tags::Selected) { update(); }
     
