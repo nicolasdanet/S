@@ -50,7 +50,7 @@ static void position (core::UniqueId i, juce::Point<int> pt)
 
 static void parameter (core::UniqueId i, const core::Parameter& parameter)
 {
-    Spaghettis()->handle (Inputs::changeParameterOfObject (i, parameter));
+    Spaghettis()->handle (Inputs::changeParameterOfObject (i, core::Parameter::createCopy (parameter)));
 }
 
 // -----------------------------------------------------------------------------------------------------------
