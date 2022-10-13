@@ -75,7 +75,7 @@ PD_LOCAL void glist_setLabelOfLast (t_glist *glist, t_symbol *s)
 {
     t_object *o = glist_objectGetLast (glist);
     
-    if (o) { object_setLabel (o, s); outputs_objectUpdateParameters (o, glist); }
+    if (o) { object_setLabelUpdate (o, glist, s); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
