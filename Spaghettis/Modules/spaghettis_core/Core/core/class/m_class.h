@@ -47,7 +47,8 @@ typedef void (*t_savefn)    (t_object *x, t_buffer *b, int flags);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-typedef void (*t_parametersfn)  (t_object *x, core::Group& t);
+typedef void (*t_parametersgetfn)  (t_object *x, core::Group& t);
+typedef void (*t_parameterssetfn)  (t_object *x, const core::Group& t);
 
 #endif
 
@@ -81,7 +82,8 @@ struct _class {
     t_datafn                c_fnData;
     t_dismissfn             c_fnDismiss;
     #if defined ( PD_BUILDING_APPLICATION )
-    t_parametersfn          c_fnParameters;
+    t_parametersgetfn       c_fnGetParameters;
+    t_parameterssetfn       c_fnSetParameters;
     #endif
     int                     c_requirePending;
     int                     c_hasSignal;
@@ -254,7 +256,7 @@ static inline int class_hasDismissFunction (t_class *c)
 
 static inline int class_hasParametersFunction (t_class *c)
 {
-    return (c->c_fnParameters != NULL);
+    return (c->c_fnGetParameters != NULL && c->c_fnSetParameters != NULL);
 }
 
 #endif
@@ -280,9 +282,14 @@ static inline t_dismissfn class_getDismissFunction (t_class *c)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-static inline t_parametersfn class_getParametersFunction (t_class *c)
+static inline t_parametersgetfn class_getParametersGetter (t_class *c)
 {
-    return c->c_fnParameters;
+    return c->c_fnGetParameters;
+}
+
+static inline t_parameterssetfn class_getParametersSetter (t_class *c)
+{
+    return c->c_fnSetParameters;
 }
 
 #endif
@@ -298,9 +305,10 @@ static inline void class_setSaveFunction (t_class *c, t_savefn f)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-static inline void class_setParametersFunction (t_class *c, t_parametersfn f)
+static inline void class_setParametersFunctions (t_class *c, t_parametersgetfn f, t_parameterssetfn g)
 {
-    c->c_fnParameters = f;
+    c->c_fnGetParameters = f;
+    c->c_fnSetParameters = g;
 }
 
 #endif

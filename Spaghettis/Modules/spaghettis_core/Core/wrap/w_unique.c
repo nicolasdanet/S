@@ -193,7 +193,25 @@ PD_FORCE t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *ar
 
 PD_GUARD t_error unique_objectParameter (t_id u, const core::Group& group)
 {
-    DBG (group.getName());
+    t_object *object = instance_registerGetObject (u);
+
+    t_class *c = pd_class (object);
+    
+    if (object && class_hasParametersFunction (c)) {
+    //
+    /*
+    group.addParameter (Tags::Label,
+        NEEDS_TRANS ("Label"),
+        NEEDS_TRANS ("Parameter name in run view"),
+        juce::String (symbol_getName (object_getLabel (o))),
+        delegate);
+    */
+    
+    (*class_getParametersSetter (c)) (object, group);
+    
+    return PD_ERROR_NONE;
+    //
+    }
     
     return PD_ERROR;
 }

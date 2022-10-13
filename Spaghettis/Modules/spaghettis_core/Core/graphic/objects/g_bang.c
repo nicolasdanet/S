@@ -121,7 +121,7 @@ static void bng_flashed (t_bng *x, int n)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-static void bng_functionParameters (t_object *z, core::Group& group)
+static void bng_functionGetParameters (t_object *z, core::Group& group)
 {
     t_bng *x = (t_bng *)z;
     
@@ -144,6 +144,13 @@ static void bng_functionParameters (t_object *z, core::Group& group)
         NEEDS_TRANS ("Border size of the object"),
         x->x_width,
         delegate).setRange (juce::Range<int> (BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM));
+}
+
+static void bng_functionSetParameters (t_object *z, const core::Group& group)
+{
+    // t_bng *x = (t_bng *)z;
+    
+    DBG (group.getName());
 }
 
 #endif
@@ -225,7 +232,7 @@ PD_LOCAL void bng_setup (void)
 
     #if defined ( PD_BUILDING_APPLICATION )
     
-    class_setParametersFunction (c, bng_functionParameters);
+    class_setParametersFunctions (c, bng_functionGetParameters, bng_functionSetParameters);
     
     #endif
     

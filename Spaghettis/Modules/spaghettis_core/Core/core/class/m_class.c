@@ -192,7 +192,8 @@ PD_LOCAL t_class *class_new (t_symbol *s,
     c->c_fnData             = NULL;
     c->c_fnDismiss          = NULL;
     #if defined ( PD_BUILDING_APPLICATION )
-    c->c_fnParameters       = NULL;
+    c->c_fnGetParameters    = NULL;
+    c->c_fnSetParameters    = NULL;
     #endif
     c->c_hasSignal          = hasSignal;
     c->c_hasFirstInlet      = ((flags & CLASS_NOINLET) == 0);

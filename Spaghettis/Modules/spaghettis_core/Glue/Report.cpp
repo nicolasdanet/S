@@ -218,7 +218,7 @@ void setObjectParameters (Data& data, t_object* o)
         juce::String (symbol_getName (object_getLabel (o))),
         delegate);
     
-    (*class_getParametersFunction (c)) (o, group);
+    (*class_getParametersGetter (c)) (o, group);
     //
     }
 }
