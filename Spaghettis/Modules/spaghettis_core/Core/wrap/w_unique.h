@@ -38,7 +38,7 @@ PD_FORCE t_error    unique_objectMessage        (t_id u, t_symbol *s, int argc, 
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_GUARD t_error    unique_objectParameter      (t_id u, const core::Parameter&);
+PD_GUARD t_error    unique_objectParameter      (t_id u, const core::Group&);
 
 #endif
 

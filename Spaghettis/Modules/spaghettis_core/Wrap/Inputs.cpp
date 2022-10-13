@@ -141,9 +141,9 @@ Perform Inputs::positionObject (core::UniqueId i, juce::Point<int> pt)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Inputs::parameterObject (core::UniqueId i, core::Parameter parameter)
+Perform Inputs::parameterObject (core::UniqueId i, core::Group group)
 {
-    return [i, p = std::move (parameter)] { core::inputs_parameterObject (i, p); };
+    return [i, g = std::move (group)] { core::inputs_parameterObject (i, g); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

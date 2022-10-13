@@ -62,13 +62,18 @@ Parameter Group::getParameter (const juce::String& key) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Group Group::getFromParameter (const Parameter& p)
+Group Group::getFromParameter (const Parameter& parameter)
 {
-    const juce::ValueTree t (p.parameter_.getParent());
+    const juce::ValueTree t (parameter.parameter_.getParent());
     
     jassert (t.isValid() && t.hasType (Ids::GROUP));
     
     return Group (t);
+}
+
+Group Group::createCopy (const Group& group)
+{
+    return Group (group.group_.createCopy());
 }
 
 // -----------------------------------------------------------------------------------------------------------
