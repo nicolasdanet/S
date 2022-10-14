@@ -194,10 +194,13 @@ PD_FORCE t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *ar
 PD_GUARD t_error unique_objectParameter (t_id u, const core::Group& group)
 {
     t_object *object = instance_registerGetObject (u);
+    t_glist *glist   = instance_registerGetOwner (u);
 
+    if (object && glist) {
+    //
     t_class *c = pd_class (object);
     
-    if (object && class_hasParametersFunction (c)) {
+    if (class_hasParametersFunction (c)) {
     //
     /*
     group.addParameter (Tags::Label,
@@ -206,10 +209,15 @@ PD_GUARD t_error unique_objectParameter (t_id u, const core::Group& group)
         juce::String (symbol_getName (object_getLabel (o))),
         delegate);
     */
+    // object_setLabelUpdate
+    
+    // DBG (group.getParameter (Tags::Label).getValue().toString());
     
     (*class_getParametersSetter (c)) (object, group);
     
     return PD_ERROR_NONE;
+    //
+    }
     //
     }
     
