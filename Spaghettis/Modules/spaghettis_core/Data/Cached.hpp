@@ -19,18 +19,14 @@ template <class T> class Cached : private juce::Value::Listener {
 // MARK: -
 
 private:
-    explicit Cached (const core::Data& data,
-        const juce::String& group,
-        const juce::String& key,
-        bool updateSynchronously) :
-            value_ (data.getParameter (group, key).getValueAsValue (updateSynchronously))
+    explicit Cached (const core::Group& group, const juce::String& key, bool updateSynchronously) :
+        value_ (group.getParameter (key).getValueAsValue (updateSynchronously))
     {
         value_.addListener (this);
     }
-
+    
     explicit Cached()
     {
-    
     }
     
 public:
@@ -95,19 +91,27 @@ private:
 // MARK: -
 
 public:
+    static Cached make (const core::Group& group, const juce::String& key, bool updateSynchronously)
+    {
+        if (group.hasParameter (key)) {
+        //
+        jassert (group.getParameter (key).getType() == ParameterType<T>::get());
+        
+        return Cached (group, key, updateSynchronously);
+        //
+        }
+        
+        return Cached();
+    }
+    
     static Cached make (const core::Data& data,
         const juce::String& group,
         const juce::String& key,
         bool updateSynchronously)
     {
-        if (!data.hasParameter (group, key)) { return Cached(); }
-        else {
-        //
-        jassert (data.getParameter (group, key).getType() == ParameterType<T>::get());
+        if (data.hasGroup (group)) { return make (data.getGroup (group), key, updateSynchronously); }
         
-        return Cached (data, group, key, updateSynchronously);
-        //
-        }
+        return Cached();
     }
     
 private:
