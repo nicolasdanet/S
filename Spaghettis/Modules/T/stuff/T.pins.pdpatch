@@ -11,7 +11,7 @@
 #X obj 0 0 bng 15 250;
 #X obj 132 0 bng 15 250;
 #X obj 0 168 bng 15 250;
-#X obj 132 168 bng 15 250;
+#X obj 132 168 bng 30 250;
 #X connect 0 0 3 0;
 #X connect 0 1 4 0;
 #X connect 1 0 0 0;
