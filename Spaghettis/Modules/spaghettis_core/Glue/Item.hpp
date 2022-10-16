@@ -103,7 +103,7 @@ public:
     template <class T>
     T get (const juce::String& group, const juce::String& key) const
     {
-        return getCached<T> (group, key).get();
+        return getCached<T> (group, key, false).get();
     }
 
 // -----------------------------------------------------------------------------------------------------------

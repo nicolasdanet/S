@@ -608,7 +608,7 @@ PD_LOCAL void object_fetchAndCopySignalValuesIfRequired (t_object *x)
 
 PD_LOCAL void object_setLabelUpdate (t_object *x, t_glist *g, t_symbol *s)
 {
-    object_setLabel (x, s); outputs_objectUpdateParameters (x, g);
+    if (object_getLabel (x) != s) { object_setLabel (x, s); outputs_objectUpdateParameters (x, g); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -202,16 +202,9 @@ PD_GUARD t_error unique_objectParameter (t_id u, const core::Group& group)
     
     if (class_hasParametersFunction (c)) {
     //
-    /*
-    group.addParameter (Tags::Label,
-        NEEDS_TRANS ("Label"),
-        NEEDS_TRANS ("Parameter name in run view"),
-        juce::String (symbol_getName (object_getLabel (o))),
-        delegate);
-    */
-    // object_setLabelUpdate
+    t_symbol *s = gensym (group.getParameter (Tags::Label).getValueTyped<juce::String>().toRawUTF8());
     
-    // DBG (group.getParameter (Tags::Label).getValue().toString());
+    object_setLabelUpdate (object, glist, s);
     
     (*class_getParametersSetter (c)) (object, group);
     
