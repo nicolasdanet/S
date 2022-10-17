@@ -606,9 +606,15 @@ PD_LOCAL void object_fetchAndCopySignalValuesIfRequired (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void object_setLabelUpdate (t_object *x, t_glist *g, t_symbol *s)
+PD_LOCAL int object_setLabelUpdate (t_object *x, t_glist *glist, t_symbol *s)
 {
-    if (object_getLabel (x) != s) { object_setLabel (x, s); outputs_objectUpdateParameters (x, g); }
+    if (object_getLabel (x) != s) {
+        object_setLabel (x, s);
+        outputs_objectUpdateParameters (x, glist);
+        return 1;
+    }
+    
+    return 0;
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -204,7 +204,7 @@ PD_GUARD t_error unique_objectParameter (t_id u, const core::Group& group)
     //
     t_symbol *s = gensym (group.getParameter (Tags::Label).getValueTyped<juce::String>().toRawUTF8());
     
-    object_setLabelUpdate (object, glist, s);
+    if (object_setLabelUpdate (object, glist, s)) { glist_setDirty (glist, 1); }
     
     (*class_getParametersSetter (c)) (object, group);
     

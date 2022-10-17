@@ -81,7 +81,7 @@ PD_LOCAL t_buffer        *object_functionData       (t_object *z, int flags);
 
 PD_LOCAL t_float64Atomic *object_getSignalAtIndex   (t_object *x, int m);
 
-PD_LOCAL void   object_setLabelUpdate               (t_object *x, t_glist *g, t_symbol *s);
+PD_LOCAL int    object_setLabelUpdate               (t_object *x, t_glist *g, t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
