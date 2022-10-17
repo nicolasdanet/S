@@ -168,6 +168,8 @@ static void bng_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  x->x_time);
     buffer_appendSemicolon (b);
     
+    object_serializeLabel (z, b);
+    
     object_saveIdentifiers (z, b, flags);
 }
 
