@@ -79,21 +79,26 @@ juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce
     g.fillRect (r);
     g.setColour (labelBackgroundColour_.get());
     g.fillRect (r.withTrimmedLeft (2));
+    
+    const juce::Font font (getLabelFont());
+    
+    if (r.getHeight() >= font.getHeight()) {
+    //
     g.setColour (labelTextColour_.get());
-    g.setFont (getLabelFont());
+    g.setFont (font);
     g.drawText (component_->getLabel(), r.translated (-1.0f, -1.0f), juce::Justification::bottomRight, true);
+    //
+    }
     
     return t;
 }
     
 juce::Rectangle<float> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangle<float> r)
 {
-    const juce::Font font (getLabelFont());
-    
     objectWidth_ = r.getWidth();
     
-    if (component_->hasLabel() && (r.getHeight() >= font.getHeight())) {
-        const int w = objectWidth_ + font.getStringWidthFloat (component_->getLabel());
+    if (component_->hasLabel()) {
+        const int w = objectWidth_ + getLabelFont().getStringWidthFloat (component_->getLabel());
         r.setWidth (RunLayout::snapWidthToFitColumns (w));
     }
     
