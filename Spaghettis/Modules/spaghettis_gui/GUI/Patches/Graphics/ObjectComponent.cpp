@@ -63,12 +63,9 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     visible_.attach (f);
     inlets_.attach (f);
     outlets_.attach (f);
-    
-    if (isInsideRunView()) { label_.attach (f); }
-    else {
-        x_.attach (f);
-        y_.attach (f);
-    }
+    label_.attach (f);
+    x_.attach (f);
+    y_.attach (f);
     
     selected_.attach (PainterPolicy::repaint (this));
     boxPinBackgroundColour_.attach (PainterPolicy::repaint (this));
