@@ -43,7 +43,7 @@ typedef struct _bng {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void bng_flashed (t_bng *, int);
+static void bng_updateFlashed (t_bng *, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ static void bng_flashed (t_bng *, int);
 
 static void bng_taskFlash (t_bng *x)
 {
-    bng_flashed (x, 0);
+    bng_updateFlashed (x, 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ static void bng_taskFlash (t_bng *x)
 
 static void bng_bang (t_bng *x)
 {
-    bng_flashed (x, 1); clock_delay (x->x_clock, x->x_time);
+    bng_updateFlashed (x, 1); clock_delay (x->x_clock, x->x_time);
 
     outlet_bang (x->x_outlet);
 }
@@ -94,25 +94,33 @@ static void bng_update (t_bng *x, int *t, int n)
     if (n != *t) { *t = n; outputs_objectUpdateParameters (cast_object (x), x->x_owner); }
 }
 
+static void bng_updateFlashed (t_bng *x, int n)
+{
+    bng_update (x, &x->x_flashed, (n != 0));
+}
+
+static void bng_updateFlashTime (t_bng *x, int n)
+{
+    bng_update (x, &x->x_time, PD_CLAMP (n, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM));
+}
+
+static void bng_updateWidth (t_bng *x, int n)
+{
+    bng_update (x, &x->x_width, PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void bng_size (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) {
-    //
-    int n = atom_getFloatAtIndex (0, argc, argv);
-    
-    bng_update (x, &x->x_width, PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM));
-    //
-    }
+    if (argc) { bng_updateWidth (x, (int)atom_getFloatAtIndex (0, argc, argv)); }
 }
 
 static void bng_flashtime (t_bng *x, t_float f)
 {
-    bng_update (x, &x->x_time, PD_CLAMP ((int)f, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM));
-}
-
-static void bng_flashed (t_bng *x, int n)
-{
-    bng_update (x, &x->x_flashed, (n != 0));
+    bng_updateFlashTime (x, (int)f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -148,9 +156,10 @@ static void bng_functionGetParameters (t_object *z, core::Group& group)
 
 static void bng_functionSetParameters (t_object *z, const core::Group& group)
 {
-    // t_bng *x = (t_bng *)z;
+    t_bng *x = (t_bng *)z;
     
-    DBG (group.getName());
+    bng_updateFlashTime (x, group.getParameter (Tags::FlashTime).getValueTyped<int>());
+    bng_updateWidth (x, group.getParameter (Tags::Width).getValueTyped<int>());
 }
 
 #endif

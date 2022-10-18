@@ -23,7 +23,7 @@ BangPainter::BangPainter (ObjectComponent* owner, const core::Object& object) : 
     bangFlashOffColour_.attach (repaint (component_));
     bangFlashOnColour_.attach (repaint (component_));
     flashed_.attach (repaint (component_));
-    width_.attach (repaint (component_));
+    width_.attach (resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

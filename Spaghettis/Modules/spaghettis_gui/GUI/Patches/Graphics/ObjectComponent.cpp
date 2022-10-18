@@ -247,7 +247,7 @@ void ObjectComponent::paint (juce::Graphics& g)
     
 void ObjectComponent::resized()
 {
-
+    update();
 }
 
 // -----------------------------------------------------------------------------------------------------------
