@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DOCUMENTATION>
+  <GROUP name="Documentation">
+    <PARAMETER key="Description" label="Description" value="Bang!"/>
+    <PARAMETER key="Inlet 0"     label="Inlet"       value="Trigger a bang out for any entry"/>
+    <PARAMETER key="Outlet 0"    label="Outlet"      value="Bang!"/>
+  </GROUP>
+</DOCUMENTATION>
