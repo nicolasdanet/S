@@ -128,7 +128,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void readFrom (Data& data, const juce::ValueTree& other)
+void setValuesFrom (Data& data, const juce::ValueTree& other)
 {
     if (other.hasType (Ids::PARAMETER)) {
     //
@@ -140,7 +140,7 @@ void readFrom (Data& data, const juce::ValueTree& other)
     //
     }
     
-    for (auto child : other) { readFrom (data, child); }
+    for (auto child : other) { setValuesFrom (data, child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -154,19 +154,19 @@ void readFrom (Data& data, const juce::ValueTree& other)
 
 void Data::setWith (const Item& item)
 {
-    readFrom (*this, getCopyPruned (item.asValueTree()));
+    setValuesFrom (*this, getCopyPruned (item.asValueTree()));
 }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool Data::read (const juce::File& file)
+bool Data::readValuesFromFile (const juce::File& file)
 {
     if (file.existsAsFile() && file.hasFileExtension (".xml")) {
         std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file));
         if (xml) {
-            readFrom (*this, juce::ValueTree::fromXml (*xml));
+            setValuesFrom (*this, juce::ValueTree::fromXml (*xml));
             return true;
         }
     }
@@ -174,7 +174,7 @@ bool Data::read (const juce::File& file)
     return false;
 }
 
-void Data::write (const juce::File& file) const
+void Data::writeValuesToFile (const juce::File& file) const
 {
     std::unique_ptr<juce::XmlElement> xml (getCopyPruned (tree_).createXml());
     

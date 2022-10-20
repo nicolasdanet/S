@@ -119,8 +119,8 @@ public:
 // MARK: -
 
 public:
-    bool read  (const juce::File&);
-    void write (const juce::File&) const;
+    bool readValuesFromFile (const juce::File&);
+    void writeValuesToFile  (const juce::File&) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
