@@ -2,8 +2,8 @@
 
 <DOCUMENTATION>
   <GROUP name="Documentation">
-    <PARAMETER key="Description" label="Description" value="Bang!"/>
-    <PARAMETER key="Inlet 0"     label="Inlet"       value="Trigger a bang out for any entry"/>
-    <PARAMETER key="Outlet 0"    label="Outlet"      value="Bang!"/>
+    <PARAMETER key="Description" value="Bang!"/>
+    <PARAMETER key="Inlet0" label="Inlet" value="Trigger a bang out for any entry"/>
+    <PARAMETER key="Outlet0" label="Outlet" value="Bang!"/>
   </GROUP>
 </DOCUMENTATION>
