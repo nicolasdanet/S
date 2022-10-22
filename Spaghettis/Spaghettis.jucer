@@ -9,32 +9,37 @@
     <GROUP id="{2CB25DBA-D987-3F32-EEE6-6B67653E37F3}" name="Source">
       <FILE id="LekPt7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <GROUP id="{97821FCF-D921-B07E-10E9-2F772798D050}" name="XML">
-        <FILE id="fMMyPf" name="bng.xml" compile="0" resource="1" file="Resources/XML/bng.xml"/>
+        <FILE id="fMMyPf" name="info_bng.xml" compile="0" resource="1" file="Resources/XML/info_bng.xml"/>
       </GROUP>
       <GROUP id="{5D995D32-88D8-F3E6-9FA3-2BFFDA508EC0}" name="Icons">
-        <FILE id="pyAzqh" name="add.svg" compile="0" resource="1" file="Resources/Icons/SVG/add.svg"/>
-        <FILE id="W4KSZp" name="construction.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/construction.svg"/>
-        <FILE id="lQeYTz" name="delete_forever.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/delete_forever.svg"/>
-        <FILE id="YbQGbR" name="error_outline.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/error_outline.svg"/>
-        <FILE id="MftGP7" name="info.svg" compile="0" resource="1" file="Resources/Icons/SVG/info.svg"/>
-        <FILE id="v09zib" name="mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/mail.svg"/>
-        <FILE id="D9nQfi" name="place.svg" compile="0" resource="1" file="Resources/Icons/SVG/place.svg"/>
-        <FILE id="WYGHhC" name="restore.svg" compile="0" resource="1" file="Resources/Icons/SVG/restore.svg"/>
-        <FILE id="VJ2tR3" name="search_off.svg" compile="0" resource="1" file="Resources/Icons/SVG/search_off.svg"/>
-        <FILE id="uexYI2" name="sync.svg" compile="0" resource="1" file="Resources/Icons/SVG/sync.svg"/>
-        <FILE id="JrIvGS" name="system_update_alt.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/system_update_alt.svg"/>
-        <FILE id="ZfmAKG" name="text_rotate_up.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/text_rotate_up.svg"/>
-        <FILE id="IJLGLO" name="text_rotation_down.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/text_rotation_down.svg"/>
-        <FILE id="wLVawc" name="tune.svg" compile="0" resource="1" file="Resources/Icons/SVG/tune.svg"/>
-        <FILE id="nhfcRR" name="visibility.svg" compile="0" resource="1" file="Resources/Icons/SVG/visibility.svg"/>
-        <FILE id="pzNbU3" name="zoom_in.svg" compile="0" resource="1" file="Resources/Icons/SVG/zoom_in.svg"/>
-        <FILE id="PZxLeU" name="zoom_out.svg" compile="0" resource="1" file="Resources/Icons/SVG/zoom_out.svg"/>
+        <FILE id="pyAzqh" name="icon_add.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_add.svg"/>
+        <FILE id="W4KSZp" name="icon_construction.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_construction.svg"/>
+        <FILE id="lQeYTz" name="icon_delete_forever.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_delete_forever.svg"/>
+        <FILE id="YbQGbR" name="icon_error_outline.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_error_outline.svg"/>
+        <FILE id="MftGP7" name="icon_info.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_info.svg"/>
+        <FILE id="v09zib" name="icon_mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_mail.svg"/>
+        <FILE id="D9nQfi" name="icon_place.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_place.svg"/>
+        <FILE id="WYGHhC" name="icon_restore.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_restore.svg"/>
+        <FILE id="VJ2tR3" name="icon_search_off.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_search_off.svg"/>
+        <FILE id="uexYI2" name="icon_sync.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_sync.svg"/>
+        <FILE id="JrIvGS" name="icon_system_update_alt.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_system_update_alt.svg"/>
+        <FILE id="ZfmAKG" name="icon_text_rotate_up.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_text_rotate_up.svg"/>
+        <FILE id="IJLGLO" name="icon_text_rotation_down.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_text_rotation_down.svg"/>
+        <FILE id="wLVawc" name="icon_tune.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_tune.svg"/>
+        <FILE id="nhfcRR" name="icon_visibility.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_visibility.svg"/>
+        <FILE id="pzNbU3" name="icon_zoom_in.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_zoom_in.svg"/>
+        <FILE id="PZxLeU" name="icon_zoom_out.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_zoom_out.svg"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>

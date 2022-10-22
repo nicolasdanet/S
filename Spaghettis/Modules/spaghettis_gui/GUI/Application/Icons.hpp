@@ -71,23 +71,23 @@ public:
 public:
     explicit Icons()
     {
-        addIconAction ("Add",           0, "add_svg");
-        addIconToggle ("Autoscroll",    0, "system_update_alt_svg");
-        addIconAction ("Clear",         0, "delete_forever_svg");
-        addIconAction ("Edit",          0, "construction_svg");
-        addIconToggle ("Error",         4, "error_outline_svg");
-        addIconAction ("Find",          0, "place_svg");
-        addIconToggle ("Inspector",     1, "info_svg", false);
-        addIconToggle ("Message",       2, "mail_svg");
-        addIconToggle ("Presets",       0, "tune_svg", false);
-        addIconAction ("Restore",       0, "restore_svg");
-        addIconAction ("Run",           0, "visibility_svg");
-        addIconAction ("Synchronize",   0, "sync_svg");
-        addIconAction ("SortUp",        0, "text_rotate_up_svg");
-        addIconAction ("SortDown",      0, "text_rotation_down_svg");
-        addIconAction ("ZoomIn",        0, "zoom_in_svg");
-        addIconAction ("ZoomOut",       0, "zoom_out_svg");
-        addIconAction ("ZoomReset",     0, "search_off_svg");
+        addIconAction ("Add",           0, "icon_add_svg");
+        addIconToggle ("Autoscroll",    0, "icon_system_update_alt_svg");
+        addIconAction ("Clear",         0, "icon_delete_forever_svg");
+        addIconAction ("Edit",          0, "icon_construction_svg");
+        addIconToggle ("Error",         4, "icon_error_outline_svg");
+        addIconAction ("Find",          0, "icon_place_svg");
+        addIconToggle ("Inspector",     1, "icon_info_svg", false);
+        addIconToggle ("Message",       2, "icon_mail_svg");
+        addIconToggle ("Presets",       0, "icon_tune_svg", false);
+        addIconAction ("Restore",       0, "icon_restore_svg");
+        addIconAction ("Run",           0, "icon_visibility_svg");
+        addIconAction ("Synchronize",   0, "icon_sync_svg");
+        addIconAction ("SortUp",        0, "icon_text_rotate_up_svg");
+        addIconAction ("SortDown",      0, "icon_text_rotation_down_svg");
+        addIconAction ("ZoomIn",        0, "icon_zoom_in_svg");
+        addIconAction ("ZoomOut",       0, "icon_zoom_out_svg");
+        addIconAction ("ZoomReset",     0, "icon_search_off_svg");
     }
 
 public:

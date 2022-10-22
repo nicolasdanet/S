@@ -8,59 +8,59 @@
 
 namespace BinaryData
 {
-    extern const char*   bng_xml;
-    const int            bng_xmlSize = 358;
+    extern const char*   info_bng_xml;
+    const int            info_bng_xmlSize = 358;
 
-    extern const char*   add_svg;
-    const int            add_svgSize = 194;
+    extern const char*   icon_add_svg;
+    const int            icon_add_svgSize = 194;
 
-    extern const char*   construction_svg;
-    const int            construction_svgSize = 723;
+    extern const char*   icon_construction_svg;
+    const int            icon_construction_svgSize = 723;
 
-    extern const char*   delete_forever_svg;
-    const int            delete_forever_svgSize = 368;
+    extern const char*   icon_delete_forever_svg;
+    const int            icon_delete_forever_svgSize = 368;
 
-    extern const char*   error_outline_svg;
-    const int            error_outline_svgSize = 292;
+    extern const char*   icon_error_outline_svg;
+    const int            icon_error_outline_svgSize = 292;
 
-    extern const char*   info_svg;
-    const int            info_svgSize = 307;
+    extern const char*   icon_info_svg;
+    const int            icon_info_svgSize = 307;
 
-    extern const char*   mail_svg;
-    const int            mail_svgSize = 277;
+    extern const char*   icon_mail_svg;
+    const int            icon_mail_svgSize = 277;
 
-    extern const char*   place_svg;
-    const int            place_svgSize = 386;
+    extern const char*   icon_place_svg;
+    const int            icon_place_svgSize = 386;
 
-    extern const char*   restore_svg;
-    const int            restore_svgSize = 372;
+    extern const char*   icon_restore_svg;
+    const int            icon_restore_svgSize = 372;
 
-    extern const char*   search_off_svg;
-    const int            search_off_svgSize = 647;
+    extern const char*   icon_search_off_svg;
+    const int            icon_search_off_svgSize = 647;
 
-    extern const char*   sync_svg;
-    const int            sync_svgSize = 386;
+    extern const char*   icon_sync_svg;
+    const int            icon_sync_svgSize = 386;
 
-    extern const char*   system_update_alt_svg;
-    const int            system_update_alt_svgSize = 434;
+    extern const char*   icon_system_update_alt_svg;
+    const int            icon_system_update_alt_svgSize = 434;
 
-    extern const char*   text_rotate_up_svg;
-    const int            text_rotate_up_svgSize = 305;
+    extern const char*   icon_text_rotate_up_svg;
+    const int            icon_text_rotate_up_svgSize = 305;
 
-    extern const char*   text_rotation_down_svg;
-    const int            text_rotation_down_svgSize = 300;
+    extern const char*   icon_text_rotation_down_svg;
+    const int            icon_text_rotation_down_svgSize = 300;
 
-    extern const char*   tune_svg;
-    const int            tune_svgSize = 278;
+    extern const char*   icon_tune_svg;
+    const int            icon_tune_svgSize = 278;
 
-    extern const char*   visibility_svg;
-    const int            visibility_svgSize = 493;
+    extern const char*   icon_visibility_svg;
+    const int            icon_visibility_svgSize = 493;
 
-    extern const char*   zoom_in_svg;
-    const int            zoom_in_svgSize = 423;
+    extern const char*   icon_zoom_in_svg;
+    const int            icon_zoom_in_svgSize = 423;
 
-    extern const char*   zoom_out_svg;
-    const int            zoom_out_svgSize = 404;
+    extern const char*   icon_zoom_out_svg;
+    const int            icon_zoom_out_svgSize = 404;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 18;

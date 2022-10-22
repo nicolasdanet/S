@@ -21,6 +21,9 @@ core::Data getForClass (const juce::String& c)
 {
     DBG (c);
     
+    // int n = 0; const char* data = BinaryData::getNamedResource (name, n);
+    // "info_bng_xml"
+    
     return core::Data (Ids::DOCUMENTATION);
 }
 
