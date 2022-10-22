@@ -109,6 +109,11 @@ juce::ValueTree getCopyPruned (const juce::ValueTree& tree)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::String Data::debug (const Data& data)
+{
+    return debug (data.asValueTree());
+}
+
 juce::String Data::debug (const juce::ValueTree& tree)
 {
     return getCopyPruned (tree).toXmlString();
@@ -143,6 +148,23 @@ void changeValuesFrom (Data& data, const juce::ValueTree& other)
     for (auto child : other) { changeValuesFrom (data, child); }
 }
 
+void setValuesFromDocumentation (Data& data, const juce::ValueTree& other)
+{
+    if (other.hasType (Ids::GROUP)) {
+    //
+    /*
+    const juce::String group (other.getProperty (Ids::name).toString());
+    const juce::String key (other.getProperty (Ids::key).toString());
+    const juce::var v (other.getProperty (Ids::value));
+    
+    if (data.hasParameter (group, key)) { data.getParameter (group, key).changeValue (v); }
+    */
+    //
+    }
+    
+    for (auto child : other) { setValuesFromDocumentation (data, child); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -161,9 +183,14 @@ void Data::apply (const Item& item)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Note that for now only XML from documentation is handled. */
+
 void Data::setFromXML (const juce::String& s)
 {
-    DBG (s);
+    std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (s));
+    if (xml) {
+        setValuesFromDocumentation (*this, juce::ValueTree::fromXml (*xml));
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -29,6 +29,8 @@ core::Data getForClass (const juce::String& c)
     //
     }
     
+    DBG (core::Data::debug (documentation));
+        
     return documentation;
 }
 

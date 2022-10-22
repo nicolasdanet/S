@@ -130,6 +130,7 @@ public:
 // MARK: -
 
 public:
+    static juce::String debug (const Data&);
     static juce::String debug (const juce::ValueTree&);
     static juce::String debug (const Item&);
     
