@@ -128,7 +128,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void setValuesFrom (Data& data, const juce::ValueTree& other)
+void changeValuesFrom (Data& data, const juce::ValueTree& other)
 {
     if (other.hasType (Ids::PARAMETER)) {
     //
@@ -140,7 +140,7 @@ void setValuesFrom (Data& data, const juce::ValueTree& other)
     //
     }
     
-    for (auto child : other) { setValuesFrom (data, child); }
+    for (auto child : other) { changeValuesFrom (data, child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -152,11 +152,20 @@ void setValuesFrom (Data& data, const juce::ValueTree& other)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Data::setWith (const Item& item)
+void Data::apply (const Item& item)
 {
-    setValuesFrom (*this, getCopyPruned (item.asValueTree()));
+    changeValuesFrom (*this, getCopyPruned (item.asValueTree()));
 }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Data::setFromXML (const juce::String& s)
+{
+    DBG (s);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -166,7 +175,7 @@ bool Data::readValuesFromFile (const juce::File& file)
     if (file.existsAsFile() && file.hasFileExtension (".xml")) {
         std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file));
         if (xml) {
-            setValuesFrom (*this, juce::ValueTree::fromXml (*xml));
+            changeValuesFrom (*this, juce::ValueTree::fromXml (*xml));
             return true;
         }
     }

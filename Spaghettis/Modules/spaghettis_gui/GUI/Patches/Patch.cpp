@@ -34,7 +34,7 @@ void Patch::add (const core::UniquePath& u, const core::Report& v)
     if (v.isPatch()) {
         juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
         if (child.isValid()) {
-            core::Patch (child).setWith (v); return;      /* Two-step creation for subpatches. */
+            core::Patch (child).apply (v); return;      /* Two-step creation for subpatches. */
         }
     }
     
@@ -47,15 +47,15 @@ void Patch::change (const core::UniquePath& u, const core::Report& v)
 {
     juce::ValueTree parent (getParent (u));
     
-    if (u.isRoot()) { core::Patch (parent).setWith (v); }
+    if (u.isRoot()) { core::Patch (parent).apply (v); }
     else {
     //
     juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
 
     if (child.isValid()) {
-        if (Tree::isLine (child)) { core::Line (child).setWith (v); }
+        if (Tree::isLine (child)) { core::Line (child).apply (v); }
         else {
-            core::Object (child).setWith (v);
+            core::Object (child).apply (v);
         }
     }
     //

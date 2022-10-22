@@ -111,7 +111,7 @@ public:
 // MARK: -
 
 public:
-    void setWith (const Item&);
+    void apply (const Item&);
 
 public:
     static Item createCopy (const Item&);

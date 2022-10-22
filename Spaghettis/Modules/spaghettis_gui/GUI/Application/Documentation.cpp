@@ -19,12 +19,17 @@ namespace {
 
 core::Data getForClass (const juce::String& c)
 {
-    DBG (c);
+    core::Data documentation    = core::Data (Ids::DOCUMENTATION);
+    const juce::String name     = juce::String ("info_") + c + juce::String ("_xml");
+    int n = 0; const char* data = BinaryData::getNamedResource (name.toRawUTF8(), n);
     
-    // int n = 0; const char* data = BinaryData::getNamedResource (name, n);
-    // "info_bng_xml"
+    if (n && data) {
+    //
+    documentation.setFromXML (juce::String::createStringFromData (data, n));
+    //
+    }
     
-    return core::Data (Ids::DOCUMENTATION);
+    return documentation;
 }
 
 // -----------------------------------------------------------------------------------------------------------

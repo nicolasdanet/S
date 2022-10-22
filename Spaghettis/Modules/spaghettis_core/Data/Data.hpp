@@ -112,12 +112,15 @@ public:
 // MARK: -
 
 public:
-    void setWith (const Item&);
+    void apply (const Item&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    void setFromXML (const juce::String&);
+    
 public:
     bool readValuesFromFile (const juce::File&);
     void writeValuesToFile  (const juce::File&) const;
