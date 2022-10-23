@@ -17,21 +17,21 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Data getForClass (const juce::String& c)
+void addDocumentationForClass (core::Item& i, const juce::String& c)
 {
-    core::Data documentation    = core::Data (Ids::DOCUMENTATION);
     const juce::String name     = juce::String ("info_") + c + juce::String ("_xml");
     int n = 0; const char* data = BinaryData::getNamedResource (name.toRawUTF8(), n);
     
     if (n && data) {
     //
-    documentation.addParametersFromXml (juce::String::createStringFromData (data, n));
+    i.getData().addParametersFromXml (juce::String::createStringFromData (data, n));
     //
     }
-    
-    DBG (core::Data::debug (documentation));
-        
-    return documentation;
+}
+
+void addDocumentation (core::Item& i)
+{
+    addDocumentationForClass (i, i.get<juce::String> (Tags::Attributes, Tags::Class));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -47,9 +47,7 @@ core::Item Documentation::copy (const core::Item& item)
 {
     core::Item i (core::Item::createCopy (item));
     
-    if (i.isObject() && !i.isPatch()) {
-        core::Data d (getForClass (i.get<juce::String> (Tags::Attributes, Tags::Class)));
-    }
+    if (i.isObject() && !i.isPatch()) { addDocumentation (i); }
     
     return i;
 }
