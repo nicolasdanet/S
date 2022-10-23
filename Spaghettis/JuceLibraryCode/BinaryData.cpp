@@ -15,9 +15,14 @@ static const unsigned char temp_binary_data_0[] =
 "\r\n"
 "<DOCUMENTATION>\r\n"
 "  <GROUP name=\"Documentation\">\r\n"
-"    <PARAMETER key=\"Description\" label=\"Description\" value=\"Bang!\"/>\r\n"
-"    <PARAMETER key=\"Inlet 0\"     label=\"Inlet\"       value=\"Trigger a bang out for any entry\"/>\r\n"
-"    <PARAMETER key=\"Outlet 0\"    label=\"Outlet\"      value=\"Bang!\"/>\r\n"
+"    <PARAMETER key=\"Description\"\r\n"
+"        value=\"Output a bang for any interaction\"/>\r\n"
+"    <PARAMETER key=\"Inlet0\"\r\n"
+"        label=\"Inlet\"\r\n"
+"        value=\"Trigger a bang out in response to any entry\"/>\r\n"
+"    <PARAMETER key=\"Outlet0\"\r\n"
+"        label=\"Outlet\"\r\n"
+"        value=\"Bang!\"/>\r\n"
 "  </GROUP>\r\n"
 "</DOCUMENTATION>\r\n";
 
@@ -157,7 +162,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x4f50b4e2:  numBytes = 358; return info_bng_xml;
+        case 0x4f50b4e2:  numBytes = 402; return info_bng_xml;
         case 0xa5ac8800:  numBytes = 194; return icon_add_svg;
         case 0x0319b4fc:  numBytes = 723; return icon_construction_svg;
         case 0xa0922c7e:  numBytes = 368; return icon_delete_forever_svg;

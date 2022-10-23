@@ -111,19 +111,19 @@ void setObjectAttributesForObject (Group& group, t_object* o)
         
     group.addParameter (Tags::Content,
         NEEDS_TRANS ("Content"),
-        NEEDS_TRANS ("Content of the box"),
+        NEEDS_TRANS ("Content of the box's buffer"),
         getContentBuffer (o),
-        delegate).setHidden (true);
+        delegate).setEditable (false);
     
     group.addParameter (Tags::Inlets,
         NEEDS_TRANS ("Inlets"),
-        NEEDS_TRANS ("List of inlets"),
+        NEEDS_TRANS ("List of inlets types"),
         object_getTypeOfInlets (o),
         delegate).setEditable (false);
     
     group.addParameter (Tags::Outlets,
         NEEDS_TRANS ("Outlets"),
-        NEEDS_TRANS ("List of outlets"),
+        NEEDS_TRANS ("List of outlets types"),
         object_getTypeOfOutlets (o),
         delegate).setEditable (false);
         
