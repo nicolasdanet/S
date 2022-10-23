@@ -153,11 +153,11 @@ void addParameterFromDocumentation (Group group, const juce::ValueTree& other)
     const juce::String key (other.getProperty (Ids::key).toString());
     const juce::String value (other.getProperty (Ids::value).toString());
     
+    if (key.isNotEmpty() && value.isNotEmpty() && !group.hasParameter (key)) {
+    //
     juce::String label (other.getProperty (Ids::label).toString());
     juce::String info (other.getProperty (Ids::info).toString());
     
-    if (key.isNotEmpty()) {
-    //
     if (label.isEmpty()) { label = key;   }
     if (info.isEmpty())  { info  = label; }
     
