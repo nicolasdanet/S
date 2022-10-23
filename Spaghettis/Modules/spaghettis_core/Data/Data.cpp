@@ -148,21 +148,34 @@ void changeValuesFrom (Data& data, const juce::ValueTree& other)
     for (auto child : other) { changeValuesFrom (data, child); }
 }
 
-void setValuesFromDocumentation (Data& data, const juce::ValueTree& other)
+void addParametersFromDocumentation (Group group, const juce::ValueTree& other)
 {
-    if (other.hasType (Ids::GROUP)) {
-    //
-    /*
-    const juce::String group (other.getProperty (Ids::name).toString());
     const juce::String key (other.getProperty (Ids::key).toString());
-    const juce::var v (other.getProperty (Ids::value));
+    const juce::String label (other.getProperty (Ids::label).toString());
+    const juce::String info (other.getProperty (Ids::info).toString());
+    const juce::String value (other.getProperty (Ids::value).toString());
+
+    DBG (key);
+    DBG (label);
+    DBG (info);
+    DBG (value);
+}
+
+/* Note that for now only XML from documentation is handled. */
+
+void addParametersFrom (Data& data, const juce::ValueTree& other)
+{
+    if (other.hasType (Ids::PARAMETER)) {
+    //
+    const juce::String group (other.getParent().getProperty (Ids::name).toString());
     
-    if (data.hasParameter (group, key)) { data.getParameter (group, key).changeValue (v); }
-    */
+    if (!data.hasGroup (group)) { data.addGroup (group); }
+    
+    addParametersFromDocumentation (data.getGroup (group), other);
     //
     }
     
-    for (auto child : other) { setValuesFromDocumentation (data, child); }
+    for (auto child : other) { addParametersFrom (data, child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -183,13 +196,11 @@ void Data::apply (const Item& item)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Note that for now only XML from documentation is handled. */
-
-void Data::setFromXML (const juce::String& s)
+void Data::addParametersFromXml (const juce::String& s)
 {
     std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (s));
     if (xml) {
-        setValuesFromDocumentation (*this, juce::ValueTree::fromXml (*xml));
+        addParametersFrom (*this, juce::ValueTree::fromXml (*xml));
     }
 }
 

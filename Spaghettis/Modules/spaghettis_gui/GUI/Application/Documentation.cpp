@@ -25,7 +25,7 @@ core::Data getForClass (const juce::String& c)
     
     if (n && data) {
     //
-    documentation.setFromXML (juce::String::createStringFromData (data, n));
+    documentation.addParametersFromXml (juce::String::createStringFromData (data, n));
     //
     }
     
