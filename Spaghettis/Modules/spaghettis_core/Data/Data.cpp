@@ -148,17 +148,22 @@ void changeValuesFrom (Data& data, const juce::ValueTree& other)
     for (auto child : other) { changeValuesFrom (data, child); }
 }
 
-void addParametersFromDocumentation (Group group, const juce::ValueTree& other)
+void addParameterFromDocumentation (Group group, const juce::ValueTree& other)
 {
     const juce::String key (other.getProperty (Ids::key).toString());
-    const juce::String label (other.getProperty (Ids::label).toString());
-    const juce::String info (other.getProperty (Ids::info).toString());
     const juce::String value (other.getProperty (Ids::value).toString());
-
-    DBG (key);
-    DBG (label);
-    DBG (info);
-    DBG (value);
+    
+    juce::String label (other.getProperty (Ids::label).toString());
+    juce::String info (other.getProperty (Ids::info).toString());
+    
+    if (key.isNotEmpty()) {
+    //
+    if (label.isEmpty()) { label = key;   }
+    if (info.isEmpty())  { info  = label; }
+    
+    group.addParameter (key, label, info, value).setEditable (false);
+    //
+    }
 }
 
 /* Note that for now only XML from documentation is handled. */
@@ -171,7 +176,7 @@ void addParametersFrom (Data& data, const juce::ValueTree& other)
     
     if (!data.hasGroup (group)) { data.addGroup (group); }
     
-    addParametersFromDocumentation (data.getGroup (group), other);
+    addParameterFromDocumentation (data.getGroup (group), other);
     //
     }
     
