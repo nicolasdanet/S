@@ -48,7 +48,8 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     label_ (object.getCached<juce::String> (Tags::Parameters, Tags::Label, true)),
     boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tags::BoxSelected)),
-    painter_ (createPainter (this, object))
+    painter_ (createPainter (this, object)),
+    documentation_ (object)
 {
     jassert (view);
     

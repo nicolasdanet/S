@@ -10,6 +10,15 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Documentation::Documentation (const core::Object& o) : data_ (find (o))
+{
+    DBG (core::Data::debug (data_));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 namespace {
 
@@ -17,21 +26,16 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void addDocumentationForClass (core::Item& i, const juce::String& c)
+void addDocumentationForClass (core::Data data, const juce::String& c)
 {
-    const juce::String name     = juce::String ("info_") + c + juce::String ("_xml");
-    int n = 0; const char* data = BinaryData::getNamedResource (name.toRawUTF8(), n);
+    const juce::String name  = juce::String ("info_") + c + juce::String ("_xml");
+    int n = 0; const char* p = BinaryData::getNamedResource (name.toRawUTF8(), n);
     
-    if (n && data) {
+    if (n && p) {
     //
-    i.getData().addParametersFromXml (juce::String::createStringFromData (data, n));
+    data.addParametersFromXml (juce::String::createStringFromData (p, n));
     //
     }
-}
-
-void addDocumentation (core::Item& i)
-{
-    addDocumentationForClass (i, i.get<juce::String> (Tags::Attributes, Tags::Class));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -47,9 +51,22 @@ core::Item Documentation::copy (const core::Item& item)
 {
     core::Item i (core::Item::createCopy (item));
     
-    if (i.isObject() && !i.isPatch()) { addDocumentation (i); }
+    if (i.isObject() && !i.isPatch()) {
+        addDocumentationForClass (i.getData(), i.get<juce::String> (Tags::Attributes, Tags::Class));
+    }
     
     return i;
+}
+
+core::Data Documentation::find (const core::Object& o)
+{
+    core::Data data (Ids::DOCUMENTATION);
+    
+    if (!o.isPatch()) {
+        addDocumentationForClass (data, o.get<juce::String> (Tags::Attributes, Tags::Class));
+    }
+    
+    return data;
 }
 
 // -----------------------------------------------------------------------------------------------------------
