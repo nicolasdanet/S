@@ -122,7 +122,7 @@ LineComponent* EditView::getSelectedLine()
     return getLineComponent (getSelected (lines_));
 }
 
-core::Item EditView::getItemForInspector()
+core::Item EditView::getSelectedItem()
 {
     if (getNumberOfSelectedObjects() == 1) {
         ObjectComponent* o = getSelectedObject(); if (o) { return o->getObject(); }
@@ -131,6 +131,11 @@ core::Item EditView::getItemForInspector()
     }
     
     return core::Patch (viewTree_);
+}
+
+core::Item EditView::getItemForInspector()
+{
+    return Documentation::copy (getSelectedItem());
 }
 
 // -----------------------------------------------------------------------------------------------------------
