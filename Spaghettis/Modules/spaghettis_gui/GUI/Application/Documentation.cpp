@@ -47,6 +47,7 @@ void addDocumentationForClass (core::Data data, const juce::String& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/*
 core::Item Documentation::copy (const core::Item& item)
 {
     core::Item i (core::Item::createCopy (item));
@@ -57,6 +58,25 @@ core::Item Documentation::copy (const core::Item& item)
     
     return i;
 }
+*/
+
+core::Item Documentation::createCopy (ObjectComponent* o)
+{
+    jassert (o); core::Item i (core::Item::createCopy (o->getObject()));
+    
+    return i;
+}
+
+core::Item Documentation::createCopy (LineComponent* l)
+{
+    jassert (l); core::Item i (core::Item::createCopy (l->getLine()));
+    
+    return i;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 core::Data Documentation::find (const core::Object& o)
 {

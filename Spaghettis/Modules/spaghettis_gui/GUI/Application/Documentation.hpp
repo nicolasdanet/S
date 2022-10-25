@@ -10,6 +10,12 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+class ObjectComponent;
+class LineComponent;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 class Documentation {
@@ -28,8 +34,9 @@ public:
 // MARK: -
 
 public:
-    static core::Item copy (const core::Item&);
-
+    static core::Item createCopy (ObjectComponent*);
+    static core::Item createCopy (LineComponent*);
+    
 private:
     static core::Data find (const core::Object&);
 
