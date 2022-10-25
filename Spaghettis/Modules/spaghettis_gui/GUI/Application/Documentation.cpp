@@ -47,22 +47,13 @@ void addDocumentationForClass (core::Data data, const juce::String& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
-core::Item Documentation::copy (const core::Item& item)
+core::Item Documentation::createCopy (ObjectComponent* o)
 {
-    core::Item i (core::Item::createCopy (item));
+    jassert (o); core::Item i (core::Item::createCopy (o->getObject()));
     
     if (i.isObject() && !i.isPatch()) {
         addDocumentationForClass (i.getData(), i.get<juce::String> (Tags::Attributes, Tags::Class));
     }
-    
-    return i;
-}
-*/
-
-core::Item Documentation::createCopy (ObjectComponent* o)
-{
-    jassert (o); core::Item i (core::Item::createCopy (o->getObject()));
     
     return i;
 }
