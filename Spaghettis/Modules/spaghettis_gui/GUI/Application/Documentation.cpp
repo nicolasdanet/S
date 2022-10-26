@@ -26,7 +26,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void addDocumentationForClass (core::Data data, const juce::String& c)
+void findDocumentationForClass (core::Data data, const juce::String& c)
 {
     const juce::String name  = juce::String ("info_") + c + juce::String ("_xml");
     int n = 0; const char* p = BinaryData::getNamedResource (name.toRawUTF8(), n);
@@ -51,8 +51,8 @@ core::Item Documentation::createCopy (ObjectComponent* o)
 {
     jassert (o); core::Item i (core::Item::createCopy (o->getObject()));
     
-    if (i.isObject() && !i.isPatch()) {
-        addDocumentationForClass (i.getData(), i.get<juce::String> (Tags::Attributes, Tags::Class));
+    if (!i.isPatch()) {
+        findDocumentationForClass (i.getData(), i.get<juce::String> (Tags::Attributes, Tags::Class));
     }
     
     return i;
@@ -74,7 +74,7 @@ core::Data Documentation::find (const core::Object& o)
     core::Data data (Ids::DOCUMENTATION);
     
     if (!o.isPatch()) {
-        addDocumentationForClass (data, o.get<juce::String> (Tags::Attributes, Tags::Class));
+        findDocumentationForClass (data, o.get<juce::String> (Tags::Attributes, Tags::Class));
     }
     
     return data;
