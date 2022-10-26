@@ -35,11 +35,6 @@ bool isPinSignal (const juce::String& type)
     return (type == "signal");
 }
 
-juce::String getTooltipText (const juce::String& type)
-{
-    return type.substring (0, 1).toUpperCase() + type.substring (1);
-}
-
 juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r, float scale)
 {
     return r.reduced (PainterPolicy::pinGripX (scale), PainterPolicy::pinGripY (scale));
@@ -64,8 +59,6 @@ PinComponent::PinComponent (View* view, const core::Object& object, const juce::
     isOver_ (false)
 {
     setOpaque (false); setPaintingIsUnclipped (true);
-    
-    setTooltip (getTooltipText (type));
     
     selected_.attach (PainterPolicy::repaint (this));
     pinColour_.attach (PainterPolicy::repaint (this));

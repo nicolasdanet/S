@@ -14,7 +14,22 @@ namespace spaghettis {
 
 Documentation::Documentation (const core::Object& o) : data_ (find (o))
 {
-    DBG (core::Data::debug (data_));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/*
+juce::String getTooltipText (const juce::String& type)
+{
+    return type.substring (0, 1).toUpperCase() + type.substring (1);
+}
+*/
+
+juce::String Documentation::getPinTooltip (const juce::String& type, bool isOutlet, int i) const
+{
+    return juce::String ("?");
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -423,6 +423,7 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float
 std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& a,
     const juce::Rectangle<int>& bounds,
     const core::Object& object,
+    const Documentation& documentation,
     View* view,
     float scale,
     bool isOutlet)
@@ -432,9 +433,11 @@ std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& 
     std::vector<std::unique_ptr<PinComponent>> pins;
     
     for (int i = 0; i < n; ++i) {
-        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (view, object, a[i]);
+        const juce::String type (a[i]);
+        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (view, object, type);
         p->setBounds (getPinBounds (bounds, i, scale, isOutlet));
         p->setVisible (true);
+        p->setTooltip (documentation.getPinTooltip (type, isOutlet, i));
         pins.push_back (std::move (p));
     }
     
@@ -473,8 +476,8 @@ void ObjectComponent::createInletsAndOutlets()
     
     const juce::Rectangle<int> bounds (getBounds());
     
-    if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, view_, scale, false); }
-    if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, view_, scale, true);  }
+    if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, documentation_, view_, scale, false); }
+    if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, documentation_, view_, scale, true);  }
     
     moveAllPinsFront();
 }
