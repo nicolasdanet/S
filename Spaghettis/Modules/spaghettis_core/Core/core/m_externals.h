@@ -21,11 +21,11 @@
 #endif
 
 #ifndef PD_GUARD
-#define PD_GUARD                                /* Used by application only. */
+#define PD_GUARD                                /* Used by GUI only. */
 #endif
 
 #ifndef PD_FORCE
-#define PD_FORCE                                /* Unused kept for now. */
+#define PD_FORCE                                /* Unused, but kept for now. */
 #endif
 
 // -----------------------------------------------------------------------------------------------------------

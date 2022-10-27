@@ -597,7 +597,7 @@ static void encapsulate_encapsulateConnectInletsAndOutlets (t_glist *owner,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void encapsulate_encapsulate (t_glist *glist)
+PD_GUARD void encapsulate_encapsulate (t_glist *glist)
 {
     int undoable = glist_undoIsOk (glist);
     
