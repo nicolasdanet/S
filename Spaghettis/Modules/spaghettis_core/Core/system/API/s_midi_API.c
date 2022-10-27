@@ -85,12 +85,16 @@ PD_LOCAL void midi_setDevices (t_devices *p, int setParameters)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUI void midi_rescanDevices (void)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void midi_rescanDevices (void)
 {
     t_deviceslist l; t_error err = midi_getDevicesList (&l, 1);
     
     PD_ASSERT (!err); PD_UNUSED (err);
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

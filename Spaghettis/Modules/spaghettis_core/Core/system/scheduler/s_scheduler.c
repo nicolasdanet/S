@@ -110,7 +110,7 @@ PD_LOCAL void scheduler_needToExit (void)
     PD_ATOMIC_INT32_WRITE (SCHEDULER_QUIT, &scheduler_quit);
 }
 
-PD_GUI void scheduler_needToExitWithError (void)
+PD_FORCE void scheduler_needToExitWithError (void)
 {
     PD_ATOMIC_INT32_WRITE (SCHEDULER_ERROR, &scheduler_quit);
 }

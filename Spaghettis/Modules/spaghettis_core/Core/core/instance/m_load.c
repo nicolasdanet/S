@@ -195,7 +195,9 @@ PD_LOCAL void instance_loadSnippet (t_glist *glist, t_buffer *b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUI void instance_patchNew (t_symbol *name, t_symbol *directory)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void instance_patchNew (t_symbol *name, t_symbol *directory)
 {
     instance_environmentSetFile (name, directory);
     
@@ -203,6 +205,8 @@ PD_GUI void instance_patchNew (t_symbol *name, t_symbol *directory)
     
     instance_environmentResetFile();
 }
+
+#endif
 
 PD_LOCAL t_error instance_patchOpen (t_symbol *name, t_symbol *directory)
 {

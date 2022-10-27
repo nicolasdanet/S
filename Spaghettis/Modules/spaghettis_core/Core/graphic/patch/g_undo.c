@@ -66,7 +66,9 @@ PD_LOCAL t_undomanager *glist_undoReplaceManager (t_glist *glist, t_undomanager 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUI void glist_undo (t_glist *glist)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void glist_undo (t_glist *glist)
 {
     PD_ASSERT (glist);
     
@@ -82,7 +84,7 @@ PD_GUI void glist_undo (t_glist *glist)
     }
 }
 
-PD_GUI void glist_redo (t_glist *glist)
+PD_LOCAL void glist_redo (t_glist *glist)
 {
     PD_ASSERT (glist);
     
@@ -97,6 +99,8 @@ PD_GUI void glist_redo (t_glist *glist)
     //
     }
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -14,8 +14,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUI void encapsulate_encapsulate     (t_glist *glist);
-PD_GUI void encapsulate_deencapsulate   (t_glist *glist);
+PD_LOCAL void encapsulate_encapsulate   (t_glist *g);
+PD_LOCAL void encapsulate_deencapsulate (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

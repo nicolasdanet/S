@@ -123,12 +123,16 @@ PD_LOCAL t_error audio_check (t_devices *p)
     return err;
 }
 
-PD_GUI void audio_rescanDevices (void)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void audio_rescanDevices (void)
 {
     t_deviceslist l; t_error err = audio_getDevicesList (&l, 1);
     
     PD_ASSERT (!err); PD_UNUSED (err);
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

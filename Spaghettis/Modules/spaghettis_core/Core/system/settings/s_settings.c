@@ -120,7 +120,9 @@ PD_LOCAL void settings_load (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUI void settings_save (void)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void settings_save (void)
 {
     t_devices midi;    
     t_devices audio;   
@@ -196,6 +198,8 @@ PD_GUI void settings_save (void)
     
     properties_saveClose();
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

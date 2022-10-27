@@ -42,10 +42,14 @@ PD_LOCAL t_glist *glist_getNext (t_glist *g)
     return g->gl_next;
 }
 
-PD_GUI t_symbol *glist_getName (t_glist *g)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL t_symbol *glist_getName (t_glist *g)
 {
     return g->gl_name;
 }
+
+#endif
 
 PD_LOCAL t_symbol *glist_getUnexpandedName (t_glist *glist)
 {

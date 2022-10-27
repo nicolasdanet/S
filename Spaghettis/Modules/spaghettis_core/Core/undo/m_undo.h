@@ -107,8 +107,8 @@ PD_LOCAL void   undomanager_append                  (t_undomanager *x, t_undoact
 PD_LOCAL void   undomanager_undo                    (t_undomanager *x);
 PD_LOCAL void   undomanager_redo                    (t_undomanager *x);
 
-PD_GUI   t_symbol   *undomanager_getUndoLabel       (t_undomanager *x);
-PD_GUI   t_symbol   *undomanager_getRedoLabel       (t_undomanager *x);
+PD_LOCAL t_symbol   *undomanager_getUndoLabel       (t_undomanager *x);
+PD_LOCAL t_symbol   *undomanager_getRedoLabel       (t_undomanager *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

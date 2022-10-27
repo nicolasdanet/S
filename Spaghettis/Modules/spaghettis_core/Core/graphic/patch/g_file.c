@@ -94,6 +94,8 @@ static void glist_serializeFooter (t_glist *glist, t_buffer *b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 static void glist_serializeView (t_glist *glist, t_buffer *b)
 {
     PD_ASSERT (glist_isRoot (glist));
@@ -111,6 +113,8 @@ static void glist_serializeView (t_glist *glist, t_buffer *b)
         buffer_appendSemicolon (b);
     }
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -140,6 +144,8 @@ PD_LOCAL void glist_serialize (t_glist *glist, t_buffer *b, int flags, int isAbs
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 static void glist_saveProceed (t_glist *glist, t_symbol *name, t_symbol *directory)
 {
     t_buffer *b = buffer_new();
@@ -159,11 +165,15 @@ static void glist_saveProceed (t_glist *glist, t_symbol *name, t_symbol *directo
     buffer_free (b);
 }
 
+#endif
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUI void glist_save (t_glist *glist)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void glist_save (t_glist *glist)
 {
     t_glist *root  = glist_getTop (glist);
     t_symbol *name = environment_getFileName (glist_getEnvironment (root));
@@ -173,6 +183,8 @@ PD_GUI void glist_save (t_glist *glist)
         glist_saveProceed (root, name, environment_getDirectory (glist_getEnvironment (root)));
     }
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

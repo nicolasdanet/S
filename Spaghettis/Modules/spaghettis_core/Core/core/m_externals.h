@@ -21,11 +21,7 @@
 #endif
 
 #ifndef PD_FORCE
-#define PD_FORCE                                /* Unused, but kept for now. */
-#endif
-
-#ifndef PD_GUI
-#define PD_GUI                                  /* Used by GUI only. */
+#define PD_FORCE        /* Unused, but kept for now. */
 #endif
 
 // -----------------------------------------------------------------------------------------------------------
