@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUARD t_error unique_objectSelect (t_id u)
+PD_GUI t_error unique_objectSelect (t_id u)
 {
     t_object *object = instance_registerGetObject (u);
     t_glist *glist   = instance_registerGetOwner (u);
@@ -27,7 +27,7 @@ PD_GUARD t_error unique_objectSelect (t_id u)
     return PD_ERROR;
 }
 
-PD_GUARD t_error unique_objectDeselect (t_id u)
+PD_GUI t_error unique_objectDeselect (t_id u)
 {
     t_object *object = instance_registerGetObject (u);
     t_glist *glist   = instance_registerGetOwner (u);
@@ -59,7 +59,7 @@ PD_LOCAL t_error unique_objectRemove (t_id u)
     return PD_ERROR;
 }
 
-PD_GUARD t_error unique_objectSnap (t_id u)
+PD_GUI t_error unique_objectSnap (t_id u)
 {
     t_object *object = instance_registerGetObject (u);
     t_glist *glist   = instance_registerGetOwner (u);
@@ -73,7 +73,7 @@ PD_GUARD t_error unique_objectSnap (t_id u)
     return PD_ERROR;
 }
 
-PD_GUARD t_error unique_objectPosition (t_id u, int x, int y)
+PD_GUI t_error unique_objectPosition (t_id u, int x, int y)
 {
     t_object *object = instance_registerGetObject (u);
     t_glist *glist   = instance_registerGetOwner (u);
@@ -147,7 +147,7 @@ PD_LOCAL t_error unique_objectMoveAt (t_id u, int n)
     return PD_ERROR;
 }
 
-PD_GUARD t_error unique_objectMoveBack (t_id u)
+PD_GUI t_error unique_objectMoveBack (t_id u)
 {
     t_object *object = instance_registerGetObject (u);
     t_glist *glist   = instance_registerGetOwner (u);
@@ -161,7 +161,7 @@ PD_GUARD t_error unique_objectMoveBack (t_id u)
     return PD_ERROR;
 }
 
-PD_GUARD t_error unique_objectMoveFront (t_id u)
+PD_GUI t_error unique_objectMoveFront (t_id u)
 {
     t_object *object = instance_registerGetObject (u);
     t_glist *glist   = instance_registerGetOwner (u);
@@ -191,7 +191,7 @@ PD_FORCE t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *ar
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_GUARD t_error unique_objectParameter (t_id u, const core::Group& group)
+PD_GUI t_error unique_objectParameter (t_id u, const core::Group& group)
 {
     t_object *object = instance_registerGetObject (u);
     t_glist *glist   = instance_registerGetOwner (u);
@@ -314,7 +314,7 @@ static t_glist *unique_getPatch (t_id u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUARD t_error unique_patchClose (t_id u)
+PD_GUI t_error unique_patchClose (t_id u)
 {
     t_glist *g = unique_getPatch (u);
     
@@ -323,7 +323,7 @@ PD_GUARD t_error unique_patchClose (t_id u)
     return PD_ERROR;
 }
 
-PD_GUARD t_error unique_patchSave (t_id u)
+PD_GUI t_error unique_patchSave (t_id u)
 {
     t_glist *g = unique_getPatch (u);
     
@@ -332,7 +332,7 @@ PD_GUARD t_error unique_patchSave (t_id u)
     return PD_ERROR;
 }
 
-PD_GUARD t_error unique_patchSetEditView (t_id u, t_rectangle *r)
+PD_GUI t_error unique_patchSetEditView (t_id u, t_rectangle *r)
 {
     t_glist *g = unique_getPatch (u);
     
@@ -341,7 +341,7 @@ PD_GUARD t_error unique_patchSetEditView (t_id u, t_rectangle *r)
     return PD_ERROR;
 }
 
-PD_GUARD t_error unique_patchSetRunView (t_id u, t_rectangle *r)
+PD_GUI t_error unique_patchSetRunView (t_id u, t_rectangle *r)
 {
     t_glist *g = unique_getPatch (u);
     

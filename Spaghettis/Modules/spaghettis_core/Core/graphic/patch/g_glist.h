@@ -55,7 +55,7 @@ PD_LOCAL void       glist_makeObject    (t_glist *g, int argc, t_atom *argv);
 // MARK: -
 
 PD_LOCAL void       glist_close         (t_glist *g);
-PD_GUARD void       glist_save          (t_glist *g);
+PD_GUI   void       glist_save          (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ PD_LOCAL t_glist            *glist_getRoot              (t_glist *g);
 PD_LOCAL t_glist            *glist_getTop               (t_glist *g);
 PD_LOCAL t_glist            *glist_getParent            (t_glist *g);
 PD_LOCAL t_glist            *glist_getNext              (t_glist *g);
-PD_GUARD t_symbol           *glist_getName              (t_glist *g);
+PD_GUI   t_symbol           *glist_getName              (t_glist *g);
 PD_LOCAL t_symbol           *glist_getUnexpandedName    (t_glist *g);
 PD_LOCAL t_environment      *glist_getEnvironment       (t_glist *g);
 PD_LOCAL t_undomanager      *glist_getUndoManager       (t_glist *g);
@@ -119,8 +119,8 @@ PD_LOCAL int    glist_fileOpen  (t_glist *g, const char *name, const char *exten
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUARD void   glist_undo                              (t_glist *g);
-PD_GUARD void   glist_redo                              (t_glist *g);
+PD_GUI   void   glist_undo                              (t_glist *g);
+PD_GUI   void   glist_redo                              (t_glist *g);
 
 PD_LOCAL int    glist_undoIsOk                          (t_glist *g);
 PD_LOCAL void   glist_undoAppendSeparator               (t_glist *g);
@@ -139,8 +139,8 @@ PD_LOCAL void   glist_objectRemoveSelected              (t_glist *g);
 PD_LOCAL int    glist_objectGetNumberOf                 (t_glist *g);
 PD_LOCAL int    glist_objectGetNumberOfSelected         (t_glist *g);
 
-PD_GUARD void   glist_objectSelect                      (t_glist *g, t_object *o);
-PD_GUARD void   glist_objectDeselect                    (t_glist *g, t_object *o);
+PD_GUI   void   glist_objectSelect                      (t_glist *g, t_object *o);
+PD_GUI   void   glist_objectDeselect                    (t_glist *g, t_object *o);
 PD_LOCAL int    glist_objectIsSelected                  (t_glist *g, t_object *o);
 
 PD_LOCAL void   glist_objectMoveAtFirst                 (t_glist *g, t_object *o);

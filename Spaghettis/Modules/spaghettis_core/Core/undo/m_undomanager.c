@@ -71,7 +71,7 @@ PD_LOCAL t_undoaction *undomanager_getRedoAction (t_undomanager *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_GUARD t_symbol *undomanager_getUndoLabel (t_undomanager *x)
+PD_GUI t_symbol *undomanager_getUndoLabel (t_undomanager *x)
 {
     t_undoaction *a = undomanager_getUndoAction (x);
     
@@ -80,7 +80,7 @@ PD_GUARD t_symbol *undomanager_getUndoLabel (t_undomanager *x)
     return NULL;
 }
 
-PD_GUARD t_symbol *undomanager_getRedoLabel (t_undomanager *x)
+PD_GUI t_symbol *undomanager_getRedoLabel (t_undomanager *x)
 {
     t_undoaction *a = undomanager_getRedoAction (x);
     

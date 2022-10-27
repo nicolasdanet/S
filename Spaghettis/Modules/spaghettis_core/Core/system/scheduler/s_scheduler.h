@@ -31,7 +31,7 @@ PD_LOCAL t_systime  scheduler_getLogicalTimeAfter       (double ms);
 PD_LOCAL double     scheduler_getMillisecondsSince      (t_systime systime);
 PD_LOCAL double     scheduler_getUnitsSince             (t_systime systime, double unit, int isSamples);
 PD_LOCAL void       scheduler_needToExit                (void);
-PD_GUARD void       scheduler_needToExitWithError       (void);
+PD_GUI   void       scheduler_needToExitWithError       (void);
 PD_LOCAL int        scheduler_isExiting                 (void);
 
 // -----------------------------------------------------------------------------------------------------------

@@ -42,7 +42,7 @@ PD_LOCAL t_glist *glist_getNext (t_glist *g)
     return g->gl_next;
 }
 
-PD_GUARD t_symbol *glist_getName (t_glist *g)
+PD_GUI t_symbol *glist_getName (t_glist *g)
 {
     return g->gl_name;
 }

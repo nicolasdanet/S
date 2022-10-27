@@ -85,7 +85,7 @@ PD_LOCAL void midi_setDevices (t_devices *p, int setParameters)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUARD void midi_rescanDevices (void)
+PD_GUI void midi_rescanDevices (void)
 {
     t_deviceslist l; t_error err = midi_getDevicesList (&l, 1);
     

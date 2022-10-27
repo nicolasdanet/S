@@ -64,7 +64,7 @@ PD_LOCAL int error__options (t_object *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUARD void error_doesNotExist (t_object *x, const char *filepath)
+PD_GUI void error_doesNotExist (t_object *x, const char *filepath)
 {
     post_error (x, PD_TRANSLATE ("file: doesn't exist %s"), filepath);
 }

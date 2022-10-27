@@ -163,7 +163,7 @@ static void glist_saveProceed (t_glist *glist, t_symbol *name, t_symbol *directo
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_GUARD void glist_save (t_glist *glist)
+PD_GUI void glist_save (t_glist *glist)
 {
     t_glist *root  = glist_getTop (glist);
     t_symbol *name = environment_getFileName (glist_getEnvironment (root));

@@ -20,12 +20,12 @@
 #define PD_LOCAL
 #endif
 
-#ifndef PD_GUARD
-#define PD_GUARD                                /* Used by GUI only. */
-#endif
-
 #ifndef PD_FORCE
 #define PD_FORCE                                /* Unused, but kept for now. */
+#endif
+
+#ifndef PD_GUI
+#define PD_GUI                                  /* Used by GUI only. */
 #endif
 
 // -----------------------------------------------------------------------------------------------------------

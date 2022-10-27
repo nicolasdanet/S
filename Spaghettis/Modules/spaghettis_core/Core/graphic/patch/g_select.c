@@ -13,12 +13,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_GUARD void glist_objectSelect (t_glist *glist, t_object *y)
+PD_GUI void glist_objectSelect (t_glist *glist, t_object *y)
 {
     object_setSelected (y, 1); outputs_objectUpdateAttributes (y, glist);
 }
 
-PD_GUARD void glist_objectDeselect (t_glist *glist, t_object *y)
+PD_GUI void glist_objectDeselect (t_glist *glist, t_object *y)
 {
     object_setSelected (y, 0); outputs_objectUpdateAttributes (y, glist);
 }
