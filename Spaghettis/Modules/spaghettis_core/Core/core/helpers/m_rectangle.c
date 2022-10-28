@@ -93,7 +93,7 @@ static void rectangle_addRectangle (t_rectangle *r, t_rectangle *toAdd)
     }
 }
 
-PD_LOCAL void rectangle_addPoint (t_rectangle *r, t_point *pt)
+PD_FORCE void rectangle_addPoint (t_rectangle *r, t_point *pt)
 {
     rectangle_add (r, point_getX (pt), point_getY (pt));
 }

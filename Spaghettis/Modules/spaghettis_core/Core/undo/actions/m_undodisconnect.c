@@ -30,6 +30,8 @@ typedef struct _undodisconnect {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL int undodisconnect_match (t_undoaction *a, t_id u, t_items *i, t_items *o)
 {
     if (undoaction_getType (a) == UNDO_DISCONNECT) {
@@ -43,6 +45,8 @@ PD_LOCAL int undodisconnect_match (t_undoaction *a, t_id u, t_items *i, t_items 
     
     return 0;
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

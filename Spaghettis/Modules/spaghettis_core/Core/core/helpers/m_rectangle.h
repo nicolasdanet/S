@@ -47,7 +47,7 @@ PD_LOCAL int    rectangle_areEquals         (t_rectangle *r1, t_rectangle *r2);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   rectangle_addPoint          (t_rectangle *r, t_point *pt);
+PD_FORCE void   rectangle_addPoint          (t_rectangle *r, t_point *pt);
 PD_LOCAL void   rectangle_add               (t_rectangle *r, int x, int y);
 
 // -----------------------------------------------------------------------------------------------------------

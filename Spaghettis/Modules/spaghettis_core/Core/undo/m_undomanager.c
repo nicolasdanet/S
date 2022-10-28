@@ -45,6 +45,8 @@ static void undomanager_task (t_undomanager *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL t_undoaction *undomanager_getUndoAction (t_undomanager *x)
 {
     t_undoaction *a = x->um_tail;
@@ -77,8 +79,6 @@ PD_LOCAL t_undoaction *undomanager_getRedoAction (t_undomanager *x)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_FORCE t_symbol *undomanager_getUndoLabel (t_undomanager *x)
 {

@@ -121,7 +121,7 @@ PD_LOCAL t_symbol *symbol_addSuffix (t_symbol *s, t_symbol *suffix)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *symbol_appendCopySuffix (t_symbol *s)
+PD_FORCE t_symbol *symbol_appendCopySuffix (t_symbol *s)
 {
     PD_ASSERT (s);
     

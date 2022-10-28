@@ -54,12 +54,5 @@ PD_LOCAL void instance_pendingAdd (t_object *y)
     y->g_next = instance_get()->pd_pending; instance_get()->pd_pending = y;
 }
 
-PD_LOCAL void instance_pendingRelease (void)
-{
-    t_object *y = instance_get()->pd_pending; instance_get()->pd_pending = NULL;
-    
-    while (y) { t_object *t = y; y = y->g_next; pd_free (cast_pd (t)); }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -249,7 +249,6 @@ PD_LOCAL t_object   *instance_pendingFetch          (t_object *y);
 
 PD_LOCAL int        instance_pendingRequired        (t_object *y);
 PD_LOCAL void       instance_pendingAdd             (t_object *y);
-PD_LOCAL void       instance_pendingRelease         (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -310,6 +309,7 @@ PD_LOCAL void       instance_undoSetRecursive       (void);
 PD_LOCAL void       instance_undoUnsetRecursive     (void);
 PD_LOCAL void       instance_pendingBegin           (void);
 PD_LOCAL void       instance_pendingEnd             (void);
+PD_LOCAL void       instance_pendingRelease         (void);
 
 #endif
 

@@ -59,6 +59,8 @@ PD_LOCAL void undoaction_setInletsAndOutlets (t_undoaction *a, t_object *y)
     }
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL int undoaction_getInletsAndOutlets (t_undoaction *a, t_items *i, t_items *o)
 {
     if (a->ua_inlet == 1)       { items_setAtIndex (i, a->ua_inletIndex);  return 1; }
@@ -66,6 +68,8 @@ PD_LOCAL int undoaction_getInletsAndOutlets (t_undoaction *a, t_items *i, t_item
     
     return 0;
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
