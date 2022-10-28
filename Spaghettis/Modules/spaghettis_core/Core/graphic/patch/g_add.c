@@ -239,10 +239,12 @@ PD_LOCAL void glist_objectRemoveAll (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int glist_objectGetNumberOf (t_glist *glist)
+PD_FORCE int glist_objectGetNumberOf (t_glist *glist)
 {
     return glist_objectGetIndexOf (glist, NULL);
 }
+
+#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL int glist_objectGetNumberOfSelected (t_glist *glist)
 {
@@ -252,6 +254,8 @@ PD_LOCAL int glist_objectGetNumberOfSelected (t_glist *glist)
     
     return n;
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

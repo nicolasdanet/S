@@ -152,7 +152,7 @@ PD_LOCAL int audio_deviceAsNumber (int isOutput, t_symbol *name)
     return -1;
 }
 
-PD_LOCAL t_error audio_deviceAsString (int isOutput, int k, char *dest, size_t size)
+PD_FORCE t_error audio_deviceAsString (int isOutput, int k, char *dest, size_t size)
 {
     t_error err = PD_ERROR;
     t_symbol *t = audio_deviceAsSymbol (isOutput, k);

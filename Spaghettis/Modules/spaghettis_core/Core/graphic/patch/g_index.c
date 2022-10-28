@@ -126,7 +126,7 @@ static int glist_objectGetIndexOfAmong (t_glist *glist, t_object *y, int selecte
     return n;
 }
 
-PD_LOCAL int glist_objectGetIndexOfAmongSelected (t_glist *glist, t_object *y)
+PD_FORCE int glist_objectGetIndexOfAmongSelected (t_glist *glist, t_object *y)
 {
     return glist_objectGetIndexOfAmong (glist, y, 1);
 }

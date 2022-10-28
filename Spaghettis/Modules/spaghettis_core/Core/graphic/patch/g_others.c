@@ -82,6 +82,8 @@ PD_LOCAL void glist_setLabelOfLast (t_glist *glist, t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL t_rectangle glist_getBoundingBoxOfAll (t_glist *glist)
 {
     t_rectangle r; rectangle_setNothing (&r);
@@ -111,6 +113,8 @@ PD_LOCAL t_rectangle glist_getBoundingBoxOfSelected (t_glist *glist)
 
     return r;
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

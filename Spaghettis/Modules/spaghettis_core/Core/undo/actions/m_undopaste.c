@@ -26,7 +26,7 @@ typedef struct _undopaste {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undopaste_new (void)
+PD_FORCE t_undoaction *undopaste_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undopaste_class);
     

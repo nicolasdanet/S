@@ -20,10 +20,17 @@
 // MARK: -
 
 PD_LOCAL void   undoaction_releaseAllFrom       (t_undoaction *, t_undomanager *);
-
 PD_LOCAL void   undomanager_collapse            (t_undomanager *);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL int    undomanager_undoNeedToSuspend   (t_undomanager *);
 PD_LOCAL int    undomanager_redoNeedToSuspend   (t_undomanager *);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

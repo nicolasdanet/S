@@ -18,9 +18,9 @@ PD_LOCAL t_undoaction   *undoseparator_new          (void);     /* Actions used 
 PD_LOCAL t_undoaction   *undoadd_new                (void);
 PD_LOCAL t_undoaction   *undoremove_new             (void);
 PD_FORCE t_undoaction   *undocut_new                (void);
-PD_LOCAL t_undoaction   *undopaste_new              (void);
-PD_LOCAL t_undoaction   *undoduplicate_new          (void);
-PD_LOCAL t_undoaction   *undosnap_new               (void);
+PD_FORCE t_undoaction   *undopaste_new              (void);
+PD_FORCE t_undoaction   *undoduplicate_new          (void);
+PD_FORCE t_undoaction   *undosnap_new               (void);
 PD_FORCE t_undoaction   *undoencapsulate_new        (void);
 PD_FORCE t_undoaction   *undodeencapsulate_new      (void);
 
@@ -31,8 +31,8 @@ PD_FORCE t_undoaction   *undoresize_new             (t_object *o, int m, int n);
 
 PD_LOCAL t_undoaction   *undocreate_new             (t_object *o, t_undosnippet *snippet);
 PD_LOCAL t_undoaction   *undodelete_new             (t_object *o, t_undosnippet *snippet);
-PD_LOCAL t_undoaction   *undofront_new              (t_object *o, t_undosnippet *snippet);
-PD_LOCAL t_undoaction   *undoback_new               (t_object *o, t_undosnippet *snippet);
+PD_FORCE t_undoaction   *undofront_new              (t_object *o, t_undosnippet *snippet);
+PD_FORCE t_undoaction   *undoback_new               (t_object *o, t_undosnippet *snippet);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

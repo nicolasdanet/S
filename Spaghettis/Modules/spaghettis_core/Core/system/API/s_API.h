@@ -84,7 +84,7 @@ PD_LOCAL void       audio_rescanDevices         (void);
 // MARK: -
 
 PD_LOCAL int        midi_deviceAsNumber         (int isOutput, t_symbol *name);
-PD_LOCAL t_error    midi_deviceAsString         (int isOutput, int k, char *dest, size_t size);
+PD_FORCE t_error    midi_deviceAsString         (int isOutput, int k, char *dest, size_t size);
 
 PD_LOCAL t_symbol   *midi_deviceAsSymbol        (int isOutput, int k);
 
@@ -93,7 +93,7 @@ PD_LOCAL t_symbol   *midi_deviceAsSymbol        (int isOutput, int k);
 // MARK: -
 
 PD_LOCAL int        audio_deviceAsNumber        (int isOutput, t_symbol *name);
-PD_LOCAL t_error    audio_deviceAsString        (int isOutput, int k, char *dest, size_t size);
+PD_FORCE t_error    audio_deviceAsString        (int isOutput, int k, char *dest, size_t size);
 
 PD_LOCAL t_symbol   *audio_deviceAsSymbol       (int isOutput, int k);
 

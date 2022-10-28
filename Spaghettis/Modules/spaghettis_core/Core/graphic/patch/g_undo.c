@@ -13,9 +13,13 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL int undomanager_undoNeedToTriggerParent (t_undomanager *, t_items *, t_items *);
 PD_LOCAL int undomanager_redoNeedToTriggerParent (t_undomanager *, t_items *, t_items *);
 PD_LOCAL int undomanager_triggerParentIsPossible (t_glist *, t_items *, t_items *);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -55,12 +59,16 @@ PD_LOCAL void glist_undoAppend (t_glist *glist, t_undoaction *a)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 /* Raw function to use with care. */
 
 PD_LOCAL t_undomanager *glist_undoReplaceManager (t_glist *glist, t_undomanager *undo)
 {
     t_undomanager *t = glist->gl_undomanager; glist->gl_undomanager = undo; return t;
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

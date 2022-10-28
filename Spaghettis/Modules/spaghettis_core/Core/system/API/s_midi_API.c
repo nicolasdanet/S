@@ -114,7 +114,7 @@ PD_LOCAL int midi_deviceAsNumber (int isOutput, t_symbol *name)
     return -1;
 }
 
-PD_LOCAL t_error midi_deviceAsString (int isOutput, int k, char *dest, size_t size)
+PD_FORCE t_error midi_deviceAsString (int isOutput, int k, char *dest, size_t size)
 {
     t_error err = PD_ERROR;
     t_symbol *t = midi_deviceAsSymbol (isOutput, k);

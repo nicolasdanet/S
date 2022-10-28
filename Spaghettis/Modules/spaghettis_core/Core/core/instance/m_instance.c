@@ -91,6 +91,8 @@ PD_LOCAL int instance_undoIsRecursive (void)
     return (instance_get()->pd_isUndoRecursive > 0);
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void instance_undoSetRecursive (void)
 {
     instance_get()->pd_isUndoRecursive++;
@@ -101,6 +103,8 @@ PD_LOCAL void instance_undoUnsetRecursive (void)
     instance_get()->pd_isUndoRecursive--;
 }
 
+#endif
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -109,6 +113,8 @@ PD_LOCAL int instance_hasPending (void)
 {
     return (instance_get()->pd_hasPending != 0);
 }
+
+#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void instance_pendingBegin (void)
 {
@@ -119,6 +125,8 @@ PD_LOCAL void instance_pendingEnd (void)
 {
     instance_get()->pd_hasPending--; if (instance_get()->pd_hasPending == 0) { instance_pendingRelease(); }
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

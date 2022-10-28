@@ -298,16 +298,20 @@ PD_LOCAL void       instance_objectSetNewest        (t_pd *x);
 // MARK: -
 
 PD_LOCAL int        instance_undoIsRecursive        (void);
-PD_LOCAL void       instance_undoSetRecursive       (void);
-PD_LOCAL void       instance_undoUnsetRecursive     (void);
+PD_LOCAL int        instance_hasPending             (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int        instance_hasPending             (void);
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void       instance_undoSetRecursive       (void);
+PD_LOCAL void       instance_undoUnsetRecursive     (void);
 PD_LOCAL void       instance_pendingBegin           (void);
 PD_LOCAL void       instance_pendingEnd             (void);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

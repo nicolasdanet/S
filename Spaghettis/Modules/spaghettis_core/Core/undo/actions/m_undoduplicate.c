@@ -26,7 +26,7 @@ typedef struct _undoduplicate {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undoduplicate_new (void)
+PD_FORCE t_undoaction *undoduplicate_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undoduplicate_class);
     

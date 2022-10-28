@@ -102,13 +102,17 @@ PD_LOCAL void   undomanager_free                    (t_undomanager *x);
 
 PD_LOCAL int    undomanager_hasSeparatorAtLast      (t_undomanager *x);
 PD_LOCAL void   undomanager_appendSeparator         (t_undomanager *x);
-
 PD_LOCAL void   undomanager_append                  (t_undomanager *x, t_undoaction *a);
+
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void   undomanager_undo                    (t_undomanager *x);
 PD_LOCAL void   undomanager_redo                    (t_undomanager *x);
 
 PD_FORCE t_symbol   *undomanager_getUndoLabel       (t_undomanager *x);
 PD_FORCE t_symbol   *undomanager_getRedoLabel       (t_undomanager *x);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
