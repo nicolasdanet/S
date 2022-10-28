@@ -15,12 +15,12 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL void glist_copy (t_glist *glist)
+PD_FORCE void glist_copy (t_glist *glist)
 {
     clipboard_copy (glist);
 }
 
-PD_LOCAL void glist_cut (t_glist *glist)
+PD_FORCE void glist_cut (t_glist *glist)
 {
     glist_copy (glist);
     
@@ -29,12 +29,12 @@ PD_LOCAL void glist_cut (t_glist *glist)
     glist_objectRemoveSelected (glist);
 }
 
-PD_LOCAL void glist_paste (t_glist *glist)
+PD_FORCE void glist_paste (t_glist *glist)
 {
     clipboard_paste (glist);
 }
 
-PD_LOCAL void glist_duplicate (t_glist *glist)
+PD_FORCE void glist_duplicate (t_glist *glist)
 {
     clipboard_copyDuplicate (glist);
     clipboard_pasteDuplicate (glist);

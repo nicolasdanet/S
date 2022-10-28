@@ -119,8 +119,8 @@ PD_LOCAL int    glist_fileOpen  (t_glist *g, const char *name, const char *exten
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   glist_undo                              (t_glist *g);
-PD_LOCAL void   glist_redo                              (t_glist *g);
+PD_FORCE void   glist_undo                              (t_glist *g);
+PD_FORCE void   glist_redo                              (t_glist *g);
 
 PD_LOCAL int    glist_undoIsOk                          (t_glist *g);
 PD_LOCAL void   glist_undoAppendSeparator               (t_glist *g);

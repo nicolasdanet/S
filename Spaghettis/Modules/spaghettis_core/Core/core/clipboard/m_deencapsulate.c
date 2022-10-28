@@ -273,7 +273,7 @@ static void encapsulate_deencapsulateDirect (t_connecthelper *h1, t_connecthelpe
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void encapsulate_deencapsulate (t_glist *glist)
+PD_FORCE void encapsulate_deencapsulate (t_glist *glist)
 {
     if (glist_isSubpatch (glist)) {
     //
