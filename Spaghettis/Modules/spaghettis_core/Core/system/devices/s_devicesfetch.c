@@ -35,6 +35,8 @@ PD_LOCAL t_symbol *devices_getOutAtIndexAsSymbol (t_devices *p, int i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL t_error devices_getInAtIndexAsString (t_devices *p, int i, char *dest, size_t size)
 {
     if (p->d_isMidi) {
@@ -52,6 +54,8 @@ PD_LOCAL t_error devices_getOutAtIndexAsString (t_devices *p, int i, char *dest,
         return audio_deviceAsString (1, devices_getOutAtIndex (p, i), dest, size);
     }
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

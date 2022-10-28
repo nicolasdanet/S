@@ -26,7 +26,11 @@ PD_LOCAL int  error__options                    (t_object *, t_symbol *s, int ar
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void error_doesNotExist                (t_object *x, const char *filepath);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -48,7 +52,7 @@ PD_LOCAL void error_canNotOpen                  (t_object *, t_symbol *);
 PD_LOCAL void error_canNotCreate                (t_object *, t_symbol *);
 PD_LOCAL void error_failsToRead                 (t_object *, t_symbol *);
 PD_LOCAL void error_failsToWrite                (t_object *, t_symbol *);
-PD_LOCAL void error_fileIsProtected             (t_object *, t_symbol *);
+PD_FORCE void error_fileIsProtected             (t_object *, t_symbol *);
 PD_LOCAL void error_ignored                     (t_object *, t_symbol *);
 PD_LOCAL void error_failed                      (t_object *, t_symbol *);
 

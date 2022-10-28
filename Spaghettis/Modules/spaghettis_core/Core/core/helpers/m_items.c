@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void items_init (t_items *items)
+PD_FORCE void items_init (t_items *items)
 {
     int j; for (j = 0; j < ITEMS_ELEMENTS; j++) { items->i_items[j] = 0U; }
 }

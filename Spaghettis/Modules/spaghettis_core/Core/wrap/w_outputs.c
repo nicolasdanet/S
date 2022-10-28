@@ -249,19 +249,6 @@ PD_LOCAL void outputs_objectUpdateParameters (t_object *x, t_glist *owner)
 {
 }
 
-PD_LOCAL void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g)
-{
-}
-
-PD_LOCAL void outputs_lineChanged (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)
-{
-
-}
-
-PD_LOCAL void outputs_lineRemoved (t_id u, t_glist *owner)
-{
-}
-
 PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
 {
 }

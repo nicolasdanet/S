@@ -13,12 +13,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void legacy_version (t_buffer *);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void glist_serializeHeader (t_glist *glist, t_buffer *b)
 {
     t_rectangle *t = glist_getEditView (glist);
@@ -95,6 +89,8 @@ static void glist_serializeFooter (t_glist *glist, t_buffer *b)
 // MARK: -
 
 #if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void legacy_version (t_buffer *);
 
 static void glist_serializeView (t_glist *glist, t_buffer *b)
 {

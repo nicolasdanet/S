@@ -26,7 +26,7 @@ typedef struct _undoencapsulate {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undoencapsulate_new (void)
+PD_FORCE t_undoaction *undoencapsulate_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undoencapsulate_class);
     

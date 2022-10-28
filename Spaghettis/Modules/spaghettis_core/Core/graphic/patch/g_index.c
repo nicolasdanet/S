@@ -68,6 +68,8 @@ PD_LOCAL void glist_objectMoveAt (t_glist *glist, t_object *y, int n)
     }
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void glist_objectMoveBack (t_glist *glist, t_object *y)
 {
     if (glist_undoIsOk (glist)) {
@@ -91,6 +93,8 @@ PD_LOCAL void glist_objectMoveFront (t_glist *glist, t_object *y)
     glist_objectMoveAtLast (glist, y);
     glist_setDirty (glist, 1);
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

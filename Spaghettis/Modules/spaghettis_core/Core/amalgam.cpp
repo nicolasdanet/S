@@ -14,9 +14,11 @@
 /* Handy to find unused functions in release build. */
 
 #if ! ( PD_WITH_DEBUG )
+#if ! ( PD_BUILDING_TESTS )
 
 #define PD_LOCAL static
     
+#endif
 #endif
 
 // -----------------------------------------------------------------------------------------------------------

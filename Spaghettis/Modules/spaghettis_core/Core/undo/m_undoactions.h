@@ -17,12 +17,12 @@
 PD_LOCAL t_undoaction   *undoseparator_new          (void);     /* Actions used for labelling only. */
 PD_LOCAL t_undoaction   *undoadd_new                (void);
 PD_LOCAL t_undoaction   *undoremove_new             (void);
-PD_LOCAL t_undoaction   *undocut_new                (void);
+PD_FORCE t_undoaction   *undocut_new                (void);
 PD_LOCAL t_undoaction   *undopaste_new              (void);
 PD_LOCAL t_undoaction   *undoduplicate_new          (void);
 PD_LOCAL t_undoaction   *undosnap_new               (void);
-PD_LOCAL t_undoaction   *undoencapsulate_new        (void);
-PD_LOCAL t_undoaction   *undodeencapsulate_new      (void);
+PD_FORCE t_undoaction   *undoencapsulate_new        (void);
+PD_FORCE t_undoaction   *undodeencapsulate_new      (void);
 
 PD_LOCAL t_undoaction   *undoconnect_new            (t_object *src, int m, t_object *dest, int n);
 PD_LOCAL t_undoaction   *undodisconnect_new         (t_object *src, int m, t_object *dest, int n);

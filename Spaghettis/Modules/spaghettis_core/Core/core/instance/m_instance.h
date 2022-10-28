@@ -191,7 +191,12 @@ PD_LOCAL void       instance_autoreleaseProceed     (t_pd *x);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void       instance_patchNew               (t_symbol *name, t_symbol *directory);
+
+#endif
+
 PD_LOCAL t_error    instance_patchOpen              (t_symbol *name, t_symbol *directory);
 
 // -----------------------------------------------------------------------------------------------------------

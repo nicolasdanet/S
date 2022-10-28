@@ -164,6 +164,8 @@ PD_LOCAL void undomanager_append (t_undomanager *x, t_undoaction *a)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 /* Notice that DSP is suspended globally only to avoid unnecessary consecutive rebuilds. */
 
 PD_LOCAL void undomanager_undo (t_undomanager *x)
@@ -245,6 +247,8 @@ PD_LOCAL void undomanager_redo (t_undomanager *x)
     //
     }
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

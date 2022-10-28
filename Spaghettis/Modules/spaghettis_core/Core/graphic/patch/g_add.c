@@ -201,7 +201,7 @@ PD_LOCAL void glist_objectRemoveSelectedProceed (t_glist *glist)
     if (dspSuspended) { dsp_resume (dspState); }
 }
 
-PD_LOCAL void glist_objectRemoveSelected (t_glist *glist)
+PD_FORCE void glist_objectRemoveSelected (t_glist *glist)
 {
     glist_objectRemoveSelectedProceed (glist);
     

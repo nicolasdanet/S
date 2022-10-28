@@ -26,7 +26,7 @@ typedef struct _undocut {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undocut_new (void)
+PD_FORCE t_undoaction *undocut_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undocut_class);
     

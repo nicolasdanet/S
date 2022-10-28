@@ -82,8 +82,12 @@ PD_LOCAL t_error    devices_appendAudioOut              (t_devices *p, int n, in
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL t_error    devices_getInAtIndexAsString        (t_devices *p, int i, char *dest, size_t size);
 PD_LOCAL t_error    devices_getOutAtIndexAsString       (t_devices *p, int i, char *dest, size_t size);
+
+#endif
 
 PD_LOCAL t_symbol   *devices_getInAtIndexAsSymbol       (t_devices *p, int i);
 PD_LOCAL t_symbol   *devices_getOutAtIndexAsSymbol      (t_devices *p, int i);

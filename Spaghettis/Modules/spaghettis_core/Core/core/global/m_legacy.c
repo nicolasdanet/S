@@ -337,6 +337,8 @@ PD_LOCAL void legacy_convert (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void legacy_version (t_buffer *x)
 {
     buffer_appendSymbol (x, sym___hash__N);
@@ -346,6 +348,8 @@ PD_LOCAL void legacy_version (t_buffer *x)
     buffer_appendFloat (x,  PD_VERSION_PATCH);
     buffer_appendSemicolon (x);
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

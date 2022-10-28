@@ -32,6 +32,8 @@ PD_LOCAL void glist_objectDisplace (t_glist *glist, t_object *object, int deltaX
     }
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void glist_objectPosition (t_glist *glist, t_object *object, int x, int y, int notify)
 {
     int deltaX = x - object_getX (object);
@@ -55,6 +57,8 @@ PD_LOCAL void glist_objectSnap (t_glist *glist, t_object *y, int notify)
     //
     }
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -235,6 +235,8 @@ PD_LOCAL t_error unique_objectParameter (t_id u, const core::Group& group)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL t_error unique_objectGetIndexOf (t_id u, int *n)
 {
     t_object *object = instance_registerGetObject (u);
@@ -248,6 +250,8 @@ PD_LOCAL t_error unique_objectGetIndexOf (t_id u, int *n)
     
     return PD_ERROR;
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

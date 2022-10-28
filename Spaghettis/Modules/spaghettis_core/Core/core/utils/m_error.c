@@ -136,7 +136,7 @@ PD_LOCAL void error_failsToWrite (t_object *x, t_symbol *s)
     post_error (x, PD_TRANSLATE ("%s: fails to write"), s->s_name);
 }
 
-PD_LOCAL void error_fileIsProtected (t_object *x, t_symbol *s)
+PD_FORCE void error_fileIsProtected (t_object *x, t_symbol *s)
 {
     post_error (x, PD_TRANSLATE ("%s: file is protected"), s->s_name);
 }

@@ -21,7 +21,7 @@
 #endif
 
 #ifndef PD_FORCE
-#define PD_FORCE        /* Unused, but kept for now. */
+#define PD_FORCE
 #endif
 
 // -----------------------------------------------------------------------------------------------------------
