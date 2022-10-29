@@ -29,7 +29,7 @@ PD_LOCAL int    object_isCanvas                     (t_object *x);
 PD_LOCAL int    object_isObject                     (t_object *x);      /* NOT a comment, message, or atom. */
 PD_LOCAL int    object_isComment                    (t_object *x);
 PD_LOCAL int    object_isMessage                    (t_object *x);
-PD_FORCE int    object_isAtom                       (t_object *x);
+// PD_LOCAL int    object_isAtom                    (t_object *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ PD_LOCAL t_outconnect   *object_connect             (t_object *src, int m, t_obj
 
 PD_LOCAL t_error        object_disconnect           (t_object *src, int m, t_object *dest, int n, t_glist *g);
 
-PD_FORCE void           object_help                 (t_object *x);
+//PD_LOCAL void           object_help               (t_object *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ PD_LOCAL int    object_getNumberOfSignalInlets      (t_object *x);
 PD_LOCAL int    object_getNumberOfSignalOutlets     (t_object *x);
 PD_LOCAL int    object_getIndexAsSignalOfInlet      (t_object *x, int m);
 PD_LOCAL int    object_getIndexAsSignalOfOutlet     (t_object *x, int m);
-PD_FORCE int    object_isSignalInlet                (t_object *x, int m);
+//PD_LOCAL int  object_isSignalInlet                (t_object *x, int m);
 PD_LOCAL int    object_isSignalOutlet               (t_object *x, int m);
 
 #if defined ( PD_BUILDING_APPLICATION )

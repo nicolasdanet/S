@@ -180,10 +180,14 @@ PD_LOCAL int glist_isSubpatch (t_glist *glist)
     return (!glist_isTop (glist));
 }
 
-PD_FORCE int glist_isDirty (t_glist *glist)
+#if 0
+
+PD_LOCAL int glist_isDirty (t_glist *glist)
 {
     return (glist_getTop (glist)->gl_isDirty != 0);
 }
+
+#endif
 
 #if defined ( PD_BUILDING_APPLICATION )
 

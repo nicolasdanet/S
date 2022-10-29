@@ -183,7 +183,7 @@ PD_LOCAL t_error    buffer_setAtIndex           (t_buffer *x, int n, t_atom *a);
 PD_LOCAL t_error    buffer_insertAtIndex        (t_buffer *x, int n, t_atom *a);
 PD_LOCAL t_error    buffer_pop                  (t_buffer *x, t_atom *a);
 
-PD_FORCE t_error    buffer_setFloatAtIndex      (t_buffer *x, int n, t_float f);
+//PD_LOCAL t_error    buffer_setFloatAtIndex    (t_buffer *x, int n, t_float f);
 PD_LOCAL t_error    buffer_setSymbolAtIndex     (t_buffer *x, int n, t_symbol *s);
 
 PD_LOCAL t_float    buffer_getFloatAtIndex      (t_buffer *x, int n);

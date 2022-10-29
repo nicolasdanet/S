@@ -102,10 +102,14 @@ PD_LOCAL t_error buffer_setAtIndex (t_buffer *x, int n, t_atom *a)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE t_error buffer_setFloatAtIndex (t_buffer *x, int n, t_float f)
+#if 0
+
+PD_LOCAL t_error buffer_setFloatAtIndex (t_buffer *x, int n, t_float f)
 {
     t_atom a; SET_FLOAT (&a, f); return buffer_setAtIndex (x, n, &a);
 }
+
+#endif
 
 PD_LOCAL t_error buffer_setSymbolAtIndex (t_buffer *x, int n, t_symbol *s)
 {

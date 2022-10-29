@@ -43,10 +43,14 @@ PD_LOCAL int object_isMessage (t_object *x)
     return (x->g_type == TYPE_MESSAGE);
 }
 
-PD_FORCE int object_isAtom (t_object *x)
+#if 0
+
+PD_LOCAL int object_isAtom (t_object *x)
 {
     return (x->g_type == TYPE_ATOM);
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -264,6 +268,8 @@ PD_LOCAL t_error object_disconnect (t_object *src, int m, t_object *dest, int n,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if 0
+
 static void object_openHelp (const char *directory, const char *name)
 {
     t_fileproperties p; fileproperties_init (&p);
@@ -289,7 +295,7 @@ static void object_openHelp (const char *directory, const char *name)
 /* Then look for in the application "help" folder. */
 /* And last in the user search path. */
 
-PD_FORCE void object_help (t_object *y)
+PD_LOCAL void object_help (t_object *y)
 {
     const char *directory = NULL;
     char name[PD_STRING] = { 0 };
@@ -308,6 +314,8 @@ PD_FORCE void object_help (t_object *y)
     
     if (!err) { object_openHelp (directory, name); }
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -398,7 +406,9 @@ PD_LOCAL int object_getIndexAsSignalOfOutlet (t_object *x, int m)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE int object_isSignalInlet (t_object *x, int m)
+#if 0
+
+PD_LOCAL int object_isSignalInlet (t_object *x, int m)
 {
     t_inlet *i = NULL;
     
@@ -413,6 +423,8 @@ PD_FORCE int object_isSignalInlet (t_object *x, int m)
     
     return (i && inlet_isSignal (i));
 }
+
+#endif
 
 PD_LOCAL int object_isSignalOutlet (t_object *x, int m)
 {
