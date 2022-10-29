@@ -99,7 +99,9 @@ PD_LOCAL int    glist_isAbstraction                     (t_glist *g);
 PD_LOCAL int    glist_isAbstractionOrInside             (t_glist *g);
 PD_LOCAL int    glist_isSubpatch                        (t_glist *g);
 PD_FORCE int    glist_isDirty                           (t_glist *g);
-PD_FORCE int    glist_isFrozen                          (t_glist *g);
+#if defined ( PD_BUILDING_APPLICATION )
+PD_LOCAL int    glist_isFrozen                          (t_glist *g);
+#endif
 PD_LOCAL int    glist_isLoading                         (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
@@ -141,12 +143,11 @@ PD_LOCAL void   glist_undoAppend                        (t_glist *g, t_undoactio
 PD_LOCAL void   glist_objectAdd                         (t_glist *g, t_object *o);
 PD_LOCAL void   glist_objectRemove                      (t_glist *g, t_object *o);
 PD_LOCAL void   glist_objectRemoveAll                   (t_glist *g);
-PD_FORCE void   glist_objectRemoveSelected              (t_glist *g);
-
-PD_FORCE int    glist_objectGetNumberOf                 (t_glist *g);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+PD_LOCAL void   glist_objectRemoveSelected              (t_glist *g);
+PD_LOCAL int    glist_objectGetNumberOf                 (t_glist *g);
 PD_LOCAL int    glist_objectGetNumberOfSelected         (t_glist *g);
 
 PD_LOCAL void   glist_objectSelect                      (t_glist *g, t_object *o);
@@ -165,7 +166,9 @@ PD_LOCAL void   glist_objectMoveAtLast                  (t_glist *g, t_object *o
 PD_LOCAL void   glist_objectMoveAt                      (t_glist *g, t_object *o, int n);
 
 PD_LOCAL int    glist_objectGetIndexOf                  (t_glist *g, t_object *o);
-PD_FORCE int    glist_objectGetIndexOfAmongSelected     (t_glist *g, t_object *o);
+#if defined ( PD_BUILDING_APPLICATION )
+PD_LOCAL int    glist_objectGetIndexOfAmongSelected     (t_glist *g, t_object *o);
+#endif
 
 PD_LOCAL t_object   *glist_objectGetAt                  (t_glist *g, int n);
 PD_LOCAL t_object   *glist_objectGetLast                (t_glist *g);

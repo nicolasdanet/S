@@ -56,7 +56,9 @@ static t_glist *glist_new (t_glist *owner, t_symbol *name, t_rectangle *window)
 
 PD_LOCAL void glist_free (t_glist *glist)
 {
-    PD_ASSERT (!glist_objectGetNumberOf (glist));
+    #if defined ( PD_BUILDING_APPLICATION )
+        PD_ASSERT (!glist_objectGetNumberOf (glist));
+    #endif
     
     if (glist_isRoot (glist)) { instance_rootsRemove (glist); }
     

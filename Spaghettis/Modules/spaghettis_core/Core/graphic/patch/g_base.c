@@ -185,10 +185,14 @@ PD_FORCE int glist_isDirty (t_glist *glist)
     return (glist_getTop (glist)->gl_isDirty != 0);
 }
 
-PD_FORCE int glist_isFrozen (t_glist *glist)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL int glist_isFrozen (t_glist *glist)
 {
     return (glist_getTop (glist)->gl_isFrozen != 0);
 }
+
+#endif
 
 PD_LOCAL int glist_isLoading (t_glist *g)
 {

@@ -79,6 +79,8 @@ PD_LOCAL int rectangle_isNothing (t_rectangle *r)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 static void rectangle_addRectangle (t_rectangle *r, t_rectangle *toAdd)
 {
     if (!rectangle_isNothing (toAdd)) { 
@@ -92,8 +94,6 @@ static void rectangle_addRectangle (t_rectangle *r, t_rectangle *toAdd)
         }
     }
 }
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void rectangle_addPoint (t_rectangle *r, t_point *pt)
 {

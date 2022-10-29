@@ -172,6 +172,8 @@ PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void glist_objectRemoveSelectedProceed (t_glist *glist)
 {
     t_object *t1 = NULL;
@@ -201,12 +203,14 @@ PD_LOCAL void glist_objectRemoveSelectedProceed (t_glist *glist)
     if (dspSuspended) { dsp_resume (dspState); }
 }
 
-PD_FORCE void glist_objectRemoveSelected (t_glist *glist)
+PD_LOCAL void glist_objectRemoveSelected (t_glist *glist)
 {
     glist_objectRemoveSelectedProceed (glist);
     
     if (glist_undoIsOk (glist)) { glist_undoAppendSeparator (glist); }
 }
+
+#endif
 
 /* If needed the DSP is suspended to avoid multiple rebuilds of DSP graph. */
 
@@ -239,12 +243,12 @@ PD_LOCAL void glist_objectRemoveAll (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE int glist_objectGetNumberOf (t_glist *glist)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL int glist_objectGetNumberOf (t_glist *glist)
 {
     return glist_objectGetIndexOf (glist, NULL);
 }
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL int glist_objectGetNumberOfSelected (t_glist *glist)
 {
