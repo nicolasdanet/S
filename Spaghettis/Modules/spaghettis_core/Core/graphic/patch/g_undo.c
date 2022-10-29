@@ -45,10 +45,14 @@ PD_LOCAL int glist_undoHasSeparatorAtLast (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void glist_undoAppendSeparator (t_glist *glist)
 {
     undomanager_appendSeparator (glist_getUndoManager (glist));
 }
+
+#endif
 
 PD_LOCAL void glist_undoAppend (t_glist *glist, t_undoaction *a)
 {

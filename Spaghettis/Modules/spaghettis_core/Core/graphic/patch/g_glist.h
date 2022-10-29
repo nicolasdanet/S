@@ -132,7 +132,9 @@ PD_FORCE void   glist_undo                              (t_glist *g);
 PD_FORCE void   glist_redo                              (t_glist *g);
 
 PD_LOCAL int    glist_undoIsOk                          (t_glist *g);
+#if defined ( PD_BUILDING_APPLICATION )
 PD_LOCAL void   glist_undoAppendSeparator               (t_glist *g);
+#endif
 PD_LOCAL int    glist_undoHasSeparatorAtLast            (t_glist *g);
 PD_LOCAL void   glist_undoAppend                        (t_glist *g, t_undoaction *a);
 
@@ -157,18 +159,17 @@ PD_LOCAL void   glist_objectMoveFront                   (t_glist *g, t_object *o
 PD_LOCAL void   glist_objectPosition                    (t_glist *g, t_object *o, int x, int y, int notify);
 PD_LOCAL void   glist_objectSnap                        (t_glist *g, t_object *o, int notify);
 
+PD_LOCAL int    glist_objectIsSelected                  (t_glist *g, t_object *o);
+
+PD_LOCAL int    glist_objectGetIndexOfAmongSelected     (t_glist *g, t_object *o);
+
 #endif
 
-PD_LOCAL int    glist_objectIsSelected                  (t_glist *g, t_object *o);
+PD_LOCAL int    glist_objectGetIndexOf                  (t_glist *g, t_object *o);
 
 PD_LOCAL void   glist_objectMoveAtFirst                 (t_glist *g, t_object *o);
 PD_LOCAL void   glist_objectMoveAtLast                  (t_glist *g, t_object *o);
 PD_LOCAL void   glist_objectMoveAt                      (t_glist *g, t_object *o, int n);
-
-PD_LOCAL int    glist_objectGetIndexOf                  (t_glist *g, t_object *o);
-#if defined ( PD_BUILDING_APPLICATION )
-PD_LOCAL int    glist_objectGetIndexOfAmongSelected     (t_glist *g, t_object *o);
-#endif
 
 PD_LOCAL t_object   *glist_objectGetAt                  (t_glist *g, int n);
 PD_LOCAL t_object   *glist_objectGetLast                (t_glist *g);
