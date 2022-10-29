@@ -125,10 +125,14 @@ PD_LOCAL void environment_setFileName (t_environment *e, t_symbol *name)
     }
 }
 
-PD_FORCE void environment_setDirectory (t_environment *e, t_symbol *directory)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void environment_setDirectory (t_environment *e, t_symbol *directory)
 {
     e->env_directory = directory;
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -121,7 +121,9 @@ PD_LOCAL t_symbol *symbol_addSuffix (t_symbol *s, t_symbol *suffix)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE t_symbol *symbol_appendCopySuffix (t_symbol *s)
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL t_symbol *symbol_appendCopySuffix (t_symbol *s)
 {
     PD_ASSERT (s);
     
@@ -129,6 +131,8 @@ PD_FORCE t_symbol *symbol_appendCopySuffix (t_symbol *s)
 
     return symbol_addSuffix (s, sym___dash____asterisk__);
 }
+
+#endif
 
 PD_LOCAL t_symbol *symbol_removeCopySuffix (t_symbol *s)
 {

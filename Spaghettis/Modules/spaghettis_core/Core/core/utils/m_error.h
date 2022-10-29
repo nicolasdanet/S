@@ -52,7 +52,9 @@ PD_LOCAL void error_canNotOpen                  (t_object *, t_symbol *);
 PD_LOCAL void error_canNotCreate                (t_object *, t_symbol *);
 PD_LOCAL void error_failsToRead                 (t_object *, t_symbol *);
 PD_LOCAL void error_failsToWrite                (t_object *, t_symbol *);
-PD_FORCE void error_fileIsProtected             (t_object *, t_symbol *);
+#if defined ( PD_BUILDING_APPLICATION )
+PD_LOCAL void error_fileIsProtected             (t_object *, t_symbol *);
+#endif
 PD_LOCAL void error_ignored                     (t_object *, t_symbol *);
 PD_LOCAL void error_failed                      (t_object *, t_symbol *);
 

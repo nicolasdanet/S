@@ -28,7 +28,9 @@ typedef struct _environment {
 
 PD_LOCAL void   environment_free            (t_environment *e);
 PD_LOCAL void   environment_setFileName     (t_environment *e, t_symbol *name);
-PD_FORCE void   environment_setDirectory    (t_environment *e, t_symbol *directory);
+#if defined ( PD_BUILDING_APPLICATION )
+PD_LOCAL void   environment_setDirectory    (t_environment *e, t_symbol *directory);
+#endif
 PD_LOCAL void   environment_setDollarZero   (t_environment *e, int n);
 
 // -----------------------------------------------------------------------------------------------------------

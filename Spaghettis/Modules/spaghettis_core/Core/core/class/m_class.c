@@ -379,26 +379,6 @@ PD_LOCAL int class_hasOverrideBangMethod (t_class *c)
     return (c->c_methodBang != class_defaultBang);
 }
 
-PD_FORCE int class_hasOverrideFloatMethod (t_class *c)
-{
-    return (c->c_methodFloat != class_defaultFloat);
-}
-
-PD_FORCE int class_hasOverrideSymbolMethod (t_class *c)
-{
-    return (c->c_methodSymbol != class_defaultSymbol);
-}
-
-PD_FORCE int class_hasOverrideListMethod (t_class *c)
-{
-    return (c->c_methodList != class_defaultList);
-}
-
-PD_FORCE int class_hasOverrideAnythingMethod (t_class *c)
-{
-    return (c->c_methodAnything != class_defaultAnything);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
