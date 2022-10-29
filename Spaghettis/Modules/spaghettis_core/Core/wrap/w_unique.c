@@ -187,7 +187,9 @@ PD_LOCAL t_error unique_objectMoveFront (t_id u)
 
 #endif
 
-PD_FORCE t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *argv)
+#if 0
+
+PD_LOCAL t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *argv)
 {
     t_object *object = instance_registerGetObject (u);
 
@@ -196,6 +198,8 @@ PD_FORCE t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *ar
         return PD_ERROR;
     }
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

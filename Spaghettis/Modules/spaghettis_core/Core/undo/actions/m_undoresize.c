@@ -65,7 +65,9 @@ static void undoresize_redo (t_undoresize *z, t_symbol *s, int argc, t_atom *arg
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE t_undoaction *undoresize_new (t_object *o, int m, int n)
+#if 0
+
+PD_LOCAL t_undoaction *undoresize_new (t_object *o, int m, int n)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undoresize_class);
     t_undoresize *z = (t_undoresize *)x;
@@ -80,6 +82,8 @@ PD_FORCE t_undoaction *undoresize_new (t_object *o, int m, int n)
     
     return x;
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
