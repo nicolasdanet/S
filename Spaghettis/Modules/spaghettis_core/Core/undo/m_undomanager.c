@@ -80,7 +80,7 @@ PD_LOCAL t_undoaction *undomanager_getRedoAction (t_undomanager *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_symbol *undomanager_getUndoLabel (t_undomanager *x)
+static t_symbol *undomanager_getUndoLabel (t_undomanager *x)
 {
     t_undoaction *a = undomanager_getUndoAction (x);
     
@@ -89,13 +89,22 @@ PD_LOCAL t_symbol *undomanager_getUndoLabel (t_undomanager *x)
     return NULL;
 }
 
-PD_LOCAL t_symbol *undomanager_getRedoLabel (t_undomanager *x)
+static t_symbol *undomanager_getRedoLabel (t_undomanager *x)
 {
     t_undoaction *a = undomanager_getRedoAction (x);
     
     if (a) { return undoaction_getLabel (a); }
     
     return NULL;
+}
+
+static void undomanager_notify (t_undomanager *x)
+{
+    t_symbol *undoLabel = undomanager_getUndoLabel (x);
+    t_symbol *redoLabel = undomanager_getRedoLabel (x);
+    
+    if (undoLabel) { DBG (juce::String ("UNDO: ") + symbol_getName (undoLabel)); }
+    if (redoLabel) { DBG (juce::String ("REDO: ") + symbol_getName (redoLabel)); }
 }
 
 #endif
@@ -153,7 +162,7 @@ PD_LOCAL void undomanager_appendSeparator (t_undomanager *x)
 {
     if (!undomanager_hasSeparatorAtLast (x)) {
     //
-    undomanager_appendAction (x, undoseparator_new()); undomanager_collapse (x);
+    undomanager_appendAction (x, undoseparator_new()); undomanager_collapse (x); undomanager_notify (x);
     //
     }
 }
@@ -211,6 +220,8 @@ PD_LOCAL void undomanager_undo (t_undomanager *x)
     instance_undoUnsetRecursive();
     
     if (dspSuspended) { dsp_resume (dspState); }
+    
+    undomanager_notify (x);
     //
     }
 }
@@ -251,6 +262,8 @@ PD_LOCAL void undomanager_redo (t_undomanager *x)
     instance_undoUnsetRecursive();
     
     if (dspSuspended) { dsp_resume (dspState); }
+    
+    undomanager_notify (x);
     //
     }
 }
