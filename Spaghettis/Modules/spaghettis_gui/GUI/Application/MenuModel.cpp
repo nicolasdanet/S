@@ -44,6 +44,9 @@ juce::PopupMenu MenuModel::getMenuForIndex (int n, const juce::String&)
     //
     } else if (n == 1) {
     //
+    menu.addCommandItem (commandManager_, Commands::undo);
+    menu.addCommandItem (commandManager_, Commands::redo);
+    menu.addSeparator();
     menu.addCommandItem (commandManager_, Commands::moveBack);
     menu.addCommandItem (commandManager_, Commands::moveFront);
     menu.addSeparator();

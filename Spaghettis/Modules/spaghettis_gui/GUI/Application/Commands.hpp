@@ -35,6 +35,8 @@ enum CommandIds : juce::CommandID {
     rescan,
     rescanLogged,
     selectAll,
+    undo,
+    redo,
     moveBack,
     moveFront,
     snap,

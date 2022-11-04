@@ -86,6 +86,16 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         r.addDefaultKeypress ('a', juce::ModifierKeys::commandModifier);
         r.setActive (get (command));
         break;
+    case Commands::undo :
+        r.setInfo (NEEDS_TRANS ("Undo"),            NEEDS_TRANS ("Undo action"),                edit, 0);
+        r.addDefaultKeypress ('z', juce::ModifierKeys::commandModifier);
+        r.setActive (get (command));
+        break;
+    case Commands::redo :
+        r.setInfo (NEEDS_TRANS ("Redo"),            NEEDS_TRANS ("Redo action"),                edit, 0);
+        r.addDefaultKeypress ('z', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
+        r.setActive (get (command));
+        break;
     case Commands::moveBack :
         r.setInfo (NEEDS_TRANS ("Move Back"),       NEEDS_TRANS ("Move backward"),              edit, 0);
         r.setActive (get (command));
@@ -143,6 +153,8 @@ void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::rescan,
             Commands::rescanLogged,
             Commands::selectAll,
+            Commands::undo,
+            Commands::redo,
             Commands::moveBack,
             Commands::moveFront,
             Commands::snap,
