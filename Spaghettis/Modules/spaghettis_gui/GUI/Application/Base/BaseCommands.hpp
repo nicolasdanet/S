@@ -43,7 +43,8 @@ public:
 
 private:
     juce::String getCommandName (juce::CommandID);
-        
+    juce::String getCommandDescription (juce::CommandID);
+    
 private:
     std::vector<std::tuple<juce::CommandID, std::function<void()>, std::function<bool()>>> enabled_;
     

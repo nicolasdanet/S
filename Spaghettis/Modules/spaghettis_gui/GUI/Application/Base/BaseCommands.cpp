@@ -68,6 +68,42 @@ juce::String BaseCommands::getCommandName (juce::CommandID command)
     return "";
 }
 
+juce::String BaseCommands::getCommandDescription (juce::CommandID command)
+{
+    switch (command) {
+    //
+    case Commands::preferences          : return NEEDS_TRANS ("Set preferences");
+    case Commands::newPatch             : return NEEDS_TRANS ("Create a new patch");
+    case Commands::openPatch            : return NEEDS_TRANS ("Open a patch");
+    case Commands::clearRecentFiles     : return NEEDS_TRANS ("Clears all recent files");
+    case Commands::save                 : return NEEDS_TRANS ("Save file");
+    case Commands::closeWindow          : return NEEDS_TRANS ("Close active window");
+    case Commands::paths                : return NEEDS_TRANS ("Set search paths");
+    case Commands::rescan               : return NEEDS_TRANS ("Rescan search paths");
+    case Commands::rescanLogged         : return NEEDS_TRANS ("Rescan search paths");
+    case Commands::selectAll            : return NEEDS_TRANS ("Select all");
+    case Commands::undo                 : return NEEDS_TRANS ("Undo action");
+    case Commands::redo                 : return NEEDS_TRANS ("Redo action");
+    case Commands::moveBack             : return NEEDS_TRANS ("Move backward");
+    case Commands::moveFront            : return NEEDS_TRANS ("Move frontward");
+    case Commands::snap                 : return NEEDS_TRANS ("Snap objects to grid");
+    case Commands::zoomIn               : return NEEDS_TRANS ("Increase magnification");
+    case Commands::zoomOut              : return NEEDS_TRANS ("Decrease magnification");
+    case Commands::zoomReset            : return NEEDS_TRANS ("Reset to original size");
+    case Commands::clearConsole         : return NEEDS_TRANS ("Clear the console");
+    case Commands::devices              : return NEEDS_TRANS ("Audio/MIDI devices");
+    case Commands::dspSwitch            : return NEEDS_TRANS ("DSP On/Off");
+    default : break;
+    //
+    }
+    
+    return getCommandName (command);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCommandInfo& r)
 {
     const juce::String general = NEEDS_TRANS ("General");
@@ -77,94 +113,95 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
     const juce::String media   = NEEDS_TRANS ("Media");
     
     const juce::String name    = getCommandName (command);
+    const juce::String text    = getCommandDescription (command);
     
     switch (command) {
     //
     case Commands::preferences :
-        r.setInfo (name,  NEEDS_TRANS ("Set preferences"),            general, 0);
+        r.setInfo (name, text, general, 0);
         r.addDefaultKeypress (',', juce::ModifierKeys::commandModifier);
         break;
     case Commands::newPatch :
-        r.setInfo (name,       NEEDS_TRANS ("Create a new patch"),         file, 0);
+        r.setInfo (name, text, file, 0);
         r.addDefaultKeypress ('n', juce::ModifierKeys::commandModifier);
         break;
     case Commands::openPatch :
-        r.setInfo (name,         NEEDS_TRANS ("Open a patch"),               file, 0);
+        r.setInfo (name, text, file, 0);
         r.addDefaultKeypress ('o', juce::ModifierKeys::commandModifier);
         break;
     case Commands::clearRecentFiles :
-        r.setInfo (name,      NEEDS_TRANS ("Clears all recent files"),    file, 0);
+        r.setInfo (name, text, file, 0);
         r.setActive (Spaghettis()->getNumberOfRecentFiles() > 0);
         break;
     case Commands::save :
-        r.setInfo (name,            NEEDS_TRANS ("Save file"),                  file, 0);
+        r.setInfo (name, text, file, 0);
         r.addDefaultKeypress ('s', juce::ModifierKeys::commandModifier);
         r.setActive (get (command));
         break;
     case Commands::closeWindow :
-        r.setInfo (name,    NEEDS_TRANS ("Close active window"),        file, 0);
+        r.setInfo (name, text, file, 0);
         r.addDefaultKeypress ('w', juce::ModifierKeys::commandModifier);
         r.setActive (get (command));
         break;
     case Commands::paths :
-        r.setInfo (name,        NEEDS_TRANS ("Set search paths"),           file, 0);
+        r.setInfo (name, text, file, 0);
         break;
     case Commands::rescan :
-        r.setInfo (name,          NEEDS_TRANS ("Rescan search paths"),        file, 0);
+        r.setInfo (name, text, file, 0);
         break;
     case Commands::rescanLogged :
-        r.setInfo (name,   NEEDS_TRANS ("Rescan search paths"),        file, 0);
+        r.setInfo (name, text, file, 0);
         break;
     case Commands::selectAll :
-        r.setInfo (name,      NEEDS_TRANS ("Select all"),                 edit, 0);
+        r.setInfo (name, text, edit, 0);
         r.addDefaultKeypress ('a', juce::ModifierKeys::commandModifier);
         r.setActive (get (command));
         break;
     case Commands::undo :
-        r.setInfo (name,            NEEDS_TRANS ("Undo action"),                edit, 0);
+        r.setInfo (name, text, edit, 0);
         r.addDefaultKeypress ('z', juce::ModifierKeys::commandModifier);
         r.setActive (get (command));
         break;
     case Commands::redo :
-        r.setInfo (name,            NEEDS_TRANS ("Redo action"),                edit, 0);
+        r.setInfo (name, text, edit, 0);
         r.addDefaultKeypress ('z', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
         r.setActive (get (command));
         break;
     case Commands::moveBack :
-        r.setInfo (name,       NEEDS_TRANS ("Move backward"),              edit, 0);
+        r.setInfo (name, text, edit, 0);
         r.setActive (get (command));
         break;
     case Commands::moveFront :
-        r.setInfo (name,      NEEDS_TRANS ("Move frontward"),             edit, 0);
+        r.setInfo (name, text, edit, 0);
         r.setActive (get (command));
         break;
     case Commands::snap :
-        r.setInfo (name,            NEEDS_TRANS ("Snap objects to grid"),       edit, 0);
+        r.setInfo (name, text, edit, 0);
         r.setActive (get (command));
         break;
     case Commands::zoomIn :
-        r.setInfo (name,         NEEDS_TRANS ("Increase magnification"),     view, 0);
+        r.setInfo (name, text, view, 0);
         r.addDefaultKeypress ('+', juce::ModifierKeys::commandModifier);
         r.setActive (get (command));
         break;
     case Commands::zoomOut :
-        r.setInfo (name,        NEEDS_TRANS ("Decrease magnification"),     view, 0);
+        r.setInfo (name, text, view, 0);
         r.addDefaultKeypress ('-', juce::ModifierKeys::commandModifier);
         r.setActive (get (command));
         break;
     case Commands::zoomReset :
-        r.setInfo (name,     NEEDS_TRANS ("Reset to original size"),     view, 0);
+        r.setInfo (name, text, view, 0);
         r.setActive (get (command));
         break;
     case Commands::clearConsole :
-        r.setInfo (name,   NEEDS_TRANS ("Clear the console"),          view, 0);
+        r.setInfo (name, text, view, 0);
         r.addDefaultKeypress ('l', juce::ModifierKeys::commandModifier);
         break;
     case Commands::devices :
-        r.setInfo (name,      NEEDS_TRANS ("Audio/MIDI devices"),         media, 0);
+        r.setInfo (name, text, media, 0);
         break;
     case Commands::dspSwitch :
-        r.setInfo (name,         NEEDS_TRANS ("DSP On/Off"),                 media, 0);
+        r.setInfo (name, text, media, 0);
         r.addDefaultKeypress ('r', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
         r.setTicked (Spaghettis()->isDspRunning());
         break;
