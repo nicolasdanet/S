@@ -74,6 +74,9 @@ PD_LOCAL t_error    unique_patchSave            (t_id u);
 PD_LOCAL t_error    unique_patchSetEditView     (t_id u, t_rectangle *r);
 PD_LOCAL t_error    unique_patchSetRunView      (t_id u, t_rectangle *r);
 
+PD_LOCAL t_error    unique_patchUndo            (t_id u);
+PD_LOCAL t_error    unique_patchRedo            (t_id u);
+
 #endif
 
 // -----------------------------------------------------------------------------------------------------------

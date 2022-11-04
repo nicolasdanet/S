@@ -103,6 +103,16 @@ Perform Inputs::setRunView (core::UniqueId i, juce::Rectangle<int> bounds)
     return [i, bounds]() { core::inputs_setRunView (i, bounds); };
 }
 
+Perform Inputs::undoPatch (core::UniqueId i)
+{
+    return [i]() { core::inputs_undoPatch (i); };
+}
+
+Perform Inputs::redoPatch (core::UniqueId i)
+{
+    return [i]() { core::inputs_redoPatch (i); };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

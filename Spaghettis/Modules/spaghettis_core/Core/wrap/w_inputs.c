@@ -133,6 +133,16 @@ PD_LOCAL void inputs_setRunView (core::UniqueId i, juce::Rectangle<int> bounds)
     if (unique_patchSetRunView (i, &r) != PD_ERROR_NONE) { jassertfalse; }
 }
 
+PD_LOCAL void inputs_undoPatch (core::UniqueId i)
+{
+    if (unique_patchUndo (i) != PD_ERROR_NONE) { jassertfalse; }
+}
+
+PD_LOCAL void inputs_redoPatch (core::UniqueId i)
+{
+    if (unique_patchRedo (i) != PD_ERROR_NONE) { jassertfalse; }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
