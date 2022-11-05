@@ -64,8 +64,10 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Label);
     DECLARE_STRING (Outlets);
     DECLARE_STRING (Path);
+    DECLARE_STRING (Redo);
     DECLARE_STRING (RunView);
     DECLARE_STRING (Selected);
+    DECLARE_STRING (Undo);
     DECLARE_STRING (Title);
     DECLARE_STRING (Visible);
     DECLARE_STRING (Width);

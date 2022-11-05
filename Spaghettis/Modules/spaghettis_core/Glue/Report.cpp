@@ -186,6 +186,18 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
         delegate).setEditable (false);
     //
     }
+    
+    group.addParameter (Tags::Undo,
+        NEEDS_TRANS ("Undo"),
+        NEEDS_TRANS ("Undoable action"),
+        juce::String(),
+        delegate).setHidden (true);
+    
+    group.addParameter (Tags::Redo,
+        NEEDS_TRANS ("Redo"),
+        NEEDS_TRANS ("Redoable action"),
+        juce::String(),
+        delegate).setHidden (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------

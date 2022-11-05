@@ -338,6 +338,9 @@ void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int
 
 void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
 {
+    if (Tree::isChangedPropertyEquals (t, Tags::Undo)) { DBG ("?"); }
+    if (Tree::isChangedPropertyEquals (t, Tags::Redo)) { DBG ("?"); }
+    
     juce::ValueTree i (Tree::getParentIfChangedPropertyEquals (t, Tags::Selected));
     
     if (i.isValid() && isChildOf (viewTree_, i) && inspector_) { inspector_->update(); }
