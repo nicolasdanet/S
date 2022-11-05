@@ -101,6 +101,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Application/Base/MenuCommand.hpp"
 #include "GUI/Application/Base/BaseCommands.hpp"
 #include "GUI/Application/Base/BaseComponent.hpp"
 #include "GUI/Application/Base/BaseWindow.hpp"

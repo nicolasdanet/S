@@ -12,17 +12,17 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseCommands::set (juce::CommandID command, std::function<void()> f, std::function<bool()> g)
+void BaseCommands::set (MenuCommand m)
 {
-    jassert (!has (command)); enabled_.emplace_back (command, f, g);
+    jassert (!has (m.command_)); enabled_.push_back (m);
 }
 
 bool BaseCommands::get (juce::CommandID command, bool invoke)
 {
-    for (const auto& [c, f, g] : enabled_) {
-        if (c == command) {
-            if (g()) {
-                if (invoke) { f(); } return true;
+    for (const auto& m : enabled_) {
+        if (m.command_ == command) {
+            if (m.check_()) {
+                if (invoke) { m.execute_(); } return true;
             } else {
                 return false;
             }
