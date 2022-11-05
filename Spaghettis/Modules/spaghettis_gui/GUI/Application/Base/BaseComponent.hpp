@@ -62,9 +62,8 @@ protected:
 // MARK: -
 
 public:
-    void addMenuBarCommand (juce::CommandID, std::function<void()>);
-    void addMenuBarCommand (juce::CommandID, std::function<void()>, std::function<bool()>);
-    
+    void addMenuCommand (MenuCommand);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

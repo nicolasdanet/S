@@ -39,7 +39,7 @@ BaseComponent::BaseComponent (IconsFactory* factory, const juce::String& s) : ke
     //
     }
     
-    addMenuBarCommand (Commands::closeWindow, [this]() { BaseWindow::getWindow (this)->close(); });
+    addMenuCommand (MenuCommand (Commands::closeWindow, [this]() { BaseWindow::getWindow (this)->close(); }));
 
     setWantsKeyboardFocus (true);
 }
@@ -221,14 +221,9 @@ juce::Rectangle<int> BaseComponent::getBoundsForToolbar() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseComponent::addMenuBarCommand (juce::CommandID c, std::function<void()> f)
+void BaseComponent::addMenuCommand (MenuCommand m)
 {
-    commands_.set (MenuCommand (c, f));
-}
-
-void BaseComponent::addMenuBarCommand (juce::CommandID c, std::function<void()> f, std::function<bool()> g)
-{
-    commands_.set (MenuCommand (c, f, g));
+    commands_.set (m);
 }
 
 // -----------------------------------------------------------------------------------------------------------

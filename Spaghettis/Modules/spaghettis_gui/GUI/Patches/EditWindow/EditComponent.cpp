@@ -26,16 +26,16 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     
     auto check = [this]() { return editView_.getNumberOfSelectedObjects() > 0; };
     
-    addMenuBarCommand (Commands::save,          [this]() { editView_.getPatch().save(); });
+    addMenuCommand (MenuCommand (Commands::save,        [this]() { editView_.getPatch().save(); }));
     
-    addMenuBarCommand (Commands::moveBack,      [this]() { editView_.moveBack();   }, check);
-    addMenuBarCommand (Commands::moveFront,     [this]() { editView_.moveFront();  }, check);
-    addMenuBarCommand (Commands::selectAll,     [this]() { editView_.selectAll();  });
-    addMenuBarCommand (Commands::snap,          [this]() { editView_.snapToGrid(); }, check);
+    addMenuCommand (MenuCommand (Commands::moveBack,    [this]() { editView_.moveBack();   }, check));
+    addMenuCommand (MenuCommand (Commands::moveFront,   [this]() { editView_.moveFront();  }, check));
+    addMenuCommand (MenuCommand (Commands::selectAll,   [this]() { editView_.selectAll();  }));
+    addMenuCommand (MenuCommand (Commands::snap,        [this]() { editView_.snapToGrid(); }, check));
     
-    addMenuBarCommand (Commands::zoomIn,        [this]() { zoomIn();     } );
-    addMenuBarCommand (Commands::zoomOut,       [this]() { zoomOut();    } );
-    addMenuBarCommand (Commands::zoomReset,     [this]() { zoomReset();  } );
+    addMenuCommand (MenuCommand (Commands::zoomIn,      [this]() { zoomIn();    } ));
+    addMenuCommand (MenuCommand (Commands::zoomOut,     [this]() { zoomOut();   } ));
+    addMenuCommand (MenuCommand (Commands::zoomReset,   [this]() { zoomReset(); } ));
 
     setOpaque (true); setSize (600, 300);
 }
