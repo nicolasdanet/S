@@ -29,7 +29,6 @@ public:
     void set (MenuCommand);
     
 private:
-    bool get (juce::CommandID, bool);
     bool has (juce::CommandID);
     bool invoke (juce::CommandID);
     

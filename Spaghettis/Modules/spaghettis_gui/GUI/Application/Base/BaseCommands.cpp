@@ -17,33 +17,31 @@ void BaseCommands::set (MenuCommand m)
     jassert (!has (m.command_)); enabled_.push_back (m);
 }
 
-bool BaseCommands::get (juce::CommandID command, bool invoke)
-{
-    for (const auto& m : enabled_) {
-        if (m.command_ == command) {
-            if (m.check_()) {
-                if (invoke) { m.execute_(); } return true;
-            } else {
-                return false;
-            }
-        }
-    }
-    
-    return false;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 bool BaseCommands::has (juce::CommandID command)
 {
-    return get (command, false);
+    for (const auto& m : enabled_) {
+        if (m.command_ == command) { return m.check_(); }
+    }
+    
+    return false;
 }
 
 bool BaseCommands::invoke (juce::CommandID command)
 {
-    return get (command, true);
+    for (const auto& m : enabled_) {
+        if (m.command_ == command) {
+            if (m.check_()) { m.execute_(); return true; }
+            else {
+                return false;
+            }
+        }
+    }
+    
+    return false;
 }
     
 // -----------------------------------------------------------------------------------------------------------
