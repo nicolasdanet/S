@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void BaseCommands::set (juce::CommandID command, std::function<void()> f, std::function<bool()> g)
 {
-    jassert (!get (command)); enabled_.emplace_back (command, f, g);
+    jassert (!has (command)); enabled_.emplace_back (command, f, g);
 }
 
 bool BaseCommands::get (juce::CommandID command, bool invoke)
@@ -30,6 +30,20 @@ bool BaseCommands::get (juce::CommandID command, bool invoke)
     }
     
     return false;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool BaseCommands::has (juce::CommandID command)
+{
+    return get (command, false);
+}
+
+bool BaseCommands::invoke (juce::CommandID command)
+{
+    return get (command, true);
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -136,12 +150,12 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
     case Commands::save :
         r.setInfo (name, text, file, 0);
         r.addDefaultKeypress ('s', juce::ModifierKeys::commandModifier);
-        r.setActive (get (command));
+        r.setActive (has (command));
         break;
     case Commands::closeWindow :
         r.setInfo (name, text, file, 0);
         r.addDefaultKeypress ('w', juce::ModifierKeys::commandModifier);
-        r.setActive (get (command));
+        r.setActive (has (command));
         break;
     case Commands::paths :
         r.setInfo (name, text, file, 0);
@@ -155,43 +169,43 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
     case Commands::selectAll :
         r.setInfo (name, text, edit, 0);
         r.addDefaultKeypress ('a', juce::ModifierKeys::commandModifier);
-        r.setActive (get (command));
+        r.setActive (has (command));
         break;
     case Commands::undo :
         r.setInfo (name, text, edit, 0);
         r.addDefaultKeypress ('z', juce::ModifierKeys::commandModifier);
-        r.setActive (get (command));
+        r.setActive (has (command));
         break;
     case Commands::redo :
         r.setInfo (name, text, edit, 0);
         r.addDefaultKeypress ('z', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
-        r.setActive (get (command));
+        r.setActive (has (command));
         break;
     case Commands::moveBack :
         r.setInfo (name, text, edit, 0);
-        r.setActive (get (command));
+        r.setActive (has (command));
         break;
     case Commands::moveFront :
         r.setInfo (name, text, edit, 0);
-        r.setActive (get (command));
+        r.setActive (has (command));
         break;
     case Commands::snap :
         r.setInfo (name, text, edit, 0);
-        r.setActive (get (command));
+        r.setActive (has (command));
         break;
     case Commands::zoomIn :
         r.setInfo (name, text, view, 0);
         r.addDefaultKeypress ('+', juce::ModifierKeys::commandModifier);
-        r.setActive (get (command));
+        r.setActive (has (command));
         break;
     case Commands::zoomOut :
         r.setInfo (name, text, view, 0);
         r.addDefaultKeypress ('-', juce::ModifierKeys::commandModifier);
-        r.setActive (get (command));
+        r.setActive (has (command));
         break;
     case Commands::zoomReset :
         r.setInfo (name, text, view, 0);
-        r.setActive (get (command));
+        r.setActive (has (command));
         break;
     case Commands::clearConsole :
         r.setInfo (name, text, view, 0);
@@ -296,7 +310,7 @@ bool performDefaultCommand (const juce::ApplicationCommandTarget::InvocationInfo
 
 bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
-    if (get (info.commandID, true) == false) { return performDefaultCommand (info); }
+    if (invoke (info.commandID) == false) { return performDefaultCommand (info); }
     
     return true;
 }

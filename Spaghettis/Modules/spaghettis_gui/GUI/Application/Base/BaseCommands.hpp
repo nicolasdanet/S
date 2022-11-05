@@ -29,7 +29,9 @@ public:
     void set (juce::CommandID, std::function<void()>, std::function<bool()>);
     
 private:
-    bool get (juce::CommandID, bool invoke = false);
+    bool get (juce::CommandID, bool);
+    bool has (juce::CommandID);
+    bool invoke (juce::CommandID);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
