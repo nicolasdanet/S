@@ -111,7 +111,7 @@ juce::String BaseCommands::getCommandDescription (juce::CommandID command)
     //
     }
     
-    return getCommandName (command);
+    return "";
 }
 
 // -----------------------------------------------------------------------------------------------------------
