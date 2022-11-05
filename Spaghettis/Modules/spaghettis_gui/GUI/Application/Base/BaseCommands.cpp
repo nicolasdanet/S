@@ -30,7 +30,7 @@ bool BaseCommands::has (juce::CommandID command)
     return false;
 }
 
-bool BaseCommands::invoke (juce::CommandID command)
+bool BaseCommands::execute (juce::CommandID command)
 {
     for (const auto& m : enabled_) {
         if (m.command_ == command) {
@@ -43,12 +43,23 @@ bool BaseCommands::invoke (juce::CommandID command)
     
     return false;
 }
+
+juce::String BaseCommands::name (juce::CommandID command, juce::String fallback)
+{
+    for (const auto& m : enabled_) {
+        if (m.command_ == command) {
+            juce::String s (m.name_()); return (s.isNotEmpty() ? s : fallback);
+        }
+    }
     
+    return fallback;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String BaseCommands::getCommandName (juce::CommandID command)
+juce::String BaseCommands::getCommandText (juce::CommandID command)
 {
     switch (command) {
     //
@@ -77,7 +88,7 @@ juce::String BaseCommands::getCommandName (juce::CommandID command)
     //
     }
     
-    return "";
+    return juce::String();
 }
 
 juce::String BaseCommands::getCommandDescription (juce::CommandID command)
@@ -109,7 +120,7 @@ juce::String BaseCommands::getCommandDescription (juce::CommandID command)
     //
     }
     
-    return "";
+    return juce::String();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -124,96 +135,96 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
     const juce::String view    = NEEDS_TRANS ("View");
     const juce::String media   = NEEDS_TRANS ("Media");
     
-    const juce::String name    = getCommandName (command);
-    const juce::String text    = getCommandDescription (command);
+    const juce::String text         = getCommandText (command);
+    const juce::String description  = getCommandDescription (command);
     
     switch (command) {
     //
     case Commands::preferences :
-        r.setInfo (name, text, general, 0);
+        r.setInfo (text, description, general, 0);
         r.addDefaultKeypress (',', juce::ModifierKeys::commandModifier);
         break;
     case Commands::newPatch :
-        r.setInfo (name, text, file, 0);
+        r.setInfo (text, description, file, 0);
         r.addDefaultKeypress ('n', juce::ModifierKeys::commandModifier);
         break;
     case Commands::openPatch :
-        r.setInfo (name, text, file, 0);
+        r.setInfo (text, description, file, 0);
         r.addDefaultKeypress ('o', juce::ModifierKeys::commandModifier);
         break;
     case Commands::clearRecentFiles :
-        r.setInfo (name, text, file, 0);
+        r.setInfo (text, description, file, 0);
         r.setActive (Spaghettis()->getNumberOfRecentFiles() > 0);
         break;
     case Commands::save :
-        r.setInfo (name, text, file, 0);
+        r.setInfo (text, description, file, 0);
         r.addDefaultKeypress ('s', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
     case Commands::closeWindow :
-        r.setInfo (name, text, file, 0);
+        r.setInfo (text, description, file, 0);
         r.addDefaultKeypress ('w', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
     case Commands::paths :
-        r.setInfo (name, text, file, 0);
+        r.setInfo (text, description, file, 0);
         break;
     case Commands::rescan :
-        r.setInfo (name, text, file, 0);
+        r.setInfo (text, description, file, 0);
         break;
     case Commands::rescanLogged :
-        r.setInfo (name, text, file, 0);
+        r.setInfo (text, description, file, 0);
         break;
     case Commands::selectAll :
-        r.setInfo (name, text, edit, 0);
+        r.setInfo (text, description, edit, 0);
         r.addDefaultKeypress ('a', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
     case Commands::undo :
-        r.setInfo (name, text, edit, 0);
+        r.setInfo (name (Commands::undo, text), description, edit, 0);
         r.addDefaultKeypress ('z', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
     case Commands::redo :
-        r.setInfo (name, text, edit, 0);
+        r.setInfo (name (Commands::redo, text), description, edit, 0);
         r.addDefaultKeypress ('z', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
     case Commands::moveBack :
-        r.setInfo (name, text, edit, 0);
+        r.setInfo (text, description, edit, 0);
         r.setActive (has (command));
         break;
     case Commands::moveFront :
-        r.setInfo (name, text, edit, 0);
+        r.setInfo (text, description, edit, 0);
         r.setActive (has (command));
         break;
     case Commands::snap :
-        r.setInfo (name, text, edit, 0);
+        r.setInfo (text, description, edit, 0);
         r.setActive (has (command));
         break;
     case Commands::zoomIn :
-        r.setInfo (name, text, view, 0);
+        r.setInfo (text, description, view, 0);
         r.addDefaultKeypress ('+', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
     case Commands::zoomOut :
-        r.setInfo (name, text, view, 0);
+        r.setInfo (text, description, view, 0);
         r.addDefaultKeypress ('-', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
     case Commands::zoomReset :
-        r.setInfo (name, text, view, 0);
+        r.setInfo (text, description, view, 0);
         r.setActive (has (command));
         break;
     case Commands::clearConsole :
-        r.setInfo (name, text, view, 0);
+        r.setInfo (text, description, view, 0);
         r.addDefaultKeypress ('l', juce::ModifierKeys::commandModifier);
         break;
     case Commands::devices :
-        r.setInfo (name, text, media, 0);
+        r.setInfo (text, description, media, 0);
         break;
     case Commands::dspSwitch :
-        r.setInfo (name, text, media, 0);
+        r.setInfo (text, description, media, 0);
         r.addDefaultKeypress ('r', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
         r.setTicked (Spaghettis()->isDspRunning());
         break;
@@ -308,7 +319,7 @@ bool performDefaultCommand (const juce::ApplicationCommandTarget::InvocationInfo
 
 bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
-    if (invoke (info.commandID) == false) { return performDefaultCommand (info); }
+    if (execute (info.commandID) == false) { return performDefaultCommand (info); }
     
     return true;
 }

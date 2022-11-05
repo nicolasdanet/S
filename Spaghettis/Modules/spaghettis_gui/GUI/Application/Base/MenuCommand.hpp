@@ -51,7 +51,7 @@ public:
 private:
     static void defaultExecute()        { }
     static bool defaultCheck()          { return true; }
-    static juce::String defaultName()   { return juce::String (""); }
+    static juce::String defaultName()   { return juce::String(); }
     
 private:
     juce::CommandID command_;
