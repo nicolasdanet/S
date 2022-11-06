@@ -28,7 +28,7 @@ Documentation::Documentation (const core::Object& o) : data_ (find (o))
 
 juce::String Documentation::getPinTooltip (const juce::String& type, bool isOutlet, int i) const
 {
-    const juce::String t = type.substring (0, 1).toUpperCase() + type.substring (1);
+    const juce::String t = core::Report::firstLetterCapitalized (type);
     const juce::String k = (isOutlet ? Tags::Outlet : Tags::Inlet) + juce::String (i);
     
     if (data_.hasParameter (Tags::Documentation, k)) {
