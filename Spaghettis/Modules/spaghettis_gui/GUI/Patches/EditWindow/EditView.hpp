@@ -144,6 +144,8 @@ private:
     void updateOrder();
 
 private:
+    core::Cached<juce::String> undo_;
+    core::Cached<juce::String> redo_;
     core::Cached<juce::Colour> patchBackgroundColour_;
     Table<core::Object, ObjectComponent> objects_;
     Table<core::Line, LineComponent> lines_;

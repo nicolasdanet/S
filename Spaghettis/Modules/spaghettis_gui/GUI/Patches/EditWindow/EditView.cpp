@@ -14,11 +14,15 @@ namespace spaghettis {
 
 EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
     View (patch, tree),
+    undo_ (core::Patch (tree).getCached<juce::String> (Tags::Attributes, Tags::Undo)),
+    redo_ (core::Patch (tree).getCached<juce::String> (Tags::Attributes, Tags::Redo)),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
     scale_ (1.0f),
     lasso_ (this)
 {
     viewTree_.addListener (this);
+    undo_.attach ([]() { DBG ("? UNDO"); });
+    redo_.attach ([]() { DBG ("? REDO"); });
     patchBackgroundColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
     setBounds (core::Canvas::getAreaScaled (scale_));
@@ -338,9 +342,6 @@ void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int
 
 void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
 {
-    if (Tree::isChangedPropertyEquals (t, Tags::Undo)) { DBG ("?"); }
-    if (Tree::isChangedPropertyEquals (t, Tags::Redo)) { DBG ("?"); }
-    
     juce::ValueTree i (Tree::getParentIfChangedPropertyEquals (t, Tags::Selected));
     
     if (i.isValid() && isChildOf (viewTree_, i) && inspector_) { inspector_->update(); }
