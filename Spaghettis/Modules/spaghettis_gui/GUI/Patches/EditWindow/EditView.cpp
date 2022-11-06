@@ -14,8 +14,8 @@ namespace spaghettis {
 
 EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
     View (patch, tree),
-    undo_ (core::Patch (tree).getCached<juce::String> (Tags::Attributes, Tags::Undo)),
-    redo_ (core::Patch (tree).getCached<juce::String> (Tags::Attributes, Tags::Redo)),
+    undo_ (core::Patch (viewTree_).getCached<juce::String> (Tags::Attributes, Tags::Undo)),
+    redo_ (core::Patch (viewTree_).getCached<juce::String> (Tags::Attributes, Tags::Redo)),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
     scale_ (1.0f),
     lasso_ (this)

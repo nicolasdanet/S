@@ -87,6 +87,7 @@ static inline t_symbol *undoaction_getLabel (t_undoaction *a)
 
 typedef struct _undomanager {
     int                 um_count;
+    t_glist             *um_owner;
     t_clock             *um_clock;
     t_undoaction        *um_head;
     t_undoaction        *um_tail;
@@ -105,6 +106,9 @@ PD_LOCAL void   undomanager_appendSeparator         (t_undomanager *x);
 PD_LOCAL void   undomanager_append                  (t_undomanager *x, t_undoaction *a);
 
 #if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL juce::String undomanager_getUndoLabel      (t_undomanager *x);
+PD_LOCAL juce::String undomanager_getRedoLabel      (t_undomanager *x);
 
 PD_LOCAL void   undomanager_undo                    (t_undomanager *x);
 PD_LOCAL void   undomanager_redo                    (t_undomanager *x);

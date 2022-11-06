@@ -65,7 +65,7 @@ PD_LOCAL void glist_undoAppend (t_glist *glist, t_undoaction *a)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-/* Raw function to use with care. */
+/* Raw function to use with extra care. */
 
 PD_LOCAL t_undomanager *glist_undoReplaceManager (t_glist *glist, t_undomanager *undo)
 {

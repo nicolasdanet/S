@@ -190,13 +190,13 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
     group.addParameter (Tags::Undo,
         NEEDS_TRANS ("Undo"),
         NEEDS_TRANS ("Undoable action"),
-        juce::String(),
+        undomanager_getUndoLabel (glist_getUndoManager (g)),
         delegate).setHidden (true);
     
     group.addParameter (Tags::Redo,
         NEEDS_TRANS ("Redo"),
         NEEDS_TRANS ("Redoable action"),
-        juce::String(),
+        undomanager_getRedoLabel (glist_getUndoManager (g)),
         delegate).setHidden (true);
 }
 

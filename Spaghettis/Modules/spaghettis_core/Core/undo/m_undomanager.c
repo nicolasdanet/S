@@ -80,31 +80,40 @@ PD_LOCAL t_undoaction *undomanager_getRedoAction (t_undomanager *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_symbol *undomanager_getUndoLabel (t_undomanager *x)
+static juce::String undomanager_getLabel (t_undoaction *a)
+{
+    t_symbol *s = undoaction_getLabel (a);
+    
+    jassert (s);
+    
+    return juce::String (symbol_getName (s));
+}
+
+PD_LOCAL juce::String undomanager_getUndoLabel (t_undomanager *x)
 {
     t_undoaction *a = undomanager_getUndoAction (x);
     
-    if (a) { return undoaction_getLabel (a); }
+    if (a) { return undomanager_getLabel (a); }
     
-    return NULL;
+    return juce::String();
 }
 
-static t_symbol *undomanager_getRedoLabel (t_undomanager *x)
+PD_LOCAL juce::String undomanager_getRedoLabel (t_undomanager *x)
 {
     t_undoaction *a = undomanager_getRedoAction (x);
     
-    if (a) { return undoaction_getLabel (a); }
+    if (a) { return undomanager_getLabel (a); }
     
-    return NULL;
+    return juce::String();
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 static void undomanager_notify (t_undomanager *x)
 {
-    t_symbol *undoLabel = undomanager_getUndoLabel (x);
-    t_symbol *redoLabel = undomanager_getRedoLabel (x);
-    
-    if (undoLabel) { DBG (juce::String ("UNDO: ") + symbol_getName (undoLabel)); }
-    if (redoLabel) { DBG (juce::String ("REDO: ") + symbol_getName (redoLabel)); }
+    outputs_objectUpdateAttributes (cast_object (x->um_owner), glist_getParent (x->um_owner));
 }
 
 #endif
@@ -278,6 +287,7 @@ PD_LOCAL t_undomanager *undomanager_new (t_glist *owner)
 {
     t_undomanager *x = (t_undomanager *)PD_MEMORY_GET (sizeof (t_undomanager));
     
+    x->um_owner = owner;
     x->um_clock = clock_new ((void *)x, (t_method)undomanager_task);
 
     undomanager_appendProceed (x, undoseparator_new());
