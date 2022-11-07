@@ -24,9 +24,17 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     addChildComponent (editZoom_);
     addChildComponent (editInspector_);
     
-    auto check = [this]() { return editView_.getNumberOfSelectedObjects() > 0; };
-    
     addMenuCommand (MenuCommand (Commands::save,        [this]() { editView_.getPatch().save(); }));
+    
+    addMenuCommand (MenuCommand (Commands::undo,        [this]() { editView_.undo(); },
+                                                        [this]() { return editView_.hasUndo(); },
+                                                        [this]() { return editView_.getUndoAction(); }));
+                                                        
+    addMenuCommand (MenuCommand (Commands::redo,        [this]() { editView_.redo(); },
+                                                        [this]() { return editView_.hasRedo(); },
+                                                        [this]() { return editView_.getRedoAction(); }));
+    
+    auto check = [this]() { return editView_.getNumberOfSelectedObjects() > 0; };
     
     addMenuCommand (MenuCommand (Commands::moveBack,    [this]() { editView_.moveBack();   }, check));
     addMenuCommand (MenuCommand (Commands::moveFront,   [this]() { editView_.moveFront();  }, check));

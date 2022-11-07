@@ -21,8 +21,8 @@ EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
     lasso_ (this)
 {
     viewTree_.addListener (this);
-    undo_.attach ([]() { DBG ("? UNDO"); });
-    redo_.attach ([]() { DBG ("? REDO"); });
+    undo_.attach ([]() { Spaghettis()->updateMenuBar(); });
+    redo_.attach ([]() { Spaghettis()->updateMenuBar(); });
     patchBackgroundColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
     setBounds (core::Canvas::getAreaScaled (scale_));
@@ -183,6 +183,48 @@ void EditView::moveFront()
 void EditView::snapToGrid()
 {
     objects_.forEach ([](const auto& p) { if (p->isSelected()) { p->snap(); } });
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditView::undo()
+{
+    DBG ("UNDO");
+}
+
+void EditView::redo()
+{
+    DBG ("REDO");
+}
+
+bool EditView::hasUndo()
+{
+    return undo_.get().isNotEmpty();
+}
+
+bool EditView::hasRedo()
+{
+    return redo_.get().isNotEmpty();
+}
+
+juce::String EditView::getUndoAction()
+{
+    if (hasUndo()) {
+        return juce::String (NEEDS_TRANS ("Undo")) + " " + core::Report::firstLetterCapitalized (undo_.get());
+    }
+    
+    return juce::String();
+}
+
+juce::String EditView::getRedoAction()
+{
+    if (hasRedo()) {
+        return juce::String (NEEDS_TRANS ("Redo")) + " " + core::Report::firstLetterCapitalized (redo_.get());
+    }
+    
+    return juce::String();
 }
 
 // -----------------------------------------------------------------------------------------------------------

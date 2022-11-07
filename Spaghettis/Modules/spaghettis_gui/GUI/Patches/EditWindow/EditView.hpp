@@ -77,6 +77,14 @@ public:
     void moveFront();
     void snapToGrid();
 
+public:
+    void undo();
+    void redo();
+    bool hasUndo();
+    bool hasRedo();
+    juce::String getUndoAction();
+    juce::String getRedoAction();
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
