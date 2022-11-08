@@ -30,6 +30,9 @@ PD_LOCAL void   rectangle_set               (t_rectangle *r, int a, int b, int c
 PD_LOCAL void   rectangle_setNothing        (t_rectangle *r);
 PD_LOCAL void   rectangle_setCopy           (t_rectangle *r, t_rectangle *toCopy);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void   rectangle_setCopy           (t_rectangle *r, const juce::Rectangle<int>& toCopy);

@@ -14,8 +14,15 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL int    object_setSnappedX                  (t_object *x, int n);
 PD_LOCAL int    object_setSnappedY                  (t_object *x, int n);
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 PD_LOCAL void   object_setBuffer                    (t_object *x, t_buffer *b);     /* Acquires ownership. */
 
@@ -59,6 +66,9 @@ PD_LOCAL int    object_getIndexAsSignalOfInlet      (t_object *x, int m);
 PD_LOCAL int    object_getIndexAsSignalOfOutlet     (t_object *x, int m);
 //PD_LOCAL int  object_isSignalInlet                (t_object *x, int m);
 PD_LOCAL int    object_isSignalOutlet               (t_object *x, int m);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #if defined ( PD_BUILDING_APPLICATION )
 

@@ -133,8 +133,12 @@ PD_LOCAL t_error glist_objectConnect (t_glist *glist, t_object *src, int m, t_ob
 {
     if (object_connect (src, m, dest, n, glist)) {
     //
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undoconnect_new (src, m, dest, n)); }
 
+    #endif
+    
     return PD_ERROR_NONE;
     //
     }

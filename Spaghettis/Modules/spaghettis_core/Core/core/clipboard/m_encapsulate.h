@@ -14,8 +14,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void encapsulate_encapsulate   (t_glist *g);
-PD_FORCE void encapsulate_deencapsulate (t_glist *g);
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void encapsulate_encapsulate   (t_glist *g);
+PD_LOCAL void encapsulate_deencapsulate (t_glist *g);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

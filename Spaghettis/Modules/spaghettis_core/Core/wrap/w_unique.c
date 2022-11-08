@@ -11,9 +11,12 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 #if defined ( PD_BUILDING_APPLICATION )
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 PD_LOCAL t_error unique_objectSelect (t_id u)
 {
@@ -43,8 +46,6 @@ PD_LOCAL t_error unique_objectDeselect (t_id u)
     return PD_ERROR;
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -62,8 +63,6 @@ PD_LOCAL t_error unique_objectRemove (t_id u)
 
     return PD_ERROR;
 }
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL t_error unique_objectSnap (t_id u)
 {
@@ -92,8 +91,6 @@ PD_LOCAL t_error unique_objectPosition (t_id u, int x, int y)
     
     return PD_ERROR;
 }
-
-#endif
 
 PD_LOCAL t_error unique_objectDisplace (t_id u, int deltaX, int deltaY)
 {
@@ -155,8 +152,6 @@ PD_LOCAL t_error unique_objectMoveAt (t_id u, int n)
     return PD_ERROR;
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL t_error unique_objectMoveBack (t_id u)
 {
     t_object *object = instance_registerGetObject (u);
@@ -185,8 +180,6 @@ PD_LOCAL t_error unique_objectMoveFront (t_id u)
     return PD_ERROR;
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -207,8 +200,6 @@ PD_LOCAL t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *ar
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL t_error unique_objectParameter (t_id u, const core::Group& group)
 {
@@ -236,13 +227,9 @@ PD_LOCAL t_error unique_objectParameter (t_id u, const core::Group& group)
     return PD_ERROR;
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL t_error unique_objectGetIndexOf (t_id u, int *n)
 {
@@ -257,8 +244,6 @@ PD_LOCAL t_error unique_objectGetIndexOf (t_id u, int *n)
     
     return PD_ERROR;
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -324,8 +309,6 @@ PD_LOCAL t_error unique_objectLineDisconnect (t_id u, int indexOfOutlet, t_id v,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 static t_glist *unique_getPatch (t_id u)
 {
     t_object *o = instance_registerGetObject (u);
@@ -335,13 +318,9 @@ static t_glist *unique_getPatch (t_id u)
     return NULL;
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL t_error unique_patchClose (t_id u)
 {
@@ -396,6 +375,9 @@ PD_LOCAL t_error unique_patchRedo (t_id u)
     
     return PD_ERROR;
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #endif
 

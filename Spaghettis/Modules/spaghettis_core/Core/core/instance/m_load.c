@@ -181,6 +181,8 @@ static int instance_loadPatch (t_symbol *name, t_symbol *directory)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 /* Context of the stack temporary bypassed to eval the buffer. */
 
 PD_LOCAL void instance_loadSnippet (t_glist *glist, t_buffer *b)
@@ -190,6 +192,8 @@ PD_LOCAL void instance_loadSnippet (t_glist *glist, t_buffer *b)
     eval_buffer (b, NULL, 0, NULL);
     instance_contextRestore();
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

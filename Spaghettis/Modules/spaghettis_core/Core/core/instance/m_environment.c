@@ -125,23 +125,5 @@ PD_LOCAL void environment_setFileName (t_environment *e, t_symbol *name)
     }
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-PD_LOCAL void environment_setDirectory (t_environment *e, t_symbol *directory)
-{
-    e->env_directory = directory;
-}
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_LOCAL void environment_setDollarZero (t_environment *e, int n)
-{
-    e->env_dollarZero = n;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

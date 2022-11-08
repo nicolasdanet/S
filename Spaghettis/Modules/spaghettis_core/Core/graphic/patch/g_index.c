@@ -23,24 +23,10 @@ PD_LOCAL void   glist_objectAddRaw      (t_glist *, t_object *, t_object *, int)
 
 PD_LOCAL std::vector<UniqueId> glist_objectGetAll (t_glist *);
 
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void glist_objectMoveNotify (t_glist *g)
 {
-    #if defined ( PD_BUILDING_APPLICATION )
-    
     outputs_patchOrder (g, glist_objectGetAll (g));
-    
-    #endif
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 PD_LOCAL void glist_objectMoveAtFirst (t_glist *glist, t_object *y)
 {
@@ -67,8 +53,6 @@ PD_LOCAL void glist_objectMoveAt (t_glist *glist, t_object *y, int n)
     //
     }
 }
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void glist_objectMoveBack (t_glist *glist, t_object *y)
 {

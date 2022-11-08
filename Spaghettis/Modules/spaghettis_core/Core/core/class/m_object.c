@@ -66,10 +66,14 @@ static int object_hasDspProceed (t_object *x, int k)
     }
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL int object_hasDspOrIsGraphicArray (t_object *x)
 {
     return object_hasDspProceed (x, 1);
 }
+
+#endif
 
 PD_LOCAL int object_hasDsp (t_object *x)
 {
@@ -94,6 +98,8 @@ PD_LOCAL t_symbol *object_getUnexpandedNameAt (t_object *x, int i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL int object_setSnappedX (t_object *x, int n)
 {
     int k = object_getX (x);
@@ -115,6 +121,8 @@ PD_LOCAL int object_setSnappedY (t_object *x, int n)
     
     return (object_getY (x) - k);
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

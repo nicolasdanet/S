@@ -15,11 +15,12 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 PD_LOCAL int undomanager_undoNeedToTriggerParent (t_undomanager *, t_items *, t_items *);
 PD_LOCAL int undomanager_redoNeedToTriggerParent (t_undomanager *, t_items *, t_items *);
 PD_LOCAL int undomanager_triggerParentIsPossible (t_glist *, t_items *, t_items *);
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -45,14 +46,10 @@ PD_LOCAL int glist_undoHasSeparatorAtLast (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL void glist_undoAppendSeparator (t_glist *glist)
 {
     undomanager_appendSeparator (glist_getUndoManager (glist));
 }
-
-#endif
 
 PD_LOCAL void glist_undoAppend (t_glist *glist, t_undoaction *a)
 {
@@ -63,8 +60,6 @@ PD_LOCAL void glist_undoAppend (t_glist *glist, t_undoaction *a)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 /* Raw function to use with extra care. */
 
 PD_LOCAL t_undomanager *glist_undoReplaceManager (t_glist *glist, t_undomanager *undo)
@@ -72,13 +67,9 @@ PD_LOCAL t_undomanager *glist_undoReplaceManager (t_glist *glist, t_undomanager 
     t_undomanager *t = glist->gl_undomanager; glist->gl_undomanager = undo; return t;
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void glist_undo (t_glist *glist)
 {
@@ -111,6 +102,9 @@ PD_LOCAL void glist_redo (t_glist *glist)
     //
     }
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #endif
 

@@ -13,6 +13,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void glist_objectDisplace (t_glist *glist, t_object *object, int deltaX, int deltaY, int notify)
 {
     int movedX = object_setSnappedX (object, object_getX (object) + deltaX);
@@ -31,8 +33,6 @@ PD_LOCAL void glist_objectDisplace (t_glist *glist, t_object *object, int deltaX
     //
     }
 }
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void glist_objectPosition (t_glist *glist, t_object *object, int x, int y, int notify)
 {

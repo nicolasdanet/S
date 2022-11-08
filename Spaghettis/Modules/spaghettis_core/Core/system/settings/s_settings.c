@@ -17,6 +17,9 @@ PD_LOCAL t_error    properties_loadBegin    (void);
 PD_LOCAL void       properties_loadClose    (void);
 PD_LOCAL int        properties_getKey       (const char *, char *, int size);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL t_error    properties_saveBegin    (void);

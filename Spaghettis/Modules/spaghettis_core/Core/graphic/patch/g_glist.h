@@ -21,7 +21,9 @@ struct _glist {
     t_glist         *gl_next;
     t_abstractions  *gl_abstractions;           /* Root. */
     t_environment   *gl_environment;            /* Top.  */
+    #if defined ( PD_BUILDING_APPLICATION )
     t_undomanager   *gl_undomanager;
+    #endif
     t_symbol        *gl_name;
     t_buffer        *gl_sorterObjects;
     t_buffer        *gl_sorterIndexes;
@@ -56,6 +58,10 @@ PD_LOCAL void       glist_makeObject    (t_glist *g, int argc, t_atom *argv);
 
 PD_LOCAL void       glist_close         (t_glist *g);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+
 #if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void       glist_save          (t_glist *g);
@@ -69,15 +75,21 @@ PD_LOCAL t_glist            *glist_getRoot              (t_glist *g);
 PD_LOCAL t_glist            *glist_getTop               (t_glist *g);
 PD_LOCAL t_glist            *glist_getParent            (t_glist *g);
 PD_LOCAL t_glist            *glist_getNext              (t_glist *g);
-#if defined ( PD_BUILDING_APPLICATION )
-PD_LOCAL t_symbol           *glist_getName              (t_glist *g);
-#endif
 PD_LOCAL t_symbol           *glist_getUnexpandedName    (t_glist *g);
 PD_LOCAL t_environment      *glist_getEnvironment       (t_glist *g);
-PD_LOCAL t_undomanager      *glist_getUndoManager       (t_glist *g);
 PD_LOCAL t_abstractions     *glist_getAbstractions      (t_glist *g);
 PD_LOCAL t_rectangle        *glist_getEditView          (t_glist *g);
 PD_LOCAL t_rectangle        *glist_getRunView           (t_glist *g);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL t_symbol           *glist_getName              (t_glist *g);
+PD_LOCAL t_undomanager      *glist_getUndoManager       (t_glist *g);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -96,13 +108,16 @@ PD_LOCAL void   glist_setRunView                        (t_glist *g, t_rectangle
 PD_LOCAL int    glist_isRoot                            (t_glist *g);
 PD_LOCAL int    glist_isTop                             (t_glist *g);
 PD_LOCAL int    glist_isAbstraction                     (t_glist *g);
-PD_LOCAL int    glist_isAbstractionOrInside             (t_glist *g);
 PD_LOCAL int    glist_isSubpatch                        (t_glist *g);
 //PD_LOCAL int    glist_isDirty                         (t_glist *g);
 PD_LOCAL int    glist_isLoading                         (t_glist *g);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #if defined ( PD_BUILDING_APPLICATION )
 
+PD_LOCAL int    glist_isAbstractionOrInside             (t_glist *g);
 PD_LOCAL int    glist_isFrozen                          (t_glist *g);
 
 #endif
@@ -133,16 +148,15 @@ PD_LOCAL int    glist_fileOpen  (t_glist *g, const char *name, const char *exten
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+PD_LOCAL int    glist_undoIsOk                          (t_glist *g);
+PD_LOCAL int    glist_undoHasSeparatorAtLast            (t_glist *g);
+PD_LOCAL void   glist_undoAppendSeparator               (t_glist *g);
+PD_LOCAL void   glist_undoAppend                        (t_glist *g, t_undoaction *a);
+
 PD_LOCAL void   glist_undo                              (t_glist *g);
 PD_LOCAL void   glist_redo                              (t_glist *g);
 
-PD_LOCAL void   glist_undoAppendSeparator               (t_glist *g);
-
 #endif
-
-PD_LOCAL int    glist_undoIsOk                          (t_glist *g);
-PD_LOCAL int    glist_undoHasSeparatorAtLast            (t_glist *g);
-PD_LOCAL void   glist_undoAppend                        (t_glist *g, t_undoaction *a);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -151,6 +165,9 @@ PD_LOCAL void   glist_undoAppend                        (t_glist *g, t_undoactio
 PD_LOCAL void   glist_objectAdd                         (t_glist *g, t_object *o);
 PD_LOCAL void   glist_objectRemove                      (t_glist *g, t_object *o);
 PD_LOCAL void   glist_objectRemoveAll                   (t_glist *g);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #if defined ( PD_BUILDING_APPLICATION )
 
@@ -166,21 +183,23 @@ PD_LOCAL void   glist_objectPosition                    (t_glist *g, t_object *o
 PD_LOCAL void   glist_objectSnap                        (t_glist *g, t_object *o, int notify);
 
 PD_LOCAL int    glist_objectIsSelected                  (t_glist *g, t_object *o);
-
 PD_LOCAL int    glist_objectGetIndexOfAmongSelected     (t_glist *g, t_object *o);
-
-#endif
-
-PD_LOCAL int    glist_objectGetIndexOf                  (t_glist *g, t_object *o);
 
 PD_LOCAL void   glist_objectMoveAtFirst                 (t_glist *g, t_object *o);
 PD_LOCAL void   glist_objectMoveAtLast                  (t_glist *g, t_object *o);
 PD_LOCAL void   glist_objectMoveAt                      (t_glist *g, t_object *o, int n);
 
+PD_LOCAL void   glist_objectDisplace                    (t_glist *g, t_object *o, int dX, int dY, int notify);
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+PD_LOCAL int    glist_objectGetIndexOf                  (t_glist *g, t_object *o);
+
 PD_LOCAL t_object   *glist_objectGetAt                  (t_glist *g, int n);
 PD_LOCAL t_object   *glist_objectGetLast                (t_glist *g);
-
-PD_LOCAL void   glist_objectDisplace                    (t_glist *g, t_object *o, int dX, int dY, int notify);
 
 PD_LOCAL void   glist_objectDeleteLinesByOutlet         (t_glist *g, t_object *o, t_outlet *outlet);
 PD_LOCAL void   glist_objectDeleteLinesByInlet          (t_glist *g, t_object *o, t_inlet  *inlet);

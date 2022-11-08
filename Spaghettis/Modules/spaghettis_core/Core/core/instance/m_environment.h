@@ -28,10 +28,6 @@ typedef struct _environment {
 
 PD_LOCAL void   environment_free            (t_environment *e);
 PD_LOCAL void   environment_setFileName     (t_environment *e, t_symbol *name);
-#if defined ( PD_BUILDING_APPLICATION )
-PD_LOCAL void   environment_setDirectory    (t_environment *e, t_symbol *directory);
-#endif
-PD_LOCAL void   environment_setDollarZero   (t_environment *e, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -74,6 +70,20 @@ static inline t_symbol *environment_getFileName (t_environment *e)
 static inline const char *environment_getFileNameAsString (t_environment *e)
 {
     return environment_getFileName (e)->s_name;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static inline void environment_setDirectory (t_environment *e, t_symbol *directory)
+{
+    e->env_directory = directory;
+}
+
+static inline void environment_setDollarZero (t_environment *e, int n)
+{
+    e->env_dollarZero = n;
 }
 
 // -----------------------------------------------------------------------------------------------------------

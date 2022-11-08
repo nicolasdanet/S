@@ -40,8 +40,16 @@ PD_LOCAL void glist_objectAddRaw (t_glist *glist, t_object *y, t_object *first, 
 
 static void glist_objectAddProceed (t_glist *glist, t_object *y)
 {
-    glist_objectAddRaw (glist, y, NULL, 0); instance_registerAdd (y, glist);
+    glist_objectAddRaw (glist, y, NULL, 0);
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    instance_registerAdd (y, glist);
+    
+    #endif
 }
+
+#if defined ( PD_BUILDING_APPLICATION )
 
 static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
 {
@@ -52,10 +60,17 @@ static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
     }
 }
 
+#endif
+
 PD_LOCAL void glist_objectAdd (t_glist *glist, t_object *y)
 {
     glist_objectAddProceed (glist, y);
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     glist_objectAddUndoProceed (glist, y);
+    
+    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -112,7 +127,13 @@ PD_LOCAL void glist_objectRemoveRaw (t_glist *glist, t_object *y)
 
 static void glist_objectRemoveProceed (t_glist *glist, t_object *y)
 {
-    instance_registerRemove (y); glist_objectRemoveRaw (glist, y);
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    instance_registerRemove (y);
+    
+    #endif
+    
+    glist_objectRemoveRaw (glist, y);
 }
 
 static void glist_objectRemoveFree (t_glist *glist, t_object *y)
@@ -129,7 +150,9 @@ static void glist_objectRemoveFree (t_glist *glist, t_object *y)
 PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
 {
     int needToRebuild = object_hasDsp (y);
+    #if defined ( PD_BUILDING_APPLICATION )
     int undoable      = glist_undoIsOk (glist);
+    #endif
     int state         = 0;
     
     glist_deleteBegin (glist);
@@ -139,15 +162,18 @@ PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
     if (needToRebuild) { state = dsp_suspend(); }
     
     {
+        #if defined ( PD_BUILDING_APPLICATION )
         if (undoable && glist_undoHasSeparatorAtLast (glist)) {
             glist_undoAppend (glist, undoremove_new());
         }
+        #endif
     
         {
-            t_undosnippet *snippet = NULL;
-        
+            #if defined ( PD_BUILDING_APPLICATION )
+            t_undosnippet *snippet  = NULL;
             if (undoable) { snippet = undosnippet_new (y, glist); }     /* MUST be before call below. */
-        
+            #endif
+            
             glist_objectDeleteLines (glist, y);
             
             if (object_isCanvas (y)) {      /* MUST be done after call above. */
@@ -155,8 +181,10 @@ PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
             glist_undoDisable (cast_glist (y)); glist_objectRemoveAll (cast_glist (y));
             //
             }
-    
+            
+            #if defined ( PD_BUILDING_APPLICATION )
             if (undoable) { glist_undoAppend (glist, undodelete_new (y, snippet)); }
+            #endif
         }
     
         glist_objectRemoveProceed (glist, y);

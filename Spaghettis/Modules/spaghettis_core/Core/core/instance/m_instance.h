@@ -63,7 +63,9 @@ typedef struct _pdinstance {
     t_pd            *pd_newest;
     t_class         *pd_objectMaker;
     t_class         *pd_canvasMaker;
+    #if defined ( PD_BUILDING_APPLICATION )
     t_register      *pd_register;
+    #endif
     t_buffer        *pd_pool;
     t_dspthread     *pd_dsp;
     } t_pdinstance;
@@ -129,6 +131,8 @@ PD_LOCAL void       instance_rootsFreeAll           (void);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void       instance_registerAdd            (t_object *o, t_glist *owner);
 PD_LOCAL t_error    instance_registerRemove         (t_object *o);
 PD_LOCAL void       instance_registerRename         (t_object *o, t_id newUnique);
@@ -137,6 +141,8 @@ PD_LOCAL int        instance_registerContains       (t_id u);
 
 PD_LOCAL t_object   *instance_registerGetObject     (t_id u);
 PD_LOCAL t_glist    *instance_registerGetOwner      (t_id u);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -192,9 +198,7 @@ PD_LOCAL void       instance_autoreleaseProceed     (t_pd *x);
 // MARK: -
 
 #if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL void       instance_patchNew               (t_symbol *name, t_symbol *directory);
-
 #endif
 
 PD_LOCAL t_error    instance_patchOpen              (t_symbol *name, t_symbol *directory);
@@ -204,7 +208,13 @@ PD_LOCAL t_error    instance_patchOpen              (t_symbol *name, t_symbol *d
 // MARK: -
 
 PD_LOCAL void       instance_loadAbstraction        (t_symbol *name, int argc, t_atom *argv);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if defined ( PD_BUILDING_APPLICATION )
 PD_LOCAL void       instance_loadSnippet            (t_glist *glist, t_buffer *b);
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -258,13 +268,11 @@ PD_LOCAL void       instance_pendingAdd             (t_object *y);
 
 PD_LOCAL void       instance_snapSet                (int n);
 PD_LOCAL void       instance_snapSetGrid            (int n);
-
-#endif
-
 PD_LOCAL int        instance_snapIsSet              (void);
 PD_LOCAL int        instance_snapGetGrid            (void);
-
 PD_LOCAL int        instance_snapGetSnapped         (int n);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -296,7 +304,6 @@ PD_LOCAL void       instance_objectSetNewest        (t_pd *x);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int        instance_undoIsRecursive        (void);
 PD_LOCAL int        instance_hasPending             (void);
 
 // -----------------------------------------------------------------------------------------------------------
@@ -305,6 +312,7 @@ PD_LOCAL int        instance_hasPending             (void);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+PD_LOCAL int        instance_undoIsRecursive        (void);
 PD_LOCAL void       instance_undoSetRecursive       (void);
 PD_LOCAL void       instance_undoUnsetRecursive     (void);
 PD_LOCAL void       instance_pendingBegin           (void);

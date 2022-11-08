@@ -15,6 +15,9 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 PD_LOCAL void snippet_renameArrays (t_buffer *x, t_glist *glist)
 {
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
@@ -42,13 +45,9 @@ PD_LOCAL void snippet_renameArrays (t_buffer *x, t_glist *glist)
     iterator_free (iter);
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void snippet_addOffsetToLines (t_buffer *x, int i)
 {
@@ -91,13 +90,9 @@ PD_LOCAL void snippet_substractOffsetToLines (t_buffer *x, int i)
     snippet_addOffsetToLines (x, -i);
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 static int snippet_isObject (t_symbol *s)
 {
@@ -189,6 +184,9 @@ PD_LOCAL void snippet_disposeObjects (t_buffer *x, int offset)
     //
     }
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #endif
 

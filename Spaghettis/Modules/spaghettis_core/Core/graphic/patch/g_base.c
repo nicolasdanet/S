@@ -49,6 +49,11 @@ PD_LOCAL t_symbol *glist_getName (t_glist *g)
     return g->gl_name;
 }
 
+PD_LOCAL t_undomanager *glist_getUndoManager (t_glist *glist)
+{
+    return glist->gl_undomanager;
+}
+
 #endif
 
 PD_LOCAL t_symbol *glist_getUnexpandedName (t_glist *glist)
@@ -59,11 +64,6 @@ PD_LOCAL t_symbol *glist_getUnexpandedName (t_glist *glist)
 PD_LOCAL t_environment *glist_getEnvironment (t_glist *glist)
 {
     return (glist_getTop (glist)->gl_environment);
-}
-
-PD_LOCAL t_undomanager *glist_getUndoManager (t_glist *glist)
-{
-    return glist->gl_undomanager;
 }
 
 PD_LOCAL t_abstractions *glist_getAbstractions (t_glist *glist)
@@ -170,11 +170,6 @@ PD_LOCAL int glist_isAbstraction (t_glist *glist)
     return (glist_hasParent (glist) && (glist->gl_environment != NULL));
 }
 
-PD_LOCAL int glist_isAbstractionOrInside (t_glist *glist)
-{
-    return (glist_isAbstraction (glist_getTop (glist)));
-}
-
 PD_LOCAL int glist_isSubpatch (t_glist *glist)
 {
     return (!glist_isTop (glist));
@@ -190,6 +185,11 @@ PD_LOCAL int glist_isDirty (t_glist *glist)
 #endif
 
 #if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL int glist_isAbstractionOrInside (t_glist *glist)
+{
+    return (glist_isAbstraction (glist_getTop (glist)));
+}
 
 PD_LOCAL int glist_isFrozen (t_glist *glist)
 {

@@ -12,6 +12,11 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 PD_LOCAL t_undoaction   *undoseparator_new          (void);     /* Actions used for labelling only. */
@@ -28,8 +33,6 @@ PD_LOCAL t_undoaction   *undodelete_new             (t_object *o, t_undosnippet 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL t_undoaction   *undocut_new                (void);
 PD_LOCAL t_undoaction   *undopaste_new              (void);
 PD_LOCAL t_undoaction   *undoduplicate_new          (void);
@@ -41,6 +44,9 @@ PD_LOCAL t_undoaction   *undodeencapsulate_new      (void);
 
 PD_LOCAL t_undoaction   *undofront_new              (t_object *o, t_undosnippet *snippet);
 PD_LOCAL t_undoaction   *undoback_new               (t_object *o, t_undosnippet *snippet);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #endif
 

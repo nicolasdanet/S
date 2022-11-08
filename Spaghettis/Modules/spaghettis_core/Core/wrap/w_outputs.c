@@ -233,14 +233,6 @@ PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
 }
 
-PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)
-{
-}
-
-PD_LOCAL void outputs_objectRenamed (t_object *x, t_glist *owner, t_id u)
-{
-}
-
 PD_LOCAL void outputs_objectUpdateAttributes (t_object *x, t_glist *owner)
 {
 }
@@ -256,7 +248,7 @@ PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#endif // PD_BUILDING_APPLICATION
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

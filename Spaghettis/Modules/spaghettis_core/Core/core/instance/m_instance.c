@@ -86,12 +86,12 @@ PD_LOCAL int instance_isMakerObject (t_pd *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL int instance_undoIsRecursive (void)
 {
     return (instance_get()->pd_isUndoRecursive > 0);
 }
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void instance_undoSetRecursive (void)
 {
@@ -157,12 +157,20 @@ PD_LOCAL void instance_rootsAdd (t_glist *glist)
 {
     glist_setNext (glist, instance_get()->pd_roots); instance_get()->pd_roots = glist;
     
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     instance_registerAdd (cast_object (glist), NULL);
+    
+    #endif
 }
 
 PD_LOCAL void instance_rootsRemove (t_glist *glist)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     instance_registerRemove (cast_object (glist));
+    
+    #endif
     
     if (glist == instance_get()->pd_roots) { instance_get()->pd_roots = glist_getNext (glist); }
     else {
@@ -196,6 +204,8 @@ static t_glist *instance_rootsGet (void)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void instance_registerAdd (t_object *o, t_glist *owner)
 {
@@ -238,6 +248,8 @@ PD_LOCAL t_glist *instance_registerGetOwner (t_id u)
 {
     return register_getOwner (instance_get()->pd_register, u);
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -457,7 +469,9 @@ static t_pdinstance *instance_new()
     x->pd_canvasMaker = class_new (sym_canvasmaker, NULL, NULL, 0, CLASS_ABSTRACT, A_NULL);
     
     x->pd_clocks      = clocks_new();
+    #if defined ( PD_BUILDING_APPLICATION )
     x->pd_register    = register_new();
+    #endif
     x->pd_pool        = buffer_new();
     x->pd_dsp         = dspthread_new();
     x->pd_stop        = clock_new ((void *)x, (t_method)instance_audioCloseTask);
@@ -488,7 +502,9 @@ static void instance_free (t_pdinstance *x)
     clock_free (x->pd_stop);
     
     buffer_free (x->pd_pool);
+    #if defined ( PD_BUILDING_APPLICATION )
     register_free (x->pd_register);
+    #endif
     clocks_free (x->pd_clocks);
     
     class_free (x->pd_canvasMaker);
