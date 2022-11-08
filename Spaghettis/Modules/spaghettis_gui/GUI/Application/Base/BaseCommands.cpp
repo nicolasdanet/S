@@ -75,6 +75,10 @@ juce::String BaseCommands::getCommandText (juce::CommandID command)
     case Commands::selectAll            : return NEEDS_TRANS ("Select All");
     case Commands::undo                 : return NEEDS_TRANS ("Undo");
     case Commands::redo                 : return NEEDS_TRANS ("Redo");
+    case Commands::cut                  : return NEEDS_TRANS ("Cut");
+    case Commands::copy                 : return NEEDS_TRANS ("Copy");
+    case Commands::paste                : return NEEDS_TRANS ("Paste");
+    case Commands::duplicate            : return NEEDS_TRANS ("Duplicate");
     case Commands::moveBack             : return NEEDS_TRANS ("Move Back");
     case Commands::moveFront            : return NEEDS_TRANS ("Move Front");
     case Commands::snap                 : return NEEDS_TRANS ("Snap");
@@ -107,6 +111,10 @@ juce::String BaseCommands::getCommandDescription (juce::CommandID command)
     case Commands::selectAll            : return NEEDS_TRANS ("Select all");
     case Commands::undo                 : return NEEDS_TRANS ("Undo action");
     case Commands::redo                 : return NEEDS_TRANS ("Redo action");
+    case Commands::cut                  : return NEEDS_TRANS ("Cut");
+    case Commands::copy                 : return NEEDS_TRANS ("Copy");
+    case Commands::paste                : return NEEDS_TRANS ("Paste");
+    case Commands::duplicate            : return NEEDS_TRANS ("Duplicate");
     case Commands::moveBack             : return NEEDS_TRANS ("Move backward");
     case Commands::moveFront            : return NEEDS_TRANS ("Move frontward");
     case Commands::snap                 : return NEEDS_TRANS ("Snap objects to grid");
@@ -190,6 +198,26 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         r.addDefaultKeypress ('z', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
+    case Commands::cut :
+        r.setInfo (text, description, edit, 0);
+        r.addDefaultKeypress ('x', juce::ModifierKeys::commandModifier);
+        r.setActive (has (command));
+        break;
+    case Commands::copy :
+        r.setInfo (text, description, edit, 0);
+        r.addDefaultKeypress ('c', juce::ModifierKeys::commandModifier);
+        r.setActive (has (command));
+        break;
+    case Commands::paste :
+        r.setInfo (text, description, edit, 0);
+        r.addDefaultKeypress ('v', juce::ModifierKeys::commandModifier);
+        r.setActive (has (command));
+        break;
+    case Commands::duplicate :
+        r.setInfo (text, description, edit, 0);
+        r.addDefaultKeypress ('d', juce::ModifierKeys::commandModifier);
+        r.setActive (has (command));
+        break;
     case Commands::moveBack :
         r.setInfo (text, description, edit, 0);
         r.setActive (has (command));
@@ -249,6 +277,10 @@ void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::selectAll,
             Commands::undo,
             Commands::redo,
+            Commands::cut,
+            Commands::copy,
+            Commands::paste,
+            Commands::duplicate,
             Commands::moveBack,
             Commands::moveFront,
             Commands::snap,
