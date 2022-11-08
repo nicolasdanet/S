@@ -28,6 +28,16 @@ static void deselect (core::UniqueId i)
     Spaghettis()->handle (Inputs::deselectObject (i));
 }
 
+static void undo (core::UniqueId i)
+{
+    Spaghettis()->handle (Inputs::undoPatch (i));
+}
+
+static void redo (core::UniqueId i)
+{
+    Spaghettis()->handle (Inputs::redoPatch (i));
+}
+
 static void moveBack (core::UniqueId i)
 {
     Spaghettis()->handle (Inputs::moveBackObject (i));

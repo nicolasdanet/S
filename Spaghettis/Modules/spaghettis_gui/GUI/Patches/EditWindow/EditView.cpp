@@ -191,12 +191,12 @@ void EditView::snapToGrid()
 
 void EditView::undo()
 {
-    DBG ("UNDO");
+    EditCommands::undo (core::Patch (viewTree_).getIdentifier());
 }
 
 void EditView::redo()
 {
-    DBG ("REDO");
+    EditCommands::redo (core::Patch (viewTree_).getIdentifier());
 }
 
 bool EditView::hasUndo()
