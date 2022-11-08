@@ -116,6 +116,13 @@ static void undomanager_notify (t_undomanager *x)
     outputs_objectUpdateAttributes (cast_object (x->um_owner), glist_getParent (x->um_owner));
 }
 
+#else
+
+static void undomanager_notify (t_undomanager *x)
+{
+    
+}
+
 #endif
 
 // -----------------------------------------------------------------------------------------------------------
