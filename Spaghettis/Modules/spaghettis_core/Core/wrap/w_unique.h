@@ -68,6 +68,14 @@ PD_LOCAL t_error    unique_patchSetRunView      (t_id u, t_rectangle *r);
 PD_LOCAL t_error    unique_patchUndo            (t_id u);
 PD_LOCAL t_error    unique_patchRedo            (t_id u);
 
+PD_LOCAL t_error    unique_patchCut             (t_id u);
+PD_LOCAL t_error    unique_patchCopy            (t_id u);
+PD_LOCAL t_error    unique_patchPaste           (t_id u);
+PD_LOCAL t_error    unique_patchDuplicate       (t_id u);
+
+PD_LOCAL t_error    unique_patchEncapsulate     (t_id u);
+PD_LOCAL t_error    unique_patchDeencapsulate   (t_id u);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

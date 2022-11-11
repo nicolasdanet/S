@@ -84,6 +84,16 @@ public:
     bool hasRedo();
     juce::String getUndoAction();
     juce::String getRedoAction();
+
+public:
+    void cut();
+    void copy();
+    void paste();
+    void duplicate();
+
+public:
+    void encapsulate();
+    void deencapsulate();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

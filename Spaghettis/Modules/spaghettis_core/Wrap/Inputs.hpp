@@ -48,8 +48,19 @@ static Perform closePatch (core::UniqueId);
 static Perform savePatch (core::UniqueId);
 static Perform setEditView (core::UniqueId, juce::Rectangle<int>);
 static Perform setRunView (core::UniqueId, juce::Rectangle<int>);
-static Perform undoPatch (core::UniqueId);
-static Perform redoPatch (core::UniqueId);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static Perform undo (core::UniqueId);
+static Perform redo (core::UniqueId);
+static Perform cut (core::UniqueId);
+static Perform copy (core::UniqueId);
+static Perform paste (core::UniqueId);
+static Perform duplicate (core::UniqueId);
+static Perform encapsulate (core::UniqueId);
+static Perform deencapsulate (core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -41,6 +41,8 @@ enum CommandIds : juce::CommandID {
     copy,
     paste,
     duplicate,
+    encapsulate,
+    deencapsulate,
     moveBack,
     moveFront,
     snap,

@@ -16,11 +16,26 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 PD_LOCAL void   clipboard_copy              (t_glist *glist);
 PD_LOCAL void   clipboard_paste             (t_glist *glist);
 
 PD_LOCAL void   clipboard_copyDuplicate     (t_glist *glist);
 PD_LOCAL void   clipboard_pasteDuplicate    (t_glist *glist);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void   glist_copy                  (t_glist *glist);
+PD_LOCAL void   glist_cut                   (t_glist *glist);
+PD_LOCAL void   glist_paste                 (t_glist *glist);
+PD_LOCAL void   glist_duplicate             (t_glist *glist);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #endif
 

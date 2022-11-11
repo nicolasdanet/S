@@ -133,14 +133,48 @@ PD_LOCAL void inputs_setRunView (core::UniqueId i, juce::Rectangle<int> bounds)
     if (unique_patchSetRunView (i, &r) != PD_ERROR_NONE) { jassertfalse; }
 }
 
-PD_LOCAL void inputs_undoPatch (core::UniqueId i)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void inputs_undo (core::UniqueId i)
 {
     if (unique_patchUndo (i) != PD_ERROR_NONE) { jassertfalse; }
 }
 
-PD_LOCAL void inputs_redoPatch (core::UniqueId i)
+PD_LOCAL void inputs_redo (core::UniqueId i)
 {
     if (unique_patchRedo (i) != PD_ERROR_NONE) { jassertfalse; }
+}
+
+PD_LOCAL void inputs_cut (core::UniqueId i)
+{
+    if (unique_patchCut (i) != PD_ERROR_NONE) { jassertfalse; }
+}
+
+PD_LOCAL void inputs_copy (core::UniqueId i)
+{
+    if (unique_patchCopy (i) != PD_ERROR_NONE) { jassertfalse; }
+}
+
+PD_LOCAL void inputs_paste (core::UniqueId i)
+{
+    if (unique_patchPaste (i) != PD_ERROR_NONE) { jassertfalse; }
+}
+
+PD_LOCAL void inputs_duplicate (core::UniqueId i)
+{
+    if (unique_patchDuplicate (i) != PD_ERROR_NONE) { jassertfalse; }
+}
+
+PD_LOCAL void inputs_encapsulate (core::UniqueId i)
+{
+    if (unique_patchEncapsulate (i) != PD_ERROR_NONE) { jassertfalse; }
+}
+
+PD_LOCAL void inputs_deencapsulate (core::UniqueId i)
+{
+    if (unique_patchDeencapsulate (i) != PD_ERROR_NONE) { jassertfalse; }
 }
 
 // -----------------------------------------------------------------------------------------------------------

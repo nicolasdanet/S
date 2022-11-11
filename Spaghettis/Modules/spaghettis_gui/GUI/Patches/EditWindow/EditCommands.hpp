@@ -30,12 +30,42 @@ static void deselect (core::UniqueId i)
 
 static void undo (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::undoPatch (i));
+    Spaghettis()->handle (Inputs::undo (i));
 }
 
 static void redo (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::redoPatch (i));
+    Spaghettis()->handle (Inputs::redo (i));
+}
+
+static void cut (core::UniqueId i)
+{
+    Spaghettis()->handle (Inputs::cut (i));
+}
+
+static void copy (core::UniqueId i)
+{
+    Spaghettis()->handle (Inputs::copy (i));
+}
+
+static void paste (core::UniqueId i)
+{
+    Spaghettis()->handle (Inputs::paste (i));
+}
+
+static void duplicate (core::UniqueId i)
+{
+    Spaghettis()->handle (Inputs::duplicate (i));
+}
+
+static void encapsulate (core::UniqueId i)
+{
+    Spaghettis()->handle (Inputs::encapsulate (i));
+}
+
+static void deencapsulate (core::UniqueId i)
+{
+    Spaghettis()->handle (Inputs::deencapsulate (i));
 }
 
 static void moveBack (core::UniqueId i)

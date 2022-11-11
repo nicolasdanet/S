@@ -231,6 +231,52 @@ juce::String EditView::getRedoAction()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditView::cut()
+{
+    DBG ("Cut");
+    
+    // EditCommands::cut (core::Patch (viewTree_).getIdentifier());
+}
+
+void EditView::copy()
+{
+    DBG ("Copy");
+    
+    // EditCommands::copy (core::Patch (viewTree_).getIdentifier());
+}
+
+void EditView::paste()
+{
+    DBG ("Paste");
+    
+    // EditCommands::paste (core::Patch (viewTree_).getIdentifier());
+}
+
+void EditView::duplicate()
+{
+    DBG ("Duplicate");
+    
+    // EditCommands::duplicate (core::Patch (viewTree_).getIdentifier());
+}
+
+void EditView::encapsulate()
+{
+    DBG ("Encapsulate");
+    
+    // EditCommands::encapsulate (core::Patch (viewTree_).getIdentifier());
+}
+
+void EditView::deencapsulate()
+{
+    DBG ("Deencapsulate");
+    
+    // EditCommands::deencapsulate (core::Patch (viewTree_).getIdentifier());
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::paint (juce::Graphics& g)
 {
     g.fillAll (patchBackgroundColour_.get());

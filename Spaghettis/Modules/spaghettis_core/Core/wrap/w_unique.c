@@ -376,6 +376,60 @@ PD_LOCAL t_error unique_patchRedo (t_id u)
     return PD_ERROR;
 }
 
+PD_LOCAL t_error unique_patchCut (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_cut (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+PD_LOCAL t_error unique_patchCopy (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_copy (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+PD_LOCAL t_error unique_patchPaste (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_paste (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+PD_LOCAL t_error unique_patchDuplicate (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_duplicate (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+PD_LOCAL t_error unique_patchEncapsulate (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { encapsulate_encapsulate (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+PD_LOCAL t_error unique_patchDeencapsulate (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { encapsulate_deencapsulate (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

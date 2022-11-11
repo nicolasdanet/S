@@ -79,6 +79,8 @@ juce::String BaseCommands::getCommandText (juce::CommandID command)
     case Commands::copy                 : return NEEDS_TRANS ("Copy");
     case Commands::paste                : return NEEDS_TRANS ("Paste");
     case Commands::duplicate            : return NEEDS_TRANS ("Duplicate");
+    case Commands::encapsulate          : return NEEDS_TRANS ("Encapsulate");
+    case Commands::deencapsulate        : return NEEDS_TRANS ("De-encapsulate");
     case Commands::moveBack             : return NEEDS_TRANS ("Move Back");
     case Commands::moveFront            : return NEEDS_TRANS ("Move Front");
     case Commands::snap                 : return NEEDS_TRANS ("Snap");
@@ -115,6 +117,8 @@ juce::String BaseCommands::getCommandDescription (juce::CommandID command)
     case Commands::copy                 : return NEEDS_TRANS ("Copy");
     case Commands::paste                : return NEEDS_TRANS ("Paste");
     case Commands::duplicate            : return NEEDS_TRANS ("Duplicate");
+    case Commands::encapsulate          : return NEEDS_TRANS ("Encapsulate");
+    case Commands::deencapsulate        : return NEEDS_TRANS ("De-encapsulate");
     case Commands::moveBack             : return NEEDS_TRANS ("Move backward");
     case Commands::moveFront            : return NEEDS_TRANS ("Move frontward");
     case Commands::snap                 : return NEEDS_TRANS ("Snap objects to grid");
@@ -218,6 +222,14 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         r.addDefaultKeypress ('d', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
+    case Commands::encapsulate :
+        r.setInfo (text, description, edit, 0);
+        r.setActive (has (command));
+        break;
+    case Commands::deencapsulate :
+        r.setInfo (text, description, edit, 0);
+        r.setActive (has (command));
+        break;
     case Commands::moveBack :
         r.setInfo (text, description, edit, 0);
         r.setActive (has (command));
@@ -281,6 +293,8 @@ void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::copy,
             Commands::paste,
             Commands::duplicate,
+            Commands::encapsulate,
+            Commands::deencapsulate,
             Commands::moveBack,
             Commands::moveFront,
             Commands::snap,

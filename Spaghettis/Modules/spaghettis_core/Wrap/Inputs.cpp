@@ -103,14 +103,48 @@ Perform Inputs::setRunView (core::UniqueId i, juce::Rectangle<int> bounds)
     return [i, bounds]() { core::inputs_setRunView (i, bounds); };
 }
 
-Perform Inputs::undoPatch (core::UniqueId i)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Perform Inputs::undo (core::UniqueId i)
 {
-    return [i]() { core::inputs_undoPatch (i); };
+    return [i]() { core::inputs_undo (i); };
 }
 
-Perform Inputs::redoPatch (core::UniqueId i)
+Perform Inputs::redo (core::UniqueId i)
 {
-    return [i]() { core::inputs_redoPatch (i); };
+    return [i]() { core::inputs_redo (i); };
+}
+
+Perform Inputs::cut (core::UniqueId i)
+{
+    return [i]() { core::inputs_cut (i); };
+}
+
+Perform Inputs::copy (core::UniqueId i)
+{
+    return [i]() { core::inputs_copy (i); };
+}
+
+Perform Inputs::paste (core::UniqueId i)
+{
+    return [i]() { core::inputs_paste (i); };
+}
+
+Perform Inputs::duplicate (core::UniqueId i)
+{
+    return [i]() { core::inputs_duplicate (i); };
+}
+
+Perform Inputs::encapsulate (core::UniqueId i)
+{
+    return [i]() { core::inputs_encapsulate (i); };
+}
+
+Perform Inputs::deencapsulate (core::UniqueId i)
+{
+    return [i]() { core::inputs_deencapsulate (i); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -35,8 +35,15 @@ PD_LOCAL void inputs_closePatch         (core::UniqueId);
 PD_LOCAL void inputs_savePatch          (core::UniqueId);
 PD_LOCAL void inputs_setEditView        (core::UniqueId, juce::Rectangle<int>);
 PD_LOCAL void inputs_setRunView         (core::UniqueId, juce::Rectangle<int>);
-PD_LOCAL void inputs_undoPatch          (core::UniqueId i);
-PD_LOCAL void inputs_redoPatch          (core::UniqueId i);
+
+PD_LOCAL void inputs_undo               (core::UniqueId);
+PD_LOCAL void inputs_redo               (core::UniqueId);
+PD_LOCAL void inputs_cut                (core::UniqueId);
+PD_LOCAL void inputs_copy               (core::UniqueId);
+PD_LOCAL void inputs_paste              (core::UniqueId);
+PD_LOCAL void inputs_duplicate          (core::UniqueId);
+PD_LOCAL void inputs_encapsulate        (core::UniqueId);
+PD_LOCAL void inputs_deencapsulate      (core::UniqueId);
 
 PD_LOCAL void inputs_selectObject       (core::UniqueId);
 PD_LOCAL void inputs_deselectObject     (core::UniqueId);
