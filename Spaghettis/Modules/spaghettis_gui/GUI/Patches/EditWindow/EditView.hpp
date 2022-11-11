@@ -63,6 +63,7 @@ public:
     int getNumberOfSelectedObjects();
     int getNumberOfSelectedLines();
     core::Item getItemForInspector();
+    bool hasOnlyOnePatchSelected();
     
 private:
     ObjectComponent* getSelectedObject();

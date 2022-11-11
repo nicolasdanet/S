@@ -135,6 +135,17 @@ core::Item EditView::getItemForInspector()
     }
 }
 
+bool EditView::hasOnlyOnePatchSelected()
+{
+    if (getNumberOfSelectedObjects() == 1) {
+        if (getSelectedObject()->getObject().isPatch()) {
+            return true;
+        }
+    }
+        
+    return false;
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
