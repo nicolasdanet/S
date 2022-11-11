@@ -270,7 +270,7 @@ void EditView::deencapsulate()
 {
     DBG ("Deencapsulate");
     
-    // EditCommands::deencapsulate (core::Patch (viewTree_).getIdentifier());
+    // EditCommands::deencapsulate ();
 }
     
 // -----------------------------------------------------------------------------------------------------------

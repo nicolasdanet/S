@@ -24,26 +24,34 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     addChildComponent (editZoom_);
     addChildComponent (editInspector_);
     
-    addMenuCommand (MenuCommand (Commands::save,        [this]() { editView_.getPatch().save(); }));
+    addMenuCommand (MenuCommand (Commands::save,            [this]() { editView_.getPatch().save(); }));
     
-    addMenuCommand (MenuCommand (Commands::undo,        [this]() { editView_.undo(); },
-                                                        [this]() { return editView_.hasUndo(); },
-                                                        [this]() { return editView_.getUndoAction(); }));
+    addMenuCommand (MenuCommand (Commands::undo,            [this]() { editView_.undo(); },
+                                                            [this]() { return editView_.hasUndo(); },
+                                                            [this]() { return editView_.getUndoAction(); }));
                                                         
-    addMenuCommand (MenuCommand (Commands::redo,        [this]() { editView_.redo(); },
-                                                        [this]() { return editView_.hasRedo(); },
-                                                        [this]() { return editView_.getRedoAction(); }));
+    addMenuCommand (MenuCommand (Commands::redo,            [this]() { editView_.redo(); },
+                                                            [this]() { return editView_.hasRedo(); },
+                                                            [this]() { return editView_.getRedoAction(); }));
     
-    auto check = [this]() { return editView_.getNumberOfSelectedObjects() > 0; };
+    auto f = [this]() { return editView_.getNumberOfSelectedObjects() > 0; };
     
-    addMenuCommand (MenuCommand (Commands::moveBack,    [this]() { editView_.moveBack();   }, check));
-    addMenuCommand (MenuCommand (Commands::moveFront,   [this]() { editView_.moveFront();  }, check));
-    addMenuCommand (MenuCommand (Commands::selectAll,   [this]() { editView_.selectAll();  }));
-    addMenuCommand (MenuCommand (Commands::snap,        [this]() { editView_.snapToGrid(); }, check));
+    addMenuCommand (MenuCommand (Commands::cut,             [this]() { editView_.cut();       }, f));
+    addMenuCommand (MenuCommand (Commands::copy,            [this]() { editView_.copy();      }, f));
+    addMenuCommand (MenuCommand (Commands::duplicate,       [this]() { editView_.duplicate(); }, f));
+    addMenuCommand (MenuCommand (Commands::paste,           [this]() { editView_.paste();     }));
+        
+    addMenuCommand (MenuCommand (Commands::encapsulate,     [this]() { editView_.encapsulate();   }, f));
+    addMenuCommand (MenuCommand (Commands::deencapsulate,   [this]() { editView_.deencapsulate(); }));
     
-    addMenuCommand (MenuCommand (Commands::zoomIn,      [this]() { zoomIn();    } ));
-    addMenuCommand (MenuCommand (Commands::zoomOut,     [this]() { zoomOut();   } ));
-    addMenuCommand (MenuCommand (Commands::zoomReset,   [this]() { zoomReset(); } ));
+    addMenuCommand (MenuCommand (Commands::moveBack,        [this]() { editView_.moveBack();   }, f));
+    addMenuCommand (MenuCommand (Commands::moveFront,       [this]() { editView_.moveFront();  }, f));
+    addMenuCommand (MenuCommand (Commands::snap,            [this]() { editView_.snapToGrid(); }, f));
+    addMenuCommand (MenuCommand (Commands::selectAll,       [this]() { editView_.selectAll();  }));
+        
+    addMenuCommand (MenuCommand (Commands::zoomIn,          [this]() { zoomIn();    } ));
+    addMenuCommand (MenuCommand (Commands::zoomOut,         [this]() { zoomOut();   } ));
+    addMenuCommand (MenuCommand (Commands::zoomReset,       [this]() { zoomReset(); } ));
 
     setOpaque (true); setSize (600, 300);
 }
