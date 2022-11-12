@@ -226,7 +226,7 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         break;
     case Commands::remove :
         r.setInfo (text, description, edit, 0);
-        r.addDefaultKeypress (juce::KeyPress::deleteKey, juce::ModifierKeys::noModifiers);
+        r.addDefaultKeypress (juce::KeyPress::backspaceKey, juce::ModifierKeys::noModifiers);
         r.setActive (has (command));
         break;
     case Commands::encapsulate :
