@@ -64,6 +64,8 @@ public:
     int getNumberOfSelectedLines();
     core::Item getItemForInspector();
     bool hasOnlyOnePatchSelected();
+    void setPaste();
+    bool hasPaste();
     
 private:
     ObjectComponent* getSelectedObject();
@@ -171,7 +173,10 @@ private:
     float scale_;
     EditLasso lasso_;
     EditInspector* inspector_;
-        
+    
+private:
+    inline static bool hasPaste_ = false;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditView)
 };

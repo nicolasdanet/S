@@ -77,7 +77,7 @@ private:
     EditPort editPort_;
     EditZoom editZoom_;
     EditInspector editInspector_;
-    
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditComponent)
 };

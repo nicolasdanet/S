@@ -135,6 +135,10 @@ core::Item EditView::getItemForInspector()
     }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 bool EditView::hasOnlyOnePatchSelected()
 {
     if (getNumberOfSelectedObjects() == 1) {
@@ -145,7 +149,20 @@ bool EditView::hasOnlyOnePatchSelected()
         
     return false;
 }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void EditView::setPaste()
+{
+    if (hasPaste_ == false) { hasPaste_ = true; Spaghettis()->updateMenuBar(); }
+}
+
+bool EditView::hasPaste()
+{
+    return hasPaste_;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -244,14 +261,14 @@ juce::String EditView::getRedoAction()
 
 void EditView::cut()
 {
-    DBG ("Cut");
+    DBG ("Cut");    setPaste();
     
     // EditCommands::cut (core::Patch (viewTree_).getIdentifier());
 }
 
 void EditView::copy()
 {
-    DBG ("Copy");
+    DBG ("Copy");   setPaste();
     
     // EditCommands::copy (core::Patch (viewTree_).getIdentifier());
 }
