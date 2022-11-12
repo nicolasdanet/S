@@ -37,9 +37,10 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     addMenuCommand (MenuCommand (Commands::cut,             [this]() { editView_.cut(); }, f));
     addMenuCommand (MenuCommand (Commands::copy,            [this]() { editView_.copy(); }, f));
     addMenuCommand (MenuCommand (Commands::duplicate,       [this]() { editView_.duplicate(); }, f));
+    addMenuCommand (MenuCommand (Commands::remove,          [this]() { editView_.remove(); }, f));
     addMenuCommand (MenuCommand (Commands::paste,           [this]() { editView_.paste(); },
                                                             [this]() { return editView_.hasPaste(); }));
-
+    
     addMenuCommand (MenuCommand (Commands::encapsulate,     [this]() { editView_.encapsulate(); }, f));
     addMenuCommand (MenuCommand (Commands::deencapsulate,   [this]() { editView_.deencapsulate(); },
                                                             [this]()

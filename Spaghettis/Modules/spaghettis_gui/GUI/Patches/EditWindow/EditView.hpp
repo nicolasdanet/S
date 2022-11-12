@@ -93,7 +93,8 @@ public:
     void copy();
     void paste();
     void duplicate();
-
+    void remove();
+    
 public:
     void encapsulate();
     void deencapsulate();
