@@ -452,12 +452,12 @@ void EditView::handleAsyncUpdate()
 
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    if (isChildOf (viewTree_, child)) { addComponent (child); }
+    if (t == viewTree_) { addComponent (child); }
 }
 
 void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    if (isChildOf (viewTree_, child)) { removeComponent (child); }
+    if (t == viewTree_) { removeComponent (child); }
 }
 
 void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int newIndex)

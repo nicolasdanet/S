@@ -416,7 +416,7 @@ PD_LOCAL t_error unique_patchRemove (t_id u)
 {
     t_glist *g = unique_getPatch (u);
     
-    if (g) { DBG ("?"); /* glist_objectRemoveSelected (g); */ return PD_ERROR_NONE; }
+    if (g) { glist_objectRemoveSelected (g); return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }

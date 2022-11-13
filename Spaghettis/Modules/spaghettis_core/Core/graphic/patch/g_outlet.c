@@ -18,8 +18,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void   glist_objectRemoveCacheInlets   (t_glist *, t_object *);
-PD_LOCAL void   glist_objectRemovePurgeInlets   (t_glist *);
+PD_LOCAL void   glist_objectRemoveWithCacheForInlets    (t_glist *, t_object *);
+PD_LOCAL void   glist_objectRemovePurgeCacheForInlets   (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -36,11 +36,11 @@ PD_LOCAL void glist_removeInletsAndOutlets (t_glist *glist)
     
     t2 = t1->g_next;
     
-    if (c == vinlet_class || c == voutlet_class) { glist_objectRemoveCacheInlets (glist, t1); }
+    if (c == vinlet_class || c == voutlet_class) { glist_objectRemoveWithCacheForInlets (glist, t1); }
     //
     }
     
-    glist_objectRemovePurgeInlets (glist);
+    glist_objectRemovePurgeCacheForInlets (glist);
 }
 
 // -----------------------------------------------------------------------------------------------------------

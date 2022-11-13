@@ -79,7 +79,7 @@ PD_LOCAL void glist_objectAdd (t_glist *glist, t_object *y)
 
 /* Inlets and outlets must be deleted from right to left to handle Undo/Redo properly. */
 
-static void glist_objectRemoveCacheInletsProceed (t_glist *glist, t_object *y, int isVinlet)
+static void glist_objectRemoveWithCacheForInletsProceed (t_glist *glist, t_object *y, int isVinlet)
 {
     int i, n = isVinlet ? vinlet_getIndex ((t_vinlet *)y) : voutlet_getIndex ((t_voutlet *)y);
     
@@ -93,16 +93,16 @@ static void glist_objectRemoveCacheInletsProceed (t_glist *glist, t_object *y, i
     SET_OBJECT (&a, y); buffer_insertAtIndex (glist->gl_sorterObjects, i, &a);
 }
 
-PD_LOCAL void glist_objectRemoveCacheInlets (t_glist *glist, t_object *y)
+PD_LOCAL void glist_objectRemoveWithCacheForInlets (t_glist *glist, t_object *y)
 {
-    if (pd_class (y) == vinlet_class)       { glist_objectRemoveCacheInletsProceed (glist, y, 1); }
-    else if (pd_class (y) == voutlet_class) { glist_objectRemoveCacheInletsProceed (glist, y, 0); }
+    if (pd_class (y) == vinlet_class)       { glist_objectRemoveWithCacheForInletsProceed (glist, y, 1); }
+    else if (pd_class (y) == voutlet_class) { glist_objectRemoveWithCacheForInletsProceed (glist, y, 0); }
     else {
         glist_objectRemove (glist, y);
     }
 }
 
-PD_LOCAL void glist_objectRemovePurgeInlets (t_glist *glist)
+PD_LOCAL void glist_objectRemovePurgeCacheForInlets (t_glist *glist)
 {
     int i;
     
@@ -219,12 +219,12 @@ PD_LOCAL void glist_objectRemoveSelectedProceed (t_glist *glist)
             if (object_hasDsp (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
         }
 
-        glist_objectRemoveCacheInlets (glist, t1);
+        glist_objectRemoveWithCacheForInlets (glist, t1);
     }
     //
     }
 
-    glist_objectRemovePurgeInlets (glist);
+    glist_objectRemovePurgeCacheForInlets (glist);
     
     glist_setDirty (glist, 1);
     
@@ -258,11 +258,11 @@ PD_LOCAL void glist_objectRemoveAll (t_glist *glist)
         if (object_hasDsp (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
     }
 
-    glist_objectRemoveCacheInlets (glist, t1);
+    glist_objectRemoveWithCacheForInlets (glist, t1);
     //
     }
     
-    glist_objectRemovePurgeInlets (glist);
+    glist_objectRemovePurgeCacheForInlets (glist);
     
     if (dspSuspended) { dsp_resume (dspState); }
 }
