@@ -59,6 +59,7 @@ static Perform cut (core::UniqueId);
 static Perform copy (core::UniqueId);
 static Perform paste (core::UniqueId);
 static Perform duplicate (core::UniqueId);
+static Perform remove (core::UniqueId);
 static Perform encapsulate (core::UniqueId);
 static Perform deencapsulate (core::UniqueId);
 

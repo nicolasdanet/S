@@ -412,6 +412,15 @@ PD_LOCAL t_error unique_patchDuplicate (t_id u)
     return PD_ERROR;
 }
 
+PD_LOCAL t_error unique_patchRemove (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { DBG ("?"); /* glist_objectRemoveSelected (g); */ return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
 PD_LOCAL t_error unique_patchEncapsulate (t_id u)
 {
     t_glist *g = unique_getPatch (u);

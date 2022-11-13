@@ -72,6 +72,7 @@ PD_LOCAL t_error    unique_patchCut             (t_id u);
 PD_LOCAL t_error    unique_patchCopy            (t_id u);
 PD_LOCAL t_error    unique_patchPaste           (t_id u);
 PD_LOCAL t_error    unique_patchDuplicate       (t_id u);
+PD_LOCAL t_error    unique_patchRemove          (t_id u);
 
 PD_LOCAL t_error    unique_patchEncapsulate     (t_id u);
 PD_LOCAL t_error    unique_patchDeencapsulate   (t_id u);

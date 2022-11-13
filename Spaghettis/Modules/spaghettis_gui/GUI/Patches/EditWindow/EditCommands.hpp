@@ -58,6 +58,11 @@ static void duplicate (core::UniqueId i)
     Spaghettis()->handle (Inputs::duplicate (i));
 }
 
+static void remove (core::UniqueId i)
+{
+    Spaghettis()->handle (Inputs::remove (i));
+}
+
 static void encapsulate (core::UniqueId i)
 {
     Spaghettis()->handle (Inputs::encapsulate (i));

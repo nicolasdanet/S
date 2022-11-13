@@ -137,6 +137,11 @@ Perform Inputs::duplicate (core::UniqueId i)
     return [i]() { core::inputs_duplicate (i); };
 }
 
+Perform Inputs::remove (core::UniqueId i)
+{
+    return [i]() { core::inputs_remove (i); };
+}
+
 Perform Inputs::encapsulate (core::UniqueId i)
 {
     return [i]() { core::inputs_encapsulate (i); };

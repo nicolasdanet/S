@@ -167,6 +167,11 @@ PD_LOCAL void inputs_duplicate (core::UniqueId i)
     if (unique_patchDuplicate (i) != PD_ERROR_NONE) { jassertfalse; }
 }
 
+PD_LOCAL void inputs_remove (core::UniqueId i)
+{
+    if (unique_patchRemove (i) != PD_ERROR_NONE) { jassertfalse; }
+}
+
 PD_LOCAL void inputs_encapsulate (core::UniqueId i)
 {
     if (unique_patchEncapsulate (i) != PD_ERROR_NONE) { jassertfalse; }

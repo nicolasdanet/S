@@ -42,6 +42,7 @@ PD_LOCAL void inputs_cut                (core::UniqueId);
 PD_LOCAL void inputs_copy               (core::UniqueId);
 PD_LOCAL void inputs_paste              (core::UniqueId);
 PD_LOCAL void inputs_duplicate          (core::UniqueId);
+PD_LOCAL void inputs_remove             (core::UniqueId);
 PD_LOCAL void inputs_encapsulate        (core::UniqueId);
 PD_LOCAL void inputs_deencapsulate      (core::UniqueId);
 

@@ -293,7 +293,7 @@ void EditView::duplicate()
 
 void EditView::remove()
 {
-    DBG ("Remove");
+    EditCommands::remove (core::Patch (viewTree_).getIdentifier());
 }
 
 void EditView::encapsulate()
