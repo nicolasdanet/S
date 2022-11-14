@@ -89,6 +89,16 @@ public:
 // MARK: -
 
 public:
+    void changeIdentifier (UniqueId i)
+    {
+        tree_.setProperty (Ids::identifier, Cast::toVar (i), nullptr);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     UniqueId getIdentifier() const
     {
         return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));

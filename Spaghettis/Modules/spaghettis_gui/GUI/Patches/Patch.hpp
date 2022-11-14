@@ -58,9 +58,10 @@ public:
 // MARK: -
 
 public:
-    void add (const core::UniquePath& u, const core::Report& v);
-    void change (const core::UniquePath& u, const core::Report& v);
-    void remove (const core::UniquePath& u);
+    void add (const core::UniquePath&, const core::Report&);
+    void change (const core::UniquePath&, const core::Report&);
+    void remove (const core::UniquePath&);
+    void rename (const core::UniquePath&, core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

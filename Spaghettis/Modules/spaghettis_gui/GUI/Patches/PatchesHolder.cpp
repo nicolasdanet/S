@@ -106,7 +106,7 @@ void PatchesHolder::remove (const core::UniquePath& u)
 
 void PatchesHolder::rename (const core::UniquePath& u, core::UniqueId i)
 {
-
+    perform (u, [&] (const std::shared_ptr<Patch>& p) { p->rename (u, i); });
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -72,6 +72,18 @@ void Patch::remove (const core::UniquePath& u)
     if (child.isValid()) { parent.removeChild (child, nullptr); }
 }
 
+void Patch::rename (const core::UniquePath& u, core::UniqueId i)
+{
+    jassert (!u.isRoot());
+    
+    juce::ValueTree parent (getParent (u));
+    juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
+
+    if (child.isValid()) {
+        core::Object (child).changeIdentifier (i);
+    }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
