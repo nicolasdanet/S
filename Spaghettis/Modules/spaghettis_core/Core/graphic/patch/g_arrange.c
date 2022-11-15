@@ -66,7 +66,7 @@ PD_LOCAL void glist_objectSnap (t_glist *glist, t_object *y, int notify)
     //
     if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undosnap_new()); }
     
-    glist_objectDisplace (glist, y, deltaX, deltaY, notify);
+    glist_objectPosition (glist, y, a, b, notify);
     //
     }
 }
