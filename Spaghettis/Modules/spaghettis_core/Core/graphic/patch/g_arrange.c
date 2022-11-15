@@ -15,25 +15,6 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL void glist_objectDisplace (t_glist *glist, t_object *object, int deltaX, int deltaY, int notify)
-{
-    int movedX = object_setSnappedX (object, object_getX (object) + deltaX);
-    int movedY = object_setSnappedY (object, object_getY (object) + deltaY);
-    
-    if (movedX || movedY) {
-    //
-    if (notify) { outputs_objectUpdateAttributes (object, glist); }
-    
-    if (pd_class (object) == vinlet_class)  { glist_inletSort (glist);   }
-    if (pd_class (object) == voutlet_class) { glist_outletSort (glist);  }
-    
-    glist_setDirty (glist, 1);
-    
-    // if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undomotion_new (object, deltaX, deltaY)); }
-    //
-    }
-}
-
 PD_LOCAL void glist_objectPosition (t_glist *glist, t_object *object, int x, int y, int notify)
 {
     // int oldX   = object_getX (object);
@@ -55,6 +36,14 @@ PD_LOCAL void glist_objectPosition (t_glist *glist, t_object *object, int x, int
     }
 }
 
+PD_LOCAL void glist_objectDisplace (t_glist *glist, t_object *object, int deltaX, int deltaY, int notify)
+{
+    int x = object_getX (object) + deltaX;
+    int y = object_getY (object) + deltaY;
+    
+    glist_objectPosition (glist, object, x, y, notify);
+}
+
 PD_LOCAL void glist_objectSnap (t_glist *glist, t_object *y, int notify)
 {
     int a = object_getX (y);
@@ -66,7 +55,7 @@ PD_LOCAL void glist_objectSnap (t_glist *glist, t_object *y, int notify)
     //
     if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undosnap_new()); }
     
-    glist_objectPosition (glist, y, a, b, notify);
+    glist_objectPosition (glist, y, a + deltaX, b + deltaY, notify);
     //
     }
 }

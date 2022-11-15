@@ -51,20 +51,20 @@ PD_LOCAL void undomotion_collapse (t_undoaction *kept, t_undoaction *deleted)
 
 static void undomotion_undo (t_undomotion *z, t_symbol *s, int argc, t_atom *argv)
 {
-    t_undoaction *x = (t_undoaction *)z;
-    int m = -(z->x_deltaX);
-    int n = -(z->x_deltaY);
+    // t_undoaction *x = (t_undoaction *)z;
+    // int m = -(z->x_deltaX);
+    // int n = -(z->x_deltaY);
     
-    unique_objectDisplace (undoaction_getUnique (x), m, n);
+    // unique_objectDisplace (undoaction_getUnique (x), m, n);
 }
 
 static void undomotion_redo (t_undomotion *z, t_symbol *s, int argc, t_atom *argv)
 {
-    t_undoaction *x = (t_undoaction *)z;
-    int m = z->x_deltaX;
-    int n = z->x_deltaY;
+    // t_undoaction *x = (t_undoaction *)z;
+    // int m = z->x_deltaX;
+    // int n = z->x_deltaY;
     
-    unique_objectDisplace (undoaction_getUnique (x), m, n);
+    // unique_objectDisplace (undoaction_getUnique (x), m, n);
 }
 
 // -----------------------------------------------------------------------------------------------------------
