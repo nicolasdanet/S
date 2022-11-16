@@ -97,6 +97,11 @@ template <class T> core::UniqueId getSelected (T& t)
     return u;
 }
 
+void deconnectSelectedLines (Table<core::Line, LineComponent>& t)
+{
+
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -293,7 +298,9 @@ void EditView::duplicate()
 
 void EditView::remove()
 {
-    EditCommands::remove (core::Patch (viewTree_).getIdentifier());
+    EditCommands::remove (core::Patch (viewTree_).getIdentifier());     /* Remove all selected objects. */
+    
+    deconnectSelectedLines (lines_);
 }
 
 void EditView::encapsulate()
