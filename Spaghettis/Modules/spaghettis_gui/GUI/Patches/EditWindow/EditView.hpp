@@ -60,17 +60,19 @@ public:
     void select (const juce::Rectangle<int>&);
 
 public:
-    int getNumberOfSelectedObjects();
-    int getNumberOfSelectedLines();
-    core::Item getItemForInspector();
+    bool hasSelected();
+    bool hasSelectedObject();
     bool hasOnlyOnePatchSelected();
-    void setPaste();
     bool hasPaste();
+    core::Item getItemForInspector();
     
 private:
+    int getNumberOfSelectedObjects();
+    int getNumberOfSelectedLines();
     ObjectComponent* getSelectedObject();
     LineComponent* getSelectedLine();
-        
+    void setPaste();
+    
 public:
     void dragStart();
     void drag (juce::Point<int>);

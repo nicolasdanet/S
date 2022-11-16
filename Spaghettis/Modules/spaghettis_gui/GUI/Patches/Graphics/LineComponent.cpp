@@ -139,7 +139,7 @@ bool LineComponent::isSelected() const
 
 void LineComponent::setSelected (bool selected)
 {
-    if (selected != isSelected()) { selected_.set (selected); }
+    if (selected != isSelected()) { selected_.set (selected); Spaghettis()->updateMenuBar(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

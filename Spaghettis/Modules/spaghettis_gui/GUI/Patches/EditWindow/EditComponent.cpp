@@ -24,8 +24,8 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     addChildComponent (editZoom_);
     addChildComponent (editInspector_);
     
-    auto f = [this]() { return editView_.getNumberOfSelectedObjects() > 0; };
-        
+    auto f = [this]() { return editView_.hasSelectedObject(); };
+    
     addMenuCommand (MenuCommand (Commands::save,            [this]() { editView_.getPatch().save(); }));
     addMenuCommand (MenuCommand (Commands::undo,            [this]() { editView_.undo(); },
                                                             [this]() { return editView_.hasUndo(); },
@@ -37,7 +37,8 @@ EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
     addMenuCommand (MenuCommand (Commands::cut,             [this]() { editView_.cut(); }, f));
     addMenuCommand (MenuCommand (Commands::copy,            [this]() { editView_.copy(); }, f));
     addMenuCommand (MenuCommand (Commands::duplicate,       [this]() { editView_.duplicate(); }, f));
-    addMenuCommand (MenuCommand (Commands::remove,          [this]() { editView_.remove(); }, f));
+    addMenuCommand (MenuCommand (Commands::remove,          [this]() { editView_.remove(); },
+                                                            [this]() { return editView_.hasSelected(); }));
     addMenuCommand (MenuCommand (Commands::paste,           [this]() { editView_.paste(); },
                                                             [this]() { return editView_.hasPaste(); }));
     

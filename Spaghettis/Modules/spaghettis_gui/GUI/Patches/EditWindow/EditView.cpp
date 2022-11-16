@@ -99,7 +99,12 @@ template <class T> core::UniqueId getSelected (T& t)
 
 void deconnectSelectedLines (Table<LineComponent>& t)
 {
+    auto f = [](const auto& p)
+    {
+        if (p->isSelected()) { DBG ("?"); }
+    };
 
+    t.forEach (f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -110,6 +115,16 @@ void deconnectSelectedLines (Table<LineComponent>& t)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+bool EditView::hasSelected()
+{
+    return (getNumberOfSelectedObjects() > 0) || (getNumberOfSelectedLines() > 0);
+}
+
+bool EditView::hasSelectedObject()
+{
+    return (getNumberOfSelectedObjects() > 0);
+}
 
 int EditView::getNumberOfSelectedObjects()
 {
