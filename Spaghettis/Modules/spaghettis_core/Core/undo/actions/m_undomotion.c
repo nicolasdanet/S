@@ -25,8 +25,10 @@ static t_class *undomotion_class;       /* Shared. */
 
 typedef struct _undomotion {
     t_undoaction    x_undo;             /* Must be the first. */
-    int             x_deltaX;
-    int             x_deltaY;
+    int             x_oldX;
+    int             x_oldY;
+    int             x_newX;
+    int             x_newY;
     } t_undomotion;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -41,8 +43,8 @@ PD_LOCAL void undomotion_collapse (t_undoaction *kept, t_undoaction *deleted)
     PD_ASSERT (pd_class (kept)    == undomotion_class);
     PD_ASSERT (pd_class (deleted) == undomotion_class);
     
-    a->x_deltaX += b->x_deltaX;
-    a->x_deltaY += b->x_deltaY;
+    a->x_oldX = b->x_oldX;
+    a->x_oldY = b->x_oldY;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -51,27 +53,23 @@ PD_LOCAL void undomotion_collapse (t_undoaction *kept, t_undoaction *deleted)
 
 static void undomotion_undo (t_undomotion *z, t_symbol *s, int argc, t_atom *argv)
 {
-    // t_undoaction *x = (t_undoaction *)z;
-    // int m = -(z->x_deltaX);
-    // int n = -(z->x_deltaY);
+    t_undoaction *x = (t_undoaction *)z;
     
-    // unique_objectDisplace (undoaction_getUnique (x), m, n);
+    unique_objectPosition (undoaction_getUnique (x), z->x_oldX, z->x_oldY);
 }
 
 static void undomotion_redo (t_undomotion *z, t_symbol *s, int argc, t_atom *argv)
 {
-    // t_undoaction *x = (t_undoaction *)z;
-    // int m = z->x_deltaX;
-    // int n = z->x_deltaY;
+    t_undoaction *x = (t_undoaction *)z;
     
-    // unique_objectDisplace (undoaction_getUnique (x), m, n);
+    unique_objectPosition (undoaction_getUnique (x), z->x_newX, z->x_newY);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undomotion_new (t_object *o, int deltaX, int deltaY)
+PD_LOCAL t_undoaction *undomotion_new (t_object *o, int oldX, int oldY, int newX, int newY)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undomotion_class);
     t_undomotion *z = (t_undomotion *)x;
@@ -81,8 +79,10 @@ PD_LOCAL t_undoaction *undomotion_new (t_object *o, int deltaX, int deltaY)
     x->ua_safe  = 1;
     x->ua_label = sym_motion;
     
-    z->x_deltaX = deltaX;
-    z->x_deltaY = deltaY;
+    z->x_oldX   = oldX;
+    z->x_oldY   = oldY;
+    z->x_newX   = newX;
+    z->x_newY   = newY;
     
     return x;
 }

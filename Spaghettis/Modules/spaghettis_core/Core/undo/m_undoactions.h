@@ -25,7 +25,7 @@ PD_LOCAL t_undoaction   *undoremove_new             (void);
 
 PD_LOCAL t_undoaction   *undoconnect_new            (t_object *src, int m, t_object *dest, int n);
 PD_LOCAL t_undoaction   *undodisconnect_new         (t_object *src, int m, t_object *dest, int n);
-PD_LOCAL t_undoaction   *undomotion_new             (t_object *o, int deltaX, int deltaY);
+PD_LOCAL t_undoaction   *undomotion_new             (t_object *o, int oldX, int oldY, int newX, int newY);
 
 PD_LOCAL t_undoaction   *undocreate_new             (t_object *o, t_undosnippet *snippet);
 PD_LOCAL t_undoaction   *undodelete_new             (t_object *o, t_undosnippet *snippet);

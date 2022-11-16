@@ -17,13 +17,16 @@
 
 PD_LOCAL void glist_objectPosition (t_glist *glist, t_object *object, int x, int y, int notify)
 {
-    // int oldX   = object_getX (object);
-    // int oldY   = object_getY (object);
+    int oldX   = object_getX (object);
+    int oldY   = object_getY (object);
     int movedX = object_setSnappedX (object, x);
     int movedY = object_setSnappedY (object, y);
     
     if (movedX || movedY) {
     //
+    int newX   = object_getX (object);
+    int newY   = object_getY (object);
+    
     if (notify) { outputs_objectUpdateAttributes (object, glist); }
     
     if (pd_class (object) == vinlet_class)  { glist_inletSort (glist);   }
@@ -31,7 +34,7 @@ PD_LOCAL void glist_objectPosition (t_glist *glist, t_object *object, int x, int
     
     glist_setDirty (glist, 1);
     
-    // if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undomotion_new (object, deltaX, deltaY)); }
+    if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undomotion_new (object, oldX, oldY, newX, newY)); }
     //
     }
 }
