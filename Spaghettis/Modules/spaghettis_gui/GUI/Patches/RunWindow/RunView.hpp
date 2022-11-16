@@ -104,7 +104,7 @@ private:
 private:
     core::Cached<juce::Colour> patchBackgroundColour_;
     core::Cached<juce::Colour> patchTextColour_;
-    Table<core::Object, ObjectComponent> objects_;
+    Table<ObjectComponent> objects_;
     RunLayout layout_;
         
 private:

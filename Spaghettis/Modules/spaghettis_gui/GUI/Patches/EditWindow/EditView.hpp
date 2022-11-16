@@ -169,8 +169,8 @@ private:
     core::Cached<juce::String> undo_;
     core::Cached<juce::String> redo_;
     core::Cached<juce::Colour> patchBackgroundColour_;
-    Table<core::Object, ObjectComponent> objects_;
-    Table<core::Line, LineComponent> lines_;
+    Table<ObjectComponent> objects_;
+    Table<LineComponent> lines_;
     float scale_;
     EditLasso lasso_;
     EditInspector* inspector_;

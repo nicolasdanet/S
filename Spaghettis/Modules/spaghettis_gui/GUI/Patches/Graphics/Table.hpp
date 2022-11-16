@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template <class T, class U> class Table {
+template <class T> class Table {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -36,12 +36,12 @@ public:
 // MARK: -
 
 public:
-    void add (View* owner, const T& t)
+    template <class U> void add (View* owner, const U& t)
     {
-        v_.push_back (std::make_unique<U> (owner, t));
+        v_.push_back (std::make_unique<T> (owner, t));
     }
 
-    void remove (const T& t)
+    template <class U> void remove (const U& t)
     {
         v_.erase (std::remove_if (v_.begin(), v_.end(), hasSameIdentifier (t.getIdentifier())), v_.end());
     }
@@ -73,7 +73,7 @@ public:
 // MARK: -
 
 public:
-    U* get (core::UniqueId identifier)
+    T* get (core::UniqueId identifier)
     {
         auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (identifier));
         
@@ -98,14 +98,14 @@ public:
 private:
     static auto hasSameIdentifier (core::UniqueId identifier)
     {
-        return [i = identifier] (const std::unique_ptr<U>& p)
+        return [i = identifier] (const std::unique_ptr<T>& p)
         {
             return (p->getIdentifier() == i);
         };
     }
     
 private:
-    std::vector<std::unique_ptr<U>> v_;
+    std::vector<std::unique_ptr<T>> v_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Table)
