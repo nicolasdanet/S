@@ -519,9 +519,13 @@ PD_LOCAL void object_save (t_object *x, t_buffer *b, int flags)
 
 PD_LOCAL void object_saveIdentifiers (t_object *x, t_buffer *b, int flags)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     if (flags & SAVE_UNDO)        { object_serializeUnique (x, sym__tagobject, b); }
     if (flags & SAVE_ENCAPSULATE) { object_serializeUnique (x, sym__tagobjectsource, b); }
     if (flags & SAVE_UPDATE)      { object_serializeSource (x, sym__tagobjectsource, b); }
+    
+    #endif
 }
 
 PD_LOCAL void object_serializeLabel (t_object *x, t_buffer *b)

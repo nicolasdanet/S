@@ -467,7 +467,6 @@ static t_pdinstance *instance_new()
     
     x->pd_objectMaker = class_new (sym_objectmaker, NULL, NULL, 0, CLASS_ABSTRACT, A_NULL);
     x->pd_canvasMaker = class_new (sym_canvasmaker, NULL, NULL, 0, CLASS_ABSTRACT, A_NULL);
-    
     x->pd_clocks      = clocks_new();
     #if defined ( PD_BUILDING_APPLICATION )
     x->pd_pending     = NULL;
@@ -476,7 +475,6 @@ static t_pdinstance *instance_new()
     x->pd_pool        = buffer_new();
     x->pd_dsp         = dspthread_new();
     x->pd_stop        = clock_new ((void *)x, (t_method)instance_audioCloseTask);
-    
     x->pd_hasGrid     = 1;
     x->pd_gridSize    = INSTANCE_GRID_DEFAULT;
     
@@ -503,13 +501,11 @@ static void instance_free (t_pdinstance *x)
     PD_ASSERT (buffer_getSize (x->pd_pool) == x->pd_poolCount);
     
     clock_free (x->pd_stop);
-    
     buffer_free (x->pd_pool);
     #if defined ( PD_BUILDING_APPLICATION )
     register_free (x->pd_register);
     #endif
     clocks_free (x->pd_clocks);
-    
     class_free (x->pd_canvasMaker);
     class_free (x->pd_objectMaker);
     

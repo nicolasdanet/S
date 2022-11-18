@@ -25,6 +25,8 @@ typedef void (*t_anythingmethod)    (t_pd *x, t_symbol *s, int argc, t_atom *arg
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 enum {
     SAVE_DEFAULT        = 0,
     SAVE_COPY           = 1,
@@ -33,13 +35,23 @@ enum {
     SAVE_UPDATE         = 8
     };
 
+#endif
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 static inline int SAVED_DEEP (int flags)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     return (flags & SAVE_UNDO || flags & SAVE_ENCAPSULATE);
+    
+    #else
+    
+    return 0;
+    
+    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------

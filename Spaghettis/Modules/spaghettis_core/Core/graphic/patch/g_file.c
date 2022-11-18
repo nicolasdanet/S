@@ -57,7 +57,11 @@ static void glist_serializeLines (t_glist *glist, t_buffer *b)
 
 static void glist_serializeTag (t_glist *glist, t_buffer *b, int flags)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     if (flags & SAVE_UNDO) { object_serializeUnique (cast_object (glist), sym__tagcanvas, b); }
+    
+    #endif
 }
 
 static void glist_serializeDollarZero (t_glist *glist, t_buffer *b)
