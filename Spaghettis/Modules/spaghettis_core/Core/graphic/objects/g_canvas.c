@@ -24,7 +24,6 @@ PD_LOCAL void canvas_dsp    (t_glist *, t_signal **);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       glist_undoDisable                   (t_glist *);
 PD_LOCAL void       glist_setUniqueAndSource            (t_glist *, int, t_atom *);
 PD_LOCAL void       glist_setUniqueAndSourceOfLast      (t_glist *, int, t_atom *);
 PD_LOCAL void       glist_setSourceOfLast               (t_glist *, int, t_atom *);
@@ -33,6 +32,15 @@ PD_LOCAL t_error    glist_lineConnectByIndex            (t_glist *, int, int, in
 PD_LOCAL t_error    glist_lineDisconnectByIndex         (t_glist *, int, int, int, int);
 
 PD_LOCAL void       glist_serialize     (t_glist *g, t_buffer *b, int flags, int isAbstraction);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void       glist_undoDisable                   (t_glist *);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -246,7 +254,12 @@ PD_LOCAL void canvas_new (void *dummy, t_symbol *s, int argc, t_atom *argv)
 
 static void canvas_free (t_glist *glist)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     glist_undoDisable (glist);
+    
+    #endif
+    
     glist_objectRemoveAll (glist);
     glist_free (glist);
 }

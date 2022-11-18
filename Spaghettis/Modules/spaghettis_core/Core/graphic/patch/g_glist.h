@@ -29,7 +29,9 @@ struct _glist {
     t_buffer        *gl_sorterIndexes;
     t_rectangle     gl_editView;
     t_rectangle     gl_runView;                 /* Root. */
+    #if defined ( PD_BUILDING_APPLICATION )
     int             gl_undoEnabled;
+    #endif
     int             gl_isDirty;                 /* Top.  */
     int             gl_isFrozen;                /* Top.  */
     int             gl_isLoading;

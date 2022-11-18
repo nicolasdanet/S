@@ -236,6 +236,8 @@ PD_LOCAL void glist_deleteEnd (t_glist *g)
     g->gl_isDeleting = 0;
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void glist_undoEnable (t_glist *g)
 {
     g->gl_undoEnabled = 1;
@@ -245,6 +247,8 @@ PD_LOCAL void glist_undoDisable (t_glist *g)
 {
     g->gl_undoEnabled = 0;
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
