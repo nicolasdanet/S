@@ -470,6 +470,7 @@ static t_pdinstance *instance_new()
     
     x->pd_clocks      = clocks_new();
     #if defined ( PD_BUILDING_APPLICATION )
+    x->pd_pending     = NULL;
     x->pd_register    = register_new();
     #endif
     x->pd_pool        = buffer_new();
@@ -495,7 +496,9 @@ static void instance_free (t_pdinstance *x)
     PD_ASSERT (x->pd_roots       == NULL);
     PD_ASSERT (x->pd_polling     == NULL);
     PD_ASSERT (x->pd_autorelease == NULL);
+    #if defined ( PD_BUILDING_APPLICATION )
     PD_ASSERT (x->pd_pending     == NULL);
+    #endif
     
     PD_ASSERT (buffer_getSize (x->pd_pool) == x->pd_poolCount);
     

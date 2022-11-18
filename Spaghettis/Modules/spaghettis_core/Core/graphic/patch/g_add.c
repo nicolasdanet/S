@@ -149,7 +149,11 @@ static void glist_objectRemoveFree (t_glist *glist, t_object *y)
         if (garbage_newObject (y)) { return; }
     }
     
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     if (instance_pendingRequired (y)) { instance_pendingAdd (y); return; }
+    
+    #endif
 
     pd_free (cast_pd (y));
 }

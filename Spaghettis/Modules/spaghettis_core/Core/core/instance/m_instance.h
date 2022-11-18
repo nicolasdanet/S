@@ -59,11 +59,11 @@ typedef struct _pdinstance {
     t_clock         *pd_polling;
     t_clock         *pd_autorelease;
     t_clock         *pd_stop;
-    t_object        *pd_pending;
     t_pd            *pd_newest;
     t_class         *pd_objectMaker;
     t_class         *pd_canvasMaker;
     #if defined ( PD_BUILDING_APPLICATION )
+    t_object        *pd_pending;
     t_register      *pd_register;
     #endif
     t_buffer        *pd_pool;
@@ -257,20 +257,33 @@ PD_LOCAL void       instance_overflowPop            (void);
 
 PD_LOCAL t_object   *instance_pendingFetch          (t_object *y);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 PD_LOCAL int        instance_pendingRequired        (t_object *y);
 PD_LOCAL void       instance_pendingAdd             (t_object *y);
+
+PD_LOCAL void       instance_pendingBegin           (void);
+PD_LOCAL void       instance_pendingEnd             (void);
+PD_LOCAL void       instance_pendingRelease         (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void       instance_snapSet                (int n);
 PD_LOCAL void       instance_snapSetGrid            (int n);
 PD_LOCAL int        instance_snapIsSet              (void);
 PD_LOCAL int        instance_snapGetGrid            (void);
 PD_LOCAL int        instance_snapGetSnapped         (int n);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #endif
 
@@ -315,9 +328,6 @@ PD_LOCAL int        instance_hasPending             (void);
 PD_LOCAL int        instance_undoIsRecursive        (void);
 PD_LOCAL void       instance_undoSetRecursive       (void);
 PD_LOCAL void       instance_undoUnsetRecursive     (void);
-PD_LOCAL void       instance_pendingBegin           (void);
-PD_LOCAL void       instance_pendingEnd             (void);
-PD_LOCAL void       instance_pendingRelease         (void);
 
 #endif
 
