@@ -111,26 +111,26 @@ PD_LOCAL void inputs_setMidiDevices (const std::vector<MidiDevice>& i, const std
 
 PD_LOCAL void inputs_closePatch (core::UniqueId i)
 {
-    if (unique_patchClose (i) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchClose (i);
 }
 
 PD_LOCAL void inputs_savePatch (core::UniqueId i)
 {
-    if (unique_patchSave (i)  != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchSave (i);
 }
 
 PD_LOCAL void inputs_setEditView (core::UniqueId i, juce::Rectangle<int> bounds)
 {
     t_rectangle r; rectangle_setCopy (&r, bounds);
     
-    if (unique_patchSetEditView (i, &r) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchSetEditView (i, &r);
 }
 
 PD_LOCAL void inputs_setRunView (core::UniqueId i, juce::Rectangle<int> bounds)
 {
     t_rectangle r; rectangle_setCopy (&r, bounds);
     
-    if (unique_patchSetRunView (i, &r) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchSetRunView (i, &r);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -139,47 +139,47 @@ PD_LOCAL void inputs_setRunView (core::UniqueId i, juce::Rectangle<int> bounds)
 
 PD_LOCAL void inputs_undo (core::UniqueId i)
 {
-    if (unique_patchUndo (i) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchUndo (i);
 }
 
 PD_LOCAL void inputs_redo (core::UniqueId i)
 {
-    if (unique_patchRedo (i) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchRedo (i);
 }
 
 PD_LOCAL void inputs_cut (core::UniqueId i)
 {
-    if (unique_patchCut (i) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchCut (i);
 }
 
 PD_LOCAL void inputs_copy (core::UniqueId i)
 {
-    if (unique_patchCopy (i) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchCopy (i);
 }
 
 PD_LOCAL void inputs_paste (core::UniqueId i)
 {
-    if (unique_patchPaste (i) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchPaste (i);
 }
 
 PD_LOCAL void inputs_duplicate (core::UniqueId i)
 {
-    if (unique_patchDuplicate (i) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchDuplicate (i);
 }
 
 PD_LOCAL void inputs_remove (core::UniqueId i)
 {
-    if (unique_patchRemove (i) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchRemove (i);
 }
 
 PD_LOCAL void inputs_encapsulate (core::UniqueId i)
 {
-    if (unique_patchEncapsulate (i) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchEncapsulate (i);
 }
 
 PD_LOCAL void inputs_deencapsulate (core::UniqueId i)
 {
-    if (unique_patchDeencapsulate (i) != PD_ERROR_NONE) { jassertfalse; }
+    unique_patchDeencapsulate (i);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -219,6 +219,15 @@ PD_LOCAL void inputs_positionObject (core::UniqueId i, juce::Point<int> pt)
 PD_LOCAL void inputs_parameterObject (core::UniqueId i, const core::Group& group)
 {
     unique_objectParameter (i, group);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void inputs_disconnectLine (core::UniqueId u, int m, core::UniqueId v, int n)
+{
+    unique_objectLineDisconnect (u, m, v, n);
 }
 
 // -----------------------------------------------------------------------------------------------------------

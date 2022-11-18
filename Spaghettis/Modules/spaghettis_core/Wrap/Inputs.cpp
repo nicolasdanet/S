@@ -192,7 +192,16 @@ Perform Inputs::positionObject (core::UniqueId i, juce::Point<int> pt)
 
 Perform Inputs::parameterObject (core::UniqueId i, core::Group group)
 {
-    return [i, g = std::move (group)] { core::inputs_parameterObject (i, g); };
+    return [i, g = std::move (group)]() { core::inputs_parameterObject (i, g); };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Perform Inputs::disconnectLine (core::UniqueId u, int m, core::UniqueId v, int n)
+{
+    return [u, m, v, n]() { core::inputs_disconnectLine (u, m, v, n); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

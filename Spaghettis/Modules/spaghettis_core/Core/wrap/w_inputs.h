@@ -31,10 +31,18 @@ PD_LOCAL void inputs_rescanDevices      (void);
 PD_LOCAL void inputs_setAudioDevices    (const std::vector<AudioDevice>&, const std::vector<AudioDevice>&);
 PD_LOCAL void inputs_setMidiDevices     (const std::vector<MidiDevice>&, const std::vector<MidiDevice>&);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void inputs_closePatch         (core::UniqueId);
 PD_LOCAL void inputs_savePatch          (core::UniqueId);
 PD_LOCAL void inputs_setEditView        (core::UniqueId, juce::Rectangle<int>);
 PD_LOCAL void inputs_setRunView         (core::UniqueId, juce::Rectangle<int>);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 PD_LOCAL void inputs_undo               (core::UniqueId);
 PD_LOCAL void inputs_redo               (core::UniqueId);
@@ -46,6 +54,10 @@ PD_LOCAL void inputs_remove             (core::UniqueId);
 PD_LOCAL void inputs_encapsulate        (core::UniqueId);
 PD_LOCAL void inputs_deencapsulate      (core::UniqueId);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void inputs_selectObject       (core::UniqueId);
 PD_LOCAL void inputs_deselectObject     (core::UniqueId);
 PD_LOCAL void inputs_moveBackObject     (core::UniqueId);
@@ -54,6 +66,12 @@ PD_LOCAL void inputs_snapObject         (core::UniqueId);
 PD_LOCAL void inputs_positionObject     (core::UniqueId, juce::Point<int> pt);
 
 PD_LOCAL void inputs_parameterObject    (core::UniqueId, const core::Group&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void inputs_disconnectLine     (core::UniqueId u, int m, core::UniqueId v, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

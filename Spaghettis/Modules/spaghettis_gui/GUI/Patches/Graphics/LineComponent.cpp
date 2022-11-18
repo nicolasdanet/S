@@ -56,6 +56,20 @@ LineComponent::~LineComponent()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void LineComponent::disconnect() const
+{
+    const core::UniqueId u = line_.getIdentifierOfSource();
+    const core::UniqueId v = line_.getIdentifierOfDestination();
+    const int m = line_.get<int> (Tags::Attributes, Tags::Outlet);
+    const int n = line_.get<int> (Tags::Attributes, Tags::Inlet);
+    
+    EditCommands::disconnect (u, m, v, n);
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 core::UniqueId LineComponent::getIdentifier() const
 {
     return line_.getIdentifier();

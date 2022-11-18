@@ -101,7 +101,7 @@ void deconnectSelectedLines (Table<LineComponent>& t)
 {
     auto f = [](const auto& p)
     {
-        if (p->isSelected()) { DBG ("?"); }
+        if (p->isSelected()) { p->disconnect(); }
     };
 
     t.forEach (f);
