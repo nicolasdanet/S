@@ -89,6 +89,10 @@ PD_LOCAL t_error    devices_getOutAtIndexAsString       (t_devices *p, int i, ch
 
 #endif
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL t_symbol   *devices_getInAtIndexAsSymbol       (t_devices *p, int i);
 PD_LOCAL t_symbol   *devices_getOutAtIndexAsSymbol      (t_devices *p, int i);
 
