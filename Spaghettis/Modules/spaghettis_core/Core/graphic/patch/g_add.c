@@ -38,35 +38,34 @@ PD_LOCAL void glist_objectAddRaw (t_glist *glist, t_object *y, t_object *first, 
     }
 }
 
-static void glist_objectAddProceed (t_glist *glist, t_object *y)
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
+{
+    if (glist_undoIsOk (glist)) {
+    //
+    t_undosnippet *snippet = undosnippet_new (y, glist);
+    
+    if (glist_undoHasSeparatorAtLast (glist)) { glist_undoAppend (glist, undoadd_new()); }
+    
+    glist_undoAppend (glist, undocreate_new (y, snippet));
+    //
+    }
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void glist_objectAdd (t_glist *glist, t_object *y)
 {
     glist_objectAddRaw (glist, y, NULL, 0);
     
     #if defined ( PD_BUILDING_APPLICATION )
     
     instance_registerAdd (y, glist);
-    
-    #endif
-}
-
-#if defined ( PD_BUILDING_APPLICATION )
-
-static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
-{
-    if (glist_undoIsOk (glist)) {
-        t_undosnippet *snippet = undosnippet_new (y, glist);
-        if (glist_undoHasSeparatorAtLast (glist)) { glist_undoAppend (glist, undoadd_new()); }
-        glist_undoAppend (glist, undocreate_new (y, snippet));
-    }
-}
-
-#endif
-
-PD_LOCAL void glist_objectAdd (t_glist *glist, t_object *y)
-{
-    glist_objectAddProceed (glist, y);
-    
-    #if defined ( PD_BUILDING_APPLICATION )
     
     glist_objectAddUndoProceed (glist, y);
     
@@ -200,7 +199,41 @@ PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* If needed the DSP is suspended to avoid multiple rebuilds of DSP graph. */
+
+PD_LOCAL void glist_objectRemoveAll (t_glist *glist)
+{
+    t_object *t1 = NULL;
+    t_object *t2 = NULL;
+    
+    int dspState = 0;
+    int dspSuspended = 0;
+
+    for (t1 = glist->gl_graphics; t1; t1 = t2) {
+    //
+    t2 = t1->g_next;
+    
+    if (!dspSuspended) {
+        if (object_hasDsp (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
+    }
+
+    glist_objectRemoveWithCacheForInlets (glist, t1);
+    //
+    }
+    
+    glist_objectRemovePurgeCacheForInlets (glist);
+    
+    if (dspSuspended) { dsp_resume (dspState); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 #if defined ( PD_BUILDING_APPLICATION )
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 PD_LOCAL void glist_objectRemoveSelectedProceed (t_glist *glist)
 {
@@ -238,40 +271,9 @@ PD_LOCAL void glist_objectRemoveSelected (t_glist *glist)
     if (glist_undoIsOk (glist)) { glist_undoAppendSeparator (glist); }
 }
 
-#endif
-
-/* If needed the DSP is suspended to avoid multiple rebuilds of DSP graph. */
-
-PD_LOCAL void glist_objectRemoveAll (t_glist *glist)
-{
-    t_object *t1 = NULL;
-    t_object *t2 = NULL;
-    
-    int dspState = 0;
-    int dspSuspended = 0;
-
-    for (t1 = glist->gl_graphics; t1; t1 = t2) {
-    //
-    t2 = t1->g_next;
-    
-    if (!dspSuspended) {
-        if (object_hasDsp (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
-    }
-
-    glist_objectRemoveWithCacheForInlets (glist, t1);
-    //
-    }
-    
-    glist_objectRemovePurgeCacheForInlets (glist);
-    
-    if (dspSuspended) { dsp_resume (dspState); }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL int glist_objectGetNumberOf (t_glist *glist)
 {
@@ -287,13 +289,9 @@ PD_LOCAL int glist_objectGetNumberOfSelected (t_glist *glist)
     return n;
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL std::vector<UniqueId> glist_objectGetAll (t_glist *glist)
 {
@@ -305,6 +303,9 @@ PD_LOCAL std::vector<UniqueId> glist_objectGetAll (t_glist *glist)
     
     return v;
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #endif
 
