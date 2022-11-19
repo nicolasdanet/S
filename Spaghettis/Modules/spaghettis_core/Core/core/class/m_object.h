@@ -98,17 +98,25 @@ PD_LOCAL int    object_setLabelUpdate               (t_object *x, t_glist *g, t_
 // MARK: -
 
 PD_LOCAL t_id   object_getUnique                    (t_object *x);
-PD_LOCAL void   object_setUnique                    (t_object *x, t_id u);
-PD_LOCAL void   object_changeUnique                 (t_object *x, t_id u);
-PD_LOCAL void   object_serializeUnique              (t_object *x, t_symbol *s, t_buffer *b);
-
 PD_LOCAL t_id   object_getSource                    (t_object *x);
+PD_LOCAL t_id   object_getNative                    (t_object *x);
+
+PD_LOCAL void   object_setUnique                    (t_object *x, t_id u);
 PD_LOCAL void   object_setSource                    (t_object *x, t_id u);
+PD_LOCAL void   object_setNative                    (t_object *x, t_id u);
+
+PD_LOCAL void   object_changeUnique                 (t_object *x, t_id u);
 PD_LOCAL void   object_changeSource                 (t_object *x, t_id u);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL void   object_serializeUnique              (t_object *x, t_symbol *s, t_buffer *b);
 PD_LOCAL void   object_serializeSource              (t_object *x, t_symbol *s, t_buffer *b);
 
-PD_LOCAL t_id   object_getNative                    (t_object *x);
-PD_LOCAL void   object_setNative                    (t_object *x, t_id u);
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

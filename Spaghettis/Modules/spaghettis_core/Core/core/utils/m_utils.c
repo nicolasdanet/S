@@ -68,6 +68,8 @@ PD_LOCAL t_error utils_uniqueWithAtoms (int argc, t_atom *argv, t_id *u)
     return err;
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void utils_appendUnique (t_buffer *b, t_id u)
 {
     t_atom a[16]; uint64_t t = u; t_error err = utils_uInt64Serialize (16, a, &t);
@@ -76,6 +78,8 @@ PD_LOCAL void utils_appendUnique (t_buffer *b, t_id u)
     
     buffer_append (b, 16, a);
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

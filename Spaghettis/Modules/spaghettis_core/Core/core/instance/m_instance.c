@@ -109,12 +109,12 @@ PD_LOCAL void instance_undoUnsetRecursive (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL int instance_hasPending (void)
 {
     return (instance_get()->pd_hasPending != 0);
 }
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void instance_pendingBegin (void)
 {
