@@ -281,34 +281,26 @@ juce::String EditView::getRedoAction()
 
 void EditView::cut()
 {
-    DBG ("Cut");
-    
     setPaste();
     
-    // EditCommands::cut (core::Patch (viewTree_).getIdentifier());
+    EditCommands::cut (core::Patch (viewTree_).getIdentifier());
 }
 
 void EditView::copy()
 {
-    DBG ("Copy");
-    
     setPaste();
     
-    // EditCommands::copy (core::Patch (viewTree_).getIdentifier());
+    EditCommands::copy (core::Patch (viewTree_).getIdentifier());
 }
 
 void EditView::paste()
 {
-    DBG ("Paste");
-    
-    // EditCommands::paste (core::Patch (viewTree_).getIdentifier());
+    EditCommands::paste (core::Patch (viewTree_).getIdentifier());
 }
 
 void EditView::duplicate()
 {
-    DBG ("Duplicate");
-    
-    // EditCommands::duplicate (core::Patch (viewTree_).getIdentifier());
+    EditCommands::duplicate (core::Patch (viewTree_).getIdentifier());
 }
 
 void EditView::remove()
@@ -320,15 +312,11 @@ void EditView::remove()
 
 void EditView::encapsulate()
 {
-    DBG ("Encapsulate");
-    
     // EditCommands::encapsulate (core::Patch (viewTree_).getIdentifier());
 }
 
 void EditView::deencapsulate()
 {
-    DBG ("Deencapsulate");
-    
     // EditCommands::deencapsulate ();
 }
     

@@ -156,10 +156,28 @@ static void clipboard_pasteProceedLoadbang (t_glist *glist, int alreadyThere)
     }
 }
 
+int clipboard_pasteProceedSelect (t_glist *glist, int alreadyThere)
+{
+    t_object *y = NULL;
+    int i = 0;
+    int isDirty = 0;
+
+    for (y = glist->gl_graphics; y; y = y->g_next) {
+        if (i >= alreadyThere) {
+            glist_objectSelect (glist, y); isDirty = 1;
+        }
+        i++;
+    }
+    
+    return isDirty;
+}
+
 PD_LOCAL int clipboard_pasteProceed (t_glist *glist, t_buffer *b, t_point *pt, int renameArrays)
 {
     int alreadyThere = glist_objectGetNumberOf (glist);
 
+    glist_objectDeselectAll (glist);
+    
     snippet_addOffsetToLines (b, alreadyThere);
     
     if (renameArrays) { snippet_renameArrays (b, glist); }
@@ -171,7 +189,7 @@ PD_LOCAL int clipboard_pasteProceed (t_glist *glist, t_buffer *b, t_point *pt, i
     clipboard_pasteProceedDisplace (glist, pt, alreadyThere);
     clipboard_pasteProceedLoadbang (glist, alreadyThere);
     
-    return (glist_objectGetNumberOf (glist) > alreadyThere);
+    return clipboard_pasteProceedSelect (glist, alreadyThere);
 }
 
 static t_point clipboard_pasteRawGetPoint (t_glist *glist)
@@ -183,7 +201,7 @@ static t_point clipboard_pasteRawGetPoint (t_glist *glist)
     
     if (!nothing) { point_set (&pt, rectangle_getTopLeftX (&r) + n, rectangle_getTopLeftY (&r) + n); }
     else {
-        PD_BUG;
+        DBG ("???");
     }
     
     return pt;

@@ -176,6 +176,7 @@ PD_LOCAL void   glist_objectRemoveAll                   (t_glist *g);
 PD_LOCAL void   glist_objectRemoveSelected              (t_glist *g);
 PD_LOCAL int    glist_objectGetNumberOf                 (t_glist *g);
 PD_LOCAL int    glist_objectGetNumberOfSelected         (t_glist *g);
+PD_LOCAL void   glist_objectDeselectAll                 (t_glist *g);
 
 PD_LOCAL void   glist_objectSelect                      (t_glist *g, t_object *o);
 PD_LOCAL void   glist_objectDeselect                    (t_glist *g, t_object *o);

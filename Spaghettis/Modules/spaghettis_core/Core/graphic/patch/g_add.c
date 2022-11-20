@@ -331,6 +331,15 @@ PD_LOCAL int glist_objectGetNumberOfSelected (t_glist *glist)
     return n;
 }
 
+PD_LOCAL void glist_objectDeselectAll (t_glist *glist)
+{
+    t_object *y = NULL;
+    
+    for (y = glist->gl_graphics; y; y = y->g_next) {
+        if (glist_objectIsSelected (glist, y)) { glist_objectDeselect (glist, y); }
+    }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
