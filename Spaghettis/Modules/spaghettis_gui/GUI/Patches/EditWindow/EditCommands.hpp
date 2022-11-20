@@ -48,9 +48,9 @@ static void copy (core::UniqueId i)
     Spaghettis()->handle (Inputs::copy (i));
 }
 
-static void paste (core::UniqueId i)
+static void paste (core::UniqueId i, std::optional<juce::Point<int>> pt)
 {
-    Spaghettis()->handle (Inputs::paste (i));
+    Spaghettis()->handle (Inputs::paste (i, pt));
 }
 
 static void duplicate (core::UniqueId i)

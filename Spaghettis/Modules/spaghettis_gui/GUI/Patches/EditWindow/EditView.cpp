@@ -71,6 +71,19 @@ void EditView::mouseUp (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+std::optional<juce::Point<int>> EditView::getMousePosition() const
+{
+    if (isMouseOver (true)) {
+        return core::Canvas::removeOffset (getMouseXYRelative());
+    } else {
+        return {};
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -295,7 +308,7 @@ void EditView::copy()
 
 void EditView::paste()
 {
-    EditCommands::paste (core::Patch (viewTree_).getIdentifier());
+    EditCommands::paste (core::Patch (viewTree_).getIdentifier(), getMousePosition());
 }
 
 void EditView::duplicate()

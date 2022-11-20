@@ -157,8 +157,13 @@ PD_LOCAL void inputs_copy (core::UniqueId i)
     unique_patchCopy (i);
 }
 
-PD_LOCAL void inputs_paste (core::UniqueId i)
+PD_LOCAL void inputs_paste (core::UniqueId i, std::optional<juce::Point<int>> pt)
 {
+    if (pt.has_value()) { DBG ("?"); }
+    else {
+        DBG ("!!!");
+    }
+    
     unique_patchPaste (i);
 }
 

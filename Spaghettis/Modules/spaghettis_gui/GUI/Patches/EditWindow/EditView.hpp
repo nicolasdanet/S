@@ -50,6 +50,9 @@ private:
     void mouseDrag (const juce::MouseEvent&) override;
     void mouseUp (const juce::MouseEvent&) override;
 
+private:
+    std::optional<juce::Point<int>> getMousePosition() const;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -72,7 +75,7 @@ private:
     ObjectComponent* getSelectedObject();
     LineComponent* getSelectedLine();
     void setPaste();
-    
+
 public:
     void dragStart();
     void drag (juce::Point<int>);

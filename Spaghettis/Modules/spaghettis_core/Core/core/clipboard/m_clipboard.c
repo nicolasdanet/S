@@ -192,6 +192,26 @@ PD_LOCAL int clipboard_pasteProceed (t_glist *glist, t_buffer *b, t_point *pt, i
     return clipboard_pasteProceedSelect (glist, alreadyThere);
 }
 
+/*
+t_point clipboard_pasteRawGetPoint (t_glist *glist)
+{
+    int n         = snap_getStep() * 2;
+    t_rectangle r = glist_objectGetBoundingBoxOfSelected (glist);
+    int nothing   = rectangle_isNothing (&r);
+    
+    t_point pt;
+    
+    if (!nothing) { point_set (&pt, rectangle_getTopLeftX (&r) + n, rectangle_getTopLeftY (&r) + n); }
+    
+    if (nothing || !rectangle_containsPoint (glist_getPatchGeometry (glist), &pt)) {
+
+        point_set (&pt, instance_getDefaultX (glist), instance_getDefaultY (glist));
+    }
+    
+    return pt;
+}
+*/
+
 static t_point clipboard_pasteRawGetPoint (t_glist *glist)
 {
     int n         = instance_snapGetGrid() * 2;
