@@ -23,14 +23,9 @@ typedef struct _point {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static inline void point_set (t_point *pt, int x, int y)
-{
-    pt->pt_x = x; pt->pt_y = y;
-}
-
 static inline t_point point_make (int x, int y)
 {
-    t_point pt; point_set (&pt, x, y); return pt;
+    t_point pt; pt.pt_x = x; pt.pt_y = y; return pt;
 }
 
 // -----------------------------------------------------------------------------------------------------------

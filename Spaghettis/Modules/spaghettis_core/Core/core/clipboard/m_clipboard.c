@@ -192,51 +192,36 @@ PD_LOCAL int clipboard_pasteProceed (t_glist *glist, t_buffer *b, t_point *pt, i
     return clipboard_pasteProceedSelect (glist, alreadyThere);
 }
 
-/*
-t_point clipboard_pasteRawGetPoint (t_glist *glist)
+static t_point clipboard_pasteRawGetPointNearSelection (t_glist *glist)
 {
-    int n         = snap_getStep() * 2;
-    t_rectangle r = glist_objectGetBoundingBoxOfSelected (glist);
-    int nothing   = rectangle_isNothing (&r);
-    
-    t_point pt;
-    
-    if (!nothing) { point_set (&pt, rectangle_getTopLeftX (&r) + n, rectangle_getTopLeftY (&r) + n); }
-    
-    if (nothing || !rectangle_containsPoint (glist_getPatchGeometry (glist), &pt)) {
-
-        point_set (&pt, instance_getDefaultX (glist), instance_getDefaultY (glist));
-    }
-    
-    return pt;
-}
-*/
-
-static t_point clipboard_pasteRawGetPoint (t_glist *glist)
-{
-    int n         = instance_snapGetGrid() * 2;
     t_rectangle r = glist_getBoundingBoxOfSelected (glist);
-    int nothing   = rectangle_isNothing (&r);
-    t_point pt    = point_make (0, 0);
     
-    if (!nothing) { point_set (&pt, rectangle_getTopLeftX (&r) + n, rectangle_getTopLeftY (&r) + n); }
-    else {
-        DBG ("???");
+    if (!rectangle_isNothing (&r)) {
+    //
+    int offset = instance_snapGetGrid() * 2;
+    int x      = rectangle_getTopLeftX (&r) + offset;
+    int y      = rectangle_getTopLeftY (&r) + offset;
+    
+    return point_make (x, y);
+    //
     }
     
-    return pt;
+    PD_BUG;
+    
+    return point_make (0, 0);
 }
 
-static void clipboard_pasteRaw (t_glist *glist, int isDuplicate)
+static void clipboard_pasteRaw (t_glist *glist, t_point *m)
 {
-    t_buffer *b = isDuplicate ? clipboard_bufferDuplicate : clipboard_bufferCopyPaste;
+    int isDuplicate = (m == NULL);
+    t_buffer *b     = isDuplicate ? clipboard_bufferDuplicate : clipboard_bufferCopyPaste;
     
     if (buffer_getSize (b)) {
     //
     int isDirty  = 0;
     int undoable = glist_undoIsOk (glist);
     int state    = dsp_suspend();
-    t_point pt   = clipboard_pasteRawGetPoint (glist);
+    t_point pt   = isDuplicate ? clipboard_pasteRawGetPointNearSelection (glist) : *m;
     
     if (undoable) { glist_undoAppend (glist, isDuplicate ? undoduplicate_new() : undopaste_new()); }
     
@@ -254,12 +239,12 @@ static void clipboard_pasteRaw (t_glist *glist, int isDuplicate)
 
 PD_LOCAL void clipboard_pasteDuplicate (t_glist *glist)
 {
-    clipboard_pasteRaw (glist, 1);
+    clipboard_pasteRaw (glist, NULL);
 }
 
-PD_LOCAL void clipboard_paste (t_glist *glist)
+PD_LOCAL void clipboard_paste (t_glist *glist, t_point *m)
 {
-    clipboard_pasteRaw (glist, 0);
+    clipboard_pasteRaw (glist, m);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -157,14 +157,9 @@ PD_LOCAL void inputs_copy (core::UniqueId i)
     unique_patchCopy (i);
 }
 
-PD_LOCAL void inputs_paste (core::UniqueId i, std::optional<juce::Point<int>> pt)
+PD_LOCAL void inputs_paste (core::UniqueId i, juce::Point<int> pt)
 {
-    if (pt.has_value()) { DBG ("?"); }
-    else {
-        DBG ("!!!");
-    }
-    
-    unique_patchPaste (i);
+    t_point m = point_make (pt.getX(), pt.getY()); unique_patchPaste (i, &m);
 }
 
 PD_LOCAL void inputs_duplicate (core::UniqueId i)

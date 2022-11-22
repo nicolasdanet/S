@@ -48,7 +48,7 @@ PD_LOCAL void inputs_undo               (core::UniqueId);
 PD_LOCAL void inputs_redo               (core::UniqueId);
 PD_LOCAL void inputs_cut                (core::UniqueId);
 PD_LOCAL void inputs_copy               (core::UniqueId);
-PD_LOCAL void inputs_paste              (core::UniqueId, std::optional<juce::Point<int>> pt);
+PD_LOCAL void inputs_paste              (core::UniqueId, juce::Point<int> pt);
 PD_LOCAL void inputs_duplicate          (core::UniqueId);
 PD_LOCAL void inputs_remove             (core::UniqueId);
 PD_LOCAL void inputs_encapsulate        (core::UniqueId);

@@ -52,8 +52,14 @@ PD_LOCAL int    rectangle_areEquals         (t_rectangle *r1, t_rectangle *r2);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 PD_LOCAL void   rectangle_addPoint          (t_rectangle *r, t_point *pt);
 PD_LOCAL void   rectangle_add               (t_rectangle *r, int x, int y);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #endif
 
@@ -107,6 +113,11 @@ static inline int rectangle_getWidth (t_rectangle *r)
 static inline int rectangle_getHeight (t_rectangle *r)
 {
     return (int)(r->rect_bottomRightY - r->rect_topLeftY);
+}
+
+static inline t_point rectangle_getCentre (t_rectangle *r)
+{
+    return point_make (rectangle_getMiddleX (r), rectangle_getMiddleY (r));
 }
 
 // -----------------------------------------------------------------------------------------------------------

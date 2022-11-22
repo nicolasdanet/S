@@ -127,7 +127,7 @@ Perform Inputs::copy (core::UniqueId i)
     return [i]() { core::inputs_copy (i); };
 }
 
-Perform Inputs::paste (core::UniqueId i, std::optional<juce::Point<int>> pt)
+Perform Inputs::paste (core::UniqueId i, juce::Point<int> pt)
 {
     return [i, pt]() { core::inputs_paste (i, pt); };
 }

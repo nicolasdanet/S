@@ -394,11 +394,11 @@ PD_LOCAL t_error unique_patchCopy (t_id u)
     return PD_ERROR;
 }
 
-PD_LOCAL t_error unique_patchPaste (t_id u)
+PD_LOCAL t_error unique_patchPaste (t_id u, t_point *m)
 {
     t_glist *g = unique_getPatch (u);
     
-    if (g) { glist_paste (g); return PD_ERROR_NONE; }
+    if (g) { glist_paste (g, m); return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }

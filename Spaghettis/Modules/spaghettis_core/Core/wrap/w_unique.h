@@ -70,7 +70,7 @@ PD_LOCAL t_error    unique_patchRedo            (t_id u);
 
 PD_LOCAL t_error    unique_patchCut             (t_id u);
 PD_LOCAL t_error    unique_patchCopy            (t_id u);
-PD_LOCAL t_error    unique_patchPaste           (t_id u);
+PD_LOCAL t_error    unique_patchPaste           (t_id u, t_point *m);
 PD_LOCAL t_error    unique_patchDuplicate       (t_id u);
 PD_LOCAL t_error    unique_patchRemove          (t_id u);
 

@@ -308,7 +308,7 @@ void EditView::copy()
 
 void EditView::paste()
 {
-    EditCommands::paste (core::Patch (viewTree_).getIdentifier(), getMousePosition());
+    EditCommands::paste (core::Patch (viewTree_).getIdentifier(), getMousePosition().value_or (juce::Point<int>()));
 }
 
 void EditView::duplicate()
