@@ -12,6 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 
 class EditInspector;
+class EditPort;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -51,7 +52,8 @@ private:
     void mouseUp (const juce::MouseEvent&) override;
 
 private:
-    std::optional<juce::Point<int>> getMousePosition() const;
+    std::optional<juce::Point<int>> getMousePositionInPatch() const;
+    juce::Rectangle<int> getVisibleAreaInPatch() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -179,6 +181,7 @@ private:
     float scale_;
     EditLasso lasso_;
     EditInspector* inspector_;
+    EditPort* owner_;
     
 private:
     inline static bool hasPaste_ = false;

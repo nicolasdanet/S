@@ -71,13 +71,18 @@ void EditView::mouseUp (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::optional<juce::Point<int>> EditView::getMousePosition() const
+std::optional<juce::Point<int>> EditView::getMousePositionInPatch() const
 {
     if (isMouseOver (true)) {
         return core::Canvas::removeOffset (PainterPolicy::unscaled (getMouseXYRelative(), getScale()));
     } else {
         return {};
     }
+}
+
+juce::Rectangle<int> EditView::getVisibleAreaInPatch() const
+{
+    jassert (owner_ != nullptr); return owner_->getVisibleAreaInPatch();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -308,11 +313,11 @@ void EditView::copy()
 
 void EditView::paste()
 {
-    juce::Point<int> pt = getMousePosition().value_or (juce::Point<int>());
+    juce::Point<int> pt = getMousePositionInPatch().value_or (getVisibleAreaInPatch().getCentre());
     
     DBG (juce::String (pt.getX()) + " " + juce::String (pt.getY()));
     
-    // EditCommands::paste (core::Patch (viewTree_).getIdentifier(), );
+    // EditCommands::paste (core::Patch (viewTree_).getIdentifier(), pt);
 }
 
 void EditView::duplicate()

@@ -12,6 +12,23 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Rectangle<int> EditPort::getVisibleAreaInPatch() const
+{
+    const float f                = getScale();
+    const juce::Point<int> pt    = PainterPolicy::scaled (origin_, f).toInt();
+    const int w                  = PainterPolicy::unscaled (getWidth(), f);
+    const int h                  = PainterPolicy::unscaled (getHeight(), f);
+    const juce::Rectangle<int> r = juce::Rectangle<int> (w, h) + pt;
+    
+    DBG (r.toString());
+    
+    return r;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditPort::zoomIn()
 {
     auto r = std::find_if (steps_.cbegin(), steps_.cend(),   [n = getZoom()](int i) { return (i > n); });
