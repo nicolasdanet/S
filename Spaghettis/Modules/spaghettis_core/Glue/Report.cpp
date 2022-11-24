@@ -130,13 +130,13 @@ void setObjectAttributesForObject (Group& group, t_object* o)
     group.addParameter (Tags::X,
         NEEDS_TRANS ("Position X"),
         NEEDS_TRANS ("Box ordinate"),
-        Geometry::realToLocal (object_getX (o)),
+        Coordinates::realToLocal (object_getX (o)),
         delegate).setHidden (true);
     
     group.addParameter (Tags::Y,
         NEEDS_TRANS ("Position Y"),
         NEEDS_TRANS ("Box abscissa"),
-        Geometry::realToLocal (object_getY (o)),
+        Coordinates::realToLocal (object_getY (o)),
         delegate).setHidden (true);
     
     group.addParameter (Tags::Selected,

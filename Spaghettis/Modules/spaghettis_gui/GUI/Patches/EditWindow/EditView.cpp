@@ -74,7 +74,7 @@ void EditView::mouseUp (const juce::MouseEvent& e)
 std::optional<juce::Point<int>> EditView::getMousePositionInPatch() const
 {
     if (isMouseOver (true)) {
-        return core::Geometry::localToReal (PainterPolicy::unscaled (getMouseXYRelative(), getScale()));
+        return core::Coordinates::localToReal (PainterPolicy::unscaled (getMouseXYRelative(), getScale()));
     } else {
         return {};
     }
