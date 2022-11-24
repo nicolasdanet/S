@@ -46,6 +46,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "Glue/Canvas.hpp"
+#include "Glue/Geometry.hpp"
 #include "Glue/Cast.hpp"
 #include "Glue/Identifiers.hpp"
 #include "Glue/Tags.hpp"

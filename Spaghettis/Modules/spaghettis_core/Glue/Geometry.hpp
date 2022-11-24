@@ -12,58 +12,34 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* Negative coordinates are not well supported by the JUCE framework. */
-/* Hence the canvas size is arbitrary limited. */
-/* Then an offset is added to objects positions. */
-/* That way the origin is put at the middle. */
-/* It should not remain negative values. */
-/* That offset is removed later to keep compatiblity with legacy format. */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-struct Canvas {
+struct Geometry {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static constexpr int getSize()
+static int realToLocal (int n)
 {
-    return (2 << 24);           /* Arbitrary. */
+    return Canvas::addOffset (n);
 }
 
-static constexpr int getOffset()
+static juce::Point<int> realToLocal (juce::Point<int> pt)
 {
-    return getSize() >> 8;      /* Much smaller to allow zooming. */
+    return juce::Point (realToLocal (pt.getX()), realToLocal (pt.getY()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static int addOffset (int n)
+static int localToReal (int n)
 {
-    return n + getOffset();
+    return Canvas::removeOffset (n);
 }
 
-static int removeOffset (int n)
+static juce::Point<int> localToReal (juce::Point<int> pt)
 {
-    return n - getOffset();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-/* Get bounds with compensated offset scaled. */
-
-static juce::Rectangle<int> getAreaScaled (float scale)
-{
-    const int n = static_cast<int> (getOffset() * scale);
-    const int s = getSize();
-    
-    return juce::Rectangle<int> (-n, -n, s, s);
+    return juce::Point (localToReal (pt.getX()), localToReal (pt.getY()));
 }
 
 // -----------------------------------------------------------------------------------------------------------

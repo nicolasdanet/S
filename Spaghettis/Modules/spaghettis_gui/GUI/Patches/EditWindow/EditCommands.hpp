@@ -90,7 +90,7 @@ static void snap (core::UniqueId i)
 
 static void position (core::UniqueId i, juce::Point<int> pt)
 {
-    Spaghettis()->handle (Inputs::positionObject (i, core::Canvas::removeOffset (pt)));
+    Spaghettis()->handle (Inputs::positionObject (i, core::Geometry::localToReal (pt)));
 }
 
 static void parameter (core::UniqueId i, const core::Group& group)
