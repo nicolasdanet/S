@@ -93,9 +93,7 @@ public:
 // MARK: -
 
 public:
-    int getPositionX() const;
-    int getPositionY() const;
-    juce::Point<int> getPosition() const;
+    juce::Point<int> getLocalPosition() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

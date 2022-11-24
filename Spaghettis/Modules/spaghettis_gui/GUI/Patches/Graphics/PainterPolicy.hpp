@@ -55,8 +55,8 @@ protected:
 // MARK: -
 
 protected:
-    int getPositionX() const;
-    int getPositionY() const;
+    int getLocalPositionX() const;
+    int getLocalPositionY() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

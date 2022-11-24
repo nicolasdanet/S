@@ -171,7 +171,7 @@ void ObjectComponent::mouseUp (const juce::MouseEvent&)
 
 void ObjectComponent::dragStart()
 {
-    origin_ = juce::Point<int> (getPositionX(), getPositionY());
+    origin_ = getLocalPosition();
 }
 
 void ObjectComponent::drag (juce::Point<int> offset)
@@ -269,19 +269,9 @@ float ObjectComponent::getScale() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int ObjectComponent::getPositionX() const
+juce::Point<int> ObjectComponent::getLocalPosition() const
 {
-    return x_.get();
-}
-
-int ObjectComponent::getPositionY() const
-{
-    return y_.get();
-}
-
-juce::Point<int> ObjectComponent::getPosition() const
-{
-    return juce::Point<int> (getPositionX(), getPositionY());
+    return juce::Point<int> (x_.get(), y_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
