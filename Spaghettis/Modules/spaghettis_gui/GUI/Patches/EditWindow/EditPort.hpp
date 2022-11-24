@@ -21,7 +21,7 @@ class EditPort : public juce::Component {
 public:
     explicit EditPort (EditView& view) : view_ (view), zoom_ (100)
     {
-        view_.owner_ = this;
+        view_.setOwner (this);
         
         addAndMakeVisible (&view_);
     }
@@ -30,7 +30,7 @@ public:
     {
         removeChildComponent (&view_);
         
-        view_.owner_ = nullptr;
+        view_.setOwner (nullptr);
     }
 
 // -----------------------------------------------------------------------------------------------------------
