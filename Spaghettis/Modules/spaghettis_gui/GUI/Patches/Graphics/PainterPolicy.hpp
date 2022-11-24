@@ -55,6 +55,7 @@ protected:
 // MARK: -
 
 protected:
+    float getScaled (float f) const;
     juce::Point<float> getLocalPositionScaled() const;
     
 // -----------------------------------------------------------------------------------------------------------
