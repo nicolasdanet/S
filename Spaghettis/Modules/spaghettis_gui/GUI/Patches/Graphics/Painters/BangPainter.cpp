@@ -32,18 +32,20 @@ BangPainter::BangPainter (ObjectComponent* owner, const core::Object& object) : 
 
 void BangPainter::paintObject (juce::Rectangle<float> r, juce::Graphics& g)
 {
+    const float w = core::Distance::scaled (std::round (width_.get() / 15.0f), getScale());
+    
     g.setColour (bangBackgroundColour_.get());
     g.fillRect (r);
     g.setColour (flashed_.get() ? bangFlashOnColour_.get() : bangFlashOffColour_.get());
-    g.fillEllipse (r.reduced (scaled (std::round (width_.get() / 15.0f), getScale())));
+    g.fillEllipse (r.reduced (w));
 }
 
 juce::Rectangle<float> BangPainter::getRequiredBoundsForObject()
 {
     const float f = getScale();
-    const float x = scaled (getLocalPositionX(), f);
-    const float y = scaled (getLocalPositionY(), f);
-    const float w = scaled (width_.get(), f);
+    const float x = core::Distance::scaled (getLocalPosition().getX(), f);
+    const float y = core::Distance::scaled (getLocalPosition().getY(), f);
+    const float w = core::Distance::scaled (width_.get(), f);
     
     return juce::Rectangle<float> (x, y, w, w);
 }

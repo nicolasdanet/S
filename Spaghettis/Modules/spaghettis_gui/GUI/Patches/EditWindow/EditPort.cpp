@@ -14,6 +14,7 @@ namespace spaghettis {
 
 juce::Rectangle<int> EditPort::getVisibleAreaInPatch() const
 {
+    /*
     const float f                = getScale();
     const juce::Point<int> pt    = PainterPolicy::scaled (origin_, f).toInt();
     const int w                  = PainterPolicy::unscaled (getWidth(), f);
@@ -21,8 +22,9 @@ juce::Rectangle<int> EditPort::getVisibleAreaInPatch() const
     const juce::Rectangle<int> r = juce::Rectangle<int> (w, h) + pt;
     
     DBG (r.toString());
+    */
     
-    return r;
+    return {};
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -107,7 +109,7 @@ void EditPort::update()
 {
     const float f = getScale();
     
-    view_.setBounds (core::Canvas::getAreaScaled (f) - PainterPolicy::scaled (origin_, f).toInt());
+    view_.setBounds (core::Canvas::getAreaScaled (f) - core::Distance::scaled (origin_, f).toInt());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -126,12 +128,12 @@ void EditPort::setOrigin (juce::Point<float> pt)
 
 juce::Point<float> EditPort::getCentralPoint() const
 {
-    return origin_ + PainterPolicy::unscaled (getBounds().getCentre().toFloat(), getScale());
+    return origin_ + core::Distance::unscaled (getBounds().getCentre().toFloat(), getScale());
 }
 
 void EditPort::setCentralPoint (juce::Point<float> pt)
 {
-    setOrigin (pt -  PainterPolicy::unscaled (getBounds().getCentre().toFloat(), getScale()));
+    setOrigin (pt -  core::Distance::unscaled (getBounds().getCentre().toFloat(), getScale()));
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -67,6 +67,16 @@ static float unscaled (int n, float f)
     return (n / f);
 }
 
+template <class T> static juce::Point<T> scaled (juce::Point<T> pt, float f)
+{
+    return juce::Point<T> (pt.x * f, pt.y * f);
+}
+
+template <class T> static juce::Point<T> unscaled (juce::Point<T> pt, float f)
+{
+    return juce::Point<T> (pt.x / f, pt.y / f);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
