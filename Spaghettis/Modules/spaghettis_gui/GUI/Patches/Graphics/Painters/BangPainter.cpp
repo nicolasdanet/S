@@ -42,11 +42,9 @@ void BangPainter::paintObject (juce::Rectangle<float> r, juce::Graphics& g)
 
 juce::Rectangle<float> BangPainter::getRequiredBoundsForObject()
 {
-    const float x = getLocalPositionScaled().getX();
-    const float y = getLocalPositionScaled().getY();
     const float w = core::Distance::scaled (width_.get(), getScale());
     
-    return juce::Rectangle<float> (x, y, w, w);
+    return juce::Rectangle<float> (w, w) + getLocalPositionScaled();
 }
 
 // -----------------------------------------------------------------------------------------------------------

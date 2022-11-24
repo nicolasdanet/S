@@ -118,9 +118,9 @@ float PainterPolicy::getScale() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Point<int> PainterPolicy::getLocalPositionScaled() const
+juce::Point<float> PainterPolicy::getLocalPositionScaled() const
 {
-    return core::Coordinates::scaled (component_->getLocalPosition(), getScale());
+    return core::Coordinates::scaled (component_->getLocalPosition().toFloat(), getScale());
 }
 
 // -----------------------------------------------------------------------------------------------------------
