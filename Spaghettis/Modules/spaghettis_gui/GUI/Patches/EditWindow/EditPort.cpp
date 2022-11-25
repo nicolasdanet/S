@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> EditPort::getVisibleAreaInPatch() const
+juce::Rectangle<int> EditPort::getRealVisibleArea() const
 {
     /*
     const float f                = getScale();

@@ -62,8 +62,8 @@ private:
     void mouseUp (const juce::MouseEvent&) override;
 
 private:
-    std::optional<juce::Point<int>> getMousePositionInPatch() const;
-    juce::Rectangle<int> getVisibleAreaInPatch() const;
+    std::optional<juce::Point<int>> getRealMousePosition() const;
+    juce::Rectangle<int> getRealVisibleArea() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -71,18 +71,20 @@ void EditView::mouseUp (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::optional<juce::Point<int>> EditView::getMousePositionInPatch() const
+std::optional<juce::Point<int>> EditView::getRealMousePosition() const
 {
     if (isMouseOver (true)) {
-        return core::Coordinates::localToReal (core::Distance::unscaled (getMouseXYRelative(), getScale()));
-    } else {
-        return {};
+    //
+    return core::Coordinates::localToReal (core::Coordinates::unscaled (getMouseXYRelative(), getScale()));
+    //
     }
+
+    return {};
 }
 
-juce::Rectangle<int> EditView::getVisibleAreaInPatch() const
+juce::Rectangle<int> EditView::getRealVisibleArea() const
 {
-    jassert (owner_ != nullptr); return owner_->getVisibleAreaInPatch();
+    jassert (owner_ != nullptr); return owner_->getRealVisibleArea();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -313,7 +315,7 @@ void EditView::copy()
 
 void EditView::paste()
 {
-    juce::Point<int> pt = getMousePositionInPatch().value_or (getVisibleAreaInPatch().getCentre());
+    juce::Point<int> pt = getRealMousePosition().value_or (getRealVisibleArea().getCentre());
     
     DBG (juce::String (pt.getX()) + " " + juce::String (pt.getY()));
     
