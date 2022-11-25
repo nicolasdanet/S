@@ -19,19 +19,9 @@ class EditPort : public juce::Component {
 // MARK: -
 
 public:
-    explicit EditPort (EditView& view) : view_ (view), zoom_ (100)
-    {
-        view_.setOwner (this);
-        
-        addAndMakeVisible (&view_);
-    }
+    explicit EditPort (EditView& view);
     
-    ~EditPort()
-    {
-        removeChildComponent (&view_);
-        
-        view_.setOwner (nullptr);
-    }
+    ~EditPort();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -45,34 +35,17 @@ public:
 // MARK: -
 
 public:
-    void setZoom (int n)
-    {
-        constexpr int min = steps_.front();
-        constexpr int max = steps_.back();
-    
-        zoom_ = juce::var (juce::jlimit (min, max, n)); view_.setScale (getScale());
-    }
-    
-    int getZoom() const
-    {
-        return static_cast <int> (zoom_.getValue());
-    }
+    void setZoom (int);
+    int getZoom() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    juce::Value getZoomAsValue() const
-    {
-        return zoom_;
-    }
-    
-    float getScale() const
-    {
-        return getZoom() / 100.0f;
-    }
-    
+    juce::Value getZoomAsValue() const;
+    float getScale() const;
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -95,20 +68,8 @@ public:
 
 private:
     void zoom (int n);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
     void update();
     
-private:
-    juce::Point<float> getOrigin() const;
-    juce::Point<float> getCentralPoint() const;
-    void setOrigin (juce::Point<float>);
-    void setCentralPoint (juce::Point<float>);
-
 private:
     EditView& view_;
     juce::Value zoom_;

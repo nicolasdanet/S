@@ -12,6 +12,56 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+EditPort::EditPort (EditView& view) : view_ (view), zoom_ (100)
+{
+    view_.setOwner (this);
+        
+    addAndMakeVisible (&view_);
+}
+    
+EditPort::~EditPort()
+{
+    removeChildComponent (&view_);
+        
+    view_.setOwner (nullptr);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditPort::setZoom (int n)
+{
+    constexpr int min = steps_.front();
+    constexpr int max = steps_.back();
+    
+    zoom_ = juce::var (juce::jlimit (min, max, n)); view_.setScale (getScale());
+}
+    
+int EditPort::getZoom() const
+{
+    return static_cast <int> (zoom_.getValue());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+
+juce::Value EditPort::getZoomAsValue() const
+{
+    return zoom_;
+}
+    
+float EditPort::getScale() const
+{
+    return getZoom() / 100.0f;
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::Rectangle<int> EditPort::getRealVisibleArea() const
 {
     /*
@@ -77,7 +127,9 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
         return f;
     };
     
-    setOrigin (getOrigin().translated (-map (x), -map (y)));
+    origin_ += juce::Point<float> (-map (x), -map (y));
+    
+    update();
     //
     }
 }
@@ -86,19 +138,9 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* The order matter below (due to side effects). */
-
 void EditPort::zoom (int n)
 {
-    if (getZoom() != n) {
-    //
-    const juce::Point<float> p = getCentralPoint();
-    
-    setZoom (n);
-    
-    setCentralPoint (p);
-    //
-    }
+    if (getZoom() != n) { setZoom (n); update(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -110,30 +152,6 @@ void EditPort::update()
     const float f = getScale();
     
     view_.setBounds (core::Canvas::getAreaScaled (f) - core::Distance::scaled (origin_, f).toInt());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::Point<float> EditPort::getOrigin() const
-{
-    return origin_;
-}
-
-void EditPort::setOrigin (juce::Point<float> pt)
-{
-    origin_ = pt; update();
-}
-
-juce::Point<float> EditPort::getCentralPoint() const
-{
-    return origin_ + core::Distance::unscaled (getBounds().getCentre().toFloat(), getScale());
-}
-
-void EditPort::setCentralPoint (juce::Point<float> pt)
-{
-    setOrigin (pt -  core::Distance::unscaled (getBounds().getCentre().toFloat(), getScale()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
