@@ -25,7 +25,6 @@ EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
     redo_.attach ([]() { Spaghettis()->updateMenuBar(); });
     patchBackgroundColour_.attach (PainterPolicy::repaint (this));
     setOpaque (true);
-    setBounds (core::Canvas::getAreaScaled (scale_));
     initialize (viewTree_);
 }
 

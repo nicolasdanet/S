@@ -15,6 +15,8 @@ namespace spaghettis {
 EditPort::EditPort (EditView& view) : view_ (view), zoom_ (100)
 {
     view_.setOwner (this);
+    
+    update();
         
     addAndMakeVisible (&view_);
 }
