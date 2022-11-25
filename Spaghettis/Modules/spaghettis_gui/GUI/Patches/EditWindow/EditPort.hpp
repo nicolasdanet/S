@@ -73,7 +73,7 @@ private:
 private:
     EditView& view_;
     juce::Value zoom_;
-    juce::Point<float> origin_;
+    juce::Point<int> origin_;
 
 private:
     static constexpr std::array<int, 16> steps_ =

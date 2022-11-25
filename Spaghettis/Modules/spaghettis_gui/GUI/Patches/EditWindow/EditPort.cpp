@@ -124,10 +124,10 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     {
         if (f) { f = std::signbit (f) ? juce::jmin (-1.0f, f) : juce::jmax (1.0f, f); }
         
-        return f;
+        return static_cast<int> (f);
     };
     
-    origin_ += juce::Point<float> (-map (x), -map (y));
+    origin_ += juce::Point<int> (-map (x), -map (y));
     
     update();
     //
@@ -151,7 +151,7 @@ void EditPort::update()
 {
     const float f = getScale();
     
-    view_.setBounds (core::Canvas::getAreaScaled (f) - core::Distance::scaled (origin_, f).toInt());
+    view_.setBounds (core::Canvas::getAreaScaled (f) - core::Distance::scaled (origin_, f));
 }
 
 // -----------------------------------------------------------------------------------------------------------
