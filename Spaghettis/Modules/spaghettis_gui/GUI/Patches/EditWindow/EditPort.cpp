@@ -66,17 +66,11 @@ float EditPort::getScale() const
 
 juce::Rectangle<int> EditPort::getRealVisibleArea() const
 {
-    /*
-    const float f                = getScale();
-    const juce::Point<int> pt    = PainterPolicy::scaled (origin_, f).toInt();
-    const int w                  = PainterPolicy::unscaled (getWidth(), f);
-    const int h                  = PainterPolicy::unscaled (getHeight(), f);
-    const juce::Rectangle<int> r = juce::Rectangle<int> (w, h) + pt;
-    
-    DBG (r.toString());
-    */
-    
-    return {};
+    const float f = getScale();
+    const int w   = core::Distance::unscaled (getWidth(), f);
+    const int h   = core::Distance::unscaled (getHeight(), f);
+
+    return juce::Rectangle<int> (w, h) + origin_;
 }
 
 // -----------------------------------------------------------------------------------------------------------

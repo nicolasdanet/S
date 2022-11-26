@@ -318,7 +318,7 @@ void EditView::paste()
     
     DBG (juce::String (pt.getX()) + " " + juce::String (pt.getY()));
     
-    // EditCommands::paste (core::Patch (viewTree_).getIdentifier(), pt);
+    EditCommands::paste (core::Patch (viewTree_).getIdentifier(), pt);
 }
 
 void EditView::duplicate()
