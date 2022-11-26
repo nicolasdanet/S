@@ -151,9 +151,9 @@ void EditPort::zoom (int n)
 
 void EditPort::update()
 {
-    const float f = getScale();
+    const auto pt = core::Coordinates::scaled (core::Coordinates::realToLocal (origin_), getScale());
     
-    view_.setBounds (core::Canvas::getAreaScaled (f) - core::Distance::scaled (origin_, f));
+    view_.setBounds (juce::Rectangle<int> (core::Canvas::getSize(), core::Canvas::getSize()) - pt);
 }
 
 // -----------------------------------------------------------------------------------------------------------
