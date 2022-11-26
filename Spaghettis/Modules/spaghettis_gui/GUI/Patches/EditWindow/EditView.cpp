@@ -74,7 +74,7 @@ std::optional<juce::Point<int>> EditView::getRealMousePosition() const
 {
     if (isMouseOver (true)) {
     //
-    return core::Coordinates::localToReal (core::Coordinates::unscaled (getMouseXYRelative(), getScale()));
+    return Coordinates::localToReal (Coordinates::unscaled (getMouseXYRelative(), getScale()));
     //
     }
 

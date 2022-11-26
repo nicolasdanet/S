@@ -90,7 +90,7 @@ static void snap (core::UniqueId i)
 
 static void position (core::UniqueId i, juce::Point<int> pt)
 {
-    Spaghettis()->handle (Inputs::positionObject (i, core::Coordinates::localToReal (pt)));
+    Spaghettis()->handle (Inputs::positionObject (i, Coordinates::localToReal (pt)));
 }
 
 static void parameter (core::UniqueId i, const core::Group& group)

@@ -67,8 +67,8 @@ float EditPort::getScale() const
 juce::Rectangle<int> EditPort::getRealVisibleArea() const
 {
     const float f = getScale();
-    const int w   = core::Distance::unscaled (getWidth(), f);
-    const int h   = core::Distance::unscaled (getHeight(), f);
+    const int w   = Distance::unscaled (getWidth(), f);
+    const int h   = Distance::unscaled (getHeight(), f);
 
     return juce::Rectangle<int> (w, h) + origin_;
 }
@@ -145,7 +145,7 @@ void EditPort::zoom (int n)
 
 void EditPort::update()
 {
-    const auto pt = core::Coordinates::scaled (core::Coordinates::realToLocal (origin_), getScale());
+    const juce::Point<int> pt = Coordinates::scaled (Coordinates::realToLocal (origin_), getScale());
     
     view_.setBounds (juce::Rectangle<int> (core::Canvas::getSize(), core::Canvas::getSize()) - pt);
 }
