@@ -63,6 +63,7 @@ private:
 
 private:
     std::optional<juce::Point<int>> getRealMousePosition() const;
+    std::optional<juce::Point<int>> getRealNextToSelectedObject() const;
     juce::Rectangle<int> getRealVisibleArea() const;
     
 // -----------------------------------------------------------------------------------------------------------

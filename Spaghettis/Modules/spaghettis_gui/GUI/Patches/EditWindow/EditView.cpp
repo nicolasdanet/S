@@ -81,6 +81,15 @@ std::optional<juce::Point<int>> EditView::getRealMousePosition() const
     return {};
 }
 
+std::optional<juce::Point<int>> EditView::getRealNextToSelectedObject() const
+{
+    // if (hasSelectedObject()) {
+    
+    // }
+    
+    return {};
+}
+
 juce::Rectangle<int> EditView::getRealVisibleArea() const
 {
     jassert (owner_ != nullptr); return owner_->getRealVisibleArea();
@@ -314,7 +323,11 @@ void EditView::copy()
 
 void EditView::paste()
 {
-    juce::Point<int> pt = getRealMousePosition().value_or (getRealVisibleArea().getCentre());
+    const juce::Rectangle<int> area  = getRealVisibleArea();
+    const juce::Point<int> centre    = area.getCentre();
+    const juce::Point<int> mouse     = getRealMousePosition().value_or (centre);
+    const juce::Point<int> selection = getRealNextToSelectedObject().value_or (mouse);
+    const juce::Point<int> pt        = area.contains (selection) ? selection : centre;
     
     DBG (juce::String (pt.getX()) + " " + juce::String (pt.getY()));
     
