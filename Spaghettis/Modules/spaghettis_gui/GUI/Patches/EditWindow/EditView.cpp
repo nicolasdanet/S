@@ -83,9 +83,9 @@ std::optional<juce::Point<int>> EditView::getRealMousePosition() const
 
 std::optional<juce::Point<int>> EditView::getRealNextToSelectedObject() const
 {
-    // if (hasSelectedObject()) {
+    if (hasSelectedObject()) {
     
-    // }
+    }
     
     return {};
 }
@@ -144,37 +144,37 @@ void deconnectSelectedLines (Table<LineComponent>& t)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool EditView::hasSelected()
+bool EditView::hasSelected() const
 {
     return (getNumberOfSelectedObjects() > 0) || (getNumberOfSelectedLines() > 0);
 }
 
-bool EditView::hasSelectedObject()
+bool EditView::hasSelectedObject() const
 {
     return (getNumberOfSelectedObjects() > 0);
 }
 
-int EditView::getNumberOfSelectedObjects()
+int EditView::getNumberOfSelectedObjects() const
 {
     return getNumberOfSelected (objects_);
 }
 
-int EditView::getNumberOfSelectedLines()
+int EditView::getNumberOfSelectedLines() const
 {
     return getNumberOfSelected (lines_);
 }
 
-ObjectComponent* EditView::getSelectedObject()
+ObjectComponent* EditView::getSelectedObject() const
 {
     return getObjectComponent (getSelected (objects_));
 }
 
-LineComponent* EditView::getSelectedLine()
+LineComponent* EditView::getSelectedLine() const
 {
     return getLineComponent (getSelected (lines_));
 }
 
-core::Item EditView::getItemForInspector()
+core::Item EditView::getItemForInspector() const
 {
     if (getNumberOfSelectedObjects() == 1)    { return Documentation::createCopy (getSelectedObject()); }
     else if (getNumberOfSelectedLines() == 1) { return Documentation::createCopy (getSelectedLine());   }
@@ -187,7 +187,7 @@ core::Item EditView::getItemForInspector()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool EditView::hasOnlyOnePatchSelected()
+bool EditView::hasOnlyOnePatchSelected() const
 {
     if (getNumberOfSelectedObjects() == 1) {
         if (getSelectedObject()->getObject().isPatch()) {
@@ -206,7 +206,7 @@ void EditView::setPaste()
     if (hasPaste_ == false) { hasPaste_ = true; Spaghettis()->updateMenuBar(); }
 }
 
-bool EditView::hasPaste()
+bool EditView::hasPaste() const
 {
     return hasPaste_;
 }
@@ -275,17 +275,17 @@ void EditView::redo()
     EditCommands::redo (core::Patch (viewTree_).getIdentifier());
 }
 
-bool EditView::hasUndo()
+bool EditView::hasUndo() const
 {
     return undo_.get().isNotEmpty();
 }
 
-bool EditView::hasRedo()
+bool EditView::hasRedo() const
 {
     return redo_.get().isNotEmpty();
 }
 
-juce::String EditView::getUndoAction()
+juce::String EditView::getUndoAction() const
 {
     if (hasUndo()) {
         return juce::String (NEEDS_TRANS ("Undo")) + " " + core::Report::firstLetterCapitalized (undo_.get());
@@ -294,7 +294,7 @@ juce::String EditView::getUndoAction()
     return juce::String();
 }
 
-juce::String EditView::getRedoAction()
+juce::String EditView::getRedoAction() const
 {
     if (hasRedo()) {
         return juce::String (NEEDS_TRANS ("Redo")) + " " + core::Report::firstLetterCapitalized (redo_.get());
@@ -369,12 +369,12 @@ void EditView::paint (juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ObjectComponent* EditView::getObjectComponent (core::UniqueId u)
+ObjectComponent* EditView::getObjectComponent (core::UniqueId u) const
 {
     return objects_.get (u);
 }
 
-LineComponent* EditView::getLineComponent (core::UniqueId u)
+LineComponent* EditView::getLineComponent (core::UniqueId u) const
 {
     return lines_.get (u);
 }

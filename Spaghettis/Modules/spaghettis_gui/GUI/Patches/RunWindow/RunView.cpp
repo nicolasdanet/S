@@ -57,7 +57,7 @@ void RunView::resized()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ObjectComponent* RunView::getObjectComponent (core::UniqueId u)
+ObjectComponent* RunView::getObjectComponent (core::UniqueId u) const
 {
     return objects_.get (u);
 }

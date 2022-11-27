@@ -46,7 +46,7 @@ private:
 // MARK: -
 
 public:
-    ObjectComponent* getObjectComponent (core::UniqueId) override;
+    ObjectComponent* getObjectComponent (core::UniqueId) const override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

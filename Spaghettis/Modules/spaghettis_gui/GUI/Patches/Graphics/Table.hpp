@@ -53,17 +53,17 @@ public:
 /* Use C++20 range based approach? */
 
 public:
-    template <class F> void forEach (F f)
+    template <class F> void forEach (F f) const
     {
         for_each (v_.cbegin(), v_.cend(), f);
     }
     
-    template <class F> void forEachReversed (F f)
+    template <class F> void forEachReversed (F f) const
     {
         for_each (v_.crbegin(), v_.crend(), f);
     }
     
-    template <class F> auto countIf (F f)
+    template <class F> auto countIf (F f) const
     {
         return count_if (v_.cbegin(), v_.cend(), f);
     }
@@ -73,7 +73,7 @@ public:
 // MARK: -
 
 public:
-    T* get (core::UniqueId identifier)
+    T* get (core::UniqueId identifier) const
     {
         auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (identifier));
         

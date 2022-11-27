@@ -76,17 +76,17 @@ public:
     void select (const juce::Rectangle<int>&);
 
 public:
-    bool hasSelected();
-    bool hasSelectedObject();
-    bool hasOnlyOnePatchSelected();
-    bool hasPaste();
-    core::Item getItemForInspector();
+    bool hasSelected() const;
+    bool hasSelectedObject() const;
+    bool hasOnlyOnePatchSelected() const;
+    bool hasPaste() const;
+    core::Item getItemForInspector() const;
     
 private:
-    int getNumberOfSelectedObjects();
-    int getNumberOfSelectedLines();
-    ObjectComponent* getSelectedObject();
-    LineComponent* getSelectedLine();
+    int getNumberOfSelectedObjects() const;
+    int getNumberOfSelectedLines() const;
+    ObjectComponent* getSelectedObject() const;
+    LineComponent* getSelectedLine() const;
     void setPaste();
 
 public:
@@ -101,10 +101,10 @@ public:
 public:
     void undo();
     void redo();
-    bool hasUndo();
-    bool hasRedo();
-    juce::String getUndoAction();
-    juce::String getRedoAction();
+    bool hasUndo() const;
+    bool hasRedo() const;
+    juce::String getUndoAction() const;
+    juce::String getRedoAction() const;
 
 public:
     void cut();
@@ -136,8 +136,8 @@ public:
 // MARK: -
 
 private:
-    ObjectComponent* getObjectComponent (core::UniqueId) override;
-    LineComponent* getLineComponent (core::UniqueId);
+    ObjectComponent* getObjectComponent (core::UniqueId) const override;
+    LineComponent* getLineComponent (core::UniqueId) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
