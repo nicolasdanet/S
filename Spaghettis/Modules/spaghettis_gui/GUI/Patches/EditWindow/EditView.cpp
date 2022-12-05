@@ -382,7 +382,7 @@ void EditView::remove()
 
 void EditView::encapsulate()
 {
-    // EditCommands::encapsulate (core::Patch (viewTree_).getIdentifier());
+    EditCommands::encapsulate (core::Patch (viewTree_).getIdentifier());
 }
 
 void EditView::deencapsulate()
