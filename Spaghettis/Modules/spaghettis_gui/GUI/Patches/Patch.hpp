@@ -31,8 +31,6 @@ public:
 
     ~Patch()
     {
-        DBG (core::Data::debug (rootTree_));
-        
         Spaghettis()->appendRecentFile (getFile());
         
         releaseAllWindows();

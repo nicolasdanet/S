@@ -52,11 +52,30 @@ PD_LOCAL void glist_removeInletsAndOutlets (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void glist_updateInletsAndOutlets (t_glist *glist)
+{
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    if (!glist_isLoading (glist)) {
+    //
+    outputs_objectUpdateAttributes (cast_object (glist), glist_getParent (glist));
+    //
+    }
+    
+    #endif
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL t_inlet *glist_inletAdd (t_glist *glist, t_pd *receiver, int isSignal)
 {
     t_inlet *inlet = inlet_new (cast_object (glist), receiver, (isSignal ? &s_signal : NULL), NULL);
     
     if (!glist_isLoading (glist)) { glist_inletSort (glist); }
+    
+    glist_updateInletsAndOutlets (glist);
     
     return inlet;
 }
@@ -66,8 +85,10 @@ PD_LOCAL void glist_inletRemove (t_glist *glist, t_inlet *inlet)
     t_glist *owner = glist_getParent (glist);
     
     if (owner) { glist_objectDeleteLinesByInlet (owner, cast_object (glist), inlet); }
-        
+    
     inlet_free (inlet);
+    
+    glist_updateInletsAndOutlets (glist);
 }
 
 static int glist_inletGetNumberOf (t_glist *glist)
@@ -141,6 +162,8 @@ static t_outlet *glist_outletAddProceed (t_glist *glist, t_outlet *outlet)
 {
     if (!glist_isLoading (glist)) { glist_outletSort (glist); }
     
+    glist_updateInletsAndOutlets (glist);
+    
     return outlet;
 }
 
@@ -161,6 +184,8 @@ PD_LOCAL void glist_outletRemove (t_glist *glist, t_outlet *outlet)
     if (owner) { glist_objectDeleteLinesByOutlet (owner, cast_object (glist), outlet); }
 
     outlet_free (outlet);
+    
+    glist_updateInletsAndOutlets (glist);
 }
 
 static int glist_outletGetNumberOf (t_glist *glist)
