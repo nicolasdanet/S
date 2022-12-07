@@ -387,7 +387,12 @@ void EditView::encapsulate()
 
 void EditView::deencapsulate()
 {
-    // EditCommands::deencapsulate ();
+    const ObjectComponent* o = getSelectedObject();
+    
+    jassert (o);
+    jassert (o->getObject().isPatch());
+    
+    EditCommands::deencapsulate (o->getIdentifier());
 }
     
 // -----------------------------------------------------------------------------------------------------------
