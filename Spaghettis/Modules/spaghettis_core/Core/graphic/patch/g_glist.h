@@ -35,7 +35,6 @@ struct _glist {
     int             gl_isDirty;                 /* Top.  */
     int             gl_isFrozen;                /* Top.  */
     int             gl_isLoading;
-    int             gl_isDeleting;
     int             gl_isCloseBanged;
     };
 

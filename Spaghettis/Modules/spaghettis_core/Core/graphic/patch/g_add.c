@@ -13,12 +13,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void   glist_deleteBegin   (t_glist *);
-PD_LOCAL void   glist_deleteEnd     (t_glist *);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 #if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void   glist_undoDisable   (t_glist *);
@@ -172,8 +166,6 @@ PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
     
     t_undosnippet *snippet = NULL;
     
-    glist_deleteBegin (glist);
-    
     if (object_isCanvas (y)) { glist_closebang (cast_glist (y)); }
     
     if (needToRebuild) { state = dsp_suspend(); }
@@ -200,8 +192,6 @@ PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
     }
     
     if (needToRebuild) { dsp_resume (state); }
-
-    glist_deleteEnd (glist);
 }
 
 #else
@@ -210,8 +200,6 @@ PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
 {
     int needToRebuild = object_hasDsp (y);
     int state         = 0;
-    
-    glist_deleteBegin (glist);
     
     if (object_isCanvas (y)) { glist_closebang (cast_glist (y)); }
     
@@ -231,8 +219,6 @@ PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
     }
     
     if (needToRebuild) { dsp_resume (state); }
-
-    glist_deleteEnd (glist);
 }
 
 #endif

@@ -226,16 +226,6 @@ PD_LOCAL void glist_loadEnd (t_glist *g)
     g->gl_isLoading = 0;
 }
 
-PD_LOCAL void glist_deleteBegin (t_glist *g)
-{
-    g->gl_isDeleting = 1;
-}
-
-PD_LOCAL void glist_deleteEnd (t_glist *g)
-{
-    g->gl_isDeleting = 0;
-}
-
 #if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void glist_undoEnable (t_glist *g)
