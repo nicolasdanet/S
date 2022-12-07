@@ -284,19 +284,15 @@ PD_LOCAL void searchpath_extendedMatchedAtIndex (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-PD_LOCAL void searchpath_clear (void)
+PD_FORCE void searchpath_clear (void)
 {
     pathlist_free (searchpath_roots); searchpath_roots = NULL;
 }
 
-PD_LOCAL void searchpath_appendRoot (const char *filepath)
+PD_FORCE void searchpath_appendRoot (const char *filepath)
 {
     searchpath_roots = pathlist_newAppend (searchpath_roots, NULL, filepath);
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

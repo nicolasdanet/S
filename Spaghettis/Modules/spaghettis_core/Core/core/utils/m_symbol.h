@@ -26,15 +26,7 @@ PD_LOCAL t_symbol   *symbol_appendExtensionHelp     (t_symbol *s);
 PD_LOCAL t_symbol   *symbol_addPrefix               (t_symbol *s, t_symbol *prefix);
 PD_LOCAL t_symbol   *symbol_addSuffix               (t_symbol *s, t_symbol *suffix);
 PD_LOCAL t_symbol   *symbol_removeCopySuffix        (t_symbol *s);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL t_symbol   *symbol_appendCopySuffix        (t_symbol *s);
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

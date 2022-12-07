@@ -19,12 +19,8 @@ PD_LOCAL t_pathlist     *searchpath_getExtended         (void);
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-PD_LOCAL void       searchpath_clear                    (void);
-PD_LOCAL void       searchpath_appendRoot               (const char *filepath);
-
-#endif
+PD_FORCE void       searchpath_clear                    (void);
+PD_FORCE void       searchpath_appendRoot               (const char *filepath);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

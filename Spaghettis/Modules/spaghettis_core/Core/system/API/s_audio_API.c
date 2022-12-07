@@ -123,16 +123,12 @@ PD_LOCAL t_error audio_check (t_devices *p)
     return err;
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-PD_LOCAL void audio_rescanDevices (void)
+PD_FORCE void audio_rescanDevices (void)
 {
     t_deviceslist l; t_error err = audio_getDevicesList (&l, 1);
     
     PD_ASSERT (!err); PD_UNUSED (err);
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -152,8 +148,6 @@ PD_LOCAL int audio_deviceAsNumber (int isOutput, t_symbol *name)
     return -1;
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL t_error audio_deviceAsString (int isOutput, int k, char *dest, size_t size)
 {
     t_error err = PD_ERROR;
@@ -164,8 +158,6 @@ PD_LOCAL t_error audio_deviceAsString (int isOutput, int k, char *dest, size_t s
     
     return err;
 }
-
-#endif
 
 PD_LOCAL t_symbol *audio_deviceAsSymbol (int isOutput, int k)
 {

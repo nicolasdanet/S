@@ -64,14 +64,10 @@ PD_LOCAL int error__options (t_object *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-PD_LOCAL void error_doesNotExist (t_object *x, const char *filepath)
+PD_FORCE void error_doesNotExist (t_object *x, const char *filepath)
 {
     post_error (x, PD_TRANSLATE ("file: doesn't exist %s"), filepath);
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -136,14 +132,10 @@ PD_LOCAL void error_failsToWrite (t_object *x, t_symbol *s)
     post_error (x, PD_TRANSLATE ("%s: fails to write"), s->s_name);
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL void error_fileIsProtected (t_object *x, t_symbol *s)
 {
     post_error (x, PD_TRANSLATE ("%s: file is protected"), s->s_name);
 }
-
-#endif
 
 PD_LOCAL void error_ignored (t_object *x, t_symbol *s)
 {

@@ -85,16 +85,12 @@ PD_LOCAL void midi_setDevices (t_devices *p, int setParameters)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-PD_LOCAL void midi_rescanDevices (void)
+PD_FORCE void midi_rescanDevices (void)
 {
     t_deviceslist l; t_error err = midi_getDevicesList (&l, 1);
     
     PD_ASSERT (!err); PD_UNUSED (err);
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -114,8 +110,6 @@ PD_LOCAL int midi_deviceAsNumber (int isOutput, t_symbol *name)
     return -1;
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL t_error midi_deviceAsString (int isOutput, int k, char *dest, size_t size)
 {
     t_error err = PD_ERROR;
@@ -127,8 +121,6 @@ PD_LOCAL t_error midi_deviceAsString (int isOutput, int k, char *dest, size_t si
     
     return err;
 }
-
-#endif
 
 PD_LOCAL t_symbol *midi_deviceAsSymbol (int isOutput, int k)
 {

@@ -33,14 +33,7 @@ PD_LOCAL t_error    glist_lineDisconnectByIndex         (t_glist *, int, int, in
 
 PD_LOCAL void       glist_serialize     (t_glist *g, t_buffer *b, int flags, int isAbstraction);
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL void       glist_undoDisable                   (t_glist *);
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -254,12 +247,7 @@ PD_LOCAL void canvas_new (void *dummy, t_symbol *s, int argc, t_atom *argv)
 
 static void canvas_free (t_glist *glist)
 {
-    #if defined ( PD_BUILDING_APPLICATION )
-    
     glist_undoDisable (glist);
-    
-    #endif
-    
     glist_objectRemoveAll (glist);
     glist_free (glist);
 }

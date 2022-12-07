@@ -57,11 +57,7 @@ static void glist_serializeLines (t_glist *glist, t_buffer *b)
 
 static void glist_serializeTag (t_glist *glist, t_buffer *b, int flags)
 {
-    #if defined ( PD_BUILDING_APPLICATION )
-    
     if (flags & SAVE_UNDO) { object_serializeUnique (cast_object (glist), sym__tagcanvas, b); }
-    
-    #endif
 }
 
 static void glist_serializeDollarZero (t_glist *glist, t_buffer *b)
@@ -92,8 +88,6 @@ static void glist_serializeFooter (t_glist *glist, t_buffer *b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL void legacy_version (t_buffer *);
 
 static void glist_serializeView (t_glist *glist, t_buffer *b)
@@ -113,8 +107,6 @@ static void glist_serializeView (t_glist *glist, t_buffer *b)
         buffer_appendSemicolon (b);
     }
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -144,8 +136,6 @@ PD_LOCAL void glist_serialize (t_glist *glist, t_buffer *b, int flags, int isAbs
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 static void glist_saveProceed (t_glist *glist, t_symbol *name, t_symbol *directory)
 {
     t_buffer *b = buffer_new();
@@ -165,13 +155,9 @@ static void glist_saveProceed (t_glist *glist, t_symbol *name, t_symbol *directo
     buffer_free (b);
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void glist_save (t_glist *glist)
 {
@@ -183,8 +169,6 @@ PD_LOCAL void glist_save (t_glist *glist)
         glist_saveProceed (root, name, environment_getDirectory (glist_getEnvironment (root)));
     }
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

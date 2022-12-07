@@ -14,12 +14,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL int    object_setSnappedX                  (t_object *x, int n);
 PD_LOCAL int    object_setSnappedY                  (t_object *x, int n);
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -108,15 +104,8 @@ PD_LOCAL void   object_setNative                    (t_object *x, t_id u);
 PD_LOCAL void   object_changeUnique                 (t_object *x, t_id u);
 PD_LOCAL void   object_changeSource                 (t_object *x, t_id u);
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL void   object_serializeUnique              (t_object *x, t_symbol *s, t_buffer *b);
 PD_LOCAL void   object_serializeSource              (t_object *x, t_symbol *s, t_buffer *b);
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

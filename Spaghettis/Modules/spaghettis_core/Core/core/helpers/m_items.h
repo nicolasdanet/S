@@ -30,13 +30,9 @@ typedef struct _items { uint32_t i_items[ITEMS_ELEMENTS]; } t_items;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL void   items_init              (t_items *items);
 PD_LOCAL void   items_setAtIndex        (t_items *items, int i);
 PD_LOCAL int    items_isSetAtIndex      (t_items *items, int i);
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

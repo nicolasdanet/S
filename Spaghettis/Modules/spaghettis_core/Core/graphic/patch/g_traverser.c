@@ -131,13 +131,9 @@ PD_LOCAL t_error traverser_disconnect (t_traverser *t, t_glist *glist)
     
     t_error err = object_disconnect (src, m, dest, n, glist);
     
-    #if defined ( PD_BUILDING_APPLICATION )
-    
     if (!err && glist) {
         if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undodisconnect_new (src, m, dest, n)); }
     }
-    
-    #endif
     
     return err;
 }

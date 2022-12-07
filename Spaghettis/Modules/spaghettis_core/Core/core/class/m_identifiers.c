@@ -30,16 +30,10 @@ PD_LOCAL void object_setUnique (t_object *x, t_id u)
 
 PD_LOCAL void object_changeUnique (t_object *x, t_id u)
 {
-    #if defined ( PD_BUILDING_APPLICATION )
-    
     instance_registerRename (x, u);
-    
-    #endif
     
     object_setUnique (x, u);
 }
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void object_serializeUnique (t_object *x, t_symbol *s, t_buffer *b)
 {
@@ -48,8 +42,6 @@ PD_LOCAL void object_serializeUnique (t_object *x, t_symbol *s, t_buffer *b)
     utils_appendUnique (b, object_getUnique (x));
     buffer_appendSemicolon (b);
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -70,8 +62,6 @@ PD_LOCAL void object_changeSource (t_object *x, t_id u)
     object_setSource (x, u);
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL void object_serializeSource (t_object *x, t_symbol *s, t_buffer *b)
 {
     buffer_appendSymbol (b, sym___hash__X);
@@ -79,8 +69,6 @@ PD_LOCAL void object_serializeSource (t_object *x, t_symbol *s, t_buffer *b)
     utils_appendUnique (b, object_getSource (x));
     buffer_appendSemicolon (b);
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

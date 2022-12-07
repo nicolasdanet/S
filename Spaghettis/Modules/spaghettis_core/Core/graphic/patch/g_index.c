@@ -18,6 +18,7 @@ PD_LOCAL void   glist_objectAddRaw      (t_glist *, t_object *, t_object *, int)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 #if defined ( PD_BUILDING_APPLICATION )
 
@@ -27,6 +28,19 @@ static void glist_objectMoveNotify (t_glist *g)
 {
     outputs_patchOrder (g, glist_objectGetAll (g));
 }
+
+#else
+
+static void glist_objectMoveNotify (t_glist *g)
+{
+
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 PD_LOCAL void glist_objectMoveAtFirst (t_glist *glist, t_object *y)
 {
@@ -78,8 +92,6 @@ PD_LOCAL void glist_objectMoveFront (t_glist *glist, t_object *y)
     glist_setDirty (glist, 1);
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -95,8 +107,6 @@ PD_LOCAL int glist_objectGetIndexOf (t_glist *glist, t_object *y)
     
     return n;
 }
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 static int glist_objectGetIndexOfAmong (t_glist *glist, t_object *y, int selected)
 {
@@ -116,8 +126,6 @@ PD_LOCAL int glist_objectGetIndexOfAmongSelected (t_glist *glist, t_object *y)
 {
     return glist_objectGetIndexOfAmong (glist, y, 1);
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

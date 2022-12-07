@@ -167,7 +167,6 @@ PD_LOCAL void toggle_setup              (void);
 PD_LOCAL void touchin_setup             (void);
 PD_LOCAL void touchout_setup            (void);
 PD_LOCAL void trigger_setup             (void);
-#if defined ( PD_BUILDING_APPLICATION )
 PD_LOCAL void undoadd_setup             (void);
 PD_LOCAL void undoback_setup            (void);
 PD_LOCAL void undoconnect_setup         (void);
@@ -185,7 +184,6 @@ PD_LOCAL void undoremove_setup          (void);
 PD_LOCAL void undoresize_setup          (void);
 PD_LOCAL void undoseparator_setup       (void);
 PD_LOCAL void undosnap_setup            (void);
-#endif
 PD_LOCAL void unpack_setup              (void);
 PD_LOCAL void until_setup               (void);
 PD_LOCAL void urn_setup                 (void);
@@ -407,7 +405,6 @@ PD_LOCAL void toggle_destroy            (void);
 PD_LOCAL void touchin_destroy           (void);
 PD_LOCAL void touchout_destroy          (void);
 PD_LOCAL void trigger_destroy           (void);
-#if defined ( PD_BUILDING_APPLICATION )
 PD_LOCAL void undoadd_destroy           (void);
 PD_LOCAL void undoback_destroy          (void);
 PD_LOCAL void undoconnect_destroy       (void);
@@ -425,7 +422,6 @@ PD_LOCAL void undoremove_destroy        (void);
 PD_LOCAL void undoresize_destroy        (void);
 PD_LOCAL void undoseparator_destroy     (void);
 PD_LOCAL void undosnap_destroy          (void);
-#endif
 PD_LOCAL void unpack_destroy            (void);
 PD_LOCAL void until_destroy             (void);
 PD_LOCAL void urn_destroy               (void);
@@ -649,7 +645,6 @@ static void setup_setup (void)
     touchin_setup();
     touchout_setup();
     trigger_setup();
-    #if defined ( PD_BUILDING_APPLICATION )
     undoadd_setup();
     undoback_setup();
     undoconnect_setup();
@@ -667,7 +662,6 @@ static void setup_setup (void)
     undoresize_setup();
     undoseparator_setup();
     undosnap_setup();
-    #endif
     unpack_setup();
     until_setup();
     urn_setup();
@@ -882,7 +876,6 @@ static void setup_destroy (void)
     touchin_destroy();
     touchout_destroy();
     trigger_destroy();
-    #if defined ( PD_BUILDING_APPLICATION )
     undoadd_destroy();
     undoback_destroy();
     undoconnect_destroy();
@@ -900,7 +893,6 @@ static void setup_destroy (void)
     undoresize_destroy();
     undoseparator_destroy();
     undosnap_destroy();
-    #endif
     unpack_destroy();
     until_destroy();
     urn_destroy();

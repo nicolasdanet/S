@@ -23,11 +23,7 @@ static char *properties_loadBuffer;     /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 static FILE *properties_saveFile;       /* Static. */
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -77,8 +73,6 @@ PD_LOCAL void properties_loadClose (void)
     }
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL t_error properties_saveBegin (void)
 {
     int f = file_openWrite (main_filePreferences->s_name);
@@ -101,8 +95,6 @@ PD_LOCAL void properties_setKey (const char *key, const char *value)
 {
     if (properties_saveFile) { fprintf (properties_saveFile, "%s: %s\n", key, value); }
 }
-
-#endif
 
 PD_LOCAL int properties_getKey (const char *key, char *value, int size)
 {

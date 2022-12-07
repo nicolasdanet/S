@@ -20,13 +20,9 @@ PD_LOCAL int        properties_getKey       (const char *, char *, int size);
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL t_error    properties_saveBegin    (void);
 PD_LOCAL void       properties_saveClose    (void);
 PD_LOCAL void       properties_setKey       (const char *, const char *);
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -128,9 +124,7 @@ PD_LOCAL void settings_load (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-PD_LOCAL void settings_save (void)
+PD_FORCE void settings_save (void)
 {
     t_devices midi;    
     t_devices audio;   
@@ -206,8 +200,6 @@ PD_LOCAL void settings_save (void)
     
     properties_saveClose();
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

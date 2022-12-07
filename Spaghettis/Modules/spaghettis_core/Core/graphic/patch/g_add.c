@@ -13,11 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL void   glist_undoDisable   (t_glist *);
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -40,8 +36,6 @@ PD_LOCAL void glist_objectAddRaw (t_glist *glist, t_object *y, t_object *first, 
     }
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
 {
     if (glist_undoIsOk (glist)) {
@@ -55,8 +49,6 @@ static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
     }
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -65,13 +57,9 @@ PD_LOCAL void glist_objectAdd (t_glist *glist, t_object *y)
 {
     glist_objectAddRaw (glist, y, NULL, 0);
     
-    #if defined ( PD_BUILDING_APPLICATION )
-    
     instance_registerAdd (y, glist);
     
     glist_objectAddUndoProceed (glist, y);
-    
-    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -128,11 +116,7 @@ PD_LOCAL void glist_objectRemoveRaw (t_glist *glist, t_object *y)
 
 static void glist_objectRemoveProceed (t_glist *glist, t_object *y)
 {
-    #if defined ( PD_BUILDING_APPLICATION )
-    
     instance_registerRemove (y);
-    
-    #endif
     
     glist_objectRemoveRaw (glist, y);
 }
@@ -143,11 +127,7 @@ static void glist_objectRemoveFree (t_glist *glist, t_object *y)
         if (garbage_newObject (y)) { return; }
     }
     
-    #if defined ( PD_BUILDING_APPLICATION )
-    
     if (instance_pendingRequired (y)) { instance_pendingAdd (y); return; }
-    
-    #endif
 
     pd_free (cast_pd (y));
 }
@@ -155,8 +135,6 @@ static void glist_objectRemoveFree (t_glist *glist, t_object *y)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
 {
@@ -194,35 +172,6 @@ PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
     if (needToRebuild) { dsp_resume (state); }
 }
 
-#else
-
-PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
-{
-    int needToRebuild = object_hasDsp (y);
-    int state         = 0;
-    
-    if (object_isCanvas (y)) { glist_closebang (cast_glist (y)); }
-    
-    if (needToRebuild) { state = dsp_suspend(); }
-    
-    {
-        {
-            glist_objectDeleteLines (glist, y);
-            
-            if (object_isCanvas (y)) {                          /* MUST be done after call above. */
-                glist_objectRemoveAll (cast_glist (y));
-            }
-        }
-    
-        glist_objectRemoveProceed (glist, y);
-        glist_objectRemoveFree (glist, y);
-    }
-    
-    if (needToRebuild) { dsp_resume (state); }
-}
-
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -257,11 +206,6 @@ PD_LOCAL void glist_objectRemoveAll (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 PD_LOCAL void glist_objectRemoveSelectedProceed (t_glist *glist)
 {
@@ -330,6 +274,8 @@ PD_LOCAL void glist_objectDeselectAll (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL std::vector<UniqueId> glist_objectGetAll (t_glist *glist)
 {
     std::vector<UniqueId> v;
@@ -340,9 +286,6 @@ PD_LOCAL std::vector<UniqueId> glist_objectGetAll (t_glist *glist)
     
     return v;
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 #endif
 

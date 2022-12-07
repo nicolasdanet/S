@@ -66,14 +66,10 @@ static int object_hasDspProceed (t_object *x, int k)
     }
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL int object_hasDspOrIsGraphicArray (t_object *x)
 {
     return object_hasDspProceed (x, 1);
 }
-
-#endif
 
 PD_LOCAL int object_hasDsp (t_object *x)
 {
@@ -98,8 +94,6 @@ PD_LOCAL t_symbol *object_getUnexpandedNameAt (t_object *x, int i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 PD_LOCAL int object_setSnappedX (t_object *x, int n)
 {
     int k = object_getX (x);
@@ -121,8 +115,6 @@ PD_LOCAL int object_setSnappedY (t_object *x, int n)
     
     return (object_getY (x) - k);
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -519,13 +511,9 @@ PD_LOCAL void object_save (t_object *x, t_buffer *b, int flags)
 
 PD_LOCAL void object_saveIdentifiers (t_object *x, t_buffer *b, int flags)
 {
-    #if defined ( PD_BUILDING_APPLICATION )
-    
     if (flags & SAVE_UNDO)        { object_serializeUnique (x, sym__tagobject, b); }
     if (flags & SAVE_ENCAPSULATE) { object_serializeUnique (x, sym__tagobjectsource, b); }
     if (flags & SAVE_UPDATE)      { object_serializeSource (x, sym__tagobjectsource, b); }
-    
-    #endif
 }
 
 PD_LOCAL void object_serializeLabel (t_object *x, t_buffer *b)

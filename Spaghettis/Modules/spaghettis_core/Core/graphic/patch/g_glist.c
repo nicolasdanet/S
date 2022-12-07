@@ -40,9 +40,7 @@ static t_glist *glist_new (t_glist *owner, t_symbol *name, t_rectangle *window)
     x->gl_parent        = owner;
     x->gl_environment   = instance_environmentFetchIfAny();
     x->gl_abstractions  = NULL;
-    #if defined ( PD_BUILDING_APPLICATION )
     x->gl_undomanager   = undomanager_new (x);
-    #endif
     x->gl_name          = (name != &s_ ? name : environment_getFileName (x->gl_environment));
     x->gl_sorterObjects = buffer_new();
     x->gl_sorterIndexes = buffer_new();
@@ -58,9 +56,7 @@ static t_glist *glist_new (t_glist *owner, t_symbol *name, t_rectangle *window)
 
 PD_LOCAL void glist_free (t_glist *glist)
 {
-    #if defined ( PD_BUILDING_APPLICATION )
-        PD_ASSERT (!glist_objectGetNumberOf (glist));
-    #endif
+    PD_ASSERT (!glist_objectGetNumberOf (glist));
     
     if (glist_isRoot (glist)) { instance_rootsRemove (glist); }
     
@@ -68,9 +64,7 @@ PD_LOCAL void glist_free (t_glist *glist)
     buffer_free (glist->gl_sorterObjects);
     environment_free (glist->gl_environment);
     
-    #if defined ( PD_BUILDING_APPLICATION )
     undomanager_free (glist->gl_undomanager);
-    #endif
     abstractions_free (glist->gl_abstractions);
 }
 
