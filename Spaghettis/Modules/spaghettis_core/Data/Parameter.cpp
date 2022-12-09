@@ -48,27 +48,27 @@ bool Parameter::isText() const
 
 juce::String Parameter::getKey() const
 {
-    return get (Ids::key).toString();
+    return get (Id::key).toString();
 }
 
 juce::String Parameter::getType() const
 {
-    return get (Ids::type).toString();
+    return get (Id::type).toString();
 }
 
 juce::String Parameter::getLabel() const
 {
-    return get (Ids::label).toString();
+    return get (Id::label).toString();
 }
 
 juce::String Parameter::getInfo() const
 {
-    return get (Ids::info).toString();
+    return get (Id::info).toString();
 }
 
 juce::var Parameter::getValue() const
 {
-    return get (Ids::value);
+    return get (Id::value);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ juce::var Parameter::getValue() const
 
 juce::Value Parameter::getValueAsValue (bool updateSynchronously) const
 {
-    return filtered (getSource (Ids::value, updateSynchronously));
+    return filtered (getSource (Id::value, updateSynchronously));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ juce::Value Parameter::getValueAsValue (bool updateSynchronously) const
 
 void Parameter::changeValue (const juce::var& v)
 {
-    change (Ids::value, forceRange (forceType (v)));
+    change (Id::value, forceRange (forceType (v)));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -95,17 +95,17 @@ void Parameter::changeValue (const juce::var& v)
 
 Parameter& Parameter::setHidden (bool isHidden)
 {
-    set (Ids::hidden, isHidden); return *this;
+    set (Id::hidden, isHidden); return *this;
 }
 
 Parameter& Parameter::setEditable (bool isEditable)
 {
-    set (Ids::editable, isEditable); return *this;
+    set (Id::editable, isEditable); return *this;
 }
 
 bool Parameter::isHidden() const
 {
-    const juce::var v (get (Ids::hidden));
+    const juce::var v (get (Id::hidden));
     
     if (v.isBool()) { return static_cast<bool> (v); }
     
@@ -114,7 +114,7 @@ bool Parameter::isHidden() const
 
 bool Parameter::isEditable() const
 {
-    const juce::var v (get (Ids::editable));
+    const juce::var v (get (Id::editable));
     
     if (v.isBool()) { return static_cast<bool> (v); }
     
@@ -127,21 +127,21 @@ bool Parameter::isEditable() const
 
 bool Parameter::hasRange() const
 {
-    return (!get (Ids::minimum).isVoid() && !get (Ids::maximum).isVoid());
+    return (!get (Id::minimum).isVoid() && !get (Id::maximum).isVoid());
 }
 
 double Parameter::getMinimumAsDouble() const
 {
-    double m = static_cast<double> (get (Ids::minimum));
-    double n = static_cast<double> (get (Ids::maximum));
+    double m = static_cast<double> (get (Id::minimum));
+    double n = static_cast<double> (get (Id::maximum));
     
     return juce::jmin (m, n);
 }
 
 double Parameter::getMaximumAsDouble() const
 {
-    double m = static_cast<double> (get (Ids::minimum));
-    double n = static_cast<double> (get (Ids::maximum));
+    double m = static_cast<double> (get (Id::minimum));
+    double n = static_cast<double> (get (Id::maximum));
     
     return juce::jmax (m, n);
 }
@@ -164,7 +164,7 @@ juce::ValueTree getBase (const juce::ValueTree& tree, const juce::Identifier& id
 {
     if (!tree.hasProperty (identifier)) {
     //
-    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Ids::DELEGATE).getObject());
+    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Id::DELEGATE).getObject());
     
     if (p) {
         return p->getValueTree();

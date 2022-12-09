@@ -313,7 +313,7 @@ public:
 
     core::Cached<juce::Colour> getCachedColour (const juce::String& key) const
     {
-        return preferences_->getCached<juce::Colour> (Tags::Colors, key);
+        return preferences_->getCached<juce::Colour> (Tag::Colors, key);
     }
     
 // -----------------------------------------------------------------------------------------------------------

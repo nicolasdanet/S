@@ -119,7 +119,7 @@ public:
 
     juce::File getFile() const
     {
-        return juce::File (core::Patch (rootTree_).get<juce::String> (Tags::Attributes, Tags::Path));
+        return juce::File (core::Patch (rootTree_).get<juce::String> (Tag::Attributes, Tag::Path));
     }
 
 // -----------------------------------------------------------------------------------------------------------

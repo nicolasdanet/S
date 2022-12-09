@@ -19,7 +19,7 @@ namespace {
 
 std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core::Object& object)
 {
-    juce::String t (object.get<juce::String> (Tags::Attributes, Tags::Class));
+    juce::String t (object.get<juce::String> (Tag::Attributes, Tag::Class));
     
     if (t == "bng") { return std::make_unique<BangPainter> (owner, object); }
     else {
@@ -39,15 +39,15 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core
 ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     view_ (view),
     object_ (object),
-    x_ (object.getCached<int> (Tags::Attributes, Tags::X)),
-    y_ (object.getCached<int> (Tags::Attributes, Tags::Y)),
-    selected_ (object.getCached<bool> (Tags::Attributes, Tags::Selected)),
-    visible_ (object.getCached<bool> (Tags::Attributes, Tags::Visible, true)),
-    inlets_ (object.getCached<juce::String> (Tags::Attributes, Tags::Inlets, true)),
-    outlets_ (object.getCached<juce::String> (Tags::Attributes, Tags::Outlets, true)),
-    label_ (object.getCached<juce::String> (Tags::Parameters, Tags::Label, true)),
-    boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxPinBackground)),
-    boxSelectedColour_ (Spaghettis()->getCachedColour (Tags::BoxSelected)),
+    x_ (object.getCached<int> (Tag::Attributes, Tag::X)),
+    y_ (object.getCached<int> (Tag::Attributes, Tag::Y)),
+    selected_ (object.getCached<bool> (Tag::Attributes, Tag::Selected)),
+    visible_ (object.getCached<bool> (Tag::Attributes, Tag::Visible, true)),
+    inlets_ (object.getCached<juce::String> (Tag::Attributes, Tag::Inlets, true)),
+    outlets_ (object.getCached<juce::String> (Tag::Attributes, Tag::Outlets, true)),
+    label_ (object.getCached<juce::String> (Tag::Parameters, Tag::Label, true)),
+    boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxPinBackground)),
+    boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
     painter_ (createPainter (this, object)),
     documentation_ (object)
 {

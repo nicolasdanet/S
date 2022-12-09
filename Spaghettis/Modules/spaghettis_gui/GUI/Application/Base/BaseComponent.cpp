@@ -131,7 +131,7 @@ void BaseComponent::saveToolbarButtonsStates()
     //
     juce::PropertiesFile& p = Spaghettis()->getProperties();
     
-    auto root   = std::make_unique<juce::XmlElement> (Ids::BUTTONS);
+    auto root   = std::make_unique<juce::XmlElement> (Id::BUTTONS);
     const int n = toolbar_->getNumItems();
     bool save   = false;
     
@@ -139,9 +139,9 @@ void BaseComponent::saveToolbarButtonsStates()
     //
     IconsButton* b = dynamic_cast<IconsButton*> (toolbar_->getItemComponent (i));
     if (b && b->isToggle()) {
-        juce::XmlElement* e = root->createNewChildElement (Ids::BUTTON);
-        e->setAttribute (Ids::item,  b->getName());
-        e->setAttribute (Ids::state, b->getState());
+        juce::XmlElement* e = root->createNewChildElement (Id::BUTTON);
+        e->setAttribute (Id::item,  b->getName());
+        e->setAttribute (Id::state, b->getState());
         save = true;
     }
     //
@@ -160,12 +160,12 @@ void BaseComponent::loadToolbarButtonsStates()
     
     const std::unique_ptr<juce::XmlElement> root (p.getXmlValue (keyName_ + "Buttons"));
     
-    if (root && root->hasTagName (Ids::BUTTONS)) {
+    if (root && root->hasTagName (Id::BUTTONS)) {
 
-        for (auto* e : root->getChildWithTagNameIterator (Ids::BUTTON)) {
-            if (e->hasAttribute (Ids::item) && e->hasAttribute (Ids::state)) {
-                const int itemId = Icons::getInstance().getItemId (e->getStringAttribute (Ids::item));
-                const bool state = e->getBoolAttribute (Ids::state);
+        for (auto* e : root->getChildWithTagNameIterator (Id::BUTTON)) {
+            if (e->hasAttribute (Id::item) && e->hasAttribute (Id::state)) {
+                const int itemId = Icons::getInstance().getItemId (e->getStringAttribute (Id::item));
+                const bool state = e->getBoolAttribute (Id::state);
                 setButtonState (itemId, state);
             }
         }

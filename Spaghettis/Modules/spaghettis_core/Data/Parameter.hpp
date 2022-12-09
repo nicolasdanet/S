@@ -146,16 +146,16 @@ public:
 public:
     template <class T> Parameter& setRange (juce::Range<T> range)
     {
-        set (Ids::minimum, range.getStart());
-        set (Ids::maximum, range.getEnd());
+        set (Id::minimum, range.getStart());
+        set (Id::maximum, range.getEnd());
         
         return *this;
     }
 
     template <class T> operator juce::Range<T>() const
     {
-        auto m = static_cast<T> (get (Ids::minimum));
-        auto n = static_cast<T> (get (Ids::maximum));
+        auto m = static_cast<T> (get (Id::minimum));
+        auto n = static_cast<T> (get (Id::maximum));
         auto minimum = juce::jmin (m, n);
         auto maximum = juce::jmax (m, n);
             

@@ -15,9 +15,9 @@ namespace spaghettis {
 PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object) :
     component_ (owner),
     object_ (object),
-    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
-    labelBackgroundColour_ (Spaghettis()->getCachedColour (Tags::LabelBackground)),
-    labelTextColour_ (Spaghettis()->getCachedColour (Tags::LabelText))
+    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),
+    labelBackgroundColour_ (Spaghettis()->getCachedColour (Tag::LabelBackground)),
+    labelTextColour_ (Spaghettis()->getCachedColour (Tag::LabelText))
 {
     jassert (owner);
     

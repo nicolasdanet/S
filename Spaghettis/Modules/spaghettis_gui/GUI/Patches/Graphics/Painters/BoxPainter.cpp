@@ -13,10 +13,10 @@ namespace spaghettis {
 // MARK: -
 
 BoxPainter::BoxPainter (ObjectComponent* owner, const core::Object& object) : PainterPolicy (owner, object),
-    boxBackgroundColour_ (Spaghettis()->getCachedColour (Tags::BoxBackground)),
-    boxTextColour_ (Spaghettis()->getCachedColour (Tags::BoxText)),
-    content_ (object_.getCached<juce::String> (Tags::Attributes, Tags::Content)),
-    class_ (object_.getCached<juce::String> (Tags::Attributes, Tags::Class))
+    boxBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxBackground)),
+    boxTextColour_ (Spaghettis()->getCachedColour (Tag::BoxText)),
+    content_ (object_.getCached<juce::String> (Tag::Attributes, Tag::Content)),
+    class_ (object_.getCached<juce::String> (Tag::Attributes, Tag::Class))
 {
     boxBackgroundColour_.attach (repaint (component_));
     boxTextColour_.attach (repaint (component_));

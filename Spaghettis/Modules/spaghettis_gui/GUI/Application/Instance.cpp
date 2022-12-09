@@ -81,7 +81,7 @@ bool SpaghettisInstance::requestToQuit()
     quit_ = QuitStatus::quit;
     
     if (!patches_->isEmpty()) {
-        if (preferences_->getCached<bool> (Tags::General, Tags::AskBeforeQuit) == true) {
+        if (preferences_->getCached<bool> (Tag::General, Tag::AskBeforeQuit) == true) {
             showExitWindow();
         }
     }
@@ -177,11 +177,11 @@ juce::StringArray SpaghettisInstance::getSearchPaths()
     
     const std::unique_ptr<juce::XmlElement> root (properties_->getXmlValue ("SearchPaths"));
         
-    if (root && root->hasTagName (Ids::SEARCHPATHS)) {
+    if (root && root->hasTagName (Id::SEARCHPATHS)) {
     //
-    for (auto* e : root->getChildWithTagNameIterator (Ids::SEARCHPATH)) {
-        if (e->hasAttribute (Ids::path)) {
-            searchPaths.addIfNotAlreadyThere (e->getStringAttribute (Ids::path));
+    for (auto* e : root->getChildWithTagNameIterator (Id::SEARCHPATH)) {
+        if (e->hasAttribute (Id::path)) {
+            searchPaths.addIfNotAlreadyThere (e->getStringAttribute (Id::path));
         }
     }
     //
@@ -192,11 +192,11 @@ juce::StringArray SpaghettisInstance::getSearchPaths()
 
 void SpaghettisInstance::setSearchPaths (const juce::StringArray& searchpaths)
 {
-    auto root = std::make_unique<juce::XmlElement> (Ids::SEARCHPATHS);
+    auto root = std::make_unique<juce::XmlElement> (Id::SEARCHPATHS);
         
     for (const auto& p : searchpaths) {
-        juce::XmlElement* e = root->createNewChildElement (Ids::SEARCHPATH);
-        e->setAttribute (Ids::path, p);
+        juce::XmlElement* e = root->createNewChildElement (Id::SEARCHPATH);
+        e->setAttribute (Id::path, p);
     }
         
     properties_->setValue ("SearchPaths", root.get());
@@ -301,13 +301,13 @@ void SpaghettisInstance::loadRecentFiles()
 {
     const std::unique_ptr<juce::XmlElement> root (properties_->getXmlValue ("RecentFiles"));
         
-    if (root && root->hasTagName (Ids::RECENTFILES)) {
+    if (root && root->hasTagName (Id::RECENTFILES)) {
     //
     juce::StringArray scoped;
     
-    for (auto* e : root->getChildWithTagNameIterator (Ids::RECENTFILE)) {
-        if (e->hasAttribute (Ids::path)) {
-            scoped.addIfNotAlreadyThere (e->getStringAttribute (Ids::path));
+    for (auto* e : root->getChildWithTagNameIterator (Id::RECENTFILE)) {
+        if (e->hasAttribute (Id::path)) {
+            scoped.addIfNotAlreadyThere (e->getStringAttribute (Id::path));
         }
     }
     
@@ -318,11 +318,11 @@ void SpaghettisInstance::loadRecentFiles()
 
 void SpaghettisInstance::saveRecentFiles()
 {
-    auto root = std::make_unique<juce::XmlElement> (Ids::RECENTFILES);
+    auto root = std::make_unique<juce::XmlElement> (Id::RECENTFILES);
         
     for (const auto& f : recentFiles_) {
-        juce::XmlElement* e = root->createNewChildElement (Ids::RECENTFILE);
-        e->setAttribute (Ids::path, f);
+        juce::XmlElement* e = root->createNewChildElement (Id::RECENTFILE);
+        e->setAttribute (Id::path, f);
     }
         
     properties_->setValue ("RecentFiles", root.get());

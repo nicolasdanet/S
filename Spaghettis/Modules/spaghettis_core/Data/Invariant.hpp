@@ -21,10 +21,10 @@ struct Invariant {
 public:
     static void setProperties (juce::ValueTree& t, const Invariant& i)
     {
-        t.setProperty (Ids::key,   juce::String (i.key),   nullptr);
-        t.setProperty (Ids::type,  juce::String (i.type),  nullptr);
-        t.setProperty (Ids::label, juce::String (i.label), nullptr);
-        t.setProperty (Ids::info,  juce::String (i.info),  nullptr);
+        t.setProperty (Id::key,   juce::String (i.key),   nullptr);
+        t.setProperty (Id::type,  juce::String (i.type),  nullptr);
+        t.setProperty (Id::label, juce::String (i.label), nullptr);
+        t.setProperty (Id::info,  juce::String (i.info),  nullptr);
     }
     
 public:

@@ -76,138 +76,138 @@ void getDefaultTest (core::Data& data)
 
 core::Data getDefaultPreferences()
 {
-    core::Data data (Ids::PREFERENCES);
+    core::Data data (Id::PREFERENCES);
     
-    core::Group general (data.addGroup (Tags::General));
-    core::Group editing (data.addGroup (Tags::Editing));
-    core::Group colors  (data.addGroup (Tags::Colors));
+    core::Group general (data.addGroup (Tag::General));
+    core::Group editing (data.addGroup (Tag::Editing));
+    core::Group colors  (data.addGroup (Tag::Colors));
         
-    general.addParameter (Tags::AskBeforeQuit,
+    general.addParameter (Tag::AskBeforeQuit,
         NEEDS_TRANS ("Ask Before Quitting"),
         NEEDS_TRANS ("Show dialog box to confirm quitting"),
         true);
         
-    general.addParameter (Tags::DefaultIsRunView,
+    general.addParameter (Tag::DefaultIsRunView,
         NEEDS_TRANS ("Default Is Run View"),
         NEEDS_TRANS ("Open a patch into a run view"),
         false);
     
-    editing.addParameter (Tags::SnapToGrid,
+    editing.addParameter (Tag::SnapToGrid,
         NEEDS_TRANS ("Snap To Grid"),
         NEEDS_TRANS ("Enable magnetic grid"),
         true);
 
-    editing.addParameter (Tags::GridSize,
+    editing.addParameter (Tag::GridSize,
         NEEDS_TRANS ("Grid Size"),
         NEEDS_TRANS ("Set magnetic grid spacing"),
         12).setRange (juce::Range<int> (1, 64));
     
-    colors.addParameter (Tags::PatchBackground,
+    colors.addParameter (Tag::PatchBackground,
         NEEDS_TRANS ("Patch Background"),
         NEEDS_TRANS ("Set background color of patch"),
         Colours::getPalette()->background);
 
-    colors.addParameter (Tags::PatchText,
+    colors.addParameter (Tag::PatchText,
         NEEDS_TRANS ("Patch Text"),
         NEEDS_TRANS ("Set text color of patch"),
         Colours::getPalette()->backgroundPopup);
     
-    colors.addParameter (Tags::Lasso,
+    colors.addParameter (Tag::Lasso,
         NEEDS_TRANS ("Lasso"),
         NEEDS_TRANS ("Set color of lasso"),
         Colours::getPalette()->textHighlighted);
         
-    colors.addParameter (Tags::BoxBackground,
+    colors.addParameter (Tag::BoxBackground,
         NEEDS_TRANS ("Box Background"),
         NEEDS_TRANS ("Set background color of objects"),
         Colours::getPalette()->backgroundBox);
     
-    colors.addParameter (Tags::BoxPinBackground,
+    colors.addParameter (Tag::BoxPinBackground,
         NEEDS_TRANS ("Box Pin Background"),
         NEEDS_TRANS ("Set background color of pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.05f));
     
-    colors.addParameter (Tags::BoxSelected,
+    colors.addParameter (Tag::BoxSelected,
         NEEDS_TRANS ("Box Selected"),
         NEEDS_TRANS ("Set highlight color for selected object"),
         Colours::getPalette()->textHighlighted);
         
-    colors.addParameter (Tags::BoxText,
+    colors.addParameter (Tag::BoxText,
         NEEDS_TRANS ("Box Text"),
         NEEDS_TRANS ("Set text color of objects"),
         Colours::getPalette()->textBox);
     
-    colors.addParameter (Tags::LabelBackground,
+    colors.addParameter (Tag::LabelBackground,
         NEEDS_TRANS ("Label Background"),
         NEEDS_TRANS ("Set background color of run view labels"),
         Colours::getPalette()->backgroundBox);
         
-    colors.addParameter (Tags::LabelText,
+    colors.addParameter (Tag::LabelText,
         NEEDS_TRANS ("Label Text"),
         NEEDS_TRANS ("Set text color of run view labels"),
         Colours::getPalette()->textLabel);
         
-    colors.addParameter (Tags::Line,
+    colors.addParameter (Tag::Line,
         NEEDS_TRANS ("Line"),
         NEEDS_TRANS ("Set color of connections"),
         Colours::getPalette()->backgroundBox.contrasting (0.25f));
     
-    colors.addParameter (Tags::LineSignal,
+    colors.addParameter (Tag::LineSignal,
         NEEDS_TRANS ("Line Signal"),
         NEEDS_TRANS ("Set color of signal connections"),
         Colours::getPalette()->signal);
     
-    colors.addParameter (Tags::LineSelected,
+    colors.addParameter (Tag::LineSelected,
         NEEDS_TRANS ("Line Selected"),
         NEEDS_TRANS ("Set highlight color for selected lines"),
         Colours::getPalette()->textHighlighted);
         
-    colors.addParameter (Tags::PinOver,
+    colors.addParameter (Tag::PinOver,
         NEEDS_TRANS ("Pin Over"),
         NEEDS_TRANS ("Set color of pins while mouse is over"),
         Colours::getPalette()->textHighlighted);
     
-    colors.addParameter (Tags::PinSignal,
+    colors.addParameter (Tag::PinSignal,
         NEEDS_TRANS ("Pin Signal"),
         NEEDS_TRANS ("Set color of signal pins"),
         Colours::getPalette()->signal);
     
-    colors.addParameter (Tags::PinBang,
+    colors.addParameter (Tag::PinBang,
         NEEDS_TRANS ("Pin Bang"),
         NEEDS_TRANS ("Set color of bang pins"),
         Colours::getPalette()->bang);
     
-    colors.addParameter (Tags::PinFloat,
+    colors.addParameter (Tag::PinFloat,
         NEEDS_TRANS ("Pin Float"),
         NEEDS_TRANS ("Set color of float pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.25f));
     
-    colors.addParameter (Tags::PinSymbol,
+    colors.addParameter (Tag::PinSymbol,
         NEEDS_TRANS ("Pin Symbol"),
         NEEDS_TRANS ("Set color of symbol pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.25f));
     
-    colors.addParameter (Tags::PinList,
+    colors.addParameter (Tag::PinList,
         NEEDS_TRANS ("Pin List"),
         NEEDS_TRANS ("Set color of list pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.25f));
         
-    colors.addParameter (Tags::PinAnything,
+    colors.addParameter (Tag::PinAnything,
         NEEDS_TRANS ("Pin Anything"),
         NEEDS_TRANS ("Set color of anything pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.25f));
     
-    colors.addParameter (Tags::BangBackground,
+    colors.addParameter (Tag::BangBackground,
         NEEDS_TRANS ("Bang Background"),
         NEEDS_TRANS ("Set background color of bang widget"),
         Colours::getPalette()->backgroundWidget);
     
-    colors.addParameter (Tags::BangFlashOff,
+    colors.addParameter (Tag::BangFlashOff,
         NEEDS_TRANS ("Bang Flash Off"),
         NEEDS_TRANS ("Set color of bang widget for flash off"),
         Colours::getPalette()->backgroundAlternate);
         
-    colors.addParameter (Tags::BangFlashOn,
+    colors.addParameter (Tag::BangFlashOn,
         NEEDS_TRANS ("Bang Flash On"),
         NEEDS_TRANS ("Set color of bang widget for flash on"),
         Colours::getPalette()->textWarning);
@@ -231,11 +231,11 @@ Preferences::Preferences (const juce::File& file) :
     data_ (getDefaultPreferences()),
     isReading_ (false)
 {
-    addParameterHandler (Tags::SnapToGrid, [] (const core::Parameter& p) {
+    addParameterHandler (Tag::SnapToGrid, [] (const core::Parameter& p) {
             Spaghettis()->handle (Inputs::setSnapToGrid (p.getValue()));
         });
         
-    addParameterHandler (Tags::GridSize,   [] (const core::Parameter& p) {
+    addParameterHandler (Tag::GridSize,   [] (const core::Parameter& p) {
             Spaghettis()->handle (Inputs::setSnapToGridSize (p.getValue()));
         });
     

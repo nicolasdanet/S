@@ -14,8 +14,8 @@ namespace spaghettis {
 
 RunView::RunView (Patch& patch, const juce::ValueTree& tree) :
     View (patch, tree),
-    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
-    patchTextColour_ (Spaghettis()->getCachedColour (Tags::PatchText))
+    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),
+    patchTextColour_ (Spaghettis()->getCachedColour (Tag::PatchText))
 {
     viewTree_.addListener (this);
     patchBackgroundColour_.attach (PainterPolicy::repaint (this));

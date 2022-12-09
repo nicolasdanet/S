@@ -33,7 +33,7 @@ using Iter = core::Iterator<Parameter>;
 private:
     explicit Group (const juce::ValueTree& group = juce::ValueTree()) : group_ (group)
     {
-        jassert (!group_.isValid() || group_.hasType (Ids::GROUP));
+        jassert (!group_.isValid() || group_.hasType (Id::GROUP));
     }
 
 public:

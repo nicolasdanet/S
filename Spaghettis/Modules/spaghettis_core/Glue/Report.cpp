@@ -103,49 +103,49 @@ void setObjectAttributesForObject (Group& group, t_object* o)
 {
     static DelegateCache delegate;
     
-    group.addParameter (Tags::Class,
+    group.addParameter (Tag::Class,
         NEEDS_TRANS ("Class"),
         NEEDS_TRANS ("Class of the object"),
         juce::String (class_getNameAsString (pd_class (o))),
         delegate).setEditable (false);
         
-    group.addParameter (Tags::Content,
+    group.addParameter (Tag::Content,
         NEEDS_TRANS ("Content"),
         NEEDS_TRANS ("Content of the box's buffer"),
         getContentBuffer (o),
         delegate).setEditable (false);
     
-    group.addParameter (Tags::Inlets,
+    group.addParameter (Tag::Inlets,
         NEEDS_TRANS ("Inlets"),
         NEEDS_TRANS ("List of inlets types"),
         object_getTypeOfInlets (o),
         delegate).setEditable (false);
     
-    group.addParameter (Tags::Outlets,
+    group.addParameter (Tag::Outlets,
         NEEDS_TRANS ("Outlets"),
         NEEDS_TRANS ("List of outlets types"),
         object_getTypeOfOutlets (o),
         delegate).setEditable (false);
         
-    group.addParameter (Tags::X,
+    group.addParameter (Tag::X,
         NEEDS_TRANS ("Position X"),
         NEEDS_TRANS ("Box ordinate"),
         Coordinates::realToLocal (object_getX (o)),
         delegate).setHidden (true);
     
-    group.addParameter (Tags::Y,
+    group.addParameter (Tag::Y,
         NEEDS_TRANS ("Position Y"),
         NEEDS_TRANS ("Box abscissa"),
         Coordinates::realToLocal (object_getY (o)),
         delegate).setHidden (true);
     
-    group.addParameter (Tags::Selected,
+    group.addParameter (Tag::Selected,
         NEEDS_TRANS ("Selected"),
         NEEDS_TRANS ("Is selected state"),
         static_cast<bool> (object_isSelected (o)),
         delegate).setHidden (true);
     
-    group.addParameter (Tags::Visible,
+    group.addParameter (Tag::Visible,
         NEEDS_TRANS ("Visible"),
         NEEDS_TRANS ("Is visible state"),
         getVisible (o),
@@ -158,13 +158,13 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
         
     t_glist* g = cast_glist (o);
     
-    group.addParameter (Tags::Title,
+    group.addParameter (Tag::Title,
         NEEDS_TRANS ("Title"),
         NEEDS_TRANS ("Patch name"),
         juce::String (symbol_getName (glist_getName (g))),
         delegate).setEditable (false);
     
-    group.addParameter (Tags::EditView,
+    group.addParameter (Tag::EditView,
         NEEDS_TRANS ("Edit View"),
         NEEDS_TRANS ("Edit window geometry"),
         getEditView (g),
@@ -173,13 +173,13 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
     if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o); }
     else {
     //
-    group.addParameter (Tags::RunView,
+    group.addParameter (Tag::RunView,
         NEEDS_TRANS ("Run View"),
         NEEDS_TRANS ("Run window geometry"),
         getRunView (g),
         delegate).setEditable (false);
     
-    group.addParameter (Tags::Path,
+    group.addParameter (Tag::Path,
         NEEDS_TRANS ("Path"),
         NEEDS_TRANS ("File path"),
         getPatchFile (g).getFullPathName(),
@@ -187,13 +187,13 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
     //
     }
     
-    group.addParameter (Tags::Undo,
+    group.addParameter (Tag::Undo,
         NEEDS_TRANS ("Undo"),
         NEEDS_TRANS ("Undoable action"),
         undomanager_getUndoLabel (glist_getUndoManager (g)),
         delegate).setHidden (true);
     
-    group.addParameter (Tags::Redo,
+    group.addParameter (Tag::Redo,
         NEEDS_TRANS ("Redo"),
         NEEDS_TRANS ("Redoable action"),
         undomanager_getRedoLabel (glist_getUndoManager (g)),
@@ -206,7 +206,7 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
 
 void setObjectAttributes (Data& data, t_object* o)
 {
-    Group group (data.addGroup (Tags::Attributes));
+    Group group (data.addGroup (Tag::Attributes));
     
     if (object_isCanvas (o)) { setObjectAttributesForPatch (group, o); }
     else {
@@ -222,9 +222,9 @@ void setObjectParameters (Data& data, t_object* o)
     //
     static DelegateCache delegate;
     
-    Group group (data.addGroup (Tags::Parameters));
+    Group group (data.addGroup (Tag::Parameters));
     
-    group.addParameter (Tags::Label,
+    group.addParameter (Tag::Label,
         NEEDS_TRANS ("Label"),
         NEEDS_TRANS ("Parameter name in run view"),
         juce::String (symbol_getName (object_getLabel (o))),
@@ -241,13 +241,13 @@ void setObjectParameters (Data& data, t_object* o)
 
 juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attributes, bool parameters)
 {
-    juce::ValueTree t (object_isCanvas (o) ? Ids::PATCH : Ids::OBJECT);
+    juce::ValueTree t (object_isCanvas (o) ? Id::PATCH : Id::OBJECT);
     
-    t.setProperty (Ids::identifier, Cast::toVar (u.getIdentifier()), nullptr);
+    t.setProperty (Id::identifier, Cast::toVar (u.getIdentifier()), nullptr);
     
     if (o) {
     //
-    Data data (Ids::DATA);
+    Data data (Id::DATA);
     
     if (attributes) { setObjectAttributes (data, o); }
     if (parameters) { setObjectParameters (data, o); }
@@ -296,15 +296,15 @@ void setLineAttributes (Data& data, int m, int n, bool b)
 {
     static DelegateCache delegate;
     
-    Group group (data.addGroup (Tags::Attributes));
+    Group group (data.addGroup (Tag::Attributes));
     
-    group.addParameter (Tags::Outlet,
+    group.addParameter (Tag::Outlet,
         NEEDS_TRANS ("Outlet"),
         NEEDS_TRANS ("Index of source outlet"),
         m,
         delegate).setEditable (false);
     
-    group.addParameter (Tags::Inlet,
+    group.addParameter (Tag::Inlet,
         NEEDS_TRANS ("Inlet"),
         NEEDS_TRANS ("Index of destination inlet"),
         n,
@@ -312,7 +312,7 @@ void setLineAttributes (Data& data, int m, int n, bool b)
     
     if (b) {
     //
-    group.addParameter (Tags::Selected,
+    group.addParameter (Tag::Selected,
         NEEDS_TRANS ("Selected"),
         NEEDS_TRANS ("Is selected state"),
         false,
@@ -323,13 +323,13 @@ void setLineAttributes (Data& data, int m, int n, bool b)
 
 juce::ValueTree getLine (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n, bool b)
 {
-    juce::ValueTree t (Ids::LINE);
+    juce::ValueTree t (Id::LINE);
     
-    t.setProperty (Ids::identifier,     Cast::toVar (u.getIdentifier()), nullptr);
-    t.setProperty (Ids::source,         Cast::toVar (object_getUnique (src)), nullptr);
-    t.setProperty (Ids::destination,    Cast::toVar (object_getUnique (dest)), nullptr);
+    t.setProperty (Id::identifier,     Cast::toVar (u.getIdentifier()), nullptr);
+    t.setProperty (Id::source,         Cast::toVar (object_getUnique (src)), nullptr);
+    t.setProperty (Id::destination,    Cast::toVar (object_getUnique (dest)), nullptr);
     
-    Data data (Ids::DATA); setLineAttributes (data, m, n, b);
+    Data data (Id::DATA); setLineAttributes (data, m, n, b);
     
     t.appendChild (data.asValueTree(), nullptr);
     

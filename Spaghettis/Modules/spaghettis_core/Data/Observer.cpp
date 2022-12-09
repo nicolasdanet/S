@@ -19,7 +19,7 @@ void Observer::addParameterHandler (const juce::String& key, std::function<void 
 
 void Observer::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier&)
 {
-    if (tree.hasType (Ids::PARAMETER)) {
+    if (tree.hasType (Id::PARAMETER)) {
     //
     const Parameter p (tree);
     

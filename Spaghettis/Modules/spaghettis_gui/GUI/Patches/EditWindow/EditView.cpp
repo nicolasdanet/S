@@ -14,9 +14,9 @@ namespace spaghettis {
 
 EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
     View (patch, tree),
-    undo_ (core::Patch (viewTree_).getCached<juce::String> (Tags::Attributes, Tags::Undo)),
-    redo_ (core::Patch (viewTree_).getCached<juce::String> (Tags::Attributes, Tags::Redo)),
-    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tags::PatchBackground)),
+    undo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Undo)),
+    redo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Redo)),
+    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),
     scale_ (1.0f),
     lasso_ (this)
 {
@@ -356,7 +356,7 @@ void EditView::copy()
 
 void EditView::paste()
 {
-    const int n = Spaghettis()->getPreferences().getCached<int> (Tags::Editing, Tags::GridSize);
+    const int n = Spaghettis()->getPreferences().getCached<int> (Tag::Editing, Tag::GridSize);
     
     const juce::Rectangle<int> area  = getRealVisibleArea();
     const juce::Point<int> centre    = area.getCentre();
@@ -552,7 +552,7 @@ void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int
 
 void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
 {
-    juce::ValueTree i (Tree::getParentIfChangedPropertyEquals (t, Tags::Selected));
+    juce::ValueTree i (Tree::getParentIfChangedPropertyEquals (t, Tag::Selected));
     
     if (i.isValid() && isChildOf (viewTree_, i) && inspector_) { inspector_->update(); }
 }

@@ -32,10 +32,10 @@ Group Data::addGroup (const juce::String& name, bool isHidden)
 {
     jassert (!hasGroup (name));
     
-    juce::ValueTree group (Ids::GROUP);
+    juce::ValueTree group (Id::GROUP);
     
-    group.setProperty (Ids::name, name, nullptr);
-    group.setProperty (Ids::hidden, isHidden, nullptr);
+    group.setProperty (Id::name, name, nullptr);
+    group.setProperty (Id::hidden, isHidden, nullptr);
     
     tree_.appendChild (group, nullptr);
         
@@ -76,15 +76,15 @@ namespace {
 
 void substituteDelegates (juce::ValueTree& tree)
 {
-    if (tree.hasType (Ids::PARAMETER) && tree.hasProperty (Ids::DELEGATE)) {
+    if (tree.hasType (Id::PARAMETER) && tree.hasProperty (Id::DELEGATE)) {
     //
-    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Ids::DELEGATE).getObject());
+    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Id::DELEGATE).getObject());
     
     if (p) {
-        tree.setProperty (Ids::key, p->getValueTree().getProperty (Ids::key), nullptr);
+        tree.setProperty (Id::key, p->getValueTree().getProperty (Id::key), nullptr);
     }
     
-    tree.removeProperty (Ids::DELEGATE, nullptr);
+    tree.removeProperty (Id::DELEGATE, nullptr);
     //
     }
     
@@ -135,11 +135,11 @@ namespace {
 
 void changeValuesFrom (Data& data, const juce::ValueTree& other)
 {
-    if (other.hasType (Ids::PARAMETER)) {
+    if (other.hasType (Id::PARAMETER)) {
     //
-    const juce::String group (other.getParent().getProperty (Ids::name).toString());
-    const juce::String key (other.getProperty (Ids::key).toString());
-    const juce::var v (other.getProperty (Ids::value));
+    const juce::String group (other.getParent().getProperty (Id::name).toString());
+    const juce::String key (other.getProperty (Id::key).toString());
+    const juce::var v (other.getProperty (Id::value));
     
     if (data.hasParameter (group, key)) { data.getParameter (group, key).changeValue (v); }
     //
@@ -150,13 +150,13 @@ void changeValuesFrom (Data& data, const juce::ValueTree& other)
 
 void addParameterFrom (Group group, const juce::ValueTree& other)
 {
-    const juce::String key (other.getProperty (Ids::key).toString());
-    const juce::String value (other.getProperty (Ids::value).toString());
+    const juce::String key (other.getProperty (Id::key).toString());
+    const juce::String value (other.getProperty (Id::value).toString());
     
     if (key.isNotEmpty() && value.isNotEmpty() && !group.hasParameter (key)) {
     //
-    juce::String label (other.getProperty (Ids::label).toString());
-    juce::String info (other.getProperty (Ids::info).toString());
+    juce::String label (other.getProperty (Id::label).toString());
+    juce::String info (other.getProperty (Id::info).toString());
     
     if (label.isEmpty()) { label = key;   }
     if (info.isEmpty())  { info  = label; }
@@ -170,9 +170,9 @@ void addParameterFrom (Group group, const juce::ValueTree& other)
 
 void addFrom (Data& data, const juce::ValueTree& other)
 {
-    if (other.hasType (Ids::PARAMETER)) {
+    if (other.hasType (Id::PARAMETER)) {
     //
-    const juce::String group (other.getParent().getProperty (Ids::name).toString());
+    const juce::String group (other.getParent().getProperty (Id::name).toString());
     
     if (group.isNotEmpty()) {
     //

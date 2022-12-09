@@ -14,12 +14,12 @@ namespace spaghettis::core {
 
 juce::String Group::getName() const
 {
-    return group_.getProperty (Ids::name).toString();
+    return group_.getProperty (Id::name).toString();
 }
 
 bool Group::isHidden() const
 {
-    return static_cast<bool> (group_.getProperty (Ids::hidden));
+    return static_cast<bool> (group_.getProperty (Id::hidden));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -30,10 +30,10 @@ Parameter Group::add (DelegateManager* p, const Invariant& i, juce::var v)
 {
     jassert (!hasParameter (i.key));
     
-    juce::ValueTree parameter (Ids::PARAMETER);
+    juce::ValueTree parameter (Id::PARAMETER);
     
-    parameter.setProperty (Ids::DELEGATE, (p ? p->getOrCreate (i) : new DelegateShared (i)), nullptr);
-    parameter.setProperty (Ids::value, v, nullptr);
+    parameter.setProperty (Id::DELEGATE, (p ? p->getOrCreate (i) : new DelegateShared (i)), nullptr);
+    parameter.setProperty (Id::value, v, nullptr);
     
     group_.appendChild (parameter, nullptr);
     
@@ -66,7 +66,7 @@ Group Group::getFromParameter (const Parameter& parameter)
 {
     const juce::ValueTree t (parameter.parameter_.getParent());
     
-    jassert (t.isValid() && t.hasType (Ids::GROUP));
+    jassert (t.isValid() && t.hasType (Id::GROUP));
     
     return Group (t);
 }

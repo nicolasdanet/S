@@ -209,7 +209,7 @@ PD_FORCE t_error unique_objectParameter (t_id u, const core::Group& group)
     
     if (class_hasParametersFunction (c)) {
     //
-    t_symbol *s = gensym (group.getParameter (Tags::Label).getValueTyped<juce::String>().toRawUTF8());
+    t_symbol *s = gensym (group.getParameter (Tag::Label).getValueTyped<juce::String>().toRawUTF8());
     
     if (object_setLabelUpdate (object, glist, s)) { glist_setDirty (glist, 1); }
     

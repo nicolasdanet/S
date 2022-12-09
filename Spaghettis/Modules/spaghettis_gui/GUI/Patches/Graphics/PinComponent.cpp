@@ -19,13 +19,13 @@ namespace {
 
 core::Cached<juce::Colour> getColourFromType (const juce::String& type)
 {
-    juce::String key = Tags::PinSignal;
+    juce::String key = Tag::PinSignal;
     
-    if (type == "bang")          { key = Tags::PinBang;     }
-    else if (type == "float")    { key = Tags::PinFloat;    }
-    else if (type == "symbol")   { key = Tags::PinSymbol;   }
-    else if (type == "list")     { key = Tags::PinList;     }
-    else if (type == "anything") { key = Tags::PinAnything; }
+    if (type == "bang")          { key = Tag::PinBang;     }
+    else if (type == "float")    { key = Tag::PinFloat;    }
+    else if (type == "symbol")   { key = Tag::PinSymbol;   }
+    else if (type == "list")     { key = Tag::PinList;     }
+    else if (type == "anything") { key = Tag::PinAnything; }
             
     return Spaghettis()->getCachedColour (key);
 }
@@ -51,10 +51,10 @@ juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r, float scale)
 
 PinComponent::PinComponent (View* view, const core::Object& object, const juce::String& type) :
     view_ (view),
-    selected_ (object.getCached<bool> (Tags::Attributes, Tags::Selected)),
+    selected_ (object.getCached<bool> (Tag::Attributes, Tag::Selected)),
     pinColour_ (getColourFromType (type)),
-    pinOverColour_ (Spaghettis()->getCachedColour (Tags::PinOver)),
-    boxSelectedColour_ (Spaghettis()->getCachedColour (Tags::BoxSelected)),
+    pinOverColour_ (Spaghettis()->getCachedColour (Tag::PinOver)),
+    boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
     isSignal_ (isPinSignal (type)),
     isOver_ (false)
 {

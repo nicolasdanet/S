@@ -19,7 +19,7 @@ class Item {
 // MARK: -
 
 protected:
-    explicit Item (const juce::ValueTree& t) : tree_ (t), data_ (t.getChildWithName (Ids::DATA))
+    explicit Item (const juce::ValueTree& t) : tree_ (t), data_ (t.getChildWithName (Id::DATA))
     {
     }
 
@@ -91,7 +91,7 @@ public:
 public:
     void changeIdentifier (UniqueId i)
     {
-        tree_.setProperty (Ids::identifier, Cast::toVar (i), nullptr);
+        tree_.setProperty (Id::identifier, Cast::toVar (i), nullptr);
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -101,7 +101,7 @@ public:
 public:
     UniqueId getIdentifier() const
     {
-        return Cast::fromVar<UniqueId> (tree_.getProperty (Ids::identifier));
+        return Cast::fromVar<UniqueId> (tree_.getProperty (Id::identifier));
     }
 
     template <class T>

@@ -32,9 +32,9 @@ BaseWindow::~BaseWindow()
     //
     juce::PropertiesFile& p = Spaghettis()->getProperties();
     
-    auto e = std::make_unique<juce::XmlElement> (Ids::POSITION);
+    auto e = std::make_unique<juce::XmlElement> (Id::POSITION);
     
-    e->setAttribute (Ids::value, getWindowStateAsString());
+    e->setAttribute (Id::value, getWindowStateAsString());
     
     p.setValue (keyName_ + "Position", e.get());
     //
@@ -146,8 +146,8 @@ void BaseWindow::makeVisible (juce::Rectangle<int> window)
     
     const std::unique_ptr<juce::XmlElement> e (p.getXmlValue (keyName_ + "Position"));
     
-    if (e && e->hasTagName (Ids::POSITION) && e->hasAttribute (Ids::value)) {
-        const juce::String s = e->getStringAttribute (Ids::value);
+    if (e && e->hasTagName (Id::POSITION) && e->hasAttribute (Id::value)) {
+        const juce::String s = e->getStringAttribute (Id::value);
         if (s.isNotEmpty()) {
             restoreWindowStateFromString (s);
         }

@@ -17,10 +17,10 @@ LineComponent::LineComponent (View* view, const core::Line& line) :
     line_ (line),
     source_ (view->getObjectComponent (line.getIdentifierOfSource())),
     destination_ (view->getObjectComponent (line.getIdentifierOfDestination())),
-    selected_ (line.getCached<bool> (Tags::Attributes, Tags::Selected)),
-    lineColour_ (Spaghettis()->getCachedColour (Tags::Line)),
-    lineSelectedColour_ (Spaghettis()->getCachedColour (Tags::LineSelected)),
-    lineSignalColour_ (Spaghettis()->getCachedColour (Tags::LineSignal)),
+    selected_ (line.getCached<bool> (Tag::Attributes, Tag::Selected)),
+    lineColour_ (Spaghettis()->getCachedColour (Tag::Line)),
+    lineSelectedColour_ (Spaghettis()->getCachedColour (Tag::LineSelected)),
+    lineSignalColour_ (Spaghettis()->getCachedColour (Tag::LineSignal)),
     isSignal_ (false),
     isOver_ (false)
 {
@@ -60,8 +60,8 @@ void LineComponent::disconnect() const
 {
     const core::UniqueId u = line_.getIdentifierOfSource();
     const core::UniqueId v = line_.getIdentifierOfDestination();
-    const int m = line_.get<int> (Tags::Attributes, Tags::Outlet);
-    const int n = line_.get<int> (Tags::Attributes, Tags::Inlet);
+    const int m = line_.get<int> (Tag::Attributes, Tag::Outlet);
+    const int n = line_.get<int> (Tag::Attributes, Tag::Inlet);
     
     EditCommands::disconnect (u, m, v, n);
 }
@@ -215,7 +215,7 @@ void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& li
 
 void LineComponent::parameterHasChanged (const core::Group&, const core::Parameter& p)
 {
-    if (p.getKey() != Tags::Selected) { update(); }
+    if (p.getKey() != Tag::Selected) { update(); }
     
     repaint();
 }
@@ -234,8 +234,8 @@ void LineComponent::update()
     jassert (source_->getIdentifier()      == line_.getIdentifierOfSource());
     jassert (destination_->getIdentifier() == line_.getIdentifierOfDestination());
     
-    PinComponent *outlet = source_->getOutletAt (line_.get<int> (Tags::Attributes, Tags::Outlet));
-    PinComponent *inlet  = destination_->getInletAt (line_.get<int> (Tags::Attributes, Tags::Inlet));
+    PinComponent *outlet = source_->getOutletAt (line_.get<int> (Tag::Attributes, Tag::Outlet));
+    PinComponent *inlet  = destination_->getInletAt (line_.get<int> (Tag::Attributes, Tag::Inlet));
     
     if (outlet && inlet) {
     //

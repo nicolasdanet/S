@@ -135,19 +135,19 @@ static void bng_functionGetParameters (t_object *z, core::Group& group)
     
     static DelegateCache delegate;
     
-    group.addParameter (Tags::Flashed,
+    group.addParameter (Tag::Flashed,
         NEEDS_TRANS ("Flashed"),
         NEEDS_TRANS ("Light is flashing"),
         static_cast<bool> (x->x_flashed),
         delegate).setHidden (true);
     
-    group.addParameter (Tags::FlashTime,
+    group.addParameter (Tag::FlashTime,
         NEEDS_TRANS ("Flash Time"),
         NEEDS_TRANS ("Duration of the flash"),
         x->x_time,
         delegate).setRange (juce::Range<int> (BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM));
     
-    group.addParameter (Tags::Width,
+    group.addParameter (Tag::Width,
         NEEDS_TRANS ("Width"),
         NEEDS_TRANS ("Border size of the object"),
         x->x_width,
@@ -158,8 +158,8 @@ static void bng_functionSetParameters (t_object *z, const core::Group& group)
 {
     t_bng *x = (t_bng *)z;
     
-    bng_updateFlashTime (x, group.getParameter (Tags::FlashTime).getValueTyped<int>());
-    bng_updateWidth (x, group.getParameter (Tags::Width).getValueTyped<int>());
+    bng_updateFlashTime (x, group.getParameter (Tag::FlashTime).getValueTyped<int>());
+    bng_updateWidth (x, group.getParameter (Tag::Width).getValueTyped<int>());
 }
 
 #endif

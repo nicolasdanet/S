@@ -12,7 +12,7 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-DelegateShared::DelegateShared (const Invariant& i) : shared_ (Ids::DELEGATE)
+DelegateShared::DelegateShared (const Invariant& i) : shared_ (Id::DELEGATE)
 {
     Invariant::setProperties (shared_, i);
 }
@@ -33,7 +33,7 @@ DelegateShared* DelegateManager::create (const Invariant& i)
 DelegateShared* DelegateManager::getOrCreate (const Invariant& i)
 {
     for (const auto& p : delegates_) {
-        if (p->shared_.getProperty (Ids::key).toString() == i.key) { return p.get(); }
+        if (p->shared_.getProperty (Id::key).toString() == i.key) { return p.get(); }
     }
     
     return create (i);

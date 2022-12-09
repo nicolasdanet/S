@@ -29,10 +29,10 @@ Documentation::Documentation (const core::Object& o) : data_ (find (o))
 juce::String Documentation::getPinTooltip (const juce::String& type, bool isOutlet, int i) const
 {
     const juce::String t = core::Report::firstLetterCapitalized (type);
-    const juce::String k = (isOutlet ? Tags::Outlet : Tags::Inlet) + juce::String (i);
+    const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i);
     
-    if (data_.hasParameter (Tags::Documentation, k)) {
-        return t + ": " + data_.getParameter (Tags::Documentation, k).getValueTyped<juce::String>();
+    if (data_.hasParameter (Tag::Documentation, k)) {
+        return t + ": " + data_.getParameter (Tag::Documentation, k).getValueTyped<juce::String>();
     }
     
     return t;
@@ -73,7 +73,7 @@ core::Item Documentation::createCopy (ObjectComponent* o)
     jassert (o); core::Item i (core::Item::createCopy (o->getObject()));
     
     if (!i.isPatch()) {
-        findDocumentationForClass (i.getData(), i.get<juce::String> (Tags::Attributes, Tags::Class));
+        findDocumentationForClass (i.getData(), i.get<juce::String> (Tag::Attributes, Tag::Class));
     }
     
     return i;
@@ -92,10 +92,10 @@ core::Item Documentation::createCopy (LineComponent* l)
 
 core::Data Documentation::find (const core::Object& o)
 {
-    core::Data data (Ids::DOCUMENTATION);
+    core::Data data (Id::DOCUMENTATION);
     
     if (!o.isPatch()) {
-        findDocumentationForClass (data, o.get<juce::String> (Tags::Attributes, Tags::Class));
+        findDocumentationForClass (data, o.get<juce::String> (Tag::Attributes, Tag::Class));
     }
     
     return data;

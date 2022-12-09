@@ -40,7 +40,7 @@ public:
 public:
     bool isGraphic() const
     {
-        return data_.hasGroup (Tags::Parameters);
+        return data_.hasGroup (Tag::Parameters);
     }
 
 private:

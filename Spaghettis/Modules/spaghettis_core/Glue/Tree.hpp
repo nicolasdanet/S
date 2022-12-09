@@ -20,17 +20,17 @@ struct Tree {
 
 static bool isObject (const juce::ValueTree& tree)
 {
-    return (tree.getType() == Ids::OBJECT || tree.getType() == Ids::PATCH);
+    return (tree.getType() == Id::OBJECT || tree.getType() == Id::PATCH);
 }
 
 static bool isLine (const juce::ValueTree& tree)
 {
-    return (tree.getType() == Ids::LINE);
+    return (tree.getType() == Id::LINE);
 }
 
 static bool isPatch (const juce::ValueTree& tree)
 {
-    return (tree.getType() == Ids::PATCH);
+    return (tree.getType() == Id::PATCH);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ static bool isPatch (const juce::ValueTree& tree)
 
 static juce::ValueTree getChild (const juce::ValueTree& t, core::UniqueId i)
 {
-    return t.getChildWithProperty (Ids::identifier, core::Cast::toVar (i));
+    return t.getChildWithProperty (Id::identifier, core::Cast::toVar (i));
 }
 
 static juce::ValueTree findChild (const juce::ValueTree& t, core::UniqueId i)
