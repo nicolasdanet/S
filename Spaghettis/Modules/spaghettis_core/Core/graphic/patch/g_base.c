@@ -104,7 +104,13 @@ PD_LOCAL void glist_setDirty (t_glist *glist, int n)
     //
     if (y->gl_isDirty != isDirty) {
     //
-    y->gl_isDirty = isDirty; outputs_patchDirty (y, isDirty);
+    y->gl_isDirty = isDirty;
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    outputs_patchDirty (y, isDirty);
+    
+    #endif
     //
     }
     //
@@ -120,14 +126,22 @@ PD_LOCAL void glist_setEditView (t_glist *glist, t_rectangle *r, int notify)
 {
     rectangle_setCopy (glist_getEditView (glist), r);
     
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     if (notify) { outputs_objectAttributes (cast_object (glist), glist_getParent (glist)); }
+    
+    #endif
 }
 
 PD_LOCAL void glist_setRunView (t_glist *glist, t_rectangle *r, int notify)
 {
     rectangle_setCopy (glist_getRunView (glist), r);
     
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     if (notify) { outputs_objectAttributes (cast_object (glist_getRoot (glist)), NULL); }
+    
+    #endif
 }
 
 PD_LOCAL void glist_setNext (t_glist *g, t_glist *next)

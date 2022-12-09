@@ -106,7 +106,9 @@ PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window)
     
     if (glist_isRoot (x)) { glist_setRunView (x, instance_viewGet(), 0); instance_rootsAdd (x); }
     else {
+        #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectAdded (cast_object (x), owner);
+        #endif
     }
     
     glist_loadBegin (x); instance_stackPush (x);

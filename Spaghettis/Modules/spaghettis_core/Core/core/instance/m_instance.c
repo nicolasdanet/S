@@ -193,14 +193,18 @@ PD_LOCAL void instance_registerAdd (t_object *o, t_glist *owner)
 {
     register_add (instance_get()->pd_register, object_getUnique (o), o, owner);
     
+    #if defined ( PD_BUILDING_APPLICATION )
     outputs_objectAdded (o, owner);
+    #endif
 }
 
 PD_LOCAL t_error instance_registerRemove (t_object *o)
 {
     t_error err = PD_ERROR_NONE;
     
+    #if defined ( PD_BUILDING_APPLICATION )
     outputs_objectRemoved (o, instance_registerGetOwner (object_getUnique (o)));
+    #endif
     
     err = register_remove (instance_get()->pd_register, object_getUnique (o));
     
@@ -211,7 +215,9 @@ PD_LOCAL t_error instance_registerRemove (t_object *o)
 
 PD_LOCAL void instance_registerRename (t_object *o, t_id newUnique)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
     outputs_objectRenamed (o, instance_registerGetOwner (object_getUnique (o)), newUnique);
+    #endif
     
     register_rename (instance_get()->pd_register, object_getUnique (o), newUnique);
 }

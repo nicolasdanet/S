@@ -120,6 +120,10 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
     wrapper_send (Outputs::reportCurrentMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
     const UniquePath p (x, owner); wrapper_send (Outputs::added (p, Report::object (p, x)));
@@ -226,30 +230,6 @@ PD_LOCAL void outputs_reportAvailableMidiDevices (t_deviceslist *l)
 }
 
 PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
-{
-}
-
-PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
-{
-}
-
-PD_LOCAL void outputs_objectAttributes (t_object *x, t_glist *owner)
-{
-}
-
-PD_LOCAL void outputs_objectParameters (t_object *x, t_glist *owner)
-{
-}
-
-PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)
-{
-}
-
-PD_LOCAL void outputs_objectRenamed (t_object *x, t_glist *owner, t_id t)
-{
-}
-
-PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
 {
 }
 

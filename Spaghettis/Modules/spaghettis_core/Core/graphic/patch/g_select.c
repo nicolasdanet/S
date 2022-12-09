@@ -15,12 +15,24 @@
 
 PD_LOCAL void glist_objectSelect (t_glist *glist, t_object *y)
 {
-    object_setSelected (y, 1); outputs_objectAttributes (y, glist);
+    object_setSelected (y, 1);
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    outputs_objectAttributes (y, glist);
+    
+    #endif
 }
 
 PD_LOCAL void glist_objectDeselect (t_glist *glist, t_object *y)
 {
-    object_setSelected (y, 0); outputs_objectAttributes (y, glist);
+    object_setSelected (y, 0);
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    outputs_objectAttributes (y, glist);
+    
+    #endif
 }
 
 PD_LOCAL int glist_objectIsSelected (t_glist *glist, t_object *y)

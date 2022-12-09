@@ -44,11 +44,15 @@ PD_LOCAL void glist_removeInletsAndOutlets (t_glist *glist)
 
 static void glist_updateInletsAndOutlets (t_glist *glist)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     if (!glist_isLoading (glist)) {
     //
     outputs_objectAttributes (cast_object (glist), glist_getParent (glist));
     //
     }
+    
+    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------
