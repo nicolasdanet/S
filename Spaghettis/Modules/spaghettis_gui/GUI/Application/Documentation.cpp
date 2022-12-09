@@ -26,9 +26,14 @@ Documentation::Documentation (const core::Object& o) : data_ (find (o))
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::String Documentation::firstLetterCapitalized (juce::String s)
+{
+    return s.substring (0, 1).toUpperCase() + s.substring (1);
+}
+
 juce::String Documentation::getPinTooltip (const juce::String& type, bool isOutlet, int i) const
 {
-    const juce::String t = core::Report::firstLetterCapitalized (type);
+    const juce::String t = firstLetterCapitalized (type);
     const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i);
     
     if (data_.hasParameter (Tag::Documentation, k)) {

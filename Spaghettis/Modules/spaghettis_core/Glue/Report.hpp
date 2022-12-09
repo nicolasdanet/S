@@ -42,16 +42,6 @@ public:
 // MARK: -
 
 public:
-    static juce::String firstLetterCapitalized (juce::String s)
-    {
-        return s.substring (0, 1).toUpperCase() + s.substring (1);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     static Report object (const UniquePath&, struct _object*);
     static Report objectAttributes (const UniquePath&, struct _object*);
     static Report objectParameters (const UniquePath&, struct _object*);

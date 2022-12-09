@@ -321,7 +321,9 @@ bool EditView::hasRedo() const
 juce::String EditView::getUndoAction() const
 {
     if (hasUndo()) {
-        return juce::String (NEEDS_TRANS ("Undo")) + " " + core::Report::firstLetterCapitalized (undo_.get());
+    //
+    return juce::String (NEEDS_TRANS ("Undo")) + " " + Documentation::firstLetterCapitalized (undo_.get());
+    //
     }
     
     return juce::String();
@@ -330,7 +332,9 @@ juce::String EditView::getUndoAction() const
 juce::String EditView::getRedoAction() const
 {
     if (hasRedo()) {
-        return juce::String (NEEDS_TRANS ("Redo")) + " " + core::Report::firstLetterCapitalized (redo_.get());
+    //
+    return juce::String (NEEDS_TRANS ("Redo")) + " " + Documentation::firstLetterCapitalized (redo_.get());
+    //
     }
     
     return juce::String();
