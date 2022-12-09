@@ -46,7 +46,7 @@ static void glist_updateInletsAndOutlets (t_glist *glist)
 {
     if (!glist_isLoading (glist)) {
     //
-    outputs_objectUpdateAttributes (cast_object (glist), glist_getParent (glist));
+    outputs_objectAttributes (cast_object (glist), glist_getParent (glist));
     //
     }
 }

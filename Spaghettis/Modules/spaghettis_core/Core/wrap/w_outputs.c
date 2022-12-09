@@ -125,12 +125,12 @@ PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
     const UniquePath p (x, owner); wrapper_send (Outputs::added (p, Report::object (p, x)));
 }
 
-PD_LOCAL void outputs_objectUpdateAttributes (t_object *x, t_glist *owner)
+PD_LOCAL void outputs_objectAttributes (t_object *x, t_glist *owner)
 {
     const UniquePath p (x, owner); wrapper_send (Outputs::changed (p, Report::objectAttributes (p, x)));
 }
 
-PD_LOCAL void outputs_objectUpdateParameters (t_object *x, t_glist *owner)
+PD_LOCAL void outputs_objectParameters (t_object *x, t_glist *owner)
 {
     const UniquePath p (x, owner); wrapper_send (Outputs::changed (p, Report::objectParameters (p, x)));
 }
@@ -233,11 +233,11 @@ PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
 }
 
-PD_LOCAL void outputs_objectUpdateAttributes (t_object *x, t_glist *owner)
+PD_LOCAL void outputs_objectAttributes (t_object *x, t_glist *owner)
 {
 }
 
-PD_LOCAL void outputs_objectUpdateParameters (t_object *x, t_glist *owner)
+PD_LOCAL void outputs_objectParameters (t_object *x, t_glist *owner)
 {
 }
 

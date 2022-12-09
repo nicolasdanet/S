@@ -25,7 +25,7 @@ PD_LOCAL void glist_objectPosition (t_glist *glist, t_object *object, int x, int
     int newX   = object_getX (object);
     int newY   = object_getY (object);
     
-    if (notify) { outputs_objectUpdateAttributes (object, glist); }
+    if (notify) { outputs_objectAttributes (object, glist); }
     
     if (pd_class (object) == vinlet_class)  { glist_inletSort (glist);   }
     if (pd_class (object) == voutlet_class) { glist_outletSort (glist);  }

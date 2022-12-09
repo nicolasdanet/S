@@ -91,7 +91,7 @@ static void bng_anything (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 
 static void bng_update (t_bng *x, int *t, int n)
 {
-    if (n != *t) { *t = n; outputs_objectUpdateParameters (cast_object (x), x->x_owner); }
+    if (n != *t) { *t = n; outputs_objectParameters (cast_object (x), x->x_owner); }
 }
 
 static void bng_updateFlashed (t_bng *x, int n)

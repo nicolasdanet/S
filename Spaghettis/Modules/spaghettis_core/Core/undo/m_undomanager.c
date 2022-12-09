@@ -111,7 +111,7 @@ PD_LOCAL juce::String undomanager_getRedoLabel (t_undomanager *x)
 
 static void undomanager_notify (t_undomanager *x)
 {
-    outputs_objectUpdateAttributes (cast_object (x->um_owner), glist_getParent (x->um_owner));
+    outputs_objectAttributes (cast_object (x->um_owner), glist_getParent (x->um_owner));
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -622,7 +622,7 @@ PD_LOCAL int object_setLabelUpdate (t_object *x, t_glist *glist, t_symbol *s)
 {
     if (object_getLabel (x) != s) {
         object_setLabel (x, s);
-        outputs_objectUpdateParameters (x, glist);
+        outputs_objectParameters (x, glist);
         return 1;
     }
     

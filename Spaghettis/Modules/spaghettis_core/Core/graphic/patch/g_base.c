@@ -120,14 +120,14 @@ PD_LOCAL void glist_setEditView (t_glist *glist, t_rectangle *r, int notify)
 {
     rectangle_setCopy (glist_getEditView (glist), r);
     
-    if (notify) { outputs_objectUpdateAttributes (cast_object (glist), glist_getParent (glist)); }
+    if (notify) { outputs_objectAttributes (cast_object (glist), glist_getParent (glist)); }
 }
 
 PD_LOCAL void glist_setRunView (t_glist *glist, t_rectangle *r, int notify)
 {
     rectangle_setCopy (glist_getRunView (glist), r);
     
-    if (notify) { outputs_objectUpdateAttributes (cast_object (glist_getRoot (glist)), NULL); }
+    if (notify) { outputs_objectAttributes (cast_object (glist_getRoot (glist)), NULL); }
 }
 
 PD_LOCAL void glist_setNext (t_glist *g, t_glist *next)
