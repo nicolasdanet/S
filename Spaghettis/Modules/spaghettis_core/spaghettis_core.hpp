@@ -70,6 +70,7 @@
 #include "Glue/Colours.hpp"
 #include "Glue/Glue.hpp"
 #include "Glue/Unique.hpp"
+#include "Glue/Tags.hpp"
 #include "Glue/Tree.hpp"
 #include "Glue/Item.hpp"
 #include "Glue/Report.hpp"
