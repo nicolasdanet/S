@@ -35,21 +35,21 @@ PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *);
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_objectAdded                   (t_object *x, t_glist *owner);
-PD_LOCAL void outputs_objectAttributes              (t_object *x, t_glist *owner, const Tags& t = Tags());
-PD_LOCAL void outputs_objectParameters              (t_object *x, t_glist *owner, const Tags& t = Tags());
+PD_LOCAL void outputs_objectAdded       (t_object *x, t_glist *owner);
+PD_LOCAL void outputs_objectAttributes  (t_object *x, t_glist *owner, const Tags& t = Tags::attributes());
+PD_LOCAL void outputs_objectParameters  (t_object *x, t_glist *owner, const Tags& t = Tags::parameters());
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_objectRemoved                 (t_object *x, t_glist *owner);
-PD_LOCAL void outputs_objectRenamed                 (t_object *x, t_glist *owner, t_id t);
+PD_LOCAL void outputs_objectRemoved     (t_object *x, t_glist *owner);
+PD_LOCAL void outputs_objectRenamed     (t_object *x, t_glist *owner, t_id t);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_patchDirty                    (t_glist *g, int isDirty);
-PD_LOCAL void outputs_patchOrder                    (t_glist *g, std::vector<UniqueId>&&);
+PD_LOCAL void outputs_patchDirty        (t_glist *g, int isDirty);
+PD_LOCAL void outputs_patchOrder        (t_glist *g, std::vector<UniqueId>&&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

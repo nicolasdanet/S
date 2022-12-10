@@ -16,26 +16,58 @@ class Tags {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
-    Tags()  = default;
-    ~Tags() = default;
+    explicit Tags() : Tags (true, true)
+    {
+    }
 
-public:
-    Tags (const Tags&) = default;
-    Tags (Tags&&) = default;
-    Tags& operator = (const Tags&) = default;
-    Tags& operator = (Tags&&) = default;
+private:
+    Tags (bool attributes, bool parameters) : hasAttributes_ (attributes), hasParameters_ (parameters)
+    {
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    bool contains (juce::StringRef tag)
+    bool hasAttributes() const
     {
-        return true;
+        return hasAttributes_;
     }
+    
+    bool hasParameters() const
+    {
+        return hasParameters_;
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static Tags attributes()
+    {
+        return Tags (true, false);
+    }
+    
+    static Tags parameters()
+    {
+        return Tags (false, true);
+    }
+    
+private:
+    bool hasAttributes_;
+    bool hasParameters_;
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Tags)
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 };
 
 // -----------------------------------------------------------------------------------------------------------

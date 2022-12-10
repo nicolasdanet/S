@@ -239,7 +239,7 @@ void setObjectParameters (Data& data, t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attributes, bool parameters, const Tags& t)
+juce::ValueTree getObject (const UniquePath& u, struct _object* o, const Tags& t)
 {
     juce::ValueTree tree (object_isCanvas (o) ? Id::PATCH : Id::OBJECT);
     
@@ -249,8 +249,8 @@ juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attribut
     //
     Data data (Id::DATA);
     
-    if (attributes) { setObjectAttributes (data, o); }
-    if (parameters) { setObjectParameters (data, o); }
+    if (t.hasAttributes()) { setObjectAttributes (data, o); }
+    if (t.hasParameters()) { setObjectParameters (data, o); }
     
     tree.appendChild (data.asValueTree(), nullptr);
     //
@@ -268,19 +268,9 @@ juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attribut
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Report Report::object (const UniquePath& u, struct _object* o)
+Report Report::object (const UniquePath& u, struct _object* o, const Tags& t)
 {
-    return Report (getObject (u, o, true, true,  Tags()));
-}
-
-Report Report::objectAttributes (const UniquePath& u, struct _object* o, const Tags& t)
-{
-    return Report (getObject (u, o, true, false, t));
-}
-
-Report Report::objectParameters (const UniquePath& u, struct _object* o, const Tags& t)
-{
-    return Report (getObject (u, o, false, true, t));
+    return Report (getObject (u, o, t));
 }
 
 // -----------------------------------------------------------------------------------------------------------
