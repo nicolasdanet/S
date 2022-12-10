@@ -136,7 +136,7 @@ static void bng_flashtime (t_bng *x, t_float f)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-static void bng_functionGetParameters (t_object *z, core::Group& group)
+static void bng_functionGetParameters (t_object *z, core::Group& group, const Tags& t)
 {
     t_bng *x = (t_bng *)z;
     
@@ -170,6 +170,10 @@ static void bng_functionSetParameters (t_object *z, const core::Group& group)
 }
 
 #endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 static void bng_functionSave (t_object *z, t_buffer *b, int flags)
 {

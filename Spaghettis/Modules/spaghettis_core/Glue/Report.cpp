@@ -99,7 +99,7 @@ bool getVisible (t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setObjectAttributesForObject (Group& group, t_object* o)
+void setObjectAttributesForObject (Group& group, t_object* o, const Tags& t)
 {
     static DelegateCache delegate;
     
@@ -152,7 +152,7 @@ void setObjectAttributesForObject (Group& group, t_object* o)
         delegate).setHidden (true);
 }
 
-void setObjectAttributesForPatch (Group& group, t_object* o)
+void setObjectAttributesForPatch (Group& group, t_object* o, const Tags& t)
 {
     static DelegateCache delegate;
         
@@ -170,7 +170,7 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
         getEditView (g),
         delegate).setEditable (false);
     
-    if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o); }
+    if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o, t); }
     else {
     //
     group.addParameter (Tag::RunView,
@@ -204,17 +204,17 @@ void setObjectAttributesForPatch (Group& group, t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setObjectAttributes (Data& data, t_object* o)
+void setObjectAttributes (Data& data, t_object* o, const Tags& t)
 {
     Group group (data.addGroup (Tag::Attributes));
     
-    if (object_isCanvas (o)) { setObjectAttributesForPatch (group, o); }
+    if (object_isCanvas (o)) { setObjectAttributesForPatch (group, o, t); }
     else {
-        setObjectAttributesForObject (group, o);
+        setObjectAttributesForObject (group, o, t);
     }
 }
 
-void setObjectParameters (Data& data, t_object* o)
+void setObjectParameters (Data& data, t_object* o, const Tags& t)
 {
     t_class* c = pd_class (o);
     
@@ -230,7 +230,7 @@ void setObjectParameters (Data& data, t_object* o)
         juce::String (symbol_getName (object_getLabel (o))),
         delegate);
     
-    (*class_getParametersGetter (c)) (o, group);
+    (*class_getParametersGetter (c)) (o, group, t);
     //
     }
 }
@@ -249,8 +249,8 @@ juce::ValueTree getObject (const UniquePath& u, struct _object* o, const Tags& t
     //
     Data data (Id::DATA);
     
-    if (t.hasAttributes()) { setObjectAttributes (data, o); }
-    if (t.hasParameters()) { setObjectParameters (data, o); }
+    if (t.hasAttributes()) { setObjectAttributes (data, o, t); }
+    if (t.hasParameters()) { setObjectParameters (data, o, t); }
     
     tree.appendChild (data.asValueTree(), nullptr);
     //
