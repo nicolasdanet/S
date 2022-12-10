@@ -239,11 +239,11 @@ void setObjectParameters (Data& data, t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attributes, bool parameters)
+juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attributes, bool parameters, const Tags& t)
 {
-    juce::ValueTree t (object_isCanvas (o) ? Id::PATCH : Id::OBJECT);
+    juce::ValueTree tree (object_isCanvas (o) ? Id::PATCH : Id::OBJECT);
     
-    t.setProperty (Id::identifier, Cast::toVar (u.getIdentifier()), nullptr);
+    tree.setProperty (Id::identifier, Cast::toVar (u.getIdentifier()), nullptr);
     
     if (o) {
     //
@@ -252,11 +252,11 @@ juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attribut
     if (attributes) { setObjectAttributes (data, o); }
     if (parameters) { setObjectParameters (data, o); }
     
-    t.appendChild (data.asValueTree(), nullptr);
+    tree.appendChild (data.asValueTree(), nullptr);
     //
     }
     
-    return t;
+    return tree;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -270,17 +270,17 @@ juce::ValueTree getObject (const UniquePath& u, struct _object* o, bool attribut
 
 Report Report::object (const UniquePath& u, struct _object* o)
 {
-    return Report (getObject (u, o, true, true));
+    return Report (getObject (u, o, true, true,  Tags()));
 }
 
-Report Report::objectAttributes (const UniquePath& u, struct _object* o)
+Report Report::objectAttributes (const UniquePath& u, struct _object* o, const Tags& t)
 {
-    return Report (getObject (u, o, true, false));
+    return Report (getObject (u, o, true, false, t));
 }
 
-Report Report::objectParameters (const UniquePath& u, struct _object* o)
+Report Report::objectParameters (const UniquePath& u, struct _object* o, const Tags& t)
 {
-    return Report (getObject (u, o, false, true));
+    return Report (getObject (u, o, false, true, t));
 }
 
 // -----------------------------------------------------------------------------------------------------------

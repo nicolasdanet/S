@@ -46,12 +46,15 @@ static inline int SAVED_DEEP (int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-typedef void (*t_savefn)    (t_object *x, t_buffer *b, int flags);
+typedef void (*t_savefn)            (t_object *x, t_buffer *b, int flags);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-typedef void (*t_parametersgetfn)  (t_object *x, core::Group& t);
-typedef void (*t_parameterssetfn)  (t_object *x, const core::Group& t);
+typedef void (*t_parametersgetfn)   (t_object *x, core::Group& t);
+typedef void (*t_parameterssetfn)   (t_object *x, const core::Group& t);
 
 #endif
 
