@@ -38,7 +38,6 @@ PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *);
 PD_LOCAL void outputs_objectAdded       (t_object *x, t_glist *owner);
 PD_LOCAL void outputs_objectUpdated     (t_object *x, t_glist *owner, const Tags& t);
 PD_LOCAL void outputs_objectAttributes  (t_object *x, t_glist *owner, const Tags& t = Tags::attributes());
-PD_LOCAL void outputs_objectParameters  (t_object *x, t_glist *owner, const Tags& t = Tags::parameters());
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

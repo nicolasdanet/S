@@ -95,7 +95,7 @@ static void bng_update (t_bng *x, int *t, int n)
     //
     *t = n;
     #if defined ( PD_BUILDING_APPLICATION )
-    outputs_objectParameters (cast_object (x), x->x_owner);
+    outputs_objectUpdated (cast_object (x), x->x_owner, Tags::parameters());
     #endif
     //
     }

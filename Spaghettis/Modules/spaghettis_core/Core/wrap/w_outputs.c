@@ -139,11 +139,6 @@ PD_LOCAL void outputs_objectAttributes (t_object *x, t_glist *owner, const Tags&
     const UniquePath p (x, owner); wrapper_send (Outputs::changed (p, Report::object (p, x, t)));
 }
 
-PD_LOCAL void outputs_objectParameters (t_object *x, t_glist *owner, const Tags& t)
-{
-    const UniquePath p (x, owner); wrapper_send (Outputs::changed (p, Report::object (p, x, t)));
-}
-
 PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)
 {
     wrapper_send (Outputs::removed (UniquePath (x, owner)));
