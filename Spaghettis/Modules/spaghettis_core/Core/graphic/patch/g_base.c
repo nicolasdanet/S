@@ -128,7 +128,7 @@ PD_LOCAL void glist_setEditView (t_glist *glist, t_rectangle *r, int notify)
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    if (notify) { outputs_objectAttributes (cast_object (glist), glist_getParent (glist)); }
+    if (notify) { outputs_objectUpdated (cast_object (glist), glist_getParent (glist), Tags::attributes()); }
     
     #endif
 }
@@ -139,7 +139,7 @@ PD_LOCAL void glist_setRunView (t_glist *glist, t_rectangle *r, int notify)
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    if (notify) { outputs_objectAttributes (cast_object (glist_getRoot (glist)), NULL); }
+    if (notify) { outputs_objectUpdated (cast_object (glist_getRoot (glist)), NULL, Tags::attributes()); }
     
     #endif
 }

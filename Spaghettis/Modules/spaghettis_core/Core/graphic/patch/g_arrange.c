@@ -27,7 +27,7 @@ PD_LOCAL void glist_objectPosition (t_glist *glist, t_object *object, int x, int
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    if (notify) { outputs_objectAttributes (object, glist); }
+    if (notify) { outputs_objectUpdated (object, glist, Tags::attributes()); }
     
     #endif
     
