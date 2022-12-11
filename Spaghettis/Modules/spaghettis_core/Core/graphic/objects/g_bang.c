@@ -142,23 +142,29 @@ static void bng_functionGetParameters (t_object *z, core::Group& group, const Ta
     
     static DelegateCache delegate;
     
-    group.addParameter (Tag::Flashed,
-        NEEDS_TRANS ("Flashed"),
-        NEEDS_TRANS ("Light is flashing"),
-        static_cast<bool> (x->x_flashed),
-        delegate).setHidden (true);
+    if (t.contains (Tag::Flashed)) {
+        group.addParameter (Tag::Flashed,
+            NEEDS_TRANS ("Flashed"),
+            NEEDS_TRANS ("Light is flashing"),
+            static_cast<bool> (x->x_flashed),
+            delegate).setHidden (true);
+    }
     
-    group.addParameter (Tag::FlashTime,
-        NEEDS_TRANS ("Flash Time"),
-        NEEDS_TRANS ("Duration of the flash"),
-        x->x_time,
-        delegate).setRange (juce::Range<int> (BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM));
+    if (t.contains (Tag::FlashTime)) {
+        group.addParameter (Tag::FlashTime,
+            NEEDS_TRANS ("Flash Time"),
+            NEEDS_TRANS ("Duration of the flash"),
+            x->x_time,
+            delegate).setRange (juce::Range<int> (BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM));
+    }
     
-    group.addParameter (Tag::Width,
-        NEEDS_TRANS ("Width"),
-        NEEDS_TRANS ("Border size of the object"),
-        x->x_width,
-        delegate).setRange (juce::Range<int> (BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM));
+    if (t.contains (Tag::Width)) {
+        group.addParameter (Tag::Width,
+            NEEDS_TRANS ("Width"),
+            NEEDS_TRANS ("Border size of the object"),
+            x->x_width,
+            delegate).setRange (juce::Range<int> (BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM));
+    }
 }
 
 static void bng_functionSetParameters (t_object *z, const core::Group& group)

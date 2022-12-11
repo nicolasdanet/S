@@ -103,53 +103,69 @@ void setObjectAttributesForObject (Group& group, t_object* o, const Tags& t)
 {
     static DelegateCache delegate;
     
-    group.addParameter (Tag::Class,
-        NEEDS_TRANS ("Class"),
-        NEEDS_TRANS ("Class of the object"),
-        juce::String (class_getNameAsString (pd_class (o))),
-        delegate).setEditable (false);
-        
-    group.addParameter (Tag::Content,
-        NEEDS_TRANS ("Content"),
-        NEEDS_TRANS ("Content of the box's buffer"),
-        getContentBuffer (o),
-        delegate).setEditable (false);
+    if (t.contains (Tag::Class)) {
+        group.addParameter (Tag::Class,
+            NEEDS_TRANS ("Class"),
+            NEEDS_TRANS ("Class of the object"),
+            juce::String (class_getNameAsString (pd_class (o))),
+            delegate).setEditable (false);
+    }
     
-    group.addParameter (Tag::Inlets,
-        NEEDS_TRANS ("Inlets"),
-        NEEDS_TRANS ("List of inlets types"),
-        object_getTypeOfInlets (o),
-        delegate).setEditable (false);
+    if (t.contains (Tag::Content)) {
+        group.addParameter (Tag::Content,
+            NEEDS_TRANS ("Content"),
+            NEEDS_TRANS ("Content of the box's buffer"),
+            getContentBuffer (o),
+            delegate).setEditable (false);
+    }
     
-    group.addParameter (Tag::Outlets,
-        NEEDS_TRANS ("Outlets"),
-        NEEDS_TRANS ("List of outlets types"),
-        object_getTypeOfOutlets (o),
-        delegate).setEditable (false);
-        
-    group.addParameter (Tag::X,
-        NEEDS_TRANS ("Position X"),
-        NEEDS_TRANS ("Box ordinate"),
-        Coordinates::realToLocal (object_getX (o)),
-        delegate).setHidden (true);
+    if (t.contains (Tag::Inlets)) {
+        group.addParameter (Tag::Inlets,
+            NEEDS_TRANS ("Inlets"),
+            NEEDS_TRANS ("List of inlets types"),
+            object_getTypeOfInlets (o),
+            delegate).setEditable (false);
+    }
     
-    group.addParameter (Tag::Y,
-        NEEDS_TRANS ("Position Y"),
-        NEEDS_TRANS ("Box abscissa"),
-        Coordinates::realToLocal (object_getY (o)),
-        delegate).setHidden (true);
+    if (t.contains (Tag::Outlets)) {
+        group.addParameter (Tag::Outlets,
+            NEEDS_TRANS ("Outlets"),
+            NEEDS_TRANS ("List of outlets types"),
+            object_getTypeOfOutlets (o),
+            delegate).setEditable (false);
+    }
     
-    group.addParameter (Tag::Selected,
-        NEEDS_TRANS ("Selected"),
-        NEEDS_TRANS ("Is selected state"),
-        static_cast<bool> (object_isSelected (o)),
-        delegate).setHidden (true);
+    if (t.contains (Tag::X)) {
+        group.addParameter (Tag::X,
+            NEEDS_TRANS ("Position X"),
+            NEEDS_TRANS ("Box ordinate"),
+            Coordinates::realToLocal (object_getX (o)),
+            delegate).setHidden (true);
+    }
     
-    group.addParameter (Tag::Visible,
-        NEEDS_TRANS ("Visible"),
-        NEEDS_TRANS ("Is visible state"),
-        getVisible (o),
-        delegate).setHidden (true);
+    if (t.contains (Tag::Y)) {
+        group.addParameter (Tag::Y,
+            NEEDS_TRANS ("Position Y"),
+            NEEDS_TRANS ("Box abscissa"),
+            Coordinates::realToLocal (object_getY (o)),
+            delegate).setHidden (true);
+    }
+    
+    if (t.contains (Tag::Selected)) {
+        group.addParameter (Tag::Selected,
+            NEEDS_TRANS ("Selected"),
+            NEEDS_TRANS ("Is selected state"),
+            static_cast<bool> (object_isSelected (o)),
+            delegate).setHidden (true);
+    }
+    
+    if (t.contains (Tag::Visible)) {
+        group.addParameter (Tag::Visible,
+            NEEDS_TRANS ("Visible"),
+            NEEDS_TRANS ("Is visible state"),
+            getVisible (o),
+            delegate).setHidden (true);
+    }
 }
 
 void setObjectAttributesForPatch (Group& group, t_object* o, const Tags& t)
@@ -158,46 +174,58 @@ void setObjectAttributesForPatch (Group& group, t_object* o, const Tags& t)
         
     t_glist* g = cast_glist (o);
     
-    group.addParameter (Tag::Title,
-        NEEDS_TRANS ("Title"),
-        NEEDS_TRANS ("Patch name"),
-        juce::String (symbol_getName (glist_getName (g))),
-        delegate).setEditable (false);
+    if (t.contains (Tag::Title)) {
+        group.addParameter (Tag::Title,
+            NEEDS_TRANS ("Title"),
+            NEEDS_TRANS ("Patch name"),
+            juce::String (symbol_getName (glist_getName (g))),
+            delegate).setEditable (false);
+    }
     
-    group.addParameter (Tag::EditView,
-        NEEDS_TRANS ("Edit View"),
-        NEEDS_TRANS ("Edit window geometry"),
-        getEditView (g),
-        delegate).setEditable (false);
+    if (t.contains (Tag::EditView)) {
+        group.addParameter (Tag::EditView,
+            NEEDS_TRANS ("Edit View"),
+            NEEDS_TRANS ("Edit window geometry"),
+            getEditView (g),
+            delegate).setEditable (false);
+    }
     
     if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o, t); }
     else {
     //
-    group.addParameter (Tag::RunView,
-        NEEDS_TRANS ("Run View"),
-        NEEDS_TRANS ("Run window geometry"),
-        getRunView (g),
-        delegate).setEditable (false);
+    if (t.contains (Tag::RunView)) {
+        group.addParameter (Tag::RunView,
+            NEEDS_TRANS ("Run View"),
+            NEEDS_TRANS ("Run window geometry"),
+            getRunView (g),
+            delegate).setEditable (false);
+    }
     
-    group.addParameter (Tag::Path,
-        NEEDS_TRANS ("Path"),
-        NEEDS_TRANS ("File path"),
-        getPatchFile (g).getFullPathName(),
-        delegate).setEditable (false);
+    if (t.contains (Tag::Path)) {
+        group.addParameter (Tag::Path,
+            NEEDS_TRANS ("Path"),
+            NEEDS_TRANS ("File path"),
+            getPatchFile (g).getFullPathName(),
+            delegate).setEditable (false);
+    }
     //
     }
     
-    group.addParameter (Tag::Undo,
-        NEEDS_TRANS ("Undo"),
-        NEEDS_TRANS ("Undoable action"),
-        undomanager_getUndoLabel (glist_getUndoManager (g)),
-        delegate).setHidden (true);
+    if (t.contains (Tag::Undo)) {
+        group.addParameter (Tag::Undo,
+            NEEDS_TRANS ("Undo"),
+            NEEDS_TRANS ("Undoable action"),
+            undomanager_getUndoLabel (glist_getUndoManager (g)),
+            delegate).setHidden (true);
+    }
     
-    group.addParameter (Tag::Redo,
-        NEEDS_TRANS ("Redo"),
-        NEEDS_TRANS ("Redoable action"),
-        undomanager_getRedoLabel (glist_getUndoManager (g)),
-        delegate).setHidden (true);
+    if (t.contains (Tag::Redo)) {
+        group.addParameter (Tag::Redo,
+            NEEDS_TRANS ("Redo"),
+            NEEDS_TRANS ("Redoable action"),
+            undomanager_getRedoLabel (glist_getUndoManager (g)),
+            delegate).setHidden (true);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -224,11 +252,13 @@ void setObjectParameters (Data& data, t_object* o, const Tags& t)
     
     Group group (data.addGroup (Tag::Parameters));
     
-    group.addParameter (Tag::Label,
-        NEEDS_TRANS ("Label"),
-        NEEDS_TRANS ("Parameter name in run view"),
-        juce::String (symbol_getName (object_getLabel (o))),
-        delegate);
+    if (t.contains (Tag::Label)) {
+        group.addParameter (Tag::Label,
+            NEEDS_TRANS ("Label"),
+            NEEDS_TRANS ("Parameter name in run view"),
+            juce::String (symbol_getName (object_getLabel (o))),
+            delegate);
+    }
     
     (*class_getParametersGetter (c)) (o, group, t);
     //
