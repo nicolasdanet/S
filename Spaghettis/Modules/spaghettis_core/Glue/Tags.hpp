@@ -19,12 +19,15 @@ class Tags {
 // MARK: -
 
 public:
-    explicit Tags() : Tags (true, true)
+    explicit Tags() : hasAttributes_ (true), hasParameters_ (true), tags_()
     {
     }
 
 private:
-    Tags (bool attributes, bool parameters) : hasAttributes_ (attributes), hasParameters_ (parameters)
+    Tags (bool attributes, bool parameters, juce::StringArray&& tags) :
+        hasAttributes_ (attributes),
+        hasParameters_ (parameters),
+        tags_ (std::move (tags))
     {
     }
 
@@ -35,7 +38,10 @@ private:
 public:
     bool contains (juce::StringRef t) const
     {
-        return true;
+        if (tags_.isEmpty()) { return true; }
+        else {
+            return tags_.contains (t);
+        }
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -58,19 +64,22 @@ public:
 // MARK: -
 
 public:
-    static Tags attributes()
+    static Tags attributes (juce::StringArray&& tags = juce::StringArray())
     {
-        return Tags (true, false);
+        return Tags (true, false, std::move (tags));
     }
     
-    static Tags parameters()
+    static Tags parameters (juce::StringArray&& tags = juce::StringArray())
     {
-        return Tags (false, true);
+        return Tags (false, true, std::move (tags));
     }
     
 private:
     bool hasAttributes_;
     bool hasParameters_;
+
+private:
+    juce::StringArray tags_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Tags)
