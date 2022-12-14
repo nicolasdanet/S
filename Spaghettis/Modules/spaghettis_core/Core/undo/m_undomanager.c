@@ -113,7 +113,10 @@ static void undomanager_notify (t_undomanager *x)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
-    outputs_objectUpdated (cast_object (x->um_owner), glist_getParent (x->um_owner), Tags::attributes());
+    t_glist *g = x->um_owner;
+    t_glist *p = glist_getParent (g);
+    
+    outputs_objectUpdated (cast_object (g), p, Tags::attributes ( { Tag::Undo, Tag::Redo } ));
     
     #endif
 }

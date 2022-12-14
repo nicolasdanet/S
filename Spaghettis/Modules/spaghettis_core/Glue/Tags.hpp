@@ -64,14 +64,24 @@ public:
 // MARK: -
 
 public:
-    static Tags attributes (juce::StringArray&& tags = juce::StringArray())
+    static Tags attributes (juce::StringArray&& tags)
     {
         return Tags (true, false, std::move (tags));
     }
     
-    static Tags parameters (juce::StringArray&& tags = juce::StringArray())
+    static Tags attributes (juce::StringRef tag)
+    {
+        return Tags (true, false, juce::StringArray (tag));
+    }
+    
+    static Tags parameters (juce::StringArray&& tags)
     {
         return Tags (false, true, std::move (tags));
+    }
+    
+    static Tags parameters (juce::StringRef tag)
+    {
+        return Tags (false, true, juce::StringArray (tag));
     }
     
 private:

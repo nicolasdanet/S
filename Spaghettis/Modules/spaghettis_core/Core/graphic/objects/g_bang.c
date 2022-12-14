@@ -101,7 +101,7 @@ static void bng_updateFlashed (t_bng *x, int n)
 {
     if (bng_update (x, &x->x_flashed, (n != 0))) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (cast_object (x), x->x_owner, Tags::parameters ( { Tag::Flashed } ));
+        outputs_objectUpdated (cast_object (x), x->x_owner, Tags::parameters (Tag::Flashed));
         #endif
     }
 }
@@ -110,7 +110,7 @@ static void bng_updateFlashTime (t_bng *x, int n)
 {
     if (bng_update (x, &x->x_time, PD_CLAMP (n, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM))) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (cast_object (x), x->x_owner, Tags::parameters ( { Tag::FlashTime } ));
+        outputs_objectUpdated (cast_object (x), x->x_owner, Tags::parameters (Tag::FlashTime));
         #endif
     }
 }
@@ -119,7 +119,7 @@ static void bng_updateWidth (t_bng *x, int n)
 {
     if (bng_update (x, &x->x_width, PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM))) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (cast_object (x), x->x_owner, Tags::parameters ( { Tag::Width } ));
+        outputs_objectUpdated (cast_object (x), x->x_owner, Tags::parameters (Tag::Width));
         #endif
     }
 }

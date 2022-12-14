@@ -42,13 +42,26 @@ PD_LOCAL void glist_removeInletsAndOutlets (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void glist_updateInletsAndOutlets (t_glist *glist)
+static void glist_updateInlets (t_glist *glist)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
     if (!glist_isLoading (glist)) {
     //
-    outputs_objectUpdated (cast_object (glist), glist_getParent (glist), Tags::attributes());
+    outputs_objectUpdated (cast_object (glist), glist_getParent (glist), Tags::attributes (Tag::Inlets));
+    //
+    }
+    
+    #endif
+}
+
+static void glist_updateOutlets (t_glist *glist)
+{
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    if (!glist_isLoading (glist)) {
+    //
+    outputs_objectUpdated (cast_object (glist), glist_getParent (glist), Tags::attributes (Tag::Outlets));
     //
     }
     
@@ -65,7 +78,7 @@ PD_LOCAL t_inlet *glist_inletAdd (t_glist *glist, t_pd *receiver, int isSignal)
     
     if (!glist_isLoading (glist)) { glist_inletSort (glist); }
     
-    glist_updateInletsAndOutlets (glist);
+    glist_updateInlets (glist);
     
     return inlet;
 }
@@ -78,7 +91,7 @@ PD_LOCAL void glist_inletRemove (t_glist *glist, t_inlet *inlet)
     
     inlet_free (inlet);
     
-    glist_updateInletsAndOutlets (glist);
+    glist_updateInlets (glist);
 }
 
 static int glist_inletGetNumberOf (t_glist *glist)
@@ -152,7 +165,7 @@ static t_outlet *glist_outletAddProceed (t_glist *glist, t_outlet *outlet)
 {
     if (!glist_isLoading (glist)) { glist_outletSort (glist); }
     
-    glist_updateInletsAndOutlets (glist);
+    glist_updateOutlets (glist);
     
     return outlet;
 }
@@ -175,7 +188,7 @@ PD_LOCAL void glist_outletRemove (t_glist *glist, t_outlet *outlet)
 
     outlet_free (outlet);
     
-    glist_updateInletsAndOutlets (glist);
+    glist_updateOutlets (glist);
 }
 
 static int glist_outletGetNumberOf (t_glist *glist)
