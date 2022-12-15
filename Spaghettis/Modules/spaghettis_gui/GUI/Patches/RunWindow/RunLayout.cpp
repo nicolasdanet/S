@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto isObject (ObjectComponent* o)
+auto isSameObject (ObjectComponent* o)
 {
     return [o](const RunLayout::LayoutElement& e)
     {
@@ -36,7 +36,7 @@ auto isObject (ObjectComponent* o)
 
 void RunLayout::add (ObjectComponent* o, const juce::Rectangle<int>& bounds)
 {
-    auto r = std::find_if (viewed_.begin(), viewed_.end(), isObject (o));
+    auto r = std::find_if (viewed_.begin(), viewed_.end(), isSameObject (o));
     
     if (r != viewed_.end()) { std::get<RunLayout::LAYOUT_BOUNDS> (*r) = bounds.withZeroOrigin(); }
     else {
@@ -48,7 +48,7 @@ void RunLayout::remove (ObjectComponent* o)
 {
     o->setVisible (false);
     
-    viewed_.erase (std::remove_if (viewed_.begin(), viewed_.end(), isObject (o)), viewed_.end());
+    viewed_.erase (std::remove_if (viewed_.begin(), viewed_.end(), isSameObject (o)), viewed_.end());
 }
 
 // -----------------------------------------------------------------------------------------------------------
