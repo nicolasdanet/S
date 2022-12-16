@@ -25,6 +25,17 @@ auto isSameObject (ObjectComponent* o)
     };
 }
 
+auto compareLabel()
+{
+    return [](const RunLayout::LayoutElement& a, const RunLayout::LayoutElement& b)
+    {
+        ObjectComponent* t1 = std::get<RunLayout::LAYOUT_POINTER> (a);
+        ObjectComponent* t2 = std::get<RunLayout::LAYOUT_POINTER> (b);
+        
+        return t1->getLabel() < t2->getLabel();
+    };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -49,6 +60,11 @@ void RunLayout::remove (ObjectComponent* o)
     o->setVisible (false);
     
     viewed_.erase (std::remove_if (viewed_.begin(), viewed_.end(), isSameObject (o)), viewed_.end());
+}
+
+void RunLayout::sort()
+{
+    std::stable_sort (viewed_.begin(), viewed_.end(), compareLabel());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -82,7 +82,7 @@ void RunView::hide (ObjectComponent* o)
 
 void RunView::update()
 {
-    repaint(); layout_.arrange (getLocalBounds().reduced (10));
+    repaint(); layout_.sort(); layout_.arrange (getLocalBounds().reduced (10));
 }
 
 void RunView::handleAsyncUpdate()
