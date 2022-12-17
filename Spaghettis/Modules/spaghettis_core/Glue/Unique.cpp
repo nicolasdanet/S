@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::vector<UniqueId> fetchIdentifiersFromRoot (struct _glist* owner)
+std::vector<UniqueId> fetchIdentifiersFromRoot (t_glist* owner)
 {
     std::vector<UniqueId> t;
     
@@ -32,7 +32,7 @@ std::vector<UniqueId> fetchIdentifiersFromRoot (struct _glist* owner)
     return t;
 }
 
-void fetchUniquePath (struct _glist* owner, UniqueId& r, std::shared_ptr<std::vector<UniqueId>>& path)
+void fetchUniquePath (t_glist* owner, UniqueId& r, std::shared_ptr<std::vector<UniqueId>>& path)
 {
     if (owner) {
     //
@@ -58,12 +58,12 @@ UniquePath::UniquePath() : u_ (0), r_ (0)
 
 }
 
-UniquePath::UniquePath (struct _object* o, struct _glist* owner) : u_ (object_getUnique (o)), r_ (0)
+UniquePath::UniquePath (t_object* o, t_glist* owner) : u_ (object_getUnique (o)), r_ (0)
 {
     fetchUniquePath (owner, r_, path_);
 }
 
-UniquePath::UniquePath (UniqueId u, struct _glist* owner) : u_ (u), r_ (0)
+UniquePath::UniquePath (UniqueId u, t_glist* owner) : u_ (u), r_ (0)
 {
     fetchUniquePath (owner, r_, path_);
 }

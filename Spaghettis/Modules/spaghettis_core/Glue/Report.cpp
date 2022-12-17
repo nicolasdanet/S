@@ -77,13 +77,13 @@ juce::Rectangle<int> getRunView (t_glist* glist)
     }
 }
 
-/* Subpatches are created in two steps. */
-/* First a dummy one, in order to let objects contained inside to be added. */
-/* And again with the properly set values. */
-/* Hide it during the process. */
-
-bool getVisible (t_object* o)
+bool getVisible (t_object* o, t_glist *owner)
 {
+    /* Subpatches are created in two steps. */
+    /* First a dummy one, in order to let objects contained inside to be added. */
+    /* And again with the properly set values. */
+    /* Hide it during the process. */
+
     if (object_isCanvas (o)) {
     //
     t_glist* g = cast_glist (o);
@@ -99,7 +99,7 @@ bool getVisible (t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setObjectAttributesForObject (Group& group, t_object* o, const Tags& t)
+void setObjectAttributesForObject (Group& group, t_object* o, t_glist* owner, const Tags& t)
 {
     static DelegateCache delegate;
     
@@ -163,12 +163,12 @@ void setObjectAttributesForObject (Group& group, t_object* o, const Tags& t)
         group.addParameter (Tag::Visible,
             NEEDS_TRANS ("Visible"),
             NEEDS_TRANS ("Is visible state"),
-            getVisible (o),
+            getVisible (o, owner),
             delegate).setHidden (true);
     }
 }
 
-void setObjectAttributesForPatch (Group& group, t_object* o, const Tags& t)
+void setObjectAttributesForPatch (Group& group, t_object* o, t_glist* owner, const Tags& t)
 {
     static DelegateCache delegate;
         
@@ -190,7 +190,7 @@ void setObjectAttributesForPatch (Group& group, t_object* o, const Tags& t)
             delegate).setEditable (false);
     }
     
-    if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o, t); }
+    if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o, owner, t); }
     else {
     //
     if (t.contains (Tag::RunView)) {
@@ -232,17 +232,17 @@ void setObjectAttributesForPatch (Group& group, t_object* o, const Tags& t)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setObjectAttributes (Data& data, t_object* o, const Tags& t)
+void setObjectAttributes (Data& data, t_object* o, t_glist* owner, const Tags& t)
 {
     Group group (data.addGroup (Tag::Attributes));
     
-    if (object_isCanvas (o)) { setObjectAttributesForPatch (group, o, t); }
+    if (object_isCanvas (o)) { setObjectAttributesForPatch (group, o, owner, t); }
     else {
-        setObjectAttributesForObject (group, o, t);
+        setObjectAttributesForObject (group, o, owner, t);
     }
 }
 
-void setObjectParameters (Data& data, t_object* o, const Tags& t)
+void setObjectParameters (Data& data, t_object* o, t_glist* owner, const Tags& t)
 {
     t_class* c = pd_class (o);
     
@@ -269,7 +269,7 @@ void setObjectParameters (Data& data, t_object* o, const Tags& t)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree getObject (const UniquePath& u, struct _object* o, const Tags& t)
+juce::ValueTree getObject (const UniquePath& u, t_object* o, t_glist* owner, const Tags& t)
 {
     juce::ValueTree tree (object_isCanvas (o) ? Id::PATCH : Id::OBJECT);
     
@@ -279,8 +279,8 @@ juce::ValueTree getObject (const UniquePath& u, struct _object* o, const Tags& t
     //
     Data data (Id::DATA);
     
-    if (t.hasAttributes()) { setObjectAttributes (data, o, t); }
-    if (t.hasParameters()) { setObjectParameters (data, o, t); }
+    if (t.hasAttributes()) { setObjectAttributes (data, o, owner, t); }
+    if (t.hasParameters()) { setObjectParameters (data, o, owner, t); }
     
     tree.appendChild (data.asValueTree(), nullptr);
     //
@@ -298,9 +298,9 @@ juce::ValueTree getObject (const UniquePath& u, struct _object* o, const Tags& t
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Report Report::object (const UniquePath& u, struct _object* o, const Tags& t)
+Report Report::object (const UniquePath& u, t_object* o, t_glist* owner, const Tags& t)
 {
-    return Report (getObject (u, o, t));
+    return Report (getObject (u, o, owner, t));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -341,7 +341,7 @@ void setLineAttributes (Data& data, int m, int n, bool b)
     }
 }
 
-juce::ValueTree getLine (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n, bool b)
+juce::ValueTree getLine (const UniquePath& u, t_object* src, int m, t_object* dest, int n, bool b)
 {
     juce::ValueTree t (Id::LINE);
     
@@ -365,11 +365,11 @@ juce::ValueTree getLine (const UniquePath& u, struct _object* src, int m, struct
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Report Report::lineAdded (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n)
+Report Report::lineAdded (const UniquePath& u, t_object* src, int m, t_object* dest, int n)
 {
     jassert (!u.isRoot()); return Report (getLine (u, src, m, dest, n, true));
 }
-Report Report::lineChanged (const UniquePath& u, struct _object* src, int m, struct _object* dest, int n)
+Report Report::lineChanged (const UniquePath& u, t_object* src, int m, t_object* dest, int n)
 {
     jassert (!u.isRoot()); return Report (getLine (u, src, m, dest, n, false));
 }
