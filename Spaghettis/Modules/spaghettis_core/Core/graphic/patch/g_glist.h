@@ -96,7 +96,7 @@ PD_LOCAL int    glist_isAbstraction                     (t_glist *g);
 PD_LOCAL int    glist_isSubpatch                        (t_glist *g);
 //PD_LOCAL int    glist_isDirty                         (t_glist *g);
 PD_LOCAL int    glist_isLoading                         (t_glist *g);
-PD_LOCAL int    glist_isPasting                         (t_glist *g);
+PD_FORCE int    glist_isPasting                         (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -217,7 +217,7 @@ PD_LOCAL int glist_isLoading (t_glist *g)
     return g->gl_isLoading;
 }
 
-PD_LOCAL int glist_isPasting (t_glist *g)
+PD_FORCE int glist_isPasting (t_glist *g)
 {
     return g->gl_isPasting;
 }
