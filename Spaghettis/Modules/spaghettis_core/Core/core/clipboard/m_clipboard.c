@@ -19,6 +19,12 @@ static t_buffer *clipboard_bufferDuplicate;     /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+PD_LOCAL void glist_pasteBegin  (t_glist *);
+PD_LOCAL void glist_pasteEnd    (t_glist *);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 PD_LOCAL t_rectangle glist_getBoundingBoxOfSelected (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
@@ -103,6 +109,26 @@ PD_LOCAL void clipboard_copy (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* While pasting object are invisibles at creation. */
+/* Make them visible once moved at the right place. */
+
+static void clipboard_pasteProceedShow (t_glist *glist, int alreadyThere)
+{
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    t_object *y = NULL;
+    int i = 0;
+
+    for (y = glist->gl_graphics; y; y = y->g_next) {
+        if (i >= alreadyThere) {
+            outputs_objectUpdated (y, glist, Tags::attributes (Tag::Visible));
+        }
+        i++;
+    }
+    
+    #endif
+}
+
 static void clipboard_pasteProceedDisplace (t_glist *glist, t_point *pt, int alreadyThere)
 {
     t_object *y = NULL;
@@ -177,12 +203,17 @@ PD_LOCAL int clipboard_pasteProceed (t_glist *glist, t_buffer *b, t_point *pt, i
     
     if (renameArrays) { snippet_renameArrays (b, glist); }
     
+    glist_pasteBegin (glist);
+    
         instance_loadSnippet (glist, b);
     
-    snippet_substractOffsetToLines (b, alreadyThere);
+    glist_pasteEnd (glist);
     
     clipboard_pasteProceedDisplace (glist, pt, alreadyThere);
+    clipboard_pasteProceedShow (glist, alreadyThere);
     clipboard_pasteProceedLoadbang (glist, alreadyThere);
+    
+    snippet_substractOffsetToLines (b, alreadyThere);
     
     return clipboard_pasteProceedSelect (glist, alreadyThere);
 }

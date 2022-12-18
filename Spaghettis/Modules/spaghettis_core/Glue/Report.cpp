@@ -79,6 +79,11 @@ juce::Rectangle<int> getRunView (t_glist* glist)
 
 bool getVisible (t_object* o, t_glist *owner)
 {
+    /* To avoid ugly jumps objects are invisibles first when pasting. */
+    /* They are updated right after once done. */
+    
+    if (owner && glist_isPasting (owner)) { return false; }
+    
     /* Subpatches are created in two steps. */
     /* First a dummy one, in order to let objects contained inside to be added. */
     /* And again with the properly set values. */

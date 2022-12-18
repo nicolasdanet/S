@@ -217,6 +217,11 @@ PD_LOCAL int glist_isLoading (t_glist *g)
     return g->gl_isLoading;
 }
 
+PD_LOCAL int glist_isPasting (t_glist *g)
+{
+    return g->gl_isPasting;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -238,6 +243,16 @@ PD_LOCAL void glist_loadBegin (t_glist *g)
 PD_LOCAL void glist_loadEnd (t_glist *g)
 {
     g->gl_isLoading = 0;
+}
+
+PD_LOCAL void glist_pasteBegin (t_glist *g)
+{
+    g->gl_isPasting = 1;
+}
+
+PD_LOCAL void glist_pasteEnd (t_glist *g)
+{
+    g->gl_isPasting = 0;
 }
 
 PD_LOCAL void glist_undoEnable (t_glist *g)
