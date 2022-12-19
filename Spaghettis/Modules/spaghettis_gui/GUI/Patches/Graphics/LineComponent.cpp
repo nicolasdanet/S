@@ -200,7 +200,7 @@ void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& li
     line.startNewSubPath (p1);
     line.cubicTo (controlPoint1, controlPoint2, p2);
 
-    const juce::PathStrokeType s1 (5.0f * f); s1.createStrokedPath (hit,  line);
+    const juce::PathStrokeType s1 (7.5f * f); s1.createStrokedPath (hit,  line);
     const juce::PathStrokeType s2 (2.5f * f); s2.createStrokedPath (line, line);
 }
 
