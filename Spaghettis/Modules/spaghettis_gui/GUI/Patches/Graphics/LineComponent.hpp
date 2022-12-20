@@ -58,6 +58,9 @@ public:
 // MARK: -
 
 public:
+    bool intersects (const juce::Rectangle<float>&) const;
+    
+public:
     bool hitTest (int, int) override;
     void changeListenerCallback (juce::ChangeBroadcaster*) override;
 
@@ -113,6 +116,7 @@ private:
     core::Cached<juce::Colour> lineColour_;
     core::Cached<juce::Colour> lineSelectedColour_;
     core::Cached<juce::Colour> lineSignalColour_;
+    juce::Line<float> straight_;
     juce::Path linePath_;
     juce::Path hitPath_;
     bool isSignal_;

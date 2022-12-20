@@ -96,6 +96,20 @@ void LineComponent::paint (juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool LineComponent::intersects (const juce::Rectangle<float>& r) const
+{
+    /*
+    if (hitPath_.intersectsLine (juce::Line<float> (r.getTopLeft(), r.getTopRight())))       { return true; }
+    if (hitPath_.intersectsLine (juce::Line<float> (r.getBottomLeft(), r.getBottomRight()))) { return true; }
+    */
+    
+    return false;
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 bool LineComponent::hitTest (int x, int y)
 {
     return hitPath_.contains (juce::Point<float> (x, y));

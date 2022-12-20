@@ -207,6 +207,38 @@ LineComponent* EditView::getSelectedLine() const
     return getLineComponent (getSelected (lines_));
 }
 
+bool EditView::selectObjects (const juce::Rectangle<int>& r)
+{
+    bool done = false;
+    
+    auto f = [&](const auto& p)
+    {
+        if (r.intersects (p->getBounds())) { p->setSelected (true); done = true; }
+    };
+
+    objects_.forEach (f);
+
+    return done;
+}
+
+bool EditView::selectLines (const juce::Rectangle<int>& r)
+{
+    bool done = false;
+    
+    auto f = [&done, t = r.toFloat()](const auto& p)
+    {
+        if (p->intersects (t)) { p->setSelected (true); done = true; }
+    };
+
+    lines_.forEach (f);
+
+    return done;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 core::Item EditView::getItemForInspector() const
 {
     if (getNumberOfSelectedObjects() == 1)    { return Documentation::createCopy (getSelectedObject()); }
@@ -261,12 +293,7 @@ void EditView::selectAll()
 
 void EditView::select (const juce::Rectangle<int>& r)
 {
-    auto f = [t = r](const auto& p)
-    {
-        if (t.intersects (p->getBounds())) { p->setSelected (true); }
-    };
-
-    objects_.forEach (f);
+    if (selectObjects (r) == false) { selectLines (r); }
 }
 
 void EditView::dragStart()

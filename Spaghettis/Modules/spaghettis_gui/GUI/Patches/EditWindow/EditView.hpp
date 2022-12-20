@@ -83,6 +83,8 @@ public:
     core::Item getItemForInspector() const;
     
 private:
+    bool selectObjects (const juce::Rectangle<int>&);
+    bool selectLines (const juce::Rectangle<int>&);
     int getNumberOfSelectedObjects() const;
     int getNumberOfSelectedLines() const;
     ObjectComponent* getSelectedObject() const;
