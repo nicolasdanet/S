@@ -98,12 +98,8 @@ void LineComponent::paint (juce::Graphics& g)
 
 bool LineComponent::intersects (const juce::Rectangle<float>& r) const
 {
-    const juce::Point<float> position (getBounds().getPosition().toFloat());
-    
-    const juce::Line<float> t (straight_.getStart() + position, straight_.getEnd() + position);
-    
-    if (t.intersects (juce::Line<float> (r.getTopLeft(), r.getTopRight())))       { return true; }
-    if (t.intersects (juce::Line<float> (r.getBottomLeft(), r.getBottomRight()))) { return true; }
+    if (straight_.intersects (juce::Line<float> (r.getTopLeft(), r.getTopRight())))       { return true; }
+    if (straight_.intersects (juce::Line<float> (r.getBottomLeft(), r.getBottomRight()))) { return true; }
     
     return false;
 }
@@ -181,7 +177,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Line<float> getLineStraight (const juce::Rectangle<int>& bounds,
+auto getStraightLine (const juce::Rectangle<int>& bounds,
     const juce::Rectangle<int>& iPin,
     const juce::Rectangle<int>& oPin,
     float f)
@@ -203,8 +199,8 @@ juce::Line<float> getLineStraight (const juce::Rectangle<int>& bounds,
     else                           { p1.addXY (0,  h); p2.addXY (0, -h); }
     //
     }
-
-    return juce::Line<float> (p1, p2);
+    
+    return std::make_tuple (juce::Line<float> (p1, p2), juce::Line<float> (p1 + position, p2 + position));
 }
 
 void makeLinePaths (juce::Line<float> straight, juce::Path& line, juce::Path& hit, float f)
@@ -215,12 +211,14 @@ void makeLinePaths (juce::Line<float> straight, juce::Path& line, juce::Path& hi
     const juce::Point<float> controlPoint1 (p1.x, p1.y + (p2.y - p1.y) * 0.33f);
     const juce::Point<float> controlPoint2 (p2.x, p1.y + (p2.y - p1.y) * 0.66f);
     
-    line.clear();
-    line.startNewSubPath (p1);
-    line.cubicTo (controlPoint1, controlPoint2, p2);
+    juce::Path path;
+    
+    path.clear();
+    path.startNewSubPath (p1);
+    path.cubicTo (controlPoint1, controlPoint2, p2);
 
-    const juce::PathStrokeType s1 (7.5f * f); s1.createStrokedPath (hit,  line);
-    const juce::PathStrokeType s2 (2.5f * f); s2.createStrokedPath (line, line);
+    const juce::PathStrokeType s1 (7.5f * f); s1.createStrokedPath (hit,  path);
+    const juce::PathStrokeType s2 (2.5f * f); s2.createStrokedPath (line, path);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -264,9 +262,11 @@ void LineComponent::update()
     const juce::Rectangle<int> oPin (outlet->getPinBoundsInView());
     const juce::Rectangle<int> bounds (oPin.getUnion (iPin));
     
-    straight_ = getLineStraight (bounds, iPin, oPin, scale);
+    const auto [local, top] = getStraightLine (bounds, iPin, oPin, scale);
     
-    makeLinePaths (straight_, linePath_, hitPath_, scale);
+    makeLinePaths (local, linePath_, hitPath_, scale);
+    
+    straight_ = top;
     
     isSignal_ = outlet->isSignal() && inlet->isSignal();
     
