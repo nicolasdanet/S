@@ -98,10 +98,12 @@ void LineComponent::paint (juce::Graphics& g)
 
 bool LineComponent::intersects (const juce::Rectangle<float>& r) const
 {
-    /*
-    if (hitPath_.intersectsLine (juce::Line<float> (r.getTopLeft(), r.getTopRight())))       { return true; }
-    if (hitPath_.intersectsLine (juce::Line<float> (r.getBottomLeft(), r.getBottomRight()))) { return true; }
-    */
+    const juce::Point<float> position (getBounds().getPosition().toFloat());
+    
+    const juce::Line<float> t (straight_.getStart() + position, straight_.getEnd() + position);
+    
+    if (t.intersects (juce::Line<float> (r.getTopLeft(), r.getTopRight())))       { return true; }
+    if (t.intersects (juce::Line<float> (r.getBottomLeft(), r.getBottomRight()))) { return true; }
     
     return false;
 }
@@ -179,7 +181,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto getLineStartAndEnd (const juce::Rectangle<int>& bounds,
+juce::Line<float> getLineStraight (const juce::Rectangle<int>& bounds,
     const juce::Rectangle<int>& iPin,
     const juce::Rectangle<int>& oPin,
     float f)
@@ -202,11 +204,14 @@ auto getLineStartAndEnd (const juce::Rectangle<int>& bounds,
     //
     }
 
-    return std::make_tuple (p1, p2);
+    return juce::Line<float> (p1, p2);
 }
 
-void makeLinePaths (juce::Point<float> p1, juce::Point<float> p2, juce::Path& line, juce::Path& hit, float f)
+void makeLinePaths (juce::Line<float> straight, juce::Path& line, juce::Path& hit, float f)
 {
+    const juce::Point<float> p1 (straight.getStart());
+    const juce::Point<float> p2 (straight.getEnd());
+    
     const juce::Point<float> controlPoint1 (p1.x, p1.y + (p2.y - p1.y) * 0.33f);
     const juce::Point<float> controlPoint2 (p2.x, p1.y + (p2.y - p1.y) * 0.66f);
     
@@ -259,9 +264,9 @@ void LineComponent::update()
     const juce::Rectangle<int> oPin (outlet->getPinBoundsInView());
     const juce::Rectangle<int> bounds (oPin.getUnion (iPin));
     
-    const auto [start, end] = getLineStartAndEnd (bounds, iPin, oPin, scale);
+    straight_ = getLineStraight (bounds, iPin, oPin, scale);
     
-    makeLinePaths (start, end, linePath_, hitPath_, scale);
+    makeLinePaths (straight_, linePath_, hitPath_, scale);
     
     isSignal_ = outlet->isSignal() && inlet->isSignal();
     
