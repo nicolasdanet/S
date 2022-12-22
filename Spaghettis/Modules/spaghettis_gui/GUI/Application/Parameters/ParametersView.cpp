@@ -12,11 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParameterView::expandFirstPanel()
+void ParameterView::requireExpandPanel (const juce::String& group)
 {
-    const int primeInterval = 307; startTimer (primeInterval);
+    const int primeInterval = 307; requiredPanel_ = group; startTimer (primeInterval);
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -35,8 +35,10 @@ void ParameterView::resizePanel (const juce::Rectangle<int>& bounds)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParameterView::expandPanel (int i)
+void ParameterView::expandPanel (int index)
 {
+    const int i = juce::jmax (0, index);
+    
     if (panel_.getNumPanels() > 1) {
     //
     if (expanded_ == i) { jassert (expandedLast_ != i); expandPanel (expandedLast_); }
@@ -56,9 +58,9 @@ bool ParameterView::isExpanded (int i)
 
 void ParameterView::timerCallback()
 {
-    stopTimer(); expandPanel (0);
+    stopTimer(); expandPanel (data_.getGroupIndex (requiredPanel_));
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

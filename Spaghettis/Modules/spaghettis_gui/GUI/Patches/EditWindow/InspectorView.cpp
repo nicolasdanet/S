@@ -15,6 +15,8 @@ namespace spaghettis {
 InspectorView::InspectorView (const core::Item& item, int w) : ParameterView (item.getData(), w), item_ (item)
 {
     item_.addObserver (this);
+    
+    requireExpandPanel (Tag::Parameters);
 }
 
 InspectorView::~InspectorView()

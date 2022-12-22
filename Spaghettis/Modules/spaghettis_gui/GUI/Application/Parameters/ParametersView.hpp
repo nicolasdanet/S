@@ -40,7 +40,7 @@ public:
 // MARK: -
 
 public:
-    void expandFirstPanel();
+    void requireExpandPanel (const juce::String& group = juce::String());
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -76,6 +76,7 @@ private:
     core::Data data_;
     int expanded_;
     int expandedLast_;
+    juce::String requiredPanel_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterView)
