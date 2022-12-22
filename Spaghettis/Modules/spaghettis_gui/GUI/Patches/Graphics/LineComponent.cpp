@@ -98,10 +98,7 @@ void LineComponent::paint (juce::Graphics& g)
 
 bool LineComponent::intersects (const juce::Rectangle<float>& r) const
 {
-    if (straight_.intersects (juce::Line<float> (r.getTopLeft(), r.getTopRight())))       { return true; }
-    if (straight_.intersects (juce::Line<float> (r.getBottomLeft(), r.getBottomRight()))) { return true; }
-    
-    return false;
+    return r.intersects (straight_);
 }
     
 // -----------------------------------------------------------------------------------------------------------
