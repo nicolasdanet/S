@@ -17,9 +17,7 @@ EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
     undo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Undo)),
     redo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Redo)),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),
-    scale_ (1.0f),
-    lasso_ (this),
-    hand_ (this)
+    scale_ (1.0f)
 {
     viewTree_.addListener (this);
     undo_.attach ([]() { Spaghettis()->updateMenuBar(); });
@@ -59,12 +57,21 @@ void EditView::mouseDown (const juce::MouseEvent& e)
 
 void EditView::mouseDrag (const juce::MouseEvent& e)
 {
-    lasso_.mouseDrag (e);
+    if (!drag_) {
+        if (Mouse::isCommandClick (e)) { drag_ = std::make_unique<EditHand> (this); }
+        else {
+            drag_ = std::make_unique<EditLasso> (this);
+        }
+    }
+
+    if (drag_) { drag_->mouseDrag (e); }
 }
 
 void EditView::mouseUp (const juce::MouseEvent& e)
 {
-    lasso_.mouseUp (e);
+    if (drag_) { drag_->mouseUp (e);   }
+    
+    drag_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------

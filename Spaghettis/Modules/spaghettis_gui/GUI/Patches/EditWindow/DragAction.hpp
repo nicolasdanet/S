@@ -12,46 +12,26 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditView;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-class EditLasso : public DragAction {
+class DragAction {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit EditLasso (EditView*);
+    DragAction() = default;
     
-    ~EditLasso() = default;
+    virtual ~DragAction() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
-    void mouseDrag (const juce::MouseEvent&) override;
-    void mouseUp (const juce::MouseEvent&) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
+    virtual void mouseDrag (const juce::MouseEvent&) = 0;
+    virtual void mouseUp (const juce::MouseEvent&) = 0;
 
 private:
-    void createComponent (const juce::Rectangle<int>&);
-    void updateComponent (const juce::Rectangle<int>&);
-
-private:
-    EditView* view_;
-
-private:
-    std::unique_ptr<EditLassoComponent> lassoComponent_;
-    
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditLasso)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DragAction)
 };
 
 // -----------------------------------------------------------------------------------------------------------

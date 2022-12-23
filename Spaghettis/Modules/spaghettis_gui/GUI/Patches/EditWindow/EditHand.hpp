@@ -17,7 +17,7 @@ class EditView;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class EditHand {
+class EditHand : public DragAction {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -33,8 +33,8 @@ public:
 // MARK: -
 
 public:
-    void mouseDrag (const juce::MouseEvent&);
-    void mouseUp (const juce::MouseEvent&);
+    void mouseDrag (const juce::MouseEvent&) override;
+    void mouseUp (const juce::MouseEvent&) override;
 
 private:
     EditView* view_;

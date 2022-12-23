@@ -192,8 +192,7 @@ private:
     Table<ObjectComponent> objects_;
     Table<LineComponent> lines_;
     float scale_;
-    EditLasso lasso_;
-    EditHand hand_;
+    std::unique_ptr<DragAction> drag_;
     EditInspector* inspector_;
     EditPort* owner_;
     
