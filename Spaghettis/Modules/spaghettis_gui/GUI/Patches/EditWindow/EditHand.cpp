@@ -14,6 +14,12 @@ namespace spaghettis {
 
 EditHand::EditHand (EditView* view) : view_ (view)
 {
+    view_->setMouseCursor (juce::MouseCursor::DraggingHandCursor);
+}
+
+EditHand::~EditHand()
+{
+    view_->setMouseCursor (juce::MouseCursor::NormalCursor);
 }
 
 // -----------------------------------------------------------------------------------------------------------
