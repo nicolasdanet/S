@@ -193,6 +193,7 @@ private:
     Table<LineComponent> lines_;
     float scale_;
     EditLasso lasso_;
+    EditHand hand_;
     EditInspector* inspector_;
     EditPort* owner_;
     

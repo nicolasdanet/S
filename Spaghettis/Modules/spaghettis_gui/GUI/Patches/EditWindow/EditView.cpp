@@ -18,7 +18,8 @@ EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
     redo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Redo)),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),
     scale_ (1.0f),
-    lasso_ (this)
+    lasso_ (this),
+    hand_ (this)
 {
     viewTree_.addListener (this);
     undo_.attach ([]() { Spaghettis()->updateMenuBar(); });
