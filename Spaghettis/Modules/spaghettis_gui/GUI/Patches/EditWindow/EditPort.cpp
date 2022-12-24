@@ -32,23 +32,6 @@ EditPort::~EditPort()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditPort::setZoom (int n)
-{
-    constexpr int min = steps_.front();
-    constexpr int max = steps_.back();
-    
-    zoom_ = juce::var (juce::jlimit (min, max, n)); view_.setScale (getScale());
-}
-    
-int EditPort::getZoom() const
-{
-    return static_cast <int> (zoom_.getValue());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 
 juce::Value EditPort::getZoomAsValue() const
 {
@@ -102,6 +85,8 @@ void EditPort::zoomReset()
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
+    if (origin_.has_value()) { return; }        /* Don't collide with drag operation. */
+    
     const float step = 200.0f / getScale();
     
     float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
@@ -134,6 +119,23 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditPort::setZoom (int n)
+{
+    constexpr int min = steps_.front();
+    constexpr int max = steps_.back();
+    
+    zoom_ = juce::var (juce::jlimit (min, max, n)); view_.setScale (getScale());
+}
+    
+int EditPort::getZoom() const
+{
+    return static_cast <int> (zoom_.getValue());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditPort::zoom (int n)
 {
     if (getZoom() != n) { setZoom (n); update(); }
@@ -146,6 +148,8 @@ void EditPort::zoom (int n)
 void EditPort::dragStart()
 {
     DBG ("START");
+    
+    origin_ = offset_;
 }
 
 void EditPort::drag (juce::Point<int> pt)
@@ -156,6 +160,8 @@ void EditPort::drag (juce::Point<int> pt)
 void EditPort::dragEnd()
 {
     DBG ("END");
+    
+    origin_.reset();
 }
     
 // -----------------------------------------------------------------------------------------------------------
