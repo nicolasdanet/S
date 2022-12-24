@@ -42,6 +42,11 @@ static bool isCommandClick (const juce::MouseEvent& e)
     return isClick (e) && e.mods.isCommandDown();
 }
 
+static bool isAltClick (const juce::MouseEvent& e)
+{
+    return isClick (e) && e.mods.isAltDown();
+}
+
 static bool isSimpleClick (const juce::MouseEvent& e)
 {
     return isClick (e) && !isShiftClick (e) && !isCommandClick (e);
