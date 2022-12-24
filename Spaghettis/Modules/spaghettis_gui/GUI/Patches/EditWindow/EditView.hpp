@@ -24,6 +24,7 @@ class EditView : public View, private juce::AsyncUpdater {
 // -----------------------------------------------------------------------------------------------------------
 
 friend class EditPort;
+friend class EditHand;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -39,9 +40,14 @@ public:
 // MARK: -
 
 private:
-    void setOwner (EditPort* owner)
+    void setPort (EditPort* owner)
     {
-        owner_ = owner;
+        port_ = owner;
+    }
+    
+    EditPort* getPort() const
+    {
+        jassert (port_ != nullptr); return port_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -194,7 +200,7 @@ private:
     float scale_;
     std::unique_ptr<DragAction> drag_;
     EditInspector* inspector_;
-    EditPort* owner_;
+    EditPort* port_;
     
 private:
     inline static bool hasPaste_ = false;

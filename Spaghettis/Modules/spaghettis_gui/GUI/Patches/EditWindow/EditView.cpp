@@ -133,7 +133,7 @@ std::optional<juce::Point<int>> EditView::getRealPositionOfSelectedObjects (juce
 
 juce::Rectangle<int> EditView::getRealVisibleArea() const
 {
-    jassert (owner_ != nullptr); return owner_->getRealVisibleArea();
+    return getPort()->getRealVisibleArea();
 }
 
 // -----------------------------------------------------------------------------------------------------------

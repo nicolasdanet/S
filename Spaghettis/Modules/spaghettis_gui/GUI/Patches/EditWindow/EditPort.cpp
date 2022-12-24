@@ -14,7 +14,7 @@ namespace spaghettis {
 
 EditPort::EditPort (EditView& view) : view_ (view), zoom_ (100)
 {
-    view_.setOwner (this);
+    view_.setPort (this);
     
     update();
         
@@ -25,7 +25,7 @@ EditPort::~EditPort()
 {
     removeChildComponent (&view_);
         
-    view_.setOwner (nullptr);
+    view_.setPort (nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ juce::Rectangle<int> EditPort::getRealVisibleArea() const
     const int w   = Distance::unscaled (getWidth(), f);
     const int h   = Distance::unscaled (getHeight(), f);
 
-    return juce::Rectangle<int> (w, h) + origin_;
+    return juce::Rectangle<int> (w, h) + offset_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -123,7 +123,7 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
         return static_cast<int> (f);
     };
     
-    origin_ += juce::Point<int> (-map (x), -map (y));
+    offset_ += juce::Point<int> (-map (x), -map (y));
     
     update();
     //
@@ -143,9 +143,28 @@ void EditPort::zoom (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditPort::dragStart()
+{
+    DBG ("START");
+}
+
+void EditPort::drag (juce::Point<int> pt)
+{
+
+}
+
+void EditPort::dragEnd()
+{
+    DBG ("END");
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditPort::update()
 {
-    const juce::Point<int> pt = Coordinates::scaled (Coordinates::realToLocal (origin_), getScale());
+    const juce::Point<int> pt = Coordinates::scaled (Coordinates::realToLocal (offset_), getScale());
     
     view_.setBounds (juce::Rectangle<int> (core::Canvas::getSize(), core::Canvas::getSize()) - pt);
 }
