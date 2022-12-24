@@ -30,9 +30,7 @@ EditHand::~EditHand()
 
 void EditHand::mouseDrag (const juce::MouseEvent& e)
 {
-    juce::Point<int> pt = Distance::unscaled (e.getOffsetFromDragStart(), view_->getScale());
-    
-    DBG (juce::String (pt.x) + " / " + juce::String (pt.y));
+    view_->getPort()->drag (Distance::unscaled (e.getOffsetFromDragStart(), view_->getScale()));
 }
 
 void EditHand::mouseUp (const juce::MouseEvent& e)

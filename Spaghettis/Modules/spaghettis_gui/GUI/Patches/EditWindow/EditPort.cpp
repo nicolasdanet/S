@@ -147,20 +147,16 @@ void EditPort::zoom (int n)
 
 void EditPort::dragStart()
 {
-    DBG ("START");
-    
     origin_ = offset_;
 }
 
 void EditPort::drag (juce::Point<int> pt)
 {
-
+    if (origin_.has_value()) { offset_ = origin_.value() - pt; update(); }
 }
 
 void EditPort::dragEnd()
 {
-    DBG ("END");
-    
     origin_.reset();
 }
     
