@@ -100,11 +100,6 @@ void openSubPatch (const core::Object& o, View* v)
     if (o.isPatch()) { v->getPatch().openSubPatchWindow (o.getIdentifier()); }
 }
 
-EditView* asEditView (View* view)
-{
-    return dynamic_cast<EditView*> (view);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -131,12 +126,12 @@ void ObjectComponent::mouseExit (const juce::MouseEvent&)
 
 void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 {
-    if (auto view = asEditView (view_)) {
+    if (auto view = View::asEditView (view_)) {
     //
     view->dragObjectsStart();
     
     if (Mouse::isAltClick (e))          { painter_->mouseDown (e); }
-    else if (Mouse::isCommandClick (e)) { view->handleMouseDown (e); }
+    else if (Mouse::isCommandClick (e)) { }
     else if (Mouse::isDoubleClick (e))  { openSubPatch (object_, view); }
     else if (Mouse::isShiftClick (e))   { setSelected (!isSelected());  }
     else if (Mouse::isSimpleClick (e))  {
@@ -150,10 +145,10 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    if (auto view = asEditView (view_)) { view->handleMouseDrag (e); }
+    if (auto view = View::asEditView (view_)) { view->handleMouseDrag (e); }
     
     /*
-    if (auto view = asEditView (view_)) {
+    if (auto view = View::asEditView (view_)) {
     //
     if (!view->hasDragAction() && isSelected()) {
         view->dragObjects (Distance::unscaled (e.getOffsetFromDragStart(), getScale()));
@@ -167,7 +162,7 @@ void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 {
-    if (auto view = asEditView (view_)) { view->handleMouseUp (e); }
+    if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
