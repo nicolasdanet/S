@@ -50,6 +50,25 @@ void EditView::detach (EditInspector* inspector)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditView::handleMouseDown (const juce::MouseEvent& e)
+{
+    mouseDown (e);
+}
+
+void EditView::handleMouseDrag (const juce::MouseEvent& e)
+{
+    mouseDrag (e);
+}
+
+void EditView::handleMouseUp (const juce::MouseEvent& e)
+{
+    mouseUp (e);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
     if (Mouse::isSimpleClick (e)) { deselectAll(); }
