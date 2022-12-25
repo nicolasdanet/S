@@ -69,9 +69,18 @@ void EditView::mouseDrag (const juce::MouseEvent& e)
 
 void EditView::mouseUp (const juce::MouseEvent& e)
 {
-    if (drag_) { drag_->mouseUp (e);   }
+    if (drag_) { drag_->mouseUp (e); }
     
     drag_ = nullptr;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool EditView::hasDragAction() const
+{
+    return (drag_ != nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------

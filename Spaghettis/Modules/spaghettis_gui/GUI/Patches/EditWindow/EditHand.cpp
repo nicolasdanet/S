@@ -35,6 +35,7 @@ void EditHand::mouseDrag (const juce::MouseEvent& e)
 
 void EditHand::mouseUp (const juce::MouseEvent& e)
 {
+    
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -62,11 +62,18 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
+public:
     void mouseDown (const juce::MouseEvent&) override;
     void mouseDrag (const juce::MouseEvent&) override;
     void mouseUp (const juce::MouseEvent&) override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool hasDragAction() const;
+    
 private:
     std::optional<juce::Point<int>> getRealMousePosition() const;
     std::optional<juce::Point<int>> getRealPositionOfSelectedObjects (juce::Point<int>) const;
