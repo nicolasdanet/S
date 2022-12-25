@@ -74,9 +74,9 @@ private:
 // MARK: -
 
 private:
-    void dragStart();
-    void drag (juce::Point<int>);
-    void dragEnd();
+    void dragViewStart();
+    void dragView (juce::Point<int>);
+    void dragViewEnd();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

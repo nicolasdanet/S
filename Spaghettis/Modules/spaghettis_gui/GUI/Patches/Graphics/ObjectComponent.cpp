@@ -133,7 +133,7 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 {
     if (auto view = asEditView (view_)) {
     //
-    view->dragStart();
+    view->dragObjectsStart();
     
     if (Mouse::isAltClick (e))          { painter_->mouseDown (e); }
     else if (Mouse::isCommandClick (e)) { view->mouseDown (e); }
@@ -153,7 +153,7 @@ void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
     if (auto view = asEditView (view_)) {
     //
     if (!view->hasDragAction() && isSelected()) {
-        view->drag (Distance::unscaled (e.getOffsetFromDragStart(), getScale()));
+        view->dragObjects (Distance::unscaled (e.getOffsetFromDragStart(), getScale()));
     } else {
         view->mouseDrag (e);
     }

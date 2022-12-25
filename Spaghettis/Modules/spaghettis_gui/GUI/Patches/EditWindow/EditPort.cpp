@@ -145,17 +145,17 @@ void EditPort::zoom (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditPort::dragStart()
+void EditPort::dragViewStart()
 {
     origin_ = offset_;
 }
 
-void EditPort::drag (juce::Point<int> pt)
+void EditPort::dragView (juce::Point<int> pt)
 {
     if (origin_.has_value()) { offset_ = origin_.value() - pt; update(); }
 }
 
-void EditPort::dragEnd()
+void EditPort::dragViewEnd()
 {
     origin_.reset();
 }

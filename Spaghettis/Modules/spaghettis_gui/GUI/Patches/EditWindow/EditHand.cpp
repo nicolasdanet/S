@@ -15,12 +15,12 @@ namespace spaghettis {
 EditHand::EditHand (EditView* view) : view_ (view)
 {
     view_->setMouseCursor (juce::MouseCursor::DraggingHandCursor);
-    view_->getPort()->dragStart();
+    view_->getPort()->dragViewStart();
 }
 
 EditHand::~EditHand()
 {
-    view_->getPort()->dragEnd();
+    view_->getPort()->dragViewEnd();
     view_->setMouseCursor (juce::MouseCursor::NormalCursor);
 }
 
@@ -30,7 +30,7 @@ EditHand::~EditHand()
 
 void EditHand::mouseDrag (const juce::MouseEvent& e)
 {
-    view_->getPort()->drag (Distance::unscaled (e.getOffsetFromDragStart(), view_->getScale()));
+    view_->getPort()->dragView (Distance::unscaled (e.getOffsetFromDragStart(), view_->getScale()));
 }
 
 void EditHand::mouseUp (const juce::MouseEvent& e)

@@ -105,8 +105,8 @@ private:
     void setPaste();
 
 public:
-    void dragStart();
-    void drag (juce::Point<int>);
+    void dragObjectsStart();
+    void dragObjects (juce::Point<int>);
 
 public:
     void moveBack();

@@ -313,12 +313,12 @@ void EditView::select (const juce::Rectangle<int>& r)
     if (selectObjects (r) == false) { selectLines (r); }
 }
 
-void EditView::dragStart()
+void EditView::dragObjectsStart()
 {
     objects_.forEach ([](const auto& p) { p->dragStart(); });
 }
 
-void EditView::drag (juce::Point<int> offset)
+void EditView::dragObjects (juce::Point<int> offset)
 {
     objects_.forEach ([offset](const auto& p) { if (p->isSelected()) { p->drag (offset); } });
 }
