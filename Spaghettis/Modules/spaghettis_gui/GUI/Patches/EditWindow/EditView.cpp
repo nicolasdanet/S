@@ -50,17 +50,17 @@ void EditView::detach (EditInspector* inspector)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::handleMouseDown (const juce::MouseEvent& e)
+void EditView::handleMouseDown (const juce::MouseEvent& e, const core::Item&)
 {
     mouseDown (e.getEventRelativeTo (this));
 }
 
-void EditView::handleMouseDrag (const juce::MouseEvent& e, bool isSelected)
+void EditView::handleMouseDrag (const juce::MouseEvent& e, const core::Item&)
 {
-    mouseDragProceed (e.getEventRelativeTo (this), isSelected);
+    mouseDragProceed (e.getEventRelativeTo (this), false);
 }
 
-void EditView::handleMouseUp (const juce::MouseEvent& e)
+void EditView::handleMouseUp (const juce::MouseEvent& e, const core::Item&)
 {
     mouseUp (e.getEventRelativeTo (this));
 }
@@ -68,6 +68,11 @@ void EditView::handleMouseUp (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+void EditView::mouseDown (const juce::MouseEvent& e)
+{
+    if (Mouse::isSimpleClick (e)) { deselectAll(); }
+}
 
 void EditView::mouseDragProceed (const juce::MouseEvent& e, bool isSelected)
 {
@@ -79,15 +84,6 @@ void EditView::mouseDragProceed (const juce::MouseEvent& e, bool isSelected)
     }
 
     if (drag_) { drag_->mouseDrag (e); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditView::mouseDown (const juce::MouseEvent& e)
-{
-    if (Mouse::isSimpleClick (e)) { deselectAll(); }
 }
 
 void EditView::mouseDrag (const juce::MouseEvent& e)

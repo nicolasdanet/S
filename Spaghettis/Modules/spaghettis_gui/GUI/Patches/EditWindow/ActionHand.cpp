@@ -35,7 +35,6 @@ void ActionHand::mouseDrag (const juce::MouseEvent& e)
 
 void ActionHand::mouseUp (const juce::MouseEvent& e)
 {
-    
 }
 
 // -----------------------------------------------------------------------------------------------------------

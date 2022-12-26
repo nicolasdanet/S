@@ -128,8 +128,6 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 {
     if (auto view = View::asEditView (view_)) {
     //
-    view->dragObjectsStart();
-    
     if (Mouse::isAltClick (e))          { painter_->mouseDown (e); }
     else if (Mouse::isCommandClick (e)) { }
     else if (Mouse::isDoubleClick (e))  { openSubPatch (object_, view); }
@@ -145,24 +143,12 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) { view->handleMouseDrag (e, isSelected()); }
-    
-    /*
-    if (auto view = View::asEditView (view_)) {
-    //
-    if (!view->hasDragAction() && isSelected()) {
-        view->dragObjects (Distance::unscaled (e.getOffsetFromDragStart(), getScale()));
-    } else {
-        view->mouseDrag (e);
-    }
-    //
-    }
-    */
+    if (auto view = View::asEditView (view_)) { view->handleMouseDrag (e, object_); }
 }
 
 void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
+    if (auto view = View::asEditView (view_)) { view->handleMouseUp (e, object_); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
