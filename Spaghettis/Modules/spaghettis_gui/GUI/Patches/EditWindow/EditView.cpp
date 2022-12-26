@@ -74,7 +74,7 @@ void EditView::mouseDragProceed (const juce::MouseEvent& e, bool isSelected)
     if (!drag_) {
         if (Mouse::isCommandClick (e)) { drag_ = std::make_unique<EditHand> (this); }
         else {
-            drag_ = std::make_unique<EditLasso> (this);
+            drag_ = std::make_unique<ActionLasso> (this);
         }
     }
 

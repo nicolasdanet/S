@@ -10,26 +10,31 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-EditLassoComponent::EditLassoComponent (const juce::Rectangle<int>& bounds) :
-    lassoColour_ (Spaghettis()->getCachedColour (Tag::Lasso))
-{
-    setOpaque (false);
-    setPaintingIsUnclipped (true);
-    setAlwaysOnTop (true);
-    setInterceptsMouseClicks (false, true);
-    setBounds (bounds);
-}
+class ActionLassoComponent : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditLassoComponent::paint (juce::Graphics& g)
-{
-    g.setColour (lassoColour_.get()); g.drawRect (getLocalBounds());
-}
+public:
+    explicit ActionLassoComponent (const juce::Rectangle<int>&);
+    
+    ~ActionLassoComponent() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics&) override;
+
+private:
+    core::Cached<juce::Colour> lassoColour_;
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ActionLassoComponent)
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -38,3 +43,4 @@ void EditLassoComponent::paint (juce::Graphics& g)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+

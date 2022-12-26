@@ -10,30 +10,48 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-class EditLassoComponent : public juce::Component {
+class EditView;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+class ActionLasso : public DragAction {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit EditLassoComponent (const juce::Rectangle<int>&);
+    explicit ActionLasso (EditView*);
     
-    ~EditLassoComponent() = default;
+    ~ActionLasso() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void paint (juce::Graphics&) override;
+    void mouseDrag (const juce::MouseEvent&) override;
+    void mouseUp (const juce::MouseEvent&) override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 private:
-    core::Cached<juce::Colour> lassoColour_;
+    void createComponent (const juce::Rectangle<int>&);
+    void updateComponent (const juce::Rectangle<int>&);
+
+private:
+    EditView* view_;
+
+private:
+    std::unique_ptr<ActionLassoComponent> lassoComponent_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditLassoComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ActionLasso)
 };
 
 // -----------------------------------------------------------------------------------------------------------

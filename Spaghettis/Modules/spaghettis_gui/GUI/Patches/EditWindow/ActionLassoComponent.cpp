@@ -12,47 +12,24 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditView;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-class EditLasso : public DragAction {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    explicit EditLasso (EditView*);
-    
-    ~EditLasso() = default;
+ActionLassoComponent::ActionLassoComponent (const juce::Rectangle<int>& bounds) :
+    lassoColour_ (Spaghettis()->getCachedColour (Tag::Lasso))
+{
+    setOpaque (false);
+    setPaintingIsUnclipped (true);
+    setAlwaysOnTop (true);
+    setInterceptsMouseClicks (false, true);
+    setBounds (bounds);
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    void mouseDrag (const juce::MouseEvent&) override;
-    void mouseUp (const juce::MouseEvent&) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    void createComponent (const juce::Rectangle<int>&);
-    void updateComponent (const juce::Rectangle<int>&);
-
-private:
-    EditView* view_;
-
-private:
-    std::unique_ptr<EditLassoComponent> lassoComponent_;
-    
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditLasso)
-};
+void ActionLassoComponent::paint (juce::Graphics& g)
+{
+    g.setColour (lassoColour_.get()); g.drawRect (getLocalBounds());
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -61,4 +38,3 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
