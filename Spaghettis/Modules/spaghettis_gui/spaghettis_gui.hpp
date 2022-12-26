@@ -145,7 +145,7 @@
 #include "GUI/Patches/EditWindow/EditFactory.hpp"
 #include "GUI/Patches/EditWindow/ActionLassoComponent.hpp"
 #include "GUI/Patches/EditWindow/ActionLasso.hpp"
-#include "GUI/Patches/EditWindow/EditHand.hpp"
+#include "GUI/Patches/EditWindow/ActionHand.hpp"
 #include "GUI/Patches/EditWindow/ActionMove.hpp"
 #include "GUI/Patches/EditWindow/EditView.hpp"
 #include "GUI/Patches/EditWindow/EditPort.hpp"

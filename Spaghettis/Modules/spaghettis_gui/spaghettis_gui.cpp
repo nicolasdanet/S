@@ -75,7 +75,7 @@
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/ActionLassoComponent.cpp"
 #include "GUI/Patches/EditWindow/ActionLasso.cpp"
-#include "GUI/Patches/EditWindow/EditHand.cpp"
+#include "GUI/Patches/EditWindow/ActionHand.cpp"
 #include "GUI/Patches/EditWindow/ActionMove.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
 #include "GUI/Patches/EditWindow/EditPort.cpp"

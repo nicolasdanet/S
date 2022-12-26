@@ -12,13 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditHand::EditHand (EditView* view) : view_ (view)
+ActionHand::ActionHand (EditView* view) : view_ (view)
 {
     view_->setMouseCursor (juce::MouseCursor::DraggingHandCursor);
     view_->getPort()->dragViewStart();
 }
 
-EditHand::~EditHand()
+ActionHand::~ActionHand()
 {
     view_->getPort()->dragViewEnd();
     view_->setMouseCursor (juce::MouseCursor::NormalCursor);
@@ -28,12 +28,12 @@ EditHand::~EditHand()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditHand::mouseDrag (const juce::MouseEvent& e)
+void ActionHand::mouseDrag (const juce::MouseEvent& e)
 {
     view_->getPort()->dragView (Distance::unscaled (e.getOffsetFromDragStart(), view_->getScale()));
 }
 
-void EditHand::mouseUp (const juce::MouseEvent& e)
+void ActionHand::mouseUp (const juce::MouseEvent& e)
 {
     
 }
