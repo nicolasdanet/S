@@ -143,12 +143,12 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) { view->handleMouseDrag (e, object_); }
+    if (auto view = View::asEditView (view_)) { view->handleMouseDrag (e, isSelected()); }
 }
 
 void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) { view->handleMouseUp (e, object_); }
+    if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

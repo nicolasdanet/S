@@ -45,22 +45,37 @@ void EditView::detach (EditInspector* inspector)
 {
     inspector_ = nullptr;
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::handleMouseDown (const juce::MouseEvent& e, const core::Item&)
+void EditView::mouseDragProceed (const juce::MouseEvent& e, bool isChild, bool isSelectedObject)
+{
+    if (!drag_) {
+        if (Mouse::isCommandClick (e)) { drag_ = std::make_unique<ActionHand> (this);  }
+        else if (isSelectedObject)     { drag_ = std::make_unique<ActionMove> (this);  }
+        else if (!isChild)             { drag_ = std::make_unique<ActionLasso> (this); }
+    }
+
+    if (drag_) { drag_->mouseDrag (e); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditView::handleMouseDown (const juce::MouseEvent& e)
 {
     mouseDown (e.getEventRelativeTo (this));
 }
 
-void EditView::handleMouseDrag (const juce::MouseEvent& e, const core::Item&)
+void EditView::handleMouseDrag (const juce::MouseEvent& e, bool isSelectedObject)
 {
-    mouseDragProceed (e.getEventRelativeTo (this), false);
+    mouseDragProceed (e.getEventRelativeTo (this), true, isSelectedObject);
 }
 
-void EditView::handleMouseUp (const juce::MouseEvent& e, const core::Item&)
+void EditView::handleMouseUp (const juce::MouseEvent& e)
 {
     mouseUp (e.getEventRelativeTo (this));
 }
@@ -74,21 +89,9 @@ void EditView::mouseDown (const juce::MouseEvent& e)
     if (Mouse::isSimpleClick (e)) { deselectAll(); }
 }
 
-void EditView::mouseDragProceed (const juce::MouseEvent& e, bool isSelected)
-{
-    if (!drag_) {
-        if (Mouse::isCommandClick (e)) { drag_ = std::make_unique<ActionHand> (this); }
-        else {
-            drag_ = std::make_unique<ActionLasso> (this);
-        }
-    }
-
-    if (drag_) { drag_->mouseDrag (e); }
-}
-
 void EditView::mouseDrag (const juce::MouseEvent& e)
 {
-    mouseDragProceed (e.getEventRelativeTo (this), false);
+    mouseDragProceed (e.getEventRelativeTo (this), false, false);
 }
 
 void EditView::mouseUp (const juce::MouseEvent& e)

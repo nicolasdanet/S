@@ -133,7 +133,7 @@ void LineComponent::mouseDown (const juce::MouseEvent& e)
 {
     if (auto view = View::asEditView (view_)) {
     //
-    view->handleMouseDown (e, line_);
+    view->handleMouseDown (e);
 
     if (Mouse::isShiftClick (e))       { setSelected (!isSelected()); }
     else if (Mouse::isSimpleClick (e)) { setSelected (true); }
