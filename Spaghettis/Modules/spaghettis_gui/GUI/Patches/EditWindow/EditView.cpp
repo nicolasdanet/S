@@ -52,17 +52,17 @@ void EditView::detach (EditInspector* inspector)
 
 void EditView::handleMouseDown (const juce::MouseEvent& e)
 {
-    mouseDown (e);
+    mouseDown (e.getEventRelativeTo (this));
 }
 
 void EditView::handleMouseDrag (const juce::MouseEvent& e)
 {
-    mouseDrag (e);
+    mouseDrag (e.getEventRelativeTo (this));
 }
 
 void EditView::handleMouseUp (const juce::MouseEvent& e)
 {
-    mouseUp (e);
+    mouseUp (e.getEventRelativeTo (this));
 }
 
 // -----------------------------------------------------------------------------------------------------------
