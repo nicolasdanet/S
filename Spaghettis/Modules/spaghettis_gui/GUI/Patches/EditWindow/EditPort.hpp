@@ -91,7 +91,6 @@ private:
     juce::Value zoom_;
     juce::Point<int> offset_;                       /* Real coordinates. */
     std::optional<juce::Point<int>> origin_;        /* Real coordinates. */
-    int step_;
 
 private:
     static constexpr std::array<int, 16> steps_ =

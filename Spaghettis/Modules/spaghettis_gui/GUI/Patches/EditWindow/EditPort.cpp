@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditPort::EditPort (EditView& view) : view_ (view), zoom_ (100), step_ (1)
+EditPort::EditPort (EditView& view) : view_ (view), zoom_ (100)
 {
     view_.setPort (this);
     
@@ -145,49 +145,14 @@ void EditPort::zoom (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-juce::Point<int> getRoundedToNearest (juce::Point<int> pt, int step)
-{
-    const int k = juce::jmax (1, step);
-    const int x = pt.getX() / k;
-    const int y = pt.getY() / k;
-    
-    return juce::Point<int> (x * k, y * k);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void EditPort::dragViewStart()
 {
-    if (Spaghettis()->getPreferences().getCached<bool> (Tag::Editing, Tag::SnapToGrid)) {
-        step_ = Spaghettis()->getPreferences().getCached<int> (Tag::Editing, Tag::GridSize);
-    } else {
-        step_ = 1;
-    }
-    
     origin_ = offset_;
 }
 
 void EditPort::dragView (juce::Point<int> pt)
 {
-    if (origin_.has_value()) {
-    //
-    const juce::Point<int> t (getRoundedToNearest (origin_.value() - pt, step_));
-    
-    if (t != offset_) { offset_ = t; update(); }
-    //
-    }
+    if (origin_.has_value()) { offset_ = origin_.value() - pt; update(); }
 }
 
 void EditPort::dragViewEnd()
