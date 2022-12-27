@@ -105,9 +105,13 @@ void EditView::mouseUp (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool EditView::hasDragAction() const
+void EditView::setMouseCursorRecursive (const juce::MouseCursor& m)
 {
-    return (drag_ != nullptr);
+    auto f = [m](const auto& p) { p->setMouseCursor (m); };
+    
+    objects_.forEach (f); lines_.forEach (f);
+    
+    setMouseCursor (m);
 }
 
 // -----------------------------------------------------------------------------------------------------------

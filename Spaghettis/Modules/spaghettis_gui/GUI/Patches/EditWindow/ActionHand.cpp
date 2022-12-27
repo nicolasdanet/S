@@ -14,14 +14,14 @@ namespace spaghettis {
 
 ActionHand::ActionHand (EditView* view) : view_ (view)
 {
-    view_->setMouseCursor (juce::MouseCursor::DraggingHandCursor);
+    view_->setMouseCursorRecursive (juce::MouseCursor::DraggingHandCursor);
     view_->getPort()->dragViewStart();
 }
 
 ActionHand::~ActionHand()
 {
     view_->getPort()->dragViewEnd();
-    view_->setMouseCursor (juce::MouseCursor::NormalCursor);
+    view_->setMouseCursorRecursive (juce::MouseCursor::NormalCursor);
 }
 
 // -----------------------------------------------------------------------------------------------------------

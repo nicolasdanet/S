@@ -78,8 +78,8 @@ private:
 // MARK: -
 
 public:
-    bool hasDragAction() const;
-    
+    void setMouseCursorRecursive (const juce::MouseCursor&);
+
 private:
     std::optional<juce::Point<int>> getRealMousePosition() const;
     std::optional<juce::Point<int>> getRealPositionOfSelectedObjects (juce::Point<int>) const;
