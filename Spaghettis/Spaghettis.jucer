@@ -24,8 +24,6 @@
         <FILE id="D9nQfi" name="icon_place.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_place.svg"/>
         <FILE id="WYGHhC" name="icon_restore.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_restore.svg"/>
-        <FILE id="VJ2tR3" name="icon_search_off.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/icon_search_off.svg"/>
         <FILE id="uexYI2" name="icon_sync.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_sync.svg"/>
         <FILE id="JrIvGS" name="icon_system_update_alt.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_system_update_alt.svg"/>
@@ -36,10 +34,6 @@
         <FILE id="wLVawc" name="icon_tune.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_tune.svg"/>
         <FILE id="nhfcRR" name="icon_visibility.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_visibility.svg"/>
-        <FILE id="pzNbU3" name="icon_zoom_in.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/icon_zoom_in.svg"/>
-        <FILE id="PZxLeU" name="icon_zoom_out.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/icon_zoom_out.svg"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>

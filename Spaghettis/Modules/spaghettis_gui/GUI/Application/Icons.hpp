@@ -58,10 +58,7 @@ public:
         run,
         synchronize,
         sortUp,
-        sortDown,
-        zoomIn,
-        zoomOut,
-        zoomReset
+        sortDown
     };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -85,9 +82,6 @@ public:
         addIconAction ("Synchronize",   0, "icon_sync_svg");
         addIconAction ("SortUp",        0, "icon_text_rotate_up_svg");
         addIconAction ("SortDown",      0, "icon_text_rotation_down_svg");
-        addIconAction ("ZoomIn",        0, "icon_zoom_in_svg");
-        addIconAction ("ZoomOut",       0, "icon_zoom_out_svg");
-        addIconAction ("ZoomReset",     0, "icon_search_off_svg");
     }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -34,10 +34,6 @@ public:
 public:
     void getAllToolbarItemIds (juce::Array<int>& ids) override
     {
-        ids.add (Icons::zoomIn);
-        ids.add (Icons::zoomOut);
-        ids.add (Icons::zoomReset);
-        ids.add (ToolbarItemFactory::spacerId);
         ids.add (Icons::inspector);
         ids.add (Icons::edit);
         ids.add (Icons::run);
