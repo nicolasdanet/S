@@ -37,7 +37,12 @@ juce::Value EditPort::getZoomAsValue() const
 {
     return zoom_;
 }
-    
+
+int EditPort::getZoom() const
+{
+    return static_cast <int> (zoom_.getValue());
+}
+
 float EditPort::getScale() const
 {
     return getZoom() / 100.0f;
@@ -125,11 +130,6 @@ void EditPort::setZoom (int n)
     constexpr int max = steps_.back();
     
     zoom_ = juce::var (juce::jlimit (min, max, n)); view_.setScale (getScale());
-}
-    
-int EditPort::getZoom() const
-{
-    return static_cast <int> (zoom_.getValue());
 }
 
 // -----------------------------------------------------------------------------------------------------------
