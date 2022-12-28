@@ -22,7 +22,9 @@ class EditZoom :    public juce::Component,
 public:
     explicit EditZoom (const juce::Value& v) : v_ (v)
     {
-        setOpaque (false); setPaintingIsUnclipped (true); setBufferedToImage (true);
+        setOpaque (false);
+        setPaintingIsUnclipped (true);
+        setBufferedToImage (true);
         
         v_.addListener (this);
     }
@@ -36,13 +38,9 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        if (v_ != 100) {
-        //
         g.setColour (Spaghettis()->getColour (Colours::toolbarZoom));
         g.setFont (Spaghettis()->getLookAndFeel().getTooltipsFont());
         g.drawText (v_.toString() + " %", getLocalBounds(), juce::Justification::centredRight, true);
-        //
-        }
     }
 
 // -----------------------------------------------------------------------------------------------------------
