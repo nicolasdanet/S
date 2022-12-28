@@ -12,50 +12,59 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditZoom :    public juce::Component,
-                    private juce::Value::Listener {
+EditZoom::EditZoom (const juce::Value& v) : v_ (v)
+{
+    setOpaque (false);
+    setPaintingIsUnclipped (true);
+    setBufferedToImage (true);
+        
+    v_.addListener (this);
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    explicit EditZoom (const juce::Value&);
+void EditZoom::paint (juce::Graphics& g)
+{
+    g.setColour (Spaghettis()->getColour (Colours::toolbarZoom));
+    g.setFont (Spaghettis()->getLookAndFeel().getTooltipsFont());
+    g.drawText (v_.toString() + " %", getLocalBounds(), juce::Justification::centredRight, true);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditZoom::mouseEnter (const juce::MouseEvent&)
+{
+}
     
-    ~EditZoom() = default;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void paint (juce::Graphics&) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void mouseEnter (const juce::MouseEvent&) override;
-    void mouseExit (const juce::MouseEvent&) override;
-    void mouseDown (const juce::MouseEvent&) override;
-    void mouseDrag (const juce::MouseEvent&) override;
-    void mouseUp (const juce::MouseEvent&) override;
+void EditZoom::mouseExit (const juce::MouseEvent&)
+{
+}
     
+void EditZoom::mouseDown (const juce::MouseEvent&)
+{
+}
+    
+void EditZoom::mouseDrag (const juce::MouseEvent&)
+{
+}
+        
+void EditZoom::mouseUp (const juce::MouseEvent&)
+{
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    void valueChanged (juce::Value&) override;
-
-private:
-    juce::Value v_;
+void EditZoom::valueChanged (juce::Value&)
+{
+    repaint();
+}
     
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditZoom)
-};
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -63,4 +72,3 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-

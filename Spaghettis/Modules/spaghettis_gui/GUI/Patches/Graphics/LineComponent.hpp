@@ -64,6 +64,10 @@ public:
     bool hitTest (int, int) override;
     void changeListenerCallback (juce::ChangeBroadcaster*) override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     void mouseEnter (const juce::MouseEvent&) override;
     void mouseExit (const juce::MouseEvent&) override;

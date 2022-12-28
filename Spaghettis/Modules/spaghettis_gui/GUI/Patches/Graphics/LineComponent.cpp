@@ -115,6 +115,10 @@ void LineComponent::changeListenerCallback (juce::ChangeBroadcaster*)
     update(); repaint();
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LineComponent::mouseEnter (const juce::MouseEvent&)
 {
     isOver_ = true;  repaint();
