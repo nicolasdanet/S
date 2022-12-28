@@ -69,19 +69,19 @@ void EditPort::zoomIn()
 {
     auto r = std::find_if (steps_.cbegin(), steps_.cend(),   [n = getZoom()](int i) { return (i > n); });
     
-    zoom ((r != steps_.cend()) ? *r : steps_.back());
+    setZoom ((r != steps_.cend()) ? *r : steps_.back());
 }
 
 void EditPort::zoomOut()
 {
     auto r = std::find_if (steps_.crbegin(), steps_.crend(), [n = getZoom()](int i) { return (i < n); });
     
-    zoom ((r != steps_.crend()) ? *r : steps_.front());
+    setZoom ((r != steps_.crend()) ? *r : steps_.front());
 }
 
 void EditPort::zoomReset()
 {
-    zoom (100);
+    setZoom (100);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
     float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
 
-    if (e.mods.isCommandDown()) { const int n = (y > 0.0f) ? 10 : -10; zoom (getZoom() + n); }
+    if (e.mods.isCommandDown()) { const int n = (y > 0.0f) ? 10 : -10; setZoom (getZoom() + n); }
     else {
     //
     #if JUCE_LINUX
@@ -126,19 +126,18 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
 
 void EditPort::setZoom (int n)
 {
+    if (getZoom() != n) {
+    //
     constexpr int min = steps_.front();
     constexpr int max = steps_.back();
     
-    zoom_ = juce::var (juce::jlimit (min, max, n)); view_.setScale (getScale());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditPort::zoom (int n)
-{
-    if (getZoom() != n) { setZoom (n); update(); }
+    zoom_ = juce::var (juce::jlimit (min, max, n));
+    
+    view_.setScale (getScale());
+    
+    update();
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

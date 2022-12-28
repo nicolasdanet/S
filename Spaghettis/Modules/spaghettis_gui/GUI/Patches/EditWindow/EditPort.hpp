@@ -65,13 +65,6 @@ private:
 // MARK: -
 
 private:
-    void setZoom (int);
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
     void dragViewStart();
     void dragView (juce::Point<int>);
     void dragViewEnd();
@@ -81,7 +74,7 @@ private:
 // MARK: -
 
 private:
-    void zoom (int n);
+    void setZoom (int n);
     void update();
     
 private:
