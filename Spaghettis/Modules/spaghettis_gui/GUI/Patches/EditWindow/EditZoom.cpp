@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditZoom::EditZoom (const juce::Value& v) : v_ (v), isOver_ (false)
+EditZoom::EditZoom (const juce::Value& v) : v_ (v)
 {
     setOpaque (false);
     setPaintingIsUnclipped (true);
@@ -27,35 +27,13 @@ EditZoom::EditZoom (const juce::Value& v) : v_ (v), isOver_ (false)
 
 void EditZoom::paint (juce::Graphics& g)
 {
-    g.setColour (Spaghettis()->getColour (isOver_ ? Colours::toolbarZoomOver : Colours::toolbarZoom));
+    if (v_ != 100) {
+    //
+    g.setColour (Spaghettis()->getColour (Colours::toolbarZoom));
     g.setFont (Spaghettis()->getLookAndFeel().getTooltipsFont());
     g.drawText (v_.toString() + " %", getLocalBounds(), juce::Justification::centredRight, true);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditZoom::mouseEnter (const juce::MouseEvent&)
-{
-    isOver_ = true;  repaint();
-}
-    
-void EditZoom::mouseExit (const juce::MouseEvent&)
-{
-    isOver_ = false; repaint();
-}
-    
-void EditZoom::mouseDown (const juce::MouseEvent&)
-{
-}
-    
-void EditZoom::mouseDrag (const juce::MouseEvent&)
-{
-}
-        
-void EditZoom::mouseUp (const juce::MouseEvent&)
-{
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -66,7 +44,7 @@ void EditZoom::valueChanged (juce::Value&)
 {
     repaint();
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
