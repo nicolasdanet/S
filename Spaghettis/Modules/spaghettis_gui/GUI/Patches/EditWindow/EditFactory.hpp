@@ -34,9 +34,9 @@ public:
 public:
     void getAllToolbarItemIds (juce::Array<int>& ids) override
     {
-        ids.add (Icons::inspector);
         ids.add (Icons::edit);
         ids.add (Icons::run);
+        ids.add (Icons::inspector);
     }
 
     void getDefaultItemSet (juce::Array<int>& ids) override
