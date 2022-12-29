@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditZoom::EditZoom (const juce::Value& v) : v_ (v)
+EditZoom::EditZoom (const juce::Value& v) : v_ (v), isOver_ (false)
 {
     setOpaque (false);
     setPaintingIsUnclipped (true);
@@ -27,7 +27,7 @@ EditZoom::EditZoom (const juce::Value& v) : v_ (v)
 
 void EditZoom::paint (juce::Graphics& g)
 {
-    g.setColour (Spaghettis()->getColour (Colours::toolbarZoom));
+    g.setColour (Spaghettis()->getColour (isOver_ ? Colours::toolbarZoomOver : Colours::toolbarZoom));
     g.setFont (Spaghettis()->getLookAndFeel().getTooltipsFont());
     g.drawText (v_.toString() + " %", getLocalBounds(), juce::Justification::centredRight, true);
 }
@@ -38,10 +38,12 @@ void EditZoom::paint (juce::Graphics& g)
 
 void EditZoom::mouseEnter (const juce::MouseEvent&)
 {
+    isOver_ = true;  repaint();
 }
     
 void EditZoom::mouseExit (const juce::MouseEvent&)
 {
+    isOver_ = false; repaint();
 }
     
 void EditZoom::mouseDown (const juce::MouseEvent&)

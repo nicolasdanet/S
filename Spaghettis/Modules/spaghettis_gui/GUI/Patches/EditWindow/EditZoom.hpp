@@ -51,6 +51,9 @@ private:
 
 private:
     juce::Value v_;
+
+private:
+    bool isOver_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditZoom)
