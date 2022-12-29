@@ -79,7 +79,8 @@ private:
     
 private:
     EditView& view_;
-    juce::Value zoom_;
+    int zoom_;
+    juce::Value v_;
     juce::Point<int> offset_;                       /* Real coordinates. */
     std::optional<juce::Point<int>> origin_;        /* Real coordinates. */
 

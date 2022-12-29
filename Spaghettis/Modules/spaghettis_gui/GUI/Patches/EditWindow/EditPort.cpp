@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditPort::EditPort (EditView& view) : view_ (view), zoom_ (100)
+EditPort::EditPort (EditView& view) : view_ (view), zoom_ (100), v_ (zoom_)
 {
     view_.setPort (this);
     
@@ -35,12 +35,12 @@ EditPort::~EditPort()
 
 juce::Value EditPort::getZoomAsValue() const
 {
-    return zoom_;
+    return v_;
 }
 
 int EditPort::getZoom() const
 {
-    return static_cast <int> (zoom_.getValue());
+    return zoom_;
 }
 
 float EditPort::getScale() const
@@ -131,7 +131,7 @@ void EditPort::setZoom (int n)
     constexpr int min = steps_.front();
     constexpr int max = steps_.back();
     
-    zoom_ = juce::var (juce::jlimit (min, max, n));
+    zoom_ = juce::jlimit (min, max, n); v_ = juce::var (zoom_);
     
     view_.setScale (getScale());
     
