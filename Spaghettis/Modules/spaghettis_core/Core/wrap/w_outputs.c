@@ -126,12 +126,12 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 
 PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
-    const UniquePath p (x, owner); wrapper_send (Outputs::added (p,   Report::object (p, x, owner, Tags())));
+    const UniquePath p (x, owner); wrapper_send (Outputs::added (p,   Report::object (p, owner, x, Tags())));
 }
 
 PD_LOCAL void outputs_objectUpdated (t_object *x, t_glist *owner, const Tags& t)
 {
-    const UniquePath p (x, owner); wrapper_send (Outputs::changed (p, Report::object (p, x, owner, t)));
+    const UniquePath p (x, owner); wrapper_send (Outputs::changed (p, Report::object (p, owner, x, t)));
 }
 
 PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)
@@ -148,14 +148,14 @@ PD_LOCAL void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, i
 {
     const UniquePath p (u, owner);
     
-    wrapper_send (Outputs::added (p,   Report::lineAdded (p, src, m, dest, n)));
+    wrapper_send (Outputs::added (p,   Report::lineAdded (p, owner, src, m, dest, n)));
 }
 
 PD_LOCAL void outputs_lineChanged (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)
 {
     const UniquePath p (u, owner);
     
-    wrapper_send (Outputs::changed (p, Report::lineChanged (p, src, m, dest, n)));
+    wrapper_send (Outputs::changed (p, Report::lineChanged (p, owner, src, m, dest, n)));
 }
 
 PD_LOCAL void outputs_lineRemoved (t_id u, t_glist *owner)

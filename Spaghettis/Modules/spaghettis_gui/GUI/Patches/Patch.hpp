@@ -34,6 +34,8 @@ public:
         Spaghettis()->appendRecentFile (getFile());
         
         releaseAllWindows();
+        
+        DBG (core::Data::debug (rootTree_));
     }
 
 // -----------------------------------------------------------------------------------------------------------
