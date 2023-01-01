@@ -247,7 +247,7 @@ void setObjectAttributes (Data& data, t_glist* owner, t_object* o, const Tags& t
     }
 }
 
-void setObjectParameters (Data& data, t_glist* owner, t_object* o, const Tags& t)
+void setObjectParameters (Data& data, t_object* o, const Tags& t)
 {
     t_class* c = pd_class (o);
     
@@ -278,14 +278,15 @@ juce::ValueTree getObject (const UniquePath& u, t_glist* owner, t_object* o, con
 {
     juce::ValueTree tree (object_isCanvas (o) ? Id::PATCH : Id::OBJECT);
     
-    tree.setProperty (Id::identifier, Cast::toVar (u.getIdentifier()), nullptr);
-    
+    tree.setProperty (Id::identifier,   Cast::toVar (u.getIdentifier()), nullptr);
+    tree.setProperty (Id::abstraction,  Cast::toVar (u.isInsideAbstraction()), nullptr);
+
     if (o) {
     //
     Data data (Id::DATA);
     
     if (t.hasAttributes()) { setObjectAttributes (data, owner, o, t); }
-    if (t.hasParameters()) { setObjectParameters (data, owner, o, t); }
+    if (t.hasParameters()) { setObjectParameters (data, o, t); }
     
     tree.appendChild (data.asValueTree(), nullptr);
     //
@@ -351,7 +352,7 @@ juce::ValueTree getLine (const UniquePath& u, t_object* src, int m, t_object* de
     juce::ValueTree t (Id::LINE);
     
     t.setProperty (Id::identifier,     Cast::toVar (u.getIdentifier()), nullptr);
-    t.setProperty (Id::abstraction,    Cast::toVar (u.isAbstractionOrInside()), nullptr);
+    t.setProperty (Id::abstraction,    Cast::toVar (u.isInsideAbstraction()), nullptr);
     t.setProperty (Id::source,         Cast::toVar (object_getUnique (src)), nullptr);
     t.setProperty (Id::destination,    Cast::toVar (object_getUnique (dest)), nullptr);
     

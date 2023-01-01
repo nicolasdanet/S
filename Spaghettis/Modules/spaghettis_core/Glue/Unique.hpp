@@ -86,9 +86,9 @@ public:
         jassert (hasPath()); return *path_;
     }
     
-    bool isAbstractionOrInside() const
+    bool isInsideAbstraction() const
     {
-        return abstraction_;
+        return inside_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -109,7 +109,7 @@ private:
     std::shared_ptr<std::vector<UniqueId>> path_;
 
 private:
-    bool abstraction_;
+    bool inside_;
 
 private:
     JUCE_LEAK_DETECTOR (UniquePath)
