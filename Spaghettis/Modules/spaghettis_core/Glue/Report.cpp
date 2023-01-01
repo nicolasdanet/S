@@ -351,6 +351,7 @@ juce::ValueTree getLine (const UniquePath& u, t_object* src, int m, t_object* de
     juce::ValueTree t (Id::LINE);
     
     t.setProperty (Id::identifier,     Cast::toVar (u.getIdentifier()), nullptr);
+    t.setProperty (Id::abstraction,    Cast::toVar (u.isAbstractionOrInside()), nullptr);
     t.setProperty (Id::source,         Cast::toVar (object_getUnique (src)), nullptr);
     t.setProperty (Id::destination,    Cast::toVar (object_getUnique (dest)), nullptr);
     
@@ -370,11 +371,11 @@ juce::ValueTree getLine (const UniquePath& u, t_object* src, int m, t_object* de
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Report Report::lineAdded (const UniquePath& u, t_glist* owner, t_object* src, int m, t_object* dest, int n)
+Report Report::lineAdded (const UniquePath& u, t_object* src, int m, t_object* dest, int n)
 {
     jassert (!u.isRoot()); return Report (getLine (u, src, m, dest, n, true));
 }
-Report Report::lineChanged (const UniquePath& u, t_glist* owner, t_object* src, int m, t_object* dest, int n)
+Report Report::lineChanged (const UniquePath& u, t_object* src, int m, t_object* dest, int n)
 {
     jassert (!u.isRoot()); return Report (getLine (u, src, m, dest, n, false));
 }

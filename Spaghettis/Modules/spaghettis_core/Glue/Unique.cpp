@@ -32,7 +32,7 @@ std::vector<UniqueId> fetchIdentifiersFromRoot (t_glist* owner)
     return t;
 }
 
-void fetchUniquePath (t_glist* owner, UniqueId& r, std::shared_ptr<std::vector<UniqueId>>& path)
+void fetchUniquePath (t_glist* owner, UniqueId& r, std::shared_ptr<std::vector<UniqueId>>& path, bool& b)
 {
     if (owner) {
     //
@@ -40,6 +40,8 @@ void fetchUniquePath (t_glist* owner, UniqueId& r, std::shared_ptr<std::vector<U
     
     if (!t.empty()) { r = t.front(); t.erase (t.cbegin()); }
     if (!t.empty()) { path = std::make_shared<std::vector<UniqueId>> (std::move (t)); }
+    
+    b = static_cast<bool> (glist_isAbstractionOrInside (owner));
     //
     }
 }
@@ -53,19 +55,19 @@ void fetchUniquePath (t_glist* owner, UniqueId& r, std::shared_ptr<std::vector<U
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-UniquePath::UniquePath() : u_ (0), r_ (0)
+UniquePath::UniquePath() : u_ (0), r_ (0), abstraction_ (false)
 {
 
 }
 
-UniquePath::UniquePath (t_object* o, t_glist* owner) : u_ (object_getUnique (o)), r_ (0)
+UniquePath::UniquePath (t_object* o, t_glist* owner) : u_ (object_getUnique (o)), r_ (0), abstraction_ (false)
 {
-    fetchUniquePath (owner, r_, path_);
+    fetchUniquePath (owner, r_, path_, abstraction_);
 }
 
-UniquePath::UniquePath (UniqueId u, t_glist* owner) : u_ (u), r_ (0)
+UniquePath::UniquePath (UniqueId u, t_glist* owner) : u_ (u), r_ (0), abstraction_ (false)
 {
-    fetchUniquePath (owner, r_, path_);
+    fetchUniquePath (owner, r_, path_, abstraction_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

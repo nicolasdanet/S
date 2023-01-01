@@ -18,6 +18,7 @@ namespace spaghettis::core::Identifiers {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+    DECLARE_ID (abstraction);
     DECLARE_ID (destination);
     DECLARE_ID (editable);
     DECLARE_ID (hidden);

@@ -148,14 +148,14 @@ PD_LOCAL void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, i
 {
     const UniquePath p (u, owner);
     
-    wrapper_send (Outputs::added (p,   Report::lineAdded (p, owner, src, m, dest, n)));
+    wrapper_send (Outputs::added (p,   Report::lineAdded (p, src, m, dest, n)));
 }
 
 PD_LOCAL void outputs_lineChanged (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)
 {
     const UniquePath p (u, owner);
     
-    wrapper_send (Outputs::changed (p, Report::lineChanged (p, owner, src, m, dest, n)));
+    wrapper_send (Outputs::changed (p, Report::lineChanged (p, src, m, dest, n)));
 }
 
 PD_LOCAL void outputs_lineRemoved (t_id u, t_glist *owner)
