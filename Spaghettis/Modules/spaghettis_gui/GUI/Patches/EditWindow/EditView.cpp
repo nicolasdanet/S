@@ -14,6 +14,7 @@ namespace spaghettis {
 
 EditView::EditView (PatchRoot& patch, const juce::ValueTree& tree) :
     View (patch, tree),
+    isAbstraction_ (core::Patch (viewTree_).isAbstraction()),
     undo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Undo)),
     redo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Redo)),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),

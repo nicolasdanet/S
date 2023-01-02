@@ -205,6 +205,7 @@ private:
     void updateOrder();
 
 private:
+    bool isAbstraction_;
     core::Cached<juce::String> undo_;
     core::Cached<juce::String> redo_;
     core::Cached<juce::Colour> patchBackgroundColour_;
