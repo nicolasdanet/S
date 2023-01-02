@@ -53,7 +53,7 @@ public:
 // MARK: -
 
 public:
-    PatchRoot& getPatch() const
+    PatchRoot& getPatchRoot() const
     {
         return patch_;
     }

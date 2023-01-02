@@ -28,10 +28,10 @@ void EditFactory::setToolbarButton (IconsButton* button)
     switch (button->getItemId()) {
     //
     case Icons::edit        : button->onClick = [this]() {
-                                    owner_->getPatch().openEditWindow();
+                                    owner_->getPatchRoot().openEditWindow();
                                 }; break;
     case Icons::run         : button->onClick = [this]() {
-                                    owner_->getPatch().openRunWindow();
+                                    owner_->getPatchRoot().openRunWindow();
                                 }; break;
     case Icons::inspector   : button->onClick = [this, button]() {
                                     if (button->getState()) { owner_->showInspector(); }

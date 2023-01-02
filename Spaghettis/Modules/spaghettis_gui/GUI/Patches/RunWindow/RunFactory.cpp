@@ -34,10 +34,10 @@ void RunFactory::setToolbarButton (IconsButton* button)
                                     }
                                 }; break;
     case Icons::edit    : button->onClick = [this]() {
-                                owner_->getPatch().openEditWindow();
+                                owner_->getPatchRoot().openEditWindow();
                             }; break;
     case Icons::run     : button->onClick = [this]() {
-                                owner_->getPatch().openRunWindow();
+                                owner_->getPatchRoot().openRunWindow();
                             }; break;
     default             : break;
     //

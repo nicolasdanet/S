@@ -97,7 +97,7 @@ namespace {
 
 void openSubPatch (const core::Object& o, View* v)
 {
-    if (o.isPatch()) { v->getPatch().openSubPatchWindow (o.getIdentifier()); }
+    if (o.isPatch()) { v->getPatchRoot().openSubPatchWindow (o.getIdentifier()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

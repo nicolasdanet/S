@@ -67,9 +67,9 @@ private:
 // MARK: -
 
 public:
-    PatchRoot& getPatch() const
+    PatchRoot& getPatchRoot() const
     {
-        return editView_.getPatch();
+        return editView_.getPatchRoot();
     }
     
 private:

@@ -21,7 +21,7 @@ RunComponent::RunComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     addAndMakeVisible (runView_);
     addChildComponent (runPresets_);
     
-    addMenuCommand (MenuCommand (Commands::save, [this]() { runView_.getPatch().save(); }));
+    addMenuCommand (MenuCommand (Commands::save, [this]() { runView_.getPatchRoot().save(); }));
     
     setOpaque (true); setSize (600, 300);
 }

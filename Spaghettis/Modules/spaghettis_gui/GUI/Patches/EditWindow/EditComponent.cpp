@@ -26,7 +26,7 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     
     auto f = [this]() { return editView_.hasSelectedObject(); };
     
-    addMenuCommand (MenuCommand (Commands::save,            [this]() { editView_.getPatch().save(); }));
+    addMenuCommand (MenuCommand (Commands::save,            [this]() { editView_.getPatchRoot().save(); }));
     addMenuCommand (MenuCommand (Commands::undo,            [this]() { editView_.undo(); },
                                                             [this]() { return editView_.hasUndo(); },
                                                             [this]() { return editView_.getUndoAction(); }));
