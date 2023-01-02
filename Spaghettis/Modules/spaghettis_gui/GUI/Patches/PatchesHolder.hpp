@@ -51,7 +51,7 @@ public:
 // MARK: -
 
 private:
-    void showSaveRequest (const std::shared_ptr<Patch>&, CloseType notify);
+    void showSaveRequest (const std::shared_ptr<PatchRoot>&, CloseType notify);
     
 public:
     void requestClosePatch (core::UniqueId i, CloseType notify);
@@ -82,8 +82,8 @@ private:
 // MARK: -
 
 private:
-    std::vector<std::shared_ptr<Patch>> roots_;
-    std::vector<std::shared_ptr<Patch>> requests_;
+    std::vector<std::shared_ptr<PatchRoot>> roots_;
+    std::vector<std::shared_ptr<PatchRoot>> requests_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchesHolder)

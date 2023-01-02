@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Patch::getParent (const core::UniquePath& u) const
+juce::ValueTree PatchRoot::getParent (const core::UniquePath& u) const
 {
     juce::ValueTree t (rootTree_);
     
@@ -25,7 +25,7 @@ juce::ValueTree Patch::getParent (const core::UniquePath& u) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::add (const core::UniquePath& u, const core::Report& v)
+void PatchRoot::add (const core::UniquePath& u, const core::Report& v)
 {
     // DBG ("### ADD"); DBG (v.debug());
     
@@ -45,7 +45,7 @@ void Patch::add (const core::UniquePath& u, const core::Report& v)
     parent.appendChild (v.asValueTree(), nullptr);
 }
 
-void Patch::change (const core::UniquePath& u, const core::Report& v)
+void PatchRoot::change (const core::UniquePath& u, const core::Report& v)
 {
     // DBG ("### CHANGE"); DBG (v.debug());
         
@@ -66,7 +66,7 @@ void Patch::change (const core::UniquePath& u, const core::Report& v)
     }
 }
 
-void Patch::remove (const core::UniquePath& u)
+void PatchRoot::remove (const core::UniquePath& u)
 {
     // DBG ("### REMOVE"); DBG (u.debug());
         
@@ -78,7 +78,7 @@ void Patch::remove (const core::UniquePath& u)
     if (child.isValid()) { parent.removeChild (child, nullptr); }
 }
 
-void Patch::rename (const core::UniquePath& u, core::UniqueId i)
+void PatchRoot::rename (const core::UniquePath& u, core::UniqueId i)
 {
     // DBG ("### RENAME"); DBG (u.debug());
         
@@ -96,7 +96,7 @@ void Patch::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
+void PatchRoot::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
 {
     juce::ValueTree parent (getParent (u));
     
@@ -116,17 +116,17 @@ void Patch::setOrder (const core::UniquePath& u, const std::vector<core::UniqueI
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::setDirty (bool isDirty)
+void PatchRoot::setDirty (bool isDirty)
 {
     dirty_ = isDirty; setDirtyFlagIfRequired();
 }
 
-void Patch::updateDirty() const
+void PatchRoot::updateDirty() const
 {
     setDirtyFlagIfRequired();
 }
 
-bool Patch::isDirty() const
+bool PatchRoot::isDirty() const
 {
     return dirty_;
 }
@@ -135,7 +135,7 @@ bool Patch::isDirty() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::openWindow()
+void PatchRoot::openWindow()
 {
     if (Spaghettis()->getPreferences().getCached<bool> (Tag::General, Tag::DefaultIsRunView)) {
         openRunWindow();
@@ -144,7 +144,7 @@ void Patch::openWindow()
     }
 }
 
-void Patch::openSubPatchWindow (core::UniqueId i)
+void PatchRoot::openSubPatchWindow (core::UniqueId i)
 {
     juce::ValueTree t (Tree::findChild (rootTree_, i));
     
@@ -155,21 +155,21 @@ void Patch::openSubPatchWindow (core::UniqueId i)
     updateDirty();
 }
 
-void Patch::openEditWindow()
+void PatchRoot::openEditWindow()
 {
     windows_.push_back (std::make_unique<EditWindow> (*this, rootTree_));
     
     updateDirty();
 }
 
-void Patch::openRunWindow()
+void PatchRoot::openRunWindow()
 {
     windows_.push_back (std::make_unique<RunWindow> (*this, rootTree_));
     
     updateDirty();
 }
 
-void Patch::closeWindowButtonPressed (PatchWindow* w)
+void PatchRoot::closeWindowButtonPressed (PatchWindow* w)
 {
     if (windows_.size() > 1) { removeWindow (w); }
     else {
@@ -183,7 +183,7 @@ void Patch::closeWindowButtonPressed (PatchWindow* w)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Patch::removeWindow (PatchWindow* w)
+void PatchRoot::removeWindow (PatchWindow* w)
 {
     auto f = [window = w](const std::unique_ptr<PatchWindow>& p)
     {
@@ -193,7 +193,7 @@ void Patch::removeWindow (PatchWindow* w)
     windows_.erase (std::remove_if (windows_.begin(), windows_.end(), f), windows_.end());
 }
 
-void Patch::releaseAllWindows()
+void PatchRoot::releaseAllWindows()
 {
     windows_.clear();
 }
@@ -202,7 +202,7 @@ void Patch::releaseAllWindows()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Component* Patch::getMainWindow() const
+juce::Component* PatchRoot::getMainWindow() const
 {
     jassert (windows_.empty() == false);
     
@@ -213,7 +213,7 @@ juce::Component* Patch::getMainWindow() const
     return dynamic_cast<juce::Component*> (windows_.front().get());
 }
 
-void Patch::setDirtyFlagIfRequired() const
+void PatchRoot::setDirtyFlagIfRequired() const
 {
     for (const auto& p : windows_) { p->setDirtyFlag (dirty_); }
 }

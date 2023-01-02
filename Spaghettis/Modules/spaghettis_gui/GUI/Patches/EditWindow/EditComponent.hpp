@@ -20,7 +20,7 @@ class EditComponent :   protected EditFactoryHelper,    /* MUST be the first. */
 // MARK: -
 
 public:
-    explicit EditComponent (Patch&, const juce::ValueTree&);
+    explicit EditComponent (PatchRoot&, const juce::ValueTree&);
     
     ~EditComponent() = default;
 
@@ -67,7 +67,7 @@ private:
 // MARK: -
 
 public:
-    Patch& getPatch() const
+    PatchRoot& getPatch() const
     {
         return editView_.getPatch();
     }

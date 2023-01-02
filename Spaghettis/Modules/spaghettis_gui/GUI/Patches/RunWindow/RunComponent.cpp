@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-RunComponent::RunComponent (Patch& patch, const juce::ValueTree& tree) :
+RunComponent::RunComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     RunFactoryHelper (this),
     BaseComponent (getIconsFactory()),
     runView_ (patch, tree),

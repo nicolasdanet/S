@@ -31,7 +31,7 @@ friend class ActionHand;
 // MARK: -
 
 public:
-    explicit EditView (Patch&, const juce::ValueTree&);
+    explicit EditView (PatchRoot&, const juce::ValueTree&);
     
     ~EditView();
 

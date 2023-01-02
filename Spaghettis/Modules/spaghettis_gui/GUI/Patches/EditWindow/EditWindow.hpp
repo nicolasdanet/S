@@ -19,7 +19,7 @@ class EditWindow : public PatchWindow {
 // MARK: -
 
 public:
-    explicit EditWindow (Patch& owner, const juce::ValueTree& tree) : PatchWindow (owner, tree)
+    explicit EditWindow (PatchRoot& owner, const juce::ValueTree& tree) : PatchWindow (owner, tree)
     {
         setContentOwned (new EditComponent (owner, tree), true);
         

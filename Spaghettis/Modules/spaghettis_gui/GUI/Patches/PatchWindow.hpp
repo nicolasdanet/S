@@ -19,7 +19,7 @@ class PatchWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit PatchWindow (Patch& patch, const juce::ValueTree& tree) :
+    explicit PatchWindow (PatchRoot& patch, const juce::ValueTree& tree) :
         BaseWindow (core::Patch (tree).get<juce::String> (Tag::Attributes, Tag::Title)),
         patch_ (patch),
         viewTree_ (tree),
@@ -50,7 +50,7 @@ public:
     }
 
 protected:
-    Patch& patch_;
+    PatchRoot& patch_;
     juce::ValueTree viewTree_;
 
 private:

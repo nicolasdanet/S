@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditView::EditView (Patch& patch, const juce::ValueTree& tree) :
+EditView::EditView (PatchRoot& patch, const juce::ValueTree& tree) :
     View (patch, tree),
     undo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Undo)),
     redo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Redo)),

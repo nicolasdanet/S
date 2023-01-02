@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditComponent::EditComponent (Patch& patch, const juce::ValueTree& tree) :
+EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     EditFactoryHelper (this),
     BaseComponent (getIconsFactory()),
     editView_ (patch, tree),

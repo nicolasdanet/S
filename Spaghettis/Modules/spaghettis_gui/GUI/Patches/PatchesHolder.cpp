@@ -19,7 +19,7 @@ namespace {
 
 auto isSamePatchAs (core::UniqueId identifier)
 {
-    return [i = identifier] (const std::shared_ptr<Patch>& p)
+    return [i = identifier] (const std::shared_ptr<PatchRoot>& p)
     {
         return (p->getIdentifier() == i);
     };
@@ -29,14 +29,14 @@ auto isSamePatchAs (core::UniqueId identifier)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::shared_ptr<Patch> fetchPatch (std::vector<std::shared_ptr<Patch>>& v, core::UniqueId i)
+std::shared_ptr<PatchRoot> fetchPatch (std::vector<std::shared_ptr<PatchRoot>>& v, core::UniqueId i)
 {
     auto r = std::find_if (v.cbegin(), v.cend(), isSamePatchAs (i));
     
-    return std::shared_ptr<Patch> (r != v.cend() ? *r : nullptr);
+    return std::shared_ptr<PatchRoot> (r != v.cend() ? *r : nullptr);
 }
 
-void removePatch (std::vector<std::shared_ptr<Patch>>& v, core::UniqueId i)
+void removePatch (std::vector<std::shared_ptr<PatchRoot>>& v, core::UniqueId i)
 {
     v.erase (std::remove_if (v.begin(), v.end(), isSamePatchAs (i)), v.end());
 }
@@ -85,28 +85,28 @@ template <class T> void PatchesHolder::perform (const core::UniquePath& u, T f) 
 
 void PatchesHolder::add (const core::UniquePath& u, const core::Report& v)
 {
-    if (u.isRoot()) { roots_.push_back (std::make_shared<Patch> (v)); }
+    if (u.isRoot()) { roots_.push_back (std::make_shared<PatchRoot> (v)); }
     else {
-        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->add (u, v); });
+        perform (u, [&] (const std::shared_ptr<PatchRoot>& p) { p->add (u, v); });
     }
 }
 
 void PatchesHolder::change (const core::UniquePath& u, const core::Report& v)
 {
-    perform (u, [&] (const std::shared_ptr<Patch>& p) { p->change (u, v); });
+    perform (u, [&] (const std::shared_ptr<PatchRoot>& p) { p->change (u, v); });
 }
 
 void PatchesHolder::remove (const core::UniquePath& u)
 {
     if (u.isRoot()) { requestClosePatch (u.getRoot(), CloseType::none); }
     else {
-        perform (u, [&] (const std::shared_ptr<Patch>& p) { p->remove (u); });
+        perform (u, [&] (const std::shared_ptr<PatchRoot>& p) { p->remove (u); });
     }
 }
 
 void PatchesHolder::rename (const core::UniquePath& u, core::UniqueId i)
 {
-    perform (u, [&] (const std::shared_ptr<Patch>& p) { p->rename (u, i); });
+    perform (u, [&] (const std::shared_ptr<PatchRoot>& p) { p->rename (u, i); });
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,19 +115,19 @@ void PatchesHolder::rename (const core::UniquePath& u, core::UniqueId i)
 
 void PatchesHolder::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
 {
-    perform (u, [&] (const std::shared_ptr<Patch>& p) { p->setOrder (u, v); });
+    perform (u, [&] (const std::shared_ptr<PatchRoot>& p) { p->setOrder (u, v); });
 }
 
 void PatchesHolder::setDirty (const core::UniquePath& u, bool isDirty)
 {
-    perform (u, [&] (const std::shared_ptr<Patch>& p) { p->setDirty (isDirty); });
+    perform (u, [&] (const std::shared_ptr<PatchRoot>& p) { p->setDirty (isDirty); });
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchesHolder::showSaveRequest (const std::shared_ptr<Patch>& p, CloseType notify)
+void PatchesHolder::showSaveRequest (const std::shared_ptr<PatchRoot>& p, CloseType notify)
 {
     juce::Component* window = p->getMainWindow();
     
@@ -160,7 +160,7 @@ void PatchesHolder::showSaveRequest (const std::shared_ptr<Patch>& p, CloseType 
 
 void PatchesHolder::handleSaveRequest (core::UniqueId i, CloseResult result)
 {
-    std::shared_ptr<Patch> p (fetchPatch (requests_, i));
+    std::shared_ptr<PatchRoot> p (fetchPatch (requests_, i));
     
     if (p) {
     //
@@ -191,7 +191,7 @@ bool PatchesHolder::isEmpty() const
 
 void PatchesHolder::requestClosePatch (core::UniqueId i, CloseType notify)
 {
-    std::shared_ptr<Patch> p (fetchPatch (roots_, i));
+    std::shared_ptr<PatchRoot> p (fetchPatch (roots_, i));
             
     if (p) {
     //
@@ -206,7 +206,7 @@ void PatchesHolder::closeAllPatches()
 {
     std::vector<core::UniqueId> t;
     
-    auto f = [] (const std::shared_ptr<Patch>& p)
+    auto f = [] (const std::shared_ptr<PatchRoot>& p)
     {
         return p->getIdentifier();
     };

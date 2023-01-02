@@ -19,7 +19,7 @@ class RunWindow : public PatchWindow {
 // MARK: -
 
 public:
-    explicit RunWindow (Patch& owner, const juce::ValueTree& tree) : PatchWindow (owner, tree)
+    explicit RunWindow (PatchRoot& owner, const juce::ValueTree& tree) : PatchWindow (owner, tree)
     {
         setContentOwned (new RunComponent (owner, tree), true);
         

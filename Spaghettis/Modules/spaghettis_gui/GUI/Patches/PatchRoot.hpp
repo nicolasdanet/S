@@ -17,19 +17,19 @@ class PatchWindow;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Patch {
+class PatchRoot {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Patch (const core::Report& v) : rootTree_ (v.asValueTree()), dirty_ (false)
+    explicit PatchRoot (const core::Report& v) : rootTree_ (v.asValueTree()), dirty_ (false)
     {
         openWindow();
     }
 
-    ~Patch()
+    ~PatchRoot()
     {
         Spaghettis()->appendRecentFile (getFile());
         
@@ -136,7 +136,7 @@ private:
     std::vector<std::unique_ptr<PatchWindow>> windows_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Patch)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchRoot)
 };
 
 // -----------------------------------------------------------------------------------------------------------
