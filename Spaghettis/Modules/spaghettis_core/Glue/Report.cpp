@@ -216,6 +216,14 @@ void setObjectAttributesForPatch (Group& group, t_glist* owner, t_object* o, con
     //
     }
     
+    if (t.contains (Tag::Abstraction)) {
+        group.addParameter (Tag::Abstraction,
+            NEEDS_TRANS ("Abstraction"),
+            NEEDS_TRANS ("Is an abstraction"),
+            glist_isAbstraction (g),
+            delegate).setHidden (true);
+    }
+    
     if (t.contains (Tag::Undo)) {
         group.addParameter (Tag::Undo,
             NEEDS_TRANS ("Undo"),

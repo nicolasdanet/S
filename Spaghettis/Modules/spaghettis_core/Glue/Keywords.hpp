@@ -18,6 +18,7 @@ namespace spaghettis::core::Keywords {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
  
+    DECLARE_STRING (Abstraction);
     DECLARE_STRING (AskBeforeQuit);
     DECLARE_STRING (Attributes);
     DECLARE_STRING (BoxBackground);
