@@ -150,6 +150,8 @@ PD_LOCAL t_error glist_objectConnect (t_glist *glist, t_object *src, int m, t_ob
 
 PD_LOCAL void glist_updateLinesForObject (t_glist *glist, t_object *o)
 {
+    if (glist) {
+    //
     t_outconnect *c = NULL;
     
     t_traverser t;
@@ -165,6 +167,8 @@ PD_LOCAL void glist_updateLinesForObject (t_glist *glist, t_object *o)
             traverser_getDestination (&t),
             traverser_getIndexOfInlet (&t),
             glist);
+    }
+    //
     }
     //
     }
