@@ -99,11 +99,16 @@ public:
 // MARK: -
 
 public:
+    bool isLocked() const
+    {
+        return tree_.getProperty (Id::locked);
+    }
+    
     UniqueId getIdentifier() const
     {
         return Cast::fromVar<UniqueId> (tree_.getProperty (Id::identifier));
     }
-
+    
     template <class T>
     Cached<T> getCached (const juce::String& group, const juce::String& key, bool synchronous = false) const
     {
