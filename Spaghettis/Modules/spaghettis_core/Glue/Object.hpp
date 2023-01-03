@@ -43,6 +43,16 @@ public:
         return data_.hasGroup (Tag::Parameters);
     }
 
+    bool isAbstraction() const
+    {
+        return isPatch() && get<bool> (Tag::Attributes, Tag::Abstraction);
+    }
+    
+    bool isSubPatch() const
+    {
+        return isPatch() && !isAbstraction();
+    }
+    
 private:
     JUCE_LEAK_DETECTOR (Object)
 };

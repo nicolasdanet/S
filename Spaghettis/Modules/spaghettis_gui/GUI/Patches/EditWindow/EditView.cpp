@@ -304,7 +304,7 @@ core::Item EditView::getItemForInspector() const
 bool EditView::hasOnlyOnePatchSelected() const
 {
     if (getNumberOfSelectedObjects() == 1) {
-        if (getSelectedObject()->getObject().isPatch()) {
+        if (getSelectedObject()->getObject().isSubPatch()) {
             return true;
         }
     }

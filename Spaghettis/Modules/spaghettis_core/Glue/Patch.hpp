@@ -38,16 +38,6 @@ public:
 // MARK: -
 
 public:
-    bool isAbstraction() const
-    {
-        return get<bool> (Tag::Attributes, Tag::Abstraction);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void sortObjects (const std::vector<core::UniqueId>&);
     
 private:
