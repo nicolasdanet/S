@@ -40,6 +40,13 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    bool isLocked() const;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     void mouseMove (const juce::MouseEvent&) override;
     void mouseEnter (const juce::MouseEvent&) override;
@@ -167,6 +174,7 @@ private:
     std::vector<std::unique_ptr<PinComponent>> oPins_;
     juce::Point<int> origin_;
     Documentation documentation_;
+    bool isLocked_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ObjectComponent)

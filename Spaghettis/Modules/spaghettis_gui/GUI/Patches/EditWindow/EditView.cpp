@@ -357,27 +357,47 @@ void EditView::select (const juce::Rectangle<int>& r)
 
 void EditView::dragObjectsStart()
 {
+    if (!isAbstractionOrInside()) {
+    //
     objects_.forEach ([](const auto& p) { p->dragStart(); });
+    //
+    }
 }
 
 void EditView::dragObjects (juce::Point<int> offset)
 {
+    if (!isAbstractionOrInside()) {
+    //
     objects_.forEach ([offset](const auto& p) { if (p->isSelected()) { p->drag (offset); } });
+    //
+    }
 }
 
 void EditView::moveBack()
 {
+    if (!isAbstractionOrInside()) {
+    //
     objects_.forEach ([](const auto& p) { if (p->isSelected()) { p->moveBack(); } });
+    //
+    }
 }
 
 void EditView::moveFront()
 {
+    if (!isAbstractionOrInside()) {
+    //
     objects_.forEach ([](const auto& p) { if (p->isSelected()) { p->moveFront(); } });
+    //
+    }
 }
 
 void EditView::snapToGrid()
 {
+    if (!isAbstractionOrInside()) {
+    //
     objects_.forEach ([](const auto& p) { if (p->isSelected()) { p->snap(); } });
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -386,12 +406,12 @@ void EditView::snapToGrid()
 
 void EditView::undo()
 {
-    EditCommands::undo (core::Patch (viewTree_).getIdentifier());
+    if (!isAbstractionOrInside()) { EditCommands::undo (core::Patch (viewTree_).getIdentifier()); }
 }
 
 void EditView::redo()
 {
-    EditCommands::redo (core::Patch (viewTree_).getIdentifier());
+    if (!isAbstractionOrInside()) { EditCommands::redo (core::Patch (viewTree_).getIdentifier()); }
 }
 
 bool EditView::hasUndo() const
@@ -432,20 +452,30 @@ juce::String EditView::getRedoAction() const
 
 void EditView::cut()
 {
+    if (!isAbstractionOrInside()) {
+    //
     setPaste();
     
     EditCommands::cut (core::Patch (viewTree_).getIdentifier());
+    //
+    }
 }
 
 void EditView::copy()
 {
+    if (!isAbstractionOrInside()) {
+    //
     setPaste();
     
     EditCommands::copy (core::Patch (viewTree_).getIdentifier());
+    //
+    }
 }
 
 void EditView::paste()
 {
+    if (!isAbstractionOrInside()) {
+    //
     const int n = Spaghettis()->getPreferences().getCached<int> (Tag::Editing, Tag::GridSize);
     
     const juce::Rectangle<int> area  = getRealVisibleArea();
@@ -456,18 +486,28 @@ void EditView::paste()
     const juce::Point<int> pt        = area.contains (selection) ? selection : centre;
     
     EditCommands::paste (core::Patch (viewTree_).getIdentifier(), pt);
+    //
+    }
 }
 
 void EditView::duplicate()
 {
+    if (!isAbstractionOrInside()) {
+    //
     EditCommands::duplicate (core::Patch (viewTree_).getIdentifier());
+    //
+    }
 }
 
 void EditView::remove()
 {
+    if (!isAbstractionOrInside()) {
+    //
     EditCommands::remove (core::Patch (viewTree_).getIdentifier());     /* Remove all selected objects. */
     
     deconnectSelectedLines (lines_);
+    //
+    }
 }
 
 void EditView::encapsulate()
@@ -477,12 +517,16 @@ void EditView::encapsulate()
 
 void EditView::deencapsulate()
 {
+    if (!isAbstractionOrInside()) {
+    //
     const ObjectComponent* o = getSelectedObject();
     
     jassert (o);
     jassert (o->getObject().isPatch());
     
     EditCommands::deencapsulate (o->getIdentifier());
+    //
+    }
 }
     
 // -----------------------------------------------------------------------------------------------------------

@@ -49,7 +49,8 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
     painter_ (createPainter (this, object)),
-    documentation_ (object)
+    documentation_ (object),
+    isLocked_ (object_.isLocked())
 {
     jassert (view);
     
@@ -84,6 +85,15 @@ ObjectComponent::~ObjectComponent()
     
     view_->hide (this);
     view_->removeChildComponent (this);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool ObjectComponent::isLocked() const
+{
+    return isLocked_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -162,7 +172,7 @@ void ObjectComponent::dragStart()
 
 void ObjectComponent::drag (juce::Point<int> offset)
 {
-    EditCommands::position (object_.getIdentifier(), origin_ + offset);
+    if (!isLocked()) { EditCommands::position (object_.getIdentifier(), origin_ + offset); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -310,17 +320,17 @@ void ObjectComponent::moveAllPinsFront()
 
 void ObjectComponent::moveBack()
 {
-    EditCommands::moveBack (object_.getIdentifier());
+    if (!isLocked()) { EditCommands::moveBack (object_.getIdentifier()); }
 }
 
 void ObjectComponent::moveFront()
 {
-    EditCommands::moveFront (object_.getIdentifier());
+    if (!isLocked()) { EditCommands::moveFront (object_.getIdentifier()); }
 }
 
 void ObjectComponent::snap()
 {
-    EditCommands::snap (object_.getIdentifier());
+    if (!isLocked()) { EditCommands::snap (object_.getIdentifier()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

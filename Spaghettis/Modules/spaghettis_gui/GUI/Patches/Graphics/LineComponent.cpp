@@ -22,7 +22,8 @@ LineComponent::LineComponent (View* view, const core::Line& line) :
     lineSelectedColour_ (Spaghettis()->getCachedColour (Tag::LineSelected)),
     lineSignalColour_ (Spaghettis()->getCachedColour (Tag::LineSignal)),
     isSignal_ (false),
-    isOver_ (false)
+    isOver_ (false),
+    isLocked_ (line_.isLocked())
 {
     jassert (view);
     
@@ -56,14 +57,27 @@ LineComponent::~LineComponent()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool LineComponent::isLocked() const
+{
+    return isLocked_;
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LineComponent::disconnect() const
 {
+    if (!isLocked()) {
+    //
     const core::UniqueId u = line_.getIdentifierOfSource();
     const core::UniqueId v = line_.getIdentifierOfDestination();
     const int m = line_.get<int> (Tag::Attributes, Tag::Outlet);
     const int n = line_.get<int> (Tag::Attributes, Tag::Inlet);
     
     EditCommands::disconnect (u, m, v, n);
+    //
+    }
 }
     
 // -----------------------------------------------------------------------------------------------------------
