@@ -24,9 +24,10 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     addChildComponent (editZoom_);
     addChildComponent (editInspector_);
     
+    if (editView_.isAbstractionOrInside() == false) {
+    //
     auto f = [this]() { return editView_.hasSelectedObject(); };
     
-    addMenuCommand (MenuCommand (Commands::save,            [this]() { editView_.getPatchRoot().save(); }));
     addMenuCommand (MenuCommand (Commands::undo,            [this]() { editView_.undo(); },
                                                             [this]() { return editView_.hasUndo(); },
                                                             [this]() { return editView_.getUndoAction(); }));
@@ -52,12 +53,16 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     addMenuCommand (MenuCommand (Commands::moveBack,        [this]() { editView_.moveBack(); }, f));
     addMenuCommand (MenuCommand (Commands::moveFront,       [this]() { editView_.moveFront(); }, f));
     addMenuCommand (MenuCommand (Commands::snap,            [this]() { editView_.snapToGrid(); }, f));
+    //
+    }
+
+    addMenuCommand (MenuCommand (Commands::save,            [this]() { editView_.getPatchRoot().save(); }));
     addMenuCommand (MenuCommand (Commands::selectAll,       [this]() { editView_.selectAll(); }));
-        
+    
     addMenuCommand (MenuCommand (Commands::zoomIn,          [this]() { zoomIn(); } ));
     addMenuCommand (MenuCommand (Commands::zoomOut,         [this]() { zoomOut(); } ));
     addMenuCommand (MenuCommand (Commands::zoomReset,       [this]() { zoomReset(); } ));
-
+    
     setOpaque (true); setSize (600, 300);
 }
     

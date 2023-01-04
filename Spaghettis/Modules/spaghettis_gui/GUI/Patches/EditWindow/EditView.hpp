@@ -90,6 +90,9 @@ private:
 // MARK: -
 
 public:
+    bool isAbstractionOrInside() const;
+    
+public:
     void selectAll();
     void deselectAll();
     void select (const juce::Rectangle<int>&);
@@ -206,6 +209,7 @@ private:
 
 private:
     bool isAbstraction_;
+    bool isLocked_;
     core::Cached<juce::String> undo_;
     core::Cached<juce::String> redo_;
     core::Cached<juce::Colour> patchBackgroundColour_;

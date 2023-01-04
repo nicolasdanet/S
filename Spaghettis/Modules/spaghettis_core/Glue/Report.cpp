@@ -221,7 +221,7 @@ void setObjectAttributesForPatch (Group& group, t_glist* owner, t_object* o, con
             NEEDS_TRANS ("Abstraction"),
             NEEDS_TRANS ("Is this an abstraction"),
             static_cast<bool> (glist_isAbstraction (g)),
-            delegate).setHidden (true);
+            delegate).setEditable (false);
     }
     
     if (t.contains (Tag::Undo)) {

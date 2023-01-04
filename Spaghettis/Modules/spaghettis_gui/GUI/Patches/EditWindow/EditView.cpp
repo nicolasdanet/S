@@ -15,6 +15,7 @@ namespace spaghettis {
 EditView::EditView (PatchRoot& patch, const juce::ValueTree& tree) :
     View (patch, tree),
     isAbstraction_ (core::Patch (viewTree_).isAbstraction()),
+    isLocked_ (core::Patch (viewTree_).isLocked()),
     undo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Undo)),
     redo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Redo)),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),
@@ -175,6 +176,15 @@ std::optional<juce::Point<int>> EditView::getRealPositionOfSelectedObjects (juce
 juce::Rectangle<int> EditView::getRealVisibleArea() const
 {
     return getPort()->getRealVisibleArea();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool EditView::isAbstractionOrInside() const
+{
+    return isAbstraction_ || isLocked_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
