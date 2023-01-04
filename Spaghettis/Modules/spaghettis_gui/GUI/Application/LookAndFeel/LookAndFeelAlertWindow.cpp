@@ -17,14 +17,9 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using juce::KeyPress;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-KeyPress getShortcut (const juce::String& button)
+juce::KeyPress getShortcut (const juce::String& button)
 {
-    return KeyPress (static_cast<int> (juce::CharacterFunctions::toLowerCase (button[0])));
+    return juce::KeyPress (static_cast<int> (juce::CharacterFunctions::toLowerCase (button[0])));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -33,20 +28,23 @@ KeyPress getShortcut (const juce::String& button)
 
 void createAlertWindowAddButtons (const std::unique_ptr<juce::AlertWindow>& w, const juce::String& button1)
 {
-    w->addButton (button1, 0, KeyPress (KeyPress::escapeKey), KeyPress (KeyPress::returnKey));
+    w->addButton (button1,
+        0,
+        juce::KeyPress (juce::KeyPress::escapeKey),
+        juce::KeyPress (juce::KeyPress::returnKey));
 }
 
 void createAlertWindowAddButtons (const std::unique_ptr<juce::AlertWindow>& w,
     const juce::String& button1,
     const juce::String& button2)
 {
-    const KeyPress shortCut1 (getShortcut (button1));
-    const KeyPress shortCut2 (getShortcut (button2));
+    const juce::KeyPress shortCut1 (getShortcut (button1));
+    const juce::KeyPress shortCut2 (getShortcut (button2));
     
     jassert (shortCut1 != shortCut2);
     
-    w->addButton (button1, 1, KeyPress (KeyPress::returnKey), shortCut1);
-    w->addButton (button2, 0, KeyPress (KeyPress::escapeKey), shortCut2);
+    w->addButton (button1, 1, juce::KeyPress (juce::KeyPress::returnKey), shortCut1);
+    w->addButton (button2, 0, juce::KeyPress (juce::KeyPress::escapeKey), shortCut2);
 }
 
 void createAlertWindowAddButtons (const std::unique_ptr<juce::AlertWindow>& w,
@@ -54,14 +52,14 @@ void createAlertWindowAddButtons (const std::unique_ptr<juce::AlertWindow>& w,
     const juce::String& button2,
     const juce::String& button3)
 {
-    const KeyPress shortCut1 (getShortcut (button1));
-    const KeyPress shortCut2 (getShortcut (button2));
+    const juce::KeyPress shortCut1 (getShortcut (button1));
+    const juce::KeyPress shortCut2 (getShortcut (button2));
     
     jassert (shortCut1 != shortCut2);
     
-    w->addButton (button1, 1, KeyPress (KeyPress::returnKey), shortCut1);
+    w->addButton (button1, 1, juce::KeyPress (juce::KeyPress::returnKey), shortCut1);
     w->addButton (button2, 2, shortCut2);
-    w->addButton (button3, 0, KeyPress (KeyPress::escapeKey));
+    w->addButton (button3, 0, juce::KeyPress (juce::KeyPress::escapeKey));
 }
 
 void createAlertWindowAddButtons (const std::unique_ptr<juce::AlertWindow>& w,
