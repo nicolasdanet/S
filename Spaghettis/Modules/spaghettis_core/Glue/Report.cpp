@@ -270,7 +270,7 @@ void setObjectParameters (Data& data, t_glist* owner, t_object* o, const Tags& t
             NEEDS_TRANS ("Label"),
             NEEDS_TRANS ("Parameter name in run view"),
             juce::String (symbol_getName (object_getLabel (o))),
-            delegate);
+            delegate).setEditable (!glist_isAbstractionOrInside (owner));
     }
     
     (*class_getParametersGetter (c)) (o, group, t);
