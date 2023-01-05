@@ -52,6 +52,12 @@ template<> struct ParameterType<juce::String>
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+enum class ParameterScope { local, delegate };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class Parameter {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -182,8 +188,8 @@ public:
 private:
     juce::Value getSource (const juce::Identifier&, bool) const;
     const juce::var& get (const juce::Identifier&) const;
-    void set (const juce::Identifier&, const juce::var&);
     void change (const juce::Identifier&, const juce::var&);
+    void set (const juce::Identifier&, const juce::var&);
 
 private:
     juce::var forceType (const juce::var&) const;

@@ -160,11 +160,26 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* Get local value first if any, then try the global one. */
+/* First search locally (always true for Id::value) then in delegate/prototype. */
 
-juce::ValueTree getBase (const juce::ValueTree& tree, const juce::Identifier& identifier)
+juce::ValueTree baseForGetters (const juce::ValueTree& tree, const juce::Identifier& i)
 {
-    if (!tree.hasProperty (identifier)) {
+    if (!tree.hasProperty (i)) {
+    //
+    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Id::DELEGATE).getObject());
+    
+    if (p) {
+        return p->getValueTree();
+    }
+    //
+    }
+    
+    return tree;
+}
+
+juce::ValueTree baseForSetters (const juce::ValueTree& tree, const juce::Identifier& i, ParameterScope scope)
+{
+    if (!tree.hasProperty (i)) {
     //
     auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Id::DELEGATE).getObject());
     
@@ -188,22 +203,21 @@ juce::ValueTree getBase (const juce::ValueTree& tree, const juce::Identifier& id
 
 juce::Value Parameter::getSource (const juce::Identifier& identifier, bool updateSynchronously) const
 {
-    return getBase (parameter_, identifier).getPropertyAsValue (identifier, nullptr, updateSynchronously);
+    juce::ValueTree t = baseForGetters (parameter_, identifier);
+    
+    return t.getPropertyAsValue (identifier, nullptr, updateSynchronously);
 }
 
 const juce::var& Parameter::get (const juce::Identifier& identifier) const
 {
-    return getBase (parameter_, identifier).getProperty (identifier);
-}
-
-void Parameter::set (const juce::Identifier& identifier, const juce::var& v)
-{
-    getBase (parameter_, identifier).setProperty (identifier, v, nullptr);
+    juce::ValueTree t = baseForGetters (parameter_, identifier);
+    
+    return t.getProperty (identifier);
 }
 
 void Parameter::change (const juce::Identifier& identifier, const juce::var& v)
 {
-    juce::ValueTree t (getBase (parameter_, identifier));
+    juce::ValueTree t = baseForGetters (parameter_, identifier);
     
     if (t.hasProperty (identifier) && !t.getProperty (identifier).equals (v)) {
     //
@@ -212,6 +226,16 @@ void Parameter::change (const juce::Identifier& identifier, const juce::var& v)
     t.setProperty (identifier, v, nullptr);
     //
     }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void Parameter::set (const juce::Identifier& identifier, const juce::var& v)
+{
+    juce::ValueTree t = baseForSetters (parameter_, identifier, ParameterScope::delegate);
+    
+    t.setProperty (identifier, v, nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------
