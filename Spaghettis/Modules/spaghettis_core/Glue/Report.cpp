@@ -255,7 +255,7 @@ void setObjectAttributes (Data& data, t_glist* owner, t_object* o, const Tags& t
     }
 }
 
-void setObjectParameters (Data& data, t_object* o, const Tags& t)
+void setObjectParameters (Data& data, t_glist* owner, t_object* o, const Tags& t)
 {
     t_class* c = pd_class (o);
     
@@ -294,7 +294,7 @@ juce::ValueTree getObject (const UniquePath& u, t_glist* owner, t_object* o, con
     Data data (Id::DATA);
     
     if (t.hasAttributes()) { setObjectAttributes (data, owner, o, t); }
-    if (t.hasParameters()) { setObjectParameters (data, o, t); }
+    if (t.hasParameters()) { setObjectParameters (data, owner, o, t); }
     
     tree.appendChild (data.asValueTree(), nullptr);
     //

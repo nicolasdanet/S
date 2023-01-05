@@ -160,6 +160,8 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+/* Get local value first if any, then try the global one. */
+
 juce::ValueTree getBase (const juce::ValueTree& tree, const juce::Identifier& identifier)
 {
     if (!tree.hasProperty (identifier)) {
