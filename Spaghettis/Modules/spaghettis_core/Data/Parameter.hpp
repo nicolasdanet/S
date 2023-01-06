@@ -139,8 +139,8 @@ public:
 // MARK: -
 
 public:
-    Parameter& setHidden (bool);
-    Parameter& setEditable (bool);
+    Parameter& setHidden (bool,   ParameterScope scope = ParameterScope::delegate);
+    Parameter& setEditable (bool, ParameterScope scope = ParameterScope::delegate);
     
     bool isHidden() const;
     bool isEditable() const;
@@ -152,8 +152,8 @@ public:
 public:
     template <class T> Parameter& setRange (juce::Range<T> range)
     {
-        set (Id::minimum, range.getStart());
-        set (Id::maximum, range.getEnd());
+        set (Id::minimum, range.getStart(), ParameterScope::delegate);
+        set (Id::maximum, range.getEnd(),   ParameterScope::delegate);
         
         return *this;
     }
@@ -189,7 +189,7 @@ private:
     juce::Value getSource (const juce::Identifier&, bool) const;
     const juce::var& get (const juce::Identifier&) const;
     void change (const juce::Identifier&, const juce::var&);
-    void set (const juce::Identifier&, const juce::var&);
+    void set (const juce::Identifier&, const juce::var&, ParameterScope);
 
 private:
     juce::var forceType (const juce::var&) const;

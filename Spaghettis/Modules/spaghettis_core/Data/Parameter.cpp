@@ -93,14 +93,14 @@ void Parameter::changeValue (const juce::var& v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parameter& Parameter::setHidden (bool isHidden)
+Parameter& Parameter::setHidden (bool isHidden, ParameterScope scope)
 {
-    set (Id::hidden, isHidden); return *this;
+    set (Id::hidden, isHidden, scope); return *this;
 }
 
-Parameter& Parameter::setEditable (bool isEditable)
+Parameter& Parameter::setEditable (bool isEditable, ParameterScope scope)
 {
-    set (Id::editable, isEditable); return *this;
+    set (Id::editable, isEditable, scope); return *this;
 }
 
 bool Parameter::isHidden() const
@@ -160,36 +160,31 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* First search locally (always true for Id::value) then in delegate/prototype. */
+juce::ValueTree baseDelegate (const juce::ValueTree& tree)
+{
+    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Id::DELEGATE).getObject());
+    
+    jassert (p);
+    
+    return p->getValueTree();
+}
 
 juce::ValueTree baseForGetters (const juce::ValueTree& tree, const juce::Identifier& i)
 {
-    if (!tree.hasProperty (i)) {
-    //
-    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Id::DELEGATE).getObject());
+    /* First search locally then in delegate/prototype. */
     
-    if (p) {
-        return p->getValueTree();
+    if (!tree.hasProperty (i)) { return baseDelegate (tree); }
+    else {
+        return tree;
     }
-    //
-    }
-    
-    return tree;
 }
 
 juce::ValueTree baseForSetters (const juce::ValueTree& tree, const juce::Identifier& i, ParameterScope scope)
 {
-    if (!tree.hasProperty (i)) {
-    //
-    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Id::DELEGATE).getObject());
-    
-    if (p) {
-        return p->getValueTree();
+    if (scope == ParameterScope::delegate) { return baseDelegate (tree); }
+    else {
+        return tree;
     }
-    //
-    }
-    
-    return tree;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -231,9 +226,9 @@ void Parameter::change (const juce::Identifier& identifier, const juce::var& v)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void Parameter::set (const juce::Identifier& identifier, const juce::var& v)
+void Parameter::set (const juce::Identifier& identifier, const juce::var& v, ParameterScope scope)
 {
-    juce::ValueTree t = baseForSetters (parameter_, identifier, ParameterScope::delegate);
+    juce::ValueTree t = baseForSetters (parameter_, identifier, scope);
     
     t.setProperty (identifier, v, nullptr);
 }
