@@ -73,20 +73,15 @@ void findDocumentationForClass (core::Data data, const juce::String& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Item Documentation::createCopy (ObjectComponent* o)
+core::Item Documentation::createCopy (const core::Item& item)
 {
-    jassert (o); core::Item i (core::Item::createCopy (o->getObject()));
+    core::Item i (core::Item::createCopy (item));
     
     if (!i.isPatch()) {
+    if (!i.isLine())  {
         findDocumentationForClass (i.getData(), i.get<juce::String> (Tag::Attributes, Tag::Class));
     }
-    
-    return i;
-}
-
-core::Item Documentation::createCopy (LineComponent* l)
-{
-    jassert (l); core::Item i (core::Item::createCopy (l->getLine()));
+    }
     
     return i;
 }

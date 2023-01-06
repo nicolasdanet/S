@@ -48,8 +48,7 @@ public:
 // MARK: -
 
 public:
-    static core::Item createCopy (ObjectComponent*);
-    static core::Item createCopy (LineComponent*);
+    static core::Item createCopy (const core::Item&);
     
 private:
     static core::Data find (const core::Object&);
