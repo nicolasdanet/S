@@ -113,7 +113,7 @@ void setObjectAttributesForObject (Group& group, t_glist* owner, t_object* o, co
             NEEDS_TRANS ("Class"),
             NEEDS_TRANS ("Class of the object"),
             juce::String (class_getNameAsString (pd_class (o))),
-            delegate).setEditable (false);
+            delegate);
     }
     
     if (t.contains (Tag::Content)) {
@@ -121,7 +121,7 @@ void setObjectAttributesForObject (Group& group, t_glist* owner, t_object* o, co
             NEEDS_TRANS ("Content"),
             NEEDS_TRANS ("Content of the box's buffer"),
             getContentBuffer (o),
-            delegate).setEditable (false);
+            delegate);
     }
     
     if (t.contains (Tag::Inlets)) {
@@ -129,7 +129,7 @@ void setObjectAttributesForObject (Group& group, t_glist* owner, t_object* o, co
             NEEDS_TRANS ("Inlets"),
             NEEDS_TRANS ("List of inlets types"),
             object_getTypeOfInlets (o),
-            delegate).setEditable (false);
+            delegate);
     }
     
     if (t.contains (Tag::Outlets)) {
@@ -137,7 +137,7 @@ void setObjectAttributesForObject (Group& group, t_glist* owner, t_object* o, co
             NEEDS_TRANS ("Outlets"),
             NEEDS_TRANS ("List of outlets types"),
             object_getTypeOfOutlets (o),
-            delegate).setEditable (false);
+            delegate);
     }
     
     if (t.contains (Tag::X)) {
@@ -184,7 +184,7 @@ void setObjectAttributesForPatch (Group& group, t_glist* owner, t_object* o, con
             NEEDS_TRANS ("Title"),
             NEEDS_TRANS ("Patch name"),
             juce::String (symbol_getName (glist_getName (g))),
-            delegate).setEditable (false);
+            delegate);
     }
     
     if (t.contains (Tag::EditView)) {
@@ -192,7 +192,7 @@ void setObjectAttributesForPatch (Group& group, t_glist* owner, t_object* o, con
             NEEDS_TRANS ("Edit View"),
             NEEDS_TRANS ("Edit window geometry"),
             getEditView (g),
-            delegate).setEditable (false);
+            delegate);
     }
     
     if (!glist_isRoot (g)) { setObjectAttributesForObject (group, owner, o, t); }
@@ -203,7 +203,7 @@ void setObjectAttributesForPatch (Group& group, t_glist* owner, t_object* o, con
             NEEDS_TRANS ("Run View"),
             NEEDS_TRANS ("Run window geometry"),
             getRunView (g),
-            delegate).setEditable (false);
+            delegate);
     }
     
     if (t.contains (Tag::Path)) {
@@ -211,7 +211,7 @@ void setObjectAttributesForPatch (Group& group, t_glist* owner, t_object* o, con
             NEEDS_TRANS ("Path"),
             NEEDS_TRANS ("File path"),
             getPatchFile (g).getFullPathName(),
-            delegate).setEditable (false);
+            delegate);
     }
     //
     }
@@ -221,7 +221,7 @@ void setObjectAttributesForPatch (Group& group, t_glist* owner, t_object* o, con
             NEEDS_TRANS ("Abstraction"),
             NEEDS_TRANS ("Is this an abstraction"),
             static_cast<bool> (glist_isAbstraction (g)),
-            delegate).setEditable (false);
+            delegate);
     }
     
     if (t.contains (Tag::Undo)) {
@@ -253,6 +253,8 @@ void setObjectAttributes (Data& data, t_glist* owner, t_object* o, const Tags& t
     else {
         setObjectAttributesForObject (group, owner, o, t);
     }
+    
+    for (auto parameter : group) { parameter.setEditable (false); }
 }
 
 void setObjectParameters (Data& data, t_glist* owner, t_object* o, const Tags& t)
@@ -270,10 +272,14 @@ void setObjectParameters (Data& data, t_glist* owner, t_object* o, const Tags& t
             NEEDS_TRANS ("Label"),
             NEEDS_TRANS ("Parameter name in run view"),
             juce::String (symbol_getName (object_getLabel (o))),
-            delegate).setEditable (!glist_isAbstractionOrInside (owner));
+            delegate);
     }
     
     (*class_getParametersGetter (c)) (o, group, t);
+    
+    const bool isAbstraction = glist_isAbstractionOrInside (owner);
+    
+    for (auto parameter : group) { parameter.setEditable (!isAbstraction, ParameterScope::local); }
     //
     }
 }
