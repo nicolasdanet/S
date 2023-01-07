@@ -300,12 +300,12 @@ bool EditView::selectLines (const juce::Rectangle<int>& r)
 
 core::Item EditView::getItemForInspector() const
 {
-    if (getNumberOfSelectedLines() == 1) { return Documentation::createCopy (getSelectedLine()->getLine()); }
+    if (getNumberOfSelectedLines() == 1) { return Documentation::createSync (getSelectedLine()->getLine()); }
     else if (getNumberOfSelectedObjects() == 1) {
-        return Documentation::createCopy (getSelectedObject()->getObject());
+        return Documentation::createSync (getSelectedObject()->getObject());
     }
     
-    return Documentation::createCopy (core::Patch (viewTree_));
+    return Documentation::createSync (core::Patch (viewTree_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

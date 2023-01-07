@@ -73,7 +73,7 @@ void findDocumentationForClass (core::Data data, const juce::String& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Item Documentation::createCopy (const core::Item& item)
+core::Item Documentation::createSync (const core::Item& item)
 {
     core::Item i (core::Item::createCopy (item));
     
