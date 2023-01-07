@@ -95,7 +95,7 @@ static void position (core::UniqueId i, juce::Point<int> pt)
 
 static void parameter (core::UniqueId i, const core::Group& group)
 {
-    Spaghettis()->handle (Inputs::parameterObject (i, core::Group::createCopy (group)));
+    Spaghettis()->handle (Inputs::parameterObject (i, core::Group::makeCopy (group)));
 }
 
 static void disconnect (core::UniqueId u, int m, core::UniqueId v, int n)

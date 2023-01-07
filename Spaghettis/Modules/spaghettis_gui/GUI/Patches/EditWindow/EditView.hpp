@@ -102,7 +102,7 @@ public:
     bool hasSelectedObject() const;
     bool hasOnlyOnePatchSelected() const;
     bool hasPaste() const;
-    core::Item getItemForInspector() const;
+    core::Item getSync() const;
     
 private:
     bool selectObjects (const juce::Rectangle<int>&);

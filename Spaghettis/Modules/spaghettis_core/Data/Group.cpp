@@ -71,7 +71,7 @@ Group Group::getFromParameter (const Parameter& parameter)
     return Group (t);
 }
 
-Group Group::createCopy (const Group& group)
+Group Group::makeCopy (const Group& group)
 {
     return Group (group.group_.createCopy());
 }

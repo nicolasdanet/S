@@ -298,7 +298,7 @@ bool EditView::selectLines (const juce::Rectangle<int>& r)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Item EditView::getItemForInspector() const
+core::Item EditView::getSync() const
 {
     if (getNumberOfSelectedLines() == 1) { return Documentation::createSync (getSelectedLine()->getLine()); }
     else if (getNumberOfSelectedObjects() == 1) {

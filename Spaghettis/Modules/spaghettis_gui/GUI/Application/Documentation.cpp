@@ -75,7 +75,7 @@ void findDocumentationForClass (core::Data data, const juce::String& c)
 
 core::Item Documentation::createSync (const core::Item& item)
 {
-    core::Item i (core::Item::createCopy (item));
+    core::Item i (core::Item::makePartialCopy (item));
     
     if (!i.isPatch()) {
     if (!i.isLine())  {

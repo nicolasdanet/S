@@ -129,7 +129,7 @@ public:
     void apply (const Item&);
 
 public:
-    static Item createCopy (const Item&);
+    static Item makePartialCopy (const Item&);
     
 protected:
     juce::ValueTree tree_;

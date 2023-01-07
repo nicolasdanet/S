@@ -94,7 +94,7 @@ public:
 
 public:
     static Group getFromParameter (const Parameter&);
-    static Group createCopy (const Group&);
+    static Group makeCopy (const Group&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

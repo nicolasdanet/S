@@ -30,7 +30,7 @@ void Item::apply (const Item& item)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Item Item::createCopy (const Item& item)
+Item Item::makePartialCopy (const Item& item)
 {
     return Item (item.asValueTree().createCopy());
 }
