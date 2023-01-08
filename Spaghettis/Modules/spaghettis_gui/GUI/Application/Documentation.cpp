@@ -59,7 +59,9 @@ Documentation::Documentation (const core::Object& o) : data_ (makeDocumentation 
 {
 }
 
-
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 juce::String Documentation::getPinTooltip (const juce::String& type, bool isOutlet, int i) const
 {
@@ -77,9 +79,9 @@ juce::String Documentation::getPinTooltip (const juce::String& type, bool isOutl
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Data Documentation::makeCopyOfData (const core::Item& item)
+core::Data Documentation::getCopyOfData (const core::Item& item)
 {
-    return item.getData();
+    return core::Data::makeCopy (item.getData());
     
     /*
     if (!item.isPatch()) {

@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Sync::Sync (const core::Item& item) : source_ (item), synchronized_ (Documentation::makeCopyOfData (item))
+Sync::Sync (const core::Item& item) : source_ (item), synchronized_ (Documentation::getCopyOfData (item))
 {
 
 }
