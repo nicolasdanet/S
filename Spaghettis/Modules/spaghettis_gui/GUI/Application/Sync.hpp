@@ -19,13 +19,16 @@ class Sync {
 // MARK: -
 
 public:
-    explicit Sync (const Item&, const Item&);
+    Sync (const Item& item) : source_ (item), listener_ (item.getData())
+    {
+
+    }
     
     ~Sync();
 
 private:
     Item source_;
-    Item listener_;
+    Data listener_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Sync)
