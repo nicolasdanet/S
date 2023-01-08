@@ -73,15 +73,6 @@ void findDocumentationForClass (core::Data data, const juce::String& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Sync Documentation::makeSync (const core::Item& item)
-{
-    return Sync (item);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 core::Data Documentation::find (const core::Object& o)
 {
     core::Data data (Id::DOCUMENTATION);

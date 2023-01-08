@@ -83,8 +83,8 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/Commands.hpp"
-#include "GUI/Application/Sync.hpp"
 #include "GUI/Application/Documentation.hpp"
+#include "GUI/Application/Sync.hpp"
 #include "GUI/Application/Icons.hpp"
 #include "GUI/Application/MenuModel.hpp"
 #include "GUI/Application/Preferences.hpp"
