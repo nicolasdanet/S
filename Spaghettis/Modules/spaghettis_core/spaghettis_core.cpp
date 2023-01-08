@@ -30,7 +30,6 @@
 #include "Glue/Tree.cpp"
 #include "Glue/Item.cpp"
 #include "Glue/Patch.cpp"
-#include "Glue/Sync.cpp"
 #include "Glue/Report.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
