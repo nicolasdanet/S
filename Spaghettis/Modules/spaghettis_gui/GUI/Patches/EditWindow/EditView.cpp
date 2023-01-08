@@ -298,7 +298,7 @@ bool EditView::selectLines (const juce::Rectangle<int>& r)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Sync EditView::getSync() const
+Sync EditView::getSynchronized() const
 {
     if (getNumberOfSelectedLines() == 1)        { return Sync (getSelectedLine()->getLine());     }
     else if (getNumberOfSelectedObjects() == 1) { return Sync (getSelectedObject()->getObject()); }

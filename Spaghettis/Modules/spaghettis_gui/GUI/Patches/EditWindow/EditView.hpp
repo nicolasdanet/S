@@ -102,7 +102,7 @@ public:
     bool hasSelectedObject() const;
     bool hasOnlyOnePatchSelected() const;
     bool hasPaste() const;
-    Sync getSync() const;
+    Sync getSynchronized() const;
     
 private:
     bool selectObjects (const juce::Rectangle<int>&);
