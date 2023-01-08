@@ -12,15 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Sync::Sync (const core::Item& item) : source_ (item), synchronized_ (item.getData())
+Sync::Sync (const core::Item& item) : source_ (item), synchronized_ (Documentation::makeCopyOfData (item))
 {
-    /*
-    if (!source_.isPatch()) {
-    if (!source_.isLine())  {
-        findDocumentationForClass (i.getData(), i.get<juce::String> (Tag::Attributes, Tag::Class));
-    }
-    }
-    */
+
 }
 
 // -----------------------------------------------------------------------------------------------------------

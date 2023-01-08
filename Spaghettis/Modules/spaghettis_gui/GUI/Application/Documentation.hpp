@@ -35,6 +35,13 @@ public:
 // MARK: -
 
 public:
+    static core::Data makeCopyOfData (const core::Item&);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     static juce::String firstLetterCapitalized (juce::String);
     
 private:

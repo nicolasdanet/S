@@ -35,7 +35,7 @@ void findDocumentationForClass (core::Data data, const juce::String& c)
     }
 }
 
-core::Data findDocumentation (const core::Object& o)
+core::Data makeDocumentation (const core::Object& o)
 {
     core::Data data (Id::DOCUMENTATION);
     
@@ -55,18 +55,11 @@ core::Data findDocumentation (const core::Object& o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Documentation::Documentation (const core::Object& o) : data_ (findDocumentation (o))
+Documentation::Documentation (const core::Object& o) : data_ (makeDocumentation (o))
 {
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-juce::String Documentation::firstLetterCapitalized (juce::String s)
-{
-    return s.substring (0, 1).toUpperCase() + s.substring (1);
-}
 
 juce::String Documentation::getPinTooltip (const juce::String& type, bool isOutlet, int i) const
 {
@@ -78,6 +71,32 @@ juce::String Documentation::getPinTooltip (const juce::String& type, bool isOutl
     }
     
     return t;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+core::Data Documentation::makeCopyOfData (const core::Item& item)
+{
+    return item.getData();
+    
+    /*
+    if (!item.isPatch()) {
+    if (!item.isLine())  {
+        findDocumentationForClass (i.getData(), i.get<juce::String> (Tag::Attributes, Tag::Class));
+    }
+    }
+    */
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::String Documentation::firstLetterCapitalized (juce::String s)
+{
+    return s.substring (0, 1).toUpperCase() + s.substring (1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
