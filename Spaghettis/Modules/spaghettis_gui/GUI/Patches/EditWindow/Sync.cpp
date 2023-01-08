@@ -12,46 +12,52 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Sync {
+Sync::Sync (const core::Item& item) : source_ (item), data_ (Documentation::getCopyOfDataExtended (item))
+{
+    source_.addObserver (this);
+}
+
+Sync::~Sync()
+{
+    source_.removeObserver (this);
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    explicit Sync (const core::Item&);
-    
-    ~Sync() = default;
-    
-public:
-    Sync (const Sync&) = default;
-    Sync (Sync&&) = default;
-    Sync& operator = (const Sync&) = default;
-    Sync& operator = (Sync&&) = default;
+core::Data Sync::getData() const
+{
+    return data_;
+}
+
+core::UniqueId Sync::getIdentifier() const
+{
+    return source_.getIdentifier();
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    core::Data getData() const;
-    core::UniqueId getIdentifier() const;
-
-public:
-    void addObserver (core::Observer*);
-    void removeObserver (core::Observer*);
-
-private:
-    core::Item source_;
-    core::Data synchronized_;
+void Sync::addObserver (core::Observer* observer)
+{
+    data_.addObserver (observer);
+}
     
-private:
-    JUCE_LEAK_DETECTOR (Sync)
-    
+void Sync::removeObserver (core::Observer* observer)
+{
+    data_.removeObserver (observer);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-};
+void Sync::parameterHasChanged (const core::Group& group, const core::Parameter& parameter)
+{
+    DBG (group.getName() + " / " + parameter.getKey());
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

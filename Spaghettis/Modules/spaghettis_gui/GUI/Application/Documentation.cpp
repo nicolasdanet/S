@@ -79,7 +79,7 @@ juce::String Documentation::getPinTooltip (const juce::String& type, bool isOutl
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Data Documentation::getCopyOfData (const core::Item& item)
+core::Data Documentation::getCopyOfDataExtended (const core::Item& item)
 {
     core::Data data (core::Data::makeCopy (item.getData()));
 

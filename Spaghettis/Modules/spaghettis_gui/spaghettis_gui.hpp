@@ -83,7 +83,6 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/Commands.hpp"
-#include "GUI/Application/Sync.hpp"
 #include "GUI/Application/Documentation.hpp"
 #include "GUI/Application/Icons.hpp"
 #include "GUI/Application/MenuModel.hpp"
@@ -148,6 +147,7 @@
 #include "GUI/Patches/EditWindow/ActionLasso.hpp"
 #include "GUI/Patches/EditWindow/ActionHand.hpp"
 #include "GUI/Patches/EditWindow/ActionMove.hpp"
+#include "GUI/Patches/EditWindow/Sync.hpp"
 #include "GUI/Patches/EditWindow/EditView.hpp"
 #include "GUI/Patches/EditWindow/EditPort.hpp"
 #include "GUI/Patches/EditWindow/InspectorView.hpp"

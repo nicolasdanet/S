@@ -12,38 +12,58 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Sync::Sync (const core::Item& item) : source_ (item), synchronized_ (Documentation::getCopyOfData (item))
-{
-}
+class Sync : private core::Observer {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Data Sync::getData() const
-{
-    return synchronized_;
-}
-
-core::UniqueId Sync::getIdentifier() const
-{
-    return source_.getIdentifier();
-}
+public:
+    explicit Sync (const core::Item&);
+    
+    ~Sync();
+    
+public:
+    Sync (const Sync&) = default;
+    Sync (Sync&&) = default;
+    Sync& operator = (const Sync&) = default;
+    Sync& operator = (Sync&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Sync::addObserver (core::Observer* observer)
-{
-    synchronized_.addObserver (observer);
-}
+public:
+    core::Data getData() const;
+    core::UniqueId getIdentifier() const;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void addObserver (core::Observer*);
+    void removeObserver (core::Observer*);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    virtual void parameterHasChanged (const core::Group&, const core::Parameter&) override;
     
-void Sync::removeObserver (core::Observer* observer)
-{
-    synchronized_.removeObserver (observer);
-}
+private:
+    core::Item source_;
+    core::Data data_;
     
+private:
+    JUCE_LEAK_DETECTOR (Sync)
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+};
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

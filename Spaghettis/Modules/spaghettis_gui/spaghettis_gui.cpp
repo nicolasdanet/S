@@ -19,7 +19,6 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/Icons.cpp"
-#include "GUI/Application/Sync.cpp"
 #include "GUI/Application/Documentation.cpp"
 #include "GUI/Application/MenuModel.cpp"
 #include "GUI/Application/Preferences.cpp"
@@ -78,6 +77,7 @@
 #include "GUI/Patches/EditWindow/ActionLasso.cpp"
 #include "GUI/Patches/EditWindow/ActionHand.cpp"
 #include "GUI/Patches/EditWindow/ActionMove.cpp"
+#include "GUI/Patches/EditWindow/Sync.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
 #include "GUI/Patches/EditWindow/EditPort.cpp"
 #include "GUI/Patches/EditWindow/InspectorView.cpp"
