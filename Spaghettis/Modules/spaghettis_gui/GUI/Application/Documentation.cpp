@@ -16,9 +16,46 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Documentation::Documentation (const core::Object& o) : data_ (find (o))
+void findDocumentationForClass (core::Data data, const juce::String& c)
+{
+    const juce::String name  = juce::String ("info_") + c + juce::String ("_xml");
+    int n = 0; const char* p = BinaryData::getNamedResource (name.toRawUTF8(), n);
+    
+    if (n && p) {
+    //
+    data.addParametersFromXml (juce::String::createStringFromData (p, n));
+    //
+    }
+}
+
+core::Data findDocumentation (const core::Object& o)
+{
+    core::Data data (Id::DOCUMENTATION);
+    
+    if (!o.isPatch()) {
+        findDocumentationForClass (data, o.get<juce::String> (Tag::Attributes, Tag::Class));
+    }
+    
+    return data;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Documentation::Documentation (const core::Object& o) : data_ (findDocumentation (o))
 {
 }
 
@@ -41,47 +78,6 @@ juce::String Documentation::getPinTooltip (const juce::String& type, bool isOutl
     }
     
     return t;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void findDocumentationForClass (core::Data data, const juce::String& c)
-{
-    const juce::String name  = juce::String ("info_") + c + juce::String ("_xml");
-    int n = 0; const char* p = BinaryData::getNamedResource (name.toRawUTF8(), n);
-    
-    if (n && p) {
-    //
-    data.addParametersFromXml (juce::String::createStringFromData (p, n));
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-core::Data Documentation::find (const core::Object& o)
-{
-    core::Data data (Id::DOCUMENTATION);
-    
-    if (!o.isPatch()) {
-        findDocumentationForClass (data, o.get<juce::String> (Tag::Attributes, Tag::Class));
-    }
-    
-    return data;
 }
 
 // -----------------------------------------------------------------------------------------------------------

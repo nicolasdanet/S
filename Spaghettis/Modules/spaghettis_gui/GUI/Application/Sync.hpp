@@ -19,16 +19,7 @@ class Sync {
 // MARK: -
 
 public:
-    Sync (const core::Item& item) : source_ (item), synchronized_ (item.getData())
-    {
-        /*
-        if (!i.isPatch()) {
-        if (!i.isLine())  {
-            findDocumentationForClass (i.getData(), i.get<juce::String> (Tag::Attributes, Tag::Class));
-        }
-        }
-        */
-    }
+    explicit Sync (const core::Item&);
     
     ~Sync() = default;
     
@@ -43,31 +34,13 @@ public:
 // MARK: -
 
 public:
-    core::Data getData() const
-    {
-        return synchronized_;
-    }
-
-    core::UniqueId getIdentifier() const
-    {
-        return source_.getIdentifier();
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
+    core::Data getData() const;
+    core::UniqueId getIdentifier() const;
 
 public:
-    void addObserver (core::Observer* observer)
-    {
-        synchronized_.addObserver (observer);
-    }
-    
-    void removeObserver (core::Observer* observer)
-    {
-        synchronized_.removeObserver (observer);
-    }
-    
+    void addObserver (core::Observer*);
+    void removeObserver (core::Observer*);
+
 private:
     core::Item source_;
     core::Data synchronized_;
