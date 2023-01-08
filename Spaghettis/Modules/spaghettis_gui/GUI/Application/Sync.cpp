@@ -14,7 +14,6 @@ namespace spaghettis {
 
 Sync::Sync (const core::Item& item) : source_ (item), synchronized_ (Documentation::getCopyOfData (item))
 {
-
 }
 
 // -----------------------------------------------------------------------------------------------------------

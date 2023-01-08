@@ -23,7 +23,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void findDocumentationForClass (core::Data data, const juce::String& c)
+void findDocumentationForClass (core::Data& data, const juce::String& c)
 {
     const juce::String name  = juce::String ("info_") + c + juce::String ("_xml");
     int n = 0; const char* p = BinaryData::getNamedResource (name.toRawUTF8(), n);
@@ -81,15 +81,15 @@ juce::String Documentation::getPinTooltip (const juce::String& type, bool isOutl
 
 core::Data Documentation::getCopyOfData (const core::Item& item)
 {
-    return core::Data::makeCopy (item.getData());
-    
-    /*
+    core::Data data (core::Data::makeCopy (item.getData()));
+
     if (!item.isPatch()) {
     if (!item.isLine())  {
-        findDocumentationForClass (i.getData(), i.get<juce::String> (Tag::Attributes, Tag::Class));
+        findDocumentationForClass (data, item.get<juce::String> (Tag::Attributes, Tag::Class));
     }
     }
-    */
+    
+    return data;
 }
 
 // -----------------------------------------------------------------------------------------------------------
