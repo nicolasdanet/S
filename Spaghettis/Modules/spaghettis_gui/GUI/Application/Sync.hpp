@@ -6,7 +6,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-namespace spaghettis::core {
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -19,19 +19,61 @@ class Sync {
 // MARK: -
 
 public:
-    Sync (const Item& item) : source_ (item), listener_ (item.getData())
+    Sync (const core::Item& item) : source_ (item), synchronized_ (item.getData())
     {
-
+        /*
+        if (!i.isPatch()) {
+        if (!i.isLine())  {
+            findDocumentationForClass (i.getData(), i.get<juce::String> (Tag::Attributes, Tag::Class));
+        }
+        }
+        */
     }
     
-    ~Sync();
+    ~Sync() = default;
+    
+public:
+    Sync (const Sync&) = default;
+    Sync (Sync&&) = default;
+    Sync& operator = (const Sync&) = default;
+    Sync& operator = (Sync&&) = default;
 
-private:
-    Item source_;
-    Data listener_;
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    core::Data getData() const
+    {
+        return synchronized_;
+    }
+
+    core::UniqueId getIdentifier() const
+    {
+        return source_.getIdentifier();
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void addObserver (core::Observer* observer)
+    {
+        synchronized_.addObserver (observer);
+    }
+    
+    void removeObserver (core::Observer* observer)
+    {
+        synchronized_.removeObserver (observer);
+    }
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Sync)
+    core::Item source_;
+    core::Data synchronized_;
+    
+private:
+    JUCE_LEAK_DETECTOR (Sync)
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

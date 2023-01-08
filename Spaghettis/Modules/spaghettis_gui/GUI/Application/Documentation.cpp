@@ -73,17 +73,9 @@ void findDocumentationForClass (core::Data data, const juce::String& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Item Documentation::createSync (const core::Item& item)
+Sync Documentation::makeSync (const core::Item& item)
 {
-    core::Item i (core::Item::makePartialCopy (item));
-    
-    if (!i.isPatch()) {
-    if (!i.isLine())  {
-        findDocumentationForClass (i.getData(), i.get<juce::String> (Tag::Attributes, Tag::Class));
-    }
-    }
-    
-    return i;
+    return Sync (item);
 }
 
 // -----------------------------------------------------------------------------------------------------------

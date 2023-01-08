@@ -48,7 +48,7 @@ public:
 // MARK: -
 
 public:
-    static core::Item createSync (const core::Item&);
+    static Sync makeSync (const core::Item&);
     
 private:
     static core::Data find (const core::Object&);

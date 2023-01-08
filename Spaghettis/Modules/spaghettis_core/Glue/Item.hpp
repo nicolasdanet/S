@@ -128,9 +128,6 @@ public:
 public:
     void apply (const Item&);
 
-public:
-    static Item makePartialCopy (const Item&);
-    
 protected:
     juce::ValueTree tree_;
     core::Data data_;

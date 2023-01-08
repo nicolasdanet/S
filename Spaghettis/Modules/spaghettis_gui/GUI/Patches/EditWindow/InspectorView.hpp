@@ -20,7 +20,7 @@ class InspectorView :   public core::Observer,
 // MARK: -
 
 public:
-    explicit InspectorView (const core::Item&, int w);
+    explicit InspectorView (const Sync&, int w);
     
     ~InspectorView();
 
@@ -32,7 +32,7 @@ private:
     virtual void parameterHasChanged (const core::Group&, const core::Parameter&) override;
     
 private:
-    core::Item item_;
+    Sync sync_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InspectorView)

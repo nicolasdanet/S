@@ -19,8 +19,8 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/Icons.cpp"
-#include "GUI/Application/Documentation.cpp"
 #include "GUI/Application/Sync.cpp"
+#include "GUI/Application/Documentation.cpp"
 #include "GUI/Application/MenuModel.cpp"
 #include "GUI/Application/Preferences.cpp"
 #include "GUI/Application/Instance.cpp"

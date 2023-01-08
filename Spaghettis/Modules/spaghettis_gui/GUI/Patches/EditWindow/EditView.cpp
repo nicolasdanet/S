@@ -298,14 +298,14 @@ bool EditView::selectLines (const juce::Rectangle<int>& r)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Item EditView::getSync() const
+Sync EditView::getSync() const
 {
-    if (getNumberOfSelectedLines() == 1) { return Documentation::createSync (getSelectedLine()->getLine()); }
+    if (getNumberOfSelectedLines() == 1) { return Documentation::makeSync (getSelectedLine()->getLine()); }
     else if (getNumberOfSelectedObjects() == 1) {
-        return Documentation::createSync (getSelectedObject()->getObject());
+        return Documentation::makeSync (getSelectedObject()->getObject());
     }
     
-    return Documentation::createSync (core::Patch (viewTree_));
+    return Documentation::makeSync (core::Patch (viewTree_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

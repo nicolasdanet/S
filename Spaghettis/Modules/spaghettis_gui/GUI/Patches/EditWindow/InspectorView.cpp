@@ -12,16 +12,16 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-InspectorView::InspectorView (const core::Item& item, int w) : ParameterView (item.getData(), w), item_ (item)
+InspectorView::InspectorView (const Sync& sync, int w) : ParameterView (sync.getData(), w), sync_ (sync)
 {
-    item_.addObserver (this);
+    sync_.addObserver (this);
     
     requireExpandPanel (Tag::Parameters);
 }
 
 InspectorView::~InspectorView()
 {
-    item_.removeObserver (this);
+    sync_.removeObserver (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ InspectorView::~InspectorView()
 
 void InspectorView::parameterHasChanged (const core::Group& group, const core::Parameter& parameter)
 {
-    if (group.getName() == Tag::Parameters) { EditCommands::parameter (item_.getIdentifier(), group); }
+    if (group.getName() == Tag::Parameters) { EditCommands::parameter (sync_.getIdentifier(), group); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
