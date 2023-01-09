@@ -92,6 +92,9 @@ public:
     bool      hasParameter (const juce::String&, const juce::String&) const;
     Parameter getParameter (const juce::String&, const juce::String&) const;
 
+public:
+    void changeValue (const juce::String&, const juce::String&, const juce::var&);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

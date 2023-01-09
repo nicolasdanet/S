@@ -24,6 +24,11 @@ Parameter Data::getParameter (const juce::String& group, const juce::String& key
     jassert (hasParameter (group, key)); return getGroup (group).getParameter (key);
 }
 
+void Data::changeValue (const juce::String& group, const juce::String& key, const juce::var& v)
+{
+    if (hasParameter (group, key)) { getParameter (group, key).changeValue (v); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -154,7 +159,7 @@ void changeValuesFrom (Data& data, const juce::ValueTree& other)
     const juce::String key (other.getProperty (Id::key).toString());
     const juce::var v (other.getProperty (Id::value));
     
-    if (data.hasParameter (group, key)) { data.getParameter (group, key).changeValue (v); }
+    data.changeValue (group, key, v);
     //
     }
     
