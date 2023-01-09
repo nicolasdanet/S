@@ -14,12 +14,6 @@ namespace spaghettis {
 
 Sync::Sync (const core::Item& item) : source_ (item), data_ (Documentation::getCopyOfDataExtended (item))
 {
-    source_.addObserver (this);
-}
-
-Sync::~Sync()
-{
-    source_.removeObserver (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -42,12 +36,12 @@ core::UniqueId Sync::getIdentifier() const
 
 void Sync::addObserver (core::Observer* observer)
 {
-    data_.addObserver (observer);
+    source_.addObserver (this); data_.addObserver (observer);
 }
     
 void Sync::removeObserver (core::Observer* observer)
 {
-    data_.removeObserver (observer);
+    data_.removeObserver (observer); source_.removeObserver (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

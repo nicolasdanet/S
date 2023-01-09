@@ -20,7 +20,7 @@ class InspectorView :   public core::Observer,
 // MARK: -
 
 public:
-    explicit InspectorView (const Sync&, int w);
+    explicit InspectorView (Sync&&, int w);
     
     ~InspectorView();
 

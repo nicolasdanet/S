@@ -21,8 +21,8 @@ class Sync : private core::Observer {
 public:
     explicit Sync (const core::Item&);
     
-    ~Sync();
-    
+    ~Sync() = default;
+
 public:
     Sync (const Sync&) = default;
     Sync (Sync&&) = default;
