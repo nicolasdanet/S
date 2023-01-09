@@ -38,7 +38,7 @@ void Sync::addObserver (core::Observer* observer)
 {
     source_.addObserver (this); data_.addObserver (observer);
 }
-    
+
 void Sync::removeObserver (core::Observer* observer)
 {
     data_.removeObserver (observer); source_.removeObserver (this);
@@ -50,7 +50,7 @@ void Sync::removeObserver (core::Observer* observer)
 
 void Sync::parameterHasChanged (const core::Group& group, const core::Parameter& parameter)
 {
-    DBG (group.getName() + " / " + parameter.getKey());
+    data_.changeValue (group.getName(), parameter.getKey(), parameter.getValue());
 }
 
 // -----------------------------------------------------------------------------------------------------------
