@@ -18,7 +18,7 @@ void RunFactory::setToolbarButton (IconsButton* button)
 {
     switch (button->getItemId()) {
     //
-    case Icons::presets : button->setTooltip (NEEDS_TRANS ("Hide or show presets")); break;
+    case Icons::presets : button->setTooltip (NEEDS_TRANS ("Show or hide presets")); break;
     case Icons::edit    : button->setTooltip (NEEDS_TRANS ("Open an edit view"));    break;
     case Icons::run     : button->setTooltip (NEEDS_TRANS ("Open a run view"));      break;
     default             : break;

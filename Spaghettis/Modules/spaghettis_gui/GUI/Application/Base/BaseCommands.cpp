@@ -88,7 +88,7 @@ juce::String BaseCommands::getCommandText (juce::CommandID command)
     case Commands::zoomIn               : return NEEDS_TRANS ("Zoom In");
     case Commands::zoomOut              : return NEEDS_TRANS ("Zoom Out");
     case Commands::zoomReset            : return NEEDS_TRANS ("Actual size");
-    case Commands::inspector            : return NEEDS_TRANS ("Inspector");
+    case Commands::inspector            : return NEEDS_TRANS ("Show Inspector");
     case Commands::clearConsole         : return NEEDS_TRANS ("Clear Console");
     case Commands::devices              : return NEEDS_TRANS ("Devices...");
     case Commands::dspSwitch            : return NEEDS_TRANS ("Run DSP");
@@ -266,7 +266,7 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         r.setActive (has (command));
         break;
     case Commands::inspector :
-        r.setInfo (text, description, view, 0);
+        r.setInfo (name (Commands::inspector, text), description, view, 0);
         r.addDefaultKeypress ('i', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;

@@ -12,6 +12,25 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::String getInspectorMenuText (const EditInspector& i)
+{
+    return i.isActive() ? juce::String ("Hide Inspector") : juce::String ("Show Inspector");
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     EditFactoryHelper (this),
     BaseComponent (getIconsFactory()),
@@ -48,7 +67,8 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
                                                             [this]()
                                                             {
                                                                 return editView_.hasOnlyOnePatchSelected();
-                                                            }));
+                                                            }
+                                                            ));
     
     addMenuCommand (MenuCommand (Commands::moveBack,        [this]() { editView_.moveBack(); }, f));
     addMenuCommand (MenuCommand (Commands::moveFront,       [this]() { editView_.moveFront(); }, f));
@@ -65,7 +85,11 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     
     addMenuCommand (MenuCommand (Commands::inspector,       [this]() { toggleInspector(); },
                                                             []() { return true; },
-                                                            []() { return juce::String ("Toto"); }));
+                                                            [this]()
+                                                            {
+                                                                return getInspectorMenuText (editInspector_);
+                                                            }
+                                                            ));
                                                             
     setOpaque (true); setSize (600, 300);
 }
@@ -109,12 +133,12 @@ void EditComponent::zoomReset()
 
 void EditComponent::showInspector()
 {
-    editInspector_.setActive (true);    updateLayout();
+    editInspector_.setActive (true);    updateLayout(); Spaghettis()->updateMenuBar();
 }
 
 void EditComponent::hideInspector()
 {
-    editInspector_.setActive (false);   updateLayout();
+    editInspector_.setActive (false);   updateLayout(); Spaghettis()->updateMenuBar();
 }
 
 void EditComponent::toggleInspector()

@@ -20,7 +20,7 @@ void EditFactory::setToolbarButton (IconsButton* button)
     //
     case Icons::edit        : button->setTooltip (NEEDS_TRANS ("Open an edit view"));       break;
     case Icons::run         : button->setTooltip (NEEDS_TRANS ("Open a run view"));         break;
-    case Icons::inspector   : button->setTooltip (NEEDS_TRANS ("Hide or show inspector"));  break;
+    case Icons::inspector   : button->setTooltip (NEEDS_TRANS ("Show or hide inspector"));  break;
     default                 : break;
     //
     }
