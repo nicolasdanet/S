@@ -50,6 +50,7 @@ enum CommandIds : juce::CommandID {
     zoomIn,
     zoomOut,
     zoomReset,
+    inspector,
     clearConsole,
     devices,
     dspSwitch
