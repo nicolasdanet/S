@@ -12,6 +12,25 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::String getPresetsMenuText (bool hasPresets)
+{
+    return hasPresets ? juce::String ("Hide Presets") : juce::String ("Show Presets");
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 RunComponent::RunComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     RunFactoryHelper (this),
     BaseComponent (getIconsFactory()),
@@ -21,8 +40,15 @@ RunComponent::RunComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     addAndMakeVisible (runView_);
     addChildComponent (runPresets_);
     
-    addMenuCommand (MenuCommand (Commands::save, [this]() { runView_.getPatchRoot().save(); }));
-    
+    addMenuCommand (MenuCommand (Commands::save,        [this]() { runView_.getPatchRoot().save(); }));
+    addMenuCommand (MenuCommand (Commands::inspector,   [this]() { togglePresets(); },
+                                                        []() { return true; },
+                                                        [this]()
+                                                        {
+                                                            return getPresetsMenuText (hasPresets_);
+                                                        }
+                                                        ));
+                                                            
     setOpaque (true); setSize (600, 300);
 }
 
@@ -46,12 +72,17 @@ void RunComponent::resized()
 
 void RunComponent::showPresets()
 {
-    hasPresets_ = true;  updateLayout();
+    hasPresets_ = true;  updateLayout(); Spaghettis()->updateMenuBar();
 }
 
 void RunComponent::hidePresets()
 {
-    hasPresets_ = false; updateLayout();
+    hasPresets_ = false; updateLayout(); Spaghettis()->updateMenuBar();
+}
+
+void RunComponent::togglePresets()
+{
+    if (toggleButtonState (Icons::presets)) { showPresets(); } else { hidePresets(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
