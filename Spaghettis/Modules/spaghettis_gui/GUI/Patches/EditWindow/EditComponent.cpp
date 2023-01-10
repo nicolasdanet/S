@@ -119,7 +119,7 @@ void EditComponent::hideInspector()
 
 void EditComponent::toggleInspector()
 {
-
+    if (toggleButtonState (Icons::inspector)) { showInspector(); } else { hideInspector(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

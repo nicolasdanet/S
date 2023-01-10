@@ -120,6 +120,15 @@ void BaseComponent::setButtonState (int itemId, bool shouldBeOn)
     if (b && b->isToggle()) { b->setState (shouldBeOn); } else { jassertfalse; }
 }
 
+bool BaseComponent::toggleButtonState (int itemId)
+{
+    const bool shouldBeOn = !getButtonState (itemId);
+    
+    setButtonState (itemId, shouldBeOn);
+    
+    return shouldBeOn;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -40,13 +40,14 @@ public:
 
 public:
     bool getButtonState (int itemId);
+    void setButtonState (int itemId, bool shouldBeOn);      /* Does NOT trigger the associated action. */
+    bool toggleButtonState (int itemId);                    /* Ditto. */
     void loadToolbarButtonsStates();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    void setButtonState (int itemId, bool shouldBeOn);
     void saveToolbarButtonsStates();
 
 // -----------------------------------------------------------------------------------------------------------
