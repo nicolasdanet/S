@@ -113,7 +113,6 @@ bool BaseComponent::getButtonState (int itemId)
     if (b && b->isToggle()) { return b->getState(); } else { jassertfalse; return false; }
 }
 
-
 void BaseComponent::setButtonState (int itemId, bool shouldBeOn)
 {
     IconsButton* b = fetchButton (toolbar_.get(), itemId);

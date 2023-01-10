@@ -63,6 +63,10 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     addMenuCommand (MenuCommand (Commands::zoomOut,         [this]() { zoomOut(); } ));
     addMenuCommand (MenuCommand (Commands::zoomReset,       [this]() { zoomReset(); } ));
     
+    addMenuCommand (MenuCommand (Commands::inspector,       [this]() { toggleInspector(); },
+                                                            []() { return true; },
+                                                            []() { return juce::String ("Toto"); }));
+                                                            
     setOpaque (true); setSize (600, 300);
 }
     
@@ -111,6 +115,11 @@ void EditComponent::showInspector()
 void EditComponent::hideInspector()
 {
     editInspector_.setActive (false);   updateLayout();
+}
+
+void EditComponent::toggleInspector()
+{
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
