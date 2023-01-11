@@ -204,7 +204,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (menubarPopupTextHighlighted,                         t->textMenu);
     lf->setColour (menubarPopupSeparator,                               t->thumb);
     lf->setColour (toolbarBackground,                                   t->backgroundMenu);
-    lf->setColour (toolbarBackgroundDown,                               t->textError);
+    lf->setColour (toolbarBackgroundDown,                               t->backgroundPopup);
     lf->setColour (toolbarBackgroundOver,                               t->backgroundMenu);
     lf->setColour (toolbarIconOn,                                       t->textMenu);
     lf->setColour (toolbarIconOff,                                      t->thumb);
