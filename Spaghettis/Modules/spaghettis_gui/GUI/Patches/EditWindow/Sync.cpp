@@ -60,11 +60,37 @@ void Sync::unbind (InspectorView* view)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class ScopedNoObserver {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    ScopedNoObserver (core::Data& data, core::Observer* observer) : data_ (data), observer_ (observer)
+    {
+        data_.removeObserver (observer_);
+    }
+    
+    ~ScopedNoObserver()
+    {
+        data_.addObserver (observer_);
+    }
+    
+public:
+    core::Data& data_;
+    core::Observer* observer_;
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void Sync::parameterHasChanged (const core::Group& group, const core::Parameter& parameter)
 {
-    data_.removeObserver (observer_);
+    ScopedNoObserver suspend (data_, observer_);        /* Break any possible feedback-loop. */
+    
     data_.changeValue (group.getName(), parameter.getKey(), parameter.getValue());
-    data_.addObserver (observer_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
