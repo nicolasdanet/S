@@ -14,14 +14,14 @@ namespace spaghettis {
 
 InspectorView::InspectorView (Sync&& s, int w) : ParameterView (s.getData(), w), sync_ (std::move (s))
 {
-    sync_.addObserver (this);
+    sync_.bind (this);
     
     requireExpandPanel (Tag::Parameters);
 }
 
 InspectorView::~InspectorView()
 {
-    sync_.removeObserver (this);
+    sync_.unbind (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

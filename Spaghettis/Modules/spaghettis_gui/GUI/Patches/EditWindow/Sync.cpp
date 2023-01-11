@@ -40,14 +40,14 @@ core::UniqueId Sync::getIdentifier() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Sync::addObserver (core::Observer* observer)
+void Sync::bind (InspectorView* view)
 {
-    source_.addObserver (this); data_.addObserver (observer);
+    source_.addObserver (this); data_.addObserver (view);
 }
 
-void Sync::removeObserver (core::Observer* observer)
+void Sync::unbind (InspectorView* view)
 {
-    data_.removeObserver (observer); source_.removeObserver (this);
+    data_.removeObserver (view); source_.removeObserver (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
