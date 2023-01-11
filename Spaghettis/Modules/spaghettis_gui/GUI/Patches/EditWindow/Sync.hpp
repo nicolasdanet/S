@@ -61,6 +61,9 @@ private:
 private:
     core::Item source_;
     core::Data data_;
+
+private:
+    InspectorView* observer_;
     
 private:
     JUCE_LEAK_DETECTOR (Sync)

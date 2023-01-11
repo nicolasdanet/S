@@ -14,12 +14,12 @@ namespace spaghettis {
 
 Sync::Sync (const core::Item& item) : source_ (item), data_ (Documentation::getCopyOfDataExtended (item))
 {
-
+    observer_ = nullptr;
 }
 
 Sync::Sync (Sync&& o) : source_ (std::move (o.source_)), data_ (std::move (o.data_))
 {
-
+    observer_ = nullptr;            /* ValueTree listeners are removed on move. */
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -42,12 +42,18 @@ core::UniqueId Sync::getIdentifier() const
 
 void Sync::bind (InspectorView* view)
 {
-    source_.addObserver (this); data_.addObserver (view);
+    jassert (observer_ == nullptr);
+    
+    data_.addObserver (view); source_.addObserver (this);
+    
+    observer_ = view;
 }
 
 void Sync::unbind (InspectorView* view)
 {
-    data_.removeObserver (view); source_.removeObserver (this);
+    jassert (observer_ == view);
+    
+    source_.removeObserver (this); data_.removeObserver (view);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -56,7 +62,9 @@ void Sync::unbind (InspectorView* view)
 
 void Sync::parameterHasChanged (const core::Group& group, const core::Parameter& parameter)
 {
+    data_.removeObserver (observer_);
     data_.changeValue (group.getName(), parameter.getKey(), parameter.getValue());
+    data_.addObserver (observer_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
