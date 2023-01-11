@@ -14,6 +14,12 @@ namespace spaghettis {
 
 Sync::Sync (const core::Item& item) : source_ (item), data_ (Documentation::getCopyOfDataExtended (item))
 {
+
+}
+
+Sync::Sync (Sync&& o) : source_ (std::move (o.source_)), data_ (std::move (o.data_))
+{
+
 }
 
 // -----------------------------------------------------------------------------------------------------------

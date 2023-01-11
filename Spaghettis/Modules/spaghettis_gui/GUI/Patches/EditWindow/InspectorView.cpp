@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-InspectorView::InspectorView (const Sync& sync, int w) : ParameterView (sync.getData(), w), sync_ (sync)
+InspectorView::InspectorView (Sync&& s, int w) : ParameterView (s.getData(), w), sync_ (std::move (s))
 {
     sync_.addObserver (this);
     

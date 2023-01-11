@@ -21,13 +21,14 @@ class Sync : private core::Observer {
 public:
     explicit Sync (const core::Item&);
     
+    Sync (Sync&&);
+        
     ~Sync() = default;
-
+    
 public:
-    Sync (const Sync&) = default;
-    Sync (Sync&&) = default;
-    Sync& operator = (const Sync&) = default;
-    Sync& operator = (Sync&&) = default;
+    Sync (const Sync&) = delete;
+    Sync& operator = (const Sync&) = delete;
+    Sync& operator = (Sync&&) = delete;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
