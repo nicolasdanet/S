@@ -17,6 +17,7 @@ class PinComponent :    public juce::Component,
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     explicit PinComponent (View*, const core::Object&, const juce::String&);
@@ -60,6 +61,7 @@ private:
     core::Cached<juce::Colour> pinColour_;
     core::Cached<juce::Colour> pinOverColour_;
     core::Cached<juce::Colour> boxSelectedColour_;
+    bool isGUI_;
     bool isSignal_;
     bool isOver_;
     

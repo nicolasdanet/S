@@ -55,6 +55,7 @@ PinComponent::PinComponent (View* view, const core::Object& object, const juce::
     pinColour_ (getColourFromType (type)),
     pinOverColour_ (Spaghettis()->getCachedColour (Tag::PinOver)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
+    isGUI_ (object.isGraphic()),
     isSignal_ (isPinSignal (type)),
     isOver_ (false)
 {
@@ -101,7 +102,8 @@ float PinComponent::getScale() const
 
 void PinComponent::paint (juce::Graphics& g)
 {
-    juce::Colour c (selected_.get() ? boxSelectedColour_.get().contrasting (0.25f) : pinColour_.get());
+    const bool isSelected = isGUI_ && selected_.get();
+    const juce::Colour c (isSelected ? boxSelectedColour_.get().contrasting (0.25f) : pinColour_.get());
         
     g.setColour (isOver_ ? pinOverColour_.get() : c);
     
