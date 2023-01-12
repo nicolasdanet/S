@@ -22,8 +22,7 @@ public:
     explicit PatchWindow (PatchRoot& patch, const juce::ValueTree& tree) :
         BaseWindow (core::Patch (tree).get<juce::String> (Tag::Attributes, Tag::Title)),
         patch_ (patch),
-        viewTree_ (tree),
-        isSubPatch_ (tree.getParent().isValid() == false)
+        viewTree_ (tree)
     {
     }
 
@@ -36,7 +35,7 @@ public:
 public:
     bool isSubPatch() const
     {
-        return isSubPatch_;
+        return viewTree_.getParent().isValid();
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -52,9 +51,6 @@ public:
 protected:
     PatchRoot& patch_;
     juce::ValueTree viewTree_;
-
-private:
-    bool isSubPatch_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchWindow)
