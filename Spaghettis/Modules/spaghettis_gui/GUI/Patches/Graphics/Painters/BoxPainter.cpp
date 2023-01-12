@@ -15,6 +15,7 @@ namespace spaghettis {
 BoxPainter::BoxPainter (ObjectComponent* owner, const core::Object& object) : PainterPolicy (owner, object),
     boxBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxBackground)),
     boxTextColour_ (Spaghettis()->getCachedColour (Tag::BoxText)),
+    boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
     content_ (object_.getCached<juce::String> (Tag::Attributes, Tag::Content)),
     class_ (object_.getCached<juce::String> (Tag::Attributes, Tag::Class))
 {
@@ -88,7 +89,7 @@ void BoxPainter::paintObject (juce::Rectangle<float> r, juce::Graphics& g)
     const juce::Font   font (getFont (f));
     const juce::String text (getText());
 
-    g.setColour (boxTextColour_.get());
+    g.setColour (component_->isSelected() ? boxSelectedColour_.get() : boxTextColour_.get());
     g.setFont (getFont (f));
     g.drawText (text, t, juce::Justification::centredLeft, true);
     //
