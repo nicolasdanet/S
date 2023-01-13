@@ -49,7 +49,28 @@ void Icons::addIconProceed (const juce::String& name,
     
     drawables_.emplace_back (name, extra, std::move (t1), std::move (t2), isToggle, defaultStateIsOn);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Image Icons::imagefromSVG (const char* name, juce::Rectangle<int> r, juce::Colour colour)
+{
+    juce::Image image (juce::Image::ARGB, r.getWidth(), r.getHeight(), true);
     
+        std::unique_ptr<juce::Drawable> drawable (getDrawable (name, colour));
+        juce::Graphics g (image);
+        drawable->setTransformToFit (r.withZeroOrigin().toFloat(), juce::RectanglePlacement::centred);
+        drawable->draw (g, 1.f);
+
+	return image;
+}
+
+juce::Image Icons::imagefromSVG (const char* name)
+{
+    return imagefromSVG (name, juce::Rectangle<int> (24, 24), juce::Colours::grey);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

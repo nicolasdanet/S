@@ -26,6 +26,9 @@ namespace BinaryData
     extern const char*   icon_info_svg;
     const int            icon_info_svgSize = 307;
 
+    extern const char*   icon_lock_svg;
+    const int            icon_lock_svgSize = 426;
+
     extern const char*   icon_mail_svg;
     const int            icon_mail_svgSize = 277;
 
@@ -54,7 +57,7 @@ namespace BinaryData
     const int            icon_visibility_svgSize = 493;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 15;
+    const int namedResourceListSize = 16;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

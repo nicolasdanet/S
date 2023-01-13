@@ -20,6 +20,7 @@
         <FILE id="YbQGbR" name="icon_error_outline.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_error_outline.svg"/>
         <FILE id="MftGP7" name="icon_info.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_info.svg"/>
+        <FILE id="KMYtrE" name="icon_lock.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_lock.svg"/>
         <FILE id="v09zib" name="icon_mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_mail.svg"/>
         <FILE id="D9nQfi" name="icon_place.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_place.svg"/>
         <FILE id="WYGHhC" name="icon_restore.svg" compile="0" resource="1"

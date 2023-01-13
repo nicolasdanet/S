@@ -21,9 +21,13 @@ class EditWindow : public PatchWindow {
 public:
     explicit EditWindow (PatchRoot& owner, const juce::ValueTree& tree) : PatchWindow (owner, tree)
     {
+        const core::Patch p (tree);
+        
         setContentOwned (new EditComponent (owner, tree), true);
         
-        makeVisible (core::Patch (tree).get<juce::Rectangle<int>> (Tag::Attributes, Tag::EditView));
+        makeVisible (p.get<juce::Rectangle<int>> (Tag::Attributes, Tag::EditView));
+        
+        if (p.isAbstraction() || p.isLocked()) { showAsLocked(); }
     }
 
     ~EditWindow() = default;

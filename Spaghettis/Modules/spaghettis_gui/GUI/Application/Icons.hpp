@@ -99,6 +99,14 @@ public:
 // MARK: -
 
 public:
+    static juce::Image imagefromSVG (const char*, juce::Rectangle<int>, juce::Colour);
+    static juce::Image imagefromSVG (const char*);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     juce::String getName (int itemId) const
     {
         return std::get<ICONS_NAME> (drawables_[getIconIndex (itemId)]);

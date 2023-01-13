@@ -33,6 +33,18 @@ public:
 // MARK: -
 
 public:
+    void showAsLocked()
+    {
+        juce::ComponentPeer* peer = getPeer();
+    
+        if (peer) { peer->setIcon (Icons::imagefromSVG ("icon_lock_svg")); }
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     bool isSubPatch() const
     {
         return viewTree_.getParent().isValid();
