@@ -61,7 +61,6 @@ private:
     core::Cached<juce::Colour> pinColour_;
     core::Cached<juce::Colour> pinOverColour_;
     core::Cached<juce::Colour> boxSelectedColour_;
-    bool isGUI_;
     bool isSignal_;
     bool isOver_;
     

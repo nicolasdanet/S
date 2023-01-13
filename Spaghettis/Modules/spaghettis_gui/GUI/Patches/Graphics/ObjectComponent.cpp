@@ -50,7 +50,6 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
     painter_ (createPainter (this, object)),
     documentation_ (object),
-    isGUI_ (object_.isGraphic()),
     isLocked_ (object_.isLocked())
 {
     jassert (view);
@@ -236,9 +235,8 @@ PinComponent* ObjectComponent::getOutletAt (int n) const
 void ObjectComponent::paint (juce::Graphics& g)
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
-    const bool isSelected = isGUI_ && selected_.get();
     
-    g.setColour (isSelected ? boxSelectedColour_.get() : boxPinBackgroundColour_.get());
+    g.setColour (selected_.get() ? boxSelectedColour_.get() : boxPinBackgroundColour_.get());
     g.fillRect (bounds);
     
     painter_->paint (view_->getPaintedAreaFromBounds (bounds), g);

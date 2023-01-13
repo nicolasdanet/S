@@ -40,7 +40,6 @@ private:
 private:
     core::Cached<juce::Colour> boxBackgroundColour_;
     core::Cached<juce::Colour> boxTextColour_;
-    core::Cached<juce::Colour> boxSelectedColour_;
     core::Cached<juce::String> content_;
     core::Cached<juce::String> class_;
 

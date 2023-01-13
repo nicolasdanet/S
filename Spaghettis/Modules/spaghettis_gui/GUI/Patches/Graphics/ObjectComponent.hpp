@@ -174,7 +174,6 @@ private:
     std::vector<std::unique_ptr<PinComponent>> oPins_;
     juce::Point<int> origin_;
     Documentation documentation_;
-    bool isGUI_;
     bool isLocked_;
     
 private:
