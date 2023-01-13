@@ -61,6 +61,7 @@ public:
         textPopup                       = juce::Colours::lightgrey;
         textBox                         = base1;
         textLabel                       = base1;
+        selection                       = green;
         thumb                           = juce::Colours::grey;
         transparent                     = juce::Colours::transparentBlack;
         signal                          = yellow;
@@ -98,6 +99,7 @@ public:
     juce::Colour textPopup;
     juce::Colour textBox;
     juce::Colour textLabel;
+    juce::Colour selection;
     juce::Colour thumb;
     juce::Colour transparent;
     juce::Colour signal;

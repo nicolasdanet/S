@@ -115,7 +115,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::Lasso,
         NEEDS_TRANS ("Lasso"),
         NEEDS_TRANS ("Set color of lasso"),
-        Colours::getPalette()->textHighlighted);
+        Colours::getPalette()->selection);
         
     colors.addParameter (Tag::BoxBackground,
         NEEDS_TRANS ("Box Background"),
@@ -130,7 +130,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::BoxSelected,
         NEEDS_TRANS ("Box Selected"),
         NEEDS_TRANS ("Set highlight color for selected object"),
-        Colours::getPalette()->textHighlighted);
+        Colours::getPalette()->selection);
         
     colors.addParameter (Tag::BoxText,
         NEEDS_TRANS ("Box Text"),
@@ -160,12 +160,12 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::LineSelected,
         NEEDS_TRANS ("Line Selected"),
         NEEDS_TRANS ("Set highlight color for selected lines"),
-        Colours::getPalette()->textHighlighted);
+        Colours::getPalette()->selection);
         
     colors.addParameter (Tag::PinOver,
         NEEDS_TRANS ("Pin Over"),
         NEEDS_TRANS ("Set color of pins while mouse is over"),
-        Colours::getPalette()->textHighlighted);
+        Colours::getPalette()->selection);
     
     colors.addParameter (Tag::PinSignal,
         NEEDS_TRANS ("Pin Signal"),
