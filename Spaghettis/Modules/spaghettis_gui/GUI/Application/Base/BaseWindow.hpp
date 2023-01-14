@@ -56,6 +56,9 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    void showAsLocked();
+
 private:
     void activeWindowStatusChanged() override;
     void moved() override;

@@ -137,6 +137,17 @@ void BaseWindow::hasBeenChanged()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void BaseWindow::showAsLocked()
+{
+    juce::ComponentPeer* peer = getPeer();
+    
+    if (peer) { peer->setIcon (Icons::imagefromSVG ("icon_lock_svg")); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void BaseWindow::makeVisible (juce::Rectangle<int> window)
 {
     if (!window.isEmpty()) { setBounds (window); }
