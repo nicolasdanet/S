@@ -56,9 +56,6 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    void showAsLocked();
-
 private:
     void activeWindowStatusChanged() override;
     void moved() override;
@@ -68,17 +65,18 @@ private:
     virtual void hasBeenChanged();
     
 protected:
-    void makeVisible (juce::Rectangle<int> window = juce::Rectangle<int>());
+    void makeVisible (juce::Rectangle<int> window = juce::Rectangle<int>(), bool showAsLocked = false);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void requireMinimumHeight (int h);
+    void requireMinimumHeight (int);
 
 private:
-    void applyMinimumHeight (int h);
+    void applyMinimumHeight (int);
+    void showAsLocked();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -102,6 +100,7 @@ private:
     juce::String keyName_;
     int timerCount_;
     int mimimumHeight_;
+    bool showAsLocked_;
     bool initialized_;
     
 private:

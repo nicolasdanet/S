@@ -20,6 +20,7 @@ BaseWindow::BaseWindow (const juce::String& name, const juce::String& s) :
     keyName_ (s),
     timerCount_ (0),
     mimimumHeight_ (0),
+    showAsLocked_ (false),
     initialized_ (false)
 {
     setUsingNativeTitleBar (true);
@@ -54,13 +55,18 @@ juce::String BaseWindow::getKeyName() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void BaseWindow::showAsLocked()
+{
+    juce::ComponentPeer* peer = getPeer();
+    
+    if (peer) { peer->setIcon (Icons::imagefromSVG ("icon_lock_svg")); }
+}
+
 void BaseWindow::setDirtyFlag (bool isDirty) const
 {
     juce::ComponentPeer* peer = getPeer();
     
-    if (peer) {
-        peer->setHasChangedSinceSaved (isDirty);
-    }
+    if (peer) { peer->setHasChangedSinceSaved (isDirty); }
 }
 
 void BaseWindow::close()
@@ -93,7 +99,11 @@ void BaseWindow::timerCallback()
     BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());
         
     if (!c || c->tryGrabFocus()) {
-        applyMinimumHeight (h); Spaghettis()->updateMenuBar(); stopTimer(); initialized_ = true;
+        stopTimer();
+        applyMinimumHeight (h);
+        Spaghettis()->updateMenuBar();
+        if (!initialized_ && showAsLocked_) { showAsLocked(); }
+        initialized_ = true;
     }
     //
     }
@@ -137,18 +147,7 @@ void BaseWindow::hasBeenChanged()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseWindow::showAsLocked()
-{
-    juce::ComponentPeer* peer = getPeer();
-    
-    if (peer) { peer->setIcon (Icons::imagefromSVG ("icon_lock_svg")); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void BaseWindow::makeVisible (juce::Rectangle<int> window)
+void BaseWindow::makeVisible (juce::Rectangle<int> window, bool showAsLocked)
 {
     if (!window.isEmpty()) { setBounds (window); }
     else if (keyName_.isNotEmpty()) {
@@ -167,7 +166,9 @@ void BaseWindow::makeVisible (juce::Rectangle<int> window)
     } else {
         jassertfalse;
     }
-
+    
+    showAsLocked_ = showAsLocked;
+    
     setVisible (true); addToDesktop(); toFront (true);
 }
 

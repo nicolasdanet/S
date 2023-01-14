@@ -23,7 +23,7 @@ public:
     {
         setContentOwned (new RunComponent (owner, tree), true);
         
-        makeVisible (core::Patch (tree).get<juce::Rectangle<int>> (Tag::Attributes, Tag::RunView));
+        makeVisible (core::Patch (tree).get<juce::Rectangle<int>> (Tag::Attributes, Tag::RunView), false);
     }
 
     ~RunWindow() = default;
