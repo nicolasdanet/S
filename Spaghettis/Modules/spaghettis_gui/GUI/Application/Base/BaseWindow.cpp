@@ -102,7 +102,9 @@ void BaseWindow::timerCallback()
         stopTimer();
         applyMinimumHeight (h);
         Spaghettis()->updateMenuBar();
-        if (!initialized_ && showAsLocked_) { showAsLocked(); }
+        #if JUCE_LINUX
+        if (showAsLocked_ && !initialized_) { showAsLocked(); }
+        #endif
         initialized_ = true;
     }
     //
@@ -147,8 +149,10 @@ void BaseWindow::hasBeenChanged()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseWindow::makeVisible (juce::Rectangle<int> window, bool showAsLocked)
+void BaseWindow::makeVisible (juce::Rectangle<int> window, bool locked)
 {
+    showAsLocked_ = locked;
+    
     if (!window.isEmpty()) { setBounds (window); }
     else if (keyName_.isNotEmpty()) {
     //
@@ -167,9 +171,9 @@ void BaseWindow::makeVisible (juce::Rectangle<int> window, bool showAsLocked)
         jassertfalse;
     }
     
-    showAsLocked_ = showAsLocked;
-    
     setVisible (true); addToDesktop(); toFront (true);
+    
+    if (locked) { showAsLocked(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
