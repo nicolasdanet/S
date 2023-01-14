@@ -97,10 +97,10 @@ public:
 // MARK: -
 
 private:
+    juce::String name_;
     juce::String keyName_;
     int timerCount_;
     int mimimumHeight_;
-    bool showAsLocked_;
     bool initialized_;
     
 private:

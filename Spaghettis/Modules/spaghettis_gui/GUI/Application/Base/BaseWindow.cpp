@@ -17,10 +17,10 @@ BaseWindow::BaseWindow (const juce::String& name, const juce::String& s) :
         Spaghettis()->getColour (Colours::windowBackground),
         DocumentWindow::allButtons,
         false),
+    name_ (name),
     keyName_ (s),
     timerCount_ (0),
     mimimumHeight_ (0),
-    showAsLocked_ (false),
     initialized_ (false)
 {
     setUsingNativeTitleBar (true);
@@ -57,9 +57,17 @@ juce::String BaseWindow::getKeyName() const
 
 void BaseWindow::showAsLocked()
 {
+    #if JUCE_LINUX
+    
+    setName (name_ + " (LOCKED)");
+    
+    #else
+    
     juce::ComponentPeer* peer = getPeer();
     
     if (peer) { peer->setIcon (Icons::imagefromSVG ("icon_lock_svg")); }
+    
+    #endif
 }
 
 void BaseWindow::setDirtyFlag (bool isDirty) const
@@ -102,9 +110,6 @@ void BaseWindow::timerCallback()
         stopTimer();
         applyMinimumHeight (h);
         Spaghettis()->updateMenuBar();
-        #if JUCE_LINUX
-        if (showAsLocked_ && !initialized_) { showAsLocked(); }
-        #endif
         initialized_ = true;
     }
     //
@@ -151,8 +156,6 @@ void BaseWindow::hasBeenChanged()
 
 void BaseWindow::makeVisible (juce::Rectangle<int> window, bool locked)
 {
-    showAsLocked_ = locked;
-    
     if (!window.isEmpty()) { setBounds (window); }
     else if (keyName_.isNotEmpty()) {
     //
