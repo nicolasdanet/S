@@ -18,26 +18,29 @@ constexpr int numberOfDevices() { return 2; }
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DevicesComponent :    public  BaseComponent,
+class DevicesComponent :    protected DevicesFactoryHelper,
+                            public  BaseComponent,
                             private juce::ComboBox::Listener,
                             private juce::ChangeListener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-using Generator = std::function<juce::String()>;
+using StringGenerator = std::function<juce::String()>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit DevicesComponent (const juce::String& keyName) : BaseComponent (nullptr, keyName),
-        audioInTag_ ("Audio In"),
-        audioOutTag_ ("Audio Out"),
-        midiInTag_ ("Midi In"),
-        midiOutTag_ ("Midi Out"),
-        noneTag_ ("No Device")
+    explicit DevicesComponent (const juce::String& keyName) :
+        DevicesFactoryHelper (this),
+        BaseComponent (getIconsFactory(), keyName),
+            audioInTag_ ("Audio In"),
+            audioOutTag_ ("Audio Out"),
+            midiInTag_ ("Midi In"),
+            midiOutTag_ ("Midi Out"),
+            noneTag_ ("No Device")
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
         Spaghettis()->getMidiDevices().addChangeListener (this);
@@ -69,7 +72,10 @@ public:
     
     static int getTotalHeight()
     {
-        return (getComboBoxHeight() * numberOfDevices() * 4) + 1;
+        const int toolbar = Spaghettis()->getLookAndFeel().getToolbarHeight();
+        const int devices = getComboBoxHeight() * numberOfDevices() * 4;
+        
+        return  toolbar + devices + 1;
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -192,7 +198,7 @@ public:
 // MARK: -
 
 private:
-    void initializeBox (juce::ComboBox& box, Generator& f)
+    void initializeBox (juce::ComboBox& box, StringGenerator& f)
     {
         box.setTooltip (NEEDS_TRANS ("Select an I/O device"));
         box.setComponentID (f());
@@ -201,7 +207,7 @@ private:
         addAndMakeVisible (box);
     }
     
-    void initializeLabel (juce::Label& label, Generator& f)
+    void initializeLabel (juce::Label& label, StringGenerator& f)
     {
         const juce::Colour text (Spaghettis()->getColour (Colours::devicesParameterText));
         const juce::Colour background (Spaghettis()->getColour (Colours::devicesParameterBackground));
@@ -236,7 +242,7 @@ private:
             return [s, n = 0]() mutable { return juce::String (n++) + " :  " + s; };
         };
         
-        Generator f;
+        StringGenerator f;
         
         f = g (audioInTag_);  for (auto& b : audioIn_)       { initializeBox (b, f); }
         f = g (audioOutTag_); for (auto& b : audioOut_)      { initializeBox (b, f); }
