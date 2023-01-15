@@ -239,7 +239,7 @@ private:
         
         auto h = [] (const juce::String& s)
         {
-            return [s, n = 0]() mutable { return juce::String (n++) + " :  " + s; };
+            return [s, n = 0]() mutable { return juce::String (n++) + " : " + s; };
         };
         
         StringGenerator f;
@@ -270,7 +270,7 @@ private:
 private:
     static void dispose (juce::Rectangle<int> t, juce::Label& label, juce::ComboBox& box)
     {
-        const int w = 200; label.setBounds (t.removeFromLeft (w).reduced (1)); box.setBounds (t.reduced (1));
+        const int w = 160; label.setBounds (t.removeFromLeft (w).reduced (1)); box.setBounds (t.reduced (1));
     }
     
     static void setSelectedItemByString (juce::ComboBox& box, const juce::String& s)
