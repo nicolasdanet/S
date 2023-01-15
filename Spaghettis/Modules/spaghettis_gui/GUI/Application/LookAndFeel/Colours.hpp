@@ -217,8 +217,8 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (searchpathsTextHighlighted,                          t->textHighlighted);
     lf->setColour (devicesParameterBackground,                          t->background);
     lf->setColour (devicesParameterText,                                t->textSystem);
-    lf->setColour (devicesComboBoxBackground,                           t->background);
-    lf->setColour (devicesComboBoxBackgroundActive,                     t->backgroundAlternate);
+    lf->setColour (devicesComboBoxBackground,                           t->backgroundAlternate);
+    lf->setColour (devicesComboBoxBackgroundActive,                     t->backgroundBox);
     lf->setColour (devicesComboBoxArrow,                                t->textSystem);
     lf->setColour (tooltipBackground,                                   t->backgroundMenu);
     lf->setColour (tooltipText,                                         t->textMenu);
