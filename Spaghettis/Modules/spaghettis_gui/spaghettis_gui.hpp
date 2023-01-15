@@ -167,6 +167,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Preferences/PreferencesFactory.hpp"
 #include "GUI/Preferences/PreferencesComponent.hpp"
 #include "GUI/Preferences/PreferencesWindow.hpp"
 

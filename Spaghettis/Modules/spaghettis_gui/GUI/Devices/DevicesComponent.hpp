@@ -75,7 +75,7 @@ public:
         const int toolbar = Spaghettis()->getLookAndFeel().getToolbarHeight();
         const int devices = getComboBoxHeight() * numberOfDevices() * 4;
         
-        return  toolbar + devices + 1;
+        return toolbar + devices;
     }
     
 // -----------------------------------------------------------------------------------------------------------

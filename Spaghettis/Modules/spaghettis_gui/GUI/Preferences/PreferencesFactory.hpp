@@ -11,24 +11,24 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class DevicesComponent;
+class PreferencesComponent;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DevicesFactory : public IconsFactory {
+class PreferencesFactory : public IconsFactory {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit DevicesFactory (DevicesComponent*)
+    explicit PreferencesFactory (PreferencesComponent*)
     {
     }
     
-    ~DevicesFactory() = default;
+    ~PreferencesFactory() = default;
 
 public:
     void getAllToolbarItemIds (juce::Array<int>&) override
@@ -42,16 +42,16 @@ public:
     void setToolbarButton (IconsButton*) override
     {
     }
-    
+
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DevicesFactory)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PreferencesFactory)
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-using DevicesFactoryHelper = IconsFactoryHelper<DevicesFactory, DevicesComponent>;
+using PreferencesFactoryHelper = IconsFactoryHelper<PreferencesFactory, PreferencesComponent>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
