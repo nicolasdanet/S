@@ -416,7 +416,7 @@ std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& 
 {
     const int n = a.size();
     
-    std::vector<std::unique_ptr<PinComponent>> pins;
+    std::vector<std::unique_ptr<PinComponent>> pins; pins.reserve (n);
     
     for (int i = 0; i < n; ++i) {
         const juce::String type (a[i]);
