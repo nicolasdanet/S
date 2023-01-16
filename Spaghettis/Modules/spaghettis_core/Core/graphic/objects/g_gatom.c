@@ -140,7 +140,13 @@ static void gatom_makeObjectProceed (t_gatom *x, int argc, t_atom *argv)
 {
     int width = (int)atom_getFloatAtIndex (2, argc, argv);
     
-    object_setBuffer (cast_object (x), buffer_new());
+    t_buffer *t = buffer_new();
+    
+    /* The buffer content is required only for the GUI inspector. */
+    
+    buffer_appendSymbol (t, sym_gatom); if (argc > 2) { buffer_append (t, argc - 2, argv + 2); }
+    
+    object_setBuffer (cast_object (x), t);
     object_setType (cast_object (x),   TYPE_ATOM);
     object_setX (cast_object (x),      atom_getFloatAtIndex (0, argc, argv));
     object_setY (cast_object (x),      atom_getFloatAtIndex (1, argc, argv));
