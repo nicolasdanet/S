@@ -74,7 +74,8 @@ private:
 // MARK: -
 
 private:
-    void setZoom (int n);
+    void setZoom (int, std::optional<juce::Point<int>>);
+    void setZoom (int);
     void update();
     
 private:

@@ -97,8 +97,7 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
     float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
 
-    if (e.mods.isCommandDown()) { const int n = (y > 0.0f) ? 10 : -10; setZoom (getZoom() + n); }
-    else {
+    if (!e.mods.isCommandDown()) {
     //
     #if JUCE_LINUX
     
@@ -117,12 +116,17 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     
     update();
     //
-    }
+    } else { const int n = (y > 0.0f) ? 10 : -10; setZoom (getZoom() + n, view_.getRealMousePosition()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+void EditPort::setZoom (int n, std::optional<juce::Point<int>> pt)
+{
+    setZoom (n);
+}
 
 void EditPort::setZoom (int n)
 {
