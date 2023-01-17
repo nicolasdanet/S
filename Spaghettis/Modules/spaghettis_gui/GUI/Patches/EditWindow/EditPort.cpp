@@ -102,8 +102,6 @@ void EditPort::mouseWheelMoveDisplace (float x, float y)
     };
     
     offset_ += juce::Point<int> (-map (x), -map (y));
-    
-    update();
 }
 
 void EditPort::mouseWheelMoveZoom (float y)
@@ -113,8 +111,6 @@ void EditPort::mouseWheelMoveZoom (float y)
     jassert (pt.has_value());
     
     setZoomAroundPoint (getZoom() + ((y > 0.0f) ? 10 : -10), pt.value());
-    
-    update();
 }
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
@@ -131,64 +127,8 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     #endif
         
     if (e.mods.isCommandDown()) { mouseWheelMoveZoom (y); } else { mouseWheelMoveDisplace (x, y); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-std::tuple<float, float> getMouseRatio (juce::Rectangle<int> area, juce::Point<int> pt)
-{
-    jassert (area.contains (pt));
     
-    const float dX = static_cast<float> (pt.getX() - area.getX());
-    const float dY = static_cast<float> (pt.getY() - area.getY());
-    const float fX = dX / area.getWidth();
-    const float fY = dY / area.getHeight();
-    
-    return { fX, fY };
-}
-
-juce::Point<int> getOffsetWithRatio (juce::Rectangle<int> area, std::tuple<float, float>)
-{
-    return {};
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditPort::setZoomAroundPoint (int n, juce::Point<int> pt)
-{
-    auto t = getMouseRatio (getRealVisibleArea(), pt);
-    
-    setZoom (n);
-    
-    auto p = getOffsetWithRatio (getRealVisibleArea(), t);
-}
-
-void EditPort::setZoom (int n)
-{
-    if (getZoom() != n) {
-    //
-    constexpr int min = steps_.front();
-    constexpr int max = steps_.back();
-    
-    zoom_ = juce::jlimit (min, max, n); v_ = juce::var (zoom_);
-    
-    view_.setScale (getScale());
-    //
-    }
+    update();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -209,7 +149,67 @@ void EditPort::dragViewEnd()
 {
     dragOrigin_.reset();
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+std::tuple<float, float> getRatioAround (juce::Rectangle<float> r, juce::Point<float> pt)
+{
+    jassert (r.contains (pt));
     
+    const float dX = pt.getX() - r.getX();
+    const float dY = pt.getY() - r.getY();
+    const float rX = dX / r.getWidth();
+    const float rY = dY / r.getHeight();
+    
+    return { rX, rY };
+}
+
+juce::Point<float> getOffsetAround (juce::Rectangle<float> r, juce::Point<float> pt, float rX, float rY)
+{
+    const float dX = rX * r.getWidth();
+    const float dY = rY * r.getHeight();
+    const float x  = pt.getX() - dX;
+    const float y  = pt.getY() - dY;
+    
+    return { x, y };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditPort::setZoomAroundPoint (int n, juce::Point<int> pt)
+{
+    const auto [a, b] = getRatioAround (getRealVisibleArea().toFloat(), pt.toFloat());
+    
+    setZoom (n);
+    
+    offset_ = getOffsetAround (getRealVisibleArea().toFloat(), pt.toFloat(), a, b).toInt();
+}
+
+void EditPort::setZoom (int n)
+{
+    constexpr int min = steps_.front();
+    constexpr int max = steps_.back();
+    
+    zoom_ = juce::jlimit (min, max, n);
+    v_    = juce::var (zoom_);
+    
+    view_.setScale (getScale());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
