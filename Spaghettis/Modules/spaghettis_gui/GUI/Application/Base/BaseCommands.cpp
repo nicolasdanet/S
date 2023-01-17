@@ -263,6 +263,7 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         break;
     case Commands::zoomReset :
         r.setInfo (text, description, view, 0);
+        r.addDefaultKeypress ('0', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
     case Commands::inspector :
