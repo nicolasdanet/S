@@ -78,7 +78,7 @@ private:
 // MARK: -
 
 private:
-    void setZoom (int, std::optional<juce::Point<int>>);
+    void setZoomAroundPoint (int, juce::Point<int>);
     void setZoom (int);
     void update();
     
@@ -87,7 +87,7 @@ private:
     int zoom_;
     juce::Value v_;
     juce::Point<int> offset_;                       /* Real coordinates. */
-    std::optional<juce::Point<int>> origin_;        /* Real coordinates. */
+    std::optional<juce::Point<int>> dragOrigin_;    /* Real coordinates. */
 
 private:
     static constexpr std::array<int, 16> steps_ =

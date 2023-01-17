@@ -70,6 +70,8 @@ void EditPort::zoomIn()
     auto r = std::find_if (steps_.cbegin(), steps_.cend(),   [n = getZoom()](int i) { return (i > n); });
     
     setZoom ((r != steps_.cend()) ? *r : steps_.back());
+    
+    update();
 }
 
 void EditPort::zoomOut()
@@ -77,11 +79,13 @@ void EditPort::zoomOut()
     auto r = std::find_if (steps_.crbegin(), steps_.crend(), [n = getZoom()](int i) { return (i < n); });
     
     setZoom ((r != steps_.crend()) ? *r : steps_.front());
+    
+    update();
 }
 
 void EditPort::zoomReset()
 {
-    setZoom (100);
+    setZoom (100); update();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -104,14 +108,18 @@ void EditPort::mouseWheelMoveDisplace (float x, float y)
 
 void EditPort::mouseWheelMoveZoom (float y)
 {
-    const int n = (y > 0.0f) ? 10 : -10;
+    const auto pt = view_.getRealMousePosition();
     
-    setZoom (getZoom() + n, view_.getRealMousePosition());
+    jassert (pt.has_value());
+    
+    setZoomAroundPoint (getZoom() + ((y > 0.0f) ? 10 : -10), pt.value());
+    
+    update();
 }
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
-    if (origin_.has_value()) { return; }        /* Don't collide with drag operation. */
+    if (dragOrigin_.has_value()) { return; }        /* Don't collide with drag operation. */
     
     const float step = 200.0f / getScale();
     
@@ -129,9 +137,44 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditPort::setZoom (int n, std::optional<juce::Point<int>> pt)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+std::tuple<float, float> getMouseRatio (juce::Rectangle<int> area, juce::Point<int> pt)
 {
+    jassert (area.contains (pt));
+    
+    const float dX = static_cast<float> (pt.getX() - area.getX());
+    const float dY = static_cast<float> (pt.getY() - area.getY());
+    const float fX = dX / area.getWidth();
+    const float fY = dY / area.getHeight();
+    
+    return { fX, fY };
+}
+
+juce::Point<int> getOffsetWithRatio (juce::Rectangle<int> area, std::tuple<float, float>)
+{
+    return {};
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditPort::setZoomAroundPoint (int n, juce::Point<int> pt)
+{
+    auto t = getMouseRatio (getRealVisibleArea(), pt);
+    
     setZoom (n);
+    
+    auto p = getOffsetWithRatio (getRealVisibleArea(), t);
 }
 
 void EditPort::setZoom (int n)
@@ -144,8 +187,6 @@ void EditPort::setZoom (int n)
     zoom_ = juce::jlimit (min, max, n); v_ = juce::var (zoom_);
     
     view_.setScale (getScale());
-    
-    update();
     //
     }
 }
@@ -156,17 +197,17 @@ void EditPort::setZoom (int n)
 
 void EditPort::dragViewStart()
 {
-    origin_ = offset_;
+    dragOrigin_ = offset_;
 }
 
 void EditPort::dragView (juce::Point<int> pt)
 {
-    if (origin_.has_value()) { offset_ = origin_.value() - pt; update(); }
+    if (dragOrigin_.has_value()) { offset_ = dragOrigin_.value() - pt; update(); }
 }
 
 void EditPort::dragViewEnd()
 {
-    origin_.reset();
+    dragOrigin_.reset();
 }
     
 // -----------------------------------------------------------------------------------------------------------
