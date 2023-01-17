@@ -88,23 +88,8 @@ void EditPort::zoomReset()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
+void EditPort::mouseWheelMoveDisplace (float x, float y)
 {
-    if (origin_.has_value()) { return; }        /* Don't collide with drag operation. */
-    
-    const float step = 200.0f / getScale();
-    
-    float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
-    float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
-
-    if (!e.mods.isCommandDown()) {
-    //
-    #if JUCE_LINUX
-    
-    if (e.mods.isShiftDown()) { x = y; y = 0.0f; }
-    
-    #endif
-    
     auto map = [](float f)      /* At least one step increment. */
     {
         if (f) { f = std::signbit (f) ? juce::jmin (-1.0f, f) : juce::jmax (1.0f, f); }
@@ -115,8 +100,29 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     offset_ += juce::Point<int> (-map (x), -map (y));
     
     update();
-    //
-    } else { const int n = (y > 0.0f) ? 10 : -10; setZoom (getZoom() + n, view_.getRealMousePosition()); }
+}
+
+void EditPort::mouseWheelMoveZoom (float y)
+{
+    const int n = (y > 0.0f) ? 10 : -10;
+    
+    setZoom (getZoom() + n, view_.getRealMousePosition());
+}
+
+void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
+{
+    if (origin_.has_value()) { return; }        /* Don't collide with drag operation. */
+    
+    const float step = 200.0f / getScale();
+    
+    float x = (wheel.isReversed ? -wheel.deltaX : wheel.deltaX) * step;
+    float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
+
+    #if JUCE_LINUX
+    if (e.mods.isShiftDown()) { x = y; y = 0.0f; }
+    #endif
+        
+    if (e.mods.isCommandDown()) { mouseWheelMoveZoom (y); } else { mouseWheelMoveDisplace (x, y); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
