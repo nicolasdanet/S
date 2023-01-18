@@ -254,6 +254,7 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
     case Commands::zoomIn :
         r.setInfo (text, description, view, 0);
         r.addDefaultKeypress ('+', juce::ModifierKeys::commandModifier);
+        r.addDefaultKeypress ('=', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
     case Commands::zoomOut :
