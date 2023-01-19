@@ -124,6 +124,15 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_LOCAL void outputs_classNew (t_class *c)
+{
+    if (class_isBox (c)) { DBG (class_getNameAsString (c)); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
 {
     const UniquePath p (x, owner); wrapper_send (Outputs::added (p,   Report::object (p, owner, x, Tags())));

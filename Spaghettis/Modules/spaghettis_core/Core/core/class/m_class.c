@@ -202,6 +202,12 @@ PD_LOCAL t_class *class_new (t_symbol *s,
     
     if (hasSignal) { class_addMethod (c, (t_method)class_setSignals, sym__signals, A_GIMME, A_NULL); }
     
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    outputs_classNew (c);
+    
+    #endif
+    
     return c;
 }
 
