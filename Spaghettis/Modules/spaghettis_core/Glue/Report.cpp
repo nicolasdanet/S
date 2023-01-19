@@ -104,7 +104,7 @@ bool getVisible (t_glist *owner, t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setObjectAttributesForObject (Group& group, t_glist* owner, t_object* o, const Tags& t)
+void setObjectAttributesClass (Group& group, t_glist* owner, t_object* o, const Tags& t)
 {
     static DelegateCache delegate;
     
@@ -115,6 +115,11 @@ void setObjectAttributesForObject (Group& group, t_glist* owner, t_object* o, co
             juce::String (class_getNameAsString (pd_class (o))),
             delegate);
     }
+}
+
+void setObjectAttributesForObject (Group& group, t_glist* owner, t_object* o, const Tags& t)
+{
+    static DelegateCache delegate;
     
     if (t.contains (Tag::Content)) {
         group.addParameter (Tag::Content,
@@ -248,6 +253,8 @@ void setObjectAttributesForPatch (Group& group, t_glist* owner, t_object* o, con
 void setObjectAttributes (Data& data, t_glist* owner, t_object* o, const Tags& t)
 {
     Group group (data.addGroup (Tag::Attributes));
+    
+    setObjectAttributesClass (group, owner, o, t);
     
     if (object_isCanvas (o)) { setObjectAttributesForPatch (group, owner, o, t); }
     else {

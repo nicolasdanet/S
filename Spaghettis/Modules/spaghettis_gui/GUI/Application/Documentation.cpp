@@ -24,12 +24,16 @@ namespace {
 
 void findDocumentationForClass (core::Data& data, const juce::String& c)
 {
+    if (c.isNotEmpty()) {
+    //
     const juce::String name  = juce::String ("info_") + c + juce::String ("_xml");
     int n = 0; const char* p = BinaryData::getNamedResource (name.toRawUTF8(), n);
     
     if (n && p) {
     //
     data.addParametersFromXml (juce::String::createStringFromData (p, n));
+    //
+    }
     //
     }
 }
@@ -47,9 +51,7 @@ core::Data Documentation::get (const core::Object& o)
 {
     core::Data data (Id::DOCUMENTATION);
     
-    if (!o.isPatch()) {
-        findDocumentationForClass (data, o.get<juce::String> (Tag::Attributes, Tag::Class));
-    }
+    findDocumentationForClass (data, o.get<juce::String> (Tag::Attributes, Tag::Class));
     
     return data;
 }
