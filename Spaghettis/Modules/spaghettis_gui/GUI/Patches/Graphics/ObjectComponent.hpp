@@ -173,7 +173,6 @@ private:
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;
     juce::Point<int> origin_;
-    Documentation documentation_;
     bool isLocked_;
     
 private:
