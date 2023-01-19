@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2022 Jojo and others. */
+/* Copyright (c) 2023 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -12,16 +12,16 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-struct Documentation {
+struct Helpers {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    static core::Data get (const core::Object&);
-    
-    static core::Data getCopyExtended (const core::Item&);
+static juce::String firstLetterCapitalized (juce::String s)
+{
+    return s.substring (0, 1).toUpperCase() + s.substring (1);
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

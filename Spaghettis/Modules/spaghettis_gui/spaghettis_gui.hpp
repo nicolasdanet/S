@@ -55,6 +55,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Application/Helpers/Helpers.hpp"
 #include "GUI/Application/Helpers/SafeRegister.hpp"
 #include "GUI/Application/Helpers/AlertWindowRegister.hpp"
 #include "GUI/Application/Helpers/CallOutBoxRegister.hpp"
