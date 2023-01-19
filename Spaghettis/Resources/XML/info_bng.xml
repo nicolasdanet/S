@@ -9,6 +9,7 @@
         value="Trigger a bang out for any entry"/>
     <PARAMETER key="Outlet0"
         label="Outlet"
-        value="Bang!"/>
+        info="My baby shot me down"
+        value="Bang Bang!"/>
   </GROUP>
 </DOCUMENTATION>

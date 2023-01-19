@@ -31,9 +31,18 @@ void findDocumentationForClass (core::Data& data, const juce::String& c)
     
     if (n && p) {
     //
-    data.addParametersFromXml (juce::String::createStringFromData (p, n));
+    data.addParametersFromXmlDocumentation (juce::String::createStringFromData (p, n));
     //
     }
+    //
+    }
+}
+
+void addDocumentation (core::Data& data, const core::Item& i)
+{
+    if (i.has (Tag::Attributes, Tag::Class)) {
+    //
+    findDocumentationForClass (data, i.get<juce::String> (Tag::Attributes, Tag::Class));
     //
     }
 }
@@ -47,26 +56,20 @@ void findDocumentationForClass (core::Data& data, const juce::String& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Data Documentation::get (const core::Item& i)
+core::Data Documentation::get (const core::Item& item)
 {
     core::Data data (Id::DOCUMENTATION);
     
-    if (i.has (Tag::Attributes, Tag::Class)) {
-        findDocumentationForClass (data, i.get<juce::String> (Tag::Attributes, Tag::Class));
-    }
+    addDocumentation (data, item);
     
     return data;
 }
 
-core::Data Documentation::getCopyExtended (const core::Item& item)
+core::Data Documentation::getCopyWithDocumentation (const core::Item& item)
 {
     core::Data data (core::Data::makeCopy (item.getData()));
 
-    if (!item.isPatch()) {
-    if (!item.isLine())  {
-        findDocumentationForClass (data, item.get<juce::String> (Tag::Attributes, Tag::Class));
-    }
-    }
+    addDocumentation (data, item);
     
     return data;
 }

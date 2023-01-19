@@ -129,7 +129,7 @@ public:
 // MARK: -
 
 public:
-    void addParametersFromXml (const juce::String&);
+    void addParametersFromXmlDocumentation (const juce::String&);
     
 public:
     bool readValuesFromFile (const juce::File&);

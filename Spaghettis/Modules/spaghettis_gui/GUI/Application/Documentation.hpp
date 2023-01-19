@@ -21,7 +21,7 @@ struct Documentation {
 public:
     static core::Data get (const core::Item&);
     
-    static core::Data getCopyExtended (const core::Item&);
+    static core::Data getCopyWithDocumentation (const core::Item&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

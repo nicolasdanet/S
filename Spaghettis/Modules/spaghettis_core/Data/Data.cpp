@@ -166,6 +166,12 @@ void changeValuesFrom (Data& data, const juce::ValueTree& other)
     for (auto child : other) { changeValuesFrom (data, child); }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/* Note that for now only XML from documentation is handled. */
+
 void addParameterFrom (Group group, const juce::ValueTree& other)
 {
     const juce::String key (other.getProperty (Id::key).toString());
@@ -183,8 +189,6 @@ void addParameterFrom (Group group, const juce::ValueTree& other)
     //
     }
 }
-
-/* Note that for now only XML from documentation is handled. */
 
 void addFrom (Data& data, const juce::ValueTree& other)
 {
@@ -223,7 +227,7 @@ void Data::apply (const Item& item)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Data::addParametersFromXml (const juce::String& s)
+void Data::addParametersFromXmlDocumentation (const juce::String& s)
 {
     std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (s));
     if (xml) {

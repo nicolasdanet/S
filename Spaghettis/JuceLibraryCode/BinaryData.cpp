@@ -22,7 +22,8 @@ static const unsigned char temp_binary_data_0[] =
 "        value=\"Trigger a bang out for any entry\"/>\r\n"
 "    <PARAMETER key=\"Outlet0\"\r\n"
 "        label=\"Outlet\"\r\n"
-"        value=\"Bang!\"/>\r\n"
+"        info=\"My baby shot me down\"\r\n"
+"        value=\"Bang Bang!\"/>\r\n"
 "  </GROUP>\r\n"
 "</DOCUMENTATION>\r\n";
 
@@ -147,7 +148,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x4f50b4e2:  numBytes = 392; return info_bng_xml;
+        case 0x4f50b4e2:  numBytes = 434; return info_bng_xml;
         case 0xa5ac8800:  numBytes = 194; return icon_add_svg;
         case 0x0319b4fc:  numBytes = 723; return icon_construction_svg;
         case 0xa0922c7e:  numBytes = 368; return icon_delete_forever_svg;
