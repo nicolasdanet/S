@@ -47,11 +47,13 @@ void findDocumentationForClass (core::Data& data, const juce::String& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Data Documentation::get (const core::Object& o)
+core::Data Documentation::get (const core::Item& i)
 {
     core::Data data (Id::DOCUMENTATION);
     
-    findDocumentationForClass (data, o.get<juce::String> (Tag::Attributes, Tag::Class));
+    if (i.has (Tag::Attributes, Tag::Class)) {
+        findDocumentationForClass (data, i.get<juce::String> (Tag::Attributes, Tag::Class));
+    }
     
     return data;
 }

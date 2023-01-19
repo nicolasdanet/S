@@ -108,6 +108,16 @@ public:
     {
         return Cast::fromVar<UniqueId> (tree_.getProperty (Id::identifier));
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool has (const juce::String& group, const juce::String& key) const
+    {
+        return data_.hasParameter (group, key);
+    }
     
     template <class T>
     Cached<T> getCached (const juce::String& group, const juce::String& key, bool synchronous = false) const

@@ -19,7 +19,7 @@ struct Documentation {
 // MARK: -
 
 public:
-    static core::Data get (const core::Object&);
+    static core::Data get (const core::Item&);
     
     static core::Data getCopyExtended (const core::Item&);
 
