@@ -405,9 +405,22 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float
     return bounds.expanded (PainterPolicy::pinGripX (f), PainterPolicy::pinGripY (f));
 }
 
+juce::String getPinTooltip (const core::Data& documentation, const juce::String& type, bool isOutlet, int i)
+{
+    const juce::String t = Helpers::firstLetterCapitalized (type);
+    const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i);
+    
+    if (documentation.hasParameter (Tag::Documentation, k)) {
+        return t + ": " + documentation.getParameter (Tag::Documentation, k).getValueTyped<juce::String>();
+    }
+    
+    return t;
+}
+
 std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& a,
     const juce::Rectangle<int>& bounds,
     const core::Object& object,
+    const core::Data& documentation,
     View* view,
     float scale,
     bool isOutlet)
@@ -421,7 +434,7 @@ std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& 
         std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (view, object, type);
         p->setBounds (getPinBounds (bounds, i, scale, isOutlet));
         p->setVisible (true);
-        // p->setTooltip (documentation.getPinTooltip (type, isOutlet, i));
+        p->setTooltip (getPinTooltip (documentation, type, isOutlet, i));
         pins.push_back (std::move (p));
     }
     
@@ -460,8 +473,10 @@ void ObjectComponent::createInletsAndOutlets()
     
     const juce::Rectangle<int> bounds (getBounds());
     
-    if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, view_, scale, false); }
-    if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, view_, scale, true);  }
+    const core::Data documentation (Documentation::get (object_));
+    
+    if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, documentation, view_, scale, false); }
+    if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, documentation, view_, scale, true);  }
     
     moveAllPinsFront();
 }
