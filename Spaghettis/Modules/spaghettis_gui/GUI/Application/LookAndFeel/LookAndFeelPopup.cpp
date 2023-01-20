@@ -107,6 +107,8 @@ void LookAndFeel::drawPopupMenuItemShortcut (juce::Graphics& g,
     const juce::Rectangle<int>& r,
     const juce::String& shortcutText)
 {
+    /* Keep only the first if multiple shortcuts are defined. */
+    
     juce::String parsed (shortcutText.upToFirstOccurrenceOf (",", false, true));
     
     g.setFont (getMenuShortcutsFont());
