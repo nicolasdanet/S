@@ -107,8 +107,11 @@ void LookAndFeel::drawPopupMenuItemShortcut (juce::Graphics& g,
     const juce::Rectangle<int>& r,
     const juce::String& shortcutText)
 {
+    juce::String parsed (shortcutText.upToFirstOccurrenceOf (",", false, true));
+    
     g.setFont (getMenuShortcutsFont());
-    g.drawText (shortcutText, r, juce::Justification::centredRight, true);
+    
+    g.drawText (parsed, r, juce::Justification::centredRight, true);
 }
 
 void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
