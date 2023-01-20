@@ -158,7 +158,11 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
     //
     case Commands::preferences :
         r.setInfo (text, description, general, 0);
+        #if JUCE_MAC
         r.addDefaultKeypress (',', juce::ModifierKeys::commandModifier);
+        #else
+        r.addDefaultKeypress ('p', juce::ModifierKeys::commandModifier);
+        #endif
         break;
     case Commands::newPatch :
         r.setInfo (text, description, file, 0);
