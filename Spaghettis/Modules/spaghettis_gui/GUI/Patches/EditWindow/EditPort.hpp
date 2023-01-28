@@ -90,6 +90,20 @@ private:
     std::optional<juce::Point<int>> dragOrigin_;    /* Real coordinates. */
 
 private:
+    static int nextStep (int step)
+    {
+        auto r = std::find_if (steps_.cbegin(), steps_.cend(),   [n = step](int i) { return (i > n); });
+    
+        return (r != steps_.cend()) ? *r : steps_.back();
+    }
+    
+    static int previousStep (int step)
+    {
+        auto r = std::find_if (steps_.crbegin(), steps_.crend(), [n = step](int i) { return (i < n); });
+    
+        return (r != steps_.crend()) ? *r : steps_.front();
+    }
+    
     static constexpr std::array<int, 16> steps_ =
         {
             30, 50, 70, 80, 90, 100, 110, 120, 130, 150, 170, 200, 240, 300, 400, 500

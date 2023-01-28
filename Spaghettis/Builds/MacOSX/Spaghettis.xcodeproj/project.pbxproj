@@ -12,6 +12,7 @@
 		274D6BFB3E251A69841986B1 /* App */ = {isa = PBXBuildFile; fileRef = 60D8A2DF65E5C0796EA99CB1; };
 		2D23F4A7B71E5EE6AB602452 /* Main.cpp */ = {isa = PBXBuildFile; fileRef = A1056AE48F0DFF9EC3445D0E; };
 		2D9A95A4E54DC0D4312BC9F5 /* include_juce_data_structures.mm */ = {isa = PBXBuildFile; fileRef = D31E9A678ACB0B6E5AA55846; };
+		3580A9AB24A210EF3E8D2D35 /* Security.framework */ = {isa = PBXBuildFile; fileRef = 50ED0DDFBD78181A13A37290; };
 		41E807650BDBD45C260B2364 /* BinaryData.cpp */ = {isa = PBXBuildFile; fileRef = 3AC6DAD528C440D39662FA49; };
 		4471F6CC4D584796C5728278 /* AudioUnit.framework */ = {isa = PBXBuildFile; fileRef = 721D2F47AAC0470E9F2AA340; };
 		58E8530BC898BF294D7C8A13 /* CoreAudio.framework */ = {isa = PBXBuildFile; fileRef = CC31058899835B55FEC293F9; };
@@ -43,6 +44,7 @@
 		3AC6DAD528C440D39662FA49 /* BinaryData.cpp */ /* BinaryData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../../JuceLibraryCode/BinaryData.cpp; sourceTree = SOURCE_ROOT; };
 		47B902E51FA1D26D812A2D55 /* juce_events */ /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_events; path = "~/JUCE/modules/juce_events"; sourceTree = "<absolute>"; };
 		4BD2FF29EDDE1ABAC27A7822 /* include_juce_events.mm */ /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
+		50ED0DDFBD78181A13A37290 /* Security.framework */ /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5D54858FA1893DF53C9DB594 /* icon_tune.svg */ /* icon_tune.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_tune.svg; path = ../../Resources/Icons/SVG/icon_tune.svg; sourceTree = SOURCE_ROOT; };
 		60D8A2DF65E5C0796EA99CB1 /* App */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spaghettis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		636759924C4B7A2A44012B75 /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = "~/JUCE/modules/juce_data_structures"; sourceTree = "<absolute>"; };
@@ -89,6 +91,7 @@
 				F49611C8B5492263E100A1D2,
 				5BFCA5F5B994AFE79CC658DD,
 				D8751DBF49BECD65C7A0923A,
+				3580A9AB24A210EF3E8D2D35,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +156,7 @@
 				A3A861B41BD91C2AFB7F1175,
 				E256EE56D3F74E547832FB86,
 				A56CB13A5C065878D9CCD781,
+				50ED0DDFBD78181A13A37290,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -399,7 +403,7 @@
 					"DEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x70004",
+					"JUCE_PROJUCER_VERSION=0x70005",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
@@ -462,7 +466,7 @@
 					"NDEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x70004",
+					"JUCE_PROJUCER_VERSION=0x70005",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",

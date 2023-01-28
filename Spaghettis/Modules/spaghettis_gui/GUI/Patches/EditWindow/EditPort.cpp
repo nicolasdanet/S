@@ -67,18 +67,14 @@ juce::Rectangle<int> EditPort::getRealVisibleArea() const
 
 void EditPort::zoomIn()
 {
-    auto r = std::find_if (steps_.cbegin(), steps_.cend(),   [n = getZoom()](int i) { return (i > n); });
-    
-    setZoom ((r != steps_.cend()) ? *r : steps_.back());
+    setZoom (nextStep (getZoom()));
     
     update();
 }
 
 void EditPort::zoomOut()
 {
-    auto r = std::find_if (steps_.crbegin(), steps_.crend(), [n = getZoom()](int i) { return (i < n); });
-    
-    setZoom ((r != steps_.crend()) ? *r : steps_.front());
+    setZoom (previousStep (getZoom()));
     
     update();
 }
