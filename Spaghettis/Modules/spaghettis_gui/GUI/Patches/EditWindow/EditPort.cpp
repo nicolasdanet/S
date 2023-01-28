@@ -103,10 +103,11 @@ void EditPort::mouseWheelMoveDisplace (float x, float y)
 void EditPort::mouseWheelMoveZoom (float y)
 {
     const auto pt = view_.getRealMousePosition();
+    const int n   = getZoom();
     
     jassert (pt.has_value());
     
-    setZoomAroundPoint (getZoom() + ((y > 0.0f) ? 10 : -10), pt.value());
+    setZoomAroundPoint ((y > 0.0f) ? nextStep (n) : previousStep (n), pt.value());
 }
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
