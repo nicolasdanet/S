@@ -510,6 +510,11 @@ void EditView::remove()
     }
 }
 
+void EditView::addObject()
+{
+    DBG ("?");
+}
+
 void EditView::encapsulate()
 {
     EditCommands::encapsulate (core::Patch (viewTree_).getIdentifier());

@@ -62,6 +62,8 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     addMenuCommand (MenuCommand (Commands::paste,           [this]() { editView_.paste(); },
                                                             [this]() { return editView_.hasPaste(); }));
     
+    addMenuCommand (MenuCommand (Commands::addObject,       [this]() { editView_.addObject(); }));
+    
     addMenuCommand (MenuCommand (Commands::encapsulate,     [this]() { editView_.encapsulate(); }, f));
     addMenuCommand (MenuCommand (Commands::deencapsulate,   [this]() { editView_.deencapsulate(); },
                                                             [this]()

@@ -136,6 +136,9 @@ public:
     void paste();
     void duplicate();
     void remove();
+
+public:
+    void addObject();
     
 public:
     void encapsulate();
