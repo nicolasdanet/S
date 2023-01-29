@@ -83,6 +83,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Application/Autocomplete.hpp"
 #include "GUI/Application/Commands.hpp"
 #include "GUI/Application/Documentation.hpp"
 #include "GUI/Application/Icons.hpp"
