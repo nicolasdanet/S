@@ -138,7 +138,7 @@ public:
     void remove();
 
 public:
-    void addObject();
+    void requestNewObject();
     
 public:
     void encapsulate();

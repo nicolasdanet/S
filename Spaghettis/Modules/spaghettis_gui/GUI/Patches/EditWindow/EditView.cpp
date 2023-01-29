@@ -510,7 +510,7 @@ void EditView::remove()
     }
 }
 
-void EditView::addObject()
+void EditView::requestNewObject()
 {
     DBG ("?");
 }
