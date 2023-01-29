@@ -31,6 +31,12 @@ static Perform reportCurrentMidiDevices     (std::vector<MidiDevice>&&,  std::ve
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static Perform classNew                     (juce::String);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static Perform patchOrder                   (core::UniquePath, std::vector<core::UniqueId>&&);
 static Perform patchDirty                   (core::UniquePath, bool);
 

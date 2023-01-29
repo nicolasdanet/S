@@ -126,7 +126,7 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 
 PD_LOCAL void outputs_classNew (t_class *c)
 {
-    if (class_isBox (c)) { DBG (class_getNameAsString (c)); }
+    if (class_isBox (c)) { wrapper_send (Outputs::classNew (class_getNameAsString (c))); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

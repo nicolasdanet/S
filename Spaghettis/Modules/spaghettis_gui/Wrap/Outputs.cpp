@@ -75,6 +75,18 @@ Perform Outputs::reportCurrentMidiDevices (std::vector<MidiDevice>&& i, std::vec
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+Perform Outputs::classNew (juce::String name)
+{
+    return [s = std::move (name)]()
+    {
+        DBG (s);
+    };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 Perform Outputs::patchOrder (core::UniquePath unique, std::vector<core::UniqueId>&& ids)
 {
     return [u = std::move (unique), v = std::move (ids)]()
