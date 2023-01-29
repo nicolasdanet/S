@@ -53,6 +53,8 @@ juce::PopupMenu MenuModel::getMenuForIndex (int n, const juce::String&)
     menu.addCommandItem (commandManager_, Commands::duplicate);
     menu.addCommandItem (commandManager_, Commands::remove);
     menu.addSeparator();
+    menu.addCommandItem (commandManager_, Commands::addObject);
+    menu.addSeparator();
     menu.addCommandItem (commandManager_, Commands::encapsulate);
     menu.addCommandItem (commandManager_, Commands::deencapsulate);
     menu.addSeparator();

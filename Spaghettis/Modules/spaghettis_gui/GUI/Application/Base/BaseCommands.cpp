@@ -80,6 +80,7 @@ juce::String BaseCommands::getCommandText (juce::CommandID command)
     case Commands::paste                : return NEEDS_TRANS ("Paste");
     case Commands::duplicate            : return NEEDS_TRANS ("Duplicate");
     case Commands::remove               : return NEEDS_TRANS ("Delete");
+    case Commands::addObject            : return NEEDS_TRANS ("Add Object");
     case Commands::encapsulate          : return NEEDS_TRANS ("Encapsulate");
     case Commands::deencapsulate        : return NEEDS_TRANS ("De-encapsulate");
     case Commands::moveBack             : return NEEDS_TRANS ("Move Back");
@@ -120,6 +121,7 @@ juce::String BaseCommands::getCommandDescription (juce::CommandID command)
     case Commands::paste                : return NEEDS_TRANS ("Paste");
     case Commands::duplicate            : return NEEDS_TRANS ("Duplicate");
     case Commands::remove               : return NEEDS_TRANS ("Delete");
+    case Commands::addObject            : return NEEDS_TRANS ("Add object");
     case Commands::encapsulate          : return NEEDS_TRANS ("Encapsulate");
     case Commands::deencapsulate        : return NEEDS_TRANS ("De-encapsulate");
     case Commands::moveBack             : return NEEDS_TRANS ("Move backward");
@@ -235,6 +237,11 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         r.addDefaultKeypress (juce::KeyPress::backspaceKey, juce::ModifierKeys::noModifiers);
         r.setActive (has (command));
         break;
+    case Commands::addObject :
+        r.setInfo (text, description, edit, 0);
+        r.addDefaultKeypress (juce::KeyPress::escapeKey, juce::ModifierKeys::noModifiers);
+        r.setActive (has (command));
+        break;
     case Commands::encapsulate :
         r.setInfo (text, description, edit, 0);
         r.setActive (has (command));
@@ -314,6 +321,7 @@ void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::paste,
             Commands::duplicate,
             Commands::remove,
+            Commands::addObject,
             Commands::encapsulate,
             Commands::deencapsulate,
             Commands::moveBack,

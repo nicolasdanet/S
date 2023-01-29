@@ -42,6 +42,7 @@ enum CommandIds : juce::CommandID {
     paste,
     duplicate,
     remove,
+    addObject,
     encapsulate,
     deencapsulate,
     moveBack,
