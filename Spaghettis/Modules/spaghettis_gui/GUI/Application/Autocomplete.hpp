@@ -22,6 +22,15 @@ public:
     Autocomplete()  = default;
     ~Autocomplete() = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+public:
+    void addContent (const juce::String&);
+
+private:
+    std::vector<juce::String> texts_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Autocomplete)
 };

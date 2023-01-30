@@ -79,7 +79,7 @@ Perform Outputs::classNew (juce::String name)
 {
     return [s = std::move (name)]()
     {
-        DBG (s);
+        Spaghettis()->getAutocomplete().addContent (s);
     };
 }
 

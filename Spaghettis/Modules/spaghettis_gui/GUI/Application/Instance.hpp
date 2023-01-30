@@ -45,6 +45,7 @@ public:
         audioDevices_ (std::make_unique<AudioDevices>()),
         midiDevices_ (std::make_unique<MidiDevices>()),
         patches_ (std::make_unique<PatchesHolder>()),
+        autocomplete_ (std::make_unique<Autocomplete>()),
         currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory)),
         dspIsRunning_ (false),
         quit_ (QuitStatus::quit)
@@ -299,6 +300,11 @@ public:
         return *patches_;
     }
     
+    Autocomplete& getAutocomplete()
+    {
+        return *autocomplete_;
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -330,6 +336,7 @@ private:
     const std::unique_ptr<AudioDevices> audioDevices_;
     const std::unique_ptr<MidiDevices> midiDevices_;
     const std::unique_ptr<PatchesHolder> patches_;
+    const std::unique_ptr<Autocomplete> autocomplete_;
 
 private:
     juce::File currentOpenDirectory_;
