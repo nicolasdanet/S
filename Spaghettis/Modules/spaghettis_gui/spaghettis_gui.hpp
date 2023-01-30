@@ -151,6 +151,8 @@
 #include "GUI/Patches/EditWindow/ActionHand.hpp"
 #include "GUI/Patches/EditWindow/ActionMove.hpp"
 #include "GUI/Patches/EditWindow/Sync.hpp"
+#include "GUI/Patches/EditWindow/MakerEditor.hpp"
+#include "GUI/Patches/EditWindow/Maker.hpp"
 #include "GUI/Patches/EditWindow/EditView.hpp"
 #include "GUI/Patches/EditWindow/EditPort.hpp"
 #include "GUI/Patches/EditWindow/InspectorView.hpp"

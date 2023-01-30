@@ -14,6 +14,7 @@ namespace spaghettis {
 
 EditView::EditView (PatchRoot& patch, const juce::ValueTree& tree) :
     View (patch, tree),
+    maker_ (this),
     isAbstraction_ (core::Patch (viewTree_).isAbstraction()),
     isLocked_ (core::Patch (viewTree_).isLocked()),
     undo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Undo)),
@@ -512,7 +513,7 @@ void EditView::remove()
 
 void EditView::requestNewObject()
 {
-    DBG ("?");
+    maker_.showEditor();
 }
 
 void EditView::encapsulate()

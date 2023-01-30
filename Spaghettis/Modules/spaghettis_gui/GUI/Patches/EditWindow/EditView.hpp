@@ -211,6 +211,7 @@ private:
     void updateOrder();
 
 private:
+    Maker maker_;
     bool isAbstraction_;
     bool isLocked_;
     core::Cached<juce::String> undo_;

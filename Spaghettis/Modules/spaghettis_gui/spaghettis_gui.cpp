@@ -79,6 +79,8 @@
 #include "GUI/Patches/EditWindow/ActionHand.cpp"
 #include "GUI/Patches/EditWindow/ActionMove.cpp"
 #include "GUI/Patches/EditWindow/Sync.cpp"
+#include "GUI/Patches/EditWindow/MakerEditor.cpp"
+#include "GUI/Patches/EditWindow/Maker.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
 #include "GUI/Patches/EditWindow/EditPort.cpp"
 #include "GUI/Patches/EditWindow/InspectorView.cpp"
