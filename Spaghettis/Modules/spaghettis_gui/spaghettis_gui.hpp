@@ -135,13 +135,14 @@
 #include "GUI/Patches/Graphics/Scalable.hpp"
 #include "GUI/Patches/Graphics/Table.hpp"
 #include "GUI/Patches/Graphics/PainterPolicy.hpp"
-
 #include "GUI/Patches/Graphics/Painters/BangPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.hpp"
-
 #include "GUI/Patches/Graphics/PinComponent.hpp"
 #include "GUI/Patches/Graphics/ObjectComponent.hpp"
 #include "GUI/Patches/Graphics/LineComponent.hpp"
+
+#include "GUI/Patches/Maker/MakerEditor.hpp"
+#include "GUI/Patches/Maker/Maker.hpp"
 
 #include "GUI/Patches/EditWindow/DragAction.hpp"
 #include "GUI/Patches/EditWindow/EditCommands.hpp"
@@ -151,8 +152,6 @@
 #include "GUI/Patches/EditWindow/ActionHand.hpp"
 #include "GUI/Patches/EditWindow/ActionMove.hpp"
 #include "GUI/Patches/EditWindow/Sync.hpp"
-#include "GUI/Patches/EditWindow/MakerEditor.hpp"
-#include "GUI/Patches/EditWindow/Maker.hpp"
 #include "GUI/Patches/EditWindow/EditView.hpp"
 #include "GUI/Patches/EditWindow/EditPort.hpp"
 #include "GUI/Patches/EditWindow/InspectorView.hpp"

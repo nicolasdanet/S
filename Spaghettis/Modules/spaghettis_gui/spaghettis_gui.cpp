@@ -65,13 +65,14 @@
 #include "GUI/Patches/View.cpp"
 
 #include "GUI/Patches/Graphics/PainterPolicy.cpp"
-
 #include "GUI/Patches/Graphics/Painters/BangPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.cpp"
-
 #include "GUI/Patches/Graphics/PinComponent.cpp"
 #include "GUI/Patches/Graphics/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/LineComponent.cpp"
+
+#include "GUI/Patches/Maker/MakerEditor.cpp"
+#include "GUI/Patches/Maker/Maker.cpp"
 
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/ActionLassoComponent.cpp"
@@ -79,8 +80,6 @@
 #include "GUI/Patches/EditWindow/ActionHand.cpp"
 #include "GUI/Patches/EditWindow/ActionMove.cpp"
 #include "GUI/Patches/EditWindow/Sync.cpp"
-#include "GUI/Patches/EditWindow/MakerEditor.cpp"
-#include "GUI/Patches/EditWindow/Maker.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
 #include "GUI/Patches/EditWindow/EditPort.cpp"
 #include "GUI/Patches/EditWindow/InspectorView.cpp"
