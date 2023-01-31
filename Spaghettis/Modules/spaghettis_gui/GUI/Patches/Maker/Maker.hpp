@@ -33,7 +33,7 @@ public:
 // MARK: -
 
 public:
-    void showEditor();
+    void showEditor (const std::optional<juce::Point<int>>&);
 
 private:
     CallOutBoxTracker tracker_;

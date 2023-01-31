@@ -147,6 +147,17 @@ juce::Point<int> getMinimum (std::optional<juce::Point<int>> pt, juce::Point<int
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+std::optional<juce::Point<int>> EditView::getGlobalMousePosition() const
+{
+    if (isMouseOver (true)) {
+    //
+    return localPointToGlobal (getMouseXYRelative());
+    //
+    }
+
+    return {};
+}
+
 std::optional<juce::Point<int>> EditView::getRealMousePosition() const
 {
     if (isMouseOver (true)) {
@@ -513,7 +524,11 @@ void EditView::remove()
 
 void EditView::requestNewObject()
 {
-    maker_.showEditor();
+    if (!isAbstractionOrInside()) {
+    //
+    maker_.showEditor (getGlobalMousePosition());
+    //
+    }
 }
 
 void EditView::encapsulate()
