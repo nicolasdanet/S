@@ -159,7 +159,7 @@ static void canvas_floatatom (t_glist *glist, t_symbol *s, int argc, t_atom *arg
 
 static void canvas_comment (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 {
-    text_makeObject (glist, s, argc, argv);
+    comment_makeObject (glist, s, argc, argv);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -27,7 +27,7 @@ PD_LOCAL int        voutlet_getIndex            (t_voutlet *x);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       text_makeObject             (t_glist *glist, t_symbol *s, int argc, t_atom *argv);
+PD_LOCAL void       comment_makeObject          (t_glist *glist, t_symbol *s, int argc, t_atom *argv);
 PD_LOCAL void       message_makeObject          (t_glist *glist, t_symbol *s, int argc, t_atom *argv);
 PD_LOCAL void       gatom_makeObject            (t_glist *glist, t_symbol *s, int argc, t_atom *argv);
 

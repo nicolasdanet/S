@@ -26,7 +26,7 @@ static void text_anything (t_object *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void text_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
+PD_LOCAL void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 {
     if (argc >= 2) {
     //
