@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerEditor::MakerEditor()
+MakerEditor::MakerEditor (EditView* view) : view_ (view)
 {
     setOpaque (true); setSize (300, 280);
 }

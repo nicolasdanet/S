@@ -31,6 +31,8 @@ public:
 
 public:
     void track (juce::CallOutBox&);
+    
+    void dismiss();
 
 private:
     juce::Component* owner_;

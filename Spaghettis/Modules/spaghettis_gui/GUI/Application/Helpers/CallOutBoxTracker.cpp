@@ -14,7 +14,7 @@ namespace spaghettis {
 
 CallOutBoxTracker::~CallOutBoxTracker()
 {
-    Spaghettis()->getBoxRegister().dismiss (owner_);
+    dismiss();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -24,6 +24,11 @@ CallOutBoxTracker::~CallOutBoxTracker()
 void CallOutBoxTracker::track (juce::CallOutBox& box)
 {
     Spaghettis()->getBoxRegister().add (owner_, &box);
+}
+
+void CallOutBoxTracker::dismiss()
+{
+    Spaghettis()->getBoxRegister().dismiss (owner_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

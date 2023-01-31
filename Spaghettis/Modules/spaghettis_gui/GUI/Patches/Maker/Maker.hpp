@@ -34,6 +34,7 @@ public:
 
 public:
     void showEditor (const std::optional<juce::Point<int>>&);
+    void hideEditor();
 
 private:
     EditView* owner_;
