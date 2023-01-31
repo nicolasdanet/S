@@ -195,7 +195,7 @@ namespace spaghettis::core {
 #include "graphic/objects/g_canvas.c"
 #include "graphic/objects/g_vinlet.c"
 #include "graphic/objects/g_voutlet.c"
-#include "graphic/objects/g_text.c"
+#include "graphic/objects/g_comment.c"
 #include "graphic/objects/g_message.c"
 #include "graphic/objects/g_gatom.c"
 #include "graphic/objects/g_garray.c"
