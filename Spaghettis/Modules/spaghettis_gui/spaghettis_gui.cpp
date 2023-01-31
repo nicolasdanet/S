@@ -71,8 +71,8 @@
 #include "GUI/Patches/Graphics/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/LineComponent.cpp"
 
-#include "GUI/Patches/Maker/MakerEditor.cpp"
 #include "GUI/Patches/Maker/Maker.cpp"
+#include "GUI/Patches/Maker/MakerEditor.cpp"
 
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/ActionLassoComponent.cpp"

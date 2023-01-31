@@ -141,8 +141,8 @@
 #include "GUI/Patches/Graphics/ObjectComponent.hpp"
 #include "GUI/Patches/Graphics/LineComponent.hpp"
 
-#include "GUI/Patches/Maker/MakerEditor.hpp"
 #include "GUI/Patches/Maker/Maker.hpp"
+#include "GUI/Patches/Maker/MakerEditor.hpp"
 
 #include "GUI/Patches/EditWindow/DragAction.hpp"
 #include "GUI/Patches/EditWindow/EditCommands.hpp"

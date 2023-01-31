@@ -36,6 +36,9 @@ public:
     void showEditor (const std::optional<juce::Point<int>>&);
 
 private:
+    EditView* owner_;
+
+private:
     CallOutBoxTracker tracker_;
 
 private:
