@@ -93,7 +93,6 @@ static int snippet_isObject (t_symbol *s)
 {
     if (s == sym_obj)               { return 1; }
     else if (s == sym_msg)          { return 1; }
-    else if (s == sym_comment)      { return 1; }
     else if (s == sym_text)         { return 1; }
     else if (s == sym_floatatom)    { return 1; }
     else if (s == sym_restore)      { return 1; }

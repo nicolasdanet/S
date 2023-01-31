@@ -39,7 +39,7 @@ PD_LOCAL void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom 
 
     if (argc > 2) { buffer_deserialize (t, argc - 2, argv + 2); }
     else {
-        buffer_appendSymbol (t, sym_comment);
+        buffer_appendSymbol (t, sym_text);
     }
     
     object_setBuffer (x, t);
@@ -68,9 +68,7 @@ PD_LOCAL void text_setup (void)
             A_NULL);
         
     class_addAnything (c, (t_method)text_anything);
-    
-    class_setHelpName (c, sym_comment);
-    
+        
     text_class = c;
 }
 

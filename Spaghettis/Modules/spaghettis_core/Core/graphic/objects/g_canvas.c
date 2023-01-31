@@ -292,7 +292,6 @@ PD_LOCAL void canvas_setup (void)
     class_addMethod (c, (t_method)canvas_obj,                   sym_obj,                A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_msg,                   sym_msg,                A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_floatatom,             sym_floatatom,          A_GIMME, A_NULL);
-    class_addMethod (c, (t_method)canvas_comment,               sym_comment,            A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_comment,               sym_text,               A_GIMME, A_NULL);
     
     class_setSaveFunction (c, canvas_functionSave);
