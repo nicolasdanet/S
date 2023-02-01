@@ -19,6 +19,19 @@ PD_LOCAL t_outlet *outlet_newUndefined (t_object *);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void glist_lineConnectByIndexNotify (t_object *o, t_glist *glist)
+{
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    outputs_objectUpdated (o, glist, Tags::attributes ( { Tag::Inlets, Tag::Outlets } ));
+    
+    #endif
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL t_error glist_lineConnectByIndex (t_glist *glist,
     int indexOfObjectOut,
     int indexOfOutlet,
@@ -39,18 +52,24 @@ PD_LOCAL t_error glist_lineConnectByIndex (t_glist *glist,
     /* Creates dummy outlets and inlets. */
     /* It is required in case of failure at object creation. */
     
+    int t1 = 0;
+    int t2 = 0;
+    
     if (object_isDummy (src)) {
         while (m >= object_getNumberOfOutlets (src)) {
-            outlet_newUndefined (src);
+            ++t1; outlet_newUndefined (src);
         }
     }
     
     if (object_isDummy (dest)) {
         while (n >= object_getNumberOfInlets (dest)) {
-            inlet_new (dest, cast_pd (dest), NULL, NULL);
+            ++t2; inlet_new (dest, cast_pd (dest), NULL, NULL);
         }
     }
 
+    if (t1 > 0) { glist_lineConnectByIndexNotify (src,  glist); }
+    if (t2 > 0) { glist_lineConnectByIndexNotify (dest, glist); }
+    
     return glist_objectConnect (glist, src, m, dest, n);
     //
     }

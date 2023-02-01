@@ -570,6 +570,7 @@ t_symbol *sym_trim;
 t_symbol *sym_true;
 t_symbol *sym_tunerequest;
 t_symbol *sym_type;
+t_symbol *sym_undefined;
 t_symbol *sym_undo;
 t_symbol *sym_undoadd;
 t_symbol *sym_undoback;
@@ -1155,6 +1156,7 @@ PD_LOCAL void symbols_initialize (void)
     sym_true                                    = gensym ("true");
     sym_tunerequest                             = gensym ("tunerequest");
     sym_type                                    = gensym ("type");
+    sym_undefined                               = gensym ("undefined");
     sym_undo                                    = gensym ("undo");
     sym_undoadd                                 = gensym ("undoadd");
     sym_undoback                                = gensym ("undoback");
