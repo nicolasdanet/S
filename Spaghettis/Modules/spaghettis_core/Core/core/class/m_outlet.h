@@ -84,9 +84,7 @@ static inline t_outconnect *outlet_getConnections (t_outlet *x)
 
 static inline t_symbol *outlet_getType (t_outlet *x)
 {
-    t_symbol *s = (x->o_type == sym_mixed) ? &s_anything : x->o_type;
-    
-    return s ? s : sym_undefined;
+    return (x->o_type == sym_mixed) ? &s_anything : x->o_type;
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -12,11 +12,6 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-PD_LOCAL t_outlet *outlet_newUndefined (t_object *);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 static void glist_lineConnectByIndexNotify (t_object *o, t_glist *glist)
@@ -57,7 +52,7 @@ PD_LOCAL t_error glist_lineConnectByIndex (t_glist *glist,
     
     if (object_isDummy (src)) {
         while (m >= object_getNumberOfOutlets (src)) {
-            ++t1; outlet_newUndefined (src);
+            ++t1; outlet_newMixed (src);
         }
     }
     

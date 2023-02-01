@@ -262,6 +262,8 @@ static t_outlet *outlet_new (t_object *owner, t_symbol *s)
     t_outlet *o1 = NULL;
     t_outlet *o2 = NULL;
     
+    jassert (s != NULL);
+    
     x->o_next        = NULL;
     x->o_owner       = owner;
     x->o_connections = NULL;
@@ -295,11 +297,6 @@ PD_LOCAL void outlet_free (t_outlet *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-PD_LOCAL t_outlet *outlet_newUndefined (t_object *owner)
-{
-    return outlet_new (owner, NULL);
-}
 
 PD_LOCAL t_outlet *outlet_newBang (t_object *owner)
 {

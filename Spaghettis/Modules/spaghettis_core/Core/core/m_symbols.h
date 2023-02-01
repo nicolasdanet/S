@@ -570,7 +570,6 @@ extern t_symbol *sym_trim;
 extern t_symbol *sym_true;
 extern t_symbol *sym_tunerequest;
 extern t_symbol *sym_type;
-extern t_symbol *sym_undefined;
 extern t_symbol *sym_undo;
 extern t_symbol *sym_undoadd;
 extern t_symbol *sym_undoback;
