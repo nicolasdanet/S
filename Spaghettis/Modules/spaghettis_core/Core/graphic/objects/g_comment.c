@@ -13,12 +13,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-t_class *text_class;        /* Shared. */
+t_class *comment_class;     /* Shared. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static void text_anything (t_object *x, t_symbol *s, int argc, t_atom *argv)
+static void comment_anything (t_object *x, t_symbol *s, int argc, t_atom *argv)
 {
 }
 
@@ -30,7 +30,7 @@ PD_LOCAL void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom 
 {
     if (argc >= 2) {
     //
-    t_object *x = (t_object *)pd_new (text_class);
+    t_object *x = (t_object *)pd_new (comment_class);
     
     int a = atom_getFloat (argv + 0);
     int b = atom_getFloat (argv + 1);
@@ -39,7 +39,7 @@ PD_LOCAL void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom 
 
     if (argc > 2) { buffer_deserialize (t, argc - 2, argv + 2); }
     else {
-        buffer_appendSymbol (t, sym_text);
+        buffer_appendSymbol (t, sym_comment);
     }
     
     object_setBuffer (x, t);
@@ -56,7 +56,7 @@ PD_LOCAL void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void text_setup (void)
+PD_LOCAL void comment_setup (void)
 {
     t_class *c = NULL;
     
@@ -67,14 +67,14 @@ PD_LOCAL void text_setup (void)
             CLASS_DEFAULT | CLASS_NOINLET,
             A_NULL);
         
-    class_addAnything (c, (t_method)text_anything);
+    class_addAnything (c, (t_method)comment_anything);
         
-    text_class = c;
+    comment_class = c;
 }
 
-PD_LOCAL void text_destroy (void)
+PD_LOCAL void comment_destroy (void)
 {
-    class_free (text_class);
+    class_free (comment_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------

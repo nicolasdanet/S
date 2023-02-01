@@ -20,7 +20,7 @@ extern t_symbol *main_directoryHelp;
 
 PD_LOCAL int object_isDummy (t_object *x)
 {
-    return (pd_class (x) == text_class && object_isObject (x));
+    return (pd_class (x) == comment_class && object_isObject (x));
 }
 
 PD_LOCAL int object_isCanvas (t_object *x)

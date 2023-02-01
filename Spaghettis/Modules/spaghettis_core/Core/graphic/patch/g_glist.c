@@ -142,7 +142,7 @@ PD_LOCAL void glist_makeObjectProceed (t_glist *glist, int a, int b, t_buffer *t
     if (instance_objectGetNewest()) { x = cast_object (instance_objectGetNewest()); }
 
     if (!x) {
-        x = (t_object *)pd_new (text_class);    /* If failed create a dummy box. */
+        x = (t_object *)pd_new (comment_class);     /* If failed create a dummy box. */
         if (buffer_getSize (t)) {
             error_canNotMake (x, buffer_getSize (t), buffer_getAtoms (t));
         }
