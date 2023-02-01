@@ -117,8 +117,8 @@ static void class_defaultSave (t_object *x, t_buffer *b, int flags)
     buffer_appendSymbol (b, sym___hash__X);
     
     if (object_isComment (x))       { buffer_appendSymbol (b, sym_text); }
-    else if (object_isObject (x))   { buffer_appendSymbol (b, sym_obj);  }
     else if (object_isMessage (x))  { buffer_appendSymbol (b, sym_msg);  }
+    else if (object_isObject (x))   { buffer_appendSymbol (b, sym_obj);  }
     else {
         PD_BUG;
     }
