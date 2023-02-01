@@ -15,8 +15,6 @@ namespace spaghettis {
 InspectorView::InspectorView (Sync&& s, int w) : ParameterView (s.getData(), w), sync_ (std::move (s))
 {
     sync_.bind (this);
-    
-    requireExpandPanel (Tag::Parameters);
 }
 
 InspectorView::~InspectorView()
