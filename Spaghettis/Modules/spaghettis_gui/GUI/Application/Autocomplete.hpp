@@ -29,7 +29,7 @@ public:
     void addContent (const juce::String&);
 
 private:
-    std::vector<juce::String> texts_;
+    juce::StringArray texts_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Autocomplete)

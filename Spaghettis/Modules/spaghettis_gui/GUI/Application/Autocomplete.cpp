@@ -13,7 +13,7 @@ namespace spaghettis {
 
 void Autocomplete::addContent (const juce::String& s)
 {
-    texts_.push_back (s);
+    texts_.addIfNotAlreadyThere  (s);
 }
 
 // -----------------------------------------------------------------------------------------------------------
