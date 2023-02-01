@@ -60,7 +60,7 @@ PD_LOCAL void comment_setup (void)
 {
     t_class *c = NULL;
     
-    c = class_new (sym_text, 
+    c = class_new (sym_comment,
             NULL,
             NULL, 
             sizeof (t_object),
