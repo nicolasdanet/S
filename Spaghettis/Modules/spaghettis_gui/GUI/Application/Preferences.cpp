@@ -131,6 +131,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Box Selected"),
         NEEDS_TRANS ("Set highlight color for selected object"),
         Colours::getPalette()->selection);
+    
+    colors.addParameter (Tag::BoxWrong,
+        NEEDS_TRANS ("Box Wrong"),
+        NEEDS_TRANS ("Set highlight color for bad object"),
+        Colours::getPalette()->textError);
         
     colors.addParameter (Tag::BoxText,
         NEEDS_TRANS ("Box Text"),

@@ -25,6 +25,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (BoxPinBackground);
     DECLARE_STRING (BoxSelected);
     DECLARE_STRING (BoxText);
+    DECLARE_STRING (BoxWrong);
     DECLARE_STRING (BangBackground);
     DECLARE_STRING (BangFlashOff);
     DECLARE_STRING (BangFlashOn);

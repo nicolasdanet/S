@@ -112,7 +112,7 @@ void setObjectAttributesClass (Group& group, t_glist* owner, t_object* o, const 
         group.addParameter (Tag::Class,
             NEEDS_TRANS ("Class"),
             NEEDS_TRANS ("Class of the object"),
-            juce::String (class_getNameAsString (pd_class (o))),
+            object_isDummy (o) ? juce::String() : juce::String (class_getNameAsString (pd_class (o))),
             delegate);
     }
 }
