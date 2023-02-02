@@ -262,7 +262,7 @@ static t_outlet *outlet_new (t_object *owner, t_symbol *s)
     t_outlet *o1 = NULL;
     t_outlet *o2 = NULL;
     
-    jassert (s != NULL);
+    PD_ASSERT (s != NULL);
     
     x->o_next        = NULL;
     x->o_owner       = owner;
