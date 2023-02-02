@@ -14,7 +14,7 @@ namespace spaghettis {
 
 MakerComponent::MakerComponent (EditView* view) : view_ (view)
 {
-    setOpaque (true); setSize (300, 280);
+    setOpaque (true); setSize (500, 250);
 }
     
 // -----------------------------------------------------------------------------------------------------------
