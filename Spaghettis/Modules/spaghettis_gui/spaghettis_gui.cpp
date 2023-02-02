@@ -74,7 +74,7 @@
 #include "GUI/Patches/Maker/Maker.cpp"
 #include "GUI/Patches/Maker/MakerEntry.cpp"
 #include "GUI/Patches/Maker/MakerDocumentation.cpp"
-#include "GUI/Patches/Maker/MakerEditor.cpp"
+#include "GUI/Patches/Maker/MakerComponent.cpp"
 
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/ActionLassoComponent.cpp"

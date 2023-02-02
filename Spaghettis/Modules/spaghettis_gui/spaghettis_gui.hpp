@@ -144,7 +144,7 @@
 #include "GUI/Patches/Maker/Maker.hpp"
 #include "GUI/Patches/Maker/MakerEntry.hpp"
 #include "GUI/Patches/Maker/MakerDocumentation.hpp"
-#include "GUI/Patches/Maker/MakerEditor.hpp"
+#include "GUI/Patches/Maker/MakerComponent.hpp"
 
 #include "GUI/Patches/EditWindow/DragAction.hpp"
 #include "GUI/Patches/EditWindow/EditCommands.hpp"

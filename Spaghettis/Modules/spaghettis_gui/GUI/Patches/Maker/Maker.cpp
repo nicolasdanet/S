@@ -24,7 +24,7 @@ void Maker::showEditor (const std::optional<juce::Point<int>>& pt)
 {
     if (pt.has_value()) {
     //
-    auto t = std::make_unique<MakerEditor> (owner_);
+    auto t = std::make_unique<MakerComponent> (owner_);
     auto r = juce::Rectangle<int> (4, 4).withCentre (pt.value());
     
     tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), r, nullptr));

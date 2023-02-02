@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerEditor::MakerEditor (EditView* view) : view_ (view)
+MakerComponent::MakerComponent (EditView* view) : view_ (view)
 {
     setOpaque (true); setSize (300, 280);
 }
@@ -21,12 +21,12 @@ MakerEditor::MakerEditor (EditView* view) : view_ (view)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void MakerEditor::paint (juce::Graphics& g)
+void MakerComponent::paint (juce::Graphics& g)
 {
     g.fillAll (Spaghettis()->getColour (Colours::callOutBoxBackground));
 }
     
-void MakerEditor::resized()
+void MakerComponent::resized()
 {
 
 }

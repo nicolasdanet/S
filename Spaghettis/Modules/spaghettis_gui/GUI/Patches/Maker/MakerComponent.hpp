@@ -12,16 +12,16 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class MakerEditor : public juce::Component {
+class MakerComponent : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit MakerEditor (EditView*);
+    explicit MakerComponent (EditView*);
     
-    ~MakerEditor() = default;
+    ~MakerComponent() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ private:
     juce::Component::SafePointer<EditView> view_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerComponent)
 };
 
 // -----------------------------------------------------------------------------------------------------------
