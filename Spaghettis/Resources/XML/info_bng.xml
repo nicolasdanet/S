@@ -4,6 +4,8 @@
   <GROUP name="Documentation">
     <PARAMETER key="Description"
         value="Output a bang with any interaction"/>
+    <PARAMETER key="Category"
+        value="Graphic"/>
     <PARAMETER key="Inlet0"
         label="Inlet"
         value="Trigger a bang out for any entry"/>
