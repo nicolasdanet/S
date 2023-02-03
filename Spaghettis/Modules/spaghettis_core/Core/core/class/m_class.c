@@ -137,11 +137,11 @@ static void class_defaultSave (t_object *x, t_buffer *b, int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void class_notify (t_class *c, t_symbol *s)
+static void class_notify (t_symbol *s)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
-    if (class_isBox (c)) { outputs_classNew (s); }
+    outputs_classNew (s);
     
     #endif
 }
@@ -215,7 +215,7 @@ PD_LOCAL t_class *class_new (t_symbol *s,
     
     if (hasSignal) { class_addMethod (c, (t_method)class_setSignals, sym__signals, A_GIMME, A_NULL); }
     
-    class_notify (c, class_getName (c));
+    if (class_isBox (c)) { class_notify (class_getName (c)); }
     
     return c;
 }
@@ -239,6 +239,8 @@ PD_LOCAL void class_addCreator (t_newmethod newMethod, t_symbol *s, t_atomtype t
     va_end (ap);
     
     class_addMethod (instance_getMakerObjectClass(), (t_method)newMethod, s, args[0], args[1], args[2]);
+    
+    class_notify (s);
 }
 
 PD_LOCAL void class_free (t_class *c)
