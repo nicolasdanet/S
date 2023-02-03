@@ -21,11 +21,11 @@ class Resizer {
 public:
     explicit Resizer (juce::Component& c) :
         owner_ (c),
-        edge_ (&c, &constrainer_, juce::ResizableEdgeComponent::leftEdge)
+        separator_ (&c, &constrainer_, juce::ResizableEdgeComponent::leftEdge)
     {
         constrainer_.setMinimumWidth (minimumWidth_);
-        edge_.setAlwaysOnTop (true);
-        owner_.addAndMakeVisible (edge_);
+        separator_.setAlwaysOnTop (true);
+        owner_.addAndMakeVisible (separator_);
     }
     
     ~Resizer() = default;
@@ -52,13 +52,13 @@ public:
 public:
     void update()
     {
-        edge_.setBounds (owner_.getLocalBounds().withWidth (edgeWidth_));
+        separator_.setBounds (owner_.getLocalBounds().withWidth (edgeWidth_));
     }
 
 private:
     juce::Component& owner_;
     juce::ComponentBoundsConstrainer constrainer_;
-    juce::ResizableEdgeComponent edge_;
+    juce::ResizableEdgeComponent separator_;
 
 private:
     static constexpr int defaultWidth_ = 300;
