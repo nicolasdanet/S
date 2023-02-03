@@ -31,12 +31,9 @@ void MakerComponent::paint (juce::Graphics& g)
 
 void MakerComponent::resized()
 {
-    const int margin = 6;
-    const int entry  = 30;
+    juce::Rectangle<int> area (getLocalBounds().reduced (margin_));
     
-    juce::Rectangle<int> area (getLocalBounds().reduced (margin));
-    
-    entry_.setBounds (area.removeFromTop (entry));
+    entry_.setBounds (area.removeFromTop (30));
     
     documentation_.setBounds (area);
 }

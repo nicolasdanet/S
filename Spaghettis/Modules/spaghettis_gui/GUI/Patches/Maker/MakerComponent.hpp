@@ -42,6 +42,9 @@ private:
 private:
     MakerEntry entry_;
     MakerDocumentation documentation_;
+    
+private:
+    static constexpr int margin_ = 6;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerComponent)
