@@ -14,6 +14,9 @@ namespace spaghettis {
 
 MakerComponent::MakerComponent (EditView* view) : view_ (view)
 {
+    addAndMakeVisible (entry_);
+    addAndMakeVisible (documentation_);
+    
     setOpaque (true); setSize (500, 250);
 }
     
@@ -25,10 +28,17 @@ void MakerComponent::paint (juce::Graphics& g)
 {
     g.fillAll (Spaghettis()->getColour (Colours::callOutBoxBackground));
 }
-    
+
 void MakerComponent::resized()
 {
-
+    const int margin = 6;
+    const int entry  = 30;
+    
+    juce::Rectangle<int> area (getLocalBounds().reduced (margin));
+    
+    entry_.setBounds (area.removeFromTop (entry));
+    
+    documentation_.setBounds (area);
 }
 
 // -----------------------------------------------------------------------------------------------------------

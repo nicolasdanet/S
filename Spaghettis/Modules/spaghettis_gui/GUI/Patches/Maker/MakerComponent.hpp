@@ -38,7 +38,11 @@ public:
 
 private:
     juce::Component::SafePointer<EditView> view_;
-    
+
+private:
+    MakerEntry entry_;
+    MakerDocumentation documentation_;
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerComponent)
 };

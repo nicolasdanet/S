@@ -23,7 +23,7 @@ MakerDocumentation::MakerDocumentation()
 
 void MakerDocumentation::paint (juce::Graphics& g)
 {
-    g.fillAll (juce::Colours::orange);
+    g.fillAll (juce::Colours::yellow);
 }
     
 void MakerDocumentation::resized()
