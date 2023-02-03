@@ -124,9 +124,9 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void outputs_classNew (t_class *c)
+PD_LOCAL void outputs_classNew (t_symbol *s)
 {
-    if (class_isBox (c)) { wrapper_send (Outputs::classNew (class_getNameAsString (c))); }
+    wrapper_send (Outputs::classNew (juce::String (symbol_getName (s))));
 }
 
 // -----------------------------------------------------------------------------------------------------------

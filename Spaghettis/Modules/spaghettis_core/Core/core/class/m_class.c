@@ -204,7 +204,7 @@ PD_LOCAL t_class *class_new (t_symbol *s,
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    outputs_classNew (c);
+    if (class_isBox (c)) { outputs_classNew (class_getName (c)); }
     
     #endif
     
