@@ -137,6 +137,19 @@ static void class_defaultSave (t_object *x, t_buffer *b, int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void class_notify (t_class *c, t_symbol *s)
+{
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    if (class_isBox (c)) { outputs_classNew (s); }
+    
+    #endif
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 /* For now the class name needs to be unique only if it contains a constructor. */
 /* For now it is valid to add inlets with CLASS_NOINLET set at first. */
 /* Probably best to make that more restrictive in the future. */
@@ -202,11 +215,7 @@ PD_LOCAL t_class *class_new (t_symbol *s,
     
     if (hasSignal) { class_addMethod (c, (t_method)class_setSignals, sym__signals, A_GIMME, A_NULL); }
     
-    #if defined ( PD_BUILDING_APPLICATION )
-    
-    if (class_isBox (c)) { outputs_classNew (class_getName (c)); }
-    
-    #endif
+    class_notify (c, class_getName (c));
     
     return c;
 }
