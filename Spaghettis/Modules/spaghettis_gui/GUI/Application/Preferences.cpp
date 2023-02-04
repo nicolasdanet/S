@@ -54,7 +54,7 @@ void getDefaultTest (core::Data& data)
     peace.addParameter ("Future",
         NEEDS_TRANS ("Hope"),
         NEEDS_TRANS ("Set color of the future"),
-        juce::Colours::green).setEditable (false);
+        juce::Colours::green);
         
     peace.addParameter ("Truth",
         NEEDS_TRANS ("Truth Rate"),
