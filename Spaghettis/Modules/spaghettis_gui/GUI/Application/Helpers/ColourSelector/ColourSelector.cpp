@@ -18,9 +18,8 @@ ColourSelector::ColourSelector (const juce::Value& v) :
     s_ (0.0f),
     v_ (0.0f),
     a_ (0.0f),
-    edge_ (6),
-    colourSpace_ (std::make_unique<ColourSpace> (*this, edge_, h_, s_, v_)),
-    hueSelector_ (std::make_unique<HueSelector> (*this, edge_, h_))
+    colourSpace_ (std::make_unique<ColourSpace> (*this, margin_, h_, s_, v_)),
+    hueSelector_ (std::make_unique<HueSelector> (*this, margin_, h_))
 {
     fetchColour(); updateHSV();
     
@@ -66,7 +65,7 @@ void ColourSelector::resized()
     hueSelector_->setBounds (area.removeFromRight (wHue));
     colourSpace_->setBounds (area.removeFromTop (hSpace));
     
-    area.removeFromBottom (edge_);
+    area.removeFromBottom (margin_);
     
     const int hSilder = area.getHeight() / sliders_.size();
     

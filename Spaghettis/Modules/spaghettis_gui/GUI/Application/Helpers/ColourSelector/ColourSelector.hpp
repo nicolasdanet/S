@@ -54,10 +54,12 @@ private:
     float s_;
     float v_;
     float a_;
-    int edge_;
     const std::unique_ptr<ColourSpace> colourSpace_;
     const std::unique_ptr<HueSelector> hueSelector_;
     std::array<std::unique_ptr<juce::Slider>, 4> sliders_;
+
+private:
+    static constexpr int margin_ = 6;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
