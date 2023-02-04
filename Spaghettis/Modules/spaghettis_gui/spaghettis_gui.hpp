@@ -60,7 +60,10 @@
 #include "GUI/Application/Helpers/AlertWindowRegister.hpp"
 #include "GUI/Application/Helpers/CallOutBoxRegister.hpp"
 #include "GUI/Application/Helpers/CallOutBoxTracker.hpp"
-#include "GUI/Application/Helpers/ColourSelector.hpp"
+#include "GUI/Application/Helpers/ColourSelector/ColourSlider.hpp"
+#include "GUI/Application/Helpers/ColourSelector/ColourSpace.hpp"
+#include "GUI/Application/Helpers/ColourSelector/HueSelector.hpp"
+#include "GUI/Application/Helpers/ColourSelector/ColourSelector.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
