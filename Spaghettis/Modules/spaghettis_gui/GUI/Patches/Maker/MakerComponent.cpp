@@ -15,9 +15,10 @@ namespace spaghettis {
 MakerComponent::MakerComponent (EditView* view) : view_ (view)
 {
     addAndMakeVisible (entry_);
+    addAndMakeVisible (list_);
     addAndMakeVisible (documentation_);
     
-    setOpaque (true); setSize (500, 250);
+    setOpaque (true); setSize (700, 300);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -53,7 +54,7 @@ void MakerComponent::resized()
     juce::Rectangle<int> area (getLocalBounds().reduced (margin_));
     
     entry_.setBounds (area.removeFromTop (getMakerEntryHeight()));
-    
+    list_.setBounds (area.removeFromLeft (area.getWidth() / 3));
     documentation_.setBounds (area);
 }
 

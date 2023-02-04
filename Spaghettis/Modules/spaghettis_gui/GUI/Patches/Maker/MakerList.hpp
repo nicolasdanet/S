@@ -12,16 +12,16 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class MakerComponent : public juce::Component {
+class MakerList : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit MakerComponent (EditView*);
+    explicit MakerList();
     
-    ~MakerComponent() = default;
+    ~MakerList() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -32,23 +32,8 @@ public:
     
     void resized() override;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 private:
-    juce::Component::SafePointer<EditView> view_;
-
-private:
-    MakerEntry entry_;
-    MakerList list_;
-    MakerDocumentation documentation_;
-    
-private:
-    static constexpr int margin_ = 6;
-
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerList)
 };
 
 // -----------------------------------------------------------------------------------------------------------

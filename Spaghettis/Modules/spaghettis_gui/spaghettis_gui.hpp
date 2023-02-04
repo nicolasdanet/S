@@ -146,6 +146,7 @@
 
 #include "GUI/Patches/Maker/Maker.hpp"
 #include "GUI/Patches/Maker/MakerEntry.hpp"
+#include "GUI/Patches/Maker/MakerList.hpp"
 #include "GUI/Patches/Maker/MakerDocumentation.hpp"
 #include "GUI/Patches/Maker/MakerComponent.hpp"
 
