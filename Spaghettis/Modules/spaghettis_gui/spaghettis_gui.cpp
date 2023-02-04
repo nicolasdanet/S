@@ -32,6 +32,7 @@
 #include "GUI/Application/LookAndFeel/LookAndFeelAlertWindow.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelCallOutBox.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelComboBox.cpp"
+#include "GUI/Application/LookAndFeel/LookAndFeelMaker.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelMenubar.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelPopup.cpp"
 #include "GUI/Application/LookAndFeel/LookAndFeelPreferences.cpp"

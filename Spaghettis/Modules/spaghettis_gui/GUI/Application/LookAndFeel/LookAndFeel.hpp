@@ -121,6 +121,13 @@ public:
 // MARK: -
 
 public:
+    juce::Font getMakerFont();
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     int getDefaultMenuBarHeight() override;
     juce::Font getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&) override;
     void drawMenuBarBackground (juce::Graphics&, int, int, bool, juce::MenuBarComponent&) override;
