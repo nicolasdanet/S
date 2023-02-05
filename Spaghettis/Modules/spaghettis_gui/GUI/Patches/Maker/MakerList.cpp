@@ -23,7 +23,7 @@ MakerList::MakerList()
 
 void MakerList::paint (juce::Graphics& g)
 {
-    g.fillAll (juce::Colours::pink);
+    g.fillAll (Spaghettis()->getColour (Colours::makerBackground));
 }
     
 void MakerList::resized()

@@ -46,6 +46,7 @@ private:
     
 private:
     static constexpr int margin_ = 6;
+    static constexpr int space_  = 1;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerComponent)

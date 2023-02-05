@@ -180,7 +180,11 @@ enum ColourIds : int {
     parametersColourBackground,
     parametersColourText,
     parametersBoolean,
-    parametersBooleanTick
+    parametersBooleanTick,
+    makerBackground,
+    makerBackgroundAlternate,
+    makerText,
+    makerTextHighlighted
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -245,6 +249,10 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (parametersColourText,                                t->textSystem);
     lf->setColour (parametersBoolean,                                   t->textSystem);
     lf->setColour (parametersBooleanTick,                               t->textMenu);
+    lf->setColour (makerBackground,                                     t->background);
+    lf->setColour (makerBackgroundAlternate,                            t->backgroundAlternate);
+    lf->setColour (makerText,                                           t->textSystem);
+    lf->setColour (makerTextHighlighted,                                t->textHighlighted);
     
     lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
     

@@ -23,7 +23,7 @@ MakerEntry::MakerEntry()
 
 void MakerEntry::paint (juce::Graphics& g)
 {
-    g.fillAll (juce::Colours::orange);
+    g.fillAll (Spaghettis()->getColour (Colours::makerBackground));
 }
     
 void MakerEntry::resized()
