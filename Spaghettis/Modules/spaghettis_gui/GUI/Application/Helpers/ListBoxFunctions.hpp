@@ -52,6 +52,19 @@ template <class T> static void update (juce::ListBox& listBox, T& c, bool update
     updateProceed (listBox, static_cast<int> (c.size()), updateRows);
 }
 
+static void paintItemProceed (const juce::String& text,
+    const juce::Colour& c,
+    juce::Graphics& g,
+    int width,
+    int height)
+{
+    const juce::Rectangle<int> r (width, height);
+    
+    g.setColour (c);
+    g.setFont (Spaghettis()->getLookAndFeel().getListBoxFont());
+    g.drawText (text, r.reduced (4, 0), juce::Justification::centredLeft, true);
+}
+
 template <class T> static void paintItem (const T& items,
     int row,
     juce::Graphics& g,
@@ -63,13 +76,11 @@ template <class T> static void paintItem (const T& items,
 
     if (juce::isPositiveAndBelow (row, items.size())) {
     //
-    const juce::Rectangle<int> r (width, height);
+    const juce::String t = items[row];
+    const juce::Colour c = isSelected   ? Spaghettis()->getColour (Colours::listBoxTextHighlighted)
+                                        : Spaghettis()->getColour (Colours::listBoxText);
     
-    g.setColour (isSelected ? Spaghettis()->getColour (Colours::listBoxTextHighlighted)
-                            : Spaghettis()->getColour (Colours::listBoxText));
-                                
-    g.setFont (Spaghettis()->getLookAndFeel().getListBoxFont());
-    g.drawText (items[row], r.reduced (4, 0), juce::Justification::centredLeft, true);
+    paintItemProceed (t, c, g, width, height);
     //
     }
 }
