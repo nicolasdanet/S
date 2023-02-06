@@ -33,22 +33,6 @@ int MakerList::getNumRows()
 
 void MakerList::paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected)
 {
-    /*
-    if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::makerBackgroundAlternate)); }
-
-    if (juce::isPositiveAndBelow (row, items_.size())) {
-    //
-    const juce::Rectangle<int> r (width, height);
-    
-    g.setColour (isSelected ? Spaghettis()->getColour (Colours::makerTextHighlighted)
-                            : Spaghettis()->getColour (Colours::makerText));
-                                
-    g.setFont (Spaghettis()->getLookAndFeel().getMakerEntryFont());
-    g.drawText (items_[row], r.reduced (4, 0), juce::Justification::centredLeft, true);
-    //
-    }
-    */
-    
     ListBoxFunctions::paintItem (items_, row, g, width, height, isSelected);
 }
 

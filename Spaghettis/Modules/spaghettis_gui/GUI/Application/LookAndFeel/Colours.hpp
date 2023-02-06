@@ -182,9 +182,7 @@ enum ColourIds : int {
     parametersBoolean,
     parametersBooleanTick,
     makerBackground,
-    makerBackgroundAlternate,
     makerText,
-    makerTextHighlighted,
     listBoxBackground,
     listBoxBackgroundAlternate,
     listBoxText,
@@ -254,9 +252,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (parametersBoolean,                                   t->textSystem);
     lf->setColour (parametersBooleanTick,                               t->textMenu);
     lf->setColour (makerBackground,                                     t->background);
-    lf->setColour (makerBackgroundAlternate,                            t->backgroundAlternate);
     lf->setColour (makerText,                                           t->textSystem);
-    lf->setColour (makerTextHighlighted,                                t->textHighlighted);
     lf->setColour (listBoxBackground,                                   t->background);
     lf->setColour (listBoxBackgroundAlternate,                          t->backgroundAlternate);
     lf->setColour (listBoxText,                                         t->textSystem);
