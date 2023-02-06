@@ -27,6 +27,8 @@ public:
 
 public:
     void addContent (const juce::String&);
+    
+    juce::StringArray getContent() const;
 
 private:
     juce::StringArray content_;

@@ -16,6 +16,11 @@ void Autocomplete::addContent (const juce::String& s)
     content_.addIfNotAlreadyThere  (s);
 }
 
+juce::StringArray Autocomplete::getContent() const
+{
+    return content_;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

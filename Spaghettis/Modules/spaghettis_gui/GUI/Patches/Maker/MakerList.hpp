@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class MakerList : public juce::Component {
+class MakerList :   public juce::Component,
+                    public juce::ListBoxModel {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -28,9 +29,21 @@ public:
 // MARK: -
 
 public:
-    void paint (juce::Graphics&) override;
+    int getNumRows() override;
+    void paintListBoxItem (int, juce::Graphics&, int, int, bool) override;
+    void listWasScrolled() override;
     
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics&) override;
     void resized() override;
+
+private:
+    juce::ListBox listBox_;
+    juce::StringArray items_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerList)
