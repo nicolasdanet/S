@@ -84,27 +84,27 @@ void LookAndFeel::initializeFonts()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const juce::Font& LookAndFeel::getConsoleFont() const
+juce::Font LookAndFeel::getConsoleFont() const
 {
     return font18_;
 }
 
-const juce::Font& LookAndFeel::getMenuFont() const
+juce::Font LookAndFeel::getMenuFont() const
 {
     return font18_;
 }
 
-const juce::Font& LookAndFeel::getColourFont() const
+juce::Font LookAndFeel::getColourFont() const
 {
     return font18Monospaced_;
 }
 
-const juce::Font& LookAndFeel::getMenuShortcutsFont() const
+juce::Font LookAndFeel::getMenuShortcutsFont() const
 {
     return font18Monospaced_;
 }
 
-const juce::Font& LookAndFeel::getTooltipsFont() const
+juce::Font LookAndFeel::getTooltipsFont() const
 {
     return font16Bold_;
 }
@@ -141,6 +141,11 @@ juce::Font getRescaledFont (const juce::Font& base, std::vector<std::tuple<int, 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+juce::Font LookAndFeel::getListBoxFont() const
+{
+    return getConsoleFont();
+}
 
 juce::Font LookAndFeel::getObjectsFont (float scale)
 {

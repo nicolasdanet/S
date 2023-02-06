@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font LookAndFeel::getComboBoxFont()
+juce::Font LookAndFeel::getComboBoxFont() const
 {
     return getMenuFont();
 }

@@ -52,6 +52,28 @@ template <class T> static void update (juce::ListBox& listBox, T& c, bool update
     updateProceed (listBox, static_cast<int> (c.size()), updateRows);
 }
 
+template <class T> static void paintItem (const T& items,
+    int row,
+    juce::Graphics& g,
+    int width,
+    int height,
+    bool isSelected)
+{
+    if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::listBoxBackgroundAlternate)); }
+
+    if (juce::isPositiveAndBelow (row, items.size())) {
+    //
+    const juce::Rectangle<int> r (width, height);
+    
+    g.setColour (isSelected ? Spaghettis()->getColour (Colours::listBoxTextHighlighted)
+                            : Spaghettis()->getColour (Colours::listBoxText));
+                                
+    g.setFont (Spaghettis()->getLookAndFeel().getListBoxFont());
+    g.drawText (items[row], r.reduced (4, 0), juce::Justification::centredLeft, true);
+    //
+    }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

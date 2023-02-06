@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font LookAndFeel::getMakerFont()
+juce::Font LookAndFeel::getMakerEntryFont() const
 {
     return getConsoleFont();
 }

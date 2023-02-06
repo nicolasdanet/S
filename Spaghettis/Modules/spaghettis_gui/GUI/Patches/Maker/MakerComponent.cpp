@@ -32,7 +32,7 @@ namespace {
 
 int getMakerEntryHeight()
 {
-    return static_cast<int> (Spaghettis()->getLookAndFeel().getMakerFont().getHeight() * 1.75);
+    return static_cast<int> (Spaghettis()->getLookAndFeel().getMakerEntryFont().getHeight() * 1.75);
 }
 
 // -----------------------------------------------------------------------------------------------------------

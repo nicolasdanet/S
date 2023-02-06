@@ -34,11 +34,13 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    const juce::Font& getConsoleFont() const;
-    const juce::Font& getMenuFont() const;
-    const juce::Font& getColourFont() const;
-    const juce::Font& getMenuShortcutsFont() const;
-    const juce::Font& getTooltipsFont() const;
+    juce::Font getConsoleFont() const;
+    juce::Font getMenuFont() const;
+    juce::Font getColourFont() const;
+    juce::Font getMenuShortcutsFont() const;
+    juce::Font getTooltipsFont() const;
+    
+    juce::Font getListBoxFont() const;
     
     juce::Font getObjectsFont (float);
     
@@ -109,7 +111,7 @@ public:
 // MARK: -
 
 public:
-    juce::Font getComboBoxFont();
+    juce::Font getComboBoxFont() const;
     juce::Font getComboBoxFont (juce::ComboBox&) override;
 
     void drawComboBox (juce::Graphics&, int, int, bool, int, int, int, int, juce::ComboBox&) override;
@@ -121,7 +123,7 @@ public:
 // MARK: -
 
 public:
-    juce::Font getMakerFont();
+    juce::Font getMakerEntryFont() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
