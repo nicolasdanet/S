@@ -53,6 +53,11 @@ void MakerList::listWasScrolled()
     ListBoxFunctions::update (listBox_, items_, false);
 }
 
+void MakerList::listBoxItemClicked (int row, const juce::MouseEvent &)
+{
+    if (juce::isPositiveAndBelow (row, items_.size())) { }
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
