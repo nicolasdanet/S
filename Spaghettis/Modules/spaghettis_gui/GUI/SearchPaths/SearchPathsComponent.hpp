@@ -97,19 +97,7 @@ public:
 
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
     {
-        if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::searchpathsBackgroundAlternate)); }
-
-        if (juce::isPositiveAndBelow (row, paths_.size())) {
-        //
-        const juce::Rectangle<int> r (width, height);
-        
-        g.setColour (isSelected ? Spaghettis()->getColour (Colours::searchpathsTextHighlighted)
-                                : Spaghettis()->getColour (Colours::searchpathsText));
-                                    
-        g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
-        g.drawText (paths_[row], r.reduced (4, 0), juce::Justification::centredLeft, true);
-        //
-        }
+        ListBoxFunctions::paintItem (paths_, row, g, width, height, isSelected);
     }
     
     void listBoxItemClicked (int row, const juce::MouseEvent &) override

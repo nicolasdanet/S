@@ -148,9 +148,6 @@ enum ColourIds : int {
     toolbarIconOff,
     toolbarZoom,
     searchpathsBackground,
-    searchpathsBackgroundAlternate,
-    searchpathsText,
-    searchpathsTextHighlighted,
     devicesParameterBackground,
     devicesParameterText,
     devicesComboBoxBackground,
@@ -218,9 +215,6 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (toolbarIconOff,                                      t->thumb);
     lf->setColour (toolbarZoom,                                         t->textSystem);
     lf->setColour (searchpathsBackground,                               t->background);
-    lf->setColour (searchpathsBackgroundAlternate,                      t->backgroundAlternate);
-    lf->setColour (searchpathsText,                                     t->textSystem);
-    lf->setColour (searchpathsTextHighlighted,                          t->textHighlighted);
     lf->setColour (devicesParameterBackground,                          t->background);
     lf->setColour (devicesParameterText,                                t->textSystem);
     lf->setColour (devicesComboBoxBackground,                           t->backgroundAlternate);
