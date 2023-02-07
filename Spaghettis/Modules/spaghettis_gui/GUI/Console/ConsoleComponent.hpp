@@ -23,144 +23,53 @@ class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the f
 // MARK: -
 
 public:
-    explicit ConsoleComponent (const juce::String& keyName) :
-        ConsoleFactoryHelper (this),
-        BaseComponent (getIconsFactory(), keyName)
-    {
-        listBox_.setModel (this);
-        ListBoxFunctions::initialize (listBox_, false);
-        ListBoxFunctions::update (listBox_, messages_, false);
-        addAndMakeVisible (listBox_);
- 
-        Spaghettis()->setLogger (this);
-        
-        loadToolbarButtonsStates();
-
-        setOpaque (true); setSize (600, 300);
-    }
+    explicit ConsoleComponent (const juce::String& keyName);
     
-    ~ConsoleComponent() override
-    {
-        Spaghettis()->setLogger (nullptr);
-    }
+    ~ConsoleComponent() override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void update()
-    {
-        ListBoxFunctions::update (listBox_, messages_, true);
-        
-        if (getButtonState (Icons::autoscroll)) {
-        //
-        const int i = static_cast<int> (messages_.size()) - 1;
-        
-        listBox_.scrollToEnsureRowIsOnscreen (juce::jmax (i, 0));
-        //
-        }
-    }
-    
-    void handleAsyncUpdate() override
-    {
-        update();
-    }
-    
-    void logMessage (MessagesPacket& m) override
-    {
-        removeMessagesIfRequired (messages_);
-        removeMessagesIfRequired (history_);
-        
-        history_.insert (history_.cend(), m.cbegin(), m.cend());
-        
-        logMessageProceed (m);
-    }
-    
-    void clear()
-    {
-        messages_.clear(); triggerAsyncUpdate();
-    }
-    
-    void parse()
-    {
-        parseMessages (messages_, getButtonState (Icons::message), getButtonState (Icons::error));
-        
-        triggerAsyncUpdate();
-    }
-
-    void restore()
-    {
-        MessagesPacket m (history_.cbegin(), history_.cend());
-        
-        messages_.clear(); logMessageProceed (m);
-    }
+    void update();
+    void handleAsyncUpdate() override;
+    void logMessage (MessagesPacket& m) override;
+    void clear();
+    void parse();
+    void restore();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    void logMessageProceed (MessagesPacket& m)
-    {
-        parseMessages (m, getButtonState (Icons::message), getButtonState (Icons::error));
-        
-        messages_.insert (messages_.cend(), m.cbegin(), m.cend());
-        
-        triggerAsyncUpdate();
-    }
+    void logMessageProceed (MessagesPacket&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    int getNumRows() override
-    {
-        return ListBoxFunctions::getNumberOfRowsToDraw (static_cast<int> (messages_.size()));
-    }
+    int getNumRows() override;
+    void paintListBoxItem (int, juce::Graphics&, int, int, bool) override;
+    void listBoxItemClicked (int, const juce::MouseEvent&) override;
 
-    void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
-    {
-        ListBoxFunctions::paintItem (messages_, row, g, width, height, isSelected);
-    }
-    
-    void listBoxItemClicked (int row, const juce::MouseEvent &) override
-    {
-        if (juce::isPositiveAndBelow (row, messages_.size()) == false) { triggerAsyncUpdate(); }
-    }
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics&) override;
+    void resized() override;
+    void listWasScrolled() override;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void paint (juce::Graphics& g) override
-    {
-        g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
-    }
-    
-    void resized() override
-    {
-        listBox_.setBounds (setBoundsForBarsAndGetRemaining());
-        
-        ListBoxFunctions::update (listBox_, messages_, false);
-    }
-
-    void listWasScrolled() override
-    {
-        ListBoxFunctions::update (listBox_, messages_, false);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    bool tryGrabFocus() override
-    {
-        return tryGrabFocusForComponent (&listBox_);
-    }
+    bool tryGrabFocus() override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
