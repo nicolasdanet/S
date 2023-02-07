@@ -33,6 +33,10 @@ static int getNumberOfRowsToDraw (int contentSize)
     return juce::jmax (32, contentSize);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void updateProceed (juce::ListBox& listBox, int size, bool updateRows)
 {
     if (updateRows) {
@@ -51,6 +55,10 @@ template <class T> static void update (juce::ListBox& listBox, T& c, bool update
 {
     updateProceed (listBox, static_cast<int> (c.size()), updateRows);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 static void paintItemProceed (const juce::String& text,
     const juce::Colour& c,
