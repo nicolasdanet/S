@@ -76,45 +76,6 @@ public:
 // MARK: -
 
 private:
-    static void removeMessagesIfRequired (std::deque<Logger::MessagesElement>& messages)
-    {
-        const int maximum_ = 2048;
-        const int removed_ = 64;
-        
-        int size = static_cast<int> (messages.size());
-        
-        if (size >= maximum_) {
-        //
-        const int n = juce::nextPowerOfTwo (size - maximum_ + removed_);
-        
-        jassert (n < size);
-        
-        messages.erase (messages.cbegin(), messages.cbegin() + n);
-        //
-        }
-    }
-    
-    template <class T> static void parseMessages (T& m, bool showMessages, bool showErrors)
-    {
-        if (showMessages == false || showErrors == false) {
-        //
-        auto f = [showMessages, showErrors] (const Logger::MessagesElement& e)
-        {
-            Type t = Logger::getType (e);
-            
-            if ((t == Type::normal || t == Type::system) && showMessages == false)    { return true; }
-            else if ((t == Type::warning || t == Type::error) && showErrors == false) { return true; }
-            else {
-                return false;
-            }
-        };
-        
-        m.erase (std::remove_if (m.begin(), m.end(), f), m.end());
-        //
-        }
-    }
-    
-private:
     juce::ListBox listBox_;
     std::deque<Logger::MessagesElement> messages_;
     std::deque<Logger::MessagesElement> history_;

@@ -37,6 +37,60 @@ ConsoleComponent::~ConsoleComponent()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void removeMessagesIfRequired (std::deque<Logger::MessagesElement>& messages)
+{
+    const int maximum_ = 2048;
+    const int removed_ = 64;
+    
+    int size = static_cast<int> (messages.size());
+    
+    if (size >= maximum_) {
+    //
+    const int n = juce::nextPowerOfTwo (size - maximum_ + removed_);
+    
+    jassert (n < size);
+    
+    messages.erase (messages.cbegin(), messages.cbegin() + n);
+    //
+    }
+}
+
+template <class T> void parseMessages (T& m, bool showMessages, bool showErrors)
+{
+    if (showMessages == false || showErrors == false) {
+    //
+    auto f = [showMessages, showErrors] (const Logger::MessagesElement& e)
+    {
+        Logger::Type t = Logger::getType (e);
+        
+        if ((t == Logger::Type::normal || t == Logger::Type::system) && showMessages == false) {
+            return true;
+        } else if ((t == Logger::Type::warning || t == Logger::Type::error) && showErrors == false) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+    
+    m.erase (std::remove_if (m.begin(), m.end(), f), m.end());
+    //
+    }
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ConsoleComponent::update()
 {
     ListBoxFunctions::update (listBox_, messages_, true);
