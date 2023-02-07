@@ -10,14 +10,26 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Autocomplete::Autocomplete() : isSorted_ (false)
+{
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void Autocomplete::addContent (const juce::String& s)
 {
-    content_.addIfNotAlreadyThere  (s);
+    content_.addIfNotAlreadyThere (s); isSorted_ = false;
 }
 
-juce::StringArray Autocomplete::getContent() const
+juce::StringArray Autocomplete::getContent()
 {
+    if (isSorted_ == false) { content_.sortNatural(); isSorted_ = true; }
+    
     return content_;
 }
 
