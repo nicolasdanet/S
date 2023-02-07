@@ -122,20 +122,7 @@ public:
 
     void paintListBoxItem (int row, juce::Graphics& g, int width, int height, bool isSelected) override
     {
-        if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::consoleBackgroundAlternate)); }
-        
-        if (juce::isPositiveAndBelow (row, messages_.size())) {
-        //
-        const juce::Rectangle<int> r (width, height);
-        const auto& e = messages_[row];
-        
-        g.setColour (isSelected ? Spaghettis()->getColour (Colours::consoleTextHighlighted)
-                                : colourWithType (Logger::getType (e)));
-        
-        g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
-        g.drawText (Logger::getText (e), r.reduced (4, 0), juce::Justification::centredLeft, true);
-        //
-        }
+        ListBoxFunctions::paintItem (messages_, row, g, width, height, isSelected);
     }
     
     void listBoxItemClicked (int row, const juce::MouseEvent &) override
@@ -180,17 +167,6 @@ public:
 // MARK: -
 
 private:
-    static juce::Colour colourWithType (Type type)
-    {
-        int c = Colours::consoleTextError;
-        
-        if (type == Type::normal)       { c = Colours::consoleTextDefault; }
-        else if (type == Type::system)  { c = Colours::consoleTextSystem;  }
-        else if (type == Type::warning) { c = Colours::consoleTextWarning; }
-        
-        return Spaghettis()->getColour (c);
-    }
-
     static void removeMessagesIfRequired (std::deque<Logger::MessagesElement>& messages)
     {
         const int maximum_ = 2048;

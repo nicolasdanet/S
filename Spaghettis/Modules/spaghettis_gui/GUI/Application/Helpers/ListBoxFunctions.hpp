@@ -65,6 +65,17 @@ static void paintItemProceed (const juce::String& text,
     g.drawText (text, r.reduced (4, 0), juce::Justification::centredLeft, true);
 }
 
+static juce::Colour colourWithType (Logger::Type type)
+{
+    int c = Colours::consoleTextError;
+        
+    if (type == Logger::Type::normal)       { c = Colours::consoleTextDefault; }
+    else if (type == Logger::Type::system)  { c = Colours::consoleTextSystem;  }
+    else if (type == Logger::Type::warning) { c = Colours::consoleTextWarning; }
+        
+    return Spaghettis()->getColour (c);
+}
+    
 template <class T> static void paintItem (const T& items,
     int row,
     juce::Graphics& g,
@@ -76,11 +87,24 @@ template <class T> static void paintItem (const T& items,
 
     if (juce::isPositiveAndBelow (row, items.size())) {
     //
-    const juce::String t = items[row];
-    const juce::Colour c = isSelected   ? Spaghettis()->getColour (Colours::listBoxTextHighlighted)
-                                        : Spaghettis()->getColour (Colours::listBoxText);
+    auto e = items[row];
     
-    paintItemProceed (t, c, g, width, height);
+    if constexpr (std::is_same_v<decltype (e), Logger::MessagesElement>) {
+        
+        const juce::String t = Logger::getText (e);
+        const juce::Colour c = isSelected   ? Spaghettis()->getColour (Colours::listBoxTextHighlighted)
+                                            : colourWithType (Logger::getType (e));
+                                            
+        paintItemProceed (t, c, g, width, height);
+        
+    } else {
+    
+        const juce::String t = e;
+        const juce::Colour c = isSelected   ? Spaghettis()->getColour (Colours::listBoxTextHighlighted)
+                                            : Spaghettis()->getColour (Colours::listBoxText);
+                                            
+        paintItemProceed (t, c, g, width, height);
+    }
     //
     }
 }
