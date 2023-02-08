@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerDocumentation::MakerDocumentation()
+MakerDocumentation::MakerDocumentation (juce::Value&)
 {
     setOpaque (true);
 }

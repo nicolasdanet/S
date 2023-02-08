@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerEntry::MakerEntry()
+MakerEntry::MakerEntry (juce::Value& v) : v_ (v)
 {
     setOpaque (true);
 }

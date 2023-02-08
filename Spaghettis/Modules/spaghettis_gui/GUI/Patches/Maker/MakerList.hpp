@@ -20,7 +20,7 @@ class MakerList :   public juce::Component,
 // MARK: -
 
 public:
-    explicit MakerList();
+    explicit MakerList (juce::Value&);
     
     ~MakerList() = default;
 

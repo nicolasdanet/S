@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerList::MakerList() : items_ (Spaghettis()->getAutocomplete().getContent())
+MakerList::MakerList (juce::Value&) : items_ (Spaghettis()->getAutocomplete().getContent())
 {
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, false);

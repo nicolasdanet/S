@@ -19,7 +19,7 @@ class MakerDocumentation : public juce::Component {
 // MARK: -
 
 public:
-    explicit MakerDocumentation();
+    explicit MakerDocumentation (juce::Value&);
     
     ~MakerDocumentation() = default;
 

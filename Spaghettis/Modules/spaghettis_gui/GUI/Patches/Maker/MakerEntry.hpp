@@ -19,7 +19,7 @@ class MakerEntry : public juce::Component {
 // MARK: -
 
 public:
-    explicit MakerEntry();
+    explicit MakerEntry (juce::Value&);
     
     ~MakerEntry() = default;
 
@@ -31,6 +31,9 @@ public:
     void paint (juce::Graphics&) override;
     
     void resized() override;
+
+private:
+    juce::Value v_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerEntry)
