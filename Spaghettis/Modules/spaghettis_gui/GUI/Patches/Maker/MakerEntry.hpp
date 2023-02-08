@@ -33,6 +33,7 @@ public:
     void resized() override;
 
 private:
+    juce::TextEditor editor_;
     juce::Value v_;
 
 private:

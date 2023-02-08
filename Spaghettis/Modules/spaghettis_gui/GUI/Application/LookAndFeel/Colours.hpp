@@ -267,6 +267,7 @@ static void initialize (juce::LookAndFeel* lf)
                    
     lf->setColour (juce::TextEditor::highlightColourId,                 t->transparent);
     lf->setColour (juce::TextEditor::highlightedTextColourId,           t->textHighlighted);
+    
     lf->setColour (juce::CaretComponent::caretColourId,                 t->textMenu);
     lf->setColour (juce::Label::backgroundWhenEditingColourId,          t->transparent);
     lf->setColour (juce::Label::textWhenEditingColourId,                t->textSystem);
@@ -290,6 +291,14 @@ static void initialize (juce::LookAndFeel* lf)
     /* Devices combo box. */
     
     lf->setColour (juce::ComboBox::textColourId,                        t->textSystem);
+    
+    /* Maker entry. */
+    
+    lf->setColour (juce::TextEditor::textColourId,                      t->textSystem);
+    lf->setColour (juce::TextEditor::backgroundColourId,                t->transparent);
+    lf->setColour (juce::TextEditor::outlineColourId,                   t->transparent);
+    lf->setColour (juce::TextEditor::focusedOutlineColourId,            t->transparent);
+    lf->setColour (juce::TextEditor::shadowColourId,                    t->transparent);
 }
 
 // -----------------------------------------------------------------------------------------------------------

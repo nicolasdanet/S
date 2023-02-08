@@ -14,6 +14,11 @@ namespace spaghettis {
 
 MakerEntry::MakerEntry (juce::Value& v) : v_ (v)
 {
+    editor_.setFont (Spaghettis()->getLookAndFeel().getMakerEntryFont());
+    editor_.setPopupMenuEnabled (false);
+    
+    addAndMakeVisible (editor_);
+    
     setOpaque (true);
 }
 
@@ -28,7 +33,7 @@ void MakerEntry::paint (juce::Graphics& g)
     
 void MakerEntry::resized()
 {
-
+    editor_.setBounds (getLocalBounds());
 }
 
 // -----------------------------------------------------------------------------------------------------------
