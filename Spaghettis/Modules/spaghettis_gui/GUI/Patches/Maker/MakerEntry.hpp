@@ -20,7 +20,7 @@ class MakerEntry :  public juce::Component,
 // MARK: -
 
 public:
-    explicit MakerEntry (juce::Value&);
+    explicit MakerEntry (juce::Value&, EditView*);
     
     ~MakerEntry();
 
@@ -44,6 +44,9 @@ public:
 private:
     juce::TextEditor editor_;
     juce::Value v_;
+    
+private:
+    juce::Component::SafePointer<EditView> view_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerEntry)

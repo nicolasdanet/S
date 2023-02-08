@@ -140,6 +140,7 @@ public:
 
 public:
     void requestNewObject();
+    void dismissNewObject();
     
 public:
     void encapsulate();

@@ -531,6 +531,11 @@ void EditView::requestNewObject()
     }
 }
 
+void EditView::dismissNewObject()
+{
+    maker_.hideEditor();
+}
+
 void EditView::encapsulate()
 {
     EditCommands::encapsulate (core::Patch (viewTree_).getIdentifier());

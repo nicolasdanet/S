@@ -37,9 +37,8 @@ public:
 // MARK: -
 
 private:
-    juce::Component::SafePointer<EditView> view_;
     juce::Value v_;
-    
+
 private:
     MakerEntry entry_;
     MakerList list_;

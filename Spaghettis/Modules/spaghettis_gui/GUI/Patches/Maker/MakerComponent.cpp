@@ -13,9 +13,8 @@ namespace spaghettis {
 // MARK: -
 
 MakerComponent::MakerComponent (EditView* view) :
-    view_ (view),
     v_(),
-    entry_ (v_),
+    entry_ (v_, view),
     list_ (v_),
     documentation_ (v_)
 {

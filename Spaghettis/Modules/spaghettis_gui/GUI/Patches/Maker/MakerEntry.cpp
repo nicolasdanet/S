@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerEntry::MakerEntry (juce::Value& v) : v_ (v)
+MakerEntry::MakerEntry (juce::Value& v, EditView* view) : v_ (v), view_ (view)
 {
     editor_.addListener (this);
     
@@ -59,7 +59,7 @@ void MakerEntry::textEditorReturnKeyPressed (juce::TextEditor&)
 
 void MakerEntry::textEditorEscapeKeyPressed (juce::TextEditor&)
 {
-
+    if (view_.getComponent()) { view_->dismissNewObject(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
