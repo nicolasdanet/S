@@ -14,12 +14,19 @@ namespace spaghettis {
 
 MakerEntry::MakerEntry (juce::Value& v) : v_ (v)
 {
+    editor_.addListener (this);
+    
     editor_.setFont (Spaghettis()->getLookAndFeel().getMakerEntryFont());
     editor_.setPopupMenuEnabled (false);
     
     addAndMakeVisible (editor_);
     
     setOpaque (true);
+}
+
+MakerEntry::~MakerEntry()
+{
+    editor_.removeListener (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -34,6 +41,25 @@ void MakerEntry::paint (juce::Graphics& g)
 void MakerEntry::resized()
 {
     editor_.setBounds (getLocalBounds());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void MakerEntry::textEditorTextChanged (juce::TextEditor& editor)
+{
+    DBG (editor_.getText());
+}
+
+void MakerEntry::textEditorReturnKeyPressed (juce::TextEditor&)
+{
+    DBG ("!");
+}
+
+void MakerEntry::textEditorEscapeKeyPressed (juce::TextEditor&)
+{
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
