@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerList::MakerList (juce::Value&) : items_ (Spaghettis()->getAutocomplete().getContent())
+MakerList::MakerList (juce::Value& v) : items_ (Spaghettis()->getAutocomplete().getContent()), v_ (v)
 {
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, false);
@@ -43,7 +43,7 @@ void MakerList::listWasScrolled()
 
 void MakerList::listBoxItemClicked (int row, const juce::MouseEvent &)
 {
-    if (juce::isPositiveAndBelow (row, items_.size())) { }
+    if (juce::isPositiveAndBelow (row, items_.size())) { v_.setValue (items_[row]); }
 }
     
 // -----------------------------------------------------------------------------------------------------------

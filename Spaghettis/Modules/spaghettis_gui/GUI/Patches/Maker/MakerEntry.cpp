@@ -14,6 +14,7 @@ namespace spaghettis {
 
 MakerEntry::MakerEntry (juce::Value& v, EditView* view) : v_ (v), view_ (view)
 {
+    v_.addListener (this);
     editor_.addListener (this);
     
     editor_.setFont (Spaghettis()->getLookAndFeel().getMakerEntryFont());
@@ -27,6 +28,7 @@ MakerEntry::MakerEntry (juce::Value& v, EditView* view) : v_ (v), view_ (view)
 MakerEntry::~MakerEntry()
 {
     editor_.removeListener (this);
+    v_.removeListener (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -60,6 +62,15 @@ void MakerEntry::textEditorReturnKeyPressed (juce::TextEditor&)
 void MakerEntry::textEditorEscapeKeyPressed (juce::TextEditor&)
 {
     if (view_.getComponent()) { view_->dismissNewObject(); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void MakerEntry::valueChanged (juce::Value& v)
+{
+    editor_.setText (v.toString(), false);
 }
 
 // -----------------------------------------------------------------------------------------------------------

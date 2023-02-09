@@ -13,7 +13,8 @@ namespace spaghettis {
 // MARK: -
 
 class MakerEntry :  public juce::Component,
-                    public juce::TextEditor::Listener {
+                    public juce::TextEditor::Listener,
+                    public juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -40,6 +41,9 @@ public:
     void textEditorTextChanged (juce::TextEditor&) override;
     void textEditorReturnKeyPressed (juce::TextEditor&) override;
     void textEditorEscapeKeyPressed (juce::TextEditor&) override;
+
+public:
+    void valueChanged (juce::Value&) override;
 
 private:
     juce::TextEditor editor_;
