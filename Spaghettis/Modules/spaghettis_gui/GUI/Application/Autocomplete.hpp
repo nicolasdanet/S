@@ -30,15 +30,8 @@ public:
 public:
     void addContent (const juce::String&);
     
-    juce::StringArray getContent();
+    juce::StringArray getContent (const juce::String& key = juce::String());
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static void sort (juce::StringArray& items, const juce::String&);
-    
 private:
     juce::StringArray content_;
     bool isSorted_;

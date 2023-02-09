@@ -93,7 +93,9 @@ bool MakerList::isEqualToSelectedItem (const juce::String& s) const
 
 void MakerList::sort (const juce::String& s)
 {
-    Autocomplete::sort (items_, s);
+    juce::StringArray scoped (Spaghettis()->getAutocomplete().getContent (s));
+    
+    items_.swapWith (scoped);
     
     ListBoxFunctions::update (listBox_, items_, true);
 }

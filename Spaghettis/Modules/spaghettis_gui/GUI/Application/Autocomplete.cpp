@@ -26,23 +26,13 @@ void Autocomplete::addContent (const juce::String& s)
     content_.addIfNotAlreadyThere (s); isSorted_ = false;
 }
 
-juce::StringArray Autocomplete::getContent()
+juce::StringArray Autocomplete::getContent (const juce::String& key)
 {
     if (isSorted_ == false) { content_.sortNatural(); isSorted_ = true; }
     
-    return content_;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void Autocomplete::sort (juce::StringArray& items, const juce::String& s)
-{
-    if (s.isEmpty()) { items.sortNatural(); }
-    else {
+    if (key.isNotEmpty()) { }
     
-    }
+    return content_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
