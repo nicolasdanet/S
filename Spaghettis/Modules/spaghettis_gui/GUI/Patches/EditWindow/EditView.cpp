@@ -531,6 +531,13 @@ void EditView::requestNewObject()
     }
 }
 
+void EditView::handleNewObject (const juce::String& s)
+{
+    if (s.isNotEmpty()) { DBG (s); }
+    
+    dismissNewObject();
+}
+
 void EditView::dismissNewObject()
 {
     maker_.hideEditor();

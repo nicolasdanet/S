@@ -49,12 +49,12 @@ void MakerEntry::resized()
 
 void MakerEntry::textEditorTextChanged (juce::TextEditor& editor)
 {
-    DBG (editor_.getText());
+    v_.setValue (editor_.getText());
 }
 
 void MakerEntry::textEditorReturnKeyPressed (juce::TextEditor&)
 {
-    DBG ("!");
+    if (view_.getComponent()) { view_->handleNewObject (editor_.getText()); }
 }
 
 void MakerEntry::textEditorEscapeKeyPressed (juce::TextEditor&)
