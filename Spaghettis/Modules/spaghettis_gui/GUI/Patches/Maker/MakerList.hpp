@@ -13,7 +13,8 @@ namespace spaghettis {
 // MARK: -
 
 class MakerList :   public juce::Component,
-                    public juce::ListBoxModel {
+                    public juce::ListBoxModel,
+                    public juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -22,7 +23,7 @@ class MakerList :   public juce::Component,
 public:
     explicit MakerList (juce::Value&);
     
-    ~MakerList() = default;
+    ~MakerList();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -33,6 +34,9 @@ public:
     void paintListBoxItem (int, juce::Graphics&, int, int, bool) override;
     void listWasScrolled() override;
     void listBoxItemClicked (int, const juce::MouseEvent &) override;
+
+public:
+    void valueChanged (juce::Value&) override;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -42,6 +46,10 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+private:
+    bool isEqualToSelectedItem (const juce::String&) const;
+    void sort (const juce::String& s);
+    
 private:
     juce::ListBox listBox_;
     juce::StringArray items_;

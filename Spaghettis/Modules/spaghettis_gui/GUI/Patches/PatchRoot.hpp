@@ -35,7 +35,7 @@ public:
         
         releaseAllWindows();
         
-        DBG (core::Data::debug (rootTree_));
+        // DBG (core::Data::debug (rootTree_));
     }
 
 // -----------------------------------------------------------------------------------------------------------

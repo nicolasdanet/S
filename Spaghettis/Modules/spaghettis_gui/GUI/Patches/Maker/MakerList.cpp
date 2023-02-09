@@ -14,12 +14,19 @@ namespace spaghettis {
 
 MakerList::MakerList (juce::Value& v) : items_ (Spaghettis()->getAutocomplete().getContent()), v_ (v)
 {
+    v_.addListener (this);
+    
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, false);
     ListBoxFunctions::update (listBox_, items_, false);
     addAndMakeVisible (listBox_);
         
     setOpaque (true);
+}
+
+MakerList::~MakerList()
+{
+    v_.removeListener (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -45,7 +52,16 @@ void MakerList::listBoxItemClicked (int row, const juce::MouseEvent &)
 {
     if (juce::isPositiveAndBelow (row, items_.size())) { v_.setValue (items_[row]); }
 }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void MakerList::valueChanged (juce::Value& v)
+{
+    const juce::String s (v.toString()); if (!isEqualToSelectedItem (s)) { sort (s); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -60,6 +76,24 @@ void MakerList::resized()
     listBox_.setBounds (getLocalBounds());
         
     ListBoxFunctions::update (listBox_, items_, false);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool MakerList::isEqualToSelectedItem (const juce::String& s) const
+{
+    const int k = listBox_.getSelectedRow();
+    
+    if ((k >= 0) && (k < items_.size()) && (s == items_[k])) { return true; }
+    
+    return false;
+}
+
+void MakerList::sort (const juce::String& s)
+{
+    ListBoxFunctions::update (listBox_, items_, true);
 }
 
 // -----------------------------------------------------------------------------------------------------------

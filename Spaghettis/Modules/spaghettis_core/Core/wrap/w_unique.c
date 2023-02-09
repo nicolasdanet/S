@@ -452,7 +452,7 @@ class MakerParser {
 public:
     explicit MakerParser (juce::Point<int> pt, const juce::String& s) : b_ (buffer_new())
     {
-        DBG ("s");
+
     }
     
     ~MakerParser()
