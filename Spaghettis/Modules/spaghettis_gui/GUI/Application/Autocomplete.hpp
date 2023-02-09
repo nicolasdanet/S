@@ -32,6 +32,13 @@ public:
     
     juce::StringArray getContent();
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static void sort (juce::StringArray& items, const juce::String&);
+    
 private:
     juce::StringArray content_;
     bool isSorted_;

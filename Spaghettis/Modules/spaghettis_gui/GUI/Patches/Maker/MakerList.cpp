@@ -93,6 +93,8 @@ bool MakerList::isEqualToSelectedItem (const juce::String& s) const
 
 void MakerList::sort (const juce::String& s)
 {
+    Autocomplete::sort (items_, s);
+    
     ListBoxFunctions::update (listBox_, items_, true);
 }
 
