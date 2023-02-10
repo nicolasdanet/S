@@ -6,6 +6,13 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include <numeric>
+#include <string>
+#include <vector>
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "Levenshtein.hpp"
  
 // -----------------------------------------------------------------------------------------------------------
@@ -21,7 +28,9 @@ void test90__levenshtein() {        /* Levenshtein distance. */
 
 TTT_BEGIN (LevenshteinDistance, 90, "Levenshtein - Distance")
 
-    TTT_EXPECT (levenshtein_distance<std::string> ("rosettacode", "raisethysword") == 8);
+    spaghettis::Levenshtein levenshtein;
+    
+    TTT_EXPECT (levenshtein.distance<std::string> ("rosettacode", "raisethysword") == 8);
 
 TTT_END
 
