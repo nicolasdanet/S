@@ -30,7 +30,17 @@ TTT_BEGIN (LevenshteinDistance, 90, "Levenshtein - Distance")
 
     spaghettis::Levenshtein<std::string> levenshtein;
     
-    TTT_EXPECT (levenshtein.distance ("rosettacode", "raisethysword") == 8);
+    TTT_EXPECT (levenshtein.distance ("rosettacode", "raisethysword")   == 8);
+    
+    TTT_EXPECT (levenshtein.distance ("", "")                           == 0);
+    TTT_EXPECT (levenshtein.distance ("aaaa", "")                       == 4);
+    TTT_EXPECT (levenshtein.distance ("", "aaaa")                       == 4);
+
+    TTT_EXPECT (levenshtein.distance ("aaaa", "aaaa")                   == 0);
+    TTT_EXPECT (levenshtein.distance ("aaaa", "aaa")                    == 1);
+    TTT_EXPECT (levenshtein.distance ("abaa", "baaa")                   == 2);
+    TTT_EXPECT (levenshtein.distance ("aaaa", "aaab")                   == 1);
+    TTT_EXPECT (levenshtein.distance ("aaaa", "bbbb")                   == 4);
 
 TTT_END
 
