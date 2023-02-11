@@ -43,7 +43,8 @@ public:
 public:
     void setKey (const T& key)
     {
-        key_ = key; length_ (key_.length());
+        key_    = key;
+        length_ = key_.length();
     }
     
     int distanceToKey (const T& s)
