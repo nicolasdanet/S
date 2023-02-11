@@ -24,7 +24,7 @@ template <class T, unsigned int N = 256> class Levenshtein {
 // MARK: -
 
 public:
-    explicit Levenshtein() : key_(), length_ (key_.length())
+    explicit Levenshtein() : key_(), length_()
     {
         v_.reserve (N);
     }
@@ -43,21 +43,23 @@ public:
 public:
     void setKey (const T& key)
     {
-        key_ = key;
+        key_ = key; length_ (key_.length());
     }
     
+    int distanceToKey (const T& s)
+    {
+        return compute (s, s.length(), key_, length_);
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     int distance (const T& s1, const T& s2)
     {
         return compute (s1, s1.length(), s2, s2.length());
     }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 private:
     int compute (const T& s1, const int m, const T& s2, const int n)
