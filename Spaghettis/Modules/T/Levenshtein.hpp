@@ -48,23 +48,21 @@ public:
         if (m == 0) { return n; }
         if (n == 0) { return m; }
             
-        std::vector<int> costs (n + 1);
-        
-        std::iota (costs.begin(), costs.end(), 0);
+        v_.resize (n + 1); std::iota (v_.begin(), v_.end(), 0);
         
         int i = 0;
         
         for (auto c1 : s1) {
         //
-        costs[0]     = i + 1;
-        int corner   = i;
-        int j        = 0;
+        v_[0]       = i + 1;
+        int corner  = i;
+        int j       = 0;
         
         for (auto c2 : s2) {
         //
-        int upper    = costs[j + 1];
-        costs[j + 1] = (c1 == c2) ? corner : 1 + std::min (std::min (upper, corner), costs[j]);
-        corner       = upper;
+        int upper   = v_[j + 1];
+        v_[j + 1]   = (c1 == c2) ? corner : 1 + std::min (std::min (upper, corner), v_[j]);
+        corner      = upper;
         
         ++j;
         //
@@ -74,7 +72,7 @@ public:
         //
         }
         
-        return costs[n];
+        return v_[n];
     }
 
 private:
