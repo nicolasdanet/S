@@ -33,6 +33,7 @@ public:
     juce::StringArray getContent (const juce::String& key = juce::String());
 
 private:
+    EditDistance edit_;
     juce::StringArray content_;
     bool isSorted_;
     
