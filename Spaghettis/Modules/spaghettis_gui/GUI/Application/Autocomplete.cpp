@@ -30,7 +30,7 @@ juce::StringArray Autocomplete::getContent (const juce::String& key)
 {
     if (isSorted_ == false) { content_.sortNatural(); isSorted_ = true; }
     
-    if (key.isNotEmpty()) { return edit_.getSorted (content_, key); }
+    // if (key.isNotEmpty()) { return edit_.getSorted (content_, key); }
     
     return content_;
 }

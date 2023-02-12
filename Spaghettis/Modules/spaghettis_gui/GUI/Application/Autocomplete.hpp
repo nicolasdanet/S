@@ -33,9 +33,9 @@ public:
     juce::StringArray getContent (const juce::String& key = juce::String());
 
 private:
-    EditDistance edit_;
     juce::StringArray content_;
     bool isSorted_;
+    Levenshtein<juce::String> distance_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Autocomplete)
