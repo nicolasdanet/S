@@ -32,10 +32,20 @@ public:
     
     juce::StringArray getContent (const juce::String& key = juce::String());
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void initialize();
+    
+    juce::StringArray getContentByKey (const juce::String&);
+    
 private:
     juce::StringArray content_;
-    bool isSorted_;
-    Levenshtein<juce::String> distance_;
+    bool contentHasChanged_;
+    std::vector<std::tuple<std::string, int>> v_;
+    Levenshtein<std::string> distance_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Autocomplete)

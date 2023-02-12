@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Autocomplete::Autocomplete() : isSorted_ (false)
+Autocomplete::Autocomplete() : contentHasChanged_ (false)
 {
 
 }
@@ -23,15 +23,36 @@ Autocomplete::Autocomplete() : isSorted_ (false)
 
 void Autocomplete::addContent (const juce::String& s)
 {
-    content_.addIfNotAlreadyThere (s); isSorted_ = false;
+    content_.addIfNotAlreadyThere (s); contentHasChanged_ = true;
 }
 
 juce::StringArray Autocomplete::getContent (const juce::String& key)
 {
-    if (isSorted_ == false) { content_.sortNatural(); isSorted_ = true; }
+    if (contentHasChanged_) { initialize(); contentHasChanged_ = false; }
     
-    // if (key.isNotEmpty()) { return edit_.getSorted (content_, key); }
+    if (key.isNotEmpty()) { return getContentByKey (key); }
+    else {
+        return content_;
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Autocomplete::initialize()
+{
+    content_.sortNatural();
     
+    v_.clear(); v_.reserve (content_.size());
+    
+    for (auto& s : content_) { v_.emplace_back (s.toStdString(), 0); }
+}
+
+// std::numeric_limits<int>::max()
+
+juce::StringArray Autocomplete::getContentByKey (const juce::String& s)
+{
     return content_;
 }
 
