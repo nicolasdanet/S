@@ -37,15 +37,12 @@ public:
 // MARK: -
 
 private:
-    void initialize();
-    
     juce::StringArray getContentByKey (const juce::String&);
     
 private:
     juce::StringArray content_;
-    bool contentHasChanged_;
-    std::vector<std::tuple<std::string, int>> v_;
-    Levenshtein<std::string> distance_;
+    bool hasChanged_;
+    Levenshtein<juce::String> distance_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Autocomplete)
