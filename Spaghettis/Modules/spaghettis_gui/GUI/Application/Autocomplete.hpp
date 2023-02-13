@@ -12,6 +12,52 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+class AutocompleteElement {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit AutocompleteElement (const juce::String& s, int k) : s_ (s), k_ (k)
+    {
+    }
+    
+    ~AutocompleteElement() = default;
+
+    AutocompleteElement (const AutocompleteElement&) = default;
+    AutocompleteElement (AutocompleteElement&&) = default;
+    AutocompleteElement& operator = (const AutocompleteElement&) = default;
+    AutocompleteElement& operator = (AutocompleteElement&&) = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool operator < (const AutocompleteElement& e) const
+    {
+        return k_ < e.k_;
+    }
+    
+    operator juce::String() const
+    {
+        return s_;
+    }
+    
+private:
+    juce::String s_;
+    int k_;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class Autocomplete {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -42,7 +88,10 @@ private:
 private:
     juce::StringArray content_;
     bool hasChanged_;
-    Levenshtein<juce::String> distance_;
+
+private:
+    Levenshtein<juce::String> d_;               /* Cached to avoid memory allocations. */
+    juce::Array<AutocompleteElement> v_;        /* Ditto. */
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Autocomplete)

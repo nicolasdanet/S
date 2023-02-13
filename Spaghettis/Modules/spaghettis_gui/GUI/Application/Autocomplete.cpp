@@ -40,9 +40,26 @@ juce::StringArray Autocomplete::getContent (const juce::String& key)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::StringArray Autocomplete::getContentByKey (const juce::String& s)
+/* Only items with at least equal length with the key are tested. */
+
+juce::StringArray Autocomplete::getContentByKey (const juce::String& key)
 {
-    return content_;
+    const int n = content_.size();
+    const int k = key.length();
+    
+    v_.clearQuick(); v_.ensureStorageAllocated (n);
+    
+    d_.setKey (key);
+    
+    for (const auto&s : content_) {
+        if (s.length() >= k) {
+            v_.add (AutocompleteElement (s, d_.distanceToKey (s)));
+        }
+    }
+    
+    v_.sort();
+    
+    return juce::StringArray (v_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
