@@ -33,14 +33,13 @@ public:
 public:
     int distanceToKey (const juce::String& s) const
     {
-        const int i = s.indexOf (key_);
-
-        if (i >= 0) {
-        //
-        const int j = s.length() - length_ - i;
+        const int n = s.length();
         
-        return (i * prefixed_) + (j * suffixed_);
-        //
+        if (n >= length_) {
+            const int i = s.indexOf (key_);
+            if (i >= 0) {
+                return (i * prefixed_) + ((n - i - length_) * suffixed_);
+            }
         }
         
         return -1;

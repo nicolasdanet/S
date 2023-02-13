@@ -66,6 +66,9 @@ void MakerList::valueChanged (juce::Value& v)
     const juce::String w (Helpers::upToWhitespace (s));
     
     if (w != previous_) { sort (w); previous_ = w; }
+    else {
+        ListBoxFunctions::update (listBox_, items_, true);
+    }
     //
     }
 }
