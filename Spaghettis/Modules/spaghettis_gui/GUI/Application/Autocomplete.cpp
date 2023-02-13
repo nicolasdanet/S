@@ -50,7 +50,7 @@ juce::StringArray Autocomplete::getContentByKey (const juce::String& key)
     
     for (const auto&s : content_) {
         const int d = distance.distanceToKey (s);
-        if (d > 0) {
+        if (d >= 0) {
             v_.add (AutocompleteElement (s, d));
         }
     }

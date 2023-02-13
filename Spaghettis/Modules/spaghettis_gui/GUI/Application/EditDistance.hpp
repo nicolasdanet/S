@@ -19,7 +19,7 @@ class EditDistance {
 // MARK: -
 
 public:
-    EditDistance (const juce::String& key) : k_ (key.length())
+    EditDistance (const juce::String& key) : key_ (key), length_ (key.length())
     {
     }
 
@@ -27,14 +27,32 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Look for items that contains the key as substring. */
+/* Prefer those near to the start. */
+
 public:
     int distanceToKey (const juce::String& s) const
     {
+        const int i = s.indexOf (key_);
+
+        if (i >= 0) {
+        //
+        const int j = s.length() - length_ - i;
+        
+        return (i * prefixed_) + (j * suffixed_);
+        //
+        }
+        
         return -1;
     }
 
 private:
-    int k_;
+    juce::String key_;
+    int length_;
+
+private:
+    static constexpr int prefixed_ = 3;
+    static constexpr int suffixed_ = 1;
 };
 
 // -----------------------------------------------------------------------------------------------------------
