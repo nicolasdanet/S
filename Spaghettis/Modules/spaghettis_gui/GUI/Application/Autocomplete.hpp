@@ -12,30 +12,30 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class AutocompleteElement {
+class Suggestion {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit AutocompleteElement (const juce::String& s, int k) : s_ (s), k_ (k)
+    explicit Suggestion (const juce::String& s, int k) : s_ (s), k_ (k)
     {
     }
     
-    ~AutocompleteElement() = default;
+    ~Suggestion() = default;
 
-    AutocompleteElement (const AutocompleteElement&) = default;
-    AutocompleteElement (AutocompleteElement&&) = default;
-    AutocompleteElement& operator = (const AutocompleteElement&) = default;
-    AutocompleteElement& operator = (AutocompleteElement&&) = default;
+    Suggestion (const Suggestion&) = default;
+    Suggestion (Suggestion&&) = default;
+    Suggestion& operator = (const Suggestion&) = default;
+    Suggestion& operator = (Suggestion&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    bool operator < (const AutocompleteElement& e) const
+    bool operator < (const Suggestion& e) const
     {
         return k_ < e.k_;
     }
@@ -90,7 +90,7 @@ private:
     bool hasChanged_;
 
 private:
-    juce::Array<AutocompleteElement> v_;    /* Cached to avoid memory allocations. */
+    juce::Array<Suggestion> v_;     /* Cached to avoid memory allocations. */
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Autocomplete)

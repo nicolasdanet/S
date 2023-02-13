@@ -23,6 +23,11 @@ static juce::String firstLetterCapitalized (juce::String s)
     return s.substring (0, 1).toUpperCase() + s.substring (1);
 }
 
+static juce::String upToWhitespace (juce::String s)
+{
+    return s.upToFirstOccurrenceOf (" ", false, false);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

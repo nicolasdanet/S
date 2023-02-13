@@ -54,6 +54,7 @@ private:
     juce::ListBox listBox_;
     juce::StringArray items_;
     juce::Value v_;
+    juce::String previous_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerList)

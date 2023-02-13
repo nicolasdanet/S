@@ -50,7 +50,7 @@ juce::StringArray Autocomplete::getContentByKey (const juce::String& key)
     
     for (const auto&s : content_) {
         if (s.length() >= k) {
-            v_.add (AutocompleteElement (s, distanceToKey (s)));
+            v_.add (Suggestion (s, distanceToKey (s)));
         }
     }
     

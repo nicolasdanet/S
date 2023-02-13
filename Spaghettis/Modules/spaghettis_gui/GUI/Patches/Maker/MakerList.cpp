@@ -59,7 +59,15 @@ void MakerList::listBoxItemClicked (int row, const juce::MouseEvent &)
 
 void MakerList::valueChanged (juce::Value& v)
 {
-    const juce::String s (v.toString()); if (!isEqualToSelectedItem (s)) { sort (s); }
+    const juce::String s (v.toString());
+    
+    if (!isEqualToSelectedItem (s)) {
+    //
+    const juce::String w (Helpers::upToWhitespace (s));
+    
+    if (w != previous_) { sort (w); previous_ = w; }
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
