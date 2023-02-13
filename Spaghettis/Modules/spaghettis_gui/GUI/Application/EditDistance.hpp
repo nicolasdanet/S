@@ -12,53 +12,30 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Autocomplete::Autocomplete() : hasChanged_ (false)
-{
-
-}
+class EditDistance {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Autocomplete::addContent (const juce::String& s)
-{
-    content_.addIfNotAlreadyThere (s); hasChanged_ = true;
-}
-
-juce::StringArray Autocomplete::getContent (const juce::String& key)
-{
-    if (hasChanged_) { content_.sortNatural(); hasChanged_ = false; }
-    
-    if (key.isNotEmpty()) { return getContentByKey (key); }
-    else {
-        return content_;
+public:
+    EditDistance (const juce::String& key) : k_ (key.length())
+    {
     }
-}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::StringArray Autocomplete::getContentByKey (const juce::String& key)
-{
-    const int n = content_.size();
-    
-    v_.clearQuick(); v_.ensureStorageAllocated (n);
-    
-    EditDistance distance (key);
-    
-    for (const auto&s : content_) {
-        const int d = distance.distanceToKey (s);
-        if (d > 0) {
-            v_.add (AutocompleteElement (s, d));
-        }
+public:
+    int distanceToKey (const juce::String& s) const
+    {
+        return -1;
     }
-    
-    v_.sort();
-    
-    return juce::StringArray (v_);
-}
+
+private:
+    int k_;
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -67,3 +44,4 @@ juce::StringArray Autocomplete::getContentByKey (const juce::String& key)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
