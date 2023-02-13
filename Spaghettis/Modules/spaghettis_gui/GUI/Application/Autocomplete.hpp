@@ -90,8 +90,7 @@ private:
     bool hasChanged_;
 
 private:
-    Levenshtein<juce::String> d_;               /* Cached to avoid memory allocations. */
-    juce::Array<AutocompleteElement> v_;        /* Ditto. */
+    juce::Array<AutocompleteElement> v_;    /* Cached to avoid memory allocations. */
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Autocomplete)
