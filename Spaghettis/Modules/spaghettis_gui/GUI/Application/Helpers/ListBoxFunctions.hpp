@@ -64,17 +64,19 @@ private:
         listBox.getViewport()->setScrollBarsShown (show, show, true, true);
     }
 
-    static void updateProceedContent (juce::ListBox& listBox)
+    static void updateProceedContent (juce::ListBox& listBox, bool deselect)
     {
+        if (deselect) { listBox.deselectAllRows(); }
+        
         listBox.updateContent();
-        listBox.deselectAllRows();
         listBox.repaint();
     }
     
-    static void updateProceed (juce::ListBox& listBox, int size)
+    static void updateProceed (juce::ListBox& listBox, int size, bool deselect)
     {
         updateProceedBars (listBox, size);      /* First in order to properly refresh the scroll bars. */
-        updateProceedContent (listBox);
+        
+        updateProceedContent (listBox, deselect);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -82,9 +84,9 @@ private:
 // MARK: -
 
 public:
-    template <class T> static void update (juce::ListBox& listBox, T& c)
+    template <class T> static void update (juce::ListBox& listBox, T& c, bool deselect = true)
     {
-        updateProceed (listBox, static_cast<int> (c.size()));
+        updateProceed (listBox, static_cast<int> (c.size()), deselect);
     }
 
 // -----------------------------------------------------------------------------------------------------------

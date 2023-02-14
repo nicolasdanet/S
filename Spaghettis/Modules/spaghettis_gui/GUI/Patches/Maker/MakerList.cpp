@@ -45,7 +45,7 @@ void MakerList::paintListBoxItem (int row, juce::Graphics& g, int width, int hei
 
 void MakerList::listWasScrolled()
 {
-    ListBoxFunctions::update (listBox_, items_);
+    ListBoxFunctions::update (listBox_, items_, false);
 }
 
 void MakerList::listBoxItemClicked (int row, const juce::MouseEvent &)
@@ -81,7 +81,7 @@ void MakerList::resized()
 {
     listBox_.setBounds (getLocalBounds());
         
-    ListBoxFunctions::update (listBox_, items_);
+    ListBoxFunctions::update (listBox_, items_, false);
 }
 
 // -----------------------------------------------------------------------------------------------------------

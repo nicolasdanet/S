@@ -111,12 +111,12 @@ void SearchPathsComponent::resized()
 {
     listBox_.setBounds (setBoundsForBarsAndGetRemaining());
     
-    ListBoxFunctions::update (listBox_, paths_);
+    ListBoxFunctions::update (listBox_, paths_, false);
 }
 
 void SearchPathsComponent::listWasScrolled()
 {
-    ListBoxFunctions::update (listBox_, paths_);
+    ListBoxFunctions::update (listBox_, paths_, false);
 }
 
 // -----------------------------------------------------------------------------------------------------------

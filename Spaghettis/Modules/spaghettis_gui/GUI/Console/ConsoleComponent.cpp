@@ -177,12 +177,12 @@ void ConsoleComponent::resized()
 {
     listBox_.setBounds (setBoundsForBarsAndGetRemaining());
     
-    ListBoxFunctions::update (listBox_, messages_);
+    ListBoxFunctions::update (listBox_, messages_, false);
 }
 
 void ConsoleComponent::listWasScrolled()
 {
-    ListBoxFunctions::update (listBox_, messages_);
+    ListBoxFunctions::update (listBox_, messages_, false);
 }
 
 // -----------------------------------------------------------------------------------------------------------
