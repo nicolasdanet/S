@@ -18,7 +18,7 @@ MakerList::MakerList (juce::Value& v) : items_ (Spaghettis()->getAutocomplete().
     
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, false);
-    ListBoxFunctions::updateScrollBars (listBox_, items_);
+    ListBoxFunctions::update (listBox_, items_);
     addAndMakeVisible (listBox_);
         
     setOpaque (true);
@@ -45,7 +45,7 @@ void MakerList::paintListBoxItem (int row, juce::Graphics& g, int width, int hei
 
 void MakerList::listWasScrolled()
 {
-    ListBoxFunctions::updateScrollBars (listBox_, items_);
+    ListBoxFunctions::update (listBox_, items_);
 }
 
 void MakerList::listBoxItemClicked (int row, const juce::MouseEvent &)
@@ -81,7 +81,7 @@ void MakerList::resized()
 {
     listBox_.setBounds (getLocalBounds());
         
-    ListBoxFunctions::updateScrollBars (listBox_, items_);
+    ListBoxFunctions::update (listBox_, items_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

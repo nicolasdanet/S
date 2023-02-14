@@ -56,14 +56,7 @@ public:
 // MARK: -
 
 private:
-    static void updateProceedContent (juce::ListBox& listBox)
-    {
-        listBox.updateContent();
-        listBox.deselectAllRows();
-        listBox.repaint();
-    }
-
-    static void updateProceedScrollBars (juce::ListBox& listBox, int size)
+    static void updateProceedBars (juce::ListBox& listBox, int size)
     {
         const bool show = (listBox.getNumRowsOnScreen() < size) ||
                           (size > 0 && listBox.getRowContainingPosition (0, 0) >= size);
@@ -71,10 +64,17 @@ private:
         listBox.getViewport()->setScrollBarsShown (show, show, true, true);
     }
 
+    static void updateProceedContent (juce::ListBox& listBox)
+    {
+        listBox.updateContent();
+        listBox.deselectAllRows();
+        listBox.repaint();
+    }
+    
     static void updateProceed (juce::ListBox& listBox, int size)
     {
+        updateProceedBars (listBox, size);      /* First in order to properly refresh the scroll bars. */
         updateProceedContent (listBox);
-        updateProceedScrollBars (listBox, size);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -82,11 +82,6 @@ private:
 // MARK: -
 
 public:
-    template <class T> static void updateScrollBars (juce::ListBox& listBox, T& c)
-    {
-        updateProceedScrollBars (listBox, static_cast<int> (c.size()));
-    }
-
     template <class T> static void update (juce::ListBox& listBox, T& c)
     {
         updateProceed (listBox, static_cast<int> (c.size()));

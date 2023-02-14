@@ -18,7 +18,7 @@ ConsoleComponent::ConsoleComponent (const juce::String& keyName) :
 {
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, false);
-    ListBoxFunctions::updateScrollBars (listBox_, messages_);
+    ListBoxFunctions::update (listBox_, messages_);
     addAndMakeVisible (listBox_);
  
     Spaghettis()->setLogger (this);
@@ -177,12 +177,12 @@ void ConsoleComponent::resized()
 {
     listBox_.setBounds (setBoundsForBarsAndGetRemaining());
     
-    ListBoxFunctions::updateScrollBars (listBox_, messages_);
+    ListBoxFunctions::update (listBox_, messages_);
 }
 
 void ConsoleComponent::listWasScrolled()
 {
-    ListBoxFunctions::updateScrollBars (listBox_, messages_);
+    ListBoxFunctions::update (listBox_, messages_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

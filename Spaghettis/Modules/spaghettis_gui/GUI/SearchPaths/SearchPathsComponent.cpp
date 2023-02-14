@@ -19,7 +19,7 @@ SearchPathsComponent::SearchPathsComponent (const juce::String& keyName) :
 {
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, true);
-    ListBoxFunctions::updateScrollBars (listBox_, paths_);
+    ListBoxFunctions::update (listBox_, paths_);
     addAndMakeVisible (listBox_);
         
     setOpaque (true); setSize (400, 500);
@@ -111,12 +111,12 @@ void SearchPathsComponent::resized()
 {
     listBox_.setBounds (setBoundsForBarsAndGetRemaining());
     
-    ListBoxFunctions::updateScrollBars (listBox_, paths_);
+    ListBoxFunctions::update (listBox_, paths_);
 }
 
 void SearchPathsComponent::listWasScrolled()
 {
-    ListBoxFunctions::updateScrollBars (listBox_, paths_);
+    ListBoxFunctions::update (listBox_, paths_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
