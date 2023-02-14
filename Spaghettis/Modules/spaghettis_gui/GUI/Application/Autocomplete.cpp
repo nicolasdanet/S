@@ -23,7 +23,7 @@ Autocomplete::Autocomplete() : hasChanged_ (false)
 
 void Autocomplete::addContent (const juce::String& s)
 {
-    content_.addIfNotAlreadyThere (s); hasChanged_ = true;
+    content_.addIfNotAlreadyThere (Helpers::upToWhitespace (s)); hasChanged_ = true;
 }
 
 juce::StringArray Autocomplete::getContent (const juce::String& key)

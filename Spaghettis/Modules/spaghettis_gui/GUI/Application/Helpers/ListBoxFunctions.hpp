@@ -33,6 +33,12 @@ static int getNumberOfRowsToDraw (int contentSize)
     return juce::jmax (32, contentSize);
 }
 
+static void deselectRows (juce::ListBox& listBox)
+{
+    listBox.deselectAllRows();
+    listBox.repaint();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
