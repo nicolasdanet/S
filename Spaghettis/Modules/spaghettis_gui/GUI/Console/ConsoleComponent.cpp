@@ -18,7 +18,7 @@ ConsoleComponent::ConsoleComponent (const juce::String& keyName) :
 {
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, false);
-    ListBoxFunctions::update (listBox_, messages_, false);
+    ListBoxFunctions::updateScrollBars (listBox_, messages_);
     addAndMakeVisible (listBox_);
  
     Spaghettis()->setLogger (this);
@@ -93,7 +93,7 @@ template <class T> void parseMessages (T& m, bool showMessages, bool showErrors)
 
 void ConsoleComponent::update()
 {
-    ListBoxFunctions::update (listBox_, messages_, true);
+    ListBoxFunctions::update (listBox_, messages_);
     
     if (getButtonState (Icons::autoscroll)) {
     //
@@ -177,12 +177,12 @@ void ConsoleComponent::resized()
 {
     listBox_.setBounds (setBoundsForBarsAndGetRemaining());
     
-    ListBoxFunctions::update (listBox_, messages_, false);
+    ListBoxFunctions::updateScrollBars (listBox_, messages_);
 }
 
 void ConsoleComponent::listWasScrolled()
 {
-    ListBoxFunctions::update (listBox_, messages_, false);
+    ListBoxFunctions::updateScrollBars (listBox_, messages_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

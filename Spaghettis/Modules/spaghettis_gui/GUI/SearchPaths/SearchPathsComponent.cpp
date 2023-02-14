@@ -19,7 +19,7 @@ SearchPathsComponent::SearchPathsComponent (const juce::String& keyName) :
 {
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, true);
-    ListBoxFunctions::update (listBox_, paths_, false);
+    ListBoxFunctions::updateScrollBars (listBox_, paths_);
     addAndMakeVisible (listBox_);
         
     setOpaque (true); setSize (400, 500);
@@ -43,7 +43,7 @@ void SearchPathsComponent::removeSelectedPaths()
     //
     }
     
-    if (done) { ListBoxFunctions::update (listBox_, paths_, true); setSearchPaths(); }
+    if (done) { ListBoxFunctions::update (listBox_, paths_); setSearchPaths(); }
 }
 
 void SearchPathsComponent::addPaths()
@@ -67,7 +67,7 @@ void SearchPathsComponent::sortPaths (bool reverse)
     //
     }
     
-    ListBoxFunctions::update (listBox_, paths_, true); setSearchPaths();
+    ListBoxFunctions::update (listBox_, paths_); setSearchPaths();
     //
     }
 }
@@ -89,7 +89,7 @@ void SearchPathsComponent::paintListBoxItem (int row, juce::Graphics& g, int w, 
 void SearchPathsComponent::listBoxItemClicked (int row, const juce::MouseEvent &)
 {
     if (juce::isPositiveAndBelow (row, paths_.size()) == false) {
-        ListBoxFunctions::update (listBox_, paths_, true);
+        ListBoxFunctions::update (listBox_, paths_);
     }
 }
 
@@ -111,12 +111,12 @@ void SearchPathsComponent::resized()
 {
     listBox_.setBounds (setBoundsForBarsAndGetRemaining());
     
-    ListBoxFunctions::update (listBox_, paths_, false);
+    ListBoxFunctions::updateScrollBars (listBox_, paths_);
 }
 
 void SearchPathsComponent::listWasScrolled()
 {
-    ListBoxFunctions::update (listBox_, paths_, false);
+    ListBoxFunctions::updateScrollBars (listBox_, paths_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -145,7 +145,7 @@ void SearchPathsComponent::setSearchPaths()
 void SearchPathsComponent::appendFullPathName (const juce::String& filepath)
 {
     paths_.addIfNotAlreadyThere (filepath);
-    ListBoxFunctions::update (listBox_, paths_, true);
+    ListBoxFunctions::update (listBox_, paths_);
     setSearchPaths();
 }
 
