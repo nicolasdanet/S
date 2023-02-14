@@ -33,28 +33,46 @@ static int getNumberOfRowsToDraw (int contentSize)
     return juce::jmax (32, contentSize);
 }
 
-static void deselectRows (juce::ListBox& listBox)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void scrollToStart (juce::ListBox& listBox)
 {
-    listBox.deselectAllRows();
-    listBox.repaint();
+    listBox.scrollToEnsureRowIsOnscreen (0);
+}
+
+template <class T> static void scrollToEnd (juce::ListBox& listBox, T& c)
+{
+    const int i = static_cast<int> (c.size()) - 1;
+    
+    listBox.scrollToEnsureRowIsOnscreen (juce::jmax (i, 0));
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void updateProceed (juce::ListBox& listBox, int size, bool updateRows)
+static void updateContent (juce::ListBox& listBox)
 {
-    if (updateRows) {
-        listBox.updateContent();
-        listBox.deselectAllRows();
-        listBox.repaint();
-    }
-    
+    listBox.updateContent();
+    listBox.deselectAllRows();
+    listBox.repaint();
+}
+
+static void updateScrollBars (juce::ListBox& listBox, int size)
+{
     const bool show = (listBox.getNumRowsOnScreen() < size) ||
                       (size > 0 && listBox.getRowContainingPosition (0, 0) >= size);
     
     listBox.getViewport()->setScrollBarsShown (show, show, true, true);
+}
+
+static void updateProceed (juce::ListBox& listBox, int size, bool updateRows)
+{
+    if (updateRows) { updateContent (listBox); }
+    
+    updateScrollBars (listBox, size);
 }
 
 template <class T> static void update (juce::ListBox& listBox, T& c, bool updateRows)

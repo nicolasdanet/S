@@ -97,9 +97,7 @@ void ConsoleComponent::update()
     
     if (getButtonState (Icons::autoscroll)) {
     //
-    const int i = static_cast<int> (messages_.size()) - 1;
-    
-    listBox_.scrollToEnsureRowIsOnscreen (juce::jmax (i, 0));
+    ListBoxFunctions::scrollToEnd (listBox_, messages_);
     //
     }
 }

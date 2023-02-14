@@ -64,9 +64,6 @@ void MakerList::valueChanged (juce::Value& v)
     if (!isEqualToSelectedItem (s)) {
     //
     if (s != previous_) { sort (s); previous_ = s; }
-    else {
-        ListBoxFunctions::deselectRows (listBox_);
-    }
     //
     }
 }
@@ -107,6 +104,8 @@ void MakerList::sort (const juce::String& s)
     items_.swapWith (scoped);
     
     ListBoxFunctions::update (listBox_, items_, true);
+    
+    ListBoxFunctions::scrollToStart (listBox_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
