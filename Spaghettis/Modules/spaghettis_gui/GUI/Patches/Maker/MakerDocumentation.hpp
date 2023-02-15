@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class MakerDocumentation : public juce::Component {
+class MakerDocumentation :  public juce::Component,
+                            public juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -21,7 +22,7 @@ class MakerDocumentation : public juce::Component {
 public:
     explicit MakerDocumentation (juce::Value&);
     
-    ~MakerDocumentation() = default;
+    ~MakerDocumentation();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -32,6 +33,17 @@ public:
     
     void resized() override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void valueChanged (juce::Value&) override;
+
+private:
+    juce::Value v_;
+    juce::String previous_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerDocumentation)
 };

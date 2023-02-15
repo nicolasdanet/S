@@ -12,11 +12,18 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerDocumentation::MakerDocumentation (juce::Value&)
+MakerDocumentation::MakerDocumentation (juce::Value& v) : v_ (v)
 {
+    v_.addListener (this);
+    
     setOpaque (true);
 }
     
+MakerDocumentation::~MakerDocumentation()
+{
+    v_.removeListener (this);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -29,6 +36,17 @@ void MakerDocumentation::paint (juce::Graphics& g)
 void MakerDocumentation::resized()
 {
 
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void MakerDocumentation::valueChanged (juce::Value& v)
+{
+    const juce::String s (Helpers::upToWhitespace (v.toString()));
+    
+    if (s != previous_) { DBG (s); previous_ = s; }
 }
 
 // -----------------------------------------------------------------------------------------------------------
