@@ -52,7 +52,7 @@ void MakerDocumentation::showDocumentation (const juce::String& s)
     //
     jassert (documentation_ == nullptr);
     
-    documentation_ = std::make_unique<ParameterView> (Documentation::get (s));
+    documentation_ = std::make_unique<ParameterView> (Documentation::get (s), 150);
     documentation_->resizePanel (getLocalBounds());
     addAndMakeVisible (&documentation_->getPanel());
     //
