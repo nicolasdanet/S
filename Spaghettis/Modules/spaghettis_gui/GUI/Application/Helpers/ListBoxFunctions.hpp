@@ -39,12 +39,13 @@ public:
 // MARK: -
 
 public:
-    template <class T> static void selectFirstRowIfEqual (juce::ListBox& listBox, T& c, const juce::String& s)
+    template <class T>
+    static void selectFirstRowIfEqual (juce::ListBox& listBox, const T& items, const juce::String& s)
     {
         constexpr int i = 0;
         
-        if (static_cast<int> (c.size()) > i) {
-            if (c[i] == s) {
+        if (static_cast<int> (items.size()) > i) {
+            if (items[i] == s) {
                 listBox.setSelectedRows (Helpers::getSparseSetFor (i), juce::dontSendNotification);
             }
         }
@@ -60,9 +61,9 @@ public:
         listBox.scrollToEnsureRowIsOnscreen (0);
     }
 
-    template <class T> static void scrollToEnd (juce::ListBox& listBox, T& c)
+    template <class T> static void scrollToEnd (juce::ListBox& listBox, const T& items)
     {
-        const int i = static_cast<int> (c.size()) - 1;
+        const int i = static_cast<int> (items.size()) - 1;
         
         listBox.scrollToEnsureRowIsOnscreen (juce::jmax (i, 0));
     }
@@ -100,9 +101,9 @@ private:
 // MARK: -
 
 public:
-    template <class T> static void update (juce::ListBox& listBox, T& c, bool deselect = true)
+    template <class T> static void update (juce::ListBox& listBox, const T& items, bool deselect = true)
     {
-        updateProceed (listBox, static_cast<int> (c.size()), deselect);
+        updateProceed (listBox, static_cast<int> (items.size()), deselect);
     }
 
 // -----------------------------------------------------------------------------------------------------------
