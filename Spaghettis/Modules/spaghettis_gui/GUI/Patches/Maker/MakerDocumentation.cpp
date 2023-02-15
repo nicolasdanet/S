@@ -46,7 +46,13 @@ void MakerDocumentation::valueChanged (juce::Value& v)
 {
     const juce::String s (Helpers::upToWhitespace (v.toString()));
     
-    if (s != previous_) { DBG (s); previous_ = s; }
+    if (s != previous_) {
+    //
+    if (Documentation::has (s)) { }
+    
+    previous_ = s;
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
