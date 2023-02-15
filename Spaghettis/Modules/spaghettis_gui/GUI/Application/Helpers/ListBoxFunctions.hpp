@@ -39,6 +39,22 @@ public:
 // MARK: -
 
 public:
+    template <class T> static void selectFirstRowIfEqual (juce::ListBox& listBox, T& c, const juce::String& s)
+    {
+        constexpr int i = 0;
+        
+        if (static_cast<int> (c.size()) > i) {
+            if (c[i] == s) {
+                listBox.setSelectedRows (Helpers::getSparseSetFor (i), juce::dontSendNotification);
+            }
+        }
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     static void scrollToStart (juce::ListBox& listBox)
     {
         listBox.scrollToEnsureRowIsOnscreen (0);

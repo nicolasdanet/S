@@ -63,7 +63,12 @@ void MakerList::valueChanged (juce::Value& v)
     
     if (!isEqualToSelectedItem (s)) {
     //
-    if (s != previous_) { sort (s); previous_ = s; }
+    if (s != previous_) {
+        sort (s);
+        ListBoxFunctions::selectFirstRowIfEqual (listBox_, items_, s);
+        previous_ = s;
+        
+    }
     //
     }
 }
