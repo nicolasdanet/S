@@ -21,6 +21,8 @@ MakerDocumentation::MakerDocumentation (juce::Value& v) : v_ (v)
     
 MakerDocumentation::~MakerDocumentation()
 {
+    hideDocumentation();
+    
     v_.removeListener (this);
 }
 
@@ -30,14 +32,43 @@ MakerDocumentation::~MakerDocumentation()
 
 void MakerDocumentation::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::makerBackground));
+    g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
 }
-    
+
 void MakerDocumentation::resized()
 {
-
+    if (documentation_ != nullptr) { documentation_->resizePanel (getLocalBounds()); }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void MakerDocumentation::showDocumentation (const juce::String& s)
+{
+    hideDocumentation();
+    
+    if (Documentation::has (s)) {
+    //
+    jassert (documentation_ == nullptr);
+    
+    documentation_ = std::make_unique<ParameterView> (Documentation::get (s));
+    documentation_->resizePanel (getLocalBounds());
+    addAndMakeVisible (&documentation_->getPanel());
+    //
+    }
+}
+    
+void MakerDocumentation::hideDocumentation()
+{
+    if (documentation_ != nullptr) {
+    //
+    removeChildComponent (&documentation_->getPanel());
+    documentation_ = nullptr;
+    //
+    }
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -46,13 +77,7 @@ void MakerDocumentation::valueChanged (juce::Value& v)
 {
     const juce::String s (Helpers::upToWhitespace (v.toString()));
     
-    if (s != previous_) {
-    //
-    if (Documentation::has (s)) { }
-    
-    previous_ = s;
-    //
-    }
+    if (s != previous_) { showDocumentation (s); previous_ = s; }
 }
 
 // -----------------------------------------------------------------------------------------------------------

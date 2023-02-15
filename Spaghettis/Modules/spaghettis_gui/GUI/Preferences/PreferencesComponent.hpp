@@ -21,10 +21,10 @@ class PreferencesComponent :    public ParameterView,
 
 public:
     explicit PreferencesComponent (const juce::String& keyName) :
-        ParameterView (Spaghettis()->getPreferences().getData(), 250),
+        ParameterView (Spaghettis()->getPreferences().getData()),
         BaseComponent (nullptr, keyName)
     {
-        addAndMakeVisible (getPanel());
+        addAndMakeVisible (&getPanel());
         
         requireExpandPanel();
         

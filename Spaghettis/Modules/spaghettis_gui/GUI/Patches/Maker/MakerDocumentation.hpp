@@ -40,6 +40,15 @@ public:
 public:
     void valueChanged (juce::Value&) override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void showDocumentation (const juce::String& s);
+    
+    void hideDocumentation();
+    
 private:
     juce::Value v_;
     juce::String previous_;

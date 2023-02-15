@@ -19,13 +19,14 @@ class ParameterView : private juce::Timer {
 
 friend class ParameterHeader;
 friend class EditInspector;
+friend class MakerDocumentation;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterView (const core::Data& data, int labelWidth) :
+    explicit ParameterView (const core::Data& data, int labelWidth = 250) :
         data_ (data),
         expanded_ (0),
         expandedLast_ (0)

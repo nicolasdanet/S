@@ -65,7 +65,7 @@ void EditInspector::show()
     const int w = resizer_.getMinimumWidth();
     parameters_ = std::make_unique<InspectorView> (view_.getSynchronized(), w);
     parameters_->resizePanel (getLocalBounds());
-    addAndMakeVisible (parameters_->getPanel());
+    addAndMakeVisible (&parameters_->getPanel());
     //
     }
 }
