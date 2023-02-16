@@ -78,6 +78,7 @@
 #include "GUI/Patches/Maker/Maker.cpp"
 #include "GUI/Patches/Maker/MakerEntry.cpp"
 #include "GUI/Patches/Maker/MakerList.cpp"
+#include "GUI/Patches/Maker/MakerEmpty.cpp"
 #include "GUI/Patches/Maker/MakerDocumentation.cpp"
 #include "GUI/Patches/Maker/MakerComponent.cpp"
 
