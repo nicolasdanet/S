@@ -55,6 +55,8 @@ void MakerComponent::paint (juce::Graphics& g)
 
 void MakerComponent::resized()
 {
+    /* We need to compensate the right margin of the parameter view. */
+    
     juce::Rectangle<int> area (getLocalBounds().withTrimmedTop (margin_)
                                                .withTrimmedBottom (margin_)
                                                .withTrimmedLeft (margin_)

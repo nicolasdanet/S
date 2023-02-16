@@ -21,6 +21,8 @@ MakerEmpty::MakerEmpty()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* We need to compensate the right margin of the parameter view. */
+
 void MakerEmpty::paint (juce::Graphics& g)
 {
     g.setColour (Spaghettis()->getColour (Colours::makerBackground));
