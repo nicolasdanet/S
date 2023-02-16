@@ -44,7 +44,7 @@ void EditInspector::setActive (bool isActive)
 
 void EditInspector::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
+    g.fillAll (Spaghettis()->getColour (Colours::parametersBackground));
 }
 
 void EditInspector::resized()

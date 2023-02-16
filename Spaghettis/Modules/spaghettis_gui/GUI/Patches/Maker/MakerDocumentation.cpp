@@ -32,7 +32,7 @@ MakerDocumentation::~MakerDocumentation()
 
 void MakerDocumentation::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
+    g.fillAll (Spaghettis()->getColour (Colours::parametersBackground));
 }
 
 void MakerDocumentation::resized()

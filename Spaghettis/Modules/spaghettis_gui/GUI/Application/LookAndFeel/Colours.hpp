@@ -167,6 +167,7 @@ enum ColourIds : int {
     alertWindowButtonOutline,
     alertWindowButtonText,
     alertWindowButtonTextHighlighted,
+    parametersBackground,
     parametersHeaderBackground,
     parametersHeaderText,
     parametersHeaderArrow,
@@ -234,6 +235,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (alertWindowButtonOutline,                            t->textSystem);
     lf->setColour (alertWindowButtonText,                               t->textSystem);
     lf->setColour (alertWindowButtonTextHighlighted,                    t->textMenu);
+    lf->setColour (parametersBackground,                                t->backgroundMenu);
     lf->setColour (parametersHeaderBackground,                          t->background);
     lf->setColour (parametersHeaderText,                                t->textMenu);
     lf->setColour (parametersHeaderArrow,                               t->textSystem);
