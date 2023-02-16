@@ -14,7 +14,7 @@ namespace spaghettis {
 
 MakerEmpty::MakerEmpty()
 {
-    setOpaque (true);
+    setOpaque (false);
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -23,7 +23,8 @@ MakerEmpty::MakerEmpty()
 
 void MakerEmpty::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::makerBackground));
+    g.setColour (Spaghettis()->getColour (Colours::makerBackground));
+    g.fillRect (getLocalBounds().withTrimmedRight (1));
 }
 
 void MakerEmpty::resized()
