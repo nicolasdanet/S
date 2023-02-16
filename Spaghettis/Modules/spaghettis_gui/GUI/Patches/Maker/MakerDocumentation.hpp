@@ -47,14 +47,14 @@ public:
 private:
     void showDocumentation (const juce::String& s);
     
-    void hideDocumentation();
-    
 private:
     juce::Value v_;
     juce::String previous_;
 
 private:
-    std::unique_ptr<ParameterView> documentation_;
+    MakerEmpty default_;
+    std::unique_ptr<ParameterView> fetched_;
+    juce::Component* shown_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerDocumentation)

@@ -12,16 +12,18 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerDocumentation::MakerDocumentation (juce::Value& v) : v_ (v)
+MakerDocumentation::MakerDocumentation (juce::Value& v) : v_ (v), shown_ (&default_)
 {
     v_.addListener (this);
     
     setOpaque (true);
+    
+    addAndMakeVisible (shown_);
 }
     
 MakerDocumentation::~MakerDocumentation()
 {
-    hideDocumentation();
+    removeChildComponent (shown_);
     
     v_.removeListener (this);
 }
@@ -37,7 +39,7 @@ void MakerDocumentation::paint (juce::Graphics& g)
 
 void MakerDocumentation::resized()
 {
-    if (documentation_ != nullptr) { documentation_->resizePanel (getLocalBounds()); }
+    shown_->setBounds (getLocalBounds());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -46,29 +48,19 @@ void MakerDocumentation::resized()
 
 void MakerDocumentation::showDocumentation (const juce::String& s)
 {
-    hideDocumentation();
+    removeChildComponent (shown_);
     
     if (Documentation::has (s)) {
-    //
-    jassert (documentation_ == nullptr);
-    
-    documentation_ = std::make_unique<ParameterView> (Documentation::get (s), 150);
-    documentation_->resizePanel (getLocalBounds());
-    addAndMakeVisible (&documentation_->getPanel());
-    //
+        fetched_ = std::make_unique<ParameterView> (Documentation::get (s), 150);
+        shown_   = &fetched_->getPanel();
+    } else {
+        fetched_ = nullptr;
+        shown_   = &default_;
     }
-}
     
-void MakerDocumentation::hideDocumentation()
-{
-    if (documentation_ != nullptr) {
-    //
-    removeChildComponent (&documentation_->getPanel());
-    documentation_ = nullptr;
-    //
-    }
+    resized(); addAndMakeVisible (shown_);
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
