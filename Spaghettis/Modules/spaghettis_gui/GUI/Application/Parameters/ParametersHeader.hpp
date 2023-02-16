@@ -45,6 +45,13 @@ public:
 
     void mouseUp (const juce::MouseEvent&) override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void paintArrow (juce::Graphics&, const juce::Rectangle<int>&);
+    
 private:
     int index_;
     ParameterView *owner_;

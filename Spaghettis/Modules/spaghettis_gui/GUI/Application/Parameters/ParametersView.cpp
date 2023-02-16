@@ -12,6 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int ParameterView::getNumberOfPanels() const
+{
+    return panel_.getNumPanels();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ParameterView::requireExpandPanel (const juce::String& group)
 {
     const int primeInterval = 307; requiredPanel_ = group; startTimer (primeInterval);
@@ -39,7 +48,7 @@ void ParameterView::expandPanel (int index)
 {
     const int i = juce::jmax (0, index);
     
-    if (panel_.getNumPanels() > 1) {
+    if (getNumberOfPanels() > 1) {
     //
     if (expanded_ == i) { jassert (expandedLast_ != i); expandPanel (expandedLast_); }
     else {
@@ -68,7 +77,7 @@ void ParameterView::timerCallback()
 void ParameterView::addPanel (juce::PropertyPanel* p)
 {
     const int headerSize = Spaghettis()->getLookAndFeel().getPropertyPanelHeight() + 6;
-    const int i = panel_.getNumPanels();
+    const int i = getNumberOfPanels();
     auto h = std::make_unique<ParameterHeader> (p->getName(), i, this);
     
     panel_.addPanel (-1, p, true);
