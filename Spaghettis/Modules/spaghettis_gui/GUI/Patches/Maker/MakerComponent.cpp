@@ -59,7 +59,7 @@ void MakerComponent::resized()
     
     entry_.setBounds (area.removeFromTop (getMakerEntryHeight()).reduced (space_));
     list_.setBounds (area.removeFromLeft (area.getWidth() / 3).reduced (space_));
-    documentation_.setBounds (area.reduced (space_));
+    documentation_.setBounds (area);
 }
 
 // -----------------------------------------------------------------------------------------------------------
