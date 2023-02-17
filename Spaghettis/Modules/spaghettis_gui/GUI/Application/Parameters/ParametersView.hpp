@@ -28,13 +28,12 @@ friend class MakerDocumentation;
 /* Notice that only the left and right margins are used. */
 
 public:
-    explicit ParameterView (const core::Data& data, int w, juce::BorderSize<int> margins = { 1, 1, 1, 1 }) :
+    explicit ParameterView (const core::Data& data, int w) :
         data_ (data),
         expanded_ (0),
-        expandedLast_ (0),
-        borders_ (std::move (margins))
+        expandedLast_ (0)
     {
-        jassert (w > 0); buildConcertinaPanel (data_, *this, w, borders_);
+        jassert (w > 0); buildConcertinaPanel (data_, *this, w);
     }
     
     virtual ~ParameterView() = default;
@@ -78,7 +77,7 @@ private:
 // MARK: -
 
 private:
-    static void buildConcertinaPanel (const core::Data&, ParameterView&, int, const juce::BorderSize<int>&);
+    static void buildConcertinaPanel (const core::Data&, ParameterView&, int);
 
 protected:
     juce::ConcertinaPanel panel_;
@@ -87,7 +86,6 @@ private:
     core::Data data_;
     int expanded_;
     int expandedLast_;
-    juce::BorderSize<int> borders_;
     juce::String requiredPanel_;
     
 private:

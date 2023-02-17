@@ -19,7 +19,7 @@ class ParameterWidth {
 // MARK: -
 
 public:
-    explicit ParameterWidth (int w, const juce::BorderSize<int>& borders) : width_ (w), borders_ (borders)
+    explicit ParameterWidth (int w) : width_ (w)
     {
     }
 
@@ -38,9 +38,6 @@ public:
 
 private:
     int width_;
-
-private:
-    juce::BorderSize<int> borders_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

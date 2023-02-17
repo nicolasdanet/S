@@ -26,9 +26,7 @@ void ParameterHeader::paintArrow (juce::Graphics& g, const juce::Rectangle<int>&
 
 void ParameterHeader::paint (juce::Graphics& g)
 {
-    juce::Rectangle<int> b (getLocalBounds().withTrimmedLeft (owner_->borders_.getLeft())
-                                            .withTrimmedRight (owner_->borders_.getRight())
-                                            .withTrimmedBottom (1));
+    juce::Rectangle<int> b (getLocalBounds().reduced (1, 0).withTrimmedBottom (1));
     
     g.setColour (Spaghettis()->getColour (Colours::parametersHeaderBackground));
     g.fillRoundedRectangle (b.toFloat(), 2.0f);

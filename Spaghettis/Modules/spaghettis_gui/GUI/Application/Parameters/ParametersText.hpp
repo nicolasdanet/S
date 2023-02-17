@@ -19,8 +19,8 @@ class ParameterText :   public ParameterWidth,
 // MARK: -
 
 public:
-    explicit ParameterText (const core::Parameter& p, int w, const juce::BorderSize<int>& borders) :
-        ParameterWidth (w, borders),
+    explicit ParameterText (const core::Parameter& p, int w) :
+        ParameterWidth (w),
         juce::TextPropertyComponent (p.getValueAsValue (false), p.getLabel(), 64, false)
     {
         setEnabled (p.isEditable());

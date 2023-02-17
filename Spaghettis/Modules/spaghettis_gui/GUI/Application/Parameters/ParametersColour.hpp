@@ -83,8 +83,8 @@ class ParameterColour : public ParameterWidth,
 // MARK: -
 
 public:
-    explicit ParameterColour (const core::Parameter& p, int w, const juce::BorderSize<int>& borders) :
-        ParameterWidth (w, borders),
+    explicit ParameterColour (const core::Parameter& p, int w) :
+        ParameterWidth (w),
         juce::PropertyComponent (p.getLabel()), editor_ (p.getValueAsValue (false))
     {
         addAndMakeVisible (editor_);
