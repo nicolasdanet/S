@@ -26,7 +26,7 @@ friend class MakerDocumentation;
 // MARK: -
 
 public:
-    explicit ParameterView (const core::Data& data, int labelWidth = 250) :
+    explicit ParameterView (const core::Data& data, int labelWidth) :
         data_ (data),
         expanded_ (0),
         expandedLast_ (0)
