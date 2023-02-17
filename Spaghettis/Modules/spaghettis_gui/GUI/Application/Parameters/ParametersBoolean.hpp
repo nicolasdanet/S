@@ -20,8 +20,8 @@ class ParameterBoolean :    public ParameterWidth,
 // MARK: -
 
 public:
-    explicit ParameterBoolean (const core::Parameter& p, int w) :
-        ParameterWidth (w),
+    explicit ParameterBoolean (const core::Parameter& p, int w, const juce::BorderSize<int>& borders) :
+        ParameterWidth (w, borders),
         juce::BooleanPropertyComponent (p.getValueAsValue (false), p.getLabel(), "")
     {
         setEnabled (p.isEditable());

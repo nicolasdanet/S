@@ -96,25 +96,30 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const core::Parameter& p, int w)
+std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const core::Parameter& p,
+    int w,
+    const juce::BorderSize<int>& borders)
 {
-    if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, w); }
-    if (p.isColour())       { return std::make_unique<ParameterColour> (p, w);  }
-    else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p, w); }
+    if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, w, borders); }
+    if (p.isColour())       { return std::make_unique<ParameterColour> (p, w, borders);  }
+    else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p, w, borders); }
     else if (p.isFloat())   {
         if (p.hasRange())   {
-            return std::make_unique<ParameterSlider> (p, w);
+            return std::make_unique<ParameterSlider> (p, w, borders);
         } else {
-            return std::make_unique<ParameterFloat> (p, w);
+            return std::make_unique<ParameterFloat> (p, w, borders);
         }
     } else {
-        return std::make_unique<ParameterText> (p, w);
+        return std::make_unique<ParameterText> (p, w, borders);
     }
 }
 
-void buildConcertinaPanelParameter (const core::Parameter& p, juce::Array<juce::PropertyComponent*>& c, int w)
+void buildConcertinaPanelParameter (const core::Parameter& p,
+    juce::Array<juce::PropertyComponent*>& c,
+    int w,
+    const juce::BorderSize<int>& borders)
 {
-    std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p, w));
+    std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p, w, borders));
     
     t->setPreferredHeight (Spaghettis()->getLookAndFeel().getPropertyPanelHeight());
     t->setTooltip (p.getInfo());
@@ -131,7 +136,10 @@ void buildConcertinaPanelParameter (const core::Parameter& p, juce::Array<juce::
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParameterView::buildConcertinaPanel (const core::Data& data, ParameterView& v, int w)
+void ParameterView::buildConcertinaPanel (const core::Data& data,
+    ParameterView& v,
+    int w,
+    const juce::BorderSize<int>& borders)
 {
     for (const auto& group : data) {
     //
@@ -142,7 +150,7 @@ void ParameterView::buildConcertinaPanel (const core::Data& data, ParameterView&
     juce::Array<juce::PropertyComponent*> components;
     
     for (const auto& parameter : group) {
-        if (!parameter.isHidden()) { buildConcertinaPanelParameter (parameter, components, w); }
+        if (!parameter.isHidden()) { buildConcertinaPanelParameter (parameter, components, w, borders); }
     }
     
     panel->addProperties (components);
