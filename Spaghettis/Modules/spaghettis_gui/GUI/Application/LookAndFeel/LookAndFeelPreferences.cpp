@@ -12,6 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Compute the area for the component by removing a placeholder for the label. */
+
 juce::Rectangle<int> LookAndFeel::getPropertyComponentContentPosition (juce::PropertyComponent& c)
 {
     juce::Rectangle<int> r (c.getWidth(), c.getHeight() - 1);
@@ -27,6 +29,8 @@ juce::Rectangle<int> LookAndFeel::getPropertyComponentContentPosition (juce::Pro
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Draw the background of the label. */
+
 void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
     int w,
     int h,
@@ -34,9 +38,13 @@ void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
 {
     const juce::Rectangle<int> r (getPropertyComponentContentPosition (c));
     
+    const int width = r.getX();     /* Compute its width from the component's offset. */
+    
     g.setColour (findColour (Colours::parametersParameterBackground));
-    g.fillRect (juce::Rectangle<int> (r.getX(), h).withTrimmedBottom (1).withTrimmedRight (2));
+    g.fillRect (juce::Rectangle<int> (width, h).withTrimmedBottom (1).withTrimmedRight (2));
 }
+
+/* Draw the label. */
 
 void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
     int w,
@@ -45,12 +53,14 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
 {
     const juce::Rectangle<int> r (getPropertyComponentContentPosition (c));
     
+    const int width = r.getX();     /* Compute its width from the component's offset. */
+    
     const juce::Colour t (findColour (Colours::parametersParameterText));
     
     g.setColour (c.isEnabled() ? t : t.withAlpha (0.25f));
     g.setFont (getConsoleFont());
     g.drawText (c.getName(),
-        juce::Rectangle<int> (r.getX(), h).reduced (4, 0).withTrimmedLeft (30),
+        juce::Rectangle<int> (width, h).reduced (4, 0).withTrimmedLeft (30),
         juce::Justification::centredLeft,
         true);
 }
