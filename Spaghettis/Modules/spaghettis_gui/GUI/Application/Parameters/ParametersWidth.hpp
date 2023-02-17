@@ -28,7 +28,7 @@ public:
 // MARK: -
 
 public:
-    int getRequiredWidth() const
+    int getRequiredWidthForLabel() const
     {
         return width_;
     }
