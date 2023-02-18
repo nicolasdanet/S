@@ -19,7 +19,7 @@ class MakerComponent : public juce::Component {
 // MARK: -
 
 public:
-    explicit MakerComponent (EditView*);
+    explicit MakerComponent (EditView*, const juce::Point<int>&);
     
     ~MakerComponent() = default;
 

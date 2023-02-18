@@ -530,15 +530,15 @@ void EditView::requestNewObject()
 {
     if (!isAbstractionOrInside()) {
     //
-    maker_.showEditor (getGlobalMousePosition());
+    maker_.showEditor (getGlobalMousePosition(), getRealMousePosition());
     //
     }
 }
 
-void EditView::handleNewObject (const juce::String& s)
+void EditView::handleNewObject (juce::Point<int> pt, juce::String s)
 {
     if (s.isNotEmpty()) {
-        DBG (s);
+        DBG (juce::String (pt.getX()) + " " + juce::String (pt.getY()) + " / " + s);
         // unique_patchCreateObject ( s);
     }
     

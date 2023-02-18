@@ -12,9 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerComponent::MakerComponent (EditView* view) :
+MakerComponent::MakerComponent (EditView* view, const juce::Point<int>& pt) :
     v_(),
-    entry_ (v_, view),
+    entry_ (v_, view, pt),
     list_ (v_),
     documentation_ (v_)
 {

@@ -140,7 +140,7 @@ public:
 
 public:
     void requestNewObject();
-    void handleNewObject (const juce::String&);
+    void handleNewObject (juce::Point<int>, juce::String);
     void dismissNewObject();
     
 public:
