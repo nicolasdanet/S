@@ -15,7 +15,7 @@ namespace spaghettis {
 void EditWindow::hasBeenChanged()
 {
     if (isFullyInitialized()) {
-        Spaghettis()->handle (Inputs::setEditView (core::Patch (viewTree_).getIdentifier(), getBounds()));
+        Spaghettis()->handle (Inputs::setEditView (getIdentifierOfView(), getBounds()));
     }
 }
 

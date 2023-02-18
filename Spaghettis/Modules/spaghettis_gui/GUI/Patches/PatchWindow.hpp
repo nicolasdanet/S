@@ -33,6 +33,16 @@ public:
 // MARK: -
 
 public:
+    core::UniqueId getIdentifierOfView() const
+    {
+        return core::Patch (viewTree_).getIdentifier();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     bool isSubPatch() const
     {
         return viewTree_.getParent().isValid();
@@ -48,8 +58,10 @@ public:
         patch_.closeWindowButtonPressed (this);
     }
 
-protected:
+private:
     PatchRoot& patch_;
+
+private:
     juce::ValueTree viewTree_;
 
 private:

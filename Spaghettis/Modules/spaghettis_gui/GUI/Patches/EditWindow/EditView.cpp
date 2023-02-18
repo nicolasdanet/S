@@ -418,12 +418,12 @@ void EditView::snapToGrid()
 
 void EditView::undo()
 {
-    if (!isAbstractionOrInside()) { EditCommands::undo (core::Patch (viewTree_).getIdentifier()); }
+    if (!isAbstractionOrInside()) { EditCommands::undo (getIdentifierOfView()); }
 }
 
 void EditView::redo()
 {
-    if (!isAbstractionOrInside()) { EditCommands::redo (core::Patch (viewTree_).getIdentifier()); }
+    if (!isAbstractionOrInside()) { EditCommands::redo (getIdentifierOfView()); }
 }
 
 bool EditView::hasUndo() const
@@ -468,7 +468,7 @@ void EditView::cut()
     //
     setPaste();
     
-    EditCommands::cut (core::Patch (viewTree_).getIdentifier());
+    EditCommands::cut (getIdentifierOfView());
     //
     }
 }
@@ -479,7 +479,7 @@ void EditView::copy()
     //
     setPaste();
     
-    EditCommands::copy (core::Patch (viewTree_).getIdentifier());
+    EditCommands::copy (getIdentifierOfView());
     //
     }
 }
@@ -497,7 +497,7 @@ void EditView::paste()
     const juce::Point<int> selection = getRealPositionOfSelectedObjects (offset).value_or (mouse);
     const juce::Point<int> pt        = area.contains (selection) ? selection : centre;
     
-    EditCommands::paste (core::Patch (viewTree_).getIdentifier(), pt);
+    EditCommands::paste (getIdentifierOfView(), pt);
     //
     }
 }
@@ -506,7 +506,7 @@ void EditView::duplicate()
 {
     if (!isAbstractionOrInside()) {
     //
-    EditCommands::duplicate (core::Patch (viewTree_).getIdentifier());
+    EditCommands::duplicate (getIdentifierOfView());
     //
     }
 }
@@ -515,12 +515,16 @@ void EditView::remove()
 {
     if (!isAbstractionOrInside()) {
     //
-    EditCommands::remove (core::Patch (viewTree_).getIdentifier());     /* Remove all selected objects. */
+    EditCommands::remove (getIdentifierOfView());   /* Remove all selected objects. */
     
     deconnectSelectedLines (lines_);
     //
     }
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void EditView::requestNewObject()
 {
@@ -533,7 +537,10 @@ void EditView::requestNewObject()
 
 void EditView::handleNewObject (const juce::String& s)
 {
-    if (s.isNotEmpty()) { DBG (s); }
+    if (s.isNotEmpty()) {
+        DBG (s);
+        // unique_patchCreateObject ( s);
+    }
     
     dismissNewObject();
 }
@@ -543,9 +550,13 @@ void EditView::dismissNewObject()
     maker_.hideEditor();
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::encapsulate()
 {
-    EditCommands::encapsulate (core::Patch (viewTree_).getIdentifier());
+    EditCommands::encapsulate (getIdentifierOfView());
 }
 
 void EditView::deencapsulate()

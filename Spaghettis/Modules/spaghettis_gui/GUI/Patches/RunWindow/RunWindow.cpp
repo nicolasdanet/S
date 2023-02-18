@@ -15,7 +15,7 @@ namespace spaghettis {
 void RunWindow::hasBeenChanged()
 {
     if (isFullyInitialized()) {
-        Spaghettis()->handle (Inputs::setRunView (core::Patch (viewTree_).getIdentifier(), getBounds()));
+        Spaghettis()->handle (Inputs::setRunView (getIdentifierOfView(), getBounds()));
     }
 }
 
