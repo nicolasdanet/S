@@ -490,8 +490,10 @@ obj          276 120     garray;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE t_error unique_patchCreateObject (t_id u, juce::Point<int> pt, const juce::String& s)
+PD_FORCE t_error unique_patchCreateObject (t_id u, const juce::Point<int>& pt, const juce::String& s)
 {
+    DBG (juce::String (pt.getX()) + " " + juce::String (pt.getY()) + " / " + s);
+
     t_glist *g = unique_getPatch (u);
     
     if (g) { MakerParser (pt, s).execute (g); return PD_ERROR_NONE; }

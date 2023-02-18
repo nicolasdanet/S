@@ -78,6 +78,8 @@ static Perform positionObject (core::UniqueId, juce::Point<int>);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static Perform createObject (core::UniqueId, juce::Point<int>, juce::String);
+
 static Perform parameterObject (core::UniqueId, core::Group);
 
 // -----------------------------------------------------------------------------------------------------------

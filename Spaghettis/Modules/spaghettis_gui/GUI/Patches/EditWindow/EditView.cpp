@@ -537,10 +537,7 @@ void EditView::requestNewObject()
 
 void EditView::handleNewObject (juce::Point<int> pt, juce::String s)
 {
-    if (s.isNotEmpty()) {
-        DBG (juce::String (pt.getX()) + " " + juce::String (pt.getY()) + " / " + s);
-        // unique_patchCreateObject ( s);
-    }
+    if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (getIdentifierOfView(), pt, s)); }
     
     dismissNewObject();
 }

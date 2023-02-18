@@ -65,6 +65,12 @@ PD_LOCAL void inputs_moveFrontObject    (core::UniqueId);
 PD_LOCAL void inputs_snapObject         (core::UniqueId);
 PD_LOCAL void inputs_positionObject     (core::UniqueId, juce::Point<int> pt);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void inputs_createObject       (core::UniqueId, juce::Point<int> pt, juce::String);
+
 PD_LOCAL void inputs_parameterObject    (core::UniqueId, const core::Group&);
 
 // -----------------------------------------------------------------------------------------------------------

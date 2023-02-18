@@ -216,6 +216,15 @@ PD_LOCAL void inputs_positionObject (core::UniqueId i, juce::Point<int> pt)
     unique_objectPosition (i, pt.getX(), pt.getY());
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void inputs_createObject (core::UniqueId i, juce::Point<int> pt, juce::String s)
+{
+    unique_patchCreateObject (i, pt, s);
+}
+
 PD_LOCAL void inputs_parameterObject (core::UniqueId i, const core::Group& group)
 {
     unique_objectParameter (i, group);

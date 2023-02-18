@@ -57,6 +57,16 @@ PD_FORCE t_error    unique_objectLineDisconnect (t_id u, int m, t_id v, int n);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_FORCE t_error    unique_patchCreateObject    (t_id u, const juce::Point<int>&, const juce::String&);
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_FORCE t_error    unique_patchClose           (t_id u);
 PD_FORCE t_error    unique_patchSave            (t_id u);
 
@@ -74,16 +84,6 @@ PD_FORCE t_error    unique_patchRemove          (t_id u);
 
 PD_FORCE t_error    unique_patchEncapsulate     (t_id u);
 PD_FORCE t_error    unique_patchDeencapsulate   (t_id u);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
-
-PD_FORCE t_error    unique_patchCreateObject    (t_id u, juce::Point<int>, const juce::String&);
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
