@@ -39,7 +39,7 @@ void RunView::paint (juce::Graphics& g)
     
     if (layout_.isEmpty()) {
     //
-    juce::String text (NEEDS_TRANS ("No widget to show!"));
+    const juce::String text (NEEDS_TRANS ("Widgets"));
     
     g.setColour (patchTextColour_.get());
     g.setFont (Spaghettis()->getLookAndFeel().getObjectsFont (1.5f));

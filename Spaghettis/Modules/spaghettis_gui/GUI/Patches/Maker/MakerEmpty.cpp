@@ -12,19 +12,36 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerEmpty::MakerEmpty()
+MakerEmpty::MakerEmpty() : patchTextColour_ (Spaghettis()->getCachedColour (Tag::PatchText))
 {
+    patchTextColour_.attach (PainterPolicy::repaint (this));
     setOpaque (false);
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void MakerEmpty::paintText (juce::Graphics& g)
+{
+    const juce::String text (NEEDS_TRANS ("Documentation"));
+    
+    g.setColour (patchTextColour_.get());
+    g.setFont (Spaghettis()->getLookAndFeel().getObjectsFont (1.5f));
+    g.drawText (text, getLocalBounds(), juce::Justification::centred, true);
+}
+
 void MakerEmpty::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::makerBackground));
+    g.setColour (Spaghettis()->getColour (Colours::makerBackground));
+    g.fillRect (getLocalBounds().reduced (1));
+    
+    paintText (g);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void MakerEmpty::resized()
 {

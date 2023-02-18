@@ -33,6 +33,12 @@ public:
     void resized() override;
 
 private:
+    void paintText (juce::Graphics&);
+    
+private:
+    core::Cached<juce::Colour> patchTextColour_;
+    
+private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerEmpty)
 };
 
