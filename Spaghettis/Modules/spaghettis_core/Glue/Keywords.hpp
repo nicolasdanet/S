@@ -18,6 +18,13 @@ namespace spaghettis::core::Keywords {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
  
+    DECLARE_STRING (comment);
+    DECLARE_STRING (floatatom);
+    DECLARE_STRING (gatom);
+    DECLARE_STRING (message);
+    DECLARE_STRING (msg);
+    DECLARE_STRING (text);
+    
     DECLARE_STRING (Abstraction);
     DECLARE_STRING (AskBeforeQuit);
     DECLARE_STRING (Attributes);
