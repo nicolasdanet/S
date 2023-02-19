@@ -446,57 +446,13 @@ PD_FORCE t_error unique_patchDeencapsulate (t_id u)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-class MakerParser {
-
-public:
-    explicit MakerParser (juce::Point<int> pt, const juce::String& s) : b_ (buffer_new())
-    {
-
-    }
-    
-    ~MakerParser()
-    {
-        buffer_free (b_);
-    }
-
-    void execute (t_glist *glist)
-    {
-        // instance_loadSnippet (glist, b_);
-    }
-    
-private:
-    t_buffer *b_;
-};
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-/*
-
-s[0] ? comment | text       -> text         0 0  s[1] ...
-s[0] ? message | msg        -> msg          0 0  s[1] ...
-s[0] ? gatom   | floatatom  -> floatatom    0 0  s[1] ...
-                            -> obj          0 0  s[0] s[1] ...
-                        
-msg          36 108      hello;
-text         24 24       widgets;
-floatatom    36 192      5 0 0;
-obj          276 120     garray;
-
-*/
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 PD_FORCE t_error unique_patchCreateObject (t_id u, const juce::Point<int>& pt, const juce::String& s)
 {
-    DBG (juce::String (pt.getX()) + " " + juce::String (pt.getY()) + " / " + s);
-
     t_glist *g = unique_getPatch (u);
     
-    if (g) { MakerParser (pt, s).execute (g); return PD_ERROR_NONE; }
+    if (g) { Parser (pt, s).execute (g); return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }
