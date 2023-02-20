@@ -99,13 +99,9 @@ Parser::~Parser()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Parser::execute (t_glist *)
+void Parser::execute (t_glist *glist)
 {
-    char *s = buffer_toString (b_);
-    DBG (s);
-    PD_MEMORY_FREE (s);
-    
-    // instance_loadSnippet
+    if (buffer_getSize (b_)) { instance_loadSnippet (glist, b_); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
