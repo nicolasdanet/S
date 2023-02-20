@@ -52,6 +52,20 @@ void MakerEntry::resized()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void MakerEntry::enter()
+{
+    if (view_.getComponent()) { view_->handleNewObject (pt_, editor_.getText()); }
+}
+
+void MakerEntry::dismiss()
+{
+    if (view_.getComponent()) { view_->dismissNewObject(); }
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void MakerEntry::textEditorTextChanged (juce::TextEditor& editor)
 {
     v_.setValue (editor_.getText());
@@ -59,12 +73,12 @@ void MakerEntry::textEditorTextChanged (juce::TextEditor& editor)
 
 void MakerEntry::textEditorReturnKeyPressed (juce::TextEditor&)
 {
-    if (view_.getComponent()) { view_->handleNewObject (pt_, editor_.getText()); }
+    enter();
 }
 
 void MakerEntry::textEditorEscapeKeyPressed (juce::TextEditor&)
 {
-    if (view_.getComponent()) { view_->dismissNewObject(); }
+    dismiss();
 }
 
 // -----------------------------------------------------------------------------------------------------------
