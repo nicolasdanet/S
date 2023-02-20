@@ -19,13 +19,13 @@ namespace {
 
 void fillBufferAppendAtom (t_buffer *b, const juce::String& s)
 {
-    /*
     t_atom a;
-    const char *s = GET_SYMBOL (argv + i)->s_name;
-    t_error err = atom_withStringUnzeroed (&a, s, (int)strlen (s));
+    
+    t_error err = atom_withStringUnzeroed (&a, s.toRawUTF8(), static_cast<int> (s.getNumBytesAsUTF8()));
+    
     PD_UNUSED (err); PD_ASSERT (!err);
-    buffer_appendAtom (x, &a);
-    */
+    
+    if (!IS_SEMICOLON_OR_COMMA (&a)) { buffer_appendAtom (b, &a); }
 }
         
 void fillBuffer (t_buffer *b,
@@ -41,6 +41,8 @@ void fillBuffer (t_buffer *b,
     buffer_appendFloat (b, pt.getY());
     
     for (int i = offset; i < n; ++i) { fillBufferAppendAtom (b, t[i]); }
+    
+    buffer_appendSemicolon (b);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -80,15 +82,15 @@ Parser::~Parser()
 
 /*
 
-    s[0] ? comment | text           -> text         0 0  s[1] ...
-    s[0] ? message | msg            -> msg          0 0  s[1] ...
-    s[0] ? gatom   | floatatom      -> floatatom    0 0  s[1] ...
-                                    -> obj          0 0  s[0] s[1] ...
+s[0] ? comment | text       -> text         0 0  s[1] ...
+s[0] ? message | msg        -> msg          0 0  s[1] ...
+s[0] ? gatom   | floatatom  -> floatatom    0 0  s[1] ...
+                            -> obj          0 0  s[0] s[1] ...
                             
-    msg          36 108      hello;
-    text         24 24       widgets;
-    floatatom    36 192      5 0 0;
-    obj          276 120     garray;
+msg          36 108      hello;
+text         24 24       widgets;
+floatatom    36 192      5 0 0;
+obj          276 120     garray;
 
 */
 
@@ -101,6 +103,8 @@ void Parser::execute (t_glist *)
     char *s = buffer_toString (b_);
     DBG (s);
     PD_MEMORY_FREE (s);
+    
+    // instance_loadSnippet
 }
 
 // -----------------------------------------------------------------------------------------------------------
