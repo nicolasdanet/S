@@ -34,7 +34,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void fillBufferAppendAtom (t_buffer *b, const juce::String& s)
+void fillBufferAppendAtom (t_buffer *t, const juce::String& s)
 {
     t_atom a;
     
@@ -42,24 +42,26 @@ void fillBufferAppendAtom (t_buffer *b, const juce::String& s)
     
     PD_UNUSED (err); PD_ASSERT (!err);
     
-    if (!IS_SEMICOLON_OR_COMMA (&a)) { buffer_appendAtom (b, &a); }
+    if (!IS_SEMICOLON_OR_COMMA (&a)) { buffer_appendAtom (t, &a); }
 }
         
 void fillBuffer (t_buffer *b,
+    t_buffer *t,
     t_symbol *s,
     const juce::Point<int>& pt,
-    const juce::StringArray& t,
+    const juce::StringArray& a,
     int offset)
 {
-    const int n = t.size();
+    const int n = a.size();
     
     buffer_appendSymbol (b, sym___hash__X);
     buffer_appendSymbol (b, s);
     buffer_appendFloat (b, pt.getX());
     buffer_appendFloat (b, pt.getY());
     
-    for (int i = offset; i < n; ++i) { fillBufferAppendAtom (b, t[i]); }
+    for (int i = offset; i < n; ++i) { fillBufferAppendAtom (t, a[i]); }
     
+    buffer_serialize (b, t);
     buffer_appendSemicolon (b);
 }
 
@@ -72,19 +74,19 @@ void fillBuffer (t_buffer *b,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parser::Parser (const juce::Point<int>& pt, const juce::String& s) : b_ (buffer_new())
+Parser::Parser (const juce::Point<int>& pt, const juce::String& s) : b_ (buffer_new()), t_ (buffer_new())
 {
-    const juce::StringArray t (juce::StringArray::fromTokens (s, true));
+    const juce::StringArray a (juce::StringArray::fromTokens (s, true));
     
-    if (!t.isEmpty()) {
+    if (!a.isEmpty()) {
     //
-    const juce::String c = t[0];
+    const juce::String c = a[0];
     
-    if (c == Tag::comment       || c == Tag::text)      { fillBuffer (b_, sym_text,      pt, t, 1); }
-    else if (c == Tag::message  || c == Tag::msg)       { fillBuffer (b_, sym_msg,       pt, t, 1); }
-    else if (c == Tag::gatom    || c == Tag::floatatom) { fillBuffer (b_, sym_floatatom, pt, t, 1); }
+    if (c == Tag::comment       || c == Tag::text)      { fillBuffer (b_, t_, sym_text,      pt, a, 1); }
+    else if (c == Tag::message  || c == Tag::msg)       { fillBuffer (b_, t_, sym_msg,       pt, a, 1); }
+    else if (c == Tag::gatom    || c == Tag::floatatom) { fillBuffer (b_, t_, sym_floatatom, pt, a, 1); }
     else {
-        fillBuffer (b_, sym_obj, pt, t, 0);
+        fillBuffer (b_, t_, sym_obj, pt, a, 0);
     }
     //
     }
@@ -92,6 +94,7 @@ Parser::Parser (const juce::Point<int>& pt, const juce::String& s) : b_ (buffer_
     
 Parser::~Parser()
 {
+    buffer_free (t_);
     buffer_free (b_);
 }
 
