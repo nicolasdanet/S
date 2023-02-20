@@ -141,7 +141,7 @@ static void class_notify (t_symbol *s)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
-    outputs_classNew (s);
+    if (s != sym_canvas) { outputs_classNew (s); }
     
     #endif
 }
@@ -215,7 +215,7 @@ PD_LOCAL t_class *class_new (t_symbol *s,
     
     if (hasSignal) { class_addMethod (c, (t_method)class_setSignals, sym__signals, A_GIMME, A_NULL); }
     
-    if (newMethod && class_isBox (c)) { class_notify (class_getName (c)); }
+    if (class_isBox (c)) { class_notify (class_getName (c)); }
     
     return c;
 }
