@@ -29,7 +29,6 @@ public:
 
 public:
     void paint (juce::Graphics&) override;
-    
     void resized() override;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -37,6 +36,14 @@ public:
 // MARK: -
 
 public:
+    void handle (const juce::String&);
+    void dismiss();
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
     bool keyPressed (const juce::KeyPress&) override;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -50,6 +57,10 @@ private:
     MakerEntry entry_;
     MakerList list_;
     MakerDocumentation documentation_;
+
+private:
+    juce::Component::SafePointer<EditView> view_;
+    juce::Point<int> pt_;
     
 private:
     static constexpr int margin_ = 6;

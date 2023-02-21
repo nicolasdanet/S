@@ -10,6 +10,11 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+class MakerComponent;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 class MakerEntry :  public juce::Component,
@@ -21,7 +26,7 @@ class MakerEntry :  public juce::Component,
 // MARK: -
 
 public:
-    explicit MakerEntry (juce::Value&, EditView*, const juce::Point<int>&);
+    explicit MakerEntry (MakerComponent&, juce::Value&, EditView*, const juce::Point<int>&);
     
     ~MakerEntry();
 
@@ -33,10 +38,6 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
-public:
-    void enter();
-    void dismiss();
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -46,9 +47,16 @@ public:
     void textEditorReturnKeyPressed (juce::TextEditor&) override;
     void textEditorEscapeKeyPressed (juce::TextEditor&) override;
 
-public:
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
     void valueChanged (juce::Value&) override;
 
+private:
+    MakerComponent& owner_;
+    
 private:
     juce::TextEditor editor_;
     juce::Value v_;

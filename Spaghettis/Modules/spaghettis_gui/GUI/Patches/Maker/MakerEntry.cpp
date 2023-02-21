@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerEntry::MakerEntry (juce::Value& v, EditView* view, const juce::Point<int>& pt) :
+MakerEntry::MakerEntry (MakerComponent& owner, juce::Value& v, EditView* view, const juce::Point<int>& pt) :
+    owner_ (owner),
     v_ (v),
     view_ (view),
     pt_ (pt)
@@ -52,20 +53,6 @@ void MakerEntry::resized()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void MakerEntry::enter()
-{
-    if (view_.getComponent()) { view_->handleNewObject (pt_, editor_.getText()); }
-}
-
-void MakerEntry::dismiss()
-{
-    if (view_.getComponent()) { view_->dismissNewObject(); }
-}
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void MakerEntry::textEditorTextChanged (juce::TextEditor& editor)
 {
     v_.setValue (editor_.getText());
@@ -73,12 +60,12 @@ void MakerEntry::textEditorTextChanged (juce::TextEditor& editor)
 
 void MakerEntry::textEditorReturnKeyPressed (juce::TextEditor&)
 {
-    enter();
+    owner_.handle (editor_.getText());
 }
 
 void MakerEntry::textEditorEscapeKeyPressed (juce::TextEditor&)
 {
-    dismiss();
+    owner_.dismiss();
 }
 
 // -----------------------------------------------------------------------------------------------------------

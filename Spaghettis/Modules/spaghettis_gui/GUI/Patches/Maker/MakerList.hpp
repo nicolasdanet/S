@@ -29,7 +29,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     int getNumRows() override;
     void paintListBoxItem (int, juce::Graphics&, int, int, bool) override;
     void listWasScrolled() override;
@@ -40,7 +40,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     void valueChanged (juce::Value&) override;
 
 // -----------------------------------------------------------------------------------------------------------

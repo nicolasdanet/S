@@ -14,9 +14,11 @@ namespace spaghettis {
 
 MakerComponent::MakerComponent (EditView* view, const juce::Point<int>& pt) :
     v_(),
-    entry_ (v_, view, pt),
+    entry_ (*this, v_, view, pt),
     list_ (v_),
-    documentation_ (v_)
+    documentation_ (v_),
+    view_ (view),
+    pt_ (pt)
 {
     addAndMakeVisible (entry_);
     addAndMakeVisible (list_);
@@ -60,6 +62,20 @@ void MakerComponent::resized()
     entry_.setBounds (area.removeFromTop (getMakerEntryHeight()).reduced (space_));
     list_.setBounds (area.removeFromLeft (area.getWidth() / 3).reduced (space_));
     documentation_.setBounds (area);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void MakerComponent::handle (const juce::String& text)
+{
+    if (view_.getComponent()) { view_->handleNewObject (pt_, text); }
+}
+
+void MakerComponent::dismiss()
+{
+    if (view_.getComponent()) { view_->dismissNewObject(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
