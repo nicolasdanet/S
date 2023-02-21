@@ -56,6 +56,8 @@ private:
 
 private:
     MakerComponent& owner_;
+
+private:
     juce::TextEditor editor_;
     juce::Value v_;
     

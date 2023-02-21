@@ -21,7 +21,7 @@ class MakerList :   public juce::Component,
 // MARK: -
 
 public:
-    explicit MakerList (juce::Value&);
+    explicit MakerList (MakerComponent&, juce::Value&);
     
     ~MakerList();
 
@@ -55,6 +55,9 @@ private:
     bool isEqualToSelectedItem (const juce::String&) const;
     void sort (const juce::String& s);
     
+private:
+    MakerComponent& owner_;
+
 private:
     juce::ListBox listBox_;
     juce::StringArray items_;

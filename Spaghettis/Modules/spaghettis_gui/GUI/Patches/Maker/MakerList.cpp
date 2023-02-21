@@ -12,7 +12,10 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerList::MakerList (juce::Value& v) : items_ (Spaghettis()->getAutocomplete().getContent()), v_ (v)
+MakerList::MakerList (MakerComponent& owner, juce::Value& v) :
+    owner_ (owner),
+    items_ (Spaghettis()->getAutocomplete().getContent()),
+    v_ (v)
 {
     v_.addListener (this);
     
