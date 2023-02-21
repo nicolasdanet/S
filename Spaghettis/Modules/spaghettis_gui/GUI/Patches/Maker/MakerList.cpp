@@ -58,7 +58,7 @@ void MakerList::listBoxItemClicked (int row, const juce::MouseEvent &)
 
 void MakerList::returnKeyPressed (int)
 {
-    DBG ("!");
+    owner_.enter();
 }
 
 // -----------------------------------------------------------------------------------------------------------

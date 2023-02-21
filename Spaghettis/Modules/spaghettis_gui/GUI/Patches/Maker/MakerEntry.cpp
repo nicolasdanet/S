@@ -35,6 +35,15 @@ MakerEntry::~MakerEntry()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::String MakerEntry::getText() const
+{
+    return editor_.getText();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void MakerEntry::paint (juce::Graphics& g)
 {
     g.fillAll (Spaghettis()->getColour (Colours::makerBackground));
@@ -51,12 +60,12 @@ void MakerEntry::resized()
 
 void MakerEntry::textEditorTextChanged (juce::TextEditor& editor)
 {
-    v_.setValue (editor_.getText());
+    v_.setValue (getText());
 }
 
 void MakerEntry::textEditorReturnKeyPressed (juce::TextEditor&)
 {
-    owner_.handle (editor_.getText());
+    owner_.enter();
 }
 
 void MakerEntry::textEditorEscapeKeyPressed (juce::TextEditor&)

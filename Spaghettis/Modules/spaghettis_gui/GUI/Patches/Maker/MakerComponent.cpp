@@ -68,9 +68,9 @@ void MakerComponent::resized()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void MakerComponent::handle (const juce::String& text)
+void MakerComponent::enter()
 {
-    if (view_.getComponent()) { view_->handleNewObject (pt_, text); }
+    if (view_.getComponent()) { view_->handleNewObject (pt_, entry_.getText()); }
 }
 
 void MakerComponent::dismiss()
@@ -84,7 +84,7 @@ void MakerComponent::dismiss()
 
 bool MakerComponent::keyPressed (const juce::KeyPress& key)
 {
-    if (key.isKeyCode (juce::KeyPress::returnKey)) { DBG ("!"); return true;}
+    if (key.isKeyCode (juce::KeyPress::returnKey)) { enter(); return true; }
     
     return false;
 }
