@@ -53,6 +53,11 @@ void MakerList::listBoxItemClicked (int row, const juce::MouseEvent &)
     if (juce::isPositiveAndBelow (row, items_.size())) { v_.setValue (items_[row]); }
 }
 
+void MakerList::returnKeyPressed (int)
+{
+    DBG ("!");
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
