@@ -14,7 +14,7 @@ namespace spaghettis {
 
 MakerComponent::MakerComponent (EditView* view, const juce::Point<int>& pt) :
     v_(),
-    entry_ (*this, v_, view, pt),
+    entry_ (*this, v_),
     list_ (v_),
     documentation_ (v_),
     view_ (view),
