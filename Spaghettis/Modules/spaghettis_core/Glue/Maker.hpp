@@ -41,7 +41,7 @@ public:
 
 public:
     void execute (_glist *);
-    
+
 private:
     _buffer *b_;
     _buffer *t_;

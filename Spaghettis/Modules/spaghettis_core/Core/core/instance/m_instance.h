@@ -269,6 +269,16 @@ PD_LOCAL int        instance_snapGetSnapped         (int n);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+PD_LOCAL juce::Point<int> instance_snapped          (juce::Point<int> pt);
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void       instance_contextSetCurrent      (t_glist *glist);
 PD_LOCAL void       instance_contextSetUgen         (t_dspcontext *context);
 
