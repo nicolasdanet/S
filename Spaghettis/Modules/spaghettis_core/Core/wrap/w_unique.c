@@ -452,7 +452,7 @@ PD_FORCE t_error unique_patchCreateObject (t_id u, const juce::Point<int>& pt, c
 {
     t_glist *g = unique_getPatch (u);
     
-    if (g) { Parser (pt, s).execute (g); return PD_ERROR_NONE; }
+    if (g) { Maker (pt, s).execute (g); return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }

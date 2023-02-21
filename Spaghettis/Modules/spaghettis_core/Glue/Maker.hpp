@@ -18,22 +18,22 @@ struct _glist;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Parser {
+class Maker {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Parser (const juce::Point<int>&, const juce::String&);
+    explicit Maker (const juce::Point<int>&, const juce::String&);
     
-    ~Parser();
+    ~Maker();
 
 public:
-    Parser (const Parser&) = delete;
-    Parser (Parser&&) = delete;
-    Parser& operator = (const Parser&) = delete;
-    Parser& operator = (Parser&&) = delete;
+    Maker (const Maker&) = delete;
+    Maker (Maker&&) = delete;
+    Maker& operator = (const Maker&) = delete;
+    Maker& operator = (Maker&&) = delete;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

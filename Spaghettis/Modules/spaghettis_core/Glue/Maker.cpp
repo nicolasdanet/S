@@ -74,7 +74,7 @@ void fillBuffer (t_buffer *b,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Parser::Parser (const juce::Point<int>& pt, const juce::String& s) : b_ (buffer_new()), t_ (buffer_new())
+Maker::Maker (const juce::Point<int>& pt, const juce::String& s) : b_ (buffer_new()), t_ (buffer_new())
 {
     const juce::StringArray a (juce::StringArray::fromTokens (s, true));
     
@@ -92,7 +92,7 @@ Parser::Parser (const juce::Point<int>& pt, const juce::String& s) : b_ (buffer_
     }
 }
     
-Parser::~Parser()
+Maker::~Maker()
 {
     buffer_free (t_);
     buffer_free (b_);
@@ -102,7 +102,7 @@ Parser::~Parser()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Parser::execute (t_glist *glist)
+void Maker::execute (t_glist *glist)
 {
     if (buffer_getSize (b_)) { instance_loadSnippet (glist, b_); glist_setDirty (glist, 1); }
 }
