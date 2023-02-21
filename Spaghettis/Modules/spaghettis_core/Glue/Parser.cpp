@@ -104,7 +104,7 @@ Parser::~Parser()
 
 void Parser::execute (t_glist *glist)
 {
-    if (buffer_getSize (b_)) { instance_loadSnippet (glist, b_); }
+    if (buffer_getSize (b_)) { instance_loadSnippet (glist, b_); glist_setDirty (glist, 1); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
