@@ -36,7 +36,7 @@ bool BaseCommands::invoke (const juce::ApplicationCommandTarget::InvocationInfo&
     
     for (const auto& m : enabled_) {
         if (m.command_ == command) {
-            if (m.check_()) { m.invoke_(); return true; }
+            if (m.check_()) { m.invoke_ (info); return true; }
             else {
                 return false;
             }

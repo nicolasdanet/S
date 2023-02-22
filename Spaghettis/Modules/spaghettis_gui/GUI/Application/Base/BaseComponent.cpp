@@ -40,7 +40,7 @@ BaseComponent::BaseComponent (IconsFactory* factory, const juce::String& s) : ke
     }
     
     addMenuCommand (MenuCommand (Commands::closeWindow)
-        .setInvoke ([this]() { BaseWindow::getWindow (this)->close(); }));
+        .setInvoke ([this] (const auto&) { BaseWindow::getWindow (this)->close(); }));
 
     setWantsKeyboardFocus (true);
 }

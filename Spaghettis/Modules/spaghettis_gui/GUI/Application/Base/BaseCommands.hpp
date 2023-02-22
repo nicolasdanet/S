@@ -30,7 +30,7 @@ public:
     
 private:
     bool has (juce::CommandID);
-    bool invoke (const juce::ApplicationCommandTarget::InvocationInfo& info);
+    bool invoke (const juce::ApplicationCommandTarget::InvocationInfo&);
     juce::String name (juce::CommandID, juce::String);
     
 // -----------------------------------------------------------------------------------------------------------

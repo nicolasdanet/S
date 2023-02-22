@@ -45,7 +45,7 @@ public:
 // MARK: -
 
 public:
-    MenuCommand& setInvoke (std::function<void()> f)
+    MenuCommand& setInvoke (std::function<void (const juce::ApplicationCommandTarget::InvocationInfo&)> f)
     {
         invoke_ = f; return *this;
     }
@@ -65,13 +65,13 @@ public:
 // MARK: -
 
 private:
-    static void defaultInvoke()         { }
-    static bool defaultCheck()          { return true; }
-    static juce::String defaultName()   { return juce::String(); }
+    static void defaultInvoke (const juce::ApplicationCommandTarget::InvocationInfo&) { }
+    static bool defaultCheck() { return true; }
+    static juce::String defaultName() { return juce::String(); }
     
 private:
     juce::CommandID command_;
-    std::function<void()> invoke_;
+    std::function<void (const juce::ApplicationCommandTarget::InvocationInfo&)> invoke_;
     std::function<bool()> check_;
     std::function<juce::String()> name_;
     

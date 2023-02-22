@@ -41,10 +41,10 @@ RunComponent::RunComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     addChildComponent (runPresets_);
     
     addMenuCommand (MenuCommand (Commands::save)
-        .setInvoke ([this]() { runView_.getPatchRoot().save(); }));
+        .setInvoke ([this] (const auto&) { runView_.getPatchRoot().save(); }));
         
     addMenuCommand (MenuCommand (Commands::inspector)
-        .setInvoke ([this]() { togglePresets(); })
+        .setInvoke ([this] (const auto&) { togglePresets(); })
         .setName   ([this]() { return getPresetsMenuText (hasPresets_); }));
                                                             
     setOpaque (true); setSize (600, 300);
