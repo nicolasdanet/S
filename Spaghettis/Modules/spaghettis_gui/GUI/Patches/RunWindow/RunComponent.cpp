@@ -40,14 +40,12 @@ RunComponent::RunComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     addAndMakeVisible (runView_);
     addChildComponent (runPresets_);
     
-    addMenuCommand (MenuCommand (Commands::save,        [this]() { runView_.getPatchRoot().save(); }));
-    addMenuCommand (MenuCommand (Commands::inspector,   [this]() { togglePresets(); },
-                                                        []() { return true; },
-                                                        [this]()
-                                                        {
-                                                            return getPresetsMenuText (hasPresets_);
-                                                        }
-                                                        ));
+    addMenuCommand (MenuCommand (Commands::save)
+        .setInvoke ([this]() { runView_.getPatchRoot().save(); }));
+        
+    addMenuCommand (MenuCommand (Commands::inspector)
+        .setInvoke ([this]() { togglePresets(); })
+        .setName   ([this]() { return getPresetsMenuText (hasPresets_); }));
                                                             
     setOpaque (true); setSize (600, 300);
 }

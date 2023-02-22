@@ -39,7 +39,8 @@ BaseComponent::BaseComponent (IconsFactory* factory, const juce::String& s) : ke
     //
     }
     
-    addMenuCommand (MenuCommand (Commands::closeWindow, [this]() { BaseWindow::getWindow (this)->close(); }));
+    addMenuCommand (MenuCommand (Commands::closeWindow)
+        .setInvoke ([this]() { BaseWindow::getWindow (this)->close(); }));
 
     setWantsKeyboardFocus (true);
 }

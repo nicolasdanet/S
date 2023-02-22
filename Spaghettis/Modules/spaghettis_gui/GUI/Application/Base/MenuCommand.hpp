@@ -24,22 +24,10 @@ friend class BaseCommands;
 // MARK: -
 
 public:
-    explicit MenuCommand (juce::CommandID c,
-        std::function<void()> f         = MenuCommand::defaultInvoke,
-        std::function<bool()> g         = MenuCommand::defaultCheck,
-        std::function<juce::String()> h = MenuCommand::defaultName) :
-            command_ (c),
-            invoke_ (f),
-            check_ (g),
-            name_ (h)
-    {
-    }
-
-public:
-    explicit MenuCommand (juce::CommandID c) :  command_ (c),
-                                                invoke_ (MenuCommand::defaultInvoke),
-                                                check_ (MenuCommand::defaultCheck),
-                                                name_ (MenuCommand::defaultName)
+    explicit MenuCommand (juce::CommandID c) : command_ (c),
+        invoke_ (MenuCommand::defaultInvoke),
+        check_  (MenuCommand::defaultCheck),
+        name_   (MenuCommand::defaultName)
     {
     }
 
@@ -64,12 +52,12 @@ public:
     
     MenuCommand& setCheck (std::function<bool()> f)
     {
-        check_ = f; return *this;
+        check_ = f;  return *this;
     }
     
     MenuCommand& setName (std::function<juce::String()> f)
     {
-        name_ = f; return *this;
+        name_ = f;   return *this;
     }
     
 // -----------------------------------------------------------------------------------------------------------
