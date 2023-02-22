@@ -30,7 +30,7 @@ public:
     
 private:
     bool has (juce::CommandID);
-    bool execute (juce::CommandID);
+    bool invoke (juce::CommandID);
     juce::String name (juce::CommandID, juce::String);
     
 // -----------------------------------------------------------------------------------------------------------

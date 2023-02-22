@@ -25,16 +25,24 @@ friend class BaseCommands;
 
 public:
     explicit MenuCommand (juce::CommandID c,
-        std::function<void()> f         = MenuCommand::defaultExecute,
+        std::function<void()> f         = MenuCommand::defaultInvoke,
         std::function<bool()> g         = MenuCommand::defaultCheck,
         std::function<juce::String()> h = MenuCommand::defaultName) :
             command_ (c),
-            execute_ (f),
+            invoke_ (f),
             check_ (g),
             name_ (h)
     {
     }
-    
+
+public:
+    explicit MenuCommand (juce::CommandID c) :  command_ (c),
+                                                invoke_ (MenuCommand::defaultInvoke),
+                                                check_ (MenuCommand::defaultCheck),
+                                                name_ (MenuCommand::defaultName)
+    {
+    }
+
 public:
     ~MenuCommand() = default;
 
@@ -48,14 +56,34 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    MenuCommand& setInvoke (std::function<void()> f)
+    {
+        invoke_ = f; return *this;
+    }
+    
+    MenuCommand& setCheck (std::function<bool()> f)
+    {
+        check_ = f; return *this;
+    }
+    
+    MenuCommand& setName (std::function<juce::String()> f)
+    {
+        name_ = f; return *this;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
-    static void defaultExecute()        { }
+    static void defaultInvoke()         { }
     static bool defaultCheck()          { return true; }
     static juce::String defaultName()   { return juce::String(); }
     
 private:
     juce::CommandID command_;
-    std::function<void()> execute_;
+    std::function<void()> invoke_;
     std::function<bool()> check_;
     std::function<juce::String()> name_;
     
