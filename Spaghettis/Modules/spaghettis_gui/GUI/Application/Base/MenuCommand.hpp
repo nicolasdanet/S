@@ -68,6 +68,16 @@ private:
     static void defaultInvoke (const juce::ApplicationCommandTarget::InvocationInfo&) { }
     static bool defaultCheck() { return true; }
     static juce::String defaultName() { return juce::String(); }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static bool isShortcut (const juce::ApplicationCommandTarget::InvocationInfo& info)
+    {
+        return (info.invocationMethod == juce::ApplicationCommandTarget::InvocationInfo::fromKeyPress);
+    }
     
 private:
     juce::CommandID command_;

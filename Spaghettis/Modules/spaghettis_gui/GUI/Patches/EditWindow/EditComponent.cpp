@@ -78,13 +78,7 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
         .setCheck  ([this]() { return editView_.hasPaste(); }));
     
     addMenuCommand (MenuCommand (Commands::addObject)
-        .setInvoke (
-            [this] (const auto& i)
-            {
-                const bool menu = (i.invocationMethod == ApplicationCommandTarget::InvocationInfo::fromMenu);
-                editView_.requestNewObject (!menu);
-            }
-            ));
+        .setInvoke ([this] (const auto& i) { editView_.requestNewObject (MenuCommand::isShortcut (i)); }));
     
     addMenuCommand (MenuCommand (Commands::encapsulate)
         .setInvoke ([this] (const auto&) { editView_.encapsulate(); })
