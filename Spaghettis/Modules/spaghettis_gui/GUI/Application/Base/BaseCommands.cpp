@@ -30,8 +30,10 @@ bool BaseCommands::has (juce::CommandID command)
     return false;
 }
 
-bool BaseCommands::invoke (juce::CommandID command)
+bool BaseCommands::invoke (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
+    const juce::CommandID command (info.commandID);
+    
     for (const auto& m : enabled_) {
         if (m.command_ == command) {
             if (m.check_()) { m.invoke_(); return true; }
@@ -395,7 +397,7 @@ bool performDefaultCommand (const juce::ApplicationCommandTarget::InvocationInfo
 
 bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
-    if (invoke (info.commandID) == false) { return performDefaultCommand (info); }
+    if (invoke (info) == false) { return performDefaultCommand (info); }
     
     return true;
 }
