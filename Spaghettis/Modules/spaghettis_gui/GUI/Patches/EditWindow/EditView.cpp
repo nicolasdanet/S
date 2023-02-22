@@ -526,10 +526,11 @@ void EditView::remove()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::requestNewObject()
+void EditView::requestNewObject (bool useMouseCoordinates)
 {
     if (!isAbstractionOrInside()) {
     //
+    if (useMouseCoordinates) { DBG ("MOUSE"); } else { DBG ("MENU"); }
     maker_.showEditor (getGlobalMousePosition(), getRealMousePosition());
     //
     }

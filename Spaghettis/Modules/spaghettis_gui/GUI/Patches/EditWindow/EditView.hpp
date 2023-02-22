@@ -139,7 +139,7 @@ public:
     void remove();
 
 public:
-    void requestNewObject();
+    void requestNewObject (bool);
     void handleNewObject (juce::Point<int>, juce::String);
     void dismissNewObject();
     
