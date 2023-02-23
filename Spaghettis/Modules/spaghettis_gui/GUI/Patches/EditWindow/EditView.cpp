@@ -185,6 +185,11 @@ std::optional<juce::Point<int>> EditView::getRealPositionOfSelectedObjects (juce
     return pt;
 }
 
+juce::Rectangle<int> EditView::getGlobalVisibleArea() const
+{
+    return getPort()->getGlobalVisibleArea();
+}
+
 juce::Rectangle<int> EditView::getRealVisibleArea() const
 {
     return getPort()->getRealVisibleArea();
@@ -526,14 +531,14 @@ void EditView::remove()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::requestNewObject (bool useMouseCoordinates)
+void EditView::requestNewObject (bool useMouse)
 {
     if (!isAbstractionOrInside()) {
     //
-    if (useMouseCoordinates) { maker_.showEditor (getGlobalMousePosition(), getRealMousePosition()); }
-    else {
+    const auto a (useMouse ? getGlobalMousePosition() : getGlobalVisibleArea().getCentre());
+    const auto b (useMouse ? getRealMousePosition()   : getRealVisibleArea().getCentre());
     
-    }
+    maker_.showEditor (a, b);
     //
     }
 }

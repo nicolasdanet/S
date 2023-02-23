@@ -84,6 +84,7 @@ private:
     std::optional<juce::Point<int>> getGlobalMousePosition() const;
     std::optional<juce::Point<int>> getRealMousePosition() const;
     std::optional<juce::Point<int>> getRealPositionOfSelectedObjects (juce::Point<int>) const;
+    juce::Rectangle<int> getGlobalVisibleArea() const;
     juce::Rectangle<int> getRealVisibleArea() const;
     
 // -----------------------------------------------------------------------------------------------------------

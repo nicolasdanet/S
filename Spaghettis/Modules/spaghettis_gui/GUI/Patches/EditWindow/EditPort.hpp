@@ -33,6 +33,7 @@ public:
 // MARK: -
 
 public:
+    juce::Rectangle<int> getGlobalVisibleArea() const;
     juce::Rectangle<int> getRealVisibleArea() const;
 
 // -----------------------------------------------------------------------------------------------------------
