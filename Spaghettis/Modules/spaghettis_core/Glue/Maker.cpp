@@ -36,6 +36,8 @@ namespace {
 
 void fillBufferAppendAtom (t_buffer *t, const juce::String& s)
 {
+    if (s.isNotEmpty()) {
+    //
     t_atom a;
     
     t_error err = atom_withStringUnzeroed (&a, s.toRawUTF8(), static_cast<int> (s.getNumBytesAsUTF8()));
@@ -43,6 +45,8 @@ void fillBufferAppendAtom (t_buffer *t, const juce::String& s)
     PD_UNUSED (err); PD_ASSERT (!err);
     
     if (!IS_SEMICOLON_OR_COMMA (&a)) { buffer_appendAtom (t, &a); }
+    //
+    }
 }
         
 void fillBuffer (t_buffer *b,

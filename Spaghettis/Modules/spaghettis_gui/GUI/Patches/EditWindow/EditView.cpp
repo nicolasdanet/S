@@ -530,8 +530,10 @@ void EditView::requestNewObject (bool useMouseCoordinates)
 {
     if (!isAbstractionOrInside()) {
     //
-    if (useMouseCoordinates) { DBG ("MOUSE"); } else { DBG ("MENU"); }
-    maker_.showEditor (getGlobalMousePosition(), getRealMousePosition());
+    if (useMouseCoordinates) { maker_.showEditor (getGlobalMousePosition(), getRealMousePosition()); }
+    else {
+    
+    }
     //
     }
 }
