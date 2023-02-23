@@ -92,6 +92,8 @@ juce::String BaseCommands::getCommandText (juce::CommandID command)
     case Commands::zoomOut              : return NEEDS_TRANS ("Zoom Out");
     case Commands::zoomReset            : return NEEDS_TRANS ("Actual size");
     case Commands::inspector            : return NEEDS_TRANS ("Show Inspector");
+    case Commands::newRunView           : return NEEDS_TRANS ("New Run View");
+    case Commands::newEditView          : return NEEDS_TRANS ("New Edit View");
     case Commands::clearConsole         : return NEEDS_TRANS ("Clear Console");
     case Commands::devices              : return NEEDS_TRANS ("Devices...");
     case Commands::dspSwitch            : return NEEDS_TRANS ("Run DSP");
@@ -133,6 +135,8 @@ juce::String BaseCommands::getCommandDescription (juce::CommandID command)
     case Commands::zoomOut              : return NEEDS_TRANS ("Decrease magnification");
     case Commands::zoomReset            : return NEEDS_TRANS ("Reset to original size");
     case Commands::inspector            : return NEEDS_TRANS ("Show/Hide inspector side panel");
+    case Commands::newRunView           : return NEEDS_TRANS ("Open new run view");
+    case Commands::newEditView          : return NEEDS_TRANS ("Open new edit view");
     case Commands::clearConsole         : return NEEDS_TRANS ("Clear the console");
     case Commands::devices              : return NEEDS_TRANS ("Audio/MIDI devices");
     case Commands::dspSwitch            : return NEEDS_TRANS ("DSP On/Off");
@@ -285,6 +289,14 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
         r.addDefaultKeypress ('i', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
         break;
+    case Commands::newRunView :
+        r.setInfo (text, description, view, 0);
+        r.setActive (has (command));
+        break;
+    case Commands::newEditView :
+        r.setInfo (text, description, view, 0);
+        r.setActive (has (command));
+        break;
     case Commands::clearConsole :
         r.setInfo (text, description, view, 0);
         r.addDefaultKeypress ('l', juce::ModifierKeys::commandModifier);
@@ -333,6 +345,8 @@ void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
             Commands::zoomOut,
             Commands::zoomReset,
             Commands::inspector,
+            Commands::newRunView,
+            Commands::newEditView,
             Commands::clearConsole,
             Commands::devices,
             Commands::dspSwitch

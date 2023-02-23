@@ -52,6 +52,8 @@ enum CommandIds : juce::CommandID {
     zoomOut,
     zoomReset,
     inspector,
+    newRunView,
+    newEditView,
     clearConsole,
     devices,
     dspSwitch
