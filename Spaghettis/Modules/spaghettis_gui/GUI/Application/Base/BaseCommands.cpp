@@ -92,8 +92,8 @@ juce::String BaseCommands::getCommandText (juce::CommandID command)
     case Commands::zoomOut              : return NEEDS_TRANS ("Zoom Out");
     case Commands::zoomReset            : return NEEDS_TRANS ("Actual size");
     case Commands::inspector            : return NEEDS_TRANS ("Show Inspector");
-    case Commands::newRunView           : return NEEDS_TRANS ("New Run View");
-    case Commands::newEditView          : return NEEDS_TRANS ("New Edit View");
+    case Commands::newRunView           : return NEEDS_TRANS ("Open Run");
+    case Commands::newEditView          : return NEEDS_TRANS ("Open Edit");
     case Commands::clearConsole         : return NEEDS_TRANS ("Clear Console");
     case Commands::devices              : return NEEDS_TRANS ("Devices...");
     case Commands::dspSwitch            : return NEEDS_TRANS ("Run DSP");

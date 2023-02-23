@@ -72,10 +72,10 @@ juce::PopupMenu MenuModel::getMenuForIndex (int n, const juce::String&)
     menu.addSeparator();
     menu.addCommandItem (commandManager_, Commands::zoomReset);
     menu.addSeparator();
-    menu.addCommandItem (commandManager_, Commands::inspector);
-    menu.addSeparator();
     menu.addCommandItem (commandManager_, Commands::newRunView);
     menu.addCommandItem (commandManager_, Commands::newEditView);
+    menu.addSeparator();
+    menu.addCommandItem (commandManager_, Commands::inspector);
     menu.addSeparator();
     menu.addCommandItem (commandManager_, Commands::clearConsole);
     //
