@@ -120,7 +120,13 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     addMenuCommand (MenuCommand (Commands::inspector)
         .setInvoke ([this] (const auto&) { toggleInspector(); })
         .setName   ([this]() { return getInspectorMenuText (editInspector_); }));
-                                                            
+    
+    addMenuCommand (MenuCommand (Commands::newRunView)
+        .setInvoke ([this] (const auto&) { editView_.getPatchRoot().openRunWindow(); }));
+    
+    addMenuCommand (MenuCommand (Commands::newEditView)
+        .setInvoke ([this] (const auto&) { editView_.getPatchRoot().openEditWindow(); }));
+        
     setOpaque (true); setSize (600, 300);
 }
     
