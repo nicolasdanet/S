@@ -531,14 +531,27 @@ void EditView::remove()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::requestNewObject (bool useMouse)
+void EditView::openNewObject (bool isShortcut)
+{
+    const auto a (isShortcut ? getGlobalMousePosition() : getGlobalVisibleArea().getCentre());
+    const auto b (isShortcut ? getRealMousePosition()   : getRealVisibleArea().getCentre());
+    
+    maker_.showEditor (a, b);
+}
+
+void EditView::requestNewObject (bool isShortcut)
 {
     if (!isAbstractionOrInside()) {
     //
-    const auto a (useMouse ? getGlobalMousePosition() : getGlobalVisibleArea().getCentre());
-    const auto b (useMouse ? getRealMousePosition()   : getRealVisibleArea().getCentre());
+    auto f = [isShortcut, p = juce::Component::SafePointer<EditView> (this)]()
+    {
+        if (p.getComponent()) { p.getComponent()->openNewObject (isShortcut); }
+    };
     
-    maker_.showEditor (a, b);
+    if (isShortcut) { juce::Timer::callAfterDelay (100, f); }
+    else {
+        f();
+    }
     //
     }
 }

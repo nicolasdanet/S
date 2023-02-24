@@ -143,6 +143,9 @@ public:
     void requestNewObject (bool);
     void handleNewObject (juce::Point<int>, juce::String);
     void dismissNewObject();
+
+private:
+    void openNewObject (bool);
     
 public:
     void encapsulate();
