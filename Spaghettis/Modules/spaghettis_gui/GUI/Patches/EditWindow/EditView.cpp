@@ -548,10 +548,11 @@ void EditView::requestNewObject (bool isShortcut)
         if (p.getComponent()) { p.getComponent()->openNewObject (isShortcut); }
     };
     
-    if (isShortcut) { juce::Timer::callAfterDelay (100, f); }
-    else {
-        f();
-    }
+    #if JUCE_LINUX
+    juce::Timer::callAfterDelay (100, f);
+    #else
+    f();
+    #endif
     //
     }
 }
