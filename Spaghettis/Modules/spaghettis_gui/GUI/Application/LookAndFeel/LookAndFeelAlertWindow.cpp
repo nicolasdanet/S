@@ -76,6 +76,10 @@ void createAlertWindowAddButtons (const std::unique_ptr<juce::AlertWindow>& w,
     }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void createAlertWindowSetBounds (const std::unique_ptr<juce::AlertWindow>& w)
 {
     w->setBounds (w->getBounds().expanded (20));
