@@ -37,7 +37,6 @@ protected:
 
 public:
     void setDirtyFlag (bool) const;
-    void grabFocus();
     void close();
     
 // -----------------------------------------------------------------------------------------------------------
@@ -46,10 +45,10 @@ public:
 
 public:
     bool isFullyInitialized() const;
+    void grabFocus();
     
 private:
     void timerCallback() override;
-
     void timerStart();
     
 // -----------------------------------------------------------------------------------------------------------

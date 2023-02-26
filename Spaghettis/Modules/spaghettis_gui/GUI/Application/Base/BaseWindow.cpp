@@ -77,11 +77,6 @@ void BaseWindow::setDirtyFlag (bool isDirty) const
     if (peer) { peer->setHasChangedSinceSaved (isDirty); }
 }
 
-void BaseWindow::grabFocus()
-{
-    timerStart();
-}
-
 void BaseWindow::close()
 {
     closeButtonPressed();
@@ -127,14 +122,19 @@ void BaseWindow::timerStart()
 {
     const int primeInterval = 19; timerCount_ = 0; startTimer (primeInterval);
 }
-    
+
+void BaseWindow::grabFocus()
+{
+    timerStart();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void BaseWindow::activeWindowStatusChanged()
 {
-    if (isActiveWindow()) { ensureAlertWindowsAlwaysOnTop(); timerStart(); }
+    if (isActiveWindow()) { ensureAlertWindowsAlwaysOnTop(); grabFocus(); }
 }
 
 void BaseWindow::moved()
