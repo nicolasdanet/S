@@ -564,7 +564,7 @@ void EditView::handleNewObject (juce::Point<int> pt, juce::String s)
     dismissNewObject();
     
     #if JUCE_LINUX
-    BaseWindow::getWindow (this)->toFront (true);
+    BaseWindow::getWindow (this)->grabFocus();
     #endif
 }
 

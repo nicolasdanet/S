@@ -77,6 +77,11 @@ void BaseWindow::setDirtyFlag (bool isDirty) const
     if (peer) { peer->setHasChangedSinceSaved (isDirty); }
 }
 
+void BaseWindow::grabFocus()
+{
+    timerStart();
+}
+
 void BaseWindow::close()
 {
     closeButtonPressed();

@@ -37,7 +37,7 @@ protected:
 
 public:
     void setDirtyFlag (bool) const;
-    
+    void grabFocus();
     void close();
     
 // -----------------------------------------------------------------------------------------------------------
