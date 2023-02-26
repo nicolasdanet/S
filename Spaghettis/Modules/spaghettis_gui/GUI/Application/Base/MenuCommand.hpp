@@ -74,9 +74,9 @@ private:
 // MARK: -
 
 public:
-    static bool isShortcut (const juce::ApplicationCommandTarget::InvocationInfo& info)
+    static bool isFromMenu (const juce::ApplicationCommandTarget::InvocationInfo& info)
     {
-        return (info.invocationMethod == juce::ApplicationCommandTarget::InvocationInfo::fromKeyPress);
+        return (info.invocationMethod == juce::ApplicationCommandTarget::InvocationInfo::fromMenu);
     }
     
 private:
