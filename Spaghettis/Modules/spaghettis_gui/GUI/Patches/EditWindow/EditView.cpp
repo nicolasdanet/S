@@ -562,6 +562,10 @@ void EditView::handleNewObject (juce::Point<int> pt, juce::String s)
     if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (getIdentifierOfView(), pt, s)); }
     
     dismissNewObject();
+    
+    #if JUCE_LINUX
+    BaseWindow::getWindow (this)->toFront (true);
+    #endif
 }
 
 void EditView::dismissNewObject()
