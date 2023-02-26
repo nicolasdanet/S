@@ -533,8 +533,19 @@ void EditView::remove()
 
 void EditView::openNewObject (bool isFromMenu)
 {
-    const auto a (isFromMenu ? getGlobalVisibleArea().getCentre() : getGlobalMousePosition());
-    const auto b (isFromMenu ? getRealVisibleArea().getCentre()   : getRealMousePosition());
+    std::optional<juce::Point<int>> a (getGlobalMousePosition());
+    std::optional<juce::Point<int>> b (getRealMousePosition());
+    
+    bool useCentre = isFromMenu;
+    
+    #if JUCE_LINUX
+    useCentre |= !a.has_value();
+    #endif
+    
+    if (useCentre) {
+        a = getGlobalVisibleArea().getCentre();
+        b = getRealVisibleArea().getCentre();
+    }
     
     maker_.showEditor (a, b);
 }
