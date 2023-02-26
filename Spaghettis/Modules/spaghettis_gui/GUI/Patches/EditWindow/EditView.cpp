@@ -562,15 +562,15 @@ void EditView::handleNewObject (juce::Point<int> pt, juce::String s)
     if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (getIdentifierOfView(), pt, s)); }
     
     dismissNewObject();
-    
-    #if JUCE_LINUX
-    BaseWindow::getWindow (this)->grabFocus();
-    #endif
 }
 
 void EditView::dismissNewObject()
 {
     maker_.hideEditor();
+    
+    #if JUCE_LINUX
+    BaseWindow::getWindow (this)->grabFocus();
+    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------
