@@ -153,7 +153,6 @@
 #include "GUI/Patches/Maker/MakerComponent.hpp"
 
 #include "GUI/Patches/EditWindow/DragAction.hpp"
-#include "GUI/Patches/EditWindow/DragFlags.hpp"
 #include "GUI/Patches/EditWindow/EditCommands.hpp"
 #include "GUI/Patches/EditWindow/EditFactory.hpp"
 #include "GUI/Patches/EditWindow/ActionConnect.hpp"

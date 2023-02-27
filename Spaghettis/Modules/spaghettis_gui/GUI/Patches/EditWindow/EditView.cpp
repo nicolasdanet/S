@@ -53,6 +53,16 @@ void EditView::detach (EditInspector* inspector)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+enum DragFlags
+{
+    // bool isChild, bool isSelectedObject
+
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::mouseDragProceed (const juce::MouseEvent& e, bool isChild, bool isSelectedObject)
 {
     if (!drag_) {
