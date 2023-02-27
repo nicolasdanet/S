@@ -122,6 +122,17 @@ void PinComponent::mouseExit (const juce::MouseEvent&)
     isOver_ = false; repaint();
 }
 
+void PinComponent::mouseDrag (const juce::MouseEvent& e)
+{
+    DBG ("###");
+}
+
+void PinComponent::mouseUp (const juce::MouseEvent& e)
+{
+    DBG ("UP");
+}
+
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
