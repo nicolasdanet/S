@@ -83,14 +83,23 @@ void EditView::handleMouseDown (const juce::MouseEvent& e)
     mouseDown (e.getEventRelativeTo (this));
 }
 
-void EditView::handleMouseDrag (const juce::MouseEvent& e, bool isSelectedObject)
+void EditView::handleMouseUp (const juce::MouseEvent& e)
+{
+    mouseUp (e.getEventRelativeTo (this));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditView::handleMouseDragFromObject (const juce::MouseEvent& e, bool isSelectedObject)
 {
     mouseDragProceed (e.getEventRelativeTo (this), true, isSelectedObject);
 }
 
-void EditView::handleMouseUp (const juce::MouseEvent& e)
+void EditView::handleMouseDragFromLine (const juce::MouseEvent& e)
 {
-    mouseUp (e.getEventRelativeTo (this));
+    mouseDragProceed (e.getEventRelativeTo (this), true, false);
 }
 
 // -----------------------------------------------------------------------------------------------------------

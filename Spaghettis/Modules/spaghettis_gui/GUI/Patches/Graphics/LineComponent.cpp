@@ -161,7 +161,7 @@ void LineComponent::mouseDown (const juce::MouseEvent& e)
 
 void LineComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) { view->handleMouseDrag (e, false); }
+    if (auto view = View::asEditView (view_)) { view->handleMouseDragFromLine (e); }
 }
 
 void LineComponent::mouseUp (const juce::MouseEvent& e)
