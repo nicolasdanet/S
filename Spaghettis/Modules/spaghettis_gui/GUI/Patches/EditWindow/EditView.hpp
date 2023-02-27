@@ -62,6 +62,13 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    enum class DragFlag { None, Selected };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     void handleMouseDown (const juce::MouseEvent&);
     void handleMouseUp (const juce::MouseEvent&);
@@ -72,7 +79,7 @@ public:
     
 private:
     void mouseDown (const juce::MouseEvent&) override;
-    void mouseDragProceed (const juce::MouseEvent&, bool, bool);
+    void mouseDragProceed (const juce::MouseEvent&, bool, DragFlag flag = DragFlag::None);
     void mouseDrag (const juce::MouseEvent&) override;
     void mouseUp (const juce::MouseEvent&) override;
 
