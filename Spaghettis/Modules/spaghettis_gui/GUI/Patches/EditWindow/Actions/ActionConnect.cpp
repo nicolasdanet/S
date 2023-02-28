@@ -54,7 +54,10 @@ void ActionConnect::mouseDrag (const juce::MouseEvent& e)
 
 void ActionConnect::mouseUp (const juce::MouseEvent& e)
 {
-    connectComponent_ = nullptr;
+    if (connectComponent_) {
+        view_->removeChildComponent (connectComponent_.get());
+        connectComponent_ = nullptr;
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
