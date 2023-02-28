@@ -36,8 +36,19 @@ public:
     void mouseDrag (const juce::MouseEvent&) override;
     void mouseUp (const juce::MouseEvent&) override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void createComponent (const juce::Rectangle<int>&);
+    void updateComponent (const juce::Rectangle<int>&);
+    
 private:
     EditView* view_;
+
+private:
+    std::unique_ptr<ActionConnectComponent> connectComponent_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ActionConnect)
