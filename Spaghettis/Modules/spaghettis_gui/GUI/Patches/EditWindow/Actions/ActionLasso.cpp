@@ -54,9 +54,13 @@ void ActionLasso::mouseDrag (const juce::MouseEvent& e)
 
 void ActionLasso::mouseUp (const juce::MouseEvent&)
 {
-    if (lassoComponent_) { view_->select (lassoComponent_->getBounds()); }
-    
+    if (lassoComponent_) {
+    //
+    view_->removeChildComponent (lassoComponent_.get());
+    view_->select (lassoComponent_->getBounds());
     lassoComponent_ = nullptr;
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
