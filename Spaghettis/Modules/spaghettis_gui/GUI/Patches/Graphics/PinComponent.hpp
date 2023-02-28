@@ -52,6 +52,13 @@ public:
 // MARK: -
 
 public:
+    void setHighlighted (bool);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void mouseEnter (const juce::MouseEvent&) override;
     void mouseExit (const juce::MouseEvent&) override;
     void mouseDrag (const juce::MouseEvent&) override;

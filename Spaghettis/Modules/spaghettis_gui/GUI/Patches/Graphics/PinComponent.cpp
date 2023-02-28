@@ -112,14 +112,23 @@ void PinComponent::paint (juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PinComponent::setHighlighted (bool isHighlighted)
+{
+    if (isOver_ != isHighlighted) { isOver_ = isHighlighted; repaint(); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void PinComponent::mouseEnter (const juce::MouseEvent&)
 {
-    isOver_ = true;  repaint();
+    setHighlighted (true);
 }
 
 void PinComponent::mouseExit (const juce::MouseEvent&)
 {
-    isOver_ = false; repaint();
+    setHighlighted (false);
 }
 
 void PinComponent::mouseDrag (const juce::MouseEvent& e)
