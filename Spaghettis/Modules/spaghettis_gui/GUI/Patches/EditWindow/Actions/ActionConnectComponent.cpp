@@ -45,11 +45,7 @@ void ActionConnectComponent::set (const juce::Point<int>& pt)
 
 void ActionConnectComponent::update()
 {
-    const juce::Rectangle<int> bounds (start_, end_);
-    
-    DBG (bounds.toString());
-    
-    setBounds (bounds);
+    setBounds (juce::Rectangle<int> (start_, end_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
