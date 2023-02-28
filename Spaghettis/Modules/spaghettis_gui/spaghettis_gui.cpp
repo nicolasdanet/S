@@ -83,6 +83,7 @@
 #include "GUI/Patches/Maker/MakerComponent.cpp"
 
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
+#include "GUI/Patches/EditWindow/Actions/PinTracker.cpp"
 #include "GUI/Patches/EditWindow/Actions/ActionConnectComponent.cpp"
 #include "GUI/Patches/EditWindow/Actions/ActionConnect.cpp"
 #include "GUI/Patches/EditWindow/Actions/ActionLassoComponent.cpp"

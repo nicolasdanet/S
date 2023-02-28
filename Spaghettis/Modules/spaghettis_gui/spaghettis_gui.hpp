@@ -155,6 +155,7 @@
 #include "GUI/Patches/EditWindow/DragAction.hpp"
 #include "GUI/Patches/EditWindow/EditCommands.hpp"
 #include "GUI/Patches/EditWindow/EditFactory.hpp"
+#include "GUI/Patches/EditWindow/Actions/PinTracker.hpp"
 #include "GUI/Patches/EditWindow/Actions/ActionConnectComponent.hpp"
 #include "GUI/Patches/EditWindow/Actions/ActionConnect.hpp"
 #include "GUI/Patches/EditWindow/Actions/ActionLassoComponent.hpp"
