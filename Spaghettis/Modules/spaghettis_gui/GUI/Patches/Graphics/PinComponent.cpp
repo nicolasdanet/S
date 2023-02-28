@@ -124,14 +124,13 @@ void PinComponent::mouseExit (const juce::MouseEvent&)
 
 void PinComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    DBG ("###");
+    if (auto view = View::asEditView (view_)) { view->handleMouseDragFromPin (e); }
 }
 
 void PinComponent::mouseUp (const juce::MouseEvent& e)
 {
-    DBG ("UP");
+    if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
 }
-
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

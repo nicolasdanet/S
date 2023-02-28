@@ -63,7 +63,7 @@ public:
 // MARK: -
 
 private:
-    enum class DragFlag { None, Selected };
+    enum class DragFlag { None, Selected, Pin };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -76,6 +76,7 @@ public:
 public:
     void handleMouseDragFromObject (const juce::MouseEvent&, bool);
     void handleMouseDragFromLine (const juce::MouseEvent&);
+    void handleMouseDragFromPin (const juce::MouseEvent&);
     
 private:
     void mouseDown (const juce::MouseEvent&) override;

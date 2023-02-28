@@ -14,6 +14,7 @@ namespace spaghettis {
 
 ActionConnect::ActionConnect (EditView* view) : view_ (view)
 {
+    DBG ("!");
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -22,10 +23,12 @@ ActionConnect::ActionConnect (EditView* view) : view_ (view)
 
 void ActionConnect::mouseDrag (const juce::MouseEvent& e)
 {
+    DBG ("Drag");
 }
 
 void ActionConnect::mouseUp (const juce::MouseEvent& e)
 {
+    DBG ("Up");
 }
 
 // -----------------------------------------------------------------------------------------------------------

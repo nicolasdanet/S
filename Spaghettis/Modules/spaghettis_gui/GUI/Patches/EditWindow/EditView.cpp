@@ -56,9 +56,10 @@ void EditView::detach (EditInspector* inspector)
 void EditView::mouseDragProceed (const juce::MouseEvent& e, bool isChild, DragFlag flag)
 {
     if (!drag_) {
-        if (Mouse::isCommandClick (e))          { drag_ = std::make_unique<ActionHand> (this);  }
-        else if (flag == DragFlag::Selected)    { drag_ = std::make_unique<ActionMove> (this);  }
-        else if (!isChild)                      { drag_ = std::make_unique<ActionLasso> (this); }
+        if (Mouse::isCommandClick (e))          { drag_ = std::make_unique<ActionHand> (this);      }
+        else if (flag == DragFlag::Selected)    { drag_ = std::make_unique<ActionMove> (this);      }
+        else if (flag == DragFlag::Pin)         { drag_ = std::make_unique<ActionConnect> (this);   }
+        else if (!isChild)                      { drag_ = std::make_unique<ActionLasso> (this);     }
     }
 
     if (drag_) { drag_->mouseDrag (e); }
@@ -90,6 +91,11 @@ void EditView::handleMouseDragFromObject (const juce::MouseEvent& e, bool isSele
 void EditView::handleMouseDragFromLine (const juce::MouseEvent& e)
 {
     mouseDragProceed (e.getEventRelativeTo (this), true);
+}
+
+void EditView::handleMouseDragFromPin (const juce::MouseEvent& e)
+{
+    mouseDragProceed (e.getEventRelativeTo (this), true, DragFlag::Pin);
 }
 
 // -----------------------------------------------------------------------------------------------------------
