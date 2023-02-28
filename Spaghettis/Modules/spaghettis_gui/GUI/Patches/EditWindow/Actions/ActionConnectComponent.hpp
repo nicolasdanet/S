@@ -18,7 +18,7 @@ class ActionConnectComponent : public juce::Component {
 // MARK: -
 
 public:
-    explicit ActionConnectComponent (const juce::Rectangle<int>&);
+    explicit ActionConnectComponent (const juce::Point<int>&);
     
     ~ActionConnectComponent() = default;
 
@@ -28,6 +28,24 @@ public:
 
 public:
     void paint (juce::Graphics&) override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void set (const juce::Point<int>& pt);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void update();
+
+private:
+    juce::Point<int> start_;
+    juce::Point<int> end_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ActionConnectComponent)

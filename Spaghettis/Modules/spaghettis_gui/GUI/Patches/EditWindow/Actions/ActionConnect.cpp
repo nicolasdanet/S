@@ -20,22 +20,18 @@ ActionConnect::ActionConnect (EditView* view) : view_ (view)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ActionConnect::createComponent (const juce::Rectangle<int>& r)
+void ActionConnect::createComponent (const juce::Point<int>& pt)
 {
-    const int area = r.getWidth() * r.getHeight();
-    const int k = 4;
+    connectComponent_ = std::make_unique<ActionConnectComponent> (pt);
     
-    if (area > k) {
-        connectComponent_ = std::make_unique<ActionConnectComponent> (r);
-        view_->addAndMakeVisible (connectComponent_.get());
-    }
+    view_->addAndMakeVisible (connectComponent_.get());
 }
 
-void ActionConnect::updateComponent (const juce::Rectangle<int>& r)
+void ActionConnect::updateComponent (const juce::Point<int>& pt)
 {
-    if (connectComponent_) { connectComponent_->setBounds (r); }
+    if (connectComponent_) { connectComponent_->set (pt); }
     else {
-        createComponent (r);
+        createComponent (pt);
     }
 }
 
@@ -45,11 +41,7 @@ void ActionConnect::updateComponent (const juce::Rectangle<int>& r)
 
 void ActionConnect::mouseDrag (const juce::MouseEvent& e)
 {
-    const juce::Point<int> a (e.getMouseDownPosition());
-    const juce::Point<int> b (a + e.getOffsetFromDragStart());
-    const juce::Rectangle<int> r (a, b);
-    
-    updateComponent (r);
+    updateComponent (e.getPosition());
 }
 
 void ActionConnect::mouseUp (const juce::MouseEvent& e)

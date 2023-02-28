@@ -41,8 +41,8 @@ public:
 // MARK: -
 
 private:
-    void createComponent (const juce::Rectangle<int>&);
-    void updateComponent (const juce::Rectangle<int>&);
+    void createComponent (const juce::Point<int>&);
+    void updateComponent (const juce::Point<int>&);
     
 private:
     EditView* view_;

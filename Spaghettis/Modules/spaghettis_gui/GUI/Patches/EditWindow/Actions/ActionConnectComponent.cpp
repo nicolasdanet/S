@@ -12,13 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ActionConnectComponent::ActionConnectComponent (const juce::Rectangle<int>& bounds)
+ActionConnectComponent::ActionConnectComponent (const juce::Point<int>& pt) : start_ (pt), end_ (pt)
 {
     setOpaque (false);
     setPaintingIsUnclipped (true);
     setAlwaysOnTop (true);
     setInterceptsMouseClicks (false, true);
-    setBounds (bounds);
+    update();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -28,6 +28,28 @@ ActionConnectComponent::ActionConnectComponent (const juce::Rectangle<int>& boun
 void ActionConnectComponent::paint (juce::Graphics& g)
 {
     g.setColour (juce::Colours::orange); g.drawRect (getLocalBounds());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ActionConnectComponent::set (const juce::Point<int>& pt)
+{
+    end_ = pt; update(); repaint();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ActionConnectComponent::update()
+{
+    const juce::Rectangle<int> bounds (start_, end_);
+    
+    DBG (bounds.toString());
+    
+    setBounds (bounds);
 }
 
 // -----------------------------------------------------------------------------------------------------------
