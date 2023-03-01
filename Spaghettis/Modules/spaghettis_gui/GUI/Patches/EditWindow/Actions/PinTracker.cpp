@@ -59,9 +59,20 @@ PinTracker::~PinTracker()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PinTracker::start (EditView* view, const juce::Point<int>& pt)
+{
+    origin_ = getPinComponentAt (view, pt);
+}
+
 void PinTracker::hit (EditView* view, const juce::Point<int>& pt)
 {
-    checkPinComponent (pin_, getPinComponentAt (view, pt));
+    if (origin_.getComponent()) {
+    //
+    PinComponent* c = getPinComponentAt (view, pt);
+    
+    if (c != origin_.getComponent()) { checkPinComponent (pin_, c); }
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
