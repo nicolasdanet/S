@@ -431,7 +431,7 @@ std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& 
     
     for (int i = 0; i < n; ++i) {
         const juce::String type (a[i]);
-        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (view, object, type);
+        std::unique_ptr<PinComponent> p = std::make_unique<PinComponent> (view, object, type, isOutlet);
         p->setBounds (getPinBounds (bounds, i, scale, isOutlet));
         p->setVisible (true);
         p->setTooltip (getPinTooltip (documentation, type, isOutlet, i));

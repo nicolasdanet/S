@@ -35,7 +35,7 @@ public:
 public:
     void start (EditView*, const juce::Point<int>&);
     void hit (EditView*, const juce::Point<int>&);
-
+    
 private:
     juce::Component::SafePointer<PinComponent> origin_;
     juce::Component::SafePointer<PinComponent> pin_;

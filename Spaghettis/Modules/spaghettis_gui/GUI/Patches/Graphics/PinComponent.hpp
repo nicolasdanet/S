@@ -20,7 +20,7 @@ class PinComponent :    public juce::Component,
 // MARK: -
 
 public:
-    explicit PinComponent (View*, const core::Object&, const juce::String&);
+    explicit PinComponent (View*, const core::Object&, const juce::String&, bool);
 
     ~PinComponent();
 
@@ -29,6 +29,7 @@ public:
 // MARK: -
 
 public:
+    bool isOutlet() const;
     bool isSignal() const;
     
     juce::Rectangle<int> getPinBoundsInView() const;
@@ -70,6 +71,7 @@ private:
     core::Cached<juce::Colour> pinColour_;
     core::Cached<juce::Colour> pinOverColour_;
     core::Cached<juce::Colour> boxSelectedColour_;
+    bool isOutlet_;
     bool isSignal_;
     bool isOver_;
     
