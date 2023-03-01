@@ -74,6 +74,7 @@ private:
     bool isOutlet_;
     bool isSignal_;
     bool isOver_;
+    bool isDrag_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PinComponent)

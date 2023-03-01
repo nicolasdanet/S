@@ -57,7 +57,8 @@ PinComponent::PinComponent (View* view, const core::Object& object, const juce::
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
     isOutlet_ (isOutlet),
     isSignal_ (isPinSignal (type)),
-    isOver_ (false)
+    isOver_ (false),
+    isDrag_ (false)
 {
     setOpaque (false); setPaintingIsUnclipped (true);
     
@@ -70,6 +71,12 @@ PinComponent::PinComponent (View* view, const core::Object& object, const juce::
 
 PinComponent::~PinComponent()
 {
+    if (isDrag_) {
+        if (auto view = View::asEditView (view_)) {
+            view->handleMouseDragAbort();
+        }
+    }
+    
     view_->removeChildComponent (this);
 }
 
@@ -139,12 +146,12 @@ void PinComponent::mouseExit (const juce::MouseEvent&)
 
 void PinComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) { view->handleMouseDragFromPin (e); }
+    isDrag_ = true;  if (auto view = View::asEditView (view_)) { view->handleMouseDragFromPin (e); }
 }
 
 void PinComponent::mouseUp (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
+    isDrag_ = false; if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

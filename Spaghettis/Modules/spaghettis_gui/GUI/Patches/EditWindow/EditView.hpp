@@ -77,6 +77,7 @@ public:
     void handleMouseDragFromObject (const juce::MouseEvent&, bool);
     void handleMouseDragFromLine (const juce::MouseEvent&);
     void handleMouseDragFromPin (const juce::MouseEvent&);
+    void handleMouseDragAbort();
     
 private:
     void mouseDown (const juce::MouseEvent&) override;
