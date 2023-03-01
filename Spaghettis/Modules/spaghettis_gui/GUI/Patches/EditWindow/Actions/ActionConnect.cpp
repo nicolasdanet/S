@@ -29,6 +29,8 @@ void ActionConnect::createComponent (const juce::Point<int>& pt)
 
 void ActionConnect::updateComponent (const juce::Point<int>& pt)
 {
+    tracker_.hit (view_, pt);
+    
     if (connectComponent_) { connectComponent_->set (pt); }
     else {
         createComponent (pt);

@@ -49,6 +49,9 @@ private:
 
 private:
     std::unique_ptr<ActionConnectComponent> connectComponent_;
+
+private:
+    PinTracker tracker_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ActionConnect)

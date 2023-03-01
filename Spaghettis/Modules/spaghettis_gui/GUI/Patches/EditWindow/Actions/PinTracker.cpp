@@ -12,8 +12,56 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+PinComponent* getPinComponentAt (EditView* view, const juce::Point<int>& pt)
+{
+    return dynamic_cast<PinComponent*> (view->getComponentAt (pt));
+}
+
+void unsetPinComponent (juce::Component::SafePointer<PinComponent>& p)
+{
+    if (p.getComponent()) { p->setHighlighted (false); p = nullptr; }
+}
+
+void setPinComponent (juce::Component::SafePointer<PinComponent>& p, PinComponent* c)
+{
+    unsetPinComponent (p); p = c; if (p.getComponent()) { p->setHighlighted (true); }
+}
+
+void checkPinComponent (juce::Component::SafePointer<PinComponent>& p, PinComponent* c)
+{
+    if (p.getComponent() != c) { setPinComponent (p, c); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PinTracker::PinTracker()
 {
+}
+
+PinTracker::~PinTracker()
+{
+    unsetPinComponent (pin_);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PinTracker::hit (EditView* view, const juce::Point<int>& pt)
+{
+    checkPinComponent (pin_, getPinComponentAt (view, pt));
 }
 
 // -----------------------------------------------------------------------------------------------------------
