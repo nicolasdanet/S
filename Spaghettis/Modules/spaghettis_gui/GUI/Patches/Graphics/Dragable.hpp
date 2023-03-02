@@ -37,7 +37,7 @@ public:
     void handleMouseDrag (const juce::MouseEvent& e, DragFlag);
     void handleMouseUp (const juce::MouseEvent& e);
     
-private:
+protected:
     View* view_;
     
 private:

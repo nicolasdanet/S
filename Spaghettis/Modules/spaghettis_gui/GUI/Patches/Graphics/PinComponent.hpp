@@ -67,7 +67,6 @@ public:
     void mouseUp (const juce::MouseEvent&) override;
     
 private:
-    View* view_;
     core::Cached<bool> selected_;                   /* Is owning object selected? */
     core::Cached<juce::Colour> pinColour_;
     core::Cached<juce::Colour> pinOverColour_;
