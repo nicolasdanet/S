@@ -22,19 +22,31 @@ PinComponent* getPinComponentAt (EditView* view, const juce::Point<int>& pt)
     return dynamic_cast<PinComponent*> (view->getComponentAt (pt));
 }
 
-void unsetPinComponent (juce::Component::SafePointer<PinComponent>& p)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void unsetPointer (juce::Component::SafePointer<PinComponent>& p)
 {
     if (p.getComponent()) { p->setHighlighted (false); p = nullptr; }
 }
 
-void setPinComponent (juce::Component::SafePointer<PinComponent>& p, PinComponent* c)
+void setPointer (juce::Component::SafePointer<PinComponent>& p, PinComponent* c)
 {
-    unsetPinComponent (p); p = c; if (p.getComponent()) { p->setHighlighted (true); }
+    unsetPointer (p); p = c; if (p.getComponent()) { p->setHighlighted (true); }
 }
 
-void checkPinComponent (juce::Component::SafePointer<PinComponent>& p, PinComponent* c)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void check (PinComponent* component,
+    juce::Component::SafePointer<PinComponent>& source,
+    juce::Component::SafePointer<PinComponent>& destination)
 {
-    if (p.getComponent() != c) { setPinComponent (p, c); }
+    if (destination.getComponent() != component) {
+        setPointer (destination, component);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -52,7 +64,7 @@ PinTracker::PinTracker()
 
 PinTracker::~PinTracker()
 {
-    unsetPinComponent (pin_);
+    unsetPointer (destination_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -61,16 +73,16 @@ PinTracker::~PinTracker()
 
 void PinTracker::start (EditView* view, const juce::Point<int>& pt)
 {
-    origin_ = getPinComponentAt (view, pt);
+    source_ = getPinComponentAt (view, pt);
 }
 
 void PinTracker::hit (EditView* view, const juce::Point<int>& pt)
 {
-    if (origin_.getComponent()) {
+    if (source_.getComponent()) {
     //
     PinComponent* c = getPinComponentAt (view, pt);
     
-    if (c != origin_.getComponent()) { checkPinComponent (pin_, c); }
+    if (c != source_.getComponent()) { check (c, source_, destination_); }
     //
     }
 }

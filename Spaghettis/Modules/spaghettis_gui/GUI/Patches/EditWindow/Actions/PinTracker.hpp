@@ -37,8 +37,8 @@ public:
     void hit (EditView*, const juce::Point<int>&);
     
 private:
-    juce::Component::SafePointer<PinComponent> origin_;
-    juce::Component::SafePointer<PinComponent> pin_;
+    juce::Component::SafePointer<PinComponent> source_;
+    juce::Component::SafePointer<PinComponent> destination_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PinTracker)
