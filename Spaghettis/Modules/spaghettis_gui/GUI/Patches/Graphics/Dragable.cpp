@@ -31,7 +31,7 @@ Dragable::~Dragable()
 
 void Dragable::handleMouseDrag (const juce::MouseEvent& e)
 {
-    isDrag_ = true;     if (auto view = View::asEditView (view_)) { view->handleMouseDragFromPin (e); }
+    isDrag_ = true;     if (auto view = View::asEditView (view_)) { view->handleMouseDrag (e, DragFlag::Pin); }
 }
 
 void Dragable::handleMouseUp (const juce::MouseEvent& e)

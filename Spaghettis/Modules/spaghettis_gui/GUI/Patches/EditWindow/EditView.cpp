@@ -83,19 +83,14 @@ void EditView::handleMouseUp (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::handleMouseDragFromObject (const juce::MouseEvent& e, bool isSelectedObject)
+void EditView::handleMouseDrag (const juce::MouseEvent& e, DragFlag flag)
 {
-    mouseDragProceed (e.getEventRelativeTo (this), true, DragFlag::Selected);
+    mouseDragProceed (e.getEventRelativeTo (this), true, flag);
 }
 
-void EditView::handleMouseDragFromLine (const juce::MouseEvent& e)
+void EditView::handleMouseDragAbort()
 {
-    mouseDragProceed (e.getEventRelativeTo (this), true);
-}
-
-void EditView::handleMouseDragFromPin (const juce::MouseEvent& e)
-{
-    mouseDragProceed (e.getEventRelativeTo (this), true, DragFlag::Pin);
+    drag_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -109,18 +104,13 @@ void EditView::mouseDown (const juce::MouseEvent& e)
 
 void EditView::mouseDrag (const juce::MouseEvent& e)
 {
-    mouseDragProceed (e.getEventRelativeTo (this), false);
+    mouseDragProceed (e.getEventRelativeTo (this), false, DragFlag::None);
 }
 
 void EditView::mouseUp (const juce::MouseEvent& e)
 {
     if (drag_) { drag_->mouseUp (e); }
     
-    drag_ = nullptr;
-}
-
-void EditView::handleMouseDragAbort()
-{
     drag_ = nullptr;
 }
 
