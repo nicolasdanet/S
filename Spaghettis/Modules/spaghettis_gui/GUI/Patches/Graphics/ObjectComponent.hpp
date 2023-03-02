@@ -17,10 +17,11 @@ class PinComponent;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ObjectComponent : public Scalable,
-                        public juce::Component,
+class ObjectComponent : public juce::Component,
                         public juce::ChangeBroadcaster,
-                        public juce::SettableTooltipClient {
+                        public juce::SettableTooltipClient,
+                        public Dragable,
+                        public Scalable {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -158,7 +159,6 @@ private:
     void removeInletsAndOultets();
     
 private:
-    View* view_;
     core::Object object_;
     core::Cached<int> x_;
     core::Cached<int> y_;

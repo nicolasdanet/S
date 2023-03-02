@@ -34,10 +34,20 @@ public:
 // MARK: -
 
 public:
+    View* getView() const
+    {
+        return view_;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void handleMouseDrag (const juce::MouseEvent& e, DragFlag);
     void handleMouseUp (const juce::MouseEvent& e);
     
-protected:
+private:
     View* view_;
     
 private:

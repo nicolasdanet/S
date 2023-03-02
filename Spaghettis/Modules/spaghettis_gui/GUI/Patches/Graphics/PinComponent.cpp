@@ -65,12 +65,12 @@ PinComponent::PinComponent (View* view, const core::Object& object, const juce::
     pinColour_.attach (PainterPolicy::repaint (this));
     boxSelectedColour_.attach (PainterPolicy::repaint (this));
     
-    view_->addChildComponent (this);
+    getView()->addChildComponent (this);
 }
 
 PinComponent::~PinComponent()
 {
-    view_->removeChildComponent (this);
+    getView()->removeChildComponent (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -98,7 +98,7 @@ juce::Rectangle<int> PinComponent::getPinBoundsInView() const
 
 float PinComponent::getScale() const
 {
-    return view_->getScale();
+    return getView()->getScale();
 }
 
 // -----------------------------------------------------------------------------------------------------------

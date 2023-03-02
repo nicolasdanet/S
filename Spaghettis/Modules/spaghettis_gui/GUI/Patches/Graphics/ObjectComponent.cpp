@@ -37,7 +37,7 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core
 // MARK: -
 
 ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
-    view_ (view),
+    Dragable (view),
     object_ (object),
     x_ (object.getCached<int> (Tag::Attributes, Tag::X)),
     y_ (object.getCached<int> (Tag::Attributes, Tag::Y)),
@@ -55,7 +55,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     
     setOpaque (true); setPaintingIsUnclipped (true);
     
-    view_->addChildComponent (this);
+    getView()->addChildComponent (this);
 
     update();
     
@@ -82,8 +82,8 @@ ObjectComponent::~ObjectComponent()
     removeAllChangeListeners();
     removeInletsAndOultets();
     
-    view_->hide (this);
-    view_->removeChildComponent (this);
+    getView()->hide (this);
+    getView()->removeChildComponent (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -135,7 +135,7 @@ void ObjectComponent::mouseExit (const juce::MouseEvent&)
 
 void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) {
+    if (auto view = View::asEditView (getView())) {
     //
     if (Mouse::isAltClick (e))          { painter_->mouseDown (e); }
     else if (Mouse::isCommandClick (e)) { }
@@ -152,14 +152,12 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) {
-        view->handleMouseDrag (e, isSelected() ? DragFlag::Selected : DragFlag::None);
-    }
+    handleMouseDrag (e, isSelected() ? DragFlag::Selected : DragFlag::None);
 }
 
 void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
+    handleMouseUp (e);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -240,7 +238,7 @@ void ObjectComponent::paint (juce::Graphics& g)
     g.setColour (selected_.get() ? boxSelectedColour_.get() : boxPinBackgroundColour_.get());
     g.fillRect (bounds);
     
-    painter_->paint (view_->getPaintedAreaFromBounds (bounds), g);
+    painter_->paint (getView()->getPaintedAreaFromBounds (bounds), g);
 }
     
 void ObjectComponent::resized()
@@ -259,7 +257,7 @@ void ObjectComponent::scaleChanged()
 
 float ObjectComponent::getScale() const
 {
-    return view_->getScale();
+    return getView()->getScale();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -340,7 +338,7 @@ void ObjectComponent::snap()
 
 bool ObjectComponent::isInsideRunView() const
 {
-    return (dynamic_cast<RunView*> (view_) != nullptr);
+    return (dynamic_cast<RunView*> (getView()) != nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -370,12 +368,12 @@ void ObjectComponent::update (bool notify)
     
     if (isVisible) {
         const juce::Rectangle<int> painted (painter_->getRequiredBounds());
-        view_->show (this, view_->getBoundsFromPaintedArea (painted));
+        getView()->show (this, getView()->getBoundsFromPaintedArea (painted));
         if (!isRunView) {
             setTooltip (getLabel()); createInletsAndOutlets();
         }
     } else {
-        view_->hide (this);
+        getView()->hide (this);
     }
     
     if (notify) { sendChangeMessage(); }
@@ -477,8 +475,8 @@ void ObjectComponent::createInletsAndOutlets()
     
     const core::Data documentation (Documentation::get (object_));
     
-    if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, documentation, view_, scale, false); }
-    if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, documentation, view_, scale, true);  }
+    if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, documentation, getView(), scale, false); }
+    if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, documentation, getView(), scale, true);  }
     
     moveAllPinsFront();
 }

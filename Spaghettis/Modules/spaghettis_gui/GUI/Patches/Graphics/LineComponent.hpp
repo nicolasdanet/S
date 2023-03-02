@@ -12,10 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class LineComponent :   public  Scalable,
-                        public  juce::Component,
+class LineComponent :   public  juce::Component,
                         private core::Observer,
-                        private juce::ChangeListener {
+                        private juce::ChangeListener,
+                        public  Dragable,
+                        public  Scalable {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -121,7 +122,6 @@ private:
 // MARK: -
 
 private:
-    View* view_;
     core::Line line_;
     juce::Component::SafePointer<ObjectComponent> source_;
     juce::Component::SafePointer<ObjectComponent> destination_;

@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 LineComponent::LineComponent (View* view, const core::Line& line) :
-    view_ (view),
+    Dragable (view),
     line_ (line),
     source_ (view->getObjectComponent (line.getIdentifierOfSource())),
     destination_ (view->getObjectComponent (line.getIdentifierOfDestination())),
@@ -33,7 +33,7 @@ LineComponent::LineComponent (View* view, const core::Line& line) :
     
     update();
     
-    view_->addChildComponent (this);
+    getView()->addChildComponent (this);
     
     if (source_.getComponent())      { source_->addChangeListener (this);         }
     if (destination_.getComponent()) { destination_->addChangeListener (this);    }
@@ -50,7 +50,7 @@ LineComponent::~LineComponent()
     if (destination_.getComponent()) { destination_->removeChangeListener (this); }
     if (source_.getComponent())      { source_->removeChangeListener (this);      }
     
-    view_->removeChildComponent (this);
+    getView()->removeChildComponent (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -149,7 +149,7 @@ void LineComponent::mouseExit (const juce::MouseEvent&)
 
 void LineComponent::mouseDown (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) {
+    if (auto view = View::asEditView (getView())) {
     //
     view->handleMouseDown (e);
 
@@ -161,12 +161,12 @@ void LineComponent::mouseDown (const juce::MouseEvent& e)
 
 void LineComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) { view->handleMouseDrag (e, DragFlag::None); }
+    handleMouseDrag (e, DragFlag::None);
 }
 
 void LineComponent::mouseUp (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
+    handleMouseUp (e);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -180,7 +180,7 @@ void LineComponent::scaleChanged()
 
 float LineComponent::getScale() const
 {
-    return view_->getScale();
+    return getView()->getScale();
 }
 
 // -----------------------------------------------------------------------------------------------------------
