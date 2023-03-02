@@ -29,14 +29,14 @@ Dragable::~Dragable()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Dragable::handleMouseDrag (const juce::MouseEvent& e)
+void Dragable::handleMouseDrag (const juce::MouseEvent& e, DragFlag flag)
 {
-    isDrag_ = true;     if (auto view = View::asEditView (view_)) { view->handleMouseDrag (e, DragFlag::Pin); }
+    isDrag_ = true;  if (auto view = View::asEditView (view_)) { view->handleMouseDrag (e, flag); }
 }
 
 void Dragable::handleMouseUp (const juce::MouseEvent& e)
 {
-    isDrag_ = false;    if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
+    isDrag_ = false; if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
 }
     
 // -----------------------------------------------------------------------------------------------------------

@@ -79,10 +79,6 @@ void EditView::handleMouseUp (const juce::MouseEvent& e)
     mouseUp (e.getEventRelativeTo (this));
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void EditView::handleMouseDrag (const juce::MouseEvent& e, DragFlag flag)
 {
     mouseDragProceed (e.getEventRelativeTo (this), true, flag);

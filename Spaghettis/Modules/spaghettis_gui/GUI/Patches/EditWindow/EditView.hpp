@@ -10,12 +10,6 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-enum class DragFlag { None, Selected, Pin };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 class EditInspector;
 class EditPort;
@@ -71,8 +65,6 @@ public:
 public:
     void handleMouseDown (const juce::MouseEvent&);
     void handleMouseUp (const juce::MouseEvent&);
-
-public:
     void handleMouseDrag (const juce::MouseEvent&, DragFlag);
     void handleMouseDragAbort();
     

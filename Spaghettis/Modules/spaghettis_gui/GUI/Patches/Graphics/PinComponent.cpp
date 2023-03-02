@@ -140,7 +140,7 @@ void PinComponent::mouseExit (const juce::MouseEvent&)
 
 void PinComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    handleMouseDrag (e);
+    handleMouseDrag (e, DragFlag::Pin);
 }
 
 void PinComponent::mouseUp (const juce::MouseEvent& e)
