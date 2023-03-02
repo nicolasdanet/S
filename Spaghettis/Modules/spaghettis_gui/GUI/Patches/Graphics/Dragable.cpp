@@ -12,11 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-DragWatcher::DragWatcher (View* view) : view_ (view), isDrag_ (false)
+Dragable::Dragable (View* view) : view_ (view), isDrag_ (false)
 {
 }
 
-DragWatcher::~DragWatcher()
+Dragable::~Dragable()
 {
     if (isDrag_) {
         if (auto view = View::asEditView (view_)) {
@@ -29,12 +29,12 @@ DragWatcher::~DragWatcher()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DragWatcher::handleMouseDrag (const juce::MouseEvent& e)
+void Dragable::handleMouseDrag (const juce::MouseEvent& e)
 {
     isDrag_ = true;     if (auto view = View::asEditView (view_)) { view->handleMouseDragFromPin (e); }
 }
 
-void DragWatcher::handleMouseUp (const juce::MouseEvent& e)
+void Dragable::handleMouseUp (const juce::MouseEvent& e)
 {
     isDrag_ = false;    if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
 }

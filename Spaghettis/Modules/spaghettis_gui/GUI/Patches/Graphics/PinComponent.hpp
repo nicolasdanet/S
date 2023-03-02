@@ -14,7 +14,7 @@ namespace spaghettis {
 
 class PinComponent :    public juce::Component,
                         public juce::SettableTooltipClient,
-                        public DragWatcher {
+                        public Dragable {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

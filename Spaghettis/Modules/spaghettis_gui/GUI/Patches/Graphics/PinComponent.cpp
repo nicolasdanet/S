@@ -50,7 +50,7 @@ juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r, float scale)
 // MARK: -
 
 PinComponent::PinComponent (View* view, const core::Object& object, const juce::String& type, bool isOutlet) :
-    DragWatcher (view),
+    Dragable (view),
     view_ (view),
     selected_ (object.getCached<bool> (Tag::Attributes, Tag::Selected)),
     pinColour_ (getColourFromType (type)),
