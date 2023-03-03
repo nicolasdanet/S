@@ -31,21 +31,27 @@ void unsetPointer (juce::Component::SafePointer<PinComponent>& p)
     if (p.getComponent()) { p->setHighlighted (false); p = nullptr; }
 }
 
-void setPointer (juce::Component::SafePointer<PinComponent>& p, PinComponent* c)
+void setPointer (juce::Component::SafePointer<PinComponent>& p, PinComponent* pin)
 {
-    unsetPointer (p); p = c; if (p.getComponent()) { p->setHighlighted (true); }
+    unsetPointer (p); p = pin; if (p.getComponent()) { p->setHighlighted (true); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void check (PinComponent* component,
+void check (PinComponent* pin,
     juce::Component::SafePointer<PinComponent>& source,
     juce::Component::SafePointer<PinComponent>& destination)
 {
-    if (destination.getComponent() != component) {
-        setPointer (destination, component);
+    if (destination.getComponent() != pin) {
+    //
+    if (pin) {
+        
+    }
+    
+    setPointer (destination, pin);
+    //
     }
 }
 
@@ -80,9 +86,9 @@ void PinTracker::hit (EditView* view, const juce::Point<int>& pt)
 {
     if (source_.getComponent()) {
     //
-    PinComponent* c = getPinComponentAt (view, pt);
+    PinComponent* pin = getPinComponentAt (view, pt);
     
-    if (c != source_.getComponent()) { check (c, source_, destination_); }
+    if (pin != source_.getComponent()) { check (pin, source_, destination_); }
     //
     }
 }
