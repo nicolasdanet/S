@@ -35,6 +35,13 @@ public:
 public:
     void start (EditView*, const juce::Point<int>&);
     void hit (EditView*, const juce::Point<int>&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    std::tuple<PinComponent*, PinComponent*> getPins() const;
     
 private:
     juce::Component::SafePointer<PinComponent> source_;

@@ -39,6 +39,26 @@ void ActionConnect::updateComponent (const juce::Point<int>& pt)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void ActionConnect::connect()
+{
+    const auto [o, i] = tracker_.getPins();
+    
+    if (o && i) {
+    //
+    const core::UniqueId oId = o->getIdentifier();
+    const core::UniqueId iId = i->getIdentifier();
+    const int oIndex = o->getIndex();
+    const int iIndex = i->getIndex();
+    
+    DBG (juce::String (oId) + " " + juce::String (oIndex) + " / " + juce::String (iId) + " " + juce::String (iIndex));
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ActionConnect::mouseDrag (const juce::MouseEvent& e)
 {
     updateComponent (e.getPosition());
@@ -48,6 +68,7 @@ void ActionConnect::mouseUp (const juce::MouseEvent& e)
 {
     if (connectComponent_) {
         view_->removeChildComponent (connectComponent_.get());
+        connect();
         connectComponent_ = nullptr;
     }
 }
