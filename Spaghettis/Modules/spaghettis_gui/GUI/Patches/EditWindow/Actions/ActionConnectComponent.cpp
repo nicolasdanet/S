@@ -27,7 +27,12 @@ ActionConnectComponent::ActionConnectComponent (const juce::Point<int>& pt) : st
 
 void ActionConnectComponent::paint (juce::Graphics& g)
 {
-    g.setColour (juce::Colours::orange); g.drawRect (getLocalBounds());
+    const juce::Point<float> a (getLocalPoint (getParentComponent(), start_).toFloat());
+    const juce::Point<float> b (getLocalPoint (getParentComponent(), end_).toFloat());
+    
+    g.setColour (juce::Colours::orange);
+    
+    g.drawLine (juce::Line<float> (a, b));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -39,13 +44,9 @@ void ActionConnectComponent::set (const juce::Point<int>& pt)
     end_ = pt; update(); repaint();
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void ActionConnectComponent::update()
 {
-    setBounds (juce::Rectangle<int> (start_, end_));
+    setBounds (juce::Rectangle<int> (start_, end_).expanded (2));
 }
 
 // -----------------------------------------------------------------------------------------------------------

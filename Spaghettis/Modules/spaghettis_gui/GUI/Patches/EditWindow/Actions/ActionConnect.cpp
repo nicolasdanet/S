@@ -50,7 +50,6 @@ void ActionConnect::connect()
     const int m = o->getIndex();
     const int n = i->getIndex();
     
-    DBG (juce::String (u) + " " + juce::String (m) + " / " + juce::String (v) + " " + juce::String (n));
     EditCommands::connect (u, m, v, n);
     //
     }
