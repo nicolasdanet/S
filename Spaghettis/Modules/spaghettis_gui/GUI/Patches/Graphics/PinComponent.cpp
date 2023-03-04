@@ -49,12 +49,14 @@ juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r, float scale)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PinComponent::PinComponent (View* view, const core::Object& object, const juce::String& type, bool isOutlet) :
-    Dragable (view),
-    selected_ (object.getCached<bool> (Tag::Attributes, Tag::Selected)),
+PinComponent::PinComponent (View* v, const core::Object& o, int i, const juce::String& type, bool isOutlet) :
+    Dragable (v),
+    object_ (o),
+    selected_ (o.getCached<bool> (Tag::Attributes, Tag::Selected)),
     pinColour_ (getColourFromType (type)),
     pinOverColour_ (Spaghettis()->getCachedColour (Tag::PinOver)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
+    index_ (i),
     isOutlet_ (isOutlet),
     isSignal_ (isPinSignal (type)),
     isOver_ (false)
@@ -87,6 +89,16 @@ bool PinComponent::isSignal() const
     return isSignal_;
 }
 
+int PinComponent::getIndex() const
+{
+    return index_;
+}
+
+core::UniqueId PinComponent::getIdentifier() const
+{
+    return object_.getIdentifier();
+}
+    
 juce::Rectangle<int> PinComponent::getPinBoundsInView() const
 {
     return getBoundWithoutGrip (getBoundsInParent(), getScale());

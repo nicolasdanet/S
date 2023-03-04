@@ -44,14 +44,15 @@ bool checkDisallow (PinComponent* source, PinComponent* pin)
 {
     jassert (source);
     jassert (pin);
-        
+    
     const bool sOutlet = source->isOutlet();
     const bool sSignal = source->isSignal();
     const bool dOutlet = pin->isOutlet();
     const bool dSignal = pin->isSignal();
     
-    if (sOutlet == dOutlet)             { return true; }
-    if (sOutlet && sSignal && !dSignal) { return true; }
+    if (sOutlet == dOutlet)                              { return true; }
+    if (sOutlet && sSignal && !dSignal)                  { return true; }
+    if (source->getIdentifier() == pin->getIdentifier()) { return true; }
     
     return false;
 }

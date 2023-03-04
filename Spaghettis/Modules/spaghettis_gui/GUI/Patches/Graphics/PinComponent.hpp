@@ -21,7 +21,7 @@ class PinComponent :    public juce::Component,
 // MARK: -
 
 public:
-    explicit PinComponent (View*, const core::Object&, const juce::String&, bool);
+    explicit PinComponent (View*, const core::Object&, int, const juce::String&, bool);
 
     ~PinComponent();
 
@@ -32,6 +32,8 @@ public:
 public:
     bool isOutlet() const;
     bool isSignal() const;
+    int  getIndex() const;
+    core::UniqueId getIdentifier() const;
     
     juce::Rectangle<int> getPinBoundsInView() const;
 
@@ -67,10 +69,12 @@ public:
     void mouseUp (const juce::MouseEvent&) override;
     
 private:
+    core::Object object_;
     core::Cached<bool> selected_;                   /* Is owning object selected? */
     core::Cached<juce::Colour> pinColour_;
     core::Cached<juce::Colour> pinOverColour_;
     core::Cached<juce::Colour> boxSelectedColour_;
+    int  index_;
     bool isOutlet_;
     bool isSignal_;
     bool isOver_;
