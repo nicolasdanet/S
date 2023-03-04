@@ -209,6 +209,11 @@ Perform Inputs::disconnectLine (core::UniqueId u, int m, core::UniqueId v, int n
     return [u, m, v, n]() { core::inputs_disconnectLine (u, m, v, n); };
 }
 
+Perform Inputs::connectLine (core::UniqueId u, int m, core::UniqueId v, int n)
+{
+    return [u, m, v, n]() { core::inputs_connectLine (u, m, v, n); };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

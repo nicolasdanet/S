@@ -87,6 +87,7 @@ static Perform parameterObject (core::UniqueId, core::Group);
 // MARK: -
 
 static Perform disconnectLine (core::UniqueId, int, core::UniqueId, int);
+static Perform connectLine (core::UniqueId, int, core::UniqueId, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

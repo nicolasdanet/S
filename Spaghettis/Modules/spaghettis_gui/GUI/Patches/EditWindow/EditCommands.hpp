@@ -103,6 +103,11 @@ static void disconnect (core::UniqueId u, int m, core::UniqueId v, int n)
     Spaghettis()->handle (Inputs::disconnectLine (u, m, v, n));
 }
 
+static void connect (core::UniqueId u, int m, core::UniqueId v, int n)
+{
+    Spaghettis()->handle (Inputs::connectLine (u, m, v, n));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

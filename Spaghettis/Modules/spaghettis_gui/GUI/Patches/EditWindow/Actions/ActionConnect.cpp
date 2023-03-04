@@ -45,12 +45,13 @@ void ActionConnect::connect()
     
     if (o && i) {
     //
-    const core::UniqueId oId = o->getIdentifier();
-    const core::UniqueId iId = i->getIdentifier();
-    const int oIndex = o->getIndex();
-    const int iIndex = i->getIndex();
+    const core::UniqueId u = o->getIdentifier();
+    const core::UniqueId v = i->getIdentifier();
+    const int m = o->getIndex();
+    const int n = i->getIndex();
     
-    DBG (juce::String (oId) + " " + juce::String (oIndex) + " / " + juce::String (iId) + " " + juce::String (iIndex));
+    DBG (juce::String (u) + " " + juce::String (m) + " / " + juce::String (v) + " " + juce::String (n));
+    EditCommands::connect (u, m, v, n);
     //
     }
 }

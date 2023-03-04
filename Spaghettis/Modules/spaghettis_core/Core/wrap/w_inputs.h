@@ -78,6 +78,7 @@ PD_LOCAL void inputs_parameterObject    (core::UniqueId, const core::Group&);
 // MARK: -
 
 PD_LOCAL void inputs_disconnectLine     (core::UniqueId u, int m, core::UniqueId v, int n);
+PD_LOCAL void inputs_connectLine        (core::UniqueId u, int m, core::UniqueId v, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
