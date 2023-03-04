@@ -40,18 +40,31 @@ void setPointer (juce::Component::SafePointer<PinComponent>& p, PinComponent* pi
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool checkDisallow (PinComponent* source, PinComponent* pin)
+{
+    jassert (source);
+    jassert (pin);
+        
+    const bool sOutlet = source->isOutlet();
+    const bool sSignal = source->isSignal();
+    const bool dOutlet = pin->isOutlet();
+    const bool dSignal = pin->isSignal();
+    
+    if (sOutlet == dOutlet)             { return true; }
+    if (sOutlet && sSignal && !dSignal) { return true; }
+    
+    return false;
+}
+
 void check (PinComponent* pin,
     juce::Component::SafePointer<PinComponent>& source,
     juce::Component::SafePointer<PinComponent>& destination)
 {
     if (destination.getComponent() != pin) {
-    //
-    if (pin) {
-        
-    }
-    
-    setPointer (destination, pin);
-    //
+        if (pin && checkDisallow (source.getComponent(), pin)) { setPointer (destination, nullptr); }
+        else {
+            setPointer (destination, pin);
+        }
     }
 }
 
