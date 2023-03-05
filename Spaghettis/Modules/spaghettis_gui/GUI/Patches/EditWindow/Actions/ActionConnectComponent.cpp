@@ -12,7 +12,10 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ActionConnectComponent::ActionConnectComponent (const juce::Point<int>& pt) : start_ (pt), end_ (pt)
+ActionConnectComponent::ActionConnectComponent (const juce::Point<int>& pt) :
+    start_ (pt),
+    end_ (pt),
+    connectColour_ (Spaghettis()->getCachedColour (Tag::Lasso))
 {
     setOpaque (false);
     setPaintingIsUnclipped (true);
@@ -30,9 +33,11 @@ void ActionConnectComponent::paint (juce::Graphics& g)
     const juce::Point<float> a (getLocalPoint (getParentComponent(), start_).toFloat());
     const juce::Point<float> b (getLocalPoint (getParentComponent(), end_).toFloat());
     
-    g.setColour (juce::Colours::orange);
+    g.setColour (connectColour_.get());
     
-    g.drawLine (juce::Line<float> (a, b));
+    const float dash[] = { 5.0f, 2.0f };
+    
+    g.drawDashedLine (juce::Line<float> (a, b), dash, juce::numElementsInArray (dash), 2.0f, 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------

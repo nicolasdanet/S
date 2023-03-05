@@ -48,6 +48,9 @@ private:
     juce::Point<int> end_;
 
 private:
+    core::Cached<juce::Colour> connectColour_;
+
+private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ActionConnectComponent)
 };
 
