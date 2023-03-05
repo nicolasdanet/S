@@ -23,8 +23,6 @@ CallOutBoxTracker::~CallOutBoxTracker()
 
 void CallOutBoxTracker::track (juce::CallOutBox& box)
 {
-    box.setDismissalMouseClicksAreAlwaysConsumed (true);
-    
     Spaghettis()->getBoxRegister().add (owner_, &box);
 }
 
