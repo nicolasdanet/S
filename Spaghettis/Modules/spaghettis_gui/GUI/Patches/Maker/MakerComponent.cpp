@@ -70,7 +70,7 @@ void MakerComponent::resized()
 
 void MakerComponent::enter()
 {
-    if (view_.getComponent()) { view_->handleNewObject (pt_, entry_.getText()); }
+    if (view_.getComponent()) { view_->handleNewObject (pt_, entry_.getContent()); }
 }
 
 void MakerComponent::dismiss()

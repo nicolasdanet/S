@@ -35,7 +35,7 @@ public:
 // MARK: -
 
 public:
-    juce::String getText() const;
+    juce::String getContent() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ private:
     MakerComponent& owner_;
 
 private:
-    juce::TextEditor editor_;
+    juce::TextEditor text_;
     juce::Value v_;
     
 private:

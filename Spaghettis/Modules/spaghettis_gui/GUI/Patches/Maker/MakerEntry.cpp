@@ -15,19 +15,19 @@ namespace spaghettis {
 MakerEntry::MakerEntry (MakerComponent& owner, juce::Value& v) : owner_ (owner), v_ (v)
 {
     v_.addListener (this);
-    editor_.addListener (this);
+    text_.addListener (this);
     
-    editor_.setFont (Spaghettis()->getLookAndFeel().getMakerEntryFont());
-    editor_.setPopupMenuEnabled (false);
+    text_.setFont (Spaghettis()->getLookAndFeel().getMakerEntryFont());
+    text_.setPopupMenuEnabled (false);
     
-    addAndMakeVisible (editor_);
+    addAndMakeVisible (text_);
     
     setOpaque (true);
 }
 
 MakerEntry::~MakerEntry()
 {
-    editor_.removeListener (this);
+    text_.removeListener (this);
     v_.removeListener (this);
 }
 
@@ -35,9 +35,9 @@ MakerEntry::~MakerEntry()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String MakerEntry::getText() const
+juce::String MakerEntry::getContent() const
 {
-    return editor_.getText();
+    return v_.toString();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -51,16 +51,16 @@ void MakerEntry::paint (juce::Graphics& g)
     
 void MakerEntry::resized()
 {
-    editor_.setBounds (getLocalBounds());
+    text_.setBounds (getLocalBounds());
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void MakerEntry::textEditorTextChanged (juce::TextEditor& editor)
+void MakerEntry::textEditorTextChanged (juce::TextEditor& e)
 {
-    v_.setValue (getText());
+    v_.setValue (e.getText());
 }
 
 void MakerEntry::textEditorReturnKeyPressed (juce::TextEditor&)
@@ -79,7 +79,7 @@ void MakerEntry::textEditorEscapeKeyPressed (juce::TextEditor&)
 
 void MakerEntry::valueChanged (juce::Value& v)
 {
-    editor_.setText (v.toString(), false);
+    text_.setText (v.toString(), false);
 }
 
 // -----------------------------------------------------------------------------------------------------------
