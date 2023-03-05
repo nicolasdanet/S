@@ -51,6 +51,7 @@ private:
 
 private:
     juce::Value v_;
+    juce::Point<int> pt_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Maker)

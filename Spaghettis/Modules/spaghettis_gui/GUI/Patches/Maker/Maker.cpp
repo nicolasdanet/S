@@ -24,11 +24,10 @@ void Maker::showEditor (const std::optional<juce::Point<int>>& a, const std::opt
 {
     if (a.has_value() && b.has_value()) {
     //
-    const juce::Point<int> global = a.value();
-    const juce::Point<int> real   = b.value();
+    pt_ = b.value();
     
-    auto t = std::make_unique<MakerComponent> (v_, owner_, real);
-    auto r = juce::Rectangle<int> (4, 4).withCentre (global);
+    auto t = std::make_unique<MakerComponent> (owner_, v_, pt_);
+    auto r = juce::Rectangle<int> (4, 4).withCentre (a.value());
     
     tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), r, nullptr));
     //

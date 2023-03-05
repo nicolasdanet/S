@@ -12,12 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerComponent::MakerComponent (const juce::Value& v, EditView* view, const juce::Point<int>& pt) :
+MakerComponent::MakerComponent (EditView* view, const juce::Value& v, const juce::Point<int>& pt) :
     entry_ (*this, v),
     list_ (*this, v),
     documentation_ (v),
-    v_ (v),
     view_ (view),
+    v_ (v),
     pt_ (pt)
 {
     Maker::reset (v_);
