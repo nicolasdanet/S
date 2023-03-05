@@ -19,9 +19,9 @@ class MakerComponent : public juce::Component {
 // MARK: -
 
 public:
-    explicit MakerComponent (EditView*, const juce::Point<int>&);
+    explicit MakerComponent (const juce::Value&, EditView*, const juce::Point<int>&);
     
-    ~MakerComponent() = default;
+    ~MakerComponent();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -51,14 +51,12 @@ private:
 // MARK: -
 
 private:
-    juce::Value v_;
-
-private:
     MakerEntry entry_;
     MakerList list_;
     MakerDocumentation documentation_;
 
 private:
+    juce::Value v_;
     juce::Component::SafePointer<EditView> view_;
     juce::Point<int> pt_;
     

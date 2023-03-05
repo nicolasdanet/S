@@ -36,12 +36,22 @@ public:
     void showEditor (const std::optional<juce::Point<int>>&, const std::optional<juce::Point<int>>&);
     void hideEditor();
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static void reset (juce::Value&);
+    
 private:
     EditView* owner_;
 
 private:
     CallOutBoxTracker tracker_;
 
+private:
+    juce::Value v_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Maker)
 };

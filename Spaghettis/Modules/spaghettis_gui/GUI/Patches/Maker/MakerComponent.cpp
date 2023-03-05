@@ -12,19 +12,26 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerComponent::MakerComponent (EditView* view, const juce::Point<int>& pt) :
-    v_(),
-    entry_ (*this, v_),
-    list_ (*this, v_),
-    documentation_ (v_),
+MakerComponent::MakerComponent (const juce::Value& v, EditView* view, const juce::Point<int>& pt) :
+    entry_ (*this, v),
+    list_ (*this, v),
+    documentation_ (v),
+    v_ (v),
     view_ (view),
     pt_ (pt)
 {
+    Maker::reset (v_);
+    
     addAndMakeVisible (entry_);
     addAndMakeVisible (list_);
     addAndMakeVisible (documentation_);
     
     setOpaque (true); setSize (700, 300);
+}
+
+MakerComponent::~MakerComponent()
+{
+    Maker::reset (v_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

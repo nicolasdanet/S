@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerDocumentation::MakerDocumentation (juce::Value& v) : v_ (v), shown_ (&default_)
+MakerDocumentation::MakerDocumentation (const juce::Value& v) : v_ (v), shown_ (&default_)
 {
     v_.addListener (this);
     

@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerList::MakerList (MakerComponent& owner, juce::Value& v) :
+MakerList::MakerList (MakerComponent& owner, const juce::Value& v) :
     owner_ (owner),
     items_ (Spaghettis()->getAutocomplete().getContent()),
     v_ (v)
@@ -75,7 +75,6 @@ void MakerList::valueChanged (juce::Value& v)
         sort (s);
         ListBoxFunctions::selectFirstRowIfEqual (listBox_, items_, s);
         previous_ = s;
-        
     }
     //
     }

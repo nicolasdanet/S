@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-MakerEntry::MakerEntry (MakerComponent& owner, juce::Value& v) : owner_ (owner), v_ (v)
+MakerEntry::MakerEntry (MakerComponent& owner, const juce::Value& v) : owner_ (owner), v_ (v)
 {
     v_.addListener (this);
     text_.addListener (this);

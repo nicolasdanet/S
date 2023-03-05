@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Maker::Maker (EditView* owner) : owner_ (owner), tracker_ (owner)
+Maker::Maker (EditView* owner) : owner_ (owner), tracker_ (owner), v_()
 {
 }
 
@@ -27,7 +27,7 @@ void Maker::showEditor (const std::optional<juce::Point<int>>& a, const std::opt
     const juce::Point<int> global = a.value();
     const juce::Point<int> real   = b.value();
     
-    auto t = std::make_unique<MakerComponent> (owner_, real);
+    auto t = std::make_unique<MakerComponent> (v_, owner_, real);
     auto r = juce::Rectangle<int> (4, 4).withCentre (global);
     
     tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), r, nullptr));
@@ -38,6 +38,15 @@ void Maker::showEditor (const std::optional<juce::Point<int>>& a, const std::opt
 void Maker::hideEditor()
 {
     tracker_.dismiss();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Maker::reset (juce::Value& v)
+{
+    v.setValue (juce::String());
 }
 
 // -----------------------------------------------------------------------------------------------------------

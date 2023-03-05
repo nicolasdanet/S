@@ -21,7 +21,7 @@ class MakerList :   public juce::Component,
 // MARK: -
 
 public:
-    explicit MakerList (MakerComponent&, juce::Value&);
+    explicit MakerList (MakerComponent&, const juce::Value&);
     
     ~MakerList();
 

@@ -26,7 +26,7 @@ class MakerEntry :  public juce::Component,
 // MARK: -
 
 public:
-    explicit MakerEntry (MakerComponent&, juce::Value&);
+    explicit MakerEntry (MakerComponent&, const juce::Value&);
     
     ~MakerEntry();
 
