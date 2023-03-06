@@ -14,6 +14,7 @@ namespace spaghettis {
 
 Maker::Maker (EditView* owner) : owner_ (owner), tracker_ (owner), v_()
 {
+    Maker::setActive (v_, false);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -24,6 +25,8 @@ void Maker::showEditor (const std::optional<juce::Point<int>>& a, const std::opt
 {
     if (a.has_value() && b.has_value()) {
     //
+    Maker::setActive (v_, true);
+    
     pt_ = b.value();
     
     auto t = std::make_unique<MakerComponent> (owner_, v_, pt_);
@@ -43,9 +46,18 @@ void Maker::hideEditor()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Maker::reset (juce::Value& v)
+bool Maker::isActive() const
 {
-    v.setValue (juce::String());
+    return (v_.getValue().isVoid() == false);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Maker::setActive (juce::Value& v, bool isActive)
+{
+    v.setValue (isActive ? juce::var (juce::String()) : juce::var());
 }
 
 // -----------------------------------------------------------------------------------------------------------

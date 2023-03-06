@@ -41,15 +41,20 @@ public:
 // MARK: -
 
 public:
-    static void reset (juce::Value&);
+    bool isActive() const;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static void setActive (juce::Value&, bool);
     
 private:
     EditView* owner_;
 
 private:
     CallOutBoxTracker tracker_;
-
-private:
     juce::Value v_;
     juce::Point<int> pt_;
     

@@ -86,7 +86,7 @@ void EditView::handleMouseDrag (const juce::MouseEvent& e, DragFlag flag)
 
 void EditView::handleMouseDragAbort()
 {
-    DBG ("!!!"); drag_ = nullptr;
+    DBG ("ABORTED"); drag_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -95,7 +95,10 @@ void EditView::handleMouseDragAbort()
 
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
-    if (Mouse::isSimpleClick (e)) { deselectAll(); }
+    if (maker_.isActive()) { DBG ("CLICK"); }
+    else if (Mouse::isSimpleClick (e)) {
+        deselectAll();
+    }
 }
 
 void EditView::mouseDrag (const juce::MouseEvent& e)

@@ -20,8 +20,6 @@ MakerComponent::MakerComponent (EditView* view, const juce::Value& v, const juce
     v_ (v),
     pt_ (pt)
 {
-    Maker::reset (v_);
-    
     addAndMakeVisible (entry_);
     addAndMakeVisible (list_);
     addAndMakeVisible (documentation_);
@@ -31,7 +29,7 @@ MakerComponent::MakerComponent (EditView* view, const juce::Value& v, const juce
 
 MakerComponent::~MakerComponent()
 {
-    Maker::reset (v_);
+    Maker::setActive (v_, false);
 }
 
 // -----------------------------------------------------------------------------------------------------------
