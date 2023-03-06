@@ -18,6 +18,25 @@ struct Mouse {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static bool hasShiftKey (const juce::MouseEvent& e)
+{
+    return e.mods.isShiftDown();
+}
+
+static bool hasCommandKey (const juce::MouseEvent& e)
+{
+    return e.mods.isCommandDown();
+}
+
+static bool hasAltKey (const juce::MouseEvent& e)
+{
+    return e.mods.isAltDown();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static bool isClick (const juce::MouseEvent& e)
 {
     return e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 1;
@@ -34,22 +53,26 @@ static bool isDoubleClick (const juce::MouseEvent& e)
 
 static bool isShiftClick (const juce::MouseEvent& e)
 {
-    return isClick (e) && e.mods.isShiftDown();
+    return isClick (e) && hasShiftKey (e);
 }
 
 static bool isCommandClick (const juce::MouseEvent& e)
 {
-    return isClick (e) && e.mods.isCommandDown();
+    return isClick (e) && hasCommandKey (e);
 }
 
 static bool isAltClick (const juce::MouseEvent& e)
 {
-    return isClick (e) && e.mods.isAltDown();
+    return isClick (e) && hasAltKey (e);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 static bool isSimpleClick (const juce::MouseEvent& e)
 {
-    return isClick (e) && !isShiftClick (e) && !isCommandClick (e);
+    return isClick (e) && !hasShiftKey (e) && !hasCommandKey (e) && !hasAltKey (e);
 }
 
 // -----------------------------------------------------------------------------------------------------------

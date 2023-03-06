@@ -137,8 +137,8 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 {
     if (auto view = View::asEditView (getView())) {
     //
-    if (Mouse::isAltClick (e))          { painter_->mouseDown (e); }
-    else if (Mouse::isCommandClick (e)) { }
+    if (Mouse::isCommandClick (e))      { painter_->mouseDown (e); }
+    else if (Mouse::isAltClick (e))     { }
     else if (Mouse::isDoubleClick (e))  { openSubPatch (object_, view); }
     else if (Mouse::isShiftClick (e))   { setSelected (!isSelected());  }
     else if (Mouse::isSimpleClick (e))  {

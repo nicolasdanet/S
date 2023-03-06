@@ -125,10 +125,10 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
 
     #if JUCE_LINUX
-    if (e.mods.isShiftDown()) { x = y; y = 0.0f; }
+    if (Mouse::hasShiftKey (e)) { x = y; y = 0.0f; }
     #endif
         
-    if (e.mods.isCommandDown()) { mouseWheelMoveZoom (y); } else { mouseWheelMoveDisplace (x, y); }
+    if (Mouse::hasAltKey (e)) { mouseWheelMoveZoom (y); } else { mouseWheelMoveDisplace (x, y); }
     
     update();
 }
