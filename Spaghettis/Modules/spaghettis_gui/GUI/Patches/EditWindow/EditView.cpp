@@ -97,9 +97,13 @@ void EditView::handleMouseDragAbort()
 
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
-    if (maker_.isActive()) { const auto [pt, s] = maker_.getContent(); createNewObject (pt, s); }
-    else if (Mouse::isSimpleClick (e)) {
-        deselectAll();
+    if (Mouse::isSimpleClick (e)) {
+    //
+    if (maker_.isActive() == false) { deselectAll(); }
+    else {
+        const auto [pt, s] = maker_.getContent(); createNewObject (pt, s);
+    }
+    //
     }
 }
 
@@ -567,7 +571,7 @@ void EditView::requestNewObject (bool isFromMenu)
     //
     auto f = [isFromMenu, p = juce::Component::SafePointer<EditView> (this)]()
     {
-        if (p.getComponent()) { p.getComponent()->openNewObject (isFromMenu); }
+        if (p.getComponent()) { p->openNewObject (isFromMenu); }
     };
     
     #if JUCE_LINUX
@@ -594,10 +598,6 @@ void EditView::handleNewObject (const juce::Point<int>& pt, const juce::String& 
 void EditView::dismissNewObject()
 {
     maker_.hideEditor();
-    
-    #if JUCE_LINUX
-    BaseWindow::getWindow (this)->grabFocus();
-    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------
