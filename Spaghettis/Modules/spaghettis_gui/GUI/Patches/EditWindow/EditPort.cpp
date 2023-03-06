@@ -110,7 +110,7 @@ void EditPort::mouseWheelMoveZoom (float y)
     const auto pt = view_.getRealMousePosition();
     const int n   = getZoom();
     
-    jassert (pt.has_value());
+    if (pt.has_value() == false) { return; }        /* Happened in weird cases. */
     
     setZoomAroundPoint ((y > 0.0f) ? nextStep (n) : previousStep (n), pt.value());
 }

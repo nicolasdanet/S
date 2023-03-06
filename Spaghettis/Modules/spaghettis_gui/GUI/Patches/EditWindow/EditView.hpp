@@ -154,7 +154,8 @@ public:
 
 public:
     void requestNewObject (bool);
-    void handleNewObject (juce::Point<int>, juce::String);
+    void createNewObject (const juce::Point<int>&, const juce::String&);
+    void handleNewObject (const juce::Point<int>&, const juce::String&);
     void dismissNewObject();
 
 private:

@@ -80,6 +80,8 @@ void fillBuffer (t_buffer *b,
 
 Maker::Maker (const juce::Point<int>& pt, const juce::String& s) : b_ (buffer_new()), t_ (buffer_new())
 {
+    if (s.containsNonWhitespaceChars()) {
+    //
     const juce::StringArray a (juce::StringArray::fromTokens (s, true));
     
     if (!a.isEmpty()) {
@@ -93,6 +95,8 @@ Maker::Maker (const juce::Point<int>& pt, const juce::String& s) : b_ (buffer_ne
     else if (c == Tag::gatom   || c == Tag::floatatom) { fillBuffer (b_, t_, sym_floatatom, snapped, a, 1); }
     else {
         fillBuffer (b_, t_, sym_obj, snapped, a, 0);
+    }
+    //
     }
     //
     }

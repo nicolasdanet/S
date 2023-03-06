@@ -93,9 +93,11 @@ void EditView::handleMouseDragAbort()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* First let create the object when dismissing the Maker's CallOut Box clicking into the view. */
+
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
-    if (maker_.isActive()) { DBG ("CLICK"); }
+    if (maker_.isActive()) { const auto [pt, s] = maker_.getContent(); createNewObject (pt, s); }
     else if (Mouse::isSimpleClick (e)) {
         deselectAll();
     }
@@ -577,9 +579,14 @@ void EditView::requestNewObject (bool isFromMenu)
     }
 }
 
-void EditView::handleNewObject (juce::Point<int> pt, juce::String s)
+void EditView::createNewObject (const juce::Point<int>& pt, const juce::String& s)
 {
     if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (getIdentifierOfView(), pt, s)); }
+}
+
+void EditView::handleNewObject (const juce::Point<int>& pt, const juce::String& s)
+{
+    createNewObject (pt, s);
     
     dismissNewObject();
 }
