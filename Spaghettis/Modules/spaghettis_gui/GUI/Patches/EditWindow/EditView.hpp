@@ -125,6 +125,9 @@ public:
     void dragObjects (juce::Point<int>);
 
 public:
+    void createObject (const juce::Point<int>&, const juce::String&);
+    
+public:
     void moveBack();
     void moveFront();
     void snapToGrid();
@@ -153,13 +156,9 @@ public:
 // MARK: -
 
 public:
-    void requestNewObject (bool);
-    void createNewObject (const juce::Point<int>&, const juce::String&);
-    void handleNewObject (const juce::Point<int>&, const juce::String&);
-    void dismissNewObject();
-
-private:
-    void openNewObject (bool);
+    void openMaker (bool);
+    void handleMaker (const juce::Point<int>&, const juce::String&);
+    void dismissMaker();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

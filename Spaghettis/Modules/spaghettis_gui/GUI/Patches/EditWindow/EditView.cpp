@@ -101,7 +101,7 @@ void EditView::mouseDown (const juce::MouseEvent& e)
     //
     if (maker_.isActive() == false) { deselectAll(); }
     else {
-        const auto [pt, s] = maker_.getContent(); createNewObject (pt, s);
+        const auto [pt, s] = maker_.getContent(); createObject (pt, s);
     }
     //
     }
@@ -546,8 +546,19 @@ void EditView::remove()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::openNewObject (bool isFromMenu)
+void EditView::createObject (const juce::Point<int>& pt, const juce::String& s)
 {
+    if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (getIdentifierOfView(), pt, s)); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditView::openMaker (bool isFromMenu)
+{
+    if (!isAbstractionOrInside()) {
+    //
     std::optional<juce::Point<int>> a (getGlobalMousePosition());
     std::optional<juce::Point<int>> b (getRealMousePosition());
     
@@ -563,39 +574,18 @@ void EditView::openNewObject (bool isFromMenu)
     }
     
     maker_.showEditor (a, b);
-}
-
-void EditView::requestNewObject (bool isFromMenu)
-{
-    if (!isAbstractionOrInside()) {
-    //
-    auto f = [isFromMenu, p = juce::Component::SafePointer<EditView> (this)]()
-    {
-        if (p.getComponent()) { p->openNewObject (isFromMenu); }
-    };
-    
-    #if JUCE_LINUX
-    juce::Timer::callAfterDelay (100, f);
-    #else
-    f();
-    #endif
     //
     }
 }
 
-void EditView::createNewObject (const juce::Point<int>& pt, const juce::String& s)
+void EditView::handleMaker (const juce::Point<int>& pt, const juce::String& s)
 {
-    if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (getIdentifierOfView(), pt, s)); }
-}
-
-void EditView::handleNewObject (const juce::Point<int>& pt, const juce::String& s)
-{
-    createNewObject (pt, s);
+    createObject (pt, s);
     
-    dismissNewObject();
+    dismissMaker();
 }
 
-void EditView::dismissNewObject()
+void EditView::dismissMaker()
 {
     maker_.hideEditor();
 }
