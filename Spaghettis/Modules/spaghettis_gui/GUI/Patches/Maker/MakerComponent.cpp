@@ -30,6 +30,8 @@ MakerComponent::MakerComponent (EditView* view, const juce::Value& v, const juce
 MakerComponent::~MakerComponent()
 {
     Maker::setActive (v_, false);
+    
+    view_->makerDissmissed();
 }
 
 // -----------------------------------------------------------------------------------------------------------
