@@ -25,10 +25,14 @@ BaseWindow::BaseWindow (const juce::String& name, const juce::String& s) :
 {
     setUsingNativeTitleBar (true);
     setResizable (true, true);
+    
+    addKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
 }
 
 BaseWindow::~BaseWindow()
 {
+    removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
+    
     if (keyName_.isNotEmpty()) {
     //
     juce::PropertiesFile& p = Spaghettis()->getProperties();

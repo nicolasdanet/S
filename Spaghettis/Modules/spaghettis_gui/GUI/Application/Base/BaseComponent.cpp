@@ -16,8 +16,6 @@ BaseComponent::BaseComponent (IconsFactory* factory, const juce::String& s) : ke
 {
     Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
     
-    addKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
-    
     #if SPAGHETTIS_MENUBAR
     
     menubar_ = std::make_unique<juce::MenuBarComponent> (&Spaghettis()->getMenuBarModel());
@@ -54,8 +52,6 @@ BaseComponent::~BaseComponent()
     #endif
     
     saveToolbarButtonsStates();
-    
-    removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
 }
 
 // -----------------------------------------------------------------------------------------------------------
