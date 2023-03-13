@@ -109,6 +109,11 @@ void openSubPatch (const core::Object& o, View* v)
     if (o.isPatch()) { v->getPatchRoot().openSubPatchWindow (o.getIdentifier()); }
 }
 
+bool canResize (const core::Object& o)
+{
+    return (o.isGraphic());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -118,9 +123,12 @@ void openSubPatch (const core::Object& o, View* v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ObjectComponent::mouseMove (const juce::MouseEvent&)
+void ObjectComponent::mouseMove (const juce::MouseEvent& e)
 {
-
+    if (canResize (object_)) {
+        DBG (e.position.toString());
+        setMouseCursor (juce::MouseCursor::BottomRightCornerResizeCursor);
+    }
 }
 
 void ObjectComponent::mouseEnter (const juce::MouseEvent&)
@@ -130,7 +138,7 @@ void ObjectComponent::mouseEnter (const juce::MouseEvent&)
 
 void ObjectComponent::mouseExit (const juce::MouseEvent&)
 {
-
+    setMouseCursor (juce::MouseCursor::NormalCursor);
 }
 
 void ObjectComponent::mouseDown (const juce::MouseEvent& e)

@@ -163,6 +163,7 @@
 #include "GUI/Patches/EditWindow/Actions/ActionLasso.hpp"
 #include "GUI/Patches/EditWindow/Actions/ActionHand.hpp"
 #include "GUI/Patches/EditWindow/Actions/ActionMove.hpp"
+#include "GUI/Patches/EditWindow/Actions/ActionResize.hpp"
 #include "GUI/Patches/EditWindow/Sync.hpp"
 #include "GUI/Patches/EditWindow/EditView.hpp"
 #include "GUI/Patches/EditWindow/EditPort.hpp"
