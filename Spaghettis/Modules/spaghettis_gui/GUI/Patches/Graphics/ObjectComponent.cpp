@@ -109,11 +109,6 @@ void openSubPatch (const core::Object& o, View* v)
     if (o.isPatch()) { v->getPatchRoot().openSubPatchWindow (o.getIdentifier()); }
 }
 
-bool canResize (const core::Object& o)
-{
-    return (o.isGraphic());
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -123,11 +118,32 @@ bool canResize (const core::Object& o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool ObjectComponent::canResize (const juce::MouseEvent& e) const
+{
+    if (!isLocked() && object_.isGraphic()) {
+    //
+    /* Bottom-right quarter of object. */
+    
+    constexpr float f = 0.25f;
+    constexpr float g = 1.00f - f;
+    
+    return getLocalBounds().getProportion (juce::Rectangle<float> (g, g, f, f)).contains (e.getPosition());
+    //
+    }
+    
+    return false;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ObjectComponent::mouseMove (const juce::MouseEvent& e)
 {
-    if (canResize (object_)) {
-        DBG (e.position.toString());
+    if (canResize (e)) {
         setMouseCursor (juce::MouseCursor::BottomRightCornerResizeCursor);
+    } else {
+        setMouseCursor (juce::MouseCursor::NormalCursor);
     }
 }
 
