@@ -14,7 +14,12 @@ namespace spaghettis {
 
 ActionResize::ActionResize (EditView* view) : view_ (view)
 {
+    view_->setMouseCursorRecursive (juce::MouseCursor::BottomRightCornerResizeCursor);
+}
 
+ActionResize::~ActionResize()
+{
+    view_->setMouseCursorRecursive (juce::MouseCursor::NormalCursor);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -23,7 +28,7 @@ ActionResize::ActionResize (EditView* view) : view_ (view)
 
 void ActionResize::mouseDrag (const juce::MouseEvent& e)
 {
-
+    DBG ("?");
 }
 
 void ActionResize::mouseUp (const juce::MouseEvent& e)

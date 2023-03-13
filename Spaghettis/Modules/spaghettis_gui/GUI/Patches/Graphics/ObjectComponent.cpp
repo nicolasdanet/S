@@ -140,7 +140,7 @@ bool ObjectComponent::canResize (const juce::MouseEvent& e) const
 
 void ObjectComponent::mouseMove (const juce::MouseEvent& e)
 {
-    if (canResize (e)) {
+    if (!Mouse::hasModifier (e) && canResize (e)) {
         setMouseCursor (juce::MouseCursor::BottomRightCornerResizeCursor);
     } else {
         setMouseCursor (juce::MouseCursor::NormalCursor);
@@ -176,7 +176,9 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    handleMouseDrag (e, isSelected() ? DragFlag::Selected : DragFlag::None);
+    const DragFlag flag = canResize (e) ? DragFlag::Resize : (isSelected() ? DragFlag::Move : DragFlag::None);
+    
+    handleMouseDrag (e, flag);
 }
 
 void ObjectComponent::mouseUp (const juce::MouseEvent& e)

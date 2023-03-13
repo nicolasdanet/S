@@ -33,6 +33,11 @@ static bool hasAltKey (const juce::MouseEvent& e)
     return e.mods.isAltDown();
 }
 
+static bool hasModifier (const juce::MouseEvent& e)
+{
+    return hasShiftKey (e) || hasCommandKey (e) || hasAltKey (e);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
