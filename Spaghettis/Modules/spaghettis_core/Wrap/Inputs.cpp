@@ -195,9 +195,9 @@ Perform Inputs::createObject (core::UniqueId i, juce::Point<int> pt, juce::Strin
     return [i, pt, s]() { core::inputs_createObject (i, pt, s); };
 }
 
-Perform Inputs::parameterObject (core::UniqueId i, core::Group group)
+Perform Inputs::parametersObject (core::UniqueId i, core::Group group)
 {
-    return [i, g = std::move (group)]() { core::inputs_parameterObject (i, g); };
+    return [i, g = std::move (group)]() { core::inputs_parametersObject (i, g); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

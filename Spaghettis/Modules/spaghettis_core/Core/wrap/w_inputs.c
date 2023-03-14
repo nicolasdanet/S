@@ -225,7 +225,7 @@ PD_LOCAL void inputs_createObject (core::UniqueId i, juce::Point<int> pt, juce::
     unique_patchCreateObject (i, pt, s);
 }
 
-PD_LOCAL void inputs_parameterObject (core::UniqueId i, const core::Group& group)
+PD_LOCAL void inputs_parametersObject (core::UniqueId i, const core::Group& group)
 {
     unique_objectParameter (i, group);
 }

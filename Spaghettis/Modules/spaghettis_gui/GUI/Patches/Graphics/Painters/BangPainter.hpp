@@ -32,7 +32,14 @@ public:
 public:
     juce::Rectangle<float> getRequiredBoundsForObject() override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     std::optional<juce::Point<int>> getWidth() override;
+    
+    void setWidth (juce::Point<int>) override;
     
 private:
     core::Cached<juce::Colour> bangBackgroundColour_;
