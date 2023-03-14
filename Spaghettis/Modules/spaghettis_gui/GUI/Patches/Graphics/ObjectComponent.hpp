@@ -70,6 +70,7 @@ private:
 public:
     void dragStart();
     void drag (juce::Point<int>);
+    void resize (juce::Point<int>);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -180,6 +181,7 @@ private:
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;
     juce::Point<int> origin_;
+    std::optional<juce::Point<int>> width_;
     bool isLocked_;
     
 private:

@@ -123,6 +123,7 @@ private:
 public:
     void dragObjectsStart();
     void dragObjects (juce::Point<int>);
+    void resizeObjects (juce::Point<int>);
 
 public:
     void createObject (juce::Point<int>, const juce::String&);

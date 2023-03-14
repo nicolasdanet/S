@@ -193,11 +193,17 @@ void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 void ObjectComponent::dragStart()
 {
     origin_ = getLocalPosition();
+    width_  = painter_->getWidth();
 }
 
 void ObjectComponent::drag (juce::Point<int> offset)
 {
-    if (!isLocked()) { EditCommands::position (object_.getIdentifier(), origin_ + offset); }
+    if (!isLocked()) { EditCommands::position (object_.getIdentifier(), offset + origin_); }
+}
+
+void ObjectComponent::resize (juce::Point<int> offset)
+{
+    if (!isLocked() && width_.has_value()) { painter_->setWidth (offset + width_.value()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

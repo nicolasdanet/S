@@ -407,6 +407,15 @@ void EditView::dragObjects (juce::Point<int> offset)
     }
 }
 
+void EditView::resizeObjects (juce::Point<int> offset)
+{
+    if (!isAbstractionOrInside()) {
+    //
+    objects_.forEach ([offset](const auto& p) { if (p->isSelected()) { p->resize (offset); } });
+    //
+    }
+}
+
 void EditView::moveBack()
 {
     if (!isAbstractionOrInside()) {

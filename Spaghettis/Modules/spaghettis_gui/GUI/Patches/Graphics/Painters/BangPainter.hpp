@@ -32,6 +32,8 @@ public:
 public:
     juce::Rectangle<float> getRequiredBoundsForObject() override;
 
+    std::optional<juce::Point<int>> getWidth() override;
+    
 private:
     core::Cached<juce::Colour> bangBackgroundColour_;
     core::Cached<juce::Colour> bangFlashOffColour_;

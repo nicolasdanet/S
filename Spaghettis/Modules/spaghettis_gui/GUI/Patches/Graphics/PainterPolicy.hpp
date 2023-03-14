@@ -72,6 +72,21 @@ private:
 private:
     juce::Rectangle<float> paintLabel (juce::Rectangle<float>, juce::Graphics&);
     juce::Rectangle<float> getRequiredBoundsWithLabel (juce::Rectangle<float>);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    virtual std::optional<juce::Point<int>> getWidth()
+    {
+        return {};
+    }
+    
+    virtual void setWidth (juce::Point<int> pt)
+    {
+        DBG (pt.toString());
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
