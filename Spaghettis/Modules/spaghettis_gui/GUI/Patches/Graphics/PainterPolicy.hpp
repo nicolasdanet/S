@@ -83,9 +83,11 @@ public:
         return {};
     }
     
-    virtual void setWidth (juce::Point<int> pt)
+    void setWidth (juce::Point<int> pt)
     {
-    
+        DBG (pt.toString());
+        
+        //EditCommands::parameters (object_.getIdentifier(), group);
     }
     
 // -----------------------------------------------------------------------------------------------------------

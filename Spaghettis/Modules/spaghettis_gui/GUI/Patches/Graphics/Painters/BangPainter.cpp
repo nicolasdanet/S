@@ -56,13 +56,6 @@ std::optional<juce::Point<int>> BangPainter::getWidth()
     const int w = width_.get(); return juce::Point<int> (w, w);
 }
 
-void BangPainter::setWidth (juce::Point<int> pt)
-{
-    DBG (pt.toString());
-    
-    // EditCommands::parameters (object_.getIdentifier(), group);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

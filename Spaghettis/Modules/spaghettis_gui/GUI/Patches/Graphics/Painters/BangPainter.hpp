@@ -39,8 +39,6 @@ public:
 public:
     std::optional<juce::Point<int>> getWidth() override;
     
-    void setWidth (juce::Point<int>) override;
-    
 private:
     core::Cached<juce::Colour> bangBackgroundColour_;
     core::Cached<juce::Colour> bangFlashOffColour_;
