@@ -179,13 +179,8 @@ static void bng_functionSetParameters (t_object *z, const core::Group& group)
 {
     t_bng *x = (t_bng *)z;
     
-    if (group.hasParameter (Tag::FlashTime)) {
-        bng_updateFlashTime (x, group.getParameter (Tag::FlashTime).getValueTyped<int>());
-    }
-    
-    if (group.hasParameter (Tag::Width)) {
-        bng_updateWidth (x, group.getParameter (Tag::Width).getValueTyped<int>());
-    }
+    bng_updateFlashTime (x, group.getParameter (Tag::FlashTime).getValueTyped<int>());
+    bng_updateWidth (x, group.getParameter (Tag::Width).getValueTyped<int>());
 }
 
 #endif
