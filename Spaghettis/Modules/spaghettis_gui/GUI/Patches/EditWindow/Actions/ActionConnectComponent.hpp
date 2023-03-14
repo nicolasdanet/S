@@ -18,7 +18,7 @@ class ActionConnectComponent : public juce::Component {
 // MARK: -
 
 public:
-    explicit ActionConnectComponent (const juce::Point<int>&);
+    explicit ActionConnectComponent (juce::Point<int>);
     
     ~ActionConnectComponent() = default;
 
@@ -34,7 +34,7 @@ public:
 // MARK: -
 
 public:
-    void set (const juce::Point<int>& pt);
+    void set (juce::Point<int> pt);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

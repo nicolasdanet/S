@@ -548,7 +548,7 @@ void EditView::remove()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::createObject (const juce::Point<int>& pt, const juce::String& s)
+void EditView::createObject (juce::Point<int> pt, const juce::String& s)
 {
     if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (getIdentifierOfView(), pt, s)); }
 }
@@ -580,7 +580,7 @@ void EditView::openMaker (bool isFromMenu)
     }
 }
 
-void EditView::handleMaker (const juce::Point<int>& pt, const juce::String& s)
+void EditView::handleMaker (juce::Point<int> pt, const juce::String& s)
 {
     createObject (pt, s);
     

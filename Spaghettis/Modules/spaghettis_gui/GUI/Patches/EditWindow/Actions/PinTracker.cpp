@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PinComponent* getPinComponentAt (EditView* view, const juce::Point<int>& pt)
+PinComponent* getPinComponentAt (EditView* view, juce::Point<int> pt)
 {
     return dynamic_cast<PinComponent*> (view->getComponentAt (pt));
 }
@@ -91,12 +91,12 @@ PinTracker::~PinTracker()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PinTracker::start (EditView* view, const juce::Point<int>& pt)
+void PinTracker::start (EditView* view, juce::Point<int> pt)
 {
     source_ = getPinComponentAt (view, pt);
 }
 
-void PinTracker::hit (EditView* view, const juce::Point<int>& pt)
+void PinTracker::hit (EditView* view, juce::Point<int> pt)
 {
     if (source_.getComponent()) {
     //

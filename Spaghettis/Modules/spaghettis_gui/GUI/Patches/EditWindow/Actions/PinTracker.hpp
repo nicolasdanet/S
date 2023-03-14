@@ -33,8 +33,8 @@ public:
 // MARK: -
 
 public:
-    void start (EditView*, const juce::Point<int>&);
-    void hit (EditView*, const juce::Point<int>&);
+    void start (EditView*, juce::Point<int>);
+    void hit (EditView*, juce::Point<int>);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

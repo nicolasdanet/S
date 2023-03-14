@@ -25,7 +25,7 @@ class Maker {
 // MARK: -
 
 public:
-    explicit Maker (const juce::Point<int>&, const juce::String&);
+    explicit Maker (juce::Point<int>, const juce::String&);
     
     ~Maker();
 

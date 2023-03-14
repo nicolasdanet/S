@@ -145,7 +145,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Path getLineWithStartAndEnd (const juce::Point<float>& a, const juce::Point<float>& b)
+juce::Path getLineWithStartAndEnd (juce::Point<float> a, juce::Point<float> b)
 {
     juce::Path path;
     path.startNewSubPath (a);

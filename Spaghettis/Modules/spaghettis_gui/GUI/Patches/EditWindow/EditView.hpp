@@ -125,7 +125,7 @@ public:
     void dragObjects (juce::Point<int>);
 
 public:
-    void createObject (const juce::Point<int>&, const juce::String&);
+    void createObject (juce::Point<int>, const juce::String&);
     
 public:
     void moveBack();
@@ -157,7 +157,7 @@ public:
 
 public:
     void openMaker (bool);
-    void handleMaker (const juce::Point<int>&, const juce::String&);
+    void handleMaker (juce::Point<int>, const juce::String&);
     void dismissMaker();
     
 // -----------------------------------------------------------------------------------------------------------
