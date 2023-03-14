@@ -182,6 +182,7 @@ private:
     std::vector<std::unique_ptr<PinComponent>> oPins_;
     juce::Point<int> origin_;
     std::optional<juce::Point<int>> width_;
+    bool hasResize_;
     bool isLocked_;
     
 private:

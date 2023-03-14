@@ -49,6 +49,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
     painter_ (createPainter (this, object)),
+    hasResize_ (false),
     isLocked_ (object_.isLocked())
 {
     jassert (view);
@@ -140,7 +141,9 @@ bool ObjectComponent::canResize (const juce::MouseEvent& e) const
 
 void ObjectComponent::mouseMove (const juce::MouseEvent& e)
 {
-    if (!Mouse::hasModifier (e) && canResize (e)) {
+    hasResize_ = (!Mouse::hasModifier (e) && canResize (e));
+    
+    if (hasResize_) {
         setMouseCursor (juce::MouseCursor::BottomRightCornerResizeCursor);
     } else {
         setMouseCursor (juce::MouseCursor::NormalCursor);
@@ -149,11 +152,13 @@ void ObjectComponent::mouseMove (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseEnter (const juce::MouseEvent&)
 {
-
+    hasResize_ = false;
 }
 
 void ObjectComponent::mouseExit (const juce::MouseEvent&)
 {
+    hasResize_ = false;
+
     setMouseCursor (juce::MouseCursor::NormalCursor);
 }
 
@@ -176,7 +181,7 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    const DragFlag flag = canResize (e) ? DragFlag::Resize : (isSelected() ? DragFlag::Move : DragFlag::None);
+    const DragFlag flag = hasResize_ ? DragFlag::Resize : (isSelected() ? DragFlag::Move : DragFlag::None);
     
     handleMouseDrag (e, flag);
 }
