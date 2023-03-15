@@ -179,6 +179,9 @@ static void bng_functionSetParameters (t_object *z, const core::Group& group)
 {
     t_bng *x = (t_bng *)z;
     
+    jassert (group.hasParameter (Tag::FlashTime));
+    jassert (group.hasParameter (Tag::Width));
+    
     bng_updateFlashTime (x, group.getParameter (Tag::FlashTime).getValueTyped<int>());
     bng_updateWidth (x, group.getParameter (Tag::Width).getValueTyped<int>());
 }

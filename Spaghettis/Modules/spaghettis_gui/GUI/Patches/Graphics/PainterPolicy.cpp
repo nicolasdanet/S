@@ -54,9 +54,28 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 
 void PainterPolicy::setWidth (juce::Point<int> pt)
 {
-    // core::Group group = object_.getCopyOfParameters();
+    const int w = pt.getX();
+    const int h = pt.getY();
     
-    // EditCommands::parameters (object_.getIdentifier(), group);
+    if (w > 0 && h > 0) {
+    //
+    core::Group group    = object_.getCopyOfParameters();
+    const bool hasWidth  = group.hasParameter (Tag::Width);
+    const bool hasHeight = group.hasParameter (Tag::Height);
+    
+    if (hasWidth) {
+    //
+    group.getParameter (Tag::Width).changeValue (hasHeight ? w : juce::jmax (w, h));
+    
+    if (hasHeight) {
+        group.getParameter (Tag::Height).changeValue (h);
+    }
+    
+    EditCommands::parameters (object_.getIdentifier(), group);
+    //
+    }
+    //
+    }
 }
     
 // -----------------------------------------------------------------------------------------------------------
