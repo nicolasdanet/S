@@ -91,7 +91,7 @@ static void bng_anything (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 
 static int bng_update (t_bng *x, int *t, int n)
 {
-    if (n != *t) { *t = n; return 1; }
+    if (n != *t) { *t = n; glist_setDirty (x->x_owner, 1); return 1; }
     else {
         return 0;
     }
