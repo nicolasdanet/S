@@ -93,9 +93,11 @@ static void position (core::UniqueId i, juce::Point<int> pt)
     Spaghettis()->handle (Inputs::positionObject (i, Coordinates::localToReal (pt)));
 }
 
-static void parameters (core::UniqueId i, const core::Group& group)
+static void parameters (core::UniqueId i, const core::Group& copy)
 {
-    Spaghettis()->handle (Inputs::parametersObject (i, core::Group::makeCopy (group)));
+    jassert (copy.hasUniqueOwnership());    /* Parameters MUST be a deep copy. */
+    
+    Spaghettis()->handle (Inputs::parametersObject (i, copy));
 }
 
 static void disconnect (core::UniqueId u, int m, core::UniqueId v, int n)

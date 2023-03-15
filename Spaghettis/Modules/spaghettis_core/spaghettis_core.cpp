@@ -29,6 +29,7 @@
 #include "Glue/Unique.cpp"
 #include "Glue/Tree.cpp"
 #include "Glue/Item.cpp"
+#include "Glue/Object.cpp"
 #include "Glue/Patch.cpp"
 #include "Glue/Report.cpp"
 #include "Glue/Maker.cpp"

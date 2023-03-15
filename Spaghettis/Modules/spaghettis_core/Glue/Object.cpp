@@ -1,38 +1,22 @@
 
-/* Copyright (c) 2022 Jojo and others. */
+/* Copyright (c) 2023 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-namespace spaghettis {
+namespace spaghettis::core {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-InspectorView::InspectorView (Sync&& s, int w) : ParameterView (s.getData(), w), sync_ (std::move (s))
+Group Object::getCopyOfParameters() const
 {
-    sync_.bind (this);
-}
-
-InspectorView::~InspectorView()
-{
-    sync_.unbind (this);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void InspectorView::parameterHasChanged (const core::Group& group, const core::Parameter& parameter)
-{
-    if (group.getName() == Tag::Parameters) {
-    //
-    EditCommands::parameters (sync_.getIdentifier(), core::Group::makeCopy (group));
-    //
-    }
+    jassert (isGraphic());
+    
+    return Group::makeCopy (data_.getGroup (Tag::Parameters));
 }
 
 // -----------------------------------------------------------------------------------------------------------

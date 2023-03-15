@@ -83,12 +83,7 @@ public:
         return {};
     }
     
-    void setWidth (juce::Point<int> pt)
-    {
-        DBG (pt.toString());
-        
-        //EditCommands::parameters (object_.getIdentifier(), group);
-    }
+    void setWidth (juce::Point<int>);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
