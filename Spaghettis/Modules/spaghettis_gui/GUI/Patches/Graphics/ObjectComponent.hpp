@@ -184,6 +184,7 @@ private:
     std::optional<juce::Point<int>> width_;
     bool hasResize_;
     bool isLocked_;
+    bool isInsideRunView_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ObjectComponent)

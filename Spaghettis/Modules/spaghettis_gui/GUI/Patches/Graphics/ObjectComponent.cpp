@@ -50,7 +50,8 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
     painter_ (createPainter (this, object)),
     hasResize_ (false),
-    isLocked_ (object_.isLocked())
+    isLocked_ (object_.isLocked()),
+    isInsideRunView_ (dynamic_cast<RunView*> (view) != nullptr)
 {
     jassert (view);
     
@@ -141,12 +142,16 @@ bool ObjectComponent::canResize (const juce::MouseEvent& e) const
 
 void ObjectComponent::mouseMove (const juce::MouseEvent& e)
 {
+    if (!isInsideRunView()) {
+    //
     hasResize_ = (!Mouse::hasModifier (e) && canResize (e));
     
     if (hasResize_) {
         setMouseCursor (juce::MouseCursor::BottomRightCornerResizeCursor);
     } else {
         setMouseCursor (juce::MouseCursor::NormalCursor);
+    }
+    //
     }
 }
 
@@ -181,14 +186,22 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
+    if (!isInsideRunView()) {
+    //
     const DragFlag flag = hasResize_ ? DragFlag::Resize : (isSelected() ? DragFlag::Move : DragFlag::None);
     
     handleMouseDrag (e, flag);
+    //
+    }
 }
 
 void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 {
+    if (!isInsideRunView()) {
+    //
     handleMouseUp (e);
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -375,7 +388,7 @@ void ObjectComponent::snap()
 
 bool ObjectComponent::isInsideRunView() const
 {
-    return (dynamic_cast<RunView*> (getView()) != nullptr);
+    return isInsideRunView_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
