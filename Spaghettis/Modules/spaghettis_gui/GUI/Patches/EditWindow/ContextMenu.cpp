@@ -31,7 +31,7 @@ juce::PopupMenu::Options getContextMenuOptions (ObjectComponent* c)
     return juce::PopupMenu::Options().withDeletionCheck (*c);
 }
 
-juce::PopupMenu getContextMenu()
+juce::PopupMenu getContextMenu (ObjectComponent* c)
 {
     juce::PopupMenu m;
     
@@ -41,11 +41,11 @@ juce::PopupMenu getContextMenu()
     return m;
 }
 
-auto contextMenuHandler (EditView* view)
+auto contextMenuCallback (ObjectComponent* c, EditView* view)
 {
-    return [p = juce::Component::SafePointer<EditView> (view)] (int result)
+    return [p = juce::Component::SafePointer<EditView> (view), o = juce::Component::SafePointer<ObjectComponent> (c)] (int result)
         {
-            if (p.getComponent()) { DBG ("!!!"); }
+            if (p.getComponent() && o.getComponent()) { DBG ("!!!"); }
         };
 }
 
@@ -60,9 +60,11 @@ auto contextMenuHandler (EditView* view)
 
 void ContextMenu::open (const juce::MouseEvent&, ObjectComponent* c)
 {
-    juce::PopupMenu m (getContextMenu());
+    const juce::PopupMenu::Options options (getContextMenuOptions (c));
     
-    m.showMenuAsync (getContextMenuOptions (c), contextMenuHandler (view_));
+    juce::PopupMenu m (getContextMenu (c));
+    
+    m.showMenuAsync (options, contextMenuCallback (c, view_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
