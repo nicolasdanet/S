@@ -35,8 +35,13 @@ juce::PopupMenu getContextMenu (ObjectComponent* c)
 {
     juce::PopupMenu m;
     
-    m.addItem (1, "item 1");
-    m.addItem (2, "item 2");
+    m.addItem (1, NEEDS_TRANS ("Help"));
+    m.addSeparator();
+    m.addItem (2, NEEDS_TRANS ("Open"), false);
+    m.addSeparator();
+    m.addItem (4, NEEDS_TRANS ("Move Back"));
+    m.addItem (5, NEEDS_TRANS ("Move Front"));
+    m.addItem (3, NEEDS_TRANS ("Snap"));
     
     return m;
 }
