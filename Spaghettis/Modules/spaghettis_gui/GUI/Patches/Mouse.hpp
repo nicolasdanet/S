@@ -47,6 +47,11 @@ static bool isClick (const juce::MouseEvent& e)
     return e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 1;
 }
 
+static bool isRightClick (const juce::MouseEvent& e)
+{
+    return e.mods.isPopupMenu() && e.getNumberOfClicks() == 1;
+}
+
 static bool isDoubleClick (const juce::MouseEvent& e)
 {
     return e.mods.isLeftButtonDown() && e.getNumberOfClicks() == 2;

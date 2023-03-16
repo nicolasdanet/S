@@ -92,6 +92,7 @@
 #include "GUI/Patches/EditWindow/Actions/ActionHand.cpp"
 #include "GUI/Patches/EditWindow/Actions/ActionMove.cpp"
 #include "GUI/Patches/EditWindow/Actions/ActionResize.cpp"
+#include "GUI/Patches/EditWindow/ContextMenu.cpp"
 #include "GUI/Patches/EditWindow/Sync.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
 #include "GUI/Patches/EditWindow/EditPort.cpp"
