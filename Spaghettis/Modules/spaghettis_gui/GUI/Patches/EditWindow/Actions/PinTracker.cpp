@@ -26,12 +26,12 @@ PinComponent* getPinComponentAt (EditView* view, juce::Point<int> pt)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void unsetPointer (juce::Component::SafePointer<PinComponent>& p)
+void unsetPointer (WeakPointer<PinComponent>& p)
 {
     if (p.getComponent()) { p->setHighlighted (false); p = nullptr; }
 }
 
-void setPointer (juce::Component::SafePointer<PinComponent>& p, PinComponent* pin)
+void setPointer (WeakPointer<PinComponent>& p, PinComponent* pin)
 {
     unsetPointer (p); p = pin; if (p.getComponent()) { p->setHighlighted (true); }
 }
@@ -57,9 +57,7 @@ bool checkDisallow (PinComponent* source, PinComponent* pin)
     return false;
 }
 
-void check (PinComponent* pin,
-    juce::Component::SafePointer<PinComponent>& source,
-    juce::Component::SafePointer<PinComponent>& destination)
+void check (PinComponent* pin, WeakPointer<PinComponent>& source, WeakPointer<PinComponent>& destination)
 {
     if (destination.getComponent() != pin) {
         if (pin && checkDisallow (source.getComponent(), pin)) { setPointer (destination, nullptr); }

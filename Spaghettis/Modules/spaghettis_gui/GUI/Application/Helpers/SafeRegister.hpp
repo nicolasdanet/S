@@ -33,8 +33,8 @@ public:
     SafeRegisterElement& operator = (SafeRegisterElement&&) = default;
     
 public:
-    juce::Component::SafePointer<K> parent_;
-    juce::Component::SafePointer<V> child_;
+    WeakPointer<K> parent_;
+    WeakPointer<V> child_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

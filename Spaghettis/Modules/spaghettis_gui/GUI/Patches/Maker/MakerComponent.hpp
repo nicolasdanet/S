@@ -56,7 +56,7 @@ private:
     MakerDocumentation documentation_;
 
 private:
-    juce::Component::SafePointer<EditView> view_;
+    WeakPointer<EditView> view_;
     juce::Value v_;
     juce::Point<int> pt_;
     

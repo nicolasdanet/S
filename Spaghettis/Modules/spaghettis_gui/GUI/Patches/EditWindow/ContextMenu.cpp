@@ -43,7 +43,7 @@ juce::PopupMenu getContextMenu (ObjectComponent* c)
 
 auto contextMenuCallback (ObjectComponent* c, EditView* view)
 {
-    return [p = juce::Component::SafePointer<EditView> (view), o = juce::Component::SafePointer<ObjectComponent> (c)] (int result)
+    return [p = WeakPointer<EditView> (view), o = WeakPointer<ObjectComponent> (c)] (int result)
         {
             if (p.getComponent() && o.getComponent()) { DBG ("!!!"); }
         };

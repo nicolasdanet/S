@@ -123,8 +123,8 @@ private:
 
 private:
     core::Line line_;
-    juce::Component::SafePointer<ObjectComponent> source_;
-    juce::Component::SafePointer<ObjectComponent> destination_;
+    WeakPointer<ObjectComponent> source_;
+    WeakPointer<ObjectComponent> destination_;
     core::Cached<bool> selected_;
     core::Cached<juce::Colour> lineColour_;
     core::Cached<juce::Colour> lineSelectedColour_;
