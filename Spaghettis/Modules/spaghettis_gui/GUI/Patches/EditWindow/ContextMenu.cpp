@@ -26,6 +26,11 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+juce::PopupMenu::Options getContextMenuOptions (ObjectComponent* c)
+{
+    return juce::PopupMenu::Options().withDeletionCheck (*c);
+}
+
 juce::PopupMenu getContextMenu()
 {
     juce::PopupMenu m;
@@ -36,9 +41,12 @@ juce::PopupMenu getContextMenu()
     return m;
 }
 
-auto contextMenuHandler()
+auto contextMenuHandler (EditView* view)
 {
-    return [] (int result) { DBG ("!!!"); };
+    return [p = juce::Component::SafePointer<EditView> (view)] (int result)
+        {
+            if (p.getComponent()) { DBG ("!!!"); }
+        };
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -50,11 +58,11 @@ auto contextMenuHandler()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ContextMenu::open (const juce::MouseEvent&, ObjectComponent*)
+void ContextMenu::open (const juce::MouseEvent&, ObjectComponent* c)
 {
     juce::PopupMenu m (getContextMenu());
- 
-    m.showMenuAsync (juce::PopupMenu::Options(), contextMenuHandler());
+    
+    m.showMenuAsync (getContextMenuOptions (c), contextMenuHandler (view_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

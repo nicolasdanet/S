@@ -43,7 +43,7 @@ public:
     void open (const juce::MouseEvent&, ObjectComponent*);
     
 private:
-    juce::Component::SafePointer<EditView> view_;
+    EditView* view_;
     
 private:
     JUCE_LEAK_DETECTOR (ContextMenu)
