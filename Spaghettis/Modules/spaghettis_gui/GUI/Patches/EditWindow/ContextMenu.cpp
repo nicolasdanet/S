@@ -26,6 +26,19 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+enum ContextMenuItems {
+    none    = 0,
+    help,
+    open,
+    back,
+    front,
+    snap
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::PopupMenu::Options getContextMenuOptions (ObjectComponent* c)
 {
     return juce::PopupMenu::Options().withDeletionCheck (*c);
@@ -35,23 +48,25 @@ juce::PopupMenu getContextMenu (ObjectComponent* c)
 {
     juce::PopupMenu m;
     
-    m.addItem (1, NEEDS_TRANS ("Help"));
+    m.addItem (ContextMenuItems::help,  NEEDS_TRANS ("Help"));
     m.addSeparator();
-    m.addItem (2, NEEDS_TRANS ("Open"), false);
+    m.addItem (ContextMenuItems::open,  NEEDS_TRANS ("Open"), false);
     m.addSeparator();
-    m.addItem (4, NEEDS_TRANS ("Move Back"));
-    m.addItem (5, NEEDS_TRANS ("Move Front"));
-    m.addItem (3, NEEDS_TRANS ("Snap"));
+    m.addItem (ContextMenuItems::back,  NEEDS_TRANS ("Move Back"));
+    m.addItem (ContextMenuItems::front, NEEDS_TRANS ("Move Front"));
+    m.addItem (ContextMenuItems::snap,  NEEDS_TRANS ("Snap"));
     
     return m;
 }
 
 auto contextMenuCallback (ObjectComponent* c, EditView* view)
 {
-    return [p = WeakPointer<EditView> (view), o = WeakPointer<ObjectComponent> (c)] (int result)
-        {
-            if (p.getComponent() && o.getComponent()) { DBG ("!!!"); }
-        };
+    auto f = [p = WeakPointer<EditView> (view), o = WeakPointer<ObjectComponent> (c)] (int result)
+    {
+        if (p.getComponent() && o.getComponent()) { DBG ("!!!"); }
+    };
+        
+    return f;
 }
 
 // -----------------------------------------------------------------------------------------------------------
