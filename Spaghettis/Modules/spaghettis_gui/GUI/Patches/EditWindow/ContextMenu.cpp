@@ -50,11 +50,11 @@ juce::PopupMenu getContextMenu (ObjectComponent* c)
     
     m.addItem (ContextMenuItems::help,  NEEDS_TRANS ("Help"));
     m.addSeparator();
-    m.addItem (ContextMenuItems::open,  NEEDS_TRANS ("Open"), false);
+    m.addItem (ContextMenuItems::open,  NEEDS_TRANS ("Open"),       c->isPatch());
     m.addSeparator();
-    m.addItem (ContextMenuItems::back,  NEEDS_TRANS ("Move Back"));
-    m.addItem (ContextMenuItems::front, NEEDS_TRANS ("Move Front"));
-    m.addItem (ContextMenuItems::snap,  NEEDS_TRANS ("Snap"));
+    m.addItem (ContextMenuItems::back,  NEEDS_TRANS ("Move Back"),  !c->isLocked());
+    m.addItem (ContextMenuItems::front, NEEDS_TRANS ("Move Front"), !c->isLocked());
+    m.addItem (ContextMenuItems::snap,  NEEDS_TRANS ("Snap"),       !c->isLocked());
     
     return m;
 }
