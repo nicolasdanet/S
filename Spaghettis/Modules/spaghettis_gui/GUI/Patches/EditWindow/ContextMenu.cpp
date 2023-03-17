@@ -26,7 +26,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-enum ContextMenuItems {
+enum Contextual {
     none    = 0,
     help,
     open,
@@ -48,22 +48,33 @@ juce::PopupMenu getContextMenu (ObjectComponent* c)
 {
     juce::PopupMenu m;
     
-    m.addItem (ContextMenuItems::help,  NEEDS_TRANS ("Help"));
+    m.addItem (Contextual::help,    NEEDS_TRANS ("Help"));
     m.addSeparator();
-    m.addItem (ContextMenuItems::open,  NEEDS_TRANS ("Open"),       c->isPatch());
+    m.addItem (Contextual::open,    NEEDS_TRANS ("Open"),       c->isPatch());
     m.addSeparator();
-    m.addItem (ContextMenuItems::back,  NEEDS_TRANS ("Move Back"),  !c->isLocked());
-    m.addItem (ContextMenuItems::front, NEEDS_TRANS ("Move Front"), !c->isLocked());
-    m.addItem (ContextMenuItems::snap,  NEEDS_TRANS ("Snap"),       !c->isLocked());
+    m.addItem (Contextual::back,    NEEDS_TRANS ("Move Back"),  !c->isLocked());
+    m.addItem (Contextual::front,   NEEDS_TRANS ("Move Front"), !c->isLocked());
+    m.addItem (Contextual::snap,    NEEDS_TRANS ("Snap"),       !c->isLocked());
     
     return m;
 }
 
 auto contextMenuCallback (ObjectComponent* c, EditView* view)
 {
-    auto f = [p = WeakPointer<EditView> (view), o = WeakPointer<ObjectComponent> (c)] (int result)
+    auto f = [v = WeakPointer<EditView> (view), o = WeakPointer<ObjectComponent> (c)] (int result)
     {
-        if (p.getComponent() && o.getComponent()) { DBG ("!!!"); }
+    //
+    if (v.getComponent() && o.getComponent()) {
+        switch (result) {
+            case Contextual::help   : DBG ("HELP"); break;
+            case Contextual::open   : v->getPatchRoot().openPatchWindow (o->getIdentifier()); break;
+            case Contextual::back   : v->moveBack (o->getIdentifier());
+            case Contextual::front  : v->moveFront (o->getIdentifier());
+            case Contextual::snap   : v->snapToGrid (o->getIdentifier());
+            default                 : break;
+        }
+    }
+    //
     };
         
     return f;
