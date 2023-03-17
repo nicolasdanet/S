@@ -144,7 +144,7 @@ void PatchRoot::openWindow()
     }
 }
 
-void PatchRoot::openSubpatchWindow (core::UniqueId i)
+void PatchRoot::openPatchWindow (core::UniqueId i)
 {
     juce::ValueTree t (Tree::findChild (rootTree_, i));
     
