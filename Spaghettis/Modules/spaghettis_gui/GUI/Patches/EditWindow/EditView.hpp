@@ -107,7 +107,7 @@ public:
 public:
     bool hasSelected() const;
     bool hasSelectedObject() const;
-    bool hasOnlyOnePatchSelected() const;
+    bool hasOnlyOneSubpatchSelected() const;
     bool hasPaste() const;
     Sync getSynchronized() const;
     

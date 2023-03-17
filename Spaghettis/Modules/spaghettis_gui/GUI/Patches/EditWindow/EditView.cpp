@@ -345,10 +345,10 @@ Sync EditView::getSynchronized() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool EditView::hasOnlyOnePatchSelected() const
+bool EditView::hasOnlyOneSubpatchSelected() const
 {
     if (getNumberOfSelectedObjects() == 1) {
-        if (getSelectedObject()->getObject().isSubpatch()) {
+        if (auto o = getSelectedObject()->getObject(); o.isPatch() && !o.isAbstraction()) {
             return true;
         }
     }
