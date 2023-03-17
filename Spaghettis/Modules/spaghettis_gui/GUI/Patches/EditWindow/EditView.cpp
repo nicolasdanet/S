@@ -348,7 +348,7 @@ Sync EditView::getSynchronized() const
 bool EditView::hasOnlyOnePatchSelected() const
 {
     if (getNumberOfSelectedObjects() == 1) {
-        if (getSelectedObject()->getObject().isSubPatch()) {
+        if (getSelectedObject()->getObject().isSubpatch()) {
             return true;
         }
     }

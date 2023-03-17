@@ -48,7 +48,7 @@ public:
         return isPatch() && get<bool> (Tag::Attributes, Tag::Abstraction);
     }
     
-    bool isSubPatch() const
+    bool isSubpatch() const
     {
         return isPatch() && !isAbstraction();
     }

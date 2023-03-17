@@ -106,9 +106,9 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void openSubPatch (const core::Object& o, View* v)
+void openSubpatch (const core::Object& o, View* v)
 {
-    if (o.isPatch()) { v->getPatchRoot().openSubPatchWindow (o.getIdentifier()); }
+    if (o.isPatch()) { v->getPatchRoot().openSubpatchWindow (o.getIdentifier()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -174,7 +174,7 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
     if (Mouse::isRightClick (e))        { ContextMenu (view).open (e, this); }
     else if (Mouse::isCommandClick (e)) { painter_->mouseDown (e); }
     else if (Mouse::isAltClick (e))     { }
-    else if (Mouse::isDoubleClick (e))  { openSubPatch (object_, view); }
+    else if (Mouse::isDoubleClick (e))  { openSubpatch (object_, view); }
     else if (Mouse::isShiftClick (e))   { setSelected (!isSelected());  }
     else if (Mouse::isSimpleClick (e))  {
         if (!isSelected()) {

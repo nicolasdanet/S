@@ -43,7 +43,7 @@ public:
 // MARK: -
 
 public:
-    bool isSubPatch() const
+    bool isSubpatch() const
     {
         return viewTree_.getParent().isValid();
     }

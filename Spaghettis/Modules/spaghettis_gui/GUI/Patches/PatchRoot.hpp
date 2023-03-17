@@ -87,7 +87,7 @@ private:
 
 public:
     void openWindow();
-    void openSubPatchWindow (core::UniqueId);
+    void openSubpatchWindow (core::UniqueId);
     void openEditWindow();
     void openRunWindow();
     void closeWindowButtonPressed (PatchWindow*);

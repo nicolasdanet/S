@@ -144,7 +144,7 @@ void PatchRoot::openWindow()
     }
 }
 
-void PatchRoot::openSubPatchWindow (core::UniqueId i)
+void PatchRoot::openSubpatchWindow (core::UniqueId i)
 {
     juce::ValueTree t (Tree::findChild (rootTree_, i));
     
@@ -207,7 +207,7 @@ juce::Component* PatchRoot::getMainWindow() const
     jassert (windows_.empty() == false);
     
     for (const auto& p : windows_) {
-        if (!p->isSubPatch()) { return dynamic_cast<juce::Component*> (p.get()); }
+        if (!p->isSubpatch()) { return dynamic_cast<juce::Component*> (p.get()); }
     }
     
     return dynamic_cast<juce::Component*> (windows_.front().get());
