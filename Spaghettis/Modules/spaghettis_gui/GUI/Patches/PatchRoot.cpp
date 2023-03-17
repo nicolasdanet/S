@@ -207,7 +207,7 @@ juce::Component* PatchRoot::getMainWindow() const
     jassert (windows_.empty() == false);
     
     for (const auto& p : windows_) {
-        if (!p->isSubpatch()) { return dynamic_cast<juce::Component*> (p.get()); }
+        if (p->isTopPatchWindow()) { return dynamic_cast<juce::Component*> (p.get()); }
     }
     
     return dynamic_cast<juce::Component*> (windows_.front().get());

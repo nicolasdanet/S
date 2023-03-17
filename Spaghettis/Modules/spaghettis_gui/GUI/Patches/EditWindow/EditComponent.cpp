@@ -86,7 +86,7 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
         
     addMenuCommand (MenuCommand (Commands::deencapsulate)
         .setInvoke ([this] (const auto&) { editView_.deencapsulate(); })
-        .setCheck  ([this]() { return editView_.hasOnlyOneSubpatchSelected(); }));
+        .setCheck  ([this]() { return editView_.hasOnlyOnePatchSelected(); }));
     
     addMenuCommand (MenuCommand (Commands::moveBack)
         .setInvoke ([this] (const auto&) { editView_.moveBack(); })

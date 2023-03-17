@@ -43,9 +43,9 @@ public:
 // MARK: -
 
 public:
-    bool isSubpatch() const
+    bool isTopPatchWindow() const
     {
-        return viewTree_.getParent().isValid();
+        return !viewTree_.getParent().isValid();
     }
 
 // -----------------------------------------------------------------------------------------------------------
