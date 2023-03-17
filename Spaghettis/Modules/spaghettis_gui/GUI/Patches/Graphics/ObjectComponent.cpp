@@ -97,6 +97,16 @@ bool ObjectComponent::isLocked() const
     return isLocked_;
 }
 
+bool ObjectComponent::isPatch() const
+{
+    return object_.isPatch();
+}
+
+bool ObjectComponent::isAbstraction() const
+{
+    return object_.isAbstraction();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -348,7 +348,7 @@ Sync EditView::getSynchronized() const
 bool EditView::hasOnlyOnePatchSelected() const
 {
     if (getNumberOfSelectedObjects() == 1) {
-        if (auto o = getSelectedObject()->getObject(); o.isPatch() && !o.isAbstraction()) {
+        if (auto o = getSelectedObject(); o->isPatch() && !o->isAbstraction()) {
             return true;
         }
     }
@@ -617,7 +617,7 @@ void EditView::deencapsulate()
     const ObjectComponent* o = getSelectedObject();
     
     jassert (o);
-    jassert (o->getObject().isPatch());
+    jassert (o->isPatch());
     
     EditCommands::deencapsulate (o->getIdentifier());
     //
