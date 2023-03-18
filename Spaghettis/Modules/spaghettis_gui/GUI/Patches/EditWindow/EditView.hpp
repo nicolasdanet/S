@@ -159,13 +159,9 @@ public:
 // MARK: -
 
 public:
-    void moveBack();
-    void moveFront();
-    void snapToGrid();
-    
-    void moveBack (core::UniqueId);
-    void moveFront (core::UniqueId);
-    void snapToGrid (core::UniqueId);
+    void moveBack (core::UniqueId u = 0);
+    void moveFront (core::UniqueId u = 0);
+    void snapToGrid (core::UniqueId u = 0);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

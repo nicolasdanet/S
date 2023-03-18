@@ -63,6 +63,13 @@ public:
         for_each (v_.crbegin(), v_.crend(), f);
     }
     
+    template <class F> void forUnique (core::UniqueId identifier, F f) const
+    {
+        auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (identifier));
+        
+        if (r != v_.cend()) { f (*r); }
+    }
+    
     template <class F> auto countIf (F f) const
     {
         return count_if (v_.cbegin(), v_.cend(), f);
