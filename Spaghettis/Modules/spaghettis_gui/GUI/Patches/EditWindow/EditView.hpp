@@ -269,6 +269,26 @@ private:
 private:
     void updateOrder();
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    template <class F> void forObjectsSelected (F f)
+    {
+        auto g = [f = f](const auto& p) { if (p->isSelected()) { f (p); } };
+        
+        objects_.forEach (g);
+    }
+    
+    template <class F> void forUniqueOrObjectsSelected (core::UniqueId u, F f)
+    {
+        if (u) { objects_.forUnique (u, f); }
+        else {
+            forObjectsSelected (f);
+        }
+    }
+
 private:
     Maker maker_;
     bool isAbstraction_;

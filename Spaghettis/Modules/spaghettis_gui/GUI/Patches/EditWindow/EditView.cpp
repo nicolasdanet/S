@@ -428,10 +428,7 @@ void EditView::moveBack (core::UniqueId u)
 {
     if (!isAbstractionOrInside()) {
     //
-    if (u) { objects_.forUnique (u, [](const auto& p) { p->moveBack(); }); }
-    else {
-        objects_.forEach ([](const auto& p) { if (p->isSelected()) { p->moveBack(); } });
-    }
+    forUniqueOrObjectsSelected (u, [](const auto& p) { p->moveBack(); });
     //
     }
 }
@@ -440,10 +437,7 @@ void EditView::moveFront (core::UniqueId u)
 {
     if (!isAbstractionOrInside()) {
     //
-    if (u) { objects_.forUnique (u, [](const auto& p) { p->moveFront(); }); }
-    else {
-        objects_.forEach ([](const auto& p) { if (p->isSelected()) { p->moveFront(); } });
-    }
+    forUniqueOrObjectsSelected (u, [](const auto& p) { p->moveFront(); });
     //
     }
 }
@@ -452,10 +446,7 @@ void EditView::snapToGrid (core::UniqueId u)
 {
     if (!isAbstractionOrInside()) {
     //
-    if (u) { objects_.forUnique (u, [](const auto& p) { p->snap(); }); }
-    else {
-        objects_.forEach ([](const auto& p) { if (p->isSelected()) { p->snap(); } });
-    }
+    forUniqueOrObjectsSelected (u, [](const auto& p) { p->snap(); });
     //
     }
 }
