@@ -67,10 +67,10 @@ auto contextMenuCallback (ObjectComponent* c, EditView* view)
     if (v.getComponent() && o.getComponent()) {
         switch (result) {
             case Contextual::help   : DBG ("HELP"); break;
-            case Contextual::open   : v->getPatchRoot().openPatchWindow (o->getIdentifier()); break;
-            case Contextual::back   : v->moveBack (o->getIdentifier());
-            case Contextual::front  : v->moveFront (o->getIdentifier());
-            case Contextual::snap   : v->snapToGrid (o->getIdentifier());
+            case Contextual::open   : v->getPatchRoot().openPatchWindow (o->getIdentifier());   break;
+            case Contextual::back   : v->moveBack (o->getIdentifier());                         break;
+            case Contextual::front  : v->moveFront (o->getIdentifier());                        break;
+            case Contextual::snap   : v->snapToGrid (o->getIdentifier());                       break;
             default                 : break;
         }
     }
