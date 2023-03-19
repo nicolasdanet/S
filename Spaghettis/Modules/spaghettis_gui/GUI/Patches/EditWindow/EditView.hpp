@@ -274,18 +274,11 @@ private:
 // MARK: -
 
 private:
-    template <class F> void forObjectsSelected (F f)
-    {
-        auto g = [h = f](const auto& p) { if (p->isSelected()) { h (p); } };
-        
-        objects_.forEach (g);
-    }
-    
     template <class F> void forObject (ObjectComponent* c, F f)
     {
         if (c && !c->isSelected()) { objects_.forUnique (f, c->getIdentifier()); }
         else {
-            forObjectsSelected (f);
+            objects_.forEachSelected (f);
         }
     }
 
