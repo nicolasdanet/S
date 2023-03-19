@@ -276,7 +276,7 @@ private:
 private:
     template <class F> void forObjectsSelected (F f)
     {
-        auto g = [f = f](const auto& p) { if (p->isSelected()) { f (p); } };
+        auto g = [h = f](const auto& p) { if (p->isSelected()) { h (p); } };
         
         objects_.forEach (g);
     }
