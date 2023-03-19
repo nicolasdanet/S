@@ -192,12 +192,10 @@ std::optional<juce::Point<int>> EditView::getRealPositionOfSelectedObjects (juce
     
     auto f = [&pt, offset](const auto& p)
     {
-        if (p->isSelected()) {
-            pt = getMinimum (pt, Coordinates::localToReal (p->getLocalPosition()), offset);
-        }
+        pt = getMinimum (pt, Coordinates::localToReal (p->getLocalPosition()), offset);
     };
 
-    objects_.forEach (f);
+    objects_.forEachSelected (f);
     
     return pt;
 }
@@ -241,24 +239,16 @@ template <class T> core::UniqueId getSelected (T& t)
 {
     core::UniqueId u = 0;
     
-    auto f = [&u](const auto& p)
-    {
-        if (p->isSelected()) { u = p->getIdentifier(); }
-    };
+    auto f = [&u](const auto& p) { u = p->getIdentifier(); };
 
-    t.forEach (f);
+    t.forEachSelected (f);
     
     return u;
 }
 
 void deconnectSelectedLines (Table<LineComponent>& t)
 {
-    auto f = [](const auto& p)
-    {
-        if (p->isSelected()) { p->disconnect(); }
-    };
-
-    t.forEach (f);
+    t.forEachSelected ([](const auto& p) { p->disconnect(); });
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -406,7 +396,7 @@ void EditView::dragObjects (juce::Point<int> offset)
 {
     if (!isAbstractionOrInside()) {
     //
-    objects_.forEach ([offset](const auto& p) { if (p->isSelected()) { p->drag (offset); } });
+    objects_.forEachSelected ([offset](const auto& p) { p->drag (offset); });
     //
     }
 }
@@ -415,7 +405,7 @@ void EditView::resizeObjects (juce::Point<int> offset)
 {
     if (!isAbstractionOrInside()) {
     //
-    objects_.forEach ([offset](const auto& p) { if (p->isSelected()) { p->resize (offset); } });
+    objects_.forEachSelected ([offset](const auto& p) { p->resize (offset); });
     //
     }
 }
