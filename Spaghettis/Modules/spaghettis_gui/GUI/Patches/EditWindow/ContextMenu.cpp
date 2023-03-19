@@ -40,7 +40,7 @@ enum Contextual {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::PopupMenu getViewContextMenu (EditView* view)
+juce::PopupMenu getContextMenuForView (EditView* view)
 {
     juce::PopupMenu m;
     
@@ -51,7 +51,7 @@ juce::PopupMenu getViewContextMenu (EditView* view)
     return m;
 }
 
-auto getViewContextMenuCallback (EditView* view)
+auto getContextMenuCallbackForView (EditView* view, const juce::MouseEvent& e)
 {
     auto f = [v = WeakPointer<EditView> (view)] (int result)
     {
@@ -73,7 +73,7 @@ auto getViewContextMenuCallback (EditView* view)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::PopupMenu getObjectContextMenu (ObjectComponent* c)
+juce::PopupMenu getContextMenuForObject (ObjectComponent* c)
 {
     juce::PopupMenu m;
     
@@ -88,7 +88,7 @@ juce::PopupMenu getObjectContextMenu (ObjectComponent* c)
     return m;
 }
 
-auto getObjectContextMenuCallback (ObjectComponent* c, EditView* view)
+auto getContextMenuCallbackForObject (EditView* view, const juce::MouseEvent&, ObjectComponent* c)
 {
     auto f = [v = WeakPointer<EditView> (view), o = WeakPointer<ObjectComponent> (c)] (int result)
     {
@@ -118,18 +118,18 @@ auto getObjectContextMenuCallback (ObjectComponent* c, EditView* view)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ContextMenu::open (const juce::MouseEvent&)
+void ContextMenu::open (const juce::MouseEvent& e)
 {
-    juce::PopupMenu m (getViewContextMenu (view_));
+    juce::PopupMenu m (getContextMenuForView (view_));
     
-    m.showMenuAsync (juce::PopupMenu::Options(), getViewContextMenuCallback (view_));
+    m.showMenuAsync (juce::PopupMenu::Options(), getContextMenuCallbackForView (view_, e));
 }
 
-void ContextMenu::open (const juce::MouseEvent&, ObjectComponent* c)
+void ContextMenu::open (const juce::MouseEvent& e, ObjectComponent* c)
 {
-    juce::PopupMenu m (getObjectContextMenu (c));
+    juce::PopupMenu m (getContextMenuForObject (c));
     
-    m.showMenuAsync (juce::PopupMenu::Options(), getObjectContextMenuCallback (c, view_));
+    m.showMenuAsync (juce::PopupMenu::Options(), getContextMenuCallbackForObject (view_, e, c));
 }
 
 // -----------------------------------------------------------------------------------------------------------
