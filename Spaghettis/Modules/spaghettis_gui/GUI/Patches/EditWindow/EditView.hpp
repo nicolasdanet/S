@@ -283,7 +283,7 @@ private:
     
     template <class F> void forObject (ObjectComponent* c, F f)
     {
-        if (c && !c->isSelected()) { objects_.forUnique (c->getIdentifier(), f); }
+        if (c && !c->isSelected()) { objects_.forUnique (f, c->getIdentifier()); }
         else {
             forObjectsSelected (f);
         }

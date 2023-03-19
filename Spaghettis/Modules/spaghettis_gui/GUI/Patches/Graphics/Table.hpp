@@ -63,7 +63,7 @@ public:
         for_each (v_.crbegin(), v_.crend(), f);
     }
     
-    template <class F> void forUnique (core::UniqueId identifier, F f) const
+    template <class F> void forUnique (F f, core::UniqueId identifier) const
     {
         auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (identifier));
         
