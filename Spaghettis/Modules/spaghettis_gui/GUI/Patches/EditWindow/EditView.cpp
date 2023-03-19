@@ -424,29 +424,29 @@ void EditView::resizeObjects (juce::Point<int> offset)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::moveBack (core::UniqueId u)
+void EditView::moveBack (ObjectComponent* c)
 {
     if (!isAbstractionOrInside()) {
     //
-    forUniqueOrObjectsSelected (u, [](const auto& p) { p->moveBack(); });
+    forObject (c, [](const auto& p) { p->moveBack(); });
     //
     }
 }
 
-void EditView::moveFront (core::UniqueId u)
+void EditView::moveFront (ObjectComponent* c)
 {
     if (!isAbstractionOrInside()) {
     //
-    forUniqueOrObjectsSelected (u, [](const auto& p) { p->moveFront(); });
+    forObject (c, [](const auto& p) { p->moveFront(); });
     //
     }
 }
 
-void EditView::snapToGrid (core::UniqueId u)
+void EditView::snapToGrid (ObjectComponent* c)
 {
     if (!isAbstractionOrInside()) {
     //
-    forUniqueOrObjectsSelected (u, [](const auto& p) { p->snap(); });
+    forObject (c, [](const auto& p) { p->snap(); });
     //
     }
 }

@@ -159,9 +159,9 @@ public:
 // MARK: -
 
 public:
-    void moveBack (core::UniqueId u = 0);
-    void moveFront (core::UniqueId u = 0);
-    void snapToGrid (core::UniqueId u = 0);
+    void moveBack (ObjectComponent* c = nullptr);
+    void moveFront (ObjectComponent* c = nullptr);
+    void snapToGrid (ObjectComponent* c = nullptr);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -281,9 +281,9 @@ private:
         objects_.forEach (g);
     }
     
-    template <class F> void forUniqueOrObjectsSelected (core::UniqueId u, F f)
+    template <class F> void forObject (ObjectComponent* c, F f)
     {
-        if (u) { objects_.forUnique (u, f); }
+        if (c && !c->isSelected()) { objects_.forUnique (c->getIdentifier(), f); }
         else {
             forObjectsSelected (f);
         }
