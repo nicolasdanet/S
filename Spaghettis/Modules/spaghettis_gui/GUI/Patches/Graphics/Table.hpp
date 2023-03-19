@@ -63,6 +63,13 @@ public:
         for_each (v_.crbegin(), v_.crend(), f);
     }
     
+    template <class F> void forEachSelected (F f) const
+    {
+        auto g = [h = f](const auto& p) { if (p->isSelected()) { h (p); } };
+        
+        forEach (g);
+    }
+    
     template <class F> void forUnique (F f, core::UniqueId identifier) const
     {
         auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (identifier));
