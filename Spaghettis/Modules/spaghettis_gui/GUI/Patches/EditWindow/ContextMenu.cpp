@@ -32,19 +32,48 @@ enum Contextual {
     open,
     back,
     front,
-    snap
+    snap,
+    add
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::PopupMenu::Options getContextMenuOptions (ObjectComponent* c)
+juce::PopupMenu getViewContextMenu (EditView* view)
 {
-    return juce::PopupMenu::Options().withDeletionCheck (*c);
+    juce::PopupMenu m;
+    
+    m.addItem (Contextual::help,    NEEDS_TRANS ("Help"));
+    m.addSeparator();
+    m.addItem (Contextual::add,     NEEDS_TRANS ("Add Object"), !view->isAbstractionOrInside());
+    
+    return m;
 }
 
-juce::PopupMenu getContextMenu (ObjectComponent* c)
+auto getViewContextMenuCallback (EditView* view)
+{
+    auto f = [v = WeakPointer<EditView> (view)] (int result)
+    {
+    //
+    if (v.getComponent()) {
+        switch (result) {
+            case Contextual::help   : DBG ("HELP"); break;
+            case Contextual::add    : DBG ("ADD");  break;
+            default                 : break;
+        }
+    }
+    //
+    };
+        
+    return f;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::PopupMenu getObjectContextMenu (ObjectComponent* c)
 {
     juce::PopupMenu m;
     
@@ -59,7 +88,7 @@ juce::PopupMenu getContextMenu (ObjectComponent* c)
     return m;
 }
 
-auto contextMenuCallback (ObjectComponent* c, EditView* view)
+auto getObjectContextMenuCallback (ObjectComponent* c, EditView* view)
 {
     auto f = [v = WeakPointer<EditView> (view), o = WeakPointer<ObjectComponent> (c)] (int result)
     {
@@ -91,16 +120,16 @@ auto contextMenuCallback (ObjectComponent* c, EditView* view)
 
 void ContextMenu::open (const juce::MouseEvent&)
 {
-    DBG ("!");
+    juce::PopupMenu m (getViewContextMenu (view_));
+    
+    m.showMenuAsync (juce::PopupMenu::Options(), getViewContextMenuCallback (view_));
 }
 
 void ContextMenu::open (const juce::MouseEvent&, ObjectComponent* c)
 {
-    const juce::PopupMenu::Options options (getContextMenuOptions (c));
+    juce::PopupMenu m (getObjectContextMenu (c));
     
-    juce::PopupMenu m (getContextMenu (c));
-    
-    m.showMenuAsync (options, contextMenuCallback (c, view_));
+    m.showMenuAsync (juce::PopupMenu::Options(), getObjectContextMenuCallback (c, view_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
