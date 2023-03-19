@@ -89,15 +89,24 @@ public:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-public:
-    void moveAtEnd (core::UniqueId identifier)
+private:
+    void moveAt (int i, core::UniqueId identifier)
     {
         auto r = std::find_if (v_.begin(), v_.end(), hasSameIdentifier (identifier));
         
-        if (r != v_.end()) { r->swap (v_.back()); }
+        if (r != v_.end()) { r->swap (v_[i]); }
     }
-    
+
+public:
+    void sort (const std::vector<core::UniqueId>& t)
+    {
+        jassert (v_.size() == t.size());
+        
+        int i = 0; for (auto u : t) { moveAt (i++, u); }
+    }
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -749,9 +749,7 @@ void EditView::initialize (const juce::ValueTree& tree)
 
 void EditView::updateOrder()
 {
-    for (const auto& child : viewTree_) {
-        if (Tree::isObject (child)) { objects_.moveAtEnd (core::Object (child).getIdentifier()); }
-    }
+    objects_.sort (core::Patch (viewTree_).getObjects());
     
     auto f = [c = static_cast<juce::Component*> (nullptr)](const auto& p) mutable
     {

@@ -40,6 +40,8 @@ public:
 public:
     void sortObjects (const std::vector<core::UniqueId>&);
     
+    std::vector<core::UniqueId> getObjects() const;
+    
 private:
     JUCE_LEAK_DETECTOR (Patch)
 };

@@ -44,6 +44,17 @@ void Patch::sortObjects (const std::vector<core::UniqueId>& v)
     for (auto u : v) { moveChildAt (tree_, i++, u); }
 }
 
+std::vector<core::UniqueId> Patch::getObjects() const
+{
+    std::vector<core::UniqueId> v;
+    
+    for (const auto& child : tree_) {
+        if (Tree::isObject (child)) { v.push_back (core::Object (child).getIdentifier()); }
+    }
+    
+    return v;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
