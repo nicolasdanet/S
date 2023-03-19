@@ -40,6 +40,7 @@ public:
 // MARK: -
 
 public:
+    void open (const juce::MouseEvent&);
     void open (const juce::MouseEvent&, ObjectComponent*);
     
 private:

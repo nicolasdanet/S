@@ -1,0 +1,5 @@
+#N spaghettis 0 9 0;
+#N canvas 392 252 874 396;
+#X obj 324 108 timer;
+#X obj 360 180 exp;
+#X obj 192 120 amptodb;

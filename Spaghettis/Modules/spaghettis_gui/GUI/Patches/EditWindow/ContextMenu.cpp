@@ -89,6 +89,11 @@ auto contextMenuCallback (ObjectComponent* c, EditView* view)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void ContextMenu::open (const juce::MouseEvent&)
+{
+    DBG ("!");
+}
+
 void ContextMenu::open (const juce::MouseEvent&, ObjectComponent* c)
 {
     const juce::PopupMenu::Options options (getContextMenuOptions (c));
