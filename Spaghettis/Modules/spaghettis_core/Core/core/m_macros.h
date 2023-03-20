@@ -433,7 +433,11 @@ static inline int sys_ilog2 (uint32_t v)
 // MARK: -
 
 /* Assumed IEEE 754 floating-point format. */
-/* Assumed type punning allowed. */
+/* Assumed type punning valid. */
+
+// TODO: Remove type punning
+
+/* < https://www.youtube.com/watch?v=_qzMpk-22cc > */
 
 typedef union {
     float       z_f;
