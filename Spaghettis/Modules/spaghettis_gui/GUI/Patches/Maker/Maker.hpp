@@ -33,7 +33,7 @@ public:
 // MARK: -
 
 public:
-    void showEditor (const std::optional<juce::Point<int>>&, const std::optional<juce::Point<int>>&);
+    void showEditor (juce::Point<int>, juce::Point<int>);
     void hideEditor();
 
 // -----------------------------------------------------------------------------------------------------------

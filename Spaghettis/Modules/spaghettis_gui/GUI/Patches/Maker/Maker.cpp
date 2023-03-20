@@ -21,20 +21,16 @@ Maker::Maker (EditView* owner) : owner_ (owner), tracker_ (owner), v_()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Maker::showEditor (const std::optional<juce::Point<int>>& a, const std::optional<juce::Point<int>>& b)
+void Maker::showEditor (juce::Point<int> global, juce::Point<int> real)
 {
-    if (a.has_value() && b.has_value()) {
-    //
     Maker::setActive (v_, true);
     
-    pt_ = b.value();
+    pt_ = real;
     
     auto t = std::make_unique<MakerComponent> (owner_, v_, pt_);
-    auto r = juce::Rectangle<int> (4, 4).withCentre (a.value());
+    auto r = juce::Rectangle<int> (4, 4).withCentre (global);
     
     tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), r, nullptr));
-    //
-    }
 }
 
 void Maker::hideEditor()

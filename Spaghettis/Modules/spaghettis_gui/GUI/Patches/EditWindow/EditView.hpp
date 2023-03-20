@@ -199,7 +199,8 @@ public:
 // MARK: -
 
 public:
-    void openMaker (bool);
+    void requireMaker (bool);
+    void openMaker (juce::Point<int>);
     void handleMaker (juce::Point<int>, const juce::String&);
     void dismissMaker();
     

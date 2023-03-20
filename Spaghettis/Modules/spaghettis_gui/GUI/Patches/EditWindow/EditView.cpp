@@ -566,7 +566,7 @@ void EditView::createObject (juce::Point<int> pt, const juce::String& s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::openMaker (bool isFromMenu)
+void EditView::requireMaker (bool isFromMenu)
 {
     if (!isAbstractionOrInside()) {
     //
@@ -584,9 +584,14 @@ void EditView::openMaker (bool isFromMenu)
         b = getRealVisibleArea().getCentre();
     }
     
-    maker_.showEditor (a, b);
+    if (a.has_value() && b.has_value()) { maker_.showEditor (a.value(), b.value()); }
     //
     }
+}
+
+void EditView::openMaker (juce::Point<int> pt)
+{
+
 }
 
 void EditView::handleMaker (juce::Point<int> pt, const juce::String& s)
