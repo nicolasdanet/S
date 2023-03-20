@@ -53,13 +53,13 @@ juce::PopupMenu getContextMenuForView (EditView* view)
 
 auto getContextMenuCallbackForView (EditView* view, const juce::MouseEvent& e)
 {
-    auto f = [v = WeakPointer<EditView> (view)] (int result)
+    auto f = [v = WeakPointer<EditView> (view), pt = e.getPosition()] (int result)
     {
     //
     if (v.getComponent()) {
         switch (result) {
-            case Contextual::help   : DBG ("HELP"); break;
-            case Contextual::add    : DBG ("ADD");  break;
+            case Contextual::help   : DBG ("HELP");         break;
+            case Contextual::add    : v->openMaker (pt);    break;
             default                 : break;
         }
     }

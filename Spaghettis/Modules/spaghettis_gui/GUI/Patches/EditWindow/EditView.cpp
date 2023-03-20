@@ -591,7 +591,7 @@ void EditView::requireMaker (bool isFromMenu)
 
 void EditView::openMaker (juce::Point<int> pt)
 {
-
+    DBG (pt.toString());
 }
 
 void EditView::handleMaker (juce::Point<int> pt, const juce::String& s)
