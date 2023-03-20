@@ -593,7 +593,7 @@ void EditView::requireMaker (bool isFromMenu)
 
 void EditView::openMaker (juce::Point<int> pt)
 {
-    
+    maker_.showEditor (fromLocalToGlobal (pt), fromLocalToReal (pt));
 }
 
 void EditView::handleMaker (juce::Point<int> pt, const juce::String& s)
