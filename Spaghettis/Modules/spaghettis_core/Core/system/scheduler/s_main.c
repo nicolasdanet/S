@@ -208,18 +208,32 @@ static t_error main_setFileSettings (const char *settings)
 
 static t_error main_setPathHelp()
 {
+    #if PD_APPLE
+        const char *name = "Resources/Help";
+    #else
+        const char *name = "Help";
+    #endif
+    
+    char t[PD_STRING]        = { 0 };
     char filepath[PD_STRING] = { 0 };
     
-    const char *directory = main_directoryExecutable->s_name;
-    const char *name      = "../Resources/Help";
+    t_error err = string_copy (t, PD_STRING, main_directoryExecutable->s_name);
 
-    if (!path_withDirectoryAndName (filepath, PD_STRING, directory, name)) {
+    if (!err) {
+    //
+    #if PD_APPLE
+        err |= main_getParentDirectoryOf (t);
+    #endif
+    
+    if (!err && !path_withDirectoryAndName (filepath, PD_STRING, t, name)) {
         if (path_isFileExistAsDirectory (filepath)) {
             DBG (juce::String (filepath));
             main_directoryHelp = gensym (filepath);
         }
     }
-
+    //
+    }
+    
     PD_ASSERT (main_directoryHelp != NULL);
     
     return PD_ERROR_NONE;
