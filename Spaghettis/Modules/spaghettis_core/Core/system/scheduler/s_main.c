@@ -124,6 +124,17 @@ static t_error main_entryVersion (int sendToConsole)
     return err;
 }
 
+static t_error main_getParentDirectoryOf (char *t)
+{
+    t_error err = PD_ERROR_NONE;
+    
+    char *slash = NULL;
+
+    if (!(err |= !(slash = strrchr (t, '/')))) { *slash = 0; }
+    
+    return err;
+}
+
 /* Name of the executable's parent directory. */
 
 static t_error main_setPathExecutable (void)
@@ -134,9 +145,8 @@ static t_error main_setPathExecutable (void)
 
     if (!err) {
     //
-    char *slash = NULL;
-
-    if (!(err |= !(slash = strrchr (t, '/')))) { *slash = 0; }
+    err |= main_getParentDirectoryOf (t);
+    
     if (!err) { main_directoryExecutable = gensym (t); }
     //
     }
@@ -193,6 +203,41 @@ static t_error main_setFileSettings (const char *settings)
 
     return PD_ERROR;
 }
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+static t_error main_setPathHelp()
+{
+    /*
+    char filepath[PD_STRING] = { 0 };
+    
+    const char *directory = main_directoryExecutable->s_name;
+    const char *name      = "Help";
+        
+
+    if (!path_withDirectoryAndName (filepath, PD_STRING, directory, name)) {
+        if (!settings || path_isFileExistAsRegularFile (filepath)) {
+            main_filePreferences = gensym (filepath);
+            return PD_ERROR_NONE;
+        }
+    }
+
+    return PD_ERROR;
+    
+    // main_directoryHelp
+    */
+        
+    return PD_ERROR_NONE;
+}
+
+#else
+
+static t_error main_setPathHelp()
+{
+    return PD_ERROR_NONE;
+}
+
+#endif
 
 static t_error main_parseArguments (int argc, char **argv)
 {
@@ -274,13 +319,15 @@ PD_LOCAL int main_start (void)
     
     message_initialize();   /* Preallocate symbols and binding mechanism first. */
     
+    /* Paths initialization order matters. */
+    
     err |= main_setPathExecutable();    PD_ASSERT (main_directoryExecutable != NULL);
     err |= main_setPathSupport();       PD_ASSERT (main_directorySupport    != NULL);
-    
+    err |= main_setPathHelp();
+        
     err |= main_parseArguments (main_argc - 1, main_argv + 1);
 
-    PD_ASSERT (main_filePreferences     != NULL);
-    PD_ASSERT (main_directoryHelp       != NULL);
+    PD_ASSERT (main_filePreferences != NULL);
     
     if (!err) {
     //
