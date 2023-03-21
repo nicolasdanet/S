@@ -314,7 +314,7 @@
 			name = "Post-build script";
 			alwaysOutOfDate = 1;
 			shellPath = /bin/sh;
-			shellScript = "rep=\"${SOURCE_ROOT}/../..\"\napp=\"${BUILT_PRODUCTS_DIR}/Spaghettis.app\"\nentitlements=\"${rep}/Resources/Spaghettis.entitlements\"\n\ncodesign --options runtime --entitlements \"${entitlements}\" --force --deep -s \"-\" \"${app}\"  || exit 1\n";
+			shellScript = "rep=\"${SOURCE_ROOT}/../..\"\napp=\"${BUILT_PRODUCTS_DIR}/Spaghettis.app\"\nentitlements=\"${rep}/Resources/Spaghettis.entitlements\"\nhelp=\"${rep}/Resources/Help\"\nresources=\"${BUILT_PRODUCTS_DIR}/Spaghettis.app/Contents/Resources/\"\n\ncp -R \"$help\" \"$resources\"\n\ncodesign --options runtime --entitlements \"${entitlements}\" --force --deep -s \"-\" \"${app}\"  || exit 1\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
