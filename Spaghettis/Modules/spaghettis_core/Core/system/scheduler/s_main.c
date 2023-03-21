@@ -208,25 +208,20 @@ static t_error main_setFileSettings (const char *settings)
 
 static t_error main_setPathHelp()
 {
-    /*
     char filepath[PD_STRING] = { 0 };
     
     const char *directory = main_directoryExecutable->s_name;
-    const char *name      = "Help";
-        
+    const char *name      = "../Resources/Help";
 
     if (!path_withDirectoryAndName (filepath, PD_STRING, directory, name)) {
-        if (!settings || path_isFileExistAsRegularFile (filepath)) {
-            main_filePreferences = gensym (filepath);
-            return PD_ERROR_NONE;
+        if (path_isFileExistAsDirectory (filepath)) {
+            DBG (juce::String (filepath));
+            main_directoryHelp = gensym (filepath);
         }
     }
 
-    return PD_ERROR;
+    PD_ASSERT (main_directoryHelp != NULL);
     
-    // main_directoryHelp
-    */
-        
     return PD_ERROR_NONE;
 }
 
