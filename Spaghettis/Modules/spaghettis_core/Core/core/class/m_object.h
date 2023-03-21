@@ -48,7 +48,7 @@ PD_LOCAL t_outconnect   *object_connect             (t_object *src, int m, t_obj
 
 PD_LOCAL t_error        object_disconnect           (t_object *src, int m, t_object *dest, int n, t_glist *g);
 
-//PD_LOCAL void           object_help               (t_object *x);
+PD_FORCE void           object_help                 (t_object *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

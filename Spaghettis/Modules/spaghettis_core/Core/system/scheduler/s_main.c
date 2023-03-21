@@ -280,7 +280,7 @@ PD_LOCAL int main_start (void)
     err |= main_parseArguments (main_argc - 1, main_argv + 1);
 
     PD_ASSERT (main_filePreferences     != NULL);
-    // PD_ASSERT (main_directoryHelp    != NULL);
+    PD_ASSERT (main_directoryHelp       != NULL);
     
     if (!err) {
     //

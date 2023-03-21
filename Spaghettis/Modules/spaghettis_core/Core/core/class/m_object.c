@@ -268,8 +268,6 @@ PD_LOCAL t_error object_disconnect (t_object *src, int m, t_object *dest, int n,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if 0
-
 static void object_openHelp (const char *directory, const char *name)
 {
     t_fileproperties p; fileproperties_init (&p);
@@ -295,7 +293,7 @@ static void object_openHelp (const char *directory, const char *name)
 /* Then look for in the application "help" folder. */
 /* And last in the user search path. */
 
-PD_LOCAL void object_help (t_object *y)
+PD_FORCE void object_help (t_object *y)
 {
     const char *directory = NULL;
     char name[PD_STRING] = { 0 };
@@ -314,8 +312,6 @@ PD_LOCAL void object_help (t_object *y)
     
     if (!err) { object_openHelp (directory, name); }
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
