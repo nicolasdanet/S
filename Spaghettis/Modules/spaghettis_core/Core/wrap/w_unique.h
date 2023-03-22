@@ -38,6 +38,7 @@ PD_FORCE t_error    unique_objectMoveAt         (t_id u, int n);
 #if defined ( PD_BUILDING_APPLICATION )
 
 PD_FORCE t_error    unique_objectParameter      (t_id u, const core::Group&);
+PD_FORCE t_error    unique_objectHelp           (t_id u);
 
 #endif
 

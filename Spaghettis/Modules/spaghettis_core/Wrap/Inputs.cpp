@@ -83,121 +83,130 @@ Perform Inputs::setMidiDevices (std::vector<MidiDevice>&& i, std::vector<MidiDev
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Inputs::closePatch (core::UniqueId i)
+Perform Inputs::closePatch (core::UniqueId u)
 {
-    return [i]() { core::inputs_closePatch (i); };
+    return [u]() { core::inputs_closePatch (u); };
 }
 
-Perform Inputs::savePatch (core::UniqueId i)
+Perform Inputs::savePatch (core::UniqueId u)
 {
-    return [i]() { core::inputs_savePatch (i); };
+    return [u]() { core::inputs_savePatch (u); };
 }
 
-Perform Inputs::setEditView (core::UniqueId i, juce::Rectangle<int> bounds)
+Perform Inputs::setEditView (core::UniqueId u, juce::Rectangle<int> bounds)
 {
-    return [i, bounds]() { core::inputs_setEditView (i, bounds); };
+    return [u, bounds]() { core::inputs_setEditView (u, bounds); };
 }
 
-Perform Inputs::setRunView (core::UniqueId i, juce::Rectangle<int> bounds)
+Perform Inputs::setRunView (core::UniqueId u, juce::Rectangle<int> bounds)
 {
-    return [i, bounds]() { core::inputs_setRunView (i, bounds); };
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-Perform Inputs::undo (core::UniqueId i)
-{
-    return [i]() { core::inputs_undo (i); };
-}
-
-Perform Inputs::redo (core::UniqueId i)
-{
-    return [i]() { core::inputs_redo (i); };
-}
-
-Perform Inputs::cut (core::UniqueId i)
-{
-    return [i]() { core::inputs_cut (i); };
-}
-
-Perform Inputs::copy (core::UniqueId i)
-{
-    return [i]() { core::inputs_copy (i); };
-}
-
-Perform Inputs::paste (core::UniqueId i, juce::Point<int> pt)
-{
-    return [i, pt]() { core::inputs_paste (i, pt); };
-}
-
-Perform Inputs::duplicate (core::UniqueId i)
-{
-    return [i]() { core::inputs_duplicate (i); };
-}
-
-Perform Inputs::remove (core::UniqueId i)
-{
-    return [i]() { core::inputs_remove (i); };
-}
-
-Perform Inputs::encapsulate (core::UniqueId i)
-{
-    return [i]() { core::inputs_encapsulate (i); };
-}
-
-Perform Inputs::deencapsulate (core::UniqueId i)
-{
-    return [i]() { core::inputs_deencapsulate (i); };
+    return [u, bounds]() { core::inputs_setRunView (u, bounds); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Inputs::selectObject (core::UniqueId i)
+Perform Inputs::undo (core::UniqueId u)
 {
-    return [i]() { core::inputs_selectObject (i); };
+    return [u]() { core::inputs_undo (u); };
 }
 
-Perform Inputs::deselectObject (core::UniqueId i)
+Perform Inputs::redo (core::UniqueId u)
 {
-    return [i]() { core::inputs_deselectObject (i); };
+    return [u]() { core::inputs_redo (u); };
 }
 
-Perform Inputs::moveBackObject (core::UniqueId i)
+Perform Inputs::cut (core::UniqueId u)
 {
-    return [i]() { core::inputs_moveBackObject (i); };
+    return [u]() { core::inputs_cut (u); };
 }
 
-Perform Inputs::moveFrontObject (core::UniqueId i)
+Perform Inputs::copy (core::UniqueId u)
 {
-    return [i]() { core::inputs_moveFrontObject (i); };
+    return [u]() { core::inputs_copy (u); };
 }
 
-Perform Inputs::snapObject (core::UniqueId i)
+Perform Inputs::paste (core::UniqueId u, juce::Point<int> pt)
 {
-    return [i]() { core::inputs_snapObject (i); };
+    return [u, pt]() { core::inputs_paste (u, pt); };
 }
 
-Perform Inputs::positionObject (core::UniqueId i, juce::Point<int> pt)
+Perform Inputs::duplicate (core::UniqueId u)
 {
-    return [i, pt]() { core::inputs_positionObject (i, pt); };
+    return [u]() { core::inputs_duplicate (u); };
+}
+
+Perform Inputs::remove (core::UniqueId u)
+{
+    return [u]() { core::inputs_remove (u); };
+}
+
+Perform Inputs::encapsulate (core::UniqueId u)
+{
+    return [u]() { core::inputs_encapsulate (u); };
+}
+
+Perform Inputs::deencapsulate (core::UniqueId u)
+{
+    return [u]() { core::inputs_deencapsulate (u); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Inputs::createObject (core::UniqueId i, juce::Point<int> pt, juce::String s)
+Perform Inputs::selectObject (core::UniqueId u)
 {
-    return [i, pt, s]() { core::inputs_createObject (i, pt, s); };
+    return [u]() { core::inputs_selectObject (u); };
 }
 
-Perform Inputs::parametersObject (core::UniqueId i, core::Group group)
+Perform Inputs::deselectObject (core::UniqueId u)
 {
-    return [i, g = std::move (group)]() { core::inputs_parametersObject (i, g); };
+    return [u]() { core::inputs_deselectObject (u); };
+}
+
+Perform Inputs::moveBackObject (core::UniqueId u)
+{
+    return [u]() { core::inputs_moveBackObject (u); };
+}
+
+Perform Inputs::moveFrontObject (core::UniqueId u)
+{
+    return [u]() { core::inputs_moveFrontObject (u); };
+}
+
+Perform Inputs::snapObject (core::UniqueId u)
+{
+    return [u]() { core::inputs_snapObject (u); };
+}
+
+Perform Inputs::positionObject (core::UniqueId u, juce::Point<int> pt)
+{
+    return [u, pt]() { core::inputs_positionObject (u, pt); };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Perform Inputs::openHelp (core::UniqueId u)
+{
+    return [u]() { core::inputs_openHelp (u); };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Perform Inputs::createObject (core::UniqueId u, juce::Point<int> pt, juce::String s)
+{
+    return [u, pt, s]() { core::inputs_createObject (u, pt, s); };
+}
+
+Perform Inputs::parametersObject (core::UniqueId u, core::Group group)
+{
+    return [u, g = std::move (group)]() { core::inputs_parametersObject (u, g); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

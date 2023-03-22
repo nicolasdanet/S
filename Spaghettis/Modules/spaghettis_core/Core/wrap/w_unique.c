@@ -224,6 +224,15 @@ PD_FORCE t_error unique_objectParameter (t_id u, const core::Group& group)
     return PD_ERROR;
 }
 
+PD_FORCE t_error unique_objectHelp (t_id u)
+{
+    t_object *object = instance_registerGetObject (u);
+    
+    if (object) { object_help (object); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
 #endif
 
 // -----------------------------------------------------------------------------------------------------------

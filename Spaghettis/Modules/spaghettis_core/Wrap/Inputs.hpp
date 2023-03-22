@@ -78,6 +78,12 @@ static Perform positionObject (core::UniqueId, juce::Point<int>);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static Perform openHelp (core::UniqueId);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static Perform createObject (core::UniqueId, juce::Point<int>, juce::String);
 
 static Perform parametersObject (core::UniqueId, core::Group);

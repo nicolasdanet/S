@@ -227,7 +227,6 @@ static t_error main_setPathHelp()
     
     if (!err && !path_withDirectoryAndName (filepath, PD_STRING, t, name)) {
         if (path_isFileExistAsDirectory (filepath)) {
-            DBG (juce::String (filepath));
             main_directoryHelp = gensym (filepath);
         }
     }

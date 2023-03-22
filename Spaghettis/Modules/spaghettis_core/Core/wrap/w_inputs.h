@@ -69,6 +69,12 @@ PD_LOCAL void inputs_positionObject     (core::UniqueId, juce::Point<int> pt);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_LOCAL void inputs_openHelp           (core::UniqueId);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void inputs_createObject       (core::UniqueId, juce::Point<int> pt, juce::String);
 
 PD_LOCAL void inputs_parametersObject   (core::UniqueId, const core::Group&);

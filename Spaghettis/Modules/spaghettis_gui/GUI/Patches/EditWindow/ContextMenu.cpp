@@ -44,9 +44,9 @@ juce::PopupMenu getContextMenuForView (EditView* view)
 {
     juce::PopupMenu m;
     
-    m.addItem (Contextual::help,    NEEDS_TRANS ("Help"));
+    m.addItem (Contextual::help, NEEDS_TRANS ("Help"));
     m.addSeparator();
-    m.addItem (Contextual::add,     NEEDS_TRANS ("Add Object"), !view->isAbstractionOrInside());
+    m.addItem (Contextual::add,  NEEDS_TRANS ("Add Object"), !view->isAbstractionOrInside());
     
     return m;
 }
@@ -58,9 +58,9 @@ auto getContextMenuCallbackForView (EditView* view, const juce::MouseEvent& e)
     //
     if (v.getComponent()) {
         switch (result) {
-            case Contextual::help   : DBG ("HELP");         break;
-            case Contextual::add    : v->openMaker (pt);    break;
-            default                 : break;
+            case Contextual::help : Spaghettis()->handle (Inputs::openHelp (v->getIdentifierOfView())); break;
+            case Contextual::add  : v->openMaker (pt);                                                  break;
+            default               : break;
         }
     }
     //
@@ -77,13 +77,13 @@ juce::PopupMenu getContextMenuForObject (ObjectComponent* c)
 {
     juce::PopupMenu m;
     
-    m.addItem (Contextual::help,    NEEDS_TRANS ("Help"));
+    m.addItem (Contextual::help,  NEEDS_TRANS ("Help"));
     m.addSeparator();
-    m.addItem (Contextual::open,    NEEDS_TRANS ("Open"),       c->isPatch());
+    m.addItem (Contextual::open,  NEEDS_TRANS ("Open"),       c->isPatch());
     m.addSeparator();
-    m.addItem (Contextual::back,    NEEDS_TRANS ("Move Back"),  !c->isLocked());
-    m.addItem (Contextual::front,   NEEDS_TRANS ("Move Front"), !c->isLocked());
-    m.addItem (Contextual::snap,    NEEDS_TRANS ("Snap"),       !c->isLocked());
+    m.addItem (Contextual::back,  NEEDS_TRANS ("Move Back"),  !c->isLocked());
+    m.addItem (Contextual::front, NEEDS_TRANS ("Move Front"), !c->isLocked());
+    m.addItem (Contextual::snap,  NEEDS_TRANS ("Snap"),       !c->isLocked());
     
     return m;
 }
@@ -95,12 +95,12 @@ auto getContextMenuCallbackForObject (EditView* view, const juce::MouseEvent&, O
     //
     if (v.getComponent() && o.getComponent()) {
         switch (result) {
-            case Contextual::help   : DBG ("HELP"); break;
-            case Contextual::open   : v->getPatchRoot().openPatchWindow (o->getIdentifier());   break;
-            case Contextual::back   : v->moveBack (o.getComponent());                           break;
-            case Contextual::front  : v->moveFront (o.getComponent());                          break;
-            case Contextual::snap   : v->snapToGrid (o.getComponent());                         break;
-            default                 : break;
+            case Contextual::help  : Spaghettis()->handle (Inputs::openHelp (o->getIdentifier()));  break;
+            case Contextual::open  : v->getPatchRoot().openPatchWindow (o->getIdentifier());        break;
+            case Contextual::back  : v->moveBack (o.getComponent());                                break;
+            case Contextual::front : v->moveFront (o.getComponent());                               break;
+            case Contextual::snap  : v->snapToGrid (o.getComponent());                              break;
+            default                : break;
         }
     }
     //

@@ -109,125 +109,134 @@ PD_LOCAL void inputs_setMidiDevices (const std::vector<MidiDevice>& i, const std
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void inputs_closePatch (core::UniqueId i)
+PD_LOCAL void inputs_closePatch (core::UniqueId u)
 {
-    unique_patchClose (i);
+    unique_patchClose (u);
 }
 
-PD_LOCAL void inputs_savePatch (core::UniqueId i)
+PD_LOCAL void inputs_savePatch (core::UniqueId u)
 {
-    unique_patchSave (i);
+    unique_patchSave (u);
 }
 
-PD_LOCAL void inputs_setEditView (core::UniqueId i, juce::Rectangle<int> bounds)
+PD_LOCAL void inputs_setEditView (core::UniqueId u, juce::Rectangle<int> bounds)
 {
     t_rectangle r; rectangle_setCopy (&r, bounds);
     
-    unique_patchSetEditView (i, &r);
+    unique_patchSetEditView (u, &r);
 }
 
-PD_LOCAL void inputs_setRunView (core::UniqueId i, juce::Rectangle<int> bounds)
+PD_LOCAL void inputs_setRunView (core::UniqueId u, juce::Rectangle<int> bounds)
 {
     t_rectangle r; rectangle_setCopy (&r, bounds);
     
-    unique_patchSetRunView (i, &r);
+    unique_patchSetRunView (u, &r);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void inputs_undo (core::UniqueId i)
+PD_LOCAL void inputs_undo (core::UniqueId u)
 {
-    unique_patchUndo (i);
+    unique_patchUndo (u);
 }
 
-PD_LOCAL void inputs_redo (core::UniqueId i)
+PD_LOCAL void inputs_redo (core::UniqueId u)
 {
-    unique_patchRedo (i);
+    unique_patchRedo (u);
 }
 
-PD_LOCAL void inputs_cut (core::UniqueId i)
+PD_LOCAL void inputs_cut (core::UniqueId u)
 {
-    unique_patchCut (i);
+    unique_patchCut (u);
 }
 
-PD_LOCAL void inputs_copy (core::UniqueId i)
+PD_LOCAL void inputs_copy (core::UniqueId u)
 {
-    unique_patchCopy (i);
+    unique_patchCopy (u);
 }
 
-PD_LOCAL void inputs_paste (core::UniqueId i, juce::Point<int> pt)
+PD_LOCAL void inputs_paste (core::UniqueId u, juce::Point<int> pt)
 {
-    t_point m = point_make (pt.getX(), pt.getY()); unique_patchPaste (i, &m);
+    t_point m = point_make (pt.getX(), pt.getY()); unique_patchPaste (u, &m);
 }
 
-PD_LOCAL void inputs_duplicate (core::UniqueId i)
+PD_LOCAL void inputs_duplicate (core::UniqueId u)
 {
-    unique_patchDuplicate (i);
+    unique_patchDuplicate (u);
 }
 
-PD_LOCAL void inputs_remove (core::UniqueId i)
+PD_LOCAL void inputs_remove (core::UniqueId u)
 {
-    unique_patchRemove (i);
+    unique_patchRemove (u);
 }
 
-PD_LOCAL void inputs_encapsulate (core::UniqueId i)
+PD_LOCAL void inputs_encapsulate (core::UniqueId u)
 {
-    unique_patchEncapsulate (i);
+    unique_patchEncapsulate (u);
 }
 
-PD_LOCAL void inputs_deencapsulate (core::UniqueId i)
+PD_LOCAL void inputs_deencapsulate (core::UniqueId u)
 {
-    unique_patchDeencapsulate (i);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_LOCAL void inputs_selectObject (core::UniqueId i)
-{
-    unique_objectSelect (i);
-}
-
-PD_LOCAL void inputs_deselectObject (core::UniqueId i)
-{
-    unique_objectDeselect (i);
-}
-
-PD_LOCAL void inputs_moveBackObject (core::UniqueId i)
-{
-    unique_objectMoveBack (i);
-}
-
-PD_LOCAL void inputs_moveFrontObject (core::UniqueId i)
-{
-    unique_objectMoveFront (i);
-}
-
-PD_LOCAL void inputs_snapObject (core::UniqueId i)
-{
-    unique_objectSnap (i);
-}
-
-PD_LOCAL void inputs_positionObject (core::UniqueId i, juce::Point<int> pt)
-{
-    unique_objectPosition (i, pt.getX(), pt.getY());
+    unique_patchDeencapsulate (u);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void inputs_createObject (core::UniqueId i, juce::Point<int> pt, juce::String s)
+PD_LOCAL void inputs_selectObject (core::UniqueId u)
 {
-    unique_patchCreateObject (i, pt, s);
+    unique_objectSelect (u);
 }
 
-PD_LOCAL void inputs_parametersObject (core::UniqueId i, const core::Group& group)
+PD_LOCAL void inputs_deselectObject (core::UniqueId u)
 {
-    unique_objectParameter (i, group);
+    unique_objectDeselect (u);
+}
+
+PD_LOCAL void inputs_moveBackObject (core::UniqueId u)
+{
+    unique_objectMoveBack (u);
+}
+
+PD_LOCAL void inputs_moveFrontObject (core::UniqueId u)
+{
+    unique_objectMoveFront (u);
+}
+
+PD_LOCAL void inputs_snapObject (core::UniqueId u)
+{
+    unique_objectSnap (u);
+}
+
+PD_LOCAL void inputs_positionObject (core::UniqueId u, juce::Point<int> pt)
+{
+    unique_objectPosition (u, pt.getX(), pt.getY());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void inputs_openHelp (core::UniqueId u)
+{
+    unique_objectHelp (u);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PD_LOCAL void inputs_createObject (core::UniqueId u, juce::Point<int> pt, juce::String s)
+{
+    unique_patchCreateObject (u, pt, s);
+}
+
+PD_LOCAL void inputs_parametersObject (core::UniqueId u, const core::Group& group)
+{
+    unique_objectParameter (u, group);
 }
 
 // -----------------------------------------------------------------------------------------------------------
