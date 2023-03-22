@@ -37,10 +37,10 @@ case "$OSTYPE"  in
                 xcodebuild -configuration Release ;
                 rm -r build/XCBuildData ;
                 rm -r build/Spaghettis.build ;;
-    linux*)     cp -rf "Spaghettis/Resources/Help" "Spaghettis/Builds/LinuxMakefile/build/" ;
-                cd Spaghettis/Builds/LinuxMakefile ;
+    linux*)     cd Spaghettis/Builds/LinuxMakefile ;
                 make CONFIG=Release ;
-                rm -r build/intermediate ;;
+                rm -r build/intermediate ;
+                cp -rf "${rep}/Spaghettis/Resources/Help" "build/" ;;
     *)          exit 1 ;;
 esac
 
