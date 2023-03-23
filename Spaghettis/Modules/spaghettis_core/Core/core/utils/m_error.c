@@ -226,9 +226,9 @@ PD_LOCAL void warning_containsDuplicates (t_object *x)
     post_warning (x, PD_TRANSLATE ("rescan: contains duplicates"));
 }
 
-PD_LOCAL void warning_invalidSearchPath (t_object *x)
+PD_LOCAL void warning_missingInSearchPath (t_object *x)
 {
-    post_warning (x, PD_TRANSLATE ("%s: invalid searchpath"), PD_NAME_LOWERCASE);
+    post_warning (x, PD_TRANSLATE ("%s: missing in search path"), PD_NAME_LOWERCASE);
 }
 
 // -----------------------------------------------------------------------------------------------------------
