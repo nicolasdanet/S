@@ -39,7 +39,7 @@ static void *freeze_new (t_symbol *s, int argc, t_atom *argv)
     
     if (!argc) {
     
-        /* Notice that it is usable only with a release build. */
+        /* Notice that it is protected only in a release build. */
         
         #if ! ( PD_WITH_DEBUG )
         
