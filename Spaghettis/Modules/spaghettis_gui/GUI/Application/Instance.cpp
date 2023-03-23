@@ -255,7 +255,7 @@ juce::StringArray getFilesShortIfPossible (const juce::StringArray& a)
 
 void SpaghettisInstance::appendRecentFile (const juce::File& file)
 {
-    if (file.existsAsFile()) {
+    if (file.existsAsFile() && file.hasFileExtension (core::getPatchExtension())) {
     //
     const int maximum = 16;
     
