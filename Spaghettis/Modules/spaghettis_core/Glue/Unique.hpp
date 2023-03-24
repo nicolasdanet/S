@@ -101,10 +101,28 @@ public:
         return UniquePath();
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+/* < https://en.cppreference.com/w/cpp/memory/shared_ptr > */
+    
+/*
+    "All member functions (including copy constructor and copy assignment) can be called by multiple threads
+    on different instances of shared_ptr without additional synchronization even if these instances
+    are copies and share ownership of the same object."
+    
+    Note that only copies of UniquePath are passed from the control to GUI thread.
+    Note that owned content is read only.
+    Thus assumed thread safe!
+*/
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 private:
     UniqueId u_;
     UniqueId r_;
-        
+    
 private:
     std::shared_ptr<std::vector<UniqueId>> path_;
 
