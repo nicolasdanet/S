@@ -33,29 +33,36 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    void add (const core::UniquePath& u, const core::Report& v);
-    void change (const core::UniquePath& u, const core::Report& v);
-    void remove (const core::UniquePath& u);
-    void rename (const core::UniquePath& u, core::UniqueId i);
+    void add (const core::UniquePath&, const core::Report&);
+    void change (const core::UniquePath&, const core::Report&);
+    void remove (const core::UniquePath&);
+    void rename (const core::UniquePath&, core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v);
-    void setDirty (const core::UniquePath& u, bool isDirty);
+    void localize (const core::UniquePath&);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void setOrder (const core::UniquePath&, const std::vector<core::UniqueId>&);
+    void setDirty (const core::UniquePath&, bool);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    void showSaveRequest (const std::shared_ptr<PatchRoot>&, CloseType notify);
+    void showSaveRequest (const std::shared_ptr<PatchRoot>&, CloseType);
     
 public:
-    void requestClosePatch (core::UniqueId i, CloseType notify);
-    void handleSaveRequest (core::UniqueId i, CloseResult result);
+    void requestClosePatch (core::UniqueId, CloseType);
+    void handleSaveRequest (core::UniqueId, CloseResult);
     
     bool isAllRequestsDone()
     {

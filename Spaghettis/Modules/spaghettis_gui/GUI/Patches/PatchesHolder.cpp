@@ -113,6 +113,15 @@ void PatchesHolder::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PatchesHolder::localize (const core::UniquePath& u)
+{
+    if (u.isValid()) { DBG (u.debug()); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void PatchesHolder::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
 {
     perform (u, [&] (const std::shared_ptr<PatchRoot>& p) { p->setOrder (u, v); });

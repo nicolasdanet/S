@@ -37,6 +37,21 @@ ConsoleComponent::~ConsoleComponent()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void ConsoleComponent::localize()
+{
+    const int n = listBox_.getLastRowSelected();
+    
+    if (juce::isPositiveAndBelow (n, messages_.size())) {
+    //
+    Spaghettis()->getPatches().localize (Logger::getUniquePath (messages_[n]));
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -163,7 +178,7 @@ void ConsoleComponent::paintListBoxItem (int row, juce::Graphics& g, int width, 
     ListBoxFunctions::paintItem (messages_, row, g, width, height, isSelected);
 }
 
-void ConsoleComponent::listBoxItemClicked (int row, const juce::MouseEvent &)
+void ConsoleComponent::listBoxItemClicked (int row, const juce::MouseEvent&)
 {
     if (juce::isPositiveAndBelow (row, messages_.size()) == false) { triggerAsyncUpdate(); }
 }
