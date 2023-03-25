@@ -71,7 +71,7 @@ public:
         return std::get<LOGGER_TYPE> (e);
     }
     
-    static core::UniquePath getUniquePath (const MessagesElement& e)
+    static const core::UniquePath& getUniquePath (const MessagesElement& e)
     {
         return std::get<LOGGER_UNIQUE> (e);
     }

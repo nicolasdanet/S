@@ -124,15 +124,18 @@ private:
         g.drawText (text, r.reduced (4, 0), juce::Justification::centredLeft, true);
     }
 
-    static juce::Colour colourWithType (Logger::Type type)
+    static juce::Colour getColourWithType (Logger::Type type, bool isSelected, bool hasPath)
     {
-        int c = Colours::consoleTextError;
-            
-        if (type == Logger::Type::normal)       { c = Colours::consoleTextDefault; }
-        else if (type == Logger::Type::system)  { c = Colours::consoleTextSystem;  }
-        else if (type == Logger::Type::warning) { c = Colours::consoleTextWarning; }
-            
-        return Spaghettis()->getColour (c);
+        if (isSelected && hasPath) { return Spaghettis()->getColour (Colours::listBoxTextHighlighted); }
+        else {
+            int c = Colours::consoleTextError;
+                    
+            if (type == Logger::Type::normal)       { c = Colours::consoleTextDefault; }
+            else if (type == Logger::Type::system)  { c = Colours::consoleTextSystem;  }
+            else if (type == Logger::Type::warning) { c = Colours::consoleTextWarning; }
+                    
+            return Spaghettis()->getColour (c);
+        }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -156,8 +159,8 @@ public:
         if constexpr (std::is_same_v<decltype (e), Logger::MessagesElement>) {
             
             const juce::String t = Logger::getText (e);
-            const juce::Colour c = isSelected   ? Spaghettis()->getColour (Colours::listBoxTextHighlighted)
-                                                : colourWithType (Logger::getType (e));
+            const bool hasPath   = Logger::getUniquePath (e).isValid();
+            const juce::Colour c = getColourWithType (Logger::getType (e), isSelected, hasPath);
                                                 
             paintItemProceed (t, c, g, width, height);
             
