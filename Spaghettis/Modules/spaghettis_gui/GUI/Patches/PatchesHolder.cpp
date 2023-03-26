@@ -125,11 +125,8 @@ void PatchesHolder::rename (const core::UniquePath& u, core::UniqueId i)
 
 void PatchesHolder::localize (const core::UniquePath& u)
 {
-    if (u.isValid()) {
-        if (u.isRoot()) { DBG ("???"); }
-        else {
-            DBG (u.debug());
-        }
+    if (u.isValid() && !u.isRoot()) {
+        perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->localize (u); });
     }
 }
 
