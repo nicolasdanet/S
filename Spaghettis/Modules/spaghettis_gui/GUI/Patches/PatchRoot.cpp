@@ -194,11 +194,11 @@ void PatchRoot::closeWindowButtonPressed (PatchWindow* w)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchRoot::removeWindow (PatchWindow* w)
+void PatchRoot::removeWindow (PatchWindow* window)
 {
-    auto f = [window = w](const std::unique_ptr<PatchWindow>& p)
+    auto f = [w = window](const std::unique_ptr<PatchWindow>& p)
     {
-        return (p.get() == window);
+        return (p.get() == w);
     };
         
     windows_.erase (std::remove_if (windows_.begin(), windows_.end(), f), windows_.end());
