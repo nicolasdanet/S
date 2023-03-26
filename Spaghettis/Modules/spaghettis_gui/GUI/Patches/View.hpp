@@ -59,7 +59,7 @@ public:
     }
 
 public:
-    core::UniqueId getIdentifierOfView() const
+    core::UniqueId getIdentifier() const
     {
         return core::Patch (viewTree_).getIdentifier();
     }

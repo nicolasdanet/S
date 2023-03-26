@@ -451,12 +451,12 @@ void EditView::snapToGrid (ObjectComponent* c)
 
 void EditView::undo()
 {
-    if (!isAbstractionOrInside()) { EditCommands::undo (getIdentifierOfView()); }
+    if (!isAbstractionOrInside()) { EditCommands::undo (getIdentifier()); }
 }
 
 void EditView::redo()
 {
-    if (!isAbstractionOrInside()) { EditCommands::redo (getIdentifierOfView()); }
+    if (!isAbstractionOrInside()) { EditCommands::redo (getIdentifier()); }
 }
 
 bool EditView::hasUndo() const
@@ -501,7 +501,7 @@ void EditView::cut()
     //
     setPaste();
     
-    EditCommands::cut (getIdentifierOfView());
+    EditCommands::cut (getIdentifier());
     //
     }
 }
@@ -512,7 +512,7 @@ void EditView::copy()
     //
     setPaste();
     
-    EditCommands::copy (getIdentifierOfView());
+    EditCommands::copy (getIdentifier());
     //
     }
 }
@@ -530,7 +530,7 @@ void EditView::paste()
     const juce::Point<int> selection = getRealPositionOfSelectedObjects (offset).value_or (mouse);
     const juce::Point<int> pt        = area.contains (selection) ? selection : centre;
     
-    EditCommands::paste (getIdentifierOfView(), pt);
+    EditCommands::paste (getIdentifier(), pt);
     //
     }
 }
@@ -539,7 +539,7 @@ void EditView::duplicate()
 {
     if (!isAbstractionOrInside()) {
     //
-    EditCommands::duplicate (getIdentifierOfView());
+    EditCommands::duplicate (getIdentifier());
     //
     }
 }
@@ -548,7 +548,7 @@ void EditView::remove()
 {
     if (!isAbstractionOrInside()) {
     //
-    EditCommands::remove (getIdentifierOfView());   /* Remove all selected objects. */
+    EditCommands::remove (getIdentifier());     /* Remove all selected objects. */
     
     deconnectSelectedLines (lines_);
     //
@@ -561,7 +561,7 @@ void EditView::remove()
 
 void EditView::createObject (juce::Point<int> pt, const juce::String& s)
 {
-    if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (getIdentifierOfView(), pt, s)); }
+    if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (getIdentifier(), pt, s)); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -614,7 +614,7 @@ void EditView::dismissMaker()
 
 void EditView::encapsulate()
 {
-    EditCommands::encapsulate (getIdentifierOfView());
+    EditCommands::encapsulate (getIdentifier());
 }
 
 void EditView::deencapsulate()

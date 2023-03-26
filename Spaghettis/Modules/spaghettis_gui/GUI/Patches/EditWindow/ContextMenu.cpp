@@ -58,8 +58,8 @@ auto getContextMenuCallbackForView (EditView* view, const juce::MouseEvent& e)
     //
     if (v.getComponent()) {
         switch (result) {
-            case Contextual::help : Spaghettis()->handle (Inputs::openHelp (v->getIdentifierOfView())); break;
-            case Contextual::add  : v->openMaker (pt);                                                  break;
+            case Contextual::help : Spaghettis()->handle (Inputs::openHelp (v->getIdentifier()));   break;
+            case Contextual::add  : v->openMaker (pt);                                              break;
             default               : break;
         }
     }
