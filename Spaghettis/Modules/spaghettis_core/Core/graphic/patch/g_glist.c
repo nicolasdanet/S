@@ -133,6 +133,7 @@ PD_LOCAL void glist_makeObjectProceed (t_glist *glist, int a, int b, t_buffer *t
     t_environment *e = glist_getEnvironment (instance_contextGetCurrent());
     
     t_object *x = NULL;
+    t_error err = PD_ERROR_NONE;
     
     eval_buffer (t,
         instance_getMakerObject(),
@@ -142,10 +143,8 @@ PD_LOCAL void glist_makeObjectProceed (t_glist *glist, int a, int b, t_buffer *t
     if (instance_objectGetNewest()) { x = cast_object (instance_objectGetNewest()); }
 
     if (!x) {
-        x = (t_object *)pd_new (comment_class);     /* If failed create a dummy box. */
-        if (buffer_getSize (t)) {
-            error_canNotMake (x, buffer_getSize (t), buffer_getAtoms (t));
-        }
+        x   = (t_object *)pd_new (comment_class);     /* If failed create a dummy box. */
+        err = PD_ERROR;
     }
 
     /* Replace original name of an abstraction created from snippet (e.g. encapsulation). */
@@ -177,6 +176,8 @@ PD_LOCAL void glist_makeObjectProceed (t_glist *glist, int a, int b, t_buffer *t
     if (pd_class (x) == garray_class)  { dsp_update(); }
     
     if (class_hasDataFunction (pd_class (x))) { instance_setBoundA (cast_pd (x)); }
+    
+    if (err && buffer_getSize (t)) { error_canNotMake (x, buffer_getSize (t), buffer_getAtoms (t)); }
     //
     }
     
