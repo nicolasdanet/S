@@ -82,13 +82,6 @@ public:
 // MARK: -
 
 private:
-    template <class T> void perform (const core::UniquePath& u, T f) const;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
     std::vector<std::shared_ptr<PatchRoot>> roots_;
     std::vector<std::shared_ptr<PatchRoot>> requests_;
     
