@@ -94,9 +94,9 @@ private:
 
 public:
     void openWindow();
-    void openEditWindow (core::UniqueId);
     void openEditWindow();
     void openRunWindow();
+    void showEditWindow (core::UniqueId);
     void closeWindowButtonPressed (PatchWindow*);
 
 private:

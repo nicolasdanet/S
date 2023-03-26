@@ -155,17 +155,6 @@ void PatchRoot::openWindow()
     }
 }
 
-void PatchRoot::openEditWindow (core::UniqueId i)
-{
-    juce::ValueTree t (Tree::findChild (rootTree_, i));
-    
-    jassert (t.isValid());
-    
-    windows_.push_back (std::make_unique<EditWindow> (*this, t));
-    
-    updateDirty();
-}
-
 void PatchRoot::openEditWindow()
 {
     windows_.push_back (std::make_unique<EditWindow> (*this, rootTree_));
@@ -176,6 +165,17 @@ void PatchRoot::openEditWindow()
 void PatchRoot::openRunWindow()
 {
     windows_.push_back (std::make_unique<RunWindow> (*this, rootTree_));
+    
+    updateDirty();
+}
+
+void PatchRoot::showEditWindow (core::UniqueId i)
+{
+    juce::ValueTree t (Tree::findChild (rootTree_, i));
+    
+    jassert (t.isValid());
+    
+    windows_.push_back (std::make_unique<EditWindow> (*this, t));
     
     updateDirty();
 }
