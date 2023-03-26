@@ -101,6 +101,8 @@ void PatchRoot::localize (const core::UniquePath& u)
     DBG (u.debug());
         
     jassert (!u.isRoot());
+    
+    showEditWindow (core::Patch (getParent (u)).getIdentifier());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -169,8 +171,16 @@ void PatchRoot::openRunWindow()
     updateDirty();
 }
 
+bool PatchRoot::hasWindow (core::UniqueId i) const
+{
+    return false;
+}
+
 void PatchRoot::showEditWindow (core::UniqueId i)
 {
+    if (getIdentifier() == i) { DBG (i); }
+    else {
+    //
     juce::ValueTree t (Tree::findChild (rootTree_, i));
     
     jassert (t.isValid());
@@ -178,6 +188,8 @@ void PatchRoot::showEditWindow (core::UniqueId i)
     windows_.push_back (std::make_unique<EditWindow> (*this, t));
     
     updateDirty();
+    //
+    }
 }
 
 void PatchRoot::closeWindowButtonPressed (PatchWindow* w)

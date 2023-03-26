@@ -96,6 +96,7 @@ public:
     void openWindow();
     void openEditWindow();
     void openRunWindow();
+    bool hasWindow (core::UniqueId) const;
     void showEditWindow (core::UniqueId);
     void closeWindowButtonPressed (PatchWindow*);
 
