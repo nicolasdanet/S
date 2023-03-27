@@ -48,10 +48,10 @@ RunComponent::RunComponent (PatchRoot& patch, const juce::ValueTree& tree) :
         .setName   ([this]() { return getPresetsMenuText (hasPresets_); }));
     
     addMenuCommand (MenuCommand (Commands::newRunView)
-        .setInvoke ([this] (const auto&) { runView_.getPatchRoot().openRunWindow(); }));
+        .setInvoke ([this] (const auto&) { runView_.getPatchRoot().openMainRunWindow(); }));
     
     addMenuCommand (MenuCommand (Commands::newEditView)
-        .setInvoke ([this] (const auto&) { runView_.getPatchRoot().openEditWindow(); }));
+        .setInvoke ([this] (const auto&) { runView_.getPatchRoot().openMainEditWindow(); }));
         
     setOpaque (true); setSize (600, 300);
 }

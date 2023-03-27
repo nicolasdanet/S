@@ -26,7 +26,7 @@ class PatchRoot {
 public:
     explicit PatchRoot (const core::Report& v) : rootTree_ (v.asValueTree()), dirty_ (false)
     {
-        openWindow();
+        openMainWindow();
     }
 
     ~PatchRoot()
@@ -93,10 +93,13 @@ private:
 // MARK: -
 
 public:
-    void openWindow();
-    void openEditWindow();
-    void openRunWindow();
-    bool hasWindow (core::UniqueId) const;
+    void openMainWindow();
+    void openMainEditWindow();
+    void openMainRunWindow();
+
+public:
+    bool hasEditWindow (core::UniqueId) const;
+    void showMainEditWindow();
     void showEditWindow (core::UniqueId);
     void closeWindowButtonPressed (PatchWindow*);
 

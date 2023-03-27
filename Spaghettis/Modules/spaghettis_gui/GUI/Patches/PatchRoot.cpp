@@ -148,37 +148,46 @@ bool PatchRoot::isDirty() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchRoot::openWindow()
+void PatchRoot::openMainWindow()
 {
     if (Spaghettis()->getPreferences().getCached<bool> (Tag::General, Tag::DefaultIsRunView)) {
-        openRunWindow();
+        openMainRunWindow();
     } else {
-        openEditWindow();
+        openMainEditWindow();
     }
 }
 
-void PatchRoot::openEditWindow()
+void PatchRoot::openMainEditWindow()
 {
     windows_.push_back (std::make_unique<EditWindow> (*this, rootTree_));
     
     updateDirty();
 }
 
-void PatchRoot::openRunWindow()
+void PatchRoot::openMainRunWindow()
 {
     windows_.push_back (std::make_unique<RunWindow> (*this, rootTree_));
     
     updateDirty();
 }
 
-bool PatchRoot::hasWindow (core::UniqueId i) const
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool PatchRoot::hasEditWindow (core::UniqueId i) const
 {
     return false;
 }
 
+void PatchRoot::showMainEditWindow()
+{
+
+}
+
 void PatchRoot::showEditWindow (core::UniqueId i)
 {
-    if (getIdentifier() == i) { DBG (i); }
+    if (getIdentifier() == i) { showMainEditWindow(); }
     else {
     //
     juce::ValueTree t (Tree::findChild (rootTree_, i));
