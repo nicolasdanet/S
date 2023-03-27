@@ -51,7 +51,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     painter_ (createPainter (this, object)),
     hasResize_ (false),
     isLocked_ (object_.isLocked()),
-    isInsideRunView_ (dynamic_cast<RunView*> (view) != nullptr)
+    isInsideRunView_ (View::asEditView (view) == nullptr)
 {
     jassert (view);
     
