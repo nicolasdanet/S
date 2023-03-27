@@ -102,7 +102,7 @@ void PatchRoot::localize (const core::UniquePath& u)
         
     jassert (!u.isRoot());
     
-    openEditWindow (core::Patch (getParent (u)).getIdentifier());
+    showEditWindow (core::Patch (getParent (u)).getIdentifier());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -159,14 +159,44 @@ void PatchRoot::openMainWindow()
 
 void PatchRoot::openMainEditWindow()
 {
-    windows_.push_back (std::make_unique<EditWindow> (*this, rootTree_));
-    
-    updateDirty();
+    showEditWindow (getIdentifier());
 }
 
 void PatchRoot::openMainRunWindow()
 {
-    windows_.push_back (std::make_unique<RunWindow> (*this, rootTree_));
+    showRunWindow();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PatchRoot::showEditWindow (core::UniqueId i)
+{
+    EditWindow* w = fetchEditWindow (i);
+    
+    if (w) { w->toFront (true); }
+    else {
+        if (getIdentifier() == i) {
+            windows_.push_back (std::make_unique<EditWindow> (*this, rootTree_));
+        } else {
+            juce::ValueTree t (Tree::findChild (rootTree_, i));
+            jassert (t.isValid());
+            windows_.push_back (std::make_unique<EditWindow> (*this, t));
+        }
+    }
+    
+    updateDirty();
+}
+
+void PatchRoot::showRunWindow()
+{
+    RunWindow* w = fetchRunWindow();
+    
+    if (w) { w->toFront (true); }
+    else {
+        windows_.push_back (std::make_unique<RunWindow> (*this, rootTree_));
+    }
     
     updateDirty();
 }
@@ -174,22 +204,6 @@ void PatchRoot::openMainRunWindow()
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void PatchRoot::openEditWindow (core::UniqueId i)
-{
-    EditWindow* w = fetchEditWindow (i);
-    
-    if (w) { w->toFront (true); }
-    else {
-        if (getIdentifier() == i) { openMainEditWindow(); }
-        else {
-            juce::ValueTree t (Tree::findChild (rootTree_, i));
-            jassert (t.isValid());
-            windows_.push_back (std::make_unique<EditWindow> (*this, t));
-            updateDirty();
-        }
-    }
-}
 
 void PatchRoot::closeWindowButtonPressed (PatchWindow* w)
 {
@@ -235,6 +249,10 @@ juce::Component* PatchRoot::getMainWindow() const
     return dynamic_cast<juce::Component*> (windows_.front().get());
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 EditWindow* PatchRoot::fetchEditWindow (core::UniqueId i) const
 {
     for (const auto& p : windows_) {
@@ -243,6 +261,18 @@ EditWindow* PatchRoot::fetchEditWindow (core::UniqueId i) const
             if (w) {
                 return w;
             }
+        }
+    }
+    
+    return nullptr;
+}
+
+RunWindow* PatchRoot::fetchRunWindow() const
+{
+    for (const auto& p : windows_) {
+        auto w = dynamic_cast<RunWindow*> (p.get());
+        if (w) {
+            return w;
         }
     }
     

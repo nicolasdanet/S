@@ -118,7 +118,7 @@ namespace {
 
 void openPatch (const core::Object& o, View* v)
 {
-    if (o.isPatch()) { v->getPatchRoot().openEditWindow (o.getIdentifier()); }
+    if (o.isPatch()) { v->getPatchRoot().showEditWindow (o.getIdentifier()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

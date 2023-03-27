@@ -99,17 +99,31 @@ public:
     void openMainEditWindow();
     void openMainRunWindow();
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     EditWindow* fetchEditWindow (core::UniqueId) const;
+    RunWindow*  fetchRunWindow() const;
 
 public:
-    void openEditWindow (core::UniqueId);
+    void showEditWindow (core::UniqueId);
+    void showRunWindow();
     void closeWindowButtonPressed (PatchWindow*);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 private:
     void releaseAllWindows();
     void removeWindow (PatchWindow*);
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     juce::Component* getMainWindow() const;
 
