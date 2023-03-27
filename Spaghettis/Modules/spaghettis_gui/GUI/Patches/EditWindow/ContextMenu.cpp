@@ -96,7 +96,7 @@ auto getContextMenuCallbackForObject (EditView* view, const juce::MouseEvent&, O
     if (v.getComponent() && o.getComponent()) {
         switch (result) {
             case Contextual::help  : Spaghettis()->handle (Inputs::openHelp (o->getIdentifier()));  break;
-            case Contextual::open  : v->getPatchRoot().showEditWindow (o->getIdentifier());        break;
+            case Contextual::open  : v->getPatchRoot().openEditWindow (o->getIdentifier());        break;
             case Contextual::back  : v->moveBack (o.getComponent());                                break;
             case Contextual::front : v->moveFront (o.getComponent());                               break;
             case Contextual::snap  : v->snapToGrid (o.getComponent());                              break;

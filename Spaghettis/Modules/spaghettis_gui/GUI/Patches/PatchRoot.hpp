@@ -11,8 +11,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class PatchWindow;
+class RunWindow;
 class EditWindow;
+class PatchWindow;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -102,7 +103,7 @@ private:
     EditWindow* fetchEditWindow (core::UniqueId) const;
 
 public:
-    void showEditWindow (core::UniqueId);
+    void openEditWindow (core::UniqueId);
     void closeWindowButtonPressed (PatchWindow*);
 
 private:

@@ -102,7 +102,7 @@ void PatchRoot::localize (const core::UniquePath& u)
         
     jassert (!u.isRoot());
     
-    showEditWindow (core::Patch (getParent (u)).getIdentifier());
+    openEditWindow (core::Patch (getParent (u)).getIdentifier());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -175,7 +175,7 @@ void PatchRoot::openMainRunWindow()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchRoot::showEditWindow (core::UniqueId i)
+void PatchRoot::openEditWindow (core::UniqueId i)
 {
     EditWindow* w = fetchEditWindow (i);
     
