@@ -98,11 +98,14 @@ void PatchRoot::rename (const core::UniquePath& u, core::UniqueId i)
 
 void PatchRoot::locate (const core::UniquePath& u)
 {
-    DBG (u.debug());
-        
-    jassert (!u.isRoot());
+    DBG (u.debug()); jassert (!u.isRoot());
     
-    showEditWindow (core::Patch (getParent (u)).getIdentifier());
+    const core::UniqueId parent = core::Patch (getParent (u)).getIdentifier();
+    const core::UniqueId object = u.getIdentifier();
+    
+    showEditWindow (parent);
+    
+    if (auto p = fetchEditWindow (parent)) { p->locate (object); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
