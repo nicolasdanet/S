@@ -96,7 +96,7 @@ void PatchRoot::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchRoot::localize (const core::UniquePath& u)
+void PatchRoot::locate (const core::UniquePath& u)
 {
     DBG (u.debug());
         

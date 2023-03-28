@@ -39,7 +39,7 @@ void ConsoleFactory::setToolbarButton (IconsButton* button)
                                         owner_->parse();
                                     }
                                 }; break;
-    case Icons::find        : button->onClick = [this]() { owner_->localize(); }; break;
+    case Icons::find        : button->onClick = [this]() { owner_->locate(); };  break;
     case Icons::autoscroll  : button->onClick = [this, button]() {
                                     if (button->getState()) { owner_->update(); }
                                 }; break;

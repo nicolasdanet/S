@@ -37,13 +37,13 @@ ConsoleComponent::~ConsoleComponent()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ConsoleComponent::localize()
+void ConsoleComponent::locate()
 {
     const int n = listBox_.getLastRowSelected();
     
     if (juce::isPositiveAndBelow (n, messages_.size())) {
     //
-    Spaghettis()->getPatches().localize (Logger::getUniquePath (messages_[n]));
+    Spaghettis()->getPatches().locate (Logger::getUniquePath (messages_[n]));
     //
     }
 }
