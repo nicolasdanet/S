@@ -242,11 +242,11 @@ juce::Component* PatchRoot::getMainWindow() const
 {
     jassert (windows_.empty() == false);
     
-    for (const auto& p : windows_) {
-        if (p->isTopPatchWindow()) { return dynamic_cast<juce::Component*> (p.get()); }
+    if (auto p = fetchEditWindow (getIdentifier())) { return dynamic_cast<juce::Component*> (p); }
+    else if (auto q = fetchRunWindow())             { return dynamic_cast<juce::Component*> (q); }
+    else {
+        return dynamic_cast<juce::Component*> (windows_.front().get());
     }
-    
-    return dynamic_cast<juce::Component*> (windows_.front().get());
 }
 
 // -----------------------------------------------------------------------------------------------------------

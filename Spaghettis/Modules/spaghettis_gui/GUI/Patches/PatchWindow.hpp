@@ -43,16 +43,6 @@ public:
 // MARK: -
 
 public:
-    bool isTopPatchWindow() const
-    {
-        return !viewTree_.getParent().isValid();
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void closeButtonPressed() override
     {
         patch_.closeWindowButtonPressed (this);
