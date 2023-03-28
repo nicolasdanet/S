@@ -169,7 +169,7 @@ void EditComponent::zoomReset()
 
 void EditComponent::locate (core::UniqueId u)
 {
-    DBG (u);
+    editPort_.locate (u);
 }
 
 // -----------------------------------------------------------------------------------------------------------
