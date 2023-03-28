@@ -21,8 +21,10 @@ class EditWindow : public PatchWindow {
 public:
     explicit EditWindow (PatchRoot& owner, const juce::ValueTree& tree) : PatchWindow (owner, tree)
     {
-        setContentOwned (new EditComponent (owner, tree), true);
+        content_ = std::make_unique<EditComponent> (owner, tree);
         
+        setContentNonOwned (content_.get(), true);
+                
         const core::Patch p (tree);
         
         const bool showAsLocked = (p.isAbstraction() || p.isLocked());
@@ -37,7 +39,10 @@ public:
 // MARK: -
 
 public:
-    void locate (core::UniqueId);
+    void locate (core::UniqueId u)
+    {
+        content_->locate (u);
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -46,6 +51,9 @@ public:
 private:
     void hasBeenChanged() override;
 
+private:
+    std::unique_ptr<EditComponent> content_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditWindow)
 };
