@@ -95,7 +95,11 @@ void EditPort::zoomReset()
 
 void EditPort::locate (core::UniqueId u)
 {
-    DBG (u);
+    ObjectComponent* o = view_.getObjectComponent (u);
+    
+    if (o) {
+        DBG (o->getBounds().toString());
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
