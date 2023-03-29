@@ -134,9 +134,7 @@ void EditPort::showLocator (const juce::Rectangle<int>& bounds)
 
 void EditPort::hideLocator()
 {
-    if (locator_) { view_.removeChildComponent (locator_.get()); }
-        
-    locator_ = nullptr;
+    if (locator_) { view_.removeChildComponent (locator_.get()); locator_ = nullptr; }
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -253,6 +251,8 @@ void EditPort::setZoomAroundPoint (int n, juce::Point<int> pt)
 
 void EditPort::setZoom (int n)
 {
+    hideLocator();
+    
     constexpr int min = steps_.front();
     constexpr int max = steps_.back();
     

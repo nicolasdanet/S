@@ -60,11 +60,11 @@ public:
 
 public:
     void locate (core::UniqueId);
+    void hideLocator();
 
 private:
     void show (ObjectComponent*);
     void showLocator (const juce::Rectangle<int>&);
-    void hideLocator();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
