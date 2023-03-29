@@ -95,6 +95,7 @@
 #include "GUI/Patches/EditWindow/ContextMenu.cpp"
 #include "GUI/Patches/EditWindow/Sync.cpp"
 #include "GUI/Patches/EditWindow/EditView.cpp"
+#include "GUI/Patches/EditWindow/Locator.cpp"
 #include "GUI/Patches/EditWindow/EditPort.cpp"
 #include "GUI/Patches/EditWindow/InspectorView.cpp"
 #include "GUI/Patches/EditWindow/EditInspector.cpp"

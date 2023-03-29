@@ -168,6 +168,7 @@
 #include "GUI/Patches/EditWindow/ContextMenu.hpp"
 #include "GUI/Patches/EditWindow/Sync.hpp"
 #include "GUI/Patches/EditWindow/EditView.hpp"
+#include "GUI/Patches/EditWindow/Locator.hpp"
 #include "GUI/Patches/EditWindow/EditPort.hpp"
 #include "GUI/Patches/EditWindow/InspectorView.hpp"
 #include "GUI/Patches/EditWindow/EditInspector.hpp"
