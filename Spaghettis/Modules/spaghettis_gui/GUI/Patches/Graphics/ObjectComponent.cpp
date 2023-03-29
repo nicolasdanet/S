@@ -330,6 +330,11 @@ juce::Point<int> ObjectComponent::getLocalPosition() const
     return juce::Point<int> (x_.get(), y_.get());
 }
 
+juce::Point<int> ObjectComponent::getRealPosition() const
+{
+    return Coordinates::localToReal (getLocalPosition());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

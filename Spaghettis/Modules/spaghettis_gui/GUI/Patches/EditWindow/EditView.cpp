@@ -196,7 +196,7 @@ std::optional<juce::Point<int>> EditView::getRealPositionOfSelectedObjects (juce
     
     auto f = [&pt, offset](const auto& p)
     {
-        pt = getMinimum (pt, Coordinates::localToReal (p->getLocalPosition()), offset);
+        pt = getMinimum (pt, p->getRealPosition(), offset);
     };
 
     objects_.forEachSelected (f);
