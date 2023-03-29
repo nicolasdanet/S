@@ -12,6 +12,25 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+Locator::Locator (const juce::Rectangle<int>& bounds) :
+    locatorColour_ (Spaghettis()->getCachedColour (Tag::Locator))
+{
+    setOpaque (false);
+    setPaintingIsUnclipped (true);
+    setAlwaysOnTop (true);
+    setInterceptsMouseClicks (false, true);
+    setBounds (bounds);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Locator::paint (juce::Graphics& g)
+{
+    g.setColour (locatorColour_.get()); g.drawRect (getLocalBounds());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

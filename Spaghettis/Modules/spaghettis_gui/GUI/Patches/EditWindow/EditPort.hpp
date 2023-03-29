@@ -61,12 +61,10 @@ public:
 public:
     void locate (core::UniqueId);
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 private:
     void show (ObjectComponent*);
+    void showLocator (const juce::Rectangle<int>&);
+    void hideLocator();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -103,6 +101,7 @@ private:
     juce::Value v_;
     juce::Point<int> offset_;                       /* Real coordinates. */
     std::optional<juce::Point<int>> dragOrigin_;    /* Real coordinates. */
+    std::unique_ptr<Locator> locator_;
 
 private:
     static int nextStep (int step)

@@ -23,6 +23,8 @@ EditPort::EditPort (EditView& view) : view_ (view), zoom_ (100), v_ (zoom_)
     
 EditPort::~EditPort()
 {
+    hideLocator();
+    
     removeChildComponent (&view_);
         
     view_.setPort (nullptr);
@@ -117,8 +119,26 @@ void EditPort::show (ObjectComponent* o)
     update();
     //
     }
+    
+    showLocator (o->getBounds());
 }
 
+void EditPort::showLocator (const juce::Rectangle<int>& bounds)
+{
+    hideLocator();
+    
+    locator_ = std::make_unique<Locator> (bounds);
+    
+    view_.addAndMakeVisible (locator_.get());
+}
+
+void EditPort::hideLocator()
+{
+    if (locator_) { view_.removeChildComponent (locator_.get()); }
+        
+    locator_ = nullptr;
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

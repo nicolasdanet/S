@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 ActionLassoComponent::ActionLassoComponent (const juce::Rectangle<int>& bounds) :
-    lassoColour_ (Spaghettis()->getCachedColour (Tag::LineSelected))
+    lassoColour_ (Spaghettis()->getCachedColour (Tag::Lasso))
 {
     setOpaque (false);
     setPaintingIsUnclipped (true);

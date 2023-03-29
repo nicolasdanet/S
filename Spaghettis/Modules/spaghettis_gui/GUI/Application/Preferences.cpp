@@ -116,6 +116,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Lasso"),
         NEEDS_TRANS ("Set color of lasso"),
         Colours::getPalette()->selection);
+    
+    colors.addParameter (Tag::Locator,
+        NEEDS_TRANS ("Locator"),
+        NEEDS_TRANS ("Set color of locator"),
+        Colours::getPalette()->textError);
         
     colors.addParameter (Tag::BoxBackground,
         NEEDS_TRANS ("Box Background"),
