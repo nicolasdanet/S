@@ -98,7 +98,24 @@ void EditPort::locate (core::UniqueId u)
     ObjectComponent* o = view_.getObjectComponent (u);
     
     if (o) {
-        DBG (o->getBounds().toString());
+        show (o);
+    }
+}
+
+void EditPort::show (ObjectComponent* o)
+{
+    const juce::Point<int> pt (o->getRealPosition());
+    
+    if (!getRealVisibleArea().reduced (40).contains (pt)) {
+    //
+    const float f = getScale();
+    const int w   = Distance::unscaled (getWidth(), f);
+    const int h   = Distance::unscaled (getHeight(), f);
+    
+    offset_ = pt - juce::Point<int> (w / 4, h / 3);
+    
+    update();
+    //
     }
 }
 

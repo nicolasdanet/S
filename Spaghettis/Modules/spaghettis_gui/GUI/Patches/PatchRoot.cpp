@@ -98,7 +98,7 @@ void PatchRoot::rename (const core::UniquePath& u, core::UniqueId i)
 
 void PatchRoot::locate (const core::UniquePath& u)
 {
-    DBG (u.debug()); jassert (!u.isRoot());
+    jassert (!u.isRoot());
     
     const core::UniqueId parent = core::Patch (getParent (u)).getIdentifier();
     const core::UniqueId object = u.getIdentifier();
