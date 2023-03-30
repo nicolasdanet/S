@@ -63,6 +63,13 @@ public:
 // MARK: -
 
 public:
+    void hideLocator (const juce::MouseEvent&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void handleMouseDown (const juce::MouseEvent&);
     void handleMouseUp (const juce::MouseEvent&);
     void handleMouseDrag (const juce::MouseEvent&, DragFlag);

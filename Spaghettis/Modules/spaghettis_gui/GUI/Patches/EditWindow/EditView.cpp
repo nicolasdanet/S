@@ -53,6 +53,15 @@ void EditView::detach (EditInspector* inspector)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditView::hideLocator (const juce::MouseEvent& e)
+{
+    if (Mouse::hasAltKey (e) == false) { getPort()->hideLocator(); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::mouseDragProceed (const juce::MouseEvent& e, bool isChild, DragFlag flag)
 {
     if (!drag_) {
@@ -99,6 +108,8 @@ void EditView::handleMouseDragAbort()
 
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
+    hideLocator (e);
+    
     if (Mouse::isSimpleClick (e)) {
     //
     if (maker_.isActive() == false) { deselectAll(); }

@@ -149,6 +149,11 @@ void PinComponent::mouseExit (const juce::MouseEvent&)
     setHighlighted (false);
 }
 
+void PinComponent::mouseDown (const juce::MouseEvent& e)
+{
+    if (auto view = View::asEditView (getView())) { view->hideLocator (e); }
+}
+
 void PinComponent::mouseDrag (const juce::MouseEvent& e)
 {
     handleMouseDrag (e, DragFlag::Pin);
