@@ -51,7 +51,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     painter_ (createPainter (this, object)),
     hasResize_ (false),
     isLocked_ (object_.isLocked()),
-    isInsideRunView_ (View::asEditView (view) == nullptr)
+    isInsideRunView_ (getEditView() == nullptr)
 {
     jassert (view);
     
@@ -179,7 +179,7 @@ void ObjectComponent::mouseExit (const juce::MouseEvent&)
 
 void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (getView())) {
+    if (auto view = getEditView()) {
     //
     view->hideLocator (e);
     

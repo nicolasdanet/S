@@ -151,7 +151,7 @@ void PinComponent::mouseExit (const juce::MouseEvent&)
 
 void PinComponent::mouseDown (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (getView())) { view->hideLocator (e); }
+    if (auto view = getEditView()) { view->hideLocator (e); }
 }
 
 void PinComponent::mouseDrag (const juce::MouseEvent& e)

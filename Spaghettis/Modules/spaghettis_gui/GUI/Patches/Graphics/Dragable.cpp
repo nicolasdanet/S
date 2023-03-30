@@ -19,7 +19,7 @@ Dragable::Dragable (View* view) : view_ (view), isDrag_ (false)
 Dragable::~Dragable()
 {
     if (isDrag_) {
-        if (auto view = View::asEditView (view_)) {
+        if (auto view = getEditView()) {
             view->handleMouseDragAbort();
         }
     }
@@ -29,14 +29,23 @@ Dragable::~Dragable()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+EditView* Dragable::getEditView() const
+{
+    return View::asEditView (getView());
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void Dragable::handleMouseDrag (const juce::MouseEvent& e, DragFlag flag)
 {
-    isDrag_ = true;  if (auto view = View::asEditView (view_)) { view->handleMouseDrag (e, flag); }
+    isDrag_ = true;  if (auto view = getEditView()) { view->handleMouseDrag (e, flag); }
 }
 
 void Dragable::handleMouseUp (const juce::MouseEvent& e)
 {
-    isDrag_ = false; if (auto view = View::asEditView (view_)) { view->handleMouseUp (e); }
+    isDrag_ = false; if (auto view = getEditView()) { view->handleMouseUp (e); }
 }
     
 // -----------------------------------------------------------------------------------------------------------

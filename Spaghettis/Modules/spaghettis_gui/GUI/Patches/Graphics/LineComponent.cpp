@@ -149,7 +149,7 @@ void LineComponent::mouseExit (const juce::MouseEvent&)
 
 void LineComponent::mouseDown (const juce::MouseEvent& e)
 {
-    if (auto view = View::asEditView (getView())) {
+    if (auto view = getEditView()) {
     //
     view->handleMouseDown (e);
 
