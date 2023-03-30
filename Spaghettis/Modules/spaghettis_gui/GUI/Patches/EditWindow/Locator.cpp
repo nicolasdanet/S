@@ -19,7 +19,7 @@ Locator::Locator (const juce::Rectangle<int>& bounds) :
     setPaintingIsUnclipped (true);
     setAlwaysOnTop (true);
     setInterceptsMouseClicks (false, true);
-    setBounds (bounds);
+    setBounds (bounds.expanded (10));
 }
 
 // -----------------------------------------------------------------------------------------------------------
