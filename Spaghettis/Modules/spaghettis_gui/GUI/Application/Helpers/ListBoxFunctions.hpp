@@ -124,29 +124,7 @@ private:
         g.drawText (text, r.reduced (4, 0), juce::Justification::centredLeft, true);
     }
     
-    static juce::Colour getColourForType (Logger::Type type)
-    {
-        int c = Colours::consoleTextError;
-                    
-        if (type == Logger::Type::normal)       { c = Colours::consoleTextDefault; }
-        else if (type == Logger::Type::system)  { c = Colours::consoleTextSystem;  }
-        else if (type == Logger::Type::warning) { c = Colours::consoleTextWarning; }
-                    
-        return Spaghettis()->getColour (c);
-    }
-    
-    static juce::Colour getColourForElement (const Logger::MessagesElement& e, bool isSelected)
-    {
-        if (isSelected) {
-        //
-        const bool hasPath = Logger::getUniquePath (e).isValid();
-        
-        if (hasPath) { return Spaghettis()->getColour (Colours::listBoxTextHighlighted); }
-        //
-        }
-
-        return getColourForType (Logger::getType (e));
-    }
+    static juce::Colour getColourForElement (const Logger::MessagesElement& e, bool isSelected);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

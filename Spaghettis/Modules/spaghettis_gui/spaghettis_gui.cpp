@@ -51,6 +51,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/Helpers/CallOutBoxTracker.cpp"
+#include "GUI/Application/Helpers/ListBoxFunctions.cpp"
 #include "GUI/Application/Helpers/ColourSelector/ColourSpace.cpp"
 #include "GUI/Application/Helpers/ColourSelector/HueSelector.cpp"
 #include "GUI/Application/Helpers/ColourSelector/ColourSelector.cpp"
