@@ -39,9 +39,9 @@ public:
 // MARK: -
 
 public:
-    void locate (core::UniqueId u)
+    bool locate (core::UniqueId u)
     {
-        content_->locate (u);
+        return content_->locate (u);
     }
     
 // -----------------------------------------------------------------------------------------------------------

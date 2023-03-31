@@ -95,13 +95,13 @@ void EditPort::zoomReset()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditPort::locate (core::UniqueId u)
+bool EditPort::locate (core::UniqueId u)
 {
     ObjectComponent* o = view_.getObjectComponent (u);
     
-    if (o) {
-        show (o);
-    }
+    if (o) { show (o); return true; }
+    
+    return false;
 }
 
 void EditPort::show (ObjectComponent* o)

@@ -59,7 +59,7 @@ public:
 // MARK: -
 
 public:
-    void locate (core::UniqueId);
+    bool locate (core::UniqueId);
     void hideLocator();
 
 private:

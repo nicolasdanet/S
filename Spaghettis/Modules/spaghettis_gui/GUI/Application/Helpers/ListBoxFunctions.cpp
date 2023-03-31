@@ -44,7 +44,7 @@ juce::Colour ListBoxFunctions::getColourForElement (const Logger::MessagesElemen
         core::UniquePath p = Logger::getUniquePath (e);
         
         if (p.isValid()) {
-            if (Spaghettis()->getPatches().contains (p.getRoot())) {
+            if (Spaghettis()->getPatches().contains (p)) {
                 return Spaghettis()->getColour (Colours::listBoxTextHighlighted);
             }
         }

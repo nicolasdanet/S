@@ -21,6 +21,11 @@ juce::ValueTree PatchRoot::getParent (const core::UniquePath& u) const
     return t;
 }
 
+bool PatchRoot::hasObject (const core::UniquePath& u) const
+{
+    return true;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -96,16 +101,25 @@ void PatchRoot::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchRoot::locate (const core::UniquePath& u)
+bool PatchRoot::locate (const core::UniquePath& u)
 {
-    jassert (!u.isRoot());
-    
+    if (contains (u)) {
+    //
     const core::UniqueId parent = core::Patch (getParent (u)).getIdentifier();
     const core::UniqueId object = u.getIdentifier();
     
     showEditWindow (parent);
     
-    if (auto p = fetchEditWindow (parent)) { p->locate (object); }
+    if (auto p = fetchEditWindow (parent)) { return p->locate (object); }
+    //
+    }
+    
+    return false;
+}
+
+bool PatchRoot::contains (const core::UniquePath& u)
+{
+    jassert (!u.isRoot()); return hasObject (u);
 }
 
 // -----------------------------------------------------------------------------------------------------------

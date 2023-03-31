@@ -167,9 +167,9 @@ void EditComponent::zoomReset()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditComponent::locate (core::UniqueId u)
+bool EditComponent::locate (core::UniqueId u)
 {
-    editPort_.locate (u);
+    return editPort_.locate (u);
 }
 
 // -----------------------------------------------------------------------------------------------------------
