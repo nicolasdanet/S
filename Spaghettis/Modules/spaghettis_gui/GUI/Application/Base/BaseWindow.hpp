@@ -37,7 +37,6 @@ protected:
 
 public:
     void setDirtyFlag (bool) const;
-    void putToFront();
     void close();
     
 // -----------------------------------------------------------------------------------------------------------

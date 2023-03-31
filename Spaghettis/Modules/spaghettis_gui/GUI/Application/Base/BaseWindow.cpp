@@ -81,18 +81,6 @@ void BaseWindow::setDirtyFlag (bool isDirty) const
     if (peer) { peer->setHasChangedSinceSaved (isDirty); }
 }
 
-/* Delay call to front for cosmetic purposes only. */
-
-void BaseWindow::putToFront()
-{
-    auto f = [p = juce::Component::SafePointer<BaseWindow> (this)]()
-    {
-        if (p.getComponent()) { p->toFront (true); }
-    };
-
-    Timer::callAfterDelay (250, f);
-}
-
 void BaseWindow::close()
 {
     closeButtonPressed();

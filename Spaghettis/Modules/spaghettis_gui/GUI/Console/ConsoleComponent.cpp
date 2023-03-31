@@ -43,7 +43,14 @@ void ConsoleComponent::locate()
     
     if (juce::isPositiveAndBelow (n, messages_.size())) {
     //
-    Spaghettis()->getPatches().locate (Logger::getUniquePath (messages_[n]));
+    auto f = [u = Logger::getUniquePath (messages_[n])]()
+    {
+        Spaghettis()->getPatches().locate (u);
+    };
+    
+    /* Delay call to front for cosmetic purposes only. */
+    
+    juce::Timer::callAfterDelay (250, f);
     //
     }
 }

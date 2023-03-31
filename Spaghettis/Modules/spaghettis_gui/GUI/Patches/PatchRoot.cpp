@@ -178,7 +178,7 @@ void PatchRoot::showEditWindow (core::UniqueId i)
 {
     EditWindow* w = fetchEditWindow (i);
     
-    if (w) { w->putToFront(); }
+    if (w) { w->toFront (true); }
     else {
         if (getIdentifier() == i) {
             windows_.push_back (std::make_unique<EditWindow> (*this, rootTree_));
