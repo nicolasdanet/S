@@ -41,6 +41,11 @@ void removePatch (std::vector<std::shared_ptr<PatchRoot>>& v, core::UniqueId i)
     v.erase (std::remove_if (v.begin(), v.end(), isSamePatchAs (i)), v.end());
 }
 
+bool containsPatch (std::vector<std::shared_ptr<PatchRoot>>& v, core::UniqueId i)
+{
+    return std::find_if (v.cbegin(), v.cend(), isSamePatchAs (i)) != v.cend();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -77,11 +82,14 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> void perform (std::vector<std::shared_ptr<PatchRoot>>& v, const core::UniquePath& u, T f)
+template <class T> bool perform (std::vector<std::shared_ptr<PatchRoot>>& v, const core::UniquePath& u, T f)
 {
     auto r = std::find_if (v.cbegin(), v.cend(), isSamePatchAs (u.getRoot()));
     
-    if (r != v.cend()) { f (*r); }
+    if (r != v.cend()) { f (*r); return true; }
+    else {
+        return false;
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -132,9 +140,9 @@ void PatchesHolder::locate (const core::UniquePath& u)
 
 bool PatchesHolder::contains (core::UniqueId i)
 {
-    return true;
+    return containsPatch (roots_, i);
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
