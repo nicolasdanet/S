@@ -123,19 +123,29 @@ private:
         g.setFont (Spaghettis()->getLookAndFeel().getListBoxFont());
         g.drawText (text, r.reduced (4, 0), juce::Justification::centredLeft, true);
     }
-
-    static juce::Colour getColourWithType (Logger::Type type, bool isSelected, bool hasPath)
+    
+    static juce::Colour getColourForType (Logger::Type type)
     {
-        if (isSelected && hasPath) { return Spaghettis()->getColour (Colours::listBoxTextHighlighted); }
-        else {
-            int c = Colours::consoleTextError;
+        int c = Colours::consoleTextError;
                     
-            if (type == Logger::Type::normal)       { c = Colours::consoleTextDefault; }
-            else if (type == Logger::Type::system)  { c = Colours::consoleTextSystem;  }
-            else if (type == Logger::Type::warning) { c = Colours::consoleTextWarning; }
+        if (type == Logger::Type::normal)       { c = Colours::consoleTextDefault; }
+        else if (type == Logger::Type::system)  { c = Colours::consoleTextSystem;  }
+        else if (type == Logger::Type::warning) { c = Colours::consoleTextWarning; }
                     
-            return Spaghettis()->getColour (c);
+        return Spaghettis()->getColour (c);
+    }
+    
+    static juce::Colour getColourForElement (const Logger::MessagesElement& e, bool isSelected)
+    {
+        if (isSelected) {
+        //
+        const bool hasPath = Logger::getUniquePath (e).isValid();
+        
+        if (hasPath) { return Spaghettis()->getColour (Colours::listBoxTextHighlighted); }
+        //
         }
+
+        return getColourForType (Logger::getType (e));
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -159,8 +169,7 @@ public:
         if constexpr (std::is_same_v<decltype (e), Logger::MessagesElement>) {
             
             const juce::String t = Logger::getText (e);
-            const bool hasPath   = Logger::getUniquePath (e).isValid();
-            const juce::Colour c = getColourWithType (Logger::getType (e), isSelected, hasPath);
+            const juce::Colour c = getColourForElement (e, isSelected);
                                                 
             paintItemProceed (t, c, g, width, height);
             
