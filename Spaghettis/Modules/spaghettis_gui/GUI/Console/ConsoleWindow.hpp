@@ -46,6 +46,11 @@ public:
     {
         content_->clear();
     }
+    
+    void reset()
+    {
+        content_->reset();
+    }
 
 private:
     juce::TooltipWindow tooltip_;

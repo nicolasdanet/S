@@ -33,13 +33,14 @@ public:
 
 public:
     void locate();
+    void reset();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void update();
+    void update (bool);
     void handleAsyncUpdate() override;
     void logMessage (MessagesPacket& m) override;
     void clear();

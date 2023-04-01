@@ -126,13 +126,17 @@ void PatchesHolder::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchesHolder::locate (const core::UniquePath& u)
+bool PatchesHolder::locate (const core::UniquePath& u)
 {
+    bool done = false;
+    
     if (u.isValid() && !u.isRoot()) {
     //
-    perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->locate (u); });
+    perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { done = p->locate (u); });
     //
     }
+    
+    return done;
 }
 
 bool PatchesHolder::contains (const core::UniquePath& u)

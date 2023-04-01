@@ -43,7 +43,7 @@ public:
 // MARK: -
 
 public:
-    void locate (const core::UniquePath&);
+    bool locate (const core::UniquePath&);
     bool contains (const core::UniquePath&);
     
 // -----------------------------------------------------------------------------------------------------------

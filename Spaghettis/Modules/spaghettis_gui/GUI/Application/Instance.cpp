@@ -337,6 +337,11 @@ void SpaghettisInstance::clearConsole()
     if (consoleWindow_) { consoleWindow_->clear(); }
 }
 
+void SpaghettisInstance::resetConsole()
+{
+    if (consoleWindow_) { consoleWindow_->reset(); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

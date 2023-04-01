@@ -45,7 +45,7 @@ void ConsoleComponent::locate()
     //
     auto f = [u = Logger::getUniquePath (messages_[n])]()
     {
-        Spaghettis()->getPatches().locate (u);
+        if (Spaghettis()->getPatches().locate (u) == false) { Spaghettis()->resetConsole(); }
     };
     
     /* Delay call to front for cosmetic purposes only. */
@@ -53,6 +53,11 @@ void ConsoleComponent::locate()
     juce::Timer::callAfterDelay (250, f);
     //
     }
+}
+
+void ConsoleComponent::reset()
+{
+    update (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -113,9 +118,9 @@ template <class T> void parseMessages (T& m, bool showMessages, bool showErrors)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ConsoleComponent::update()
+void ConsoleComponent::update (bool deselect)
 {
-    ListBoxFunctions::update (listBox_, messages_);
+    ListBoxFunctions::update (listBox_, messages_, deselect);
     
     if (getButtonState (Icons::autoscroll)) {
     //
@@ -126,7 +131,7 @@ void ConsoleComponent::update()
 
 void ConsoleComponent::handleAsyncUpdate()
 {
-    update();
+    update (false);
 }
 
 void ConsoleComponent::logMessage (MessagesPacket& m)
@@ -136,26 +141,26 @@ void ConsoleComponent::logMessage (MessagesPacket& m)
     
     history_.insert (history_.cend(), m.cbegin(), m.cend());
     
-    logMessageProceed (m);
+    logMessageProceed (m); triggerAsyncUpdate();
 }
 
 void ConsoleComponent::clear()
 {
-    messages_.clear(); triggerAsyncUpdate();
+    messages_.clear(); update (true);
 }
 
 void ConsoleComponent::parse()
 {
     parseMessages (messages_, getButtonState (Icons::message), getButtonState (Icons::error));
     
-    triggerAsyncUpdate();
+    update (true);
 }
 
 void ConsoleComponent::restore()
 {
     MessagesPacket m (history_.cbegin(), history_.cend());
     
-    messages_.clear(); logMessageProceed (m);
+    messages_.clear(); logMessageProceed (m); update (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -167,8 +172,6 @@ void ConsoleComponent::logMessageProceed (MessagesPacket& m)
     parseMessages (m, getButtonState (Icons::message), getButtonState (Icons::error));
     
     messages_.insert (messages_.cend(), m.cbegin(), m.cend());
-    
-    triggerAsyncUpdate();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -187,7 +190,7 @@ void ConsoleComponent::paintListBoxItem (int row, juce::Graphics& g, int width, 
 
 void ConsoleComponent::listBoxItemClicked (int row, const juce::MouseEvent&)
 {
-    if (juce::isPositiveAndBelow (row, messages_.size()) == false) { triggerAsyncUpdate(); }
+    if (juce::isPositiveAndBelow (row, messages_.size()) == false) { update (true); }
 }
 
 void ConsoleComponent::paint (juce::Graphics& g)

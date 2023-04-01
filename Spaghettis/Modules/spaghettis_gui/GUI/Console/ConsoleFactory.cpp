@@ -41,7 +41,7 @@ void ConsoleFactory::setToolbarButton (IconsButton* button)
                                 }; break;
     case Icons::find        : button->onClick = [this]() { owner_->locate(); };  break;
     case Icons::autoscroll  : button->onClick = [this, button]() {
-                                    if (button->getState()) { owner_->update(); }
+                                    if (button->getState()) { owner_->update (false); }
                                 }; break;
     default                 : break;
     //
