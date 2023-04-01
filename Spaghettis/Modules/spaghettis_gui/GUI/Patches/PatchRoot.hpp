@@ -138,7 +138,7 @@ private:
 private:
     juce::ValueTree getParent (const core::UniquePath& u) const;
     
-    bool hasObject (const core::UniquePath& u) const;
+    bool hasChild (const core::UniquePath& u) const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

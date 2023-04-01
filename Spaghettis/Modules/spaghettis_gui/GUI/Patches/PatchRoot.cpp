@@ -21,9 +21,13 @@ juce::ValueTree PatchRoot::getParent (const core::UniquePath& u) const
     return t;
 }
 
-bool PatchRoot::hasObject (const core::UniquePath& u) const
+bool PatchRoot::hasChild (const core::UniquePath& u) const
 {
-    return true;
+    juce::ValueTree parent (getParent (u));
+    
+    if (parent.isValid()) { return Tree::getChild (parent, u.getIdentifier()).isValid(); }
+    
+    return false;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -119,7 +123,7 @@ bool PatchRoot::locate (const core::UniquePath& u)
 
 bool PatchRoot::contains (const core::UniquePath& u)
 {
-    jassert (!u.isRoot()); return hasObject (u);
+    jassert (!u.isRoot()); return hasChild (u);
 }
 
 // -----------------------------------------------------------------------------------------------------------
