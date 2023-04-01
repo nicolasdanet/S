@@ -120,7 +120,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::Locator,
         NEEDS_TRANS ("Locator"),
         NEEDS_TRANS ("Set color of locator"),
-        Colours::getPalette()->textWarning);
+        Colours::getPalette()->textError);
         
     colors.addParameter (Tag::BoxBackground,
         NEEDS_TRANS ("Box Background"),
