@@ -37,9 +37,6 @@ static void *array_makeObject (t_symbol *s, int argc, t_atom *argv)
     else if (t == sym_random)   { newest = (t_pd *)arrayrandom_new (s,      argc - 1, argv + 1); }
     else if (t == sym_max)      { newest = (t_pd *)arraymax_new (s,         argc - 1, argv + 1); }
     else if (t == sym_min)      { newest = (t_pd *)arraymin_new (s,         argc - 1, argv + 1); }
-    else {
-        error_unexpected (NULL, sym_array, t);
-    }
     //
     }
     

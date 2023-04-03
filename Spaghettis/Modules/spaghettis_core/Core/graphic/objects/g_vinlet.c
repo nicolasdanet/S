@@ -96,9 +96,8 @@ static void *vinlet_newSignal (t_symbol *s)
 
     x->vi_bufferSize   = 0;
     x->vi_buffer       = (t_sample *)PD_MEMORY_GET (0);
-    x->vi_owner        = instance_contextGetCurrent();
     x->vi_outlet       = outlet_newSignal (cast_object (x));
-    x->vi_inlet        = glist_inletAdd (x->vi_owner, cast_pd (x), 1);
+    x->vi_inlet        = glist_inletAdd (object_getOwner (cast_object (x)), cast_pd (x), 1);
     x->vi_directSignal = NULL;
     
     return x;
@@ -108,9 +107,8 @@ static void *vinlet_new (t_symbol *s)
 {
     t_vinlet *x = (t_vinlet *)pd_new (vinlet_class);
     
-    x->vi_owner  = instance_contextGetCurrent();
     x->vi_outlet = outlet_newMixed (cast_object (x));
-    x->vi_inlet  = glist_inletAdd (x->vi_owner, cast_pd (x), 0);
+    x->vi_inlet  = glist_inletAdd (object_getOwner (cast_object (x)), cast_pd (x), 0);
     
     return x;
 }
@@ -121,9 +119,7 @@ static void vinlet_dismiss (t_vinlet *x)
     //
     x->vi_dismissed = 1;
     
-    glist_inletRemove (x->vi_owner, x->vi_inlet);
-    
-    x->vi_owner = NULL;
+    glist_inletRemove (object_getOwner (cast_object (x)), x->vi_inlet);
     //
     }
 }

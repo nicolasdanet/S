@@ -113,7 +113,7 @@ static void *textdefine_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_textdefine *x = (t_textdefine *)pd_new (textdefine_class);
 
-    textbuffer_init (&x->x_textbuffer);
+    textbuffer_init (&x->x_textbuffer, object_getOwner (cast_object (x)));
     
     x->x_keep = 0;
     x->x_name = &s_;
@@ -167,8 +167,6 @@ static void *textdefine_makeObject (t_symbol *s, int argc, t_atom *argv)
     else {
         if (t == sym_tolist)        { newest = (t_pd *)texttolist_new (s,   argc - 1, argv + 1); }
         else if (t == sym_fromlist) { newest = (t_pd *)textfromlist_new (s, argc - 1, argv + 1); }
-        
-        if (!newest) { error_unexpected (NULL, sym_text, t); }  // TODO: Pass context to message error?
     }
     //
     }

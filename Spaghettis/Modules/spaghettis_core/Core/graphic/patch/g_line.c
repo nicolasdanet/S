@@ -14,11 +14,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void glist_lineConnectByIndexNotify (t_object *o, t_glist *glist)
+static void glist_lineConnectByIndexNotify (t_object *o)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
-    outputs_objectUpdated (o, glist, Tags::attributes ( { Tag::Inlets, Tag::Outlets } ));
+    outputs_objectUpdated (o, Tags::attributes ( { Tag::Inlets, Tag::Outlets } ));
     
     #endif
 }
@@ -62,8 +62,8 @@ PD_LOCAL t_error glist_lineConnectByIndex (t_glist *glist,
         }
     }
 
-    if (t1 > 0) { glist_lineConnectByIndexNotify (src,  glist); }
-    if (t2 > 0) { glist_lineConnectByIndexNotify (dest, glist); }
+    if (t1 > 0) { glist_lineConnectByIndexNotify (src); }
+    if (t2 > 0) { glist_lineConnectByIndexNotify (dest); }
     
     return glist_objectConnect (glist, src, m, dest, n);
     //

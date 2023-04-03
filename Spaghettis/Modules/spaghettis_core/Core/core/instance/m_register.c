@@ -81,16 +81,18 @@ static t_registerelement *register_fetch (t_register *x, t_id u)
 
 /* Append the element. */
 
-PD_LOCAL void register_add (t_register *x, t_id u, t_object *o, t_glist *owner)
+PD_LOCAL void register_add (t_register *x, t_object *o)
 {
     if (x->r_size == x->r_allocated) { register_enlarge (x); }
     
     PD_ASSERT (x->r_size < x->r_allocated);
     
     {
+        t_glist *owner  = object_getOwner (o);
+        
         t_registerelement *next = x->r_raw + x->r_size;
     
-        next->re_id     = u;
+        next->re_id     = object_getUnique (o);
         next->re_owner  = owner ? object_getUnique (cast_object (owner)) : 0;
         next->re_object = o;
     

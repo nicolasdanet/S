@@ -20,7 +20,6 @@ static t_class *arguments_class;            /* Shared. */
 
 typedef struct _arguments {
     t_object    x_obj;                      /* Must be the first. */
-    t_glist     *x_owner;
     t_outlet    *x_outletLeft;
     t_outlet    *x_outletRight;
     } t_arguments;
@@ -31,7 +30,7 @@ typedef struct _arguments {
 
 static void arguments_bang (t_arguments *x)
 {
-    t_environment *e = glist_getEnvironment (x->x_owner);
+    t_environment *e = glist_getEnvironment (object_getOwner (cast_object (x)));
     
     PD_ASSERT (e);
     
@@ -47,7 +46,6 @@ static void *arguments_new (void)
 {
     t_arguments *x = (t_arguments *)pd_new (arguments_class);
     
-    x->x_owner       = instance_contextGetCurrent();
     x->x_outletLeft  = outlet_newList (cast_object (x));
     x->x_outletRight = outlet_newSymbol (cast_object (x));
     

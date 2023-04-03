@@ -25,7 +25,6 @@ static t_class *soundfiler_class;       /* Shared. */
 
 typedef struct _soundfiler {
     t_object    x_obj;                  /* Must be the first. */
-    t_glist     *x_owner;
     t_outlet    *x_outlet;
     } t_soundfiler;
 
@@ -236,7 +235,9 @@ static int soundfiler_readProceed (t_soundfiler *x, t_glist *glist, int argc, t_
 
 static void soundfiler_read (t_soundfiler *x, t_symbol *s, int argc, t_atom *argv)
 {
-    outlet_float (x->x_outlet, (t_float)soundfiler_readProceed (x, x->x_owner, argc, argv));
+    t_glist *owner = object_getOwner (cast_object (x));
+    
+    outlet_float (x->x_outlet, (t_float)soundfiler_readProceed (x, owner, argc, argv));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -405,7 +406,9 @@ static int soundfiler_writeProceed (t_soundfiler *x, t_glist *glist, int argc, t
 
 static void soundfiler_write (t_soundfiler *x, t_symbol *s, int argc, t_atom *argv)
 {
-    outlet_float (x->x_outlet, (t_float)soundfiler_writeProceed (x, x->x_owner, argc, argv));
+    t_glist *owner = object_getOwner (cast_object (x));
+    
+    outlet_float (x->x_outlet, (t_float)soundfiler_writeProceed (x, owner, argc, argv));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -416,7 +419,6 @@ static t_soundfiler *soundfiler_new (void)
 {
     t_soundfiler *x = (t_soundfiler *)pd_new (soundfiler_class);
     
-    x->x_owner  = instance_contextGetCurrent();
     x->x_outlet = outlet_newFloat (cast_object (x));
     
     return x;

@@ -65,7 +65,7 @@ static int qlist_proceedNext (t_qlist *x,
     
     if (count && !x->ql_target) {
         t_atom *a = buffer_getAtomAtIndex (b, start);
-        t_atom e; atom_copyAtomsExpanded (a, 1, &e, 1, x->ql_owner);
+        t_atom e; atom_copyAtomsExpanded (a, 1, &e, 1, object_getOwner (cast_object (x)));
         
         if (!IS_SYMBOL (&e)) { return 0; }
         else {
@@ -91,7 +91,7 @@ static int qlist_proceedNext (t_qlist *x,
             
             PD_ATOMS_ALLOCA (e, count);
             
-            atom_copyAtomsExpanded (first, count, e, count, x->ql_owner);
+            atom_copyAtomsExpanded (first, count, e, count, object_getOwner (cast_object (x)));
             
             if (IS_FLOAT (e)) { pd_message (x->ql_target, &s_list, count, e); }
             else if (IS_SYMBOL (e)) {
@@ -314,11 +314,10 @@ static void *qlist_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_qlist *x = (t_qlist *)pd_new (qlist_class);
     
-    textbuffer_init (&x->ql_textbuffer);
+    textbuffer_init (&x->ql_textbuffer, object_getOwner (cast_object (x)));
     
     x->ql_indexOfMessage = 0;
     x->ql_waitCount      = 0;
-    x->ql_owner          = instance_contextGetCurrent();
     x->ql_outletLeft     = outlet_newList (cast_object (x));
     x->ql_outletRight    = outlet_newBang (cast_object (x));
     x->ql_clock          = clock_new ((void *)x, (t_method)qlist_task);

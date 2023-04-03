@@ -124,7 +124,7 @@ typedef struct _undosnippet {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undosnippet  *undosnippet_new            (t_object *o, t_glist *owner);
+PD_LOCAL t_undosnippet  *undosnippet_new            (t_object *o);
 
 PD_LOCAL void           undosnippet_free            (t_undosnippet *x);
 PD_LOCAL void           undosnippet_load            (t_undosnippet *x);

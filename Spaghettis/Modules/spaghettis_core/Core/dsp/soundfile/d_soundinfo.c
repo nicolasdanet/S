@@ -25,7 +25,6 @@ static t_class *soundinfo_class;        /* Shared. */
 
 typedef struct _soundinfo {
     t_object    x_obj;                  /* Must be the first. */
-    t_glist     *x_owner;
     t_outlet    *x_outletLeft;
     t_outlet    *x_outletRight;
     } t_soundinfo;
@@ -42,7 +41,7 @@ static int soundinfo_readHeader (t_soundinfo *x, int argc, t_atom *argv)
     
     if (!err) {
     //
-    int f = soundfile_readFileHeader (x->x_owner, &p);
+    int f = soundfile_readFileHeader (object_getOwner (cast_object (x)), &p);
     
     err = (f < 0);
     
@@ -93,7 +92,6 @@ static t_soundinfo *soundinfo_new (void)
 {
     t_soundinfo *x = (t_soundinfo *)pd_new (soundinfo_class);
     
-    x->x_owner       = instance_contextGetCurrent();
     x->x_outletLeft  = outlet_newFloat (cast_object (x));
     x->x_outletRight = outlet_newAnything (cast_object (x));
     

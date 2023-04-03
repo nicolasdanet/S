@@ -36,7 +36,6 @@ typedef struct _qlist {
     t_float         ql_unitValue;
     t_symbol        *ql_unitName;
     t_pd            *ql_target;
-    t_glist         *ql_owner;
     t_outlet        *ql_outletLeft;
     t_outlet        *ql_outletRight;
     t_clock         *ql_clock;
@@ -52,7 +51,7 @@ typedef struct _qlist {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   textbuffer_init             (t_textbuffer *x);
+PD_LOCAL void   textbuffer_init             (t_textbuffer *x, t_glist *owner);
 PD_LOCAL void   textbuffer_free             (t_textbuffer *x);
 
 PD_LOCAL void   textbuffer_read             (t_textbuffer *x, t_symbol *s);

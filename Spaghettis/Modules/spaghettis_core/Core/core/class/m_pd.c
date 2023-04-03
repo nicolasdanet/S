@@ -32,6 +32,8 @@ PD_LOCAL t_pd *pd_new (t_class *c)
     object_setUnique (cast_object (x), u);
     object_setSource (cast_object (x), u);
     object_setNative (cast_object (x), u);
+    
+    object_setOwner (cast_object (x), instance_contextGetCurrent());
     //
     }
     

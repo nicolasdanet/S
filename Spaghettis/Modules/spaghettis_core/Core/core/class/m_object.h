@@ -87,7 +87,7 @@ PD_LOCAL t_buffer        *object_functionData       (t_object *z, int flags);
 
 PD_LOCAL t_float64Atomic *object_getSignalAtIndex   (t_object *x, int m);
 
-PD_LOCAL int    object_setLabelUpdate               (t_object *x, t_glist *g, t_symbol *s);
+PD_LOCAL int    object_setLabelUpdate               (t_object *x, t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -139,6 +139,11 @@ static inline t_outlet *object_getOutlets (t_object *x)
     return x->g_outlets;
 }
 
+static inline t_glist *object_getOwner (t_object *x)
+{
+    return x->g_owner;
+}
+
 static inline int object_getX (t_object *x)
 {
     return x->g_x;
@@ -177,6 +182,11 @@ static inline t_objecttype object_getType (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+static inline void object_setOwner (t_object *x, t_glist *g)
+{
+    x->g_owner = g;
+}
 
 static inline void object_setX (t_object *x, int n)
 {

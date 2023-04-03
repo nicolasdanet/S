@@ -35,7 +35,6 @@ typedef struct _menubutton {
     t_heapstring    *x_cachedString;
     t_buffer        *x_cachedBuffer;
     t_buffer        *x_slots;
-    t_glist         *x_owner;
     t_outlet        *x_outletLeft;
     t_outlet        *x_outletMiddle;
     t_outlet        *x_outletRight;
@@ -104,7 +103,7 @@ static void menubutton_list (t_menubutton *x, t_symbol *s, int argc, t_atom *arg
         buffer_slotsSet (x->x_slots, i, x->x_cachedBuffer);
     }
     
-    if (x->x_embed) { glist_setDirty (x->x_owner, 1); }
+    if (x->x_embed) { glist_setDirty (object_getOwner (cast_object (x)), 1); }
     //
     }
 }
@@ -133,7 +132,7 @@ static void menubutton_clear (t_menubutton *x)
     
     x->x_index = 0;
     
-    if (x->x_embed) { glist_setDirty (x->x_owner, 1); }
+    if (x->x_embed) { glist_setDirty (object_getOwner (cast_object (x)), 1); }
     //
     }
 }
@@ -171,7 +170,7 @@ static void menubutton_menu (t_menubutton *x, t_symbol *s, int argc, t_atom *arg
     //
     }
     
-    if (x->x_embed) { glist_setDirty (x->x_owner, 1); }
+    if (x->x_embed) { glist_setDirty (object_getOwner (cast_object (x)), 1); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -234,7 +233,6 @@ static void *menubutton_new (t_symbol *s, int argc, t_atom *argv)
     int embed = (argc > 1) ? (int)atom_getFloat (argv + 1) : 0;
     int index = (argc > 2) ? (int)atom_getFloat (argv + 2) : 0;
     
-    x->x_owner          = instance_contextGetCurrent();
     x->x_width          = PD_CLAMP (width, MENUBUTTON_WIDTH_MINIMUM, MENUBUTTON_WIDTH_MAXIMUM);
     x->x_embed          = embed;
     x->x_index          = index;

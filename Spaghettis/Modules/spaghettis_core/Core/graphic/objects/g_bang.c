@@ -34,7 +34,6 @@ typedef struct _bng {
     int         x_flashed;
     int         x_width;
     int         x_time;
-    t_glist     *x_owner;
     t_outlet    *x_outlet;
     t_clock     *x_clock;
     } t_bng;
@@ -89,9 +88,10 @@ static void bng_anything (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+
 static int bng_update (t_bng *x, int dirty, int *t, int n)
 {
-    if (n != *t) { *t = n; if (dirty) { glist_setDirty (x->x_owner, 1); } return 1; }
+    if (n != *t) { *t = n; if (dirty) { glist_setDirty (object_getOwner (cast_object (x)), 1); } return 1; }
 
     return 0;
 }
@@ -100,7 +100,7 @@ static void bng_updateFlashed (t_bng *x, int n)
 {
     if (bng_update (x, 0, &x->x_flashed, (n != 0))) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (cast_object (x), x->x_owner, Tags::parameters (Tag::Flashed));
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Flashed));
         #endif
     }
 }
@@ -109,7 +109,7 @@ static void bng_updateFlashTime (t_bng *x, int n)
 {
     if (bng_update (x, 1, &x->x_time, PD_CLAMP (n, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM))) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (cast_object (x), x->x_owner, Tags::parameters (Tag::FlashTime));
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::FlashTime));
         #endif
     }
 }
@@ -118,7 +118,7 @@ static void bng_updateWidth (t_bng *x, int n)
 {
     if (bng_update (x, 1, &x->x_width, PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM))) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (cast_object (x), x->x_owner, Tags::parameters (Tag::Width));
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
         #endif
     }
 }
@@ -230,7 +230,6 @@ static void *bng_new (t_symbol *s, int argc, t_atom *argv)
     x->x_width  = PD_CLAMP (size, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM);
     x->x_time   = PD_CLAMP (time, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM);
     
-    x->x_owner  = instance_contextGetCurrent();
     x->x_outlet = outlet_newBang (cast_object (x));
     x->x_clock  = clock_new ((void *)x, (t_method)bng_taskFlash);
     

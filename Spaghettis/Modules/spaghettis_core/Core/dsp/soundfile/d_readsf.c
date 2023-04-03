@@ -41,7 +41,6 @@ typedef struct _readsf_tilde {
     int                 sf_dismissed;
     t_sfthread          *sf_thread;
     unsigned char       *sf_cached;
-    t_glist             *sf_owner;
     t_clock             *sf_clock;
     t_outlet            *sf_audioOutlets[SOUNDFILE_CHANNELS];
     t_outlet            *sf_outletTopRight;
@@ -85,9 +84,11 @@ static void readsf_tilde_open (t_readsf_tilde *x, t_symbol *s, int argc, t_atom 
     
     {
     //
+    t_glist *owner = object_getOwner (cast_object (x));
+    
     t_audioproperties p; soundfile_propertiesInit (&p);
     
-    t_error err = soundfile_readFileParse (x->sf_owner,
+    t_error err = soundfile_readFileParse (owner,
                         sym_readsf__tilde__,
                         &argc,
                         &argv,
@@ -98,11 +99,11 @@ static void readsf_tilde_open (t_readsf_tilde *x, t_symbol *s, int argc, t_atom 
     //
     t_fileproperties t; fileproperties_init (&t);
     
-    err = !(glist_fileExist (x->sf_owner, p.ap_fileName->s_name, p.ap_fileExtension->s_name, &t));
+    err = !(glist_fileExist (owner, p.ap_fileName->s_name, p.ap_fileExtension->s_name, &t));
     
     if (!err) {
     //
-    int f = soundfile_readFileHeader (x->sf_owner, &p);
+    int f = soundfile_readFileHeader (owner, &p);
     
     err = (f < 0);
     
@@ -270,7 +271,6 @@ static void *readsf_tilde_new (t_float f1, t_float f2)
     x->sf_bufferSize        = size;
     x->sf_cached            = (unsigned char *)PD_MEMORY_GET (x->sf_bufferSize);
     x->sf_clock             = clock_new ((void *)x, (t_method)readsf_tilde_task);
-    x->sf_owner             = instance_contextGetCurrent();
     
     for (i = 0; i < n; i++) { x->sf_audioOutlets[i] = outlet_newSignal (cast_object (x)); }
     

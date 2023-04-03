@@ -41,7 +41,7 @@ PD_LOCAL t_object       *register_getObject     (t_register *x, t_id u);
 PD_LOCAL t_glist        *register_getOwner      (t_register *x, t_id u);
 
 PD_LOCAL void           register_free           (t_register *x);
-PD_LOCAL void           register_add            (t_register *x, t_id u, t_object *o, t_glist *owner);
+PD_LOCAL void           register_add            (t_register *x, t_object *o);
 PD_LOCAL t_error        register_remove         (t_register *x, t_id u);
 PD_LOCAL void           register_rename         (t_register *x, t_id u, t_id newUnique);
 PD_LOCAL int            register_contains       (t_register *x, t_id u);

@@ -72,7 +72,7 @@ PD_LOCAL void glist_objectMoveBack (t_glist *glist, t_object *y)
 {
     if (glist_undoIsOk (glist)) {
     //
-    glist_undoAppend (glist, undoback_new (y, undosnippet_new (y, glist)));
+    glist_undoAppend (glist, undoback_new (y, undosnippet_new (y)));
     //
     }
 
@@ -84,7 +84,7 @@ PD_LOCAL void glist_objectMoveFront (t_glist *glist, t_object *y)
 {
     if (glist_undoIsOk (glist)) {
     //
-    glist_undoAppend (glist, undofront_new (y, undosnippet_new (y, glist)));
+    glist_undoAppend (glist, undofront_new (y, undosnippet_new (y)));
     //
     }
 

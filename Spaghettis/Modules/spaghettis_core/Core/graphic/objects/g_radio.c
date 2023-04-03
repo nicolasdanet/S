@@ -35,7 +35,6 @@ typedef struct _radio {
     int64_t         x_state;
     t_float         x_floatValue;
     t_symbol        *x_mode;
-    t_glist         *x_owner;
     t_outlet        *x_outlet;
     } t_radio;
 
@@ -93,7 +92,9 @@ static void radio_mode (t_radio *x, t_symbol *s)
     
     x->x_mode = (s == sym_multiple) ? sym_multiple : sym_single;
     
-    if (old != x->x_mode) { radio_setState (x, x->x_state); glist_setDirty (x->x_owner, 1); }
+    if (old != x->x_mode) {
+        radio_setState (x, x->x_state); glist_setDirty (object_getOwner (cast_object (x)), 1);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -142,7 +143,6 @@ static void *radio_new (t_symbol *s, int argc, t_atom *argv)
     x->x_numberOfButtons    = PD_CLAMP (numberOfButtons, 1, RADIO_BUTTONS_MAXIMUM);
     x->x_floatValue         = floatValue;
     x->x_mode               = (mode == sym_multiple) ? sym_multiple : sym_single;
-    x->x_owner              = instance_contextGetCurrent();
     x->x_outlet             = outlet_newFloat (cast_object (x));
 
     if (s == sym_vradio) { x->x_isVertical = 1; }

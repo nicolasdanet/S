@@ -34,7 +34,7 @@ PD_LOCAL t_glist *glist_getTop (t_glist *glist)
 
 PD_LOCAL t_glist *glist_getParent (t_glist *g)
 {
-    return g->gl_parent;
+    return object_getOwner (cast_object (g));
 }
 
 PD_LOCAL t_glist *glist_getNext (t_glist *g)
@@ -130,7 +130,7 @@ PD_LOCAL void glist_setEditView (t_glist *glist, t_rectangle *r, int notify)
     
     if (notify) {
     //
-    outputs_objectUpdated (cast_object (glist), glist_getParent (glist), Tags::attributes (Tag::EditView));
+    outputs_objectUpdated (cast_object (glist), Tags::attributes (Tag::EditView));
     //
     }
     
@@ -145,7 +145,7 @@ PD_LOCAL void glist_setRunView (t_glist *glist, t_rectangle *r, int notify)
     
     if (notify) {
     //
-    outputs_objectUpdated (cast_object (glist_getRoot (glist)), NULL, Tags::attributes (Tag::RunView));
+    outputs_objectUpdated (cast_object (glist_getRoot (glist)), Tags::attributes (Tag::RunView));
     //
     }
     
@@ -228,7 +228,7 @@ PD_FORCE int glist_isPasting (t_glist *g)
 
 PD_LOCAL int glist_hasParent (t_glist *g)
 {
-    return (g->gl_parent != NULL);
+    return (glist_getParent (g) != NULL);
 }
 
 // -----------------------------------------------------------------------------------------------------------

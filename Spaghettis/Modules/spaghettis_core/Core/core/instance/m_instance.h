@@ -129,7 +129,7 @@ PD_LOCAL void       instance_rootsFreeAll           (void);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       instance_registerAdd            (t_object *o, t_glist *owner);
+PD_LOCAL void       instance_registerAdd            (t_object *o);
 PD_LOCAL t_error    instance_registerRemove         (t_object *o);
 PD_LOCAL void       instance_registerRename         (t_object *o, t_id newUnique);
 

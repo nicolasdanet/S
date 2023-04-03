@@ -25,7 +25,6 @@ struct _garray {
     int         x_embed;
     int         x_size;
     t_word      *x_data;
-    t_glist     *x_owner;
     t_symbol    *x_unexpandedName;
     t_symbol    *x_name;
     };
@@ -261,7 +260,7 @@ static void garray_rename (t_garray *x, t_symbol *s)
 {
     if (s != x->x_unexpandedName) {
     //
-    t_symbol *expanded = dollar_expandSymbol (s, x->x_owner);
+    t_symbol *expanded = dollar_expandSymbol (s, object_getOwner (cast_object (x)));
     
     if (garray_fetch (expanded)) { error_alreadyExists (cast_object (x), expanded); }
     else {
@@ -283,7 +282,7 @@ static void garray_read (t_garray *x, t_symbol *name)
     
     t_fileproperties p; fileproperties_init (&p);
     
-    int f = glist_fileOpen (x->x_owner, name->s_name, "", &p);
+    int f = glist_fileOpen (object_getOwner (cast_object (x)), name->s_name, "", &p);
     
     if (!(err |= (f < 0))) {
     //
@@ -318,7 +317,8 @@ static void garray_read (t_garray *x, t_symbol *name)
 static void garray_write (t_garray *x, t_symbol *name)
 {
     char t[PD_STRING] = { 0 };
-    const char *s = environment_getDirectoryAsString (glist_getEnvironment (x->x_owner));
+    t_glist *owner = object_getOwner (cast_object (x));
+    const char *s = environment_getDirectoryAsString (glist_getEnvironment (owner));
     t_error err = path_withDirectoryAndName (t, PD_STRING, s, name->s_name);
 
     if (!err) {
@@ -520,7 +520,6 @@ static void *garray_new (t_symbol *s, int argc, t_atom *argv)
     x->x_embed          = (embed != 0);
     x->x_size           = PD_MAX (0, size);
     x->x_data           = (t_word *)PD_MEMORY_GET (x->x_size * sizeof (t_word));
-    x->x_owner          = instance_contextGetCurrent();
     x->x_unexpandedName = NULL;
     x->x_name           = symbol_removeCopySuffix (name);
     

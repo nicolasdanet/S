@@ -43,7 +43,7 @@ static void *freeze_new (t_symbol *s, int argc, t_atom *argv)
         
         #if ! ( PD_WITH_DEBUG )
         
-        glist_setFrozen (instance_contextGetCurrent(), 1);
+        glist_setFrozen (object_getOwner (cast_object (x)), 1);
         
         #endif
     }

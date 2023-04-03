@@ -60,9 +60,9 @@ UniquePath::UniquePath() : u_ (0), r_ (0), inside_ (false)
 
 }
 
-UniquePath::UniquePath (t_object* o, t_glist* owner) : u_ (object_getUnique (o)), r_ (0), inside_ (false)
+UniquePath::UniquePath (t_object* o) : u_ (object_getUnique (o)), r_ (0), inside_ (false)
 {
-    fetchUniquePath (owner, r_, path_, inside_);
+    fetchUniquePath (object_getOwner (o), r_, path_, inside_);
 }
 
 UniquePath::UniquePath (UniqueId u, t_glist* owner) : u_ (u), r_ (0), inside_ (false)

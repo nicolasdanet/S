@@ -18,10 +18,10 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void textbuffer_init (t_textbuffer *x)
+PD_LOCAL void textbuffer_init (t_textbuffer *x, t_glist *owner)
 {
     x->tb_buffer = buffer_new();
-    x->tb_owner  = instance_contextGetCurrent();
+    x->tb_owner  = owner;
 }
 
 PD_LOCAL void textbuffer_free (t_textbuffer *x)

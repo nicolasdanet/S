@@ -133,24 +133,24 @@ PD_LOCAL void outputs_classNew (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void outputs_objectAdded (t_object *x, t_glist *owner)
+PD_LOCAL void outputs_objectAdded (t_object *x)
 {
-    const UniquePath p (x, owner); wrapper_send (Outputs::added (p,   Report::object (p, owner, x, Tags())));
+    const UniquePath p (x); wrapper_send (Outputs::added (p, Report::object (p, x, Tags())));
 }
 
-PD_LOCAL void outputs_objectUpdated (t_object *x, t_glist *owner, const Tags& t)
+PD_LOCAL void outputs_objectUpdated (t_object *x, const Tags& t)
 {
-    const UniquePath p (x, owner); wrapper_send (Outputs::changed (p, Report::object (p, owner, x, t)));
+    const UniquePath p (x); wrapper_send (Outputs::changed (p, Report::object (p, x, t)));
 }
 
-PD_LOCAL void outputs_objectRemoved (t_object *x, t_glist *owner)
+PD_LOCAL void outputs_objectRemoved (t_object *x)
 {
-    wrapper_send (Outputs::removed (UniquePath (x, owner)));
+    wrapper_send (Outputs::removed (UniquePath (x)));
 }
 
-PD_LOCAL void outputs_objectRenamed (t_object *x, t_glist *owner, t_id t)
+PD_LOCAL void outputs_objectRenamed (t_object *x, t_id t)
 {
-    wrapper_send (Outputs::renamed (UniquePath (x, owner), t));
+    wrapper_send (Outputs::renamed (UniquePath (x), t));
 }
 
 PD_LOCAL void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)
@@ -174,12 +174,12 @@ PD_LOCAL void outputs_lineRemoved (t_id u, t_glist *owner)
 
 PD_LOCAL void outputs_patchOrder (t_glist *g, std::vector<UniqueId>&& ids)
 {
-    wrapper_send (Outputs::patchOrder (UniquePath (cast_object (g), glist_getParent (g)), std::move (ids)));
+    wrapper_send (Outputs::patchOrder (UniquePath (cast_object (g)), std::move (ids)));
 }
 
 PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
 {
-    wrapper_send (Outputs::patchDirty (UniquePath (cast_object (g), nullptr), isDirty));
+    wrapper_send (Outputs::patchDirty (UniquePath (cast_object (g)), isDirty));
 }
 
 // -----------------------------------------------------------------------------------------------------------

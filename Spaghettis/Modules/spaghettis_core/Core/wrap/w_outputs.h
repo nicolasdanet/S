@@ -40,14 +40,14 @@ PD_LOCAL void outputs_classNew          (t_symbol *s);
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_objectAdded       (t_object *x, t_glist *owner);
-PD_LOCAL void outputs_objectUpdated     (t_object *x, t_glist *owner, const Tags& t);
+PD_LOCAL void outputs_objectAdded       (t_object *x);
+PD_LOCAL void outputs_objectUpdated     (t_object *x, const Tags& t);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_objectRemoved     (t_object *x, t_glist *owner);
-PD_LOCAL void outputs_objectRenamed     (t_object *x, t_glist *owner, t_id t);
+PD_LOCAL void outputs_objectRemoved     (t_object *x);
+PD_LOCAL void outputs_objectRenamed     (t_object *x, t_id t);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

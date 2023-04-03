@@ -20,7 +20,6 @@ static t_class *samplerate_class;           /* Shared. */
 
 typedef struct _samplerate {
     t_object    x_obj;                      /* Must be the first. */
-    t_glist     *x_owner;
     t_outlet    *x_outlet;
     } t_samplerate;
 
@@ -30,7 +29,7 @@ typedef struct _samplerate {
 
 static void samplerate_bang (t_samplerate *x)
 {
-    outlet_float (x->x_outlet, canvas_getSampleRate (x->x_owner));
+    outlet_float (x->x_outlet, canvas_getSampleRate (object_getOwner (cast_object (x))));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -41,7 +40,6 @@ static void *samplerate_new (void)
 {
     t_samplerate *x = (t_samplerate *)pd_new (samplerate_class);
     
-    x->x_owner  = instance_contextGetCurrent();
     x->x_outlet = outlet_newFloat (cast_object (x));
     
     return x;

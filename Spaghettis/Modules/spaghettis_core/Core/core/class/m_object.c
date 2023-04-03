@@ -614,12 +614,12 @@ PD_LOCAL void object_fetchAndCopySignalValuesIfRequired (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int object_setLabelUpdate (t_object *x, t_glist *glist, t_symbol *s)
+PD_LOCAL int object_setLabelUpdate (t_object *x, t_symbol *s)
 {
     if (object_getLabel (x) != s) {
         object_setLabel (x, s);
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (x, glist, Tags::parameters (Tag::Label));
+        outputs_objectUpdated (x, Tags::parameters (Tag::Label));
         #endif
         return 1;
     }

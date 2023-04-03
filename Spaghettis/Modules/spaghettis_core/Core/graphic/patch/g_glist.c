@@ -33,11 +33,10 @@ PD_LOCAL void eval_buffer       (t_buffer *, t_pd *, int, t_atom *);
 /* Note that an expanded name is expected (with or without the file extension). */
 /* At load it can be temporarly set with the unexpanded form. */
 
-static t_glist *glist_new (t_glist *owner, t_symbol *name, t_rectangle *window)
+static t_glist *glist_new (t_symbol *name, t_rectangle *window)
 {
     t_glist *x = (t_glist *)pd_new (canvas_class);
 
-    x->gl_parent        = owner;
     x->gl_environment   = instance_environmentFetchIfAny();
     x->gl_abstractions  = NULL;
     x->gl_undomanager   = undomanager_new (x);
@@ -85,8 +84,6 @@ PD_LOCAL t_glist *glist_newPatchPop (t_symbol *name, t_rectangle *window)
 
 PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window)
 {
-    t_glist *owner = instance_contextGetCurrent();
-    
     t_rectangle t;
     
     rectangle_set (&t, GLIST_X, GLIST_Y, GLIST_X + GLIST_WIDTH, GLIST_Y + GLIST_HEIGHT);
@@ -95,7 +92,7 @@ PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window)
     
     {
     //
-    t_glist *x = glist_new (owner, name, &t);
+    t_glist *x = glist_new (name, &t);
     
     object_setBuffer (cast_object (x), buffer_new());
     object_setX (cast_object (x), 0);
@@ -107,7 +104,7 @@ PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window)
     if (glist_isRoot (x)) { glist_setRunView (x, instance_viewGet(), 0); instance_rootsAdd (x); }
     else {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectAdded (cast_object (x), owner);
+        outputs_objectAdded (cast_object (x));
         #endif
     }
     

@@ -21,7 +21,6 @@ struct _voutlet {
     int                 vo_bufferSize;
     t_sample            *vo_buffer;         /* Handle vector size conversion in a buffer. */
     t_voutletclosure    *vo_closure;
-    t_glist             *vo_owner;
     t_outlet            *vo_outlet;
     t_signal            *vo_directSignal;   /* Used to efficiently by-pass the outlet. */
     };

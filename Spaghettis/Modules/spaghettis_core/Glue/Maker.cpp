@@ -90,7 +90,7 @@ Maker::Maker (juce::Point<int> pt, const juce::String& s) : b_ (buffer_new()), t
     
     const juce::String c = a[0];
     
-    if (c == Tag::comment      || c == Tag::text)      { fillBuffer (b_, t_, sym_text,      snapped, a, 1); }
+    if (c == Tag::comment)                             { fillBuffer (b_, t_, sym_text,      snapped, a, 1); }
     else if (c == Tag::message || c == Tag::msg)       { fillBuffer (b_, t_, sym_msg,       snapped, a, 1); }
     else if (c == Tag::gatom   || c == Tag::floatatom) { fillBuffer (b_, t_, sym_floatatom, snapped, a, 1); }
     else {

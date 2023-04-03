@@ -516,7 +516,7 @@ static void encapsulate_encapsulateAddInletsAndOutlets (t_glist *glist,
     *o = outlets;
 }
 
-static t_glist *encapsulate_encapsulateNewSubpatch (t_glist *owner, t_point *position)
+static t_glist *encapsulate_encapsulateNewSubpatch (t_glist *parent, t_point *position)
 {
     t_glist *x = NULL;
     int a = point_getX (position);
@@ -524,27 +524,27 @@ static t_glist *encapsulate_encapsulateNewSubpatch (t_glist *owner, t_point *pos
     
     t_buffer *t = buffer_new(); buffer_appendSymbol (t, sym_pd);
     
-    instance_stackPush (owner);
+    instance_stackPush (parent);
     
     x = cast_glist (canvas_newSubpatch (&s_));
     
-    instance_stackPop (owner);
+    instance_stackPop (parent);
     
     object_setBuffer (cast_object (x), t);
     object_setSnappedX (cast_object (x), a);
     object_setSnappedY (cast_object (x), b);
     object_setType (cast_object (x), TYPE_OBJECT);
     
-    glist_objectAdd (owner, cast_object (x));
+    glist_objectAdd (parent, cast_object (x));
     
     return x;
 }
 
-static void encapsulate_encapsulatePaste (t_glist *owner, t_glist *subpatch, t_buffer *b)
+static void encapsulate_encapsulatePaste (t_glist *parent, t_glist *subpatch, t_buffer *b)
 {
     /* Temporary use parent's undomanager. */
     
-    t_undomanager *t = glist_undoReplaceManager (subpatch, glist_getUndoManager (owner));
+    t_undomanager *t = glist_undoReplaceManager (subpatch, glist_getUndoManager (parent));
     
         snippet_disposeObjects (b, ENCAPSULATE_MARGIN); instance_loadSnippet (subpatch, b);
     
@@ -553,7 +553,7 @@ static void encapsulate_encapsulatePaste (t_glist *owner, t_glist *subpatch, t_b
     glist_undoReplaceManager (subpatch, t);
 }
 
-static void encapsulate_encapsulateConnectInletsAndOutlets (t_glist *owner,
+static void encapsulate_encapsulateConnectInletsAndOutlets (t_glist *parent,
     t_glist *subpatch,
     t_inlethelper *inlets,
     t_outlethelper *outlets)

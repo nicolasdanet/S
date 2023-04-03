@@ -31,7 +31,6 @@ extern t_symbol *main_directorySupport;
 
 typedef struct _directories {
     t_object    x_obj;                      /* Must be the first. */
-    t_glist     *x_owner;
     t_outlet    *x_outlet;
     } t_directories;
 
@@ -41,7 +40,7 @@ typedef struct _directories {
 
 static void directories_bang (t_directories *x)
 {
-    t_environment *e = glist_getEnvironment (x->x_owner);
+    t_environment *e = glist_getEnvironment (object_getOwner (cast_object (x)));
     
     PD_ASSERT (e);
     
@@ -61,7 +60,6 @@ static void *directories_new (void)
 {
     t_directories *x = (t_directories *)pd_new (directories_class);
     
-    x->x_owner  = instance_contextGetCurrent();
     x->x_outlet = outlet_newSymbol (cast_object (x));
     
     return x;

@@ -41,7 +41,6 @@ typedef struct _writesf_tilde {
     int                 sf_dismissed;
     t_sfthread          *sf_thread;
     unsigned char       *sf_cached;
-    t_glist             *sf_owner;
     } t_writesf_tilde;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -82,9 +81,11 @@ static void writesf_tilde_open (t_writesf_tilde *x, t_symbol *s, int argc, t_ato
     
     {
     //
+    t_glist *owner = object_getOwner (cast_object (x));
+    
     t_audioproperties p; soundfile_propertiesInit (&p);
     
-    t_error err = soundfile_writeFileParse (x->sf_owner,
+    t_error err = soundfile_writeFileParse (owner,
                         sym_writesf__tilde__,
                         &argc,
                         &argv,
@@ -95,7 +96,7 @@ static void writesf_tilde_open (t_writesf_tilde *x, t_symbol *s, int argc, t_ato
     
     if (!err) {
     //
-    int f = soundfile_writeFileHeader (x->sf_owner, &p, cast_object (x));
+    int f = soundfile_writeFileHeader (owner, &p, cast_object (x));
     
     err = (f < 0);
     
@@ -232,7 +233,6 @@ static void *writesf_tilde_new (t_float f1, t_float f2)
     x->sf_numberOfChannels  = n;
     x->sf_bufferSize        = size;
     x->sf_cached            = (unsigned char *)PD_MEMORY_GET (x->sf_bufferSize);
-    x->sf_owner             = instance_contextGetCurrent();
     
     for (i = 1; i < x->sf_numberOfChannels; i++) { inlet_newSignal (cast_object (x)); }
 

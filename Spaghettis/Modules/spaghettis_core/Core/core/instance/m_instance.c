@@ -149,7 +149,7 @@ PD_LOCAL void instance_rootsAdd (t_glist *glist)
 {
     glist_setNext (glist, instance_get()->pd_roots); instance_get()->pd_roots = glist;
     
-    instance_registerAdd (cast_object (glist), NULL);
+    instance_registerAdd (cast_object (glist));
 }
 
 PD_LOCAL void instance_rootsRemove (t_glist *glist)
@@ -189,13 +189,13 @@ static t_glist *instance_rootsGet (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_registerAdd (t_object *o, t_glist *owner)
+PD_LOCAL void instance_registerAdd (t_object *o)
 {
-    register_add (instance_get()->pd_register, object_getUnique (o), o, owner);
+    register_add (instance_get()->pd_register, o);
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    outputs_objectAdded (o, owner);
+    outputs_objectAdded (o);
     
     #endif
 }
@@ -206,7 +206,7 @@ PD_LOCAL t_error instance_registerRemove (t_object *o)
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    outputs_objectRemoved (o, instance_registerGetOwner (object_getUnique (o)));
+    outputs_objectRemoved (o);
     
     #endif
     
@@ -221,7 +221,7 @@ PD_LOCAL void instance_registerRename (t_object *o, t_id newUnique)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
-    outputs_objectRenamed (o, instance_registerGetOwner (object_getUnique (o)), newUnique);
+    outputs_objectRenamed (o, newUnique);
     
     #endif
     

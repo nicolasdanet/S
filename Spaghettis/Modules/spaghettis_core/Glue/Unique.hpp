@@ -28,9 +28,9 @@ class UniquePath {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-        
+
 public:
-    explicit UniquePath (struct _object* o, struct _glist* owner);
+    explicit UniquePath (struct _object* o);
     explicit UniquePath (UniqueId u, struct _glist* owner);
     
     ~UniquePath() = default;

@@ -21,7 +21,6 @@ struct _vinlet {
     int             vi_bufferSize;
     t_sample        *vi_buffer;         /* Handle vector size conversion in a buffer. */
     t_vinletclosure *vi_closure;
-    t_glist         *vi_owner;
     t_outlet        *vi_outlet;
     t_inlet         *vi_inlet;
     t_signal        *vi_directSignal;   /* Used to efficiently by-pass the inlet. */

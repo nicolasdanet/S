@@ -13,9 +13,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undosnippet *undosnippet_new (t_object *y, t_glist *owner)
+PD_LOCAL t_undosnippet *undosnippet_new (t_object *y)
 {
     t_undosnippet *x = (t_undosnippet *)PD_MEMORY_GET (sizeof (t_undosnippet));
+    
+    t_glist *owner = object_getOwner (y);
     
     x->us_object = object_getUnique (y);
     x->us_owner  = owner ? object_getUnique (cast_object (owner)) : 0;

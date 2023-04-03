@@ -40,7 +40,7 @@ static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
 {
     if (glist_undoIsOk (glist)) {
     //
-    t_undosnippet *snippet = undosnippet_new (y, glist);
+    t_undosnippet *snippet = undosnippet_new (y);
     
     if (glist_undoHasSeparatorAtLast (glist)) { glist_undoAppend (glist, undoadd_new()); }
     
@@ -55,9 +55,11 @@ static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
 
 PD_LOCAL void glist_objectAdd (t_glist *glist, t_object *y)
 {
+    PD_ASSERT (object_getOwner (y) == glist);
+    
     glist_objectAddRaw (glist, y, NULL, 0);
     
-    instance_registerAdd (y, glist);
+    instance_registerAdd (y);
     
     glist_objectAddUndoProceed (glist, y);
 }
@@ -152,7 +154,7 @@ PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
         if (undoable && glist_undoHasSeparatorAtLast (glist)) { glist_undoAppend (glist, undoremove_new()); }
     
         {
-            if (undoable) { snippet = undosnippet_new (y, glist); }     /* MUST be before call below. */
+            if (undoable) { snippet = undosnippet_new (y); }    /* MUST be before call below. */
             
             glist_objectDeleteLines (glist, y);
             

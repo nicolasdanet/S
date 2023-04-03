@@ -38,7 +38,7 @@ static void textfile_bang (t_qlist *x)
     
     PD_ATOMS_ALLOCA (e, size);
         
-    atom_copyAtomsExpanded (first, size, e, size, x->ql_owner);
+    atom_copyAtomsExpanded (first, size, e, size, object_getOwner (cast_object (x)));
         
     if (size && IS_SYMBOL (e)) {
         outlet_anything (x->ql_outletLeft, GET_SYMBOL (e), size - 1, e + 1);
@@ -66,10 +66,9 @@ static void *textfile_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_qlist *x = (t_qlist *)pd_new (textfile_class);
     
-    textbuffer_init (&x->ql_textbuffer);
+    textbuffer_init (&x->ql_textbuffer, object_getOwner (cast_object (x)));
     
     x->ql_indexOfMessage = 0;
-    x->ql_owner          = instance_contextGetCurrent();
     x->ql_outletLeft     = outlet_newMixed (cast_object (x));
     x->ql_outletRight    = outlet_newBang (cast_object (x));
     
