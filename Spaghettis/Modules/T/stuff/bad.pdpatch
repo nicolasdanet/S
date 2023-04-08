@@ -1,0 +1,3 @@
+#N spaghettis 0 9 0;
+#N canvas 406 331 683 216;
+#X obj 96 48 bad;
