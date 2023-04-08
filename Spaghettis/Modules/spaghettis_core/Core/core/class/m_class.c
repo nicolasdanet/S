@@ -100,11 +100,11 @@ static void class_defaultList (t_pd *x, t_symbol *s, int argc, t_atom *argv)
     }
 }
 
-// TODO: Pass context to message error?
-
 static void class_defaultAnything (t_pd *x, t_symbol *s, int argc, t_atom *argv)
 {
-    error_unknownMethod (NULL, class_getName (pd_class (x)), s);
+    t_class *c = pd_class (x);
+    
+    error_unknownMethod (class_isBox (c) ? cast_object (x) : NULL, class_getName (c), s);
 }
 
 // -----------------------------------------------------------------------------------------------------------
