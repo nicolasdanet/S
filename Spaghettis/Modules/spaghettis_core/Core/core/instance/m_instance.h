@@ -233,7 +233,7 @@ PD_LOCAL t_rectangle    *instance_viewGet                   (void);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    instance_overflowPush           (void);
+PD_LOCAL t_error    instance_overflowPush           (t_object *y);
 PD_LOCAL void       instance_overflowPop            (void);
 
 // -----------------------------------------------------------------------------------------------------------

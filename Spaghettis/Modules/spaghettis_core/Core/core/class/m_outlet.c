@@ -196,7 +196,7 @@ PD_LOCAL void outlet_bang (t_outlet *x)
 {
     outlet_checkType (x, outlet_isBang (x));
     
-    if (!instance_overflowPush()) {
+    if (!instance_overflowPush (x->o_owner)) {
         t_outconnect *oc = NULL;
         for (oc = x->o_connections; oc; oc = oc->oc_next) { pd_bang (oc->oc_receiver); }
     }
@@ -208,7 +208,7 @@ PD_LOCAL void outlet_float (t_outlet *x, t_float f)
 {
     outlet_checkType (x, outlet_isFloat (x));
         
-    if (!instance_overflowPush()) {
+    if (!instance_overflowPush (x->o_owner)) {
         t_outconnect *oc = NULL;
         for (oc = x->o_connections; oc; oc = oc->oc_next) { pd_float (oc->oc_receiver, f); }
     }
@@ -220,7 +220,7 @@ PD_LOCAL void outlet_symbol (t_outlet *x, t_symbol *s)
 {
     outlet_checkType (x, outlet_isSymbol (x));
         
-    if (!instance_overflowPush()) {
+    if (!instance_overflowPush (x->o_owner)) {
         t_outconnect *oc = NULL;
         for (oc = x->o_connections; oc; oc = oc->oc_next) { pd_symbol (oc->oc_receiver, s); }
     }
@@ -232,7 +232,7 @@ PD_LOCAL void outlet_list (t_outlet *x, int argc, t_atom *argv)
 {
     outlet_checkType (x, outlet_isList (x));
         
-    if (!instance_overflowPush()) {
+    if (!instance_overflowPush (x->o_owner)) {
         t_outconnect *oc = NULL;
         for (oc = x->o_connections; oc; oc = oc->oc_next) { pd_list (oc->oc_receiver, argc, argv); }
     }
@@ -244,7 +244,7 @@ PD_LOCAL void outlet_anything (t_outlet *x, t_symbol *s, int argc, t_atom *argv)
 {
     outlet_checkType (x, outlet_isAnything (x));
         
-    if (!instance_overflowPush()) {
+    if (!instance_overflowPush (x->o_owner)) {
         t_outconnect *oc = NULL;
         for (oc = x->o_connections; oc; oc = oc->oc_next) { pd_message (oc->oc_receiver, s, argc, argv); }
     }

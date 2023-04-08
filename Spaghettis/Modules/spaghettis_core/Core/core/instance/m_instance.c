@@ -393,14 +393,14 @@ PD_LOCAL void instance_audioCloseWithError (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error instance_overflowPush (void)
+PD_LOCAL t_error instance_overflowPush (t_object *y)
 {
     int count   = ++instance_get()->pd_overflowCount;
     t_error err = (count >= INSTANCE_OVERFLOW);
     
     // TODO: Pass context to message error?
     
-    if (err && !instance_get()->pd_overflow) { instance_get()->pd_overflow = 1; error_stackOverflow (NULL); }
+    if (err && !instance_get()->pd_overflow) { instance_get()->pd_overflow = 1; error_stackOverflow (y); }
     
     err |= instance_get()->pd_overflow;
     
