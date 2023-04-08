@@ -102,9 +102,9 @@ PD_LOCAL void error_searchPathOverflow (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void error_recursiveInstantiation (t_object *x, t_symbol *s)
+PD_LOCAL void error_recursiveInstantiation (t_glist *x, t_symbol *s)
 {
-    post_error (x, PD_TRANSLATE ("%s: recursive instantiation"), s->s_name);
+    post_error (cast_object (x), PD_TRANSLATE ("%s: recursive instantiation"), s->s_name);
 }
 
 PD_LOCAL void error_alreadyExists (t_object *x, t_symbol *s)

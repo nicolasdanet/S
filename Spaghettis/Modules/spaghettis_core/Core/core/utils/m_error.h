@@ -42,7 +42,8 @@ PD_LOCAL void error_searchPathOverflow          (t_object *);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void error_recursiveInstantiation      (t_object *, t_symbol *);
+PD_LOCAL void error_recursiveInstantiation      (t_glist *, t_symbol *);
+
 PD_LOCAL void error_alreadyExists               (t_object *, t_symbol *);
 PD_LOCAL void error_canNotOpen                  (t_object *, t_symbol *);
 PD_LOCAL void error_canNotCreate                (t_object *, t_symbol *);

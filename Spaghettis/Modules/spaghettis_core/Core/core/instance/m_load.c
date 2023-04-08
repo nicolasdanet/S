@@ -88,7 +88,7 @@ static void instance_loadAbstractionProceed (t_symbol *filename,
     instance_environmentResetArguments();
     //
     } else {
-        error_recursiveInstantiation (NULL, filename);      // TODO: Pass context to message error?
+        error_recursiveInstantiation (instance_contextGetCurrent(), filename);
     }
 }
 
