@@ -34,7 +34,6 @@ PD_FORCE void error_doesNotExist                (t_object *x, const char *filepa
 
 PD_LOCAL void error_dspLoop                     (t_object *);
 PD_LOCAL void error_stackOverflow               (t_object *);
-PD_LOCAL void error_recursiveCall               (t_object *);
 PD_LOCAL void error_stubNotFound                (t_object *);
 PD_LOCAL void error_searchPathOverflow          (t_object *);
 

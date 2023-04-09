@@ -83,11 +83,6 @@ PD_LOCAL void error_stackOverflow (t_object *x)
     post_error (x, PD_TRANSLATE ("%s: stack overflow"), PD_NAME_LOWERCASE);
 }
 
-PD_LOCAL void error_recursiveCall (t_object *x)
-{
-    post_error (x, PD_TRANSLATE ("%s: recursive call"), PD_NAME_LOWERCASE);
-}
-
 PD_LOCAL void error_stubNotFound (t_object *x)
 {
     post_error (x, PD_TRANSLATE ("loader: stub not found"));
