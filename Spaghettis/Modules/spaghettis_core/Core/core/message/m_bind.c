@@ -251,16 +251,16 @@ PD_LOCAL void pd_unbind (t_pd *x, t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void symbol_hasThingError (t_symbol *s)
+static void symbol_hasThingError (t_symbol *s, t_object *o)
 {  
     if (s) {
     if (s != sym___hash__A) {
-        error_noSuch (NULL, s, sym_object);     // TODO: Pass context to message error?
+        error_noSuch (o, s, sym_object);
     }
     }
 }
 
-static int symbol_hasThingProceed (t_symbol *s, int withError)
+static int symbol_hasThingProceed (t_symbol *s, int withError, t_object *o)
 {
     int k = 0;
     
@@ -273,19 +273,19 @@ static int symbol_hasThingProceed (t_symbol *s, int withError)
     //
     }
     
-    if (withError && !k) { symbol_hasThingError (s); }
+    if (withError && !k) { symbol_hasThingError (s, o); }
     
     return k;
 }
 
-PD_LOCAL int symbol_hasThingQuiet (t_symbol *s)
+PD_LOCAL int symbol_hasThing (t_symbol *s, t_object *o)
 {
-    return symbol_hasThingProceed (s, 0);
+    return symbol_hasThingProceed (s, 1, o);
 }
 
-PD_LOCAL int symbol_hasThing (t_symbol *s)
+PD_LOCAL int symbol_hasThingQuiet (t_symbol *s)
 {
-    return symbol_hasThingProceed (s, 1);
+    return symbol_hasThingProceed (s, 0, NULL);
 }
 
 // -----------------------------------------------------------------------------------------------------------

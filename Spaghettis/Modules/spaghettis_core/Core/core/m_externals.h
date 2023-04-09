@@ -67,7 +67,7 @@ PD_LOCAL t_pd   *symbol_getThingByClass         (t_symbol *s, t_class *c);
 
 PD_LOCAL const char *symbol_getName             (t_symbol *s);
 
-PD_LOCAL int    symbol_hasThing                 (t_symbol *s);
+PD_LOCAL int    symbol_hasThing                 (t_symbol *s, t_object *o);
 PD_LOCAL int    symbol_hasThingQuiet            (t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------

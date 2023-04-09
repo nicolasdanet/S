@@ -98,7 +98,7 @@ PD_LOCAL void eval_bufferProceed (int size, t_atom *v, t_pd *object, int argc, t
         if (s == NULL || !(object = symbol_getThing (s))) {
             if (!s) { error_invalid (NULL, &s_, sym_expansion); }
             else {
-                symbol_hasThing (s);
+                symbol_hasThing (s, NULL);
             }
             do { n--; v++; } while (n && !IS_SEMICOLON (v));
             
