@@ -589,7 +589,6 @@ PD_DLL const char   *spaghettis_symbolGetName           (t_symbol *s);
 PD_DLL t_pd         *spaghettis_symbolGetThing          (t_symbol *s);
 
 PD_DLL int          spaghettis_symbolHasThing           (t_symbol *s);
-PD_DLL int          spaghettis_symbolHasThingQuiet      (t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

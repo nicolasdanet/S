@@ -43,7 +43,7 @@ static t_symbol *sym_Turlututu;
 
 static void hello_bang (t_hello *x)
 {
-    if (spaghettis_symbolHasThingQuiet (sym_s)) {
+    if (spaghettis_symbolHasThing (sym_s)) {
     //
     t_atom a;
     spaghettis_atomSetSymbol (&a, sym_Turlututu);

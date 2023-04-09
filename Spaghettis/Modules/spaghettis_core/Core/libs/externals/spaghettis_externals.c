@@ -207,11 +207,6 @@ PD_DLL t_pd *spaghettis_symbolGetThing (t_symbol *s)
 
 PD_DLL int spaghettis_symbolHasThing (t_symbol *s)
 {
-    return symbol_hasThing (s);
-}
-
-PD_DLL int spaghettis_symbolHasThingQuiet (t_symbol *s)
-{
     return symbol_hasThingQuiet (s);
 }
 
