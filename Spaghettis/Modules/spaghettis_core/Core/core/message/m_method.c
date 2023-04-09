@@ -107,10 +107,12 @@ static t_error method_entryTyped (t_entry *e, t_pd *x, t_symbol *s, int argc, t_
 
     if (!instance_isMakerObject (x)) { *ip = (t_int)x; ip++; m++; }
     
-    // TODO: Pass context to message error?
-    
     if (argc > PD_ARGUMENTS) {
-        warning_unusedArguments (NULL, s, argc - PD_ARGUMENTS, argv + PD_ARGUMENTS); argc = PD_ARGUMENTS;
+    //
+    warning_unusedArguments (pd_asObjectIfBox (x), s, argc - PD_ARGUMENTS, argv + PD_ARGUMENTS);
+        
+    argc = PD_ARGUMENTS;
+    //
     }
 
     while ((t = *p++)) {
@@ -150,7 +152,7 @@ static t_error method_entryTyped (t_entry *e, t_pd *x, t_symbol *s, int argc, t_
 
     if (instance_isMakerObject (x)) {
     if (argc) {
-        warning_unusedArguments (NULL, s, argc, argv);      // TODO: Pass context to message error?
+        warning_unusedArguments (NULL, s, argc, argv);
     }
     }
 
@@ -213,8 +215,6 @@ static t_error method_slot (t_pd *x, t_symbol *s, int argc, t_atom *argv)
 
     if (!err && instance_isMakerObject (x)) {
     //
-    // TODO: Pass context to message error?
-    
     if (argc > 0 && s == &s_bang)       { warning_unusedArguments (NULL, s, argc, argv); }
     else if (argc > 1 && s != &s_list)  { warning_unusedArguments (NULL, s, argc - 1, argv + 1); }
     //
@@ -260,7 +260,7 @@ PD_LOCAL void pd_message (t_pd *x, t_symbol *s, int argc, t_atom *argv)
         }
     }
 
-    error_invalidArguments (NULL, s, argc, argv);   // TODO: Pass context to message error?
+    error_invalidArguments (pd_asObjectIfBox (x), s, argc, argv);
 }
 
 // -----------------------------------------------------------------------------------------------------------

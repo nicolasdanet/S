@@ -140,10 +140,8 @@ static t_block *ugen_graphGetBlockIfContainsAny (t_dspcontext *context)
 
         t_object *o = u->u_owner;
         
-        // TODO: Pass context to message error?
-        
         if (pd_class (o) == block_class) {
-            if (block) { error_unexpected (NULL, sym_dsp, sym_block__tilde__); }
+            if (block) { error_unexpected (o, sym_dsp, sym_block__tilde__); }
             else {
                 block = (t_block *)o;
             }

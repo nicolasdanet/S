@@ -102,7 +102,7 @@ static void class_defaultList (t_pd *x, t_symbol *s, int argc, t_atom *argv)
 
 static void class_defaultAnything (t_pd *x, t_symbol *s, int argc, t_atom *argv)
 {
-    error_unknownMethod (pd_asObjectIf (x), class_getName (pd_class (x)), s);
+    error_unknownMethod (pd_asObjectIfBox (x), class_getName (pd_class (x)), s);
 }
 
 // -----------------------------------------------------------------------------------------------------------
