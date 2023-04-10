@@ -188,9 +188,12 @@ void ConsoleComponent::paintListBoxItem (int row, juce::Graphics& g, int width, 
     ListBoxFunctions::paintItem (messages_, row, g, width, height, isSelected);
 }
 
-void ConsoleComponent::listBoxItemClicked (int row, const juce::MouseEvent&)
+void ConsoleComponent::listBoxItemClicked (int row, const juce::MouseEvent& e)
 {
-    if (juce::isPositiveAndBelow (row, messages_.size()) == false) { update (true); }
+    if (!juce::isPositiveAndBelow (row, messages_.size())) { update (true); }
+    else if (Mouse::isDoubleClick (e)) {
+        locate();
+    }
 }
 
 void ConsoleComponent::paint (juce::Graphics& g)
