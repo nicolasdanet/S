@@ -22,6 +22,7 @@
 struct _sfthread {
     t_pd                sft_pd;                /* Must be the first. */
     t_audioproperties   sft_properties;
+    t_id                sft_owner;
     int                 sft_type;
     int                 sft_fileDescriptor;
     int                 sft_remainsToRead;
@@ -186,7 +187,7 @@ PD_LOCAL void sfthread_setCorrupted (t_sfthread *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_sfthread *sfthread_new (int type, int bufferSize, int fd, t_audioproperties *p)
+PD_LOCAL t_sfthread *sfthread_new (t_object *owner, int type, int bufferSize, int fd, t_audioproperties *p)
 {
     t_sfthread *x = (t_sfthread *)pd_new (sfthread_class);
     
@@ -194,6 +195,7 @@ PD_LOCAL t_sfthread *sfthread_new (int type, int bufferSize, int fd, t_audioprop
     
     soundfile_propertiesCopy (&x->sft_properties, p);
     
+    x->sft_owner          = object_getUnique (owner);
     x->sft_type           = type;
     x->sft_fileDescriptor = fd;
     x->sft_buffer         = ringbuffer_new (1, bufferSize);
@@ -244,7 +246,7 @@ static void sfthread_free (t_sfthread *x)
     //
     t_symbol *filename = symbol_addSuffix (x->sft_properties.ap_fileName, x->sft_properties.ap_fileExtension);
 
-    warning_fileIsCorrupted (NULL, filename);   // TODO: Pass context to message error?
+    warning_fileIsCorrupted (instance_registerGetObject (x->sft_owner), filename);
     //
     }
     //

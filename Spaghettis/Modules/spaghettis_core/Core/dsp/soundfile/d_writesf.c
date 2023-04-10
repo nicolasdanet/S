@@ -102,7 +102,7 @@ static void writesf_tilde_open (t_writesf_tilde *x, t_symbol *s, int argc, t_ato
     
     if (!err) {
     
-        t_sfthread *sfthread = sfthread_new (SFTHREAD_WRITER, x->sf_bufferSize, f, &p);
+        t_sfthread *sfthread = sfthread_new (cast_object (x), SFTHREAD_WRITER, x->sf_bufferSize, f, &p);
         
         PD_MEMORY_BARRIER;
         

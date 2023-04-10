@@ -109,7 +109,7 @@ static void readsf_tilde_open (t_readsf_tilde *x, t_symbol *s, int argc, t_atom 
     
     if (!err) {
     
-        t_sfthread *sfthread = sfthread_new (SFTHREAD_READER, x->sf_bufferSize, f, &p);
+        t_sfthread *sfthread = sfthread_new (cast_object (x), SFTHREAD_READER, x->sf_bufferSize, f, &p);
         
         PD_MEMORY_BARRIER;
         

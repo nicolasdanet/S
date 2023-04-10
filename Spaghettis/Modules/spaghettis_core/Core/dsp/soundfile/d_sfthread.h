@@ -25,7 +25,12 @@ enum {
 
 /* Takes file ownership. */
 
-PD_LOCAL t_sfthread     *sfthread_new           (int type, int bufferSize, int fd, t_audioproperties *p);
+PD_LOCAL t_sfthread     *sfthread_new           (t_object *x,
+                                                    int type,
+                                                    int bufferSize,
+                                                    int fd,
+                                                    t_audioproperties *p);
+                                                    
 PD_LOCAL t_ringbuffer   *sfthread_getBuffer     (t_sfthread *x);
 
 PD_LOCAL void   sfthread_release                (t_sfthread *x);
