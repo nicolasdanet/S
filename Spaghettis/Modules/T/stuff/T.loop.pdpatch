@@ -1,0 +1,10 @@
+#N spaghettis 0 9 0;
+#N canvas 516 288 686 326;
+#X obj 134 76 sig~ 1;
+#X obj 134 131 +~;
+#X obj 182 132 +~;
+#X obj 134 165 *~ 0.5;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 2 0 1 1;
+#X connect 3 0 2 0;

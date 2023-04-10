@@ -309,7 +309,7 @@ static void ugen_graphMain (t_dspcontext *context)
     
     for (u = context->dc_ugens; u; u = u->u_next) {
         if (!u->u_done) {
-            error_dspLoop (NULL); break;    // TODO: Pass context to message error?
+            error_dspLoop (u->u_owner); break;
         }
     }
 }
