@@ -57,7 +57,7 @@ void ConsoleComponent::locate()
 
 void ConsoleComponent::reset()
 {
-    update (true);
+    ListBoxFunctions::update (listBox_, messages_, true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
