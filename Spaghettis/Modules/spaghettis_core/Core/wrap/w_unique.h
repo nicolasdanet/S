@@ -60,7 +60,7 @@ PD_FORCE t_error    unique_objectLineDisconnect (t_id u, int m, t_id v, int n);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_FORCE t_error    unique_patchCreateObject    (t_id u, juce::Point<int>, const juce::String&);
+PD_FORCE t_error    unique_patchCreateObject    (t_id u, Point::Real, const juce::String&);
 
 #endif
 

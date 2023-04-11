@@ -21,14 +21,14 @@ Maker::Maker (EditView* owner) : owner_ (owner), tracker_ (owner), v_()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Maker::showEditor (juce::Point<int> global, juce::Point<int> real)
+void Maker::showEditor (juce::Point<int> pt, core::Point::Real real)
 {
     Maker::setActive (v_, true);
     
     pt_ = real;
     
     auto t = std::make_unique<MakerComponent> (owner_, v_, pt_);
-    auto r = juce::Rectangle<int> (4, 4).withCentre (global);
+    auto r = juce::Rectangle<int> (4, 4).withCentre (pt);
     
     tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), r, nullptr));
 }
@@ -47,7 +47,7 @@ bool Maker::isActive() const
     return (v_.getValue().isVoid() == false);
 }
 
-std::tuple<juce::Point<int>, juce::String> Maker::getContent() const
+std::tuple<core::Point::Real, juce::String> Maker::getContent() const
 {
     return { pt_, v_.toString() };
 }

@@ -48,7 +48,7 @@ PD_LOCAL void inputs_undo               (core::UniqueId);
 PD_LOCAL void inputs_redo               (core::UniqueId);
 PD_LOCAL void inputs_cut                (core::UniqueId);
 PD_LOCAL void inputs_copy               (core::UniqueId);
-PD_LOCAL void inputs_paste              (core::UniqueId, juce::Point<int> pt);
+PD_LOCAL void inputs_paste              (core::UniqueId, Point::Real pt);
 PD_LOCAL void inputs_duplicate          (core::UniqueId);
 PD_LOCAL void inputs_remove             (core::UniqueId);
 PD_LOCAL void inputs_encapsulate        (core::UniqueId);
@@ -63,7 +63,7 @@ PD_LOCAL void inputs_deselectObject     (core::UniqueId);
 PD_LOCAL void inputs_moveBackObject     (core::UniqueId);
 PD_LOCAL void inputs_moveFrontObject    (core::UniqueId);
 PD_LOCAL void inputs_snapObject         (core::UniqueId);
-PD_LOCAL void inputs_positionObject     (core::UniqueId, juce::Point<int> pt);
+PD_LOCAL void inputs_positionObject     (core::UniqueId, Point::Real pt);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ PD_LOCAL void inputs_openHelp           (core::UniqueId);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void inputs_createObject       (core::UniqueId, juce::Point<int> pt, juce::String);
+PD_LOCAL void inputs_createObject       (core::UniqueId, Point::Real pt, juce::String);
 
 PD_LOCAL void inputs_parametersObject   (core::UniqueId, const core::Group&);
 

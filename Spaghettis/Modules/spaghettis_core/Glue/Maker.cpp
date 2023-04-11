@@ -52,7 +52,7 @@ void fillBufferAppendAtom (t_buffer *t, const juce::String& s)
 void fillBuffer (t_buffer *b,
     t_buffer *t,
     t_symbol *s,
-    juce::Point<int> pt,
+    Point::Real pt,
     const juce::StringArray& a,
     int offset)
 {
@@ -78,7 +78,7 @@ void fillBuffer (t_buffer *b,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Maker::Maker (juce::Point<int> pt, const juce::String& s) : b_ (buffer_new()), t_ (buffer_new())
+Maker::Maker (Point::Real pt, const juce::String& s) : b_ (buffer_new()), t_ (buffer_new())
 {
     if (s.containsNonWhitespaceChars()) {
     //
@@ -86,7 +86,7 @@ Maker::Maker (juce::Point<int> pt, const juce::String& s) : b_ (buffer_new()), t
     
     if (!a.isEmpty()) {
     //
-    const juce::Point<int> snapped (instance_snapped (pt));
+    const Point::Real snapped (instance_snapped (pt));
     
     const juce::String c = a[0];
     

@@ -57,14 +57,14 @@ PD_LOCAL int instance_snapGetSnapped (int n)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-juce::Point<int> instance_snapped (juce::Point<int> pt)
+Point::Real instance_snapped (Point::Real pt)
 {
     if (instance_snapIsSet()) {
     //
     const int x = instance_snapGetSnapped (pt.getX());
     const int y = instance_snapGetSnapped (pt.getY());
     
-    return juce::Point<int> (x, y);
+    return Point::Real (x, y);
     //
     }
     

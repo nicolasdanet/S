@@ -19,7 +19,7 @@ class MakerComponent : public juce::Component {
 // MARK: -
 
 public:
-    explicit MakerComponent (EditView*, const juce::Value&, juce::Point<int>);
+    explicit MakerComponent (EditView*, const juce::Value&, core::Point::Real);
     
     ~MakerComponent();
 
@@ -58,7 +58,7 @@ private:
 private:
     WeakPointer<EditView> view_;
     juce::Value v_;
-    juce::Point<int> pt_;
+    core::Point::Real pt_;
     
 private:
     static constexpr int margin_ = 6;

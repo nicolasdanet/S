@@ -223,18 +223,22 @@ void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 
 void ObjectComponent::dragStart()
 {
-    origin_ = getLocalPosition();
-    width_  = painter_->getWidth();
+    origin_     = getLocalPosition();
+    dimensions_ = painter_->getDimensions();
 }
 
 void ObjectComponent::drag (juce::Point<int> offset)
 {
-    if (!isLocked()) { EditCommands::position (object_.getIdentifier(), offset + origin_); }
+    if (!isLocked()) {
+    //
+    EditCommands::position (object_.getIdentifier(), Coordinates::localToReal (offset + origin_));
+    //
+    }
 }
 
 void ObjectComponent::resize (juce::Point<int> offset)
 {
-    if (!isLocked() && width_.has_value()) { painter_->setWidth (offset + width_.value()); }
+    if (!isLocked() && dimensions_.has_value()) { painter_->setDimensions (offset + dimensions_.value()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -327,12 +331,12 @@ float ObjectComponent::getScale() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Point<int> ObjectComponent::getLocalPosition() const
+core::Point::Local ObjectComponent::getLocalPosition() const
 {
-    return juce::Point<int> (x_.get(), y_.get());
+    return core::Point::Local (x_.get(), y_.get());
 }
 
-juce::Point<int> ObjectComponent::getRealPosition() const
+core::Point::Real ObjectComponent::getRealPosition() const
 {
     return Coordinates::localToReal (getLocalPosition());
 }

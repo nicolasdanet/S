@@ -91,7 +91,7 @@ private:
 // MARK: -
 
 private:
-    void setZoomAroundPoint (int, juce::Point<int>);
+    void setZoomAroundPoint (int, core::Point::Real);
     void setZoom (int);
     void update();
     
@@ -99,8 +99,8 @@ private:
     EditView& view_;
     int zoom_;
     juce::Value v_;
-    juce::Point<int> offset_;                       /* Real coordinates. */
-    std::optional<juce::Point<int>> dragOrigin_;    /* Real coordinates. */
+    core::Point::Real offset_;                          /* Real coordinates. */
+    std::optional<core::Point::Real> dragOrigin_;       /* Real coordinates. */
     std::unique_ptr<Locator> locator_;
 
 private:

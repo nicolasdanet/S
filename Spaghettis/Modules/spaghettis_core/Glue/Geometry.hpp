@@ -23,7 +23,7 @@ static int realToLocal (int n)
     return Canvas::addOffset (n);
 }
 
-static juce::Point<int> realToLocal (juce::Point<int> pt)
+static Point::Local realToLocal (Point::Real pt)
 {
     return juce::Point (realToLocal (pt.getX()), realToLocal (pt.getY()));
 }
@@ -37,7 +37,7 @@ static int localToReal (int n)
     return Canvas::removeOffset (n);
 }
 
-static juce::Point<int> localToReal (juce::Point<int> pt)
+static Point::Real localToReal (Point::Local pt)
 {
     return juce::Point (localToReal (pt.getX()), localToReal (pt.getY()));
 }

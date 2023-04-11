@@ -48,7 +48,7 @@ static void copy (core::UniqueId i)
     Spaghettis()->handle (Inputs::copy (i));
 }
 
-static void paste (core::UniqueId i, juce::Point<int> pt)
+static void paste (core::UniqueId i, core::Point::Real pt)
 {
     Spaghettis()->handle (Inputs::paste (i, pt));
 }
@@ -88,9 +88,9 @@ static void snap (core::UniqueId i)
     Spaghettis()->handle (Inputs::snapObject (i));
 }
 
-static void position (core::UniqueId i, juce::Point<int> pt)
+static void position (core::UniqueId i, core::Point::Real pt)
 {
-    Spaghettis()->handle (Inputs::positionObject (i, Coordinates::localToReal (pt)));
+    Spaghettis()->handle (Inputs::positionObject (i, pt));
 }
 
 static void parameters (core::UniqueId i, const core::Group& copy)

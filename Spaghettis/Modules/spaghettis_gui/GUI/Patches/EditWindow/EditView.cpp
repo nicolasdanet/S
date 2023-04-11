@@ -156,7 +156,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Point<int> getMinimum (std::optional<juce::Point<int>> pt, juce::Point<int> b, juce::Point<int> offset)
+core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::Real b, juce::Point<int> d)
 {
     const juce::Point<int> a = pt.value_or (b);
     
@@ -165,7 +165,7 @@ juce::Point<int> getMinimum (std::optional<juce::Point<int>> pt, juce::Point<int
     const int y1 = a.getY();
     const int y2 = b.getY();
     
-    return juce::Point<int> (juce::jmin (x1, x2), juce::jmin (y1, y2)) + offset;
+    return core::Point::Real (juce::jmin (x1, x2), juce::jmin (y1, y2)) + d;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -177,12 +177,12 @@ juce::Point<int> getMinimum (std::optional<juce::Point<int>> pt, juce::Point<int
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Point<int> EditView::fromLocalScaledToGlobal (juce::Point<int> pt) const
+juce::Point<int> EditView::fromLocalScaledToGlobal (core::Point::Scaled pt) const
 {
     return localPointToGlobal (pt);
 }
 
-juce::Point<int> EditView::fromLocalScaledToReal (juce::Point<int> pt) const
+core::Point::Real EditView::fromLocalScaledToReal (core::Point::Scaled pt) const
 {
     return Coordinates::localToReal (Coordinates::unscaled (pt, getScale()));
 }
@@ -194,16 +194,16 @@ std::optional<juce::Point<int>> EditView::getGlobalMousePosition() const
     return {};
 }
 
-std::optional<juce::Point<int>> EditView::getRealMousePosition() const
+std::optional<core::Point::Real> EditView::getRealMousePosition() const
 {
     if (isMouseOver (true)) { return fromLocalScaledToReal (getMouseXYRelative()); }
 
     return {};
 }
 
-std::optional<juce::Point<int>> EditView::getRealPositionOfSelectedObjects (juce::Point<int> offset) const
+std::optional<core::Point::Real> EditView::getRealPositionOfSelectedObjects (juce::Point<int> offset) const
 {
-    std::optional<juce::Point<int>> pt;
+    std::optional<core::Point::Real> pt;
     
     auto f = [&pt, offset](const auto& p)
     {
@@ -607,7 +607,7 @@ void EditView::openMaker (juce::Point<int> pt)
     maker_.showEditor (fromLocalScaledToGlobal (pt), fromLocalScaledToReal (pt));
 }
 
-void EditView::handleMaker (juce::Point<int> pt, const juce::String& s)
+void EditView::handleMaker (core::Point::Real pt, const juce::String& s)
 {
     createObject (pt, s);
     

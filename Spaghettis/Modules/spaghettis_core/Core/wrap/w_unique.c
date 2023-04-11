@@ -457,7 +457,7 @@ PD_FORCE t_error unique_patchDeencapsulate (t_id u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE t_error unique_patchCreateObject (t_id u, juce::Point<int> pt, const juce::String& s)
+PD_FORCE t_error unique_patchCreateObject (t_id u, Point::Real pt, const juce::String& s)
 {
     t_glist *g = unique_getPatch (u);
     

@@ -106,7 +106,7 @@ bool EditPort::locate (core::UniqueId u)
 
 void EditPort::show (ObjectComponent* o)
 {
-    const juce::Point<int> pt (o->getRealPosition());
+    const core::Point::Real pt (o->getRealPosition());
     
     if (!getRealVisibleArea().reduced (40).contains (pt)) {
     //
@@ -240,7 +240,7 @@ juce::Point<float> getOffsetAround (juce::Rectangle<float> r, juce::Point<float>
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditPort::setZoomAroundPoint (int n, juce::Point<int> pt)
+void EditPort::setZoomAroundPoint (int n, core::Point::Real pt)
 {
     const auto [a, b] = getRatioAround (getRealVisibleArea().toFloat(), pt.toFloat());
     

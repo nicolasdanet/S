@@ -89,11 +89,11 @@ public:
     void setMouseCursorRecursive (const juce::MouseCursor&);
 
 private:
-    juce::Point<int> fromLocalScaledToGlobal (juce::Point<int>) const;
-    juce::Point<int> fromLocalScaledToReal (juce::Point<int>) const;
+    juce::Point<int> fromLocalScaledToGlobal (core::Point::Scaled) const;
+    core::Point::Real fromLocalScaledToReal (core::Point::Scaled) const;
     std::optional<juce::Point<int>> getGlobalMousePosition() const;
-    std::optional<juce::Point<int>> getRealMousePosition() const;
-    std::optional<juce::Point<int>> getRealPositionOfSelectedObjects (juce::Point<int>) const;
+    std::optional<core::Point::Real> getRealMousePosition() const;
+    std::optional<core::Point::Real> getRealPositionOfSelectedObjects (juce::Point<int>) const;
     juce::Rectangle<int> getGlobalVisibleArea() const;
     juce::Rectangle<int> getRealVisibleArea() const;
     
@@ -210,7 +210,7 @@ public:
 public:
     void requireMaker (bool);
     void openMaker (juce::Point<int>);
-    void handleMaker (juce::Point<int>, const juce::String&);
+    void handleMaker (core::Point::Real, const juce::String&);
     void dismissMaker();
     
 // -----------------------------------------------------------------------------------------------------------

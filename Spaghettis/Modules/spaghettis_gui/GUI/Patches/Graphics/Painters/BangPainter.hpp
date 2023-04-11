@@ -37,7 +37,7 @@ public:
 // MARK: -
 
 public:
-    std::optional<juce::Point<int>> getWidth() override;
+    std::optional<core::Dimensions> getDimensions() override;
     
 private:
     core::Cached<juce::Colour> bangBackgroundColour_;

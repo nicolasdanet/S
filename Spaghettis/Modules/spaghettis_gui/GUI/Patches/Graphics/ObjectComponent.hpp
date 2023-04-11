@@ -111,8 +111,8 @@ public:
 // MARK: -
 
 public:
-    juce::Point<int> getLocalPosition() const;
-    juce::Point<int> getRealPosition() const;
+    core::Point::Local getLocalPosition() const;
+    core::Point::Real  getRealPosition() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -183,8 +183,8 @@ private:
     std::unique_ptr<PainterPolicy> painter_;
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;
-    juce::Point<int> origin_;
-    std::optional<juce::Point<int>> width_;
+    core::Point::Local origin_;
+    std::optional<core::Dimensions> dimensions_;
     bool hasResize_;
     bool isLocked_;
     bool isInsideRunView_;

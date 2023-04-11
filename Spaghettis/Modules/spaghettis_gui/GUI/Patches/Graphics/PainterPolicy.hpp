@@ -78,12 +78,12 @@ private:
 // MARK: -
 
 public:
-    virtual std::optional<juce::Point<int>> getWidth()
+    virtual std::optional<core::Dimensions> getDimensions()
     {
         return {};
     }
     
-    void setWidth (juce::Point<int>);
+    void setDimensions (core::Dimensions);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

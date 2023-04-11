@@ -271,7 +271,7 @@ PD_LOCAL int        instance_snapGetSnapped         (int n);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL juce::Point<int> instance_snapped          (juce::Point<int> pt);
+PD_LOCAL Point::Real    instance_snapped            (Point::Real pt);
 
 #endif
 

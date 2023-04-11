@@ -127,7 +127,7 @@ Perform Inputs::copy (core::UniqueId u)
     return [u]() { core::inputs_copy (u); };
 }
 
-Perform Inputs::paste (core::UniqueId u, juce::Point<int> pt)
+Perform Inputs::paste (core::UniqueId u, core::Point::Real pt)
 {
     return [u, pt]() { core::inputs_paste (u, pt); };
 }
@@ -181,7 +181,7 @@ Perform Inputs::snapObject (core::UniqueId u)
     return [u]() { core::inputs_snapObject (u); };
 }
 
-Perform Inputs::positionObject (core::UniqueId u, juce::Point<int> pt)
+Perform Inputs::positionObject (core::UniqueId u, core::Point::Real pt)
 {
     return [u, pt]() { core::inputs_positionObject (u, pt); };
 }
@@ -199,7 +199,7 @@ Perform Inputs::openHelp (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Inputs::createObject (core::UniqueId u, juce::Point<int> pt, juce::String s)
+Perform Inputs::createObject (core::UniqueId u, core::Point::Real pt, juce::String s)
 {
     return [u, pt, s]() { core::inputs_createObject (u, pt, s); };
 }

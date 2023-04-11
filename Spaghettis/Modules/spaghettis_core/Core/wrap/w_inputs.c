@@ -157,7 +157,7 @@ PD_LOCAL void inputs_copy (core::UniqueId u)
     unique_patchCopy (u);
 }
 
-PD_LOCAL void inputs_paste (core::UniqueId u, juce::Point<int> pt)
+PD_LOCAL void inputs_paste (core::UniqueId u, Point::Real pt)
 {
     t_point m = point_make (pt.getX(), pt.getY()); unique_patchPaste (u, &m);
 }
@@ -211,7 +211,7 @@ PD_LOCAL void inputs_snapObject (core::UniqueId u)
     unique_objectSnap (u);
 }
 
-PD_LOCAL void inputs_positionObject (core::UniqueId u, juce::Point<int> pt)
+PD_LOCAL void inputs_positionObject (core::UniqueId u, Point::Real pt)
 {
     unique_objectPosition (u, pt.getX(), pt.getY());
 }
@@ -229,7 +229,7 @@ PD_LOCAL void inputs_openHelp (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void inputs_createObject (core::UniqueId u, juce::Point<int> pt, juce::String s)
+PD_LOCAL void inputs_createObject (core::UniqueId u, Point::Real pt, juce::String s)
 {
     unique_patchCreateObject (u, pt, s);
 }

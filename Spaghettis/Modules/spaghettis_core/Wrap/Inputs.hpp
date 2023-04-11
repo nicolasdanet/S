@@ -57,7 +57,7 @@ static Perform undo (core::UniqueId);
 static Perform redo (core::UniqueId);
 static Perform cut (core::UniqueId);
 static Perform copy (core::UniqueId);
-static Perform paste (core::UniqueId, juce::Point<int> pt);
+static Perform paste (core::UniqueId, core::Point::Real);
 static Perform duplicate (core::UniqueId);
 static Perform remove (core::UniqueId);
 static Perform encapsulate (core::UniqueId);
@@ -72,7 +72,7 @@ static Perform deselectObject (core::UniqueId);
 static Perform moveBackObject (core::UniqueId);
 static Perform moveFrontObject (core::UniqueId);
 static Perform snapObject (core::UniqueId);
-static Perform positionObject (core::UniqueId, juce::Point<int>);
+static Perform positionObject (core::UniqueId, core::Point::Real);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -84,7 +84,7 @@ static Perform openHelp (core::UniqueId);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform createObject (core::UniqueId, juce::Point<int>, juce::String);
+static Perform createObject (core::UniqueId, core::Point::Real, juce::String);
 
 static Perform parametersObject (core::UniqueId, core::Group);
 
