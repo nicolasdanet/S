@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PinComponent* getPinComponentAt (EditView* view, juce::Point<int> pt)
+PinComponent* getPinComponentAt (EditView* view, core::Point::Scaled pt)
 {
     return dynamic_cast<PinComponent*> (view->getComponentAt (pt));
 }
@@ -89,12 +89,12 @@ PinTracker::~PinTracker()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PinTracker::start (EditView* view, juce::Point<int> pt)
+void PinTracker::start (EditView* view, core::Point::Scaled pt)
 {
     source_ = getPinComponentAt (view, pt);
 }
 
-void PinTracker::hit (EditView* view, juce::Point<int> pt)
+void PinTracker::hit (EditView* view, core::Point::Scaled pt)
 {
     if (source_.getComponent()) {
     //

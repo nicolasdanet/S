@@ -45,11 +45,7 @@ void ActionLasso::updateComponent (const juce::Rectangle<int>& r)
 
 void ActionLasso::mouseDrag (const juce::MouseEvent& e)
 {
-    const juce::Point<int> a (e.getMouseDownPosition());
-    const juce::Point<int> b (a + e.getOffsetFromDragStart());
-    const juce::Rectangle<int> r (a, b);
-    
-    updateComponent (r);
+    updateComponent (juce::Rectangle<int> (e.getMouseDownPosition(), e.getPosition()));
 }
 
 void ActionLasso::mouseUp (const juce::MouseEvent&)

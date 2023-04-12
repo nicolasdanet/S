@@ -18,7 +18,7 @@ class ActionConnectComponent : public juce::Component {
 // MARK: -
 
 public:
-    explicit ActionConnectComponent (juce::Point<int>);
+    explicit ActionConnectComponent (core::Point::Scaled);
     
     ~ActionConnectComponent() = default;
 
@@ -34,7 +34,7 @@ public:
 // MARK: -
 
 public:
-    void set (juce::Point<int> pt);
+    void set (core::Point::Scaled pt);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -44,8 +44,8 @@ private:
     void update();
 
 private:
-    juce::Point<int> start_;
-    juce::Point<int> end_;
+    core::Point::Scaled start_;
+    core::Point::Scaled end_;
 
 private:
     core::Cached<juce::Colour> connectColour_;

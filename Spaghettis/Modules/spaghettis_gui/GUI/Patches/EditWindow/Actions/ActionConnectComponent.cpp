@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ActionConnectComponent::ActionConnectComponent (juce::Point<int> pt) :
+ActionConnectComponent::ActionConnectComponent (core::Point::Scaled pt) :
     start_ (pt),
     end_ (pt),
     connectColour_ (Spaghettis()->getCachedColour (Tag::Lasso))
@@ -44,7 +44,7 @@ void ActionConnectComponent::paint (juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ActionConnectComponent::set (juce::Point<int> pt)
+void ActionConnectComponent::set (core::Point::Scaled pt)
 {
     end_ = pt; update(); repaint();
 }

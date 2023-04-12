@@ -20,14 +20,14 @@ ActionConnect::ActionConnect (EditView* view) : view_ (view)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ActionConnect::createComponent (juce::Point<int> pt)
+void ActionConnect::createComponent (core::Point::Scaled pt)
 {
     connectComponent_ = std::make_unique<ActionConnectComponent> (pt);
     
     view_->addAndMakeVisible (connectComponent_.get());
 }
 
-void ActionConnect::updateComponent (juce::Point<int> pt)
+void ActionConnect::updateComponent (core::Point::Scaled pt)
 {
     if (connectComponent_) { tracker_.hit (view_, pt); connectComponent_->set (pt); }
     else {

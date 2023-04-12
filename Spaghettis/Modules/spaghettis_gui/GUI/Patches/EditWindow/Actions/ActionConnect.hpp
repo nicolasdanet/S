@@ -48,8 +48,8 @@ private:
 // MARK: -
 
 private:
-    void createComponent (juce::Point<int>);
-    void updateComponent (juce::Point<int>);
+    void createComponent (core::Point::Scaled);
+    void updateComponent (core::Point::Scaled);
     
 private:
     EditView* view_;
