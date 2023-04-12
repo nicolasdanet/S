@@ -89,7 +89,6 @@ public:
     void setMouseCursorRecursive (const juce::MouseCursor&);
 
 private:
-    juce::Point<int> fromLocalScaledToGlobal (core::Point::Scaled) const;
     core::Point::Real fromLocalScaledToReal (core::Point::Scaled) const;
     std::optional<juce::Point<int>> getGlobalMousePosition() const;
     std::optional<core::Point::Real> getRealMousePosition() const;

@@ -177,11 +177,6 @@ core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Point<int> EditView::fromLocalScaledToGlobal (core::Point::Scaled pt) const
-{
-    return localPointToGlobal (pt);
-}
-
 core::Point::Real EditView::fromLocalScaledToReal (core::Point::Scaled pt) const
 {
     return Coordinates::localToReal (Coordinates::unscaled (pt, getScale()));
@@ -189,7 +184,7 @@ core::Point::Real EditView::fromLocalScaledToReal (core::Point::Scaled pt) const
 
 std::optional<juce::Point<int>> EditView::getGlobalMousePosition() const
 {
-    if (isMouseOver (true)) { return fromLocalScaledToGlobal (getMouseXYRelative()); }
+    if (isMouseOver (true)) { return localPointToGlobal (getMouseXYRelative()); }
 
     return {};
 }
@@ -604,7 +599,7 @@ void EditView::requireMaker (bool isFromMenu)
 
 void EditView::openMaker (core::Point::Scaled pt)
 {
-    maker_.showEditor (fromLocalScaledToGlobal (pt), fromLocalScaledToReal (pt));
+    maker_.showEditor (localPointToGlobal (pt), fromLocalScaledToReal (pt));
 }
 
 void EditView::handleMaker (core::Point::Real pt, const juce::String& s)
