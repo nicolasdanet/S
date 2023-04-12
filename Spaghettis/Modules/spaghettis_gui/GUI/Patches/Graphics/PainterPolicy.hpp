@@ -27,19 +27,13 @@ public:
     explicit PainterPolicy (ObjectComponent*, const core::Object&);
     
     virtual ~PainterPolicy() = default;
-    
-public:
-    PainterPolicy (const PainterPolicy&) = delete;
-    PainterPolicy (PainterPolicy&&) = delete;
-    PainterPolicy& operator = (const PainterPolicy&) = delete;
-    PainterPolicy& operator = (PainterPolicy&&) = delete;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void paint (const juce::Rectangle<int>&, juce::Graphics&);
+    void paint (juce::Rectangle<int>, juce::Graphics&);
     
     juce::Rectangle<int> getRequiredBounds();
 
@@ -55,23 +49,23 @@ protected:
 // MARK: -
 
 protected:
-    float getScaled (float f) const;
-    juce::Point<float> getLocalPositionScaled() const;
+    int getScaled (int f) const;
+    core::Point::Scaled getLocalPositionScaled() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    virtual void paintObject (juce::Rectangle<float>, juce::Graphics&) = 0;
-    virtual juce::Rectangle<float> getRequiredBoundsForObject() = 0;
+    virtual void paintObject (juce::Rectangle<int>, juce::Graphics&) = 0;
+    virtual juce::Rectangle<int> getRequiredBoundsForObject() = 0;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    juce::Rectangle<float> paintLabel (juce::Rectangle<float>, juce::Graphics&);
-    juce::Rectangle<float> getRequiredBoundsWithLabel (juce::Rectangle<float>);
+    juce::Rectangle<int> paintLabel (juce::Rectangle<int>, juce::Graphics&);
+    juce::Rectangle<int> getRequiredBoundsWithLabel (juce::Rectangle<int>);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -117,6 +111,9 @@ public:
     static int pinWidth  (float f) { return static_cast<int> (std::round (8 * f)); }
     static int pinGripX  (float f) { return (f >= 1.0f) ? 1 : 0; }
     static int pinGripY  (float f) { return (f >= 1.0f) ? 3 : 0; }
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PainterPolicy)
 };
 
 // -----------------------------------------------------------------------------------------------------------

@@ -30,18 +30,16 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PainterPolicy::paint (const juce::Rectangle<int>& r, juce::Graphics& g)
+void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    juce::Rectangle<float> t = r.toFloat();
+    if (component_->isInsideRunView()) { r = paintLabel (r, g); }
     
-    if (component_->isInsideRunView()) { t = paintLabel (t, g); }
-    
-    paintObject (t, g);
+    paintObject (r, g);
 }
     
 juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 {
-    juce::Rectangle<float> t = getRequiredBoundsForObject();
+    juce::Rectangle<int> t = getRequiredBoundsForObject();
     
     if (component_->isInsideRunView()) { t = getRequiredBoundsWithLabel (t); }
     
@@ -101,9 +99,9 @@ juce::Font getLabelFont()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce::Graphics& g)
+juce::Rectangle<int> PainterPolicy::paintLabel (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const juce::Rectangle<float> t (r.removeFromLeft (objectWidth_));
+    const juce::Rectangle<int> t (r.removeFromLeft (objectWidth_));
     
     g.setColour (patchBackgroundColour_.get());
     g.fillRect (r);
@@ -123,7 +121,7 @@ juce::Rectangle<float> PainterPolicy::paintLabel (juce::Rectangle<float> r, juce
     return t;
 }
     
-juce::Rectangle<float> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangle<float> r)
+juce::Rectangle<int> PainterPolicy::getRequiredBoundsWithLabel (juce::Rectangle<int> r)
 {
     objectWidth_ = r.getWidth();
     
@@ -148,14 +146,14 @@ float PainterPolicy::getScale() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-float PainterPolicy::getScaled (float f) const
+int PainterPolicy::getScaled (int f) const
 {
     return Distance::scaled (f, getScale());
 }
 
-juce::Point<float> PainterPolicy::getLocalPositionScaled() const
+core::Point::Scaled PainterPolicy::getLocalPositionScaled() const
 {
-    return Coordinates::scaled (component_->getLocalPosition().toFloat(), getScale());
+    return Coordinates::scaled (component_->getLocalPosition(), getScale());
 }
 
 // -----------------------------------------------------------------------------------------------------------

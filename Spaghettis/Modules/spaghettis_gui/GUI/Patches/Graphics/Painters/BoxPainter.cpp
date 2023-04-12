@@ -76,7 +76,7 @@ float getMinimumWidth (float f, int m, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BoxPainter::paintObject (juce::Rectangle<float> r, juce::Graphics& g)
+void BoxPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
     const float f = getScale();
 
@@ -85,7 +85,7 @@ void BoxPainter::paintObject (juce::Rectangle<float> r, juce::Graphics& g)
     
     if (f > 0.5) {
     //
-    const juce::Rectangle<float> t (r.reduced (getTextMargins (f)).translated (0.0f, -1.0f));
+    const juce::Rectangle<int> t (r.reduced (getTextMargins (f)).translated (0.0f, -1.0f));
 
     const juce::Font   font (getFont (f));
     const juce::String text (getText());
@@ -99,7 +99,7 @@ void BoxPainter::paintObject (juce::Rectangle<float> r, juce::Graphics& g)
     }
 }
 
-juce::Rectangle<float> BoxPainter::getRequiredBoundsForObject()
+juce::Rectangle<int> BoxPainter::getRequiredBoundsForObject()
 {
     const float f = getScale();
     
@@ -114,7 +114,7 @@ juce::Rectangle<float> BoxPainter::getRequiredBoundsForObject()
     
     const float m = getMinimumWidth (f, component_->getNumberOfInlets(), component_->getNumberOfOutlets());
     
-    return juce::Rectangle<float> (x, y, juce::jmax (m, w + k), h + k);
+    return juce::Rectangle<int> (x, y, juce::jmax (m, w + k), h + k);
 }
 
 // -----------------------------------------------------------------------------------------------------------
