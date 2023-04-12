@@ -227,7 +227,7 @@ void ObjectComponent::dragStart()
     dimensions_ = painter_->getDimensions();
 }
 
-void ObjectComponent::drag (juce::Point<int> offset)
+void ObjectComponent::drag (core::Vector::Local offset)
 {
     if (!isLocked()) {
     //
@@ -236,7 +236,7 @@ void ObjectComponent::drag (juce::Point<int> offset)
     }
 }
 
-void ObjectComponent::resize (juce::Point<int> offset)
+void ObjectComponent::resize (core::Vector::Real offset)
 {
     if (!isLocked() && dimensions_.has_value()) { painter_->setDimensions (offset + dimensions_.value()); }
 }
