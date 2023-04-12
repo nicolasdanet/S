@@ -47,6 +47,7 @@
 
 #include "Glue/Canvas.hpp"
 #include "Glue/Point.hpp"
+#include "Glue/Vector.hpp"
 #include "Glue/Geometry.hpp"
 #include "Glue/Cast.hpp"
 #include "Glue/Identifiers.hpp"

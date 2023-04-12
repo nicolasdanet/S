@@ -184,7 +184,7 @@ private:
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;
     core::Point::Local origin_;
-    std::optional<core::Dimensions> dimensions_;
+    std::optional<core::Vector::Real> dimensions_;
     bool hasResize_;
     bool isLocked_;
     bool isInsideRunView_;

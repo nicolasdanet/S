@@ -72,12 +72,12 @@ private:
 // MARK: -
 
 public:
-    virtual std::optional<core::Dimensions> getDimensions()
+    virtual std::optional<core::Vector::Real> getDimensions()
     {
         return {};
     }
     
-    void setDimensions (core::Dimensions);
+    void setDimensions (core::Vector::Real);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

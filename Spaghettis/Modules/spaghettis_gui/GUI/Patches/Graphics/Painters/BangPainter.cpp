@@ -51,9 +51,9 @@ juce::Rectangle<int> BangPainter::getRequiredBoundsForObject()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::optional<core::Dimensions> BangPainter::getDimensions()
+std::optional<core::Vector::Real> BangPainter::getDimensions()
 {
-    const int w = width_.get(); return core::Dimensions (w, w);
+    const int w = width_.get(); return core::Vector::Real (w, w);
 }
 
 // -----------------------------------------------------------------------------------------------------------
