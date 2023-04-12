@@ -93,7 +93,7 @@ private:
     core::Point::Real fromLocalScaledToReal (core::Point::Scaled) const;
     std::optional<juce::Point<int>> getGlobalMousePosition() const;
     std::optional<core::Point::Real> getRealMousePosition() const;
-    std::optional<core::Point::Real> getRealPositionOfSelectedObjects (juce::Point<int>) const;
+    std::optional<core::Point::Real> getRealPositionOfSelectedObjects (core::Vector::Real) const;
     juce::Rectangle<int> getGlobalVisibleArea() const;
     juce::Rectangle<int> getRealVisibleArea() const;
     
@@ -153,15 +153,15 @@ public:
 
 public:
     void dragObjectsStart();
-    void dragObjects (juce::Point<int>);
-    void resizeObjects (juce::Point<int>);
+    void dragObjects (core::Vector::Local);
+    void resizeObjects (core::Vector::Real);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void createObject (juce::Point<int>, const juce::String&);
+    void createObject (core::Point::Real, const juce::String&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -209,7 +209,7 @@ public:
 
 public:
     void requireMaker (bool);
-    void openMaker (juce::Point<int>);
+    void openMaker (core::Point::Scaled);
     void handleMaker (core::Point::Real, const juce::String&);
     void dismissMaker();
     

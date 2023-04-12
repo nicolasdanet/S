@@ -156,7 +156,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::Real b, juce::Point<int> d)
+core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::Real b, core::Vector::Real d)
 {
     const juce::Point<int> a = pt.value_or (b);
     
@@ -201,7 +201,7 @@ std::optional<core::Point::Real> EditView::getRealMousePosition() const
     return {};
 }
 
-std::optional<core::Point::Real> EditView::getRealPositionOfSelectedObjects (juce::Point<int> offset) const
+std::optional<core::Point::Real> EditView::getRealPositionOfSelectedObjects (core::Vector::Real offset) const
 {
     std::optional<core::Point::Real> pt;
     
@@ -407,7 +407,7 @@ void EditView::dragObjectsStart()
     }
 }
 
-void EditView::dragObjects (juce::Point<int> offset)
+void EditView::dragObjects (core::Vector::Local offset)
 {
     if (!isAbstractionOrInside()) {
     //
@@ -416,7 +416,7 @@ void EditView::dragObjects (juce::Point<int> offset)
     }
 }
 
-void EditView::resizeObjects (juce::Point<int> offset)
+void EditView::resizeObjects (core::Vector::Real offset)
 {
     if (!isAbstractionOrInside()) {
     //
@@ -534,12 +534,12 @@ void EditView::paste()
     //
     const int n = Spaghettis()->getPreferences().getCached<int> (Tag::Editing, Tag::GridSize);
     
-    const juce::Rectangle<int> area  = getRealVisibleArea();
-    const juce::Point<int> centre    = area.getCentre();
-    const juce::Point<int> mouse     = getRealMousePosition().value_or (centre);
-    const juce::Point<int> offset    = juce::Point<int> (n * 2, n * 2);
-    const juce::Point<int> selection = getRealPositionOfSelectedObjects (offset).value_or (mouse);
-    const juce::Point<int> pt        = area.contains (selection) ? selection : centre;
+    const juce::Rectangle<int> area     = getRealVisibleArea();
+    const core::Point::Real centre      = area.getCentre();
+    const core::Point::Real mouse       = getRealMousePosition().value_or (centre);
+    const core::Vector::Real offset     = core::Vector::Real (n * 2, n * 2);
+    const core::Point::Real selection   = getRealPositionOfSelectedObjects (offset).value_or (mouse);
+    const core::Point::Real pt          = area.contains (selection) ? selection : centre;
     
     EditCommands::paste (getIdentifier(), pt);
     //
@@ -570,7 +570,7 @@ void EditView::remove()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::createObject (juce::Point<int> pt, const juce::String& s)
+void EditView::createObject (core::Point::Real pt, const juce::String& s)
 {
     if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (getIdentifier(), pt, s)); }
 }
@@ -584,7 +584,7 @@ void EditView::requireMaker (bool isFromMenu)
     if (!isAbstractionOrInside()) {
     //
     std::optional<juce::Point<int>> a (getGlobalMousePosition());
-    std::optional<juce::Point<int>> b (getRealMousePosition());
+    std::optional<core::Point::Real> b (getRealMousePosition());
     
     bool useCentre = isFromMenu;
     
@@ -602,7 +602,7 @@ void EditView::requireMaker (bool isFromMenu)
     }
 }
 
-void EditView::openMaker (juce::Point<int> pt)
+void EditView::openMaker (core::Point::Scaled pt)
 {
     maker_.showEditor (fromLocalScaledToGlobal (pt), fromLocalScaledToReal (pt));
 }
