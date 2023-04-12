@@ -158,7 +158,7 @@ namespace {
 
 core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::Real b, core::Vector::Real d)
 {
-    const juce::Point<int> a = pt.value_or (b);
+    const core::Point::Real a = pt.value_or (b);
     
     const int x1 = a.getX();
     const int x2 = b.getX();

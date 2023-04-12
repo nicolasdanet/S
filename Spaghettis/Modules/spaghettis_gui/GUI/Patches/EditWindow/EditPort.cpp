@@ -190,7 +190,7 @@ void EditPort::dragViewStart()
     dragOrigin_ = offset_;
 }
 
-void EditPort::dragView (juce::Point<int> pt)
+void EditPort::dragView (core::Vector::Local pt)
 {
     if (dragOrigin_.has_value()) { offset_ = dragOrigin_.value() - pt; update(); }
 }
@@ -268,7 +268,7 @@ void EditPort::setZoom (int n)
 
 void EditPort::update()
 {
-    const juce::Point<int> pt = Coordinates::scaled (Coordinates::realToLocal (offset_), getScale());
+    const core::Point::Scaled pt = Coordinates::scaled (Coordinates::realToLocal (offset_), getScale());
     
     view_.setBounds (juce::Rectangle<int> (core::Canvas::getSize(), core::Canvas::getSize()) - pt);
 }

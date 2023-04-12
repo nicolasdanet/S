@@ -83,7 +83,7 @@ private:
 
 private:
     void dragViewStart();
-    void dragView (juce::Point<int>);
+    void dragView (core::Vector::Local);
     void dragViewEnd();
     
 // -----------------------------------------------------------------------------------------------------------
