@@ -182,13 +182,6 @@ core::Point::Real EditView::fromLocalScaledToReal (core::Point::Scaled pt) const
     return Coordinates::localToReal (Coordinates::unscaled (pt, getScale()));
 }
 
-std::optional<juce::Point<int>> EditView::getGlobalMousePosition() const
-{
-    if (isMouseOver (true)) { return localPointToGlobal (getMouseXYRelative()); }
-
-    return {};
-}
-
 std::optional<core::Point::Real> EditView::getRealMousePosition() const
 {
     if (isMouseOver (true)) { return fromLocalScaledToReal (getMouseXYRelative()); }
@@ -578,8 +571,11 @@ void EditView::requireMaker (bool isFromMenu)
 {
     if (!isAbstractionOrInside()) {
     //
-    std::optional<juce::Point<int>> a (getGlobalMousePosition());
     std::optional<core::Point::Real> b (getRealMousePosition());
+    
+    std::optional<juce::Point<int>> a;
+    
+    if (isMouseOver (true)) { a = localPointToGlobal (getMouseXYRelative()); }
     
     bool useCentre = isFromMenu;
     
