@@ -71,7 +71,7 @@ private:
 
 public:
     void dragStart();
-    void drag (core::Vector::Local);
+    void drag (core::Vector::Real);
     void resize (core::Vector::Real);
     
 // -----------------------------------------------------------------------------------------------------------

@@ -390,7 +390,7 @@ void EditView::dragObjectsStart()
     }
 }
 
-void EditView::dragObjects (core::Vector::Local offset)
+void EditView::dragObjects (core::Vector::Real offset)
 {
     if (!isAbstractionOrInside()) {
     //

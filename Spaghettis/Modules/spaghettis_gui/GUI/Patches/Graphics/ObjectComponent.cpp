@@ -227,7 +227,7 @@ void ObjectComponent::dragStart()
     dimensions_ = painter_->getDimensions();
 }
 
-void ObjectComponent::drag (core::Vector::Local offset)
+void ObjectComponent::drag (core::Vector::Real offset)
 {
     if (!isLocked()) {
     //

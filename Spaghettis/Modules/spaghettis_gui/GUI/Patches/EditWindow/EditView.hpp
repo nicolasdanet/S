@@ -150,7 +150,7 @@ public:
 
 public:
     void dragObjectsStart();
-    void dragObjects (core::Vector::Local);
+    void dragObjects (core::Vector::Real);
     void resizeObjects (core::Vector::Real);
 
 // -----------------------------------------------------------------------------------------------------------

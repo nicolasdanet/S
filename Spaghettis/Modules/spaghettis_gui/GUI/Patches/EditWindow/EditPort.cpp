@@ -185,7 +185,7 @@ void EditPort::dragViewStart()
     dragOrigin_ = offset_;
 }
 
-void EditPort::dragView (core::Vector::Local pt)
+void EditPort::dragView (core::Vector::Real pt)
 {
     if (dragOrigin_.has_value()) { offset_ = dragOrigin_.value() - pt; update(); }
 }

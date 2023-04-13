@@ -82,7 +82,7 @@ private:
 
 private:
     void dragViewStart();
-    void dragView (core::Vector::Local);
+    void dragView (core::Vector::Real);
     void dragViewEnd();
     
 // -----------------------------------------------------------------------------------------------------------
