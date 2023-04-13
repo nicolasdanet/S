@@ -203,11 +203,6 @@ std::optional<core::Point::Real> EditView::getRealPositionOfSelectedObjects (cor
     return pt;
 }
 
-juce::Rectangle<int> EditView::getGlobalVisibleArea() const
-{
-    return getPort()->getGlobalVisibleArea();
-}
-
 juce::Rectangle<int> EditView::getRealVisibleArea() const
 {
     return getPort()->getRealVisibleArea();
@@ -571,31 +566,31 @@ void EditView::requireMaker (bool isFromMenu)
 {
     if (!isAbstractionOrInside()) {
     //
-    std::optional<core::Point::Real> b (getRealMousePosition());
+    std::optional<core::Point::Real> real (getRealMousePosition());
     
-    std::optional<juce::Point<int>> a;
+    std::optional<core::Point::Scaled> pt;
     
-    if (isMouseOver (true)) { a = localPointToGlobal (getMouseXYRelative()); }
+    if (isMouseOver (true)) { pt = getMouseXYRelative(); }
     
     bool useCentre = isFromMenu;
     
     #if JUCE_LINUX
-    useCentre |= !a.has_value();
+    useCentre |= !pt.has_value();
     #endif
     
     if (useCentre) {
-        a = getGlobalVisibleArea().getCentre();
-        b = getRealVisibleArea().getCentre();
+        // pt   = getGlobalVisibleArea().getCentre();
+        real = getRealVisibleArea().getCentre();
     }
     
-    if (a.has_value() && b.has_value()) { maker_.showEditor (a.value(), b.value()); }
+    if (pt.has_value() && real.has_value()) { maker_.showEditor (pt.value(), real.value()); }
     //
     }
 }
 
 void EditView::openMaker (core::Point::Scaled pt)
 {
-    maker_.showEditor (localPointToGlobal (pt), fromLocalScaledToReal (pt));
+    maker_.showEditor (pt, fromLocalScaledToReal (pt));
 }
 
 void EditView::handleMaker (core::Point::Real pt, const juce::String& s)

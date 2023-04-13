@@ -92,7 +92,6 @@ private:
     core::Point::Real fromLocalScaledToReal (core::Point::Scaled) const;
     std::optional<core::Point::Real> getRealMousePosition() const;
     std::optional<core::Point::Real> getRealPositionOfSelectedObjects (core::Vector::Real) const;
-    juce::Rectangle<int> getGlobalVisibleArea() const;
     juce::Rectangle<int> getRealVisibleArea() const;
     
 // -----------------------------------------------------------------------------------------------------------

@@ -54,11 +54,6 @@ float EditPort::getScale() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> EditPort::getGlobalVisibleArea() const
-{
-    return getScreenBounds();
-}
-
 juce::Rectangle<int> EditPort::getRealVisibleArea() const
 {
     const float f = getScale();
