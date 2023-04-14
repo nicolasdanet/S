@@ -49,7 +49,6 @@ protected:
 // MARK: -
 
 protected:
-    int getScaled (int f) const;
     core::Point::Scaled getLocalPositionScaled() const;
     
 // -----------------------------------------------------------------------------------------------------------

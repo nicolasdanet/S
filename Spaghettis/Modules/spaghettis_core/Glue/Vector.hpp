@@ -54,6 +54,16 @@ public:
         return pt_;
     }
     
+    int getX() const
+    {
+        return pt_.getX();
+    }
+    
+    int getY() const
+    {
+        return pt_.getY();
+    }
+    
     float getScale() const
     {
         return f_;

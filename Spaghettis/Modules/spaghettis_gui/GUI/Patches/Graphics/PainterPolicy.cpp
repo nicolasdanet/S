@@ -146,11 +146,6 @@ float PainterPolicy::getScale() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int PainterPolicy::getScaled (int f) const
-{
-    return Distance::scaled (f, getScale());
-}
-
 core::Point::Scaled PainterPolicy::getLocalPositionScaled() const
 {
     return Coordinates::scaled (component_->getLocalPosition(), getScale());

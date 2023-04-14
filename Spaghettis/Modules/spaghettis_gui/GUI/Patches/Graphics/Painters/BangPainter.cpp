@@ -40,9 +40,11 @@ void BangPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> BangPainter::getRequiredBoundsForObject()
 {
-    const int w = getScaled (width_.get());
+    const int w = width_.get();
     
-    return juce::Rectangle<int> (w, w) + getLocalPositionScaled();
+    const core::Vector::Scaled v (core::Vector::Real (w, w), getScale());
+    
+    return juce::Rectangle<int> (v.getX(), v.getY()) + getLocalPositionScaled();
 }
 
 // -----------------------------------------------------------------------------------------------------------
