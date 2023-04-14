@@ -165,7 +165,7 @@ core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::
     const int y1 = a.getY();
     const int y2 = b.getY();
     
-    return core::Point::Real (juce::jmin (x1, x2), juce::jmin (y1, y2)) + d;
+    return core::Point::Real (juce::jmin (x1, x2), juce::jmin (y1, y2)) + d.getPoint();
 }
 
 // -----------------------------------------------------------------------------------------------------------

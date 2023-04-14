@@ -29,7 +29,7 @@ ActionResize::~ActionResize()
 
 void ActionResize::mouseDrag (const juce::MouseEvent& e)
 {
-    view_->resizeObjects (Distance::unscaled (e.getOffsetFromDragStart(), view_->getScale()));
+    view_->resizeObjects (core::Vector::Scaled (e.getOffsetFromDragStart(), view_->getScale()));
 }
 
 void ActionResize::mouseUp (const juce::MouseEvent& e)

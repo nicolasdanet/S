@@ -109,7 +109,7 @@ void EditPort::show (ObjectComponent* o)
     const int w   = Distance::unscaled (getWidth(), f);
     const int h   = Distance::unscaled (getHeight(), f);
     
-    offset_ = pt - core::Vector::Real (w / 4, h / 3);
+    offset_ = pt - core::Vector::Real (w / 4, h / 3).getPoint();
     
     update();
     //
@@ -145,7 +145,7 @@ void EditPort::mouseWheelMoveDisplace (float x, float y)
         return static_cast<int> (f);
     };
     
-    offset_ += core::Vector::Real (-map (x), -map (y));
+    offset_ += core::Vector::Real (-map (x), -map (y)).getPoint();
 }
 
 void EditPort::mouseWheelMoveZoom (float y)
@@ -187,7 +187,7 @@ void EditPort::dragViewStart()
 
 void EditPort::dragView (core::Vector::Real pt)
 {
-    if (dragOrigin_.has_value()) { offset_ = dragOrigin_.value() - pt; update(); }
+    if (dragOrigin_.has_value()) { offset_ = dragOrigin_.value() - pt.getPoint(); update(); }
 }
 
 void EditPort::dragViewEnd()

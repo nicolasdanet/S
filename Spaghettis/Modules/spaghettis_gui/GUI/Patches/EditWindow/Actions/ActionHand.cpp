@@ -30,7 +30,7 @@ ActionHand::~ActionHand()
 
 void ActionHand::mouseDrag (const juce::MouseEvent& e)
 {
-    view_->getPort()->dragView (Distance::unscaled (e.getOffsetFromDragStart(), view_->getScale()));
+    view_->getPort()->dragView (core::Vector::Scaled (e.getOffsetFromDragStart(), view_->getScale()));
 }
 
 void ActionHand::mouseUp (const juce::MouseEvent& e)
