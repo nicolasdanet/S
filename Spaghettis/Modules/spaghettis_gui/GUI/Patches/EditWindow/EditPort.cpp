@@ -56,11 +56,9 @@ float EditPort::getScale() const
 
 juce::Rectangle<int> EditPort::getRealVisibleArea() const
 {
-    const float f = getScale();
-    const int w   = Distance::unscaled (getWidth(), f);
-    const int h   = Distance::unscaled (getHeight(), f);
-
-    return juce::Rectangle<int> (w, h) + offset_;
+    const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
+    
+    return juce::Rectangle<int> (v.getX(), v.getY()) + offset_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -105,11 +103,9 @@ void EditPort::show (ObjectComponent* o)
     
     if (!getRealVisibleArea().reduced (40).contains (pt)) {
     //
-    const float f = getScale();
-    const int w   = Distance::unscaled (getWidth(), f);
-    const int h   = Distance::unscaled (getHeight(), f);
+    const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
     
-    offset_ = pt - core::Vector::Real (w / 4, h / 3).getPoint();
+    offset_ = pt - (v.getPoint() / 3);
     
     update();
     //

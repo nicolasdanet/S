@@ -38,6 +38,10 @@ public:
     {
     }
     
+    explicit Scaled (int x, int y, float f) : Scaled (juce::Point<int> (x, y), f)
+    {
+    }
+    
     Scaled (const Real&, float f);
 
 // -----------------------------------------------------------------------------------------------------------
