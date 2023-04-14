@@ -32,12 +32,10 @@ BangPainter::BangPainter (ObjectComponent* owner, const core::Object& object) : 
 
 void BangPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const int w = getScaled (std::round (width_.get() / 15.0f));
-    
     g.setColour (bangBackgroundColour_.get());
     g.fillRect (r);
     g.setColour (flashed_.get() ? bangFlashOnColour_.get() : bangFlashOffColour_.get());
-    g.fillEllipse (r.toFloat().reduced (w));
+    g.fillEllipse (r.toFloat().reduced (1));
 }
 
 juce::Rectangle<int> BangPainter::getRequiredBoundsForObject()
