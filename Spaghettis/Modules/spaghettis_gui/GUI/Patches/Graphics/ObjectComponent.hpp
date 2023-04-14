@@ -111,8 +111,7 @@ public:
 // MARK: -
 
 public:
-    core::Point::Local getLocalPosition() const;
-    core::Point::Real  getRealPosition() const;
+    core::Point::Real getRealPosition() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
