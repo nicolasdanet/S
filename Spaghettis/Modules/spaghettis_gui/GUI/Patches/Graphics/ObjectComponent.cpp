@@ -223,7 +223,7 @@ void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 
 void ObjectComponent::dragStart()
 {
-    origin_     = getLocalPosition();
+    origin_     = getRealPosition();
     dimensions_ = painter_->getDimensions();
 }
 
@@ -231,7 +231,7 @@ void ObjectComponent::drag (core::Vector::Real offset)
 {
     if (!isLocked()) {
     //
-    EditCommands::position (object_.getIdentifier(), Coordinates::localToReal (origin_ + offset.getPoint()));
+    EditCommands::position (object_.getIdentifier(), origin_ + offset.getPoint());
     //
     }
 }
@@ -338,7 +338,7 @@ core::Point::Local ObjectComponent::getLocalPosition() const
 
 core::Point::Real ObjectComponent::getRealPosition() const
 {
-    return Coordinates::localToReal (getLocalPosition());
+    return Coordinates::localToReal (core::Point::Local (x_.get(), y_.get()));
 }
 
 // -----------------------------------------------------------------------------------------------------------

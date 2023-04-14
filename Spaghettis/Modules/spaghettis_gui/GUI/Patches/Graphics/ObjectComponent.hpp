@@ -183,7 +183,7 @@ private:
     std::unique_ptr<PainterPolicy> painter_;
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;
-    core::Point::Local origin_;
+    core::Point::Real origin_;
     std::optional<core::Vector::Real> dimensions_;
     bool hasResize_;
     bool isLocked_;
