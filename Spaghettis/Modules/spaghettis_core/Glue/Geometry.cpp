@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2022 Jojo and others. */
+/* Copyright (c) 2023 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -12,61 +12,59 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* Negative coordinates are not well supported by the JUCE framework. */
-/* Hence the canvas size is arbitrary limited. */
-/* Then an offset is added to objects positions. */
-/* That way the origin is put at the middle. */
-/* It should not remain negative values. */
-/* That offset is removed later to keep compatiblity with legacy format. */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-struct Canvas {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static constexpr int getSize()
+juce::Point<int> Geometry::scaled (juce::Point<int> pt, float f)
 {
-    return (2 << 24);           /* Arbitrary. */
+    return juce::Point<int> (pt.x * f, pt.y * f);
 }
 
-static constexpr int getOffset()
+juce::Point<int> Geometry::unscaled (juce::Point<int> pt, float f)
 {
-    return getSize() >> 8;      /* Much smaller to allow zooming. */
+    return juce::Point<int> (pt.x / f, pt.y / f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-};
+namespace {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-struct Geometry {
+juce::Point<int> relocated (juce::Point<int> pt)
+{
+    const int x = pt.getX() + Canvas::getOffset();
+    const int y = pt.getY() + Canvas::getOffset();
+    
+    return juce::Point<int> (x, y);
+}
+
+juce::Point<int> unrelocated (juce::Point<int> pt)
+{
+    const int x = pt.getX() - Canvas::getOffset();
+    const int y = pt.getY() - Canvas::getOffset();
+    
+    return juce::Point<int> (x, y);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static juce::Point<int> scaled (juce::Point<int>, float);
-static juce::Point<int> unscaled (juce::Point<int>, float);
+juce::Point<int> Geometry::realToScaled (juce::Point<int> pt, float f)
+{
+    return scaled (relocated (pt), f);
+}
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static juce::Point<int> realToScaled (juce::Point<int>, float);
-static juce::Point<int> scaledToReal (juce::Point<int>, float);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-};
+juce::Point<int> Geometry::scaledToReal (juce::Point<int> pt, float f)
+{
+    return unrelocated (unscaled (pt, f));
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
