@@ -44,19 +44,9 @@ public:
 // MARK: -
 
 public:
-    juce::Point<int> getPoint() const
+    const juce::Point<int>& getPoint() const
     {
         return pt_;
-    }
-    
-    int getX() const
-    {
-        return pt_.getX();
-    }
-    
-    int getY() const
-    {
-        return pt_.getY();
     }
     
     float getScale() const
@@ -95,21 +85,11 @@ public:
 // MARK: -
 
 public:
-    juce::Point<int> getPoint() const
+    const juce::Point<int>& getPoint() const
     {
         return pt_;
     }
-    
-    int getX() const
-    {
-        return pt_.getX();
-    }
-    
-    int getY() const
-    {
-        return pt_.getY();
-    }
-    
+
 private:
     juce::Point<int> pt_;
 };

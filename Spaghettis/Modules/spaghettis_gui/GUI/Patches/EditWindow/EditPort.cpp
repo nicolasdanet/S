@@ -58,7 +58,7 @@ juce::Rectangle<int> EditPort::getRealVisibleArea() const
 {
     const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
     
-    return juce::Rectangle<int> (v.getX(), v.getY()) + offset_;
+    return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) + offset_;
 }
 
 // -----------------------------------------------------------------------------------------------------------

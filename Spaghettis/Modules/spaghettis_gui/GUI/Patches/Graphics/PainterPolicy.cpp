@@ -52,8 +52,8 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 
 void PainterPolicy::setDimensions (core::Vector::Real pt)
 {
-    const int w = pt.getX();
-    const int h = pt.getY();
+    const int w = pt.getPoint().getX();
+    const int h = pt.getPoint().getY();
     
     if (w > 0 && h > 0) {
     //
