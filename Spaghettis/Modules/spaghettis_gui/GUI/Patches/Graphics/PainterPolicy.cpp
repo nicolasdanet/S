@@ -148,7 +148,7 @@ float PainterPolicy::getScale() const
 
 core::Point::Scaled PainterPolicy::getLocalPositionScaled() const
 {
-    return Geometry::realToScaled (component_->getRealPosition(), getScale());
+    return core::Geometry::realToScaled (component_->getRealPosition(), getScale());
 }
 
 // -----------------------------------------------------------------------------------------------------------
