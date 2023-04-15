@@ -156,7 +156,7 @@ void EditPort::mouseWheelMoveZoom (float y)
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
-    if (dragOrigin_.has_value()) { return; }        /* Don't collide with drag operation. */
+    if (origin_.has_value()) { return; }    /* Don't collide with drag operation. */
     
     const float step = 200.0f / getScale();
     
@@ -178,17 +178,17 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
 
 void EditPort::dragViewStart()
 {
-    dragOrigin_ = offset_;
+    origin_ = offset_;
 }
 
 void EditPort::dragView (core::Vector::Real pt)
 {
-    if (dragOrigin_.has_value()) { offset_ = dragOrigin_.value() - pt.getPoint(); update(); }
+    if (origin_.has_value()) { offset_ = origin_.value() - pt.getPoint(); update(); }
 }
 
 void EditPort::dragViewEnd()
 {
-    dragOrigin_.reset();
+    origin_.reset();
 }
 
 // -----------------------------------------------------------------------------------------------------------

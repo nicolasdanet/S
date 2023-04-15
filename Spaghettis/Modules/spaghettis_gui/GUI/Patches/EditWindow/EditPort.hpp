@@ -98,8 +98,8 @@ private:
     EditView& view_;
     int zoom_;
     juce::Value v_;
-    core::Point::Real offset_;                          /* Real coordinates. */
-    std::optional<core::Point::Real> dragOrigin_;       /* Real coordinates. */
+    core::Point::Real offset_;
+    std::optional<core::Point::Real> origin_;
     std::unique_ptr<Locator> locator_;
 
 private:
