@@ -18,28 +18,18 @@ struct Coordinates {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static int realToLocal (int n)
-{
-    return Canvas::addOffset (n);
-}
-
 static juce::Point<int> realToLocal (juce::Point<int> pt)
 {
-    return juce::Point (realToLocal (pt.getX()), realToLocal (pt.getY()));
+    return juce::Point (Canvas::addOffset (pt.getX()), Canvas::addOffset (pt.getY()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static int localToReal (int n)
-{
-    return Canvas::removeOffset (n);
-}
-
 static juce::Point<int> localToReal (juce::Point<int> pt)
 {
-    return juce::Point (localToReal (pt.getX()), localToReal (pt.getY()));
+    return juce::Point (Canvas::removeOffset (pt.getX()), Canvas::removeOffset (pt.getY()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -65,7 +55,7 @@ template <class T> static juce::Point<T> unscaled (juce::Point<T> pt, float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-struct Distance {
+struct Geometry {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

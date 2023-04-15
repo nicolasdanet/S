@@ -12,7 +12,7 @@ namespace spaghettis::core::Vector {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-Scaled::Scaled (const Real& r, float f) : Scaled (Distance::scaled (r.getPoint(), f), f)
+Scaled::Scaled (const Real& r, float f) : Scaled (Geometry::scaled (r.getPoint(), f), f)
 {
 }
 
@@ -20,7 +20,7 @@ Scaled::Scaled (const Real& r, float f) : Scaled (Distance::scaled (r.getPoint()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Real::Real (const Scaled& s) : Real (Distance::unscaled (s.getPoint(), s.getScale()))
+Real::Real (const Scaled& s) : Real (Geometry::unscaled (s.getPoint(), s.getScale()))
 {
 }
 
