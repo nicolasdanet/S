@@ -151,16 +151,16 @@ void setObjectAttributesForObject (Group& group, t_object* o, const Tags& t)
         group.addParameter (Tag::X,
             NEEDS_TRANS ("Position X"),
             NEEDS_TRANS ("Box ordinate"),
-            Coordinates::realToLocal (object_getX (o)),
-            delegate).setHidden (true);
+            object_getX (o),
+            delegate);
     }
     
     if (t.contains (Tag::Y)) {
         group.addParameter (Tag::Y,
             NEEDS_TRANS ("Position Y"),
             NEEDS_TRANS ("Box abscissa"),
-            Coordinates::realToLocal (object_getY (o)),
-            delegate).setHidden (true);
+            object_getY (o),
+            delegate);
     }
     
     if (t.contains (Tag::Selected)) {

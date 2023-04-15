@@ -333,7 +333,7 @@ float ObjectComponent::getScale() const
 
 core::Point::Real ObjectComponent::getRealPosition() const
 {
-    return Coordinates::localToReal (core::Point::Local (x_.get(), y_.get()));
+    return core::Point::Real (x_.get(), y_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
