@@ -179,7 +179,7 @@ core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::
 
 core::Point::Real EditView::fromLocalScaledToReal (core::Point::Scaled pt) const
 {
-    return Coordinates::localToReal (Coordinates::unscaled (pt, getScale()));
+    return Geometry::scaledToReal (pt, getScale());
 }
 
 std::optional<core::Point::Real> EditView::getRealMousePosition() const

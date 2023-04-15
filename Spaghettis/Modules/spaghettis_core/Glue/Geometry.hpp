@@ -34,20 +34,6 @@ static juce::Point<int> localToReal (juce::Point<int> pt)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-template <class T> static juce::Point<T> scaled (juce::Point<T> pt, float f)
-{
-    return juce::Point<T> (pt.x * f, pt.y * f);
-}
-
-template <class T> static juce::Point<T> unscaled (juce::Point<T> pt, float f)
-{
-    return juce::Point<T> (pt.x / f, pt.y / f);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 };
 
@@ -61,14 +47,48 @@ struct Geometry {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> static juce::Point<T> scaled (juce::Point<T> pt, float f)
+static juce::Point<int> scaled (juce::Point<int> pt, float f)
 {
-    return juce::Point<T> (pt.x * f, pt.y * f);
+    return juce::Point<int> (pt.x * f, pt.y * f);
 }
 
-template <class T> static juce::Point<T> unscaled (juce::Point<T> pt, float f)
+static juce::Point<int> unscaled (juce::Point<int> pt, float f)
 {
-    return juce::Point<T> (pt.x / f, pt.y / f);
+    return juce::Point<int> (pt.x / f, pt.y / f);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::Point<int> relocated (juce::Point<int> pt)
+{
+    const int x = pt.getX() + Canvas::getOffset();
+    const int y = pt.getY() + Canvas::getOffset();
+    
+    return juce::Point<int> (x, y);
+}
+
+static juce::Point<int> unrelocated (juce::Point<int> pt)
+{
+    const int x = pt.getX() - Canvas::getOffset();
+    const int y = pt.getY() - Canvas::getOffset();
+    
+    return juce::Point<int> (x, y);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::Point<int> realToScaled (juce::Point<int> pt, float f)
+{
+    return scaled (relocated (pt), f);
+}
+
+static juce::Point<int> scaledToReal (juce::Point<int> pt, float f)
+{
+    return unrelocated (unscaled (pt, f));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -85,6 +105,7 @@ template <class T> static juce::Point<T> unscaled (juce::Point<T> pt, float f)
 // -----------------------------------------------------------------------------------------------------------
 
 namespace spaghettis { using Coordinates = core::Coordinates; }
+namespace spaghettis { using Geometry    = core::Geometry; }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
