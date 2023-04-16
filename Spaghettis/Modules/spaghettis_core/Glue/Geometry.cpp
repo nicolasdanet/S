@@ -31,18 +31,32 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+constexpr int getCanvasSize()
+{
+    return 65536;                   /* Arbitrary. */
+}
+
+constexpr int getCanvasOffset()
+{
+    return getCanvasSize() / 2;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::Point<int> relocated (juce::Point<int> pt)
 {
-    const int x = pt.getX() + Canvas::getOffset();
-    const int y = pt.getY() + Canvas::getOffset();
+    const int x = pt.getX() + getCanvasOffset();
+    const int y = pt.getY() + getCanvasOffset();
     
     return juce::Point<int> (x, y);
 }
 
 juce::Point<int> unrelocated (juce::Point<int> pt)
 {
-    const int x = pt.getX() - Canvas::getOffset();
-    const int y = pt.getY() - Canvas::getOffset();
+    const int x = pt.getX() - getCanvasOffset();
+    const int y = pt.getY() - getCanvasOffset();
     
     return juce::Point<int> (x, y);
 }
@@ -64,6 +78,18 @@ juce::Point<int> Geometry::realToScaled (juce::Point<int> pt, float f)
 juce::Point<int> Geometry::scaledToReal (juce::Point<int> pt, float f)
 {
     return unrelocated (unscaled (pt, f));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Rectangle<int> Geometry::getCanvasAt (const Point::Real& real, float f)
+{
+    const Vector::Scaled v (Vector::Real (getCanvasSize(), getCanvasSize()), f);
+    const Point::Scaled pt (core::Geometry::realToScaled (real, f));
+    
+    return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) - pt;
 }
 
 // -----------------------------------------------------------------------------------------------------------

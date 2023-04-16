@@ -259,9 +259,7 @@ void EditPort::setZoom (int n)
 
 void EditPort::update()
 {
-    const core::Point::Scaled pt = core::Geometry::realToScaled (offset_, getScale());
-    
-    view_.setBounds (juce::Rectangle<int> (core::Canvas::getSize(), core::Canvas::getSize()) - pt);
+    view_.setBounds (core::Geometry::getCanvasAt (offset_, getScale()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
