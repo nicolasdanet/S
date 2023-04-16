@@ -12,16 +12,6 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* Negative coordinates are not well supported by the JUCE framework. */
-/* Hence the canvas size is arbitrary limited. */
-/* Then an offset is added to objects positions. */
-/* That way the origin is put at the middle. */
-/* It should not remain negative values. */
-/* That offset is removed later to keep compatiblity with legacy format. */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 namespace Point {
 
 // -----------------------------------------------------------------------------------------------------------

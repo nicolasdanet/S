@@ -25,6 +25,15 @@ juce::Point<int> Geometry::unscaled (juce::Point<int> pt, float f)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+/* Negative coordinates are not well supported by the JUCE framework. */
+/* An offset is added to objects positions. */
+/* That way the origin is put at the middle. */
+/* It should not remain negative values. */
+/* That offset is removed later to keep compatiblity with legacy format. */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
