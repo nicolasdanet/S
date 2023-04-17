@@ -231,7 +231,7 @@ void ObjectComponent::drag (core::Vector::Real offset)
 {
     if (!isLocked()) {
     //
-    EditCommands::position (object_.getIdentifier(), origin_ + offset.getPoint());
+    EditCommands::position (object_.getIdentifier(), origin_ + offset);
     //
     }
 }

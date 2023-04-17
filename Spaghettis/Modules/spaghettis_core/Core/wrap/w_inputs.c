@@ -159,7 +159,7 @@ PD_LOCAL void inputs_copy (core::UniqueId u)
 
 PD_LOCAL void inputs_paste (core::UniqueId u, Point::Real pt)
 {
-    t_point m = point_make (pt.getX(), pt.getY()); unique_patchPaste (u, &m);
+    t_point m = point_make (pt.getPoint().getX(), pt.getPoint().getY()); unique_patchPaste (u, &m);
 }
 
 PD_LOCAL void inputs_duplicate (core::UniqueId u)
@@ -213,7 +213,7 @@ PD_LOCAL void inputs_snapObject (core::UniqueId u)
 
 PD_LOCAL void inputs_positionObject (core::UniqueId u, Point::Real pt)
 {
-    unique_objectPosition (u, pt.getX(), pt.getY());
+    unique_objectPosition (u, pt.getPoint().getX(), pt.getPoint().getY());
 }
 
 // -----------------------------------------------------------------------------------------------------------

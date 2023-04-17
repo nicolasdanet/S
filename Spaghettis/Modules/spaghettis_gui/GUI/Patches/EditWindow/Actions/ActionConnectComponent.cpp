@@ -30,8 +30,8 @@ ActionConnectComponent::ActionConnectComponent (core::Point::Scaled pt) :
 
 void ActionConnectComponent::paint (juce::Graphics& g)
 {
-    const juce::Point<float> a (getLocalPoint (getParentComponent(), start_).toFloat());
-    const juce::Point<float> b (getLocalPoint (getParentComponent(), end_).toFloat());
+    const juce::Point<float> a (getLocalPoint (getParentComponent(), start_.getPoint()).toFloat());
+    const juce::Point<float> b (getLocalPoint (getParentComponent(), end_.getPoint()).toFloat());
     
     g.setColour (connectColour_.get());
     
@@ -51,7 +51,7 @@ void ActionConnectComponent::set (core::Point::Scaled pt)
 
 void ActionConnectComponent::update()
 {
-    setBounds (juce::Rectangle<int> (start_, end_).expanded (2));
+    setBounds (juce::Rectangle<int> (start_.getPoint(), end_.getPoint()).expanded (2));
 }
 
 // -----------------------------------------------------------------------------------------------------------

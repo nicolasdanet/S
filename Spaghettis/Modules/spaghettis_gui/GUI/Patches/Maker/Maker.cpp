@@ -28,7 +28,7 @@ void Maker::showEditor (core::Point::Scaled pt, core::Point::Real real)
     pt_ = real;
     
     auto t = std::make_unique<MakerComponent> (owner_, v_, pt_);
-    auto r = juce::Rectangle<int> (4, 4).withCentre (owner_->localPointToGlobal (pt));
+    auto r = juce::Rectangle<int> (4, 4).withCentre (owner_->localPointToGlobal (pt.getPoint()));
     
     tracker_.track (juce::CallOutBox::launchAsynchronously (std::move (t), r, nullptr));
 }

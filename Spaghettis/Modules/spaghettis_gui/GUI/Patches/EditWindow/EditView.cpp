@@ -160,12 +160,12 @@ core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::
 {
     const core::Point::Real a = pt.value_or (b);
     
-    const int x1 = a.getX();
-    const int x2 = b.getX();
-    const int y1 = a.getY();
-    const int y2 = b.getY();
+    const int x1 = a.getPoint().getX();
+    const int x2 = b.getPoint().getX();
+    const int y1 = a.getPoint().getY();
+    const int y2 = b.getPoint().getY();
     
-    return core::Point::Real (juce::jmin (x1, x2), juce::jmin (y1, y2)) + d.getPoint();
+    return core::Point::Real (juce::jmin (x1, x2), juce::jmin (y1, y2)) + d;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -179,12 +179,12 @@ core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::
 
 core::Point::Real EditView::fromLocalScaledToReal (core::Point::Scaled pt) const
 {
-    return core::Geometry::scaledToReal (pt, getScale());
+    return core::Point::Real (pt);
 }
 
 std::optional<core::Point::Real> EditView::getRealMousePosition() const
 {
-    if (isMouseOver (true)) { return fromLocalScaledToReal (getMouseXYRelative()); }
+    if (isMouseOver (true)) { return fromLocalScaledToReal (core::Point::Scaled (getMouseXYRelative(), getScale())); }
 
     return {};
 }
@@ -518,11 +518,11 @@ void EditView::paste()
     const int n = Spaghettis()->getPreferences().getCached<int> (Tag::Editing, Tag::GridSize);
     
     const juce::Rectangle<int> area     = getRealVisibleArea();
-    const core::Point::Real centre      = area.getCentre();
+    const core::Point::Real centre      = core::Point::Real (area.getCentre());
     const core::Point::Real mouse       = getRealMousePosition().value_or (centre);
     const core::Vector::Real offset     = core::Vector::Real (n * 2, n * 2);
     const core::Point::Real selection   = getRealPositionOfSelectedObjects (offset).value_or (mouse);
-    const core::Point::Real pt          = area.contains (selection) ? selection : centre;
+    const core::Point::Real pt          = area.contains (selection.getPoint()) ? selection : centre;
     
     EditCommands::paste (getIdentifier(), pt);
     //
@@ -570,7 +570,7 @@ void EditView::requireMaker (bool isFromMenu)
     
     std::optional<core::Point::Scaled> pt;
     
-    if (isMouseOver (true)) { pt = getMouseXYRelative(); }
+    if (isMouseOver (true)) { pt = core::Point::Scaled (getMouseXYRelative(), getScale()); }
     
     bool useCentre = isFromMenu;
     
@@ -580,7 +580,7 @@ void EditView::requireMaker (bool isFromMenu)
     
     if (useCentre) {
         // pt   = getGlobalVisibleArea().getCentre();
-        real = getRealVisibleArea().getCentre();
+        real = core::Point::Real (getRealVisibleArea().getCentre());
     }
     
     if (pt.has_value() && real.has_value()) { maker_.showEditor (pt.value(), real.value()); }

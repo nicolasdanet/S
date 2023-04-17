@@ -106,8 +106,8 @@ juce::Rectangle<int> BoxPainter::getRequiredBoundsForObject()
     const juce::Font   font (getFont (f));
     const juce::String text (getText());
     
-    const float x = getLocalPositionScaled().getX();
-    const float y = getLocalPositionScaled().getY();
+    const float x = getLocalPositionScaled().getPoint().getX();
+    const float y = getLocalPositionScaled().getPoint().getY();
     const float w = font.getStringWidthFloat (text);
     const float h = font.getHeight();
     const float k = getTextMargins (f) * 2.0f;

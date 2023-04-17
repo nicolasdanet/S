@@ -60,8 +60,8 @@ void fillBuffer (t_buffer *b,
     
     buffer_appendSymbol (b, sym___hash__X);
     buffer_appendSymbol (b, s);
-    buffer_appendFloat (b, pt.getX());
-    buffer_appendFloat (b, pt.getY());
+    buffer_appendFloat (b, pt.getPoint().getX());
+    buffer_appendFloat (b, pt.getPoint().getY());
     
     for (int i = offset; i < n; ++i) { fillBufferAppendAtom (t, a[i]); }
     

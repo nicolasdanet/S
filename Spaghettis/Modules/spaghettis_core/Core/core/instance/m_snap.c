@@ -61,8 +61,8 @@ Point::Real instance_snapped (Point::Real pt)
 {
     if (instance_snapIsSet()) {
     //
-    const int x = instance_snapGetSnapped (pt.getX());
-    const int y = instance_snapGetSnapped (pt.getY());
+    const int x = instance_snapGetSnapped (pt.getPoint().getX());
+    const int y = instance_snapGetSnapped (pt.getPoint().getY());
     
     return Point::Real (x, y);
     //

@@ -19,7 +19,7 @@ namespace {
 
 PinComponent* getPinComponentAt (EditView* view, core::Point::Scaled pt)
 {
-    return dynamic_cast<PinComponent*> (view->getComponentAt (pt));
+    return dynamic_cast<PinComponent*> (view->getComponentAt (pt.getPoint()));
 }
 
 // -----------------------------------------------------------------------------------------------------------

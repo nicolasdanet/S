@@ -58,7 +58,7 @@ juce::Rectangle<int> EditPort::getRealVisibleArea() const
 {
     const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
     
-    return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) + offset_;
+    return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) + offset_.getPoint();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -101,11 +101,11 @@ void EditPort::show (ObjectComponent* o)
 {
     const core::Point::Real pt (o->getRealPosition());
     
-    if (!getRealVisibleArea().reduced (40).contains (pt)) {
+    if (!getRealVisibleArea().reduced (40).contains (pt.getPoint())) {
     //
     const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
     
-    offset_ = pt - (v.getPoint() / 3);
+    offset_ = pt - core::Vector::Real (v.getPoint() / 3);
     
     update();
     //
@@ -141,7 +141,7 @@ void EditPort::mouseWheelMoveDisplace (float x, float y)
         return static_cast<int> (f);
     };
     
-    offset_ += core::Vector::Real (-map (x), -map (y)).getPoint();
+    offset_ = offset_ + core::Vector::Real (-map (x), -map (y));
 }
 
 void EditPort::mouseWheelMoveZoom (float y)
@@ -183,7 +183,7 @@ void EditPort::dragViewStart()
 
 void EditPort::dragView (core::Vector::Real pt)
 {
-    if (origin_.has_value()) { offset_ = origin_.value() - pt.getPoint(); update(); }
+    if (origin_.has_value()) { offset_ = origin_.value() - pt; update(); }
 }
 
 void EditPort::dragViewEnd()
@@ -233,11 +233,11 @@ juce::Point<float> getOffsetAround (juce::Rectangle<float> r, juce::Point<float>
 
 void EditPort::setZoomAroundPoint (int n, core::Point::Real pt)
 {
-    const auto [a, b] = getRatioAround (getRealVisibleArea().toFloat(), pt.toFloat());
+    const auto [a, b] = getRatioAround (getRealVisibleArea().toFloat(), pt.getPoint().toFloat());
     
     setZoom (n);
     
-    offset_ = getOffsetAround (getRealVisibleArea().toFloat(), pt.toFloat(), a, b).toInt();
+    offset_ = core::Point::Real (getOffsetAround (getRealVisibleArea().toFloat(), pt.getPoint().toFloat(), a, b).toInt());
 }
 
 void EditPort::setZoom (int n)

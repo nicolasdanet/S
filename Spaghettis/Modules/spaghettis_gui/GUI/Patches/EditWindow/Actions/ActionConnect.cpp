@@ -61,7 +61,7 @@ void ActionConnect::connect()
 
 void ActionConnect::mouseDrag (const juce::MouseEvent& e)
 {
-    updateComponent (e.getPosition());
+    updateComponent (core::Point::Scaled (e.getPosition(), view_->getScale()));
 }
 
 void ActionConnect::mouseUp (const juce::MouseEvent& e)
