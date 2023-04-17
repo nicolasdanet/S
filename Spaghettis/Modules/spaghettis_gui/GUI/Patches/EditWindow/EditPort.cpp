@@ -146,8 +146,9 @@ void EditPort::mouseWheelMoveDisplace (float x, float y)
 
 void EditPort::mouseWheelMoveZoom (float y)
 {
-    const auto pt = view_.getRealMousePosition();
-    const int n   = getZoom();
+    const int n = getZoom();
+    
+    const std::optional<core::Point::Real> pt = view_.getMousePosition();
     
     if (pt.has_value() == false) { return; }        /* Happened in weird cases. */
     

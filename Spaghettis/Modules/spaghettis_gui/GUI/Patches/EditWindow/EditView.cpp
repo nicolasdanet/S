@@ -177,7 +177,7 @@ core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::optional<core::Point::Real> EditView::getRealMousePosition() const
+std::optional<core::Point::Real> EditView::getMousePosition() const
 {
     if (isMouseOver (true)) {
         return core::Point::Real (core::Point::Scaled (getMouseXYRelative(), getScale()));
@@ -516,7 +516,7 @@ void EditView::paste()
     
     const juce::Rectangle<int> area     = getRealVisibleArea();
     const core::Point::Real centre      = core::Point::Real (area.getCentre());
-    const core::Point::Real mouse       = getRealMousePosition().value_or (centre);
+    const core::Point::Real mouse       = getMousePosition().value_or (centre);
     const core::Vector::Real offset     = core::Vector::Real (n * 2, n * 2);
     const core::Point::Real selection   = getRealPositionOfSelectedObjects (offset).value_or (mouse);
     const core::Point::Real pt          = area.contains (selection.getPoint()) ? selection : centre;
@@ -563,7 +563,7 @@ void EditView::requireMaker (bool isFromMenu)
 {
     if (!isAbstractionOrInside()) {
     //
-    std::optional<core::Point::Real> pt (getRealMousePosition());
+    std::optional<core::Point::Real> pt (getMousePosition());
     
     bool useCentre = isFromMenu;
     
