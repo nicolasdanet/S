@@ -99,7 +99,7 @@ bool EditPort::locate (core::UniqueId u)
 
 void EditPort::show (ObjectComponent* o)
 {
-    const core::Point::Real pt (o->getRealPosition());
+    const core::Point::Real pt (o->getPosition());
     
     if (!getRealVisibleArea().reduced (40).contains (pt.getPoint())) {
     //

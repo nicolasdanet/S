@@ -223,7 +223,7 @@ void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 
 void ObjectComponent::dragStart()
 {
-    origin_     = getRealPosition();
+    origin_     = getPosition();
     dimensions_ = painter_->getDimensions();
 }
 
@@ -331,7 +331,7 @@ float ObjectComponent::getScale() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Point::Real ObjectComponent::getRealPosition() const
+core::Point::Real ObjectComponent::getPosition() const
 {
     return core::Point::Real (x_.get(), y_.get());
 }
