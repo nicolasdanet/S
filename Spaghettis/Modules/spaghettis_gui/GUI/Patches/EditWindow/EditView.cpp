@@ -151,32 +151,6 @@ void EditView::setMouseCursorRecursive (const juce::MouseCursor& m)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::Real b, core::Vector::Real d)
-{
-    const core::Point::Real a = pt.value_or (b);
-    
-    const int x1 = a.getPoint().getX();
-    const int x2 = b.getPoint().getX();
-    const int y1 = a.getPoint().getY();
-    const int y2 = b.getPoint().getY();
-    
-    return core::Point::Real (juce::jmin (x1, x2), juce::jmin (y1, y2)) + d;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 std::optional<core::Point::Real> EditView::getMousePosition() const
 {
     if (isMouseOver (true)) {
@@ -184,20 +158,6 @@ std::optional<core::Point::Real> EditView::getMousePosition() const
     }
 
     return {};
-}
-
-std::optional<core::Point::Real> EditView::getRealPositionOfSelectedObjects (core::Vector::Real offset) const
-{
-    std::optional<core::Point::Real> pt;
-    
-    auto f = [&pt, offset](const auto& p)
-    {
-        pt = getMinimum (pt, p->getRealPosition(), offset);
-    };
-
-    objects_.forEachSelected (f);
-    
-    return pt;
 }
 
 juce::Rectangle<int> EditView::getRealVisibleArea() const
@@ -508,18 +468,61 @@ void EditView::copy()
     }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+core::Point::Real getMinimum (std::optional<core::Point::Real> pt, core::Point::Real b)
+{
+    const core::Point::Real a = pt.value_or (b);
+    
+    const int x1 = a.getPoint().getX();
+    const int x2 = b.getPoint().getX();
+    const int y1 = a.getPoint().getY();
+    const int y2 = b.getPoint().getY();
+    
+    return core::Point::Real (juce::jmin (x1, x2), juce::jmin (y1, y2));
+}
+
+std::optional<core::Point::Real> getPositionNextSelectedObjects (Table<ObjectComponent>& objects)
+{
+    std::optional<core::Point::Real> pt;
+    
+    const int n = Spaghettis()->getPreferences().getCached<int> (Tag::Editing, Tag::GridSize);
+    
+    auto f = [&pt, n](const auto& p)
+    {
+        pt = getMinimum (pt, p->getRealPosition()) + core::Vector::Real (n * 2, n * 2);
+    };
+
+    objects.forEachSelected (f);
+    
+    return pt;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::paste()
 {
     if (!isAbstractionOrInside()) {
     //
-    const int n = Spaghettis()->getPreferences().getCached<int> (Tag::Editing, Tag::GridSize);
-    
-    const juce::Rectangle<int> area     = getRealVisibleArea();
-    const core::Point::Real centre      = core::Point::Real (area.getCentre());
-    const core::Point::Real mouse       = getMousePosition().value_or (centre);
-    const core::Vector::Real offset     = core::Vector::Real (n * 2, n * 2);
-    const core::Point::Real selection   = getRealPositionOfSelectedObjects (offset).value_or (mouse);
-    const core::Point::Real pt          = area.contains (selection.getPoint()) ? selection : centre;
+    const juce::Rectangle<int> area   = getRealVisibleArea();
+    const core::Point::Real centre    = core::Point::Real (area.getCentre());
+    const core::Point::Real mouse     = getMousePosition().value_or (centre);
+    const core::Point::Real selection = getPositionNextSelectedObjects (objects_).value_or (mouse);
+    const core::Point::Real pt        = area.contains (selection.getPoint()) ? selection : centre;
     
     EditCommands::paste (getIdentifier(), pt);
     //

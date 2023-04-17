@@ -90,7 +90,6 @@ public:
 
 private:
     std::optional<core::Point::Real> getMousePosition() const;
-    std::optional<core::Point::Real> getRealPositionOfSelectedObjects (core::Vector::Real) const;
     juce::Rectangle<int> getRealVisibleArea() const;
     
 // -----------------------------------------------------------------------------------------------------------
