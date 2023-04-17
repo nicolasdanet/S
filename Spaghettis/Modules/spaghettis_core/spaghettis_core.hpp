@@ -47,6 +47,7 @@
 
 #include "Glue/Vector.hpp"
 #include "Glue/Point.hpp"
+#include "Glue/Area.hpp"
 #include "Glue/Geometry.hpp"
 #include "Glue/Cast.hpp"
 #include "Glue/Identifiers.hpp"
