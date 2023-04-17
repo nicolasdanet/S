@@ -563,11 +563,7 @@ void EditView::requireMaker (bool isFromMenu)
 {
     if (!isAbstractionOrInside()) {
     //
-    std::optional<core::Point::Real> real (getRealMousePosition());
-    
-    std::optional<core::Point::Scaled> pt;
-    
-    if (isMouseOver (true)) { pt = core::Point::Scaled (getMouseXYRelative(), getScale()); }
+    std::optional<core::Point::Real> pt (getRealMousePosition());
     
     bool useCentre = isFromMenu;
     
@@ -576,18 +572,17 @@ void EditView::requireMaker (bool isFromMenu)
     #endif
     
     if (useCentre) {
-        // pt   = getGlobalVisibleArea().getCentre();
-        real = core::Point::Real (getRealVisibleArea().getCentre());
+        pt = core::Point::Real (getRealVisibleArea().getCentre());
     }
     
-    if (pt.has_value() && real.has_value()) { maker_.showEditor (pt.value(), real.value()); }
+    if (pt.has_value()) { maker_.showEditor (core::Point::Scaled (pt.value(), getScale())); }
     //
     }
 }
 
 void EditView::openMaker (core::Point::Scaled pt)
 {
-    maker_.showEditor (pt, core::Point::Real (pt));
+    maker_.showEditor (pt);
 }
 
 void EditView::handleMaker (core::Point::Real pt, const juce::String& s)

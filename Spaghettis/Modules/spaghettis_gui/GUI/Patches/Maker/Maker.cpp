@@ -21,11 +21,11 @@ Maker::Maker (EditView* owner) : owner_ (owner), tracker_ (owner), v_()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Maker::showEditor (core::Point::Scaled pt, core::Point::Real real)
+void Maker::showEditor (core::Point::Scaled pt)
 {
     Maker::setActive (v_, true);
     
-    pt_ = real;
+    pt_ = core::Point::Real (pt);
     
     auto t = std::make_unique<MakerComponent> (owner_, v_, pt_);
     auto r = juce::Rectangle<int> (4, 4).withCentre (owner_->localPointToGlobal (pt.getPoint()));

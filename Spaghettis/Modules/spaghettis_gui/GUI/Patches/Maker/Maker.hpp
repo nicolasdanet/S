@@ -33,7 +33,7 @@ public:
 // MARK: -
 
 public:
-    void showEditor (core::Point::Scaled, core::Point::Real);
+    void showEditor (core::Point::Scaled);
     void hideEditor();
 
 // -----------------------------------------------------------------------------------------------------------
