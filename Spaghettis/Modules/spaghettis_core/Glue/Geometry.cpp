@@ -93,10 +93,9 @@ juce::Point<int> Geometry::scaledToReal (juce::Point<int> pt, float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> Geometry::getCanvasAt (const Point::Real& real, float f)
+juce::Rectangle<int> Geometry::getCanvasAt (const Point::Scaled& pt)
 {
-    const Vector::Scaled v (Vector::Real (getCanvasSize(), getCanvasSize()), f);
-    const Point::Scaled pt (real, f);
+    const Vector::Scaled v (Vector::Real (getCanvasSize(), getCanvasSize()), pt.getScale());
     
     return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) - pt.getPoint();
 }

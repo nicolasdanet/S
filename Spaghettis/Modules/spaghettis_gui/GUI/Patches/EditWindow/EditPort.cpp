@@ -259,7 +259,7 @@ void EditPort::setZoom (int n)
 
 void EditPort::update()
 {
-    view_.setBounds (core::Geometry::getCanvasAt (offset_, getScale()));
+    view_.setBounds (core::Geometry::getCanvasAt (core::Point::Scaled (offset_, getScale())));
 }
 
 // -----------------------------------------------------------------------------------------------------------
