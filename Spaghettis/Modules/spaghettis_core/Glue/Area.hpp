@@ -50,8 +50,7 @@ public:
 
 public:
     std::tuple<float, float> getProportions (core::Point::Real);
-    
-    core::Point::Real  getOffsetForProportions (core::Point::Real pt, float rX, float rY);
+    core::Point::Real getOffsetForProportions (core::Point::Real, float, float);
     
 private:
     juce::Rectangle<int> r_;
