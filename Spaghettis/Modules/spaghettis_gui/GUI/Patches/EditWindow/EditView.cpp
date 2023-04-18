@@ -160,9 +160,9 @@ std::optional<core::Point::Real> EditView::getMousePosition() const
     return {};
 }
 
-juce::Rectangle<int> EditView::getRealVisibleArea() const
+core::Area::Real EditView::getVisibleArea() const
 {
-    return getPort()->getRealVisibleArea();
+    return getPort()->getVisibleArea();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -518,7 +518,7 @@ void EditView::paste()
 {
     if (!isAbstractionOrInside()) {
     //
-    const juce::Rectangle<int> area   = getRealVisibleArea();
+    const juce::Rectangle<int> area   = getVisibleArea();
     const core::Point::Real centre    = core::Point::Real (area.getCentre());
     const core::Point::Real mouse     = getMousePosition().value_or (centre);
     const core::Point::Real selection = getPositionNextSelectedObjects (objects_).value_or (mouse);
@@ -575,7 +575,7 @@ void EditView::requireMaker (bool isFromMenu)
     #endif
     
     if (useCentre) {
-        pt = core::Point::Real (getRealVisibleArea().getCentre());
+        pt = core::Point::Real (getVisibleArea().getCentre());
     }
     
     if (pt.has_value()) { maker_.showEditor (core::Point::Scaled (pt.value(), getScale())); }
