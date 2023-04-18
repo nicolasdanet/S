@@ -50,6 +50,7 @@ public:
 
 public:
     std::tuple<float, float> getProportions (core::Point::Real);
+    
     core::Point::Real getOffsetForProportions (core::Point::Real, float, float);
     
 private:
