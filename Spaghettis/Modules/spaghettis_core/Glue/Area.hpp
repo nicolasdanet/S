@@ -43,6 +43,15 @@ public:
     {
         return core::Point::Real (r_.getCentre());
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    std::tuple<float, float> getProportions (core::Point::Real);
+    
+    core::Point::Real  getOffsetForProportions (core::Point::Real pt, float rX, float rY);
     
 private:
     juce::Rectangle<int> r_;

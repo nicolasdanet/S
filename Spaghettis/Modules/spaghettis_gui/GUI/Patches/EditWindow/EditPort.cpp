@@ -194,49 +194,15 @@ void EditPort::dragViewEnd()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-std::tuple<float, float> getRatioAround (juce::Rectangle<float> r, juce::Point<float> pt)
-{
-    jassert (r.contains (pt));
-    
-    const float dX = pt.getX() - r.getX();
-    const float dY = pt.getY() - r.getY();
-    const float rX = dX / r.getWidth();
-    const float rY = dY / r.getHeight();
-    
-    return { rX, rY };
-}
-
-juce::Point<float> getOffsetAround (juce::Rectangle<float> r, juce::Point<float> pt, float rX, float rY)
-{
-    const float dX = rX * r.getWidth();
-    const float dY = rY * r.getHeight();
-    const float x  = pt.getX() - dX;
-    const float y  = pt.getY() - dY;
-    
-    return { x, y };
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void EditPort::setZoomAroundPoint (int n, core::Point::Real pt)
 {
-    // const auto [a, b] = getRatioAround (getVisibleArea().toFloat(), pt.getPoint().toFloat());
+    const auto [a, b] = getVisibleArea().getProportions (pt);
     
-    // setZoom (n);
+    /* Do NOT cache visible area. */
     
-    // offset_ = core::Point::Real (getOffsetAround (getVisibleArea().toFloat(), pt.getPoint().toFloat(), a, b).toInt());
+    setZoom (n);
+    
+    offset_ = getVisibleArea().getOffsetForProportions (pt, a, b);
 }
 
 void EditPort::setZoom (int n)
