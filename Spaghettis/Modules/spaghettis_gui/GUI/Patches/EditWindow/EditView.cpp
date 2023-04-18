@@ -518,11 +518,11 @@ void EditView::paste()
 {
     if (!isAbstractionOrInside()) {
     //
-    const juce::Rectangle<int> area   = getVisibleArea();
-    const core::Point::Real centre    = core::Point::Real (area.getCentre());
+    const core::Area::Real area       = getVisibleArea();
+    const core::Point::Real centre    = area.getCentre();
     const core::Point::Real mouse     = getMousePosition().value_or (centre);
     const core::Point::Real selection = getPositionNextSelectedObjects (objects_).value_or (mouse);
-    const core::Point::Real pt        = area.contains (selection.getPoint()) ? selection : centre;
+    const core::Point::Real pt        = area.contains (selection) ? selection : centre;
     
     EditCommands::paste (getIdentifier(), pt);
     //

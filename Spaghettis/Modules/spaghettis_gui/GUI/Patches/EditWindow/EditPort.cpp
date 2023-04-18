@@ -56,9 +56,7 @@ float EditPort::getScale() const
 
 core::Area::Real EditPort::getVisibleArea() const
 {
-    const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
-    
-    return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) + offset_.getPoint();
+    return core::Area::Real (offset_, core::Vector::Scaled (getWidth(), getHeight(), getScale()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -101,7 +99,7 @@ void EditPort::show (ObjectComponent* o)
 {
     const core::Point::Real pt (o->getPosition());
     
-    if (!getVisibleArea().reduced (40).contains (pt.getPoint())) {
+    if (!getVisibleArea().contains (pt)) {
     //
     const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
     
@@ -234,11 +232,11 @@ juce::Point<float> getOffsetAround (juce::Rectangle<float> r, juce::Point<float>
 
 void EditPort::setZoomAroundPoint (int n, core::Point::Real pt)
 {
-    const auto [a, b] = getRatioAround (getVisibleArea().toFloat(), pt.getPoint().toFloat());
+    // const auto [a, b] = getRatioAround (getVisibleArea().toFloat(), pt.getPoint().toFloat());
     
-    setZoom (n);
+    // setZoom (n);
     
-    offset_ = core::Point::Real (getOffsetAround (getVisibleArea().toFloat(), pt.getPoint().toFloat(), a, b).toInt());
+    // offset_ = core::Point::Real (getOffsetAround (getVisibleArea().toFloat(), pt.getPoint().toFloat(), a, b).toInt());
 }
 
 void EditPort::setZoom (int n)
