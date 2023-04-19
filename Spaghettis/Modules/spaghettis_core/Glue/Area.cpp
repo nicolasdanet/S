@@ -12,7 +12,7 @@ namespace spaghettis::core::Area {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::tuple<float, float> Real::getProportions (core::Point::Real pt)
+std::tuple<float, float> Real::getProportions (Point::Real pt)
 {
     if (!contains (pt)) { return { 0.0f, 0.0f }; }
     
@@ -24,14 +24,14 @@ std::tuple<float, float> Real::getProportions (core::Point::Real pt)
     return { rX, rY };
 }
 
-core::Point::Real Real::getOffsetForProportions (core::Point::Real pt, float rX, float rY)
+Point::Real Real::getOffsetForProportions (Point::Real pt, float rX, float rY)
 {
     const float dX = rX * r_.getWidth();
     const float dY = rY * r_.getHeight();
     const float x  = pt.getPoint().getX() - dX;
     const float y  = pt.getPoint().getY() - dY;
     
-    return core::Point::Real (static_cast<int> (x), static_cast<int> (y));
+    return Point::Real (static_cast<int> (x), static_cast<int> (y));
 }
 
 // -----------------------------------------------------------------------------------------------------------

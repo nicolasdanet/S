@@ -34,14 +34,14 @@ public:
 // MARK: -
 
 public:
-    bool contains (core::Point::Real pt) const
+    bool contains (Point::Real pt) const
     {
         return r_.contains (pt.getPoint());
     }
     
-    core::Point::Real getCentre() const
+    Point::Real getCentre() const
     {
-        return core::Point::Real (r_.getCentre());
+        return  Point::Real (r_.getCentre());
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -49,9 +49,9 @@ public:
 // MARK: -
 
 public:
-    std::tuple<float, float> getProportions (core::Point::Real);
+    std::tuple<float, float> getProportions (Point::Real);
     
-    core::Point::Real getOffsetForProportions (core::Point::Real, float, float);
+    Point::Real getOffsetForProportions (Point::Real, float, float);
     
 private:
     juce::Rectangle<int> r_;
