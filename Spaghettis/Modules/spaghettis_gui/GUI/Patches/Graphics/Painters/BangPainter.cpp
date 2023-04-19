@@ -57,6 +57,11 @@ std::optional<core::Vector::Real> BangPainter::getDimensions()
     const int w = width_.get(); return core::Vector::Real (w, w);
 }
 
+void BangPainter::setDimensions (core::Vector::Real)
+{
+
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

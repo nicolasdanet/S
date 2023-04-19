@@ -50,36 +50,6 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PainterPolicy::setDimensions (core::Vector::Real pt)
-{
-    const int w = pt.getPoint().getX();
-    const int h = pt.getPoint().getY();
-    
-    if (w > 0 && h > 0) {
-    //
-    core::Group group    = object_.getCopyOfParameters();
-    const bool hasWidth  = group.hasParameter (Tag::Width);
-    const bool hasHeight = group.hasParameter (Tag::Height);
-    
-    if (hasWidth) {
-    //
-    group.getParameter (Tag::Width).changeValue (hasHeight ? w : juce::jmax (w, h));
-    
-    if (hasHeight) {
-        group.getParameter (Tag::Height).changeValue (h);
-    }
-    
-    EditCommands::parameters (object_.getIdentifier(), group);
-    //
-    }
-    //
-    }
-}
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -142,14 +112,42 @@ float PainterPolicy::getScale() const
     return component_->getScale();
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 core::Point::Scaled PainterPolicy::getPosition() const
 {
     return core::Point::Scaled (component_->getPosition(), getScale());
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/*
+void PainterPolicy::setDimensions (core::Vector::Real pt)
+{
+    const int w = pt.getPoint().getX();
+    const int h = pt.getPoint().getY();
+    
+    if (w > 0 && h > 0) {
+    //
+    core::Group group    = object_.getCopyOfParameters();
+    const bool hasWidth  = group.hasParameter (Tag::Width);
+    const bool hasHeight = group.hasParameter (Tag::Height);
+    
+    if (hasWidth) {
+    //
+    group.getParameter (Tag::Width).changeValue (hasHeight ? w : juce::jmax (w, h));
+    
+    if (hasHeight) {
+        group.getParameter (Tag::Height).changeValue (h);
+    }
+    
+    EditCommands::parameters (object_.getIdentifier(), group);
+    //
+    }
+    //
+    }
+}
+*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
