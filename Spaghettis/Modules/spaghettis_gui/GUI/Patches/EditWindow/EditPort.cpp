@@ -103,7 +103,7 @@ void EditPort::show (ObjectComponent* o)
     //
     const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
     
-    offset_ = pt - core::Vector::Real (v.getPoint() / 3);
+    offset_ = pt - (v / 3);
     
     update();
     //
