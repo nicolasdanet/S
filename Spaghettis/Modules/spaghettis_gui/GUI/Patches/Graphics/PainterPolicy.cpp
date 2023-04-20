@@ -81,7 +81,11 @@ void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
     
     paintObject (r, g);
 }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 {
     juce::Rectangle<int> t = getRequiredBoundsForObject();
@@ -95,10 +99,6 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
     
     return t;
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 float PainterPolicy::getScale() const
 {
@@ -114,8 +114,7 @@ core::Point::Scaled PainterPolicy::getPosition() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
-void PainterPolicy::setDimensions (core::Vector::Real pt)
+void PainterPolicy::setParametersWidthAndHeight (core::Vector::Real pt)
 {
     const int w = pt.getPoint().getX();
     const int h = pt.getPoint().getY();
@@ -140,7 +139,6 @@ void PainterPolicy::setDimensions (core::Vector::Real pt)
     //
     }
 }
-*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
