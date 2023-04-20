@@ -86,7 +86,6 @@ public:
 protected:
     ObjectComponent* component_;
     core::Object object_;
-    core::Cached<juce::Colour> patchBackgroundColour_;
     core::Cached<juce::Colour> labelBackgroundColour_;
     core::Cached<juce::Colour> labelTextColour_;
     int objectWidth_;

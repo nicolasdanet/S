@@ -15,14 +15,12 @@ namespace spaghettis {
 PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object) :
     component_ (owner),
     object_ (object),
-    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),
     labelBackgroundColour_ (Spaghettis()->getCachedColour (Tag::LabelBackground)),
     labelTextColour_ (Spaghettis()->getCachedColour (Tag::LabelText)),
     objectWidth_ (0)
 {
     jassert (owner);
     
-    patchBackgroundColour_.attach (repaint (component_));
     labelBackgroundColour_.attach (repaint (component_));
     labelTextColour_.attach (repaint (component_));
 }
@@ -61,15 +59,12 @@ void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
 
         const juce::Rectangle<int> t (r.removeFromLeft (objectWidth_));
         
-        g.setColour (patchBackgroundColour_.get());
-        g.fillRect (r);
-        g.setColour (labelBackgroundColour_.get());
-        g.fillRect (r.withTrimmedLeft (2));
-        
         const juce::Font font (getLabelFont());
         
         if (r.getHeight() >= font.getHeight()) {
         //
+        g.setColour (labelBackgroundColour_.get());
+        g.fillRect (r);
         g.setColour (labelTextColour_.get());
         g.setFont (font);
         g.drawText (component_->getLabel(), r.translated (-1, -1), juce::Justification::bottomRight, true);
