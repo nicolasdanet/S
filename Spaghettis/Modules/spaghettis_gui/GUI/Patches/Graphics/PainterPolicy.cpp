@@ -81,22 +81,14 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
 {
     juce::Rectangle<int> t = getRequiredBoundsForObject();
     
-    if (component_->isInsideRunView()) {    /* Add label bounds. */
+    objectWidth_ = t.getWidth();
     
-    auto f = [this] (juce::Rectangle<int> r)
-    {
-    objectWidth_ = r.getWidth();
+    if (component_->isInsideRunView()) {            /* Add label bounds. */
     
-    if (component_->hasLabel()) {
-        const int w = objectWidth_ + getLabelFont().getStringWidthFloat (component_->getLabel());
-        r.setWidth (RunLayout::snapWidthToFitColumns (w));
-    }
-    
-    return r;
-    };
-
-    t = f (t);
-    
+        if (component_->hasLabel()) {
+            const int w = getLabelFont().getStringWidthFloat (component_->getLabel());
+            t.setWidth (RunLayout::snapWidthToFitColumns (objectWidth_ + w));
+        }
     }
     
     return t;
