@@ -42,29 +42,21 @@ public:
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
     void paint (juce::Rectangle<int>, juce::Graphics&);
-    
-    juce::Rectangle<int> getRequiredBounds();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    float getScale() const;
+    juce::Rectangle<int> getRequiredBounds();
 
+    float getScale() const;
+    
     core::Point::Scaled getPosition() const;
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-private:
-    juce::Rectangle<int> paintLabel (juce::Rectangle<int>, juce::Graphics&);
-    juce::Rectangle<int> getRequiredBoundsWithLabel (juce::Rectangle<int>);
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -90,7 +82,7 @@ protected:
     core::Cached<juce::Colour> patchBackgroundColour_;
     core::Cached<juce::Colour> labelBackgroundColour_;
     core::Cached<juce::Colour> labelTextColour_;
-    float objectWidth_;
+    int objectWidth_;
 
 public:
     static int pinHeight (float f) { return static_cast<int> (std::round (4 * f)); }

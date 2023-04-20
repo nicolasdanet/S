@@ -36,7 +36,7 @@ RunView::~RunView()
 void RunView::paint (juce::Graphics& g)
 {
     g.fillAll (patchBackgroundColour_.get());
-    
+
     if (layout_.isEmpty()) {
     //
     const juce::String text (NEEDS_TRANS ("Widgets"));
