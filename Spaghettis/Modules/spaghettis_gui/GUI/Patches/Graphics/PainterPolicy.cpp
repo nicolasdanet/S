@@ -57,22 +57,23 @@ int getLabelWidth (const juce::String& s)
 void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
 {
     if (component_->isInsideRunView() && component_->hasLabel()) {              /* Paint label. */
-
-        const juce::Rectangle<int> t (r.removeFromLeft (objectWidth_));
-        
-        const juce::Font font (getLabelFont());
-        
-        if (r.getHeight() >= font.getHeight()) {
-        //
-        g.setColour (labelBackgroundColour_.get());
-        g.fillRect (r);
-        g.setColour (labelTextColour_.get());
-        g.setFont (font);
-        g.drawText (component_->getLabel(), r.translated (-1, -1), juce::Justification::bottomRight, true);
-        //
-        }
-        
-        r = t;
+    //
+    const juce::Rectangle<int> t (r.removeFromLeft (objectWidth_));
+    
+    const juce::Font font (getLabelFont());
+    
+    if (r.getHeight() >= font.getHeight()) {
+    //
+    g.setColour (labelBackgroundColour_.get());
+    g.fillRect (r);
+    g.setColour (labelTextColour_.get());
+    g.setFont (font);
+    g.drawText (component_->getLabel(), r.translated (-1, -1), juce::Justification::bottomRight, true);
+    //
+    }
+    
+    r = t;
+    //
     }
     
     paintObject (r, g);
@@ -89,8 +90,9 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
     objectWidth_ = t.getWidth();
     
     if (component_->isInsideRunView() && component_->hasLabel()) {              /* Add label bounds. */
-    
-        t.setWidth (RunLayout::snapWidthToFitColumns (objectWidth_ + getLabelWidth (component_->getLabel())));
+    //
+    t.setWidth (RunLayout::snapWidthToFitColumns (objectWidth_ + getLabelWidth (component_->getLabel())));
+    //
     }
     
     return t;
