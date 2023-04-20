@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-BoxPainter::BoxPainter (ObjectComponent* owner, const core::Object& object) : PainterPolicy (owner, object),
+BoxPainter::BoxPainter (ObjectComponent* owner) :
+    PainterPolicy (owner),
     boxBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxBackground)),
     boxTextColour_ (Spaghettis()->getCachedColour (Tag::BoxText)),
     boxWrongColour_ (Spaghettis()->getCachedColour (Tag::BoxWrong)),

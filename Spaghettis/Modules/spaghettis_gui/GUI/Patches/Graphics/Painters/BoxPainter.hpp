@@ -19,7 +19,7 @@ class BoxPainter : public PainterPolicy {
 // MARK: -
 
 public:
-    explicit BoxPainter (ObjectComponent*, const core::Object&);
+    explicit BoxPainter (ObjectComponent*);
     
     ~BoxPainter() = default;
 

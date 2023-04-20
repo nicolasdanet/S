@@ -12,9 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PainterPolicy::PainterPolicy (ObjectComponent* owner, const core::Object& object) :
+PainterPolicy::PainterPolicy (ObjectComponent* owner) :
     component_ (owner),
-    object_ (object),
+    object_ (owner->getObject()),
     labelBackgroundColour_ (Spaghettis()->getCachedColour (Tag::LabelBackground)),
     labelTextColour_ (Spaghettis()->getCachedColour (Tag::LabelText)),
     objectWidth_ (0)

@@ -21,9 +21,9 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core
 {
     juce::String t (object.get<juce::String> (Tag::Attributes, Tag::Class));
     
-    if (t == "bng") { return std::make_unique<BangPainter> (owner, object); }
+    if (t == "bng") { return std::make_unique<BangPainter> (owner); }
     else {
-        return std::make_unique<BoxPainter> (owner, object);
+        return std::make_unique<BoxPainter> (owner);
     }
 }
 

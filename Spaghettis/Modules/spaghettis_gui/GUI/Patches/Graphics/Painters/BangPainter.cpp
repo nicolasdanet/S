@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-BangPainter::BangPainter (ObjectComponent* owner, const core::Object& object) : PainterPolicy (owner, object),
+BangPainter::BangPainter (ObjectComponent* owner) :
+    PainterPolicy (owner),
     bangBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BangBackground)),
     bangFlashOffColour_ (Spaghettis()->getCachedColour (Tag::BangFlashOff)),
     bangFlashOnColour_ (Spaghettis()->getCachedColour (Tag::BangFlashOn)),
