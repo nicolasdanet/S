@@ -17,11 +17,9 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const core::Object& object)
+std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const juce::String& type)
 {
-    juce::String t (object.get<juce::String> (Tag::Attributes, Tag::Class));
-    
-    if (t == "bng") { return std::make_unique<BangPainter> (owner); }
+    if (type == "bng") { return std::make_unique<BangPainter> (owner); }
     else {
         return std::make_unique<BoxPainter> (owner);
     }
@@ -48,7 +46,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     label_ (object.getCached<juce::String> (Tag::Parameters, Tag::Label, true)),
     boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
-    painter_ (createPainter (this, object)),
+    painter_ (createPainter (this, object.get<juce::String> (Tag::Attributes, Tag::Class))),
     hasResize_ (false),
     isLocked_ (object_.isLocked()),
     isInsideRunView_ (getEditView() == nullptr)

@@ -20,6 +20,7 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner) :
     objectWidth_ (0)
 {
     jassert (owner);
+    jassert (object_.isObject());
     
     labelBackgroundColour_.attach (repaint (component_));
     labelTextColour_.attach (repaint (component_));
