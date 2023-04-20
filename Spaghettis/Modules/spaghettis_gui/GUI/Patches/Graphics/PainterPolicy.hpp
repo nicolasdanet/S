@@ -67,7 +67,9 @@ public:
 // MARK: -
 
 protected:
-    void setParametersWidthAndHeight (core::Vector::Real pt);
+    juce::Rectangle<int> getRequiredBoundsForObjectFromDimensions();
+    
+    void setDimensionsByParameters (core::Vector::Real);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

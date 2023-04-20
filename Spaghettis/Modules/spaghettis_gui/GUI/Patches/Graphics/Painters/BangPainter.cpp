@@ -36,17 +36,12 @@ void BangPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.setColour (bangBackgroundColour_.get());
     g.fillRect (r);
     g.setColour (flashed_.get() ? bangFlashOnColour_.get() : bangFlashOffColour_.get());
-    g.fillEllipse (r.toFloat().reduced (1));
+    g.fillEllipse (r.reduced (1).toFloat());
 }
 
 juce::Rectangle<int> BangPainter::getRequiredBoundsForObject()
 {
-    const int w = width_.get();
-    
-    const core::Vector::Scaled v (core::Vector::Real (w, w), getScale());
-    const core::Point::Scaled pt (getPosition());
-    
-    return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) + pt.getPoint();
+    return getRequiredBoundsForObjectFromDimensions();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -58,9 +53,9 @@ std::optional<core::Vector::Real> BangPainter::getDimensions()
     const int w = width_.get(); return core::Vector::Real (w, w);
 }
 
-void BangPainter::setDimensions (core::Vector::Real pt)
+void BangPainter::setDimensions (core::Vector::Real v)
 {
-    setParametersWidthAndHeight (pt);
+    setDimensionsByParameters (v);
 }
     
 // -----------------------------------------------------------------------------------------------------------
