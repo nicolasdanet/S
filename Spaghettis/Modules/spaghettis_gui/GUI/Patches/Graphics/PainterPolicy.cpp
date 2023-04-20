@@ -41,6 +41,11 @@ juce::Font getLabelFont()
     return Spaghettis()->getLookAndFeel().getConsoleFont();
 }
 
+int getLabelWidth (const juce::String& s)
+{
+    return getLabelFont().getStringWidth (s);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -52,7 +57,7 @@ juce::Font getLabelFont()
 
 void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    if (component_->isInsideRunView()) {            /* Paint label. */
+    if (component_->isInsideRunView() && component_->hasLabel()) {              /* Paint label. */
 
         const juce::Rectangle<int> t (r.removeFromLeft (objectWidth_));
         
@@ -83,12 +88,9 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
     
     objectWidth_ = t.getWidth();
     
-    if (component_->isInsideRunView()) {            /* Add label bounds. */
+    if (component_->isInsideRunView() && component_->hasLabel()) {              /* Add label bounds. */
     
-        if (component_->hasLabel()) {
-            const int w = getLabelFont().getStringWidthFloat (component_->getLabel());
-            t.setWidth (RunLayout::snapWidthToFitColumns (objectWidth_ + w));
-        }
+        t.setWidth (RunLayout::snapWidthToFitColumns (objectWidth_ + getLabelWidth (component_->getLabel())));
     }
     
     return t;
