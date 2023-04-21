@@ -112,17 +112,23 @@ core::Point::Scaled PainterPolicy::getPosition() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Rectangle<int> PainterPolicy::getRequiredBoundsForObjectFromVector (core::Vector::Scaled v)
+{
+    return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) + getPosition().getPoint();
+}
+
 juce::Rectangle<int> PainterPolicy::getRequiredBoundsForObjectFromDimensions()
 {
     std::optional<core::Vector::Real> t = getDimensions();
     
     jassert (t.has_value());
     
-    const core::Vector::Scaled v (t.value(), getScale());
-    const core::Point::Scaled pt (getPosition());
-    
-    return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) + pt.getPoint();
+    return getRequiredBoundsForObjectFromVector (core::Vector::Scaled (t.value(), getScale()));
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void PainterPolicy::setDimensionsByParameters (core::Vector::Real v)
 {

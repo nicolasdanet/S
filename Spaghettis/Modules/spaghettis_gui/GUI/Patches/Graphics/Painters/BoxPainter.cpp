@@ -107,15 +107,12 @@ juce::Rectangle<int> BoxPainter::getRequiredBoundsForObject()
     const juce::Font   font (getFont (f));
     const juce::String text (getText());
     
-    const float x = getPosition().getPoint().getX();
-    const float y = getPosition().getPoint().getY();
-    const float w = font.getStringWidthFloat (text);
-    const float h = font.getHeight();
-    const float k = getTextMargins (f) * 2.0f;
+    const int w = font.getStringWidth (text);
+    const int h = font.getHeight();
+    const int m = getMinimumWidth (f, component_->getNumberOfInlets(), component_->getNumberOfOutlets());
+    const int k = getTextMargins (f) * 2;
     
-    const float m = getMinimumWidth (f, component_->getNumberOfInlets(), component_->getNumberOfOutlets());
-    
-    return juce::Rectangle<int> (x, y, juce::jmax (m, w + k), h + k);
+    return getRequiredBoundsForObjectFromVector (core::Vector::Scaled (juce::jmax (m, w + k), h + k, f));
 }
 
 // -----------------------------------------------------------------------------------------------------------

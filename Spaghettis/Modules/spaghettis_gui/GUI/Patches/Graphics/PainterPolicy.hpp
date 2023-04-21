@@ -57,7 +57,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+protected:
     float getScale() const;
     
     core::Point::Scaled getPosition() const;
@@ -68,7 +68,13 @@ public:
 
 protected:
     juce::Rectangle<int> getRequiredBoundsForObjectFromDimensions();
-    
+    juce::Rectangle<int> getRequiredBoundsForObjectFromVector (core::Vector::Scaled);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+protected:
     void setDimensionsByParameters (core::Vector::Real);
     
 // -----------------------------------------------------------------------------------------------------------
