@@ -39,11 +39,6 @@ juce::String BoxPainter::getText() const
     return text;
 }
 
-juce::Font BoxPainter::getFont (float scale) const
-{
-    return Spaghettis()->getLookAndFeel().getObjectsFont (scale);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -53,15 +48,20 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-float getTextMargins (float f)
+juce::Font getFont (float scale)
+{
+    return Spaghettis()->getLookAndFeel().getObjectsFont (scale);
+}
+
+int getTextMargins (float f)
 {
     return std::round (3 * f);
 }
 
-float getMinimumWidth (float f, int m, int n)
+int getMinimumWidth (float f, int m, int n)
 {
     const int pins = juce::jmax (m, n);
-    float w = pins * PainterPolicy::pinWidth (f);
+    int w = pins * PainterPolicy::pinWidth (f);
     
     if (pins > 1) { w += (pins - 1) * PainterPolicy::pinGripX (f) * 2; }
     
@@ -86,7 +86,7 @@ void BoxPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     if (f > 0.5) {
     //
-    const juce::Rectangle<int> t (r.reduced (getTextMargins (f)).translated (0.0f, -1.0f));
+    const juce::Rectangle<int> t (r.reduced (getTextMargins (f)).translated (0, -1));
 
     const juce::Font   font (getFont (f));
     const juce::String text (getText());
@@ -121,6 +121,8 @@ juce::Rectangle<int> BoxPainter::getRequiredBoundsForObject()
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+/* Can NOT be resized for now. */
 
 std::optional<core::Vector::Real> BoxPainter::getDimensions()
 {

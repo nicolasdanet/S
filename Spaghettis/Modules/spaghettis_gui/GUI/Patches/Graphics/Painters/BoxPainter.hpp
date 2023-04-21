@@ -35,7 +35,6 @@ public:
     
 private:
     juce::String getText() const;
-    juce::Font getFont (float) const;
 
 private:
     core::Cached<juce::Colour> boxBackgroundColour_;
