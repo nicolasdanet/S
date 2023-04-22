@@ -169,6 +169,15 @@ bool PatchRoot::isDirty() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PatchRoot::registerWindowOffset (core::UniqueId u, core::Point::Real pt, int zoom)
+{
+    DBG (juce::String (u) + " / " + pt.getPoint().toString() + " / " + juce::String (zoom));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void PatchRoot::openMainWindow()
 {
     if (Spaghettis()->getPreferences().getCached<bool> (Tag::General, Tag::DefaultIsRunView)) {
