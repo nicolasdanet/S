@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditPort::EditPort (EditView& view) : view_ (view), zoom_ (100), v_ (zoom_)
+EditPort::EditPort (EditView& view) : view_ (view), zoom_ (100), v_ (zoom_), offset_ (0, 0)
 {
     view_.setPort (this);
     
@@ -224,6 +224,9 @@ void EditPort::setZoom (int n)
 
 void EditPort::update()
 {
+    // view_.getPatchRoot();
+    // view_.getIdentifier();
+    
     view_.setBounds (core::Geometry::getCanvasAt (core::Point::Scaled (offset_, getScale())));
 }
 

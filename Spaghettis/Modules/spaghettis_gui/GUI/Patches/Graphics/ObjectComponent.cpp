@@ -47,6 +47,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
     painter_ (createPainter (this, object.get<juce::String> (Tag::Attributes, Tag::Class))),
+    origin_ (0, 0),
     hasResize_ (false),
     isLocked_ (object_.isLocked()),
     isInsideRunView_ (getEditView() == nullptr)

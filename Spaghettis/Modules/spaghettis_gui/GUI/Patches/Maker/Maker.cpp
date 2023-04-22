@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Maker::Maker (EditView* owner) : owner_ (owner), tracker_ (owner), v_()
+Maker::Maker (EditView* owner) : owner_ (owner), tracker_ (owner), v_(), pt_ (0, 0)
 {
     Maker::setActive (v_, false);
 }

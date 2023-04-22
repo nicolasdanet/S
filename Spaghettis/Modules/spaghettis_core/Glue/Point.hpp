@@ -74,7 +74,7 @@ public:
     {
     }
 
-    explicit Real (int x = 0, int y = 0) : Real (juce::Point<int> (x, y))
+    explicit Real (int x, int y) : Real (juce::Point<int> (x, y))
     {
     }
     
