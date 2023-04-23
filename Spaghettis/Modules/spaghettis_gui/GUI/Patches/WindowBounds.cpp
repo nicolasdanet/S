@@ -12,16 +12,45 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void WindowBounds::set (BoundsElement e)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+auto hasSameIdentifier (core::UniqueId u)
 {
-    DBG (std::get<BOUNDS_POINT> (e).getPoint().toString());
+    return [u](const WindowBounds::BoundsElement& e)
+    {
+        return (std::get<WindowBounds::BOUNDS_ID> (e) == u);
+    };
 }
 
-WindowBounds::BoundsElement WindowBounds::get (core::UniqueId) const
+auto hasSameIdentifier (WindowBounds::BoundsElement e)
 {
-    DBG ("?");
+    return hasSameIdentifier (std::get<WindowBounds::BOUNDS_ID> (e));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void WindowBounds::set (BoundsElement e)
+{
+    auto r = std::find_if (bounds_.begin(), bounds_.end(), hasSameIdentifier (e));
     
-    return { 0, core::Point::Real (0, 0), 100 };
+    if (r != bounds_.end()) { *r = e; } else { bounds_.push_back (e); }
+}
+
+WindowBounds::BoundsElement WindowBounds::get (core::UniqueId u) const
+{
+    auto r = std::find_if (bounds_.begin(), bounds_.end(), hasSameIdentifier (u));
+    
+    if (r != bounds_.end()) { return *r; } else { return { 0, core::Point::Real (0, 0), 100 }; }
 }
 
 // -----------------------------------------------------------------------------------------------------------

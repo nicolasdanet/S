@@ -92,7 +92,7 @@ private:
 private:
     void setZoomAroundPoint (int, core::Point::Real);
     void setZoom (int);
-    void update();
+    void update (bool notify = true);
     
 private:
     EditView& view_;

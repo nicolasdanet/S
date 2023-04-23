@@ -15,12 +15,12 @@ namespace spaghettis {
 EditPort::EditPort (EditView& view, core::Point::Real pt, int zoom) :
     view_ (view),
     offset_ (pt),
-    zoom_ (zoom),
+    zoom_ (100),
     v_ (zoom_)
 {
     view_.setPort (this);
     
-    update();
+    setZoom (zoom); update (false);
         
     addAndMakeVisible (&view_);
 }
@@ -226,11 +226,11 @@ void EditPort::setZoom (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditPort::update()
+void EditPort::update (bool notify)
 {
     view_.setBounds (core::Geometry::getCanvasAt (core::Point::Scaled (offset_, getScale())));
     
-    view_.getPatchRoot().registerWindowBounds (view_.getIdentifier(), offset_, getZoom());
+    if (notify) { view_.getPatchRoot().registerWindowBounds (view_.getIdentifier(), offset_, getZoom()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
