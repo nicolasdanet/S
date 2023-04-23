@@ -174,14 +174,14 @@ void PatchRoot::registerWindowBounds (core::UniqueId u, core::Point::Real pt, in
     bounds_.set ({ u, pt, zoom });
 }
 
-core::Point::Real PatchRoot::getRegisteredOffset (core::UniqueId u) const
+core::Point::Real PatchRoot::getOffset (const EditView& view) const
 {
-    return std::get<WindowBounds::BOUNDS_POINT> (bounds_.get (u));
+    return std::get<WindowBounds::BOUNDS_POINT> (bounds_.get (view.getIdentifier()));
 }
 
-int PatchRoot::getRegisteredZoom (core::UniqueId u) const
+int PatchRoot::getZoom (const EditView& view) const
 {
-    return std::get<WindowBounds::BOUNDS_ZOOM> (bounds_.get (u));
+    return std::get<WindowBounds::BOUNDS_ZOOM> (bounds_.get (view.getIdentifier()));
 }
 
 // -----------------------------------------------------------------------------------------------------------

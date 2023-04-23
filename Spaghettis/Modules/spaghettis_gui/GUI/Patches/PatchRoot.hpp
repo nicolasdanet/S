@@ -14,6 +14,7 @@ namespace spaghettis {
 class RunWindow;
 class EditWindow;
 class PatchWindow;
+class EditView;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -97,8 +98,8 @@ private:
 
 public:
     void registerWindowBounds (core::UniqueId, core::Point::Real, int zoom);
-    core::Point::Real getRegisteredOffset (core::UniqueId) const;
-    int getRegisteredZoom (core::UniqueId) const;
+    core::Point::Real getOffset (const EditView&) const;
+    int getZoom (const EditView&) const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

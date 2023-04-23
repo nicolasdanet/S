@@ -12,13 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void WindowBounds::set (BoundsElement)
+void WindowBounds::set (BoundsElement e)
 {
-
+    DBG (std::get<BOUNDS_POINT> (e).getPoint().toString());
 }
 
 WindowBounds::BoundsElement WindowBounds::get (core::UniqueId) const
 {
+    DBG ("?");
+    
     return { 0, core::Point::Real (0, 0), 100 };
 }
 
