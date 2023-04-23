@@ -226,7 +226,7 @@ void EditPort::update()
 {
     view_.setBounds (core::Geometry::getCanvasAt (core::Point::Scaled (offset_, getScale())));
     
-    view_.getPatchRoot().registerWindowOffset (view_.getIdentifier(), offset_, getZoom());
+    view_.getPatchRoot().registerWindowBounds (view_.getIdentifier(), offset_, getZoom());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -96,7 +96,7 @@ private:
 // MARK: -
 
 public:
-    void registerWindowOffset (core::UniqueId, core::Point::Real, int zoom);
+    void registerWindowBounds (core::UniqueId, core::Point::Real, int zoom);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -172,6 +172,9 @@ private:
 
 private:
     std::vector<std::unique_ptr<PatchWindow>> windows_;
+
+private:
+    WindowBounds bounds_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchRoot)

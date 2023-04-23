@@ -169,7 +169,7 @@ bool PatchRoot::isDirty() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchRoot::registerWindowOffset (core::UniqueId u, core::Point::Real pt, int zoom)
+void PatchRoot::registerWindowBounds (core::UniqueId u, core::Point::Real pt, int zoom)
 {
     DBG (juce::String (u) + " / " + pt.getPoint().toString() + " / " + juce::String (zoom));
 }
