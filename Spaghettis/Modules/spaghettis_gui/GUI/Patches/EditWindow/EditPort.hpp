@@ -24,7 +24,7 @@ friend class ActionHand;
 // MARK: -
 
 public:
-    explicit EditPort (EditView& view);
+    explicit EditPort (EditView&);
     
     ~EditPort();
 
@@ -96,9 +96,9 @@ private:
     
 private:
     EditView& view_;
+    core::Point::Real offset_;
     int zoom_;
     juce::Value v_;
-    core::Point::Real offset_;
     std::optional<core::Point::Real> origin_;
     std::unique_ptr<Locator> locator_;
 

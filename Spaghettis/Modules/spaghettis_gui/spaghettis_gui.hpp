@@ -136,6 +136,7 @@
 #include "GUI/Patches/PatchWindow.hpp"
 #include "GUI/Patches/Resizer.hpp"
 #include "GUI/Patches/View.hpp"
+#include "GUI/Patches/WindowBounds.hpp"
 
 #include "GUI/Patches/Graphics/Dragable.hpp"
 #include "GUI/Patches/Graphics/Scalable.hpp"
