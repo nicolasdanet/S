@@ -171,7 +171,17 @@ bool PatchRoot::isDirty() const
 
 void PatchRoot::registerWindowBounds (core::UniqueId u, core::Point::Real pt, int zoom)
 {
-    DBG (juce::String (u) + " / " + pt.getPoint().toString() + " / " + juce::String (zoom));
+    bounds_.set ({ u, pt, zoom });
+}
+
+core::Point::Real PatchRoot::getRegisteredOffset (core::UniqueId u) const
+{
+    return std::get<WindowBounds::BOUNDS_POINT> (bounds_.get (u));
+}
+
+int PatchRoot::getRegisteredZoom (core::UniqueId u) const
+{
+    return std::get<WindowBounds::BOUNDS_ZOOM> (bounds_.get (u));
 }
 
 // -----------------------------------------------------------------------------------------------------------

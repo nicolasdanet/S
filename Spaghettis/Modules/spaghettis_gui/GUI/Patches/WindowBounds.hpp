@@ -43,6 +43,11 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    void set (BoundsElement);
+    
+    BoundsElement get (core::UniqueId) const;
+
 private:
     BoundsContainer bounds_;
     

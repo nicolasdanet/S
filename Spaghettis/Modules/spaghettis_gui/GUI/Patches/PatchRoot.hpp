@@ -97,6 +97,8 @@ private:
 
 public:
     void registerWindowBounds (core::UniqueId, core::Point::Real, int zoom);
+    core::Point::Real getRegisteredOffset (core::UniqueId) const;
+    int getRegisteredZoom (core::UniqueId) const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -24,7 +24,7 @@ friend class ActionHand;
 // MARK: -
 
 public:
-    explicit EditPort (EditView&);
+    explicit EditPort (EditView&, core::Point::Real, int);
     
     ~EditPort();
 

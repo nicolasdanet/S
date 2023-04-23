@@ -35,7 +35,7 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     EditFactoryHelper (this),
     BaseComponent (getIconsFactory()),
     editView_ (patch, tree),
-    editPort_ (editView_),
+    editPort_ (editView_, patch.getRegisteredOffset (editView_.getIdentifier()), patch.getRegisteredZoom (editView_.getIdentifier())),
     editZoom_ (editPort_.getZoomAsValue()),
     editInspector_ (editView_)
 {

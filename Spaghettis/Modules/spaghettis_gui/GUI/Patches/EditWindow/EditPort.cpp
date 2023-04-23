@@ -12,7 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditPort::EditPort (EditView& view) : view_ (view), offset_ (0, 0), zoom_ (100), v_ (zoom_)
+EditPort::EditPort (EditView& view, core::Point::Real pt, int zoom) :
+    view_ (view),
+    offset_ (pt),
+    zoom_ (zoom),
+    v_ (zoom_)
 {
     view_.setPort (this);
     
