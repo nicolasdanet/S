@@ -166,14 +166,22 @@ void ObjectComponent::mouseMove (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseEnter (const juce::MouseEvent&)
 {
+    if (!isInsideRunView()) {
+    //
     hasResize_ = false;
+    //
+    }
 }
 
 void ObjectComponent::mouseExit (const juce::MouseEvent&)
 {
+    if (!isInsideRunView()) {
+    //
     hasResize_ = false;
 
     setMouseCursor (juce::MouseCursor::NormalCursor);
+    //
+    }
 }
 
 void ObjectComponent::mouseDown (const juce::MouseEvent& e)
