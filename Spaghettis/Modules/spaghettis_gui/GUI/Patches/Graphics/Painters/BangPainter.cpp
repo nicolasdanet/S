@@ -31,6 +31,15 @@ BangPainter::BangPainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void BangPainter::mouseDown (const juce::MouseEvent& e)
+{
+    DBG ("BANG");
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void BangPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (bangBackgroundColour_.get());
