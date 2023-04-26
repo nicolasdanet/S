@@ -5,7 +5,7 @@ Yet another fork of [Pure Data](http://msp.ucsd.edu/) with [JUCE](https://github
 
 ## Platforms
 
-Tested on Ubuntu 22.04 (Wayland), macOS Big Sur (Intel only), and Raspbian Buster (RPI4).
+Tested on Ubuntu 22.04, macOS Big Sur.
         
 ## Dependencies
 
