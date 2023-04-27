@@ -220,6 +220,15 @@ PD_LOCAL void inputs_positionObject (core::UniqueId u, Point::Real pt)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_LOCAL void inputs_sendObjectBang (core::UniqueId u)
+{
+    unique_objectBang (u);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void inputs_openHelp (core::UniqueId u)
 {
     unique_objectHelp (u);

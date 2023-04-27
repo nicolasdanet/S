@@ -108,6 +108,11 @@ core::Point::Scaled PainterPolicy::getPosition() const
     return core::Point::Scaled (component_->getPosition(), getScale());
 }
 
+core::UniqueId PainterPolicy::getIdentifier() const
+{
+    return object_.getIdentifier();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -149,7 +154,7 @@ void PainterPolicy::setDimensionsByParameters (core::Vector::Real v)
         group.getParameter (Tag::Height).changeValue (h);
     }
     
-    EditCommands::parameters (object_.getIdentifier(), group);
+    EditCommands::parameters (getIdentifier(), group);
     //
     }
     //

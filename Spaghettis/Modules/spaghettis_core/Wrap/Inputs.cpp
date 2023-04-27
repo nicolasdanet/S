@@ -190,6 +190,15 @@ Perform Inputs::positionObject (core::UniqueId u, core::Point::Real pt)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+Perform Inputs::sendObjectBang (core::UniqueId u)
+{
+    return [u]() { core::inputs_sendObjectBang (u); };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 Perform Inputs::openHelp (core::UniqueId u)
 {
     return [u]() { core::inputs_openHelp (u); };

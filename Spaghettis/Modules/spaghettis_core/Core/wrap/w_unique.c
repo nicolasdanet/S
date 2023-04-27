@@ -179,6 +179,16 @@ PD_FORCE t_error unique_objectMoveFront (t_id u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PD_FORCE t_error unique_objectBang (t_id u)
+{
+    t_object *object = instance_registerGetObject (u);
+
+    if (object) { pd_bang (cast_pd (object)); return PD_ERROR_NONE; }
+    else {
+        return PD_ERROR;
+    }
+}
+
 PD_FORCE t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *argv)
 {
     t_object *object = instance_registerGetObject (u);
