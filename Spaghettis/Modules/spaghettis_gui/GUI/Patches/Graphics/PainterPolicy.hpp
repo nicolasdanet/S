@@ -37,8 +37,14 @@ private:
     virtual juce::Rectangle<int> getRequiredBoundsForObject() = 0;
 
 public:
-    virtual std::optional<core::Vector::Real> getDimensions() = 0;
-    virtual void setDimensions (core::Vector::Real) = 0;
+    virtual std::optional<core::Vector::Real> getDimensions()
+    {
+        return {};
+    }
+    
+    virtual void setDimensions (core::Vector::Real)
+    {
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
