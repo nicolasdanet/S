@@ -103,6 +103,11 @@ float PainterPolicy::getScale() const
     return component_->getScale();
 }
 
+juce::Font PainterPolicy::getFont() const
+{
+    return Spaghettis()->getLookAndFeel().getObjectsFont (getScale());
+}
+
 core::Point::Scaled PainterPolicy::getPosition() const
 {
     return core::Point::Scaled (component_->getPosition(), getScale());

@@ -65,6 +65,7 @@ public:
 
 protected:
     float getScale() const;
+    juce::Font getFont() const;
     core::Point::Scaled getPosition() const;
     core::UniqueId getIdentifier() const;
     

@@ -48,11 +48,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Font getFont (float scale)
-{
-    return Spaghettis()->getLookAndFeel().getObjectsFont (scale);
-}
-
 int getTextMargins (float f)
 {
     return std::round (3 * f);
@@ -88,13 +83,13 @@ void BoxPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     //
     const juce::Rectangle<int> t (r.reduced (getTextMargins (f)).translated (0, -1));
 
-    const juce::Font   font (getFont (f));
+    const juce::Font   font (getFont());
     const juce::String text (getText());
 
     const bool wrong = class_.get().isEmpty();
     
     g.setColour (wrong ? boxWrongColour_.get() : boxTextColour_.get());
-    g.setFont (getFont (f));
+    g.setFont (getFont());
     g.drawText (text, t, juce::Justification::centredLeft, true);
     //
     }
@@ -104,7 +99,7 @@ juce::Rectangle<int> BoxPainter::getRequiredBoundsForObject()
 {
     const float f = getScale();
     
-    const juce::Font   font (getFont (f));
+    const juce::Font   font (getFont());
     const juce::String text (getText());
     
     const int w = font.getStringWidth (text);
