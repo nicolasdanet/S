@@ -19,7 +19,8 @@ namespace {
 
 std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const juce::String& type)
 {
-    if (type == "bng") { return std::make_unique<BangPainter> (owner); }
+    if (type == "bng")   { return std::make_unique<BangPainter> (owner); }
+    if (type == "inlet") { return std::make_unique<InletPainter> (owner); }
     else {
         return std::make_unique<BoxPainter> (owner);
     }

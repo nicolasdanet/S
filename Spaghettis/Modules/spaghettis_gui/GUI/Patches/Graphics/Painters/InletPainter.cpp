@@ -23,12 +23,15 @@ InletPainter::InletPainter (ObjectComponent* owner) : PainterPolicy (owner)
 
 void InletPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-
+    g.setColour (juce::Colours::black);
+    g.fillRect (r);
 }
 
 juce::Rectangle<int> InletPainter::getRequiredBoundsForObject()
 {
-    return {};
+    const int w = getFont().getHeight();
+    
+    return getRequiredBoundsForObjectFromVector (core::Vector::Scaled (w, w, getScale()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
