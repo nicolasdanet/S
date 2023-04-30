@@ -74,6 +74,7 @@
 #include "GUI/Patches/Graphics/PainterPolicy.cpp"
 #include "GUI/Patches/Graphics/Painters/BangPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.cpp"
+#include "GUI/Patches/Graphics/Painters/InletPainter.cpp"
 #include "GUI/Patches/Graphics/PinComponent.cpp"
 #include "GUI/Patches/Graphics/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/LineComponent.cpp"

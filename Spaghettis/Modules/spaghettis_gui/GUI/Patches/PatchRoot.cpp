@@ -36,8 +36,6 @@ bool PatchRoot::hasChild (const core::UniquePath& u) const
 
 void PatchRoot::add (const core::UniquePath& u, const core::Report& v)
 {
-    // DBG ("### ADD"); DBG (v.debug());
-    
     jassert (!u.isRoot());
     
     juce::ValueTree parent (getParent (u));
@@ -56,8 +54,6 @@ void PatchRoot::add (const core::UniquePath& u, const core::Report& v)
 
 void PatchRoot::change (const core::UniquePath& u, const core::Report& v)
 {
-    // DBG ("### CHANGE"); DBG (v.debug());
-        
     juce::ValueTree parent (getParent (u));
     
     if (u.isRoot()) { core::Patch (parent).apply (v); }
@@ -77,8 +73,6 @@ void PatchRoot::change (const core::UniquePath& u, const core::Report& v)
 
 void PatchRoot::remove (const core::UniquePath& u)
 {
-    // DBG ("### REMOVE"); DBG (u.debug());
-        
     jassert (!u.isRoot());
     
     juce::ValueTree parent (getParent (u));
@@ -89,8 +83,6 @@ void PatchRoot::remove (const core::UniquePath& u)
 
 void PatchRoot::rename (const core::UniquePath& u, core::UniqueId i)
 {
-    // DBG ("### RENAME"); DBG (u.debug());
-        
     jassert (!u.isRoot());
     
     juce::ValueTree parent (getParent (u));

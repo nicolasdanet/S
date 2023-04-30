@@ -97,7 +97,7 @@ void EditView::handleMouseDrag (const juce::MouseEvent& e, DragFlag flag)
 
 void EditView::handleMouseDragAbort()
 {
-    DBG ("ABORTED"); drag_ = nullptr;
+    drag_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
