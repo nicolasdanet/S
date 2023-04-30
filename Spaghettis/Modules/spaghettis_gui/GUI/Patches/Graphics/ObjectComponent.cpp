@@ -19,8 +19,8 @@ namespace {
 
 std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const juce::String& type)
 {
-    if (type == "bng")   { return std::make_unique<BangPainter> (owner); }
-    if (type == "inlet") { return std::make_unique<InletPainter> (owner); }
+    if (type == "bng")          { return std::make_unique<BangPainter> (owner);     }
+    else if (type == "inlet")   { return std::make_unique<InletPainter> (owner);    }
     else {
         return std::make_unique<BoxPainter> (owner);
     }
@@ -55,7 +55,7 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
 {
     jassert (view);
     
-    setOpaque (true); setPaintingIsUnclipped (true);
+    setOpaque (true);
     
     getView()->addChildComponent (this);
 

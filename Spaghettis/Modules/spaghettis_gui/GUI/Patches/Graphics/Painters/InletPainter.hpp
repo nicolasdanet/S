@@ -29,6 +29,10 @@ public:
 public:
     void paintObject (juce::Rectangle<int>, juce::Graphics&) override;
     juce::Rectangle<int> getRequiredBoundsForObject() override;
+    
+private:
+    core::Cached<juce::Colour> boxBackgroundColour_;
+    core::Cached<juce::Colour> arrowColour_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InletPainter)

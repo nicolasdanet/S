@@ -16,7 +16,6 @@ ActionLassoComponent::ActionLassoComponent (const juce::Rectangle<int>& bounds) 
     lassoColour_ (Spaghettis()->getCachedColour (Tag::Lasso))
 {
     setOpaque (false);
-    setPaintingIsUnclipped (true);
     setAlwaysOnTop (true);
     setInterceptsMouseClicks (false, true);
     setBounds (bounds);

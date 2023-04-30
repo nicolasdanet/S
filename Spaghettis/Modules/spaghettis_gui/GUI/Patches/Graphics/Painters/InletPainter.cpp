@@ -12,9 +12,34 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-InletPainter::InletPainter (ObjectComponent* owner) : PainterPolicy (owner)
-{
+namespace {
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+core::Cached<juce::Colour> getContentColour (const core::Object& o)
+{
+    DBG (o.get<juce::String> (Tag::Attributes, Tag::Content));
+    
+    return Spaghettis()->getCachedColour (Tag::PinAnything);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+InletPainter::InletPainter (ObjectComponent* owner) :
+    PainterPolicy (owner),
+    boxBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxBackground)),
+    arrowColour_ (getContentColour (object_))
+{
+    boxBackgroundColour_.attach (repaint (component_));
+    arrowColour_.attach (repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -23,8 +48,10 @@ InletPainter::InletPainter (ObjectComponent* owner) : PainterPolicy (owner)
 
 void InletPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    g.setColour (juce::Colours::black);
+    g.setColour (boxBackgroundColour_.get());
     g.fillRect (r);
+    g.setColour (arrowColour_.get());
+    LookAndFeel::drawArrowOpened (g, r);
 }
 
 juce::Rectangle<int> InletPainter::getRequiredBoundsForObject()

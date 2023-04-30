@@ -16,7 +16,6 @@ Locator::Locator (const juce::Rectangle<int>& bounds) :
     locatorColour_ (Spaghettis()->getCachedColour (Tag::Locator))
 {
     setOpaque (false);
-    setPaintingIsUnclipped (true);
     setAlwaysOnTop (true);
     setInterceptsMouseClicks (false, true);
     setBounds (bounds.expanded (10));

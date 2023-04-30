@@ -61,7 +61,7 @@ PinComponent::PinComponent (View* v, const core::Object& o, int i, const juce::S
     isSignal_ (isPinSignal (type)),
     isOver_ (false)
 {
-    setOpaque (false); setPaintingIsUnclipped (true);
+    setOpaque (false);
     
     selected_.attach (PainterPolicy::repaint (this));
     pinColour_.attach (PainterPolicy::repaint (this));

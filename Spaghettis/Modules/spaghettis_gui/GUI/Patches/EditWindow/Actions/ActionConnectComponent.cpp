@@ -18,7 +18,6 @@ ActionConnectComponent::ActionConnectComponent (core::Point::Scaled pt) :
     connectColour_ (Spaghettis()->getCachedColour (Tag::Lasso))
 {
     setOpaque (false);
-    setPaintingIsUnclipped (true);
     setAlwaysOnTop (true);
     setInterceptsMouseClicks (false, true);
     update();
