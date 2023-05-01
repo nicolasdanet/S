@@ -19,9 +19,9 @@ namespace {
 
 core::Cached<juce::Colour> getContentColour (const core::Object& o)
 {
-    DBG (o.get<juce::String> (Tag::Attributes, Tag::Content));
+    const juce::String s (o.get<juce::String> (Tag::Attributes, Tag::Content));
     
-    return Spaghettis()->getCachedColour (Tag::PinAnything);
+    return Spaghettis()->getCachedColour (s.endsWith ("~") ? Tag::PinSignal : Tag::PinAnything);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -48,10 +48,13 @@ InletPainter::InletPainter (ObjectComponent* owner) :
 
 void InletPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
+    const float f = getScale();
+    
     g.setColour (boxBackgroundColour_.get());
     g.fillRect (r);
     g.setColour (arrowColour_.get());
-    LookAndFeel::drawArrowOpened (g, r);
+    
+    if (f > 0.5) { LookAndFeel::drawArrowOpened (g, r.reduced (2 * f)); }
 }
 
 juce::Rectangle<int> InletPainter::getRequiredBoundsForObject()
