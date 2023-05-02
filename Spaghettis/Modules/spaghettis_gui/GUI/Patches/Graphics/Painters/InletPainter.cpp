@@ -54,7 +54,7 @@ void InletPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.fillRect (r);
     g.setColour (arrowColour_.get());
     
-    if (f > 0.5) { LookAndFeel::drawArrowOpened (g, r.reduced (2 * f)); }
+    if (f > 0.5) { LookAndFeel::drawArrowDown (g, r.reduced (2 * f)); }
 }
 
 juce::Rectangle<int> InletPainter::getRequiredBoundsForObject()

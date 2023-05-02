@@ -183,7 +183,7 @@ int LookAndFeel::getWindowTitleHeight (juce::Component *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawArrowClosed (juce::Graphics& g, const juce::Rectangle<int>& r)
+void LookAndFeel::drawArrowRight (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
     const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;
     const float x    = static_cast<float> (r.getCentreX());
@@ -199,7 +199,7 @@ void LookAndFeel::drawArrowClosed (juce::Graphics& g, const juce::Rectangle<int>
     g.strokePath (path, juce::PathStrokeType (2.0f));
 }
 
-void LookAndFeel::drawArrowOpened (juce::Graphics& g, const juce::Rectangle<int>& r)
+void LookAndFeel::drawArrowDown (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
     const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;
     const float x    = static_cast<float> (r.getCentreX());

@@ -47,7 +47,7 @@ void LookAndFeel::drawComboBox (juce::Graphics& g,
     
     if (!popupActive) {
         b.removeFromRight (b.getCentreY());
-        LookAndFeel::drawArrowOpened (g, b.removeFromRight (b.getCentreY()));
+        LookAndFeel::drawArrowDown (g, b.removeFromRight (b.getCentreY()));
     }
 }
 

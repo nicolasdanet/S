@@ -56,8 +56,8 @@ public:
 // MARK: -
 
 public:
-    static void drawArrowOpened (juce::Graphics&, const juce::Rectangle<int>&);
-    static void drawArrowClosed (juce::Graphics&, const juce::Rectangle<int>&);
+    static void drawArrowDown (juce::Graphics&, const juce::Rectangle<int>&);
+    static void drawArrowRight (juce::Graphics&, const juce::Rectangle<int>&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
