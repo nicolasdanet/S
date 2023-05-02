@@ -86,21 +86,9 @@ void LookAndFeel::drawPopupMenuItemTick (juce::Graphics& g, juce::Rectangle<int>
 
 void LookAndFeel::drawPopupMenuItemSubMenu (juce::Graphics& g, juce::Rectangle<int>& r)
 {
-    const int w = static_cast<int> (0.6f * getPopupMenuFont().getAscent());
+    const int h = r.getHeight();
     
-    const juce::Rectangle<int> t (r.removeFromRight (w));
-    
-    const float x = static_cast<float> (t.getX());
-    const float y = static_cast<float> (t.getCentreY());
-    const float hArrow = w;
-    const float wArrow = w * 0.6f;
-    
-    juce::Path path;
-    path.startNewSubPath (x, y - (hArrow * 0.5f));
-    path.lineTo (x + wArrow, y);
-    path.lineTo (x, y + (hArrow * 0.5f));
-
-    g.strokePath (path, juce::PathStrokeType (2.0f));
+    LookAndFeel::drawArrowRight (g, r.removeFromRight (h / 2).reduced (0, h / 4));
 }
 
 void LookAndFeel::drawPopupMenuItemShortcut (juce::Graphics& g,
