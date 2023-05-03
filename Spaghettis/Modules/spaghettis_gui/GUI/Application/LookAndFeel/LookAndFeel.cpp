@@ -183,22 +183,6 @@ int LookAndFeel::getWindowTitleHeight (juce::Component *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawArrowRight (juce::Graphics& g, const juce::Rectangle<int>& r)
-{
-    const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;
-    const float x    = static_cast<float> (r.getCentreX());
-    const float y    = static_cast<float> (r.getCentreY());
-    const float h    = side * 0.5f;
-    const float w    = side * 0.25f;
-    
-    juce::Path path;
-    path.startNewSubPath (x - w, y - h);
-    path.lineTo (x + w, y);
-    path.lineTo (x - w, y + h);
-
-    g.strokePath (path, juce::PathStrokeType (2.0f));
-}
-
 void LookAndFeel::drawArrowDown (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
     const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;
@@ -211,6 +195,38 @@ void LookAndFeel::drawArrowDown (juce::Graphics& g, const juce::Rectangle<int>& 
     path.startNewSubPath (x - w, y - h);
     path.lineTo (x, y + h);
     path.lineTo (x + w, y - h);
+
+    g.strokePath (path, juce::PathStrokeType (2.0f));
+}
+
+void LookAndFeel::drawArrowUp (juce::Graphics& g, const juce::Rectangle<int>& r)
+{
+    const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;
+    const float x    = static_cast<float> (r.getCentreX());
+    const float y    = static_cast<float> (r.getCentreY());
+    const float h    = side * 0.25f;
+    const float w    = side * 0.5f;
+    
+    juce::Path path;
+    path.startNewSubPath (x - w, y + h);
+    path.lineTo (x, y - h);
+    path.lineTo (x + w, y + h);
+
+    g.strokePath (path, juce::PathStrokeType (2.0f));
+}
+
+void LookAndFeel::drawArrowRight (juce::Graphics& g, const juce::Rectangle<int>& r)
+{
+    const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;
+    const float x    = static_cast<float> (r.getCentreX());
+    const float y    = static_cast<float> (r.getCentreY());
+    const float h    = side * 0.5f;
+    const float w    = side * 0.25f;
+    
+    juce::Path path;
+    path.startNewSubPath (x - w, y - h);
+    path.lineTo (x + w, y);
+    path.lineTo (x - w, y + h);
 
     g.strokePath (path, juce::PathStrokeType (2.0f));
 }

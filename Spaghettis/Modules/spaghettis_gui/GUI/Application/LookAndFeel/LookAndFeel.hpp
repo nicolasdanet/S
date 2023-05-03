@@ -57,6 +57,7 @@ public:
 
 public:
     static void drawArrowDown (juce::Graphics&, const juce::Rectangle<int>&);
+    static void drawArrowUp (juce::Graphics&, const juce::Rectangle<int>&);
     static void drawArrowRight (juce::Graphics&, const juce::Rectangle<int>&);
 
 // -----------------------------------------------------------------------------------------------------------

@@ -33,6 +33,7 @@ public:
 private:
     core::Cached<juce::Colour> boxBackgroundColour_;
     core::Cached<juce::Colour> arrowColour_;
+    bool isOutlet_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InletPainter)
