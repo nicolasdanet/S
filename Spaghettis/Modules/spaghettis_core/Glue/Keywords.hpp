@@ -28,7 +28,6 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (gatom);
     DECLARE_STRING (message);
     DECLARE_STRING (msg);
-    DECLARE_STRING (text);
     
     DECLARE_STRING (Abstraction);
     DECLARE_STRING (AskBeforeQuit);
