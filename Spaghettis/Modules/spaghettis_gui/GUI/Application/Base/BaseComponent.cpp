@@ -45,11 +45,7 @@ BaseComponent::BaseComponent (IconsFactory* factory, const juce::String& s) : ke
 
 BaseComponent::~BaseComponent()
 {
-    #if SPAGHETTIS_MENUBAR
-    
     juce::PopupMenu::dismissAllActiveMenus();
-    
-    #endif
     
     saveToolbarButtonsStates();
 }
