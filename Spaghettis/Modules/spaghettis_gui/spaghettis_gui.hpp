@@ -144,6 +144,7 @@
 #include "GUI/Patches/Graphics/PainterPolicy.hpp"
 #include "GUI/Patches/Graphics/Painters/BangPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.hpp"
+#include "GUI/Patches/Graphics/Painters/CommentPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/InletPainter.hpp"
 #include "GUI/Patches/Graphics/PinComponent.hpp"
 #include "GUI/Patches/Graphics/ObjectComponent.hpp"

@@ -85,6 +85,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (SnapToGrid);
     DECLARE_STRING (Title);
     DECLARE_STRING (Undo);
+    DECLARE_STRING (Value);
     DECLARE_STRING (Visible);
     DECLARE_STRING (Width);
     DECLARE_STRING (X);
