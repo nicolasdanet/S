@@ -24,7 +24,7 @@ class PainterPolicy : public juce::MouseListener {
 // MARK: -
 
 public:
-    explicit PainterPolicy (ObjectComponent*);
+    explicit PainterPolicy (ObjectComponent*, bool isOpaque = true);
     
     virtual ~PainterPolicy() = default;
 

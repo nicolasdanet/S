@@ -56,8 +56,6 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
 {
     jassert (view);
     
-    setOpaque (true);
-    
     getView()->addChildComponent (this);
 
     update();
