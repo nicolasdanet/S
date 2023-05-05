@@ -128,7 +128,7 @@ void setObjectAttributesForObject (Group& group, t_object* o, const Tags& t)
             NEEDS_TRANS ("Content"),
             NEEDS_TRANS ("Content of the box's buffer"),
             getContentBuffer (o),
-            delegate);
+            delegate).setHidden (true);
     }
     
     if (t.contains (Tag::Inlets)) {
