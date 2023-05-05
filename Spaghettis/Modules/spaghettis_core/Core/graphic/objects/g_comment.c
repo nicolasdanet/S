@@ -56,6 +56,32 @@ PD_LOCAL void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void comment_functionGetParameters (t_object *z, core::Group& group, const Tags& t)
+{
+    static DelegateCache delegate;
+    
+    if (t.contains (Tag::Value)) {
+        group.addParameter (Tag::Value,
+            NEEDS_TRANS ("Value"),
+            NEEDS_TRANS ("Value"),
+            juce::String ("Toto"),
+            delegate);
+    }
+}
+
+static void comment_functionSetParameters (t_object *z, const core::Group& group)
+{
+    DBG ("???");
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void comment_setup (void)
 {
     t_class *c = NULL;
@@ -68,7 +94,13 @@ PD_LOCAL void comment_setup (void)
             A_NULL);
         
     class_addAnything (c, (t_method)comment_anything);
-        
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    class_setParametersFunctions (c, comment_functionGetParameters, comment_functionSetParameters);
+    
+    #endif
+    
     comment_class = c;
 }
 
