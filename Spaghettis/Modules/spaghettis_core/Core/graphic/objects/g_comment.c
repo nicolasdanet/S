@@ -24,6 +24,23 @@ static void comment_anything (t_object *x, t_symbol *s, int argc, t_atom *argv)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void comment_set (t_object *o, const juce::String& s)
+{
+    object_setBufferWithString (o, s);
+    
+    glist_setDirty (object_getOwner (o), 1);
+    
+    outputs_objectUpdated (o, Tags::attributes (Tag::Content));
+    outputs_objectUpdated (o, Tags::parameters (Tag::Text));
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 PD_LOCAL void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
@@ -58,22 +75,24 @@ PD_LOCAL void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom 
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-static void comment_functionGetParameters (t_object *z, core::Group& group, const Tags& t)
+static void comment_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
 {
     static DelegateCache delegate;
     
-    if (t.contains (Tag::Value)) {
-        group.addParameter (Tag::Value,
-            NEEDS_TRANS ("Value"),
-            NEEDS_TRANS ("Value"),
-            juce::String ("Toto"),
+    if (t.contains (Tag::Text)) {
+        group.addParameter (Tag::Text,
+            NEEDS_TRANS ("Text"),
+            NEEDS_TRANS ("Text of comment"),
+            object_getBufferAsString (o),
             delegate);
     }
 }
 
-static void comment_functionSetParameters (t_object *z, const core::Group& group)
+static void comment_functionSetParameters (t_object *o, const core::Group& group)
 {
-    DBG ("???");
+    jassert (group.hasParameter (Tag::Text));
+    
+    comment_set (o, group.getParameter (Tag::Text).getValueTyped<juce::String>());
 }
 
 #endif

@@ -14,7 +14,7 @@ namespace spaghettis {
 
 CommentPainter::CommentPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
-    value_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Value))
+    value_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text))
 {
     value_.attach (repaint (component_));
     

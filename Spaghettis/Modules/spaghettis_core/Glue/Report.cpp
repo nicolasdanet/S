@@ -17,29 +17,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String getContentBuffer (t_object* o)
-{
-    juce::String s;
-    
-    if (o) {
-    //
-    t_buffer* b = object_getBuffer (o);
-    
-    if (b && buffer_getSize (b)) {
-    //
-    char* t = atom_atomsToString (buffer_getSize (b), buffer_getAtoms (b));
-    
-    s = juce::String (t);
-    
-    PD_MEMORY_FREE (t);
-    //
-    }
-    //
-    }
-    
-    return s;
-}
-
 juce::File getPatchFile (t_glist* glist)
 {
     const juce::String filename  (environment_getFileNameAsString (glist_getEnvironment (glist)));
@@ -127,7 +104,7 @@ void setObjectAttributesForObject (Group& group, t_object* o, const Tags& t)
         group.addParameter (Tag::Content,
             NEEDS_TRANS ("Content"),
             NEEDS_TRANS ("Content of the box's buffer"),
-            getContentBuffer (o),
+            object_getBufferAsString (o),
             delegate).setHidden (true);
     }
     

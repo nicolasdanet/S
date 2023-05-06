@@ -83,9 +83,9 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (RunView);
     DECLARE_STRING (Selected);
     DECLARE_STRING (SnapToGrid);
+    DECLARE_STRING (Text);
     DECLARE_STRING (Title);
     DECLARE_STRING (Undo);
-    DECLARE_STRING (Value);
     DECLARE_STRING (Visible);
     DECLARE_STRING (Width);
     DECLARE_STRING (X);

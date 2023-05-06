@@ -466,6 +466,36 @@ PD_LOCAL juce::String object_getTypeOfOutlets (t_object *x)
     return s.joinIntoString (" ");
 }
 
+juce::String object_getBufferAsString (t_object* x)
+{
+    juce::String s;
+    
+    if (x) {
+    //
+    t_buffer* b = object_getBuffer (x);
+    
+    if (b && buffer_getSize (b)) {
+    //
+    char* t = atom_atomsToString (buffer_getSize (b), buffer_getAtoms (b));
+    
+    s = juce::String (t);
+    
+    PD_MEMORY_FREE (t);
+    //
+    }
+    //
+    }
+    
+    return s;
+}
+
+PD_LOCAL void object_setBufferWithString (t_object *x, const juce::String& s)
+{
+    jassert (x);
+    
+    buffer_withStringUnzeroed (object_getBuffer (x), s.toRawUTF8(), static_cast<int> (s.getNumBytesAsUTF8()));
+}
+
 #endif
 
 // -----------------------------------------------------------------------------------------------------------
