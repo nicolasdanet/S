@@ -23,7 +23,7 @@ BoxPainter::BoxPainter (ObjectComponent* owner) :
     boxBackgroundColour_.attach (repaint (component_));
     boxTextColour_.attach (repaint (component_));
     boxWrongColour_.attach (repaint (component_));
-    content_.attach (repaint (component_));
+    content_.attach (resized (component_));
     
     component_->setBufferedToImage (true);
 }
