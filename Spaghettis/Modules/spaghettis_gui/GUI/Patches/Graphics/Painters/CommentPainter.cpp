@@ -13,10 +13,10 @@ namespace spaghettis {
 // MARK: -
 
 CommentPainter::CommentPainter (ObjectComponent* owner) :
-    PainterPolicy (owner),
-    value_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text))
+    PainterPolicy (owner, false),
+    text_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text))
 {
-    value_.attach (repaint (component_));
+    text_.attach (resized (component_));
     
     component_->setBufferedToImage (true);
 }

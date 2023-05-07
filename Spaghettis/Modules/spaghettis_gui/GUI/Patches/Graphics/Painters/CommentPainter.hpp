@@ -32,7 +32,7 @@ public:
     juce::Rectangle<int> getRequiredBoundsForObject() override;
     
 private:
-    core::Cached<juce::String> value_;
+    core::Cached<juce::String> text_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CommentPainter)
