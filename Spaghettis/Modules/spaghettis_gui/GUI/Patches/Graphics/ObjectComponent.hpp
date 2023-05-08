@@ -177,7 +177,6 @@ private:
     core::Cached<juce::String> inlets_;
     core::Cached<juce::String> outlets_;
     core::Cached<juce::String> label_;
-    core::Cached<juce::Colour> boxPinBackgroundColour_;
     core::Cached<juce::Colour> boxSelectedColour_;
     std::unique_ptr<PainterPolicy> painter_;
     std::vector<std::unique_ptr<PinComponent>> iPins_;

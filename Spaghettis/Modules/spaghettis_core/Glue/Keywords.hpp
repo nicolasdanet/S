@@ -33,7 +33,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (AskBeforeQuit);
     DECLARE_STRING (Attributes);
     DECLARE_STRING (BoxBackground);
-    DECLARE_STRING (BoxPinBackground);
+    DECLARE_STRING (BoxPinsBackground);
     DECLARE_STRING (BoxSelected);
     DECLARE_STRING (BoxText);
     DECLARE_STRING (BoxWrong);

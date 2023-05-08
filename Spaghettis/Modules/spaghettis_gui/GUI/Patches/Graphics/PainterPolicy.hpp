@@ -36,6 +36,19 @@ private:
     virtual void paintObject (juce::Rectangle<int>, juce::Graphics&) = 0;
     virtual juce::Rectangle<int> getRequiredBoundsForObject() = 0;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+public:
+    virtual juce::Colour getPinsBackground() const
+    {
+        return boxPinsBackgroundColour_.get();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     virtual std::optional<core::Vector::Real> getDimensions()
     {
@@ -106,6 +119,7 @@ public:
 protected:
     ObjectComponent* component_;
     core::Object object_;
+    core::Cached<juce::Colour> boxPinsBackgroundColour_;
     core::Cached<juce::Colour> labelBackgroundColour_;
     core::Cached<juce::Colour> labelTextColour_;
     int objectWidth_;

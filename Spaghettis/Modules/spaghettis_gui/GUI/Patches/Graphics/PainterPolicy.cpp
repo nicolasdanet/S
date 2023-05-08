@@ -15,6 +15,7 @@ namespace spaghettis {
 PainterPolicy::PainterPolicy (ObjectComponent* owner, bool isOpaque) :
     component_ (owner),
     object_ (owner->getObject()),
+    boxPinsBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxPinsBackground)),
     labelBackgroundColour_ (Spaghettis()->getCachedColour (Tag::LabelBackground)),
     labelTextColour_ (Spaghettis()->getCachedColour (Tag::LabelText)),
     objectWidth_ (0)
@@ -24,6 +25,7 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, bool isOpaque) :
     
     component_->setOpaque (isOpaque);
     
+    boxPinsBackgroundColour_.attach (repaint (component_));
     labelBackgroundColour_.attach (repaint (component_));
     labelTextColour_.attach (repaint (component_));
 }

@@ -46,7 +46,6 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     inlets_ (object.getCached<juce::String> (Tag::Attributes, Tag::Inlets, true)),
     outlets_ (object.getCached<juce::String> (Tag::Attributes, Tag::Outlets, true)),
     label_ (object.getCached<juce::String> (Tag::Parameters, Tag::Label, true)),
-    boxPinBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxPinBackground)),
     boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
     painter_ (createPainter (this, object.get<juce::String> (Tag::Attributes, Tag::Class))),
     origin_ (0, 0),
@@ -70,7 +69,6 @@ ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
     y_.attach (f);
     
     selected_.attach (PainterPolicy::repaint (this));
-    boxPinBackgroundColour_.attach (PainterPolicy::repaint (this));
     boxSelectedColour_.attach (PainterPolicy::repaint (this));
     
     if (isInsideRunView()) { addMouseListener (painter_.get(), true); }
@@ -309,7 +307,7 @@ void ObjectComponent::paint (juce::Graphics& g)
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
     
-    g.setColour (selected_.get() ? boxSelectedColour_.get() : boxPinBackgroundColour_.get());
+    g.setColour (selected_.get() ? boxSelectedColour_.get() : painter_->getPinsBackground());
     g.fillRect (bounds);
     
     painter_->paint (getView()->getPaintedAreaFromBounds (bounds), g);
