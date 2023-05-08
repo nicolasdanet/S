@@ -142,6 +142,53 @@ juce::Rectangle<int> PainterPolicy::getRequiredBoundsForObjectFromDimensions()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+int getMargins (float f)
+{
+    return std::round (3 * f);
+}
+
+int getWidth (float f, int m, int n)
+{
+    const int pins = juce::jmax (m, n);
+    int w = pins * PainterPolicy::pinWidth (f);
+    
+    if (pins > 1) { w += (pins - 1) * PainterPolicy::pinGripX (f) * 2; }
+    
+    return w;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Rectangle<int> PainterPolicy::getRequiredBoundsForObjectFromText (const juce::String& text)
+{
+    const float f = getScale();
+    
+    const juce::Font font (getFont());
+    
+    const int w = font.getStringWidth (text);
+    const int h = font.getHeight();
+    const int m = getWidth (f, component_->getNumberOfInlets(), component_->getNumberOfOutlets());
+    const int k = getMargins (f) * 2;
+    
+    return getRequiredBoundsForObjectFromVector (core::Vector::Scaled (juce::jmax (m, w + k), h + k, f));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void PainterPolicy::setDimensionsByParameters (core::Vector::Real v)
 {
     const int w = v.getPoint().getX();

@@ -97,17 +97,7 @@ void BoxPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> BoxPainter::getRequiredBoundsForObject()
 {
-    const float f = getScale();
-    
-    const juce::Font   font (getFont());
-    const juce::String text (getText());
-    
-    const int w = font.getStringWidth (text);
-    const int h = font.getHeight();
-    const int m = getMinimumWidth (f, component_->getNumberOfInlets(), component_->getNumberOfOutlets());
-    const int k = getTextMargins (f) * 2;
-    
-    return getRequiredBoundsForObjectFromVector (core::Vector::Scaled (juce::jmax (m, w + k), h + k, f));
+    return getRequiredBoundsForObjectFromText (getText());
 }
 
 // -----------------------------------------------------------------------------------------------------------
