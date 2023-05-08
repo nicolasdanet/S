@@ -43,56 +43,15 @@ juce::String BoxPainter::getText() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-int getTextMargins (float f)
-{
-    return std::round (3 * f);
-}
-
-int getMinimumWidth (float f, int m, int n)
-{
-    const int pins = juce::jmax (m, n);
-    int w = pins * PainterPolicy::pinWidth (f);
-    
-    if (pins > 1) { w += (pins - 1) * PainterPolicy::pinGripX (f) * 2; }
-    
-    return w;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void BoxPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const float f = getScale();
-
-    g.setColour (boxBackgroundColour_.get());
-    g.fillRect (r);
-    
-    if (f > 0.5) {
-    //
-    const juce::Rectangle<int> t (r.reduced (getTextMargins (f)).translated (0, -1));
-
-    const juce::Font   font (getFont());
-    const juce::String text (getText());
-
     const bool wrong = class_.get().isEmpty();
     
+    g.setColour (boxBackgroundColour_.get());
+    g.fillRect (r);
     g.setColour (wrong ? boxWrongColour_.get() : boxTextColour_.get());
-    g.setFont (getFont());
-    g.drawText (text, t, juce::Justification::centredLeft, true);
-    //
-    }
+    
+    paintText (r, g, getText());
 }
 
 juce::Rectangle<int> BoxPainter::getRequiredBoundsForObject()

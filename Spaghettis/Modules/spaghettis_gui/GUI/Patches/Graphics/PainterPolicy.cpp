@@ -189,6 +189,26 @@ juce::Rectangle<int> PainterPolicy::getRequiredBoundsForObjectFromText (const ju
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PainterPolicy::paintText (juce::Rectangle<int> r, juce::Graphics& g, const juce::String& text)
+{
+    const float f = getScale();
+        
+    if (f > 0.5) {
+    //
+    const juce::Rectangle<int> t (r.reduced (getMargins (f)).translated (0, -1));
+
+    const juce::Font font (getFont());
+    
+    g.setFont (getFont());
+    g.drawText (text, t, juce::Justification::centredLeft, true);
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void PainterPolicy::setDimensionsByParameters (core::Vector::Real v)
 {
     const int w = v.getPoint().getX();
