@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 CommentPainter::CommentPainter (ObjectComponent* owner) :
-    PainterPolicy (owner, false),
+    PainterPolicy (owner),
     text_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text))
 {
     text_.attach (resized (component_));

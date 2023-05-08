@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PainterPolicy::PainterPolicy (ObjectComponent* owner, bool isOpaque) :
+PainterPolicy::PainterPolicy (ObjectComponent* owner) :
     component_ (owner),
     object_ (owner->getObject()),
     boxPinsBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxPinsBackground)),
@@ -22,8 +22,6 @@ PainterPolicy::PainterPolicy (ObjectComponent* owner, bool isOpaque) :
 {
     jassert (owner);
     jassert (object_.isObject());
-    
-    component_->setOpaque (isOpaque);
     
     boxPinsBackgroundColour_.attach (repaint (component_));
     labelBackgroundColour_.attach (repaint (component_));

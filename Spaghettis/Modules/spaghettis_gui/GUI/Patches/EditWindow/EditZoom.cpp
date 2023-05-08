@@ -14,7 +14,6 @@ namespace spaghettis {
 
 EditZoom::EditZoom (const juce::Value& v) : v_ (v)
 {
-    setOpaque (false);
     setBufferedToImage (true);
         
     v_.addListener (this);

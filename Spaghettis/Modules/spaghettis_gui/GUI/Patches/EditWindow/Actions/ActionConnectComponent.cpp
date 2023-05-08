@@ -17,7 +17,6 @@ ActionConnectComponent::ActionConnectComponent (core::Point::Scaled pt) :
     end_ (pt),
     connectColour_ (Spaghettis()->getCachedColour (Tag::Lasso))
 {
-    setOpaque (false);
     setAlwaysOnTop (true);
     setInterceptsMouseClicks (false, true);
     update();
