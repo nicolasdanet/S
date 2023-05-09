@@ -152,9 +152,9 @@ int getTextMargins (float f)
     return std::round (3 * f);
 }
 
-int getTextWidth (float f, int m, int n)
+int getMinimumWidth (float f, int m, int n)
 {
-    const int pins = juce::jmax (m, n);
+    const int pins = juce::jmax (m, n, 1);
     
     int w = pins * PainterPolicy::pinWidth (f);
     
@@ -180,7 +180,7 @@ juce::Rectangle<int> PainterPolicy::getRequiredBoundsForObjectFromText (const ju
     
     const int w = font.getStringWidth (text);
     const int h = font.getHeight();
-    const int m = getTextWidth (f, component_->getNumberOfInlets(), component_->getNumberOfOutlets());
+    const int m = getMinimumWidth (f, component_->getNumberOfInlets(), component_->getNumberOfOutlets());
     const int k = getTextMargins (f) * 2;
     
     return getRequiredBoundsForObjectFromVector (core::Vector::Scaled (juce::jmax (m, w + k), h + k, f));

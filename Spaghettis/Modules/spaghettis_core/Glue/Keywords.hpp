@@ -42,6 +42,8 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (BangFlashOn);
     DECLARE_STRING (Class);
     DECLARE_STRING (Colors);
+    DECLARE_STRING (CommentBackground);
+    DECLARE_STRING (CommentText);
     DECLARE_STRING (Content);
     DECLARE_STRING (Copy);
     DECLARE_STRING (Cut);

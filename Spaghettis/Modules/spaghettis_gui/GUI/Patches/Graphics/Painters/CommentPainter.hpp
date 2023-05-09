@@ -30,8 +30,17 @@ public:
 public:
     void paintObject (juce::Rectangle<int>, juce::Graphics&) override;
     juce::Rectangle<int> getRequiredBoundsForObject() override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::Colour getPinsBackground() override;
     
 private:
+    core::Cached<juce::Colour> commentBackgroundColour_;
+    core::Cached<juce::Colour> commentTextColour_;
     core::Cached<juce::String> text_;
 
 private:

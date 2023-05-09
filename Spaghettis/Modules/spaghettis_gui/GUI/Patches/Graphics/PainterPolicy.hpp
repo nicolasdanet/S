@@ -40,7 +40,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    virtual juce::Colour getPinsBackground() const
+    virtual juce::Colour getPinsBackground()
     {
         return boxPinsBackgroundColour_.get();
     }

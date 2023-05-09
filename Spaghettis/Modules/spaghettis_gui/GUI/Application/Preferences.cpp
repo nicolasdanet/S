@@ -222,6 +222,16 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set color of bang widget for flash on"),
         Colours::getPalette()->textWarning);
 
+    colors.addParameter (Tag::CommentBackground,
+        NEEDS_TRANS ("Comment Background"),
+        NEEDS_TRANS ("Set background color of comments"),
+        Colours::getPalette()->background);
+        
+    colors.addParameter (Tag::CommentText,
+        NEEDS_TRANS ("Comment Text"),
+        NEEDS_TRANS ("Set text color of comments"),
+        Colours::getPalette()->textBox);
+        
     getDefaultTest (data);
     
     return data;

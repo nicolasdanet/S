@@ -14,8 +14,12 @@ namespace spaghettis {
 
 CommentPainter::CommentPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
+    commentBackgroundColour_ (Spaghettis()->getCachedColour (Tag::CommentBackground)),
+    commentTextColour_ (Spaghettis()->getCachedColour (Tag::CommentText)),
     text_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text))
 {
+    commentBackgroundColour_.attach (repaint (component_));
+    commentTextColour_.attach (repaint (component_));
     text_.attach (resized (component_));
     
     component_->setBufferedToImage (true);
@@ -25,15 +29,27 @@ CommentPainter::CommentPainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Colour CommentPainter::getPinsBackground()
+{
+    return commentBackgroundColour_.get();
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void CommentPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    g.setColour (juce::Colours::orange);
+    g.setColour (commentBackgroundColour_.get());
     g.fillRect (r);
+    g.setColour (commentTextColour_.get());
+    
+    paintText (r, g, text_.get());
 }
 
 juce::Rectangle<int> CommentPainter::getRequiredBoundsForObject()
 {
-    return { };
+    return getRequiredBoundsForObjectFromText (text_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
