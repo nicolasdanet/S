@@ -37,6 +37,13 @@ public:
 
 public:
     juce::Colour getPinsBackground() override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    juce::String getText() const;
     
 private:
     core::Cached<juce::Colour> commentBackgroundColour_;

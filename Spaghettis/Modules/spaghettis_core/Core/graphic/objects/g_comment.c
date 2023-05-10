@@ -55,9 +55,6 @@ PD_LOCAL void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom 
     t_buffer *t = buffer_new();
 
     if (argc > 2) { buffer_deserialize (t, argc - 2, argv + 2); }
-    else {
-        buffer_appendSymbol (t, sym_comment);
-    }
     
     object_setBuffer (x, t);
     object_setX (x, a);

@@ -33,7 +33,18 @@ juce::Colour CommentPainter::getPinsBackground()
 {
     return commentBackgroundColour_.get();
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::String CommentPainter::getText() const
+{
+    juce::String text (text_.get()); if (text.isEmpty()) { text = Tag::comment; }
     
+    return text;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -44,12 +55,12 @@ void CommentPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.fillRect (r);
     g.setColour (commentTextColour_.get());
     
-    paintText (r, g, text_.get());
+    paintText (r, g, getText());
 }
 
 juce::Rectangle<int> CommentPainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsForObjectFromText (text_.get());
+    return getRequiredBoundsForObjectFromText (getText());
 }
 
 // -----------------------------------------------------------------------------------------------------------
