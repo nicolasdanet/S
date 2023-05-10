@@ -288,6 +288,34 @@ static void message_free (t_message *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void message_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+{
+    static DelegateCache delegate;
+    
+    if (t.contains (Tag::Text)) {
+        group.addParameter (Tag::Text,
+            NEEDS_TRANS ("Text"),
+            NEEDS_TRANS ("Text of message"),
+            object_getBufferAsString (o),
+            delegate);
+    }
+}
+
+static void message_functionSetParameters (t_object *o, const core::Group& group)
+{
+    jassert (group.hasParameter (Tag::Text));
+    
+    // set (o, group.getParameter (Tag::Text).getValueTyped<juce::String>());
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 PD_LOCAL void message_setup (void)
 {
     t_class *c = NULL;
@@ -314,6 +342,12 @@ PD_LOCAL void message_setup (void)
     class_addMethod (c, (t_method)message_addDollar,        sym_adddollar,          A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)message_addDollarSymbol,  sym_adddollarsymbol,    A_SYMBOL, A_NULL);
 
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    class_setParametersFunctions (c, message_functionGetParameters, message_functionSetParameters);
+    
+    #endif
+    
     message_class = c;
     
     c = class_new (sym_messageresponder,
