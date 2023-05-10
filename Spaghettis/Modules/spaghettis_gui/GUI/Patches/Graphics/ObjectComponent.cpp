@@ -23,6 +23,7 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const juce
     else if (type == "inlet")   { return std::make_unique<InletPainter> (owner);    }
     else if (type == "outlet")  { return std::make_unique<InletPainter> (owner);    }
     else if (type == "comment") { return std::make_unique<CommentPainter> (owner);  }
+    else if (type == "message") { return std::make_unique<MessagePainter> (owner);  }
     else {
         return std::make_unique<BoxPainter> (owner);
     }
