@@ -307,11 +307,17 @@ PinComponent* ObjectComponent::getOutletAt (int n) const
 void ObjectComponent::paint (juce::Graphics& g)
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
+    const juce::Rectangle<int> painted (getView()->getPaintedAreaFromBounds (bounds));
     
+    if (!isInsideRunView()) {
+    //
     g.setColour (selected_.get() ? boxSelectedColour_.get() : painter_->getPinsBackground());
-    g.fillRect (bounds);
+    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(), painted.getTopRight()));
+    g.fillRect (juce::Rectangle<int> (painted.getBottomLeft(), bounds.getBottomRight()));
+    //
+    }
     
-    painter_->paint (getView()->getPaintedAreaFromBounds (bounds), g);
+    painter_->paint (painted, g);
 }
     
 void ObjectComponent::resized()
