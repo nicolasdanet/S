@@ -230,7 +230,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::CommentText,
         NEEDS_TRANS ("Comment Text"),
         NEEDS_TRANS ("Set text color of comments"),
-        Colours::getPalette()->textDefault);
+        Colours::getPalette()->textComment);
         
     getDefaultTest (data);
     

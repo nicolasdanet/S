@@ -39,7 +39,7 @@ public:
         // const juce::Colour base02    = juce::Colour (0xff073642);
         const juce::Colour base01       = juce::Colour (0xff586e75);
         // const juce::Colour base00    = juce::Colour (0xff657b83);
-        // const juce::Colour base0     = juce::Colour (0xff839496);
+        const juce::Colour base0        = juce::Colour (0xff839496);
         const juce::Colour base1        = juce::Colour (0xff93a1a1);
         // const juce::Colour base2     = juce::Colour (0xffeee8d5);
         // const juce::Colour base3     = juce::Colour (0xfffdf6e3);
@@ -61,6 +61,7 @@ public:
         textPopup                       = juce::Colours::lightgrey;
         textBox                         = base1;
         textLabel                       = base1;
+        textComment                     = base0;
         selection                       = green;
         thumb                           = juce::Colours::grey;
         transparent                     = juce::Colours::transparentBlack;
@@ -99,6 +100,7 @@ public:
     juce::Colour textPopup;
     juce::Colour textBox;
     juce::Colour textLabel;
+    juce::Colour textComment;
     juce::Colour selection;
     juce::Colour thumb;
     juce::Colour transparent;
