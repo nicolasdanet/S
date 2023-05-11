@@ -33,8 +33,6 @@ typedef struct _message {
     t_messageresponder  m_responder;
     int                 m_dirty;
     t_buffer            *m_eval;
-    t_glist             *m_owner;
-    t_clock             *m_clock;
     } t_message;
     
 // -----------------------------------------------------------------------------------------------------------
@@ -125,7 +123,7 @@ static void message_eval (t_message *x, int argc, t_atom *argv)
     
     PD_ATOMS_ALLOCA (a, n);
     
-    if (atom_copyAtomsExpandedWithArguments (buffer_getAtoms (b), n, a, n, x->m_owner, argc, argv)) {
+    if (atom_copyAtomsExpandedWithArguments (buffer_getAtoms (b), n, a, n, object_getOwner (cast_object (x)), argc, argv)) {
         eval_bufferProceed (n, a, cast_pd (&x->m_responder), argc, argv);
     } else {
         eval_buffer (b, cast_pd (&x->m_responder), argc, argv);
@@ -253,16 +251,16 @@ static void message_put (t_message *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void message_makeObjectProceed (t_message *x, int argc, t_atom *argv)
+static void message_makeObjectProceed (t_glist *glist, t_object *x, int argc, t_atom *argv)
 {
     t_buffer *t = buffer_new(); if (argc > 2) { buffer_deserialize (t, argc - 2, argv + 2); }
     
-    object_setBuffer (cast_object (x), t);
-    object_setX (cast_object (x), atom_getFloatAtIndex (0, argc, argv));
-    object_setY (cast_object (x), atom_getFloatAtIndex (1, argc, argv));
-    object_setType (cast_object (x), TYPE_MESSAGE);
+    object_setBuffer (x, t);
+    object_setX (x, atom_getFloatAtIndex (0, argc, argv));
+    object_setY (x, atom_getFloatAtIndex (1, argc, argv));
+    object_setType (x, TYPE_MESSAGE);
     
-    glist_objectAdd (x->m_owner, cast_object (x));
+    glist_objectAdd (glist, x);
 }
 
 PD_LOCAL void message_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
@@ -272,9 +270,8 @@ PD_LOCAL void message_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom 
     x->m_responder.mr_pd     = messageresponder_class;
     x->m_responder.mr_outlet = outlet_newMixed (cast_object (x));
     x->m_eval                = buffer_new();
-    x->m_owner               = glist;
     
-    message_makeObjectProceed (x, argc, argv);
+    message_makeObjectProceed (glist, cast_object (x), argc, argv);
     
     message_dirty (x);
 }
@@ -308,6 +305,7 @@ static void message_functionSetParameters (t_object *o, const core::Group& group
     jassert (group.hasParameter (Tag::Text));
     
     // set (o, group.getParameter (Tag::Text).getValueTyped<juce::String>());
+    // message_set
 }
 
 #endif
