@@ -12,7 +12,7 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-inline juce::String makeStringWithUTF8 (char *s)
+inline juce::String makeString (const char *s)
 {
     return juce::String (juce::CharPointer_UTF8 (s));
 }

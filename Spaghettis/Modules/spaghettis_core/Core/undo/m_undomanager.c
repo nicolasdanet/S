@@ -82,7 +82,7 @@ static juce::String undomanager_getLabel (t_undoaction *a)
     
     jassert (s);
     
-    return juce::String (symbol_getName (s));
+    return makeString (symbol_getName (s));
 }
 
 PD_LOCAL juce::String undomanager_getUndoLabel (t_undomanager *x)

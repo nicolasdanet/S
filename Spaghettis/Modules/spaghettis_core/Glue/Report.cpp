@@ -91,7 +91,7 @@ void setObjectAttributesClass (Group& group, t_object* o, const Tags& t)
         group.addParameter (Tag::Class,
             NEEDS_TRANS ("Class"),
             NEEDS_TRANS ("Class of the object"),
-            object_isDummy (o) ? juce::String() : juce::String (class_getNameAsString (pd_class (o))),
+            object_isDummy (o) ? juce::String() : makeString (class_getNameAsString (pd_class (o))),
             delegate);
     }
 }
@@ -167,7 +167,7 @@ void setObjectAttributesForPatch (Group& group, t_object* o, const Tags& t)
         group.addParameter (Tag::Title,
             NEEDS_TRANS ("Title"),
             NEEDS_TRANS ("Patch name"),
-            juce::String (symbol_getName (glist_getName (g))),
+            makeString (symbol_getName (glist_getName (g))),
             delegate);
     }
     
@@ -257,7 +257,7 @@ void setObjectParameters (Data& data, t_object* o, const Tags& t)
         group.addParameter (Tag::Label,
             NEEDS_TRANS ("Label"),
             NEEDS_TRANS ("Parameter name in run view"),
-            juce::String (symbol_getName (object_getLabel (o))),
+            makeString (symbol_getName (object_getLabel (o))),
             delegate);
     }
     

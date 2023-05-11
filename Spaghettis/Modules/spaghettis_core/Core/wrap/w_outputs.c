@@ -37,7 +37,7 @@ PD_LOCAL void outputs_patchOpened (t_symbol *name, t_symbol *directory)
 {
     jassert (name && directory);
     
-    juce::File f (juce::String (symbol_getName (directory)) + "/" + juce::String (symbol_getName (name)));
+    juce::File f (makeString (symbol_getName (directory)) + "/" + makeString (symbol_getName (name)));
     
     wrapper_send (Outputs::patchOpened (f));
 }
@@ -126,7 +126,7 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 
 PD_LOCAL void outputs_classNew (t_symbol *s)
 {
-    wrapper_send (Outputs::classNew (juce::String (symbol_getName (s))));
+    wrapper_send (Outputs::classNew (makeString (symbol_getName (s))));
 }
 
 // -----------------------------------------------------------------------------------------------------------
