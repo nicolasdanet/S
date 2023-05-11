@@ -478,7 +478,7 @@ juce::String object_getBufferAsString (t_object* x)
     //
     char* t = atom_atomsToString (buffer_getSize (b), buffer_getAtoms (b));
     
-    s = juce::String (juce::CharPointer_UTF8 (t));
+    s = makeStringWithUTF8 (t);
     
     PD_MEMORY_FREE (t);
     //
