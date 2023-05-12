@@ -14,8 +14,8 @@ namespace spaghettis {
 
 MessagePainter::MessagePainter (ObjectComponent* owner) :
     PainterPolicy (owner),
-    messageBackgroundColour_ (Spaghettis()->getCachedColour (Tag::CommentBackground)),
-    messageTextColour_ (Spaghettis()->getCachedColour (Tag::CommentText)),
+    messageBackgroundColour_ (Spaghettis()->getCachedColour (Tag::MessageBackground)),
+    messageTextColour_ (Spaghettis()->getCachedColour (Tag::MessageText)),
     text_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text))
 {
     messageBackgroundColour_.attach (repaint (component_));

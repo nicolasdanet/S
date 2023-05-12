@@ -231,6 +231,16 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Comment Text"),
         NEEDS_TRANS ("Set text color of comments"),
         Colours::getPalette()->textComment);
+    
+    colors.addParameter (Tag::MessageBackground,
+        NEEDS_TRANS ("Message Background"),
+        NEEDS_TRANS ("Set background color of messages"),
+        Colours::getPalette()->backgroundAlternate);
+        
+    colors.addParameter (Tag::MessageText,
+        NEEDS_TRANS ("Message Text"),
+        NEEDS_TRANS ("Set text color of messages"),
+        Colours::getPalette()->textComment);
         
     getDefaultTest (data);
     

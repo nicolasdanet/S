@@ -67,6 +67,8 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Line);
     DECLARE_STRING (LineSelected);
     DECLARE_STRING (LineSignal);
+    DECLARE_STRING (MessageBackground);
+    DECLARE_STRING (MessageText);
     DECLARE_STRING (Outlet);
     DECLARE_STRING (Outlets);
     DECLARE_STRING (Parameters);
