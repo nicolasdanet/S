@@ -28,6 +28,13 @@ public:
 // MARK: -
 
 public:
+    void mouseDown (const juce::MouseEvent&) override;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void paintObject (juce::Rectangle<int>, juce::Graphics&) override;
     juce::Rectangle<int> getRequiredBoundsForObject() override;
 

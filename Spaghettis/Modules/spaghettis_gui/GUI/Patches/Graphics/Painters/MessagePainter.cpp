@@ -29,6 +29,15 @@ MessagePainter::MessagePainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void MessagePainter::mouseDown (const juce::MouseEvent& e)
+{
+    Spaghettis()->handle (Inputs::sendObjectBang (getIdentifier()));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::Colour MessagePainter::getPinsBackground()
 {
     return messageBackgroundColour_.get();
