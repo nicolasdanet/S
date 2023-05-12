@@ -45,6 +45,13 @@ public:
 public:
     juce::Colour getPinsBackground() override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    int getExtra() const;
+    
 private:
     core::Cached<juce::Colour> messageBackgroundColour_;
     core::Cached<juce::Colour> messageTextColour_;

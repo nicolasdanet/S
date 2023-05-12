@@ -225,7 +225,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::CommentBackground,
         NEEDS_TRANS ("Comment Background"),
         NEEDS_TRANS ("Set background color of comments"),
-        Colours::getPalette()->background);
+        Colours::getPalette()->transparent);
         
     colors.addParameter (Tag::CommentText,
         NEEDS_TRANS ("Comment Text"),

@@ -47,8 +47,19 @@ juce::Colour MessagePainter::getPinsBackground()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int MessagePainter::getExtra() const
+{
+    return static_cast<int> (6 * getScale());
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void MessagePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
+    juce::Rectangle<int> t (r.removeFromRight (getExtra() * 2));
+    
     g.setColour (messageBackgroundColour_.get());
     g.fillRect (r);
     g.setColour (messageTextColour_.get());
@@ -58,7 +69,7 @@ void MessagePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> MessagePainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsForObjectFromText (text_.get());
+    return getRequiredBoundsForObjectFromText (text_.get()).expanded (getExtra(), 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
