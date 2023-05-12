@@ -80,9 +80,16 @@ static void messageresponder_anything (t_messageresponder *x, t_symbol *s, int a
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void message_dirty (t_message *x)
+static void message_dirty (t_message *x, int notify)
 {
     x->m_dirty = 1;
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    outputs_objectUpdated (cast_object (x), Tags::attributes (Tag::Content));
+    outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Text));
+    
+    #endif
 }
 
 static t_buffer *message_getBuffer (t_message *x)
@@ -117,13 +124,14 @@ static t_buffer *message_getBuffer (t_message *x)
 
 static void message_eval (t_message *x, int argc, t_atom *argv)
 {
+    t_glist *g  = object_getOwner (cast_object (x));
     t_buffer *b = message_getBuffer (x);
     t_atom *a   = NULL;
     int n       = buffer_getSize (b);
     
     PD_ATOMS_ALLOCA (a, n);
     
-    if (atom_copyAtomsExpandedWithArguments (buffer_getAtoms (b), n, a, n, object_getOwner (cast_object (x)), argc, argv)) {
+    if (atom_copyAtomsExpandedWithArguments (buffer_getAtoms (b), n, a, n, g, argc, argv)) {
         eval_bufferProceed (n, a, cast_pd (&x->m_responder), argc, argv);
     } else {
         eval_buffer (b, cast_pd (&x->m_responder), argc, argv);
@@ -174,14 +182,14 @@ static void message_set (t_message *x, t_symbol *s, int argc, t_atom *argv)
     buffer_clear (object_getBuffer (cast_object (x)));
     buffer_append (object_getBuffer (cast_object (x)), argc, argv);
     buffer_reparseIfContainsWhitespace (object_getBuffer (cast_object (x)));        /* Copy and paste. */
-    message_dirty (x);
+    message_dirty (x, 1);
 }
 
 static void message_append (t_message *x, t_symbol *s, int argc, t_atom *argv)
 {
     buffer_append (object_getBuffer (cast_object (x)), argc, argv);
     buffer_reparseIfContainsWhitespace (object_getBuffer (cast_object (x)));
-    message_dirty (x);
+    message_dirty (x, 1);
 }
 
 static void message_add (t_message *x, t_symbol *s, int argc, t_atom *argv)
@@ -189,7 +197,7 @@ static void message_add (t_message *x, t_symbol *s, int argc, t_atom *argv)
     buffer_append (object_getBuffer (cast_object (x)), argc, argv);
     buffer_appendSemicolon (object_getBuffer (cast_object (x)));
     buffer_reparseIfContainsWhitespace (object_getBuffer (cast_object (x)));
-    message_dirty (x);
+    message_dirty (x, 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -200,7 +208,7 @@ static void message_addComma (t_message *x)
     t_atom a; SET_COMMA (&a);
     
     buffer_appendAtom (object_getBuffer (cast_object (x)), &a);
-    message_dirty (x);
+    message_dirty (x, 1);
 }
 
 static void message_addSemicolon (t_message *x)
@@ -214,7 +222,7 @@ static void message_addDollar (t_message *x, t_float f)
     t_atom a; SET_DOLLAR (&a, n);
     
     buffer_appendAtom (object_getBuffer (cast_object (x)), &a);
-    message_dirty (x);
+    message_dirty (x, 1);
 }
 
 static void message_addDollarSymbol (t_message *x, t_symbol *s)
@@ -226,7 +234,7 @@ static void message_addDollarSymbol (t_message *x, t_symbol *s)
     SET_DOLLARSYMBOL (&a, gensym (t));
 
     buffer_appendAtom (object_getBuffer (cast_object (x)), &a);
-    message_dirty (x);
+    message_dirty (x, 1);
 }
 
 static void message_put (t_message *x, t_symbol *s, int argc, t_atom *argv)
@@ -273,7 +281,7 @@ PD_LOCAL void message_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom 
     
     message_makeObjectProceed (glist, cast_object (x), argc, argv);
     
-    message_dirty (x);
+    message_dirty (x, 0);
 }
 
 static void message_free (t_message *x)
@@ -302,10 +310,13 @@ static void message_functionGetParameters (t_object *o, core::Group& group, cons
 
 static void message_functionSetParameters (t_object *o, const core::Group& group)
 {
+    t_message *x = (t_message *)o;
+    
     jassert (group.hasParameter (Tag::Text));
     
-    // set (o, group.getParameter (Tag::Text).getValueTyped<juce::String>());
-    // message_set
+    object_setBufferWithString (o, group.getParameter (Tag::Text).getValueTyped<juce::String>());
+    
+    message_dirty (x, 1);
 }
 
 #endif
