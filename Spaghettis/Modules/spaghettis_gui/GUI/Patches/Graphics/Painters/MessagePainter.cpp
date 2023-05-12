@@ -51,17 +51,24 @@ int MessagePainter::getExtra() const
 {
     return static_cast<int> (6 * getScale());
 }
-    
+
+void MessagePainter::paintBackground (juce::Rectangle<int> r, juce::Graphics& g)
+{
+    juce::Rectangle<int> t (r.removeFromRight (getExtra() * 2));
+        
+    g.fillRect (r);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void MessagePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    juce::Rectangle<int> t (r.removeFromRight (getExtra() * 2));
-    
     g.setColour (messageBackgroundColour_.get());
-    g.fillRect (r);
+    
+    paintBackground (r, g);
+    
     g.setColour (messageTextColour_.get());
     
     paintText (r, g, text_.get());
