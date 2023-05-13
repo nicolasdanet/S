@@ -65,8 +65,8 @@ void EditView::hideLocator (const juce::MouseEvent& e)
 void EditView::mouseDragProceed (const juce::MouseEvent& e, bool isChild, DragFlag flag)
 {
     if (!drag_) {
-        if (Mouse::isAltClick (e))          { drag_ = std::make_unique<ActionHand> (this);    }
-        else if (Mouse::hasModifier (e))    { }
+        if (Mouse::hasCommandKey (e))       { }
+        else if (Mouse::isAltClick (e))     { drag_ = std::make_unique<ActionHand> (this);    }
         else if (flag == DragFlag::Resize)  { drag_ = std::make_unique<ActionResize> (this);  }
         else if (flag == DragFlag::Move)    { drag_ = std::make_unique<ActionMove> (this);    }
         else if (flag == DragFlag::Pin)     { drag_ = std::make_unique<ActionConnect> (this); }
