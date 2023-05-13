@@ -45,7 +45,7 @@ juce::Colour MessagePainter::getPinsBackground()
 
 int MessagePainter::getExtra() const
 {
-    return static_cast<int> (8 * getScale());
+    return static_cast<int> (4 * getScale());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -78,7 +78,7 @@ void paintExtra (juce::Rectangle<float> r, juce::Graphics& g)
 
 void MessagePainter::paintBackground (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    paintExtra (r.removeFromRight (getExtra()).toFloat(), g);
+    paintExtra (r.removeFromRight (getExtra() * 2).toFloat(), g);
         
     g.fillRect (r);
 }
