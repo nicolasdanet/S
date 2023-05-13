@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class MessagePainter : public PainterPolicy {
+class MessagePainter :  public PainterPolicy,
+                        private juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -27,6 +28,10 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    void clicked (bool);
+    void timerCallback() override;
+    
 public:
     void mouseDown (const juce::MouseEvent&) override;
     
@@ -59,6 +64,7 @@ private:
     core::Cached<juce::Colour> messageBackgroundColour_;
     core::Cached<juce::Colour> messageTextColour_;
     core::Cached<juce::String> text_;
+    bool isClicked_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MessagePainter)

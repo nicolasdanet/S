@@ -16,7 +16,8 @@ MessagePainter::MessagePainter (ObjectComponent* owner) :
     PainterPolicy (owner),
     messageBackgroundColour_ (Spaghettis()->getCachedColour (Tag::MessageBackground)),
     messageTextColour_ (Spaghettis()->getCachedColour (Tag::MessageText)),
-    text_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text))
+    text_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text)),
+    isClicked_ (false)
 {
     messageBackgroundColour_.attach (repaint (component_));
     messageTextColour_.attach (repaint (component_));
@@ -29,9 +30,21 @@ MessagePainter::MessagePainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void MessagePainter::clicked (bool isClicked)
+{
+    if (isClicked != isClicked_) { isClicked_ = isClicked; DBG ("?"); component_->repaint(); }
+}
+
+void MessagePainter::timerCallback()
+{
+    clicked (false); stopTimer();
+}
+
 void MessagePainter::mouseDown (const juce::MouseEvent& e)
 {
     Spaghettis()->handle (Inputs::sendObjectBang (getIdentifier()));
+    
+    clicked (true); startTimer (250);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -78,14 +91,14 @@ void paintExtra (juce::Rectangle<float> r, juce::Graphics& g)
 
 void MessagePainter::paintBackground (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    paintExtra (r.removeFromRight (getExtra() * 2).toFloat(), g);
+    paintExtra (r.removeFromRight (getExtra()).toFloat(), g);
         
     g.fillRect (r);
 }
 
 void MessagePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    g.setColour (messageBackgroundColour_.get());
+    g.setColour (getPinsBackground());
     
     paintBackground (r, g);
     
