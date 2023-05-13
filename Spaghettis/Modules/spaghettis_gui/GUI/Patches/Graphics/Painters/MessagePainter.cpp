@@ -43,25 +43,45 @@ juce::Colour MessagePainter::getPinsBackground()
     return messageBackgroundColour_.get();
 }
 
+int MessagePainter::getExtra() const
+{
+    return static_cast<int> (8 * getScale());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int MessagePainter::getExtra() const
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void paintExtra (juce::Rectangle<float> r, juce::Graphics& g)
 {
-    return static_cast<int> (6 * getScale());
+    const juce::Point<float> pt (r.getX(), r.getCentreY());
+    
+    juce::Path path;
+    path.addTriangle (r.getTopLeft(), r.getTopRight(), pt);
+    path.addTriangle (r.getBottomLeft(), r.getBottomRight(), pt);
+    g.fillPath (path);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void MessagePainter::paintBackground (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    juce::Rectangle<int> t (r.removeFromRight (getExtra() * 2));
+    paintExtra (r.removeFromRight (getExtra()).toFloat(), g);
         
     g.fillRect (r);
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 void MessagePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
