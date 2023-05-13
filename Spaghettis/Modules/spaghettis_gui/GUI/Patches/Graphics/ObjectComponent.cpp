@@ -131,7 +131,7 @@ void openPatch (const core::Object& o, View* v)
 
 bool ObjectComponent::canResize (const juce::MouseEvent& e) const
 {
-    if (!isLocked() && object_.isGraphic()) {
+    if (!isLocked() && object_.isGraphic() && painter_->getDimensions().has_value()) {
     //
     /* Bottom-right quarter of object. */
     
