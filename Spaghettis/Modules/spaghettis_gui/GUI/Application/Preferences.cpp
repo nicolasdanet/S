@@ -242,6 +242,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set text color of messages"),
         Colours::getPalette()->textBox);
         
+    colors.addParameter (Tag::MessageTextClicked,
+        NEEDS_TRANS ("Message Text Clicked"),
+        NEEDS_TRANS ("Set text color of clicked messages"),
+        Colours::getPalette()->textWarning);
+        
     getDefaultTest (data);
     
     return data;
