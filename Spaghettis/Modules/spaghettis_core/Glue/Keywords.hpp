@@ -57,6 +57,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (General);
     DECLARE_STRING (GridSize);
     DECLARE_STRING (Height);
+    DECLARE_STRING (High);
     DECLARE_STRING (Inlet);
     DECLARE_STRING (Inlets);
     DECLARE_STRING (Label);
@@ -64,6 +65,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (LabelText);
     DECLARE_STRING (Lasso);
     DECLARE_STRING (Locator);
+    DECLARE_STRING (Low);
     DECLARE_STRING (Line);
     DECLARE_STRING (LineSelected);
     DECLARE_STRING (LineSignal);
@@ -91,6 +93,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Text);
     DECLARE_STRING (Title);
     DECLARE_STRING (Undo);
+    DECLARE_STRING (Value);
     DECLARE_STRING (Visible);
     DECLARE_STRING (Width);
     DECLARE_STRING (X);

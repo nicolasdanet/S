@@ -58,8 +58,16 @@ static void gatom_set (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
     if (argc) {
     //
     t_float f = atom_getFloat (argv);
+    
     if (x->a_lowRange != 0.0 || x->a_highRange != 0.0) { f = PD_CLAMP (f, x->a_lowRange, x->a_highRange); }
+    
     SET_FLOAT (&x->a_atom, f);
+
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Value));
+    
+    #endif
     //
     }
 }
@@ -135,6 +143,34 @@ static void gatom_restore (t_gatom *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void gatom_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+{
+    t_gatom *x = (t_gatom *)o;
+    
+    static DelegateCache delegate;
+    
+    if (t.contains (Tag::Value)) {
+        group.addParameter (Tag::Value,
+            NEEDS_TRANS ("Value"),
+            NEEDS_TRANS ("Value of number box"),
+            GET_FLOAT (&x->a_atom),
+            delegate);
+    }
+}
+
+static void gatom_functionSetParameters (t_object *o, const core::Group& group)
+{
+
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void gatom_makeObjectProceed (t_glist *glist, t_gatom *x, int argc, t_atom *argv)
 {
     int width = (int)atom_getFloatAtIndex (2, argc, argv);
@@ -199,6 +235,12 @@ PD_LOCAL void gatom_setup (void)
     class_addMethod (c, (t_method)gatom_range,      sym_range,      A_GIMME, A_NULL);
     class_addMethod (c, (t_method)gatom_restore,    sym__restore,   A_NULL);
 
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    class_setParametersFunctions (c, gatom_functionGetParameters, gatom_functionSetParameters);
+    
+    #endif
+    
     class_setSaveFunction (c, gatom_functionSave);
     class_setDataFunction (c, gatom_functionData);
     class_requirePending (c);
