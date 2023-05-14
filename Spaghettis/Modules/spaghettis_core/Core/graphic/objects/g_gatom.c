@@ -30,7 +30,6 @@ struct _gatom {
     int         a_width;
     t_float     a_lowRange;
     t_float     a_highRange;
-    t_glist     *a_owner;
     t_outlet    *a_outlet;
     };
 
@@ -136,7 +135,7 @@ static void gatom_restore (t_gatom *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void gatom_makeObjectProceed (t_gatom *x, int argc, t_atom *argv)
+static void gatom_makeObjectProceed (t_glist *glist, t_gatom *x, int argc, t_atom *argv)
 {
     int width = (int)atom_getFloatAtIndex (2, argc, argv);
     
@@ -160,7 +159,7 @@ static void gatom_makeObjectProceed (t_gatom *x, int argc, t_atom *argv)
         t_atom a; SET_FLOAT (&a, 0.0); gatom_set (x, NULL, 1, &a);
     }
     
-    glist_objectAdd (x->a_owner, cast_object (x));
+    glist_objectAdd (glist, cast_object (x));
 }
 
 PD_LOCAL void gatom_makeObject (t_glist *glist, t_symbol *dummy, int argc, t_atom *argv)
@@ -171,10 +170,9 @@ PD_LOCAL void gatom_makeObject (t_glist *glist, t_symbol *dummy, int argc, t_ato
     
     x->a_lowRange  = 0;
     x->a_highRange = 0;
-    x->a_owner     = glist;
     x->a_outlet    = outlet_newFloat (cast_object (x));
 
-    gatom_makeObjectProceed (x, argc, argv);
+    gatom_makeObjectProceed (glist, x, argc, argv);
     
     instance_setBoundA (cast_pd (x));
 }
