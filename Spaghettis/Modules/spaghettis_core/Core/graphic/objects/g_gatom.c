@@ -158,6 +158,14 @@ static void gatom_functionGetParameters (t_object *o, core::Group& group, const 
             GET_FLOAT (&x->a_atom),
             delegate);
     }
+    
+    if (t.contains (Tag::Digits)) {
+        group.addParameter (Tag::Digits,
+            NEEDS_TRANS ("Digits"),
+            NEEDS_TRANS ("Number of digits"),
+            x->a_width,
+            delegate).setRange (juce::Range<int> (0, ATOM_WIDTH_MAXIMUM));
+    }
 }
 
 static void gatom_functionSetParameters (t_object *o, const core::Group& group)

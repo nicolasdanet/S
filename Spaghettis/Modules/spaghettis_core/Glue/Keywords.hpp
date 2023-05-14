@@ -48,6 +48,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Copy);
     DECLARE_STRING (Cut);
     DECLARE_STRING (DefaultIsRunView);
+    DECLARE_STRING (Digits);
     DECLARE_STRING (Documentation);
     DECLARE_STRING (Duplicate);
     DECLARE_STRING (Editing);
