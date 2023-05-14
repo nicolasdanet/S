@@ -76,6 +76,12 @@ static void gatom_rangeProceed (t_gatom *x, t_float low, t_float high)
 {
     x->a_lowRange  = PD_MIN (low, high);
     x->a_highRange = PD_MAX (low, high);
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    outputs_objectUpdated (cast_object (x), Tags::parameters ( { Tag::Low, Tag::High } ));
+    
+    #endif
 }
 
 static void gatom_range (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
@@ -156,6 +162,22 @@ static void gatom_functionGetParameters (t_object *o, core::Group& group, const 
             NEEDS_TRANS ("Value"),
             NEEDS_TRANS ("Value of number box"),
             GET_FLOAT (&x->a_atom),
+            delegate);
+    }
+    
+    if (t.contains (Tag::Low)) {
+        group.addParameter (Tag::Low,
+            NEEDS_TRANS ("Low Range"),
+            NEEDS_TRANS ("Minimum value"),
+            x->a_lowRange,
+            delegate);
+    }
+    
+    if (t.contains (Tag::High)) {
+        group.addParameter (Tag::High,
+            NEEDS_TRANS ("High Range"),
+            NEEDS_TRANS ("Maximum value"),
+            x->a_highRange,
             delegate);
     }
     
