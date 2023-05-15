@@ -72,7 +72,7 @@ static void gatom_widthProceed (t_gatom *x, int width, int notify)
     x->a_width = PD_CLAMP (width, 0, ATOM_WIDTH_MAXIMUM);
     
     if (notify) {
-        if (n != x->a_width) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width)); }
+        if (n != x->a_width) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Digits)); }
     }
 }
 
