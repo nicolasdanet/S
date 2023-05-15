@@ -143,9 +143,9 @@ static void bng_flashtime (t_bng *x, t_float f)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-static void bng_functionGetParameters (t_object *z, core::Group& group, const Tags& t)
+static void bng_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
 {
-    t_bng *x = (t_bng *)z;
+    t_bng *x = (t_bng *)o;
     
     static DelegateCache delegate;
     
@@ -174,9 +174,9 @@ static void bng_functionGetParameters (t_object *z, core::Group& group, const Ta
     }
 }
 
-static void bng_functionSetParameters (t_object *z, const core::Group& group)
+static void bng_functionSetParameters (t_object *o, const core::Group& group)
 {
-    t_bng *x = (t_bng *)z;
+    t_bng *x = (t_bng *)o;
     
     jassert (group.hasParameter (Tag::FlashTime));
     jassert (group.hasParameter (Tag::Width));
