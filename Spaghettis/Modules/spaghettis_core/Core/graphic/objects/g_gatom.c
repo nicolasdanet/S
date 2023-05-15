@@ -133,11 +133,6 @@ static void gatom_range (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
     gatom_setProceed (x, GET_FLOAT (&x->a_atom), 1);
 }
 
-static void gatom_width (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
-{
-    if (argc) { gatom_widthProceed (x, (int)atom_getFloat (argv), 1); }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -323,7 +318,6 @@ PD_LOCAL void gatom_setup (void)
         
     class_addMethod (c, (t_method)gatom_set,        sym_set,        A_GIMME, A_NULL);
     class_addMethod (c, (t_method)gatom_range,      sym_range,      A_GIMME, A_NULL);
-    class_addMethod (c, (t_method)gatom_width,      sym_width,      A_GIMME, A_NULL);
     class_addMethod (c, (t_method)gatom_restore,    sym__restore,   A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )
