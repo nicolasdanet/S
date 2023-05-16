@@ -66,15 +66,16 @@ namespace {
 
 void paintTriangle (juce::Rectangle<float> r, juce::Graphics& g)
 {
-    // const juce::Point<float> pt (r.getX(), r.getCentreY());
+    const juce::Rectangle<float> p (0.25f, 0.25f, 0.5f, 0.5f);
+    const juce::Rectangle<float> t (r.getProportion (p));
     
-    // juce::Path path;
-    // path.addTriangle (r.getTopLeft(), r.getTopRight(), pt);
-    // path.addTriangle (r.getBottomLeft(), r.getBottomRight(), pt);
+    const juce::Point<float> pt (t.getRight(), t.getCentreY());
     
-    // g.fillPath (path);
+    juce::Path path;
     
-    g.drawRect (r);
+    path.addTriangle (t.getTopLeft(), t.getBottomLeft(), pt);
+    
+    g.fillPath (path);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -89,11 +90,15 @@ void paintTriangle (juce::Rectangle<float> r, juce::Graphics& g)
 void AtomPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (getPinsBackground());
+    
     g.fillRect (r);
-    g.setColour (atomTextColour_.get());
+    
+    g.setColour (atomTextColour_.get().withAlpha (0.5f));
     
     paintTriangle (r.removeFromLeft (getTriangleWidth()).toFloat(), g);
-        
+    
+    g.setColour (atomTextColour_.get());
+    
     paintText (r, g, getText());
 }
 
