@@ -72,6 +72,7 @@
 
 #include "GUI/Patches/Graphics/Dragable.cpp"
 #include "GUI/Patches/Graphics/PainterPolicy.cpp"
+#include "GUI/Patches/Graphics/Painters/AtomPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/BangPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/CommentPainter.cpp"
