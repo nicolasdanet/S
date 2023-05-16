@@ -43,6 +43,11 @@ int AtomPainter::getDigits() const
     const int n = digits_.get(); return (n > 0) ? n : width_;
 }
 
+int AtomPainter::getTriangleWidth() const
+{
+    return static_cast<int> (16 * getScale());
+}
+
 juce::String AtomPainter::getText() const
 {
     juce::String text (value_.get());
@@ -54,18 +59,47 @@ juce::String AtomPainter::getText() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void paintTriangle (juce::Rectangle<float> r, juce::Graphics& g)
+{
+    // const juce::Point<float> pt (r.getX(), r.getCentreY());
+    
+    // juce::Path path;
+    // path.addTriangle (r.getTopLeft(), r.getTopRight(), pt);
+    // path.addTriangle (r.getBottomLeft(), r.getBottomRight(), pt);
+    
+    // g.fillPath (path);
+    
+    g.drawRect (r);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void AtomPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    g.setColour (atomBackgroundColour_.get());
+    g.setColour (getPinsBackground());
     g.fillRect (r);
     g.setColour (atomTextColour_.get());
     
+    paintTriangle (r.removeFromLeft (getTriangleWidth()).toFloat(), g);
+        
     paintText (r, g, getText());
 }
 
 juce::Rectangle<int> AtomPainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsForObjectFromText (getText());
+    return getRequiredBoundsForObjectFromText (getText()).expanded (getTriangleWidth() / 2, 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------

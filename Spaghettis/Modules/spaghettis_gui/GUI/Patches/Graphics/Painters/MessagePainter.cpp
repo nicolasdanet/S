@@ -90,7 +90,7 @@ void paintExtra (juce::Rectangle<float> r, juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void MessagePainter::paintBackground (juce::Rectangle<int> r, juce::Graphics& g)
+void MessagePainter::paintBackground (juce::Rectangle<int>& r, juce::Graphics& g)
 {
     paintExtra (r.removeFromRight (getExtra()).toFloat(), g);
         

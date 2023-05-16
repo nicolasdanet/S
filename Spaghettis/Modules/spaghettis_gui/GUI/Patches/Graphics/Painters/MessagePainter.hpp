@@ -58,7 +58,7 @@ private:
     int getExtra() const;
 
 private:
-    void paintBackground (juce::Rectangle<int>, juce::Graphics&);
+    void paintBackground (juce::Rectangle<int>&, juce::Graphics&);
     
 private:
     core::Cached<juce::Colour> messageBackgroundColour_;
