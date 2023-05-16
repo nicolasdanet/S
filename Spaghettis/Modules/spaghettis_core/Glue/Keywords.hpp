@@ -31,6 +31,8 @@ namespace spaghettis::core::Keywords {
     
     DECLARE_STRING (Abstraction);
     DECLARE_STRING (AskBeforeQuit);
+    DECLARE_STRING (AtomBackground);
+    DECLARE_STRING (AtomText);
     DECLARE_STRING (Attributes);
     DECLARE_STRING (BoxBackground);
     DECLARE_STRING (BoxPinsBackground);

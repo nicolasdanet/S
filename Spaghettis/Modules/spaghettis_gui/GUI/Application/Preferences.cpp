@@ -207,19 +207,29 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set color of anything pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.25f));
     
+    colors.addParameter (Tag::AtomBackground,
+        NEEDS_TRANS ("Atom Background"),
+        NEEDS_TRANS ("Set background color of number boxes"),
+        Colours::getPalette()->backgroundBox);
+        
+    colors.addParameter (Tag::AtomText,
+        NEEDS_TRANS ("Atom Text"),
+        NEEDS_TRANS ("Set text color of number boxes"),
+        Colours::getPalette()->textBox);
+        
     colors.addParameter (Tag::BangBackground,
         NEEDS_TRANS ("Bang Background"),
-        NEEDS_TRANS ("Set background color of bang widget"),
+        NEEDS_TRANS ("Set background color of bang"),
         Colours::getPalette()->backgroundWidget);
     
     colors.addParameter (Tag::BangFlashOff,
         NEEDS_TRANS ("Bang Flash Off"),
-        NEEDS_TRANS ("Set color of bang widget for flash off"),
+        NEEDS_TRANS ("Set color of bang for flash off"),
         Colours::getPalette()->backgroundAlternate);
         
     colors.addParameter (Tag::BangFlashOn,
         NEEDS_TRANS ("Bang Flash On"),
-        NEEDS_TRANS ("Set color of bang widget for flash on"),
+        NEEDS_TRANS ("Set color of bang for flash on"),
         Colours::getPalette()->textWarning);
 
     colors.addParameter (Tag::CommentBackground,

@@ -14,8 +14,8 @@ namespace spaghettis {
 
 AtomPainter::AtomPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
-    atomBackgroundColour_ (Spaghettis()->getCachedColour (Tag::CommentBackground)),
-    atomTextColour_ (Spaghettis()->getCachedColour (Tag::CommentText)),
+    atomBackgroundColour_ (Spaghettis()->getCachedColour (Tag::AtomBackground)),
+    atomTextColour_ (Spaghettis()->getCachedColour (Tag::AtomText)),
     digits_ (object_.getCached<int> (Tag::Parameters, Tag::Digits)),
     value_ (object_.getCached<double> (Tag::Parameters, Tag::Value))
 {
@@ -23,8 +23,6 @@ AtomPainter::AtomPainter (ObjectComponent* owner) :
     atomTextColour_.attach (repaint (component_));
     digits_.attach (resized (component_));
     value_.attach (resized (component_));
-    
-    component_->setBufferedToImage (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
