@@ -38,6 +38,11 @@ juce::Colour AtomPainter::getPinsBackground()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int AtomPainter::getDigits() const
+{
+    const int n = digits_.get(); return (n > 0) ? n : width_;
+}
+
 juce::String AtomPainter::getText() const
 {
     juce::String text (value_.get());

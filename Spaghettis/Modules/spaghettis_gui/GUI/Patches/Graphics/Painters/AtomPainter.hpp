@@ -35,6 +35,8 @@ public:
 // MARK: -
 
 private:
+    int getDigits() const;
+    
     juce::String getText() const;
     
 // -----------------------------------------------------------------------------------------------------------
@@ -51,6 +53,9 @@ private:
     core::Cached<juce::Colour> atomTextColour_;
     core::Cached<int> digits_;
     core::Cached<double> value_;
+
+private:
+    static constexpr int width_ = 4;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AtomPainter)
