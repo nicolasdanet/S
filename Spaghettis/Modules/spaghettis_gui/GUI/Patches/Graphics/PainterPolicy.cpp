@@ -183,8 +183,10 @@ juce::Rectangle<int> PainterPolicy::getRequiredBoundsForObjectFromText (const ju
     const int m = getMinimumWidth (f, component_->getNumberOfInlets(), component_->getNumberOfOutlets());
     const int k = getTextMargins (f) * 2;
     
-    const core::Vector::Scaled v (juce::jmax (m, w + k), h + k, f);
-    const juce::Rectangle<int> t (getRequiredBoundsForObjectFromVector (v));
+    core::Vector::Scaled v (juce::jmax (m, w + k), h + k, f);
+    juce::Rectangle<int> t (getRequiredBoundsForObjectFromVector (v));
+    
+    if (extra > 0) { t.setWidth (t.getWidth() + extra); }
     
     return t;
 }

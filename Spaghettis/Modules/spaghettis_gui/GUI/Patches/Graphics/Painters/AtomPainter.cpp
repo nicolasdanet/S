@@ -109,7 +109,7 @@ void AtomPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> AtomPainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsForObjectFromText (getText()).expanded (getTriangleWidth() / 2, 0);
+    return getRequiredBoundsForObjectFromText (getText(), getTriangleWidth());
 }
 
 // -----------------------------------------------------------------------------------------------------------
