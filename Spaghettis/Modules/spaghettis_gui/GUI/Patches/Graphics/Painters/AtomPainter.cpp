@@ -22,7 +22,7 @@ AtomPainter::AtomPainter (ObjectComponent* owner) :
     atomBackgroundColour_.attach (repaint (component_));
     atomTextColour_.attach (repaint (component_));
     digits_.attach (resized (component_));
-    value_.attach (resized (component_));
+    value_.attach (repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -46,6 +46,11 @@ int AtomPainter::getDigits() const
 int AtomPainter::getTriangleWidth() const
 {
     return static_cast<int> (16 * getScale());
+}
+
+juce::String AtomPainter::getPlaceholder() const
+{
+    return "Toto";
 }
 
 juce::String AtomPainter::getText() const

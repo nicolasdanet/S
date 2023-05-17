@@ -89,7 +89,7 @@ protected:
 protected:
     juce::Rectangle<int> getRequiredBoundsForObjectFromDimensions();
     juce::Rectangle<int> getRequiredBoundsForObjectFromVector (core::Vector::Scaled);
-    juce::Rectangle<int> getRequiredBoundsForObjectFromText (const juce::String&);
+    juce::Rectangle<int> getRequiredBoundsForObjectFromText (const juce::String&, int extra = 0);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

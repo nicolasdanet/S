@@ -38,6 +38,7 @@ private:
     int getDigits() const;
     int getTriangleWidth() const;
     
+    juce::String getPlaceholder() const;
     juce::String getText() const;
 
 // -----------------------------------------------------------------------------------------------------------
