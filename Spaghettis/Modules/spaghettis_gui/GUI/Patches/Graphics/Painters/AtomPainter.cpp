@@ -50,7 +50,9 @@ int AtomPainter::getTriangleWidth() const
 
 juce::String AtomPainter::getPlaceholder() const
 {
-    return "Toto";
+    /* < https://stackoverflow.com/a/9284821 > */
+    
+    return juce::String (".").paddedRight ('4', getDigits() + 1);
 }
 
 juce::String AtomPainter::getText() const
@@ -109,7 +111,7 @@ void AtomPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> AtomPainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsForObjectFromText (getText(), getTriangleWidth());
+    return getRequiredBoundsForObjectFromText (getPlaceholder(), getTriangleWidth());
 }
 
 // -----------------------------------------------------------------------------------------------------------
