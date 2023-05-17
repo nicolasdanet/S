@@ -28,6 +28,20 @@ static juce::String upToWhitespace (juce::String s)
     return s.upToFirstOccurrenceOf (" ", false, false);
 }
 
+static juce::String withFixedNumberOfDigits (juce::String s, int n)
+{
+    juce::String t;
+
+    for (auto c : s) {
+        if (n <= 0) { break; }
+        else {
+            t += c; if (juce::CharacterFunctions::isDigit (c)) { --n; }
+        }
+    }
+    
+    return t;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

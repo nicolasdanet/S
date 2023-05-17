@@ -52,14 +52,17 @@ juce::String AtomPainter::getPlaceholder() const
 {
     /* < https://stackoverflow.com/a/9284821 > */
     
-    return juce::String (".").paddedRight ('4', getDigits() + 1);
+    return juce::String ("-.").paddedRight ('4', getDigits() + 2);
 }
 
 juce::String AtomPainter::getText() const
 {
-    juce::String text (value_.get());
+    const juce::String value (value_.get());
+    const juce::String fixed (Helpers::withFixedNumberOfDigits (value, getDigits()));
     
-    return text;
+    DBG (value + " / " + fixed);
+    
+    return fixed;
 }
 
 // -----------------------------------------------------------------------------------------------------------
