@@ -19,6 +19,16 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+enum {
+    ATOM_NONE       = 0,
+    ATOM_NOTIFY     = 1,
+    ATOM_OUTPUT     = 2
+    };
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 t_class *gatom_class;           /* Shared. */
 
 // -----------------------------------------------------------------------------------------------------------
@@ -37,6 +47,12 @@ struct _gatom {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void gatom_bang (t_gatom *);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 #if defined ( PD_BUILDING_APPLICATION )
 
 static void gatom_setProceed (t_gatom *x, t_float f, int notify)
@@ -47,7 +63,8 @@ static void gatom_setProceed (t_gatom *x, t_float f, int notify)
 
         SET_FLOAT (&x->a_atom, f);
         
-        if (notify) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Value)); }
+        if (notify >= ATOM_NOTIFY) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Value)); }
+        if (notify == ATOM_OUTPUT) { gatom_bang (x); }
     }
 }
 
@@ -116,12 +133,12 @@ static void gatom_bang (t_gatom *x)
 
 static void gatom_float (t_gatom *x, t_float f)
 {
-    gatom_setProceed (x, f, 1); gatom_bang (x);
+    gatom_setProceed (x, f, ATOM_NOTIFY); gatom_bang (x);
 }
 
 static void gatom_set (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) { gatom_setProceed (x, atom_getFloat (argv), 1); }
+    if (argc) { gatom_setProceed (x, atom_getFloat (argv), ATOM_NOTIFY); }
 }
 
 static void gatom_range (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
@@ -130,7 +147,7 @@ static void gatom_range (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
     t_float high = atom_getFloatAtIndex (1, argc, argv);
     
     gatom_rangeProceed (x, low, high, 1);
-    gatom_setProceed (x, GET_FLOAT (&x->a_atom), 1);
+    gatom_setProceed (x, GET_FLOAT (&x->a_atom), ATOM_NOTIFY);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -180,7 +197,7 @@ static void gatom_restore (t_gatom *x)
     if (old) {
     //
     gatom_rangeProceed (x, old->a_lowRange, old->a_highRange, 1);
-    gatom_setProceed (x, GET_FLOAT (&x->a_atom), 1);
+    gatom_setProceed (x, GET_FLOAT (&x->a_atom), ATOM_NOTIFY);
     //
     }
 }
@@ -246,7 +263,7 @@ static void gatom_functionSetParameters (t_object *o, const core::Group& group)
     
     gatom_widthProceed (x, d, 1);
     gatom_rangeProceed (x, l, h, 1);
-    gatom_setProceed (x, v, 1);         /* Must be done at last. */
+    gatom_setProceed (x, v, ATOM_OUTPUT);   /* Must be done at last. */
 }
 
 #endif
@@ -275,9 +292,9 @@ static void gatom_makeObjectProceed (t_glist *glist, t_gatom *x, int argc, t_ato
     gatom_widthProceed (x, width, 0);
     gatom_rangeProceed (x, low, high, 0);
     
-    if (argc > 5) { gatom_setProceed (x, atom_getFloat (argv + 5), 0); }
+    if (argc > 5) { gatom_setProceed (x, atom_getFloat (argv + 5), ATOM_NONE); }
     else {
-        gatom_setProceed (x, 0.0, 0);
+        gatom_setProceed (x, 0.0, ATOM_NONE);
     }
     
     glist_objectAdd (glist, cast_object (x));
