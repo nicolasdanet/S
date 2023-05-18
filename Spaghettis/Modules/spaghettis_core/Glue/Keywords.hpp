@@ -33,6 +33,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (AskBeforeQuit);
     DECLARE_STRING (AtomBackground);
     DECLARE_STRING (AtomText);
+    DECLARE_STRING (AtomClicked);
     DECLARE_STRING (Attributes);
     DECLARE_STRING (BoxBackground);
     DECLARE_STRING (BoxPinsBackground);
@@ -74,7 +75,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (LineSignal);
     DECLARE_STRING (MessageBackground);
     DECLARE_STRING (MessageText);
-    DECLARE_STRING (MessageTextClicked);
+    DECLARE_STRING (MessageClicked);
     DECLARE_STRING (Outlet);
     DECLARE_STRING (Outlets);
     DECLARE_STRING (Parameters);

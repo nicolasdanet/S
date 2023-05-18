@@ -211,7 +211,7 @@ void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
     //
     const DragFlag flag = hasResize_ ? DragFlag::Resize : (isSelected() ? DragFlag::Move : DragFlag::None);
     
-    handleMouseDrag (e, flag);
+    forwardMouseDrag (e, flag);
     //
     }
 }
@@ -220,7 +220,7 @@ void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 {
     if (!isInsideRunView()) {
     //
-    handleMouseUp (e);
+    forwardMouseUp (e);
     //
     }
 }

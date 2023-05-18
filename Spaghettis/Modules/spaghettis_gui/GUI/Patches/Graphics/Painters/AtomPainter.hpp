@@ -28,6 +28,15 @@ public:
 // MARK: -
 
 public:
+    void mouseDown (const juce::MouseEvent&) override;
+    void mouseDrag (const juce::MouseEvent&) override;
+    void mouseUp (const juce::MouseEvent&) override;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     juce::Colour getPinsBackground() override;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -52,8 +61,10 @@ public:
 private:
     core::Cached<juce::Colour> atomBackgroundColour_;
     core::Cached<juce::Colour> atomTextColour_;
+    core::Cached<juce::Colour> atomClickedColour_;
     core::Cached<int> digits_;
     core::Cached<double> value_;
+    bool dragged_;
 
 private:
     static constexpr int width_ = 3;

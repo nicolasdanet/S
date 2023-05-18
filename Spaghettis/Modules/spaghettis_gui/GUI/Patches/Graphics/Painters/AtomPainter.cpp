@@ -16,8 +16,10 @@ AtomPainter::AtomPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
     atomBackgroundColour_ (Spaghettis()->getCachedColour (Tag::AtomBackground)),
     atomTextColour_ (Spaghettis()->getCachedColour (Tag::AtomText)),
+    atomClickedColour_ (Spaghettis()->getCachedColour (Tag::AtomClicked)),
     digits_ (object_.getCached<int> (Tag::Parameters, Tag::Digits)),
-    value_ (object_.getCached<double> (Tag::Parameters, Tag::Value))
+    value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
+    dragged_ (false)
 {
     atomBackgroundColour_.attach (repaint (component_));
     atomTextColour_.attach (repaint (component_));
@@ -25,6 +27,25 @@ AtomPainter::AtomPainter (ObjectComponent* owner) :
     value_.attach (repaint (component_));
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void AtomPainter::mouseDown (const juce::MouseEvent&)
+{
+    DBG ("DOWN");
+}
+
+void AtomPainter::mouseDrag (const juce::MouseEvent&)
+{
+    DBG ("DRAG");
+}
+
+void AtomPainter::mouseUp (const juce::MouseEvent&)
+{
+    DBG ("UP");
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -103,7 +124,7 @@ void AtomPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     g.fillRect (r);
     
-    g.setColour (atomTextColour_.get().withAlpha (0.5f));
+    g.setColour (dragged_ ? atomClickedColour_.get() : atomTextColour_.get().withAlpha (0.5f));
     
     paintTriangle (r.removeFromLeft (getTriangleWidth()).toFloat(), g);
     

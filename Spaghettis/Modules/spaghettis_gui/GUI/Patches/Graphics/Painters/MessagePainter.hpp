@@ -63,7 +63,7 @@ private:
 private:
     core::Cached<juce::Colour> messageBackgroundColour_;
     core::Cached<juce::Colour> messageTextColour_;
-    core::Cached<juce::Colour> messageTextClickedColour_;
+    core::Cached<juce::Colour> messageClickedColour_;
     core::Cached<juce::String> text_;
     bool isClicked_;
 

@@ -16,7 +16,7 @@ MessagePainter::MessagePainter (ObjectComponent* owner) :
     PainterPolicy (owner),
     messageBackgroundColour_ (Spaghettis()->getCachedColour (Tag::MessageBackground)),
     messageTextColour_ (Spaghettis()->getCachedColour (Tag::MessageText)),
-    messageTextClickedColour_ (Spaghettis()->getCachedColour (Tag::MessageTextClicked)),
+    messageClickedColour_ (Spaghettis()->getCachedColour (Tag::MessageClicked)),
     text_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text)),
     isClicked_ (false)
 {
@@ -103,7 +103,7 @@ void MessagePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     paintBackground (r, g);
     
-    g.setColour (isClicked_ ? messageTextClickedColour_.get() : messageTextColour_.get());
+    g.setColour (isClicked_ ? messageClickedColour_.get() : messageTextColour_.get());
     
     paintText (r, g, text_.get());
 }

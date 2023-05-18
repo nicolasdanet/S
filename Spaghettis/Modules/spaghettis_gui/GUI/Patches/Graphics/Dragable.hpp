@@ -52,8 +52,8 @@ public:
 // MARK: -
 
 public:
-    void handleMouseDrag (const juce::MouseEvent& e, DragFlag);
-    void handleMouseUp (const juce::MouseEvent& e);
+    void forwardMouseDrag (const juce::MouseEvent& e, DragFlag);
+    void forwardMouseUp (const juce::MouseEvent& e);
     
 private:
     View* view_;

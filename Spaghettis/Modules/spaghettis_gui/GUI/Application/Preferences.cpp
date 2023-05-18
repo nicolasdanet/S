@@ -216,6 +216,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Atom Text"),
         NEEDS_TRANS ("Set text color of number boxes"),
         Colours::getPalette()->textBox);
+    
+    colors.addParameter (Tag::AtomClicked,
+        NEEDS_TRANS ("Atom Clicked"),
+        NEEDS_TRANS ("Set triangle color while changing value"),
+        Colours::getPalette()->textWarning);
         
     colors.addParameter (Tag::BangBackground,
         NEEDS_TRANS ("Bang Background"),
@@ -252,9 +257,9 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set text color of messages"),
         Colours::getPalette()->textBox);
         
-    colors.addParameter (Tag::MessageTextClicked,
-        NEEDS_TRANS ("Message Text Clicked"),
-        NEEDS_TRANS ("Set text color of clicked messages"),
+    colors.addParameter (Tag::MessageClicked,
+        NEEDS_TRANS ("Message Clicked"),
+        NEEDS_TRANS ("Set text color clicking messages"),
         Colours::getPalette()->textWarning);
         
     getDefaultTest (data);

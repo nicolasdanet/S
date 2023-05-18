@@ -154,12 +154,12 @@ void PinComponent::mouseDown (const juce::MouseEvent& e)
 
 void PinComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    handleMouseDrag (e, DragFlag::Pin);
+    forwardMouseDrag (e, DragFlag::Pin);
 }
 
 void PinComponent::mouseUp (const juce::MouseEvent& e)
 {
-    handleMouseUp (e);
+    forwardMouseUp (e);
 }
 
 // -----------------------------------------------------------------------------------------------------------
