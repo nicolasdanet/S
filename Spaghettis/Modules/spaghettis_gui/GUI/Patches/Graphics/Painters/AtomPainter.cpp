@@ -45,7 +45,7 @@ int AtomPainter::getDigits() const
 
 int AtomPainter::getTriangleWidth() const
 {
-    return static_cast<int> (16 * getScale());
+    return static_cast<int> (12 * getScale());
 }
 
 juce::String AtomPainter::getPlaceholder() const
@@ -76,7 +76,7 @@ namespace {
 
 void paintTriangle (juce::Rectangle<float> r, juce::Graphics& g)
 {
-    const juce::Rectangle<float> p (0.25f, 0.25f, 0.5f, 0.5f);
+    const juce::Rectangle<float> p (0.25f, 0.25f, 0.75f, 0.5f);
     const juce::Rectangle<float> t (r.getProportion (p));
     
     const juce::Point<float> pt (t.getRight(), t.getCentreY());
