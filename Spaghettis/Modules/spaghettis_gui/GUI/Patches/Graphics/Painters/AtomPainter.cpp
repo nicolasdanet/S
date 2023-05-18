@@ -109,7 +109,7 @@ void AtomPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     g.setColour (atomTextColour_.get());
     
-    paintText (r, g, getText());
+    paintText (r, g, getText(), juce::Justification::centredRight);
 }
 
 juce::Rectangle<int> AtomPainter::getRequiredBoundsForObject()

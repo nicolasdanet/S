@@ -57,7 +57,7 @@ private:
     core::Cached<double> value_;
 
 private:
-    static constexpr int width_ = 4;
+    static constexpr int width_ = 3;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AtomPainter)
