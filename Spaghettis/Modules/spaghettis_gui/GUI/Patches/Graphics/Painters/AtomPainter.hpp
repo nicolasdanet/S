@@ -49,7 +49,6 @@ public:
     void paintObject (juce::Rectangle<int>, juce::Graphics&) override;
     juce::Rectangle<int> getRequiredBoundsForObject() override;
     
-
 private:
     core::Cached<juce::Colour> atomBackgroundColour_;
     core::Cached<juce::Colour> atomTextColour_;
