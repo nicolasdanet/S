@@ -207,22 +207,14 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
 
 void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    if (!isInsideRunView()) {
-    //
     const DragFlag flag = hasResize_ ? DragFlag::Resize : (isSelected() ? DragFlag::Move : DragFlag::None);
     
     forwardMouseDrag (e, flag);
-    //
-    }
 }
 
 void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 {
-    if (!isInsideRunView()) {
-    //
     forwardMouseUp (e);
-    //
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
