@@ -147,7 +147,8 @@ PD_LOCAL t_error glist_objectConnect (t_glist *glist, t_object *src, int m, t_ob
 {
     if (object_connect (src, m, dest, n, glist)) {
     //
-    if (glist_undoIsOk (glist)) { glist_undoAppend (glist, undoconnect_new (src, m, dest, n)); }
+    if (glist_undoIsOk (glist))   { glist_undoAppend (glist, undoconnect_new (src, m, dest, n)); }
+    if (!glist_isLoading (glist)) { glist_setDirty (glist, 1); }
     
     return PD_ERROR_NONE;
     //
