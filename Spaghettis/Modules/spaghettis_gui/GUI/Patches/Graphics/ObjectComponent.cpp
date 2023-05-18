@@ -209,12 +209,12 @@ void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
     const DragFlag flag = hasResize_ ? DragFlag::Resize : (isSelected() ? DragFlag::Move : DragFlag::None);
     
-    forwardMouseDrag (e, flag);
+    if (!forwardMouseDrag (e, flag)) { painter_->mouseDrag (e); }
 }
 
 void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 {
-    forwardMouseUp (e);
+    if (!forwardMouseUp (e)) { painter_->mouseUp (e); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

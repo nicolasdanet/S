@@ -54,8 +54,6 @@ void PatchRoot::add (const core::UniquePath& u, const core::Report& v)
 
 void PatchRoot::change (const core::UniquePath& u, const core::Report& v)
 {
-    DBG (v.debug());
-    
     juce::ValueTree parent (getParent (u));
     
     if (u.isRoot()) { core::Patch (parent).apply (v); }

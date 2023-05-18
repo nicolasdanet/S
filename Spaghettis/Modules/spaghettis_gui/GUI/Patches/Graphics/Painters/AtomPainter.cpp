@@ -81,8 +81,6 @@ juce::String AtomPainter::getText() const
     const juce::String value (value_.get());
     const juce::String fixed (Helpers::withFixedNumberOfDigits (value, getDigits()));
     
-    DBG (value + " / " + fixed);
-    
     return fixed;
 }
 

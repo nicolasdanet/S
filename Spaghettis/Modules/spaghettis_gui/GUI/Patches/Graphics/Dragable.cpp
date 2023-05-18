@@ -38,14 +38,22 @@ EditView* Dragable::getEditView() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Dragable::forwardMouseDrag (const juce::MouseEvent& e, DragFlag flag)
+bool Dragable::forwardMouseDrag (const juce::MouseEvent& e, DragFlag flag)
 {
-    isDrag_ = true;  if (auto view = getEditView()) { view->handleMouseDrag (e, flag); }
+    isDrag_ = true;
+    
+    if (auto view = getEditView()) { view->handleMouseDrag (e, flag); }
+    
+    return true;
 }
 
-void Dragable::forwardMouseUp (const juce::MouseEvent& e)
+bool Dragable::forwardMouseUp (const juce::MouseEvent& e)
 {
-    isDrag_ = false; if (auto view = getEditView()) { view->handleMouseUp (e); }
+    isDrag_ = false;
+    
+    if (auto view = getEditView()) { view->handleMouseUp (e); }
+    
+    return true;
 }
     
 // -----------------------------------------------------------------------------------------------------------
