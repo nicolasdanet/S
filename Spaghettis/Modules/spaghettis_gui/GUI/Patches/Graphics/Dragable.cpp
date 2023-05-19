@@ -38,27 +38,33 @@ EditView* Dragable::getEditView() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool Dragable::forwardMouseDown (const juce::MouseEvent& e, PainterPolicy*)
+bool Dragable::forwardMouseDown (const juce::MouseEvent& e, PainterPolicy* p)
 {
-    return Mouse::isCommandClick (e);
+    isForwarding_       = Mouse::isCommandClick (e);
+    isDraggingView_     = false;
+
+    if (isForwarding_) { if (p) { p->mouseDown (e); } }
+    
+    return isForwarding_;
 }
 
-bool Dragable::forwardMouseDrag (const juce::MouseEvent& e, PainterPolicy*, DragFlag flag)
+void Dragable::forwardMouseDrag (const juce::MouseEvent& e, PainterPolicy* p, DragFlag flag)
 {
-    isDraggingView_ = true;
-    
-    if (auto view = getEditView()) { view->handleMouseDrag (e, flag); }
-    
-    return false;
+    if (isForwarding_) { if (p) { p->mouseDrag (e); } }
+    else {
+        isDraggingView_ = true; if (auto view = getEditView()) { view->handleMouseDrag (e, flag); }
+    }
 }
 
-bool Dragable::forwardMouseUp (const juce::MouseEvent& e, PainterPolicy*)
+void Dragable::forwardMouseUp (const juce::MouseEvent& e, PainterPolicy* p)
 {
+    if (isForwarding_) { if (p) { p->mouseUp (e); } }
+    else {
+        if (auto view = getEditView()) { view->handleMouseUp (e); }
+    }
+    
     isDraggingView_ = false;
-    
-    if (auto view = getEditView()) { view->handleMouseUp (e); }
-    
-    return false;
+    isForwarding_   = false;
 }
     
 // -----------------------------------------------------------------------------------------------------------

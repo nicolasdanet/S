@@ -191,7 +191,7 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
     //
     view->hideLocator (e);
     
-    if (forwardMouseDown (e, painter_.get()))   { painter_->mouseDown (e); }
+    if (forwardMouseDown (e, painter_.get()))   { }
     else if (Mouse::isRightClick (e))           { ContextMenu (view).open (e, this); }
     else if (Mouse::isAltClick (e))             { }
     else if (Mouse::isDoubleClick (e))          { openPatch (object_, view); }
@@ -209,12 +209,12 @@ void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
     const DragFlag flag = hasResize_ ? DragFlag::Resize : (isSelected() ? DragFlag::Move : DragFlag::None);
     
-    if (forwardMouseDrag (e, painter_.get(), flag)) { painter_->mouseDrag (e); }
+    forwardMouseDrag (e, painter_.get(), flag);
 }
 
 void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 {
-    if (forwardMouseUp (e, painter_.get())) { painter_->mouseUp (e); }
+    forwardMouseUp (e, painter_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------

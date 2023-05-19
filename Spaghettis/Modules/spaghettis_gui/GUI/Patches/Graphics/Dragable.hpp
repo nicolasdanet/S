@@ -53,8 +53,8 @@ public:
 
 public:
     bool forwardMouseDown (const juce::MouseEvent& e, PainterPolicy*);
-    bool forwardMouseDrag (const juce::MouseEvent& e, PainterPolicy*, DragFlag);
-    bool forwardMouseUp (const juce::MouseEvent& e, PainterPolicy*);
+    void forwardMouseDrag (const juce::MouseEvent& e, PainterPolicy*, DragFlag);
+    void forwardMouseUp (const juce::MouseEvent& e, PainterPolicy*);
     
 private:
     View* view_;
