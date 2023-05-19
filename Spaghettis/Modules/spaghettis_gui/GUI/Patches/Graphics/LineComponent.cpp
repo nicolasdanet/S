@@ -161,12 +161,12 @@ void LineComponent::mouseDown (const juce::MouseEvent& e)
 
 void LineComponent::mouseDrag (const juce::MouseEvent& e)
 {
-    forwardMouseDrag (e, DragFlag::None);
+    forwardMouseDrag (e, nullptr, DragFlag::None);
 }
 
 void LineComponent::mouseUp (const juce::MouseEvent& e)
 {
-    forwardMouseUp (e);
+    forwardMouseUp (e, nullptr);
 }
 
 // -----------------------------------------------------------------------------------------------------------

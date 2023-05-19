@@ -38,12 +38,12 @@ EditView* Dragable::getEditView() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool Dragable::forwardMouseDown (const juce::MouseEvent& e)
+bool Dragable::forwardMouseDown (const juce::MouseEvent& e, PainterPolicy*)
 {
     return Mouse::isCommandClick (e);
 }
 
-bool Dragable::forwardMouseDrag (const juce::MouseEvent& e, DragFlag flag)
+bool Dragable::forwardMouseDrag (const juce::MouseEvent& e, PainterPolicy*, DragFlag flag)
 {
     isDraggingView_ = true;
     
@@ -52,7 +52,7 @@ bool Dragable::forwardMouseDrag (const juce::MouseEvent& e, DragFlag flag)
     return false;
 }
 
-bool Dragable::forwardMouseUp (const juce::MouseEvent& e)
+bool Dragable::forwardMouseUp (const juce::MouseEvent& e, PainterPolicy*)
 {
     isDraggingView_ = false;
     
