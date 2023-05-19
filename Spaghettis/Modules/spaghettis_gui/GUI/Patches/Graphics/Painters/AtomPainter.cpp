@@ -36,9 +36,12 @@ void AtomPainter::mouseDown (const juce::MouseEvent&)
     dragged_ = true; component_->repaint();
 }
 
-void AtomPainter::mouseDrag (const juce::MouseEvent&)
+void AtomPainter::mouseDrag (const juce::MouseEvent& e)
 {
-    DBG ("DRAG");
+    auto pt = e.getMouseDownPosition();
+    auto dY = e.getDistanceFromDragStartY();
+    
+    DBG ("DRAG / " + pt.toString() + " / " + juce::String (dY));
 }
 
 void AtomPainter::mouseUp (const juce::MouseEvent&)
