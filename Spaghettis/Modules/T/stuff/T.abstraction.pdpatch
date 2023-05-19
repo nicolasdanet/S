@@ -7,6 +7,7 @@
 #X obj 324 36 bng 18 250;
 #X floatatom 324 144 0 0 0;
 #X obj 324 84 random;
+#X msg 456 72 spam spam egg;
 #X connect 0 0 2 0;
 #X connect 0 1 2 1;
 #X connect 1 0 0 0;

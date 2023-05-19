@@ -33,7 +33,7 @@ AtomPainter::AtomPainter (ObjectComponent* owner) :
 
 void AtomPainter::mouseDown (const juce::MouseEvent&)
 {
-    DBG ("DOWN");
+    dragged_ = true; component_->repaint();
 }
 
 void AtomPainter::mouseDrag (const juce::MouseEvent&)
@@ -43,7 +43,7 @@ void AtomPainter::mouseDrag (const juce::MouseEvent&)
 
 void AtomPainter::mouseUp (const juce::MouseEvent&)
 {
-    DBG ("UP");
+    dragged_ = false; component_->repaint();
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -126,7 +126,7 @@ void AtomPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     paintTriangle (r.removeFromLeft (getTriangleWidth()).toFloat(), g);
     
-    g.setColour (atomTextColour_.get());
+    g.setColour (dragged_ ? atomClickedColour_.get() : atomTextColour_.get());
     
     paintText (r, g, getText(), juce::Justification::centredRight);
 }

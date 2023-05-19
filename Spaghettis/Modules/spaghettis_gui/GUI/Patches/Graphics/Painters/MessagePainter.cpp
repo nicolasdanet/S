@@ -45,7 +45,7 @@ void MessagePainter::mouseDown (const juce::MouseEvent& e)
 {
     Spaghettis()->handle (Inputs::sendObjectBang (getIdentifier()));
     
-    clicked (true); startTimer (250);
+    clicked (true); startTimer (500);
 }
 
 // -----------------------------------------------------------------------------------------------------------
