@@ -192,7 +192,7 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
     view->hideLocator (e);
     
     if (Mouse::isRightClick (e))        { ContextMenu (view).open (e, this); }
-    else if (Mouse::isCommandClick (e)) { painter_->mouseDown (e); }
+    else if (forwardMouseDown (e))      { painter_->mouseDown (e); }
     else if (Mouse::isAltClick (e))     { }
     else if (Mouse::isDoubleClick (e))  { openPatch (object_, view); }
     else if (Mouse::isShiftClick (e))   { setSelected (!isSelected());  }
@@ -209,12 +209,12 @@ void ObjectComponent::mouseDrag (const juce::MouseEvent& e)
 {
     const DragFlag flag = hasResize_ ? DragFlag::Resize : (isSelected() ? DragFlag::Move : DragFlag::None);
     
-    if (!forwardMouseDrag (e, flag)) { painter_->mouseDrag (e); }
+    if (forwardMouseDrag (e, flag)) { painter_->mouseDrag (e); }
 }
 
 void ObjectComponent::mouseUp (const juce::MouseEvent& e)
 {
-    if (!forwardMouseUp (e)) { painter_->mouseUp (e); }
+    if (forwardMouseUp (e)) { painter_->mouseUp (e); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

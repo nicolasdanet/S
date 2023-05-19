@@ -12,13 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Dragable::Dragable (View* view) : view_ (view), isDrag_ (false)
+Dragable::Dragable (View* view) : view_ (view), isForwarding_ (false), isDraggingView_ (false)
 {
 }
 
 Dragable::~Dragable()
 {
-    if (isDrag_) {
+    if (isDraggingView_) {
         if (auto view = getEditView()) {
             view->handleMouseDragAbort();
         }
@@ -38,22 +38,27 @@ EditView* Dragable::getEditView() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool Dragable::forwardMouseDown (const juce::MouseEvent& e)
+{
+    return Mouse::isCommandClick (e);
+}
+
 bool Dragable::forwardMouseDrag (const juce::MouseEvent& e, DragFlag flag)
 {
-    isDrag_ = true;
+    isDraggingView_ = true;
     
     if (auto view = getEditView()) { view->handleMouseDrag (e, flag); }
     
-    return true;
+    return false;
 }
 
 bool Dragable::forwardMouseUp (const juce::MouseEvent& e)
 {
-    isDrag_ = false;
+    isDraggingView_ = false;
     
     if (auto view = getEditView()) { view->handleMouseUp (e); }
     
-    return true;
+    return false;
 }
     
 // -----------------------------------------------------------------------------------------------------------
