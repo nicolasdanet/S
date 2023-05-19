@@ -684,20 +684,6 @@ float EditView::getScale() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> EditView::getPaintedAreaFromBounds (const juce::Rectangle<int>& bounds)
-{
-    return (bounds.reduced (0, PainterPolicy::pinHeight (getScale())));
-}
-
-juce::Rectangle<int> EditView::getBoundsFromPaintedArea (const juce::Rectangle<int>& painted)
-{
-    return (painted.expanded (0, PainterPolicy::pinHeight (getScale())));
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------

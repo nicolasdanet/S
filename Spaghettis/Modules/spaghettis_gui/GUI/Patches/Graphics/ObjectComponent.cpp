@@ -296,20 +296,44 @@ PinComponent* ObjectComponent::getOutletAt (int n) const
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>& r, float f)
+{
+    return r.reduced (0, PainterPolicy::pinHeight (f));
+}
+
+juce::Rectangle<int> getBoundsFromPaintedArea (const juce::Rectangle<int>& r, float f)
+{
+    return r.expanded (0, PainterPolicy::pinHeight (f));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void ObjectComponent::paint (juce::Graphics& g)
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
-    const juce::Rectangle<int> painted (getView()->getPaintedAreaFromBounds (bounds));
+    const juce::Rectangle<int> painted (getPaintedAreaFromBounds (bounds, getScale()));
     
-    if (!isInsideRunView()) {
-    //
-    g.setColour (selected_.get() ? boxSelectedColour_.get() : painter_->getPinsBackground());
-    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(), painted.getTopRight()));
-    g.fillRect (juce::Rectangle<int> (painted.getBottomLeft(), bounds.getBottomRight()));
-    //
+    if (!isInsideRunView() && selected_.get()) { g.setColour (boxSelectedColour_.get()); }
+    else {
+        g.setColour (painter_->getPinsBackground());
     }
+    
+    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(),      painted.getTopRight()));
+    g.fillRect (juce::Rectangle<int> (painted.getBottomLeft(),  bounds.getBottomRight()));
     
     painter_->paint (painted, g);
 }
@@ -441,7 +465,7 @@ void ObjectComponent::update (bool notify)
     
     if (isVisible) {
         const juce::Rectangle<int> painted (painter_->getRequiredBounds());
-        getView()->show (this, getView()->getBoundsFromPaintedArea (painted));
+        getView()->show (this, getBoundsFromPaintedArea (painted, getScale()));
         if (!isRunView) {
             setTooltip (getLabel()); createInletsAndOutlets();
         }
