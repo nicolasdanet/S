@@ -155,7 +155,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::LabelText,
         NEEDS_TRANS ("Label Text"),
         NEEDS_TRANS ("Set text color of run view labels"),
-        Colours::getPalette()->textLabel);
+        Colours::getPalette()->textBox);
         
     colors.addParameter (Tag::Line,
         NEEDS_TRANS ("Line"),
