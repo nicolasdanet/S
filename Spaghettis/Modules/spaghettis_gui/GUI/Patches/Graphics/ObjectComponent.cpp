@@ -326,14 +326,15 @@ void ObjectComponent::paint (juce::Graphics& g)
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
     const juce::Rectangle<int> painted (getPaintedAreaFromBounds (bounds, getScale()));
+    const int w = painter_->getWidthOfPinsBackground();
     
     if (!isInsideRunView() && selected_.get()) { g.setColour (boxSelectedColour_.get()); }
     else {
         g.setColour (painter_->getPinsBackground());
     }
     
-    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(),      painted.getTopRight()));
-    g.fillRect (juce::Rectangle<int> (painted.getBottomLeft(),  bounds.getBottomRight()));
+    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(), painted.getTopRight()).withWidth (w));
+    g.fillRect (juce::Rectangle<int> (painted.getBottomLeft(), bounds.getBottomRight()).withWidth (w));
     
     painter_->paint (painted, g);
 }

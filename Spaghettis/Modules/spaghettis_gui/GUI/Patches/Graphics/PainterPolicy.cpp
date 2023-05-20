@@ -100,6 +100,11 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
     return t;
 }
 
+int PainterPolicy::getWidthOfPinsBackground() const
+{
+    return objectWidth_;
+}
+
 float PainterPolicy::getScale() const
 {
     return component_->getScale();
