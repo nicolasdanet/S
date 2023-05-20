@@ -150,7 +150,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::LabelBackground,
         NEEDS_TRANS ("Label Background"),
         NEEDS_TRANS ("Set background color of run view labels"),
-        Colours::getPalette()->backgroundBox);
+        Colours::getPalette()->backgroundBox.withAlpha (0.5f));
         
     colors.addParameter (Tag::LabelText,
         NEEDS_TRANS ("Label Text"),

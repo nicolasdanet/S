@@ -77,7 +77,7 @@ void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
     //
     const juce::Rectangle<int> t (r.removeFromLeft (objectWidth_));
     
-    paintLabel (r, g);
+    paintLabel (r.withTrimmedLeft (4), g);
     
     r = t;
     //
