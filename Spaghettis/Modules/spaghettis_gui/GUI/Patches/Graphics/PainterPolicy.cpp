@@ -56,12 +56,8 @@ int getLabelWidth (const juce::String& s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
+void PainterPolicy::paintLabel (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    if (component_->isInsideRunView() && component_->hasLabel()) {              /* Paint label. */
-    //
-    const juce::Rectangle<int> t (r.removeFromLeft (objectWidth_));
-    
     const juce::Font font (getLabelFont());
     
     if (r.getHeight() >= font.getHeight()) {
@@ -73,6 +69,15 @@ void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
     g.drawText (component_->getLabel(), r.translated (-1, -1), juce::Justification::bottomRight, true);
     //
     }
+}
+
+void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
+{
+    if (component_->isInsideRunView() && component_->hasLabel()) {              /* Paint label. */
+    //
+    const juce::Rectangle<int> t (r.removeFromLeft (objectWidth_));
+    
+    paintLabel (r, g);
     
     r = t;
     //
