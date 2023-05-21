@@ -42,6 +42,13 @@ static juce::String withFixedNumberOfDigits (juce::String s, int n)
     return t;
 }
 
+static int getNumberOfDigitsAfterDecimalSeparator (juce::String s)
+{
+    const int i = s.indexOfChar ('.');
+    
+    return (i >= 0) ? (s.length() - i - 1) : 0;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

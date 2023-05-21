@@ -82,7 +82,7 @@ void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
     r = t;
     //
     }
-    
+        
     paintObject (r, g);
 }
 

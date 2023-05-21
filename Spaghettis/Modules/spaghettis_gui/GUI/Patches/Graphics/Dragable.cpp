@@ -40,8 +40,8 @@ EditView* Dragable::getEditView() const
 
 bool Dragable::forwardMouseDown (const juce::MouseEvent& e, PainterPolicy* p)
 {
-    isForwarding_       = Mouse::isCommandClick (e);
-    isDraggingView_     = false;
+    isForwarding_   = Mouse::isCommandClick (e);
+    isDraggingView_ = false;
 
     if (isForwarding_) { if (p) { p->mouseDown (e); } }
     
