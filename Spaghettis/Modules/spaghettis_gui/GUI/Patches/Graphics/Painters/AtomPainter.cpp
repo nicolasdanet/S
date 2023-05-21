@@ -12,33 +12,6 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-double getStep (const juce::String& text, bool hasModifierKey)
-{
-    if (hasModifierKey) {
-    //
-    const int n = Helpers::getNumberOfDigitsAfterDecimalSeparator (text);
-    
-    if (n) { return std::pow (10.0, -n); }
-    //
-    }
-    
-    return 1.0;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 AtomPainter::AtomPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
     atomBackgroundColour_ (Spaghettis()->getCachedColour (Tag::AtomBackground)),
@@ -46,7 +19,8 @@ AtomPainter::AtomPainter (ObjectComponent* owner) :
     atomClickedColour_ (Spaghettis()->getCachedColour (Tag::AtomClicked)),
     digits_ (object_.getCached<int> (Tag::Parameters, Tag::Digits)),
     value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
-    text_ (getText()),
+    text_(),
+    decimals_ (0),
     v_ (0.0),
     dragged_ (false)
 {
@@ -60,20 +34,43 @@ AtomPainter::AtomPainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+double getStep (int decimals, bool hasModifierKey)
+{
+    if (hasModifierKey && decimals) { return std::pow (10.0, -decimals); }
+    else {
+        return 1.0;
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void AtomPainter::mouseDown (const juce::MouseEvent& e)
 {
-    dragged_ = true;
-    step_    = getStep (text_, Mouse::hasShiftKey (e));
-    v_       = value_.get();
+    dragged_    = true;
+    decimals_   = Helpers::getNumberOfDigitsAfterDecimalSeparator (text_);
+    v_          = value_.get();
     
     component_->repaint();
 }
 
 void AtomPainter::mouseDrag (const juce::MouseEvent& e)
 {
-    const int dY = -e.getDistanceFromDragStartY();
+    const int dY   = -e.getDistanceFromDragStartY();
+    const double k = getStep (decimals_, Mouse::hasShiftKey (e));
     
-    DBG (step_);
+    DBG (v_ + (dY * k));
     
     // Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier()));
 }
@@ -119,6 +116,8 @@ juce::String AtomPainter::getText() const
 {
     const juce::String value (value_.get());
     const juce::String fixed (Helpers::withFixedNumberOfDigits (value, getDigits()));
+    
+    // toDecimalStringWithSignificantFigures;
     
     return fixed;
 }

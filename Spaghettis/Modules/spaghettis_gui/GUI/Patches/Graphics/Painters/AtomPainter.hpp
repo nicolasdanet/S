@@ -65,7 +65,7 @@ private:
     core::Cached<int> digits_;
     core::Cached<double> value_;
     juce::String text_;
-    double step_;
+    int decimals_;
     double v_;
     bool dragged_;
 
