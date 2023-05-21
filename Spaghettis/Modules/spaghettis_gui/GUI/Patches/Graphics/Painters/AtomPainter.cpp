@@ -114,12 +114,7 @@ juce::String AtomPainter::getPlaceholder() const
 
 juce::String AtomPainter::getText() const
 {
-    const juce::String value (value_.get());
-    const juce::String fixed (Helpers::withFixedNumberOfDigits (value, getDigits()));
-    
-    // toDecimalStringWithSignificantFigures;
-    
-    return fixed;
+    return Helpers::withFixedNumberOfDigits (value_.get(), getDigits());
 }
 
 // -----------------------------------------------------------------------------------------------------------

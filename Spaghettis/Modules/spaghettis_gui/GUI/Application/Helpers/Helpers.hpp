@@ -28,8 +28,11 @@ static juce::String upToWhitespace (juce::String s)
     return s.upToFirstOccurrenceOf (" ", false, false);
 }
 
-static juce::String withFixedNumberOfDigits (juce::String s, int n)
+static juce::String withFixedNumberOfDigits (double f, int n)
 {
+    jassert (n > 0);
+    
+    juce::String s (f);
     juce::String t;
 
     for (auto c : s) {
