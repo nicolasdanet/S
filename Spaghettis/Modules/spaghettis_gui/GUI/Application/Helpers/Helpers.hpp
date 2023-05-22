@@ -18,21 +18,40 @@ struct Helpers {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static juce::String firstLetterCapitalized (juce::String s)
+static juce::String firstLetterCapitalized (const juce::String& s)
 {
     return s.substring (0, 1).toUpperCase() + s.substring (1);
 }
 
-static juce::String upToWhitespace (juce::String s)
+static juce::String upToWhitespace (const juce::String& s)
 {
     return s.upToFirstOccurrenceOf (" ", false, false);
 }
 
-static juce::String withFixedNumberOfDigits (double f, int n)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::String trimZerosOfInteger (juce::String t)
+{
+    const int i = t.indexOfChar ('.');
+    
+    if (i > 0) {
+    //
+    const int n = t.lastIndexOfAnyOf ("123456789");
+    
+    if (n < i) { t = t.substring (0, i); }
+    //
+    }
+    
+    return t;
+}
+
+static juce::String withNumberOfDigits (double f, int n, bool trimZeros = true)
 {
     jassert (n > 0);
-    
-    juce::String s (f);
+        
+    juce::String s (juce::String::toDecimalStringWithSignificantFigures (f, n));
     juce::String t;
 
     for (auto c : s) {
@@ -42,10 +61,10 @@ static juce::String withFixedNumberOfDigits (double f, int n)
         }
     }
     
-    return t;
+    return trimZeros ? trimZerosOfInteger (t) : t;
 }
 
-static int getNumberOfDigitsAfterDecimalSeparator (juce::String s)
+static int getNumberOfDigitsAfterDecimalSeparator (const juce::String& s)
 {
     const int i = s.indexOfChar ('.');
     
