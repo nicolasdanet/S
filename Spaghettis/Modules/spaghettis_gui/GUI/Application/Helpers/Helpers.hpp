@@ -51,7 +51,7 @@ static juce::String withNumberOfDigits (double f, int n, bool trimZeros = true)
 {
     jassert (n > 0);
         
-    juce::String s (juce::String::toDecimalStringWithSignificantFigures (f, n));
+    juce::String s (f, n);
     juce::String t;
 
     for (auto c : s) {
