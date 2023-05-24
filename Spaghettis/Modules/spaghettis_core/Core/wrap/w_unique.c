@@ -189,6 +189,16 @@ PD_FORCE t_error unique_objectBang (t_id u)
     }
 }
 
+PD_FORCE t_error unique_objectFloat (t_id u, t_float f)
+{
+    t_object *object = instance_registerGetObject (u);
+
+    if (object) { pd_float (cast_pd (object), f); return PD_ERROR_NONE; }
+    else {
+        return PD_ERROR;
+    }
+}
+
 PD_FORCE t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *argv)
 {
     t_object *object = instance_registerGetObject (u);

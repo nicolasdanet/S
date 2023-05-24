@@ -69,10 +69,9 @@ void AtomPainter::mouseDrag (const juce::MouseEvent& e)
 {
     const int dY   = -e.getDistanceFromDragStartY();
     const double k = getStep (decimals_, Mouse::hasShiftKey (e));
+    const double f = v_ + (dY * k);
     
-    DBG (v_ + (dY * k));
-    
-    // Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier()));
+    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), f));
 }
 
 void AtomPainter::mouseUp (const juce::MouseEvent&)

@@ -70,6 +70,7 @@ PD_LOCAL void inputs_positionObject     (core::UniqueId, Point::Real pt);
 // MARK: -
 
 PD_LOCAL void inputs_sendObjectBang     (core::UniqueId);
+PD_LOCAL void inputs_sendObjectFloat    (core::UniqueId, double);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

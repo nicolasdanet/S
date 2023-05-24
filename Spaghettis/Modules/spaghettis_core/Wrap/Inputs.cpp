@@ -195,6 +195,11 @@ Perform Inputs::sendObjectBang (core::UniqueId u)
     return [u]() { core::inputs_sendObjectBang (u); };
 }
 
+Perform Inputs::sendObjectFloat (core::UniqueId u, double f)
+{
+    return [u, f]() { core::inputs_sendObjectFloat (u, f); };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

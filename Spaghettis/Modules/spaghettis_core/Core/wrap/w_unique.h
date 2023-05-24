@@ -35,6 +35,7 @@ PD_FORCE t_error    unique_objectMoveAt         (t_id u, int n);
 // MARK: -
 
 PD_FORCE t_error    unique_objectBang           (t_id u);
+PD_FORCE t_error    unique_objectFloat          (t_id u, t_float);
 PD_FORCE t_error    unique_objectMessage        (t_id u, t_symbol *s, int argc, t_atom *argv);
 
 // -----------------------------------------------------------------------------------------------------------

@@ -225,6 +225,11 @@ PD_LOCAL void inputs_sendObjectBang (core::UniqueId u)
     unique_objectBang (u);
 }
 
+PD_LOCAL void inputs_sendObjectFloat (core::UniqueId u, double f)
+{
+    unique_objectFloat (u, f);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
