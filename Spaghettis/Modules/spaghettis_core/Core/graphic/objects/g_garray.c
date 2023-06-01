@@ -84,8 +84,6 @@ static void garray_setWithSineWavesProceed (t_garray *x,
     GARRAY_SET (i, (t_float)sum);
     //
     }
-    
-    garray_redraw (x);
 }
 
 static void garray_setWithSineWaves (t_garray *x, t_symbol *s, int argc, t_atom *argv, int isSine)
@@ -122,7 +120,7 @@ PD_LOCAL void garray_setFloatAtIndex (t_garray *x, int i, t_float f)
 {
     int size = x->x_size;
     
-    if (size) { int n = PD_CLAMP (i, 0, size - 1); GARRAY_SET (n, f); garray_redraw (x); }
+    if (size) { int n = PD_CLAMP (i, 0, size - 1); GARRAY_SET (n, f); }
 }
 
 PD_LOCAL t_float garray_getFloatAtIndex (t_garray *x, int i)
@@ -141,8 +139,6 @@ PD_LOCAL void garray_setFloatFromIndex (t_garray *x, int i, t_float f)
     if (size) {
     //
     for (n = PD_CLAMP (i, 0, size - 1); n < size; n++) { GARRAY_SET (n, f); }
-    
-    garray_redraw (x);
     //
     }
 }
@@ -185,15 +181,6 @@ PD_LOCAL int garray_isUsedInDsp (t_garray *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void garray_redraw (t_garray *x)
-{
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void garray_list (t_garray *x, t_symbol *s, int argc, t_atom *argv)
 {
     if (argc > 1) { 
@@ -211,8 +198,6 @@ static void garray_list (t_garray *x, t_symbol *s, int argc, t_atom *argv)
     if (argc > 0) {
     //
     for (i = 0; i < argc; i++) { t_float f = atom_getFloat (argv + i); GARRAY_SET (i + j, f); }
-    
-    garray_redraw (x);
     //
     }
     //
@@ -242,8 +227,6 @@ static void garray_normalize (t_garray *x, t_float f)
             t_float t = GARRAY_GET (i) * k; GARRAY_SET (i, t);
         }
     }
-    
-    garray_redraw (x);
 }
 
 static void garray_sinesum (t_garray *x, t_symbol *s, int argc, t_atom *argv)
@@ -305,8 +288,6 @@ static void garray_read (t_garray *x, t_symbol *name)
         while (i < size) { GARRAY_SET (i, 0.0); i++; }
         
         fclose (file);      /* < http://stackoverflow.com/a/13691168 > */
-        
-        garray_redraw (x);
     }
     //
     }
@@ -387,8 +368,6 @@ PD_LOCAL void garray_resize (t_garray *x, t_float f)
     garray_resizeProceed (x, (int)f);
     
     if (dspSuspended) { dsp_resume (dspState); }
-    
-    garray_redraw (x);
 }
 
 static void garray_embed (t_garray *x, t_float f)
@@ -537,8 +516,6 @@ static void *garray_new (t_symbol *s, int argc, t_atom *argv)
 
     pd_bind (cast_pd (x), x->x_name);
     
-    garray_redraw (x);
-        
     return x;
 }
 

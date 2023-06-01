@@ -26,8 +26,6 @@ static t_class *tabsend_tilde_class;        /* Shared. */
 typedef struct _tabsend_tilde {
     t_object            x_obj;              /* Must be the first. */
     t_trylock           x_mutex;
-    t_int32Atomic       x_redraw;
-    int                 x_dismissed;
     int                 x_set;
     int                 x_size;
     t_word              *x_vector;
@@ -38,35 +36,8 @@ typedef struct _tabsend_tilde {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void tabsend_tilde_dismiss (t_tabsend_tilde *);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static void tabsend_tilde_polling (t_tabsend_tilde *x)
-{
-    int n = PD_ATOMIC_INT32_READ (&x->x_redraw);
-    
-    if (n > 0) {
-    //
-    t_garray *a = garray_fetch (x->x_name);
-    
-    if (a) { garray_redraw (a); }
-
-    while (n--) { PD_ATOMIC_INT32_DECREMENT (&x->x_redraw); }
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void tabsend_tilde_setProceed (t_tabsend_tilde *x, t_symbol *s, int verbose)
 {
-    tabsend_tilde_polling (x);
-    
     trylock_lock (&x->x_mutex);
     
         t_error err = tab_fetchArray ((x->x_name = s), &x->x_size, &x->x_vector);
@@ -127,8 +98,6 @@ static t_int *tabsend_tilde_perform (t_int *w)
     data++;
     //
     }
-    
-    PD_ATOMIC_INT32_INCREMENT (&x->x_redraw);
     //
     }
 
@@ -191,11 +160,6 @@ static t_buffer *tabsend_tilde_functionData (t_object *z, int flags)
     return NULL;
 }
 
-static void tabsend_tilde_functionDismiss (t_object *z)
-{
-    tabsend_tilde_dismiss ((t_tabsend_tilde *)z);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -208,26 +172,11 @@ static void *tabsend_tilde_new (t_symbol *s)
     
     x->x_name = s;
     
-    instance_pollingRegister (cast_pd (x));
-    
     return x;
-}
-
-static void tabsend_tilde_dismiss (t_tabsend_tilde *x)
-{
-    if (!x->x_dismissed) {
-    //
-    x->x_dismissed = 1;
-    
-    instance_pollingUnregister (cast_pd (x));
-    //
-    }
 }
 
 static void tabsend_tilde_free (t_tabsend_tilde *x)
 {
-    tabsend_tilde_dismiss (x);
-    
     trylock_destroy (&x->x_mutex);
 }
 
@@ -248,13 +197,11 @@ PD_LOCAL void tabsend_tilde_setup (void)
             A_NULL);
             
     class_addDsp (c, (t_method)tabsend_tilde_dsp);
-    class_addPolling (c, (t_method)tabsend_tilde_polling);
     
     class_addMethod (c, (t_method)tabsend_tilde_set,        sym_set,        A_SYMBOL, A_NULL);
     class_addMethod (c, (t_method)tabsend_tilde_restore,    sym__restore,   A_SYMBOL, A_NULL);
 
     class_setDataFunction (c, tabsend_tilde_functionData);
-    class_setDismissFunction (c, tabsend_tilde_functionDismiss);
 
     tabsend_tilde_class = c;
 }

@@ -26,7 +26,6 @@ static t_class *tabwrite_tilde_class;           /* Shared. */
 typedef struct _tabwrite_tilde {
     t_object            x_obj;                  /* Must be the first. */
     t_trylock           x_mutex;
-    t_int32Atomic       x_redraw;
     int                 x_dismissed;
     int                 x_time;
     int                 x_set;
@@ -64,29 +63,8 @@ PD_LOCAL t_error tab_fetchArray (t_symbol *s, int *size, t_word **data)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void tabwrite_tilde_polling (t_tabwrite_tilde *x)
-{
-    int n = PD_ATOMIC_INT32_READ (&x->x_redraw);
-    
-    if (n > 0) {
-    //
-    t_garray *a = garray_fetch (x->x_name);
-    
-    if (a) { garray_redraw (a); }
-
-    while (n--) { PD_ATOMIC_INT32_DECREMENT (&x->x_redraw); }
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void tabwrite_tilde_setProceed (t_tabwrite_tilde *x, t_symbol *s, int verbose)
 {
-    tabwrite_tilde_polling (x);
-    
     trylock_lock (&x->x_mutex);
     
         t_error err = tab_fetchArray ((x->x_name = s), &x->x_size, &x->x_vector);
@@ -133,8 +111,6 @@ static void tabwrite_tilde_start (t_tabwrite_tilde *x, t_float f)
 
 static void tabwrite_tilde_stop (t_tabwrite_tilde *x)
 {
-    PD_ATOMIC_INT32_INCREMENT (&x->x_redraw);
-    
     trylock_lock (&x->x_mutex);
     
         x->x_phase = PD_INT_MAX;
@@ -199,12 +175,10 @@ static t_int *tabwrite_tilde_perform (t_int *w)
     t->s_int3 += size;
     
     if (t->s_int2 >= t->s_int0) {
-        PD_ATOMIC_INT32_INCREMENT (&x->x_redraw);
         t->s_int2 = PD_INT_MAX;
         t->s_int3 = 0;
         
     } else if (t->s_int1 && t->s_int3 > t->s_int1) {
-        PD_ATOMIC_INT32_INCREMENT (&x->x_redraw);
         t->s_int3 = 0;
     }
     
@@ -313,20 +287,12 @@ static void *tabwrite_tilde_new (t_symbol *s, t_float f)
     x->x_name   = s;
     x->x_clock  = clock_new ((void *)x, (t_method)tabwrite_tilde_bang);
     
-    instance_pollingRegister (cast_pd (x));
-    
     return x;
 }
 
 static void tabwrite_tilde_dismiss (t_tabwrite_tilde *x)
 {
-    if (!x->x_dismissed) {
-    //
-    x->x_dismissed = 1;
-    
-    instance_pollingUnregister (cast_pd (x));
-    //
-    }
+    if (!x->x_dismissed) { x->x_dismissed = 1; }
 }
 
 static void tabwrite_tilde_free (t_tabwrite_tilde *x)
@@ -357,7 +323,6 @@ PD_LOCAL void tabwrite_tilde_setup (void)
             
     class_addDsp (c, (t_method)tabwrite_tilde_dsp);
     class_addBang (c, (t_method)tabwrite_tilde_bang);
-    class_addPolling (c, (t_method)tabwrite_tilde_polling);
         
     class_addMethod (c, (t_method)tabwrite_tilde_set,       sym_set,        A_SYMBOL, A_NULL);
     class_addMethod (c, (t_method)tabwrite_tilde_start,     sym_start,      A_DEFFLOAT, A_NULL);

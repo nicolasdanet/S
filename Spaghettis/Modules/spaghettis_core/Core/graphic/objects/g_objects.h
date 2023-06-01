@@ -45,7 +45,6 @@ PD_LOCAL void       garray_setFloatFromIndex    (t_garray *x, int i, t_float f);
 PD_LOCAL t_float    garray_getAmplitude         (t_garray *x);
 PD_LOCAL void       garray_setAsUsedInDsp       (t_garray *x, int usedInDsp);
 PD_LOCAL int        garray_isUsedInDsp          (t_garray *x);
-PD_LOCAL void       garray_redraw               (t_garray *x);
 PD_LOCAL void       garray_resize               (t_garray *x, t_float f);
 
 // -----------------------------------------------------------------------------------------------------------
