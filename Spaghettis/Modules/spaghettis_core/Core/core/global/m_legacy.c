@@ -65,7 +65,8 @@ static int legacy_convertArrayFetch (t_buffer *x,
                 }
             }
         } else if (first == sym_array) {
-            PD_ASSERT (index && atom_areEquals (index, atoms + 2));
+            PD_ASSERT (index);
+            PD_ASSERT (atom_areEquals (index, atoms + 2));
             int flags = atom_getFloatAtIndex (5, count, atoms);
             size  = atom_getFloatAtIndex (3, count, atoms);
             embed = ((flags & 1) != 0);

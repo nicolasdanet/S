@@ -488,6 +488,58 @@ static t_symbol *garray_getUnusedBindName (t_symbol *prefix)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void garray_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+{
+    t_garray *x = (t_garray *)o;
+    
+    static DelegateCache delegate;
+    
+    if (t.contains (Tag::Name)) {
+        group.addParameter (Tag::Name,
+            NEEDS_TRANS ("Name"),
+            NEEDS_TRANS ("Unexpanded name of array"),
+            makeString (symbol_getName (garray_getUnexpandedName (x))),
+            delegate);
+    }
+    
+    if (t.contains (Tag::Size)) {
+        group.addParameter (Tag::Size,
+            NEEDS_TRANS ("Size"),
+            NEEDS_TRANS ("Number of values"),
+            x->x_size,
+            delegate);
+    }
+    
+    if (t.contains (Tag::Embedded)) {
+        group.addParameter (Tag::Embedded,
+            NEEDS_TRANS ("Embedded"),
+            NEEDS_TRANS ("Content saved with patch"),
+            static_cast<bool> (x->x_embed),
+            delegate);
+    }
+}
+
+static void garray_functionSetParameters (t_object *o, const core::Group& group)
+{
+    t_garray *x = (t_garray *)o;
+    
+    jassert (group.hasParameter (Tag::Name));
+    jassert (group.hasParameter (Tag::Size));
+    jassert (group.hasParameter (Tag::Embedded));
+    
+    const juce::String n = group.getParameter (Tag::Name).getValueTyped<juce::String>();
+    const int s          = group.getParameter (Tag::Size).getValueTyped<int>();
+    const int e          = group.getParameter (Tag::Embedded).getValueTyped<int>();
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void *garray_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_garray *x = (t_garray *)pd_new (garray_class);
@@ -561,6 +613,12 @@ PD_LOCAL void garray_setup (void)
     class_addMethod (c, (t_method)garray_resize,    sym_resize,     A_FLOAT,  A_NULL);
     class_addMethod (c, (t_method)garray_embed,     sym_embed,      A_FLOAT,  A_NULL);
     class_addMethod (c, (t_method)garray_restore,   sym__restore,   A_NULL);
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    class_setParametersFunctions (c, garray_functionGetParameters, garray_functionSetParameters);
+    
+    #endif
     
     class_setSaveFunction (c, garray_functionSave);
     class_setDataFunction (c, garray_functionData);
