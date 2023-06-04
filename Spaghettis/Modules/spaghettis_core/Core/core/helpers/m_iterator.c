@@ -13,6 +13,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* The ending semicolon is included in the count. */
+
 PD_LOCAL int iterator_next (t_iterator *x, t_atom **a)
 {
     if (x->iter_argc > 0) {
