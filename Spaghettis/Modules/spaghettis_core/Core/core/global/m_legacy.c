@@ -48,8 +48,6 @@ static int legacy_convertArrayFetch (t_buffer *x,
     
     while ((count = iterator_next (iter, &atoms))) {
     //
-    DBG (juce::String (count) + " / " + makeString (count, atoms));
-    
     if (count > 7 && atom_getSymbolAtIndex (0, count, atoms) == sym___hash__N) {
         index = atoms + 6;
         start = iterator_get (iter) - count;
