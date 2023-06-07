@@ -37,7 +37,6 @@ static int legacy_convertArrayFetch (t_buffer *x,
     t_atom *atoms    = NULL;
     int count;
     
-    t_atom *index    = NULL;
     int start        = 0;
     int end          = 0;
     int coordX       = 0;
@@ -49,30 +48,30 @@ static int legacy_convertArrayFetch (t_buffer *x,
     while ((count = iterator_next (iter, &atoms))) {
     //
     if (count > 7 && atom_getSymbolAtIndex (0, count, atoms) == sym___hash__N) {
-        index = atoms + 6;
+        name  = NULL;
         start = iterator_get (iter) - count;
     } else if (count > 5 && atom_getSymbolAtIndex (0, count, atoms) == sym___hash__X) {
         t_symbol *first = atom_getSymbolAtIndex (1, count, atoms);
         if (first == sym_restore) {
             if (atom_getSymbolAtIndex (4, count, atoms) == sym_graph) {
-                if (index && atom_areEquals (index, atoms + 5)) {
+                if (name) {
                     coordX = atom_getFloatAtIndex (2, count, atoms);
                     coordY = atom_getFloatAtIndex (3, count, atoms);
-                    name   = atom_getSymbolOrDollarSymbol (index);
                     end    = iterator_get (iter);
                     found  = 1;
                     break;
                 }
             }
         } else if (first == sym_array) {
-            PD_ASSERT (index);
-            PD_ASSERT (atom_areEquals (index, atoms + 2));
             int flags = atom_getFloatAtIndex (5, count, atoms);
+            name  = atom_getSymbolOrDollarSymbol (atoms + 2);
             size  = atom_getFloatAtIndex (3, count, atoms);
             embed = ((flags & 1) != 0);
         } else if (first == sym_coords) {
             // int up   = atom_getFloatAtIndex (3, count, atoms);
             // int down = atom_getFloatAtIndex (5, count, atoms);
+        } else {
+            name = NULL;
         }
     } else if (atom_getSymbolAtIndex (0, count, atoms) == sym___hash__A) {
         if (embed && count > 2) {
