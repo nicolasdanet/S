@@ -316,7 +316,7 @@ static void garray_write (t_garray *x, t_symbol *name)
 
 static void garray_rename (t_garray *x, t_symbol *s)
 {
-    if (s != x->x_unexpandedName) {
+    if (s != garray_getUnexpandedName (x)) {
     //
     t_symbol *expanded = dollar_expandSymbol (s, object_getOwner (cast_object (x)));
     
