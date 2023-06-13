@@ -239,26 +239,6 @@ static void garray_cosinesum (t_garray *x, t_symbol *s, int argc, t_atom *argv)
     garray_setWithSineWaves (x, s, argc, argv, 0);
 }
 
-static void garray_rename (t_garray *x, t_symbol *s)
-{
-    if (s != x->x_unexpandedName) {
-    //
-    t_symbol *expanded = dollar_expandSymbol (s, object_getOwner (cast_object (x)));
-    
-    if (garray_fetch (expanded)) { error_alreadyExists (cast_object (x), expanded); }
-    else {
-    //
-    pd_unbind (cast_pd (x), x->x_name);
-    x->x_unexpandedName = s;
-    x->x_name = expanded;
-    pd_bind (cast_pd (x), x->x_name);
-    dsp_update();
-    //
-    }
-    //
-    }
-}
-
 static void garray_read (t_garray *x, t_symbol *name)
 {
     t_error err = PD_ERROR_NONE;
@@ -330,6 +310,31 @@ static void garray_write (t_garray *x, t_symbol *name)
     if (err) { error_canNotCreate (cast_object (x), name); }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void garray_rename (t_garray *x, t_symbol *s)
+{
+    if (s != x->x_unexpandedName) {
+    //
+    t_symbol *expanded = dollar_expandSymbol (s, object_getOwner (cast_object (x)));
+    
+    if (garray_fetch (expanded)) { error_alreadyExists (cast_object (x), expanded); }
+    else {
+    //
+    pd_unbind (cast_pd (x), x->x_name);
+    x->x_unexpandedName = s;
+    x->x_name = expanded;
+    pd_bind (cast_pd (x), x->x_name);
+    dsp_update();
+    outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Name));
+    //
+    }
+    //
+    }
+}
+
 static void garray_resizeProceed (t_garray *x, int n)
 {
     int newSize = PD_MAX (0, n);
@@ -337,10 +342,15 @@ static void garray_resizeProceed (t_garray *x, int n)
     
     if (newSize != oldSize) {
     //
+    int dspState = 0;
+    int dspSuspended = 0;
+    
     size_t newBytes = newSize * sizeof (t_word);
     size_t oldBytes = oldSize * sizeof (t_word);
     
     t_word *t = x->x_data;
+    
+    if (garray_isUsedInDsp (x)) { dspState = dsp_suspend(); dspSuspended = 1; }
     
     if (garray_isUsedInDsp (x)) {
         x->x_data = (t_word *)PD_MEMORY_GET (newBytes);
@@ -352,27 +362,30 @@ static void garray_resizeProceed (t_garray *x, int n)
     }
     
     x->x_size = newSize;
+    
+    if (dspSuspended) { dsp_resume (dspState); }
+    
+    outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Size));
     //
     }
 }
 
 PD_LOCAL void garray_resize (t_garray *x, t_float f)
 {
-    int dspState = 0;
-    int dspSuspended = 0;
-    
-    PD_ASSERT (sys_isControlThread());
-    
-    if (garray_isUsedInDsp (x)) { dspState = dsp_suspend(); dspSuspended = 1; }
-    
-    garray_resizeProceed (x, (int)f);
-    
-    if (dspSuspended) { dsp_resume (dspState); }
+    PD_ASSERT (sys_isControlThread()); garray_resizeProceed (x, (int)f);
+}
+
+static void garray_embedProceed (t_garray *x, int n)
+{
+    if (x->x_embed != n) {
+        x->x_embed = n;
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Embedded));
+    }
 }
 
 static void garray_embed (t_garray *x, t_float f)
 {
-    x->x_embed = ((int)f != 0);
+    int n = (int)f; garray_embedProceed (x, n != 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -529,9 +542,13 @@ static void garray_functionSetParameters (t_object *o, const core::Group& group)
     jassert (group.hasParameter (Tag::Size));
     jassert (group.hasParameter (Tag::Embedded));
     
-    const juce::String n = group.getParameter (Tag::Name).getValueTyped<juce::String>();
-    const int s          = group.getParameter (Tag::Size).getValueTyped<int>();
-    const int e          = group.getParameter (Tag::Embedded).getValueTyped<int>();
+    t_symbol *n = gensym (group.getParameter (Tag::Name).getValueTyped<juce::String>().toRawUTF8());
+    const int s = group.getParameter (Tag::Size).getValueTyped<int>();
+    const int e = static_cast<int> (group.getParameter (Tag::Embedded).getValueTyped<bool>());
+    
+    garray_rename (x, n);
+    garray_resizeProceed (x, s);
+    garray_embedProceed (x, e);
 }
 
 #endif
