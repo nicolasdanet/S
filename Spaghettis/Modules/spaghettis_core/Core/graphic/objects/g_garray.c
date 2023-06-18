@@ -328,7 +328,9 @@ static void garray_rename (t_garray *x, t_symbol *s)
     x->x_name = expanded;
     pd_bind (cast_pd (x), x->x_name);
     dsp_update();
+    #if defined ( PD_BUILDING_APPLICATION )
     outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Name));
+    #endif
     //
     }
     //
@@ -365,7 +367,9 @@ static void garray_resizeProceed (t_garray *x, int n)
     
     if (dspSuspended) { dsp_resume (dspState); }
     
+    #if defined ( PD_BUILDING_APPLICATION )
     outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Size));
+    #endif
     //
     }
 }
@@ -379,7 +383,9 @@ static void garray_embedProceed (t_garray *x, int n)
 {
     if (x->x_embed != n) {
         x->x_embed = n;
+        #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Embedded));
+        #endif
     }
 }
 
