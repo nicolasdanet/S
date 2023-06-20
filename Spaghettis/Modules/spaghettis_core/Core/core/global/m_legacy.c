@@ -22,59 +22,55 @@
 // MARK: -
 
 static int legacy_convertArrayFetch (t_buffer *x,
-    int *i,
-    int *j,
-    int *a,
-    int *b,
-    int *l,
-    int *e,
-    t_symbol **s,
+    int *start,
+    int *end,
+    int *coordX,
+    int *coordY,
+    int *size,
+    int *embed,
+    t_symbol **name,
     t_buffer *data)
 {
     int found = 0;
     
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
     t_atom *atoms    = NULL;
-    int count;
-    
-    int start        = 0;
-    int end          = 0;
-    int coordX       = 0;
-    int coordY       = 0;
-    int size         = 0;
-    int embed        = 0;
-    t_symbol *name   = NULL;
-    
+    int count        = 0;
+
     while ((count = iterator_next (iter, &atoms))) {
     //
     if (count > 7 && atom_getSymbolAtIndex (0, count, atoms) == sym___hash__N) {
-        name  = NULL;
-        start = iterator_get (iter) - count;
+        *name  = NULL;
+        *start = iterator_get (iter) - count;
     } else if (count > 5 && atom_getSymbolAtIndex (0, count, atoms) == sym___hash__X) {
         t_symbol *first = atom_getSymbolAtIndex (1, count, atoms);
         if (first == sym_restore) {
             if (atom_getSymbolAtIndex (4, count, atoms) == sym_graph) {
-                if (name) {
-                    coordX = atom_getFloatAtIndex (2, count, atoms);
-                    coordY = atom_getFloatAtIndex (3, count, atoms);
-                    end    = iterator_get (iter);
-                    found  = 1;
+                if (*name) {
+                    *coordX = atom_getFloatAtIndex (2, count, atoms);
+                    *coordY = atom_getFloatAtIndex (3, count, atoms);
+                    *end    = iterator_get (iter);
+                    found   = 1;
                     break;
                 }
             }
         } else if (first == sym_array) {
             int flags = atom_getFloatAtIndex (5, count, atoms);
-            name  = atom_getSymbolOrDollarSymbol (atoms + 2);
-            size  = atom_getFloatAtIndex (3, count, atoms);
-            embed = ((flags & 1) != 0);
+            *name     = atom_getSymbolOrDollarSymbol (atoms + 2);
+            *size     = atom_getFloatAtIndex (3, count, atoms);
+            *embed    = ((flags & 1) != 0);
         } else if (first == sym_coords) {
-            // int up   = atom_getFloatAtIndex (3, count, atoms);
-            // int down = atom_getFloatAtIndex (5, count, atoms);
+            // left    = atom_getFloatAtIndex (2, count, atoms);
+            // up      = atom_getFloatAtIndex (3, count, atoms);
+            // right   = atom_getFloatAtIndex (4, count, atoms);
+            // down    = atom_getFloatAtIndex (5, count, atoms);
+            // width   = atom_getFloatAtIndex (6, count, atoms);
+            // height  = atom_getFloatAtIndex (7, count, atoms);
         } else {
-            name = NULL;
+            *name = NULL;
         }
     } else if (atom_getSymbolAtIndex (0, count, atoms) == sym___hash__A) {
-        if (embed && count > 2) {
+        if (*embed && count > 2) {
             buffer_clear (data);
             buffer_append (data, count - 1, atoms);     /* Could be a comma at end. */
             buffer_appendSemicolon (data);
@@ -84,22 +80,26 @@ static int legacy_convertArrayFetch (t_buffer *x,
     }
     
     iterator_free (iter);
-    
-    if (found) { *i = start; *j = end; *a = coordX; *b = coordY; *l = size; *e = embed; *s = name; }
-    
+        
     return found;
 }
 
 static int legacy_convertArray (t_buffer *x)
 {
-    int start      = 0;
-    int end        = 0;
-    int coordX     = 0;
-    int coordY     = 0;
-    int size       = 0;
-    int embed      = 0;
-    t_symbol *name = NULL;
-    t_buffer *data = buffer_new();
+    int start       = 0;
+    int end         = 0;
+    int coordX      = 0;
+    int coordY      = 0;
+    int size        = 0;
+    int embed       = 0;
+    int left        = 0;
+    int up          = 0;
+    int right       = 0;
+    int down        = 0;
+    int width       = 0;
+    int height      = 0;
+    t_symbol *name  = NULL;
+    t_buffer *data  = buffer_new();
     
     int done = legacy_convertArrayFetch (x, &start, &end, &coordX, &coordY, &size, &embed, &name, data);
 
