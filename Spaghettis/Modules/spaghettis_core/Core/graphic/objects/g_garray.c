@@ -23,6 +23,12 @@ struct _garray {
     int         x_isUsedInDsp;
     int         x_dismissed;
     int         x_embed;
+    int         x_width;
+    int         x_height;
+    int         x_start;
+    int         x_end;
+    int         x_low;
+    int         x_high;
     int         x_size;
     t_word      *x_data;
     t_symbol    *x_unexpandedName;

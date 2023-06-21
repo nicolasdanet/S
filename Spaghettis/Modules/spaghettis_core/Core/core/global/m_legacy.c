@@ -28,6 +28,12 @@ static int legacy_convertArrayFetch (t_buffer *x,
     int *coordY,
     int *size,
     int *embed,
+    int *left,
+    int *up,
+    int *right,
+    int *down,
+    int *width,
+    int *height,
     t_symbol **name,
     t_buffer *data)
 {
@@ -60,14 +66,14 @@ static int legacy_convertArrayFetch (t_buffer *x,
             *size     = atom_getFloatAtIndex (3, count, atoms);
             *embed    = ((flags & 1) != 0);
         } else if (first == sym_coords) {
-            // left    = atom_getFloatAtIndex (2, count, atoms);
-            // up      = atom_getFloatAtIndex (3, count, atoms);
-            // right   = atom_getFloatAtIndex (4, count, atoms);
-            // down    = atom_getFloatAtIndex (5, count, atoms);
-            // width   = atom_getFloatAtIndex (6, count, atoms);
-            // height  = atom_getFloatAtIndex (7, count, atoms);
+            *left     = atom_getFloatAtIndex (2, count, atoms);
+            *up       = atom_getFloatAtIndex (3, count, atoms);
+            *right    = atom_getFloatAtIndex (4, count, atoms);
+            *down     = atom_getFloatAtIndex (5, count, atoms);
+            *width    = atom_getFloatAtIndex (6, count, atoms);
+            *height   = atom_getFloatAtIndex (7, count, atoms);
         } else {
-            *name = NULL;
+            *name     = NULL;
         }
     } else if (atom_getSymbolAtIndex (0, count, atoms) == sym___hash__A) {
         if (*embed && count > 2) {
@@ -101,13 +107,27 @@ static int legacy_convertArray (t_buffer *x)
     t_symbol *name  = NULL;
     t_buffer *data  = buffer_new();
     
-    int done = legacy_convertArrayFetch (x, &start, &end, &coordX, &coordY, &size, &embed, &name, data);
+    int done = legacy_convertArrayFetch (x,
+                    &start,
+                    &end,
+                    &coordX,
+                    &coordY,
+                    &size,
+                    &embed,
+                    &left,
+                    &up,
+                    &right,
+                    &down,
+                    &width,
+                    &height,
+                    &name,
+                    data);
 
     if (done) {
     //
     PD_ASSERT (name && name != &s_);
     
-    t_atom a[9];
+    t_atom a[15];
     
     SET_SYMBOL (a + 0, sym___hash__X);
     SET_SYMBOL (a + 1, sym_obj);
@@ -117,9 +137,15 @@ static int legacy_convertArray (t_buffer *x)
     SET_SYMBOL (a + 5, name);
     SET_FLOAT (a + 6,  size);
     SET_FLOAT (a + 7,  embed);
-    SET_SEMICOLON (a + 8);
+    SET_FLOAT (a + 8,  width);
+    SET_FLOAT (a + 9,  height);
+    SET_FLOAT (a + 10, left);
+    SET_FLOAT (a + 11, right);
+    SET_FLOAT (a + 12, down);
+    SET_FLOAT (a + 13, up);
+    SET_SEMICOLON (a + 14);
     
-    buffer_prepend (data, 9, a);
+    buffer_prepend (data, 15, a);
     
     buffer_replace (x, start, end, buffer_getSize (data), buffer_getAtoms (data));
     //
