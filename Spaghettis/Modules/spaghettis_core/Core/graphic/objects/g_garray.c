@@ -527,62 +527,86 @@ static t_symbol *garray_getUnusedBindName (t_symbol *prefix)
 
 static void garray_setWidthAndHeight (t_garray *x, int width, int height, int notify)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     int w = x->x_width;
     int h = x->x_height;
     
-    width  = PD_CLAMP (width,  0, GARRAY_WIDTH_MAXIMUM);
-    height = PD_CLAMP (height, 0, GARRAY_HEIGHT_MAXIMUM);
+    #endif
     
-    x->x_width  = width  ? width  : GARRAY_WIDTH_DEFAULT;
-    x->x_height = height ? height : GARRAY_HEIGHT_DEFAULT;
+        width  = PD_CLAMP (width,  0, GARRAY_WIDTH_MAXIMUM);
+        height = PD_CLAMP (height, 0, GARRAY_HEIGHT_MAXIMUM);
+        
+        x->x_width  = width  ? width  : GARRAY_WIDTH_DEFAULT;
+        x->x_height = height ? height : GARRAY_HEIGHT_DEFAULT;
+    
+    #if defined ( PD_BUILDING_APPLICATION )
     
     if (notify) {
         if (w != x->x_width)  { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));  }
         if (h != x->x_height) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Height)); }
     }
+    
+    #endif
 }
 
 static void garray_setStartAndEnd (t_garray *x, int start, int end, int notify)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     int s = x->x_start;
     int e = x->x_end;
     
-    int k = x->x_size;
+    #endif
     
-    start = PD_CLAMP (start, 0, k);
-    end   = PD_CLAMP (end,   0, k);
+        int k = x->x_size;
+        
+        start = PD_CLAMP (start, 0, k);
+        end   = PD_CLAMP (end,   0, k);
+        
+        x->x_start = PD_MIN (start, end);
+        x->x_end   = PD_MAX (start, end);
+        
+        if (x->x_start == x->x_end) {
+            x->x_start = 0;
+            x->x_end   = k;
+        }
     
-    x->x_start = PD_MIN (start, end);
-    x->x_end   = PD_MAX (start, end);
-    
-    if (x->x_start == x->x_end) {
-        x->x_start = 0;
-        x->x_end   = k;
-    }
+    #if defined ( PD_BUILDING_APPLICATION )
     
     if (notify) {
         if (s != x->x_start) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Start)); }
         if (e != x->x_end)   { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::End));   }
     }
+    
+    #endif
 }
 
 static void garray_setLowAndHigh (t_garray *x, int low, int high, int notify)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     int l = x->x_low;
     int h = x->x_high;
     
-    x->x_low  = PD_MIN (low, high);
-    x->x_high = PD_MAX (low, high);
+    #endif
     
-    if (x->x_low == x->x_high) {
-        x->x_low  = GARRAY_LOW_DEFAULT;
-        x->x_high = GARRAY_HIGH_DEFAULT;
-    }
+        x->x_low  = PD_MIN (low, high);
+        x->x_high = PD_MAX (low, high);
+        
+        if (x->x_low == x->x_high) {
+            x->x_low  = GARRAY_LOW_DEFAULT;
+            x->x_high = GARRAY_HIGH_DEFAULT;
+        }
+    
+    #if defined ( PD_BUILDING_APPLICATION )
     
     if (notify) {
         if (l != x->x_low)  { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Low));  }
         if (h != x->x_high) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::High)); }
     }
+    
+    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------
