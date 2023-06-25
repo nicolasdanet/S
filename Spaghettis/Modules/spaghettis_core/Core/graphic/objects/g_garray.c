@@ -39,6 +39,18 @@ struct _garray {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#define GARRAY_WIDTH_MAXIMUM        1024
+#define GARRAY_HEIGHT_MAXIMUM       1024
+
+#define GARRAY_WIDTH_DEFAULT        200
+#define GARRAY_HEIGHT_DEFAULT       100
+#define GARRAY_LOW_DEFAULT          -1
+#define GARRAY_HIGH_DEFAULT         1
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void garray_dismiss (t_garray *);
 static void garray_copy (t_word *, t_word *, int);
 
@@ -513,6 +525,70 @@ static t_symbol *garray_getUnusedBindName (t_symbol *prefix)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void garray_setWidthAndHeight (t_garray *x, int width, int height, int notify)
+{
+    int w = x->x_width;
+    int h = x->x_height;
+    
+    width  = PD_CLAMP (width,  0, GARRAY_WIDTH_MAXIMUM);
+    height = PD_CLAMP (height, 0, GARRAY_HEIGHT_MAXIMUM);
+    
+    x->x_width  = width  ? width  : GARRAY_WIDTH_DEFAULT;
+    x->x_height = height ? height : GARRAY_HEIGHT_DEFAULT;
+    
+    if (notify) {
+        if (w != x->x_width)  { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));  }
+        if (h != x->x_height) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Height)); }
+    }
+}
+
+static void garray_setStartAndEnd (t_garray *x, int start, int end, int notify)
+{
+    int s = x->x_start;
+    int e = x->x_end;
+    
+    int k = x->x_size;
+    
+    start = PD_CLAMP (start, 0, k);
+    end   = PD_CLAMP (end,   0, k);
+    
+    x->x_start = PD_MIN (start, end);
+    x->x_end   = PD_MAX (start, end);
+    
+    if (x->x_start == x->x_end) {
+        x->x_start = 0;
+        x->x_end   = k;
+    }
+    
+    if (notify) {
+        if (s != x->x_start) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Start)); }
+        if (e != x->x_end)   { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::End));   }
+    }
+}
+
+static void garray_setLowAndHigh (t_garray *x, int low, int high, int notify)
+{
+    int l = x->x_low;
+    int h = x->x_high;
+    
+    x->x_low  = PD_MIN (low, high);
+    x->x_high = PD_MAX (low, high);
+    
+    if (x->x_low == x->x_high) {
+        x->x_low  = GARRAY_LOW_DEFAULT;
+        x->x_high = GARRAY_HIGH_DEFAULT;
+    }
+    
+    if (notify) {
+        if (l != x->x_low)  { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Low));  }
+        if (h != x->x_high) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::High)); }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 #if defined ( PD_BUILDING_APPLICATION )
 
 static void garray_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
@@ -520,6 +596,22 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
     t_garray *x = (t_garray *)o;
     
     static DelegateCache delegate;
+    
+    if (t.contains (Tag::Width)) {
+        group.addParameter (Tag::Width,
+            NEEDS_TRANS ("Width"),
+            NEEDS_TRANS ("Width of the object"),
+            x->x_width,
+            delegate);
+    }
+    
+    if (t.contains (Tag::Height)) {
+        group.addParameter (Tag::Height,
+            NEEDS_TRANS ("Height"),
+            NEEDS_TRANS ("Height of the object"),
+            x->x_height,
+            delegate);
+    }
     
     if (t.contains (Tag::Name)) {
         group.addParameter (Tag::Name,
@@ -531,7 +623,7 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
     
     if (t.contains (Tag::Size)) {
         group.addParameter (Tag::Size,
-            NEEDS_TRANS ("Size"),
+            NEEDS_TRANS ("Array Size"),
             NEEDS_TRANS ("Number of values"),
             x->x_size,
             delegate);
@@ -542,6 +634,38 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
             NEEDS_TRANS ("Embedded"),
             NEEDS_TRANS ("Content saved with patch"),
             static_cast<bool> (x->x_embed),
+            delegate);
+    }
+    
+    if (t.contains (Tag::Start)) {
+        group.addParameter (Tag::Start,
+            NEEDS_TRANS ("Range Start"),
+            NEEDS_TRANS ("Begin of the shown values"),
+            x->x_start,
+            delegate);
+    }
+    
+    if (t.contains (Tag::End)) {
+        group.addParameter (Tag::End,
+            NEEDS_TRANS ("Range End"),
+            NEEDS_TRANS ("End of the shown values"),
+            x->x_end,
+            delegate);
+    }
+    
+    if (t.contains (Tag::Low)) {
+        group.addParameter (Tag::Low,
+            NEEDS_TRANS ("Range Low"),
+            NEEDS_TRANS ("Low range for the shown values"),
+            x->x_low,
+            delegate);
+    }
+    
+    if (t.contains (Tag::High)) {
+        group.addParameter (Tag::High,
+            NEEDS_TRANS ("Range High"),
+            NEEDS_TRANS ("High range for the shown values"),
+            x->x_high,
             delegate);
     }
 }
@@ -568,6 +692,22 @@ static void garray_functionSetParameters (t_object *o, const core::Group& group)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+static void garray_newParameters (t_garray *x, t_symbol *s, int argc, t_atom *argv)
+{
+    int width   = atom_getFloatAtIndex (0, argc, argv);
+    int height  = atom_getFloatAtIndex (1, argc, argv);
+    int start   = atom_getFloatAtIndex (2, argc, argv);
+    int end     = atom_getFloatAtIndex (3, argc, argv);
+    int low     = atom_getFloatAtIndex (4, argc, argv);
+    int high    = atom_getFloatAtIndex (5, argc, argv);
+    
+    garray_setWidthAndHeight (x, width, height, 0);
+    garray_setStartAndEnd (x, start, end, 0);
+    garray_setLowAndHigh (x, low, high, 0);
+        
+    if (argc > 6) { warning_unusedArguments (cast_object (x), s, argc - 6, argv + 6); }
+}
 
 static void *garray_new (t_symbol *s, int argc, t_atom *argv)
 {
@@ -596,6 +736,8 @@ static void *garray_new (t_symbol *s, int argc, t_atom *argv)
     }
 
     pd_bind (cast_pd (x), x->x_name);
+    
+    garray_newParameters (x, s, argc - 3, argv + 3);
     
     return x;
 }
