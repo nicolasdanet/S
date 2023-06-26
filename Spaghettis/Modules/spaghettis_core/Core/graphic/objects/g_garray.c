@@ -664,7 +664,7 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
     if (t.contains (Tag::Start)) {
         group.addParameter (Tag::Start,
             NEEDS_TRANS ("Range Start"),
-            NEEDS_TRANS ("Begin of the shown values"),
+            NEEDS_TRANS ("Begin of the graph"),
             x->x_start,
             delegate);
     }
@@ -672,7 +672,7 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
     if (t.contains (Tag::End)) {
         group.addParameter (Tag::End,
             NEEDS_TRANS ("Range End"),
-            NEEDS_TRANS ("End of the shown values"),
+            NEEDS_TRANS ("End of the graph"),
             x->x_end,
             delegate);
     }
@@ -680,7 +680,7 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
     if (t.contains (Tag::Low)) {
         group.addParameter (Tag::Low,
             NEEDS_TRANS ("Range Low"),
-            NEEDS_TRANS ("Low range for the shown values"),
+            NEEDS_TRANS ("Low range for graph"),
             x->x_low,
             delegate);
     }
@@ -688,7 +688,7 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
     if (t.contains (Tag::High)) {
         group.addParameter (Tag::High,
             NEEDS_TRANS ("Range High"),
-            NEEDS_TRANS ("High range for the shown values"),
+            NEEDS_TRANS ("High range for graph"),
             x->x_high,
             delegate);
     }
