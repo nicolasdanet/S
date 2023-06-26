@@ -698,17 +698,33 @@ static void garray_functionSetParameters (t_object *o, const core::Group& group)
 {
     t_garray *x = (t_garray *)o;
     
+    jassert (group.hasParameter (Tag::Width));
+    jassert (group.hasParameter (Tag::Height));
     jassert (group.hasParameter (Tag::Name));
     jassert (group.hasParameter (Tag::Size));
     jassert (group.hasParameter (Tag::Embedded));
+    jassert (group.hasParameter (Tag::Start));
+    jassert (group.hasParameter (Tag::End));
+    jassert (group.hasParameter (Tag::Low));
+    jassert (group.hasParameter (Tag::High));
     
-    t_symbol *n = gensym (group.getParameter (Tag::Name).getValueTyped<juce::String>().toRawUTF8());
-    const int s = group.getParameter (Tag::Size).getValueTyped<int>();
-    const int e = static_cast<int> (group.getParameter (Tag::Embedded).getValueTyped<bool>());
+    t_symbol *name   = gensym (group.getParameter (Tag::Name).getValueTyped<juce::String>().toRawUTF8());
+    const int size   = group.getParameter (Tag::Size).getValueTyped<int>();
+    const int embed  = static_cast<int> (group.getParameter (Tag::Embedded).getValueTyped<bool>());
     
-    garray_rename (x, n);
-    garray_resizeProceed (x, s);
-    garray_embedProceed (x, e);
+    const int width  = group.getParameter (Tag::Width).getValueTyped<int>();
+    const int height = group.getParameter (Tag::Height).getValueTyped<int>();
+    const int start  = group.getParameter (Tag::Start).getValueTyped<int>();
+    const int end    = group.getParameter (Tag::End).getValueTyped<int>();
+    const int low    = group.getParameter (Tag::Low).getValueTyped<int>();
+    const int high   = group.getParameter (Tag::High).getValueTyped<int>();
+    
+    garray_rename (x, name);
+    garray_resizeProceed (x, size);
+    garray_embedProceed (x, embed);
+    garray_setWidthAndHeight (x, width, height, 1);
+    garray_setStartAndEnd (x, start, end, 1);
+    garray_setLowAndHigh (x, low, high, 1);
 }
 
 #endif
