@@ -39,13 +39,11 @@ struct _garray {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define GARRAY_WIDTH_MAXIMUM        1024
-#define GARRAY_HEIGHT_MAXIMUM       1024
+#define GARRAY_WIDTH_MAXIMUM    1024
+#define GARRAY_HEIGHT_MAXIMUM   1024
 
-#define GARRAY_WIDTH_DEFAULT        200
-#define GARRAY_HEIGHT_DEFAULT       100
-#define GARRAY_LOW_DEFAULT          -1
-#define GARRAY_HIGH_DEFAULT         1
+#define GARRAY_WIDTH_DEFAULT    200
+#define GARRAY_HEIGHT_DEFAULT   100
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -534,11 +532,11 @@ static void garray_setWidthAndHeight (t_garray *x, int width, int height, int no
     
     #endif
     
-        width  = PD_CLAMP (width,  0, GARRAY_WIDTH_MAXIMUM);
-        height = PD_CLAMP (height, 0, GARRAY_HEIGHT_MAXIMUM);
+    width  = PD_CLAMP (width,  0, GARRAY_WIDTH_MAXIMUM);
+    height = PD_CLAMP (height, 0, GARRAY_HEIGHT_MAXIMUM);
         
-        x->x_width  = width  ? width  : GARRAY_WIDTH_DEFAULT;
-        x->x_height = height ? height : GARRAY_HEIGHT_DEFAULT;
+    x->x_width  = width  ? width  : GARRAY_WIDTH_DEFAULT;
+    x->x_height = height ? height : GARRAY_HEIGHT_DEFAULT;
     
     #if defined ( PD_BUILDING_APPLICATION )
     
@@ -558,19 +556,9 @@ static void garray_setStartAndEnd (t_garray *x, int start, int end, int notify)
     int e = x->x_end;
     
     #endif
-    
-        int k = x->x_size;
         
-        start = PD_CLAMP (start, 0, k);
-        end   = PD_CLAMP (end,   0, k);
-        
-        x->x_start = PD_MIN (start, end);
-        x->x_end   = PD_MAX (start, end);
-        
-        if (x->x_start == x->x_end) {
-            x->x_start = 0;
-            x->x_end   = k;
-        }
+    x->x_start = PD_MIN (start, end);
+    x->x_end   = PD_MAX (start, end);
     
     #if defined ( PD_BUILDING_APPLICATION )
     
@@ -591,13 +579,8 @@ static void garray_setLowAndHigh (t_garray *x, int low, int high, int notify)
     
     #endif
     
-        x->x_low  = PD_MIN (low, high);
-        x->x_high = PD_MAX (low, high);
-        
-        if (x->x_low == x->x_high) {
-            x->x_low  = GARRAY_LOW_DEFAULT;
-            x->x_high = GARRAY_HIGH_DEFAULT;
-        }
+    x->x_low  = PD_MIN (low, high);
+    x->x_high = PD_MAX (low, high);
     
     #if defined ( PD_BUILDING_APPLICATION )
     
@@ -626,7 +609,7 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
             NEEDS_TRANS ("Width"),
             NEEDS_TRANS ("Width of the object"),
             x->x_width,
-            delegate);
+            delegate).setRange (juce::Range<int> (0, GARRAY_WIDTH_MAXIMUM));
     }
     
     if (t.contains (Tag::Height)) {
@@ -634,7 +617,7 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
             NEEDS_TRANS ("Height"),
             NEEDS_TRANS ("Height of the object"),
             x->x_height,
-            delegate);
+            delegate).setRange (juce::Range<int> (0, GARRAY_HEIGHT_MAXIMUM));
     }
     
     if (t.contains (Tag::Name)) {
