@@ -426,6 +426,12 @@ static void garray_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendSymbol (b, garray_getUnexpandedName (x));
     buffer_appendFloat (b,  x->x_size);
     buffer_appendFloat (b,  x->x_embed);
+    buffer_appendFloat (b,  x->x_width);
+    buffer_appendFloat (b,  x->x_height);
+    buffer_appendFloat (b,  x->x_start);
+    buffer_appendFloat (b,  x->x_end);
+    buffer_appendFloat (b,  x->x_low);
+    buffer_appendFloat (b,  x->x_high);
     buffer_appendSemicolon (b);
     
     object_saveIdentifiers (z, b, flags);
