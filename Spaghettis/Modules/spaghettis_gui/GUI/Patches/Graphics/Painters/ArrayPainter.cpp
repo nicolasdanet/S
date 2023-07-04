@@ -14,6 +14,7 @@ namespace spaghettis {
 
 ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
+    arrayBackgroundColour_ (Spaghettis()->getCachedColour (Tag::ArrayBackground)),
     name_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Name)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
     height_ (object_.getCached<int> (Tag::Parameters, Tag::Height)),
@@ -40,9 +41,7 @@ ArrayPainter::ArrayPainter (ObjectComponent* owner) :
 
 void ArrayPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    DBG ("?");
-    
-    g.setColour (juce::Colours::black);
+    g.setColour (arrayBackgroundColour_.get());
     g.fillRect (r);
 }
 

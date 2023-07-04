@@ -207,6 +207,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set color of anything pins"),
         Colours::getPalette()->backgroundBox.contrasting (0.25f));
     
+    colors.addParameter (Tag::ArrayBackground,
+        NEEDS_TRANS ("Array Background"),
+        NEEDS_TRANS ("Set background color of graphic arrays"),
+        Colours::getPalette()->backgroundBox);
+        
     colors.addParameter (Tag::AtomBackground,
         NEEDS_TRANS ("Atom Background"),
         NEEDS_TRANS ("Set background color of number boxes"),

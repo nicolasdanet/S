@@ -33,6 +33,7 @@ public:
     void setDimensions (core::Vector::Real) override;
 
 private:
+    core::Cached<juce::Colour> arrayBackgroundColour_;
     core::Cached<juce::String> name_;
     core::Cached<int> width_;
     core::Cached<int> height_;
