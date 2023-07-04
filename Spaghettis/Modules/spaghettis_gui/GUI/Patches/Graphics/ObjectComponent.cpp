@@ -22,6 +22,7 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const juce
     if (type == "bng")          { return std::make_unique<BangPainter> (owner);     }
     else if (type == "comment") { return std::make_unique<CommentPainter> (owner);  }
     else if (type == "gatom")   { return std::make_unique<AtomPainter> (owner);     }
+    else if (type == "garray")  { return std::make_unique<ArrayPainter> (owner);    }
     else if (type == "inlet")   { return std::make_unique<InletPainter> (owner);    }
     else if (type == "message") { return std::make_unique<MessagePainter> (owner);  }
     else if (type == "outlet")  { return std::make_unique<InletPainter> (owner);    }
