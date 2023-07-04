@@ -31,10 +31,16 @@ public:
     juce::Rectangle<int> getRequiredBoundsForObject() override;
     std::optional<core::Vector::Real> getDimensions() override;
     void setDimensions (core::Vector::Real) override;
-    
+
 private:
+    core::Cached<juce::String> name_;
     core::Cached<int> width_;
     core::Cached<int> height_;
+    core::Cached<int> size_;
+    core::Cached<int> start_;
+    core::Cached<int> end_;
+    core::Cached<int> low_;
+    core::Cached<int> high_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArrayPainter)

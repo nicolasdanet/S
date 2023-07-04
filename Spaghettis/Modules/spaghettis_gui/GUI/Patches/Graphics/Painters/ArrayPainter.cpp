@@ -12,20 +12,26 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-//Tag::Name
-//Tag::Size
-//Tag::Start
-//Tag::End
-//Tag::Low
-//Tag::High
-    
 ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
+    name_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Name)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
-    height_ (object_.getCached<int> (Tag::Parameters, Tag::Height))
+    height_ (object_.getCached<int> (Tag::Parameters, Tag::Height)),
+    size_ (object_.getCached<int> (Tag::Parameters, Tag::Size)),
+    start_ (object_.getCached<int> (Tag::Parameters, Tag::Start)),
+    end_ (object_.getCached<int> (Tag::Parameters, Tag::End)),
+    low_ (object_.getCached<int> (Tag::Parameters, Tag::Low)),
+    high_ (object_.getCached<int> (Tag::Parameters, Tag::High))
 {
     width_.attach (resized (component_));
     height_.attach (resized (component_));
+    
+    name_.attach (repaint (component_));
+    size_.attach (repaint (component_));
+    start_.attach (repaint (component_));
+    end_.attach (repaint (component_));
+    low_.attach (repaint (component_));
+    high_.attach (repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -34,6 +40,8 @@ ArrayPainter::ArrayPainter (ObjectComponent* owner) :
 
 void ArrayPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
+    DBG ("?");
+    
     g.setColour (juce::Colours::black);
     g.fillRect (r);
 }
