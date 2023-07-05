@@ -330,6 +330,24 @@ static void garray_write (t_garray *x, t_symbol *name)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void garray_publish (t_garray *x)
+{
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    #endif
+}
+
+static void garray_conceal (t_garray *x)
+{
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    #endif
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void garray_rename (t_garray *x, t_symbol *s)
 {
     if (s != garray_getUnexpandedName (x)) {
@@ -768,6 +786,8 @@ static void *garray_new (t_symbol *s, int argc, t_atom *argv)
     
     garray_newParameters (x, s, argc - 3, argv + 3);
     
+    garray_publish (x);
+    
     return x;
 }
 
@@ -782,7 +802,7 @@ static void garray_dismiss (t_garray *x)
 
 static void garray_free (t_garray *x)
 {
-    garray_dismiss (x); PD_MEMORY_FREE (x->x_data);
+    garray_dismiss (x); garray_conceal (x); PD_MEMORY_FREE (x->x_data);
 }
 
 // -----------------------------------------------------------------------------------------------------------
