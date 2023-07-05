@@ -337,7 +337,7 @@ static void garray_publish (t_garray *x)
     #endif
 }
 
-static void garray_conceal (t_garray *x)
+static void garray_discard (t_garray *x)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
@@ -382,24 +382,26 @@ static void garray_resizeProceed (t_garray *x, int n)
     int dspSuspended = 0;
     
     size_t newBytes = newSize * sizeof (t_word);
-    size_t oldBytes = oldSize * sizeof (t_word);
     
-    t_word *t = x->x_data;
+    t_word *oldData = x->x_data;
+    
+    garray_discard (x);
     
     if (garray_isUsedInDsp (x)) { dspState = dsp_suspend(); dspSuspended = 1; }
     
-    if (garray_isUsedInDsp (x)) {
-        x->x_data = (t_word *)PD_MEMORY_GET (newBytes);
-        garray_copy (x->x_data, t, PD_MIN (oldSize, newSize));
-        garbage_newRaw ((void *)t);
-        
-    } else {
-        x->x_data = (t_word *)PD_MEMORY_RESIZE (t, oldBytes, newBytes);
-    }
-    
+    x->x_data = (t_word *)PD_MEMORY_GET (newBytes);
     x->x_size = newSize;
     
+    garray_copy (x->x_data, oldData, PD_MIN (oldSize, newSize));
+    
+    if (garray_isUsedInDsp (x)) { garbage_newRaw ((void *)oldData); }
+    else {
+        PD_MEMORY_FREE (oldData);
+    }
+    
     if (dspSuspended) { dsp_resume (dspState); }
+    
+    garray_publish (x);
     
     #if defined ( PD_BUILDING_APPLICATION )
     outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Size));
@@ -802,7 +804,7 @@ static void garray_dismiss (t_garray *x)
 
 static void garray_free (t_garray *x)
 {
-    garray_dismiss (x); garray_conceal (x); PD_MEMORY_FREE (x->x_data);
+    garray_dismiss (x); garray_discard (x); PD_MEMORY_FREE (x->x_data);
 }
 
 // -----------------------------------------------------------------------------------------------------------
