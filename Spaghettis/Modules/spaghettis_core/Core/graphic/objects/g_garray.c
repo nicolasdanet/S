@@ -330,19 +330,31 @@ static void garray_write (t_garray *x, t_symbol *name)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+extern Wrapper *main_wrapper;
+
 static void garray_publish (t_garray *x)
 {
-    #if defined ( PD_BUILDING_APPLICATION )
-    
-    #endif
+    jassert (main_wrapper != nullptr);
 }
 
 static void garray_discard (t_garray *x)
 {
-    #if defined ( PD_BUILDING_APPLICATION )
-    
-    #endif
+    jassert (main_wrapper != nullptr);
 }
+
+#else
+
+static void garray_publish (t_garray *x)
+{
+}
+
+static void garray_discard (t_garray *x)
+{
+}
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
