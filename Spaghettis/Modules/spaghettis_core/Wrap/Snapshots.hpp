@@ -24,9 +24,10 @@ public:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
+    void publish (core::UniqueId, void*, int);
+    void discard (core::UniqueId);
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Snapshots)

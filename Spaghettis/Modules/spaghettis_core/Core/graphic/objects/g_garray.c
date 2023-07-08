@@ -337,11 +337,15 @@ extern Wrapper *main_wrapper;
 static void garray_publish (t_garray *x)
 {
     jassert (main_wrapper != nullptr);
+    
+    main_wrapper->getSnapshots().publish (object_getUnique (cast_object (x)), x->x_data, x->x_size);
 }
 
 static void garray_discard (t_garray *x)
 {
     jassert (main_wrapper != nullptr);
+    
+    main_wrapper->getSnapshots().discard (object_getUnique (cast_object (x)));
 }
 
 #else
