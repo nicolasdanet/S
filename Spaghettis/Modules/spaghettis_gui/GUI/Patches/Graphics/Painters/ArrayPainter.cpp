@@ -33,6 +33,22 @@ ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     end_.attach (repaint (component_));
     low_.attach (repaint (component_));
     high_.attach (repaint (component_));
+    
+    startTimer (juce::Random::getSystemRandom().nextInt (juce::Range<int> (900, 1100)));
+}
+
+ArrayPainter::~ArrayPainter()
+{
+    stopTimer();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ArrayPainter::timerCallback()
+{
+    DBG (getTimerInterval());
 }
 
 // -----------------------------------------------------------------------------------------------------------
