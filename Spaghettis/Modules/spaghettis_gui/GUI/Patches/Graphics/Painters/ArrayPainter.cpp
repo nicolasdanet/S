@@ -48,7 +48,16 @@ ArrayPainter::~ArrayPainter()
 
 void ArrayPainter::timerCallback()
 {
-    DBG (getTimerInterval());
+    component_->repaint();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ArrayPainter::paintSignal (juce::Rectangle<int> r, juce::Graphics& g)
+{
+    
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -59,6 +68,8 @@ void ArrayPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (arrayBackgroundColour_.get());
     g.fillRect (r);
+    
+    paintSignal (r.reduced (1), g);
 }
 
 juce::Rectangle<int> ArrayPainter::getRequiredBoundsForObject()
