@@ -22,11 +22,17 @@ public:
     Snapshot()  = default;
     ~Snapshot() = default;
 
+public:
+    Snapshot (const Snapshot&) = default;
+    Snapshot (Snapshot&&) = default;
+    Snapshot& operator = (const Snapshot&) = default;
+    Snapshot& operator = (Snapshot&&) = default;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Snapshot)
+    JUCE_LEAK_DETECTOR (Snapshot)
 };
 
 // -----------------------------------------------------------------------------------------------------------

@@ -46,6 +46,9 @@ public:
     void publish (core::UniqueId, void*, int);
     void discard (core::UniqueId);
 
+public:
+    Snapshot get (core::UniqueId);
+    
 private:
     std::vector<SnapshotsElement> v_;
     std::mutex lock_;

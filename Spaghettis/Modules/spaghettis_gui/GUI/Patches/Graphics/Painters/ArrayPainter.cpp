@@ -57,7 +57,7 @@ void ArrayPainter::timerCallback()
 
 void ArrayPainter::paintSignal (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    
+    Snapshot t = Spaghettis()->getSnapshots().get (getIdentifier());
 }
 
 // -----------------------------------------------------------------------------------------------------------
