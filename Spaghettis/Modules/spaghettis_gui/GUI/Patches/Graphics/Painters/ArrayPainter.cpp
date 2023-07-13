@@ -55,9 +55,16 @@ void ArrayPainter::timerCallback()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Range<int> ArrayPainter::getRange() const
+{
+    const juce::Range<int> range = juce::Range<int> (start_.get(), end_.get());
+    
+    return range.isEmpty() ? juce::Range<int> (0, size_.get()) : range;
+}
+
 void ArrayPainter::paintSignal (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    Snapshot t = Spaghettis()->getSnapshots().get (getIdentifier());
+    Snapshot t = Spaghettis()->getSnapshots().get (getIdentifier(), getRange(), r.getWidth());
 }
 
 // -----------------------------------------------------------------------------------------------------------

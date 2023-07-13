@@ -47,7 +47,7 @@ public:
     void discard (core::UniqueId);
 
 public:
-    Snapshot get (core::UniqueId);
+    Snapshot get (core::UniqueId, juce::Range<int>, int);
     
 private:
     std::vector<SnapshotsElement> v_;

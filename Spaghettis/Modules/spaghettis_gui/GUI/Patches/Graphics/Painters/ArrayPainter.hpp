@@ -36,8 +36,13 @@ private:
 // MARK: -
 
 private:
+    juce::Range<int> getRange() const;
+    
     void paintSignal (juce::Rectangle<int>, juce::Graphics&);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 public:
     void paintObject (juce::Rectangle<int>, juce::Graphics&) override;
     juce::Rectangle<int> getRequiredBoundsForObject() override;

@@ -52,9 +52,12 @@ void Snapshots::discard (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Snapshot Snapshots::get (core::UniqueId)
+Snapshot Snapshots::get (core::UniqueId u, juce::Range<int> r, int n)
 {
     Snapshot t;
+    
+    DBG (juce::String (r.getStart()) + " / " + juce::String (r.getEnd()));
+    
     return t;
 }
 
