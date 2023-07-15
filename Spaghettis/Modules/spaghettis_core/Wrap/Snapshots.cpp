@@ -54,7 +54,7 @@ void Snapshots::discard (core::UniqueId u)
 
 Snapshot Snapshots::get (core::UniqueId u, juce::Range<int> r, int n)
 {
-    Snapshot t;
+    Snapshot t (n);
     
     DBG (juce::String (r.getStart()) + " / " + juce::String (r.getEnd()));
     
