@@ -364,16 +364,16 @@ static void garray_discard (t_garray *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 static void garray_objectUpdated (t_garray *x, const Tags& t)
 {
-    #if defined ( PD_BUILDING_APPLICATION )
-    
     outputs_objectUpdated (cast_object (x), t);
-    
-    #endif
     
     glist_setDirty (object_getOwner (cast_object (x)), 1);
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -393,7 +393,9 @@ static void garray_rename (t_garray *x, t_symbol *s)
     x->x_name = expanded;
     pd_bind (cast_pd (x), x->x_name);
     dsp_update();
+    #if defined ( PD_BUILDING_APPLICATION )
     garray_objectUpdated (x, Tags::parameters (Tag::Name));
+    #endif
     //
     }
     //
@@ -432,7 +434,9 @@ static void garray_resizeProceed (t_garray *x, int n)
     
     garray_publish (x);
     
+    #if defined ( PD_BUILDING_APPLICATION )
     garray_objectUpdated (x, Tags::parameters (Tag::Size));
+    #endif
     //
     }
 }
@@ -445,7 +449,10 @@ PD_LOCAL void garray_resize (t_garray *x, t_float f)
 static void garray_embedProceed (t_garray *x, int n)
 {
     if (x->x_embed != n) {
-        x->x_embed = n; garray_objectUpdated (x, Tags::parameters (Tag::Embedded));
+        x->x_embed = n;
+        #if defined ( PD_BUILDING_APPLICATION )
+        garray_objectUpdated (x, Tags::parameters (Tag::Embedded));
+        #endif
     }
 }
 
@@ -575,8 +582,12 @@ static t_symbol *garray_getUnusedBindName (t_symbol *prefix)
 
 static void garray_setWidthAndHeight (t_garray *x, int width, int height, int notify)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     int w = x->x_width;
     int h = x->x_height;
+    
+    #endif
     
     width  = PD_CLAMP (width,  0, GARRAY_WIDTH_MAXIMUM);
     height = PD_CLAMP (height, 0, GARRAY_HEIGHT_MAXIMUM);
@@ -584,38 +595,58 @@ static void garray_setWidthAndHeight (t_garray *x, int width, int height, int no
     x->x_width  = width  ? width  : GARRAY_WIDTH_DEFAULT;
     x->x_height = height ? height : GARRAY_HEIGHT_DEFAULT;
     
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     if (notify) {
         if (w != x->x_width)  { garray_objectUpdated (x, Tags::parameters (Tag::Width));  }
         if (h != x->x_height) { garray_objectUpdated (x, Tags::parameters (Tag::Height)); }
     }
+    
+    #endif
 }
 
 static void garray_setStartAndEnd (t_garray *x, int start, int end, int notify)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     int s = x->x_start;
     int e = x->x_end;
     
+    #endif
+    
     x->x_start = PD_MIN (start, end);
     x->x_end   = PD_MAX (start, end);
+    
+    #if defined ( PD_BUILDING_APPLICATION )
     
     if (notify) {
         if (s != x->x_start) { garray_objectUpdated (x, Tags::parameters (Tag::Start)); }
         if (e != x->x_end)   { garray_objectUpdated (x, Tags::parameters (Tag::End));   }
     }
+    
+    #endif
 }
 
 static void garray_setLowAndHigh (t_garray *x, int low, int high, int notify)
 {
+    #if defined ( PD_BUILDING_APPLICATION )
+    
     int l = x->x_low;
     int h = x->x_high;
     
+    #endif
+    
     x->x_low  = PD_MIN (low, high);
     x->x_high = PD_MAX (low, high);
+    
+    #if defined ( PD_BUILDING_APPLICATION )
     
     if (notify) {
         if (l != x->x_low)  { garray_objectUpdated (x, Tags::parameters (Tag::Low));  }
         if (h != x->x_high) { garray_objectUpdated (x, Tags::parameters (Tag::High)); }
     }
+    
+    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------
