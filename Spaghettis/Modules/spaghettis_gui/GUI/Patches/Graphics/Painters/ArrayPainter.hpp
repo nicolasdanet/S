@@ -36,7 +36,7 @@ private:
 // MARK: -
 
 private:
-    juce::Range<int> getRange() const;
+    juce::Range<int> getDomain() const;
     
     void paintSignal (juce::Rectangle<int>, juce::Graphics&);
 

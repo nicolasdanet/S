@@ -19,9 +19,7 @@ class SnapshotRange {
 // MARK: -
 
 public:
-    SnapshotRange() :
-        low_ (std::numeric_limits<float>::max()),
-        high_ (std::numeric_limits<float>::lowest())
+    SnapshotRange() : low_ (0.0f), high_ (0.0f), set_ (false)
     {
     }
     
@@ -42,11 +40,18 @@ public:
     {
         low_  = juce::jmin (f, low_);
         high_ = juce::jmax (f, high_);
+        set_  = true;
+    }
+    
+    bool isSet() const
+    {
+        return set_;
     }
     
 private:
     float low_;
     float high_;
+    bool  set_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -75,6 +80,9 @@ public:
     Snapshot& operator = (const Snapshot&) = default;
     Snapshot& operator = (Snapshot&&) = default;
 
+public:
+    void paint (juce::Rectangle<int>, juce::Graphics&) const;
+    
 private:
     void fetch (void*, int);
     
