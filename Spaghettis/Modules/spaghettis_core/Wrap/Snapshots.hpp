@@ -46,6 +46,13 @@ public:
     void publish (core::UniqueId, void*, int);
     void discard (core::UniqueId);
 
+private:
+    void fetch (core::UniqueId, Snapshot&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     Snapshot get (core::UniqueId, juce::Range<int>, int);
     

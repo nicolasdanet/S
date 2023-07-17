@@ -19,7 +19,9 @@ class SnapshotRange {
 // MARK: -
 
 public:
-    SnapshotRange() : low_ (0.0), high_ (0.0)
+    SnapshotRange() :
+        low_ (std::numeric_limits<float>::max()),
+        high_ (std::numeric_limits<float>::lowest())
     {
     }
     
@@ -36,15 +38,15 @@ public:
 // MARK: -
 
 public:
-    void set (double f)
+    void set (float f)
     {
         low_  = juce::jmin (f, low_);
         high_ = juce::jmax (f, high_);
     }
     
 private:
-    double low_;
-    double high_;
+    float low_;
+    float high_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -55,10 +57,15 @@ class Snapshot {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+friend class Snapshots;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Snapshot (int);
+    explicit Snapshot (juce::Range<int>, int);
     
     ~Snapshot() = default;
 
@@ -69,6 +76,10 @@ public:
     Snapshot& operator = (Snapshot&&) = default;
 
 private:
+    void fetch (void*, int);
+    
+private:
+    juce::Range<int> range_;
     std::vector<SnapshotRange> v_;
     
 // -----------------------------------------------------------------------------------------------------------

@@ -52,13 +52,26 @@ void Snapshots::discard (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void Snapshots::fetch (core::UniqueId u, Snapshot& s)
+{
+    const std::lock_guard<std::mutex> l (lock_);
+    
+    auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (u));
+    
+    if (r != v_.cend()) {
+        void* p = std::get<Snapshots::SNAPSHOTS_POINTER> (*r);
+        int n   = std::get<Snapshots::SNAPSHOTS_SIZE> (*r);
+        s.fetch (p, n);
+    }
+}
+
 Snapshot Snapshots::get (core::UniqueId u, juce::Range<int> r, int n)
 {
-    Snapshot t (n);
+    Snapshot s (r, n);
     
-    DBG (juce::String (r.getStart()) + " / " + juce::String (r.getEnd()));
+    if (r.getLength()) { fetch (u, s); }
     
-    return t;
+    return s;
 }
 
 // -----------------------------------------------------------------------------------------------------------
