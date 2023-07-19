@@ -27,8 +27,8 @@ struct _garray {
     int         x_height;
     int         x_start;
     int         x_end;
-    int         x_low;
-    int         x_high;
+    t_float     x_low;
+    t_float     x_high;
     int         x_size;
     t_word      *x_data;
     t_symbol    *x_unexpandedName;
@@ -627,12 +627,12 @@ static void garray_setStartAndEnd (t_garray *x, int start, int end, int notify)
     #endif
 }
 
-static void garray_setLowAndHigh (t_garray *x, int low, int high, int notify)
+static void garray_setLowAndHigh (t_garray *x, t_float low, t_float high, int notify)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
-    int l = x->x_low;
-    int h = x->x_high;
+    t_float l = x->x_low;
+    t_float h = x->x_high;
     
     #endif
     
@@ -752,12 +752,12 @@ static void garray_functionSetParameters (t_object *o, const core::Group& group)
     const int size   = group.getParameter (Tag::Size).getValueTyped<int>();
     const int embed  = static_cast<int> (group.getParameter (Tag::Embedded).getValueTyped<bool>());
     
-    const int width  = group.getParameter (Tag::Width).getValueTyped<int>();
-    const int height = group.getParameter (Tag::Height).getValueTyped<int>();
-    const int start  = group.getParameter (Tag::Start).getValueTyped<int>();
-    const int end    = group.getParameter (Tag::End).getValueTyped<int>();
-    const int low    = group.getParameter (Tag::Low).getValueTyped<int>();
-    const int high   = group.getParameter (Tag::High).getValueTyped<int>();
+    const int width     = group.getParameter (Tag::Width).getValueTyped<int>();
+    const int height    = group.getParameter (Tag::Height).getValueTyped<int>();
+    const int start     = group.getParameter (Tag::Start).getValueTyped<int>();
+    const int end       = group.getParameter (Tag::End).getValueTyped<int>();
+    const t_float low   = group.getParameter (Tag::Low).getValueTyped<t_float>();
+    const t_float high  = group.getParameter (Tag::High).getValueTyped<t_float>();
     
     garray_rename (x, name);
     garray_resizeProceed (x, size);
@@ -775,12 +775,12 @@ static void garray_functionSetParameters (t_object *o, const core::Group& group)
 
 static void garray_newParameters (t_garray *x, t_symbol *s, int argc, t_atom *argv)
 {
-    int width   = atom_getFloatAtIndex (0, argc, argv);
-    int height  = atom_getFloatAtIndex (1, argc, argv);
-    int start   = atom_getFloatAtIndex (2, argc, argv);
-    int end     = atom_getFloatAtIndex (3, argc, argv);
-    int low     = atom_getFloatAtIndex (4, argc, argv);
-    int high    = atom_getFloatAtIndex (5, argc, argv);
+    int width       = atom_getFloatAtIndex (0, argc, argv);
+    int height      = atom_getFloatAtIndex (1, argc, argv);
+    int start       = atom_getFloatAtIndex (2, argc, argv);
+    int end         = atom_getFloatAtIndex (3, argc, argv);
+    t_float low     = atom_getFloatAtIndex (4, argc, argv);
+    t_float high    = atom_getFloatAtIndex (5, argc, argv);
     
     garray_setWidthAndHeight (x, width, height, 0);
     garray_setStartAndEnd (x, start, end, 0);

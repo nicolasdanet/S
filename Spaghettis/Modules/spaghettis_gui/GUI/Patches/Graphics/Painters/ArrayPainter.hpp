@@ -57,8 +57,8 @@ private:
     core::Cached<int> size_;
     core::Cached<int> start_;
     core::Cached<int> end_;
-    core::Cached<int> low_;
-    core::Cached<int> high_;
+    core::Cached<double> low_;
+    core::Cached<double> high_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArrayPainter)

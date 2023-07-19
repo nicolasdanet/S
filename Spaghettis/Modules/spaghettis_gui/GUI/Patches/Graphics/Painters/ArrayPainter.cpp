@@ -21,8 +21,8 @@ ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     size_ (object_.getCached<int> (Tag::Parameters, Tag::Size)),
     start_ (object_.getCached<int> (Tag::Parameters, Tag::Start)),
     end_ (object_.getCached<int> (Tag::Parameters, Tag::End)),
-    low_ (object_.getCached<int> (Tag::Parameters, Tag::Low)),
-    high_ (object_.getCached<int> (Tag::Parameters, Tag::High))
+    low_ (object_.getCached<double> (Tag::Parameters, Tag::Low)),
+    high_ (object_.getCached<double> (Tag::Parameters, Tag::High))
 {
     width_.attach (resized (component_));
     height_.attach (resized (component_));
