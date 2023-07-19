@@ -64,9 +64,9 @@ juce::Range<int> ArrayPainter::getDomain() const
 
 void ArrayPainter::paintSignal (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const Snapshot t (Spaghettis()->getSnapshots().get (getIdentifier(), getDomain(), r.getWidth()));
+    const Snapshot t (Spaghettis()->getSnapshots().get (getIdentifier(), getDomain(), r));
     
-    t.paint (r, g);
+    t.paint (g);
 }
 
 // -----------------------------------------------------------------------------------------------------------

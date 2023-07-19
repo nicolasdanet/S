@@ -70,7 +70,7 @@ friend class Snapshots;
 // MARK: -
 
 public:
-    explicit Snapshot (juce::Range<int>, int);
+    explicit Snapshot (juce::Range<int>, juce::Rectangle<int>);
     
     ~Snapshot() = default;
 
@@ -81,13 +81,14 @@ public:
     Snapshot& operator = (Snapshot&&) = default;
 
 public:
-    void paint (juce::Rectangle<int>, juce::Graphics&) const;
+    void paint (juce::Graphics&) const;
     
 private:
     void fetch (void*, int);
     
 private:
     juce::Range<int> range_;
+    juce::Rectangle<int> painted_;
     std::vector<SnapshotRange> v_;
     
 // -----------------------------------------------------------------------------------------------------------

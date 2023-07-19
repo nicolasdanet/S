@@ -54,7 +54,7 @@ private:
 // MARK: -
 
 public:
-    Snapshot get (core::UniqueId, juce::Range<int>, int);
+    Snapshot get (core::UniqueId, juce::Range<int>, juce::Rectangle<int>);
     
 private:
     std::vector<SnapshotsElement> v_;
