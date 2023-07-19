@@ -12,8 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-Snapshot::Snapshot (juce::Range<int> range, juce::Rectangle<int> painted) :
-    range_ (range),
+Snapshot::Snapshot (juce::Range<int> domain, juce::Rectangle<int> painted) :
+    domain_ (domain),
     painted_ (painted),
     v_ (painted.getWidth())
 {
@@ -51,9 +51,9 @@ double fetchValue (void* p, int size, int i)
 
 void Snapshot::fetch (void* p, int size)
 {
-    const double increment = v_.size() / static_cast<double> (range_.getLength());
-    const int start        = range_.getStart();
-    const int end          = range_.getEnd();
+    const double increment = v_.size() / static_cast<double> (domain_.getLength());
+    const int start        = domain_.getStart();
+    const int end          = domain_.getEnd();
     
     double i = 0.0;
     

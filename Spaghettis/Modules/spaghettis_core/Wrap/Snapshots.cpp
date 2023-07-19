@@ -65,11 +65,11 @@ void Snapshots::fetch (core::UniqueId u, Snapshot& s)
     }
 }
 
-Snapshot Snapshots::get (core::UniqueId u, juce::Range<int> range, juce::Rectangle<int> painted)
+Snapshot Snapshots::get (core::UniqueId u, juce::Range<int> domain, juce::Rectangle<int> painted)
 {
-    Snapshot s (range, painted);
+    Snapshot s (domain, painted);
     
-    if (range.getLength()) { fetch (u, s); }
+    if (domain.getLength()) { fetch (u, s); }
     
     return s;
 }

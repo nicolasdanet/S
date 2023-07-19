@@ -87,7 +87,7 @@ private:
     void fetch (void*, int);
     
 private:
-    juce::Range<int> range_;
+    juce::Range<int> domain_;
     juce::Rectangle<int> painted_;
     std::vector<SnapshotRange> v_;
     
