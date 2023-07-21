@@ -69,7 +69,7 @@ Snapshot Snapshots::get (core::UniqueId u, juce::Range<int> domain, juce::Rectan
 {
     Snapshot s (domain, painted);
     
-    if (domain.getLength()) { fetch (u, s); }
+    fetch (u, s);
     
     return s;
 }

@@ -51,9 +51,15 @@ double fetchValue (void* p, int size, int i)
 
 void Snapshot::fetch (void* p, int size)
 {
-    const double increment = v_.size() / static_cast<double> (domain_.getLength());
-    const int start        = domain_.getStart();
-    const int end          = domain_.getEnd();
+    const int start  = domain_.getStart();
+    const int end    = domain_.getEnd();
+    const int length = domain_.getLength();
+    
+    const int n = static_cast<int> (v_.size());
+    
+    if (n && length) {
+    //
+    const double increment = n / static_cast<double> (length);
     
     double i = 0.0;
     
@@ -62,12 +68,13 @@ void Snapshot::fetch (void* p, int size)
     const double f = fetchValue (p, size, j);
     const int k    = static_cast<int> (i);
     
-    jassert (k >= 0);
-    jassert (k < static_cast<int> (v_.size()));
+    jassert (k >= 0 && k < n);
     
     v_[k].set (f);
     
     i += increment;
+    //
+    }
     //
     }
 }
