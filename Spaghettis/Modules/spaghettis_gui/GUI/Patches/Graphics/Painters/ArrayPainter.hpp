@@ -37,6 +37,7 @@ private:
 
 private:
     juce::Range<int> getDomain() const;
+    juce::Range<double> getRange() const;
     
     void paintSignal (juce::Rectangle<int>, juce::Graphics&);
 

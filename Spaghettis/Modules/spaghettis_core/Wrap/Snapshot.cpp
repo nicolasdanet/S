@@ -12,8 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-Snapshot::Snapshot (juce::Range<int> domain, juce::Rectangle<int> painted) :
+Snapshot::Snapshot (juce::Range<int> domain, juce::Range<double> range, juce::Rectangle<int> painted) :
     domain_ (domain),
+    range_ (range),
     painted_ (painted),
     v_ (painted.getWidth())
 {
@@ -83,7 +84,7 @@ void Snapshot::fetch (void* p, int size)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Snapshot::paint (juce::Graphics& g) const
+void Snapshot::paint (juce::Graphics& g)
 {
 
 }

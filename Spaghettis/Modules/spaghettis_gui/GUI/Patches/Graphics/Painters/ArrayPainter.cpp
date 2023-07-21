@@ -57,14 +57,25 @@ void ArrayPainter::timerCallback()
 
 juce::Range<int> ArrayPainter::getDomain() const
 {
-    const juce::Range<int> range = juce::Range<int> (start_.get(), end_.get());
+    const juce::Range<int> r = juce::Range<int> (start_.get(), end_.get());
     
-    return range.isEmpty() ? juce::Range<int> (0, size_.get()) : range;
+    return r.isEmpty() ? juce::Range<int> (0, size_.get()) : r;
 }
+
+juce::Range<double> ArrayPainter::getRange() const
+{
+    const juce::Range<double> r = juce::Range<double> (low_.get(), high_.get());
+    
+    return r.isEmpty() ? juce::Range<double> (-1.0, 1.0) : r;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void ArrayPainter::paintSignal (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const Snapshot t (Spaghettis()->getSnapshots().get (getIdentifier(), getDomain(), r));
+    Snapshot t (Spaghettis()->getSnapshots().get (getIdentifier(), getDomain(), getRange(), r));
     
     t.paint (g);
 }
