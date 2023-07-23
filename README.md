@@ -3,6 +3,10 @@
 
 Yet another fork of [Pure Data](http://msp.ucsd.edu/) with [JUCE](https://github.com/juce-framework/JUCE).
 
+## Disclaimer
+
+This is a Work In Progress repository.
+
 ## Platforms
 
 Tested on Ubuntu 22.04, macOS Big Sur.
