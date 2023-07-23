@@ -19,7 +19,7 @@ class SnapshotRange {
 // MARK: -
 
 public:
-    SnapshotRange() : low_ (0.0f), high_ (0.0f), set_ (false)
+    SnapshotRange() : low_ (0.0), high_ (0.0), set_ (false)
     {
     }
     
@@ -36,11 +36,23 @@ public:
 // MARK: -
 
 public:
-    void set (float f)
+    void set (double f)
     {
         low_  = juce::jmin (f, low_);
         high_ = juce::jmax (f, high_);
         set_  = true;
+    }
+    
+    void scale (double offset, double valuePerPixel)
+    {
+        if (set_) {
+        //
+        DBG (juce::String (low_) + " " + juce::String (high_));
+        
+        low_  = (offset - low_)  / valuePerPixel;
+        high_ = (offset - high_) / valuePerPixel;
+        //
+        }
     }
     
     bool isSet() const
@@ -49,8 +61,8 @@ public:
     }
     
 private:
-    float low_;
-    float high_;
+    double low_;
+    double high_;
     bool  set_;
 };
 

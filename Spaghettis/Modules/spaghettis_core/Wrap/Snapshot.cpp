@@ -18,7 +18,10 @@ Snapshot::Snapshot (juce::Range<int> domain, juce::Range<double> range, juce::Re
     painted_ (painted),
     v_ (painted.getWidth())
 {
-
+    jassert (!domain_.isEmpty());
+    jassert (!range_.isEmpty());
+    jassert (painted_.getWidth()  > 0);
+    jassert (painted_.getHeight() > 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -55,28 +58,24 @@ void Snapshot::fetch (void* p, int size)
     const int start  = domain_.getStart();
     const int end    = domain_.getEnd();
     const int length = domain_.getLength();
+    const int n      = static_cast<int> (v_.size());
     
-    const int n = static_cast<int> (v_.size());
-    
-    if (n && length) {
-    //
+    jassert (n && length);
+
     const double increment = n / static_cast<double> (length);
     
     double i = 0.0;
     
     for (int j = start; j < end; ++j) {
-    //
-    const double f = fetchValue (p, size, j);
-    const int k    = static_cast<int> (i);
-    
-    jassert (k >= 0 && k < n);
-    
-    v_[k].set (f);
-    
-    i += increment;
-    //
-    }
-    //
+
+        const double f = fetchValue (p, size, j);
+        const int k    = static_cast<int> (i);
+        
+        jassert (k >= 0 && k < n);
+        
+        v_[k].set (f);
+        
+        i += increment;
     }
 }
 
@@ -86,7 +85,10 @@ void Snapshot::fetch (void* p, int size)
 
 void Snapshot::paint (juce::Graphics& g)
 {
-
+    const double offset         = range_.getEnd();
+    const double valuePerPixel  = range_.getLength() / painted_.getHeight();
+    
+    for (auto& v : v_) { v.scale (offset, valuePerPixel); }
 }
     
 // -----------------------------------------------------------------------------------------------------------

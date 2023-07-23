@@ -39,6 +39,9 @@ struct _garray {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#define GARRAY_WIDTH_MINIMUM    8
+#define GARRAY_HEIGHT_MINIMUM   8
+
 #define GARRAY_WIDTH_MAXIMUM    1024
 #define GARRAY_HEIGHT_MAXIMUM   1024
 
@@ -589,8 +592,8 @@ static void garray_setWidthAndHeight (t_garray *x, int width, int height, int no
     
     #endif
     
-    width  = PD_CLAMP (width,  0, GARRAY_WIDTH_MAXIMUM);
-    height = PD_CLAMP (height, 0, GARRAY_HEIGHT_MAXIMUM);
+    width  = PD_CLAMP (width,  GARRAY_WIDTH_MINIMUM, GARRAY_WIDTH_MAXIMUM);
+    height = PD_CLAMP (height, GARRAY_HEIGHT_MINIMUM, GARRAY_HEIGHT_MAXIMUM);
         
     x->x_width  = width  ? width  : GARRAY_WIDTH_DEFAULT;
     x->x_height = height ? height : GARRAY_HEIGHT_DEFAULT;
@@ -666,7 +669,7 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
             NEEDS_TRANS ("Width"),
             NEEDS_TRANS ("Width of the object"),
             x->x_width,
-            delegate).setRange (juce::Range<int> (0, GARRAY_WIDTH_MAXIMUM));
+            delegate).setRange (juce::Range<int> (GARRAY_WIDTH_MINIMUM, GARRAY_WIDTH_MAXIMUM));
     }
     
     if (t.contains (Tag::Height)) {
@@ -674,7 +677,7 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
             NEEDS_TRANS ("Height"),
             NEEDS_TRANS ("Height of the object"),
             x->x_height,
-            delegate).setRange (juce::Range<int> (0, GARRAY_HEIGHT_MAXIMUM));
+            delegate).setRange (juce::Range<int> (GARRAY_HEIGHT_MINIMUM, GARRAY_HEIGHT_MAXIMUM));
     }
     
     if (t.contains (Tag::Name)) {
