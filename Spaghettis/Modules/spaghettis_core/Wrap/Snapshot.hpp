@@ -19,7 +19,7 @@ class SnapshotRange {
 // MARK: -
 
 public:
-    SnapshotRange() : low_ (0.0), high_ (0.0), set_ (false), r_()
+    SnapshotRange() : low_ (0.0), high_ (0.0), set_ (false)
     {
     }
     
@@ -43,36 +43,26 @@ public:
         set_  = true;
     }
     
-    void draw (double offset, double valuePerPixel)
-    {
-        const int a = static_cast<int> ((offset - low_)  / valuePerPixel);
-        const int b = static_cast<int> ((offset - high_) / valuePerPixel);
-        
-        r_ = juce::Rectangle<int> (juce::Point<int> (0, b), juce::Point<int> (1, a));
-    }
-    
-    void expand()
-    {
-        r_.setWidth (r_.getWidth() + 1);
-    }
-    
     bool isSet() const
     {
         return set_;
     }
     
-    juce::Rectangle<int> getRectangle() const
+    juce::Range<int> getScaled (juce::Range<double> range, juce::Rectangle<int> painted) const
     {
-        return r_;
+        const double offset        = range.getEnd();
+        const double valuePerPixel = range.getLength() / painted.getHeight();
+        
+        const int a = static_cast<int> ((offset - low_)  / valuePerPixel);
+        const int b = static_cast<int> ((offset - high_) / valuePerPixel);
+        
+        return juce::Range<int> (b, a).getIntersectionWith (juce::Range<int> (0, painted.getHeight()));
     }
     
 private:
     double low_;
     double high_;
     bool set_;
-
-private:
-    juce::Rectangle<int> r_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
