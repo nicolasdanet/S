@@ -19,7 +19,7 @@ class SnapshotRange {
 // MARK: -
 
 public:
-    SnapshotRange() : low_ (0.0), high_ (0.0), set_ (false)
+    SnapshotRange() : low_ (0.0), high_ (0.0), set_ (false), r_()
     {
     }
     
@@ -43,16 +43,17 @@ public:
         set_  = true;
     }
     
-    void scale (double offset, double valuePerPixel)
+    void draw (double offset, double valuePerPixel)
     {
-        if (set_) {
-        //
-        DBG (juce::String (low_) + " " + juce::String (high_));
+        const int a = static_cast<int> ((offset - low_)  / valuePerPixel);
+        const int b = static_cast<int> ((offset - high_) / valuePerPixel);
         
-        low_  = (offset - low_)  / valuePerPixel;
-        high_ = (offset - high_) / valuePerPixel;
-        //
-        }
+        r_ = juce::Rectangle<int> (juce::Point<int> (0, b), juce::Point<int> (1, a));
+    }
+    
+    void expand()
+    {
+        r_.setWidth (r_.getWidth() + 1);
     }
     
     bool isSet() const
@@ -60,10 +61,18 @@ public:
         return set_;
     }
     
+    juce::Rectangle<int> getRectangle() const
+    {
+        return r_;
+    }
+    
 private:
     double low_;
     double high_;
-    bool  set_;
+    bool set_;
+
+private:
+    juce::Rectangle<int> r_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

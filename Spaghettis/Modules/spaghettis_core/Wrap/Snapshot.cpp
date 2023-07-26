@@ -85,10 +85,24 @@ void Snapshot::fetch (void* p, int size)
 
 void Snapshot::paint (juce::Graphics& g)
 {
-    const double offset         = range_.getEnd();
-    const double valuePerPixel  = range_.getLength() / painted_.getHeight();
+    const double offset        = range_.getEnd();
+    const double valuePerPixel = range_.getLength() / painted_.getHeight();
     
-    for (auto& v : v_) { v.scale (offset, valuePerPixel); }
+    const int n = static_cast<int> (v_.size());
+    
+    int t = 0;
+    
+    for (int i = 0; i < n; ++i) {
+        if (v_[i].isSet())      { v_[i].draw (offset, valuePerPixel); t = i; }
+        else if (v_[t].isSet()) { v_[t].expand(); }
+    }
+    
+    for (auto& v : v_) {
+        if (v.isSet()) {
+            juce::Rectangle<int> r = v.getRectangle();
+            DBG (r.toString());
+        }
+    }
 }
     
 // -----------------------------------------------------------------------------------------------------------
