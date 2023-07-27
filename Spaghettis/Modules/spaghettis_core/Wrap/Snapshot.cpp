@@ -87,14 +87,20 @@ void Snapshot::paint (juce::Graphics& g)
 {
     const int n = static_cast<int> (v_.size());
     
+    std::vector<juce::Rectangle<int>> t;
+    
     for (int i = 0; i < n; ++i) {
         if (v_[i].isSet()) {
-            const juce::Range<int> t = v_[i].getScaled (range_, painted_);
-            DBG (juce::String (t.getStart()) + " " + juce::String (t.getEnd()));
-        } else {
-        
+            const juce::Range<int> r = v_[i].getScaled (range_, painted_);
+            const juce::Point<int> a = juce::Point<int> (i, r.getStart());
+            const juce::Point<int> b = juce::Point<int> (i + 1, r.getEnd());
+            t.emplace_back (a, b);
+        } else if (!t.empty()) {
+            t.back().setWidth (t.back().getWidth() + 1);
         }
     }
+    
+    for (auto rect : t) { DBG (rect.toString()); }
 }
     
 // -----------------------------------------------------------------------------------------------------------
