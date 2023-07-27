@@ -42,21 +42,25 @@ public:
         high_ = juce::jmax (f, high_);
         set_  = true;
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    double getLow() const
+    {
+        return low_;
+    }
+    
+    double getHigh() const
+    {
+        return high_;
+    }
     
     bool isSet() const
     {
         return set_;
-    }
-    
-    juce::Range<int> getScaled (juce::Range<double> range, juce::Rectangle<int> painted) const
-    {
-        const double offset        = range.getEnd();
-        const double valuePerPixel = range.getLength() / painted.getHeight();
-        
-        const int a = static_cast<int> ((offset - low_)  / valuePerPixel);
-        const int b = static_cast<int> ((offset - high_) / valuePerPixel);
-        
-        return juce::Range<int> (b, a).getIntersectionWith (juce::Range<int> (0, painted.getHeight()));
     }
     
 private:
@@ -90,6 +94,10 @@ public:
     Snapshot (Snapshot&&) = default;
     Snapshot& operator = (const Snapshot&) = default;
     Snapshot& operator = (Snapshot&&) = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     void paint (juce::Graphics&);

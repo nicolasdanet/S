@@ -83,6 +83,31 @@ void Snapshot::fetch (void* p, int size)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::Range<int> getScaled (SnapshotRange snapshot, juce::Range<double> range, juce::Rectangle<int> painted)
+{
+    const double offset        = range.getEnd();
+    const double valuePerPixel = range.getLength() / painted.getHeight();
+    
+    const int a = static_cast<int> ((offset - snapshot.getLow())  / valuePerPixel);
+    const int b = static_cast<int> ((offset - snapshot.getHigh()) / valuePerPixel);
+    
+    return juce::Range<int> (b, a).getIntersectionWith (juce::Range<int> (0, painted.getHeight()));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void Snapshot::paint (juce::Graphics& g)
 {
     const int n = static_cast<int> (v_.size());
@@ -91,7 +116,7 @@ void Snapshot::paint (juce::Graphics& g)
     
     for (int i = 0; i < n; ++i) {
         if (v_[i].isSet()) {
-            const juce::Range<int> r = v_[i].getScaled (range_, painted_);
+            const juce::Range<int> r = getScaled (v_[i], range_, painted_);
             const juce::Point<int> a = juce::Point<int> (i, r.getStart());
             const juce::Point<int> b = juce::Point<int> (i + 1, r.getEnd());
             t.emplace_back (a, b);
