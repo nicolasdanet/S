@@ -88,15 +88,24 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Range<int> getScaled (SnapshotRange snapshot, juce::Range<double> range, juce::Rectangle<int> painted)
+juce::Range<int> getRectangleRange (SnapshotRange s, juce::Range<double> range, juce::Rectangle<int> painted)
 {
     const double offset        = range.getEnd();
     const double valuePerPixel = range.getLength() / painted.getHeight();
     
-    const int a = static_cast<int> ((offset - snapshot.getLow())  / valuePerPixel);
-    const int b = static_cast<int> ((offset - snapshot.getHigh()) / valuePerPixel);
+    const int a = static_cast<int> ((offset - s.getLow())  / valuePerPixel);
+    const int b = static_cast<int> ((offset - s.getHigh()) / valuePerPixel);
     
     return juce::Range<int> (b, a).getIntersectionWith (juce::Range<int> (0, painted.getHeight()));
+}
+
+juce::Rectangle<int> getRectangle (SnapshotRange s, juce::Range<double> range, juce::Rectangle<int> painted)
+{
+    const juce::Range<int> r = getRectangleRange (s, range, painted);
+    const juce::Point<int> a = juce::Point<int> (0, r.getStart());
+    const juce::Point<int> b = juce::Point<int> (1, r.getEnd());
+    
+    return juce::Rectangle<int> (a, b);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,12 +124,8 @@ void Snapshot::paint (juce::Graphics& g)
     std::vector<juce::Rectangle<int>> t;
     
     for (int i = 0; i < n; ++i) {
-        if (v_[i].isSet()) {
-            const juce::Range<int> r = getScaled (v_[i], range_, painted_);
-            const juce::Point<int> a = juce::Point<int> (i, r.getStart());
-            const juce::Point<int> b = juce::Point<int> (i + 1, r.getEnd());
-            t.emplace_back (a, b);
-        } else if (!t.empty()) {
+        if (v_[i].isSet()) { t.push_back (getRectangle (v_[i], range_, painted_).withX (i)); }
+        else if (!t.empty()) {
             t.back().setWidth (t.back().getWidth() + 1);
         }
     }
