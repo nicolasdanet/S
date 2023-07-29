@@ -52,6 +52,7 @@ public:
 
 private:
     core::Cached<juce::Colour> arrayBackgroundColour_;
+    core::Cached<juce::Colour> arrayValueColour_;
     core::Cached<juce::String> name_;
     core::Cached<int> width_;
     core::Cached<int> height_;

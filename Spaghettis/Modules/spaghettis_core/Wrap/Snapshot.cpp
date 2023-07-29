@@ -130,6 +130,8 @@ void Snapshot::paint (juce::Graphics& g)
         }
     }
     
+    // fillRectList
+    
     for (auto rect : t) { DBG (rect.toString()); }
 }
     

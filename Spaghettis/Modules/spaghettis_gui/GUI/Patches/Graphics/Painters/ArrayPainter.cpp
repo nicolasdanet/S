@@ -15,6 +15,7 @@ namespace spaghettis {
 ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
     arrayBackgroundColour_ (Spaghettis()->getCachedColour (Tag::ArrayBackground)),
+    arrayValueColour_ (Spaghettis()->getCachedColour (Tag::ArrayValue)),
     name_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Name)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
     height_ (object_.getCached<int> (Tag::Parameters, Tag::Height)),
@@ -24,6 +25,9 @@ ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     low_ (object_.getCached<double> (Tag::Parameters, Tag::Low)),
     high_ (object_.getCached<double> (Tag::Parameters, Tag::High))
 {
+    arrayBackgroundColour_.attach (repaint (component_));
+    arrayValueColour_.attach (repaint (component_));
+            
     width_.attach (resized (component_));
     height_.attach (resized (component_));
     
@@ -76,6 +80,8 @@ juce::Range<double> ArrayPainter::getRange() const
 void ArrayPainter::paintSignal (juce::Rectangle<int> r, juce::Graphics& g)
 {
     Snapshot t (Spaghettis()->getSnapshots().get (getIdentifier(), getDomain(), getRange(), r));
+    
+    g.setColour (arrayValueColour_.get());
     
     t.paint (g);
 }

@@ -31,6 +31,7 @@ namespace spaghettis::core::Keywords {
     
     DECLARE_STRING (Abstraction);
     DECLARE_STRING (ArrayBackground);
+    DECLARE_STRING (ArrayValue);
     DECLARE_STRING (AskBeforeQuit);
     DECLARE_STRING (AtomBackground);
     DECLARE_STRING (AtomText);

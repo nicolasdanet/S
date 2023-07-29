@@ -211,6 +211,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Array Background"),
         NEEDS_TRANS ("Set background color of graphic arrays"),
         Colours::getPalette()->backgroundBox);
+    
+    colors.addParameter (Tag::ArrayValue,
+        NEEDS_TRANS ("Array Value"),
+        NEEDS_TRANS ("Set content color of graphic arrays"),
+        Colours::getPalette()->textBox);
         
     colors.addParameter (Tag::AtomBackground,
         NEEDS_TRANS ("Atom Background"),
