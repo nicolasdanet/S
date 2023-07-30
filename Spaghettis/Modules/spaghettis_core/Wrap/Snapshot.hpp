@@ -19,7 +19,7 @@ class SnapshotRange {
 // MARK: -
 
 public:
-    SnapshotRange() : low_ (0.0), high_ (0.0), set_ (false)
+    SnapshotRange() : low_ (0.0), high_ (0.0), width_ (1), set_ (false)
     {
     }
     
@@ -43,6 +43,11 @@ public:
         set_  = true;
     }
 
+    void enlarge()
+    {
+        ++width_;
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -58,6 +63,11 @@ public:
         return high_;
     }
     
+    int getWidth() const
+    {
+        return width_;
+    }
+    
     bool isSet() const
     {
         return set_;
@@ -66,6 +76,7 @@ public:
 private:
     double low_;
     double high_;
+    int width_;
     bool set_;
 };
 

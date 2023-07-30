@@ -99,13 +99,13 @@ juce::Range<int> getRectangleRange (SnapshotRange s, juce::Range<double> range, 
     return juce::Range<int> (b, a).getIntersectionWith (juce::Range<int> (0, painted.getHeight()));
 }
 
-juce::Rectangle<int> getRectangle (SnapshotRange s, juce::Range<double> range, juce::Rectangle<int> painted)
+juce::Rectangle<float> getRectangle (SnapshotRange s, juce::Range<double> range, juce::Rectangle<int> painted)
 {
-    const juce::Range<int> r = getRectangleRange (s, range, painted);
-    const juce::Point<int> a = juce::Point<int> (0, r.getStart());
-    const juce::Point<int> b = juce::Point<int> (1, r.getEnd());
+    const juce::Range<int> r   = getRectangleRange (s, range, painted);
+    const juce::Point<float> a = juce::Point<float> (0, r.getStart());
+    const juce::Point<float> b = juce::Point<float> (s.getWidth(), r.getEnd());
     
-    return juce::Rectangle<int> (a, b);
+    return juce::Rectangle<float> (a, b);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -121,20 +121,24 @@ void Snapshot::paint (juce::Graphics& g)
 {
     const int n = static_cast<int> (v_.size());
     
-    std::vector<juce::Rectangle<int>> t;
+    int t = 0;
     
     for (int i = 0; i < n; ++i) {
-        if (v_[i].isSet()) { t.push_back (getRectangle (v_[i], range_, painted_).withX (i)); }
-        else if (!t.empty()) {
-            t.back().setWidth (t.back().getWidth() + 1);
+        if (v_[i].isSet()) { t = i; }
+        else {
+            v_[t].enlarge();
         }
     }
     
+    juce::RectangleList<float> r;
+    
+    for (int i = 0; i < n; ++i) {
+        if (v_[i].isSet()) { DBG (getRectangle (v_[i], range_, painted_).withX (i).toString()); }
+    }
+    
     // fillRectList
-    
-    for (auto rect : t) { DBG (rect.toString()); }
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
