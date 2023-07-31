@@ -96,13 +96,13 @@ void Snapshot::paint (juce::Graphics& g)
         }
     }
     
-    juce::RectangleList<float> r;
+    juce::RectangleList<float> list;
     
     for (int i = 0; i < n; ++i) {
-        if (v_[i].isSet()) { DBG (v_[i].getRectangle().withX (i).toString()); }
+        if (v_[i].isSet()) { list.addWithoutMerging (v_[i].getRectangle().withX (i)); }
     }
     
-    // fillRectList
+    g.fillRectList (list);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -95,7 +95,7 @@ void ArrayPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.setColour (arrayBackgroundColour_.get());
     g.fillRect (r);
     
-    paintSignal (r.reduced (1), g);
+    paintSignal (r, g);
 }
 
 juce::Rectangle<int> ArrayPainter::getRequiredBoundsForObject()
