@@ -19,7 +19,7 @@ class SnapshotRange {
 // MARK: -
 
 public:
-    SnapshotRange() : low_ (0.0), high_ (0.0), width_ (1), set_ (false)
+    SnapshotRange() : low_ (0.0), high_ (0.0), width_ (0)
     {
     }
     
@@ -38,9 +38,9 @@ public:
 public:
     void set (double f)
     {
-        low_  = juce::jmin (f, low_);
-        high_ = juce::jmax (f, high_);
-        set_  = true;
+        low_    = juce::jmin (f, low_);
+        high_   = juce::jmax (f, high_);
+        width_  = 1;
     }
 
     void enlarge()
@@ -70,14 +70,13 @@ public:
     
     bool isSet() const
     {
-        return set_;
+        return (width_ > 0);
     }
     
 private:
     double low_;
     double high_;
     int width_;
-    bool set_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
