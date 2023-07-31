@@ -83,40 +83,6 @@ void Snapshot::fetch (void* p, int size)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-juce::Range<int> getRectangleRange (SnapshotRange s, juce::Range<double> range, juce::Rectangle<int> painted)
-{
-    const double offset        = range.getEnd();
-    const double valuePerPixel = range.getLength() / painted.getHeight();
-    
-    const int a = static_cast<int> ((offset - s.getLow())  / valuePerPixel);
-    const int b = static_cast<int> ((offset - s.getHigh()) / valuePerPixel);
-    
-    return juce::Range<int> (b, a).getIntersectionWith (juce::Range<int> (0, painted.getHeight()));
-}
-
-juce::Rectangle<float> getRectangle (SnapshotRange s, juce::Range<double> range, juce::Rectangle<int> painted)
-{
-    const juce::Range<int> r   = getRectangleRange (s, range, painted);
-    const juce::Point<float> a = juce::Point<float> (0, r.getStart());
-    const juce::Point<float> b = juce::Point<float> (s.getWidth(), r.getEnd());
-    
-    return juce::Rectangle<float> (a, b);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void Snapshot::paint (juce::Graphics& g)
 {
     const int n = static_cast<int> (v_.size());
@@ -124,8 +90,8 @@ void Snapshot::paint (juce::Graphics& g)
     int t = 0;
     
     for (int i = 0; i < n; ++i) {
-        if (v_[i].isSet()) { t = i; }
-        else {
+        if (v_[i].isSet())      { v_[i].scale (range_, painted_); t = i; }
+        else if (v_[t].isSet()) {
             v_[t].enlarge();
         }
     }
@@ -133,7 +99,7 @@ void Snapshot::paint (juce::Graphics& g)
     juce::RectangleList<float> r;
     
     for (int i = 0; i < n; ++i) {
-        if (v_[i].isSet()) { DBG (getRectangle (v_[i], range_, painted_).withX (i).toString()); }
+        if (v_[i].isSet()) { DBG (v_[i].getRectangle().withX (i).toString()); }
     }
     
     // fillRectList

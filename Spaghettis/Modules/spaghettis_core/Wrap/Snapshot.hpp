@@ -48,21 +48,30 @@ public:
         ++width_;
     }
     
+    void scale (juce::Range<double> range, juce::Rectangle<int> painted)
+    {
+        const double offset        = range.getEnd();
+        const double valuePerPixel = range.getLength() / painted.getHeight();
+    
+        const int a = static_cast<int> ((offset - low_)  / valuePerPixel);
+        const int b = static_cast<int> ((offset - high_) / valuePerPixel);
+    
+        r_ = juce::Range<int> (b, a).getIntersectionWith (juce::Range<int> (0, painted.getHeight()));
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    double getLow() const
+    juce::Rectangle<float> getRectangle() const
     {
-        return low_;
-    }
+        const juce::Point<float> a = juce::Point<float> (0, r_.getStart());
+        const juce::Point<float> b = juce::Point<float> (getWidth(), r_.getEnd());
     
-    double getHigh() const
-    {
-        return high_;
+        return juce::Rectangle<float> (a, b);
     }
-    
+
     int getWidth() const
     {
         return width_;
@@ -77,6 +86,9 @@ private:
     double low_;
     double high_;
     int width_;
+
+private:
+    juce::Range<int> r_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
