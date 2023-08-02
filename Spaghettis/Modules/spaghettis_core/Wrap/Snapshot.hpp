@@ -53,10 +53,10 @@ public:
         const double offset        = range.getEnd();
         const double valuePerPixel = range.getLength() / painted.getHeight();
     
-        const int a = static_cast<int> ((offset - low_)  / valuePerPixel);
-        const int b = static_cast<int> ((offset - high_) / valuePerPixel);
-    
-        r_ = juce::Range<int> (b, a).getIntersectionWith (juce::Range<int> (0, painted.getHeight()));
+        const int a = static_cast<int> ((offset - high_) / valuePerPixel);
+        const int b = static_cast<int> ((offset - low_)  / valuePerPixel);
+        
+        r_ = juce::Range<int> (a, b).getIntersectionWith (juce::Range<int> (0, painted.getHeight()));
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -66,9 +66,12 @@ public:
 public:
     juce::Rectangle<float> getRectangle() const
     {
-        const juce::Point<float> a = juce::Point<float> (0, r_.getStart());
-        const juce::Point<float> b = juce::Point<float> (getWidth(), r_.getEnd());
+        juce::Point<float> a = juce::Point<float> (0, r_.getStart());
+        juce::Point<float> b = juce::Point<float> (getWidth(), r_.getEnd());
     
+        if (high_ == 0.0) { a = a.translated (0.0, -0.5f); }
+        if (low_  == 0.0) { b = b.translated (0.0,  0.5f); }
+        
         return juce::Rectangle<float> (a, b);
     }
 

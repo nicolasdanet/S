@@ -105,6 +105,8 @@ void Snapshot::paint (juce::Graphics& g)
         if (v_[i].isSet()) { list.addWithoutMerging (v_[i].getRectangle().withX (i)); }
     }
     
+    list.clipTo (painted_.toFloat());
+    
     g.fillRectList (list);
 }
 
