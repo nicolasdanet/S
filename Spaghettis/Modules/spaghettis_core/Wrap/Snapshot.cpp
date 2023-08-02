@@ -18,7 +18,6 @@ Snapshot::Snapshot (juce::Range<int> domain, juce::Range<double> range, juce::Re
     painted_ (painted),
     v_ (painted.getWidth())
 {
-    jassert (!domain_.isEmpty());
     jassert (!range_.isEmpty());
     jassert (painted_.getWidth()  > 0);
     jassert (painted_.getHeight() > 0);
@@ -60,7 +59,9 @@ void Snapshot::fetch (void* p, int size)
     const int length = domain_.getLength();
     const int n      = static_cast<int> (v_.size());
     
-    jassert (n && length);
+    if (length) {
+    //
+    jassert (n);
 
     const double increment = n / static_cast<double> (length);
     
@@ -76,6 +77,8 @@ void Snapshot::fetch (void* p, int size)
         v_[k].set (f);
         
         i += increment;
+    }
+    //
     }
 }
 

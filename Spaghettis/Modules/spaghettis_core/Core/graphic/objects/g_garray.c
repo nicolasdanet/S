@@ -46,7 +46,7 @@ struct _garray {
 #define GARRAY_HEIGHT_MAXIMUM   1024
 
 #define GARRAY_WIDTH_DEFAULT    200
-#define GARRAY_HEIGHT_DEFAULT   100
+#define GARRAY_HEIGHT_DEFAULT   140
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -592,11 +592,11 @@ static void garray_setWidthAndHeight (t_garray *x, int width, int height, int no
     
     #endif
     
-    width  = PD_CLAMP (width,  GARRAY_WIDTH_MINIMUM, GARRAY_WIDTH_MAXIMUM);
-    height = PD_CLAMP (height, GARRAY_HEIGHT_MINIMUM, GARRAY_HEIGHT_MAXIMUM);
+    width  = width  ? width  : GARRAY_WIDTH_DEFAULT;
+    height = height ? height : GARRAY_HEIGHT_DEFAULT;
         
-    x->x_width  = width  ? width  : GARRAY_WIDTH_DEFAULT;
-    x->x_height = height ? height : GARRAY_HEIGHT_DEFAULT;
+    x->x_width  = PD_CLAMP (width,  GARRAY_WIDTH_MINIMUM, GARRAY_WIDTH_MAXIMUM);
+    x->x_height = PD_CLAMP (height, GARRAY_HEIGHT_MINIMUM, GARRAY_HEIGHT_MAXIMUM);
     
     #if defined ( PD_BUILDING_APPLICATION )
     
