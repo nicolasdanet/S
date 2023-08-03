@@ -86,7 +86,7 @@ void Snapshot::fetch (void* p, int size)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Snapshot::paint (juce::Graphics& g)
+void Snapshot::paintCompute()
 {
     const int n = static_cast<int> (v_.size());
     
@@ -98,6 +98,16 @@ void Snapshot::paint (juce::Graphics& g)
             v_[t].enlarge();
         }
     }
+}
+
+void Snapshot::paintMerge()
+{
+
+}
+
+void Snapshot::paintProceed (juce::Graphics& g)
+{
+    const int n = static_cast<int> (v_.size());
     
     juce::RectangleList<float> list;
     
@@ -108,6 +118,17 @@ void Snapshot::paint (juce::Graphics& g)
     list.clipTo (painted_.toFloat());
     
     g.fillRectList (list);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Snapshot::paint (juce::Graphics& g)
+{
+    paintCompute();
+    paintMerge();
+    paintProceed (g);
 }
 
 // -----------------------------------------------------------------------------------------------------------

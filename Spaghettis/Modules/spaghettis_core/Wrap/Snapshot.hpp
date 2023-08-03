@@ -59,6 +59,11 @@ public:
         r_ = juce::Range<int> (a, b).getIntersectionWith (juce::Range<int> (0, painted.getHeight()));
     }
     
+    bool merge (SnapshotRange& r)
+    {
+        return false;
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -124,6 +129,11 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    void paintCompute();
+    void paintMerge();
+    void paintProceed (juce::Graphics&);
+    
 public:
     void paint (juce::Graphics&);
     
