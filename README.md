@@ -5,7 +5,7 @@ Yet another fork of [Pure Data](http://msp.ucsd.edu/) with [JUCE](https://github
 
 ## Disclaimer
 
-This is a Work In Progress repository.
+This is a ***Work In Progress That Nobody Cares*** repository.
 
 ## Platforms
 
