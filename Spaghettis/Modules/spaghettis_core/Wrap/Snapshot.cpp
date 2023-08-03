@@ -90,11 +90,11 @@ void Snapshot::paint (juce::Graphics& g)
 {
     const int n = static_cast<int> (v_.size());
     
-    int t = 0;
+    int t = -1;
     
     for (int i = 0; i < n; ++i) {
-        if (v_[i].isSet())      { v_[i].scale (range_, painted_); t = i; }
-        else if (v_[t].isSet()) {
+        if (v_[i].isSet()) { v_[i].scale (range_, painted_); t = i; }
+        else if (t >= 0) {
             v_[t].enlarge();
         }
     }
