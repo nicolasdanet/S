@@ -215,7 +215,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::ArrayValue,
         NEEDS_TRANS ("Array Value"),
         NEEDS_TRANS ("Set content color of graphic arrays"),
-        Colours::getPalette()->thumb);
+        Colours::getPalette()->backgroundPopup);
         
     colors.addParameter (Tag::AtomBackground,
         NEEDS_TRANS ("Atom Background"),
