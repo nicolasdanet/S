@@ -3,10 +3,6 @@
 
 Yet another fork of [Pure Data](http://msp.ucsd.edu/) with [JUCE](https://github.com/juce-framework/JUCE).
 
-## Disclaimer
-
-This is a ***Work In Progress That Nobody Cares*** repository.
-
 ## Platforms
 
 Tested on Ubuntu 22.04, macOS Big Sur.
@@ -20,10 +16,9 @@ The latest JUCE is required at `~/JUCE`.
 - Open a terminal and run the `S/Build.sh` script.
 - Resulting binary is inside the `Spaghettis/Builds/` folder.
 
-## Comments
+## Warning
 
 - Spaghettis uses new filename extensions ***pdpatch*** and ***pdhelp***.
-- You can open [test patches](https://github.com/nicolasdanet/S/tree/master/Spaghettis/Modules/T/stuff) for a quick look.
 
 ## Residuals
 
