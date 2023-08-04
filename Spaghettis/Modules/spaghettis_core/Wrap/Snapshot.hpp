@@ -56,7 +56,7 @@ public:
         const int a = static_cast<int> ((offset - high_) / valuePerPixel);
         const int b = static_cast<int> ((offset - low_)  / valuePerPixel);
         
-        r_ = juce::Range<int> (a, b).getIntersectionWith (juce::Range<int> (0, painted.getHeight()));
+        r_ = juce::Range<int> (a, b);
     }
     
     bool collapse (SnapshotRange& s)
