@@ -93,16 +93,27 @@ void Snapshot::paintCompute()
     int t = -1;
     
     for (int i = 0; i < n; ++i) {
-        if (v_[i].isSet()) { v_[i].scale (range_, painted_); t = i; }
-        else if (t >= 0) {
-            v_[t].enlarge();
-        }
+        if (v_[i].isSet())  { v_[i].scale (range_, painted_); t = i; }
+        else if (t >= 0)    { v_[t].enlarge(); }
     }
 }
 
-void Snapshot::paintMerge()
-{
+/* Collapse adjacent rectangles. */
+/* Does it worth the cost? */
 
+void Snapshot::paintCollapse()
+{
+    const int n = static_cast<int> (v_.size());
+    
+    int t = -1;
+    
+    for (int i = 0; i < n; ++i) {
+        if (v_[i].isSet()) {
+            if (t < 0 || !v_[t].collapse (v_[i])) {
+                t = i;
+            }
+        }
+    }
 }
 
 void Snapshot::paintProceed (juce::Graphics& g)
@@ -127,7 +138,7 @@ void Snapshot::paintProceed (juce::Graphics& g)
 void Snapshot::paint (juce::Graphics& g)
 {
     paintCompute();
-    paintMerge();
+    paintCollapse();
     paintProceed (g);
 }
 
