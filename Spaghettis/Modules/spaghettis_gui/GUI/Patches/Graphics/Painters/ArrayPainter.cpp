@@ -61,16 +61,12 @@ void ArrayPainter::timerCallback()
 
 juce::Range<int> ArrayPainter::getDomain() const
 {
-    const juce::Range<int> r = juce::Range<int> (start_.get(), end_.get());
-    
-    return r.isEmpty() ? juce::Range<int> (0, size_.get()) : r;
+    return juce::Range<int> (0, size_.get());
 }
 
 juce::Range<double> ArrayPainter::getRange() const
 {
-    const juce::Range<double> r = juce::Range<double> (low_.get(), high_.get());
-    
-    return r.isEmpty() ? juce::Range<double> (-1.0, 1.0) : r;
+    return juce::Range<double> (-1.0, 1.0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
