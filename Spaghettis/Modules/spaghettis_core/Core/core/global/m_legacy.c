@@ -28,10 +28,6 @@ static int legacy_convertArrayFetch (t_buffer *x,
     int *coordY,
     int *size,
     int *embed,
-    int *left,
-    int *up,
-    int *right,
-    int *down,
     int *width,
     int *height,
     t_symbol **name,
@@ -66,10 +62,10 @@ static int legacy_convertArrayFetch (t_buffer *x,
             *size     = atom_getFloatAtIndex (3, count, atoms);
             *embed    = ((flags & 1) != 0);
         } else if (first == sym_coords) {
-            *left     = atom_getFloatAtIndex (2, count, atoms);
-            *up       = atom_getFloatAtIndex (3, count, atoms);
-            *right    = atom_getFloatAtIndex (4, count, atoms);
-            *down     = atom_getFloatAtIndex (5, count, atoms);
+            // *left  = atom_getFloatAtIndex (2, count, atoms);
+            // *up    = atom_getFloatAtIndex (3, count, atoms);
+            // *right = atom_getFloatAtIndex (4, count, atoms);
+            // *down  = atom_getFloatAtIndex (5, count, atoms);
             *width    = atom_getFloatAtIndex (6, count, atoms);
             *height   = atom_getFloatAtIndex (7, count, atoms);
         } else {
@@ -98,10 +94,6 @@ static int legacy_convertArray (t_buffer *x)
     int coordY      = 0;
     int size        = 0;
     int embed       = 0;
-    int left        = 0;
-    int up          = 0;
-    int right       = 0;
-    int down        = 0;
     int width       = 0;
     int height      = 0;
     t_symbol *name  = NULL;
@@ -114,10 +106,6 @@ static int legacy_convertArray (t_buffer *x)
                     &coordY,
                     &size,
                     &embed,
-                    &left,
-                    &up,
-                    &right,
-                    &down,
                     &width,
                     &height,
                     &name,
@@ -139,13 +127,9 @@ static int legacy_convertArray (t_buffer *x)
     SET_FLOAT (a + 7,  embed);
     SET_FLOAT (a + 8,  width);
     SET_FLOAT (a + 9,  height);
-    SET_FLOAT (a + 10, left);
-    SET_FLOAT (a + 11, right);
-    SET_FLOAT (a + 12, down);
-    SET_FLOAT (a + 13, up);
-    SET_SEMICOLON (a + 14);
+    SET_SEMICOLON (a + 10);
     
-    buffer_prepend (data, 15, a);
+    buffer_prepend (data, 11, a);
     
     buffer_replace (x, start, end, buffer_getSize (data), buffer_getAtoms (data));
     //
