@@ -59,7 +59,6 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Editing);
     DECLARE_STRING (EditView);
     DECLARE_STRING (Embedded);
-    DECLARE_STRING (End);
     DECLARE_STRING (Flashed);
     DECLARE_STRING (FlashTime);
     DECLARE_STRING (General);
@@ -100,7 +99,6 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Selected);
     DECLARE_STRING (Size);
     DECLARE_STRING (SnapToGrid);
-    DECLARE_STRING (Start);
     DECLARE_STRING (Text);
     DECLARE_STRING (Title);
     DECLARE_STRING (Undo);

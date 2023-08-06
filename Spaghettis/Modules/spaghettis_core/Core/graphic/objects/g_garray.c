@@ -25,10 +25,6 @@ struct _garray {
     int         x_embed;
     int         x_width;
     int         x_height;
-    int         x_start;
-    int         x_end;
-    t_float     x_low;
-    t_float     x_high;
     int         x_size;
     t_word      *x_data;
     t_symbol    *x_unexpandedName;
@@ -482,10 +478,6 @@ static void garray_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  x->x_embed);
     buffer_appendFloat (b,  x->x_width);
     buffer_appendFloat (b,  x->x_height);
-    buffer_appendFloat (b,  x->x_start);
-    buffer_appendFloat (b,  x->x_end);
-    buffer_appendFloat (b,  x->x_low);
-    buffer_appendFloat (b,  x->x_high);
     buffer_appendSemicolon (b);
     
     object_saveIdentifiers (z, b, flags);
@@ -608,50 +600,6 @@ static void garray_setWidthAndHeight (t_garray *x, int width, int height, int no
     #endif
 }
 
-static void garray_setStartAndEnd (t_garray *x, int start, int end, int notify)
-{
-    #if defined ( PD_BUILDING_APPLICATION )
-    
-    int s = x->x_start;
-    int e = x->x_end;
-    
-    #endif
-    
-    x->x_start = PD_MIN (start, end);
-    x->x_end   = PD_MAX (start, end);
-    
-    #if defined ( PD_BUILDING_APPLICATION )
-    
-    if (notify) {
-        if (s != x->x_start) { garray_objectUpdated (x, Tags::parameters (Tag::Start)); }
-        if (e != x->x_end)   { garray_objectUpdated (x, Tags::parameters (Tag::End));   }
-    }
-    
-    #endif
-}
-
-static void garray_setLowAndHigh (t_garray *x, t_float low, t_float high, int notify)
-{
-    #if defined ( PD_BUILDING_APPLICATION )
-    
-    t_float l = x->x_low;
-    t_float h = x->x_high;
-    
-    #endif
-    
-    x->x_low  = PD_MIN (low, high);
-    x->x_high = PD_MAX (low, high);
-    
-    #if defined ( PD_BUILDING_APPLICATION )
-    
-    if (notify) {
-        if (l != x->x_low)  { garray_objectUpdated (x, Tags::parameters (Tag::Low));  }
-        if (h != x->x_high) { garray_objectUpdated (x, Tags::parameters (Tag::High)); }
-    }
-    
-    #endif
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -703,38 +651,6 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
             static_cast<bool> (x->x_embed),
             delegate);
     }
-    
-    if (t.contains (Tag::Start)) {
-        group.addParameter (Tag::Start,
-            NEEDS_TRANS ("Range Start"),
-            NEEDS_TRANS ("Begin of the graph"),
-            x->x_start,
-            delegate);
-    }
-    
-    if (t.contains (Tag::End)) {
-        group.addParameter (Tag::End,
-            NEEDS_TRANS ("Range End"),
-            NEEDS_TRANS ("End of the graph"),
-            x->x_end,
-            delegate);
-    }
-    
-    if (t.contains (Tag::Low)) {
-        group.addParameter (Tag::Low,
-            NEEDS_TRANS ("Range Low"),
-            NEEDS_TRANS ("Low range for graph"),
-            x->x_low,
-            delegate);
-    }
-    
-    if (t.contains (Tag::High)) {
-        group.addParameter (Tag::High,
-            NEEDS_TRANS ("Range High"),
-            NEEDS_TRANS ("High range for graph"),
-            x->x_high,
-            delegate);
-    }
 }
 
 static void garray_functionSetParameters (t_object *o, const core::Group& group)
@@ -746,28 +662,17 @@ static void garray_functionSetParameters (t_object *o, const core::Group& group)
     jassert (group.hasParameter (Tag::Name));
     jassert (group.hasParameter (Tag::Size));
     jassert (group.hasParameter (Tag::Embedded));
-    jassert (group.hasParameter (Tag::Start));
-    jassert (group.hasParameter (Tag::End));
-    jassert (group.hasParameter (Tag::Low));
-    jassert (group.hasParameter (Tag::High));
     
     t_symbol *name   = gensym (group.getParameter (Tag::Name).getValueTyped<juce::String>().toRawUTF8());
     const int size   = group.getParameter (Tag::Size).getValueTyped<int>();
     const int embed  = static_cast<int> (group.getParameter (Tag::Embedded).getValueTyped<bool>());
-    
-    const int width     = group.getParameter (Tag::Width).getValueTyped<int>();
-    const int height    = group.getParameter (Tag::Height).getValueTyped<int>();
-    const int start     = group.getParameter (Tag::Start).getValueTyped<int>();
-    const int end       = group.getParameter (Tag::End).getValueTyped<int>();
-    const t_float low   = group.getParameter (Tag::Low).getValueTyped<t_float>();
-    const t_float high  = group.getParameter (Tag::High).getValueTyped<t_float>();
+    const int width  = group.getParameter (Tag::Width).getValueTyped<int>();
+    const int height = group.getParameter (Tag::Height).getValueTyped<int>();
     
     garray_rename (x, name);
     garray_resizeProceed (x, size);
     garray_embedProceed (x, embed);
     garray_setWidthAndHeight (x, width, height, 1);
-    garray_setStartAndEnd (x, start, end, 1);
-    garray_setLowAndHigh (x, low, high, 1);
 }
 
 #endif
@@ -778,18 +683,12 @@ static void garray_functionSetParameters (t_object *o, const core::Group& group)
 
 static void garray_newParameters (t_garray *x, t_symbol *s, int argc, t_atom *argv)
 {
-    int width       = atom_getFloatAtIndex (0, argc, argv);
-    int height      = atom_getFloatAtIndex (1, argc, argv);
-    int start       = atom_getFloatAtIndex (2, argc, argv);
-    int end         = atom_getFloatAtIndex (3, argc, argv);
-    t_float low     = atom_getFloatAtIndex (4, argc, argv);
-    t_float high    = atom_getFloatAtIndex (5, argc, argv);
+    int width  = atom_getFloatAtIndex (0, argc, argv);
+    int height = atom_getFloatAtIndex (1, argc, argv);
     
     garray_setWidthAndHeight (x, width, height, 0);
-    garray_setStartAndEnd (x, start, end, 0);
-    garray_setLowAndHigh (x, low, high, 0);
         
-    if (argc > 6) { warning_unusedArguments (cast_object (x), s, argc - 6, argv + 6); }
+    if (argc > 2) { warning_unusedArguments (cast_object (x), s, argc - 2, argv + 2); }
 }
 
 static void *garray_new (t_symbol *s, int argc, t_atom *argv)
