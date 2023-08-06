@@ -19,24 +19,15 @@ ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     name_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Name)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
     height_ (object_.getCached<int> (Tag::Parameters, Tag::Height)),
-    size_ (object_.getCached<int> (Tag::Parameters, Tag::Size)),
-    start_ (object_.getCached<int> (Tag::Parameters, Tag::Start)),
-    end_ (object_.getCached<int> (Tag::Parameters, Tag::End)),
-    low_ (object_.getCached<double> (Tag::Parameters, Tag::Low)),
-    high_ (object_.getCached<double> (Tag::Parameters, Tag::High))
+    size_ (object_.getCached<int> (Tag::Parameters, Tag::Size))
 {
     arrayBackgroundColour_.attach (repaint (component_));
     arrayValueColour_.attach (repaint (component_));
-            
+          
+    name_.attach (repaint (component_));
     width_.attach (resized (component_));
     height_.attach (resized (component_));
-    
-    name_.attach (repaint (component_));
     size_.attach (repaint (component_));
-    start_.attach (repaint (component_));
-    end_.attach (repaint (component_));
-    low_.attach (repaint (component_));
-    high_.attach (repaint (component_));
     
     startTimer (juce::Random::getSystemRandom().nextInt (juce::Range<int> (900, 1100)));
 }
