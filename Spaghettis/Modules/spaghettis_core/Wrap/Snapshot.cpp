@@ -123,7 +123,9 @@ void Snapshot::paintProceed (juce::Graphics& g)
     juce::RectangleList<float> list;
     
     for (int i = 0; i < n; ++i) {
-        if (v_[i].isSet()) { list.addWithoutMerging (v_[i].getRectangle().withX (i)); }
+        if (v_[i].isSet()) {
+            list.addWithoutMerging (v_[i].getRectangle().translated (i, painted_.getY()));
+        }
     }
     
     list.clipTo (painted_.toFloat());

@@ -52,11 +52,11 @@ public:
     {
         const double offset        = range.getEnd();
         const double valuePerPixel = range.getLength() / painted.getHeight();
-    
-        const int a = static_cast<int> ((offset - high_) / valuePerPixel);
-        const int b = static_cast<int> ((offset - low_)  / valuePerPixel);
         
-        r_ = juce::Range<int> (a, b);
+        const double a = (offset - high_) / valuePerPixel;
+        const double b = (offset - low_)  / valuePerPixel;
+        
+        r_ = juce::Range<int> (static_cast<int> (std::round (a)), static_cast<int> (std::round (b)));
     }
     
     bool collapse (SnapshotRange& s)
