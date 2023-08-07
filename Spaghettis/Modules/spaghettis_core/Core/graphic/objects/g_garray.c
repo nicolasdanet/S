@@ -29,6 +29,7 @@ struct _garray {
     t_word      *x_data;
     t_symbol    *x_unexpandedName;
     t_symbol    *x_name;
+    t_clock     *x_clock;
     };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -49,6 +50,7 @@ struct _garray {
 // MARK: -
 
 static void garray_dismiss (t_garray *);
+static void garray_redraw (t_garray *);
 static void garray_copy (t_word *, t_word *, int);
 
 // -----------------------------------------------------------------------------------------------------------
@@ -57,6 +59,12 @@ static void garray_copy (t_word *, t_word *, int);
 
 #define GARRAY_GET(i)       (w_getFloat (x->x_data + i))
 #define GARRAY_SET(i, f)    (w_setFloat (x->x_data + i, f))
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#define GARRAY_DELAY        97.0
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -99,6 +107,8 @@ static void garray_setWithSineWavesProceed (t_garray *x,
     GARRAY_SET (i, (t_float)sum);
     //
     }
+    
+    garray_redraw (x);
 }
 
 static void garray_setWithSineWaves (t_garray *x, t_symbol *s, int argc, t_atom *argv, int isSine)
@@ -135,7 +145,7 @@ PD_LOCAL void garray_setFloatAtIndex (t_garray *x, int i, t_float f)
 {
     int size = x->x_size;
     
-    if (size) { int n = PD_CLAMP (i, 0, size - 1); GARRAY_SET (n, f); }
+    if (size) { int n = PD_CLAMP (i, 0, size - 1); GARRAY_SET (n, f); garray_redraw (x); }
 }
 
 PD_LOCAL t_float garray_getFloatAtIndex (t_garray *x, int i)
@@ -154,6 +164,8 @@ PD_LOCAL void garray_setFloatFromIndex (t_garray *x, int i, t_float f)
     if (size) {
     //
     for (n = PD_CLAMP (i, 0, size - 1); n < size; n++) { GARRAY_SET (n, f); }
+    
+    garray_redraw (x);
     //
     }
 }
@@ -213,6 +225,8 @@ static void garray_list (t_garray *x, t_symbol *s, int argc, t_atom *argv)
     if (argc > 0) {
     //
     for (i = 0; i < argc; i++) { t_float f = atom_getFloat (argv + i); GARRAY_SET (i + j, f); }
+    
+    garray_redraw (x);
     //
     }
     //
@@ -242,6 +256,8 @@ static void garray_normalize (t_garray *x, t_float f)
             t_float t = GARRAY_GET (i) * k; GARRAY_SET (i, t);
         }
     }
+    
+    garray_redraw (x);
 }
 
 static void garray_sinesum (t_garray *x, t_symbol *s, int argc, t_atom *argv)
@@ -283,6 +299,8 @@ static void garray_read (t_garray *x, t_symbol *name)
         while (i < size) { GARRAY_SET (i, 0.0); i++; }
         
         fclose (file);      /* < http://stackoverflow.com/a/13691168 > */
+        
+        garray_redraw (x);
     }
     //
     }
@@ -347,6 +365,16 @@ static void garray_discard (t_garray *x)
     main_wrapper->getSnapshots().discard (object_getUnique (cast_object (x)));
 }
 
+static void garray_task (t_garray *x)
+{
+    DBG ("!");
+}
+
+static void garray_redraw (t_garray *x)
+{
+    clock_delay (x->x_clock, GARRAY_DELAY);
+}
+
 #else
 
 static void garray_publish (t_garray *x)
@@ -355,6 +383,16 @@ static void garray_publish (t_garray *x)
 
 static void garray_discard (t_garray *x)
 {
+}
+
+static void garray_task (t_garray *x)
+{
+    
+}
+
+static void garray_redraw (t_garray *x)
+{
+
 }
 
 #endif
@@ -704,6 +742,7 @@ static void *garray_new (t_symbol *s, int argc, t_atom *argv)
     x->x_data           = (t_word *)PD_MEMORY_GET (x->x_size * sizeof (t_word));
     x->x_unexpandedName = NULL;
     x->x_name           = symbol_removeCopySuffix (name);
+    x->x_clock          = clock_new ((void *)x, (t_method)garray_task);
     
     /* Copy-pasted case first. */
     
@@ -737,7 +776,11 @@ static void garray_dismiss (t_garray *x)
 
 static void garray_free (t_garray *x)
 {
-    garray_dismiss (x); garray_discard (x); PD_MEMORY_FREE (x->x_data);
+    garray_dismiss (x); garray_discard (x);
+    
+    clock_free (x->x_clock);
+    
+    PD_MEMORY_FREE (x->x_data);
 }
 
 // -----------------------------------------------------------------------------------------------------------
