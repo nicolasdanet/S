@@ -51,6 +51,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (CommentText);
     DECLARE_STRING (Content);
     DECLARE_STRING (Copy);
+    DECLARE_STRING (Count);
     DECLARE_STRING (Cut);
     DECLARE_STRING (DefaultIsRunView);
     DECLARE_STRING (Digits);

@@ -19,7 +19,8 @@ ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     name_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Name)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
     height_ (object_.getCached<int> (Tag::Parameters, Tag::Height)),
-    size_ (object_.getCached<int> (Tag::Parameters, Tag::Size))
+    size_ (object_.getCached<int> (Tag::Parameters, Tag::Size)),
+    count_ (object_.getCached<int> (Tag::Parameters, Tag::Count))
 {
     arrayBackgroundColour_.attach (repaint (component_));
     arrayValueColour_.attach (repaint (component_));
@@ -28,6 +29,11 @@ ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     width_.attach (resized (component_));
     height_.attach (resized (component_));
     size_.attach (repaint (component_));
+    
+    count_.attach (repaint (component_));       /* Repaint when garray is updated. */
+    
+    /* Repaint from time to time to in case of missed (e.g. content changed from DSP). */
+    /* Use random period to spread the draws. */
     
     startTimer (juce::Random::getSystemRandom().nextInt (juce::Range<int> (900, 1100)));
 }

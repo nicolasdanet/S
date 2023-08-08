@@ -26,6 +26,7 @@ struct _garray {
     int         x_width;
     int         x_height;
     int         x_size;
+    int         x_count;
     t_word      *x_data;
     t_symbol    *x_unexpandedName;
     t_symbol    *x_name;
@@ -367,7 +368,9 @@ static void garray_discard (t_garray *x)
 
 static void garray_task (t_garray *x)
 {
-    DBG ("!");
+    x->x_count = (x->x_count + 1) & 0xff;
+    
+    outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Count));
 }
 
 static void garray_redraw (t_garray *x)
@@ -688,6 +691,14 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
             NEEDS_TRANS ("Content saved with patch"),
             static_cast<bool> (x->x_embed),
             delegate);
+    }
+    
+    if (t.contains (Tag::Count)) {
+        group.addParameter (Tag::Count,
+            NEEDS_TRANS ("Count"),
+            NEEDS_TRANS ("Count"),
+            x->x_count,
+            delegate).setHidden (true);
     }
 }
 
