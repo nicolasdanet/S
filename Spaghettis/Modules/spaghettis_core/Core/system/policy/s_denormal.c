@@ -33,6 +33,8 @@ PD_LOCAL int denormal_isBigOrSmall (t_sample f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Raspberry Pi. */
+
 /* < https://www.raspberrypi.org/forums/viewtopic.php?t=148600 > */
 
 #elif defined ( PD_ARM ) && defined ( __ARM_NEON )

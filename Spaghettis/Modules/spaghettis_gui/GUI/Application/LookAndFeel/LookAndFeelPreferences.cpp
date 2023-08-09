@@ -125,17 +125,9 @@ juce::BorderSize<int> LookAndFeel::getLabelBorderSize (juce::Label&)
 {
     /* Avoid the text to drift down when editing in preferences. */
     
-    #if JUCE_RPI
-    
-    return juce::BorderSize<int> { 2, 5, 0, 5 };
-    
-    #else
-    
     return juce::BorderSize<int> { 3, 5, 0, 5 };
-    
-    #endif
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

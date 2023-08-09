@@ -10,16 +10,7 @@ rep=$(pwd); [ "${0%/*}" = "." ] || exit 1
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
 
-# Check best CPU flags if required.
-
 CPUFLAGS="-march=native"
-
-if [[ $OSTYPE =~ linux-gnueabihf ]]; then
-    CPUTYPE="`lscpu`"
-    if [[ $CPUTYPE =~ "Cortex-A72" ]]; then
-        CPUFLAGS="-mcpu=cortex-a72 -mtune=cortex-a72 -mfpu=neon-fp-armv8"
-    fi
-fi
 
 export CPUFLAGS
 

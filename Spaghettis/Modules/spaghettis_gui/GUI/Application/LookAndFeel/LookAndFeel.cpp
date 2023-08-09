@@ -73,6 +73,8 @@ void LookAndFeel::initializeFonts()
     font18Monospaced_   = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
     font16Bold_         = juce::Font (fontName, 16.0, juce::Font::bold);
 
+    /* Raspberry Pi. */
+    
     /* < https://forum.juce.com/t/fonts-need-to-be-initialized-on-rpi > */
     
     font18Name_             = font18_.getTypefacePtr()->getName();
