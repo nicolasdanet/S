@@ -23,8 +23,6 @@ MessagePainter::MessagePainter (ObjectComponent* owner) :
     messageBackgroundColour_.attach (repaint (component_));
     messageTextColour_.attach (repaint (component_));
     text_.attach (resized (component_));
-    
-    // component_->setBufferedToImage (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
