@@ -24,7 +24,7 @@ MessagePainter::MessagePainter (ObjectComponent* owner) :
     messageTextColour_.attach (repaint (component_));
     text_.attach (resized (component_));
     
-    component_->setBufferedToImage (true);
+    // component_->setBufferedToImage (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
