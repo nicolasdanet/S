@@ -483,11 +483,19 @@ juce::String object_getBufferAsString (t_object* x)
     return s;
 }
 
-PD_LOCAL void object_setBufferWithString (t_object *x, const juce::String& s)
+PD_LOCAL bool object_setBufferWithString (t_object *x, const juce::String& s)
 {
     jassert (x);
     
+    if (object_getBufferAsString (x) != s) {
+    //
     buffer_withStringUnzeroed (object_getBuffer (x), s.toRawUTF8(), static_cast<int> (s.getNumBytesAsUTF8()));
+    
+    return true;
+    //
+    }
+    
+    return false;
 }
 
 #endif

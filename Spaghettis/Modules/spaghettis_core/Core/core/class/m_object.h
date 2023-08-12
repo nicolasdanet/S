@@ -72,7 +72,7 @@ PD_LOCAL juce::String   object_getTypeOfInlets      (t_object *x);
 PD_LOCAL juce::String   object_getTypeOfOutlets     (t_object *x);
 
 PD_LOCAL juce::String   object_getBufferAsString    (t_object* x);
-PD_LOCAL void           object_setBufferWithString  (t_object* x, const juce::String&);
+PD_LOCAL bool           object_setBufferWithString  (t_object* x, const juce::String&);
 
 #endif
 

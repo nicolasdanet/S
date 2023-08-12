@@ -316,9 +316,13 @@ static void message_functionSetParameters (t_object *o, const core::Group& group
     
     jassert (group.hasParameter (Tag::Text));
     
-    object_setBufferWithString (o, group.getParameter (Tag::Text).getValueTyped<juce::String>());
-    
+    if (object_setBufferWithString (o, group.getParameter (Tag::Text).getValueTyped<juce::String>())) {
+    //
     message_dirty (x, 1);
+    
+    glist_setDirty (object_getOwner (o), 1);
+    //
+    }
 }
 
 #endif
