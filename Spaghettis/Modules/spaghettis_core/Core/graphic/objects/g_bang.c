@@ -32,7 +32,7 @@ static t_class *bng_class;      /* Shared. */
 typedef struct _bng {
     t_object    x_obj;          /* MUST be the first. */
     int         x_flashed;
-    int         x_width;
+    int         x_size;
     int         x_time;
     t_outlet    *x_outlet;
     t_clock     *x_clock;
@@ -88,7 +88,6 @@ static void bng_anything (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-
 static int bng_update (t_bng *x, int dirty, int *t, int n)
 {
     if (n != *t) { *t = n; if (dirty) { glist_setDirty (object_getOwner (cast_object (x)), 1); } return 1; }
@@ -114,9 +113,9 @@ static void bng_updateFlashTime (t_bng *x, int n)
     }
 }
 
-static void bng_updateWidth (t_bng *x, int n)
+static void bng_updateSize (t_bng *x, int n)
 {
-    if (bng_update (x, 1, &x->x_width, PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM))) {
+    if (bng_update (x, 1, &x->x_size, PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM))) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
         #endif
@@ -129,7 +128,7 @@ static void bng_updateWidth (t_bng *x, int n)
 
 static void bng_size (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) { bng_updateWidth (x, (int)atom_getFloatAtIndex (0, argc, argv)); }
+    if (argc) { bng_updateSize (x, (int)atom_getFloatAtIndex (0, argc, argv)); }
 }
 
 static void bng_flashtime (t_bng *x, t_float f)
@@ -169,7 +168,7 @@ static void bng_functionGetParameters (t_object *o, core::Group& group, const Ta
         group.addParameter (Tag::Width,
             NEEDS_TRANS ("Width"),
             NEEDS_TRANS ("Border size of the object"),
-            x->x_width,
+            x->x_size,
             delegate).setRange (juce::Range<int> (BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM));
     }
 }
@@ -182,7 +181,7 @@ static void bng_functionSetParameters (t_object *o, const core::Group& group)
     jassert (group.hasParameter (Tag::Width));
     
     bng_updateFlashTime (x, group.getParameter (Tag::FlashTime).getValueTyped<int>());
-    bng_updateWidth (x, group.getParameter (Tag::Width).getValueTyped<int>());
+    bng_updateSize (x, group.getParameter (Tag::Width).getValueTyped<int>());
 }
 
 #endif
@@ -200,7 +199,7 @@ static void bng_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  object_getX (cast_object (x)));
     buffer_appendFloat (b,  object_getY (cast_object (x)));
     buffer_appendSymbol (b, sym_bng);
-    buffer_appendFloat (b,  x->x_width);
+    buffer_appendFloat (b,  x->x_size);
     buffer_appendFloat (b,  x->x_time);
     buffer_appendSemicolon (b);
     
@@ -227,7 +226,7 @@ static void *bng_new (t_symbol *s, int argc, t_atom *argv)
     int size = (argc > 1) ? (int)atom_getFloat (argv + 0) : BANG_SIZE_DEFAULT;
     int time = (argc > 1) ? (int)atom_getFloat (argv + 1) : BANG_TIME_DEFAULT;
 
-    x->x_width  = PD_CLAMP (size, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM);
+    x->x_size   = PD_CLAMP (size, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM);
     x->x_time   = PD_CLAMP (time, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM);
     
     x->x_outlet = outlet_newBang (cast_object (x));

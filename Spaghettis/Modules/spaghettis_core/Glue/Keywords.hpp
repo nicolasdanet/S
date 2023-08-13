@@ -28,6 +28,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (gatom);
     DECLARE_STRING (message);
     DECLARE_STRING (msg);
+    DECLARE_STRING (tgl);
     
     DECLARE_STRING (Abstraction);
     DECLARE_STRING (ArrayBackground);
@@ -81,6 +82,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (MessageText);
     DECLARE_STRING (MessageClicked);
     DECLARE_STRING (Name);
+    DECLARE_STRING (NonZero);
     DECLARE_STRING (Outlet);
     DECLARE_STRING (Outlets);
     DECLARE_STRING (Parameters);
@@ -100,6 +102,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Selected);
     DECLARE_STRING (Size);
     DECLARE_STRING (SnapToGrid);
+    DECLARE_STRING (State);
     DECLARE_STRING (Text);
     DECLARE_STRING (Title);
     DECLARE_STRING (Undo);
