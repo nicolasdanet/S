@@ -143,6 +143,13 @@ PD_LOCAL void outputs_objectChanged (t_object *x, const Tags& t)
     const UniquePath p (x); wrapper_send (Outputs::changed (p, Report::object (p, x, t)));
 }
 
+PD_LOCAL void outputs_objectUpdated (t_object *x, const Tags& t)
+{
+    outputs_objectChanged (x, t);
+    
+    glist_setDirty (object_getOwner (cast_object (x)), 1);
+}
+
 PD_LOCAL void outputs_objectRemoved (t_object *x)
 {
     wrapper_send (Outputs::removed (UniquePath (x)));
