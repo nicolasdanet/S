@@ -115,7 +115,7 @@ static void undomanager_notify (t_undomanager *x)
     
     t_glist *g = x->um_owner;
     
-    outputs_objectUpdated (cast_object (g), Tags::attributes ( { Tag::Undo, Tag::Redo } ));
+    outputs_objectChanged (cast_object (g), Tags::attributes ( { Tag::Undo, Tag::Redo } ));
     
     #endif
 }

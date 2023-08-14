@@ -87,8 +87,8 @@ static void message_dirty (t_message *x, int notify)
     #if defined ( PD_BUILDING_APPLICATION )
     
     if (notify) {
-        outputs_objectUpdated (cast_object (x), Tags::attributes (Tag::Content));
-        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Text));
+        outputs_objectChanged (cast_object (x), Tags::attributes (Tag::Content));
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Text));
     }
     
     #endif

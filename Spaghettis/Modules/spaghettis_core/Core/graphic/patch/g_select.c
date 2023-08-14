@@ -19,7 +19,7 @@ PD_LOCAL void glist_objectSelect (t_glist *glist, t_object *y)
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    outputs_objectUpdated (y, Tags::attributes (Tag::Selected));
+    outputs_objectChanged (y, Tags::attributes (Tag::Selected));
     
     #endif
 }
@@ -30,7 +30,7 @@ PD_LOCAL void glist_objectDeselect (t_glist *glist, t_object *y)
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    outputs_objectUpdated (y, Tags::attributes (Tag::Selected));
+    outputs_objectChanged (y, Tags::attributes (Tag::Selected));
     
     #endif
 }

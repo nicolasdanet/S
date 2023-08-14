@@ -651,7 +651,7 @@ PD_LOCAL int object_setLabelUpdate (t_object *x, t_symbol *s)
     if (object_getLabel (x) != s) {
         object_setLabel (x, s);
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (x, Tags::parameters (Tag::Label));
+        outputs_objectChanged (x, Tags::parameters (Tag::Label));
         #endif
         return 1;
     }

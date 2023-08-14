@@ -138,7 +138,7 @@ PD_LOCAL void outputs_objectAdded (t_object *x)
     const UniquePath p (x); wrapper_send (Outputs::added (p, Report::object (p, x, Tags())));
 }
 
-PD_LOCAL void outputs_objectUpdated (t_object *x, const Tags& t)
+PD_LOCAL void outputs_objectChanged (t_object *x, const Tags& t)
 {
     const UniquePath p (x); wrapper_send (Outputs::changed (p, Report::object (p, x, t)));
 }

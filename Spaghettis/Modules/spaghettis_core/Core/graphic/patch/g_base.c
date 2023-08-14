@@ -130,7 +130,7 @@ PD_LOCAL void glist_setEditView (t_glist *glist, t_rectangle *r, int notify)
     
     if (notify) {
     //
-    outputs_objectUpdated (cast_object (glist), Tags::attributes (Tag::EditView));
+    outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::EditView));
     //
     }
     
@@ -145,7 +145,7 @@ PD_LOCAL void glist_setRunView (t_glist *glist, t_rectangle *r, int notify)
     
     if (notify) {
     //
-    outputs_objectUpdated (cast_object (glist_getRoot (glist)), Tags::attributes (Tag::RunView));
+    outputs_objectChanged (cast_object (glist_getRoot (glist)), Tags::attributes (Tag::RunView));
     //
     }
     

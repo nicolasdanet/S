@@ -18,7 +18,7 @@ static void glist_lineConnectByIndexNotify (t_object *o)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
-    outputs_objectUpdated (o, Tags::attributes ( { Tag::Inlets, Tag::Outlets } ));
+    outputs_objectChanged (o, Tags::attributes ( { Tag::Inlets, Tag::Outlets } ));
     
     #endif
 }

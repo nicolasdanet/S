@@ -48,7 +48,7 @@ static void glist_updateInlets (t_glist *glist)
     
     if (!glist_isLoading (glist)) {
     //
-    outputs_objectUpdated (cast_object (glist), Tags::attributes (Tag::Inlets));
+    outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::Inlets));
     //
     }
     
@@ -61,7 +61,7 @@ static void glist_updateOutlets (t_glist *glist)
     
     if (!glist_isLoading (glist)) {
     //
-    outputs_objectUpdated (cast_object (glist), Tags::attributes (Tag::Outlets));
+    outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::Outlets));
     //
     }
     

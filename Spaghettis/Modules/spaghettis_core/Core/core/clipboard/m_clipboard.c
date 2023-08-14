@@ -121,7 +121,7 @@ static void clipboard_pasteProceedShow (t_glist *glist, int alreadyThere)
 
     for (y = glist->gl_graphics; y; y = y->g_next) {
         if (i >= alreadyThere) {
-            outputs_objectUpdated (y, Tags::attributes (Tag::Visible));
+            outputs_objectChanged (y, Tags::attributes (Tag::Visible));
         }
         i++;
     }

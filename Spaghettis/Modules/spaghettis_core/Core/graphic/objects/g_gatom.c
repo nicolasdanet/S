@@ -63,7 +63,7 @@ static void gatom_setProceed (t_gatom *x, t_float f, int notify)
 
         SET_FLOAT (&x->a_atom, f);
         
-        if (notify >= ATOM_NOTIFY) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Value)); }
+        if (notify >= ATOM_NOTIFY) { outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Value)); }
         if (notify == ATOM_OUTPUT) { gatom_bang (x); }
     }
 }
@@ -77,8 +77,8 @@ static void gatom_rangeProceed (t_gatom *x, t_float low, t_float high, int notif
     x->a_highRange  = PD_MAX (low, high);
     
     if (notify) {
-        if (l != x->a_lowRange)  { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Low));  }
-        if (h != x->a_highRange) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::High)); }
+        if (l != x->a_lowRange)  { outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Low));  }
+        if (h != x->a_highRange) { outputs_objectChanged (cast_object (x), Tags::parameters (Tag::High)); }
     }
 }
 
@@ -89,7 +89,7 @@ static void gatom_widthProceed (t_gatom *x, int width, int notify)
     x->a_width = PD_CLAMP (width, 0, ATOM_WIDTH_MAXIMUM);
     
     if (notify) {
-        if (n != x->a_width) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Digits)); }
+        if (n != x->a_width) { outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Digits)); }
     }
 }
 
