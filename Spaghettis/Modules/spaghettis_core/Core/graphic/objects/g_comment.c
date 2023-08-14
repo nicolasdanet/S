@@ -31,10 +31,8 @@ static void comment_set (t_object *o, const juce::String& s)
 {
     if (object_setBufferWithString (o, s)) {
     //
-    glist_setDirty (object_getOwner (o), 1);
-    
-    outputs_objectChanged (o, Tags::attributes (Tag::Content));
-    outputs_objectChanged (o, Tags::parameters (Tag::Text));
+    outputs_objectUpdated (o, Tags::attributes (Tag::Content));
+    outputs_objectUpdated (o, Tags::parameters (Tag::Text));
     //
     }
 }

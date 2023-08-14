@@ -88,16 +88,14 @@ static void bng_anything (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static int bng_update (t_bng *x, int dirty, int *t, int n)
+static int bng_update (int *t, int n)
 {
-    if (n != *t) { *t = n; if (dirty) { glist_setDirty (object_getOwner (cast_object (x)), 1); } return 1; }
-
-    return 0;
+    if (n != *t) { *t = n; return 1; } else { return 0; }
 }
 
 static void bng_updateFlashed (t_bng *x, int n)
 {
-    if (bng_update (x, 0, &x->x_flashed, (n != 0))) {
+    if (bng_update (&x->x_flashed, (n != 0))) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Flashed));
         #endif
@@ -106,18 +104,18 @@ static void bng_updateFlashed (t_bng *x, int n)
 
 static void bng_updateFlashTime (t_bng *x, int n)
 {
-    if (bng_update (x, 1, &x->x_time, PD_CLAMP (n, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM))) {
+    if (bng_update (&x->x_time, PD_CLAMP (n, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM))) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::FlashTime));
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::FlashTime));
         #endif
     }
 }
 
 static void bng_updateSize (t_bng *x, int n)
 {
-    if (bng_update (x, 1, &x->x_size, PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM))) {
+    if (bng_update (&x->x_size, PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM))) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Width));
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
         #endif
     }
 }

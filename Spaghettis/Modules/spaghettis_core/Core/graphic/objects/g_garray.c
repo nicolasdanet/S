@@ -408,9 +408,7 @@ static void garray_redraw (t_garray *x)
 
 static void garray_objectUpdated (t_garray *x, const Tags& t)
 {
-    outputs_objectChanged (cast_object (x), t);
-    
-    glist_setDirty (object_getOwner (cast_object (x)), 1);
+    outputs_objectUpdated (cast_object (x), t);
 }
 
 #endif
