@@ -86,6 +86,8 @@ static void message_dirty (t_message *x, int notify)
     
     #if defined ( PD_BUILDING_APPLICATION )
     
+    /* Don't set dirty flag when modified from patch. */
+    
     if (notify) {
         outputs_objectChanged (cast_object (x), Tags::attributes (Tag::Content));
         outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Text));
