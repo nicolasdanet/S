@@ -60,12 +60,20 @@ static void toggle_float (t_toggle *x, t_float f)
 
 static void toggle_updateState (t_toggle *x, t_float f)
 {
-
+    if (f != x->x_state) {
+    //
+    x->x_state = f;
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::State));
+    #endif
+    //
+    }
 }
 
 static void toggle_updateNonZero (t_toggle *x, t_float f)
 {
-
+    if (f != 0.0) { x->x_nonZero = f; }
 }
 
 static void toggle_updateSize (t_toggle *x, int n)
@@ -94,12 +102,12 @@ static void toggle_size (t_toggle *x, t_symbol *s, int argc, t_atom *argv)
 
 static void toggle_set (t_toggle *x, t_float f)
 {
-    x->x_state = f;
+    toggle_updateState (x, f);
 }
 
 static void toggle_nonZero (t_toggle *x, t_float f)
 {
-    if (f != 0.0) { x->x_nonZero = f; }
+    toggle_updateNonZero (x, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
