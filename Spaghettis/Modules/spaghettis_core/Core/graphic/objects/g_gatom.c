@@ -63,7 +63,7 @@ static void gatom_updateValue (t_gatom *x, t_float f, int notify)
 
         SET_FLOAT (&x->a_atom, f);
         
-        if (notify >= ATOM_NOTIFY) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Value)); }
+        if (notify >= ATOM_NOTIFY) { outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Value)); }
         if (notify == ATOM_OUTPUT) { gatom_bang (x); }
     }
 }
