@@ -58,6 +58,16 @@ static void toggle_float (t_toggle *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void toggle_updateState (t_toggle *x, t_float f)
+{
+
+}
+
+static void toggle_updateNonZero (t_toggle *x, t_float f)
+{
+
+}
+
 static void toggle_updateSize (t_toggle *x, int n)
 {
     n = PD_CLAMP (n, TOGGLE_SIZE_MINIMUM, TOGGLE_SIZE_MAXIMUM);
@@ -65,6 +75,10 @@ static void toggle_updateSize (t_toggle *x, int n)
     if (x->x_size != n) {
     //
     x->x_size = n;
+    
+    #if defined ( PD_BUILDING_APPLICATION )
+    outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
+    #endif
     //
     }
 }

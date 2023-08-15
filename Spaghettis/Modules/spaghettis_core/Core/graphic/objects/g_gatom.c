@@ -55,7 +55,7 @@ static void gatom_bang (t_gatom *);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-static void gatom_setProceed (t_gatom *x, t_float f, int notify)
+static void gatom_updateValue (t_gatom *x, t_float f, int notify)
 {
     if (x->a_lowRange != 0.0 || x->a_highRange != 0.0) { f = PD_CLAMP (f, x->a_lowRange, x->a_highRange); }
     
@@ -68,7 +68,7 @@ static void gatom_setProceed (t_gatom *x, t_float f, int notify)
     }
 }
 
-static void gatom_rangeProceed (t_gatom *x, t_float low, t_float high, int notify)
+static void gatom_updateRange (t_gatom *x, t_float low, t_float high, int notify)
 {
     const t_float l = x->a_lowRange;
     const t_float h = x->a_highRange;
@@ -82,7 +82,7 @@ static void gatom_rangeProceed (t_gatom *x, t_float low, t_float high, int notif
     }
 }
 
-static void gatom_widthProceed (t_gatom *x, int width, int notify)
+static void gatom_updateWidth (t_gatom *x, int width, int notify)
 {
     const int n = x->a_width;
     
@@ -102,20 +102,20 @@ static void gatom_widthProceed (t_gatom *x, int width, int notify)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static void gatom_setProceed (t_gatom *x, t_float f, int notify)
+static void gatom_updateValue (t_gatom *x, t_float f, int notify)
 {
     if (x->a_lowRange != 0.0 || x->a_highRange != 0.0) { f = PD_CLAMP (f, x->a_lowRange, x->a_highRange); }
     
     SET_FLOAT (&x->a_atom, f);
 }
 
-static void gatom_rangeProceed (t_gatom *x, t_float low, t_float high, int notify)
+static void gatom_updateRange (t_gatom *x, t_float low, t_float high, int notify)
 {
     x->a_lowRange  = PD_MIN (low, high);
     x->a_highRange = PD_MAX (low, high);
 }
 
-static void gatom_widthProceed (t_gatom *x, int width, int notify)
+static void gatom_updateWidth (t_gatom *x, int width, int notify)
 {
     x->a_width = PD_CLAMP (width, 0, ATOM_WIDTH_MAXIMUM);
 }
@@ -133,12 +133,12 @@ static void gatom_bang (t_gatom *x)
 
 static void gatom_float (t_gatom *x, t_float f)
 {
-    gatom_setProceed (x, f, ATOM_NOTIFY); gatom_bang (x);
+    gatom_updateValue (x, f, ATOM_NOTIFY); gatom_bang (x);
 }
 
 static void gatom_set (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) { gatom_setProceed (x, atom_getFloat (argv), ATOM_NOTIFY); }
+    if (argc) { gatom_updateValue (x, atom_getFloat (argv), ATOM_NOTIFY); }
 }
 
 static void gatom_range (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
@@ -146,8 +146,8 @@ static void gatom_range (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
     t_float low  = atom_getFloatAtIndex (0, argc, argv);
     t_float high = atom_getFloatAtIndex (1, argc, argv);
     
-    gatom_rangeProceed (x, low, high, 1);
-    gatom_setProceed (x, GET_FLOAT (&x->a_atom), ATOM_NOTIFY);
+    gatom_updateRange (x, low, high, 1);
+    gatom_updateValue (x, GET_FLOAT (&x->a_atom), ATOM_NOTIFY);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -196,8 +196,8 @@ static void gatom_restore (t_gatom *x)
     
     if (old) {
     //
-    gatom_rangeProceed (x, old->a_lowRange, old->a_highRange, 1);
-    gatom_setProceed (x, GET_FLOAT (&x->a_atom), ATOM_NOTIFY);
+    gatom_updateRange (x, old->a_lowRange, old->a_highRange, 1);
+    gatom_updateValue (x, GET_FLOAT (&x->a_atom), ATOM_NOTIFY);
     //
     }
 }
@@ -261,9 +261,9 @@ static void gatom_functionSetParameters (t_object *o, const core::Group& group)
     const t_float h = group.getParameter (Tag::High).getValueTyped<t_float>();
     const int d     = group.getParameter (Tag::Digits).getValueTyped<int>();
     
-    gatom_widthProceed (x, d, 1);
-    gatom_rangeProceed (x, l, h, 1);
-    gatom_setProceed (x, v, ATOM_OUTPUT);   /* Must be done at last. */
+    gatom_updateWidth (x, d, 1);
+    gatom_updateRange (x, l, h, 1);
+    gatom_updateValue (x, v, ATOM_OUTPUT);   /* Must be done at last. */
 }
 
 #endif
@@ -289,12 +289,12 @@ static void gatom_makeObjectProceed (t_glist *glist, t_gatom *x, int argc, t_ato
     object_setX (cast_object (x),      atom_getFloatAtIndex (0, argc, argv));
     object_setY (cast_object (x),      atom_getFloatAtIndex (1, argc, argv));
     
-    gatom_widthProceed (x, width, 0);
-    gatom_rangeProceed (x, low, high, 0);
+    gatom_updateWidth (x, width, 0);
+    gatom_updateRange (x, low, high, 0);
     
-    if (argc > 5) { gatom_setProceed (x, atom_getFloat (argv + 5), ATOM_NONE); }
+    if (argc > 5) { gatom_updateValue (x, atom_getFloat (argv + 5), ATOM_NONE); }
     else {
-        gatom_setProceed (x, 0.0, ATOM_NONE);
+        gatom_updateValue (x, 0.0, ATOM_NONE);
     }
     
     glist_objectAdd (glist, cast_object (x));
