@@ -28,8 +28,8 @@ static t_class *toggle_class;       /* Shared. */
 
 typedef struct _toggle {
     t_object    x_obj;              /* MUST be the first. */
-    t_float     x_state;
     t_float     x_nonZero;
+    int         x_state;
     int         x_size;
     t_outlet    *x_outlet;
     } t_toggle;
@@ -38,7 +38,16 @@ typedef struct _toggle {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void toggle_set (t_toggle *, t_float);
+static void toggle_updateState (t_toggle *x, int n, int notify);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static t_float toggle_value (t_toggle *x)
+{
+    return x->x_state ? x->x_nonZero : 0.0;
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -46,37 +55,45 @@ static void toggle_set (t_toggle *, t_float);
 
 static void toggle_bang (t_toggle *x)
 {
-    toggle_set (x, (x->x_state == 0.0) ? x->x_nonZero : 0.0); outlet_float (x->x_outlet, x->x_state);
+    toggle_updateState (x, !x->x_state, 1);
+    
+    outlet_float (x->x_outlet, toggle_value (x));
 }
 
 static void toggle_float (t_toggle *x, t_float f)
 {
-    toggle_set (x, f); outlet_float (x->x_outlet, x->x_state);
+    toggle_updateState (x, (int)f, 1);
+    
+    outlet_float (x->x_outlet, toggle_value (x));
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void toggle_updateState (t_toggle *x, t_float f)
+static void toggle_updateState (t_toggle *x, int n, int notify)
 {
-    if (f != x->x_state) {
-    //
-    x->x_state = f;
+    int t = (n != 0);
     
-    #if defined ( PD_BUILDING_APPLICATION )
-    outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::State));
-    #endif
+    if (t != x->x_state) {
+    //
+    x->x_state = t;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::State));
+        #endif
+    }
     //
     }
 }
 
-static void toggle_updateNonZero (t_toggle *x, t_float f)
+static void toggle_updateNonZero (t_toggle *x, t_float f, int notify)
 {
     if (f != 0.0) { x->x_nonZero = f; }
 }
 
-static void toggle_updateSize (t_toggle *x, int n)
+static void toggle_updateSize (t_toggle *x, int n, int notify)
 {
     n = PD_CLAMP (n, TOGGLE_SIZE_MINIMUM, TOGGLE_SIZE_MAXIMUM);
     
@@ -84,9 +101,11 @@ static void toggle_updateSize (t_toggle *x, int n)
     //
     x->x_size = n;
     
-    #if defined ( PD_BUILDING_APPLICATION )
-    outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
-    #endif
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
+        #endif
+    }
     //
     }
 }
@@ -97,17 +116,17 @@ static void toggle_updateSize (t_toggle *x, int n)
 
 static void toggle_size (t_toggle *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) { toggle_updateSize (x, (int)atom_getFloatAtIndex (0, argc, argv)); }
+    if (argc) { toggle_updateSize (x, (int)atom_getFloatAtIndex (0, argc, argv), 1); }
 }
 
 static void toggle_set (t_toggle *x, t_float f)
 {
-    toggle_updateState (x, f);
+    toggle_updateState (x, f, 1);
 }
 
 static void toggle_nonZero (t_toggle *x, t_float f)
 {
-    toggle_updateNonZero (x, f);
+    toggle_updateNonZero (x, f, 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -126,7 +145,7 @@ static void toggle_functionGetParameters (t_object *o, core::Group& group, const
         group.addParameter (Tag::State,
             NEEDS_TRANS ("State"),
             NEEDS_TRANS ("Toggle state on/off"),
-            static_cast<bool> (x->x_state != 0.0),
+            static_cast<bool> (x->x_state),
             delegate);
     }
     
@@ -196,12 +215,13 @@ static void *toggle_new (t_symbol *s, int argc, t_atom *argv)
     
     int size        = (argc > 1) ? (int)atom_getFloat (argv + 0) : TOGGLE_SIZE_DEFAULT;
     t_float nonZero = (argc > 1) ? atom_getFloat (argv + 1) : (t_float)1.0;
-    t_float state   = (argc > 2) ? atom_getFloat (argv + 2) : 0.0;
+    int state       = (argc > 2) ? (int)atom_getFloat (argv + 2) : 0;
 
-    x->x_size       = PD_CLAMP (size, TOGGLE_SIZE_MINIMUM, TOGGLE_SIZE_MAXIMUM);
-    x->x_state      = (state != 0.0) ? nonZero : 0.0;
-    x->x_nonZero    = nonZero;
-    x->x_outlet     = outlet_newFloat (cast_object (x));
+    toggle_updateState (x, state, 0);
+    toggle_updateNonZero (x, nonZero, 0);
+    toggle_updateSize (x, size, 0);
+    
+    x->x_outlet = outlet_newFloat (cast_object (x));
     
     return x;
 }
