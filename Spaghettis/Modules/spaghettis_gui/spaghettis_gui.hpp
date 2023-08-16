@@ -149,6 +149,7 @@
 #include "GUI/Patches/Graphics/Painters/CommentPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/InletPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/MessagePainter.hpp"
+#include "GUI/Patches/Graphics/Painters/TogglePainter.hpp"
 #include "GUI/Patches/Graphics/PinComponent.hpp"
 #include "GUI/Patches/Graphics/ObjectComponent.hpp"
 #include "GUI/Patches/Graphics/LineComponent.hpp"

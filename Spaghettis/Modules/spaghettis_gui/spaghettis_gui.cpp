@@ -79,6 +79,7 @@
 #include "GUI/Patches/Graphics/Painters/CommentPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/InletPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/MessagePainter.cpp"
+#include "GUI/Patches/Graphics/Painters/TogglePainter.cpp"
 #include "GUI/Patches/Graphics/PinComponent.cpp"
 #include "GUI/Patches/Graphics/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/LineComponent.cpp"
