@@ -38,15 +38,15 @@ typedef struct _toggle {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void toggle_updateState (t_toggle *x, int n, int notify);
+static int toggle_updateState (t_toggle *x, int n, int notify);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static t_float toggle_value (t_toggle *x)
+static void toggle_output (t_toggle *x)
 {
-    return x->x_state ? x->x_nonZero : 0.0;
+    outlet_float (x->x_outlet, x->x_state ? x->x_nonZero : 0.0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -57,21 +57,21 @@ static void toggle_bang (t_toggle *x)
 {
     toggle_updateState (x, !x->x_state, 1);
     
-    outlet_float (x->x_outlet, toggle_value (x));
+    toggle_output (x);
 }
 
 static void toggle_float (t_toggle *x, t_float f)
 {
     toggle_updateState (x, (int)f, 1);
     
-    outlet_float (x->x_outlet, toggle_value (x));
+    toggle_output (x);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void toggle_updateState (t_toggle *x, int n, int notify)
+static int toggle_updateState (t_toggle *x, int n, int notify)
 {
     int t = (n != 0);
     
@@ -84,13 +84,27 @@ static void toggle_updateState (t_toggle *x, int n, int notify)
         outputs_objectChanged (cast_object (x), Tags::parameters (Tag::State));
         #endif
     }
+    
+    return 1;
     //
     }
+    
+    return 0;
 }
 
 static void toggle_updateNonZero (t_toggle *x, t_float f, int notify)
 {
-    if (f != 0.0) { x->x_nonZero = f; }
+    if (x->x_nonZero != f && f != 0.0) {
+    //
+    x->x_nonZero = f;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::NonZero));
+        #endif
+    }
+    //
+    }
 }
 
 static void toggle_updateSize (t_toggle *x, int n, int notify)
@@ -152,7 +166,7 @@ static void toggle_functionGetParameters (t_object *o, core::Group& group, const
     if (t.contains (Tag::NonZero)) {
         group.addParameter (Tag::NonZero,
             NEEDS_TRANS ("Non-zero"),
-            NEEDS_TRANS ("Value used for non-zero state"),
+            NEEDS_TRANS ("Value for non-zero state"),
             x->x_nonZero,
             delegate);
     }
@@ -173,6 +187,13 @@ static void toggle_functionSetParameters (t_object *o, const core::Group& group)
     jassert (group.hasParameter (Tag::State));
     jassert (group.hasParameter (Tag::NonZero));
     jassert (group.hasParameter (Tag::Width));
+    
+    toggle_updateNonZero (x, group.getParameter (Tag::NonZero).getValueTyped<t_float>(), 1);
+    toggle_updateSize (x, group.getParameter (Tag::Width).getValueTyped<int>(), 1);
+    
+    if (toggle_updateState (x, group.getParameter (Tag::State).getValueTyped<bool>() ? 1 : 0, 1)) {
+        toggle_output (x);
+    }
 }
 
 #endif
