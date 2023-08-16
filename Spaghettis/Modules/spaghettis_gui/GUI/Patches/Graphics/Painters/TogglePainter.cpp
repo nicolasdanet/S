@@ -14,8 +14,8 @@ namespace spaghettis {
 
 TogglePainter::TogglePainter (ObjectComponent* owner) :
     PainterPolicy (owner),
-    toggleBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BangBackground)),
-    toggleColour_ (Spaghettis()->getCachedColour (Tag::BangFlashOff)),
+    toggleBackgroundColour_ (Spaghettis()->getCachedColour (Tag::ToggleBackground)),
+    toggleColour_ (Spaghettis()->getCachedColour (Tag::Toggle)),
     state_ (object_.getCached<bool> (Tag::Parameters, Tag::State)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width))
 {
@@ -42,7 +42,11 @@ void TogglePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (toggleBackgroundColour_.get());
     g.fillRect (r);
-    g.setColour (toggleColour_.get());
+    
+    if (state_.get()) {
+        g.setColour (toggleColour_.get());
+        LookAndFeel::drawCross (g, r);
+    }
 }
 
 juce::Rectangle<int> TogglePainter::getRequiredBoundsForObject()

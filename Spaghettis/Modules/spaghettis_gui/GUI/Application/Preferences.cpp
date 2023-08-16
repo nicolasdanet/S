@@ -247,6 +247,16 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set color of bang for flash on"),
         Colours::getPalette()->textWarning);
 
+    colors.addParameter (Tag::ToggleBackground,
+        NEEDS_TRANS ("Toggle Background"),
+        NEEDS_TRANS ("Set background color of toggle"),
+        Colours::getPalette()->backgroundWidget);
+    
+    colors.addParameter (Tag::Toggle,
+        NEEDS_TRANS ("Toggle"),
+        NEEDS_TRANS ("Set color of cross"),
+        Colours::getPalette()->textPopup);
+        
     colors.addParameter (Tag::CommentBackground,
         NEEDS_TRANS ("Comment Background"),
         NEEDS_TRANS ("Set background color of comments"),

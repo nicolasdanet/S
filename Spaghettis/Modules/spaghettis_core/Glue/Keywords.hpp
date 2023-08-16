@@ -105,6 +105,8 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (State);
     DECLARE_STRING (Text);
     DECLARE_STRING (Title);
+    DECLARE_STRING (ToggleBackground);
+    DECLARE_STRING (Toggle);
     DECLARE_STRING (Undo);
     DECLARE_STRING (Value);
     DECLARE_STRING (Visible);

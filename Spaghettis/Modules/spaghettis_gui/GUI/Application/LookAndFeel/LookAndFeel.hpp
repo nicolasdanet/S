@@ -60,6 +60,9 @@ public:
     static void drawArrowUp (juce::Graphics&, const juce::Rectangle<int>&);
     static void drawArrowRight (juce::Graphics&, const juce::Rectangle<int>&);
 
+public:
+    static void drawCross (juce::Graphics&, const juce::Rectangle<int>&);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
