@@ -44,8 +44,7 @@ void TogglePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.fillRect (r);
     
     if (state_.get()) {
-        g.setColour (toggleColour_.get());
-        LookAndFeel::drawCross (g, r);
+        g.setColour (toggleColour_.get()); LookAndFeel::drawCross (g, r.reduced (1));
     }
 }
 

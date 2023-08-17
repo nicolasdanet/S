@@ -255,7 +255,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::Toggle,
         NEEDS_TRANS ("Toggle"),
         NEEDS_TRANS ("Set color of cross"),
-        Colours::getPalette()->textPopup);
+        Colours::getPalette()->backgroundPopup);
         
     colors.addParameter (Tag::CommentBackground,
         NEEDS_TRANS ("Comment Background"),

@@ -16,7 +16,7 @@
 #define BANG_TIME_DEFAULT       250
 #define BANG_TIME_MINIMUM       10
 #define BANG_TIME_MAXIMUM       1000
-#define BANG_SIZE_DEFAULT       15
+#define BANG_SIZE_DEFAULT       18
 #define BANG_SIZE_MINIMUM       8
 #define BANG_SIZE_MAXIMUM       256
 

@@ -11,7 +11,7 @@
 #A _restore bijou \; caillou \; chou \; genou \; hibou \; joujou \; pou \;;
 #X msg 48 192 bang;
 #X obj 48 156 metro 1000;
-#X obj 48 120 tgl 15 1;
+#X obj 48 120 tgl 18 1;
 #X obj 25 25 loadbang;
 #X obj 48 264 random 127;
 #X msg 336 120 menu bijou caillou chou genou hibou joujou pou;
@@ -22,7 +22,7 @@
 #X obj 336 312 print;
 #X obj 48 540 print;
 #X obj 180 432 panel 275 45;
-#X obj 552 348 tgl 15 1;
+#X obj 552 348 tgl 18 1;
 #N canvas 674 147 338 385 Untitled;
 #X obj 120 216 realtime;
 #X obj 36 276 -;
