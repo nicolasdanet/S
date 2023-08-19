@@ -47,6 +47,11 @@ double getStep (int decimals, bool hasModifierKey)
     }
 }
 
+juce::String getEllipsis()
+{
+    return juce::String ("...");
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -58,27 +63,36 @@ double getStep (int decimals, bool hasModifierKey)
 
 void AtomPainter::mouseDown (const juce::MouseEvent& e)
 {
-    dragged_    = true;
-    decimals_   = Helpers::getNumberOfDigitsAfterDecimalSeparator (text_);
-    v_          = value_.get();
-    
-    component_->repaint();
+    if (text_ != getEllipsis()) {
+
+        dragged_    = true;
+        decimals_   = Helpers::getNumberOfDigitsAfterDecimalSeparator (text_);
+        v_          = value_.get();
+        
+        component_->repaint();
+    }
 }
 
 void AtomPainter::mouseDrag (const juce::MouseEvent& e)
 {
-    const int dY   = -e.getDistanceFromDragStartY();
-    const double k = getStep (decimals_, Mouse::hasShiftKey (e));
-    const double f = v_ + (dY * k);
-    
-    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), f));
+    if (dragged_) {
+
+        const int dY   = -e.getDistanceFromDragStartY();
+        const double k = getStep (decimals_, Mouse::hasShiftKey (e));
+        const double f = v_ + (dY * k);
+        
+        Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), f));
+    }
 }
 
 void AtomPainter::mouseUp (const juce::MouseEvent&)
 {
-    dragged_ = false;
+    if (dragged_) {
+
+        dragged_ = false;
     
-    component_->repaint();
+        component_->repaint();
+    }
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -113,7 +127,13 @@ juce::String AtomPainter::getPlaceholder() const
 
 juce::String AtomPainter::getText() const
 {
-    return Helpers::withNumberOfDigits (value_.get(), getDigits());
+    const double f = value_.get();
+    const int n = getDigits();
+    
+    if (Helpers::getNumberOfDigitsOfIntegerPart (f) > n) { return getEllipsis(); }
+    else {
+        return Helpers::withNumberOfDigits (f, n);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

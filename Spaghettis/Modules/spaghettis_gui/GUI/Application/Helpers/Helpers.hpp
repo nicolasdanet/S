@@ -71,6 +71,11 @@ static int getNumberOfDigitsAfterDecimalSeparator (const juce::String& s)
     return (i >= 0) ? (s.length() - i - 1) : 0;
 }
 
+static int getNumberOfDigitsOfIntegerPart (double f)
+{
+    return 0;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
