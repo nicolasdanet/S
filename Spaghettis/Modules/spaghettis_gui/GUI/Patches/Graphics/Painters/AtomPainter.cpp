@@ -47,7 +47,7 @@ double getStep (int decimals, bool hasModifierKey)
     }
 }
 
-juce::String getEllipsis()
+juce::String getEmptyText()
 {
     return juce::String ("...");
 }
@@ -63,7 +63,7 @@ juce::String getEllipsis()
 
 void AtomPainter::mouseDown (const juce::MouseEvent& e)
 {
-    if (text_ != getEllipsis()) {
+    if (text_ != getEmptyText()) {
 
         dragged_    = true;
         decimals_   = Helpers::getNumberOfDigitsAfterDecimalSeparator (text_);
@@ -127,13 +127,7 @@ juce::String AtomPainter::getPlaceholder() const
 
 juce::String AtomPainter::getText() const
 {
-    const double f = value_.get();
-    const int n = getDigits();
-    
-    if (Helpers::getNumberOfDigitsOfIntegerPart (f) > n) { return getEllipsis(); }
-    else {
-        return Helpers::withNumberOfDigits (f, n);
-    }
+    return Helpers::withNumberOfDigits (value_.get(), getDigits()).value_or (getEmptyText());
 }
 
 // -----------------------------------------------------------------------------------------------------------
