@@ -47,11 +47,6 @@ double getStep (int decimals, bool hasModifierKey)
     }
 }
 
-juce::String getEmptyText()
-{
-    return juce::String ("...");
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -63,36 +58,27 @@ juce::String getEmptyText()
 
 void AtomPainter::mouseDown (const juce::MouseEvent& e)
 {
-    if (text_ != getEmptyText()) {
-
-        dragged_    = true;
-        decimals_   = Helpers::getNumberOfDigitsAfterDecimalSeparator (text_);
-        v_          = value_.get();
+    dragged_    = true;
+    decimals_   = Helpers::getNumberOfDigitsAfterDecimalSeparator (text_);
+    v_          = value_.get();
         
-        component_->repaint();
-    }
+    component_->repaint();
 }
 
 void AtomPainter::mouseDrag (const juce::MouseEvent& e)
 {
-    if (dragged_) {
-
-        const int dY   = -e.getDistanceFromDragStartY();
-        const double k = getStep (decimals_, Mouse::hasShiftKey (e));
-        const double f = v_ + (dY * k);
+    const int dY   = -e.getDistanceFromDragStartY();
+    const double k = getStep (decimals_, Mouse::hasShiftKey (e));
+    const double f = v_ + (dY * k);
         
-        Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), f));
-    }
+    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), f));
 }
 
 void AtomPainter::mouseUp (const juce::MouseEvent&)
 {
-    if (dragged_) {
-
-        dragged_ = false;
+    dragged_ = false;
     
-        component_->repaint();
-    }
+    component_->repaint();
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -127,7 +113,11 @@ juce::String AtomPainter::getPlaceholder() const
 
 juce::String AtomPainter::getText() const
 {
-    return Helpers::withNumberOfDigits (value_.get(), getDigits()).value_or (getEmptyText());
+    const auto [text, truncated] = Helpers::withNumberOfDigits (value_.get(), getDigits());
+    
+    if (truncated) { return text.dropLastCharacters (1) + "#"; }
+    
+    return text;
 }
 
 // -----------------------------------------------------------------------------------------------------------

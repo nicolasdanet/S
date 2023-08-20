@@ -47,14 +47,14 @@ static juce::String trimZerosOfInteger (juce::String t)
     return t;
 }
 
-static std::optional<juce::String> avoidNumberWithTruncatedIntegerPart (juce::String t, double f)
+static bool isIntegerPartTruncated (juce::String t, double f)
 {
-    if (std::abs (t.getIntValue() - static_cast<int> (f)) > 1) { return {}; };
+    if (std::abs (t.getIntValue() - static_cast<int> (f)) > 1) { return true; };
     
-    return t;
+    return false;
 }
 
-static std::optional<juce::String> withNumberOfDigits (double f, int n)
+static auto withNumberOfDigits (double f, int n)
 {
     jassert (n > 0);
         
@@ -68,7 +68,7 @@ static std::optional<juce::String> withNumberOfDigits (double f, int n)
         }
     }
     
-    return avoidNumberWithTruncatedIntegerPart (trimZerosOfInteger (t), f);
+    return std::tuple<juce::String, bool> (trimZerosOfInteger (t), isIntegerPartTruncated (t, f));
 }
 
 static int getNumberOfDigitsAfterDecimalSeparator (const juce::String& s)
