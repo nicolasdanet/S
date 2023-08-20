@@ -280,7 +280,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::MessageClicked,
         NEEDS_TRANS ("Message Clicked"),
         NEEDS_TRANS ("Set text color clicking messages"),
-        Colours::getPalette()->textWarning);
+        Colours::getPalette()->textWarning.brighter (0.25));
         
     getDefaultTest (data);
     
