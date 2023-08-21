@@ -19,9 +19,9 @@ namespace {
 
 core::Cached<juce::Colour> getContentColour (const core::Object& o)
 {
-    const juce::String s (o.get<juce::String> (Tag::Attributes, Tag::Content));
+    const bool isSignal = o.get<juce::String> (Tag::Attributes, Tag::Content).endsWith ("~");
     
-    return Spaghettis()->getCachedColour (s.endsWith ("~") ? Tag::PinSignal : Tag::PinAnything);
+    return Spaghettis()->getCachedColour (isSignal ? Tag::PinSignal : Tag::PinAnything);
 }
 
 bool isOutlet (const core::Object& o)
@@ -58,7 +58,7 @@ void InletPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     g.setColour (boxBackgroundColour_.get());
     g.fillRect (r);
-    g.setColour (arrowColour_.get());
+    g.setColour (arrowColour_.get().withAlpha (0.75f));
     
     if (f > 0.5) {
         if (isOutlet_) { LookAndFeel::drawArrowUp (g, r.reduced (2 * f)); }
