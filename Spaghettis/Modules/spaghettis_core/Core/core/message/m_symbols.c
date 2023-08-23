@@ -495,7 +495,6 @@ t_symbol *sym_sigmund__tilde__;
 t_symbol *sym_signal;
 t_symbol *sym_sin;
 t_symbol *sym_sinesum;
-t_symbol *sym_single;
 t_symbol *sym_size;
 t_symbol *sym_slider;
 t_symbol *sym_snap;
@@ -1080,7 +1079,6 @@ PD_LOCAL void symbols_initialize (void)
     sym_signal                                  = gensym ("signal");
     sym_sin                                     = gensym ("sin");
     sym_sinesum                                 = gensym ("sinesum");
-    sym_single                                  = gensym ("single");
     sym_size                                    = gensym ("size");
     sym_slider                                  = gensym ("slider");
     sym_snap                                    = gensym ("snap");

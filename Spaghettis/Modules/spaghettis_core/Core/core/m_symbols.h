@@ -495,7 +495,6 @@ extern t_symbol *sym_sigmund__tilde__;
 extern t_symbol *sym_signal;
 extern t_symbol *sym_sin;
 extern t_symbol *sym_sinesum;
-extern t_symbol *sym_single;
 extern t_symbol *sym_size;
 extern t_symbol *sym_slider;
 extern t_symbol *sym_snap;
