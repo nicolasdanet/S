@@ -284,8 +284,8 @@ static int legacy_convertGUI (t_buffer *x, t_symbol *key, int length, int m, int
         start = iterator_get (iter) - 1 - m - n;
         end   = iterator_get (iter) - 1 - m;
         
-        if (key == sym_vradio) { atoms[7] = atoms[8]; }
-        if (key == sym_hradio) { atoms[7] = atoms[8]; }
+        if (key == sym_vradio) { SET_FLOAT (atoms + 6, 0.0); atoms[7] = atoms[8]; }
+        if (key == sym_hradio) { SET_FLOAT (atoms + 6, 0.0); atoms[7] = atoms[8]; }
         if (key == sym_panel)  { atoms[5] = atoms[6]; atoms[6] = atoms[7]; }
         
         break;

@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#define RADIO_SIZE_DEFAULT              15
+#define RADIO_SIZE_DEFAULT              18
 #define RADIO_SIZE_MINIMUM              8
 #define RADIO_BUTTONS_DEFAULT           8
 #define RADIO_BUTTONS_MAXIMUM           32
