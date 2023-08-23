@@ -44,7 +44,7 @@
 #X floatatom 276 276 5 0 0 1 - - -;
 #X f 5;
 #N canvas 813 323 479 314 more 0;
-#X obj 36 132 hradio 15 multiple 0 4 empty empty empty 0 0 0 10 #ffffff #000000 #000000 0;
+#X obj 36 132 hradio 15 1 0 4 empty empty empty 0 0 0 10 #ffffff #000000 #000000 0;
 #X floatatom 36 48 5 0 32 1 - - -;
 #X f 5;
 #X obj 36 240 & 1;

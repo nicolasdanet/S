@@ -5,7 +5,7 @@
 #X obj 216 156 dial 5 40 0 127 0 127;
 #X obj 48 300 hslider 128 15 0 127 0;
 #X obj 48 228 bng 15 250;
-#X obj 216 264 vradio 15 single 8;
+#X obj 216 264 vradio 15 0 8;
 #X obj 336 264 menubutton 8 0;
 #X msg 48 192 bang;
 #X obj 48 156 metro 1000;
@@ -15,7 +15,7 @@
 #X msg 336 120 menu bijou caillou chou genou hibou joujou pou;
 #X obj 48 72 t b b;
 #X obj 216 216 % 8;
-#X obj 336 228 hradio 15 single 8;
+#X obj 336 228 hradio 15 0 8;
 #X obj 48 384 vu 15 120;
 #X obj 336 312 print;
 #X obj 48 540 print;
