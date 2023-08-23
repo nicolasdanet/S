@@ -30,11 +30,11 @@ static t_class *radio_class;            /* Shared. */
 typedef struct _radio {
     t_object        x_obj;              /* MUST be the first. */
     int             x_isVertical;
+    int             x_isMultiple;
     int             x_size;
     int             x_numberOfButtons;
     int64_t         x_state;
     t_float         x_floatValue;
-    t_symbol        *x_mode;
     t_outlet        *x_outlet;
     } t_radio;
 
@@ -44,7 +44,7 @@ typedef struct _radio {
 
 static void radio_setState (t_radio *x, int64_t n)
 {
-    if (x->x_mode == sym_multiple) {
+    if (x->x_isMultiple) {
         x->x_state = n & (((int64_t)1 << x->x_numberOfButtons) - 1);
     } else {
         x->x_state = PD_CLAMP (n, 0, (x->x_numberOfButtons - 1));
@@ -88,11 +88,11 @@ static void radio_buttonsNumber (t_radio *x, t_float numberOfButtons)
 
 static void radio_mode (t_radio *x, t_symbol *s)
 {
-    t_symbol *old = x->x_mode;
+    int old = x->x_isMultiple;
     
-    x->x_mode = (s == sym_multiple) ? sym_multiple : sym_single;
+    x->x_isMultiple = (s == sym_multiple) ? 1 : 0;
     
-    if (old != x->x_mode) {
+    if (old != x->x_isMultiple) {
         radio_setState (x, x->x_state); glist_setDirty (object_getOwner (cast_object (x)), 1);
     }
 }
@@ -111,7 +111,7 @@ static void radio_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  object_getY (z));
     buffer_appendSymbol (b, x->x_isVertical ? sym_vradio : sym_hradio);
     buffer_appendFloat (b,  x->x_size);
-    buffer_appendSymbol (b, x->x_mode);
+    buffer_appendFloat (b,  x->x_isMultiple);
     buffer_appendFloat (b,  x->x_numberOfButtons);
     if (SAVED_DEEP (flags)) { buffer_appendFloat (b, x->x_floatValue); }
     buffer_appendSemicolon (b);
@@ -135,14 +135,14 @@ static void *radio_new (t_symbol *s, int argc, t_atom *argv)
     t_radio *x = (t_radio *)pd_new (radio_class);
     
     int size            = (argc > 2) ? (int)atom_getFloat (argv + 0) : RADIO_SIZE_DEFAULT;
-    t_symbol *mode      = (argc > 2) ? atom_getSymbol (argv + 1) : NULL;
+    int isMultiple      = (argc > 2) ? atom_getFloat (argv + 1) : 0.0;
     int numberOfButtons = (argc > 2) ? (int)atom_getFloat (argv + 2) : RADIO_BUTTONS_DEFAULT;
     t_float floatValue  = (argc > 3) ? atom_getFloat (argv + 3) : 0.0;
 
     x->x_size               = PD_MAX (size, RADIO_SIZE_MINIMUM);
     x->x_numberOfButtons    = PD_CLAMP (numberOfButtons, 1, RADIO_BUTTONS_MAXIMUM);
     x->x_floatValue         = floatValue;
-    x->x_mode               = (mode == sym_multiple) ? sym_multiple : sym_single;
+    x->x_isMultiple         = isMultiple;
     x->x_outlet             = outlet_newFloat (cast_object (x));
 
     if (s == sym_vradio) { x->x_isVertical = 1; }
