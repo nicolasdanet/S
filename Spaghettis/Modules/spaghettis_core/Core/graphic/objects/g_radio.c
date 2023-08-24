@@ -34,7 +34,7 @@ typedef struct _radio {
     int             x_size;
     int             x_numberOfButtons;
     int64_t         x_state;
-    t_float         x_value;
+    t_float         x_floatValue;
     t_outlet        *x_outlet;
     } t_radio;
 
@@ -44,9 +44,8 @@ typedef struct _radio {
 
 static void radio_setState (t_radio *x, int64_t n)
 {
-    if (x->x_isMultiple) {
-        x->x_state = n & (((int64_t)1 << x->x_numberOfButtons) - 1);
-    } else {
+    if (x->x_isMultiple) { x->x_state = n & (((int64_t)1 << x->x_numberOfButtons) - 1); }
+    else {
         x->x_state = PD_CLAMP (n, 0, (x->x_numberOfButtons - 1));
     }
 }
@@ -57,12 +56,12 @@ static void radio_setState (t_radio *x, int64_t n)
 
 static void radio_bang (t_radio *x)
 {
-    outlet_float (x->x_outlet, x->x_value);
+    outlet_float (x->x_outlet, x->x_floatValue);
 }
 
 static void radio_float (t_radio *x, t_float f)
 {
-    radio_setState (x, (int64_t)f); x->x_value = f; radio_bang (x);
+    radio_setState (x, (int64_t)f); x->x_floatValue = f; radio_bang (x);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -76,7 +75,7 @@ static void radio_size (t_radio *x, t_symbol *s, int argc, t_atom *argv)
 
 static void radio_set (t_radio *x, t_float f)
 {
-    radio_setState (x, (int64_t)f); x->x_value = f;
+    radio_setState (x, (int64_t)f); x->x_floatValue = f;
 }
 
 static void radio_buttonsNumber (t_radio *x, t_float numberOfButtons)
@@ -109,7 +108,7 @@ static void radio_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  x->x_size);
     buffer_appendFloat (b,  x->x_isMultiple);
     buffer_appendFloat (b,  x->x_numberOfButtons);
-    if (SAVED_DEEP (flags)) { buffer_appendFloat (b, x->x_value); }
+    if (SAVED_DEEP (flags)) { buffer_appendFloat (b, x->x_floatValue); }
     buffer_appendSemicolon (b);
     
     object_saveIdentifiers (z, b, flags);
@@ -137,13 +136,13 @@ static void *radio_new (t_symbol *s, int argc, t_atom *argv)
 
     x->x_size               = PD_MAX (size, RADIO_SIZE_MINIMUM);
     x->x_numberOfButtons    = PD_CLAMP (numberOfButtons, 1, RADIO_BUTTONS_MAXIMUM);
-    x->x_value              = value;
+    x->x_floatValue         = value;
     x->x_isMultiple         = isMultiple;
     x->x_outlet             = outlet_newFloat (cast_object (x));
 
     if (s == sym_vradio) { x->x_isVertical = 1; }
         
-    radio_setState (x, (int64_t)(x->x_value));
+    radio_setState (x, (int64_t)(x->x_floatValue));
     
     return x;
 }
