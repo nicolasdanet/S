@@ -50,6 +50,11 @@ static void radio_setState (t_radio *x, int64_t n)
     }
 }
 
+static void radio_setValue (t_radio *x, t_float f)
+{
+    radio_setState (x, (int64_t)f); x->x_floatValue = f;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -61,7 +66,7 @@ static void radio_bang (t_radio *x)
 
 static void radio_float (t_radio *x, t_float f)
 {
-    radio_setState (x, (int64_t)f); x->x_floatValue = f; radio_bang (x);
+    radio_setValue (x, f); radio_bang (x);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -75,7 +80,7 @@ static void radio_size (t_radio *x, t_symbol *s, int argc, t_atom *argv)
 
 static void radio_set (t_radio *x, t_float f)
 {
-    radio_setState (x, (int64_t)f); x->x_floatValue = f;
+    radio_setValue (x, f);
 }
 
 static void radio_buttonsNumber (t_radio *x, t_float numberOfButtons)
@@ -136,13 +141,12 @@ static void *radio_new (t_symbol *s, int argc, t_atom *argv)
 
     x->x_size               = PD_MAX (size, RADIO_SIZE_MINIMUM);
     x->x_numberOfButtons    = PD_CLAMP (numberOfButtons, 1, RADIO_BUTTONS_MAXIMUM);
-    x->x_floatValue         = value;
     x->x_isMultiple         = isMultiple;
     x->x_outlet             = outlet_newFloat (cast_object (x));
 
     if (s == sym_vradio) { x->x_isVertical = 1; }
         
-    radio_setState (x, (int64_t)(x->x_floatValue));
+    radio_setValue (x, value);
     
     return x;
 }
