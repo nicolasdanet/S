@@ -46,6 +46,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (BangBackground);
     DECLARE_STRING (BangFlashOff);
     DECLARE_STRING (BangFlashOn);
+    DECLARE_STRING (Buttons);
     DECLARE_STRING (Class);
     DECLARE_STRING (Colors);
     DECLARE_STRING (CommentBackground);
@@ -81,6 +82,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (MessageBackground);
     DECLARE_STRING (MessageText);
     DECLARE_STRING (MessageClicked);
+    DECLARE_STRING (Multiple);
     DECLARE_STRING (Name);
     DECLARE_STRING (NonZero);
     DECLARE_STRING (Outlet);
@@ -109,6 +111,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Toggle);
     DECLARE_STRING (Undo);
     DECLARE_STRING (Value);
+    DECLARE_STRING (Vertical);
     DECLARE_STRING (Visible);
     DECLARE_STRING (Width);
     DECLARE_STRING (X);

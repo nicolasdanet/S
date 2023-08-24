@@ -15,6 +15,7 @@
 
 #define RADIO_SIZE_DEFAULT              18
 #define RADIO_SIZE_MINIMUM              8
+#define RADIO_SIZE_MAXIMUM              256
 #define RADIO_BUTTONS_DEFAULT           8
 #define RADIO_BUTTONS_MAXIMUM           32
 
@@ -75,7 +76,13 @@ static void radio_float (t_radio *x, t_float f)
 
 static void radio_size (t_radio *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) { int n = atom_getFloatAtIndex (0, argc, argv); x->x_size = PD_MAX (n, RADIO_SIZE_MINIMUM); }
+    if (argc) {
+    //
+    int n = atom_getFloatAtIndex (0, argc, argv);
+    
+    x->x_size = PD_CLAMP (n, RADIO_SIZE_MINIMUM, RADIO_SIZE_MAXIMUM);
+    //
+    }
 }
 
 static void radio_set (t_radio *x, t_float f)
@@ -96,6 +103,72 @@ static void radio_mode (t_radio *x, t_symbol *s)
     
     if (t != x->x_isMultiple) { x->x_isMultiple = t; radio_setState (x, x->x_state); }
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void radio_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+{
+    t_radio *x = (t_radio *)o;
+    
+    static DelegateCache delegate;
+    
+    if (t.contains (Tag::Value)) {
+        group.addParameter (Tag::Value,
+            NEEDS_TRANS ("Value"),
+            NEEDS_TRANS ("Value of selector"),
+            x->x_floatValue,
+            delegate);
+    }
+    
+    if (t.contains (Tag::Vertical)) {
+        group.addParameter (Tag::Vertical,
+            NEEDS_TRANS ("Vertical"),
+            NEEDS_TRANS ("Orientation is vertical"),
+            static_cast<bool> (x->x_isVertical),
+            delegate);
+    }
+    
+    if (t.contains (Tag::Multiple)) {
+        group.addParameter (Tag::Multiple,
+            NEEDS_TRANS ("Multiple"),
+            NEEDS_TRANS ("Set in multiple mode"),
+            static_cast<bool> (x->x_isMultiple),
+            delegate);
+    }
+    
+    if (t.contains (Tag::Buttons)) {
+        group.addParameter (Tag::Buttons,
+            NEEDS_TRANS ("Buttons"),
+            NEEDS_TRANS ("Number of buttons"),
+            x->x_numberOfButtons,
+            delegate).setRange (juce::Range<int> (1, RADIO_BUTTONS_MAXIMUM));
+    }
+    
+    if (t.contains (Tag::Width)) {
+        group.addParameter (Tag::Width,
+            NEEDS_TRANS ("Width"),
+            NEEDS_TRANS ("Border size of a button"),
+            x->x_size,
+            delegate).setRange (juce::Range<int> (RADIO_SIZE_MINIMUM, RADIO_SIZE_MAXIMUM));
+    }
+}
+
+static void radio_functionSetParameters (t_object *o, const core::Group& group)
+{
+    t_radio *x = (t_radio *)o;
+    
+    jassert (group.hasParameter (Tag::Value));
+    jassert (group.hasParameter (Tag::Vertical));
+    jassert (group.hasParameter (Tag::Multiple));
+    jassert (group.hasParameter (Tag::Buttons));
+    jassert (group.hasParameter (Tag::Width));
+}
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -178,6 +251,12 @@ PD_LOCAL void radio_setup (void)
     class_addMethod (c, (t_method)radio_mode,           sym_mode,           A_DEFSYMBOL, A_NULL);
     class_addMethod (c, (t_method)radio_restore,        sym__restore,       A_NULL);
 
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    class_setParametersFunctions (c, radio_functionGetParameters, radio_functionSetParameters);
+    
+    #endif
+    
     class_setHelpName (c, sym_radio);
     class_setSaveFunction (c, radio_functionSave);
     class_setDataFunction (c, object_functionData);
