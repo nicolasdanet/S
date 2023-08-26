@@ -42,7 +42,7 @@ typedef struct _bng {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void bng_updateFlashed (t_bng *, int);
+static void bng_updateFlashed (t_bng *, int, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ static void bng_updateFlashed (t_bng *, int);
 
 static void bng_taskFlash (t_bng *x)
 {
-    bng_updateFlashed (x, 0);
+    bng_updateFlashed (x, 0, 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ static void bng_taskFlash (t_bng *x)
 
 static void bng_bang (t_bng *x)
 {
-    bng_updateFlashed (x, 1); clock_delay (x->x_clock, x->x_time);
+    bng_updateFlashed (x, 1, 1); clock_delay (x->x_clock, x->x_time);
 
     outlet_bang (x->x_outlet);
 }
@@ -88,35 +88,54 @@ static void bng_anything (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static int bng_update (int *t, int n)
+static void bng_updateFlashed (t_bng *x, int n, int notify)
 {
-    if (n != *t) { *t = n; return 1; } else { return 0; }
-}
-
-static void bng_updateFlashed (t_bng *x, int n)
-{
-    if (bng_update (&x->x_flashed, (n != 0))) {
+    int t = (n != 0);
+    
+    if (x->x_flashed != t) {
+    //
+    x->x_flashed = t;
+    
+    if (notify) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Flashed));
         #endif
     }
+    //
+    }
 }
 
-static void bng_updateFlashTime (t_bng *x, int n)
+static void bng_updateFlashTime (t_bng *x, int n, int notify)
 {
-    if (bng_update (&x->x_time, PD_CLAMP (n, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM))) {
+    int t = PD_CLAMP (n, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM);
+    
+    if (x->x_time != t) {
+    //
+    x->x_time = t;
+    
+    if (notify) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::FlashTime));
         #endif
     }
+    //
+    }
 }
 
-static void bng_updateSize (t_bng *x, int n)
+static void bng_updateSize (t_bng *x, int n, int notify)
 {
-    if (bng_update (&x->x_size, PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM))) {
+    int t = PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM);
+    
+    if (x->x_size != t) {
+    //
+    x->x_size = t;
+    
+    if (notify) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
         #endif
+    }
+    //
     }
 }
 
@@ -124,14 +143,14 @@ static void bng_updateSize (t_bng *x, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void bng_size (t_bng *x, t_symbol *s, int argc, t_atom *argv)
-{
-    if (argc) { bng_updateSize (x, (int)atom_getFloatAtIndex (0, argc, argv)); }
-}
-
 static void bng_flashtime (t_bng *x, t_float f)
 {
-    bng_updateFlashTime (x, (int)f);
+    bng_updateFlashTime (x, (int)f, 1);
+}
+
+static void bng_size (t_bng *x, t_symbol *s, int argc, t_atom *argv)
+{
+    if (argc) { bng_updateSize (x, (int)atom_getFloatAtIndex (0, argc, argv), 1); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -178,8 +197,8 @@ static void bng_functionSetParameters (t_object *o, const core::Group& group)
     jassert (group.hasParameter (Tag::FlashTime));
     jassert (group.hasParameter (Tag::Width));
     
-    bng_updateFlashTime (x, group.getParameter (Tag::FlashTime).getValueTyped<int>());
-    bng_updateSize (x, group.getParameter (Tag::Width).getValueTyped<int>());
+    bng_updateFlashTime (x, group.getParameter (Tag::FlashTime).getValueTyped<int>(), 1);
+    bng_updateSize (x, group.getParameter (Tag::Width).getValueTyped<int>(), 1);
 }
 
 #endif
@@ -260,10 +279,10 @@ PD_LOCAL void bng_setup (void)
     class_addList (c, (t_method)bng_list);
     class_addAnything (c, (t_method)bng_anything);
     
-    class_addMethod (c, (t_method)bng_size,         sym_size,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)bng_flashtime,    sym_flashtime,  A_FLOAT, A_NULL);
+    class_addMethod (c, (t_method)bng_size,         sym_size,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)bng_restore,      sym__restore,   A_NULL);
-
+    
     #if defined ( PD_BUILDING_APPLICATION )
     
     class_setParametersFunctions (c, bng_functionGetParameters, bng_functionSetParameters);

@@ -38,7 +38,7 @@ typedef struct _toggle {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static int toggle_updateState (t_toggle *x, int n, int notify);
+static int toggle_updateState (t_toggle *, int, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -128,11 +128,6 @@ static void toggle_updateSize (t_toggle *x, int n, int notify)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void toggle_size (t_toggle *x, t_symbol *s, int argc, t_atom *argv)
-{
-    if (argc) { toggle_updateSize (x, (int)atom_getFloatAtIndex (0, argc, argv), 1); }
-}
-
 static void toggle_set (t_toggle *x, t_float f)
 {
     toggle_updateState (x, f, 1);
@@ -141,6 +136,11 @@ static void toggle_set (t_toggle *x, t_float f)
 static void toggle_nonZero (t_toggle *x, t_float f)
 {
     toggle_updateNonZero (x, f, 1);
+}
+
+static void toggle_size (t_toggle *x, t_symbol *s, int argc, t_atom *argv)
+{
+    if (argc) { toggle_updateSize (x, (int)atom_getFloatAtIndex (0, argc, argv), 1); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -270,9 +270,9 @@ PD_LOCAL void toggle_setup (void)
     class_addBang (c, (t_method)toggle_bang);
     class_addFloat (c, (t_method)toggle_float);
     
-    class_addMethod (c, (t_method)toggle_size,      sym_size,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)toggle_set,       sym_set,        A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)toggle_nonZero,   sym_nonzero,    A_FLOAT, A_NULL);
+    class_addMethod (c, (t_method)toggle_size,      sym_size,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)toggle_restore,   sym__restore,   A_NULL);
     
     #if defined ( PD_BUILDING_APPLICATION )

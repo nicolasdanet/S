@@ -42,7 +42,7 @@ typedef struct _radio {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void radio_updateValue (t_radio *x, t_float f, int notify);
+static void radio_updateValue (t_radio *, t_float, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -306,10 +306,10 @@ PD_LOCAL void radio_setup (void)
     class_addBang (c, (t_method)radio_bang);
     class_addFloat (c, (t_method)radio_float);
     
-    class_addMethod (c, (t_method)radio_size,           sym_size,           A_GIMME, A_NULL);
     class_addMethod (c, (t_method)radio_set,            sym_set,            A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)radio_buttonsNumber,  sym_buttonsnumber,  A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)radio_mode,           sym_mode,           A_DEFSYMBOL, A_NULL);
+    class_addMethod (c, (t_method)radio_size,           sym_size,           A_GIMME, A_NULL);
     class_addMethod (c, (t_method)radio_restore,        sym__restore,       A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )
