@@ -227,6 +227,12 @@ static void radio_functionSetParameters (t_object *o, const core::Group& group)
     jassert (group.hasParameter (Tag::Multiple));
     jassert (group.hasParameter (Tag::Buttons));
     jassert (group.hasParameter (Tag::Width));
+    
+    radio_updateValue (x, group.getParameter (Tag::Value).getValueTyped<t_float>(), 1);
+    radio_updateOrientation (x, group.getParameter (Tag::Vertical).getValueTyped<bool>(), 1);
+    radio_updateMode (x, group.getParameter (Tag::Multiple).getValueTyped<bool>(), 1);
+    radio_updateButtons (x, group.getParameter (Tag::Buttons).getValueTyped<int>(), 1);
+    radio_updateSize (x, group.getParameter (Tag::Width).getValueTyped<int>(), 1);
 }
 
 #endif
