@@ -272,16 +272,16 @@ static void *radio_new (t_symbol *s, int argc, t_atom *argv)
     int isMultiple      = (argc > 2) ? atom_getFloat (argv + 1) : 0.0;
     int numberOfButtons = (argc > 2) ? (int)atom_getFloat (argv + 2) : RADIO_BUTTONS_DEFAULT;
     t_float value       = (argc > 3) ? atom_getFloat (argv + 3) : 0.0;
-
-    x->x_isMultiple         = isMultiple;
-    x->x_numberOfButtons    = PD_CLAMP (numberOfButtons, 1, RADIO_BUTTONS_MAXIMUM);
-    x->x_size               = PD_MAX (size, RADIO_SIZE_MINIMUM);
-    x->x_outlet             = outlet_newFloat (cast_object (x));
-
-    if (s == sym_vradio) { x->x_isVertical = 1; }
-        
+    int isVertical      = (s == sym_vradio) ? 1 : 0;
+    
+    radio_updateOrientation (x, isVertical, 0);
+    radio_updateMode (x, isMultiple, 0);
+    radio_updateButtons (x, numberOfButtons, 0);
+    radio_updateSize (x, size, 0);
     radio_updateValue (x, value, 0);
     
+    x->x_outlet = outlet_newFloat (cast_object (x));
+
     return x;
 }
 

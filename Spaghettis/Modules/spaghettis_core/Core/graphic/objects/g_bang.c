@@ -243,8 +243,8 @@ static void *bng_new (t_symbol *s, int argc, t_atom *argv)
     int size = (argc > 1) ? (int)atom_getFloat (argv + 0) : BANG_SIZE_DEFAULT;
     int time = (argc > 1) ? (int)atom_getFloat (argv + 1) : BANG_TIME_DEFAULT;
 
-    x->x_size   = PD_CLAMP (size, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM);
-    x->x_time   = PD_CLAMP (time, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM);
+    bng_updateFlashTime (x, time, 0);
+    bng_updateSize (x, size, 0);
     
     x->x_outlet = outlet_newBang (cast_object (x));
     x->x_clock  = clock_new ((void *)x, (t_method)bng_taskFlash);
