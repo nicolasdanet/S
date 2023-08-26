@@ -75,7 +75,7 @@ static int toggle_updateState (t_toggle *x, int n, int notify)
 {
     int t = (n != 0);
     
-    if (t != x->x_state) {
+    if (x->x_state != t) {
     //
     x->x_state = t;
     

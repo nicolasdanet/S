@@ -32,10 +32,9 @@ typedef struct _radio {
     t_object        x_obj;              /* MUST be the first. */
     int             x_isVertical;
     int             x_isMultiple;
-    int             x_size;
     int             x_numberOfButtons;
-    int64_t         x_state;
-    t_float         x_floatValue;
+    int             x_size;
+    t_float         x_value;
     t_outlet        *x_outlet;
     } t_radio;
 
@@ -43,18 +42,7 @@ typedef struct _radio {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void radio_setState (t_radio *x, int64_t n)
-{
-    if (x->x_isMultiple) { x->x_state = n & (((int64_t)1 << x->x_numberOfButtons) - 1); }
-    else {
-        x->x_state = PD_CLAMP (n, 0, (x->x_numberOfButtons - 1));
-    }
-}
-
-static void radio_setValue (t_radio *x, t_float f)
-{
-    radio_setState (x, (int64_t)f); x->x_floatValue = f;
-}
+static void radio_updateValue (t_radio *x, t_float f, int notify);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -62,46 +50,119 @@ static void radio_setValue (t_radio *x, t_float f)
 
 static void radio_bang (t_radio *x)
 {
-    outlet_float (x->x_outlet, x->x_floatValue);
+    outlet_float (x->x_outlet, x->x_value);
 }
 
 static void radio_float (t_radio *x, t_float f)
 {
-    radio_setValue (x, f); radio_bang (x);
+    radio_updateValue (x, f, 1); radio_bang (x);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void radio_size (t_radio *x, t_symbol *s, int argc, t_atom *argv)
+static void radio_updateValue (t_radio *x, t_float f, int notify)
 {
-    if (argc) {
+    if (x->x_value != f) {
     //
-    int n = atom_getFloatAtIndex (0, argc, argv);
+    x->x_value = f;
     
-    x->x_size = PD_CLAMP (n, RADIO_SIZE_MINIMUM, RADIO_SIZE_MAXIMUM);
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Value));
+        #endif
+    }
     //
     }
 }
 
-static void radio_set (t_radio *x, t_float f)
+static void radio_updateOrientation (t_radio *x, int isVertical, int notify)
 {
-    radio_setValue (x, f);
+    if (x->x_isVertical != isVertical) {
+    //
+    x->x_isVertical = isVertical;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Vertical));
+        #endif
+    }
+    //
+    }
 }
 
-static void radio_buttonsNumber (t_radio *x, t_float numberOfButtons)
+static void radio_updateMode (t_radio *x, int isMultiple, int notify)
+{
+    if (x->x_isMultiple != isMultiple) {
+    //
+    x->x_isMultiple = isMultiple;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Multiple));
+        #endif
+    }
+    //
+    }
+}
+
+static void radio_updateButtons (t_radio *x, int numberOfButtons, int notify)
 {
     int n = PD_CLAMP ((int)numberOfButtons, 1, RADIO_BUTTONS_MAXIMUM);
 
-    if (n != x->x_numberOfButtons) { x->x_numberOfButtons = numberOfButtons; radio_setState (x, x->x_state); }
+    if (x->x_numberOfButtons != n) {
+    //
+    x->x_numberOfButtons = n;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Buttons));
+        #endif
+    }
+    //
+    }
+}
+
+static void radio_updateSize (t_radio *x, int n, int notify)
+{
+    n = PD_CLAMP (n, RADIO_SIZE_MINIMUM, RADIO_SIZE_MAXIMUM);
+    
+    if (x->x_size != n) {
+    //
+    x->x_size = n;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
+        #endif
+    }
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void radio_set (t_radio *x, t_float f)
+{
+    radio_updateValue (x, f, 1);
 }
 
 static void radio_mode (t_radio *x, t_symbol *s)
 {
-    int t = (s == sym_multiple) ? 1 : 0;
-    
-    if (t != x->x_isMultiple) { x->x_isMultiple = t; radio_setState (x, x->x_state); }
+    radio_updateMode (x, ((s == sym_multiple) ? 1 : 0), 1);
+}
+
+static void radio_buttonsNumber (t_radio *x, t_float f)
+{
+    radio_updateButtons (x, (int)f, 1);
+}
+
+static void radio_size (t_radio *x, t_symbol *s, int argc, t_atom *argv)
+{
+    if (argc) { radio_updateSize (x, (int)atom_getFloatAtIndex (0, argc, argv), 1); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -120,7 +181,7 @@ static void radio_functionGetParameters (t_object *o, core::Group& group, const 
         group.addParameter (Tag::Value,
             NEEDS_TRANS ("Value"),
             NEEDS_TRANS ("Value of selector"),
-            x->x_floatValue,
+            x->x_value,
             delegate);
     }
     
@@ -186,7 +247,7 @@ static void radio_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  x->x_size);
     buffer_appendFloat (b,  x->x_isMultiple);
     buffer_appendFloat (b,  x->x_numberOfButtons);
-    if (SAVED_DEEP (flags)) { buffer_appendFloat (b, x->x_floatValue); }
+    if (SAVED_DEEP (flags)) { buffer_appendFloat (b, x->x_value); }
     buffer_appendSemicolon (b);
     
     object_saveIdentifiers (z, b, flags);
@@ -212,14 +273,14 @@ static void *radio_new (t_symbol *s, int argc, t_atom *argv)
     int numberOfButtons = (argc > 2) ? (int)atom_getFloat (argv + 2) : RADIO_BUTTONS_DEFAULT;
     t_float value       = (argc > 3) ? atom_getFloat (argv + 3) : 0.0;
 
-    x->x_size               = PD_MAX (size, RADIO_SIZE_MINIMUM);
-    x->x_numberOfButtons    = PD_CLAMP (numberOfButtons, 1, RADIO_BUTTONS_MAXIMUM);
     x->x_isMultiple         = isMultiple;
+    x->x_numberOfButtons    = PD_CLAMP (numberOfButtons, 1, RADIO_BUTTONS_MAXIMUM);
+    x->x_size               = PD_MAX (size, RADIO_SIZE_MINIMUM);
     x->x_outlet             = outlet_newFloat (cast_object (x));
 
     if (s == sym_vradio) { x->x_isVertical = 1; }
         
-    radio_setValue (x, value);
+    radio_updateValue (x, value, 0);
     
     return x;
 }
