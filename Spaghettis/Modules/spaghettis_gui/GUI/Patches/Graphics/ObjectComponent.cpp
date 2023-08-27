@@ -27,6 +27,7 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const juce
     else if (type == "message") { return std::make_unique<MessagePainter> (owner);  }
     else if (type == "outlet")  { return std::make_unique<InletPainter> (owner);    }
     else if (type == "tgl")     { return std::make_unique<TogglePainter> (owner);   }
+    else if (type == "hradio")  { return std::make_unique<RadioPainter> (owner);    }
     else {
         return std::make_unique<BoxPainter> (owner);
     }
