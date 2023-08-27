@@ -109,7 +109,7 @@ static void radio_updateMode (t_radio *x, int isMultiple, int notify)
 
 static void radio_updateButtons (t_radio *x, int numberOfButtons, int notify)
 {
-    int n = PD_CLAMP ((int)numberOfButtons, 1, RADIO_BUTTONS_MAXIMUM);
+    int n = PD_CLAMP (numberOfButtons, 1, RADIO_BUTTONS_MAXIMUM);
 
     if (x->x_numberOfButtons != n) {
     //

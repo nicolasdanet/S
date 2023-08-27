@@ -59,12 +59,18 @@ juce::Rectangle<int> RadioPainter::getRequiredBoundsForObject()
 
 std::optional<core::Vector::Real> RadioPainter::getDimensions()
 {
-    const int w = width_.get(); return core::Vector::Real (w, w);
+    const int w = width_.get();
+    const int h = w * buttons_.get();
+    
+    if (isVertical_.get()) { return core::Vector::Real (w, h); }
+    else {
+        return core::Vector::Real (h, w);
+    }
 }
 
 void RadioPainter::setDimensions (core::Vector::Real v)
 {
-    setDimensionsByParameters (v);
+    // setDimensionsByParameters (v);
 }
     
 // -----------------------------------------------------------------------------------------------------------
