@@ -40,7 +40,8 @@ public:
     void setDimensions (core::Vector::Real) override;
 
 private:
-    void paintBackground (juce::Rectangle<int>, juce::Graphics&);
+    void paintBackgroundVertical (juce::Rectangle<int>, juce::Graphics&);
+    void paintBackgroundHorizontal (juce::Rectangle<int>, juce::Graphics&);
     
 private:
     core::Cached<juce::Colour> radioBackgroundColour_;

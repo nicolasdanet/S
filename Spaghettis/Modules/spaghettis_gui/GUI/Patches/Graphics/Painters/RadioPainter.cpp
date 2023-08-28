@@ -40,9 +40,30 @@ void RadioPainter::mouseDown (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RadioPainter::paintBackground (juce::Rectangle<int> r, juce::Graphics& g)
+void RadioPainter::paintBackgroundVertical (juce::Rectangle<int> r, juce::Graphics& g)
 {
+    const int n         = buttons_.get();
+    const int w         = width_.get();
+    const float left    = r.getX();
+    const float right   = r.getRight();
+    const float offset  = r.getY() - 0.5f;
+    
+    for (int i = 1; i < n; ++i) {
+        g.fillRect (juce::Rectangle<float> (left, (i * w) + offset, right - left, 1.0f));
+    }
+}
 
+void RadioPainter::paintBackgroundHorizontal (juce::Rectangle<int> r, juce::Graphics& g)
+{
+    const int n         = buttons_.get();
+    const int w         = width_.get();
+    const float top     = r.getY();
+    const float bottom  = r.getBottom();
+    const float offset  = r.getX() - 0.5f;
+    
+    for (int i = 1; i < n; ++i) {
+        g.fillRect (juce::Rectangle<float> ((i * w) + offset, top, 1.0f, bottom - top));
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -55,9 +76,9 @@ void RadioPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     g.setColour (c);
     g.fillRect (r);
-    g.setColour (c.contrasting (0.25f));
+    g.setColour (c.contrasting (0.1f));
     
-    paintBackground (r, g);
+    if (isVertical_.get()) { paintBackgroundVertical (r, g); } else { paintBackgroundHorizontal (r, g); }
 }
 
 juce::Rectangle<int> RadioPainter::getRequiredBoundsForObject()
