@@ -99,6 +99,8 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (PinOver);
     DECLARE_STRING (PinSignal);
     DECLARE_STRING (PinSymbol);
+    DECLARE_STRING (RadioBackground);
+    DECLARE_STRING (RadioButton);
     DECLARE_STRING (Redo);
     DECLARE_STRING (RunView);
     DECLARE_STRING (Selected);

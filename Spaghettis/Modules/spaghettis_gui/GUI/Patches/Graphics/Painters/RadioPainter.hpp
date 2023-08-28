@@ -38,11 +38,13 @@ public:
     juce::Rectangle<int> getRequiredBoundsForObject() override;
     std::optional<core::Vector::Real> getDimensions() override;
     void setDimensions (core::Vector::Real) override;
+
+private:
+    void paintBackground (juce::Rectangle<int>, juce::Graphics&);
     
 private:
     core::Cached<juce::Colour> radioBackgroundColour_;
-    core::Cached<juce::Colour> radioButtonsOffColour_;
-    core::Cached<juce::Colour> radioButtonsOnColour_;
+    core::Cached<juce::Colour> radioButtonColour_;
     core::Cached<bool> isVertical_;
     core::Cached<int> buttons_;
     core::Cached<int> width_;

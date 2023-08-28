@@ -256,6 +256,16 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Toggle"),
         NEEDS_TRANS ("Set color of cross"),
         Colours::getPalette()->backgroundPopup);
+    
+    colors.addParameter (Tag::RadioBackground,
+        NEEDS_TRANS ("Radio buttons Background"),
+        NEEDS_TRANS ("Set background color of radio buttons"),
+        Colours::getPalette()->backgroundWidget);
+    
+    colors.addParameter (Tag::RadioButton,
+        NEEDS_TRANS ("Radio Button"),
+        NEEDS_TRANS ("Set color of activated radio buttons"),
+        Colours::getPalette()->backgroundPopup);
         
     colors.addParameter (Tag::CommentBackground,
         NEEDS_TRANS ("Comment Background"),
