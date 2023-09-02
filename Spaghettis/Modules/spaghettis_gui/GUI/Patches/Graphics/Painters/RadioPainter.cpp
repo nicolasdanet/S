@@ -44,6 +44,34 @@ void RadioPainter::mouseDown (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::Rectangle<float> getSelectorPosition (juce::Rectangle<int> r, bool vertical, int width, int i)
+{
+    const float top     = r.getY();
+    const float bottom  = r.getBottom();
+    const float left    = r.getX();
+    const float right   = r.getRight();
+    
+    if (vertical) {
+        return juce::Rectangle<float> (left, (i * width) + top, right - left, width);
+    } else {
+        return juce::Rectangle<float> ((i * width) + left, top, width, bottom - top);
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void RadioPainter::paintStateAt (juce::Rectangle<int> r, juce::Graphics& g, int i)
 {
     // g.fillRect ();
@@ -70,21 +98,18 @@ void RadioPainter::paintStateMultiple (juce::Rectangle<int> r, juce::Graphics& g
 void RadioPainter::paintBackground (juce::Rectangle<int> r, juce::Graphics& g)
 {
     const bool vertical = isVertical_.get();
-    
+    const int width     = width_.get();
     const int n         = buttons_.get();
-    const int w         = width_.get();
-    const float top     = r.getY();
-    const float bottom  = r.getBottom();
-    const float left    = r.getX();
-    const float right   = r.getRight();
-    const float offset  = (vertical ? top : left) - 0.5f;
     
-    for (int i = 0; i < n; ++i) {
-        if (vertical) {
-            g.fillRect (juce::Rectangle<float> (left, (i * w) + offset, right - left, 1.0f));
-        } else {
-            g.fillRect (juce::Rectangle<float> ((i * w) + offset, top, 1.0f, bottom - top));
-        }
+    for (int i = 1; i < n; ++i) {
+    //
+    const juce::Rectangle<float> t = getSelectorPosition (r, vertical, width, i);
+    
+    if (vertical) { g.fillRect (t.withHeight (1.0f).translated (0.0f, -0.5f)); }
+    else {
+        g.fillRect (t.withWidth (1.0f).translated (-0.5f, 0.0f));
+    }
+    //
     }
 }
 
