@@ -40,7 +40,6 @@ public:
     void setDimensions (core::Vector::Real) override;
 
 private:
-    void paintStateAt (juce::Rectangle<int>, juce::Graphics&, int);
     void paintStateSingle (juce::Rectangle<int>, juce::Graphics&);
     void paintStateMultiple (juce::Rectangle<int>, juce::Graphics&);
     void paintBackground (juce::Rectangle<int>, juce::Graphics&);

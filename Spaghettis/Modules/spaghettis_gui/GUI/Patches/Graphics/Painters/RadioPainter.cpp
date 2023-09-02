@@ -63,6 +63,11 @@ juce::Rectangle<float> getSelectorPosition (juce::Rectangle<int> r, bool vertica
     }
 }
 
+void paintStateAt (juce::Rectangle<int> r, juce::Graphics& g, bool vertical, int width, int i)
+{
+    g.fillRect (getSelectorPosition (r, vertical, width, i).reduced (4.0f));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -72,40 +77,47 @@ juce::Rectangle<float> getSelectorPosition (juce::Rectangle<int> r, bool vertica
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RadioPainter::paintStateAt (juce::Rectangle<int> r, juce::Graphics& g, int i)
-{
-    // g.fillRect ();
-}
-
 void RadioPainter::paintStateSingle (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const int n = buttons_.get();
+    const bool v = isVertical_.get();
+    const int w  = width_.get();
+    const int n  = buttons_.get();
     
     const int t = juce::jlimit (0, n, static_cast<int> (value_.get()));
     
-    for (int i = 0; i < n; ++i) { if (i == t) { paintStateAt (r, g, i); } }
+    for (int i = 0; i < n; ++i) {
+        if (i == t) {
+            paintStateAt (r, g, v, w, i);
+        }
+    }
 }
 
 void RadioPainter::paintStateMultiple (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const int n = buttons_.get();
+    const bool v = isVertical_.get();
+    const int w  = width_.get();
+    const int n  = buttons_.get();
     
     const juce::BigInteger t (static_cast<int64_t> (value_.get()));
 
-    for (int i = 0; i < n; ++i) { if (t[i]) { paintStateAt (r, g, i); } }
+    for (int i = 0; i < n; ++i) {
+        if (t[i]) {
+            paintStateAt (r, g, v, w, i);
+        }
+    }
 }
 
 void RadioPainter::paintBackground (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const bool vertical = isVertical_.get();
-    const int width     = width_.get();
-    const int n         = buttons_.get();
+    const bool v = isVertical_.get();
+    const int w  = width_.get();
+    const int n  = buttons_.get();
     
     for (int i = 1; i < n; ++i) {
     //
-    const juce::Rectangle<float> t = getSelectorPosition (r, vertical, width, i);
+    const juce::Rectangle<float> t = getSelectorPosition (r, v, w, i);
     
-    if (vertical) { g.fillRect (t.withHeight (1.0f).translated (0.0f, -0.5f)); }
+    if (v) { g.fillRect (t.withHeight (1.0f).translated (0.0f, -0.5f)); }
     else {
         g.fillRect (t.withWidth (1.0f).translated (-0.5f, 0.0f));
     }
