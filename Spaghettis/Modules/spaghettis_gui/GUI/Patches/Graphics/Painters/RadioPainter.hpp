@@ -40,14 +40,17 @@ public:
     void setDimensions (core::Vector::Real) override;
 
 private:
-    bool isSelectorActivated (int n);
-    juce::Rectangle<float> getSelector (juce::Rectangle<int>, int n);
+    void paintStateAt (juce::Rectangle<int>, juce::Graphics&, int);
+    void paintStateSingle (juce::Rectangle<int>, juce::Graphics&);
+    void paintStateMultiple (juce::Rectangle<int>, juce::Graphics&);
     void paintBackground (juce::Rectangle<int>, juce::Graphics&);
     
 private:
     core::Cached<juce::Colour> radioBackgroundColour_;
     core::Cached<juce::Colour> radioButtonColour_;
+    core::Cached<double> value_;
     core::Cached<bool> isVertical_;
+    core::Cached<bool> isMultiple_;
     core::Cached<int> buttons_;
     core::Cached<int> width_;
 

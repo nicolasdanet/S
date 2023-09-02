@@ -16,12 +16,16 @@ RadioPainter::RadioPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
     radioBackgroundColour_ (Spaghettis()->getCachedColour (Tag::RadioBackground)),
     radioButtonColour_ (Spaghettis()->getCachedColour (Tag::RadioButton)),
+    value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
     isVertical_ (object_.getCached<bool> (Tag::Parameters, Tag::Vertical)),
+    isMultiple_ (object_.getCached<bool> (Tag::Parameters, Tag::Multiple)),
     buttons_ (object_.getCached<int> (Tag::Parameters, Tag::Buttons)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width))
 {
     radioBackgroundColour_.attach (repaint (component_));
     radioButtonColour_.attach (repaint (component_));
+    value_.attach (repaint (component_));
+    isMultiple_.attach (repaint (component_));
     isVertical_.attach (resized (component_));
     buttons_.attach (resized (component_));
     width_.attach (resized (component_));
@@ -40,14 +44,27 @@ void RadioPainter::mouseDown (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool RadioPainter::isSelectorActivated (int n)
+void RadioPainter::paintStateAt (juce::Rectangle<int> r, juce::Graphics& g, int i)
 {
-    return false;
+    // g.fillRect ();
 }
 
-juce::Rectangle<float> RadioPainter::getSelector (juce::Rectangle<int> r, int n)
+void RadioPainter::paintStateSingle (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    return juce::Rectangle<float>();
+    const int n = buttons_.get();
+    
+    const int t = juce::jlimit (0, n, static_cast<int> (value_.get()));
+    
+    for (int i = 0; i < n; ++i) { if (i == t) { paintStateAt (r, g, i); } }
+}
+
+void RadioPainter::paintStateMultiple (juce::Rectangle<int> r, juce::Graphics& g)
+{
+    const int n = buttons_.get();
+    
+    const juce::BigInteger t (static_cast<int64_t> (value_.get()));
+
+    for (int i = 0; i < n; ++i) { if (t[i]) { paintStateAt (r, g, i); } }
 }
 
 void RadioPainter::paintBackground (juce::Rectangle<int> r, juce::Graphics& g)
@@ -84,6 +101,10 @@ void RadioPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.setColour (c.contrasting (0.1f));
     
     paintBackground (r, g);
+    
+    g.setColour (radioButtonColour_.get());
+    
+    if (isMultiple_.get()) { paintStateMultiple (r, g); } else { paintStateSingle (r, g); }
 }
 
 juce::Rectangle<int> RadioPainter::getRequiredBoundsForObject()
