@@ -78,10 +78,9 @@ void LookAndFeel::drawPopupMenuItemBackground (juce::Graphics& g, const juce::Re
     g.fillRect (area);
 }
 
-void LookAndFeel::drawPopupMenuItemTick (juce::Graphics& g, juce::Rectangle<int> t)
+void LookAndFeel::drawPopupMenuItemTick (juce::Graphics& g, juce::Rectangle<int>& t)
 {
-    const juce::Path path = getTickShape (1.0f);
-    g.fillPath (path, path.getTransformToScaleToFit (t.reduced (5).toFloat(), true));
+    LookAndFeel::drawTick (g, t.reduced (5));
 }
 
 void LookAndFeel::drawPopupMenuItemSubMenu (juce::Graphics& g, juce::Rectangle<int>& r)
@@ -131,7 +130,7 @@ void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
     juce::Rectangle<int> r = area.reduced (border, 0);
     juce::Rectangle<int> t = r.removeFromLeft (r.getHeight() * 0.75);
     
-    if (isTicked) { if (!isComboBox) { drawPopupMenuItemTick (g, std::move (t)); } }
+    if (isTicked) { if (!isComboBox) { drawPopupMenuItemTick (g, t); } }
     else if (hasSubMenu) {
     //
     drawPopupMenuItemSubMenu (g, r);

@@ -180,7 +180,7 @@ private:
 private:
     void drawPopupMenuItemSelector (juce::Graphics&, const juce::Rectangle<int>&);
     void drawPopupMenuItemBackground (juce::Graphics& , const juce::Rectangle<int>&);
-    void drawPopupMenuItemTick (juce::Graphics&, juce::Rectangle<int>);
+    void drawPopupMenuItemTick (juce::Graphics&, juce::Rectangle<int>&);
     void drawPopupMenuItemSubMenu (juce::Graphics&, juce::Rectangle<int>&);
     void drawPopupMenuItemShortcut (juce::Graphics&, const juce::Rectangle<int>&, const juce::String&);
     void drawPopupMenuItemProceed (juce::Graphics&,
