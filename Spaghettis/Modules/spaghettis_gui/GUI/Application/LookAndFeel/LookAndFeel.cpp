@@ -262,7 +262,7 @@ void LookAndFeel::drawCross (juce::Graphics& g, const juce::Rectangle<int>& r)
     
     path.loadPathFromData (pathData, sizeof (pathData));
 
-    g.fillPath (path, path.getTransformToScaleToFit (r.toFloat(), true));
+    g.fillPath (path, path.getTransformToScaleToFit (r.toFloat(), false));
 }
 
 void LookAndFeel::drawTick (juce::Graphics& g, const juce::Rectangle<int>& r)
@@ -285,7 +285,7 @@ void LookAndFeel::drawTick (juce::Graphics& g, const juce::Rectangle<int>& r)
     
     path.loadPathFromData (pathData, sizeof (pathData));
 
-    g.fillPath (path, path.getTransformToScaleToFit (r.toFloat(), true));
+    g.fillPath (path, path.getTransformToScaleToFit (r.toFloat(), false));
 }
 
 // -----------------------------------------------------------------------------------------------------------

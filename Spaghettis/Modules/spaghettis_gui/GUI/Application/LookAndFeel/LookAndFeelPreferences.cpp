@@ -91,8 +91,7 @@ void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bo
     
     if (b.getToggleState()) {
         g.setColour (findColour (Colours::parametersBooleanTick));
-        const juce::Path p = getTickShape (0.75f);
-        g.fillPath (p, p.getTransformToScaleToFit (r.reduced (4, 5), false));
+        LookAndFeel::drawTick (g, r.toNearestInt().reduced (4, 5));
     }
 }
 
