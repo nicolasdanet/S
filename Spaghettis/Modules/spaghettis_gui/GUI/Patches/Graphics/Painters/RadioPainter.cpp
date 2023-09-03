@@ -49,7 +49,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Rectangle<float> getSelectorPosition (const juce::Rectangle<int>& r, bool vertical, int width, int i)
+juce::Rectangle<float> getSelectorPosition (const juce::Rectangle<int>& r, bool vertical, float width, int i)
 {
     const float top     = r.getY();
     const float bottom  = r.getBottom();
@@ -63,7 +63,7 @@ juce::Rectangle<float> getSelectorPosition (const juce::Rectangle<int>& r, bool 
     }
 }
 
-void paintStateAt (const juce::Rectangle<int>& r, juce::Graphics& g, bool vertical, int width, int i)
+void paintStateAt (const juce::Rectangle<int>& r, juce::Graphics& g, bool vertical, float width, int i)
 {
     LookAndFeel::drawTick (g, getSelectorPosition (r, vertical, width, i).toNearestInt().reduced (3));
 }
@@ -79,9 +79,9 @@ void paintStateAt (const juce::Rectangle<int>& r, juce::Graphics& g, bool vertic
 
 void RadioPainter::paintStateSingle (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    const bool v = isVertical_.get();
-    const int w  = width_.get();
-    const int n  = buttons_.get();
+    const bool v  = isVertical_.get();
+    const float w = width_.get() * getScale();
+    const int n   = buttons_.get();
     
     const int t = juce::jlimit (0, n, static_cast<int> (value_.get()));
     
@@ -94,9 +94,9 @@ void RadioPainter::paintStateSingle (const juce::Rectangle<int>& r, juce::Graphi
 
 void RadioPainter::paintStateMultiple (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    const bool v = isVertical_.get();
-    const int w  = width_.get();
-    const int n  = buttons_.get();
+    const bool v  = isVertical_.get();
+    const float w = width_.get() * getScale();
+    const int n   = buttons_.get();
     
     const juce::BigInteger t (static_cast<int64_t> (value_.get()));
 
@@ -109,9 +109,9 @@ void RadioPainter::paintStateMultiple (const juce::Rectangle<int>& r, juce::Grap
 
 void RadioPainter::paintBackground (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
-    const bool v = isVertical_.get();
-    const int w  = width_.get();
-    const int n  = buttons_.get();
+    const bool v  = isVertical_.get();
+    const float w = width_.get() * getScale();
+    const int n   = buttons_.get();
     
     for (int i = 1; i < n; ++i) {
     //
