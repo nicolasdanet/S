@@ -262,7 +262,30 @@ void LookAndFeel::drawCross (juce::Graphics& g, const juce::Rectangle<int>& r)
     
     path.loadPathFromData (pathData, sizeof (pathData));
 
-    g.fillPath (path, path.getTransformToScaleToFit (r.toFloat(), false));
+    g.fillPath (path, path.getTransformToScaleToFit (r.toFloat(), true));
+}
+
+void LookAndFeel::drawTick (juce::Graphics& g, const juce::Rectangle<int>& r)
+{
+    /* LookAndFeel_V4::getTickShape */
+    
+    static const unsigned char pathData[] =
+        {
+            110, 109,  32, 210, 202,  64, 126, 183, 148,  64,
+            108,  39, 244, 247,  64, 245,  76, 124,  64, 108,
+            178, 131,  27,  65, 246,  76, 252,  64, 108, 175,
+            242,   4,  65, 246,  76, 252,  64, 108, 236,   5,
+             68,  65,   0,   0, 160, 180, 108, 240, 150,  90,
+             65,  21, 136,  52,  63, 108,  48,  59,  16,  65,
+              0,   0,  32,  65, 108,  32, 210, 202,  64, 126,
+            183, 148,  64,  99, 101,   0,   0
+        };
+
+    juce::Path path;
+    
+    path.loadPathFromData (pathData, sizeof (pathData));
+
+    g.fillPath (path, path.getTransformToScaleToFit (r.toFloat(), true));
 }
 
 // -----------------------------------------------------------------------------------------------------------

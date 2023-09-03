@@ -49,7 +49,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Rectangle<float> getSelectorPosition (juce::Rectangle<int> r, bool vertical, int width, int i)
+juce::Rectangle<float> getSelectorPosition (const juce::Rectangle<int>& r, bool vertical, int width, int i)
 {
     const float top     = r.getY();
     const float bottom  = r.getBottom();
@@ -63,9 +63,11 @@ juce::Rectangle<float> getSelectorPosition (juce::Rectangle<int> r, bool vertica
     }
 }
 
-void paintStateAt (juce::Rectangle<int> r, juce::Graphics& g, bool vertical, int width, int i)
+void paintStateAt (const juce::Rectangle<int>& r, juce::Graphics& g, bool vertical, int width, int i)
 {
-    g.fillRect (getSelectorPosition (r, vertical, width, i).reduced (4.0f));
+    LookAndFeel::drawTick (g, getSelectorPosition (r, vertical, width, i).toNearestInt().reduced (3));
+    
+    // g.fillRect (getSelectorPosition (r, vertical, width, i).reduced (4.0f));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -77,7 +79,7 @@ void paintStateAt (juce::Rectangle<int> r, juce::Graphics& g, bool vertical, int
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RadioPainter::paintStateSingle (juce::Rectangle<int> r, juce::Graphics& g)
+void RadioPainter::paintStateSingle (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
     const bool v = isVertical_.get();
     const int w  = width_.get();
@@ -92,7 +94,7 @@ void RadioPainter::paintStateSingle (juce::Rectangle<int> r, juce::Graphics& g)
     }
 }
 
-void RadioPainter::paintStateMultiple (juce::Rectangle<int> r, juce::Graphics& g)
+void RadioPainter::paintStateMultiple (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
     const bool v = isVertical_.get();
     const int w  = width_.get();
@@ -107,7 +109,7 @@ void RadioPainter::paintStateMultiple (juce::Rectangle<int> r, juce::Graphics& g
     }
 }
 
-void RadioPainter::paintBackground (juce::Rectangle<int> r, juce::Graphics& g)
+void RadioPainter::paintBackground (const juce::Rectangle<int>& r, juce::Graphics& g)
 {
     const bool v = isVertical_.get();
     const int w  = width_.get();

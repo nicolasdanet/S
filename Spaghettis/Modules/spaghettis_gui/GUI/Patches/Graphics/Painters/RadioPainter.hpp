@@ -40,9 +40,9 @@ public:
     void setDimensions (core::Vector::Real) override;
 
 private:
-    void paintStateSingle (juce::Rectangle<int>, juce::Graphics&);
-    void paintStateMultiple (juce::Rectangle<int>, juce::Graphics&);
-    void paintBackground (juce::Rectangle<int>, juce::Graphics&);
+    void paintStateSingle (const juce::Rectangle<int>&, juce::Graphics&);
+    void paintStateMultiple (const juce::Rectangle<int>&, juce::Graphics&);
+    void paintBackground (const juce::Rectangle<int>&, juce::Graphics&);
     
 private:
     core::Cached<juce::Colour> radioBackgroundColour_;
