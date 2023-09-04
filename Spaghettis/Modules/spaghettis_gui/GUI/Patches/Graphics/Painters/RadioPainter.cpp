@@ -35,15 +35,6 @@ RadioPainter::RadioPainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RadioPainter::mouseDown (const juce::MouseEvent& e)
-{
-    
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -71,6 +62,44 @@ void paintStateAt (const juce::Rectangle<int>& r, juce::Graphics& g, bool vertic
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int RadioPainter::getSelectorAt (juce::Point<int> pt)
+{
+    if (painted_.contains (pt)) {
+    //
+    const bool v  = isVertical_.get();
+    const float w = width_.get() * getScale();
+    const int n   = buttons_.get();
+    
+    for (int i = 0; i < n; ++i) {
+    //
+    if (getSelectorPosition (painted_, v, w, i).contains (pt.toFloat())) { return i; }
+    //
+    }
+    //
+    }
+    
+    return -1;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RadioPainter::mouseDown (const juce::MouseEvent& e)
+{
+    const int n = getSelectorAt (e.getMouseDownPosition());
+    
+    DBG (n);
+    
+    if (n >= 0) {
+    
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -142,6 +171,8 @@ void RadioPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.setColour (radioButtonColour_.get());
     
     if (isMultiple_.get()) { paintStateMultiple (r, g); } else { paintStateSingle (r, g); }
+    
+    painted_ = r;
 }
 
 juce::Rectangle<int> RadioPainter::getRequiredBoundsForObject()

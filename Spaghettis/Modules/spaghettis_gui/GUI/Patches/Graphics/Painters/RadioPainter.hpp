@@ -26,6 +26,9 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    int getSelectorAt (juce::Point<int>);
+    
 public:
     void mouseDown (const juce::MouseEvent&) override;
     
@@ -52,6 +55,7 @@ private:
     core::Cached<bool> isMultiple_;
     core::Cached<int> buttons_;
     core::Cached<int> width_;
+    juce::Rectangle<int> painted_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RadioPainter)
