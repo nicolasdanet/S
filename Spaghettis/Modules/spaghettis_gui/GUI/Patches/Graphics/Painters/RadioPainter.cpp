@@ -91,15 +91,37 @@ int RadioPainter::getSelectorAt (juce::Point<int> pt)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void RadioPainter::setStateProceed (double f)
+{
+    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), f));
+}
+
+void RadioPainter::setStateSingle (int n)
+{
+    setStateProceed (static_cast<double> (n));
+}
+
+void RadioPainter::setStateMultiple (int n)
+{
+}
+
+void RadioPainter::setState (int n)
+{
+    if (n >= 0) {
+        if (isMultiple_.get()) { setStateMultiple (n); }
+        else {
+            setStateSingle (n);
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void RadioPainter::mouseDown (const juce::MouseEvent& e)
 {
-    const int n = getSelectorAt (e.getMouseDownPosition());
-    
-    DBG (n);
-    
-    if (n >= 0) {
-    
-    }
+    setState (getSelectorAt (e.getMouseDownPosition()));
 }
 
 // -----------------------------------------------------------------------------------------------------------

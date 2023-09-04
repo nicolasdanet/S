@@ -28,6 +28,12 @@ public:
 
 private:
     int getSelectorAt (juce::Point<int>);
+
+private:
+    void setStateProceed (double);
+    void setStateSingle (int);
+    void setStateMultiple (int);
+    void setState (int);
     
 public:
     void mouseDown (const juce::MouseEvent&) override;
@@ -46,7 +52,7 @@ private:
     void paintStateSingle (const juce::Rectangle<int>&, juce::Graphics&);
     void paintStateMultiple (const juce::Rectangle<int>&, juce::Graphics&);
     void paintBackground (const juce::Rectangle<int>&, juce::Graphics&);
-    
+
 private:
     core::Cached<juce::Colour> radioBackgroundColour_;
     core::Cached<juce::Colour> radioButtonColour_;
