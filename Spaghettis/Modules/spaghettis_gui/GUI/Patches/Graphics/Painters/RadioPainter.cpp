@@ -224,7 +224,11 @@ std::optional<core::Vector::Real> RadioPainter::getDimensions()
 
 void RadioPainter::setDimensions (core::Vector::Real v)
 {
-    // setDimensionsByParameters (v);
+    const int w = v.getPoint().getX();
+    const int h = v.getPoint().getY();
+    const int t = (isVertical_.get() ? h : w) / buttons_.get();
+    
+    setDimensionsByParameters (core::Vector::Real (t, t));
 }
     
 // -----------------------------------------------------------------------------------------------------------
