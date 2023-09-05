@@ -103,6 +103,11 @@ void RadioPainter::setStateSingle (int n)
 
 void RadioPainter::setStateMultiple (int n)
 {
+    juce::BigInteger t (static_cast<int64_t> (value_.get()));
+    
+    t.setBit (n, !t[n]);
+    
+    setStateProceed (static_cast<double> (t.toInt64()));
 }
 
 void RadioPainter::setState (int n)
