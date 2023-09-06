@@ -103,7 +103,7 @@ void RadioPainter::setStateSingle (int n)
 
 void RadioPainter::setStateMultiple (int n)
 {
-    juce::BigInteger t (static_cast<int64_t> (value_.get()));
+    juce::BigInteger t = juce::BigInteger (static_cast<juce::int64> (value_.get()));
     
     t.setBit (n, !t[n]);
     
@@ -154,7 +154,7 @@ void RadioPainter::paintStateMultiple (const juce::Rectangle<int>& r, juce::Grap
     const float w = width_.get() * getScale();
     const int n   = buttons_.get();
     
-    const juce::BigInteger t (static_cast<int64_t> (value_.get()));
+    const juce::BigInteger t = juce::BigInteger (static_cast<juce::int64> (value_.get()));
 
     for (int i = 0; i < n; ++i) {
         if (t[i]) {
