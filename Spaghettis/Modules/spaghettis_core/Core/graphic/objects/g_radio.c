@@ -42,7 +42,7 @@ typedef struct _radio {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void radio_updateValue (t_radio *, t_float, int);
+static int radio_updateValue (t_radio *, t_float, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ static void radio_float (t_radio *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void radio_updateValue (t_radio *x, t_float f, int notify)
+static int radio_updateValue (t_radio *x, t_float f, int notify)
 {
     if (x->x_value != f) {
     //
@@ -73,8 +73,12 @@ static void radio_updateValue (t_radio *x, t_float f, int notify)
         outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Value));
         #endif
     }
+    
+    return 1;
     //
     }
+    
+    return 0;
 }
 
 static void radio_updateOrientation (t_radio *x, int isVertical, int notify)
@@ -228,11 +232,14 @@ static void radio_functionSetParameters (t_object *o, const core::Group& group)
     jassert (group.hasParameter (Tag::Buttons));
     jassert (group.hasParameter (Tag::Width));
     
-    radio_updateValue (x, group.getParameter (Tag::Value).getValueTyped<t_float>(), 1);
     radio_updateOrientation (x, group.getParameter (Tag::Vertical).getValueTyped<bool>(), 1);
     radio_updateMode (x, group.getParameter (Tag::Multiple).getValueTyped<bool>(), 1);
     radio_updateButtons (x, group.getParameter (Tag::Buttons).getValueTyped<int>(), 1);
     radio_updateSize (x, group.getParameter (Tag::Width).getValueTyped<int>(), 1);
+    
+    if (radio_updateValue (x, group.getParameter (Tag::Value).getValueTyped<t_float>(), 1)) {
+        radio_bang (x);
+    }
 }
 
 #endif
