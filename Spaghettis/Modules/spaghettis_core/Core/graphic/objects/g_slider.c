@@ -51,12 +51,22 @@ static void slider_set (t_slider *, t_float);
 
 static void slider_updateOrientation (t_slider *x, int isVertical, int notify)
 {
-    x->x_isVertical = (isVertical != 0);
+    if (x->x_isVertical != isVertical) {
+    //
+    x->x_isVertical = isVertical;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Vertical));
+        #endif
+    }
+    //
+    }
 }
 
 static void slider_updateLogarithmic (t_slider *x, int isLogarithmic, int notify)
 {
-    x->x_isLogarithmic = (isLogarithmic != 0);
+    x->x_isLogarithmic = isLogarithmic;
 }
 
 static void slider_updateWidth (t_slider *x, int width, int notify)
@@ -75,9 +85,23 @@ static void slider_updateRange (t_slider *x, t_float minimum, t_float maximum, i
     x->x_maximum = maximum;
 }
 
-static void slider_updateValue (t_slider *x, t_float f, int notify)
+static int slider_updateValue (t_slider *x, t_float f, int notify)
 {
+    if (x->x_value != f) {
+    //
     x->x_value = f;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Value));
+        #endif
+    }
+    
+    return 1;
+    //
+    }
+    
+    return 0;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -248,7 +272,8 @@ static void slider_functionSetParameters (t_object *o, const core::Group& group)
     slider_updateLogarithmic (x, group.getParameter (Tag::Logarithmic).getValueTyped<bool>(), 1);
     slider_updateWidth (x, group.getParameter (Tag::Width).getValueTyped<int>(), 1);
     slider_updateHeight (x, group.getParameter (Tag::Height).getValueTyped<int>(), 1);
-    slider_updateValue (x, f, 1);
+    
+    if (slider_updateValue (x, f, 1)) { slider_bang (x); }
 }
 
 #endif
@@ -260,9 +285,7 @@ static void slider_functionSetParameters (t_object *o, const core::Group& group)
 static void *slider_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_slider *x = (t_slider *)pd_new (slider_class);
-    
-    if (s == sym_vslider) { x->x_isVertical = 1; }
-    
+        
     int widthDefault        = x->x_isVertical ? SLIDER_WIDTH_DEFAULT  : SLIDER_HEIGHT_DEFAULT;
     int heightDefault       = x->x_isVertical ? SLIDER_HEIGHT_DEFAULT : SLIDER_WIDTH_DEFAULT;
     t_float minimumDefault  = 0.0;
@@ -274,7 +297,8 @@ static void *slider_new (t_symbol *s, int argc, t_atom *argv)
     int isLogarithmic       = (argc > 4) ? (int)atom_getFloat (argv + 4) : 0;
     t_float value           = (argc > 5) ? atom_getFloat (argv + 5) : 0.0;
 
-    slider_updateLogarithmic (x, isLogarithmic, 0);
+    slider_updateOrientation (x, (s == sym_vslider) ? 1 : 0, 0);
+    slider_updateLogarithmic (x, (isLogarithmic != 0), 0);
     slider_updateWidth (x, width, 0);
     slider_updateHeight (x, height, 0);
     slider_updateRange (x, minimum, maximum, 0);
