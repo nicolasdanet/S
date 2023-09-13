@@ -54,7 +54,7 @@ static void slider_updateOrientation (t_slider *x, int isVertical, int notify)
     x->x_isVertical = (isVertical != 0);
 }
 
-static void slider_updateMode (t_slider *x, int isLogarithmic, int notify)
+static void slider_updateLogarithmic (t_slider *x, int isLogarithmic, int notify)
 {
     x->x_isLogarithmic = (isLogarithmic != 0);
 }
@@ -119,12 +119,12 @@ static void slider_set (t_slider *x, t_float f)
 
 static void slider_logarithmic (t_slider *x)
 {
-    slider_updateMode (x, 1, 1);
+    slider_updateLogarithmic (x, 1, 1);
 }
 
 static void slider_linear (t_slider *x)
 {
-    slider_updateMode (x, 0, 1);
+    slider_updateLogarithmic (x, 0, 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -164,14 +164,6 @@ static void slider_restore (t_slider *x)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-// int         x_isVertical;
-//    int         x_isLogarithmic;
-//    int         x_width;
-//    int         x_height;
-//    t_float     x_minimum;
-//    t_float     x_maximum;
-//    t_float     x_value;
-    
 static void slider_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
 {
     t_slider *x = (t_slider *)o;
@@ -246,6 +238,17 @@ static void slider_functionSetParameters (t_object *o, const core::Group& group)
     jassert (group.hasParameter (Tag::Logarithmic));
     jassert (group.hasParameter (Tag::Width));
     jassert (group.hasParameter (Tag::Height));
+    
+    const t_float f = group.getParameter (Tag::Value).getValueTyped<t_float>();
+    const t_float min = group.getParameter (Tag::Low).getValueTyped<t_float>();
+    const t_float max = group.getParameter (Tag::High).getValueTyped<t_float>();
+    
+    slider_updateRange (x, min, max, 1);
+    slider_updateOrientation (x, group.getParameter (Tag::Vertical).getValueTyped<bool>(), 1);
+    slider_updateLogarithmic (x, group.getParameter (Tag::Logarithmic).getValueTyped<bool>(), 1);
+    slider_updateWidth (x, group.getParameter (Tag::Width).getValueTyped<int>(), 1);
+    slider_updateHeight (x, group.getParameter (Tag::Height).getValueTyped<int>(), 1);
+    slider_updateValue (x, f, 1);
 }
 
 #endif
@@ -271,7 +274,7 @@ static void *slider_new (t_symbol *s, int argc, t_atom *argv)
     int isLogarithmic       = (argc > 4) ? (int)atom_getFloat (argv + 4) : 0;
     t_float value           = (argc > 5) ? atom_getFloat (argv + 5) : 0.0;
 
-    slider_updateMode (x, isLogarithmic, 0);
+    slider_updateLogarithmic (x, isLogarithmic, 0);
     slider_updateWidth (x, width, 0);
     slider_updateHeight (x, height, 0);
     slider_updateRange (x, minimum, maximum, 0);
