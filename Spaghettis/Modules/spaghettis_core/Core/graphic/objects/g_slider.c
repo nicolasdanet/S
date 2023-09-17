@@ -66,24 +66,78 @@ static void slider_updateOrientation (t_slider *x, int isVertical, int notify)
 
 static void slider_updateLogarithmic (t_slider *x, int isLogarithmic, int notify)
 {
+    if (x->x_isLogarithmic != isLogarithmic) {
+    //
     x->x_isLogarithmic = isLogarithmic;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Logarithmic));
+        #endif
+    }
+    //
+    }
 }
 
 static void slider_updateWidth (t_slider *x, int width, int notify)
 {
-    x->x_width = PD_CLAMP (width, SLIDER_SIZE_MINIMUM, SLIDER_SIZE_MAXIMUM);
+    int n = PD_CLAMP (width, SLIDER_SIZE_MINIMUM, SLIDER_SIZE_MAXIMUM);
+    
+    if (x->x_width != n) {
+    //
+    x->x_width = n;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
+        #endif
+    }
+    //
+    }
 }
 
 static void slider_updateHeight (t_slider *x, int height, int notify)
 {
-    x->x_height = PD_CLAMP (height, SLIDER_SIZE_MINIMUM, SLIDER_SIZE_MAXIMUM);
+    int n = PD_CLAMP (height, SLIDER_SIZE_MINIMUM, SLIDER_SIZE_MAXIMUM);
+    
+    if (x->x_height != n) {
+    //
+    x->x_height = n;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Height));
+        #endif
+    }
+    //
+    }
 }
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void slider_updateRange (t_slider *x, t_float minimum, t_float maximum, int notify)
+{
+    t_float min = x->x_minimum;
+    t_float max = x->x_maximum;
+
+    x->x_minimum = minimum;
+    x->x_maximum = maximum;
+    
+    if (notify) {
+        if (min != x->x_minimum) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Low));  }
+        if (max != x->x_maximum) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::High)); }
+    }
+}
+
+#else
 
 static void slider_updateRange (t_slider *x, t_float minimum, t_float maximum, int notify)
 {
     x->x_minimum = minimum;
     x->x_maximum = maximum;
 }
+
+#endif
 
 static int slider_updateValue (t_slider *x, t_float f, int notify)
 {
