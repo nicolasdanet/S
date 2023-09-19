@@ -106,6 +106,8 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (RunView);
     DECLARE_STRING (Selected);
     DECLARE_STRING (Size);
+    DECLARE_STRING (SliderBackground);
+    DECLARE_STRING (SliderBar);
     DECLARE_STRING (SnapToGrid);
     DECLARE_STRING (State);
     DECLARE_STRING (Text);

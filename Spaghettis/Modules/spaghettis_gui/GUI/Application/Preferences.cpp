@@ -266,6 +266,16 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Radio Button"),
         NEEDS_TRANS ("Set color of activated radio buttons"),
         Colours::getPalette()->backgroundPopup);
+    
+    colors.addParameter (Tag::SliderBackground,
+        NEEDS_TRANS ("Slider Background"),
+        NEEDS_TRANS ("Set background color of sliders"),
+        Colours::getPalette()->backgroundWidget);
+    
+    colors.addParameter (Tag::SliderBar,
+        NEEDS_TRANS ("Slider Bar"),
+        NEEDS_TRANS ("Set foreground color of sliders"),
+        Colours::getPalette()->backgroundPopup);
         
     colors.addParameter (Tag::CommentBackground,
         NEEDS_TRANS ("Comment Background"),

@@ -14,9 +14,11 @@ namespace spaghettis {
 
 SliderPainter::SliderPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
-    sliderBackgroundColour_ (Spaghettis()->getCachedColour (Tag::RadioBackground)),
-    sliderBarColour_ (Spaghettis()->getCachedColour (Tag::RadioButton)),
+    sliderBackgroundColour_ (Spaghettis()->getCachedColour (Tag::SliderBackground)),
+    sliderBarColour_ (Spaghettis()->getCachedColour (Tag::SliderBar)),
     value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
+    low_ (object_.getCached<double> (Tag::Parameters, Tag::Low)),
+    high_ (object_.getCached<double> (Tag::Parameters, Tag::High)),
     isVertical_ (object_.getCached<bool> (Tag::Parameters, Tag::Vertical)),
     isLogarithmic_ (object_.getCached<bool> (Tag::Parameters, Tag::Logarithmic)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
@@ -25,6 +27,8 @@ SliderPainter::SliderPainter (ObjectComponent* owner) :
     sliderBackgroundColour_.attach (repaint (component_));
     sliderBarColour_.attach (repaint (component_));
     value_.attach (repaint (component_));
+    low_.attach (repaint (component_));
+    high_.attach (repaint (component_));
     isLogarithmic_.attach (repaint (component_));
     isVertical_.attach (resized (component_));
     width_.attach (resized (component_));
