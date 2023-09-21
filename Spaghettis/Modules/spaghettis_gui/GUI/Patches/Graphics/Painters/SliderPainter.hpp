@@ -34,6 +34,12 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    float getNormalizedValue() const;
+    
+private:
+    void paintBar (juce::Rectangle<int>, juce::Graphics&);
+    
 public:
     void paintObject (juce::Rectangle<int>, juce::Graphics&) override;
     juce::Rectangle<int> getRequiredBoundsForObject() override;

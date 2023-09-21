@@ -48,10 +48,36 @@ void SliderPainter::mouseDown (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+float SliderPainter::getNormalizedValue() const
+{
+    return 0.33f;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void SliderPainter::paintBar (juce::Rectangle<int> r, juce::Graphics& g)
+{
+    const bool vertical = isVertical_.get();
+    const float v = getNormalizedValue();
+    const float f = vertical ? r.proportionOfHeight (v) : r.proportionOfWidth (v);
+    const juce::Rectangle<int> t = vertical ? r.removeFromBottom (f) : r.removeFromLeft (f);
+    
+    g.fillRect (t);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void SliderPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (sliderBackgroundColour_.get());
     g.fillRect (r);
+    g.setColour (sliderBarColour_.get());
+    
+    paintBar (r.reduced (2), g);
 }
 
 juce::Rectangle<int> SliderPainter::getRequiredBoundsForObject()

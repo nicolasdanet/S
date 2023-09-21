@@ -120,8 +120,8 @@ static void slider_updateRange (t_slider *x, t_float minimum, t_float maximum, i
     t_float min = x->x_minimum;
     t_float max = x->x_maximum;
 
-    x->x_minimum = minimum;
-    x->x_maximum = maximum;
+    x->x_minimum = PD_MIN (minimum, maximum);
+    x->x_maximum = PD_MAX (minimum, maximum);
     
     if (notify) {
         if (min != x->x_minimum) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Low));  }
@@ -133,8 +133,8 @@ static void slider_updateRange (t_slider *x, t_float minimum, t_float maximum, i
 
 static void slider_updateRange (t_slider *x, t_float minimum, t_float maximum, int notify)
 {
-    x->x_minimum = minimum;
-    x->x_maximum = maximum;
+    x->x_minimum = PD_MIN (minimum, maximum);
+    x->x_maximum = PD_MAX (minimum, maximum);
 }
 
 #endif
