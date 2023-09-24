@@ -68,7 +68,7 @@ void paintStateAt (const juce::Rectangle<int>& r, juce::Graphics& g, bool vertic
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int RadioPainter::getSelectorAt (juce::Point<int> pt)
+int RadioPainter::getSelectorAt (juce::Point<int> pt) const
 {
     if (painted_.contains (pt)) {
     //

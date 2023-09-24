@@ -104,6 +104,7 @@
 #include "GUI/Application/Helpers/IconsFactory.hpp"
 #include "GUI/Application/Helpers/IconsFactoryHelper.hpp"
 #include "GUI/Application/Helpers/ListBoxFunctions.hpp"
+#include "GUI/Application/Helpers/Normalized.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

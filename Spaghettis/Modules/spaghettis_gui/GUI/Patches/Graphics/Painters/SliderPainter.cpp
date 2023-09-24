@@ -50,7 +50,11 @@ void SliderPainter::mouseDown (const juce::MouseEvent& e)
 
 float SliderPainter::getNormalizedValue() const
 {
-    return 0.33f;
+    const double v = value_.get();
+    
+    const juce::Range<double> r (low_.get(), high_.get());
+    
+    return isLogarithmic_.get() ? Normalized::logarithmic (r, v) : Normalized::linear (r, v);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -62,7 +66,7 @@ void SliderPainter::paintBar (juce::Rectangle<int> r, juce::Graphics& g)
     const bool vertical = isVertical_.get();
     const float v = getNormalizedValue();
     const float f = vertical ? r.proportionOfHeight (v) : r.proportionOfWidth (v);
-    const juce::Rectangle<int> t = vertical ? r.removeFromBottom (f) : r.removeFromLeft (f);
+    const juce::Rectangle<int> t (vertical ? r.removeFromBottom (f) : r.removeFromLeft (f));
     
     g.fillRect (t);
 }

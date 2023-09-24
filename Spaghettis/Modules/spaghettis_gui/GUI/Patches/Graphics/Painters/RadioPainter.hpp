@@ -28,7 +28,7 @@ public:
 // MARK: -
 
 private:
-    int getSelectorAt (juce::Point<int>);
+    int getSelectorAt (juce::Point<int>) const;
 
 private:
     void setStateProceed (double);
