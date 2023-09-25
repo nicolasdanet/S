@@ -54,7 +54,7 @@ float SliderPainter::getNormalizedValue() const
     
     const juce::Range<double> r (low_.get(), high_.get());
     
-    return isLogarithmic_.get() ? Normalized::logarithmic (r, v) : Normalized::linear (r, v);
+    return isLogarithmic_.get() ? Normalized (r).logarithmic (v) : Normalized (r).linear (v);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -12,24 +12,54 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-struct Normalized {
+class Normalized {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static double linear (juce::Range<double> r, double v)
-{
-    const auto n = juce::NormalisableRange<double> (r);
+public:
+    explicit Normalized (juce::Range<double> r, double interval = 0.0) : r_ (r), interval_ (interval)
+    {
+    }
+    
+    ~Normalized() = default;
 
-    return n.convertTo0to1 (n.snapToLegalValue (v));
-}
+public:
+    Normalized (const Normalized&) = delete;
+    Normalized (Normalized&&) = delete;
+    Normalized& operator = (const Normalized&) = delete;
+    Normalized& operator = (Normalized&&) = delete;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-static double logarithmic (juce::Range<double> r, double v)
-{
-    return linear (r, v);
-}
+public:
+    double linear (double v) const
+    {
+        const auto n = juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_);
 
+        return n.convertTo0to1 (n.snapToLegalValue (v));
+    }
+
+    double logarithmic (double v) const
+    {
+        const auto n = juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_, skew_);
+
+        return n.convertTo0to1 (n.snapToLegalValue (v));
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+private:
+    juce::Range<double> r_;
+    double interval_;
+    
+private:
+    static constexpr double skew_ = 0.25;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
