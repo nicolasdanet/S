@@ -29,11 +29,15 @@ public:
 
 public:
     void mouseDown (const juce::MouseEvent&) override;
+    void mouseDrag (const juce::MouseEvent&) override;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    void mouseProceed (juce::Point<int>);
+    
 private:
     float getNormalizedValue() const;
     
@@ -56,6 +60,7 @@ private:
     core::Cached<bool> isLogarithmic_;
     core::Cached<int> width_;
     core::Cached<int> height_;
+    juce::Rectangle<int> painted_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderPainter)

@@ -41,12 +41,50 @@ SliderPainter::SliderPainter (ObjectComponent* owner) :
 
 void SliderPainter::mouseDown (const juce::MouseEvent& e)
 {
-    
+    mouseProceed (e.getMouseDownPosition());
+}
+
+void SliderPainter::mouseDrag (const juce::MouseEvent& e)
+{
+    mouseProceed (e.getMouseDownPosition() + e.getOffsetFromDragStart());
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+float getProportionalPosition (juce::Rectangle<float> r, juce::Point<float> pt, bool isVertical)
+{
+    const juce::Point<float> a = r.getBottomLeft();
+    const juce::Point<float> b = isVertical ? r.getTopLeft() : r.getBottomRight();
+    
+    return juce::Line<float> (a, b).findNearestProportionalPositionTo (pt);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void SliderPainter::mouseProceed (juce::Point<int> pt)
+{
+    if (painted_.contains (pt)) {
+    //
+    const float f = getProportionalPosition (painted_.toFloat(), pt.toFloat(), isVertical_.get());
+    
+    DBG (pt.toString() + " / " + juce::String (f));
+    //
+    }
+}
 
 float SliderPainter::getNormalizedValue() const
 {
@@ -79,7 +117,9 @@ void SliderPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.fillRect (r);
     g.setColour (sliderBarColour_.get());
     
-    paintBar (r.reduced (2), g);
+    painted_ = r.reduced (2);
+    
+    paintBar (painted_, g);
 }
 
 juce::Rectangle<int> SliderPainter::getRequiredBoundsForObject()
