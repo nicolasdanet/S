@@ -50,11 +50,9 @@ void SliderPainter::mouseDown (const juce::MouseEvent& e)
 
 float SliderPainter::getNormalizedValue() const
 {
-    const double v = value_.get();
-    
     const juce::Range<double> r (low_.get(), high_.get());
     
-    return isLogarithmic_.get() ? Normalized (r).logarithmic (v) : Normalized (r).linear (v);
+    return Normalized (isLogarithmic_.get(), r).convert (value_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
