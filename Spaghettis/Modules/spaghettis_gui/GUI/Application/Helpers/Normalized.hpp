@@ -19,9 +19,9 @@ class Normalized {
 // MARK: -
 
 public:
-    explicit Normalized (bool isLogarithmic, juce::Range<double> r, double interval = 0.0) :
+    explicit Normalized (bool isLogarithmic, double min, double max, double interval = 0.0) :
         isLogarithmic_ (isLogarithmic),
-        r_ (r),
+        r_ (min, max),
         interval_ (interval)
     {
     }
@@ -57,10 +57,34 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    double mapLinear (double v) const
+    {
+        const auto n = juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_);
+
+        return n.snapToLegalValue (n.convertFrom0to1 (v));
+    }
+
+    double mapLogarithmic (double v) const
+    {
+        const auto n = juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_, skew_);
+
+        return n.snapToLegalValue (n.convertFrom0to1 (v));
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     double convert (double v) const
     {
         return isLogarithmic_ ? convertLogarithmic (v) : convertLinear (v);
+    }
+    
+    double map (double v) const
+    {
+        return isLogarithmic_ ? mapLogarithmic (v) : mapLinear (v);
     }
     
 // -----------------------------------------------------------------------------------------------------------

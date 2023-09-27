@@ -58,7 +58,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-float getProportionalPosition (juce::Rectangle<float> r, juce::Point<float> pt, bool isVertical)
+double getProportionalPosition (juce::Rectangle<float> r, juce::Point<float> pt, bool isVertical)
 {
     const juce::Point<float> a = r.getBottomLeft();
     const juce::Point<float> b = isVertical ? r.getTopLeft() : r.getBottomRight();
@@ -79,18 +79,17 @@ void SliderPainter::mouseProceed (juce::Point<int> pt)
 {
     if (painted_.contains (pt)) {
     //
-    const float f = getProportionalPosition (painted_.toFloat(), pt.toFloat(), isVertical_.get());
-    
-    DBG (pt.toString() + " / " + juce::String (f));
+    const double f = getProportionalPosition (painted_.toFloat(), pt.toFloat(), isVertical_.get());
+    const double v = Normalized (isLogarithmic_.get(), low_.get(), high_.get()).map (f);
+        
+    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), v));
     //
     }
 }
 
 float SliderPainter::getNormalizedValue() const
 {
-    const juce::Range<double> r (low_.get(), high_.get());
-    
-    return Normalized (isLogarithmic_.get(), r).convert (value_.get());
+    return Normalized (isLogarithmic_.get(), low_.get(), high_.get()).convert (value_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
