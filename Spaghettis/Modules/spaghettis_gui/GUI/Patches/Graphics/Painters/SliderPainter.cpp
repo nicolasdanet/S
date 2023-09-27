@@ -22,7 +22,8 @@ SliderPainter::SliderPainter (ObjectComponent* owner) :
     isVertical_ (object_.getCached<bool> (Tag::Parameters, Tag::Vertical)),
     isLogarithmic_ (object_.getCached<bool> (Tag::Parameters, Tag::Logarithmic)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
-    height_ (object_.getCached<int> (Tag::Parameters, Tag::Height))
+    height_ (object_.getCached<int> (Tag::Parameters, Tag::Height)),
+    dragged_ (false)
 {
     sliderBackgroundColour_.attach (repaint (component_));
     sliderBarColour_.attach (repaint (component_));
@@ -41,12 +42,19 @@ SliderPainter::SliderPainter (ObjectComponent* owner) :
 
 void SliderPainter::mouseDown (const juce::MouseEvent& e)
 {
-    mouseProceed (e.getMouseDownPosition());
+    const juce::Point<int> pt (e.getMouseDownPosition());
+    
+    if (painted_.contains (pt)) { dragged_ = true; mouseProceed (pt); }
 }
 
 void SliderPainter::mouseDrag (const juce::MouseEvent& e)
 {
-    mouseProceed (e.getMouseDownPosition() + e.getOffsetFromDragStart());
+    if (dragged_) { mouseProceed (e.getMouseDownPosition() + e.getOffsetFromDragStart()); }
+}
+
+void SliderPainter::mouseUp (const juce::MouseEvent&)
+{
+    dragged_ = false;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -77,14 +85,10 @@ double getProportionalPosition (juce::Rectangle<float> r, juce::Point<float> pt,
 
 void SliderPainter::mouseProceed (juce::Point<int> pt)
 {
-    if (painted_.contains (pt)) {
-    //
     const double f = getProportionalPosition (painted_.toFloat(), pt.toFloat(), isVertical_.get());
     const double v = Normalized (isLogarithmic_.get(), low_.get(), high_.get()).map (f);
         
     Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), v));
-    //
-    }
 }
 
 float SliderPainter::getNormalizedValue() const

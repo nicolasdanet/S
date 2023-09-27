@@ -30,6 +30,7 @@ public:
 public:
     void mouseDown (const juce::MouseEvent&) override;
     void mouseDrag (const juce::MouseEvent&) override;
+    void mouseUp (const juce::MouseEvent&) override;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -61,6 +62,7 @@ private:
     core::Cached<int> width_;
     core::Cached<int> height_;
     juce::Rectangle<int> painted_;
+    bool dragged_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderPainter)
