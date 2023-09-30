@@ -57,6 +57,7 @@ private:
     core::Cached<double> value_;
     core::Cached<double> low_;
     core::Cached<double> high_;
+    core::Cached<double> interval_;
     core::Cached<bool> isVertical_;
     core::Cached<bool> isLogarithmic_;
     core::Cached<int> width_;

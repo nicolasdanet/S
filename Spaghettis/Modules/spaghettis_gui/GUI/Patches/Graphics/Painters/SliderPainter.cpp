@@ -19,6 +19,7 @@ SliderPainter::SliderPainter (ObjectComponent* owner) :
     value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
     low_ (object_.getCached<double> (Tag::Parameters, Tag::Low)),
     high_ (object_.getCached<double> (Tag::Parameters, Tag::High)),
+    interval_ (object_.getCached<double> (Tag::Parameters, Tag::Interval)),
     isVertical_ (object_.getCached<bool> (Tag::Parameters, Tag::Vertical)),
     isLogarithmic_ (object_.getCached<bool> (Tag::Parameters, Tag::Logarithmic)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
@@ -30,6 +31,7 @@ SliderPainter::SliderPainter (ObjectComponent* owner) :
     value_.attach (repaint (component_));
     low_.attach (repaint (component_));
     high_.attach (repaint (component_));
+    interval_.attach (repaint (component_));
     isLogarithmic_.attach (repaint (component_));
     isVertical_.attach (resized (component_));
     width_.attach (resized (component_));
@@ -86,14 +88,14 @@ double getProportionalPosition (juce::Rectangle<float> r, juce::Point<float> pt,
 void SliderPainter::mouseProceed (juce::Point<int> pt)
 {
     const double f = getProportionalPosition (painted_.toFloat(), pt.toFloat(), isVertical_.get());
-    const double v = Normalized (isLogarithmic_.get(), low_.get(), high_.get()).map (f);
+    const double v = Normalized (isLogarithmic_.get(), low_.get(), high_.get(), interval_.get()).map (f);
         
     Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), v));
 }
 
 float SliderPainter::getNormalizedValue() const
 {
-    return Normalized (isLogarithmic_.get(), low_.get(), high_.get()).convert (value_.get());
+    return Normalized (isLogarithmic_.get(), low_.get(), high_.get(), interval_.get()).convert (value_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
