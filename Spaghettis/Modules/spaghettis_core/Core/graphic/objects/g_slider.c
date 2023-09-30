@@ -33,6 +33,7 @@ typedef struct _slider {
     int         x_isLogarithmic;
     int         x_width;
     int         x_height;
+    t_float     x_interval;
     t_float     x_minimum;
     t_float     x_maximum;
     t_float     x_value;
@@ -139,6 +140,25 @@ static void slider_updateRange (t_slider *x, t_float minimum, t_float maximum, i
 
 #endif
 
+static int slider_updateInterval (t_slider *x, t_float step, int notify)
+{
+    if (x->x_interval != step) {
+    //
+    x->x_interval = step;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Interval));
+        #endif
+    }
+    
+    return 1;
+    //
+    }
+    
+    return 0;
+}
+
 static int slider_updateValue (t_slider *x, t_float f, int notify)
 {
     if (x->x_value != f) {
@@ -223,6 +243,7 @@ static void slider_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  x->x_minimum);
     buffer_appendFloat (b,  x->x_maximum);
     buffer_appendFloat (b,  x->x_isLogarithmic);
+    buffer_appendFloat (b,  x->x_interval);
     if (SAVED_DEEP (flags)) { buffer_appendFloat (b, x->x_value); }
     buffer_appendSemicolon (b);
     
@@ -272,6 +293,14 @@ static void slider_functionGetParameters (t_object *o, core::Group& group, const
             delegate);
     }
     
+    if (t.contains (Tag::Interval)) {
+        group.addParameter (Tag::Interval,
+            NEEDS_TRANS ("Interval"),
+            NEEDS_TRANS ("Step between slider values"),
+            x->x_interval,
+            delegate);
+    }
+    
     if (t.contains (Tag::Vertical)) {
         group.addParameter (Tag::Vertical,
             NEEDS_TRANS ("Vertical"),
@@ -312,16 +341,19 @@ static void slider_functionSetParameters (t_object *o, const core::Group& group)
     jassert (group.hasParameter (Tag::Value));
     jassert (group.hasParameter (Tag::Low));
     jassert (group.hasParameter (Tag::High));
+    jassert (group.hasParameter (Tag::Interval));
     jassert (group.hasParameter (Tag::Vertical));
     jassert (group.hasParameter (Tag::Logarithmic));
     jassert (group.hasParameter (Tag::Width));
     jassert (group.hasParameter (Tag::Height));
     
-    const t_float f = group.getParameter (Tag::Value).getValueTyped<t_float>();
-    const t_float min = group.getParameter (Tag::Low).getValueTyped<t_float>();
-    const t_float max = group.getParameter (Tag::High).getValueTyped<t_float>();
+    const t_float f    = group.getParameter (Tag::Value).getValueTyped<t_float>();
+    const t_float min  = group.getParameter (Tag::Low).getValueTyped<t_float>();
+    const t_float max  = group.getParameter (Tag::High).getValueTyped<t_float>();
+    const t_float step = group.getParameter (Tag::Interval).getValueTyped<t_float>();
     
     slider_updateRange (x, min, max, 1);
+    slider_updateInterval (x, step, 1);
     slider_updateOrientation (x, group.getParameter (Tag::Vertical).getValueTyped<bool>(), 1);
     slider_updateLogarithmic (x, group.getParameter (Tag::Logarithmic).getValueTyped<bool>(), 1);
     slider_updateWidth (x, group.getParameter (Tag::Width).getValueTyped<int>(), 1);
@@ -349,13 +381,15 @@ static void *slider_new (t_symbol *s, int argc, t_atom *argv)
     t_float minimum         = (argc > 4) ? atom_getFloat (argv + 2) : minimumDefault;
     t_float maximum         = (argc > 4) ? atom_getFloat (argv + 3) : maximumDefault;
     int isLogarithmic       = (argc > 4) ? (int)atom_getFloat (argv + 4) : 0;
-    t_float value           = (argc > 5) ? atom_getFloat (argv + 5) : 0.0;
+    t_float step            = (argc > 5) ? atom_getFloat (argv + 5) : 0.0;
+    t_float value           = (argc > 6) ? atom_getFloat (argv + 6) : 0.0;
 
     slider_updateOrientation (x, (s == sym_vslider) ? 1 : 0, 0);
     slider_updateLogarithmic (x, (isLogarithmic != 0), 0);
     slider_updateWidth (x, width, 0);
     slider_updateHeight (x, height, 0);
     slider_updateRange (x, minimum, maximum, 0);
+    slider_updateInterval (x, step, 0);
     slider_updateValue (x, value, 0);
     
     x->x_outlet = outlet_newFloat (cast_object (x));
