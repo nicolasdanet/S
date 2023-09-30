@@ -13,8 +13,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#define SLIDER_WIDTH_DEFAULT            15          /* Default is for vertical slider. */
-#define SLIDER_HEIGHT_DEFAULT           128
+#define SLIDER_WIDTH_DEFAULT            18          /* Default is for vertical slider. */
+#define SLIDER_HEIGHT_DEFAULT           144
 #define SLIDER_SIZE_MINIMUM             8
 #define SLIDER_SIZE_MAXIMUM             1024
 
@@ -371,11 +371,12 @@ static void slider_functionSetParameters (t_object *o, const core::Group& group)
 static void *slider_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_slider *x = (t_slider *)pd_new (slider_class);
-        
-    int widthDefault        = x->x_isVertical ? SLIDER_WIDTH_DEFAULT  : SLIDER_HEIGHT_DEFAULT;
-    int heightDefault       = x->x_isVertical ? SLIDER_HEIGHT_DEFAULT : SLIDER_WIDTH_DEFAULT;
+    
+    int isVertical          = (s == sym_vslider) ? 1 : 0;
+    int widthDefault        = isVertical ? SLIDER_WIDTH_DEFAULT  : SLIDER_HEIGHT_DEFAULT;
+    int heightDefault       = isVertical ? SLIDER_HEIGHT_DEFAULT : SLIDER_WIDTH_DEFAULT;
     t_float minimumDefault  = 0.0;
-    t_float maximumDefault  = (t_float)(x->x_isVertical ? (heightDefault - 1) : (widthDefault - 1));
+    t_float maximumDefault  = (t_float)(isVertical ? (heightDefault - 1) : (widthDefault - 1));
     int width               = (argc > 4) ? (int)atom_getFloat (argv + 0) : widthDefault;
     int height              = (argc > 4) ? (int)atom_getFloat (argv + 1) : heightDefault;
     t_float minimum         = (argc > 4) ? atom_getFloat (argv + 2) : minimumDefault;
@@ -384,7 +385,7 @@ static void *slider_new (t_symbol *s, int argc, t_atom *argv)
     t_float step            = (argc > 5) ? atom_getFloat (argv + 5) : 0.0;
     t_float value           = (argc > 6) ? atom_getFloat (argv + 6) : 0.0;
 
-    slider_updateOrientation (x, (s == sym_vslider) ? 1 : 0, 0);
+    slider_updateOrientation (x, isVertical, 0);
     slider_updateLogarithmic (x, (isLogarithmic != 0), 0);
     slider_updateWidth (x, width, 0);
     slider_updateHeight (x, height, 0);
