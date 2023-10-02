@@ -17,63 +17,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void getDefaultTest (core::Data& data)
-{
-    core::Group peace (data.addGroup ("Peace"));
-    
-    peace.addParameter ("Engine",
-        NEEDS_TRANS ("Kind Of Engine"),
-        NEEDS_TRANS ("Set kind of stuff"),
-        juce::String ("Flowers"));
-                
-    peace.addParameter ("Power",
-        NEEDS_TRANS ("Power Of Engine"),
-        NEEDS_TRANS ("Set power of engine"),
-        99.5).setEditable (false);
-
-    peace.addParameter ("Extra",
-        NEEDS_TRANS ("Extra Mode Activated"),
-        NEEDS_TRANS ("Enable the extra mode"),
-        true).setEditable (false);
-    
-    peace.addParameter ("Hello",
-        NEEDS_TRANS ("Hello World"),
-        NEEDS_TRANS ("How to say hello"),
-        juce::String ("Slava Ukraini")).setEditable (false);
-        
-    peace.addParameter ("Launcher",
-        NEEDS_TRANS ("Love Efficiency"),
-        NEEDS_TRANS ("Set love impact"),
-        99.5).setHidden (true);
-
-    peace.addParameter ("Random",
-        NEEDS_TRANS ("Random Rate"),
-        NEEDS_TRANS ("Set entropy in life"),
-        0.5).setRange (juce::Range<double> (0, 1));
-    
-    peace.addParameter ("Future",
-        NEEDS_TRANS ("Hope"),
-        NEEDS_TRANS ("Set color of the future"),
-        juce::Colours::green);
-        
-    peace.addParameter ("Truth",
-        NEEDS_TRANS ("Truth Rate"),
-        NEEDS_TRANS ("Set Trump's fake news policy"),
-        0.9).setRange (juce::Range<double> (0, 1)).setEditable (false);
-        
-    peace.addParameter ("Guernica",
-        NEEDS_TRANS ("Picasso"),
-        NEEDS_TRANS ("Set size of picture"),
-        juce::Rectangle<int> (0, 0, 349, 776));
-    
-    core::Group secret (data.addGroup ("Secret", true));
-    
-    secret.addParameter ("Password",
-        NEEDS_TRANS ("Password"),
-        NEEDS_TRANS ("Word for magic attack"),
-        juce::String ("iloveyou"));
-}
-
 core::Data getDefaultPreferences()
 {
     core::Data data (Id::PREFERENCES);
@@ -302,8 +245,6 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set text color clicking messages"),
         Colours::getPalette()->textWarning.brighter (0.25));
         
-    getDefaultTest (data);
-    
     return data;
 }
 
