@@ -98,16 +98,13 @@ namespace {
 
 std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const core::Parameter& p, int w)
 {
+    // return std::make_unique<ParameterSlider> (p, w);
+    
     if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, w); }
-    if (p.isColour())       { return std::make_unique<ParameterColour> (p, w);  }
+    else if (p.isColour())  { return std::make_unique<ParameterColour> (p, w);  }
     else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p, w); }
-    else if (p.isFloat())   {
-        if (p.hasRange())   {
-            return std::make_unique<ParameterSlider> (p, w);
-        } else {
-            return std::make_unique<ParameterFloat> (p, w);
-        }
-    } else {
+    else if (p.isFloat())   { return std::make_unique<ParameterFloat> (p, w);   }
+    else {
         return std::make_unique<ParameterText> (p, w);
     }
 }
