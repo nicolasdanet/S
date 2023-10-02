@@ -19,8 +19,6 @@ AtomPainter::AtomPainter (ObjectComponent* owner) :
     atomClickedColour_ (Spaghettis()->getCachedColour (Tag::AtomClicked)),
     digits_ (object_.getCached<int> (Tag::Parameters, Tag::Digits)),
     value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
-    text_(),
-    decimals_ (0),
     v_ (0.0),
     dragged_ (false)
 {
@@ -34,33 +32,10 @@ AtomPainter::AtomPainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-double getStep (int decimals, bool hasModifierKey)
-{
-    if (hasModifierKey && decimals) { return std::pow (10.0, -decimals); }
-    else {
-        return 1.0;
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void AtomPainter::mouseDown (const juce::MouseEvent& e)
 {
-    dragged_    = true;
-    decimals_   = Helpers::getNumberOfDigitsAfterDecimalSeparator (text_);
-    v_          = value_.get();
+    dragged_ = true;
+    v_       = value_.get();
         
     component_->repaint();
 }
@@ -68,7 +43,7 @@ void AtomPainter::mouseDown (const juce::MouseEvent& e)
 void AtomPainter::mouseDrag (const juce::MouseEvent& e)
 {
     const int dY   = -e.getDistanceFromDragStartY();
-    const double k = getStep (decimals_, Mouse::hasShiftKey (e));
+    const double k = 1.0;
     const double f = v_ + (dY * k);
         
     Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), f));
@@ -164,7 +139,7 @@ void AtomPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     g.setColour (dragged_ ? atomClickedColour_.get() : atomTextColour_.get());
     
-    text_ = getText(); paintText (r, g, text_, juce::Justification::centredRight);
+    paintText (r, g, getText(), juce::Justification::centredRight);
 }
 
 juce::Rectangle<int> AtomPainter::getRequiredBoundsForObject()

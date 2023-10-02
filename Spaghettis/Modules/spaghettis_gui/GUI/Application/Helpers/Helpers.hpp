@@ -71,13 +71,6 @@ static auto withNumberOfDigits (double f, int n)
     return std::tuple<juce::String, bool> (trimZerosOfInteger (t), isIntegerPartTruncated (t, f));
 }
 
-static int getNumberOfDigitsAfterDecimalSeparator (const juce::String& s)
-{
-    const int i = s.indexOfChar ('.');
-    
-    return (i >= 0) ? (s.length() - i - 1) : 0;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

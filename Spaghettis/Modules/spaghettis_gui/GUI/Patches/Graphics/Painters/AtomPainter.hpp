@@ -64,8 +64,6 @@ private:
     core::Cached<juce::Colour> atomClickedColour_;
     core::Cached<int> digits_;
     core::Cached<double> value_;
-    juce::String text_;
-    int decimals_;
     double v_;
     bool dragged_;
 
