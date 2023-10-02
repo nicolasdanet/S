@@ -140,8 +140,10 @@ static void slider_updateRange (t_slider *x, t_float minimum, t_float maximum, i
 
 #endif
 
-static int slider_updateInterval (t_slider *x, t_float step, int notify)
+static int slider_updateInterval (t_slider *x, t_float interval, int notify)
 {
+    t_float step = PD_MAX (0.0, interval);
+    
     if (x->x_interval != step) {
     //
     x->x_interval = step;
