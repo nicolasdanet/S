@@ -20,7 +20,7 @@ s[0] ? gatom   | floatatom  -> floatatom    0 0  s[1] ...
                             
 msg          36 108      hello;
 text         24 24       widgets;
-floatatom    36 192      5 0 0;
+floatatom    36 192      5 0 0 0;
 obj          276 120     garray;
 
 */
