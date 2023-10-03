@@ -158,6 +158,11 @@ public:
         return *this;
     }
 
+    template <class T> Parameter& setPositive()
+    {
+        return setRange (juce::Range<T> (0, std::numeric_limits<T>::max()));
+    }
+    
     template <class T> operator juce::Range<T>() const
     {
         auto m = static_cast<T> (get (Id::minimum));
@@ -170,7 +175,7 @@ public:
             return juce::Range<T>();
         }
     }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

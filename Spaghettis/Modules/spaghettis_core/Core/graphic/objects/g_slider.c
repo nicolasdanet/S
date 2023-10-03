@@ -300,7 +300,7 @@ static void slider_functionGetParameters (t_object *o, core::Group& group, const
             NEEDS_TRANS ("Interval"),
             NEEDS_TRANS ("Step between slider values"),
             x->x_interval,
-            delegate);
+            delegate).setPositive<t_float>();
     }
     
     if (t.contains (Tag::Vertical)) {
