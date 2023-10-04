@@ -184,6 +184,30 @@ static int slider_updateValue (t_slider *x, t_float f, int notify)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void slider_switchOrientation (t_slider *x, int isVertical)
+{
+    if (x->x_isVertical != isVertical) {
+    //
+    const int h = x->x_height;
+    const int w = x->x_width;
+    
+    x->x_isVertical = isVertical;
+    x->x_width  = h;
+    x->x_height = w;
+    
+    outputs_objectUpdated (cast_object (x), Tags::parameters ( { Tag::Vertical, Tag::Width, Tag::Height } ));
+    //
+    }
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void slider_bang (t_slider *x)
 {
     outlet_float (x->x_outlet, x->x_value);
@@ -349,17 +373,22 @@ static void slider_functionSetParameters (t_object *o, const core::Group& group)
     jassert (group.hasParameter (Tag::Width));
     jassert (group.hasParameter (Tag::Height));
     
-    const t_float f    = group.getParameter (Tag::Value).getValueTyped<t_float>();
-    const t_float min  = group.getParameter (Tag::Low).getValueTyped<t_float>();
-    const t_float max  = group.getParameter (Tag::High).getValueTyped<t_float>();
-    const t_float step = group.getParameter (Tag::Interval).getValueTyped<t_float>();
+    const t_float f         = group.getParameter (Tag::Value).getValueTyped<t_float>();
+    const t_float min       = group.getParameter (Tag::Low).getValueTyped<t_float>();
+    const t_float max       = group.getParameter (Tag::High).getValueTyped<t_float>();
+    const t_float step      = group.getParameter (Tag::Interval).getValueTyped<t_float>();
+    const bool vertical     = group.getParameter (Tag::Vertical).getValueTyped<bool>();
+    const bool logarithmic  = group.getParameter (Tag::Logarithmic).getValueTyped<bool>();
+    const int width         = group.getParameter (Tag::Width).getValueTyped<int>();
+    const int height        = group.getParameter (Tag::Height).getValueTyped<int>();
     
     slider_updateRange (x, min, max, 1);
     slider_updateInterval (x, step, 1);
-    slider_updateOrientation (x, group.getParameter (Tag::Vertical).getValueTyped<bool>(), 1);
-    slider_updateLogarithmic (x, group.getParameter (Tag::Logarithmic).getValueTyped<bool>(), 1);
-    slider_updateWidth (x, group.getParameter (Tag::Width).getValueTyped<int>(), 1);
-    slider_updateHeight (x, group.getParameter (Tag::Height).getValueTyped<int>(), 1);
+    slider_updateLogarithmic (x, logarithmic, 1);
+    slider_updateWidth (x, width, 1);
+    slider_updateHeight (x, height, 1);
+    
+    slider_switchOrientation (x, vertical);
     
     if (slider_updateValue (x, f, 1)) { slider_bang (x); }
 }
