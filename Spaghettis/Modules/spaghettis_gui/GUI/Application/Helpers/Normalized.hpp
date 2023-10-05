@@ -33,43 +33,25 @@ public:
     Normalized (Normalized&&) = delete;
     Normalized& operator = (const Normalized&) = delete;
     Normalized& operator = (Normalized&&) = delete;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    juce::NormalisableRange<double> getLinearRange() const
+    {
+        return juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_);
+    }
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    double convertLinear (double v) const
+    juce::NormalisableRange<double> getLogarithmicRange() const
     {
-        const auto n = juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_);
-
-        return n.convertTo0to1 (n.snapToLegalValue (v));
+        return juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_, skew_);
     }
-
-    double convertLogarithmic (double v) const
+    
+    juce::NormalisableRange<double> getRange() const
     {
-        const auto n = juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_, skew_);
-
-        return n.convertTo0to1 (n.snapToLegalValue (v));
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    double mapLinear (double v) const
-    {
-        const auto n = juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_);
-
-        return n.snapToLegalValue (n.convertFrom0to1 (v));
-    }
-
-    double mapLogarithmic (double v) const
-    {
-        const auto n = juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_, skew_);
-
-        return n.snapToLegalValue (n.convertFrom0to1 (v));
+        return isLogarithmic_ ? getLogarithmicRange() : getLinearRange();
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -79,12 +61,12 @@ private:
 public:
     double convert (double v) const
     {
-        return isLogarithmic_ ? convertLogarithmic (v) : convertLinear (v);
+        auto r = getRange(); return r.convertTo0to1 (r.snapToLegalValue (v));
     }
     
     double map (double v) const
     {
-        return isLogarithmic_ ? mapLogarithmic (v) : mapLinear (v);
+        auto r = getRange(); return r.snapToLegalValue (r.convertFrom0to1 (v));
     }
     
 // -----------------------------------------------------------------------------------------------------------
