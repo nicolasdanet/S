@@ -14,6 +14,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #define DIAL_DIGITS_DEFAULT             5
+#define DIAL_DIGITS_MINIUM              0
 #define DIAL_DIGITS_MAXIMUM             64
 #define DIAL_INTERVAL_DEFAULT           1
 #define DIAL_SIZE_DEFAULT               40
@@ -41,11 +42,11 @@ typedef struct _dial {
     int             x_size;
     int             x_position;
     int             x_isLogarithmic;
-    int             x_digitsNumber;
+    int             x_digits;
     int             x_interval;
     t_float         x_minimum;
     t_float         x_maximum;
-    t_float         x_float;
+    t_float         x_value;
     t_outlet        *x_outlet;
     } t_dial;
 
@@ -114,7 +115,7 @@ static void dial_setRange (t_dial *x, t_float minimum, t_float maximum)
 
 static void dial_bang (t_dial *x)
 {
-    outlet_float (x->x_outlet, x->x_float);
+    outlet_float (x->x_outlet, x->x_value);
 }
 
 static void dial_float (t_dial *x, t_float f)
@@ -137,7 +138,7 @@ static void dial_size (t_dial *x, t_symbol *s, int argc, t_atom *argv)
     //
     int digits = (int)atom_getFloatAtIndex (0, argc, argv);
 
-    x->x_digitsNumber = PD_CLAMP (digits, 1, DIAL_DIGITS_MAXIMUM);
+    x->x_digits = PD_CLAMP (digits, 1, DIAL_DIGITS_MAXIMUM);
     
     if (argc > 1) {
     //
@@ -155,7 +156,7 @@ static void dial_range (t_dial *x, t_symbol *s, int argc, t_atom *argv)
     
     dial_setRange (x, minimum, maximum);
     
-    x->x_float = dial_getValue (x);
+    x->x_value = dial_getValue (x);
 }
 
 static void dial_set (t_dial *x, t_float f)
@@ -168,7 +169,7 @@ static void dial_set (t_dial *x, t_float f)
         x->x_position = (int)(((f - x->x_minimum) / dial_getStepValue (x)) + 0.5);
     }
     
-    x->x_float = dial_getValue (x);
+    x->x_value = dial_getValue (x);
 }
 
 static void dial_steps (t_dial *x, t_float f)
@@ -176,7 +177,7 @@ static void dial_steps (t_dial *x, t_float f)
     x->x_interval    = PD_CLAMP ((int)f, 1, DIAL_STEPS_MAXIMUM);
     x->x_position = PD_MIN (x->x_position, x->x_interval);
     
-    x->x_float = dial_getValue (x);
+    x->x_value = dial_getValue (x);
 }
 
 static void dial_logarithmic (t_dial *x)
@@ -185,7 +186,7 @@ static void dial_logarithmic (t_dial *x)
     
     dial_setRange (x, x->x_minimum, x->x_maximum);
     
-    x->x_float = dial_getValue (x);
+    x->x_value = dial_getValue (x);
 }
 
 static void dial_linear (t_dial *x)
@@ -206,13 +207,13 @@ static void dial_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  object_getX (z));
     buffer_appendFloat (b,  object_getY (z));
     buffer_appendSymbol (b, sym_dial);
-    buffer_appendFloat (b,  x->x_digitsNumber);
+    buffer_appendFloat (b,  x->x_digits);
     buffer_appendFloat (b,  x->x_size);
     buffer_appendFloat (b,  x->x_minimum);
     buffer_appendFloat (b,  x->x_maximum);
     buffer_appendFloat (b,  x->x_isLogarithmic);
     buffer_appendFloat (b,  x->x_interval);
-    if (SAVED_DEEP (flags)) { buffer_appendFloat (b, x->x_float); }
+    if (SAVED_DEEP (flags)) { buffer_appendFloat (b, x->x_value); }
     buffer_appendSemicolon (b);
     
     object_saveIdentifiers (z, b, flags);
@@ -224,6 +225,107 @@ static void dial_restore (t_dial *x)
     
     if (old) { }    /* ??? */
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void dial_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+{
+    t_dial *x = (t_dial *)o;
+    
+    static DelegateCache delegate;
+    
+    if (t.contains (Tag::Value)) {
+        group.addParameter (Tag::Value,
+            NEEDS_TRANS ("Value"),
+            NEEDS_TRANS ("Value of dial"),
+            x->x_value,
+            delegate);
+    }
+    
+    if (t.contains (Tag::Low)) {
+        group.addParameter (Tag::Low,
+            NEEDS_TRANS ("Low Range"),
+            NEEDS_TRANS ("Low value"),
+            x->x_minimum,
+            delegate);
+    }
+    
+    if (t.contains (Tag::High)) {
+        group.addParameter (Tag::High,
+            NEEDS_TRANS ("High Range"),
+            NEEDS_TRANS ("High value"),
+            x->x_maximum,
+            delegate);
+    }
+    
+    if (t.contains (Tag::Interval)) {
+        group.addParameter (Tag::Interval,
+            NEEDS_TRANS ("Interval"),
+            NEEDS_TRANS ("Step between dial values"),
+            x->x_interval,
+            delegate).setPositive<t_float>();
+    }
+    
+    if (t.contains (Tag::Digits)) {
+        group.addParameter (Tag::Digits,
+            NEEDS_TRANS ("Digits"),
+            NEEDS_TRANS ("Number of digits"),
+            x->x_digits,
+            delegate).setRange (juce::Range<int> (DIAL_DIGITS_MINIUM, DIAL_DIGITS_MAXIMUM));
+    }
+    
+    if (t.contains (Tag::Logarithmic)) {
+        group.addParameter (Tag::Logarithmic,
+            NEEDS_TRANS ("Logarithmic"),
+            NEEDS_TRANS ("Scale is logarithmic"),
+            static_cast<bool> (x->x_isLogarithmic),
+            delegate);
+    }
+    
+    if (t.contains (Tag::Width)) {
+        group.addParameter (Tag::Width,
+            NEEDS_TRANS ("Width"),
+            NEEDS_TRANS ("Border size of dial"),
+            x->x_size,
+            delegate).setRange (juce::Range<int> (DIAL_SIZE_MINIMUM, DIAL_SIZE_MAXIMUM));
+    }
+}
+
+static void dial_functionSetParameters (t_object *o, const core::Group& group)
+{
+    /*
+    t_dial *x = (t_dial *)o;
+    
+    jassert (group.hasParameter (Tag::Value));
+    jassert (group.hasParameter (Tag::Low));
+    jassert (group.hasParameter (Tag::High));
+    jassert (group.hasParameter (Tag::Interval));
+    jassert (group.hasParameter (Tag::Digits));
+    jassert (group.hasParameter (Tag::Logarithmic));
+    jassert (group.hasParameter (Tag::Width));
+    
+    const t_float f         = group.getParameter (Tag::Value).getValueTyped<t_float>();
+    const t_float min       = group.getParameter (Tag::Low).getValueTyped<t_float>();
+    const t_float max       = group.getParameter (Tag::High).getValueTyped<t_float>();
+    const t_float step      = group.getParameter (Tag::Interval).getValueTyped<t_float>();
+    const bool logarithmic  = group.getParameter (Tag::Logarithmic).getValueTyped<bool>();
+    const int digits        = group.getParameter (Tag::Digits).getValueTyped<int>();
+    const int size          = group.getParameter (Tag::Width).getValueTyped<int>();
+    
+    dial_updateRange (x, min, max, 1);
+    dial_updateInterval (x, step, 1);
+    dial_updateLogarithmic (x, logarithmic, 1);
+    dial_updateWidth (x, width, 1);
+    
+    if (dial_updateValue (x, f, 1)) { dial_bang (x); }
+    */
+}
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -243,7 +345,7 @@ static void *dial_new (t_symbol *s, int argc, t_atom *argv)
     
     x->x_size           = PD_MAX (size, DIAL_SIZE_MINIMUM);
     x->x_isLogarithmic  = (isLogarithmic != 0);
-    x->x_digitsNumber   = PD_CLAMP (digits, 1, DIAL_DIGITS_MAXIMUM);
+    x->x_digits   = PD_CLAMP (digits, 1, DIAL_DIGITS_MAXIMUM);
     x->x_interval          = PD_CLAMP (steps, 1, DIAL_STEPS_MAXIMUM);
     x->x_outlet         = outlet_newFloat (cast_object (x));
 
@@ -281,6 +383,12 @@ PD_LOCAL void dial_setup (void)
     class_addMethod (c, (t_method)dial_linear,      sym_linear,         A_NULL);
     class_addMethod (c, (t_method)dial_restore,     sym__restore,       A_NULL);
 
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    class_setParametersFunctions (c, dial_functionGetParameters, dial_functionSetParameters);
+    
+    #endif
+    
     class_setSaveFunction (c, dial_functionSave);
     class_setDataFunction (c, object_functionData);
     class_requirePending (c);
