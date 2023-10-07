@@ -114,8 +114,6 @@ static void slider_updateHeight (t_slider *x, int height, int notify)
     }
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
 static void slider_updateRange (t_slider *x, t_float minimum, t_float maximum, int notify)
 {
     t_float min = x->x_minimum;
@@ -125,20 +123,18 @@ static void slider_updateRange (t_slider *x, t_float minimum, t_float maximum, i
     x->x_maximum = PD_MAX (minimum, maximum);
     
     if (notify) {
-        if (min != x->x_minimum) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Low));  }
-        if (max != x->x_maximum) { outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::High)); }
+        if (min != x->x_minimum) {
+            #if defined ( PD_BUILDING_APPLICATION )
+            outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Low));
+            #endif
+        }
+        if (max != x->x_maximum) {
+            #if defined ( PD_BUILDING_APPLICATION )
+            outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::High));
+            #endif
+        }
     }
 }
-
-#else
-
-static void slider_updateRange (t_slider *x, t_float minimum, t_float maximum, int notify)
-{
-    x->x_minimum = PD_MIN (minimum, maximum);
-    x->x_maximum = PD_MAX (minimum, maximum);
-}
-
-#endif
 
 static void slider_updateInterval (t_slider *x, t_float interval, int notify)
 {
