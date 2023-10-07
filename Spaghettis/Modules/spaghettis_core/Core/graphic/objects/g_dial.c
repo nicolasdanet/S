@@ -15,9 +15,10 @@
 
 #define DIAL_DIGITS_DEFAULT             5
 #define DIAL_DIGITS_MAXIMUM             64
-#define DIAL_STEPS_DEFAULT              127
+#define DIAL_INTERVAL_DEFAULT           1
 #define DIAL_SIZE_DEFAULT               40
 #define DIAL_SIZE_MINIMUM               8
+#define DIAL_SIZE_MAXIMUM               256
 #define DIAL_MINIMUM_DEFAULT            0
 #define DIAL_MAXIMUM_DEFAULT            127
        
@@ -41,10 +42,10 @@ typedef struct _dial {
     int             x_position;
     int             x_isLogarithmic;
     int             x_digitsNumber;
-    int             x_steps;
+    int             x_interval;
     t_float         x_minimum;
     t_float         x_maximum;
-    t_float         x_floatValue;
+    t_float         x_float;
     t_outlet        *x_outlet;
     } t_dial;
 
@@ -61,9 +62,9 @@ static void dial_set (t_dial *, t_float);
 static t_float dial_getStepValue (t_dial *x)
 {
     if (x->x_isLogarithmic) {
-        return (log (x->x_maximum / x->x_minimum) / (t_float)x->x_steps);
+        return (log (x->x_maximum / x->x_minimum) / (t_float)x->x_interval);
     } else {
-        return ((x->x_maximum - x->x_minimum) / (t_float)x->x_steps);
+        return ((x->x_maximum - x->x_minimum) / (t_float)x->x_interval);
     }
 }
 
@@ -113,7 +114,7 @@ static void dial_setRange (t_dial *x, t_float minimum, t_float maximum)
 
 static void dial_bang (t_dial *x)
 {
-    outlet_float (x->x_outlet, x->x_floatValue);
+    outlet_float (x->x_outlet, x->x_float);
 }
 
 static void dial_float (t_dial *x, t_float f)
@@ -154,7 +155,7 @@ static void dial_range (t_dial *x, t_symbol *s, int argc, t_atom *argv)
     
     dial_setRange (x, minimum, maximum);
     
-    x->x_floatValue = dial_getValue (x);
+    x->x_float = dial_getValue (x);
 }
 
 static void dial_set (t_dial *x, t_float f)
@@ -167,15 +168,15 @@ static void dial_set (t_dial *x, t_float f)
         x->x_position = (int)(((f - x->x_minimum) / dial_getStepValue (x)) + 0.5);
     }
     
-    x->x_floatValue = dial_getValue (x);
+    x->x_float = dial_getValue (x);
 }
 
 static void dial_steps (t_dial *x, t_float f)
 {
-    x->x_steps    = PD_CLAMP ((int)f, 1, DIAL_STEPS_MAXIMUM);
-    x->x_position = PD_MIN (x->x_position, x->x_steps);
+    x->x_interval    = PD_CLAMP ((int)f, 1, DIAL_STEPS_MAXIMUM);
+    x->x_position = PD_MIN (x->x_position, x->x_interval);
     
-    x->x_floatValue = dial_getValue (x);
+    x->x_float = dial_getValue (x);
 }
 
 static void dial_logarithmic (t_dial *x)
@@ -184,7 +185,7 @@ static void dial_logarithmic (t_dial *x)
     
     dial_setRange (x, x->x_minimum, x->x_maximum);
     
-    x->x_floatValue = dial_getValue (x);
+    x->x_float = dial_getValue (x);
 }
 
 static void dial_linear (t_dial *x)
@@ -210,8 +211,8 @@ static void dial_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  x->x_minimum);
     buffer_appendFloat (b,  x->x_maximum);
     buffer_appendFloat (b,  x->x_isLogarithmic);
-    buffer_appendFloat (b,  x->x_steps);
-    if (SAVED_DEEP (flags)) { buffer_appendFloat (b, x->x_floatValue); }
+    buffer_appendFloat (b,  x->x_interval);
+    if (SAVED_DEEP (flags)) { buffer_appendFloat (b, x->x_float); }
     buffer_appendSemicolon (b);
     
     object_saveIdentifiers (z, b, flags);
@@ -237,13 +238,13 @@ static void *dial_new (t_symbol *s, int argc, t_atom *argv)
     t_float minimum     = (argc > 5) ? atom_getFloat (argv + 2) : DIAL_MINIMUM_DEFAULT;
     t_float maximum     = (argc > 5) ? atom_getFloat (argv + 3) : DIAL_MAXIMUM_DEFAULT;
     int isLogarithmic   = (argc > 5) ? (int)atom_getFloat (argv + 4) : 0;
-    int steps           = (argc > 5) ? (int)atom_getFloat (argv + 5) : DIAL_STEPS_DEFAULT;
+    int steps           = (argc > 5) ? (int)atom_getFloat (argv + 5) : DIAL_INTERVAL_DEFAULT;
     t_float value       = (argc > 6) ? atom_getFloat (argv + 6) : DIAL_MINIMUM_DEFAULT;
     
     x->x_size           = PD_MAX (size, DIAL_SIZE_MINIMUM);
     x->x_isLogarithmic  = (isLogarithmic != 0);
     x->x_digitsNumber   = PD_CLAMP (digits, 1, DIAL_DIGITS_MAXIMUM);
-    x->x_steps          = PD_CLAMP (steps, 1, DIAL_STEPS_MAXIMUM);
+    x->x_interval          = PD_CLAMP (steps, 1, DIAL_STEPS_MAXIMUM);
     x->x_outlet         = outlet_newFloat (cast_object (x));
 
     dial_setRange (x, minimum, maximum);
