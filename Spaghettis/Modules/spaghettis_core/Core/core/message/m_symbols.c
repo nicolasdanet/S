@@ -512,7 +512,6 @@ t_symbol *sym_sqrt__tilde__;
 t_symbol *sym_stamp;
 t_symbol *sym_start;
 t_symbol *sym_step;
-t_symbol *sym_steps;
 t_symbol *sym_stop;
 t_symbol *sym_store;
 t_symbol *sym_stream;
@@ -1096,7 +1095,6 @@ PD_LOCAL void symbols_initialize (void)
     sym_stamp                                   = gensym ("stamp");
     sym_start                                   = gensym ("start");
     sym_step                                    = gensym ("step");
-    sym_steps                                   = gensym ("steps");
     sym_stop                                    = gensym ("stop");
     sym_store                                   = gensym ("store");
     sym_stream                                  = gensym ("stream");

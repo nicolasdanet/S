@@ -512,7 +512,6 @@ extern t_symbol *sym_sqrt__tilde__;
 extern t_symbol *sym_stamp;
 extern t_symbol *sym_start;
 extern t_symbol *sym_step;
-extern t_symbol *sym_steps;
 extern t_symbol *sym_stop;
 extern t_symbol *sym_store;
 extern t_symbol *sym_stream;

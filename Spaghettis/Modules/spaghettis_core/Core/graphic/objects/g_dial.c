@@ -14,7 +14,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #define DIAL_DIGITS_DEFAULT             5
-#define DIAL_DIGITS_MINIUM              0
+#define DIAL_DIGITS_MINIMUM             0
 #define DIAL_DIGITS_MAXIMUM             64
 #define DIAL_INTERVAL_DEFAULT           1
 #define DIAL_SIZE_DEFAULT               40
@@ -23,11 +23,6 @@
 #define DIAL_MINIMUM_DEFAULT            0
 #define DIAL_MAXIMUM_DEFAULT            127
        
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#define DIAL_STEPS_MAXIMUM              (1024 * 1024)       /* Arbitrary. */
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -40,7 +35,6 @@ static t_class *dial_class;             /* Shared. */
 typedef struct _dial {
     t_object        x_obj;              /* MUST be the first. */
     int             x_size;
-    int             x_position;
     int             x_isLogarithmic;
     int             x_digits;
     int             x_interval;
@@ -54,59 +48,111 @@ typedef struct _dial {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void dial_set (t_dial *, t_float);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static t_float dial_getStepValue (t_dial *x)
+static void dial_updateSize (t_dial *x, int size, int notify)
 {
-    if (x->x_isLogarithmic) {
-        return (log (x->x_maximum / x->x_minimum) / (t_float)x->x_interval);
-    } else {
-        return ((x->x_maximum - x->x_minimum) / (t_float)x->x_interval);
+    int n = PD_CLAMP (size, DIAL_SIZE_MINIMUM, DIAL_SIZE_MAXIMUM);
+    
+    if (x->x_size != n) {
+    //
+    x->x_size = n;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
+        #endif
+    }
+    //
     }
 }
 
-static t_float dial_getValue (t_dial *x)
+static void dial_updateLogarithmic (t_dial *x, int isLogarithmic, int notify)
 {
-    t_float f, t = dial_getStepValue (x) * (t_float)x->x_position;
+    if (x->x_isLogarithmic != isLogarithmic) {
+    //
+    x->x_isLogarithmic = isLogarithmic;
     
-    if (x->x_isLogarithmic) { 
-        f = x->x_minimum * exp (t); 
-    } else {
-        f = x->x_minimum + t;
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Logarithmic));
+        #endif
     }
-    
-    if ((f < 1.0e-10) && (f > -1.0e-10)) { f = 0.0; }
-    
-    return f;
+    //
+    }
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static void dial_setRange (t_dial *x, t_float minimum, t_float maximum)
+static void dial_updateDigits (t_dial *x, int digits, int notify)
 {
-    t_error err = PD_ERROR_NONE;
+    int n = PD_CLAMP (digits, DIAL_DIGITS_MINIMUM, DIAL_DIGITS_MAXIMUM);
     
-    err |= minimum > maximum;
+    if (x->x_digits != n) {
+    //
+    x->x_digits = n;
     
-    if (x->x_isLogarithmic) {
-        err |= (minimum == 0.0);
-        err |= (maximum * minimum < 0.0);
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Digits));
+        #endif
+    }
+    //
+    }
+}
+
+static void dial_updateRange (t_dial *x, t_float minimum, t_float maximum, int notify)
+{
+    t_float min = x->x_minimum;
+    t_float max = x->x_maximum;
+
+    x->x_minimum = PD_MIN (minimum, maximum);
+    x->x_maximum = PD_MAX (minimum, maximum);
+    
+    if (notify) {
+        if (min != x->x_minimum) {
+            #if defined ( PD_BUILDING_APPLICATION )
+            outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Low));
+            #endif
+        }
+        if (max != x->x_maximum) {
+            #if defined ( PD_BUILDING_APPLICATION )
+            outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::High));
+            #endif
+        }
+    }
+}
+
+static void dial_updateInterval (t_dial *x, t_float interval, int notify)
+{
+    t_float step = PD_MAX (0.0, interval);
+    
+    if (x->x_interval != step) {
+    //
+    x->x_interval = step;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Interval));
+        #endif
+    }
+    //
+    }
+}
+
+static int dial_updateValue (t_dial *x, t_float f, int notify)
+{
+    if (x->x_value != f) {
+    //
+    x->x_value = f;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Value));
+        #endif
     }
     
-    if (err) { 
-        x->x_isLogarithmic = 0;
-        error_invalid (cast_object (x), sym_dial, sym_range);
-        
-    } else {
-        x->x_minimum = minimum;
-        x->x_maximum = maximum;
+    return 1;
+    //
     }
+    
+    return 0;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -120,7 +166,7 @@ static void dial_bang (t_dial *x)
 
 static void dial_float (t_dial *x, t_float f)
 {
-    dial_set (x, f); dial_bang (x);
+    dial_updateValue (x, f, 1); dial_bang (x);
 }
 
 static void dial_list (t_dial *x, t_symbol *s, int argc, t_atom *argv)
@@ -132,21 +178,15 @@ static void dial_list (t_dial *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Kept compatible with vanilla nbx object. */
+
 static void dial_size (t_dial *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) {
-    //
     int digits = (int)atom_getFloatAtIndex (0, argc, argv);
+    int size   = (int)atom_getFloatAtIndex (1, argc, argv);
 
-    x->x_digits = PD_CLAMP (digits, 1, DIAL_DIGITS_MAXIMUM);
-    
-    if (argc > 1) {
-    //
-    int n = (int)atom_getFloatAtIndex (1, argc, argv); x->x_size = PD_MAX (n, DIAL_SIZE_MINIMUM);
-    //
-    }
-    //
-    }
+    if (argc > 0) { dial_updateDigits (x, digits, 1); }
+    if (argc > 1) { dial_updateSize (x, size, 1); }
 }
 
 static void dial_range (t_dial *x, t_symbol *s, int argc, t_atom *argv)
@@ -154,44 +194,22 @@ static void dial_range (t_dial *x, t_symbol *s, int argc, t_atom *argv)
     t_float minimum = atom_getFloatAtIndex (0, argc, argv);
     t_float maximum = atom_getFloatAtIndex (1, argc, argv);
     
-    dial_setRange (x, minimum, maximum);
-    
-    x->x_value = dial_getValue (x);
+    dial_updateRange (x, minimum, maximum, 1);
 }
 
 static void dial_set (t_dial *x, t_float f)
 {
-    f = PD_CLAMP (f, x->x_minimum, x->x_maximum);
-    
-    if (x->x_isLogarithmic) { 
-        x->x_position = (int)((log (f / x->x_minimum) / dial_getStepValue (x)) + 0.5);
-    } else {
-        x->x_position = (int)(((f - x->x_minimum) / dial_getStepValue (x)) + 0.5);
-    }
-    
-    x->x_value = dial_getValue (x);
-}
-
-static void dial_steps (t_dial *x, t_float f)
-{
-    x->x_interval    = PD_CLAMP ((int)f, 1, DIAL_STEPS_MAXIMUM);
-    x->x_position = PD_MIN (x->x_position, x->x_interval);
-    
-    x->x_value = dial_getValue (x);
+    dial_updateValue (x, f, 1);
 }
 
 static void dial_logarithmic (t_dial *x)
 {
-    x->x_isLogarithmic = 1;
-    
-    dial_setRange (x, x->x_minimum, x->x_maximum);
-    
-    x->x_value = dial_getValue (x);
+    dial_updateLogarithmic (x, 1, 1);
 }
 
 static void dial_linear (t_dial *x)
 {
-    x->x_isLogarithmic = 0;
+    dial_updateLogarithmic (x, 0, 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -275,7 +293,7 @@ static void dial_functionGetParameters (t_object *o, core::Group& group, const T
             NEEDS_TRANS ("Digits"),
             NEEDS_TRANS ("Number of digits"),
             x->x_digits,
-            delegate).setRange (juce::Range<int> (DIAL_DIGITS_MINIUM, DIAL_DIGITS_MAXIMUM));
+            delegate).setRange (juce::Range<int> (DIAL_DIGITS_MINIMUM, DIAL_DIGITS_MAXIMUM));
     }
     
     if (t.contains (Tag::Logarithmic)) {
@@ -297,7 +315,6 @@ static void dial_functionGetParameters (t_object *o, core::Group& group, const T
 
 static void dial_functionSetParameters (t_object *o, const core::Group& group)
 {
-    /*
     t_dial *x = (t_dial *)o;
     
     jassert (group.hasParameter (Tag::Value));
@@ -318,11 +335,11 @@ static void dial_functionSetParameters (t_object *o, const core::Group& group)
     
     dial_updateRange (x, min, max, 1);
     dial_updateInterval (x, step, 1);
+    dial_updateDigits (x, digits, 1);
     dial_updateLogarithmic (x, logarithmic, 1);
-    dial_updateWidth (x, width, 1);
+    dial_updateSize (x, size, 1);
     
     if (dial_updateValue (x, f, 1)) { dial_bang (x); }
-    */
 }
 
 #endif
@@ -337,20 +354,20 @@ static void *dial_new (t_symbol *s, int argc, t_atom *argv)
     
     int digits          = (argc > 5) ? (int)atom_getFloat (argv + 0) : DIAL_DIGITS_DEFAULT;
     int size            = (argc > 5) ? (int)atom_getFloat (argv + 1) : DIAL_SIZE_DEFAULT;
-    t_float minimum     = (argc > 5) ? atom_getFloat (argv + 2) : DIAL_MINIMUM_DEFAULT;
-    t_float maximum     = (argc > 5) ? atom_getFloat (argv + 3) : DIAL_MAXIMUM_DEFAULT;
+    t_float minimum     = (argc > 5) ? atom_getFloat (argv + 2)      : DIAL_MINIMUM_DEFAULT;
+    t_float maximum     = (argc > 5) ? atom_getFloat (argv + 3)      : DIAL_MAXIMUM_DEFAULT;
     int isLogarithmic   = (argc > 5) ? (int)atom_getFloat (argv + 4) : 0;
-    int steps           = (argc > 5) ? (int)atom_getFloat (argv + 5) : DIAL_INTERVAL_DEFAULT;
-    t_float value       = (argc > 6) ? atom_getFloat (argv + 6) : DIAL_MINIMUM_DEFAULT;
+    int step            = (argc > 5) ? (int)atom_getFloat (argv + 5) : DIAL_INTERVAL_DEFAULT;
+    t_float value       = (argc > 6) ? atom_getFloat (argv + 6)      : DIAL_MINIMUM_DEFAULT;
     
-    x->x_size           = PD_MAX (size, DIAL_SIZE_MINIMUM);
-    x->x_isLogarithmic  = (isLogarithmic != 0);
-    x->x_digits   = PD_CLAMP (digits, 1, DIAL_DIGITS_MAXIMUM);
-    x->x_interval          = PD_CLAMP (steps, 1, DIAL_STEPS_MAXIMUM);
-    x->x_outlet         = outlet_newFloat (cast_object (x));
-
-    dial_setRange (x, minimum, maximum);
-    dial_set (x, value);
+    dial_updateDigits (x, digits, 0);
+    dial_updateSize (x, size, 0);
+    dial_updateRange (x, minimum, maximum, 0);
+    dial_updateLogarithmic (x, (isLogarithmic != 0), 0);
+    dial_updateInterval (x, step, 0);
+    dial_updateValue (x, value, 0);
+    
+    x->x_outlet = outlet_newFloat (cast_object (x));
 
     return x;
 }
@@ -378,7 +395,6 @@ PD_LOCAL void dial_setup (void)
     class_addMethod (c, (t_method)dial_size,        sym_size,           A_GIMME, A_NULL);
     class_addMethod (c, (t_method)dial_range,       sym_range,          A_GIMME, A_NULL);
     class_addMethod (c, (t_method)dial_set,         sym_set,            A_FLOAT, A_NULL);
-    class_addMethod (c, (t_method)dial_steps,       sym_steps,          A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)dial_logarithmic, sym_logarithmic,    A_NULL);
     class_addMethod (c, (t_method)dial_linear,      sym_linear,         A_NULL);
     class_addMethod (c, (t_method)dial_restore,     sym__restore,       A_NULL);
