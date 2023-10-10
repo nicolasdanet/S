@@ -1,0 +1,143 @@
+
+/* Copyright (c) 1997 Miller Puckette and others. */
+
+/* < https://opensource.org/licenses/BSD-3-Clause > */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#include "../../m_spaghettis.h"
+#include "../../m_core.h"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void update_width (t_gui *x, int width, int notify)
+{
+    int n = PD_CLAMP (width, GUI_WIDTH_MINIMUM, GUI_WIDTH_MAXIMUM);
+    
+    if (x->x_width != n) {
+    //
+    x->x_width = n;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
+        #endif
+    }
+    //
+    }
+}
+
+void update_height (t_gui *x, int height, int notify)
+{
+    int n = PD_CLAMP (height, GUI_WIDTH_MINIMUM, GUI_WIDTH_MAXIMUM);
+    
+    if (x->x_height != n) {
+    //
+    x->x_height = n;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Height));
+        #endif
+    }
+    //
+    }
+}
+
+void update_orientation (t_gui *x, int isVertical, int notify)
+{
+    if (x->x_isVertical != isVertical) {
+    //
+    x->x_isVertical = isVertical;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Vertical));
+        #endif
+    }
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void update_logarithmic (t_guivalue *x, int isLogarithmic, int notify)
+{
+    if (x->x_isLogarithmic != isLogarithmic) {
+    //
+    x->x_isLogarithmic = isLogarithmic;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Logarithmic));
+        #endif
+    }
+    //
+    }
+}
+
+void update_range (t_guivalue *x, t_float minimum, t_float maximum, int notify)
+{
+    t_float min = x->x_minimum;
+    t_float max = x->x_maximum;
+
+    x->x_minimum = PD_MIN (minimum, maximum);
+    x->x_maximum = PD_MAX (minimum, maximum);
+    
+    if (notify) {
+        if (min != x->x_minimum) {
+            #if defined ( PD_BUILDING_APPLICATION )
+            outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Low));
+            #endif
+        }
+        if (max != x->x_maximum) {
+            #if defined ( PD_BUILDING_APPLICATION )
+            outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::High));
+            #endif
+        }
+    }
+}
+
+void update_interval (t_guivalue *x, t_float interval, int notify)
+{
+    t_float step = PD_MAX (0.0, interval);
+    
+    if (x->x_interval != step) {
+    //
+    x->x_interval = step;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Interval));
+        #endif
+    }
+    //
+    }
+}
+
+int update_value (t_guivalue *x, t_float f, int notify)
+{
+    if (x->x_value != f) {
+    //
+    x->x_value = f;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Value));
+        #endif
+    }
+    
+    return 1;
+    //
+    }
+    
+    return 0;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------

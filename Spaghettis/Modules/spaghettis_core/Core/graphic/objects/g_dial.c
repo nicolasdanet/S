@@ -33,7 +33,7 @@ static t_class *dial_class;             /* Shared. */
 // -----------------------------------------------------------------------------------------------------------
 
 typedef struct _dial {
-    t_object        x_obj;              /* MUST be the first. */
+    t_gui           x_obj;              /* MUST be the first. */
     int             x_size;
     int             x_isLogarithmic;
     int             x_digits;
