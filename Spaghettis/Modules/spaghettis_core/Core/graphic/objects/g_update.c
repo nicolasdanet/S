@@ -47,6 +47,23 @@ void update_height (t_gui *x, int height, int notify)
     }
 }
 
+void update_digits (t_gui *x, int digits, int notify)
+{
+    int n = PD_CLAMP (digits, GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM);
+    
+    if (x->x_digits != n) {
+    //
+    x->x_digits = n;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Digits));
+        #endif
+    }
+    //
+    }
+}
+
 void update_orientation (t_gui *x, int isVertical, int notify)
 {
     if (x->x_isVertical != isVertical) {

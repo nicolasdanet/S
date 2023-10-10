@@ -18,6 +18,7 @@ typedef struct _gui {
     t_object    x_obj;                  /* MUST be the first. */
     int         x_width;
     int         x_height;
+    int         x_digits;
     int         x_isVertical;
     } t_gui;
 
@@ -41,17 +42,22 @@ typedef struct _guivalue {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int gui_getWidth (t_gui *x)
+inline int gui_getWidth (t_gui *x)
 {
     return x->x_width;
 }
 
-int gui_getHeight (t_gui *x)
+inline int gui_getHeight (t_gui *x)
 {
     return x->x_height;
 }
 
-int gui_isVertical (t_gui *x)
+inline int gui_getDigits (t_gui *x)
+{
+    return x->x_height;
+}
+
+inline int gui_isVertical (t_gui *x)
 {
     return x->x_isVertical;
 }
@@ -60,27 +66,27 @@ int gui_isVertical (t_gui *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int guivalue_isLogarithmic (t_guivalue *x)
+inline int guivalue_isLogarithmic (t_guivalue *x)
 {
     return x->x_isLogarithmic;
 }
 
-t_float guivalue_getInterval (t_guivalue *x)
+inline t_float guivalue_getInterval (t_guivalue *x)
 {
     return x->x_interval;
 }
 
-t_float guivalue_getMinimum (t_guivalue *x)
+inline t_float guivalue_getMinimum (t_guivalue *x)
 {
     return x->x_minimum;
 }
 
-t_float guivalue_getMaximum (t_guivalue *x)
+inline t_float guivalue_getMaximum (t_guivalue *x)
 {
     return x->x_maximum;
 }
 
-t_float guivalue_getValue (t_guivalue *x)
+inline t_float guivalue_getValue (t_guivalue *x)
 {
     return x->x_value;
 }
@@ -92,6 +98,14 @@ t_float guivalue_getValue (t_guivalue *x)
 #define GUI_WIDTH_MINIMUM           8
 #define GUI_WIDTH_MAXIMUM           256
 #define GUI_WIDTH_DEFAULT           18
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#define GUI_DIGITS_MINIMUM          0
+#define GUI_DIGITS_MAXIMUM          64
+#define GUI_DIGITS_DEFAULT          5
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -110,16 +124,9 @@ t_float guivalue_getValue (t_guivalue *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define GUI_DIGITS_MINIMUM          0
-#define GUI_DIGITS_MAXIMUM          64
-#define GUI_DIGITS_DEFAULT          5
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void update_width           (t_gui *x, int width, int notify);
 void update_height          (t_gui *x, int height, int notify);
+void update_digits          (t_gui *x, int digits, int notify);
 void update_orientation     (t_gui *x, int isVertical, int notify);
 
 // -----------------------------------------------------------------------------------------------------------
