@@ -54,7 +54,7 @@ inline int gui_getHeight (t_gui *x)
 
 inline int gui_getDigits (t_gui *x)
 {
-    return x->x_height;
+    return x->x_digits;
 }
 
 inline int gui_isVertical (t_gui *x)
