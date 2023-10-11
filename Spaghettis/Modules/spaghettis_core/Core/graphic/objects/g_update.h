@@ -20,23 +20,18 @@ typedef struct _gui {
     int         x_height;
     int         x_digits;
     int         x_isVertical;
-    } t_gui;
-
-typedef struct _guivalue {
-    t_gui       x_gui;                  /* MUST be the first. */
     int         x_isLogarithmic;
     t_float     x_interval;
     t_float     x_minimum;
     t_float     x_maximum;
     t_float     x_value;
-    } t_guivalue;
+    } t_gui;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define cast_gui(x)         ((t_gui *)(x))
-#define cast_guivalue(x)    ((t_guivalue *)(x))
+#define cast_gui(x) ((t_gui *)(x))
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -62,31 +57,27 @@ inline int gui_isVertical (t_gui *x)
     return x->x_isVertical;
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-inline int guivalue_isLogarithmic (t_guivalue *x)
+inline int gui_isLogarithmic (t_gui *x)
 {
     return x->x_isLogarithmic;
 }
 
-inline t_float guivalue_getInterval (t_guivalue *x)
+inline t_float gui_getInterval (t_gui *x)
 {
     return x->x_interval;
 }
 
-inline t_float guivalue_getMinimum (t_guivalue *x)
+inline t_float gui_getMinimum (t_gui *x)
 {
     return x->x_minimum;
 }
 
-inline t_float guivalue_getMaximum (t_guivalue *x)
+inline t_float gui_getMaximum (t_gui *x)
 {
     return x->x_maximum;
 }
 
-inline t_float guivalue_getValue (t_guivalue *x)
+inline t_float gui_getValue (t_gui *x)
 {
     return x->x_value;
 }
@@ -128,15 +119,10 @@ void update_width           (t_gui *x, int width, int notify);
 void update_height          (t_gui *x, int height, int notify);
 void update_digits          (t_gui *x, int digits, int notify);
 void update_orientation     (t_gui *x, int isVertical, int notify);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void update_logarithmic     (t_guivalue *x, int isLogarithmic, int notify);
-void update_range           (t_guivalue *x, t_float minimum, t_float maximum, int notify);
-void update_interval        (t_guivalue *x, t_float interval, int notify);
-int  update_value           (t_guivalue *x, t_float f, int notify);
+void update_logarithmic     (t_gui *x, int isLogarithmic, int notify);
+void update_range           (t_gui *x, t_float minimum, t_float maximum, int notify);
+void update_interval        (t_gui *x, t_float interval, int notify);
+int  update_value           (t_gui *x, t_float f, int notify);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

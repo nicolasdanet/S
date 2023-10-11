@@ -79,11 +79,7 @@ void update_orientation (t_gui *x, int isVertical, int notify)
     }
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void update_logarithmic (t_guivalue *x, int isLogarithmic, int notify)
+void update_logarithmic (t_gui *x, int isLogarithmic, int notify)
 {
     if (x->x_isLogarithmic != isLogarithmic) {
     //
@@ -98,7 +94,7 @@ void update_logarithmic (t_guivalue *x, int isLogarithmic, int notify)
     }
 }
 
-void update_range (t_guivalue *x, t_float minimum, t_float maximum, int notify)
+void update_range (t_gui *x, t_float minimum, t_float maximum, int notify)
 {
     t_float min = x->x_minimum;
     t_float max = x->x_maximum;
@@ -120,7 +116,7 @@ void update_range (t_guivalue *x, t_float minimum, t_float maximum, int notify)
     }
 }
 
-void update_interval (t_guivalue *x, t_float interval, int notify)
+void update_interval (t_gui *x, t_float interval, int notify)
 {
     t_float step = PD_MAX (0.0, interval);
     
@@ -137,7 +133,7 @@ void update_interval (t_guivalue *x, t_float interval, int notify)
     }
 }
 
-int update_value (t_guivalue *x, t_float f, int notify)
+int update_value (t_gui *x, t_float f, int notify)
 {
     if (x->x_value != f) {
     //
