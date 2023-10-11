@@ -12,7 +12,6 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 static t_class *dial_class;             /* Shared. */
 
@@ -121,65 +120,8 @@ static void dial_restore (t_dial *x)
 
 static void dial_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
 {
-    t_gui *x = cast_gui (o);
-    
-    static DelegateCache delegate;
-    
-    if (t.contains (Tag::Value)) {
-        group.addParameter (Tag::Value,
-            NEEDS_TRANS ("Value"),
-            NEEDS_TRANS ("Value of dial"),
-            gui_getValue (x),
-            delegate);
-    }
-    
-    if (t.contains (Tag::Low)) {
-        group.addParameter (Tag::Low,
-            NEEDS_TRANS ("Low Range"),
-            NEEDS_TRANS ("Low value"),
-            gui_getMinimum (x),
-            delegate);
-    }
-    
-    if (t.contains (Tag::High)) {
-        group.addParameter (Tag::High,
-            NEEDS_TRANS ("High Range"),
-            NEEDS_TRANS ("High value"),
-            gui_getMaximum (x),
-            delegate);
-    }
-    
-    if (t.contains (Tag::Interval)) {
-        group.addParameter (Tag::Interval,
-            NEEDS_TRANS ("Interval"),
-            NEEDS_TRANS ("Step between dial values"),
-            gui_getInterval (x),
-            delegate).setPositive<t_float>();
-    }
-    
-    if (t.contains (Tag::Digits)) {
-        group.addParameter (Tag::Digits,
-            NEEDS_TRANS ("Digits"),
-            NEEDS_TRANS ("Number of digits"),
-            gui_getDigits (x),
-            delegate).setRange (juce::Range<int> (GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM));
-    }
-    
-    if (t.contains (Tag::Logarithmic)) {
-        group.addParameter (Tag::Logarithmic,
-            NEEDS_TRANS ("Logarithmic"),
-            NEEDS_TRANS ("Scale is logarithmic"),
-            static_cast<bool> (gui_isLogarithmic (x)),
-            delegate);
-    }
-    
-    if (t.contains (Tag::Width)) {
-        group.addParameter (Tag::Width,
-            NEEDS_TRANS ("Width"),
-            NEEDS_TRANS ("Border size of dial"),
-            gui_getWidth (x),
-            delegate).setRange (juce::Range<int> (GUI_WIDTH_MINIMUM, GUI_WIDTH_MAXIMUM));
-    }
+    gui_getValueParameters (o, group, t);
+    gui_getSizeParameters (o, group, t);
 }
 
 static void dial_functionSetParameters (t_object *o, const core::Group& group)
