@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void update_width (t_gui *x, int width, int notify)
+void gui_updateWidth (t_gui *x, int width, int notify)
 {
     int n = PD_CLAMP (width, GUI_WIDTH_MINIMUM, GUI_WIDTH_MAXIMUM);
     
@@ -30,7 +30,7 @@ void update_width (t_gui *x, int width, int notify)
     }
 }
 
-void update_height (t_gui *x, int height, int notify)
+void gui_updateHeight (t_gui *x, int height, int notify)
 {
     int n = PD_CLAMP (height, GUI_WIDTH_MINIMUM, GUI_WIDTH_MAXIMUM);
     
@@ -47,7 +47,7 @@ void update_height (t_gui *x, int height, int notify)
     }
 }
 
-void update_digits (t_gui *x, int digits, int notify)
+void gui_updateDigits (t_gui *x, int digits, int notify)
 {
     int n = PD_CLAMP (digits, GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM);
     
@@ -64,7 +64,7 @@ void update_digits (t_gui *x, int digits, int notify)
     }
 }
 
-void update_orientation (t_gui *x, int isVertical, int notify)
+void gui_updateOrientation (t_gui *x, int isVertical, int notify)
 {
     if (x->x_isVertical != isVertical) {
     //
@@ -79,7 +79,7 @@ void update_orientation (t_gui *x, int isVertical, int notify)
     }
 }
 
-void update_logarithmic (t_gui *x, int isLogarithmic, int notify)
+void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
 {
     if (x->x_isLogarithmic != isLogarithmic) {
     //
@@ -94,7 +94,7 @@ void update_logarithmic (t_gui *x, int isLogarithmic, int notify)
     }
 }
 
-void update_range (t_gui *x, t_float minimum, t_float maximum, int notify)
+void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
 {
     t_float min = x->x_minimum;
     t_float max = x->x_maximum;
@@ -116,7 +116,7 @@ void update_range (t_gui *x, t_float minimum, t_float maximum, int notify)
     }
 }
 
-void update_interval (t_gui *x, t_float interval, int notify)
+void gui_updateInterval (t_gui *x, t_float interval, int notify)
 {
     t_float step = PD_MAX (0.0, interval);
     
@@ -133,7 +133,7 @@ void update_interval (t_gui *x, t_float interval, int notify)
     }
 }
 
-int update_value (t_gui *x, t_float f, int notify)
+int gui_updateValue (t_gui *x, t_float f, int notify)
 {
     if (x->x_value != f) {
     //

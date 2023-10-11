@@ -115,14 +115,14 @@ inline t_float gui_getValue (t_gui *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void update_width           (t_gui *x, int width, int notify);
-void update_height          (t_gui *x, int height, int notify);
-void update_digits          (t_gui *x, int digits, int notify);
-void update_orientation     (t_gui *x, int isVertical, int notify);
-void update_logarithmic     (t_gui *x, int isLogarithmic, int notify);
-void update_range           (t_gui *x, t_float minimum, t_float maximum, int notify);
-void update_interval        (t_gui *x, t_float interval, int notify);
-int  update_value           (t_gui *x, t_float f, int notify);
+void gui_updateWidth        (t_gui *x, int width, int notify);
+void gui_updateHeight       (t_gui *x, int height, int notify);
+void gui_updateDigits       (t_gui *x, int digits, int notify);
+void gui_updateOrientation  (t_gui *x, int isVertical, int notify);
+void gui_updateLogarithmic  (t_gui *x, int isLogarithmic, int notify);
+void gui_updateRange        (t_gui *x, t_float minimum, t_float maximum, int notify);
+void gui_updateInterval     (t_gui *x, t_float interval, int notify);
+int  gui_updateValue        (t_gui *x, t_float f, int notify);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
