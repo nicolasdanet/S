@@ -288,10 +288,17 @@ static int legacy_convertGUI (t_buffer *x, t_symbol *key, int length, int m, int
         if (key == sym_hradio) { SET_FLOAT (atoms + 6, 0.0); atoms[7] = atoms[8]; }
         if (key == sym_panel)  { atoms[5] = atoms[6]; atoms[6] = atoms[7]; }
         if (key == sym_dial)   {
+            t_float k  = 1e+37 / 2.0;
             t_float f1 = atom_getFloat (atoms + 5);
             t_float f2 = atom_getFloat (atoms + 6);
+            t_float f3 = atom_getFloat (atoms + 7);
+            t_float f4 = atom_getFloat (atoms + 8);
             SET_FLOAT (atoms + 5, f2);
             SET_FLOAT (atoms + 6, f1);
+            if (PD_ABS (f3) > k || PD_ABS (f4) > k) {
+                SET_FLOAT (atoms + 7, 0.0);
+                SET_FLOAT (atoms + 8, 0.0);
+            }
         }
         
         break;
