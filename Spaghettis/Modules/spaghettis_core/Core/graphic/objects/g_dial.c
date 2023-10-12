@@ -148,11 +148,11 @@ static void *dial_new (t_symbol *s, int argc, t_atom *argv)
     int step            = (argc > 5) ? (int)atom_getFloat (argv + 5) : GUI_INTERVAL_DEFAULT;
     t_float value       = (argc > 6) ? atom_getFloat (argv + 6)      : GUI_MINIMUM_DEFAULT;
     
-    gui_updateDigits (cast_gui (x), digits, 0);
     gui_updateWidth (cast_gui (x), width, 0);
     gui_updateRange (cast_gui (x), minimum, maximum, 0);
-    gui_updateLogarithmic (cast_gui (x), (isLogarithmic != 0), 0);
     gui_updateInterval (cast_gui (x), step, 0);
+    gui_updateDigits (cast_gui (x), digits, 0);
+    gui_updateLogarithmic (cast_gui (x), (isLogarithmic != 0), 0);
     gui_updateValue (cast_gui (x), value, 0);
     
     x->x_outlet = outlet_newFloat (cast_object (x));
