@@ -232,3 +232,48 @@ void gui_getSizeParameters (t_object *o, core::Group& group, const Tags& t)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+void gui_setValueParameters (t_object *o, const core::Group& group)
+{
+    t_gui *x = (t_gui *)o;
+    
+    jassert (group.hasParameter (Tag::Value));
+    jassert (group.hasParameter (Tag::Low));
+    jassert (group.hasParameter (Tag::High));
+    jassert (group.hasParameter (Tag::Interval));
+    jassert (group.hasParameter (Tag::Logarithmic));
+    jassert (group.hasParameter (Tag::Digits));
+    
+    const t_float f         = group.getParameter (Tag::Value).getValueTyped<t_float>();
+    const t_float min       = group.getParameter (Tag::Low).getValueTyped<t_float>();
+    const t_float max       = group.getParameter (Tag::High).getValueTyped<t_float>();
+    const t_float step      = group.getParameter (Tag::Interval).getValueTyped<t_float>();
+    const bool logarithmic  = group.getParameter (Tag::Logarithmic).getValueTyped<bool>();
+    const int digits        = group.getParameter (Tag::Digits).getValueTyped<int>();
+    
+    gui_updateRange (x, min, max, 1);
+    gui_updateInterval (x, step, 1);
+    gui_updateLogarithmic (x, logarithmic, 1);
+    gui_updateDigits (x, digits, 1);
+    
+    if (gui_updateValue (x, f, 1)) { pd_bang (cast_pd (o)); }
+}
+
+void gui_setSizeParameters (t_object *o, const core::Group& group)
+{
+    t_gui *x = (t_gui *)o;
+    
+    jassert (group.hasParameter (Tag::Width));
+    
+    const int width = group.getParameter (Tag::Width).getValueTyped<int>();
+    
+    gui_updateWidth (x, width, 1);
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------

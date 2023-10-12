@@ -133,6 +133,9 @@ int  gui_updateValue        (t_gui *x, t_float f, int notify);
 void gui_getValueParameters (t_object *o, core::Group& group, const Tags& t);
 void gui_getSizeParameters (t_object *o, core::Group& group, const Tags& t);
 
+void gui_setValueParameters (t_object *o, core::Group& group);
+void gui_setSizeParameters (t_object *o, core::Group& group);
+
 #endif
 
 // -----------------------------------------------------------------------------------------------------------

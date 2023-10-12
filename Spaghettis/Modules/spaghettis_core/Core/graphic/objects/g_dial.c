@@ -126,31 +126,8 @@ static void dial_functionGetParameters (t_object *o, core::Group& group, const T
 
 static void dial_functionSetParameters (t_object *o, const core::Group& group)
 {
-    t_gui *x = (t_gui *)o;
-    
-    jassert (group.hasParameter (Tag::Value));
-    jassert (group.hasParameter (Tag::Low));
-    jassert (group.hasParameter (Tag::High));
-    jassert (group.hasParameter (Tag::Interval));
-    jassert (group.hasParameter (Tag::Digits));
-    jassert (group.hasParameter (Tag::Logarithmic));
-    jassert (group.hasParameter (Tag::Width));
-    
-    const t_float f         = group.getParameter (Tag::Value).getValueTyped<t_float>();
-    const t_float min       = group.getParameter (Tag::Low).getValueTyped<t_float>();
-    const t_float max       = group.getParameter (Tag::High).getValueTyped<t_float>();
-    const t_float step      = group.getParameter (Tag::Interval).getValueTyped<t_float>();
-    const bool logarithmic  = group.getParameter (Tag::Logarithmic).getValueTyped<bool>();
-    const int digits        = group.getParameter (Tag::Digits).getValueTyped<int>();
-    const int width         = group.getParameter (Tag::Width).getValueTyped<int>();
-    
-    gui_updateRange (x, min, max, 1);
-    gui_updateInterval (x, step, 1);
-    gui_updateDigits (x, digits, 1);
-    gui_updateLogarithmic (x, logarithmic, 1);
-    gui_updateWidth (x, width, 1);
-    
-    if (gui_updateValue (x, f, 1)) { dial_bang ((t_dial *)x); }
+    gui_setSizeParameters (o, group);
+    gui_setValueParameters (o, group);
 }
 
 #endif
