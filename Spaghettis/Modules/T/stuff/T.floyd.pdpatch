@@ -36,8 +36,8 @@
 #X connect 11 0 12 0;
 #X connect 12 0 6 0;
 #X restore 36 24 pd play;
-#X obj 156 60 dial 5 40 0 127 0 127;
-#X obj 156 276 dial 5 40 3 20 0 17;
+#X obj 156 60 dial 40 5 0 127 0 1;
+#X obj 156 276 dial 40 5 3 20 0 1;
 #X obj 36 384 vcf~;
 #X obj 36 420 *~ 8;
 #X obj 156 24 loadmess 61;
@@ -50,7 +50,7 @@
 #X obj 24 288 *~;
 #X obj 24 360 dac~;
 #X obj 24 168 pack 0 50;
-#X obj 24 72 dial 5 40 0 95 0 95;
+#X obj 24 72 dial 40 5 0 95 0 1;
 #X obj 144 204 hip~ 5;
 #X obj 24 132 dbtoamp;
 #X obj 24 24 loadmess 95;

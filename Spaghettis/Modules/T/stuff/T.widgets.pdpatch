@@ -2,7 +2,7 @@
 #N canvas 538 165 707 612 12;
 #X floatatom 48 336 5 0 0;
 #X f 5;
-#X obj 216 156 dial 5 40 0 127 0 127;
+#X obj 216 156 dial 40 5 0 127 0 1;
 #X obj 48 300 hslider 128 15 0 127 0;
 #X obj 48 228 bng 15 250;
 #X obj 216 264 vradio 15 0 8;

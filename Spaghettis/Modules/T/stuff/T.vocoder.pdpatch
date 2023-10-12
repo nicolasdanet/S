@@ -16,7 +16,7 @@
 #X connect 5 2 2 0;
 #X connect 6 0 0 0;
 #X restore 144 252 pd hann;
-#X obj 96 132 dial 5 40 0 100 0 100;
+#X obj 96 132 dial 40 5 0 100 0 1;
 #N canvas 583 29 672 694 fft 0;
 #X obj 96 492 *~;
 #X obj 36 492 *~;
@@ -74,7 +74,7 @@
 #X obj 24 288 *~;
 #X obj 24 360 dac~;
 #X obj 24 168 pack 0 50;
-#X obj 24 72 dial 5 40 0 95 0 95;
+#X obj 24 72 dial 40 5 0 95 0 1;
 #X obj 144 204 hip~ 5;
 #X obj 24 132 dbtoamp;
 #X obj 24 24 loadmess 95;

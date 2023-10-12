@@ -16,7 +16,7 @@
 #X connect 5 2 2 0;
 #X connect 6 0 0 0;
 #X restore 228 324 pd hann;
-#X obj 132 228 dial 5 40 -12 12 0 24;
+#X obj 132 228 dial 40 5 -12 12 0 1;
 #N canvas 337 158 647 245 sample 0;
 #X obj 36 180 soundfiler;
 #X obj 360 36 garray \$0-sample 62079 0;
@@ -236,7 +236,7 @@
 #X obj 24 288 *~;
 #X obj 24 360 dac~;
 #X obj 24 168 pack 0 50;
-#X obj 24 72 dial 5 40 0 95 0 95;
+#X obj 24 72 dial 40 5 0 95 0 1;
 #X obj 144 204 hip~ 5;
 #X obj 24 132 dbtoamp;
 #X obj 24 24 loadmess 95;

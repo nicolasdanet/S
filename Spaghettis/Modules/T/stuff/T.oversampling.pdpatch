@@ -1,7 +1,7 @@
 #N spaghettis 0 9 0;
 #N canvas 646 254 363 260 12;
 #X obj 36 132 mtof;
-#X obj 36 72 dial 5 40 0 127 0 127;
+#X obj 36 72 dial 40 5 0 127 0 1;
 #N canvas 728 302 367 167 upsample 0;
 #X obj 36 60 phasor~;
 #X obj 216 120 block~ 1024 1 16;
@@ -41,7 +41,7 @@
 #X obj 24 288 *~;
 #X obj 24 360 dac~;
 #X obj 24 168 pack 0 50;
-#X obj 24 72 dial 5 40 0 95 0 95;
+#X obj 24 72 dial 40 5 0 95 0 1;
 #X obj 144 204 hip~ 5;
 #X obj 24 132 dbtoamp;
 #X obj 24 24 loadmess 70;

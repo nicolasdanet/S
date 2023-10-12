@@ -2,7 +2,7 @@
 #N view 250 250 500 250;
 #N canvas 396 117 890 614;
 #X floatatom 48 336 5 0 0;
-#X obj 216 156 dial 5 40 0 127 0 127;
+#X obj 216 156 dial 40 5 0 127 0 1;
 #X obj 48 300 hslider 128 15 0 127 0;
 #X obj 48 228 bng 18 250;
 #X _include bijou;
