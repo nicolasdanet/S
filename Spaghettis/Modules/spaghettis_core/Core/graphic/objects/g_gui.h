@@ -86,9 +86,8 @@ inline t_float gui_getValue (t_gui *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define GUI_WIDTH_MINIMUM           8
-#define GUI_WIDTH_MAXIMUM           256
-#define GUI_WIDTH_DEFAULT           18
+#define GUI_SIZE_MINIMUM           8
+#define GUI_SIZE_MAXIMUM           256
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -96,20 +95,17 @@ inline t_float gui_getValue (t_gui *x)
 
 #define GUI_DIGITS_MINIMUM          0
 #define GUI_DIGITS_MAXIMUM          64
-#define GUI_DIGITS_DEFAULT          5
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#define GUI_SIZE_DEFAULT            18
 #define GUI_MINIMUM_DEFAULT         0
 #define GUI_MAXIMUM_DEFAULT         127
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 #define GUI_INTERVAL_DEFAULT        1
+#define GUI_LOGARITHMIC_DEFAULT     0
+#define GUI_DIGITS_DEFAULT          5
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -117,12 +113,13 @@ inline t_float gui_getValue (t_gui *x)
 
 void gui_updateWidth        (t_gui *x, int width, int notify);
 void gui_updateHeight       (t_gui *x, int height, int notify);
-void gui_updateDigits       (t_gui *x, int digits, int notify);
 void gui_updateOrientation  (t_gui *x, int isVertical, int notify);
-void gui_updateLogarithmic  (t_gui *x, int isLogarithmic, int notify);
+
+int  gui_updateValue        (t_gui *x, t_float f, int notify);
 void gui_updateRange        (t_gui *x, t_float minimum, t_float maximum, int notify);
 void gui_updateInterval     (t_gui *x, t_float interval, int notify);
-int  gui_updateValue        (t_gui *x, t_float f, int notify);
+void gui_updateLogarithmic  (t_gui *x, int isLogarithmic, int notify);
+void gui_updateDigits       (t_gui *x, int digits, int notify);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

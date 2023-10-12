@@ -15,7 +15,7 @@
 
 void gui_updateWidth (t_gui *x, int width, int notify)
 {
-    int n = PD_CLAMP (width, GUI_WIDTH_MINIMUM, GUI_WIDTH_MAXIMUM);
+    int n = PD_CLAMP (width, GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM);
     
     if (x->x_width != n) {
     //
@@ -32,7 +32,7 @@ void gui_updateWidth (t_gui *x, int width, int notify)
 
 void gui_updateHeight (t_gui *x, int height, int notify)
 {
-    int n = PD_CLAMP (height, GUI_WIDTH_MINIMUM, GUI_WIDTH_MAXIMUM);
+    int n = PD_CLAMP (height, GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM);
     
     if (x->x_height != n) {
     //
@@ -41,23 +41,6 @@ void gui_updateHeight (t_gui *x, int height, int notify)
     if (notify) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Height));
-        #endif
-    }
-    //
-    }
-}
-
-void gui_updateDigits (t_gui *x, int digits, int notify)
-{
-    int n = PD_CLAMP (digits, GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM);
-    
-    if (x->x_digits != n) {
-    //
-    x->x_digits = n;
-    
-    if (notify) {
-        #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Digits));
         #endif
     }
     //
@@ -79,19 +62,23 @@ void gui_updateOrientation (t_gui *x, int isVertical, int notify)
     }
 }
 
-void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
+int gui_updateValue (t_gui *x, t_float f, int notify)
 {
-    if (x->x_isLogarithmic != isLogarithmic) {
+    if (x->x_value != f) {
     //
-    x->x_isLogarithmic = isLogarithmic;
+    x->x_value = f;
     
     if (notify) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Logarithmic));
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Value));
         #endif
     }
+    
+    return 1;
     //
     }
+    
+    return 0;
 }
 
 void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
@@ -133,23 +120,36 @@ void gui_updateInterval (t_gui *x, t_float interval, int notify)
     }
 }
 
-int gui_updateValue (t_gui *x, t_float f, int notify)
+void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
 {
-    if (x->x_value != f) {
+    if (x->x_isLogarithmic != isLogarithmic) {
     //
-    x->x_value = f;
+    x->x_isLogarithmic = isLogarithmic;
     
     if (notify) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Value));
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Logarithmic));
         #endif
     }
-    
-    return 1;
     //
     }
+}
+
+void gui_updateDigits (t_gui *x, int digits, int notify)
+{
+    int n = PD_CLAMP (digits, GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM);
     
-    return 0;
+    if (x->x_digits != n) {
+    //
+    x->x_digits = n;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Digits));
+        #endif
+    }
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -224,7 +224,7 @@ void gui_getSizeParameters (t_object *o, core::Group& group, const Tags& t)
             NEEDS_TRANS ("Width"),
             NEEDS_TRANS ("Width of object"),
             gui_getWidth (x),
-            delegate).setRange (juce::Range<int> (GUI_WIDTH_MINIMUM, GUI_WIDTH_MAXIMUM));
+            delegate).setRange (juce::Range<int> (GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM));
     }
 }
 
