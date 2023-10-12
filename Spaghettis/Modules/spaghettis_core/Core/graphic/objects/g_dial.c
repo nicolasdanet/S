@@ -140,11 +140,11 @@ static void *dial_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_dial *x = (t_dial *)pd_new (dial_class);
     
-    int width           = (argc > 5) ? atom_getFloat (argv + 0) : 2 * GUI_SIZE_DEFAULT;
-    int digits          = (argc > 5) ? atom_getFloat (argv + 1) : GUI_DIGITS_DEFAULT;
-    t_float minimum     = (argc > 5) ? atom_getFloat (argv + 2) : GUI_MINIMUM_DEFAULT;
-    t_float maximum     = (argc > 5) ? atom_getFloat (argv + 3) : GUI_MAXIMUM_DEFAULT;
-    int isLogarithmic   = (argc > 5) ? atom_getFloat (argv + 4) : GUI_LOGARITHMIC_DEFAULT;
+    int width           = (argc > 4) ? atom_getFloat (argv + 0) : 2 * GUI_SIZE_DEFAULT;
+    int digits          = (argc > 4) ? atom_getFloat (argv + 1) : GUI_DIGITS_DEFAULT;
+    t_float minimum     = (argc > 4) ? atom_getFloat (argv + 2) : GUI_MINIMUM_DEFAULT;
+    t_float maximum     = (argc > 4) ? atom_getFloat (argv + 3) : GUI_MAXIMUM_DEFAULT;
+    int isLogarithmic   = (argc > 4) ? atom_getFloat (argv + 4) : GUI_LOGARITHMIC_DEFAULT;
     int step            = (argc > 5) ? atom_getFloat (argv + 5) : GUI_INTERVAL_DEFAULT;
     t_float value       = (argc > 6) ? atom_getFloat (argv + 6) : minimum;
     
