@@ -230,6 +230,26 @@ void gui_getSizeParameters (t_object *o, core::Group& group, const Tags& t, int 
             gui_getWidth (x),
             delegate).setRange (juce::Range<int> (GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM));
     }
+    
+    if (flags & GUI_HEIGHT) {
+    if (t.contains (Tag::Height)) {
+        group.addParameter (Tag::Height,
+            NEEDS_TRANS ("Height"),
+            NEEDS_TRANS ("Height of object"),
+            gui_getHeight (x),
+            delegate).setRange (juce::Range<int> (GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM));
+    }
+    }
+    
+    if (flags & GUI_ORIENTATION) {
+    if (t.contains (Tag::Vertical)) {
+        group.addParameter (Tag::Vertical,
+            NEEDS_TRANS ("Vertical"),
+            NEEDS_TRANS ("Orientation is vertical"),
+            static_cast<bool> (gui_isVertical (x)),
+            delegate);
+    }
+    }
 }
 
 #endif
