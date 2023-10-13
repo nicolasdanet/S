@@ -158,7 +158,7 @@ void gui_updateDigits (t_gui *x, int digits, int notify)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-void gui_getValueParameters (t_object *o, core::Group& group, const Tags& t)
+void gui_getValueParameters (t_object *o, core::Group& group, const Tags& t, int flags)
 {
     t_gui *x = cast_gui (o);
     
@@ -196,6 +196,7 @@ void gui_getValueParameters (t_object *o, core::Group& group, const Tags& t)
             delegate).setPositive<t_float>();
     }
     
+    if (flags & GUI_LOGARITHMIC) {
     if (t.contains (Tag::Logarithmic)) {
         group.addParameter (Tag::Logarithmic,
             NEEDS_TRANS ("Logarithmic"),
@@ -203,7 +204,9 @@ void gui_getValueParameters (t_object *o, core::Group& group, const Tags& t)
             static_cast<bool> (gui_isLogarithmic (x)),
             delegate);
     }
+    }
     
+    if (flags & GUI_DIGITS) {
     if (t.contains (Tag::Digits)) {
         group.addParameter (Tag::Digits,
             NEEDS_TRANS ("Digits"),
@@ -211,9 +214,10 @@ void gui_getValueParameters (t_object *o, core::Group& group, const Tags& t)
             gui_getDigits (x),
             delegate).setRange (juce::Range<int> (GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM));
     }
+    }
 }
 
-void gui_getSizeParameters (t_object *o, core::Group& group, const Tags& t)
+void gui_getSizeParameters (t_object *o, core::Group& group, const Tags& t, int flags)
 {
     t_gui *x = cast_gui (o);
     
@@ -236,7 +240,7 @@ void gui_getSizeParameters (t_object *o, core::Group& group, const Tags& t)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-void gui_setValueParameters (t_object *o, const core::Group& group)
+void gui_setValueParameters (t_object *o, const core::Group& group, int flags)
 {
     t_gui *x = (t_gui *)o;
     
@@ -262,7 +266,7 @@ void gui_setValueParameters (t_object *o, const core::Group& group)
     if (gui_updateValue (x, f, 1)) { pd_bang (cast_pd (o)); }
 }
 
-void gui_setSizeParameters (t_object *o, const core::Group& group)
+void gui_setSizeParameters (t_object *o, const core::Group& group, int flags)
 {
     t_gui *x = (t_gui *)o;
     

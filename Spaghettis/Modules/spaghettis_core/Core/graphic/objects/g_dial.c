@@ -120,14 +120,14 @@ static void dial_restore (t_dial *x)
 
 static void dial_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
 {
-    gui_getValueParameters (o, group, t);
-    gui_getSizeParameters (o, group, t);
+    gui_getValueParameters (o, group, t, GUI_LOGARITHMIC | GUI_DIGITS);
+    gui_getSizeParameters (o, group, t, GUI_DEFAULT);
 }
 
 static void dial_functionSetParameters (t_object *o, const core::Group& group)
 {
-    gui_setSizeParameters (o, group);
-    gui_setValueParameters (o, group);
+    gui_setSizeParameters (o, group, GUI_DEFAULT);
+    gui_setValueParameters (o, group, GUI_LOGARITHMIC | GUI_DIGITS);
 }
 
 #endif

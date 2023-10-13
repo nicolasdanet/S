@@ -125,13 +125,25 @@ void gui_updateDigits       (t_gui *x, int digits, int notify);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+enum {
+    GUI_DEFAULT         = 0,
+    GUI_LOGARITHMIC     = 1,
+    GUI_DIGITS          = 2,
+    GUI_HEIGHT          = 4,
+    GUI_ORIENTATION     = 8
+    };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 #if defined ( PD_BUILDING_APPLICATION )
 
-void gui_getValueParameters (t_object *o, core::Group& group, const Tags& t);
-void gui_getSizeParameters (t_object *o, core::Group& group, const Tags& t);
+void gui_getValueParameters (t_object *o, core::Group& group, const Tags& t, int flags);
+void gui_getSizeParameters (t_object *o, core::Group& group, const Tags& t, int flags);
 
-void gui_setValueParameters (t_object *o, core::Group& group);
-void gui_setSizeParameters (t_object *o, core::Group& group);
+void gui_setValueParameters (t_object *o, core::Group& group, int flags);
+void gui_setSizeParameters (t_object *o, core::Group& group, int flags);
 
 #endif
 
