@@ -52,7 +52,7 @@ public:
 public:
     virtual std::optional<core::Vector::Real> getDimensions()
     {
-        return {};
+        return std::nullopt;
     }
     
     virtual void setDimensions (core::Vector::Real)

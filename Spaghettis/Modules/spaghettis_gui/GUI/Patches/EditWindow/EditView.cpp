@@ -157,7 +157,7 @@ std::optional<core::Point::Real> EditView::getMousePosition() const
         return core::Point::Real (core::Point::Scaled (getMouseXYRelative(), getScale()));
     }
 
-    return {};
+    return std::nullopt;
 }
 
 core::Area::Real EditView::getVisibleArea() const
