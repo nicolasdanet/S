@@ -248,21 +248,27 @@ void gui_setValueParameters (t_object *o, const core::Group& group, int flags)
     jassert (group.hasParameter (Tag::Low));
     jassert (group.hasParameter (Tag::High));
     jassert (group.hasParameter (Tag::Interval));
-    jassert (group.hasParameter (Tag::Logarithmic));
-    jassert (group.hasParameter (Tag::Digits));
     
-    const t_float f         = group.getParameter (Tag::Value).getValueTyped<t_float>();
-    const t_float min       = group.getParameter (Tag::Low).getValueTyped<t_float>();
-    const t_float max       = group.getParameter (Tag::High).getValueTyped<t_float>();
-    const t_float step      = group.getParameter (Tag::Interval).getValueTyped<t_float>();
-    const bool logarithmic  = group.getParameter (Tag::Logarithmic).getValueTyped<bool>();
-    const int digits        = group.getParameter (Tag::Digits).getValueTyped<int>();
+    const t_float f    = group.getParameter (Tag::Value).getValueTyped<t_float>();
+    const t_float min  = group.getParameter (Tag::Low).getValueTyped<t_float>();
+    const t_float max  = group.getParameter (Tag::High).getValueTyped<t_float>();
+    const t_float step = group.getParameter (Tag::Interval).getValueTyped<t_float>();
+    
+    if (flags & GUI_LOGARITHMIC) {
+        jassert (group.hasParameter (Tag::Logarithmic));
+        const bool logarithmic = group.getParameter (Tag::Logarithmic).getValueTyped<bool>();
+        gui_updateLogarithmic (x, logarithmic, 1);
+    }
+    
+    if (flags & GUI_DIGITS)      {
+        jassert (group.hasParameter (Tag::Digits));
+        const int digits = group.getParameter (Tag::Digits).getValueTyped<int>();
+        gui_updateDigits (x, digits, 1);
+    }
     
     gui_updateRange (x, min, max, 1);
     gui_updateInterval (x, step, 1);
-    gui_updateLogarithmic (x, logarithmic, 1);
-    gui_updateDigits (x, digits, 1);
-    
+        
     if (gui_updateValue (x, f, 1)) { pd_bang (cast_pd (o)); }
 }
 
