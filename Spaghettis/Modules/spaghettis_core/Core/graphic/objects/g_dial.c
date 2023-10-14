@@ -118,16 +118,26 @@ static void dial_restore (t_dial *x)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+static constexpr int dial_flags()
+{
+    return GUI_NONE
+            | GUI_VALUE
+            | GUI_LOW
+            | GUI_HIGH
+            | GUI_INTERVAL
+            | GUI_LOGARITHMIC
+            | GUI_DIGITS
+            | GUI_WIDTH;
+}
+
 static void dial_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
 {
-    gui_getValueParameters (o, group, t, GUI_LOGARITHMIC | GUI_DIGITS);
-    gui_getSizeParameters (o, group, t, GUI_DEFAULT);
+    gui_getParameters (o, group, t, dial_flags());
 }
 
 static void dial_functionSetParameters (t_object *o, const core::Group& group)
 {
-    gui_setSizeParameters (o, group, GUI_DEFAULT);
-    gui_setValueParameters (o, group, GUI_LOGARITHMIC | GUI_DIGITS);
+    gui_setParameters (o, group, dial_flags());
 }
 
 #endif
