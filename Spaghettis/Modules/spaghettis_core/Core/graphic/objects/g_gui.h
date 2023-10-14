@@ -111,31 +111,33 @@ inline t_float gui_getValue (t_gui *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int  gui_updateValue        (t_gui *x, t_float f, int notify);
-void gui_updateRange        (t_gui *x, t_float minimum, t_float maximum, int notify);
-void gui_updateInterval     (t_gui *x, t_float interval, int notify);
-void gui_updateLogarithmic  (t_gui *x, int isLogarithmic, int notify);
-void gui_updateDigits       (t_gui *x, int digits, int notify);
+int  gui_updateValue            (t_gui *x, t_float f, int notify);
+void gui_updateRange            (t_gui *x, t_float minimum, t_float maximum, int notify);
+void gui_updateInterval         (t_gui *x, t_float interval, int notify);
+void gui_updateLogarithmic      (t_gui *x, int isLogarithmic, int notify);
+void gui_updateDigits           (t_gui *x, int digits, int notify);
 
-void gui_updateWidth        (t_gui *x, int width, int notify);
-void gui_updateHeight       (t_gui *x, int height, int notify);
-void gui_updateOrientation  (t_gui *x, int isVertical, int notify);
+void gui_updateWidth            (t_gui *x, int width, int notify);
+void gui_updateHeight           (t_gui *x, int height, int notify);
+void gui_updateOrientation      (t_gui *x, int isVertical, int notify);
+void gui_updateOrientationSwap  (t_gui *x, int isVertical, int notify);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 enum {
-    GUI_NONE            = (1 << 0),
-    GUI_VALUE           = (1 << 1),
-    GUI_LOW             = (1 << 2),
-    GUI_HIGH            = (1 << 3),
-    GUI_INTERVAL        = (1 << 4),
-    GUI_LOGARITHMIC     = (1 << 5),
-    GUI_DIGITS          = (1 << 6),
-    GUI_WIDTH           = (1 << 8),
-    GUI_HEIGHT          = (1 << 9),
-    GUI_ORIENTATION     = (1 << 10)
+    GUI_NONE                = (1 << 0),
+    GUI_VALUE               = (1 << 1),
+    GUI_LOW                 = (1 << 2),
+    GUI_HIGH                = (1 << 3),
+    GUI_INTERVAL            = (1 << 4),
+    GUI_LOGARITHMIC         = (1 << 5),
+    GUI_DIGITS              = (1 << 6),
+    GUI_WIDTH               = (1 << 8),
+    GUI_HEIGHT              = (1 << 9),
+    GUI_ORIENTATION         = (1 << 10),
+    GUI_SWAP                = (1 << 11)         // GUI_ORIENTATION
     };
 
 // -----------------------------------------------------------------------------------------------------------
