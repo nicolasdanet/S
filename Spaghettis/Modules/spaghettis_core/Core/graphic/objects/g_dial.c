@@ -155,15 +155,15 @@ static void *dial_new (t_symbol *s, int argc, t_atom *argv)
     t_float minimum     = (argc > 4) ? atom_getFloat (argv + 2) : GUI_MINIMUM_DEFAULT;
     t_float maximum     = (argc > 4) ? atom_getFloat (argv + 3) : GUI_MAXIMUM_DEFAULT;
     int isLogarithmic   = (argc > 4) ? atom_getFloat (argv + 4) : GUI_LOGARITHMIC_DEFAULT;
-    int step            = (argc > 5) ? atom_getFloat (argv + 5) : GUI_INTERVAL_DEFAULT;
+    int interval        = (argc > 5) ? atom_getFloat (argv + 5) : GUI_INTERVAL_DEFAULT;
     t_float value       = (argc > 6) ? atom_getFloat (argv + 6) : minimum;
     
-    gui_updateWidth (cast_gui (x), width, 0);
-    gui_updateRange (cast_gui (x), minimum, maximum, 0);
-    gui_updateInterval (cast_gui (x), step, 0);
-    gui_updateDigits (cast_gui (x), digits, 0);
-    gui_updateLogarithmic (cast_gui (x), (isLogarithmic != 0), 0);
     gui_updateValue (cast_gui (x), value, 0);
+    gui_updateRange (cast_gui (x), minimum, maximum, 0);
+    gui_updateInterval (cast_gui (x), interval, 0);
+    gui_updateLogarithmic (cast_gui (x), (isLogarithmic != 0), 0);
+    gui_updateDigits (cast_gui (x), digits, 0);
+    gui_updateWidth (cast_gui (x), width, 0);
     
     x->x_outlet = outlet_newFloat (cast_object (x));
 
