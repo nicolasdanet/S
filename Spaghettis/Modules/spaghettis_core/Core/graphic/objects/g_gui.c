@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-int gui_updateValue (t_gui *x, t_float f, int notify)
+PD_LOCAL int gui_updateValue (t_gui *x, t_float f, int notify)
 {
     if (x->x_value != f) {
     //
@@ -32,7 +32,7 @@ int gui_updateValue (t_gui *x, t_float f, int notify)
     return 0;
 }
 
-void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
+PD_LOCAL void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
 {
     t_float min = x->x_minimum;
     t_float max = x->x_maximum;
@@ -54,7 +54,7 @@ void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
     }
 }
 
-void gui_updateInterval (t_gui *x, t_float interval, int notify)
+PD_LOCAL void gui_updateInterval (t_gui *x, t_float interval, int notify)
 {
     t_float step = PD_MAX (0.0, interval);
     
@@ -71,7 +71,7 @@ void gui_updateInterval (t_gui *x, t_float interval, int notify)
     }
 }
 
-void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
+PD_LOCAL void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
 {
     if (x->x_isLogarithmic != isLogarithmic) {
     //
@@ -86,7 +86,22 @@ void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
     }
 }
 
-void gui_updateDigits (t_gui *x, int digits, int notify)
+PD_LOCAL void gui_updateMultiple (t_gui *x, int isMultiple, int notify)
+{
+    if (x->x_isMultiple != isMultiple) {
+    //
+    x->x_isMultiple = isMultiple;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Multiple));
+        #endif
+    }
+    //
+    }
+}
+
+PD_LOCAL void gui_updateDigits (t_gui *x, int digits, int notify)
 {
     int n = PD_CLAMP (digits, GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM);
     
@@ -103,7 +118,24 @@ void gui_updateDigits (t_gui *x, int digits, int notify)
     }
 }
 
-void gui_updateWidth (t_gui *x, int width, int notify)
+PD_LOCAL void gui_updateButtons (t_gui *x, int buttons, int notify)
+{
+    int n = PD_CLAMP (buttons, GUI_BUTTONS_MINIMUM, GUI_BUTTONS_MAXIMUM);
+
+    if (x->x_buttons != n) {
+    //
+    x->x_buttons = n;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Buttons));
+        #endif
+    }
+    //
+    }
+}
+
+PD_LOCAL void gui_updateWidth (t_gui *x, int width, int notify)
 {
     int n = PD_CLAMP (width, GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM);
     
@@ -120,7 +152,7 @@ void gui_updateWidth (t_gui *x, int width, int notify)
     }
 }
 
-void gui_updateHeight (t_gui *x, int height, int notify)
+PD_LOCAL void gui_updateHeight (t_gui *x, int height, int notify)
 {
     int n = PD_CLAMP (height, GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM);
     
@@ -137,7 +169,7 @@ void gui_updateHeight (t_gui *x, int height, int notify)
     }
 }
 
-void gui_updateOrientation (t_gui *x, int isVertical, int notify)
+PD_LOCAL void gui_updateOrientation (t_gui *x, int isVertical, int notify)
 {
     if (x->x_isVertical != isVertical) {
     //
@@ -152,7 +184,7 @@ void gui_updateOrientation (t_gui *x, int isVertical, int notify)
     }
 }
 
-void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
+PD_LOCAL void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
 {
     if (x->x_isVertical != isVertical) {
     //
@@ -183,7 +215,7 @@ void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flags)
+PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flags)
 {
     t_gui *x = cast_gui (o);
     
@@ -229,12 +261,28 @@ void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flag
             delegate);
     }
     
+    if ((flags & GUI_MULTIPLE) && t.contains (Tag::Multiple)) {
+        group.addParameter (Tag::Multiple,
+            NEEDS_TRANS ("Multiple"),
+            NEEDS_TRANS ("Set in multiple mode"),
+            static_cast<bool> (gui_isMultiple (x)),
+            delegate);
+    }
+    
     if ((flags & GUI_DIGITS) && t.contains (Tag::Digits)) {
         group.addParameter (Tag::Digits,
             NEEDS_TRANS ("Digits"),
             NEEDS_TRANS ("Number of digits"),
             gui_getDigits (x),
             delegate).setRange (juce::Range<int> (GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM));
+    }
+    
+    if ((flags & GUI_BUTTONS) && t.contains (Tag::Buttons)) {
+        group.addParameter (Tag::Buttons,
+            NEEDS_TRANS ("Buttons"),
+            NEEDS_TRANS ("Number of buttons"),
+            gui_getButtons (x),
+            delegate).setRange (juce::Range<int> (GUI_BUTTONS_MINIMUM, GUI_BUTTONS_MAXIMUM));
     }
     
     if ((flags & GUI_WIDTH) && t.contains (Tag::Width)) {
@@ -262,7 +310,7 @@ void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flag
     }
 }
 
-void gui_setParameters (t_object *o, const core::Group& group, int flags)
+static void gui_setParameters (t_object *o, const core::Group& group, int flags)
 {
     t_gui *x = (t_gui *)o;
     
@@ -288,10 +336,22 @@ void gui_setParameters (t_object *o, const core::Group& group, int flags)
         gui_updateLogarithmic (x, logarithmic, 1);
     }
     
+    if (flags & GUI_MULTIPLE) {
+        jassert (group.hasParameter (Tag::Multiple));
+        const bool multiple = group.getParameter (Tag::Multiple).getValueTyped<bool>();
+        gui_updateMultiple (x, multiple, 1);
+    }
+    
     if (flags & GUI_DIGITS) {
         jassert (group.hasParameter (Tag::Digits));
         const int digits = group.getParameter (Tag::Digits).getValueTyped<int>();
         gui_updateDigits (x, digits, 1);
+    }
+    
+    if (flags & GUI_BUTTONS) {
+        jassert (group.hasParameter (Tag::Buttons));
+        const int buttons = group.getParameter (Tag::Buttons).getValueTyped<int>();
+        gui_updateDigits (x, buttons, 1);
     }
     
     if (flags & GUI_WIDTH) {
