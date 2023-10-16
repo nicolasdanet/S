@@ -56,7 +56,7 @@ inline int gui_getDigits (t_gui *x)
 
 inline int gui_getButtons (t_gui *x)
 {
-    return x->x_digits;
+    return x->x_buttons;
 }
 
 inline int gui_isVertical (t_gui *x)
@@ -71,7 +71,7 @@ inline int gui_isLogarithmic (t_gui *x)
 
 inline int gui_isMultiple (t_gui *x)
 {
-    return x->x_isLogarithmic;
+    return x->x_isMultiple;
 }
 
 inline t_float gui_getInterval (t_gui *x)

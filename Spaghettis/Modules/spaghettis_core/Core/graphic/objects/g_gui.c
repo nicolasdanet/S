@@ -351,7 +351,7 @@ static void gui_setParameters (t_object *o, const core::Group& group, int flags)
     if (flags & GUI_BUTTONS) {
         jassert (group.hasParameter (Tag::Buttons));
         const int buttons = group.getParameter (Tag::Buttons).getValueTyped<int>();
-        gui_updateDigits (x, buttons, 1);
+        gui_updateButtons (x, buttons, 1);
     }
     
     if (flags & GUI_WIDTH) {
