@@ -101,6 +101,43 @@ PD_LOCAL void gui_updateMultiple (t_gui *x, int isMultiple, int notify)
     }
 }
 
+PD_LOCAL void gui_updateOrientation (t_gui *x, int isVertical, int notify)
+{
+    if (x->x_isVertical != isVertical) {
+    //
+    x->x_isVertical = isVertical;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Vertical));
+        #endif
+    }
+    //
+    }
+}
+
+PD_LOCAL void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
+{
+    if (x->x_isVertical != isVertical) {
+    //
+    const int h = x->x_height;
+    const int w = x->x_width;
+    
+    x->x_isVertical = isVertical;
+    x->x_width      = h;
+    x->x_height     = w;
+    
+    if (notify) {
+    //
+    #if defined ( PD_BUILDING_APPLICATION )
+    outputs_objectUpdated (cast_object (x), Tags::parameters ( { Tag::Vertical, Tag::Width, Tag::Height } ));
+    #endif
+    //
+    }
+    //
+    }
+}
+
 PD_LOCAL void gui_updateDigits (t_gui *x, int digits, int notify)
 {
     int n = PD_CLAMP (digits, GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM);
@@ -169,43 +206,6 @@ PD_LOCAL void gui_updateHeight (t_gui *x, int height, int notify)
     }
 }
 
-PD_LOCAL void gui_updateOrientation (t_gui *x, int isVertical, int notify)
-{
-    if (x->x_isVertical != isVertical) {
-    //
-    x->x_isVertical = isVertical;
-    
-    if (notify) {
-        #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Vertical));
-        #endif
-    }
-    //
-    }
-}
-
-PD_LOCAL void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
-{
-    if (x->x_isVertical != isVertical) {
-    //
-    const int h = x->x_height;
-    const int w = x->x_width;
-    
-    x->x_isVertical = isVertical;
-    x->x_width      = h;
-    x->x_height     = w;
-    
-    if (notify) {
-    //
-    #if defined ( PD_BUILDING_APPLICATION )
-    outputs_objectUpdated (cast_object (x), Tags::parameters ( { Tag::Vertical, Tag::Width, Tag::Height } ));
-    #endif
-    //
-    }
-    //
-    }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -269,6 +269,14 @@ PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t,
             delegate);
     }
     
+    if ((flags & GUI_ORIENTATION) && t.contains (Tag::Vertical)) {
+        group.addParameter (Tag::Vertical,
+            NEEDS_TRANS ("Vertical"),
+            NEEDS_TRANS ("Orientation is vertical"),
+            static_cast<bool> (gui_isVertical (x)),
+            delegate);
+    }
+    
     if ((flags & GUI_DIGITS) && t.contains (Tag::Digits)) {
         group.addParameter (Tag::Digits,
             NEEDS_TRANS ("Digits"),
@@ -299,14 +307,6 @@ PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t,
             NEEDS_TRANS ("Height of object"),
             gui_getHeight (x),
             delegate).setRange (juce::Range<int> (GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM));
-    }
-    
-    if ((flags & GUI_ORIENTATION) && t.contains (Tag::Vertical)) {
-        group.addParameter (Tag::Vertical,
-            NEEDS_TRANS ("Vertical"),
-            NEEDS_TRANS ("Orientation is vertical"),
-            static_cast<bool> (gui_isVertical (x)),
-            delegate);
     }
 }
 
@@ -342,6 +342,15 @@ static void gui_setParameters (t_object *o, const core::Group& group, int flags)
         gui_updateMultiple (x, multiple, 1);
     }
     
+    if (flags & GUI_ORIENTATION) {
+        jassert (group.hasParameter (Tag::Vertical));
+        const bool vertical = group.getParameter (Tag::Vertical).getValueTyped<bool>();
+        if (flags & GUI_SWAP) { gui_updateOrientationSwap (x, vertical, 1); }
+        else {
+            gui_updateOrientation (x, vertical, 1);
+        }
+    }
+    
     if (flags & GUI_DIGITS) {
         jassert (group.hasParameter (Tag::Digits));
         const int digits = group.getParameter (Tag::Digits).getValueTyped<int>();
@@ -364,15 +373,6 @@ static void gui_setParameters (t_object *o, const core::Group& group, int flags)
         jassert (group.hasParameter (Tag::Height));
         const int height = group.getParameter (Tag::Height).getValueTyped<int>();
         gui_updateHeight (x, height, 1);
-    }
-    
-    if (flags & GUI_ORIENTATION) {
-        jassert (group.hasParameter (Tag::Vertical));
-        const bool vertical = group.getParameter (Tag::Vertical).getValueTyped<bool>();
-        if (flags & GUI_SWAP) { gui_updateOrientationSwap (x, vertical, 1); }
-        else {
-            gui_updateOrientation (x, vertical, 1);
-        }
     }
     
     /* At last. */
