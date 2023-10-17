@@ -198,7 +198,7 @@ extern t_symbol *sym_blocksize;
 extern t_symbol *sym_bng;
 extern t_symbol *sym_bp__tilde__;
 extern t_symbol *sym_bundle;
-extern t_symbol *sym_buttonsnumber;
+extern t_symbol *sym_buttons;
 extern t_symbol *sym_bytes;
 extern t_symbol *sym_cancel;
 extern t_symbol *sym_canvas;
