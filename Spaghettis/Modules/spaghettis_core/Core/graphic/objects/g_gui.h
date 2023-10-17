@@ -23,6 +23,8 @@ typedef struct _gui {
     int         x_isVertical;
     int         x_isLogarithmic;
     int         x_isMultiple;
+    int         x_state;
+    t_float     x_nonZero;
     t_float     x_interval;
     t_float     x_minimum;
     t_float     x_maximum;
@@ -72,6 +74,16 @@ inline int gui_isLogarithmic (t_gui *x)
 inline int gui_isMultiple (t_gui *x)
 {
     return x->x_isMultiple;
+}
+
+inline int gui_getState (t_gui *x)
+{
+    return x->x_state;
+}
+
+inline t_float gui_getNonZero (t_gui *x)
+{
+    return x->x_nonZero;
 }
 
 inline t_float gui_getInterval (t_gui *x)
@@ -133,8 +145,10 @@ inline t_float gui_getValue (t_gui *x)
 // MARK: -
 
 PD_LOCAL int  gui_updateValue               (t_gui *x, t_float f, int notify);
+PD_LOCAL int  gui_updateState               (t_gui *x, int n, int notify);
 PD_LOCAL void gui_updateRange               (t_gui *x, t_float minimum, t_float maximum, int notify);
 PD_LOCAL void gui_updateInterval            (t_gui *x, t_float interval, int notify);
+PD_LOCAL void gui_updateNonZero             (t_gui *x, t_float f, int notify);
 PD_LOCAL void gui_updateLogarithmic         (t_gui *x, int isLogarithmic, int notify);
 PD_LOCAL void gui_updateMultiple            (t_gui *x, int isMultiple, int notify);
 PD_LOCAL void gui_updateOrientation         (t_gui *x, int isVertical, int notify);
@@ -153,17 +167,19 @@ PD_LOCAL void gui_updateHeight              (t_gui *x, int height, int notify);
 enum {
     GUI_NONE                = (1 << 0),
     GUI_VALUE               = (1 << 1),
-    GUI_LOW                 = (1 << 2),
-    GUI_HIGH                = (1 << 3),
-    GUI_INTERVAL            = (1 << 4),
-    GUI_LOGARITHMIC         = (1 << 5),
-    GUI_MULTIPLE            = (1 << 6),
-    GUI_ORIENTATION         = (1 << 7),
-    GUI_SWAP                = (1 << 8),         // GUI_ORIENTATION
-    GUI_DIGITS              = (1 << 9),
-    GUI_BUTTONS             = (1 << 10),
-    GUI_WIDTH               = (1 << 11),
-    GUI_HEIGHT              = (1 << 12)
+    GUI_STATE               = (1 << 2),
+    GUI_LOW                 = (1 << 3),
+    GUI_HIGH                = (1 << 4),
+    GUI_INTERVAL            = (1 << 5),
+    GUI_NONZERO             = (1 << 6),
+    GUI_LOGARITHMIC         = (1 << 7),
+    GUI_MULTIPLE            = (1 << 8),
+    GUI_ORIENTATION         = (1 << 9),
+    GUI_SWAP                = (1 << 10),         // GUI_ORIENTATION
+    GUI_DIGITS              = (1 << 11),
+    GUI_BUTTONS             = (1 << 12),
+    GUI_WIDTH               = (1 << 13),
+    GUI_HEIGHT              = (1 << 14)
     };
 
 #endif

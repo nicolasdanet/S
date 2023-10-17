@@ -32,6 +32,27 @@ PD_LOCAL int gui_updateValue (t_gui *x, t_float f, int notify)
     return 0;
 }
 
+PD_LOCAL int gui_updateState (t_gui *x, int n, int notify)
+{
+    int t = (n != 0);
+    
+    if (x->x_state != t) {
+    //
+    x->x_state = t;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::State));
+        #endif
+    }
+    
+    return 1;
+    //
+    }
+    
+    return 0;
+}
+
 PD_LOCAL void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
 {
     t_float min = x->x_minimum;
@@ -65,6 +86,21 @@ PD_LOCAL void gui_updateInterval (t_gui *x, t_float interval, int notify)
     if (notify) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Interval));
+        #endif
+    }
+    //
+    }
+}
+
+PD_LOCAL void gui_updateNonZero (t_gui *x, t_float f, int notify)
+{
+    if (x->x_nonZero != f) {
+    //
+    x->x_nonZero = f;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::NonZero));
         #endif
     }
     //
@@ -229,6 +265,14 @@ PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t,
             delegate);
     }
     
+    if ((flags & GUI_STATE) && t.contains (Tag::State)) {
+        group.addParameter (Tag::State,
+            NEEDS_TRANS ("State"),
+            NEEDS_TRANS ("State on/off"),
+            static_cast<bool> (gui_getState (x)),
+            delegate);
+    }
+    
     if ((flags & GUI_LOW) && t.contains (Tag::Low)) {
         group.addParameter (Tag::Low,
             NEEDS_TRANS ("Low Range"),
@@ -251,6 +295,14 @@ PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t,
             NEEDS_TRANS ("Step between settable values"),
             gui_getInterval (x),
             delegate).setPositive<t_float>();
+    }
+    
+    if ((flags & GUI_NONZERO) && t.contains (Tag::NonZero)) {
+        group.addParameter (Tag::NonZero,
+            NEEDS_TRANS ("Non-zero"),
+            NEEDS_TRANS ("Value for non-zero state"),
+            gui_getNonZero (x),
+            delegate);
     }
     
     if ((flags & GUI_LOGARITHMIC) && t.contains (Tag::Logarithmic)) {
@@ -330,6 +382,12 @@ static void gui_setParameters (t_object *o, const core::Group& group, int flags)
         gui_updateInterval (x, interval, 1);
     }
     
+    if (flags & GUI_NONZERO) {
+        jassert (group.hasParameter (Tag::NonZero));
+        const t_float nonzero = group.getParameter (Tag::NonZero).getValueTyped<t_float>();
+        gui_updateNonZero (x, nonzero, 1);
+    }
+    
     if (flags & GUI_LOGARITHMIC) {
         jassert (group.hasParameter (Tag::Logarithmic));
         const bool logarithmic = group.getParameter (Tag::Logarithmic).getValueTyped<bool>();
@@ -381,6 +439,12 @@ static void gui_setParameters (t_object *o, const core::Group& group, int flags)
         jassert (group.hasParameter (Tag::Value));
         const t_float f = group.getParameter (Tag::Value).getValueTyped<t_float>();
         if (gui_updateValue (x, f, 1)) { pd_bang (cast_pd (o)); }
+    }
+    
+    if (flags & GUI_STATE) {
+        jassert (group.hasParameter (Tag::State));
+        const bool f = group.getParameter (Tag::State).getValueTyped<bool>();
+        gui_updateState (x, f, 1);
     }
 }
 
