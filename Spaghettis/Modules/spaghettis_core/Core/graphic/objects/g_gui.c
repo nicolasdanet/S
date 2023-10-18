@@ -362,7 +362,7 @@ PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t,
     }
 }
 
-static void gui_setParameters (t_object *o, const core::Group& group, int flags)
+static bool gui_setParameters (t_object *o, const core::Group& group, int flags)
 {
     t_gui *x = (t_gui *)o;
     
@@ -435,17 +435,21 @@ static void gui_setParameters (t_object *o, const core::Group& group, int flags)
     
     /* At last. */
     
+    bool trigger = false;
+    
     if (flags & GUI_VALUE) {
         jassert (group.hasParameter (Tag::Value));
         const t_float f = group.getParameter (Tag::Value).getValueTyped<t_float>();
-        if (gui_updateValue (x, f, 1)) { pd_bang (cast_pd (o)); }
+        if (gui_updateValue (x, f, 1)) { trigger |= true; }
     }
     
     if (flags & GUI_STATE) {
         jassert (group.hasParameter (Tag::State));
         const bool f = group.getParameter (Tag::State).getValueTyped<bool>();
-        gui_updateState (x, f, 1);
+        if (gui_updateState (x, f, 1)) { trigger |= true; }
     }
+    
+    return trigger;
 }
 
 // -----------------------------------------------------------------------------------------------------------

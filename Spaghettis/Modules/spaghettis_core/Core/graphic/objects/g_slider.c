@@ -129,7 +129,7 @@ static void slider_functionGetParameters (t_object *o, core::Group& group, const
 
 static void slider_functionSetParameters (t_object *o, const core::Group& group)
 {
-    gui_setParameters (o, group, slider_flags());
+    if (gui_setParameters (o, group, slider_flags())) { slider_bang ((t_slider *)o); }
 }
 
 #endif

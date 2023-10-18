@@ -137,7 +137,7 @@ static void dial_functionGetParameters (t_object *o, core::Group& group, const T
 
 static void dial_functionSetParameters (t_object *o, const core::Group& group)
 {
-    gui_setParameters (o, group, dial_flags());
+    if (gui_setParameters (o, group, dial_flags())) { dial_bang ((t_dial *)o); }
 }
 
 #endif

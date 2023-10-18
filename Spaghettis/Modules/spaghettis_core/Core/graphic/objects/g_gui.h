@@ -191,7 +191,7 @@ enum {
 #if defined ( PD_BUILDING_APPLICATION )
 
 PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flags);
-PD_LOCAL void gui_setParameters (t_object *o, core::Group& group, int flags);
+PD_LOCAL bool gui_setParameters (t_object *o, core::Group& group, int flags);
 
 #endif
 
