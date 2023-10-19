@@ -110,13 +110,6 @@ inline t_float gui_getValue (t_gui *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define GUI_SIZE_MINIMUM           8
-#define GUI_SIZE_MAXIMUM           256
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 #define GUI_DIGITS_MINIMUM          0
 #define GUI_DIGITS_MAXIMUM          64
 
@@ -131,14 +124,23 @@ inline t_float gui_getValue (t_gui *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define GUI_SIZE_DEFAULT            18
-#define GUI_DIGITS_DEFAULT          5
-#define GUI_BUTTONS_DEFAULT         8
-#define GUI_LOGARITHMIC_DEFAULT     0
-#define GUI_MULTIPLE_DEFAULT        0
+#define GUI_SIZE_MINIMUM            8
+#define GUI_SIZE_MAXIMUM            256
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#define GUI_STATE_DEFAULT           0
 #define GUI_MINIMUM_DEFAULT         0
 #define GUI_MAXIMUM_DEFAULT         127
 #define GUI_INTERVAL_DEFAULT        1
+#define GUI_NONZERO_DEFAULT         1
+#define GUI_LOGARITHMIC_DEFAULT     0
+#define GUI_MULTIPLE_DEFAULT        0
+#define GUI_DIGITS_DEFAULT          5
+#define GUI_BUTTONS_DEFAULT         8
+#define GUI_SIZE_DEFAULT            18
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
