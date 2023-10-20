@@ -249,7 +249,7 @@ bool EditView::selectObjects (const juce::Rectangle<int>& r)
 {
     bool done = false;
     
-    auto f = [&](const auto& p)
+    auto f = [&r, &done](const auto& p)
     {
         if (r.intersects (p->getBounds())) { p->setSelected (true); done = true; }
     };
