@@ -174,6 +174,40 @@ PD_LOCAL void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
     }
 }
 
+PD_LOCAL void gui_updateFlashed (t_gui *x, int n, int notify)
+{
+    int t = (n != 0);
+    
+    if (x->x_isFlashed != t) {
+    //
+    x->x_isFlashed = t;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Flashed));
+        #endif
+    }
+    //
+    }
+}
+
+PD_LOCAL void gui_updateTime (t_gui *x, int n, int notify)
+{
+    int t = PD_CLAMP (n, GUI_TIME_MINIMUM, GUI_TIME_MAXIMUM);
+    
+    if (x->x_time != t) {
+    //
+    x->x_time = t;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::FlashTime));
+        #endif
+    }
+    //
+    }
+}
+
 PD_LOCAL void gui_updateDigits (t_gui *x, int digits, int notify)
 {
     int n = PD_CLAMP (digits, GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM);
@@ -329,6 +363,22 @@ PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t,
             delegate);
     }
     
+    if ((flags & GUI_FLASHED) && t.contains (Tag::Flashed)) {
+        group.addParameter (Tag::Flashed,
+            NEEDS_TRANS ("Flashed"),
+            NEEDS_TRANS ("Light is flashing"),
+            static_cast<bool> (x->x_isFlashed),
+            delegate).setHidden (true);
+    }
+    
+    if ((flags & GUI_TIME) && t.contains (Tag::FlashTime)) {
+        group.addParameter (Tag::FlashTime,
+            NEEDS_TRANS ("Flash Time"),
+            NEEDS_TRANS ("Duration of the flash"),
+            x->x_time,
+            delegate).setRange (juce::Range<int> (GUI_TIME_MINIMUM, GUI_TIME_MAXIMUM));
+    }
+    
     if ((flags & GUI_DIGITS) && t.contains (Tag::Digits)) {
         group.addParameter (Tag::Digits,
             NEEDS_TRANS ("Digits"),
@@ -407,6 +457,12 @@ static bool gui_setParameters (t_object *o, const core::Group& group, int flags)
         else {
             gui_updateOrientation (x, vertical, 1);
         }
+    }
+    
+    if (flags & GUI_TIME) {
+        jassert (group.hasParameter (Tag::FlashTime));
+        const int time = group.getParameter (Tag::FlashTime).getValueTyped<int>();
+        gui_updateTime (x, time, 1);
     }
     
     if (flags & GUI_DIGITS) {

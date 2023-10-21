@@ -23,7 +23,9 @@ typedef struct _gui {
     int         x_isVertical;
     int         x_isLogarithmic;
     int         x_isMultiple;
+    int         x_isFlashed;
     int         x_state;
+    int         x_time;
     t_float     x_nonZero;
     t_float     x_interval;
     t_float     x_minimum;
@@ -76,9 +78,19 @@ inline int gui_isMultiple (t_gui *x)
     return x->x_isMultiple;
 }
 
+inline int gui_isFlashed (t_gui *x)
+{
+    return x->x_isFlashed;
+}
+
 inline int gui_getState (t_gui *x)
 {
     return x->x_state;
+}
+
+inline int gui_getTime (t_gui *x)
+{
+    return x->x_time;
 }
 
 inline t_float gui_getNonZero (t_gui *x)
@@ -105,6 +117,13 @@ inline t_float gui_getValue (t_gui *x)
 {
     return x->x_value;
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#define GUI_TIME_MINIMUM            10
+#define GUI_TIME_MAXIMUM            1000
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -138,6 +157,7 @@ inline t_float gui_getValue (t_gui *x)
 #define GUI_NONZERO_DEFAULT         1
 #define GUI_LOGARITHMIC_DEFAULT     0
 #define GUI_MULTIPLE_DEFAULT        0
+#define GUI_TIME_DEFAULT            250
 #define GUI_DIGITS_DEFAULT          5
 #define GUI_BUTTONS_DEFAULT         8
 #define GUI_SIZE_DEFAULT            18
@@ -155,6 +175,8 @@ PD_LOCAL void gui_updateLogarithmic         (t_gui *x, int isLogarithmic, int no
 PD_LOCAL void gui_updateMultiple            (t_gui *x, int isMultiple, int notify);
 PD_LOCAL void gui_updateOrientation         (t_gui *x, int isVertical, int notify);
 PD_LOCAL void gui_updateOrientationSwap     (t_gui *x, int isVertical, int notify);
+PD_LOCAL void gui_updateFlashed             (t_gui *x, int n, int notify);
+PD_LOCAL void gui_updateTime                (t_gui *x, int n, int notify);
 PD_LOCAL void gui_updateDigits              (t_gui *x, int digits, int notify);
 PD_LOCAL void gui_updateButtons             (t_gui *x, int buttons, int notify);
 PD_LOCAL void gui_updateWidth               (t_gui *x, int width, int notify);
@@ -178,10 +200,12 @@ enum {
     GUI_MULTIPLE            = (1 << 8),
     GUI_ORIENTATION         = (1 << 9),
     GUI_SWAP                = (1 << 10),         // GUI_ORIENTATION
-    GUI_DIGITS              = (1 << 11),
-    GUI_BUTTONS             = (1 << 12),
-    GUI_WIDTH               = (1 << 13),
-    GUI_HEIGHT              = (1 << 14)
+    GUI_FLASHED             = (1 << 11),
+    GUI_TIME                = (1 << 12),
+    GUI_DIGITS              = (1 << 13),
+    GUI_BUTTONS             = (1 << 14),
+    GUI_WIDTH               = (1 << 15),
+    GUI_HEIGHT              = (1 << 16)
     };
 
 #endif
