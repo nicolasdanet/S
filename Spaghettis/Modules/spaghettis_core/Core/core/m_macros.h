@@ -433,11 +433,9 @@ static inline int sys_ilog2 (uint32_t v)
 // MARK: -
 
 /* Assumed IEEE 754 floating-point format. */
-/* Assumed type punning valid. */
+/* Assumed type punning valid in C11. */
 
-// TODO: Remove type punning
-
-/* < https://www.youtube.com/watch?v=_qzMpk-22cc > */
+/* < https://stackoverflow.com/a/11640603 > */
 
 typedef union {
     float       z_f;
@@ -449,6 +447,14 @@ typedef union {
     uint32_t    z_i[2];
     uint64_t    z_u;
     } t_rawcast64;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+// TODO: Remove type punning (only for C++)?
+
+/* < https://www.youtube.com/watch?v=_qzMpk-22cc > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
