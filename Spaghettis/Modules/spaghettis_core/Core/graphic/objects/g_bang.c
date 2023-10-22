@@ -13,27 +13,13 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#define BANG_TIME_DEFAULT       250
-#define BANG_TIME_MINIMUM       10
-#define BANG_TIME_MAXIMUM       1000
-#define BANG_SIZE_DEFAULT       18
-#define BANG_SIZE_MINIMUM       8
-#define BANG_SIZE_MAXIMUM       256
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static t_class *bng_class;      /* Shared. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 typedef struct _bng {
-    t_object    x_obj;          /* MUST be the first. */
-    int         x_flashed;
-    int         x_size;
-    int         x_time;
+    t_gui       x_obj;          /* MUST be the first. */
     t_outlet    *x_outlet;
     t_clock     *x_clock;
     } t_bng;
@@ -42,15 +28,9 @@ typedef struct _bng {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void bng_updateFlashed (t_bng *, int, int);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void bng_taskFlash (t_bng *x)
 {
-    bng_updateFlashed (x, 0, 1);
+    gui_updateFlashed (cast_gui (x), 0, 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -59,7 +39,7 @@ static void bng_taskFlash (t_bng *x)
 
 static void bng_bang (t_bng *x)
 {
-    bng_updateFlashed (x, 1, 1); clock_delay (x->x_clock, x->x_time);
+    gui_updateFlashed (cast_gui (x), 1, 1); clock_delay (x->x_clock, gui_getTime (cast_gui (x)));
 
     outlet_bang (x->x_outlet);
 }
@@ -88,69 +68,14 @@ static void bng_anything (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void bng_updateFlashed (t_bng *x, int n, int notify)
-{
-    int t = (n != 0);
-    
-    if (x->x_flashed != t) {
-    //
-    x->x_flashed = t;
-    
-    if (notify) {
-        #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Flashed));
-        #endif
-    }
-    //
-    }
-}
-
-static void bng_updateFlashTime (t_bng *x, int n, int notify)
-{
-    int t = PD_CLAMP (n, BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM);
-    
-    if (x->x_time != t) {
-    //
-    x->x_time = t;
-    
-    if (notify) {
-        #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::FlashTime));
-        #endif
-    }
-    //
-    }
-}
-
-static void bng_updateSize (t_bng *x, int n, int notify)
-{
-    int t = PD_CLAMP (n, BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM);
-    
-    if (x->x_size != t) {
-    //
-    x->x_size = t;
-    
-    if (notify) {
-        #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
-        #endif
-    }
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void bng_flashtime (t_bng *x, t_float f)
 {
-    bng_updateFlashTime (x, (int)f, 1);
+    gui_updateTime (cast_gui (x), (int)f, 1);
 }
 
 static void bng_size (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) { bng_updateSize (x, (int)atom_getFloatAtIndex (0, argc, argv), 1); }
+    if (argc) { gui_updateWidth (cast_gui (x), (int)atom_getFloatAtIndex (0, argc, argv), 1); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -159,46 +84,22 @@ static void bng_size (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+static constexpr int bng_flags()
+{
+    return GUI_NONE
+            | GUI_FLASHED
+            | GUI_TIME
+            | GUI_WIDTH;
+}
+
 static void bng_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
 {
-    t_bng *x = (t_bng *)o;
-    
-    static DelegateCache delegate;
-    
-    if (t.contains (Tag::Flashed)) {
-        group.addParameter (Tag::Flashed,
-            NEEDS_TRANS ("Flashed"),
-            NEEDS_TRANS ("Light is flashing"),
-            static_cast<bool> (x->x_flashed),
-            delegate).setHidden (true);
-    }
-    
-    if (t.contains (Tag::FlashTime)) {
-        group.addParameter (Tag::FlashTime,
-            NEEDS_TRANS ("Flash Time"),
-            NEEDS_TRANS ("Duration of the flash"),
-            x->x_time,
-            delegate).setRange (juce::Range<int> (BANG_TIME_MINIMUM, BANG_TIME_MAXIMUM));
-    }
-    
-    if (t.contains (Tag::Width)) {
-        group.addParameter (Tag::Width,
-            NEEDS_TRANS ("Width"),
-            NEEDS_TRANS ("Border size of the object"),
-            x->x_size,
-            delegate).setRange (juce::Range<int> (BANG_SIZE_MINIMUM, BANG_SIZE_MAXIMUM));
-    }
+    gui_getParameters (o, group, t, bng_flags());
 }
 
 static void bng_functionSetParameters (t_object *o, const core::Group& group)
 {
-    t_bng *x = (t_bng *)o;
-    
-    jassert (group.hasParameter (Tag::FlashTime));
-    jassert (group.hasParameter (Tag::Width));
-    
-    bng_updateFlashTime (x, group.getParameter (Tag::FlashTime).getValueTyped<int>(), 1);
-    bng_updateSize (x, group.getParameter (Tag::Width).getValueTyped<int>(), 1);
+    gui_setParameters (o, group, bng_flags());
 }
 
 #endif
@@ -216,8 +117,8 @@ static void bng_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  object_getX (cast_object (x)));
     buffer_appendFloat (b,  object_getY (cast_object (x)));
     buffer_appendSymbol (b, sym_bng);
-    buffer_appendFloat (b,  x->x_size);
-    buffer_appendFloat (b,  x->x_time);
+    buffer_appendFloat (b,  gui_getWidth (cast_gui (x)));
+    buffer_appendFloat (b,  gui_getTime (cast_gui (x)));
     buffer_appendSemicolon (b);
     
     object_serializeLabel (z, b);
@@ -240,11 +141,11 @@ static void *bng_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_bng *x = (t_bng *)pd_new (bng_class);
     
-    int size = (argc > 1) ? (int)atom_getFloat (argv + 0) : BANG_SIZE_DEFAULT;
-    int time = (argc > 1) ? (int)atom_getFloat (argv + 1) : BANG_TIME_DEFAULT;
+    int width = (argc > 1) ? (int)atom_getFloat (argv + 0) : GUI_SIZE_DEFAULT;
+    int time  = (argc > 1) ? (int)atom_getFloat (argv + 1) : GUI_TIME_DEFAULT;
 
-    bng_updateFlashTime (x, time, 0);
-    bng_updateSize (x, size, 0);
+    gui_updateTime (cast_gui (x), time, 0);
+    gui_updateWidth (cast_gui (x), width, 0);
     
     x->x_outlet = outlet_newBang (cast_object (x));
     x->x_clock  = clock_new ((void *)x, (t_method)bng_taskFlash);
