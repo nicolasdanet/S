@@ -24,6 +24,7 @@ typedef struct _gui {
     int         x_isLogarithmic;
     int         x_isMultiple;
     int         x_isFlashed;
+    int         x_isEmbedded;
     int         x_state;
     int         x_time;
     t_float     x_nonZero;
@@ -81,6 +82,11 @@ inline int gui_isMultiple (t_gui *x)
 inline int gui_isFlashed (t_gui *x)
 {
     return x->x_isFlashed;
+}
+
+inline int gui_isEmbedded (t_gui *x)
+{
+    return x->x_isEmbedded;
 }
 
 inline int gui_getState (t_gui *x)
@@ -157,6 +163,7 @@ inline t_float gui_getValue (t_gui *x)
 #define GUI_NONZERO_DEFAULT         1
 #define GUI_LOGARITHMIC_DEFAULT     0
 #define GUI_MULTIPLE_DEFAULT        0
+#define GUI_EMBEDDED_DEFAULT        0
 #define GUI_TIME_DEFAULT            250
 #define GUI_DIGITS_DEFAULT          5
 #define GUI_BUTTONS_DEFAULT         8
@@ -176,6 +183,7 @@ PD_LOCAL void gui_updateMultiple            (t_gui *x, int isMultiple, int notif
 PD_LOCAL void gui_updateOrientation         (t_gui *x, int isVertical, int notify);
 PD_LOCAL void gui_updateOrientationSwap     (t_gui *x, int isVertical, int notify);
 PD_LOCAL void gui_updateFlashed             (t_gui *x, int n, int notify);
+PD_LOCAL void gui_updateEmbedded            (t_gui *x, int n, int notify);
 PD_LOCAL void gui_updateTime                (t_gui *x, int n, int notify);
 PD_LOCAL void gui_updateDigits              (t_gui *x, int digits, int notify);
 PD_LOCAL void gui_updateButtons             (t_gui *x, int buttons, int notify);
@@ -201,11 +209,12 @@ enum {
     GUI_ORIENTATION         = (1 << 9),
     GUI_SWAP                = (1 << 10),         // GUI_ORIENTATION
     GUI_FLASHED             = (1 << 11),
-    GUI_TIME                = (1 << 12),
-    GUI_DIGITS              = (1 << 13),
-    GUI_BUTTONS             = (1 << 14),
-    GUI_WIDTH               = (1 << 15),
-    GUI_HEIGHT              = (1 << 16)
+    GUI_EMBEDDED            = (1 << 12),
+    GUI_TIME                = (1 << 13),
+    GUI_DIGITS              = (1 << 14),
+    GUI_BUTTONS             = (1 << 15),
+    GUI_WIDTH               = (1 << 16),
+    GUI_HEIGHT              = (1 << 17)
     };
 
 #endif

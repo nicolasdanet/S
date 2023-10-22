@@ -191,6 +191,23 @@ PD_LOCAL void gui_updateFlashed (t_gui *x, int n, int notify)
     }
 }
 
+PD_LOCAL void gui_updateEmbedded (t_gui *x, int n, int notify)
+{
+    int t = (n != 0);
+    
+    if (x->x_isEmbedded != t) {
+    //
+    x->x_isEmbedded = t;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Embedded));
+        #endif
+    }
+    //
+    }
+}
+
 PD_LOCAL void gui_updateTime (t_gui *x, int n, int notify)
 {
     int t = PD_CLAMP (n, GUI_TIME_MINIMUM, GUI_TIME_MAXIMUM);
@@ -371,6 +388,14 @@ PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t,
             delegate).setHidden (true);
     }
     
+    if ((flags & GUI_EMBEDDED) && t.contains (Tag::Embedded)) {
+        group.addParameter (Tag::Embedded,
+            NEEDS_TRANS ("Embedded"),
+            NEEDS_TRANS ("Content saved with patch"),
+            static_cast<bool> (x->x_isEmbedded),
+            delegate);
+    }
+    
     if ((flags & GUI_TIME) && t.contains (Tag::FlashTime)) {
         group.addParameter (Tag::FlashTime,
             NEEDS_TRANS ("Flash Time"),
@@ -457,6 +482,12 @@ static bool gui_setParameters (t_object *o, const core::Group& group, int flags)
         else {
             gui_updateOrientation (x, vertical, 1);
         }
+    }
+    
+    if (flags & GUI_EMBEDDED) {
+        jassert (group.hasParameter (Tag::Embedded));
+        const bool embedded = group.getParameter (Tag::Embedded).getValueTyped<bool>();
+        gui_updateEmbedded (x, embedded, 1);
     }
     
     if (flags & GUI_TIME) {
