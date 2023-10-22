@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		013CE1E9DA9FD7E645F73D2E /* Cocoa.framework */ = {isa = PBXBuildFile; fileRef = FAC1F52DAB4CF87E5E85196F; };
+		05ADAED8FAB54CD6C62362DB /* MetalKit.framework */ = {isa = PBXBuildFile; fileRef = 21B7DCFB3DCB4BF26118366C; settings = { ATTRIBUTES = (Weak, ); }; };
 		24C7BCD200D4A0C85C119CF6 /* include_juce_core.mm */ = {isa = PBXBuildFile; fileRef = 119BE2259F904F5D7E463AD0; };
 		274D6BFB3E251A69841986B1 /* App */ = {isa = PBXBuildFile; fileRef = 60D8A2DF65E5C0796EA99CB1; };
 		2D23F4A7B71E5EE6AB602452 /* Main.cpp */ = {isa = PBXBuildFile; fileRef = A1056AE48F0DFF9EC3445D0E; };
@@ -19,6 +20,7 @@
 		5B5691F2F80C1D02F0AA9D7B /* CoreMIDI.framework */ = {isa = PBXBuildFile; fileRef = C9C6B2655C8D889351519A5B; };
 		5BFCA5F5B994AFE79CC658DD /* IOKit.framework */ = {isa = PBXBuildFile; fileRef = E256EE56D3F74E547832FB86; };
 		6E1BA5A7EDAB97C5EA635131 /* include_juce_gui_basics.mm */ = {isa = PBXBuildFile; fileRef = A7D9C0FA0907BC5117638CCC; };
+		7CC4ED4FEF7FD5AAB4D63BFE /* Metal.framework */ = {isa = PBXBuildFile; fileRef = 3612AABF8EDFE0DC71327636; settings = { ATTRIBUTES = (Weak, ); }; };
 		D0B4049BC7214518D88FC403 /* include_juce_graphics.mm */ = {isa = PBXBuildFile; fileRef = 16458E769BBE629739926E6D; };
 		D1156CB53965143E57684B78 /* include_spaghettis_gui.mm */ = {isa = PBXBuildFile; fileRef = 872360D0C70C7B5CA52A5B1B; };
 		D3F5DE6E70FFA7E248044899 /* RecentFilesMenuTemplate.nib */ = {isa = PBXBuildFile; fileRef = 389D7927151AD7F53D9F79C3; };
@@ -37,9 +39,11 @@
 		16458E769BBE629739926E6D /* include_juce_graphics.mm */ /* include_juce_graphics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_graphics.mm; path = ../../JuceLibraryCode/include_juce_graphics.mm; sourceTree = SOURCE_ROOT; };
 		1BAEF33E789FBE91AAC83446 /* JuceHeader.h */ /* JuceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = SOURCE_ROOT; };
 		1F9AA249D13DF00711BB2E4F /* icon_text_rotation_down.svg */ /* icon_text_rotation_down.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_text_rotation_down.svg; path = ../../Resources/Icons/SVG/icon_text_rotation_down.svg; sourceTree = SOURCE_ROOT; };
+		21B7DCFB3DCB4BF26118366C /* MetalKit.framework */ /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		25003B1F3B446939A3689BE6 /* BinaryData.h */ /* BinaryData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BinaryData.h; path = ../../JuceLibraryCode/BinaryData.h; sourceTree = SOURCE_ROOT; };
 		2748188111FF8A9655940C34 /* juce_core */ /* juce_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_core; path = "~/JUCE/modules/juce_core"; sourceTree = "<absolute>"; };
 		275F8E522693FC248DD886E3 /* Carbon.framework */ /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		3612AABF8EDFE0DC71327636 /* Metal.framework */ /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		389D7927151AD7F53D9F79C3 /* RecentFilesMenuTemplate.nib */ /* RecentFilesMenuTemplate.nib */ = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = SOURCE_ROOT; };
 		3AC6DAD528C440D39662FA49 /* BinaryData.cpp */ /* BinaryData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../../JuceLibraryCode/BinaryData.cpp; sourceTree = SOURCE_ROOT; };
 		47B902E51FA1D26D812A2D55 /* juce_events */ /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_events; path = "~/JUCE/modules/juce_events"; sourceTree = "<absolute>"; };
@@ -92,6 +96,8 @@
 				5BFCA5F5B994AFE79CC658DD,
 				D8751DBF49BECD65C7A0923A,
 				3580A9AB24A210EF3E8D2D35,
+				7CC4ED4FEF7FD5AAB4D63BFE,
+				05ADAED8FAB54CD6C62362DB,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +163,8 @@
 				E256EE56D3F74E547832FB86,
 				A56CB13A5C065878D9CCD781,
 				50ED0DDFBD78181A13A37290,
+				3612AABF8EDFE0DC71327636,
+				21B7DCFB3DCB4BF26118366C,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -250,6 +258,7 @@
 		44418211D062CE90F46F056C = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = "Spaghettis";
 				TargetAttributes = {
@@ -403,7 +412,7 @@
 					"DEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x70007",
+					"JUCE_PROJUCER_VERSION=0x70008",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
@@ -440,7 +449,7 @@
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(SRCROOT)/../../Modules";
 				OTHER_CFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
-				OTHER_LDFLAGS = "-ldl -lpthread -weak_framework Metal -weak_framework MetalKit";
+				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
 				PRODUCT_NAME = "Spaghettis";
 				USE_HEADERMAP = NO;
@@ -466,7 +475,7 @@
 					"NDEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x70007",
+					"JUCE_PROJUCER_VERSION=0x70008",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
@@ -504,7 +513,7 @@
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(SRCROOT)/../../Modules";
 				OTHER_CFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
 				OTHER_CPLUSPLUSFLAGS = "-Wall  -Wextra  -Wshadow -Wno-unused-parameter -ffast-math  -march=native -fvisibility=hidden";
-				OTHER_LDFLAGS = "-ldl -lpthread -weak_framework Metal -weak_framework MetalKit";
+				OTHER_LDFLAGS = "-ldl -lpthread";
 				PRODUCT_BUNDLE_IDENTIFIER = org.puredata.spaghettis;
 				PRODUCT_NAME = "Spaghettis";
 				USE_HEADERMAP = NO;
