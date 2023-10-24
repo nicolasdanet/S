@@ -19,32 +19,16 @@ t_class *garray_class;                  /* Shared. */
 // -----------------------------------------------------------------------------------------------------------
 
 struct _garray {
-    t_object    x_obj;                  /* MUST be the first. */
+    t_gui       x_obj;                  /* MUST be the first. */
     int         x_isUsedInDsp;
     int         x_dismissed;
-    int         x_embed;
-    int         x_width;
-    int         x_height;
-    int         x_size;
     int         x_count;
+    int         x_size;
     t_word      *x_data;
     t_symbol    *x_unexpandedName;
     t_symbol    *x_name;
     t_clock     *x_clock;
     };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#define GARRAY_WIDTH_MINIMUM    8
-#define GARRAY_HEIGHT_MINIMUM   8
-
-#define GARRAY_WIDTH_MAXIMUM    1024
-#define GARRAY_HEIGHT_MAXIMUM   1024
-
-#define GARRAY_WIDTH_DEFAULT    200
-#define GARRAY_HEIGHT_DEFAULT   140
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -195,10 +179,6 @@ PD_LOCAL void garray_setAsUsedInDsp (t_garray *x, int usedInDsp)
 {
     x->x_isUsedInDsp = (usedInDsp != 0);
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 PD_LOCAL int garray_isUsedInDsp (t_garray *x)
 {
@@ -404,19 +384,6 @@ static void garray_redraw (t_garray *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-static void garray_objectUpdated (t_garray *x, const Tags& t)
-{
-    outputs_objectUpdated (cast_object (x), t);
-}
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void garray_rename (t_garray *x, t_symbol *s)
 {
     if (s != garray_getUnexpandedName (x)) {
@@ -432,7 +399,7 @@ static void garray_rename (t_garray *x, t_symbol *s)
     pd_bind (cast_pd (x), x->x_name);
     dsp_update();
     #if defined ( PD_BUILDING_APPLICATION )
-    garray_objectUpdated (x, Tags::parameters (Tag::Name));
+    outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Name));
     #endif
     //
     }
@@ -473,7 +440,7 @@ static void garray_resizeProceed (t_garray *x, int n)
     garray_publish (x);
     
     #if defined ( PD_BUILDING_APPLICATION )
-    garray_objectUpdated (x, Tags::parameters (Tag::Size));
+    outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Size));
     #endif
     //
     }
@@ -484,19 +451,9 @@ PD_LOCAL void garray_resize (t_garray *x, t_float f)
     PD_ASSERT (sys_isControlThread()); garray_resizeProceed (x, (int)f);
 }
 
-static void garray_embedProceed (t_garray *x, int n)
-{
-    if (x->x_embed != n) {
-        x->x_embed = n;
-        #if defined ( PD_BUILDING_APPLICATION )
-        garray_objectUpdated (x, Tags::parameters (Tag::Embedded));
-        #endif
-    }
-}
-
 static void garray_embed (t_garray *x, t_float f)
 {
-    int n = (int)f; garray_embedProceed (x, n != 0);
+    gui_updateEmbedded (cast_gui (x), (int)f, 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -514,9 +471,9 @@ static void garray_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendSymbol (b, sym_garray);
     buffer_appendSymbol (b, garray_getUnexpandedName (x));
     buffer_appendFloat (b,  x->x_size);
-    buffer_appendFloat (b,  x->x_embed);
-    buffer_appendFloat (b,  x->x_width);
-    buffer_appendFloat (b,  x->x_height);
+    buffer_appendFloat (b,  gui_isEmbedded (cast_gui (x)));
+    buffer_appendFloat (b,  gui_getWidth (cast_gui (x)));
+    buffer_appendFloat (b,  gui_getHeight (cast_gui (x)));
     buffer_appendSemicolon (b);
     
     object_saveIdentifiers (z, b, flags);
@@ -526,7 +483,7 @@ static t_buffer *garray_functionData (t_object *z, int flags)
 {
     t_garray *x = (t_garray *)z;
 
-    if (SAVED_DEEP (flags) || x->x_embed) {
+    if (SAVED_DEEP (flags) || gui_isEmbedded (cast_gui (x))) {
     //
     t_buffer *b = buffer_new();
     int i, n = x->x_size;
@@ -572,9 +529,8 @@ static void garray_restore (t_garray *x)
     //
     t_error err = PD_ERROR_NONE;
 
-    err |= (x->x_size  != old->x_size);
-    err |= (x->x_embed != old->x_embed);
-    err |= (x->x_name  != old->x_name);
+    err |= (x->x_size != old->x_size);
+    err |= (x->x_name != old->x_name);
     
     if (!err) { garray_copy (x->x_data, old->x_data, x->x_size); }
     //
@@ -614,58 +570,21 @@ static t_symbol *garray_getUnusedBindName (t_symbol *prefix)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void garray_setWidthAndHeight (t_garray *x, int width, int height, int notify)
-{
-    #if defined ( PD_BUILDING_APPLICATION )
-    
-    int w = x->x_width;
-    int h = x->x_height;
-    
-    #endif
-    
-    width  = width  ? width  : GARRAY_WIDTH_DEFAULT;
-    height = height ? height : GARRAY_HEIGHT_DEFAULT;
-        
-    x->x_width  = PD_CLAMP (width,  GARRAY_WIDTH_MINIMUM, GARRAY_WIDTH_MAXIMUM);
-    x->x_height = PD_CLAMP (height, GARRAY_HEIGHT_MINIMUM, GARRAY_HEIGHT_MAXIMUM);
-    
-    #if defined ( PD_BUILDING_APPLICATION )
-    
-    if (notify) {
-        if (w != x->x_width)  { garray_objectUpdated (x, Tags::parameters (Tag::Width));  }
-        if (h != x->x_height) { garray_objectUpdated (x, Tags::parameters (Tag::Height)); }
-    }
-    
-    #endif
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 #if defined ( PD_BUILDING_APPLICATION )
 
-static void garray_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+static constexpr int garray_flags()
+{
+    return GUI_NONE | GUI_EMBEDDED | GUI_WIDTH | GUI_HEIGHT;
+}
+
+static void garray_getParameters (t_object *o, core::Group& group, const Tags& t)
 {
     t_garray *x = (t_garray *)o;
     
     static DelegateCache delegate;
-    
-    if (t.contains (Tag::Width)) {
-        group.addParameter (Tag::Width,
-            NEEDS_TRANS ("Width"),
-            NEEDS_TRANS ("Width of the object"),
-            x->x_width,
-            delegate).setRange (juce::Range<int> (GARRAY_WIDTH_MINIMUM, GARRAY_WIDTH_MAXIMUM));
-    }
-    
-    if (t.contains (Tag::Height)) {
-        group.addParameter (Tag::Height,
-            NEEDS_TRANS ("Height"),
-            NEEDS_TRANS ("Height of the object"),
-            x->x_height,
-            delegate).setRange (juce::Range<int> (GARRAY_HEIGHT_MINIMUM, GARRAY_HEIGHT_MAXIMUM));
-    }
     
     if (t.contains (Tag::Name)) {
         group.addParameter (Tag::Name,
@@ -683,14 +602,6 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
             delegate);
     }
     
-    if (t.contains (Tag::Embedded)) {
-        group.addParameter (Tag::Embedded,
-            NEEDS_TRANS ("Embedded"),
-            NEEDS_TRANS ("Content saved with patch"),
-            static_cast<bool> (x->x_embed),
-            delegate);
-    }
-    
     if (t.contains (Tag::Count)) {
         group.addParameter (Tag::Count,
             NEEDS_TRANS ("Count"),
@@ -700,27 +611,37 @@ static void garray_functionGetParameters (t_object *o, core::Group& group, const
     }
 }
 
-static void garray_functionSetParameters (t_object *o, const core::Group& group)
+static void garray_setParameters (t_object *o, const core::Group& group)
 {
     t_garray *x = (t_garray *)o;
     
-    jassert (group.hasParameter (Tag::Width));
-    jassert (group.hasParameter (Tag::Height));
     jassert (group.hasParameter (Tag::Name));
     jassert (group.hasParameter (Tag::Size));
-    jassert (group.hasParameter (Tag::Embedded));
     
-    t_symbol *name   = gensym (group.getParameter (Tag::Name).getValueTyped<juce::String>().toRawUTF8());
-    const int size   = group.getParameter (Tag::Size).getValueTyped<int>();
-    const int embed  = static_cast<int> (group.getParameter (Tag::Embedded).getValueTyped<bool>());
-    const int width  = group.getParameter (Tag::Width).getValueTyped<int>();
-    const int height = group.getParameter (Tag::Height).getValueTyped<int>();
+    t_symbol *name = gensym (group.getParameter (Tag::Name).getValueTyped<juce::String>().toRawUTF8());
+    int size       = group.getParameter (Tag::Size).getValueTyped<int>();
     
     garray_rename (x, name);
     garray_resizeProceed (x, size);
-    garray_embedProceed (x, embed);
-    garray_setWidthAndHeight (x, width, height, 1);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+static void garray_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+{
+    garray_getParameters (o, group, t);
+    gui_getParameters (o, group, t, garray_flags());
+}
+
+static void garray_functionSetParameters (t_object *o, const core::Group& group)
+{
+    gui_setParameters (o, group, garray_flags());
+    garray_setParameters (o, group);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #endif
 
@@ -733,7 +654,11 @@ static void garray_newParameters (t_garray *x, t_symbol *s, int argc, t_atom *ar
     int width  = atom_getFloatAtIndex (0, argc, argv);
     int height = atom_getFloatAtIndex (1, argc, argv);
     
-    garray_setWidthAndHeight (x, width, height, 0);
+    if (!width)  { width  = GUI_SIZE_DEFAULT * 12; }
+    if (!height) { height = GUI_SIZE_DEFAULT * 8;  }
+    
+    gui_updateWidth (cast_gui (x), width, 0);
+    gui_updateHeight (cast_gui (x), height, 0);
         
     if (argc > 2) { warning_unusedArguments (cast_object (x), s, argc - 2, argv + 2); }
 }
@@ -746,7 +671,8 @@ static void *garray_new (t_symbol *s, int argc, t_atom *argv)
     int size            = atom_getFloatAtIndex (1, argc, argv);
     int embed           = atom_getFloatAtIndex (2, argc, argv);
     
-    x->x_embed          = (embed != 0);
+    gui_updateEmbedded (cast_gui (x), embed, 0);
+    
     x->x_size           = PD_MAX (0, size);
     x->x_data           = (t_word *)PD_MEMORY_GET (x->x_size * sizeof (t_word));
     x->x_unexpandedName = NULL;
