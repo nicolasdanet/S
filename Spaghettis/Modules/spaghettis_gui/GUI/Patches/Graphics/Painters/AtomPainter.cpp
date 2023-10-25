@@ -45,13 +45,15 @@ void AtomPainter::mouseDown (const juce::MouseEvent& e)
 
 void AtomPainter::mouseDrag (const juce::MouseEvent& e)
 {
+    const juce::Range<double> r (low_.get(), high_.get());
+    
     const int dY            = -e.getDistanceFromDragStartY();
     const double interval   = interval_.get();
     const double step       = (interval != 0.0) ? interval : 1.0;
     const double f          = v_ + (dY * step);
     const double v          = std::round (f / step) * step;
-
-    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), v));
+    
+    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), r.isEmpty() ? v : r.clipValue (v)));
 }
 
 void AtomPainter::mouseUp (const juce::MouseEvent&)
