@@ -14,8 +14,8 @@ namespace spaghettis {
 
 DialPainter::DialPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
-    dialBackgroundColour_ (Spaghettis()->getCachedColour (Tag::SliderBackground)),
-    dialNeedleColour_ (Spaghettis()->getCachedColour (Tag::SliderBar)),
+    dialBackgroundColour_ (Spaghettis()->getCachedColour (Tag::DialBackground)),
+    dialNeedleColour_ (Spaghettis()->getCachedColour (Tag::DialNeedle)),
     value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
     low_ (object_.getCached<double> (Tag::Parameters, Tag::Low)),
     high_ (object_.getCached<double> (Tag::Parameters, Tag::High)),

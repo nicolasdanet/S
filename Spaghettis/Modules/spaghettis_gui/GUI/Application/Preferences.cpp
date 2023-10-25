@@ -219,6 +219,16 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Slider Bar"),
         NEEDS_TRANS ("Set foreground color of sliders"),
         Colours::getPalette()->backgroundPopup);
+    
+    colors.addParameter (Tag::DialBackground,
+        NEEDS_TRANS ("Dial Background"),
+        NEEDS_TRANS ("Set background color of dials"),
+        Colours::getPalette()->backgroundWidget);
+    
+    colors.addParameter (Tag::DialNeedle,
+        NEEDS_TRANS ("Dial Needle"),
+        NEEDS_TRANS ("Set foreground color of dials"),
+        Colours::getPalette()->backgroundPopup);
         
     colors.addParameter (Tag::CommentBackground,
         NEEDS_TRANS ("Comment Background"),

@@ -56,6 +56,8 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Count);
     DECLARE_STRING (Cut);
     DECLARE_STRING (DefaultIsRunView);
+    DECLARE_STRING (DialBackground);
+    DECLARE_STRING (DialNeedle);
     DECLARE_STRING (Digits);
     DECLARE_STRING (Documentation);
     DECLARE_STRING (Duplicate);
