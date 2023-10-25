@@ -148,6 +148,7 @@
 #include "GUI/Patches/Graphics/Painters/BangPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/CommentPainter.hpp"
+#include "GUI/Patches/Graphics/Painters/DialPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/InletPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/MessagePainter.hpp"
 #include "GUI/Patches/Graphics/Painters/RadioPainter.hpp"

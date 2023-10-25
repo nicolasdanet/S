@@ -77,6 +77,7 @@
 #include "GUI/Patches/Graphics/Painters/BangPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/BoxPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/CommentPainter.cpp"
+#include "GUI/Patches/Graphics/Painters/DialPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/InletPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/MessagePainter.cpp"
 #include "GUI/Patches/Graphics/Painters/SliderPainter.cpp"
