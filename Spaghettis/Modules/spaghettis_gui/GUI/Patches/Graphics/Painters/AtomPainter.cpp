@@ -95,11 +95,7 @@ juce::String AtomPainter::getPlaceholder() const
 
 juce::String AtomPainter::getText() const
 {
-    const auto [text, truncated] = Helpers::withNumberOfDigits (value_.get(), getDigits());
-    
-    if (truncated) { return text.dropLastCharacters (1) + "#"; }
-    
-    return text;
+    return Helpers::withNumberOfDigitsTruncated (value_.get(), getDigits());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -71,6 +71,15 @@ static auto withNumberOfDigits (double f, int n)
     return std::tuple<juce::String, bool> (trimZerosOfInteger (t), isIntegerPartTruncated (t, f));
 }
 
+static juce::String withNumberOfDigitsTruncated (double f, int n)
+{
+    const auto [text, truncated] = withNumberOfDigits (f, n);
+    
+    if (truncated) { return text.dropLastCharacters (1) + "#"; }
+    
+    return text;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
