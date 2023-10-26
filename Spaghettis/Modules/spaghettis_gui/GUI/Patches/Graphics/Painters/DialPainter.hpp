@@ -45,6 +45,7 @@ public:
 private:
     core::Cached<juce::Colour> dialBackgroundColour_;
     core::Cached<juce::Colour> dialNeedleColour_;
+    core::Cached<juce::Colour> dialTextColour_;
     core::Cached<double> value_;
     core::Cached<double> low_;
     core::Cached<double> high_;

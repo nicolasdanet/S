@@ -16,6 +16,7 @@ DialPainter::DialPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
     dialBackgroundColour_ (Spaghettis()->getCachedColour (Tag::DialBackground)),
     dialNeedleColour_ (Spaghettis()->getCachedColour (Tag::DialNeedle)),
+    dialTextColour_ (Spaghettis()->getCachedColour (Tag::DialText)),
     value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
     low_ (object_.getCached<double> (Tag::Parameters, Tag::Low)),
     high_ (object_.getCached<double> (Tag::Parameters, Tag::High)),
@@ -27,6 +28,7 @@ DialPainter::DialPainter (ObjectComponent* owner) :
 {
     dialBackgroundColour_.attach (repaint (component_));
     dialNeedleColour_.attach (repaint (component_));
+    dialTextColour_.attach (repaint (component_));
     value_.attach (repaint (component_));
     low_.attach (repaint (component_));
     high_.attach (repaint (component_));

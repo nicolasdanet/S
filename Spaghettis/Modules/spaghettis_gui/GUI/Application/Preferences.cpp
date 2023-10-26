@@ -229,6 +229,11 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Dial Needle"),
         NEEDS_TRANS ("Set foreground color of dials"),
         Colours::getPalette()->backgroundPopup);
+    
+    colors.addParameter (Tag::DialText,
+        NEEDS_TRANS ("Dial Text"),
+        NEEDS_TRANS ("Set color of text"),
+        Colours::getPalette()->textBox);
         
     colors.addParameter (Tag::CommentBackground,
         NEEDS_TRANS ("Comment Background"),
