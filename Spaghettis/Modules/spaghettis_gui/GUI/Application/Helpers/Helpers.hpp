@@ -73,7 +73,7 @@ static auto withNumberOfDigits (double f, int n)
 
 static juce::String withNumberOfDigitsTruncated (double f, int n)
 {
-    const auto [text, truncated] = withNumberOfDigits (f, n);
+    const auto [text, truncated] = withNumberOfDigits (f, juce::jmax (1, n));
     
     if (truncated) { return text.dropLastCharacters (1) + "#"; }
     

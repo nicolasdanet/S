@@ -61,10 +61,24 @@ void DialPainter::mouseUp (const juce::MouseEvent&)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::String DialPainter::getText() const
+{
+    return Helpers::withNumberOfDigitsTruncated (value_.get(), digits_.get());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (dialBackgroundColour_.get());
     g.fillRect (r);
+    
+    if (digits_.get()) {
+        g.setColour (dialTextColour_.get());
+        paintText (r, g, getText(), juce::Justification::centredBottom);
+    }
 }
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()
