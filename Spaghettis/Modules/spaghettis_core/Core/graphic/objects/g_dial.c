@@ -150,7 +150,8 @@ static void *dial_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_dial *x = (t_dial *)pd_new (dial_class);
     
-    int width           = (argc > 4) ? atom_getFloat (argv + 0) : 2 * GUI_SIZE_DEFAULT;
+    int defaultWidth    = 3 * GUI_SIZE_DEFAULT;
+    int width           = (argc > 4) ? atom_getFloat (argv + 0) : defaultWidth;
     int digits          = (argc > 4) ? atom_getFloat (argv + 1) : GUI_DIGITS_DEFAULT;
     t_float minimum     = (argc > 4) ? atom_getFloat (argv + 2) : GUI_MINIMUM_DEFAULT;
     t_float maximum     = (argc > 4) ? atom_getFloat (argv + 3) : GUI_MAXIMUM_DEFAULT;
@@ -163,7 +164,7 @@ static void *dial_new (t_symbol *s, int argc, t_atom *argv)
     gui_updateInterval (cast_gui (x), interval, 0);
     gui_updateLogarithmic (cast_gui (x), (isLogarithmic != 0), 0);
     gui_updateDigits (cast_gui (x), digits, 0);
-    gui_updateWidth (cast_gui (x), width, 0);
+    gui_updateWidth (cast_gui (x), width ? width : defaultWidth, 0);
     
     x->x_outlet = outlet_newFloat (cast_object (x));
 
