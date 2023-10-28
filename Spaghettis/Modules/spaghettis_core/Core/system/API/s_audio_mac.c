@@ -219,7 +219,7 @@ PD_LOCAL t_error audio_openNative (t_devices *p)
     int sampleRate      = devices_getSampleRate (p);
     int vectorSize      = devices_getVectorSize (p);
     
-    static_assert (sizeof (t_sample) == sizeof (Float32));
+    static_assert (sizeof (t_sample) == sizeof (Float32), "");
     
     /* For now audio in is required to synchronize properly the callback. */
     
