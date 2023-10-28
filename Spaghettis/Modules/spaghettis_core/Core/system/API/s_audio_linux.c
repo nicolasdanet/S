@@ -274,7 +274,7 @@ PD_LOCAL t_error audio_openNative (t_devices *p)
     int numberOfChannelsOut = devices_getOutSize (p) ? devices_getOutChannelsAtIndex (p, 0) : 0;
     int sampleRate          = devices_getSampleRate (p);
         
-    static_assert (sizeof (t_sample) == sizeof (jack_default_audio_sample_t), "");
+    static_assert (sizeof (t_sample) == sizeof (jack_default_audio_sample_t));
     
     if (numberOfChannelsIn) {   /* For now audio in is required to synchronize properly the callback. */
     //

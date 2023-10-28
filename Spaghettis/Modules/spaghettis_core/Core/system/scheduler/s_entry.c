@@ -55,7 +55,7 @@ PD_LOCAL int sys_isControlThread (void)
 
 #if defined ( __cplusplus )
 
-static_assert (sizeof (int) >= 4, "");      /* Just in case. */
+static_assert (sizeof (int) >= 4);  /* Just in case. */
 
 #endif
 

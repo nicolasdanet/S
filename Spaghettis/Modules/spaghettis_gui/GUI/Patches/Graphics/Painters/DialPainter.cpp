@@ -77,7 +77,7 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     if (digits_.get()) {
         g.setColour (dialTextColour_.get());
-        paintText (r, g, getText(), juce::Justification::centredBottom);
+        paintText (r, g, getText(), juce::Justification::bottomRight);
     }
 }
 
