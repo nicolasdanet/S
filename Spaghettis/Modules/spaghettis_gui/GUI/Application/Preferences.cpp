@@ -223,7 +223,7 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::DialBackground,
         NEEDS_TRANS ("Dial Background"),
         NEEDS_TRANS ("Set background color of dials"),
-        Colours::getPalette()->backgroundWidget);
+        Colours::getPalette()->backgroundBox);
     
     colors.addParameter (Tag::DialNeedle,
         NEEDS_TRANS ("Dial Needle"),
