@@ -3,7 +3,7 @@
 #N canvas 396 117 890 614;
 #X floatatom 48 336 5 0 0;
 #X obj 216 156 dial 40 5 0 127 0 1;
-#X obj 48 300 hslider 128 15 0 127 0;
+#X obj 48 300 hslider 128 18 0 127 0;
 #X obj 48 228 bng 18 250;
 #X _include bijou;
 #X obj 216 264 vradio 18 0 8;
@@ -18,7 +18,7 @@
 #X obj 48 72 t b b;
 #X obj 216 216 % 8;
 #X obj 400 228 hradio 18 0 8;
-#X obj 48 384 vu 15 120;
+#X obj 48 384 vu 18 120;
 #X obj 336 312 print;
 #X obj 48 540 print;
 #X obj 180 432 panel 275 45;
