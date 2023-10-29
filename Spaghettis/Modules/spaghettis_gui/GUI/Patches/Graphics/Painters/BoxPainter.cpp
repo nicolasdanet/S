@@ -51,7 +51,7 @@ void BoxPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.fillRect (r);
     g.setColour (wrong ? boxWrongColour_.get() : boxTextColour_.get());
     
-    paintText (r, g, getText());
+    paintText (r, g, getText(), juce::Justification::centredLeft);
 }
 
 juce::Rectangle<int> BoxPainter::getRequiredBoundsForObject()
