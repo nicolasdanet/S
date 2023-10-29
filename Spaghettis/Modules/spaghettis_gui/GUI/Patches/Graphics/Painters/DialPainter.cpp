@@ -61,6 +61,11 @@ void DialPainter::mouseUp (const juce::MouseEvent&)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Font DialPainter::getFont() const
+{
+    return Spaghettis()->getLookAndFeel().getObjectsFont (getScale());
+}
+
 juce::String DialPainter::getText() const
 {
     return Helpers::withNumberOfDigitsTruncated (value_.get(), digits_.get());
@@ -76,7 +81,7 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.fillRect (r);
     g.setColour (dialTextColour_.get());
 
-    // if (digits_.get()) { paintText (r, g, getText(), getFont(), juce::Justification::bottomRight); }
+    if (digits_.get()) { paintText (r, g, getText(), getFont(), juce::Justification::bottomRight); }
 }
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()
