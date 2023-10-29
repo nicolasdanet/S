@@ -81,7 +81,7 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsForObjectFromDimensions();
+    return getRequiredBoundsFromDimensions();
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -93,7 +93,7 @@ void ArrayPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> ArrayPainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsForObjectFromDimensions();
+    return getRequiredBoundsFromDimensions();
 }
 
 // -----------------------------------------------------------------------------------------------------------

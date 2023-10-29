@@ -204,7 +204,7 @@ void RadioPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> RadioPainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsForObjectFromDimensions();
+    return getRequiredBoundsFromDimensions();
 }
 
 // -----------------------------------------------------------------------------------------------------------

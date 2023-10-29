@@ -134,18 +134,18 @@ core::UniqueId PainterPolicy::getIdentifier() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> PainterPolicy::getRequiredBoundsForObjectFromVector (core::Vector::Scaled v)
+juce::Rectangle<int> PainterPolicy::getRequiredBoundsFromVector (core::Vector::Scaled v)
 {
     return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) + getPosition().getPoint();
 }
 
-juce::Rectangle<int> PainterPolicy::getRequiredBoundsForObjectFromDimensions()
+juce::Rectangle<int> PainterPolicy::getRequiredBoundsFromDimensions()
 {
     std::optional<core::Vector::Real> t = getDimensions();
     
     jassert (t.has_value());
     
-    return getRequiredBoundsForObjectFromVector (core::Vector::Scaled (t.value(), getScale()));
+    return getRequiredBoundsFromVector (core::Vector::Scaled (t.value(), getScale()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -182,7 +182,7 @@ int getMinimumWidth (float f, int m, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> PainterPolicy::getRequiredBoundsForObjectFromText (const juce::String& text, int extra)
+juce::Rectangle<int> PainterPolicy::getRequiredBoundsFromText (const juce::String& text, int extra)
 {
     const float f = getScale();
     
@@ -194,7 +194,7 @@ juce::Rectangle<int> PainterPolicy::getRequiredBoundsForObjectFromText (const ju
     const int k = getTextMargins (f) * 2;
     
     core::Vector::Scaled v (juce::jmax (m, w + k), h + k, f);
-    juce::Rectangle<int> t (getRequiredBoundsForObjectFromVector (v));
+    juce::Rectangle<int> t (getRequiredBoundsFromVector (v));
     
     if (extra > 0) { t.setWidth (t.getWidth() + extra); }
     

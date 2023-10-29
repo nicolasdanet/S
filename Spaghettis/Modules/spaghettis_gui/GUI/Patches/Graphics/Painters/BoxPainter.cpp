@@ -56,7 +56,7 @@ void BoxPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> BoxPainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsForObjectFromText (getText());
+    return getRequiredBoundsFromText (getText());
 }
 
 // -----------------------------------------------------------------------------------------------------------

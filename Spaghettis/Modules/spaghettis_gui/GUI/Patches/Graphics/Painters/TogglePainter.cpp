@@ -50,7 +50,7 @@ void TogglePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> TogglePainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsForObjectFromDimensions();
+    return getRequiredBoundsFromDimensions();
 }
 
 // -----------------------------------------------------------------------------------------------------------

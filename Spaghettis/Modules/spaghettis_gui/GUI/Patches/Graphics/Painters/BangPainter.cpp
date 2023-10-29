@@ -50,7 +50,7 @@ void BangPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> BangPainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsForObjectFromDimensions();
+    return getRequiredBoundsFromDimensions();
 }
 
 // -----------------------------------------------------------------------------------------------------------
