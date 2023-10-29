@@ -94,7 +94,7 @@ protected:
 protected:
     juce::Rectangle<int> getRequiredBoundsFromDimensions();
     juce::Rectangle<int> getRequiredBoundsFromVector (core::Vector::Scaled);
-    juce::Rectangle<int> getRequiredBoundsFromText (const juce::String&, int extra = 0);
+    juce::Rectangle<int> getRequiredBoundsFromText (const juce::String&, const juce::Font&, int extra = 0);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -102,10 +102,10 @@ protected:
 
 protected:
     void paintText (juce::Rectangle<int>,
-        juce::Graphics&,
-        const juce::String&,
-        const juce::Font&,
-        juce::Justification);
+                        juce::Graphics&,
+                        const juce::String&,
+                        const juce::Font&,
+                        juce::Justification);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

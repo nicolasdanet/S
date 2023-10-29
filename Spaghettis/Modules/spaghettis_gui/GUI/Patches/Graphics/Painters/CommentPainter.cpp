@@ -60,7 +60,7 @@ void CommentPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> CommentPainter::getRequiredBoundsForObject()
 {
-    return getRequiredBoundsFromText (getText());
+    return getRequiredBoundsFromText (getText(), getFont());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -182,16 +182,15 @@ int getMinimumWidth (float f, int m, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> PainterPolicy::getRequiredBoundsFromText (const juce::String& text, int extra)
+juce::Rectangle<int> PainterPolicy::getRequiredBoundsFromText (const juce::String& text,
+    const juce::Font& font,
+    int extra)
 {
     const float f = getScale();
-    
-    const juce::Font font (getFont());
-    
-    const int w = font.getStringWidth (text);
-    const int h = font.getHeight();
-    const int m = getMinimumWidth (f, component_->getNumberOfInlets(), component_->getNumberOfOutlets());
-    const int k = getTextMargins (f) * 2;
+    const int w   = font.getStringWidth (text);
+    const int h   = font.getHeight();
+    const int m   = getMinimumWidth (f, component_->getNumberOfInlets(), component_->getNumberOfOutlets());
+    const int k   = getTextMargins (f) * 2;
     
     core::Vector::Scaled v (juce::jmax (m, w + k), h + k, f);
     juce::Rectangle<int> t (getRequiredBoundsFromVector (v));
