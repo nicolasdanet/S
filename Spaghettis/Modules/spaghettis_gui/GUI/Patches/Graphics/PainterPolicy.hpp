@@ -104,7 +104,13 @@ protected:
     void paintText (juce::Rectangle<int>,
         juce::Graphics&,
         const juce::String&,
-        juce::Justification justification);
+        const juce::Font&,
+        juce::Justification);
+        
+    void paintText (juce::Rectangle<int>,
+        juce::Graphics&,
+        const juce::String&,
+        juce::Justification);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
