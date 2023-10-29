@@ -20,22 +20,17 @@ MakerEmpty::MakerEmpty() : patchTextColour_ (Spaghettis()->getCachedColour (Tag:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void MakerEmpty::paintText (juce::Graphics& g)
-{
-    const juce::String text (NEEDS_TRANS ("Documentation"));
-    
-    g.setColour (patchTextColour_.get());
-    g.setFont (Spaghettis()->getLookAndFeel().getObjectsFont (1.5f));
-    g.drawText (text, getLocalBounds(), juce::Justification::centred, true);
-}
-
 void MakerEmpty::paint (juce::Graphics& g)
 {
     g.setColour (Spaghettis()->getColour (Colours::makerBackground));
     g.fillRect (getLocalBounds().reduced (1));
     
-    paintText (g);
+    g.setColour (patchTextColour_.get());
+    g.setFont (Spaghettis()->getLookAndFeel().getObjectsFont (1.5f));
+    g.drawText (juce::String (NEEDS_TRANS ("Documentation")),
+        getLocalBounds(),
+        juce::Justification::centred,
+        true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
