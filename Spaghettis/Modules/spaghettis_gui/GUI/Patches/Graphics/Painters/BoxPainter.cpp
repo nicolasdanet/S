@@ -32,6 +32,11 @@ BoxPainter::BoxPainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Font BoxPainter::getFont() const
+{
+    return Spaghettis()->getLookAndFeel().getObjectsFont (getScale());
+}
+
 juce::String BoxPainter::getText() const
 {
     juce::String text (content_.get()); if (text.isEmpty()) { text = class_.get(); }

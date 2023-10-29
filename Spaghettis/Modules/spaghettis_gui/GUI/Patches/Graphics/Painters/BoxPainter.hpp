@@ -32,6 +32,7 @@ public:
     juce::Rectangle<int> getRequiredBoundsForObject() override;
     
 private:
+    juce::Font getFont() const;
     juce::String getText() const;
 
 private:

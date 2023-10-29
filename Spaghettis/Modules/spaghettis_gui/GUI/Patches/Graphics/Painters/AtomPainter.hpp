@@ -47,6 +47,8 @@ private:
     int getDigits() const;
     int getTriangleWidth() const;
     
+    juce::Font getFont() const;
+    
     juce::String getPlaceholder() const;
     juce::String getText() const;
 

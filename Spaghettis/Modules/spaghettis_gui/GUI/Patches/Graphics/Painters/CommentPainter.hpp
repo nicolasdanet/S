@@ -43,6 +43,7 @@ public:
 // MARK: -
 
 private:
+    juce::Font getFont() const;
     juce::String getText() const;
     
 private:

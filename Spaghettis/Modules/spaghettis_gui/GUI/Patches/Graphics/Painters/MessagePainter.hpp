@@ -55,6 +55,8 @@ public:
 // MARK: -
 
 private:
+    juce::Font getFont() const;
+    
     int getExtra() const;
 
 private:

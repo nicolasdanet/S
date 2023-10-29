@@ -38,6 +38,11 @@ juce::Colour CommentPainter::getPinsBackground()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Font CommentPainter::getFont() const
+{
+    return Spaghettis()->getLookAndFeel().getObjectsFont (getScale());
+}
+
 juce::String CommentPainter::getText() const
 {
     juce::String text (text_.get()); if (text.isEmpty()) { text = Tag::comment; }
