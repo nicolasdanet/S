@@ -76,7 +76,7 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.fillRect (r);
     g.setColour (dialTextColour_.get());
 
-    if (digits_.get()) { paintText (r, g, getText(), juce::Justification::bottomRight); }
+    if (digits_.get()) { paintText (r, g, getText(), getFont(), juce::Justification::bottomRight); }
 }
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()

@@ -223,14 +223,6 @@ void PainterPolicy::paintText (juce::Rectangle<int> r,
     }
 }
 
-void PainterPolicy::paintText (juce::Rectangle<int> r,
-    juce::Graphics& g,
-    const juce::String& text,
-    juce::Justification justification)
-{
-    paintText (r, g, text, getFont(), justification);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
