@@ -63,7 +63,7 @@ void DialPainter::mouseUp (const juce::MouseEvent&)
 
 juce::Font DialPainter::getFont() const
 {
-    return Spaghettis()->getLookAndFeel().getObjectsFont (getScale());
+    return Spaghettis()->getLookAndFeel().getDialsFont (getScale());
 }
 
 juce::String DialPainter::getText() const

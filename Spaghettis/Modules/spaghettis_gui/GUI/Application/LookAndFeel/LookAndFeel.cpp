@@ -120,7 +120,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* Cache the object fonts used while zooming. */
+/* Cache the objects fonts used while zooming. */
 
 juce::Font getRescaledFont (const juce::Font& base, std::vector<std::tuple<int, juce::Font>>& v, int n)
 {
@@ -152,10 +152,19 @@ juce::Font LookAndFeel::getListBoxFont() const
 juce::Font LookAndFeel::getObjectsFont (float scale)
 {
     if (scale != 1.0) {
-        return getRescaledFont (font18_, fonts_, static_cast<int> (std::round (18.0f * scale)));
+        return getRescaledFont (font18_, objectsFonts_, static_cast<int> (std::round (18.0f * scale)));
     }
     
     return font18_;
+}
+
+juce::Font LookAndFeel::getDialsFont (float scale)
+{
+    if (scale != 1.0) {
+        return getRescaledFont (font16Bold_, dialsFonts_, static_cast<int> (std::round (16.0f * scale)));
+    }
+    
+    return font16Bold_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
