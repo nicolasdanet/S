@@ -72,6 +72,7 @@ void LookAndFeel::initializeFonts()
     font18_             = juce::Font (fontName, 18.0, juce::Font::plain);
     font18Monospaced_   = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);
     font16Bold_         = juce::Font (fontName, 16.0, juce::Font::bold);
+    font14Bold_         = juce::Font (fontName, 14.0, juce::Font::bold);
 
     /* Raspberry Pi. */
     
@@ -80,6 +81,7 @@ void LookAndFeel::initializeFonts()
     font18Name_             = font18_.getTypefacePtr()->getName();
     font18MonospacedName_   = font18Monospaced_.getTypefacePtr()->getName();
     font16BoldName_         = font16Bold_.getTypefacePtr()->getName();
+    font14BoldName_         = font14Bold_.getTypefacePtr()->getName();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -164,7 +166,7 @@ juce::Font LookAndFeel::getObjectsFont (float scale)
 
 juce::Font LookAndFeel::getDialsFont (float scale)
 {
-    return getRescaledFont (font16Bold_, dialsFonts_, scale);
+    return getRescaledFont (font14Bold_, dialsFonts_, scale);
 }
 
 // -----------------------------------------------------------------------------------------------------------
