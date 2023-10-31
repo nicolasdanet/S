@@ -75,13 +75,57 @@ juce::String DialPainter::getText() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<int>& r, float f)
+{
+    jassert (f > 0.0f && f < 1.0f);
+    
+    const float g = (1.0f - f) / 2.0f;
+    
+    return r.toFloat().getProportion (juce::Rectangle<float> (g, g, f, f));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void DialPainter::paintDigits (const juce::Rectangle<int>& r, juce::Graphics& g)
+{
+    if (digits_.get()) {
+    //
+    g.setColour (dialTextColour_.get());
+
+    paintText (r, g, getText(), getFont(), juce::Justification::centredBottom);
+    //
+    }
+}
+
+void DialPainter::paintDial (const juce::Rectangle<int>& r, juce::Graphics& g)
+{
+    g.setColour (dialNeedleColour_.get());
+    g.drawEllipse (getCentredWithProportion (r, 0.75f), thickness_);
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (dialBackgroundColour_.get());
     g.fillRect (r);
-    g.setColour (dialTextColour_.get());
 
-    if (digits_.get()) { paintText (r, g, getText(), getFont(), juce::Justification::bottomRight); }
+    paintDial (r, g);
+    paintDigits (r, g);
 }
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()

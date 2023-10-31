@@ -39,6 +39,14 @@ public:
 private:
     juce::Font getFont() const;
     juce::String getText() const;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void paintDigits (const juce::Rectangle<int>&, juce::Graphics&);
+    void paintDial (const juce::Rectangle<int>&, juce::Graphics&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -62,6 +70,9 @@ private:
     core::Cached<int> width_;
     core::Cached<int> digits_;
     bool dragged_;
+
+private:
+    static constexpr float thickness_ = 4.0f;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DialPainter)
