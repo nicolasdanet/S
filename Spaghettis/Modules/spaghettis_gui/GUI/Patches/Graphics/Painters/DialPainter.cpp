@@ -98,23 +98,31 @@ juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<int>& r, 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DialPainter::paintDigits (const juce::Rectangle<int>& r, juce::Graphics& g)
+void DialPainter::paintDial (juce::Rectangle<int> r, juce::Graphics& g)
+{
+    g.setColour (dialNeedleColour_.get());
+    
+    // Path valueArc2;
+    // valueArc2.addCentredArc(centerX, centerY, knobRadius, knobRadius, 0.0f, 0, map(sliderPos, 0.5, 0.0, 0, -2.51327), true);
+    // g.strokePath(valueArc2, PathStrokeType(lineThickness));
+    // addCentredArc
+    
+    g.drawEllipse (getCentredWithProportion (r, 0.75f), thickness_);
+}
+
+void DialPainter::paintDigits (juce::Rectangle<int> r, juce::Graphics& g)
 {
     if (digits_.get()) {
     //
+    const juce::Font font (getFont());
+    
     g.setColour (dialTextColour_.get());
 
-    paintText (r, g, getText(), getFont(), juce::Justification::centredBottom);
+    paintText (r.removeFromBottom (font.getHeight()), g, getText(), font, juce::Justification::centred);
     //
     }
 }
 
-void DialPainter::paintDial (const juce::Rectangle<int>& r, juce::Graphics& g)
-{
-    g.setColour (dialNeedleColour_.get());
-    g.drawEllipse (getCentredWithProportion (r, 0.75f), thickness_);
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

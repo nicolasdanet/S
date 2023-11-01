@@ -45,9 +45,9 @@ private:
 // MARK: -
 
 private:
-    void paintDigits (const juce::Rectangle<int>&, juce::Graphics&);
-    void paintDial (const juce::Rectangle<int>&, juce::Graphics&);
-    
+    void paintDial (juce::Rectangle<int>, juce::Graphics&);
+    void paintDigits (juce::Rectangle<int>, juce::Graphics&);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
