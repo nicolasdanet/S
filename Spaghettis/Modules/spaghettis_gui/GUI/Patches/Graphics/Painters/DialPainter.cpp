@@ -100,14 +100,15 @@ juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<int>& r, 
 
 void DialPainter::paintDial (juce::Rectangle<int> r, juce::Graphics& g)
 {
+    const juce::Rectangle<float> t (getCentredWithProportion (r, 0.75f));
+    const float x = t.getCentreX();
+    const float y = t.getCentreY();
+    const float w = t.getWidth() / 2.0f;
+
+    juce::Path p; p.addCentredArc (x, y, w, w, 0.0f, startAngle_, endAngle_, true);
+    
     g.setColour (dialNeedleColour_.get());
-    
-    // Path valueArc2;
-    // valueArc2.addCentredArc(centerX, centerY, knobRadius, knobRadius, 0.0f, 0, map(sliderPos, 0.5, 0.0, 0, -2.51327), true);
-    // g.strokePath(valueArc2, PathStrokeType(lineThickness));
-    // addCentredArc
-    
-    g.drawEllipse (getCentredWithProportion (r, 0.75f), thickness_);
+    g.strokePath (p, juce::PathStrokeType (thickness_));
 }
 
 void DialPainter::paintDigits (juce::Rectangle<int> r, juce::Graphics& g)

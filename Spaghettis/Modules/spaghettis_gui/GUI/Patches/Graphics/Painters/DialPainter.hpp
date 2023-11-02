@@ -72,7 +72,9 @@ private:
     bool dragged_;
 
 private:
-    static constexpr float thickness_ = 4.0f;
+    static constexpr float thickness_  = 4.0f;
+    static constexpr float startAngle_ = juce::MathConstants<float>::pi * 1.2f;
+    static constexpr float endAngle_   = juce::MathConstants<float>::pi * 2.8f;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DialPainter)
