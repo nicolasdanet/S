@@ -88,7 +88,7 @@ int AtomPainter::getTriangleWidth() const
 
 juce::Font AtomPainter::getFont() const
 {
-    return Spaghettis()->getLookAndFeel().getObjectsFont (getScale());
+    return Spaghettis()->getLookAndFeel().getObjectsFontRescaled (getScale());
 }
 
 juce::String AtomPainter::getPlaceholder() const

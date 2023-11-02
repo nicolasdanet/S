@@ -42,8 +42,8 @@ public:
     
     juce::Font getListBoxFont() const;
     
-    juce::Font getObjectsFont (float);
-    juce::Font getDialsFont (float);
+    juce::Font getObjectsFontRescaled (float);
+    juce::Font getDialsFontWithHeight (int);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -273,17 +273,14 @@ private:
     juce::String font18Name_;
     juce::String font18MonospacedName_;
     juce::String font16BoldName_;
-    juce::String font14BoldName_;
 
 private:
     juce::Font font18_;
     juce::Font font18Monospaced_;
     juce::Font font16Bold_;
-    juce::Font font14Bold_;
     
 private:
     std::vector<std::tuple<int, juce::Font>> objectsFonts_;
-    std::vector<std::tuple<int, juce::Font>> dialsFonts_;
     
 private:
     int windowTitleHeight_;

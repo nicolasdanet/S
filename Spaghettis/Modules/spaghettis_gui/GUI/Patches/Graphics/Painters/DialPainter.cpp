@@ -61,9 +61,9 @@ void DialPainter::mouseUp (const juce::MouseEvent&)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font DialPainter::getFont() const
+juce::Font DialPainter::getFont (int h) const
 {
-    return Spaghettis()->getLookAndFeel().getDialsFont (getScale());
+    return Spaghettis()->getLookAndFeel().getDialsFontWithHeight (h);
 }
 
 juce::String DialPainter::getText() const
@@ -113,13 +113,13 @@ void DialPainter::paintDial (juce::Rectangle<int> r, juce::Graphics& g)
 
 void DialPainter::paintDigits (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    if (digits_.get()) {
-    //
-    const juce::Font font (getFont());
+    const int h = r.proportionOfWidth (0.17);
     
+    if (h > 5 && digits_.get()) {
+    //
     g.setColour (dialTextColour_.get());
-
-    paintText (r.removeFromBottom (font.getHeight()), g, getText(), font, juce::Justification::centred);
+    
+    paintText (r.removeFromBottom (h), g, getText(), getFont (h), juce::Justification::centred);
     //
     }
 }

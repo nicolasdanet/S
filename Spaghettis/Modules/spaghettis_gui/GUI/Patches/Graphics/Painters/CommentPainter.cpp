@@ -40,7 +40,7 @@ juce::Colour CommentPainter::getPinsBackground()
 
 juce::Font CommentPainter::getFont() const
 {
-    return Spaghettis()->getLookAndFeel().getObjectsFont (getScale());
+    return Spaghettis()->getLookAndFeel().getObjectsFontRescaled (getScale());
 }
 
 juce::String CommentPainter::getText() const

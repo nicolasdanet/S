@@ -34,7 +34,7 @@ BoxPainter::BoxPainter (ObjectComponent* owner) :
 
 juce::Font BoxPainter::getFont() const
 {
-    return Spaghettis()->getLookAndFeel().getObjectsFont (getScale());
+    return Spaghettis()->getLookAndFeel().getObjectsFontRescaled (getScale());
 }
 
 juce::String BoxPainter::getText() const
