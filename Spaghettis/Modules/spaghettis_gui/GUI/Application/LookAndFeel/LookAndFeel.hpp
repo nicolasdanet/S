@@ -273,7 +273,7 @@ private:
     juce::String font18Name_;
     juce::String font18MonospacedName_;
     juce::String font16BoldName_;
-
+    
 private:
     juce::Font font18_;
     juce::Font font18Monospaced_;
@@ -281,6 +281,7 @@ private:
     
 private:
     std::vector<std::tuple<int, juce::Font>> objectsFonts_;
+    std::vector<std::tuple<int, juce::Font>> dialsFonts_;
     
 private:
     int windowTitleHeight_;

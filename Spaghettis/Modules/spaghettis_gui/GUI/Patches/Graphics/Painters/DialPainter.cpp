@@ -113,13 +113,17 @@ void DialPainter::paintDial (juce::Rectangle<int> r, juce::Graphics& g)
 
 void DialPainter::paintDigits (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const int h = r.proportionOfWidth (0.17);
+    const int h = r.proportionOfWidth (0.25);
     
     if (h > 5 && digits_.get()) {
     //
+    const juce::Rectangle<int> t (r.removeFromBottom (h));
+    
     g.setColour (dialTextColour_.get());
     
-    paintText (r.removeFromBottom (h), g, getText(), getFont (h), juce::Justification::centred);
+    paintText (t, g, getText(), getFont (h), juce::Justification::centred);
+    
+    g.drawRect (t);
     //
     }
 }

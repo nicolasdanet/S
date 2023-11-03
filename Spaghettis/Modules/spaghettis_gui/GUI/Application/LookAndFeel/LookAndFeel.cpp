@@ -122,12 +122,9 @@ namespace {
 
 /* Cache the objects fonts used while zooming. */
 
-juce::Font getRescaledFont (const juce::Font& base, std::vector<std::tuple<int, juce::Font>>& v, float scale)
+juce::Font getFontAtHeight (const juce::Font& base, std::vector<std::tuple<int, juce::Font>>& v, int required)
 {
-    jassert (scale > 0);
-    
-    int height   = static_cast<int> (base.getHeight());
-    int required = static_cast<int> (height * scale);
+    int height = static_cast<int> (base.getHeight());
     
     if (required == height) { return base; }
     else {
@@ -141,6 +138,16 @@ juce::Font getRescaledFont (const juce::Font& base, std::vector<std::tuple<int, 
     return font;
     //
     }
+}
+
+juce::Font getFontRescaled (const juce::Font& base, std::vector<std::tuple<int, juce::Font>>& v, float scale)
+{
+    jassert (scale > 0);
+    
+    int height   = static_cast<int> (base.getHeight());
+    int required = static_cast<int> (height * scale);
+    
+    return getFontAtHeight (base, v, required);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -159,12 +166,12 @@ juce::Font LookAndFeel::getListBoxFont() const
 
 juce::Font LookAndFeel::getObjectsFontRescaled (float scale)
 {
-    return getRescaledFont (font18_, objectsFonts_, scale);
+    return getFontRescaled (font18_, objectsFonts_, scale);
 }
 
 juce::Font LookAndFeel::getDialsFontWithHeight (int height)
 {
-    return font16Bold_;
+    return getFontAtHeight (font16Bold_, dialsFonts_, height);
 }
 
 // -----------------------------------------------------------------------------------------------------------
