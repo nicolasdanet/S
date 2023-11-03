@@ -115,7 +115,7 @@ void DialPainter::paintDigits (juce::Rectangle<int> r, juce::Graphics& g)
 {
     const int h = r.proportionOfWidth (0.25);
     
-    if (h > 5 && digits_.get()) {
+    if (h > 5) {
     //
     const juce::Rectangle<int> t (r.removeFromBottom (h));
     
@@ -134,11 +134,14 @@ void DialPainter::paintDigits (juce::Rectangle<int> r, juce::Graphics& g)
 
 void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
+    const bool hasDigits = (digits_.get() > 0);
+    
     g.setColour (dialBackgroundColour_.get());
     g.fillRect (r);
 
     paintDial (r, g);
-    paintDigits (r, g);
+    
+    if (hasDigits) { paintDigits (r, g); }
 }
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()
