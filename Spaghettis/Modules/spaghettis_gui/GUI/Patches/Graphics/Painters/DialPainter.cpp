@@ -98,17 +98,25 @@ juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<int>& r, 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DialPainter::paintDial (juce::Rectangle<int> r, juce::Graphics& g)
+void DialPainter::paintDialBackground (juce::Rectangle<int> r, juce::Graphics& g, float offset)
 {
-    const juce::Rectangle<float> t (getCentredWithProportion (r, 0.75f));
+    constexpr float thickness        = 4.0f;
+    constexpr float radiusProportion = 0.65f;
+    
+    const juce::Rectangle<float> t (getCentredWithProportion (r, radiusProportion));
     const float x = t.getCentreX();
     const float y = t.getCentreY();
     const float w = t.getWidth() / 2.0f;
-
-    juce::Path p; p.addCentredArc (x, y, w, w, 0.0f, startAngle_, endAngle_, true);
+    
+    juce::Path p; p.addCentredArc (x, y - offset, w, w, 0.0f, startAngle_, endAngle_, true);
     
     g.setColour (dialNeedleColour_.get());
-    g.strokePath (p, juce::PathStrokeType (thickness_));
+    g.strokePath (p, juce::PathStrokeType (thickness));
+}
+
+void DialPainter::paintDial (juce::Rectangle<int> r, juce::Graphics& g, float offset)
+{
+    paintDialBackground (r, g, offset);
 }
 
 void DialPainter::paintDigits (juce::Rectangle<int> r, juce::Graphics& g)
@@ -116,8 +124,6 @@ void DialPainter::paintDigits (juce::Rectangle<int> r, juce::Graphics& g)
     g.setColour (dialTextColour_.get());
     
     paintText (r, g, getText(), getFont (r.getHeight()), juce::Justification::centred);
-    
-    g.drawRect (r);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -126,15 +132,17 @@ void DialPainter::paintDigits (juce::Rectangle<int> r, juce::Graphics& g)
 
 void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const int h = r.proportionOfWidth (0.25);
-    const bool hasDigits = (digits_.get() > 0) && (h > 5);
+    constexpr float digitsProportion = 0.25;
+    constexpr float offsetProportion = digitsProportion / 5.0f;
     
+    const int   h         = r.proportionOfWidth (digitsProportion);
+    const bool  hasDigits = (digits_.get() > 0) && (h > 5);
+    const float offset    = hasDigits ? r.proportionOfWidth (offsetProportion) : 0.0f;
     
-
     g.setColour (dialBackgroundColour_.get());
     g.fillRect (r);
 
-    paintDial (r, g);
+    paintDial (r, g, offset);
     
     if (hasDigits) { paintDigits (r.removeFromBottom (h), g); }
 }
