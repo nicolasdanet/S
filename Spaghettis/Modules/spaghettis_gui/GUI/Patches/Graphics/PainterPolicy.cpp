@@ -209,7 +209,7 @@ void PainterPolicy::paintText (juce::Rectangle<int> r,
         
     if (f > 0.5) {
     //
-    const juce::Rectangle<int> t (r.reduced (getTextMargins (f)).translated (0, -1));
+    const juce::Rectangle<int> t (r.reduced (getTextMargins (f)));
     
     g.setFont (font);
     g.drawText (text, t, justification, true);
