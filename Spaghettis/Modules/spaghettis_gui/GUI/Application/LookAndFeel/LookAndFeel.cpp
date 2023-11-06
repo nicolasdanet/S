@@ -171,7 +171,7 @@ juce::Font LookAndFeel::getObjectsFontRescaled (float scale)
 
 juce::Font LookAndFeel::getDialsFontWithHeight (int height)
 {
-    return getFontAtHeight (font16Bold_, dialsFonts_, height);
+    return getFontAtHeight (font18Monospaced_, dialsFonts_, height);
 }
 
 // -----------------------------------------------------------------------------------------------------------
