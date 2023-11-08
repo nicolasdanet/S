@@ -105,6 +105,11 @@ protected:
                         const juce::String&,
                         const juce::Font&,
                         juce::Justification);
+                    
+    void paintDigits (juce::Rectangle<int>,
+                        juce::Graphics&,
+                        const juce::String&,
+                        const juce::Font&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

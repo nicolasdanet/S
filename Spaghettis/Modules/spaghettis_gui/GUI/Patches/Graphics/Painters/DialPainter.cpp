@@ -110,20 +110,12 @@ void DialPainter::paintDialBackground (juce::Rectangle<int> r, juce::Graphics& g
     
     juce::Path p; p.addCentredArc (x, y - offset, w, w, 0.0f, startAngle_, endAngle_, true);
     
-    g.setColour (dialNeedleColour_.get());
     g.strokePath (p, juce::PathStrokeType (thickness));
 }
 
 void DialPainter::paintDial (juce::Rectangle<int> r, juce::Graphics& g, float offset)
 {
     paintDialBackground (r, g, offset);
-}
-
-void DialPainter::paintDigits (juce::Rectangle<int> r, juce::Graphics& g)
-{
-    g.setColour (dialTextColour_.get());
-    
-    paintText (r, g, getText(), getFont (r.getHeight()), juce::Justification::centred);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -140,11 +132,16 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     const float offset    = hasDigits ? r.proportionOfWidth (offsetProportion) : 0.0f;
     
     g.setColour (dialBackgroundColour_.get());
+    
     g.fillRect (r);
 
+    g.setColour (dialNeedleColour_.get());
+    
     paintDial (r, g, offset);
     
-    if (hasDigits) { paintDigits (r.removeFromBottom (h), g); }
+    g.setColour (dialTextColour_.get());
+    
+    if (hasDigits) { paintDigits (r.removeFromBottom (h), g, getText(), getFont (h)); }
 }
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()

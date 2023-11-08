@@ -212,7 +212,30 @@ void PainterPolicy::paintText (juce::Rectangle<int> r,
     const juce::Rectangle<int> t (r.reduced (getTextMargins (f)));
     
     g.setFont (font);
+    
     g.drawText (text, t, justification, true);
+    //
+    }
+}
+
+void PainterPolicy::paintDigits (juce::Rectangle<int> r,
+    juce::Graphics& g,
+    const juce::String& text,
+    const juce::Font& font)
+{
+    const float f = getScale();
+        
+    if (f > 0.5) {
+    //
+    juce::GlyphArrangement glyphs;
+    
+    glyphs.addLineOfText (font, text, r.getX(), r.getHeight());
+                 
+    // getBoundingBox
+    
+    g.setFont (font);
+    
+    glyphs.draw (g, juce::AffineTransform::translation (0.0f, r.getY()));
     //
     }
 }

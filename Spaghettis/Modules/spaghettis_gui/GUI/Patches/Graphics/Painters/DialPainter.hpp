@@ -47,7 +47,6 @@ private:
 private:
     void paintDialBackground (juce::Rectangle<int>, juce::Graphics&, float);
     void paintDial (juce::Rectangle<int>, juce::Graphics&, float);
-    void paintDigits (juce::Rectangle<int>, juce::Graphics&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
