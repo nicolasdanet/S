@@ -227,15 +227,18 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void paintDigits (juce::Rectangle<int> r, juce::Graphics& g, const juce::String& text, const juce::Font& font)
+void paintGlyphs (juce::Rectangle<float> r, juce::Graphics& g, const juce::GlyphArrangement& glyphs)
 {
-    juce::GlyphArrangement glyphs;
-    
-    glyphs.addLineOfText (font, text, r.getX(), r.getHeight());
-                 
     const juce::Rectangle<float> box (glyphs.getBoundingBox (0, -1, true));
+
+    if (box.getWidth() < r.getWidth()) {
+    //
+    const float deltaX = 0.0f;
+    const float deltaY = r.getY();
     
-    glyphs.draw (g, juce::AffineTransform::translation (0.0f, r.getY()));
+    glyphs.draw (g, juce::AffineTransform::translation (deltaX, deltaY));
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -254,9 +257,13 @@ void PainterPolicy::paintTextAsDigits (juce::Rectangle<int> r,
     const juce::String& text,
     const juce::Font& font)
 {
+    const juce::String s (text.startsWithChar ('-') ? text + " " : text);
+    
+    juce::GlyphArrangement glyphs; glyphs.addLineOfText (font, s, r.getX(), r.getHeight());
+    
     g.setFont (font);
     
-    paintDigits (r, g, text.startsWithChar ('-') ? text + " " : text, font);
+    paintGlyphs (r.toFloat(), g, glyphs);
 }
 
 // -----------------------------------------------------------------------------------------------------------
