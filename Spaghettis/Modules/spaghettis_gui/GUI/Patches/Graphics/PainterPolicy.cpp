@@ -218,26 +218,45 @@ void PainterPolicy::paintText (juce::Rectangle<int> r,
     }
 }
 
-void PainterPolicy::paintDigits (juce::Rectangle<int> r,
-    juce::Graphics& g,
-    const juce::String& text,
-    const juce::Font& font)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void paintDigits (juce::Rectangle<int> r, juce::Graphics& g, const juce::String& text, const juce::Font& font)
 {
-    const float f = getScale();
-        
-    if (f > 0.5) {
-    //
     juce::GlyphArrangement glyphs;
     
     glyphs.addLineOfText (font, text, r.getX(), r.getHeight());
                  
-    // getBoundingBox
-    
-    g.setFont (font);
+    const juce::Rectangle<float> box (glyphs.getBoundingBox (0, -1, true));
     
     glyphs.draw (g, juce::AffineTransform::translation (0.0f, r.getY()));
-    //
-    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/* Workaround to centre the digits without considering the minus sign. */
+
+void PainterPolicy::paintTextAsDigits (juce::Rectangle<int> r,
+    juce::Graphics& g,
+    const juce::String& text,
+    const juce::Font& font)
+{
+    g.setFont (font);
+    
+    paintDigits (r, g, text.startsWithChar ('-') ? text + " " : text, font);
 }
 
 // -----------------------------------------------------------------------------------------------------------

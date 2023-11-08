@@ -141,7 +141,7 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     g.setColour (dialTextColour_.get());
     
-    if (hasDigits) { paintDigits (r.removeFromBottom (h), g, getText(), getFont (h)); }
+    if (hasDigits) { paintTextAsDigits (r.removeFromBottom (h), g, getText(), getFont (h)); }
 }
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()

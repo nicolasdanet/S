@@ -101,15 +101,15 @@ protected:
 
 protected:
     void paintText (juce::Rectangle<int>,
-                        juce::Graphics&,
-                        const juce::String&,
-                        const juce::Font&,
-                        juce::Justification);
+            juce::Graphics&,
+            const juce::String&,
+            const juce::Font&,
+            juce::Justification);
                     
-    void paintDigits (juce::Rectangle<int>,
-                        juce::Graphics&,
-                        const juce::String&,
-                        const juce::Font&);
+    void paintTextAsDigits (juce::Rectangle<int>,
+            juce::Graphics&,
+            const juce::String&,
+            const juce::Font&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
