@@ -98,7 +98,10 @@ juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<int>& r, 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DialPainter::paintDialBackground (juce::Rectangle<int> r, juce::Graphics& g, float offset)
+void DialPainter::paintDialBackground (juce::Rectangle<int> r,
+    juce::Graphics& g,
+    float offset,
+    float thickness)
 {
     constexpr float radiusProportion = 0.65f;
     
@@ -107,16 +110,18 @@ void DialPainter::paintDialBackground (juce::Rectangle<int> r, juce::Graphics& g
     const float y = t.getCentreY();
     const float w = t.getWidth() / 2.0f;
     
-    const float thickness = t.getHeight() / 10.0f;
-    
     juce::Path p; p.addCentredArc (x, y - offset, w, w, 0.0f, startAngle_, endAngle_, true);
     
-    g.strokePath (p, juce::PathStrokeType (juce::jmax (1.0f, thickness)));
+    g.strokePath (p, juce::PathStrokeType (thickness));
 }
 
 void DialPainter::paintDial (juce::Rectangle<int> r, juce::Graphics& g, float offset)
 {
-    paintDialBackground (r, g, offset);
+    const float thickness = juce::jmax (1.0f, r.getHeight() / 15.0f);
+
+    g.setColour (dialNeedleColour_.get());
+    
+    paintDialBackground (r, g, offset, thickness);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -129,20 +134,21 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     constexpr float offsetProportion = digitsProportion / 5.0f;
     
     const int   h         = r.proportionOfWidth (digitsProportion);
+    const float offset    = r.proportionOfWidth (offsetProportion);
     const bool  hasDigits = (digits_.get() > 0) && (h > 10);
-    const float offset    = hasDigits ? r.proportionOfWidth (offsetProportion) : 0.0f;
-    
+
     g.setColour (dialBackgroundColour_.get());
-    
     g.fillRect (r);
 
-    g.setColour (dialNeedleColour_.get());
-    
     paintDial (r, g, offset);
     
+    if (hasDigits) {
+    //
     g.setColour (dialTextColour_.get());
-    
-    if (hasDigits) { paintTextAsDigits (r.removeFromBottom (h), g, getText(), getFont (h)); }
+        
+    paintTextAsDigits (r.removeFromBottom (h), g, getText(), getFont (h));
+    //
+    }
 }
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()
