@@ -230,11 +230,13 @@ namespace {
 void paintGlyphs (juce::Rectangle<float> r, juce::Graphics& g, const juce::GlyphArrangement& glyphs)
 {
     const juce::Rectangle<float> box (glyphs.getBoundingBox (0, -1, true));
-
-    if (box.getWidth() < r.getWidth()) {
+    
+    const float spaceX = r.getWidth() - box.getWidth();
+    
+    if (spaceX > 0.0f) {
     //
-    const float deltaX = 0.0f;
-    const float deltaY = r.getY();
+    const float deltaX = spaceX / 2.0f;
+    const float deltaY = r.getY() - (r.getHeight() / 4.0f);
     
     glyphs.draw (g, juce::AffineTransform::translation (deltaX, deltaY));
     //
