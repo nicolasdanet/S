@@ -100,7 +100,6 @@ juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<int>& r, 
 
 void DialPainter::paintDialBackground (juce::Rectangle<int> r, juce::Graphics& g, float offset)
 {
-    constexpr float thickness        = 4.0f;
     constexpr float radiusProportion = 0.65f;
     
     const juce::Rectangle<float> t (getCentredWithProportion (r, radiusProportion));
@@ -108,9 +107,11 @@ void DialPainter::paintDialBackground (juce::Rectangle<int> r, juce::Graphics& g
     const float y = t.getCentreY();
     const float w = t.getWidth() / 2.0f;
     
+    const float thickness = t.getHeight() / 10.0f;
+    
     juce::Path p; p.addCentredArc (x, y - offset, w, w, 0.0f, startAngle_, endAngle_, true);
     
-    g.strokePath (p, juce::PathStrokeType (thickness));
+    g.strokePath (p, juce::PathStrokeType (juce::jmax (1.0f, thickness)));
 }
 
 void DialPainter::paintDial (juce::Rectangle<int> r, juce::Graphics& g, float offset)
@@ -128,7 +129,7 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     constexpr float offsetProportion = digitsProportion / 5.0f;
     
     const int   h         = r.proportionOfWidth (digitsProportion);
-    const bool  hasDigits = (digits_.get() > 0) && (h > 5);
+    const bool  hasDigits = (digits_.get() > 0) && (h > 10);
     const float offset    = hasDigits ? r.proportionOfWidth (offsetProportion) : 0.0f;
     
     g.setColour (dialBackgroundColour_.get());
