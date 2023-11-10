@@ -80,13 +80,13 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<int>& r, float f)
+juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<float>& r, float f)
 {
     jassert (f > 0.0f && f < 1.0f);
     
     const float g = (1.0f - f) / 2.0f;
     
-    return r.toFloat().getProportion (juce::Rectangle<float> (g, g, f, f));
+    return r.getProportion (juce::Rectangle<float> (g, g, f, f));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -98,30 +98,42 @@ juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<int>& r, 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DialPainter::paintDialBackground (juce::Rectangle<int> r,
+void DialPainter::paintDialNeedle (juce::Rectangle<float> r,
     juce::Graphics& g,
     float offset,
     float thickness)
 {
-    constexpr float radiusProportion = 0.65f;
+    g.drawRect (r);
+}
+
+juce::Rectangle<float> DialPainter::paintDialBackground (juce::Rectangle<float> r,
+    juce::Graphics& g,
+    float offset,
+    float thickness)
+{
+    constexpr float proportion = 0.65f;
     
-    const juce::Rectangle<float> t (getCentredWithProportion (r, radiusProportion));
+    const juce::Rectangle<float> t (getCentredWithProportion (r, proportion).translated (0.0f, - offset));
     const float x = t.getCentreX();
     const float y = t.getCentreY();
     const float w = t.getWidth() / 2.0f;
     
-    juce::Path p; p.addCentredArc (x, y - offset, w, w, 0.0f, startAngle_, endAngle_, true);
+    juce::Path p; p.addCentredArc (x, y, w, w, 0.0f, startAngle_, endAngle_, true);
     
     g.strokePath (p, juce::PathStrokeType (thickness));
+    
+    return t;
 }
 
-void DialPainter::paintDial (juce::Rectangle<int> r, juce::Graphics& g, float offset)
+void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g, float offset)
 {
     const float thickness = juce::jmax (1.0f, r.getHeight() / 15.0f);
 
     g.setColour (dialNeedleColour_.get());
     
-    paintDialBackground (r, g, offset, thickness);
+    const juce::Rectangle<float> t = paintDialBackground (r, g, offset, thickness);
+    
+    paintDialNeedle (t, g, offset, thickness);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -140,7 +152,7 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.setColour (dialBackgroundColour_.get());
     g.fillRect (r);
 
-    paintDial (r, g, offset);
+    paintDial (r.toFloat(), g, offset);
     
     if (hasDigits) {
     //

@@ -45,8 +45,9 @@ private:
 // MARK: -
 
 private:
-    void paintDialBackground (juce::Rectangle<int>, juce::Graphics&, float, float);
-    void paintDial (juce::Rectangle<int>, juce::Graphics&, float);
+    void paintDialNeedle (juce::Rectangle<float>, juce::Graphics&, float, float);
+    juce::Rectangle<float> paintDialBackground (juce::Rectangle<float>, juce::Graphics&, float, float);
+    void paintDial (juce::Rectangle<float>, juce::Graphics&, float);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
