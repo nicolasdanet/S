@@ -71,6 +71,11 @@ juce::String DialPainter::getText() const
     return Helpers::withNumberOfDigitsTruncated (value_.get(), digits_.get());
 }
 
+float DialPainter::getAngle() const
+{
+    return startAngle_;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -98,12 +103,18 @@ juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<float>& r
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DialPainter::paintDialNeedle (juce::Rectangle<float> r,
-    juce::Graphics& g,
-    float offset,
-    float thickness)
+void DialPainter::paintDialNeedle (juce::Rectangle<float> r, juce::Graphics& g, float thickness)
 {
-    g.drawRect (r);
+    const juce::Point<float> centre (r.getCentre());
+    
+    const float radius = r.getWidth() / 2.0f;
+    const float inner  = radius * 0.65f;
+    const float outer  = radius * 1.35f;
+    const float angle  = getAngle();
+    
+    const juce::Line<float> line (juce::Line<float>::fromStartAndAngle (centre, outer, angle));
+    
+    g.drawLine (line.withShortenedStart (inner), thickness);
 }
 
 juce::Rectangle<float> DialPainter::paintDialBackground (juce::Rectangle<float> r,
@@ -133,7 +144,7 @@ void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g, float 
     
     const juce::Rectangle<float> t = paintDialBackground (r, g, offset, thickness);
     
-    paintDialNeedle (t, g, offset, thickness);
+    paintDialNeedle (t, g, thickness);
 }
 
 // -----------------------------------------------------------------------------------------------------------

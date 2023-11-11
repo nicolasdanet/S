@@ -39,13 +39,14 @@ public:
 private:
     juce::Font getFont (int) const;
     juce::String getText() const;
+    float getAngle() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    void paintDialNeedle (juce::Rectangle<float>, juce::Graphics&, float, float);
+    void paintDialNeedle (juce::Rectangle<float>, juce::Graphics&, float);
     juce::Rectangle<float> paintDialBackground (juce::Rectangle<float>, juce::Graphics&, float, float);
     void paintDial (juce::Rectangle<float>, juce::Graphics&, float);
 
