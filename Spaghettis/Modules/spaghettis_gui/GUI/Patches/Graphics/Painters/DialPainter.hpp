@@ -76,8 +76,8 @@ private:
     bool dragged_;
 
 private:
-    static constexpr float kDial_       = 0.65f;
-    static constexpr float kOffset_     = 0.05f;
+    static constexpr float kDial_       = 0.57f;
+    static constexpr float kOffset_     = 0.08f;
     static constexpr float kDigits_     = 0.25f;
     
     static constexpr float startAngle_  = juce::MathConstants<float>::pi * 1.2f;

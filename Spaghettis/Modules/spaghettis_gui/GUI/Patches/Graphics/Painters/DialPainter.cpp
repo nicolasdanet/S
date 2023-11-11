@@ -113,8 +113,8 @@ void DialPainter::paintDialNeedle (juce::Rectangle<float> r, juce::Graphics& g, 
     const juce::Point<float> centre (r.getCentre());
     
     const float radius = r.getWidth() / 2.0f;
-    const float inner  = radius * 0.65f;
-    const float outer  = radius * 1.35f;
+    const float inner  = radius * 0.70f;
+    const float outer  = radius * 1.30f;
     const float angle  = getAngle();
     
     const juce::Line<float> line (juce::Line<float>::fromStartAndAngle (centre, outer, angle));
