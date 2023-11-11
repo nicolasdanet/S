@@ -78,11 +78,7 @@ float DialPainter::getNormalizedValue() const
 
 float DialPainter::getAngle() const
 {
-    // const float f = getNormalizedValue();
-    
-    // DBG (f);
-    
-    return startAngle_;
+    return juce::jmap (getNormalizedValue(), startAngle_, endAngle_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
