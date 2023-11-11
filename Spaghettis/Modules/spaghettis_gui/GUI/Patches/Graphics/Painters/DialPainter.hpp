@@ -39,6 +39,8 @@ public:
 private:
     juce::Font getFont (int) const;
     juce::String getText() const;
+    
+    float getNormalizedValue() const;
     float getAngle() const;
 
 // -----------------------------------------------------------------------------------------------------------

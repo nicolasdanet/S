@@ -71,8 +71,17 @@ juce::String DialPainter::getText() const
     return Helpers::withNumberOfDigitsTruncated (value_.get(), digits_.get());
 }
 
+float DialPainter::getNormalizedValue() const
+{
+    return Normalized (isLogarithmic_.get(), low_.get(), high_.get(), interval_.get()).convert (value_.get());
+}
+
 float DialPainter::getAngle() const
 {
+    // const float f = getNormalizedValue();
+    
+    // DBG (f);
+    
     return startAngle_;
 }
 
