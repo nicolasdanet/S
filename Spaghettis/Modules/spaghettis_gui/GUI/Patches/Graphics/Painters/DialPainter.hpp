@@ -76,8 +76,12 @@ private:
     bool dragged_;
 
 private:
-    static constexpr float startAngle_ = juce::MathConstants<float>::pi * 1.2f;
-    static constexpr float endAngle_   = juce::MathConstants<float>::pi * 2.8f;
+    static constexpr float kDial_       = 0.65f;
+    static constexpr float kOffset_     = 0.05f;
+    static constexpr float kDigits_     = 0.25f;
+    
+    static constexpr float startAngle_  = juce::MathConstants<float>::pi * 1.2f;
+    static constexpr float endAngle_    = juce::MathConstants<float>::pi * 2.8f;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DialPainter)

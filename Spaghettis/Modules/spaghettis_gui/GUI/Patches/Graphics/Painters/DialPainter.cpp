@@ -127,9 +127,7 @@ juce::Rectangle<float> DialPainter::paintDialBackground (juce::Rectangle<float> 
     float offset,
     float thickness)
 {
-    constexpr float proportion = 0.65f;
-    
-    const juce::Rectangle<float> t (getCentredWithProportion (r, proportion).translated (0.0f, - offset));
+    const juce::Rectangle<float> t (getCentredWithProportion (r, kDial_).translated (0.0f, - offset));
     const float x = t.getCentreX();
     const float y = t.getCentreY();
     const float w = t.getWidth() / 2.0f;
@@ -158,11 +156,8 @@ void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g, float 
 
 void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    constexpr float digitsProportion = 0.25;
-    constexpr float offsetProportion = digitsProportion / 5.0f;
-    
-    const int   h         = r.proportionOfWidth (digitsProportion);
-    const float offset    = r.proportionOfWidth (offsetProportion);
+    const int   h         = r.proportionOfWidth (kDigits_);
+    const float offset    = r.proportionOfWidth (kOffset_);
     const bool  hasDigits = (digits_.get() > 0) && (h > 10);
 
     g.setColour (dialBackgroundColour_.get());
