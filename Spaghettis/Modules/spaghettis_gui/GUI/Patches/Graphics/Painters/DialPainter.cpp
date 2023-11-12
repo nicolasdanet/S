@@ -112,7 +112,6 @@ juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<float>& r
 
 void DialPainter::paintDialMarker (juce::Rectangle<float> r,
     juce::Graphics& g,
-    float,
     float angle,
     float thickness)
 {
@@ -130,10 +129,11 @@ void DialPainter::paintDialMarker (juce::Rectangle<float> r,
 
 juce::Rectangle<float> DialPainter::paintDialForeground (juce::Rectangle<float> r,
     juce::Graphics& g,
-    float offset,
     float angle,
     float thickness)
 {
+    const float offset = r.proportionOfWidth (kOffset_);
+    
     const juce::Rectangle<float> t (getCentredWithProportion (r, kDial_).translated (0.0f, - offset));
     
     const float x = t.getCentreX();
@@ -148,14 +148,14 @@ juce::Rectangle<float> DialPainter::paintDialForeground (juce::Rectangle<float> 
     return t;
 }
 
-void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g, float offset)
+void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g)
 {
     const float thickness = juce::jmax (1.0f, r.getHeight() / 15.0f);
     const float angle     = getAngle();
-
-    const juce::Rectangle<float> t = paintDialForeground (r, g, offset, angle, thickness);
     
-    paintDialMarker (t, g, offset, angle, thickness);
+    const juce::Rectangle<float> t = paintDialForeground (r, g, angle, thickness);
+    
+    paintDialMarker (t, g, angle, thickness);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -164,20 +164,19 @@ void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g, float 
 
 void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const int   h         = r.proportionOfWidth (kDigits_);
-    const float offset    = r.proportionOfWidth (kOffset_);
-    const bool  hasDigits = (digits_.get() > 0) && (h > 10);
+    const int   heightDigits = r.proportionOfWidth (kDigits_);
+    const bool  hasDigits    = (digits_.get() > 0) && (heightDigits > 10);
 
     g.setColour (dialBackgroundColour_.get());
     g.fillRect (r);
 
-    paintDial (r.toFloat(), g, offset);
+    paintDial (r.toFloat(), g);
     
     if (hasDigits) {
     //
     g.setColour (dialTextColour_.get());
         
-    paintTextAsDigits (r.removeFromBottom (h), g, getText(), getFont (h));
+    paintTextAsDigits (r.removeFromBottom (heightDigits), g, getText(), getFont (heightDigits));
     //
     }
 }
