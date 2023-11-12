@@ -164,20 +164,16 @@ void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g)
 
 void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const int   heightDigits = r.proportionOfWidth (kDigits_);
-    const bool  hasDigits    = (digits_.get() > 0) && (heightDigits > 10);
+    const int heightDigits = r.proportionOfWidth (kDigits_);
 
     g.setColour (dialBackgroundColour_.get());
     g.fillRect (r);
 
     paintDial (r.toFloat(), g);
     
-    if (hasDigits) {
-    //
-    g.setColour (dialTextColour_.get());
-        
-    paintTextAsDigits (r.removeFromBottom (heightDigits), g, getText(), getFont (heightDigits));
-    //
+    if (heightDigits > 10 && digits_.get() > 0) {
+        g.setColour (dialTextColour_.get());
+        paintTextAsDigits (r.removeFromBottom (heightDigits), g, getText(), getFont (heightDigits));
     }
 }
 
