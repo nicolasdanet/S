@@ -15,6 +15,7 @@ namespace spaghettis {
 DialPainter::DialPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
     dialBackgroundColour_ (Spaghettis()->getCachedColour (Tag::DialBackground)),
+    dialForegroundColour_ (Spaghettis()->getCachedColour (Tag::DialForeground)),
     dialNeedleColour_ (Spaghettis()->getCachedColour (Tag::DialNeedle)),
     dialTextColour_ (Spaghettis()->getCachedColour (Tag::DialText)),
     value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
@@ -27,6 +28,7 @@ DialPainter::DialPainter (ObjectComponent* owner) :
     dragged_ (false)
 {
     dialBackgroundColour_.attach (repaint (component_));
+    dialForegroundColour_.attach (repaint (component_));
     dialNeedleColour_.attach (repaint (component_));
     dialTextColour_.attach (repaint (component_));
     value_.attach (repaint (component_));
@@ -108,7 +110,7 @@ juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<float>& r
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DialPainter::paintDialNeedle (juce::Rectangle<float> r, juce::Graphics& g, float thickness)
+void DialPainter::paintDialMarker (juce::Rectangle<float> r, juce::Graphics& g, float thickness)
 {
     const juce::Point<float> centre (r.getCentre());
     
@@ -119,10 +121,12 @@ void DialPainter::paintDialNeedle (juce::Rectangle<float> r, juce::Graphics& g, 
     
     const juce::Line<float> line (juce::Line<float>::fromStartAndAngle (centre, outer, angle));
     
+    g.setColour (dialForegroundColour_.get());
+    
     g.drawLine (line.withShortenedStart (inner), thickness);
 }
 
-juce::Rectangle<float> DialPainter::paintDialBackground (juce::Rectangle<float> r,
+juce::Rectangle<float> DialPainter::paintDialForeground (juce::Rectangle<float> r,
     juce::Graphics& g,
     float offset,
     float thickness)
@@ -134,6 +138,8 @@ juce::Rectangle<float> DialPainter::paintDialBackground (juce::Rectangle<float> 
     
     juce::Path p; p.addCentredArc (x, y, w, w, 0.0f, startAngle_, endAngle_, true);
     
+    g.setColour (dialForegroundColour_.get());
+    
     g.strokePath (p, juce::PathStrokeType (thickness));
     
     return t;
@@ -143,11 +149,9 @@ void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g, float 
 {
     const float thickness = juce::jmax (1.0f, r.getHeight() / 15.0f);
 
-    g.setColour (dialNeedleColour_.get());
+    const juce::Rectangle<float> t = paintDialForeground (r, g, offset, thickness);
     
-    const juce::Rectangle<float> t = paintDialBackground (r, g, offset, thickness);
-    
-    paintDialNeedle (t, g, thickness);
+    paintDialMarker (t, g, thickness);
 }
 
 // -----------------------------------------------------------------------------------------------------------

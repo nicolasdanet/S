@@ -225,10 +225,15 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Set background color of dials"),
         Colours::getPalette()->backgroundBox);
     
+    colors.addParameter (Tag::DialForeground,
+        NEEDS_TRANS ("Dial Foreground"),
+        NEEDS_TRANS ("Set inactive foreground color"),
+        Colours::getPalette()->backgroundPopup);
+        
     colors.addParameter (Tag::DialNeedle,
         NEEDS_TRANS ("Dial Needle"),
-        NEEDS_TRANS ("Set foreground color of dials"),
-        Colours::getPalette()->backgroundPopup);
+        NEEDS_TRANS ("Set active foreground color"),
+        Colours::getPalette()->textWarning);
     
     colors.addParameter (Tag::DialText,
         NEEDS_TRANS ("Dial Text"),

@@ -48,8 +48,8 @@ private:
 // MARK: -
 
 private:
-    void paintDialNeedle (juce::Rectangle<float>, juce::Graphics&, float);
-    juce::Rectangle<float> paintDialBackground (juce::Rectangle<float>, juce::Graphics&, float, float);
+    void paintDialMarker (juce::Rectangle<float>, juce::Graphics&, float);
+    juce::Rectangle<float> paintDialForeground (juce::Rectangle<float>, juce::Graphics&, float, float);
     void paintDial (juce::Rectangle<float>, juce::Graphics&, float);
 
 // -----------------------------------------------------------------------------------------------------------
@@ -64,6 +64,7 @@ public:
 
 private:
     core::Cached<juce::Colour> dialBackgroundColour_;
+    core::Cached<juce::Colour> dialForegroundColour_;
     core::Cached<juce::Colour> dialNeedleColour_;
     core::Cached<juce::Colour> dialTextColour_;
     core::Cached<double> value_;

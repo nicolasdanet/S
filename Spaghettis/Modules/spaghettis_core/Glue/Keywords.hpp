@@ -57,6 +57,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Cut);
     DECLARE_STRING (DefaultIsRunView);
     DECLARE_STRING (DialBackground);
+    DECLARE_STRING (DialForeground);
     DECLARE_STRING (DialNeedle);
     DECLARE_STRING (DialText);
     DECLARE_STRING (Digits);
