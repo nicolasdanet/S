@@ -110,28 +110,32 @@ juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<float>& r
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DialPainter::paintDialMarker (juce::Rectangle<float> r, juce::Graphics& g, float thickness)
+void DialPainter::paintDialMarker (juce::Rectangle<float> r,
+    juce::Graphics& g,
+    float,
+    float angle,
+    float thickness)
 {
     const juce::Point<float> centre (r.getCentre());
     
     const float radius = r.getWidth() / 2.0f;
     const float inner  = radius * 0.70f;
     const float outer  = radius * 1.30f;
-    const float angle  = getAngle();
     
     const juce::Line<float> line (juce::Line<float>::fromStartAndAngle (centre, outer, angle));
     
     g.setColour (dialForegroundColour_.get());
-    
     g.drawLine (line.withShortenedStart (inner), thickness);
 }
 
 juce::Rectangle<float> DialPainter::paintDialForeground (juce::Rectangle<float> r,
     juce::Graphics& g,
     float offset,
+    float angle,
     float thickness)
 {
     const juce::Rectangle<float> t (getCentredWithProportion (r, kDial_).translated (0.0f, - offset));
+    
     const float x = t.getCentreX();
     const float y = t.getCentreY();
     const float w = t.getWidth() / 2.0f;
@@ -139,7 +143,6 @@ juce::Rectangle<float> DialPainter::paintDialForeground (juce::Rectangle<float> 
     juce::Path p; p.addCentredArc (x, y, w, w, 0.0f, startAngle_, endAngle_, true);
     
     g.setColour (dialForegroundColour_.get());
-    
     g.strokePath (p, juce::PathStrokeType (thickness));
     
     return t;
@@ -148,10 +151,11 @@ juce::Rectangle<float> DialPainter::paintDialForeground (juce::Rectangle<float> 
 void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g, float offset)
 {
     const float thickness = juce::jmax (1.0f, r.getHeight() / 15.0f);
+    const float angle     = getAngle();
 
-    const juce::Rectangle<float> t = paintDialForeground (r, g, offset, thickness);
+    const juce::Rectangle<float> t = paintDialForeground (r, g, offset, angle, thickness);
     
-    paintDialMarker (t, g, thickness);
+    paintDialMarker (t, g, offset, angle, thickness);
 }
 
 // -----------------------------------------------------------------------------------------------------------
