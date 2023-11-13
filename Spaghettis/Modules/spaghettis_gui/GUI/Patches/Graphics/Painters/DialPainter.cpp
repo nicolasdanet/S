@@ -101,6 +101,21 @@ juce::Rectangle<float> getCentredWithProportion (const juce::Rectangle<float>& r
     return r.getProportion (juce::Rectangle<float> (g, g, f, f));
 }
 
+void paintCentredArc (juce::Rectangle<float> r,
+    juce::Graphics& g,
+    float start,
+    float end,
+    float thickness)
+{
+    const float x = r.getCentreX();
+    const float y = r.getCentreY();
+    const float w = r.getWidth() / 2.0f;
+    
+    juce::Path p; p.addCentredArc (x, y, w, w, 0.0f, start, end, true);
+        
+    g.strokePath (p, juce::PathStrokeType (thickness));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -134,16 +149,13 @@ juce::Rectangle<float> DialPainter::paintDialForeground (juce::Rectangle<float> 
 {
     const float offset = r.proportionOfWidth (kOffset_);
     
-    const juce::Rectangle<float> t (getCentredWithProportion (r, kDial_).translated (0.0f, - offset));
+    const juce::Rectangle<float> t (getCentredWithProportion (r, kDial_).translated (0.0f, -offset));
     
-    const float x = t.getCentreX();
-    const float y = t.getCentreY();
-    const float w = t.getWidth() / 2.0f;
-    
-    juce::Path p; p.addCentredArc (x, y, w, w, 0.0f, startAngle_, endAngle_, true);
+    g.setColour (dialNeedleColour_.get());
+    paintCentredArc (t, g, startAngle_, angle, thickness);
     
     g.setColour (dialForegroundColour_.get());
-    g.strokePath (p, juce::PathStrokeType (thickness));
+    paintCentredArc (t, g, angle, endAngle_, thickness);
     
     return t;
 }
@@ -167,13 +179,16 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     const int heightDigits = r.proportionOfWidth (kDigits_);
 
     g.setColour (dialBackgroundColour_.get());
+    
     g.fillRect (r);
 
     paintDial (r.toFloat(), g);
     
-    if (heightDigits > 10 && digits_.get() > 0) {
+    if (heightDigits > 10) {
+    if (digits_.get() > 0) {
         g.setColour (dialTextColour_.get());
         paintTextAsDigits (r.removeFromBottom (heightDigits), g, getText(), getFont (heightDigits));
+    }
     }
 }
 
