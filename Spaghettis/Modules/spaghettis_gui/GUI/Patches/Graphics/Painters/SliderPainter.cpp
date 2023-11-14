@@ -24,6 +24,7 @@ SliderPainter::SliderPainter (ObjectComponent* owner) :
     isLogarithmic_ (object_.getCached<bool> (Tag::Parameters, Tag::Logarithmic)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
     height_ (object_.getCached<int> (Tag::Parameters, Tag::Height)),
+    painted_(),
     dragged_ (false)
 {
     sliderBackgroundColour_.attach (repaint (component_));

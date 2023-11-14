@@ -20,7 +20,8 @@ RadioPainter::RadioPainter (ObjectComponent* owner) :
     isVertical_ (object_.getCached<bool> (Tag::Parameters, Tag::Vertical)),
     isMultiple_ (object_.getCached<bool> (Tag::Parameters, Tag::Multiple)),
     buttons_ (object_.getCached<int> (Tag::Parameters, Tag::Buttons)),
-    width_ (object_.getCached<int> (Tag::Parameters, Tag::Width))
+    width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
+    painted_()
 {
     radioBackgroundColour_.attach (repaint (component_));
     radioButtonColour_.attach (repaint (component_));

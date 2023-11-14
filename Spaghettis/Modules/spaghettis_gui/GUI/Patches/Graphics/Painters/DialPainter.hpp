@@ -48,7 +48,7 @@ private:
 // MARK: -
 
 private:
-    void paintDialMarker (juce::Rectangle<float>, juce::Graphics&, float, float);
+    void paintDialNeedle (juce::Rectangle<float>, juce::Graphics&, float, float);
     juce::Rectangle<float> paintDialForeground (juce::Rectangle<float>, juce::Graphics&, float, float);
     void paintDial (juce::Rectangle<float>, juce::Graphics&);
 
@@ -74,6 +74,8 @@ private:
     core::Cached<bool> isLogarithmic_;
     core::Cached<int> width_;
     core::Cached<int> digits_;
+    juce::Rectangle<int> painted_;
+    float v_;
     bool dragged_;
 
 private:

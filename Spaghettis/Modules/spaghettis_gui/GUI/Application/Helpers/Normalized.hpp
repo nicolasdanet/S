@@ -66,7 +66,7 @@ public:
     
     double map (double v) const
     {
-        auto r = getRange(); return r.snapToLegalValue (r.convertFrom0to1 (v));
+        auto r = getRange(); return r.snapToLegalValue (r.convertFrom0to1 (juce::jlimit (0.0, 1.0, v)));
     }
     
 // -----------------------------------------------------------------------------------------------------------

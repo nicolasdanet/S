@@ -25,6 +25,8 @@ DialPainter::DialPainter (ObjectComponent* owner) :
     isLogarithmic_ (object_.getCached<bool> (Tag::Parameters, Tag::Logarithmic)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
     digits_ (object_.getCached<int> (Tag::Parameters, Tag::Digits)),
+    painted_(),
+    v_ (0.0f),
     dragged_ (false)
 {
     dialBackgroundColour_.attach (repaint (component_));
@@ -47,16 +49,26 @@ DialPainter::DialPainter (ObjectComponent* owner) :
 void DialPainter::mouseDown (const juce::MouseEvent& e)
 {
     dragged_ = true;
+    v_       = getNormalizedValue();
+    
+    component_->repaint();
 }
 
 void DialPainter::mouseDrag (const juce::MouseEvent& e)
 {
-
+    const float h  = static_cast<float> (painted_.getHeight());
+    const float dY = static_cast<float> (-e.getDistanceFromDragStartY());
+    const float f  = v_ + (dY / h);
+    const double v = Normalized (isLogarithmic_.get(), low_.get(), high_.get(), interval_.get()).map (f);
+    
+    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), v));
 }
 
 void DialPainter::mouseUp (const juce::MouseEvent&)
 {
     dragged_ = false;
+    
+    component_->repaint();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -125,7 +137,7 @@ void paintCentredArc (juce::Rectangle<float> r,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DialPainter::paintDialMarker (juce::Rectangle<float> r,
+void DialPainter::paintDialNeedle (juce::Rectangle<float> r,
     juce::Graphics& g,
     float angle,
     float thickness)
@@ -138,7 +150,6 @@ void DialPainter::paintDialMarker (juce::Rectangle<float> r,
     
     const juce::Line<float> line (juce::Line<float>::fromStartAndAngle (centre, outer, angle));
     
-    g.setColour (dialForegroundColour_.get());
     g.drawLine (line.withShortenedStart (inner), thickness);
 }
 
@@ -151,11 +162,11 @@ juce::Rectangle<float> DialPainter::paintDialForeground (juce::Rectangle<float> 
     
     const juce::Rectangle<float> t (getCentredWithProportion (r, kDial_).translated (0.0f, -offset));
     
-    g.setColour (dialNeedleColour_.get());
-    paintCentredArc (t, g, startAngle_, angle, thickness);
-    
     g.setColour (dialForegroundColour_.get());
     paintCentredArc (t, g, angle, endAngle_, thickness);
+    
+    g.setColour (dragged_ ? dialNeedleColour_.get() : dialForegroundColour_.get());
+    paintCentredArc (t, g, startAngle_, angle, thickness);
     
     return t;
 }
@@ -167,7 +178,7 @@ void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g)
     
     const juce::Rectangle<float> t = paintDialForeground (r, g, angle, thickness);
     
-    paintDialMarker (t, g, angle, thickness);
+    paintDialNeedle (t, g, angle, thickness);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -186,10 +197,12 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     if (heightDigits > 10) {
     if (digits_.get() > 0) {
-        g.setColour (dialTextColour_.get());
+        g.setColour (dragged_ ? dialNeedleColour_.get() : dialTextColour_.get());
         paintTextAsDigits (r.removeFromBottom (heightDigits), g, getText(), getFont (heightDigits));
     }
     }
+    
+    painted_ = r;
 }
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()
