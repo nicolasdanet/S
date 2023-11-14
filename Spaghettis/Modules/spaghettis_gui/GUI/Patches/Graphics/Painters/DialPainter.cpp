@@ -56,9 +56,8 @@ void DialPainter::mouseDown (const juce::MouseEvent& e)
 
 void DialPainter::mouseDrag (const juce::MouseEvent& e)
 {
-    const float h  = static_cast<float> (painted_.getHeight());
-    const float dY = static_cast<float> (-e.getDistanceFromDragStartY());
-    const float f  = v_ + (dY / h);
+    const float h  = painted_.getHeight();
+    const float f  = v_ + (-e.getDistanceFromDragStartY() / h);
     const double v = Normalized (isLogarithmic_.get(), low_.get(), high_.get(), interval_.get()).map (f);
     
     Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), v));
@@ -171,7 +170,7 @@ juce::Rectangle<float> DialPainter::paintDialForeground (juce::Rectangle<float> 
     return t;
 }
 
-void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g)
+juce::Rectangle<float> DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g)
 {
     const float thickness = juce::jmax (1.0f, r.getHeight() / 15.0f);
     const float angle     = getAngle();
@@ -179,6 +178,8 @@ void DialPainter::paintDial (juce::Rectangle<float> r, juce::Graphics& g)
     const juce::Rectangle<float> t = paintDialForeground (r, g, angle, thickness);
     
     paintDialNeedle (t, g, angle, thickness);
+    
+    return t;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -193,7 +194,7 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     
     g.fillRect (r);
 
-    paintDial (r.toFloat(), g);
+    painted_ = paintDial (r.toFloat(), g);
     
     if (heightDigits > 10) {
     if (digits_.get() > 0) {
@@ -201,8 +202,6 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
         paintTextAsDigits (r.removeFromBottom (heightDigits), g, getText(), getFont (heightDigits));
     }
     }
-    
-    painted_ = r;
 }
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()
