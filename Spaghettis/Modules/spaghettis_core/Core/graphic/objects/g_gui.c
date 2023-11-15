@@ -439,7 +439,7 @@ PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t,
     }
 }
 
-static bool gui_setParameters (t_object *o, const core::Group& group, int flags)
+PD_LOCAL bool gui_setParameters (t_object *o, const core::Group& group, int flags)
 {
     t_gui *x = (t_gui *)o;
     
