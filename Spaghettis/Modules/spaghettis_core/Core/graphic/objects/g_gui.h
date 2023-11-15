@@ -227,8 +227,8 @@ enum {
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flags);
-PD_LOCAL bool gui_setParameters (t_object *o, core::Group& group, int flags);
+PD_LOCAL void gui_getParameters (t_object *, core::Group&, const Tags&, int);
+PD_LOCAL bool gui_setParameters (t_object *, const core::Group&, int);
 
 #endif
 
