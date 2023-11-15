@@ -181,7 +181,9 @@ PD_LOCAL void gui_updateNonZero             (t_gui *x, t_float f, int notify);
 PD_LOCAL void gui_updateLogarithmic         (t_gui *x, int isLogarithmic, int notify);
 PD_LOCAL void gui_updateMultiple            (t_gui *x, int isMultiple, int notify);
 PD_LOCAL void gui_updateOrientation         (t_gui *x, int isVertical, int notify);
+#if defined ( PD_BUILDING_APPLICATION )
 PD_LOCAL void gui_updateOrientationSwap     (t_gui *x, int isVertical, int notify);
+#endif
 PD_LOCAL void gui_updateFlashed             (t_gui *x, int n, int notify);
 PD_LOCAL void gui_updateEmbedded            (t_gui *x, int n, int notify);
 PD_LOCAL void gui_updateTime                (t_gui *x, int n, int notify);

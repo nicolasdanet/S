@@ -152,6 +152,8 @@ PD_LOCAL void gui_updateOrientation (t_gui *x, int isVertical, int notify)
     }
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 PD_LOCAL void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
 {
     if (x->x_isVertical != isVertical) {
@@ -165,14 +167,14 @@ PD_LOCAL void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
     
     if (notify) {
     //
-    #if defined ( PD_BUILDING_APPLICATION )
     outputs_objectUpdated (cast_object (x), Tags::parameters ( { Tag::Vertical, Tag::Width, Tag::Height } ));
-    #endif
     //
     }
     //
     }
 }
+
+#endif
 
 PD_LOCAL void gui_updateFlashed (t_gui *x, int n, int notify)
 {
