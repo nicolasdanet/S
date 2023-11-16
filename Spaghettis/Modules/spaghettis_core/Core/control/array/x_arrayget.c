@@ -61,7 +61,7 @@ static void arrayget_float (t_arrayget *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *arrayget_new (t_symbol *s, int argc, t_atom *argv)
+void *arrayget_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_arrayget *x = (t_arrayget *)arrayrange_new (arrayget_class, argc, argv, 0, 1);
     
@@ -78,7 +78,7 @@ PD_LOCAL void *arrayget_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void arrayget_setup (void)
+void arrayget_setup (void)
 {
     t_class *c = NULL;
     
@@ -103,7 +103,7 @@ PD_LOCAL void arrayget_setup (void)
     arrayget_class = c;
 }
 
-PD_LOCAL void arrayget_destroy (void)
+void arrayget_destroy (void)
 {
     class_free (arrayget_class);
 }

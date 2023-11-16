@@ -146,7 +146,7 @@ static void liststream_restore (t_liststream *x, t_symbol *s, int argc, t_atom *
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *liststream_new (t_symbol *s, int argc, t_atom *argv)
+void *liststream_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_liststream *x = (t_liststream *)pd_new (liststream_class);
     
@@ -172,7 +172,7 @@ static void liststream_free (t_liststream *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void liststream_setup (void)
+void liststream_setup (void)
 {
     t_class *c = NULL;
     
@@ -201,7 +201,7 @@ PD_LOCAL void liststream_setup (void)
     liststream_class = c;
 }
 
-PD_LOCAL void liststream_destroy (void)
+void liststream_destroy (void)
 {
     class_free (liststream_class);
 }

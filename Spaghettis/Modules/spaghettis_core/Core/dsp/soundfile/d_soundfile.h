@@ -354,34 +354,34 @@ static inline t_error soundfile_helperRead (int f, t_headerhelper *t, off_t offs
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    soundfile_readFileParse     (t_glist *x,
+t_error    soundfile_readFileParse     (t_glist *x,
                                                     t_symbol *s,
                                                     int *argc,
                                                     t_atom **argv,
                                                     t_audioproperties *p,
                                                     t_object *owner);
                                                     
-PD_LOCAL int        soundfile_readFileHeader    (t_glist *x, t_audioproperties *args);
+int        soundfile_readFileHeader    (t_glist *x, t_audioproperties *args);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    soundfile_writeFileParse    (t_glist *x,
+t_error    soundfile_writeFileParse    (t_glist *x,
                                                     t_symbol *s,
                                                     int *argc,
                                                     t_atom **argv,
                                                     t_audioproperties *p,
                                                     t_object *owner);
                                                     
-PD_LOCAL int        soundfile_writeFileHeader   (t_glist *x, t_audioproperties *args, t_object *owner);
-PD_LOCAL t_error    soundfile_writeFileClose    (int f, int itemsWritten, t_audioproperties *args);
+int        soundfile_writeFileHeader   (t_glist *x, t_audioproperties *args, t_object *owner);
+t_error    soundfile_writeFileClose    (int f, int itemsWritten, t_audioproperties *args);
                                             
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       soundfile_encode32          (int numberOfChannels,
+void       soundfile_encode32          (int numberOfChannels,
                                                     float **v,
                                                     unsigned char *t,
                                                     int numberOfFrames,
@@ -390,7 +390,7 @@ PD_LOCAL void       soundfile_encode32          (int numberOfChannels,
                                                     int isBigEndian,
                                                     float normalFactor);
                                             
-PD_LOCAL void       soundfile_decode32          (int numberOfChannels,
+void       soundfile_decode32          (int numberOfChannels,
                                                     float **v,
                                                     unsigned char *t,
                                                     int numberOfFrames,
@@ -399,7 +399,7 @@ PD_LOCAL void       soundfile_decode32          (int numberOfChannels,
                                                     int isBigEndian,
                                                     int n);                 /* Number of channels required. */
 
-PD_LOCAL void       soundfile_encode64          (int numberOfChannels,
+void       soundfile_encode64          (int numberOfChannels,
                                                     t_word **v,
                                                     unsigned char *t,
                                                     int numberOfFrames,
@@ -408,7 +408,7 @@ PD_LOCAL void       soundfile_encode64          (int numberOfChannels,
                                                     int isBigEndian,
                                                     float normalFactor);
 
-PD_LOCAL void       soundfile_decode64          (int numberOfChannels,
+void       soundfile_decode64          (int numberOfChannels,
                                                     t_word **v,
                                                     unsigned char *t,
                                                     int numberOfFrames,

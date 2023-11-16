@@ -233,7 +233,7 @@ static void *select_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void select_setup (void)
+void select_setup (void)
 {
     select1_class = class_new (sym_select,
                         NULL,
@@ -266,7 +266,7 @@ PD_LOCAL void select_setup (void)
     class_addAnything (select2_class,       (t_method)select2_anything);
 }
 
-PD_LOCAL void select_destroy (void)
+void select_destroy (void)
 {
     class_free (select1_class);
     class_free (select2_class);

@@ -14,14 +14,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void outputs_quit                          (void);
-PD_LOCAL void outputs_clearConsole                  (void);
-PD_LOCAL void outputs_reportDsp                     (int);
-PD_LOCAL void outputs_patchOpened                   (t_symbol *, t_symbol *);
-PD_LOCAL void outputs_reportAvailableAudioDevices   (t_deviceslist *);
-PD_LOCAL void outputs_reportCurrentAudioDevices     (t_deviceslist *);
-PD_LOCAL void outputs_reportAvailableMidiDevices    (t_deviceslist *);
-PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *);
+void outputs_quit                          (void);
+void outputs_clearConsole                  (void);
+void outputs_reportDsp                     (int);
+void outputs_patchOpened                   (t_symbol *, t_symbol *);
+void outputs_reportAvailableAudioDevices   (t_deviceslist *);
+void outputs_reportCurrentAudioDevices     (t_deviceslist *);
+void outputs_reportAvailableMidiDevices    (t_deviceslist *);
+void outputs_reportCurrentMidiDevices      (t_deviceslist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -35,33 +35,33 @@ PD_LOCAL void outputs_reportCurrentMidiDevices      (t_deviceslist *);
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_classNew          (t_symbol *s);
+void outputs_classNew          (t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_objectAdded       (t_object *x);
-PD_LOCAL void outputs_objectChanged     (t_object *x, const Tags& t);
-PD_LOCAL void outputs_objectUpdated     (t_object *x, const Tags& t);       /* Set dirty flag also. */
+void outputs_objectAdded       (t_object *x);
+void outputs_objectChanged     (t_object *x, const Tags& t);
+void outputs_objectUpdated     (t_object *x, const Tags& t);       /* Set dirty flag also. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_objectRemoved     (t_object *x);
-PD_LOCAL void outputs_objectRenamed     (t_object *x, t_id t);
+void outputs_objectRemoved     (t_object *x);
+void outputs_objectRenamed     (t_object *x, t_id t);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_patchDirty        (t_glist *g, int isDirty);
-PD_LOCAL void outputs_patchOrder        (t_glist *g, std::vector<UniqueId>&&);
+void outputs_patchDirty        (t_glist *g, int isDirty);
+void outputs_patchOrder        (t_glist *g, std::vector<UniqueId>&&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_lineAdded     (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g);
-PD_LOCAL void outputs_lineChanged   (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g);
-PD_LOCAL void outputs_lineRemoved   (t_id u, t_glist *g);
+void outputs_lineAdded     (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g);
+void outputs_lineChanged   (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g);
+void outputs_lineRemoved   (t_id u, t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

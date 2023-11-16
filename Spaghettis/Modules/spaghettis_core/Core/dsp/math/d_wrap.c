@@ -72,7 +72,7 @@ static void *wrap_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void wrap_tilde_setup (void)
+void wrap_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -91,7 +91,7 @@ PD_LOCAL void wrap_tilde_setup (void)
     wrap_tilde_class = c;
 }
 
-PD_LOCAL void wrap_tilde_destroy (void)
+void wrap_tilde_destroy (void)
 {
     class_free (wrap_tilde_class);
 }

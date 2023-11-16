@@ -24,8 +24,8 @@ static t_symbol *message_hashTable[MESSAGE_HASH_SIZE];      /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void bindlist_setup    (void);
-PD_LOCAL void bindlist_destroy  (void);
+void bindlist_setup    (void);
+void bindlist_destroy  (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ static t_symbol *generateSymbol (const char *s, t_symbol *alreadyAllocatedSymbol
     return sym;
 }
 
-PD_LOCAL t_symbol *gensym (const char *s)
+t_symbol *gensym (const char *s)
 {
     return generateSymbol (s, NULL);
 }
@@ -87,7 +87,7 @@ PD_LOCAL t_symbol *gensym (const char *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void message_initialize (void)
+void message_initialize (void)
 {
     t_symbol *symbols[MESSAGE_STATIC_SIZE] =
         { 
@@ -142,7 +142,7 @@ static int message_isStaticSymbol (t_symbol *s)
     return 0;
 }
 
-PD_LOCAL void message_release (void)
+void message_release (void)
 {
     t_symbol *sym1 = NULL;
     t_symbol *sym2 = NULL;

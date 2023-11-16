@@ -13,17 +13,17 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void instance_viewReset (void)
+void instance_viewReset (void)
 {
     rectangle_setNothing (&instance_get()->pd_view);
 }
 
-PD_LOCAL void instance_viewSet (t_rectangle *view)
+void instance_viewSet (t_rectangle *view)
 {
     rectangle_setCopy (&instance_get()->pd_view, view);
 }
 
-PD_LOCAL t_rectangle *instance_viewGet (void)
+t_rectangle *instance_viewGet (void)
 {
     return &instance_get()->pd_view;
 }

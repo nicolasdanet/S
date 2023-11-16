@@ -27,8 +27,8 @@ typedef struct _undocreate {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    object_hasDspOrIsGraphicArray   (t_object *);
-PD_LOCAL void   undoaction_setInletsAndOutlets  (t_undoaction *, t_object *);
+int    object_hasDspOrIsGraphicArray   (t_object *);
+void   undoaction_setInletsAndOutlets  (t_undoaction *, t_object *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ static void undocreate_redo (t_undocreate *z, t_symbol *s, int argc, t_atom *arg
 
 /* Take ownership of snippet. */
 
-PD_LOCAL t_undoaction *undocreate_new (t_object *o, t_undosnippet *snippet)
+t_undoaction *undocreate_new (t_object *o, t_undosnippet *snippet)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undocreate_class);
     t_undocreate *z = (t_undocreate *)x;
@@ -84,7 +84,7 @@ static void undocreate_free (t_undocreate *z)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undocreate_setup (void)
+void undocreate_setup (void)
 {
     t_class *c = NULL;
     
@@ -101,7 +101,7 @@ PD_LOCAL void undocreate_setup (void)
     undocreate_class = c;
 }
 
-PD_LOCAL void undocreate_destroy (void)
+void undocreate_destroy (void)
 {
     class_free (undocreate_class);
 }

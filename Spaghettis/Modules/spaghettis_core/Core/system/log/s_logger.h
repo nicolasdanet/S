@@ -35,8 +35,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    logger_initialize                   (void);
-PD_LOCAL void       logger_release                      (void);
+t_error    logger_initialize                   (void);
+void       logger_release                      (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -44,8 +44,8 @@ PD_LOCAL void       logger_release                      (void);
 
 #if PD_WITH_DEBUG
 
-PD_LOCAL void       logger_appendString                 (const char *s);
-PD_LOCAL void       logger_appendFloat                  (double f);
+void       logger_appendString                 (const char *s);
+void       logger_appendFloat                  (double f);
 
 #endif
 

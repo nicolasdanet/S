@@ -305,7 +305,7 @@ static void readsf_tilde_free (t_readsf_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void readsf_tilde_setup (void)
+void readsf_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -330,7 +330,7 @@ PD_LOCAL void readsf_tilde_setup (void)
     readsf_tilde_class = c;
 }
 
-PD_LOCAL void readsf_tilde_destroy (void)
+void readsf_tilde_destroy (void)
 {
     class_free (readsf_tilde_class);
 }

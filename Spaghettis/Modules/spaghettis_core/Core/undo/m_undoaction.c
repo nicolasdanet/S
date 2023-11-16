@@ -16,7 +16,7 @@
 /* Release a chain of actions DETACHED (or at the end) of the undo manager. */
 /* Decrement actions counter of a manager if provided. */
 
-PD_LOCAL void undoaction_releaseAllFrom (t_undoaction *chainToRelease, t_undomanager *x)
+void undoaction_releaseAllFrom (t_undoaction *chainToRelease, t_undomanager *x)
 {
     t_undoaction *a = chainToRelease;
     
@@ -29,7 +29,7 @@ PD_LOCAL void undoaction_releaseAllFrom (t_undoaction *chainToRelease, t_undoman
 
 /* Release an action CONTAINED by the undo manager. */
 
-PD_LOCAL void undoaction_release (t_undoaction *a, t_undomanager *x)
+void undoaction_release (t_undoaction *a, t_undomanager *x)
 {
     t_undoaction *previous = a->ua_previous;
     t_undoaction *next     = a->ua_next;
@@ -47,7 +47,7 @@ PD_LOCAL void undoaction_release (t_undoaction *a, t_undomanager *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undoaction_setInletsAndOutlets (t_undoaction *a, t_object *y)
+void undoaction_setInletsAndOutlets (t_undoaction *a, t_object *y)
 {
     if (pd_class (y) == vinlet_class) {
         a->ua_inlet       = 1;
@@ -59,7 +59,7 @@ PD_LOCAL void undoaction_setInletsAndOutlets (t_undoaction *a, t_object *y)
     }
 }
 
-PD_LOCAL int undoaction_getInletsAndOutlets (t_undoaction *a, t_items *i, t_items *o)
+int undoaction_getInletsAndOutlets (t_undoaction *a, t_items *i, t_items *o)
 {
     if (a->ua_inlet == 1)       { items_setAtIndex (i, a->ua_inletIndex);  return 1; }
     else if (a->ua_outlet == 1) { items_setAtIndex (o, a->ua_outletIndex); return 1; }

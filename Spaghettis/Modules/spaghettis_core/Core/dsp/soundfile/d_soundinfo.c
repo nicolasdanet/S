@@ -102,7 +102,7 @@ static t_soundinfo *soundinfo_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void soundinfo_setup (void)
+void soundinfo_setup (void)
 {
     t_class *c = NULL;
     
@@ -118,7 +118,7 @@ PD_LOCAL void soundinfo_setup (void)
     soundinfo_class = c;
 }
 
-PD_LOCAL void soundinfo_destroy (void)
+void soundinfo_destroy (void)
 {
     class_free (soundinfo_class);
 }

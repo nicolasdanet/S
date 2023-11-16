@@ -354,7 +354,7 @@ static void netsend_free (t_netsend *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void netsend_setup (void)
+void netsend_setup (void)
 {
     t_class *c = NULL;
     
@@ -375,7 +375,7 @@ PD_LOCAL void netsend_setup (void)
     netsend_class = c;
 }
 
-PD_LOCAL void netsend_destroy (void)
+void netsend_destroy (void)
 {
     class_free (netsend_class);
 }

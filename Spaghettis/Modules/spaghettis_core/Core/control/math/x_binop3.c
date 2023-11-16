@@ -228,7 +228,7 @@ static void binopIntegerDivide_float (t_binop *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void binop3_setup (void)
+void binop3_setup (void)
 {
     binopBitwiseAnd_class = class_new (sym___ampersand__, 
                                     (t_newmethod)binopBitwiseAnd_new,
@@ -363,7 +363,7 @@ PD_LOCAL void binop3_setup (void)
     class_setHelpName (binopIntegerDivide_class,        sym_math);
 }
 
-PD_LOCAL void binop3_destroy (void)
+void binop3_destroy (void)
 {
     class_free (binopBitwiseAnd_class);
     class_free (binopLogicalAnd_class);

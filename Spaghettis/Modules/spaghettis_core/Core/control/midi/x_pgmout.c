@@ -79,7 +79,7 @@ static void *pgmout_new (t_float channel)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void pgmout_setup (void)
+void pgmout_setup (void)
 {
     t_class *c = NULL;
     
@@ -101,7 +101,7 @@ PD_LOCAL void pgmout_setup (void)
     pgmout_class = c;
 }
 
-PD_LOCAL void pgmout_destroy (void)
+void pgmout_destroy (void)
 {
     class_free (pgmout_class);
 }

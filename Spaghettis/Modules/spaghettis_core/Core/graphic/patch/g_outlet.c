@@ -13,14 +13,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void   glist_objectRemoveWithCacheForInlets    (t_glist *, t_object *);
-PD_LOCAL void   glist_objectRemovePurgeCacheForInlets   (t_glist *);
+void   glist_objectRemoveWithCacheForInlets    (t_glist *, t_object *);
+void   glist_objectRemovePurgeCacheForInlets   (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_removeInletsAndOutlets (t_glist *glist)
+void glist_removeInletsAndOutlets (t_glist *glist)
 {
     t_object *t1 = NULL;
     t_object *t2 = NULL;
@@ -72,7 +72,7 @@ static void glist_updateOutlets (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_inlet *glist_inletAdd (t_glist *glist, t_pd *receiver, int isSignal)
+t_inlet *glist_inletAdd (t_glist *glist, t_pd *receiver, int isSignal)
 {
     t_inlet *inlet = inlet_new (cast_object (glist), receiver, (isSignal ? &s_signal : NULL), NULL);
     
@@ -83,7 +83,7 @@ PD_LOCAL t_inlet *glist_inletAdd (t_glist *glist, t_pd *receiver, int isSignal)
     return inlet;
 }
 
-PD_LOCAL void glist_inletRemove (t_glist *glist, t_inlet *inlet)
+void glist_inletRemove (t_glist *glist, t_inlet *inlet)
 {
     t_glist *owner = glist_getParent (glist);
     
@@ -105,7 +105,7 @@ static int glist_inletGetNumberOf (t_glist *glist)
     return n;
 }
 
-PD_LOCAL void glist_inletSort (t_glist *glist)
+void glist_inletSort (t_glist *glist)
 {
     int numberOfInlets = glist_inletGetNumberOf (glist);
 
@@ -170,17 +170,17 @@ static t_outlet *glist_outletAddProceed (t_glist *glist, t_outlet *outlet)
     return outlet;
 }
 
-PD_LOCAL t_outlet *glist_outletAddSignal (t_glist *glist)
+t_outlet *glist_outletAddSignal (t_glist *glist)
 {
     return glist_outletAddProceed (glist, outlet_newSignal (cast_object (glist)));
 }
 
-PD_LOCAL t_outlet *glist_outletAdd (t_glist *glist)
+t_outlet *glist_outletAdd (t_glist *glist)
 {
     return glist_outletAddProceed (glist, outlet_newMixed (cast_object (glist)));
 }
 
-PD_LOCAL void glist_outletRemove (t_glist *glist, t_outlet *outlet)
+void glist_outletRemove (t_glist *glist, t_outlet *outlet)
 {
     t_glist *owner = glist_getParent (glist);
     
@@ -202,7 +202,7 @@ static int glist_outletGetNumberOf (t_glist *glist)
     return n;
 }
 
-PD_LOCAL void glist_outletSort (t_glist *glist)
+void glist_outletSort (t_glist *glist)
 {
     int numberOfOutlets = glist_outletGetNumberOf (glist);
     

@@ -124,29 +124,29 @@ typedef struct _voutletclosure {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void fft_stateRelease      (t_FFTState *x);
-PD_LOCAL void fft_stateInitialize   (t_FFTState *x, int n);
+void fft_stateRelease      (t_FFTState *x);
+void fft_stateInitialize   (t_FFTState *x, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_object           *garbage_fetch          (t_object *o);
+t_object           *garbage_fetch          (t_object *o);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_space            *space_new              (t_object *owner);
-PD_LOCAL t_sfvectors        *sfvectors_new          (t_object *owner);
-PD_LOCAL t_FFTState         *fftstate_new           (t_object *owner, int n);
+t_space            *space_new              (t_object *owner);
+t_sfvectors        *sfvectors_new          (t_object *owner);
+t_FFTState         *fftstate_new           (t_object *owner, int n);
 
-PD_LOCAL t_blockclosure     *block_newClosure       (t_object *owner);
-PD_LOCAL t_vinletclosure    *vinlet_newClosure      (t_object *owner);
-PD_LOCAL t_voutletclosure   *voutlet_newClosure     (t_object *owner);
+t_blockclosure     *block_newClosure       (t_object *owner);
+t_vinletclosure    *vinlet_newClosure      (t_object *owner);
+t_voutletclosure   *voutlet_newClosure     (t_object *owner);
 
-PD_LOCAL void               garbage_newRaw          (void *m);      /* Without DSP chain it is freed. */
-PD_LOCAL int                garbage_newObject       (t_object *o);  /* Without DSP chain zero is returned. */
+void               garbage_newRaw          (void *m);      /* Without DSP chain it is freed. */
+int                garbage_newObject       (t_object *o);  /* Without DSP chain zero is returned. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

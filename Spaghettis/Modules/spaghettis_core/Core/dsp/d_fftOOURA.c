@@ -98,12 +98,12 @@ static void ooura_release (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void fft_initialize (void)
+void fft_initialize (void)
 {
     ooura_initialize (FFT_MAXIMUM);
 }
 
-PD_LOCAL void fft_release (void)
+void fft_release (void)
 {
     ooura_release();
 }

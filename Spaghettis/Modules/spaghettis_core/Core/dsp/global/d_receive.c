@@ -141,7 +141,7 @@ static void *receive_tilde_new (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void receive_tilde_setup (void)
+void receive_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -166,7 +166,7 @@ PD_LOCAL void receive_tilde_setup (void)
     receive_tilde_class = c;
 }
 
-PD_LOCAL void receive_tilde_destroy (void)
+void receive_tilde_destroy (void)
 {
     class_free (receive_tilde_class);
 }

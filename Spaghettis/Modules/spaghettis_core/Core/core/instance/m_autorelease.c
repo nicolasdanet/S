@@ -19,7 +19,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void pd_unbindQuiet (t_pd *, t_symbol *);
+void pd_unbindQuiet (t_pd *, t_symbol *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -57,13 +57,13 @@ static void instance_autoreleaseTask (void *dummy)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_autoreleaseRun (void)
+void instance_autoreleaseRun (void)
 {
     instance_get()->pd_autorelease = clock_new ((void *)NULL, (t_method)instance_autoreleaseTask);
     clock_delay (instance_get()->pd_autorelease, AUTORELEASE_PERIOD);
 }
 
-PD_LOCAL void instance_autoreleaseStop (void)
+void instance_autoreleaseStop (void)
 {
     instance_autoreleaseDrain(); clock_free (instance_get()->pd_autorelease);
     instance_get()->pd_autorelease = NULL;
@@ -73,7 +73,7 @@ PD_LOCAL void instance_autoreleaseStop (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_autoreleaseRegister (t_pd *x)
+void instance_autoreleaseRegister (t_pd *x)
 {
     int n = (instance_get()->pd_autoreleaseCount & 1ULL);
     
@@ -89,7 +89,7 @@ PD_LOCAL void instance_autoreleaseRegister (t_pd *x)
 
 /* Function that might be called at last by registered object while autoreleased. */
 
-PD_LOCAL void instance_autoreleaseProceed (t_pd *x)
+void instance_autoreleaseProceed (t_pd *x)
 {
     pd_unbindQuiet (x, sym__autoreleaseA);
     pd_unbindQuiet (x, sym__autoreleaseB);

@@ -12,8 +12,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void audio_vectorShrinkIn  (int);
-PD_LOCAL void audio_vectorShrinkOut (int);
+void audio_vectorShrinkIn  (int);
+void audio_vectorShrinkOut (int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -84,7 +84,7 @@ static void audiograph_reset (t_audiograph *graph)
 
 /* Should it be called asynchronously? */
 
-PD_LOCAL t_error audiograph_check (t_audiograph *graph, int close)
+t_error audiograph_check (t_audiograph *graph, int close)
 {
     /* Avoid to check while setting devices. */
     
@@ -274,7 +274,7 @@ static t_error audiograph_openDuplex (t_audiograph *graph,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audiograph_open (t_audiograph *graph,
+t_error audiograph_open (t_audiograph *graph,
     t_symbol *deviceIn,
     t_symbol *deviceOut,
     int channelsIn,
@@ -306,7 +306,7 @@ PD_LOCAL t_error audiograph_open (t_audiograph *graph,
     return err;
 }
 
-PD_LOCAL void audiograph_close (t_audiograph *graph)
+void audiograph_close (t_audiograph *graph)
 {
     PD_ATOMIC_INT32_WRITE (0, &graph->g_isRunning);
     
@@ -333,7 +333,7 @@ PD_LOCAL void audiograph_close (t_audiograph *graph)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audiograph_initialize (t_audiograph *graph)
+t_error audiograph_initialize (t_audiograph *graph)
 {
     audiograph_reset (graph);
     
@@ -357,7 +357,7 @@ PD_LOCAL t_error audiograph_initialize (t_audiograph *graph)
     return err;
 }
 
-PD_LOCAL void audiograph_release (t_audiograph *graph)
+void audiograph_release (t_audiograph *graph)
 {
     PD_ASSERT (!audiodevice_isValid (&graph->g_deviceIn));
     PD_ASSERT (!audiodevice_isValid (&graph->g_deviceOut));

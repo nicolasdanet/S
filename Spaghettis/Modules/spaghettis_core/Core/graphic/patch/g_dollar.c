@@ -83,7 +83,7 @@ static int dollar_expandSymbolProceed (const char *s,
 /* Dollar symbol expansion (e.g. '$1-foo' to 'bar-foo'). */
 /* Note that 'foo$1' is valid and expanded to 'foobar' in that case. */
 
-PD_LOCAL t_symbol *dollar_expandSymbolWithArguments (t_symbol *s, t_glist *glist, int argc, t_atom *argv)
+t_symbol *dollar_expandSymbolWithArguments (t_symbol *s, t_glist *glist, int argc, t_atom *argv)
 {
     char t[PD_STRING] = { 0 };
     char result[PD_STRING] = { 0 };
@@ -120,7 +120,7 @@ PD_LOCAL t_symbol *dollar_expandSymbolWithArguments (t_symbol *s, t_glist *glist
     if (err) { return NULL; } else { return gensym (result); }
 }
 
-PD_LOCAL t_symbol *dollar_expandSymbol (t_symbol *s, t_glist *glist)
+t_symbol *dollar_expandSymbol (t_symbol *s, t_glist *glist)
 {
     if (strchr (s->s_name, '$') == NULL) { return s; }
     else {
@@ -151,7 +151,7 @@ PD_LOCAL t_symbol *dollar_expandSymbol (t_symbol *s, t_glist *glist)
 
 /* Dollar number expansion (e.g. '$1' to 'foo'). */
 
-PD_LOCAL int dollar_expandWithArguments (t_atom *dollar, t_atom *a, t_glist *glist, int argc, t_atom *argv)
+int dollar_expandWithArguments (t_atom *dollar, t_atom *a, t_glist *glist, int argc, t_atom *argv)
 {
     int n = GET_DOLLAR (dollar);
         

@@ -146,7 +146,7 @@ static void *radio_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void radio_setup (void)
+void radio_setup (void)
 {
     t_class *c = NULL;
     
@@ -183,7 +183,7 @@ PD_LOCAL void radio_setup (void)
     radio_class = c;
 }
 
-PD_LOCAL void radio_destroy (void)
+void radio_destroy (void)
 {
     class_free (radio_class);
 }

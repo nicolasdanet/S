@@ -26,7 +26,7 @@ typedef struct _undoadd {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undoadd_new (void)
+t_undoaction *undoadd_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undoadd_class);
     
@@ -42,7 +42,7 @@ PD_LOCAL t_undoaction *undoadd_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undoadd_setup (void)
+void undoadd_setup (void)
 {
     t_class *c = NULL;
     
@@ -56,7 +56,7 @@ PD_LOCAL void undoadd_setup (void)
     undoadd_class = c;
 }
 
-PD_LOCAL void undoadd_destroy (void)
+void undoadd_destroy (void)
 {
     class_free (undoadd_class);
 }

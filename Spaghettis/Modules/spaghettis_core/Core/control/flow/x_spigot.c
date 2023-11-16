@@ -101,7 +101,7 @@ static void *spigot_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void spigot_setup (void)
+void spigot_setup (void)
 {
     t_class *c = NULL;
     
@@ -127,7 +127,7 @@ PD_LOCAL void spigot_setup (void)
     spigot_class = c;
 }
 
-PD_LOCAL void spigot_destroy (void)
+void spigot_destroy (void)
 {
     class_free (spigot_class);
 }

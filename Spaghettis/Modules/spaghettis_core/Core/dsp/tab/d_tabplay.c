@@ -283,7 +283,7 @@ static void tabplay_tilde_free (t_tabplay_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void tabplay_tilde_setup (void)
+void tabplay_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -309,7 +309,7 @@ PD_LOCAL void tabplay_tilde_setup (void)
     tabplay_tilde_class = c;
 }
 
-PD_LOCAL void tabplay_tilde_destroy (void)
+void tabplay_tilde_destroy (void)
 {
     class_free (tabplay_tilde_class);
 }

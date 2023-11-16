@@ -39,7 +39,7 @@ static void listequal_anything (t_listequal *x, t_symbol *s, int argc, t_atom *a
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listequal_new (t_symbol *s, int argc, t_atom *argv)
+void *listequal_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listequal *x = (t_listequal *)pd_new (listequal_class);
     
@@ -62,7 +62,7 @@ static void listequal_free (t_listequal *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listequal_setup (void)
+void listequal_setup (void)
 {
     t_class *c = NULL;
     
@@ -87,7 +87,7 @@ PD_LOCAL void listequal_setup (void)
     listequal_class = c;
 }
 
-PD_LOCAL void listequal_destroy (void)
+void listequal_destroy (void)
 {
     class_free (listequal_class);
 }

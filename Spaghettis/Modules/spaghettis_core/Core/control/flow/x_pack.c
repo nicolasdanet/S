@@ -164,7 +164,7 @@ static void pack_free (t_pack *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void pack_setup (void)
+void pack_setup (void)
 {
     t_class *c = NULL;
     
@@ -192,7 +192,7 @@ PD_LOCAL void pack_setup (void)
     pack_class = c;
 }
 
-PD_LOCAL void pack_destroy (void)
+void pack_destroy (void)
 {
     class_free (pack_class);
 }

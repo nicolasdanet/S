@@ -44,7 +44,7 @@ static void listtrim_anything (t_listtrim *x, t_symbol *s, int argc, t_atom *arg
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listtrim_new (t_symbol *s, int argc, t_atom *argv)
+void *listtrim_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listtrim *x = (t_listtrim *)pd_new (listtrim_class);
     
@@ -59,7 +59,7 @@ PD_LOCAL void *listtrim_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listtrim_setup (void)
+void listtrim_setup (void)
 {
     t_class *c = NULL;
     
@@ -79,7 +79,7 @@ PD_LOCAL void listtrim_setup (void)
     listtrim_class = c;
 }
 
-PD_LOCAL void listtrim_destroy (void)
+void listtrim_destroy (void)
 {
     class_free (listtrim_class);
 }

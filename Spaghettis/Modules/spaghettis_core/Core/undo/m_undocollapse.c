@@ -19,10 +19,10 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undoresize_collapse       (t_undoaction *, t_undoaction *);
-PD_LOCAL void undomotion_collapse       (t_undoaction *, t_undoaction *);
-PD_LOCAL void undoaction_releaseAllFrom (t_undoaction *, t_undomanager *);
-PD_LOCAL void undoaction_release        (t_undoaction *, t_undomanager *);
+void undoresize_collapse       (t_undoaction *, t_undoaction *);
+void undomotion_collapse       (t_undoaction *, t_undoaction *);
+void undoaction_releaseAllFrom (t_undoaction *, t_undomanager *);
+void undoaction_release        (t_undoaction *, t_undomanager *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -230,7 +230,7 @@ static void undomanager_collapsePost (t_undomanager *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undomanager_collapse (t_undomanager *x)
+void undomanager_collapse (t_undomanager *x)
 {
     PD_ASSERT (undomanager_hasSeparatorAtLast (x));
     

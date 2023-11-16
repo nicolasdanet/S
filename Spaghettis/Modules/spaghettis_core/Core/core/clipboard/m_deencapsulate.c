@@ -13,17 +13,17 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_undomanager  *glist_undoReplaceManager       (t_glist *, t_undomanager *);
+t_undomanager  *glist_undoReplaceManager       (t_glist *, t_undomanager *);
 
-PD_LOCAL t_rectangle    glist_getBoundingBoxOfAll       (t_glist *);
-PD_LOCAL void           glist_removeInletsAndOutlets    (t_glist *);
+t_rectangle    glist_getBoundingBoxOfAll       (t_glist *);
+void           glist_removeInletsAndOutlets    (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_buffer       *clipboard_copyProceed          (t_glist *, int, int);
+t_buffer       *clipboard_copyProceed          (t_glist *, int, int);
 
-PD_LOCAL int            clipboard_pasteProceed          (t_glist *, t_buffer *, t_point *, int);
+int            clipboard_pasteProceed          (t_glist *, t_buffer *, t_point *, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -268,7 +268,7 @@ static void encapsulate_deencapsulateDirect (t_connecthelper *h1, t_connecthelpe
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void encapsulate_deencapsulate (t_glist *glist)
+void encapsulate_deencapsulate (t_glist *glist)
 {
     if (glist_isSubpatch (glist)) {
     //

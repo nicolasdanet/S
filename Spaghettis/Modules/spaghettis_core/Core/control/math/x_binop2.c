@@ -142,7 +142,7 @@ static void binopLessEquals_float (t_binop *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void binop2_setup (void)
+void binop2_setup (void)
 {
     binopEquals_class = class_new (sym___equals____equals__,
                                 (t_newmethod)binopEquals_new,
@@ -235,7 +235,7 @@ PD_LOCAL void binop2_setup (void)
     class_setHelpName (binopLessEquals_class,           sym_logical);
 }
 
-PD_LOCAL void binop2_destroy (void)
+void binop2_destroy (void)
 {
     class_free (binopEquals_class);
     class_free (binopNotEquals_class);

@@ -71,7 +71,7 @@ static void midisystemin_free (t_midisystemin *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void midisystemin_setup (void)
+void midisystemin_setup (void)
 {
     t_class *c = NULL;
     
@@ -88,7 +88,7 @@ PD_LOCAL void midisystemin_setup (void)
     midisystemin_class = c;
 }
 
-PD_LOCAL void midisystemin_destroy (void)
+void midisystemin_destroy (void)
 {
     class_free (midisystemin_class);
 }

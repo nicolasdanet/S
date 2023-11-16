@@ -26,8 +26,8 @@ typedef struct _environment {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   environment_free            (t_environment *e);
-PD_LOCAL void   environment_setFileName     (t_environment *e, t_symbol *name);
+void   environment_free            (t_environment *e);
+void   environment_setFileName     (t_environment *e, t_symbol *name);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

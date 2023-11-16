@@ -130,7 +130,7 @@ static void receive_free (t_receive *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void receive_setup (void)
+void receive_setup (void)
 {
     t_class *c = NULL;
     
@@ -161,7 +161,7 @@ PD_LOCAL void receive_setup (void)
     receive_class = c;
 }
 
-PD_LOCAL void receive_destroy (void)
+void receive_destroy (void)
 {
     class_free (receive_class);
 }

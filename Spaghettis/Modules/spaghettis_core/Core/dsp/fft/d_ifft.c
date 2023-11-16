@@ -112,7 +112,7 @@ static void *ifft_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void ifft_tilde_setup (void)
+void ifft_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -130,7 +130,7 @@ PD_LOCAL void ifft_tilde_setup (void)
     ifft_tilde_class = c;
 }
 
-PD_LOCAL void ifft_tilde_destroy (void)
+void ifft_tilde_destroy (void)
 {
     class_free (ifft_tilde_class);
 }

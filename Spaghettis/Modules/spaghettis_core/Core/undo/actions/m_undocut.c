@@ -26,7 +26,7 @@ typedef struct _undocut {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undocut_new (void)
+t_undoaction *undocut_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undocut_class);
     
@@ -42,7 +42,7 @@ PD_LOCAL t_undoaction *undocut_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undocut_setup (void)
+void undocut_setup (void)
 {
     t_class *c = NULL;
     
@@ -56,7 +56,7 @@ PD_LOCAL void undocut_setup (void)
     undocut_class = c;
 }
 
-PD_LOCAL void undocut_destroy (void)
+void undocut_destroy (void)
 {
     class_free (undocut_class);
 }

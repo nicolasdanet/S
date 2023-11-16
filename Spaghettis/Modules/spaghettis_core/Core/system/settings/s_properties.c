@@ -28,7 +28,7 @@ static FILE *properties_saveFile;       /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_error properties_loadBegin (void)
+t_error properties_loadBegin (void)
 {
     t_error err = !path_isFileExist (main_filePreferences->s_name);
     
@@ -64,7 +64,7 @@ PD_LOCAL t_error properties_loadBegin (void)
     return err;
 }
 
-PD_LOCAL void properties_loadClose (void)
+void properties_loadClose (void)
 {
     if (properties_loadBuffer) {
     //
@@ -73,7 +73,7 @@ PD_LOCAL void properties_loadClose (void)
     }
 }
 
-PD_LOCAL t_error properties_saveBegin (void)
+t_error properties_saveBegin (void)
 {
     int f = file_openWrite (main_filePreferences->s_name);
     t_error err = (f < 0);
@@ -82,7 +82,7 @@ PD_LOCAL t_error properties_saveBegin (void)
     return err;
 }
 
-PD_LOCAL void properties_saveClose (void)
+void properties_saveClose (void)
 {
     if (properties_saveFile) {
     //
@@ -91,12 +91,12 @@ PD_LOCAL void properties_saveClose (void)
     }
 }
 
-PD_LOCAL void properties_setKey (const char *key, const char *value)
+void properties_setKey (const char *key, const char *value)
 {
     if (properties_saveFile) { fprintf (properties_saveFile, "%s: %s\n", key, value); }
 }
 
-PD_LOCAL int properties_getKey (const char *key, char *value, int size)
+int properties_getKey (const char *key, char *value, int size)
 {
     char t[PD_STRING] = { 0 };
     char *p = NULL;

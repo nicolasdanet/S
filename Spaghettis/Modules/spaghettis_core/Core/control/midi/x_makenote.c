@@ -207,7 +207,7 @@ static void makenote_free (t_makenote *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void makenote_setup (void)
+void makenote_setup (void)
 {
     t_class *c = NULL;
     
@@ -233,7 +233,7 @@ PD_LOCAL void makenote_setup (void)
     makenote_class = c;
 }
 
-PD_LOCAL void makenote_destroy (void)
+void makenote_destroy (void)
 {
     class_free (makenote_class);
 }

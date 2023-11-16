@@ -29,11 +29,11 @@ struct _chain {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    instance_isChainSafeToDelete    (t_chain *);
-PD_LOCAL void   instance_chainSetInitialized    (void);
-PD_LOCAL void   initializer_proceed             (t_initializer *x);
-PD_LOCAL void   initializer_free                (t_initializer *x);
-PD_LOCAL void   closure_free                    (t_closure *);
+int    instance_isChainSafeToDelete    (t_chain *);
+void   instance_chainSetInitialized    (void);
+void   initializer_proceed             (t_initializer *x);
+void   initializer_free                (t_initializer *x);
+void   closure_free                    (t_closure *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -53,12 +53,12 @@ static t_int chain_done (t_int *dummy)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_id chain_getIdentifier (t_chain *x)
+t_id chain_getIdentifier (t_chain *x)
 {
     return x->x_identifier;
 }
 
-PD_LOCAL int chain_getSize (t_chain *x)
+int chain_getSize (t_chain *x)
 {
     return x->x_size;
 }
@@ -67,7 +67,7 @@ PD_LOCAL int chain_getSize (t_chain *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void chain_append (t_chain *x, t_perform f, int n, ...)
+void chain_append (t_chain *x, t_perform f, int n, ...)
 {
     int size = x->x_size + n + 1;
     
@@ -101,7 +101,7 @@ static void chain_initialize (t_chain *x)
     t_initializer *i = x->x_initializers; while (i) { initializer_proceed (i); i = i->s_next; }
 }
 
-PD_LOCAL void chain_tick (t_chain *x)
+void chain_tick (t_chain *x)
 {
     t_int *t = x->x_chain;
 
@@ -124,17 +124,17 @@ PD_LOCAL void chain_tick (t_chain *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void chain_addSignal (t_chain *x, t_signal *s)
+void chain_addSignal (t_chain *x, t_signal *s)
 {
     s->s_next = x->x_signals; x->x_signals = s;
 }
 
-PD_LOCAL void chain_addClosure (t_chain *x, t_closure *s)
+void chain_addClosure (t_chain *x, t_closure *s)
 {
     s->s_next = x->x_closures; x->x_closures = s;
 }
 
-PD_LOCAL void chain_addInitializer (t_chain *x, t_initializer *s)
+void chain_addInitializer (t_chain *x, t_initializer *s)
 {
     s->s_next = x->x_initializers; x->x_initializers = s;
 }
@@ -143,7 +143,7 @@ PD_LOCAL void chain_addInitializer (t_chain *x, t_initializer *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_closure *chain_fetchClosure (t_chain *x, t_object *o)
+t_closure *chain_fetchClosure (t_chain *x, t_object *o)
 {
     t_closure *c = x->x_closures;
     t_id u = object_getUnique (o);
@@ -162,7 +162,7 @@ PD_LOCAL t_closure *chain_fetchClosure (t_chain *x, t_object *o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void chain_setQuantum (t_chain *x, int n)
+void chain_setQuantum (t_chain *x, int n)
 {
     if (n >= INTERNAL_BLOCKSIZE) {
     //
@@ -173,7 +173,7 @@ PD_LOCAL void chain_setQuantum (t_chain *x, int n)
     }
 }
 
-PD_LOCAL int chain_hasQuantumRemaining (t_chain *x)
+int chain_hasQuantumRemaining (t_chain *x)
 {
     int k = ((x->x_phase % x->x_quantum) != 0); return k;
 }
@@ -182,7 +182,7 @@ PD_LOCAL int chain_hasQuantumRemaining (t_chain *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_chain *chain_new (void)
+t_chain *chain_new (void)
 {
     t_chain *x = (t_chain *)pd_new (chain_class);
     
@@ -226,7 +226,7 @@ static void chain_free (t_chain *x)
     PD_MEMORY_FREE (x->x_chain);
 }
 
-PD_LOCAL void chain_release (t_chain *x)
+void chain_release (t_chain *x)
 {
     instance_autoreleaseRegister (cast_pd (x));
 }
@@ -240,7 +240,7 @@ static void chain_autorelease (t_chain *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void chain_setup (void)
+void chain_setup (void)
 {
     t_class *c = NULL;
     
@@ -256,7 +256,7 @@ PD_LOCAL void chain_setup (void)
     chain_class = c;
 }
 
-PD_LOCAL void chain_destroy (void)
+void chain_destroy (void)
 {
     class_free (chain_class);
 }

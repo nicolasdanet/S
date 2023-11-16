@@ -13,14 +13,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void           *canvas_newSubpatch                 (t_symbol *);
-PD_LOCAL t_buffer       *clipboard_copyProceed              (t_glist *, int, int);
-PD_LOCAL t_undomanager  *glist_undoReplaceManager           (t_glist *, t_undomanager *);
+void           *canvas_newSubpatch                 (t_symbol *);
+t_buffer       *clipboard_copyProceed              (t_glist *, int, int);
+t_undomanager  *glist_undoReplaceManager           (t_glist *, t_undomanager *);
 
-PD_LOCAL void           glist_objectRemoveSelectedProceed   (t_glist *);
-PD_LOCAL t_rectangle    glist_getBoundingBoxOfSelected      (t_glist *);
+void           glist_objectRemoveSelectedProceed   (t_glist *);
+t_rectangle    glist_getBoundingBoxOfSelected      (t_glist *);
 
-PD_LOCAL void           snippet_disposeObjects              (t_buffer *x, int offset);
+void           snippet_disposeObjects              (t_buffer *x, int offset);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -597,7 +597,7 @@ static void encapsulate_encapsulateConnectInletsAndOutlets (t_glist *parent,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void encapsulate_encapsulate (t_glist *glist)
+void encapsulate_encapsulate (t_glist *glist)
 {
     int undoable = glist_undoIsOk (glist);
     

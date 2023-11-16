@@ -72,17 +72,17 @@ static int alsa_getIdentifierOut (int port)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL const char *midi_nameNative (void)
+const char *midi_nameNative (void)
 {
     static const char *name = "ALSA"; return name;      /* Static. */
 }
 
-PD_LOCAL void midi_initializeNative (void)
+void midi_initializeNative (void)
 {
     alsa_buffer = (uint8_t *)PD_MEMORY_GET (sizeof (uint8_t) * ALSA_SYSEX_SIZE);
 }
 
-PD_LOCAL void midi_releaseNative (void)
+void midi_releaseNative (void)
 {
     PD_MEMORY_FREE (alsa_buffer);
 }
@@ -91,7 +91,7 @@ PD_LOCAL void midi_releaseNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void midi_openNative (t_devices *p)
+void midi_openNative (t_devices *p)
 {
     int numberOfDevicesIn  = devices_getInSize (p);
     int numberOfDevicesOut = devices_getOutSize (p);
@@ -163,7 +163,7 @@ PD_LOCAL void midi_openNative (t_devices *p)
     }
 }
 
-PD_LOCAL void midi_closeNative()
+void midi_closeNative()
 {
     alsa_numberOfDevicesIn  = 0;
     alsa_numberOfDevicesOut = 0;
@@ -227,7 +227,7 @@ static void midi_pushNativeEvent (snd_seq_event_t *e, int status, int a, int b)
     }
 }
 
-PD_LOCAL void midi_pushNative (int port, int status, int a, int b)
+void midi_pushNative (int port, int status, int a, int b)
 {
     snd_seq_event_t e; snd_seq_ev_clear (&e);
     
@@ -275,7 +275,7 @@ static void midi_pushSysexNativeAllocate (int port, int argc, t_atom *argv)
     PD_MEMORY_FREE (allocated);
 }
 
-PD_LOCAL void midi_pushSysexNative (int port, int argc, t_atom *argv)
+void midi_pushSysexNative (int port, int argc, t_atom *argv)
 {
     if (port >= 0 && port < alsa_numberOfDevicesOut) {
     //
@@ -380,7 +380,7 @@ static void midi_pollNativeEvent (int port, snd_seq_event_t *e)
     }
 }
 
-PD_LOCAL void midi_pollNative (void)
+void midi_pollNative (void)
 {
     if (alsa_numberOfDevicesIn) {
     //
@@ -407,7 +407,7 @@ PD_LOCAL void midi_pollNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error midi_getListsNative (t_deviceslist *p)
+t_error midi_getListsNative (t_deviceslist *p)
 {
     int i;
     int m = PD_MIN (4, DEVICES_MAXIMUM_IO);

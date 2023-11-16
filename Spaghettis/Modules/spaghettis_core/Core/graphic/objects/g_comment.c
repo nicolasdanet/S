@@ -43,7 +43,7 @@ static void comment_set (t_object *o, const juce::String& s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
+void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 {
     if (argc >= 2) {
     //
@@ -98,7 +98,7 @@ static void comment_functionSetParameters (t_object *o, const core::Group& group
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void comment_setup (void)
+void comment_setup (void)
 {
     t_class *c = NULL;
     
@@ -120,7 +120,7 @@ PD_LOCAL void comment_setup (void)
     comment_class = c;
 }
 
-PD_LOCAL void comment_destroy (void)
+void comment_destroy (void)
 {
     class_free (comment_class);
 }

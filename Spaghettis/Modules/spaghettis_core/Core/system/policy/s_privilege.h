@@ -14,11 +14,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    privilege_start         (void);
-PD_LOCAL t_error    privilege_drop          (void);
-PD_LOCAL t_error    privilege_restore       (void);
-PD_LOCAL t_error    privilege_relinquish    (void);     /* Error MUST lead to stop execution. */
-PD_LOCAL void       privilege_check         (void);
+t_error    privilege_start         (void);
+t_error    privilege_drop          (void);
+t_error    privilege_restore       (void);
+t_error    privilege_relinquish    (void);     /* Error MUST lead to stop execution. */
+void       privilege_check         (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

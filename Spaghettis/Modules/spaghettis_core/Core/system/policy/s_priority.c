@@ -71,7 +71,7 @@ static t_error priority_setRTNative (pthread_t thread)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error priority_setPolicy (pthread_t thread)
+t_error priority_setPolicy (pthread_t thread)
 {
     return priority_setRTNative (thread);
 }

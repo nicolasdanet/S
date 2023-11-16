@@ -44,7 +44,7 @@ static void metadata_reset (void)
     }
 }
 
-PD_LOCAL void metadata_report (t_error err)
+void metadata_report (t_error err)
 {
     #if PD_LINUX
     
@@ -119,28 +119,28 @@ static void metadata_setName (int isOutput, int n, t_symbol *s)
 
 #if PD_LINUX
 
-PD_LOCAL int metadata_getCV (int isOutput, int n)
+int metadata_getCV (int isOutput, int n)
 {
     PD_ASSERT (n >= 0 && n < DEVICES_MAXIMUM_CHANNELS);
     
     return isOutput ? metadata_outputCv[n] : metadata_inputCv[n];
 }
 
-PD_LOCAL int metadata_getMinimum (int isOutput, int n)
+int metadata_getMinimum (int isOutput, int n)
 {
     PD_ASSERT (n >= 0 && n < DEVICES_MAXIMUM_CHANNELS);
     
     return isOutput ? metadata_outputMinimum[n] : metadata_inputMinimum[n];
 }
 
-PD_LOCAL int metadata_getMaximum (int isOutput, int n)
+int metadata_getMaximum (int isOutput, int n)
 {
     PD_ASSERT (n >= 0 && n < DEVICES_MAXIMUM_CHANNELS);
     
     return isOutput ? metadata_outputMaximum[n] : metadata_inputMaximum[n];
 }
 
-PD_LOCAL t_symbol *metadata_getName (int isOutput, int n)
+t_symbol *metadata_getName (int isOutput, int n)
 {
     PD_ASSERT (n >= 0 && n < DEVICES_MAXIMUM_CHANNELS);
     
@@ -153,7 +153,7 @@ PD_LOCAL t_symbol *metadata_getName (int isOutput, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void metadata_setParsed (int argc, t_atom *argv)
+void metadata_setParsed (int argc, t_atom *argv)
 {
     t_symbol *s = atom_getSymbolAtIndex (0, argc, argv);
     

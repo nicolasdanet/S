@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void snippet_renameArrays (t_buffer *x, t_glist *glist)
+void snippet_renameArrays (t_buffer *x, t_glist *glist)
 {
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
     t_atom *atoms = NULL;
@@ -44,7 +44,7 @@ PD_LOCAL void snippet_renameArrays (t_buffer *x, t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void snippet_addOffsetToLines (t_buffer *x, int i)
+void snippet_addOffsetToLines (t_buffer *x, int i)
 {
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
     t_atom *atoms = NULL;
@@ -80,7 +80,7 @@ PD_LOCAL void snippet_addOffsetToLines (t_buffer *x, int i)
     iterator_free (iter);
 }
 
-PD_LOCAL void snippet_substractOffsetToLines (t_buffer *x, int i)
+void snippet_substractOffsetToLines (t_buffer *x, int i)
 {
     snippet_addOffsetToLines (x, -i);
 }
@@ -165,7 +165,7 @@ static void snippet_displaceObjects (t_buffer *x, int deltaX, int deltaY)
     iterator_free (iter);
 }
 
-PD_LOCAL void snippet_disposeObjects (t_buffer *x, int offset)
+void snippet_disposeObjects (t_buffer *x, int offset)
 {
     t_rectangle r = snippet_getBoundingBoxOfObjects (x);
     

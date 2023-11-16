@@ -13,13 +13,13 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void chain_addInitializer (t_chain *, t_initializer *);
+void chain_addInitializer (t_chain *, t_initializer *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void initializer_proceed (t_initializer *x)
+void initializer_proceed (t_initializer *x)
 {
     (*x->s_fn) (x->s_lhs, x->s_rhs);
 }
@@ -28,7 +28,7 @@ PD_LOCAL void initializer_proceed (t_initializer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_initializer *initializer_new (t_initializerfn fn, void *lhs, void *rhs)
+t_initializer *initializer_new (t_initializerfn fn, void *lhs, void *rhs)
 {
     t_initializer *x = (t_initializer *)PD_MEMORY_GET (sizeof (t_initializer));
     
@@ -41,7 +41,7 @@ PD_LOCAL t_initializer *initializer_new (t_initializerfn fn, void *lhs, void *rh
     return x;
 }
 
-PD_LOCAL void initializer_free (t_initializer *x)
+void initializer_free (t_initializer *x)
 {
     PD_MEMORY_FREE (x);
 }

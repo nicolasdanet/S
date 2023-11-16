@@ -31,23 +31,23 @@ typedef struct _pathlist {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_pathlist     *pathlist_newAppend     (t_pathlist *x, t_pathlist **d, const char *s);
-PD_LOCAL char           *pathlist_getPath       (t_pathlist *x);
-PD_LOCAL t_pathlist     *pathlist_getNext       (t_pathlist *x);
+t_pathlist     *pathlist_newAppend     (t_pathlist *x, t_pathlist **d, const char *s);
+char           *pathlist_getPath       (t_pathlist *x);
+t_pathlist     *pathlist_getNext       (t_pathlist *x);
 
-PD_LOCAL t_pathlist     *pathlist_removeFirst   (t_pathlist *x);
-PD_LOCAL t_pathlist     *pathlist_moveFront     (t_pathlist *x, int n);
+t_pathlist     *pathlist_removeFirst   (t_pathlist *x);
+t_pathlist     *pathlist_moveFront     (t_pathlist *x, int n);
 
-PD_LOCAL int            pathlist_contains       (t_pathlist *x, const char *s);
-PD_LOCAL int            pathlist_getSize        (t_pathlist *x);
-PD_LOCAL void           pathlist_free           (t_pathlist *x);
+int            pathlist_contains       (t_pathlist *x, const char *s);
+int            pathlist_getSize        (t_pathlist *x);
+void           pathlist_free           (t_pathlist *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 #if PD_WITH_DEBUG
 
-PD_LOCAL t_error    pathlist_check              (t_pathlist *x);
+t_error    pathlist_check              (t_pathlist *x);
 
 #endif
 

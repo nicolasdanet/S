@@ -184,7 +184,7 @@ static void tabsend_tilde_free (t_tabsend_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void tabsend_tilde_setup (void)
+void tabsend_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -206,7 +206,7 @@ PD_LOCAL void tabsend_tilde_setup (void)
     tabsend_tilde_class = c;
 }
 
-PD_LOCAL void tabsend_tilde_destroy (void)
+void tabsend_tilde_destroy (void)
 {
     class_free (tabsend_tilde_class);
 }

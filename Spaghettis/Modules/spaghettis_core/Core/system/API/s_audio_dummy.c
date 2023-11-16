@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL const char *audio_nameNative (void)
+const char *audio_nameNative (void)
 {
     static const char *name = "Dummy"; return name;     /* Static. */
 }
@@ -22,12 +22,12 @@ PD_LOCAL const char *audio_nameNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audio_initializeNative (void)
+t_error audio_initializeNative (void)
 {
     return PD_ERROR_NONE;
 }
 
-PD_LOCAL void audio_releaseNative (void)
+void audio_releaseNative (void)
 {
 }
 
@@ -35,12 +35,12 @@ PD_LOCAL void audio_releaseNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audio_openNative (t_devices *p) 
+t_error audio_openNative (t_devices *p) 
 {
     return PD_ERROR;
 }
 
-PD_LOCAL void audio_closeNative() 
+void audio_closeNative() 
 {
 }
 
@@ -48,12 +48,12 @@ PD_LOCAL void audio_closeNative()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int audio_pollNative() 
+int audio_pollNative() 
 {
     return DACS_NO;
 }
 
-PD_LOCAL int audio_getVectorSizeNative (void)
+int audio_getVectorSizeNative (void)
 {
     return 0;
 }
@@ -62,7 +62,7 @@ PD_LOCAL int audio_getVectorSizeNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audio_getListsNative (t_deviceslist *p) 
+t_error audio_getListsNative (t_deviceslist *p) 
 {
     t_error err = PD_ERROR_NONE;
     

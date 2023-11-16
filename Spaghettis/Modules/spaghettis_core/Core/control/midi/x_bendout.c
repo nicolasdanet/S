@@ -79,7 +79,7 @@ static void *bendout_new (t_float channel)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void bendout_setup (void)
+void bendout_setup (void)
 {
     t_class *c = NULL;
     
@@ -103,7 +103,7 @@ PD_LOCAL void bendout_setup (void)
     bendout_class = c;
 }
 
-PD_LOCAL void bendout_destroy (void)
+void bendout_destroy (void)
 {
     class_free (bendout_class);
 }

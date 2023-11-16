@@ -26,7 +26,7 @@ typedef struct _undopaste {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undopaste_new (void)
+t_undoaction *undopaste_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undopaste_class);
     
@@ -42,7 +42,7 @@ PD_LOCAL t_undoaction *undopaste_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undopaste_setup (void)
+void undopaste_setup (void)
 {
     t_class *c = NULL;
     
@@ -56,7 +56,7 @@ PD_LOCAL void undopaste_setup (void)
     undopaste_class = c;
 }
 
-PD_LOCAL void undopaste_destroy (void)
+void undopaste_destroy (void)
 {
     class_free (undopaste_class);
 }

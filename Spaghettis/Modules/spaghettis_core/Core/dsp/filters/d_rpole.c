@@ -74,7 +74,7 @@ static void real_raw_initialize (void *lhs, void *rhs)
     x->x_real = old->x_real;
 }
 
-PD_LOCAL void real_raw_initializer (t_object *x)
+void real_raw_initializer (t_object *x)
 {
     if (object_dspNeedInitializer (cast_object (x))) {
     //
@@ -109,7 +109,7 @@ static void rpole_tilde_dsp (t_rpole_tilde *x, t_signal **sp)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *real_raw_functionData (t_object *z, int flags)
+t_buffer *real_raw_functionData (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
     //
@@ -145,7 +145,7 @@ static void *rpole_tilde_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void rpole_tilde_setup (void)
+void rpole_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -164,7 +164,7 @@ PD_LOCAL void rpole_tilde_setup (void)
     rpole_tilde_class = c;
 }
 
-PD_LOCAL void rpole_tilde_destroy (void)
+void rpole_tilde_destroy (void)
 {
     class_free (rpole_tilde_class);
 }

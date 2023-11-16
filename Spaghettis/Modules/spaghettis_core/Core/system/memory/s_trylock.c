@@ -25,17 +25,17 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void trylock_init (t_trylock *t)
+void trylock_init (t_trylock *t)
 {
     atomic_flag_clear (t);
 }
 
-PD_LOCAL void trylock_destroy (t_trylock *t)
+void trylock_destroy (t_trylock *t)
 {
 
 }
 
-PD_LOCAL int trylock_trylock (t_trylock *t)
+int trylock_trylock (t_trylock *t)
 {
     #if defined ( __cplusplus )
 
@@ -50,12 +50,12 @@ PD_LOCAL int trylock_trylock (t_trylock *t)
     return b;
 }
 
-PD_LOCAL void trylock_lock (t_trylock *t)
+void trylock_lock (t_trylock *t)
 {
     while (trylock_trylock (t)) { nano_sleep (PD_MILLISECONDS_TO_NANOSECONDS (0.1)); }
 }
 
-PD_LOCAL void trylock_unlock (t_trylock *t)
+void trylock_unlock (t_trylock *t)
 {
     #if defined ( __cplusplus )
     
@@ -72,27 +72,27 @@ PD_LOCAL void trylock_unlock (t_trylock *t)
 
 #else
 
-PD_LOCAL void trylock_init (t_trylock *t)
+void trylock_init (t_trylock *t)
 {
     pthread_mutex_init (t, NULL);
 }
 
-PD_LOCAL void trylock_destroy (t_trylock *t)
+void trylock_destroy (t_trylock *t)
 {
     pthread_mutex_destroy (t);
 }
 
-PD_LOCAL int trylock_trylock (t_trylock *t)
+int trylock_trylock (t_trylock *t)
 {
     return pthread_mutex_trylock (t);
 }
 
-PD_LOCAL void trylock_lock (t_trylock *t)
+void trylock_lock (t_trylock *t)
 {
     pthread_mutex_lock (t);
 }
 
-PD_LOCAL void trylock_unlock (t_trylock *t)
+void trylock_unlock (t_trylock *t)
 {
     pthread_mutex_unlock (t);
 }

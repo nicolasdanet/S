@@ -68,7 +68,7 @@ static void *ftom_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void ftom_tilde_setup (void)
+void ftom_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -87,7 +87,7 @@ PD_LOCAL void ftom_tilde_setup (void)
     ftom_tilde_class = c;
 }
 
-PD_LOCAL void ftom_tilde_destroy (void)
+void ftom_tilde_destroy (void)
 {
     class_free (ftom_tilde_class);
 }

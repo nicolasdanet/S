@@ -27,7 +27,7 @@ static void glist_lineConnectByIndexNotify (t_object *o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error glist_lineConnectByIndex (t_glist *glist,
+t_error glist_lineConnectByIndex (t_glist *glist,
     int indexOfObjectOut,
     int indexOfOutlet,
     int indexOfObjectIn,
@@ -72,7 +72,7 @@ PD_LOCAL t_error glist_lineConnectByIndex (t_glist *glist,
     return PD_ERROR;
 }
 
-PD_LOCAL t_error glist_lineDisconnectByIndex (t_glist *glist,
+t_error glist_lineDisconnectByIndex (t_glist *glist,
     int indexOfObjectOut,
     int indexOfOutlet,
     int indexOfObjectIn,
@@ -124,17 +124,17 @@ static void glist_objectDeleteLinesProceed (t_glist *glist, t_object *o, t_inlet
     }
 }
 
-PD_LOCAL void glist_objectDeleteLinesByInlet (t_glist *glist, t_object *o, t_inlet *inlet)
+void glist_objectDeleteLinesByInlet (t_glist *glist, t_object *o, t_inlet *inlet)
 {
     glist_objectDeleteLinesProceed (glist, o, inlet, NULL);
 }
 
-PD_LOCAL void glist_objectDeleteLinesByOutlet (t_glist *glist, t_object *o, t_outlet *outlet)
+void glist_objectDeleteLinesByOutlet (t_glist *glist, t_object *o, t_outlet *outlet)
 {
     glist_objectDeleteLinesProceed (glist, o, NULL, outlet);
 }
 
-PD_LOCAL void glist_objectDeleteLines (t_glist *glist, t_object *o)
+void glist_objectDeleteLines (t_glist *glist, t_object *o)
 {
     glist_objectDeleteLinesProceed (glist, o, NULL, NULL);
 }
@@ -143,7 +143,7 @@ PD_LOCAL void glist_objectDeleteLines (t_glist *glist, t_object *o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error glist_objectConnect (t_glist *glist, t_object *src, int m, t_object *dest, int n)
+t_error glist_objectConnect (t_glist *glist, t_object *src, int m, t_object *dest, int n)
 {
     if (object_connect (src, m, dest, n, glist)) {
     //
@@ -163,7 +163,7 @@ PD_LOCAL t_error glist_objectConnect (t_glist *glist, t_object *src, int m, t_ob
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL void glist_updateLinesForObject (t_glist *glist, t_object *o)
+void glist_updateLinesForObject (t_glist *glist, t_object *o)
 {
     if (glist) {
     //
@@ -191,7 +191,7 @@ PD_LOCAL void glist_updateLinesForObject (t_glist *glist, t_object *o)
 
 #else
 
-PD_LOCAL void glist_updateLinesForObject (t_glist *glist, t_object *o)
+void glist_updateLinesForObject (t_glist *glist, t_object *o)
 {
 
 }

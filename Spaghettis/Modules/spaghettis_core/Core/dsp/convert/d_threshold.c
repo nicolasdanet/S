@@ -256,7 +256,7 @@ static void threshold_tilde_free (t_threshold_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void threshold_tilde_setup (void)
+void threshold_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -278,7 +278,7 @@ PD_LOCAL void threshold_tilde_setup (void)
     threshold_tilde_class = c;
 }
 
-PD_LOCAL void threshold_tilde_destroy (void)
+void threshold_tilde_destroy (void)
 {
     class_free (threshold_tilde_class);
 }

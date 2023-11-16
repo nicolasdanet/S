@@ -26,7 +26,7 @@ typedef struct _undoremove {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undoremove_new (void)
+t_undoaction *undoremove_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undoremove_class);
     
@@ -42,7 +42,7 @@ PD_LOCAL t_undoaction *undoremove_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undoremove_setup (void)
+void undoremove_setup (void)
 {
     t_class *c = NULL;
     
@@ -56,7 +56,7 @@ PD_LOCAL void undoremove_setup (void)
     undoremove_class = c;
 }
 
-PD_LOCAL void undoremove_destroy (void)
+void undoremove_destroy (void)
 {
     class_free (undoremove_class);
 }

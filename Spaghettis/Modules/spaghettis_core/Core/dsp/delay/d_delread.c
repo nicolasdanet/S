@@ -142,7 +142,7 @@ static void *delread_tilde_new (t_symbol *s, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void delread_tilde_setup (void)
+void delread_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -164,7 +164,7 @@ PD_LOCAL void delread_tilde_setup (void)
     delread_tilde_class = c;
 }
 
-PD_LOCAL void delread_tilde_destroy (void)
+void delread_tilde_destroy (void)
 {
     class_free (delread_tilde_class);
 }

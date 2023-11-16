@@ -202,7 +202,7 @@ static void resample_addResampling (t_resample *x,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_sample *resample_getBufferInlet (t_resample *x, t_sample *s, int size, int resampledSize)
+t_sample *resample_getBufferInlet (t_resample *x, t_sample *s, int size, int resampledSize)
 {
     if (resample_setAllocateVectorIfRequired (x, s, size, resampledSize)) {
         resample_addResampling (x,
@@ -216,7 +216,7 @@ PD_LOCAL t_sample *resample_getBufferInlet (t_resample *x, t_sample *s, int size
     return x->r_vector;
 }
 
-PD_LOCAL t_sample *resample_getBufferOutlet (t_resample *x, t_sample *s, int size, int resampledSize)
+t_sample *resample_getBufferOutlet (t_resample *x, t_sample *s, int size, int resampledSize)
 {
     if (resample_setAllocateVectorIfRequired (x, s, size, resampledSize)) {
         resample_addResampling (x,
@@ -234,12 +234,12 @@ PD_LOCAL t_sample *resample_getBufferOutlet (t_resample *x, t_sample *s, int siz
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int resample_isRequired (t_resample *x)
+int resample_isRequired (t_resample *x)
 {
     return (x->r_downsample != x->r_upsample);
 }
 
-PD_LOCAL void resample_set (t_resample *x, int downsample, int upsample)
+void resample_set (t_resample *x, int downsample, int upsample)
 {
     x->r_downsample = downsample; x->r_upsample = upsample;
 }
@@ -248,7 +248,7 @@ PD_LOCAL void resample_set (t_resample *x, int downsample, int upsample)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void resample_init (t_resample *x, t_object *owner, t_symbol *type)
+void resample_init (t_resample *x, t_object *owner, t_symbol *type)
 {
     x->r_type = RESAMPLE_DEFAULT;
     
@@ -263,7 +263,7 @@ PD_LOCAL void resample_init (t_resample *x, t_object *owner, t_symbol *type)
     x->r_owner      = owner;
 }
 
-PD_LOCAL void resample_free (t_resample *x)
+void resample_free (t_resample *x)
 {
     resample_releaseVector (x);
 }

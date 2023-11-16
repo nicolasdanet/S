@@ -227,7 +227,7 @@ static void soundfile_encode32Float (int numberOfChannels,
     }
 }
 
-PD_LOCAL void soundfile_encode32 (int numberOfChannels,
+void soundfile_encode32 (int numberOfChannels,
     float **v,
     unsigned char *t,
     int numberOfFrames,
@@ -397,7 +397,7 @@ static void soundfile_encode64Float (int numberOfChannels,
     }
 }
 
-PD_LOCAL void soundfile_encode64 (int numberOfChannels,
+void soundfile_encode64 (int numberOfChannels,
     t_word **v,
     unsigned char *t,
     int numberOfFrames,
@@ -613,7 +613,7 @@ static void soundfile_decode32Float (int numberOfChannels,
     }
 }
 
-PD_LOCAL void soundfile_decode32 (int numberOfChannels,
+void soundfile_decode32 (int numberOfChannels,
     float **v,
     unsigned char *t,
     int numberOfFrames,
@@ -789,7 +789,7 @@ static void soundfile_decode64Float (int numberOfChannels,
     }
 }
 
-PD_LOCAL void soundfile_decode64 (int numberOfChannels,
+void soundfile_decode64 (int numberOfChannels,
     t_word **v,
     unsigned char *t,
     int numberOfFrames,

@@ -32,10 +32,10 @@ typedef struct _traverser {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_outconnect   *traverser_next         (t_traverser *t);
+t_outconnect   *traverser_next         (t_traverser *t);
 
-PD_LOCAL void           traverser_start         (t_traverser *t, t_glist *glist);
-PD_LOCAL t_error        traverser_disconnect    (t_traverser *t, t_glist *glist);
+void           traverser_start         (t_traverser *t, t_glist *glist);
+t_error        traverser_disconnect    (t_traverser *t, t_glist *glist);
                                                             
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

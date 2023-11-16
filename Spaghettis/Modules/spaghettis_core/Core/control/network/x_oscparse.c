@@ -743,7 +743,7 @@ static void oscparse_free (t_oscparse *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void oscparse_setup (void)
+void oscparse_setup (void)
 {
     t_class *c = NULL;
     
@@ -764,7 +764,7 @@ PD_LOCAL void oscparse_setup (void)
     oscparse_class = c;
 }
 
-PD_LOCAL void oscparse_destroy (void)
+void oscparse_destroy (void)
 {
     class_free (oscparse_class);
 }

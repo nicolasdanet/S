@@ -303,12 +303,12 @@ static double fn_comma (double f, double g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void fn_initialize (void)
+void fn_initialize (void)
 {
     fn_randMT = randMT_new();
 }
 
-PD_LOCAL void fn_release (void)
+void fn_release (void)
 {
     randMT_free (fn_randMT);
 }

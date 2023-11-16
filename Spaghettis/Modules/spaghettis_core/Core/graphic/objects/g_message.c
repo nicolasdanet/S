@@ -39,13 +39,13 @@ typedef struct _message {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int atom_copyAtomsExpandedWithArguments (t_atom *, int, t_atom *, int, t_glist *, int, t_atom *);
+int atom_copyAtomsExpandedWithArguments (t_atom *, int, t_atom *, int, t_glist *, int, t_atom *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void eval_bufferProceed    (int, t_atom *, t_pd *, int, t_atom *);
-PD_LOCAL void eval_buffer           (t_buffer *, t_pd *, int, t_atom *);
+void eval_bufferProceed    (int, t_atom *, t_pd *, int, t_atom *);
+void eval_buffer           (t_buffer *, t_pd *, int, t_atom *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -275,7 +275,7 @@ static void message_makeObjectProceed (t_glist *glist, t_object *x, int argc, t_
     glist_objectAdd (glist, x);
 }
 
-PD_LOCAL void message_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
+void message_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 {
     t_message *x = (t_message *)pd_new (message_class);
     
@@ -333,7 +333,7 @@ static void message_functionSetParameters (t_object *o, const core::Group& group
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void message_setup (void)
+void message_setup (void)
 {
     t_class *c = NULL;
     
@@ -383,7 +383,7 @@ PD_LOCAL void message_setup (void)
     messageresponder_class = c;
 }
 
-PD_LOCAL void message_destroy (void)
+void message_destroy (void)
 {
     class_free (message_class);
     class_free (messageresponder_class);

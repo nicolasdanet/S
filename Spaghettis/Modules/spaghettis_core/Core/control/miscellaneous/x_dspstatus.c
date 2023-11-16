@@ -63,7 +63,7 @@ static void dspstatus_free (t_dspstatus *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void dspstatus_setup (void)
+void dspstatus_setup (void)
 {
     t_class *c = NULL;
     
@@ -80,7 +80,7 @@ PD_LOCAL void dspstatus_setup (void)
     dspstatus_class = c;
 }
 
-PD_LOCAL void dspstatus_destroy (void)
+void dspstatus_destroy (void)
 {
     class_free (dspstatus_class);
 }

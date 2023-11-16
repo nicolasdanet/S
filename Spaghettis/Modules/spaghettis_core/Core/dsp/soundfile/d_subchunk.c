@@ -206,7 +206,7 @@ static int subchunk_parseDATA (t_headerhelper *t, t_audioproperties *args)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error subchunk_readFileHeaderWAVE (int f, t_headerhelper *t, t_audioproperties *args)
+t_error subchunk_readFileHeaderWAVE (int f, t_headerhelper *t, t_audioproperties *args)
 {
     t_error end = subchunk_traverseStart (t);
     t_error err = PD_ERROR_NONE;
@@ -249,7 +249,7 @@ PD_LOCAL t_error subchunk_readFileHeaderWAVE (int f, t_headerhelper *t, t_audiop
     return err;
 }
 
-PD_LOCAL t_error subchunk_readFileHeaderAIFF (int f, t_headerhelper *t, t_audioproperties *args)
+t_error subchunk_readFileHeaderAIFF (int f, t_headerhelper *t, t_audioproperties *args)
 {
     t_error end = subchunk_traverseStart (t);
     t_error err = PD_ERROR_NONE;

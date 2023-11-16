@@ -14,7 +14,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int instance_pendingRequired (t_object *y)
+int instance_pendingRequired (t_object *y)
 {
     if (instance_hasPending()) {
     //
@@ -25,7 +25,7 @@ PD_LOCAL int instance_pendingRequired (t_object *y)
     return 0;
 }
 
-PD_LOCAL t_object *instance_pendingFetch (t_object *y)
+t_object *instance_pendingFetch (t_object *y)
 {
     if (instance_hasPending()) {
     //
@@ -48,7 +48,7 @@ PD_LOCAL t_object *instance_pendingFetch (t_object *y)
     return NULL;
 }
 
-PD_LOCAL void instance_pendingAdd (t_object *y)
+void instance_pendingAdd (t_object *y)
 {
     if (class_hasDismissFunction (pd_class (y))) { (*class_getDismissFunction (pd_class (y))) (y); }
 

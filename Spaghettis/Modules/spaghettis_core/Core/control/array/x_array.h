@@ -42,47 +42,47 @@ typedef struct _arrayrange {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    arrayclient_init        (t_arrayclient *x, int *argc, t_atom **argv);
-PD_LOCAL void       arrayclient_free        (t_arrayclient *x);
-PD_LOCAL void       arrayclient_setName     (t_arrayclient *x, t_symbol *s);
+t_error    arrayclient_init        (t_arrayclient *x, int *argc, t_atom **argv);
+void       arrayclient_free        (t_arrayclient *x);
+void       arrayclient_setName     (t_arrayclient *x, t_symbol *s);
 
-PD_LOCAL t_symbol   *arrayclient_getName            (t_arrayclient *x);
-PD_LOCAL t_garray   *arrayclient_fetchGraphicArray  (t_arrayclient *x);
+t_symbol   *arrayclient_getName            (t_arrayclient *x);
+t_garray   *arrayclient_fetchGraphicArray  (t_arrayclient *x);
 
-PD_LOCAL void       arrayclient_restore     (t_arrayclient *x, t_arrayclient *old);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_LOCAL void       *arrayrange_new         (t_class *c, int argc, t_atom *argv, int makeOnset, int makeSize);
-PD_LOCAL t_garray   *arrayrange_getRange    (t_arrayrange *x, int *i, int *n);
-
-PD_LOCAL void       arrayrange_setOnset     (t_arrayrange *x, t_float f);
-PD_LOCAL void       arrayrange_setSize      (t_arrayrange *x, t_float f);
-PD_LOCAL t_float    arrayrange_getOnset     (t_arrayrange *x);
-PD_LOCAL t_float    arrayrange_getSize      (t_arrayrange *x);
-PD_LOCAL t_error    arrayrange_quantile     (t_arrayrange *x, t_float f, t_float *v);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-PD_LOCAL t_buffer   *arrayrange_functionData    (t_object *z, int flags);
-
-PD_LOCAL void       arrayrange_restore          (t_arrayrange *x, t_symbol *s, int argc, t_atom *argv);
+void       arrayclient_restore     (t_arrayclient *x, t_arrayclient *old);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       *arraysize_new          (t_symbol *s, int argc, t_atom *argv);
-PD_LOCAL void       *arraysum_new           (t_symbol *s, int argc, t_atom *argv);
-PD_LOCAL void       *arrayget_new           (t_symbol *s, int argc, t_atom *argv);
-PD_LOCAL void       *arrayset_new           (t_symbol *s, int argc, t_atom *argv);
-PD_LOCAL void       *arrayquantile_new      (t_symbol *s, int argc, t_atom *argv);
-PD_LOCAL void       *arrayrandom_new        (t_symbol *s, int argc, t_atom *argv);
-PD_LOCAL void       *arraymax_new           (t_symbol *s, int argc, t_atom *argv);
-PD_LOCAL void       *arraymin_new           (t_symbol *s, int argc, t_atom *argv);
+void       *arrayrange_new         (t_class *c, int argc, t_atom *argv, int makeOnset, int makeSize);
+t_garray   *arrayrange_getRange    (t_arrayrange *x, int *i, int *n);
+
+void       arrayrange_setOnset     (t_arrayrange *x, t_float f);
+void       arrayrange_setSize      (t_arrayrange *x, t_float f);
+t_float    arrayrange_getOnset     (t_arrayrange *x);
+t_float    arrayrange_getSize      (t_arrayrange *x);
+t_error    arrayrange_quantile     (t_arrayrange *x, t_float f, t_float *v);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+t_buffer   *arrayrange_functionData    (t_object *z, int flags);
+
+void       arrayrange_restore          (t_arrayrange *x, t_symbol *s, int argc, t_atom *argv);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void       *arraysize_new          (t_symbol *s, int argc, t_atom *argv);
+void       *arraysum_new           (t_symbol *s, int argc, t_atom *argv);
+void       *arrayget_new           (t_symbol *s, int argc, t_atom *argv);
+void       *arrayset_new           (t_symbol *s, int argc, t_atom *argv);
+void       *arrayquantile_new      (t_symbol *s, int argc, t_atom *argv);
+void       *arrayrandom_new        (t_symbol *s, int argc, t_atom *argv);
+void       *arraymax_new           (t_symbol *s, int argc, t_atom *argv);
+void       *arraymin_new           (t_symbol *s, int argc, t_atom *argv);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

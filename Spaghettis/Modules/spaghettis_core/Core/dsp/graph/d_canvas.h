@@ -14,9 +14,9 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       canvas_dspProceed       (t_glist *g, int isTopLevel, t_signal **sp);
-PD_LOCAL t_float    canvas_getSampleRate    (t_glist *g);
-PD_LOCAL t_float    canvas_getBlockSize     (t_glist *g);
+void       canvas_dspProceed       (t_glist *g, int isTopLevel, t_signal **sp);
+t_float    canvas_getSampleRate    (t_glist *g);
+t_float    canvas_getBlockSize     (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

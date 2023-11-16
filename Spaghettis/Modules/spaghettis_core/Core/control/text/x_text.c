@@ -196,7 +196,7 @@ static void textdefine_free (t_textdefine *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void textdefine_setup (void)
+void textdefine_setup (void)
 {
     t_class *c = NULL;
     
@@ -228,7 +228,7 @@ PD_LOCAL void textdefine_setup (void)
     textdefine_class = c;
 }
 
-PD_LOCAL void textdefine_destroy (void)
+void textdefine_destroy (void)
 {
     class_free (textdefine_class);
 }

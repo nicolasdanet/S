@@ -14,65 +14,65 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    object_setSnappedX                  (t_object *x, int n);
-PD_LOCAL int    object_setSnappedY                  (t_object *x, int n);
+int    object_setSnappedX                  (t_object *x, int n);
+int    object_setSnappedY                  (t_object *x, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void   object_setBuffer                    (t_object *x, t_buffer *b);     /* Acquires ownership. */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_LOCAL int    object_isDummy                      (t_object *x);      /* A badly created box object. */
-PD_LOCAL int    object_isCanvas                     (t_object *x);
-
-PD_LOCAL int    object_isObject                     (t_object *x);      /* NOT a comment, message, or atom. */
-PD_LOCAL int    object_isComment                    (t_object *x);
-PD_LOCAL int    object_isMessage                    (t_object *x);
-// PD_LOCAL int    object_isAtom                    (t_object *x);
+void   object_setBuffer                    (t_object *x, t_buffer *b);     /* Acquires ownership. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    object_hasDsp                       (t_object *x);
+int    object_isDummy                      (t_object *x);      /* A badly created box object. */
+int    object_isCanvas                     (t_object *x);
+
+int    object_isObject                     (t_object *x);      /* NOT a comment, message, or atom. */
+int    object_isComment                    (t_object *x);
+int    object_isMessage                    (t_object *x);
+// int    object_isAtom                    (t_object *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_outconnect   *object_connect             (t_object *src, int m, t_object *dest, int n, t_glist *g);
-
-PD_LOCAL t_error        object_disconnect           (t_object *src, int m, t_object *dest, int n, t_glist *g);
-
-PD_FORCE void           object_help                 (t_object *x);
+int    object_hasDsp                       (t_object *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    object_getNumberOfInlets            (t_object *x);
-PD_LOCAL int    object_getNumberOfOutlets           (t_object *x);
-PD_LOCAL int    object_getNumberOfSignalInlets      (t_object *x);
-PD_LOCAL int    object_getNumberOfSignalOutlets     (t_object *x);
-PD_LOCAL int    object_getIndexAsSignalOfInlet      (t_object *x, int m);
-PD_LOCAL int    object_getIndexAsSignalOfOutlet     (t_object *x, int m);
-//PD_LOCAL int  object_isSignalInlet                (t_object *x, int m);
-PD_LOCAL int    object_isSignalOutlet               (t_object *x, int m);
+t_outconnect   *object_connect             (t_object *src, int m, t_object *dest, int n, t_glist *g);
+
+t_error        object_disconnect           (t_object *src, int m, t_object *dest, int n, t_glist *g);
+
+void           object_help                 (t_object *x);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int    object_getNumberOfInlets            (t_object *x);
+int    object_getNumberOfOutlets           (t_object *x);
+int    object_getNumberOfSignalInlets      (t_object *x);
+int    object_getNumberOfSignalOutlets     (t_object *x);
+int    object_getIndexAsSignalOfInlet      (t_object *x, int m);
+int    object_getIndexAsSignalOfOutlet     (t_object *x, int m);
+//int  object_isSignalInlet                (t_object *x, int m);
+int    object_isSignalOutlet               (t_object *x, int m);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL juce::String   object_getTypeOfInlets      (t_object *x);
-PD_LOCAL juce::String   object_getTypeOfOutlets     (t_object *x);
+juce::String   object_getTypeOfInlets      (t_object *x);
+juce::String   object_getTypeOfOutlets     (t_object *x);
 
-PD_LOCAL juce::String   object_getBufferAsString    (t_object* x);
-PD_LOCAL bool           object_setBufferWithString  (t_object* x, const juce::String&);
+juce::String   object_getBufferAsString    (t_object* x);
+bool           object_setBufferWithString  (t_object* x, const juce::String&);
 
 #endif
 
@@ -80,35 +80,35 @@ PD_LOCAL bool           object_setBufferWithString  (t_object* x, const juce::St
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   object_save                         (t_object *x, t_buffer *b, int flags);
-PD_LOCAL void   object_saveIdentifiers              (t_object *x, t_buffer *b, int flags);
-PD_LOCAL void   object_serializeLabel               (t_object *x, t_buffer *b);
-PD_LOCAL void   object_distributeAtomsOnInlets      (t_object *x, int argc, t_atom *argv);
-PD_LOCAL void   object_setSignalValues              (t_object *x, int argc, t_atom *argv);
+void   object_save                         (t_object *x, t_buffer *b, int flags);
+void   object_saveIdentifiers              (t_object *x, t_buffer *b, int flags);
+void   object_serializeLabel               (t_object *x, t_buffer *b);
+void   object_distributeAtomsOnInlets      (t_object *x, int argc, t_atom *argv);
+void   object_setSignalValues              (t_object *x, int argc, t_atom *argv);
 
-PD_LOCAL t_buffer        *object_functionData       (t_object *z, int flags);
+t_buffer        *object_functionData       (t_object *z, int flags);
 
-PD_LOCAL t_float64Atomic *object_getSignalAtIndex   (t_object *x, int m);
+t_float64Atomic *object_getSignalAtIndex   (t_object *x, int m);
 
-PD_LOCAL int    object_setLabelUpdate               (t_object *x, t_symbol *s);
+int    object_setLabelUpdate               (t_object *x, t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_id   object_getUnique                    (t_object *x);
-PD_LOCAL t_id   object_getSource                    (t_object *x);
-PD_LOCAL t_id   object_getNative                    (t_object *x);
+t_id   object_getUnique                    (t_object *x);
+t_id   object_getSource                    (t_object *x);
+t_id   object_getNative                    (t_object *x);
 
-PD_LOCAL void   object_setUnique                    (t_object *x, t_id u);
-PD_LOCAL void   object_setSource                    (t_object *x, t_id u);
-PD_LOCAL void   object_setNative                    (t_object *x, t_id u);
+void   object_setUnique                    (t_object *x, t_id u);
+void   object_setSource                    (t_object *x, t_id u);
+void   object_setNative                    (t_object *x, t_id u);
 
-PD_LOCAL void   object_changeUnique                 (t_object *x, t_id u);
-PD_LOCAL void   object_changeSource                 (t_object *x, t_id u);
+void   object_changeUnique                 (t_object *x, t_id u);
+void   object_changeSource                 (t_object *x, t_id u);
 
-PD_LOCAL void   object_serializeUnique              (t_object *x, t_symbol *s, t_buffer *b);
-PD_LOCAL void   object_serializeSource              (t_object *x, t_symbol *s, t_buffer *b);
+void   object_serializeUnique              (t_object *x, t_symbol *s, t_buffer *b);
+void   object_serializeSource              (t_object *x, t_symbol *s, t_buffer *b);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ PD_LOCAL void   object_serializeSource              (t_object *x, t_symbol *s, t
 
 /* Required to fetch the unexpanded form at instantiation. */
 
-PD_LOCAL t_symbol   *object_getUnexpandedNameAt     (t_object *x, int i);
+t_symbol   *object_getUnexpandedNameAt     (t_object *x, int i);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

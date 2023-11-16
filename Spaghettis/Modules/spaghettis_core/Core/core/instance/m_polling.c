@@ -19,7 +19,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void startup_openPendedFiles (void);
+void startup_openPendedFiles (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -44,13 +44,13 @@ static void instance_pollingTask (void *dummy)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_pollingRun (void)
+void instance_pollingRun (void)
 {
     instance_get()->pd_polling = clock_new ((void *)NULL, (t_method)instance_pollingTask);
     clock_delay (instance_get()->pd_polling, POLLING_PERIOD);
 }
 
-PD_LOCAL void instance_pollingStop (void)
+void instance_pollingStop (void)
 {
     clock_free (instance_get()->pd_polling);
     instance_get()->pd_polling = NULL;
@@ -60,12 +60,12 @@ PD_LOCAL void instance_pollingStop (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_pollingRegister (t_pd *x)
+void instance_pollingRegister (t_pd *x)
 {
     pd_bind (x, sym__polling);
 }
 
-PD_LOCAL void instance_pollingUnregister (t_pd *x)
+void instance_pollingUnregister (t_pd *x)
 {
     pd_unbind (x, sym__polling);
 }

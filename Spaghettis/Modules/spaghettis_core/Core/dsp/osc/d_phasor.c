@@ -28,7 +28,7 @@ typedef struct _phasor_tilde {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int atomic_float64CompareAndSwap (double *, double, t_float64Atomic *);
+int atomic_float64CompareAndSwap (double *, double, t_float64Atomic *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -141,7 +141,7 @@ static void *phasor_tilde_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void phasor_tilde_setup (void)
+void phasor_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -163,7 +163,7 @@ PD_LOCAL void phasor_tilde_setup (void)
     phasor_tilde_class = c;
 }
 
-PD_LOCAL void phasor_tilde_destroy (void)
+void phasor_tilde_destroy (void)
 {
     class_free (phasor_tilde_class);
 }

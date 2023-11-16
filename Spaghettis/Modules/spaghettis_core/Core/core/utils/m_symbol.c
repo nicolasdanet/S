@@ -16,7 +16,7 @@
 /* Notice that this function may introduce unescaped whitespaces. */
 /* Extra care is required at the risk to trouble the parser. */
 
-PD_LOCAL t_symbol *symbol_withAtoms (int argc, t_atom *argv)
+t_symbol *symbol_withAtoms (int argc, t_atom *argv)
 {
     t_symbol *s = &s_;
         
@@ -34,7 +34,7 @@ PD_LOCAL t_symbol *symbol_withAtoms (int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int symbol_containsWhitespace (t_symbol *s)
+int symbol_containsWhitespace (t_symbol *s)
 {
     return string_contains (s->s_name, " ");
 }
@@ -45,7 +45,7 @@ PD_LOCAL int symbol_containsWhitespace (t_symbol *s)
 
 /* Merge two dollars in just one. */
 
-PD_LOCAL t_symbol *symbol_replaceDoubleDollar (t_symbol *s)
+t_symbol *symbol_replaceDoubleDollar (t_symbol *s)
 {
     size_t size = strlen (s->s_name);
     
@@ -66,7 +66,7 @@ PD_LOCAL t_symbol *symbol_replaceDoubleDollar (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *symbol_removeExtension (t_symbol *s)
+t_symbol *symbol_removeExtension (t_symbol *s)
 {
     PD_ASSERT (s);
     
@@ -83,12 +83,12 @@ PD_LOCAL t_symbol *symbol_removeExtension (t_symbol *s)
     return s;
 }
 
-PD_LOCAL t_symbol *symbol_appendExtensionPatch (t_symbol *s)
+t_symbol *symbol_appendExtensionPatch (t_symbol *s)
 {
     return symbol_addSuffix (s, gensym (PD_PATCH));
 }
 
-PD_LOCAL t_symbol *symbol_appendExtensionHelp (t_symbol *s)
+t_symbol *symbol_appendExtensionHelp (t_symbol *s)
 {
     return symbol_addSuffix (s, gensym (PD_HELP));
 }
@@ -97,7 +97,7 @@ PD_LOCAL t_symbol *symbol_appendExtensionHelp (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *symbol_addPrefix (t_symbol *s, t_symbol *prefix)
+t_symbol *symbol_addPrefix (t_symbol *s, t_symbol *prefix)
 {
     if (prefix == &s_) { return s; }
     else if (s == &s_) { return prefix; }
@@ -112,7 +112,7 @@ PD_LOCAL t_symbol *symbol_addPrefix (t_symbol *s, t_symbol *prefix)
     }
 }
 
-PD_LOCAL t_symbol *symbol_addSuffix (t_symbol *s, t_symbol *suffix)
+t_symbol *symbol_addSuffix (t_symbol *s, t_symbol *suffix)
 {
     return symbol_addPrefix (suffix, s);
 }
@@ -121,7 +121,7 @@ PD_LOCAL t_symbol *symbol_addSuffix (t_symbol *s, t_symbol *suffix)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *symbol_appendCopySuffix (t_symbol *s)
+t_symbol *symbol_appendCopySuffix (t_symbol *s)
 {
     PD_ASSERT (s);
     
@@ -130,7 +130,7 @@ PD_LOCAL t_symbol *symbol_appendCopySuffix (t_symbol *s)
     return symbol_addSuffix (s, sym___dash____asterisk__);
 }
 
-PD_LOCAL t_symbol *symbol_removeCopySuffix (t_symbol *s)
+t_symbol *symbol_removeCopySuffix (t_symbol *s)
 {
     PD_ASSERT (s);
     

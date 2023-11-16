@@ -45,7 +45,7 @@ static void listtosymbol_list (t_listtosymbol *x, t_symbol *s, int argc, t_atom 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listtosymbol_new (t_symbol *s, int argc, t_atom *argv)
+void *listtosymbol_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listtosymbol *x = (t_listtosymbol *)pd_new (listtosymbol_class);
     
@@ -60,7 +60,7 @@ PD_LOCAL void *listtosymbol_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listtosymbol_setup (void)
+void listtosymbol_setup (void)
 {
     t_class *c = NULL;
     
@@ -79,7 +79,7 @@ PD_LOCAL void listtosymbol_setup (void)
     listtosymbol_class = c;
 }
 
-PD_LOCAL void listtosymbol_destroy (void)
+void listtosymbol_destroy (void)
 {
     class_free (listtosymbol_class);
 }

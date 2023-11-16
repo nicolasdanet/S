@@ -67,12 +67,12 @@ static t_error atom_symbolToBackslashedString (t_atom *a, char *s, int size)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void atom_setSymbol (t_atom *a, t_symbol *s)
+void atom_setSymbol (t_atom *a, t_symbol *s)
 {
     SET_SYMBOL (a, s);
 }
 
-PD_LOCAL void atom_setFloat (t_atom *a, t_float f)
+void atom_setFloat (t_atom *a, t_float f)
 {
     SET_FLOAT (a, f);
 }
@@ -81,7 +81,7 @@ PD_LOCAL void atom_setFloat (t_atom *a, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_float atom_getFloat (t_atom *a)
+t_float atom_getFloat (t_atom *a)
 {
     if (IS_FLOAT (a)) { return GET_FLOAT (a); }
     else {
@@ -89,7 +89,7 @@ PD_LOCAL t_float atom_getFloat (t_atom *a)
     }
 }
 
-PD_LOCAL t_float atom_getFloatAtIndex (int n, int argc, t_atom *argv)
+t_float atom_getFloatAtIndex (int n, int argc, t_atom *argv)
 {
     if (n >= 0 && n < argc) { return atom_getFloat (argv + n); }
     else {
@@ -97,7 +97,7 @@ PD_LOCAL t_float atom_getFloatAtIndex (int n, int argc, t_atom *argv)
     }
 }
 
-PD_LOCAL t_symbol *atom_getSymbol (t_atom *a)
+t_symbol *atom_getSymbol (t_atom *a)
 {
     if (IS_SYMBOL (a)) { return GET_SYMBOL (a); }
     else { 
@@ -105,7 +105,7 @@ PD_LOCAL t_symbol *atom_getSymbol (t_atom *a)
     }
 }
 
-PD_LOCAL t_symbol *atom_getSymbolAtIndex (int n, int argc, t_atom *argv)
+t_symbol *atom_getSymbolAtIndex (int n, int argc, t_atom *argv)
 {
     if (n >= 0 && n < argc) { return atom_getSymbol (argv + n); }
     else {
@@ -113,7 +113,7 @@ PD_LOCAL t_symbol *atom_getSymbolAtIndex (int n, int argc, t_atom *argv)
     }
 }
 
-PD_LOCAL t_symbol *atom_getSymbolOrDollarSymbol (t_atom *a)
+t_symbol *atom_getSymbolOrDollarSymbol (t_atom *a)
 {
     if ((IS_SYMBOL (a) || IS_DOLLARSYMBOL (a))) { return GET_SYMBOL (a); }
     else { 
@@ -121,7 +121,7 @@ PD_LOCAL t_symbol *atom_getSymbolOrDollarSymbol (t_atom *a)
     }
 }
 
-PD_LOCAL t_symbol *atom_getSymbolOrDollarSymbolAtIndex (int n, int argc, t_atom *argv)
+t_symbol *atom_getSymbolOrDollarSymbolAtIndex (int n, int argc, t_atom *argv)
 {
     if (n >= 0 && n < argc) { return atom_getSymbolOrDollarSymbol (argv + n); }
     else {
@@ -133,17 +133,17 @@ PD_LOCAL t_symbol *atom_getSymbolOrDollarSymbolAtIndex (int n, int argc, t_atom 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_atomtype atom_getType (t_atom *a)
+t_atomtype atom_getType (t_atom *a)
 {
     return a->a_type;
 }
 
-PD_LOCAL int atom_typesAreEquals (t_atom *a, t_atom *b)
+int atom_typesAreEquals (t_atom *a, t_atom *b)
 {
     return (atom_getType (a) == atom_getType (b));
 }
 
-PD_LOCAL int atom_areEquals (t_atom *a, t_atom *b)
+int atom_areEquals (t_atom *a, t_atom *b)
 {
     return (atom_sortCompare ((const void *)a, (const void *)b) == 0);
 }
@@ -152,17 +152,17 @@ PD_LOCAL int atom_areEquals (t_atom *a, t_atom *b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void atom_copyAtom (t_atom *src, t_atom *dest)
+void atom_copyAtom (t_atom *src, t_atom *dest)
 {
     (*dest) = (*src);
 }
 
-PD_LOCAL void atom_copyAtoms (t_atom *src, int m, t_atom *dest, int n)
+void atom_copyAtoms (t_atom *src, int m, t_atom *dest, int n)
 {
     int size = PD_MIN (m, n); int i; for (i = 0; i < size; i++) { dest[i] = src[i]; }
 }
 
-PD_LOCAL int atom_copyAtomsExpandedWithArguments (t_atom *src,
+int atom_copyAtomsExpandedWithArguments (t_atom *src,
     int m,
     t_atom *dest,
     int n,
@@ -195,7 +195,7 @@ PD_LOCAL int atom_copyAtomsExpandedWithArguments (t_atom *src,
     return expanded;
 }
 
-PD_LOCAL int atom_copyAtomsExpanded (t_atom *src, int m, t_atom *dest, int n, t_glist *glist)
+int atom_copyAtomsExpanded (t_atom *src, int m, t_atom *dest, int n, t_glist *glist)
 {
     t_environment *e = NULL;
     
@@ -218,7 +218,7 @@ PD_LOCAL int atom_copyAtomsExpanded (t_atom *src, int m, t_atom *dest, int n, t_
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error atom_withStringUnzeroed (t_atom *a, const char *s, int size)
+t_error atom_withStringUnzeroed (t_atom *a, const char *s, int size)
 {
     t_buffer *t = buffer_new();
     
@@ -234,7 +234,7 @@ PD_LOCAL t_error atom_withStringUnzeroed (t_atom *a, const char *s, int size)
     if (IS_NULL (a)) { return PD_ERROR; } else { return PD_ERROR_NONE; }
 }
 
-PD_LOCAL t_error atom_toString (t_atom *a, char *dest, int size)
+t_error atom_toString (t_atom *a, char *dest, int size)
 {
     t_error err = PD_ERROR;
     
@@ -257,7 +257,7 @@ PD_LOCAL t_error atom_toString (t_atom *a, char *dest, int size)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL char *atom_atomsToString (int argc, t_atom *argv)
+char *atom_atomsToString (int argc, t_atom *argv)
 {
     char *s = NULL;
     t_buffer *t = buffer_new();
@@ -277,7 +277,7 @@ PD_LOCAL char *atom_atomsToString (int argc, t_atom *argv)
 
 /* < https://en.wikipedia.org/wiki/Fisher-Yates_shuffle > */
 
-PD_LOCAL void atom_shuffle (int argc, t_atom *argv)
+void atom_shuffle (int argc, t_atom *argv)
 {
     static int once = 0; static t_rand48 seed = 0;         /* Static. */
     
@@ -327,7 +327,7 @@ static int atom_sortCompare (const void *p1, const void *p2)
     return 0;
 }
 
-PD_LOCAL void atom_sort (int argc, t_atom *argv)
+void atom_sort (int argc, t_atom *argv)
 {
     if (argc) { qsort (argv, argc, sizeof (t_atom), atom_sortCompare); }
 }

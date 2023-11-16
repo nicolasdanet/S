@@ -26,7 +26,7 @@ typedef struct _undoduplicate {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undoduplicate_new (void)
+t_undoaction *undoduplicate_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undoduplicate_class);
     
@@ -42,7 +42,7 @@ PD_LOCAL t_undoaction *undoduplicate_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undoduplicate_setup (void)
+void undoduplicate_setup (void)
 {
     t_class *c = NULL;
     
@@ -56,7 +56,7 @@ PD_LOCAL void undoduplicate_setup (void)
     undoduplicate_class = c;
 }
 
-PD_LOCAL void undoduplicate_destroy (void)
+void undoduplicate_destroy (void)
 {
     class_free (undoduplicate_class);
 }

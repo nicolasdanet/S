@@ -14,25 +14,25 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    string_addAtom                          (char *dest, size_t size, t_atom *a);
+t_error    string_addAtom                          (char *dest, size_t size, t_atom *a);
 
-PD_LOCAL t_error    string_copy                             (char *dest, size_t size, const char *src);
-PD_LOCAL t_error    string_add                              (char *dest, size_t size, const char *src);
-PD_LOCAL t_error    string_append                           (char *dest, size_t size, const char *src, int n);
-PD_LOCAL t_error    string_sprintf                          (char *dest, size_t size, const char *fmt, ...);
+t_error    string_copy                             (char *dest, size_t size, const char *src);
+t_error    string_add                              (char *dest, size_t size, const char *src);
+t_error    string_append                           (char *dest, size_t size, const char *src, int n);
+t_error    string_sprintf                          (char *dest, size_t size, const char *fmt, ...);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 #if ( PD_WITH_DEBUG ) || defined ( PD_BUILDING_TESTS )
 
-PD_LOCAL t_error    string_addSprintf                       (char *dest, size_t size, const char *fmt, ...);
+t_error    string_addSprintf                       (char *dest, size_t size, const char *fmt, ...);
 
 #endif
 
 #if defined ( PD_BUILDING_TESTS )
 
-PD_LOCAL void       string_clear                            (char *dest, size_t size);
+void       string_clear                            (char *dest, size_t size);
 
 #endif
 
@@ -40,44 +40,44 @@ PD_LOCAL void       string_clear                            (char *dest, size_t 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL uint64_t   string_hash                             (const char *s);
+uint64_t   string_hash                             (const char *s);
 
-PD_LOCAL int    string_startWith                            (const char *s, const char *isStart);
-PD_LOCAL int    string_endWith                              (const char *s, const char *isEnd);
-PD_LOCAL int    string_contains                             (const char *s, const char *isContained);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_LOCAL int    string_containsOccurrenceAtStart            (const char *s, const char *chars);
-PD_LOCAL int    string_indexOfFirstOccurrenceFromEnd        (const char *s, const char *chars);
+int    string_startWith                            (const char *s, const char *isStart);
+int    string_endWith                              (const char *s, const char *isEnd);
+int    string_contains                             (const char *s, const char *isContained);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   string_replaceCharacter                     (char *s, char toBeReplaced, char c);
-PD_LOCAL void   string_removeCharacter                      (char *s, char toBeRemoved);
+int    string_containsOccurrenceAtStart            (const char *s, const char *chars);
+int    string_indexOfFirstOccurrenceFromEnd        (const char *s, const char *chars);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    string_startWithDollarNumber                (const char *s);
-PD_LOCAL int    string_isDollarNumber                       (const char *s);
+void   string_replaceCharacter                     (char *s, char toBeReplaced, char c);
+void   string_removeCharacter                      (char *s, char toBeRemoved);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    char_isSemicolonOrComma                     (char c);
-PD_LOCAL int    char_isBackslash                            (char c);
-PD_LOCAL int    char_isWhitespaceOrNewlineOrTabulation      (char c);
-PD_LOCAL int    char_isNumericOrDot                         (char c);
-PD_LOCAL int    char_isAlphabeticLowercase                  (char c);
-PD_LOCAL int    char_isAlphanumericOrUnderscore             (char c);
-PD_LOCAL int    char_isAlphanumericLowercaseOrUnderscore    (char c);
+int    string_startWithDollarNumber                (const char *s);
+int    string_isDollarNumber                       (const char *s);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int    char_isSemicolonOrComma                     (char c);
+int    char_isBackslash                            (char c);
+int    char_isWhitespaceOrNewlineOrTabulation      (char c);
+int    char_isNumericOrDot                         (char c);
+int    char_isAlphabeticLowercase                  (char c);
+int    char_isAlphanumericOrUnderscore             (char c);
+int    char_isAlphanumericLowercaseOrUnderscore    (char c);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

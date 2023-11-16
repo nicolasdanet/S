@@ -44,7 +44,7 @@ static void undoconnect_redo (t_undoconnect *z, t_symbol *s, int argc, t_atom *a
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undoconnect_new (t_object *src, int m, t_object *dest, int n)
+t_undoaction *undoconnect_new (t_object *src, int m, t_object *dest, int n)
 {
     t_undoaction *x  = (t_undoaction *)pd_new (undoconnect_class);
     t_undoconnect *z = (t_undoconnect *)x;
@@ -68,7 +68,7 @@ PD_LOCAL t_undoaction *undoconnect_new (t_object *src, int m, t_object *dest, in
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undoconnect_setup (void)
+void undoconnect_setup (void)
 {
     t_class *c = NULL;
     
@@ -85,7 +85,7 @@ PD_LOCAL void undoconnect_setup (void)
     undoconnect_class = c;
 }
 
-PD_LOCAL void undoconnect_destroy (void)
+void undoconnect_destroy (void)
 {
     class_free (undoconnect_class);
 }

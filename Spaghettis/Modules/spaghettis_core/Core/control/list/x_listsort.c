@@ -59,7 +59,7 @@ static void listsort_anything (t_listsort *x, t_symbol *s, int argc, t_atom *arg
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listsort_new (t_symbol *s, int argc, t_atom *argv)
+void *listsort_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listsort *x = (t_listsort *)pd_new (listsort_class);
     
@@ -74,7 +74,7 @@ PD_LOCAL void *listsort_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listsort_setup (void)
+void listsort_setup (void)
 {
     t_class *c = NULL;
     
@@ -94,7 +94,7 @@ PD_LOCAL void listsort_setup (void)
     listsort_class = c;
 }
 
-PD_LOCAL void listsort_destroy (void)
+void listsort_destroy (void)
 {
     class_free (listsort_class);
 }

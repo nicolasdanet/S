@@ -44,7 +44,7 @@ static t_error midi_getDevicesList (t_deviceslist *l, int reload)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void midi_open (void)
+void midi_open (void)
 {
     t_devices midi; devices_initAsMidi (&midi);
      
@@ -52,7 +52,7 @@ PD_LOCAL void midi_open (void)
     midi_openNative (&midi);
 }
 
-PD_LOCAL void midi_close (void)
+void midi_close (void)
 {
     midi_closeNative();
 }
@@ -61,12 +61,12 @@ PD_LOCAL void midi_close (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void midi_getDevices (t_devices *p)
+void midi_getDevices (t_devices *p)
 {
     deviceslist_getDevices (&midi_devices, p);
 }
 
-PD_LOCAL void midi_setDevices (t_devices *p, int setParameters)
+void midi_setDevices (t_devices *p, int setParameters)
 {
     t_deviceslist old; deviceslist_copy (&old, &midi_devices);
     
@@ -85,7 +85,7 @@ PD_LOCAL void midi_setDevices (t_devices *p, int setParameters)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void midi_rescanDevices (void)
+void midi_rescanDevices (void)
 {
     t_deviceslist l; t_error err = midi_getDevicesList (&l, 1);
     
@@ -96,7 +96,7 @@ PD_FORCE void midi_rescanDevices (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int midi_deviceAsNumber (int isOutput, t_symbol *name)
+int midi_deviceAsNumber (int isOutput, t_symbol *name)
 {
     t_deviceslist l;
     
@@ -110,7 +110,7 @@ PD_LOCAL int midi_deviceAsNumber (int isOutput, t_symbol *name)
     return -1;
 }
 
-PD_LOCAL t_error midi_deviceAsString (int isOutput, int k, char *dest, size_t size)
+t_error midi_deviceAsString (int isOutput, int k, char *dest, size_t size)
 {
     t_error err = PD_ERROR;
     t_symbol *t = midi_deviceAsSymbol (isOutput, k);
@@ -122,7 +122,7 @@ PD_LOCAL t_error midi_deviceAsString (int isOutput, int k, char *dest, size_t si
     return err;
 }
 
-PD_LOCAL t_symbol *midi_deviceAsSymbol (int isOutput, int k)
+t_symbol *midi_deviceAsSymbol (int isOutput, int k)
 {
     t_deviceslist l;
     

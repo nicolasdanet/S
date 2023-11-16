@@ -116,7 +116,7 @@ static void *uzi_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void uzi_setup (void)
+void uzi_setup (void)
 {
     t_class *c = NULL;
     
@@ -140,7 +140,7 @@ PD_LOCAL void uzi_setup (void)
     uzi_class = c;
 }
 
-PD_LOCAL void uzi_destroy (void)
+void uzi_destroy (void)
 {
     class_free (uzi_class);
 }

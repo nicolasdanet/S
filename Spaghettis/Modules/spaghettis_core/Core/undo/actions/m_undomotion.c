@@ -30,7 +30,7 @@ typedef struct _undomotion {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undomotion_collapse (t_undoaction *kept, t_undoaction *deleted)
+void undomotion_collapse (t_undoaction *kept, t_undoaction *deleted)
 {
     t_undomotion *a = (t_undomotion *)kept;
     t_undomotion *b = (t_undomotion *)deleted;
@@ -64,7 +64,7 @@ static void undomotion_redo (t_undomotion *z, t_symbol *s, int argc, t_atom *arg
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undomotion_new (t_object *o, int oldX, int oldY, int newX, int newY)
+t_undoaction *undomotion_new (t_object *o, int oldX, int oldY, int newX, int newY)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undomotion_class);
     t_undomotion *z = (t_undomotion *)x;
@@ -86,7 +86,7 @@ PD_LOCAL t_undoaction *undomotion_new (t_object *o, int oldX, int oldY, int newX
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undomotion_setup (void)
+void undomotion_setup (void)
 {
     t_class *c = NULL;
     
@@ -103,7 +103,7 @@ PD_LOCAL void undomotion_setup (void)
     undomotion_class = c;
 }
 
-PD_LOCAL void undomotion_destroy (void)
+void undomotion_destroy (void)
 {
     class_free (undomotion_class);
 }

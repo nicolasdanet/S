@@ -30,7 +30,7 @@ typedef struct _undodisconnect {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int undodisconnect_match (t_undoaction *a, t_id u, t_items *i, t_items *o)
+int undodisconnect_match (t_undoaction *a, t_id u, t_items *i, t_items *o)
 {
     if (undoaction_getType (a) == UNDO_DISCONNECT) {
     //
@@ -62,7 +62,7 @@ static void undodisconnect_redo (t_undodisconnect *z, t_symbol *s, int argc, t_a
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undodisconnect_new (t_object *src, int m, t_object *dest, int n)
+t_undoaction *undodisconnect_new (t_object *src, int m, t_object *dest, int n)
 {
     t_undoaction *x     = (t_undoaction *)pd_new (undodisconnect_class);
     t_undodisconnect *z = (t_undodisconnect *)x;
@@ -86,7 +86,7 @@ PD_LOCAL t_undoaction *undodisconnect_new (t_object *src, int m, t_object *dest,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undodisconnect_setup (void)
+void undodisconnect_setup (void)
 {
     t_class *c = NULL;
     
@@ -103,7 +103,7 @@ PD_LOCAL void undodisconnect_setup (void)
     undodisconnect_class = c;
 }
 
-PD_LOCAL void undodisconnect_destroy (void)
+void undodisconnect_destroy (void)
 {
     class_free (undodisconnect_class);
 }

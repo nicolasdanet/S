@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL int gui_updateValue (t_gui *x, t_float f, int notify)
+int gui_updateValue (t_gui *x, t_float f, int notify)
 {
     if (x->x_value != f) {
     //
@@ -32,7 +32,7 @@ PD_LOCAL int gui_updateValue (t_gui *x, t_float f, int notify)
     return 0;
 }
 
-PD_LOCAL int gui_updateState (t_gui *x, int n, int notify)
+int gui_updateState (t_gui *x, int n, int notify)
 {
     int t = (n != 0);
     
@@ -53,7 +53,7 @@ PD_LOCAL int gui_updateState (t_gui *x, int n, int notify)
     return 0;
 }
 
-PD_LOCAL void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
+void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
 {
     t_float min = x->x_minimum;
     t_float max = x->x_maximum;
@@ -75,7 +75,7 @@ PD_LOCAL void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int n
     }
 }
 
-PD_LOCAL void gui_updateInterval (t_gui *x, t_float interval, int notify)
+void gui_updateInterval (t_gui *x, t_float interval, int notify)
 {
     t_float step = PD_MAX (0.0, interval);
     
@@ -92,7 +92,7 @@ PD_LOCAL void gui_updateInterval (t_gui *x, t_float interval, int notify)
     }
 }
 
-PD_LOCAL void gui_updateNonZero (t_gui *x, t_float f, int notify)
+void gui_updateNonZero (t_gui *x, t_float f, int notify)
 {
     if (x->x_nonZero != f) {
     //
@@ -107,7 +107,7 @@ PD_LOCAL void gui_updateNonZero (t_gui *x, t_float f, int notify)
     }
 }
 
-PD_LOCAL void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
+void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
 {
     if (x->x_isLogarithmic != isLogarithmic) {
     //
@@ -122,7 +122,7 @@ PD_LOCAL void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
     }
 }
 
-PD_LOCAL void gui_updateMultiple (t_gui *x, int isMultiple, int notify)
+void gui_updateMultiple (t_gui *x, int isMultiple, int notify)
 {
     if (x->x_isMultiple != isMultiple) {
     //
@@ -137,7 +137,7 @@ PD_LOCAL void gui_updateMultiple (t_gui *x, int isMultiple, int notify)
     }
 }
 
-PD_LOCAL void gui_updateOrientation (t_gui *x, int isVertical, int notify)
+void gui_updateOrientation (t_gui *x, int isVertical, int notify)
 {
     if (x->x_isVertical != isVertical) {
     //
@@ -154,7 +154,7 @@ PD_LOCAL void gui_updateOrientation (t_gui *x, int isVertical, int notify)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
+void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
 {
     if (x->x_isVertical != isVertical) {
     //
@@ -176,7 +176,7 @@ PD_LOCAL void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
 
 #endif
 
-PD_LOCAL void gui_updateFlashed (t_gui *x, int n, int notify)
+void gui_updateFlashed (t_gui *x, int n, int notify)
 {
     int t = (n != 0);
     
@@ -193,7 +193,7 @@ PD_LOCAL void gui_updateFlashed (t_gui *x, int n, int notify)
     }
 }
 
-PD_LOCAL void gui_updateEmbedded (t_gui *x, int n, int notify)
+void gui_updateEmbedded (t_gui *x, int n, int notify)
 {
     int t = (n != 0);
     
@@ -210,7 +210,7 @@ PD_LOCAL void gui_updateEmbedded (t_gui *x, int n, int notify)
     }
 }
 
-PD_LOCAL void gui_updateTime (t_gui *x, int n, int notify)
+void gui_updateTime (t_gui *x, int n, int notify)
 {
     int t = PD_CLAMP (n, GUI_TIME_MINIMUM, GUI_TIME_MAXIMUM);
     
@@ -227,7 +227,7 @@ PD_LOCAL void gui_updateTime (t_gui *x, int n, int notify)
     }
 }
 
-PD_LOCAL void gui_updateDigits (t_gui *x, int digits, int notify)
+void gui_updateDigits (t_gui *x, int digits, int notify)
 {
     int n = PD_CLAMP (digits, GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM);
     
@@ -244,7 +244,7 @@ PD_LOCAL void gui_updateDigits (t_gui *x, int digits, int notify)
     }
 }
 
-PD_LOCAL void gui_updateButtons (t_gui *x, int buttons, int notify)
+void gui_updateButtons (t_gui *x, int buttons, int notify)
 {
     int n = PD_CLAMP (buttons, GUI_BUTTONS_MINIMUM, GUI_BUTTONS_MAXIMUM);
 
@@ -261,7 +261,7 @@ PD_LOCAL void gui_updateButtons (t_gui *x, int buttons, int notify)
     }
 }
 
-PD_LOCAL void gui_updateWidth (t_gui *x, int width, int notify)
+void gui_updateWidth (t_gui *x, int width, int notify)
 {
     int n = PD_CLAMP (width, GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM);
     
@@ -278,7 +278,7 @@ PD_LOCAL void gui_updateWidth (t_gui *x, int width, int notify)
     }
 }
 
-PD_LOCAL void gui_updateHeight (t_gui *x, int height, int notify)
+void gui_updateHeight (t_gui *x, int height, int notify)
 {
     int n = PD_CLAMP (height, GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM);
     
@@ -304,7 +304,7 @@ PD_LOCAL void gui_updateHeight (t_gui *x, int height, int notify)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flags)
+void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flags)
 {
     t_gui *x = cast_gui (o);
     
@@ -439,7 +439,7 @@ PD_LOCAL void gui_getParameters (t_object *o, core::Group& group, const Tags& t,
     }
 }
 
-PD_LOCAL bool gui_setParameters (t_object *o, const core::Group& group, int flags)
+bool gui_setParameters (t_object *o, const core::Group& group, int flags)
 {
     t_gui *x = (t_gui *)o;
     

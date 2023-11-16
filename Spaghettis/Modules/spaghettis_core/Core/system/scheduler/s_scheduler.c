@@ -41,7 +41,7 @@ static t_float64Atomic  scheduler_systime;          /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL double scheduler_getRealTimeInSeconds (void)
+double scheduler_getRealTimeInSeconds (void)
 {
     static t_time start;                    /* Static. */
     t_time now;
@@ -61,27 +61,27 @@ PD_LOCAL double scheduler_getRealTimeInSeconds (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void scheduler_setLogicalTime (t_systime t)
+void scheduler_setLogicalTime (t_systime t)
 {
     PD_ATOMIC_FLOAT64_WRITE (t, &scheduler_systime);
 }
 
-PD_LOCAL t_systime scheduler_getLogicalTime (void)
+t_systime scheduler_getLogicalTime (void)
 {
     return PD_ATOMIC_FLOAT64_READ (&scheduler_systime);
 }
 
-PD_LOCAL t_systime scheduler_getLogicalTimeAfter (double ms)
+t_systime scheduler_getLogicalTimeAfter (double ms)
 {
     return (scheduler_getLogicalTime() + ms);
 }
 
-PD_LOCAL double scheduler_getMillisecondsSince (t_systime systime)
+double scheduler_getMillisecondsSince (t_systime systime)
 {
     return (scheduler_getLogicalTime() - systime);
 }
 
-PD_LOCAL double scheduler_getUnitsSince (t_systime systime, double unit, int isSamples)
+double scheduler_getUnitsSince (t_systime systime, double unit, int isSamples)
 {
     double d = 1.0; double elapsed = scheduler_getMillisecondsSince (systime);
     
@@ -96,7 +96,7 @@ PD_LOCAL double scheduler_getUnitsSince (t_systime systime, double unit, int isS
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_systime scheduler_addMillisecondsToLogicalTime (t_systime t, double ms)
+t_systime scheduler_addMillisecondsToLogicalTime (t_systime t, double ms)
 {
     return (t + ms);
 }
@@ -105,21 +105,21 @@ PD_LOCAL t_systime scheduler_addMillisecondsToLogicalTime (t_systime t, double m
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void scheduler_needToExit (void)
+void scheduler_needToExit (void)
 {
     PD_ATOMIC_INT32_WRITE (SCHEDULER_QUIT, &scheduler_quit);
 }
 
 #if 0
 
-PD_LOCAL void scheduler_needToExitWithError (void)
+void scheduler_needToExitWithError (void)
 {
     PD_ATOMIC_INT32_WRITE (SCHEDULER_ERROR, &scheduler_quit);
 }
 
 #endif
 
-PD_LOCAL int scheduler_isExiting (void)
+int scheduler_isExiting (void)
 {
     int n = PD_ATOMIC_INT32_READ (&scheduler_quit); return (n == SCHEDULER_QUIT || n == SCHEDULER_ERROR);
 }
@@ -204,7 +204,7 @@ static void scheduler_mainLoop (void)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_error scheduler_main (void)
+t_error scheduler_main (void)
 {
     midi_open();
     

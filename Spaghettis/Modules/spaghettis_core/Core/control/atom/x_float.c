@@ -95,7 +95,7 @@ static void *float_newByRegular (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void float_setup (void)
+void float_setup (void)
 {
     t_class *c = NULL;
     
@@ -120,7 +120,7 @@ PD_LOCAL void float_setup (void)
     float_class = c;
 }
 
-PD_LOCAL void float_destroy (void)
+void float_destroy (void)
 {
     class_free (float_class);
 }

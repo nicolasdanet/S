@@ -133,7 +133,7 @@ static void *vu_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void vu_setup (void)
+void vu_setup (void)
 {
     t_class *c = NULL;
     
@@ -159,7 +159,7 @@ PD_LOCAL void vu_setup (void)
     vu_class = c;
 }
 
-PD_LOCAL void vu_destroy (void)
+void vu_destroy (void)
 {
     class_free (vu_class);
 }

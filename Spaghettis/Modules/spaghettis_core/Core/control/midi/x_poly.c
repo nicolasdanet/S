@@ -228,7 +228,7 @@ static void poly_free (t_poly *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void poly_setup (void)
+void poly_setup (void)
 {
     t_class *c = NULL;
     
@@ -254,7 +254,7 @@ PD_LOCAL void poly_setup (void)
     poly_class = c;
 }
 
-PD_LOCAL void poly_destroy (void)
+void poly_destroy (void)
 {
     class_free (poly_class);
 }

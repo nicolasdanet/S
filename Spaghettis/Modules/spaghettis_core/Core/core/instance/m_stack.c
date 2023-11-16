@@ -13,14 +13,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_loadEnd     (t_glist *);
-PD_LOCAL void glist_undoEnable  (t_glist *);
+void glist_loadEnd     (t_glist *);
+void glist_undoEnable  (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_stackPush (t_glist *x)
+void instance_stackPush (t_glist *x)
 {
     t_stackelement *e = instance_get()->pd_stack.s_stack + (instance_get()->pd_stack.s_stackIndex++);
     
@@ -35,7 +35,7 @@ PD_LOCAL void instance_stackPush (t_glist *x)
     instance_contextSetCurrent (x);
 }
 
-PD_LOCAL void instance_stackPop (t_glist *x)
+void instance_stackPop (t_glist *x)
 {
     t_stackelement *e = instance_get()->pd_stack.s_stack + (--instance_get()->pd_stack.s_stackIndex);
     
@@ -47,7 +47,7 @@ PD_LOCAL void instance_stackPop (t_glist *x)
     instance_get()->pd_stack.s_contextPopped = x;
 }
 
-PD_LOCAL void instance_stackPopPatch (t_glist *glist)
+void instance_stackPopPatch (t_glist *glist)
 {
     instance_stackPop (glist);
     glist_inletSort (glist);

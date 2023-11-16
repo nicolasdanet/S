@@ -87,7 +87,7 @@ static void *multiply_tilde_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void multiply_tilde_setup (void)
+void multiply_tilde_setup (void)
 {
     multiply_tilde_class = class_new (sym___asterisk____tilde__,
                                     (t_newmethod)multiply_tilde_new,
@@ -120,7 +120,7 @@ PD_LOCAL void multiply_tilde_setup (void)
     class_setHelpName (multiplyScalar_tilde_class, sym_arithmetic__tilde__);
 }
 
-PD_LOCAL void multiply_tilde_destroy (void)
+void multiply_tilde_destroy (void)
 {
     class_free (multiply_tilde_class);
     class_free (multiplyScalar_tilde_class);

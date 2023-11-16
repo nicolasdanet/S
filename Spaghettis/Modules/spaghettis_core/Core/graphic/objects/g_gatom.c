@@ -164,7 +164,7 @@ static void gatom_makeObjectProceed (t_glist *glist, t_gatom *x, int argc, t_ato
     glist_objectAdd (glist, cast_object (x));
 }
 
-PD_LOCAL void gatom_makeObject (t_glist *glist, t_symbol *dummy, int argc, t_atom *argv)
+void gatom_makeObject (t_glist *glist, t_symbol *dummy, int argc, t_atom *argv)
 {
     t_gatom *x  = (t_gatom *)pd_new (gatom_class);
     
@@ -179,7 +179,7 @@ PD_LOCAL void gatom_makeObject (t_glist *glist, t_symbol *dummy, int argc, t_ato
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void gatom_setup (void)
+void gatom_setup (void)
 {
     t_class *c = NULL;
     
@@ -210,7 +210,7 @@ PD_LOCAL void gatom_setup (void)
     gatom_class = c;
 }
 
-PD_LOCAL void gatom_destroy (void)
+void gatom_destroy (void)
 {
     class_free (gatom_class);
 }

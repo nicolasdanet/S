@@ -187,7 +187,7 @@ static void delwrite_tilde_free (t_delwrite_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void delwrite_tilde_setup (void)
+void delwrite_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -208,7 +208,7 @@ PD_LOCAL void delwrite_tilde_setup (void)
     delwrite_tilde_class = c;
 }
 
-PD_LOCAL void delwrite_tilde_destroy (void)
+void delwrite_tilde_destroy (void)
 {
     class_free (delwrite_tilde_class);
 }

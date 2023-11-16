@@ -168,7 +168,7 @@ static void *timestamp_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void timestamp_setup (void)
+void timestamp_setup (void)
 {
     t_class *c = NULL;
     
@@ -195,7 +195,7 @@ PD_LOCAL void timestamp_setup (void)
     timestamp_class = c;
 }
 
-PD_LOCAL void timestamp_destroy (void)
+void timestamp_destroy (void)
 {
     class_free (timestamp_class);
 }

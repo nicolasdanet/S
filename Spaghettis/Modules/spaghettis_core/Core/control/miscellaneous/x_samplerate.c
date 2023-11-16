@@ -49,7 +49,7 @@ static void *samplerate_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void samplerate_setup (void)
+void samplerate_setup (void)
 {
     t_class *c = NULL;
     
@@ -65,7 +65,7 @@ PD_LOCAL void samplerate_setup (void)
     samplerate_class = c;
 }
 
-PD_LOCAL void samplerate_destroy (void)
+void samplerate_destroy (void)
 {
     class_free (samplerate_class);
 }

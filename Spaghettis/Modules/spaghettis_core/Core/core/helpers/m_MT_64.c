@@ -117,7 +117,7 @@ static void init_genrand64ByArray (MTState64 *x, long key_length, uint64_t *key)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL MTState64 *genrand64_new (void)
+MTState64 *genrand64_new (void)
 {
     MTState64 *x = NULL;
     
@@ -130,7 +130,7 @@ PD_LOCAL MTState64 *genrand64_new (void)
 
 #if defined ( PD_BUILDING_TESTS )
 
-PD_LOCAL MTState64 *genrand64_newByArray (long argc, uint64_t *argv)
+MTState64 *genrand64_newByArray (long argc, uint64_t *argv)
 {
     MTState64 *x = NULL;
     
@@ -143,14 +143,14 @@ PD_LOCAL MTState64 *genrand64_newByArray (long argc, uint64_t *argv)
 
 #endif
 
-PD_LOCAL void genrand64_free (MTState64 *x)
+void genrand64_free (MTState64 *x)
 {
     if (x) {
         PD_MEMORY_FREE (x);
     }
 }
 
-PD_LOCAL double genrand64_real2 (MTState64 *x)
+double genrand64_real2 (MTState64 *x)
 {
     return (genrand64_int64 (x) >> 11) * (1.0 / 9007199254740992.0);
 }
@@ -158,7 +158,7 @@ PD_LOCAL double genrand64_real2 (MTState64 *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL uint64_t genrand64_int64 (MTState64 *x)
+uint64_t genrand64_int64 (MTState64 *x)
 {
     uint64_t y;
     static const uint64_t mag01[2] = { 0ULL, PIZ_MT64_A };      /* Static. */

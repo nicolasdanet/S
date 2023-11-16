@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void inmidi_noteOn (int port, int channel, int pitch, int velocity)
+void inmidi_noteOn (int port, int channel, int pitch, int velocity)
 {
     if (symbol_hasThingQuiet (sym__notein)) {
     //
@@ -28,7 +28,7 @@ PD_LOCAL void inmidi_noteOn (int port, int channel, int pitch, int velocity)
     }
 }
 
-PD_LOCAL void inmidi_polyPressure (int port, int channel, int pitch, int value)
+void inmidi_polyPressure (int port, int channel, int pitch, int value)
 {
     if (symbol_hasThingQuiet (sym__polytouchin)) {
     //
@@ -43,7 +43,7 @@ PD_LOCAL void inmidi_polyPressure (int port, int channel, int pitch, int value)
     }
 }
 
-PD_LOCAL void inmidi_controlChange (int port, int channel, int control, int value)
+void inmidi_controlChange (int port, int channel, int control, int value)
 {
     if (symbol_hasThingQuiet (sym__ctlin)) {
     //
@@ -58,7 +58,7 @@ PD_LOCAL void inmidi_controlChange (int port, int channel, int control, int valu
     }
 }
 
-PD_LOCAL void inmidi_programChange (int port, int channel, int value)
+void inmidi_programChange (int port, int channel, int value)
 {
     if (symbol_hasThingQuiet (sym__pgmin)) {
     //
@@ -72,7 +72,7 @@ PD_LOCAL void inmidi_programChange (int port, int channel, int value)
     }
 }
 
-PD_LOCAL void inmidi_afterTouch (int port, int channel, int value)
+void inmidi_afterTouch (int port, int channel, int value)
 {
     if (symbol_hasThingQuiet (sym__touchin)) {
     //
@@ -86,7 +86,7 @@ PD_LOCAL void inmidi_afterTouch (int port, int channel, int value)
     }
 }
 
-PD_LOCAL void inmidi_pitchBend (int port, int channel, int value)
+void inmidi_pitchBend (int port, int channel, int value)
 {
     if (symbol_hasThingQuiet (sym__bendin)) {
     //
@@ -100,7 +100,7 @@ PD_LOCAL void inmidi_pitchBend (int port, int channel, int value)
     }
 }
 
-PD_LOCAL void inmidi_sysex (int port, int argc, t_atom *argv)
+void inmidi_sysex (int port, int argc, t_atom *argv)
 {
     if (symbol_hasThingQuiet (sym__sysexin)) {
     if (symbol_hasThingQuiet (sym__sysexportin)) {
@@ -112,7 +112,7 @@ PD_LOCAL void inmidi_sysex (int port, int argc, t_atom *argv)
     }
 }
 
-PD_LOCAL void inmidi_system (int port, int argc, t_atom *argv)
+void inmidi_system (int port, int argc, t_atom *argv)
 {
     if (symbol_hasThingQuiet (sym__midisystemin)) {
     if (symbol_hasThingQuiet (sym__midisystemportin)) {

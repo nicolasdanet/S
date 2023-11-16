@@ -26,7 +26,7 @@ typedef struct _undoencapsulate {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undoencapsulate_new (void)
+t_undoaction *undoencapsulate_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undoencapsulate_class);
     
@@ -42,7 +42,7 @@ PD_LOCAL t_undoaction *undoencapsulate_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undoencapsulate_setup (void)
+void undoencapsulate_setup (void)
 {
     t_class *c = NULL;
     
@@ -56,7 +56,7 @@ PD_LOCAL void undoencapsulate_setup (void)
     undoencapsulate_class = c;
 }
 
-PD_LOCAL void undoencapsulate_destroy (void)
+void undoencapsulate_destroy (void)
 {
     class_free (undoencapsulate_class);
 }

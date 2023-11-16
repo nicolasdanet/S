@@ -138,7 +138,7 @@ static void *throw_tilde_new (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void throw_tilde_setup (void)
+void throw_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -160,7 +160,7 @@ PD_LOCAL void throw_tilde_setup (void)
     throw_tilde_class = c;
 }
 
-PD_LOCAL void throw_tilde_destroy (void)
+void throw_tilde_destroy (void)
 {
     class_free (throw_tilde_class);
 }

@@ -41,7 +41,7 @@ static void listlength_anything (t_listlength *x, t_symbol *s, int argc, t_atom 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listlength_new (t_symbol *s, int argc, t_atom *argv)
+void *listlength_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listlength *x = (t_listlength *)pd_new (listlength_class);
     
@@ -56,7 +56,7 @@ PD_LOCAL void *listlength_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listlength_setup (void)
+void listlength_setup (void)
 {
     t_class *c = NULL;
     
@@ -76,7 +76,7 @@ PD_LOCAL void listlength_setup (void)
     listlength_class = c;
 }
 
-PD_LOCAL void listlength_destroy (void)
+void listlength_destroy (void)
 {
     class_free (listlength_class);
 }

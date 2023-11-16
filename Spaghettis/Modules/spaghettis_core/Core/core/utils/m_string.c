@@ -41,7 +41,7 @@ static t_error string_appendProceed (char *dest, size_t size, const char *src, i
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error string_copy (char *dest, size_t size, const char *src)
+t_error string_copy (char *dest, size_t size, const char *src)
 {
     size_t s = strlen (src);
     size_t n = PD_MIN (s, size - 1);
@@ -56,12 +56,12 @@ PD_LOCAL t_error string_copy (char *dest, size_t size, const char *src)
     }
 }
 
-PD_LOCAL t_error string_add (char *dest, size_t size, const char *src)
+t_error string_add (char *dest, size_t size, const char *src)
 {
     return string_appendProceed (dest, size, src, -1);
 }
 
-PD_LOCAL t_error string_append (char *dest, size_t size, const char *src, int n)
+t_error string_append (char *dest, size_t size, const char *src, int n)
 {
     if (n > 0) { return string_appendProceed (dest, size, src, n); }
     else if (n < 0) {
@@ -71,7 +71,7 @@ PD_LOCAL t_error string_append (char *dest, size_t size, const char *src, int n)
     return PD_ERROR_NONE;
 }
 
-PD_LOCAL t_error string_sprintf (char *dest, size_t size, const char *format, ...)
+t_error string_sprintf (char *dest, size_t size, const char *format, ...)
 {
     int t;
     va_list args;
@@ -88,7 +88,7 @@ PD_LOCAL t_error string_sprintf (char *dest, size_t size, const char *format, ..
 
 #if ( PD_WITH_DEBUG ) || defined ( PD_BUILDING_TESTS )
 
-PD_LOCAL t_error string_addSprintf (char *dest, size_t size, const char *format, ...)
+t_error string_addSprintf (char *dest, size_t size, const char *format, ...)
 {
     int t;
     va_list args;
@@ -108,7 +108,7 @@ PD_LOCAL t_error string_addSprintf (char *dest, size_t size, const char *format,
 
 #endif
 
-PD_LOCAL t_error string_addAtom (char *dest, size_t size, t_atom *a)
+t_error string_addAtom (char *dest, size_t size, t_atom *a)
 {
     t_error err = PD_ERROR_NONE;
     
@@ -127,7 +127,7 @@ PD_LOCAL t_error string_addAtom (char *dest, size_t size, t_atom *a)
 
 #if defined ( PD_BUILDING_TESTS )
 
-PD_LOCAL void string_clear (char *dest, size_t size)
+void string_clear (char *dest, size_t size)
 {
     (void)size; dest[0] = 0;
 }
@@ -140,7 +140,7 @@ PD_LOCAL void string_clear (char *dest, size_t size)
 
 /* < http://www.cse.yorku.ca/~oz/hash.html > */
 
-PD_LOCAL uint64_t string_hash (const char *s)
+uint64_t string_hash (const char *s)
 {
     uint64_t hash = 5381;
     int c;
@@ -154,7 +154,7 @@ PD_LOCAL uint64_t string_hash (const char *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int string_startWith (const char *s, const char *isStartWith)
+int string_startWith (const char *s, const char *isStartWith)
 {
     size_t n = strlen (isStartWith);
     
@@ -163,7 +163,7 @@ PD_LOCAL int string_startWith (const char *s, const char *isStartWith)
     return 0;
 }
 
-PD_LOCAL int string_endWith (const char *s, const char *isEndWith)
+int string_endWith (const char *s, const char *isEndWith)
 {
     size_t n = strlen (isEndWith);
     size_t m = strlen (s);
@@ -177,12 +177,12 @@ PD_LOCAL int string_endWith (const char *s, const char *isEndWith)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int string_containsOccurrenceAtStart (const char *s, const char *chars)
+int string_containsOccurrenceAtStart (const char *s, const char *chars)
 {
     return (strchr (chars, *s) != NULL);
 }
 
-PD_LOCAL int string_contains (const char *s, const char *isContained)
+int string_contains (const char *s, const char *isContained)
 {
     return (strstr (s, isContained) != NULL);
 }
@@ -218,7 +218,7 @@ static int string_indexOfFirstOccurrenceFrom (const char *s, const char *c, int 
     return k;
 }
 
-PD_LOCAL int string_indexOfFirstOccurrenceFromEnd (const char *s, const char *c)
+int string_indexOfFirstOccurrenceFromEnd (const char *s, const char *c)
 {
     return string_indexOfFirstOccurrenceFrom (s, c, (int)strlen (s));
 }
@@ -227,7 +227,7 @@ PD_LOCAL int string_indexOfFirstOccurrenceFromEnd (const char *s, const char *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void string_replaceCharacter (char *s, char toBeReplaced, char c)
+void string_replaceCharacter (char *s, char toBeReplaced, char c)
 {
     PD_ASSERT (c && toBeReplaced);
     
@@ -236,7 +236,7 @@ PD_LOCAL void string_replaceCharacter (char *s, char toBeReplaced, char c)
 
 /* The string must NOT be a static constant. */
 
-PD_LOCAL void string_removeCharacter (char *s, char toBeRemoved)
+void string_removeCharacter (char *s, char toBeRemoved)
 {
     PD_ASSERT (toBeRemoved);
     
@@ -254,7 +254,7 @@ PD_LOCAL void string_removeCharacter (char *s, char toBeRemoved)
 
 /* True if the string start with a dollar following by zero or more numbers. */
 
-PD_LOCAL int string_isDollarNumber (const char *s)
+int string_isDollarNumber (const char *s)
 {
     if (*s != '$') { return 0; } while (*(++s)) { if (*s < '0' || *s > '9') { return 0; } }
     
@@ -263,7 +263,7 @@ PD_LOCAL int string_isDollarNumber (const char *s)
 
 /* True if the string start with a dollar following by a number. */
 
-PD_LOCAL int string_startWithDollarNumber (const char *s)
+int string_startWithDollarNumber (const char *s)
 {
     PD_ASSERT (s[0] != 0);
     
@@ -276,37 +276,37 @@ PD_LOCAL int string_startWithDollarNumber (const char *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int char_isSemicolonOrComma (char c)
+int char_isSemicolonOrComma (char c)
 {
     return (c == ',' || c == ';');
 }
 
-PD_LOCAL int char_isBackslash (char c)
+int char_isBackslash (char c)
 {
     return (c == '\\');
 }
 
-PD_LOCAL int char_isWhitespaceOrNewlineOrTabulation (char c)
+int char_isWhitespaceOrNewlineOrTabulation (char c)
 {
     return (c == ' ' || c == '\n' || c == '\r' || c == '\t');
 }
 
-PD_LOCAL int char_isNumericOrDot (char c)
+int char_isNumericOrDot (char c)
 {
     return ((c >= '0' && c <= '9') || (c == '.'));
 }
 
-PD_LOCAL int char_isAlphabeticLowercase (char c)
+int char_isAlphabeticLowercase (char c)
 {
     return (c >= 'a' && c <= 'z');
 }
 
-PD_LOCAL int char_isAlphanumericOrUnderscore (char c)
+int char_isAlphanumericOrUnderscore (char c)
 {
     return ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c == '_'));
 }
 
-PD_LOCAL int char_isAlphanumericLowercaseOrUnderscore (char c)
+int char_isAlphanumericLowercaseOrUnderscore (char c)
 {
     return ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c == '_'));
 }

@@ -70,7 +70,7 @@ static void pgmin_free (t_pgmin *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void pgmin_setup (void)
+void pgmin_setup (void)
 {
     t_class *c = NULL;
     
@@ -87,7 +87,7 @@ PD_LOCAL void pgmin_setup (void)
     pgmin_class = c;
 }
 
-PD_LOCAL void pgmin_destroy (void)
+void pgmin_destroy (void)
 {
     class_free (pgmin_class);
 }

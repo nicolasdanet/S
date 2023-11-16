@@ -87,7 +87,7 @@ static void *min_tilde_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void min_tilde_setup (void)
+void min_tilde_setup (void)
 {
     min_tilde_class = class_new (sym_min__tilde__,
                                     (t_newmethod)min_tilde_new,
@@ -120,7 +120,7 @@ PD_LOCAL void min_tilde_setup (void)
     class_setHelpName (minScalar_tilde_class, sym_math__tilde__);
 }
 
-PD_LOCAL void min_tilde_destroy (void)
+void min_tilde_destroy (void)
 {
     class_free (min_tilde_class);
     class_free (minScalar_tilde_class);

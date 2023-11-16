@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void canvas_dspProceed (t_glist *glist, int isTopLevel, t_signal **sp)
+void canvas_dspProceed (t_glist *glist, int isTopLevel, t_signal **sp)
 {
     t_object     *y = NULL;
     t_dspcontext *context = NULL;
@@ -45,7 +45,7 @@ PD_LOCAL void canvas_dspProceed (t_glist *glist, int isTopLevel, t_signal **sp)
     ugen_graphClose (context);
 }
 
-PD_LOCAL void canvas_dsp (t_glist *x, t_signal **sp)
+void canvas_dsp (t_glist *x, t_signal **sp)
 {
     canvas_dspProceed (x, 0, sp);
 }
@@ -79,7 +79,7 @@ static t_block *canvas_getBlockIfContainsAny (t_glist **p)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_float canvas_getSampleRate (t_glist *glist)
+t_float canvas_getSampleRate (t_glist *glist)
 {
     t_float sampleRate = audio_getSampleRate();
     
@@ -95,7 +95,7 @@ PD_LOCAL t_float canvas_getSampleRate (t_glist *glist)
     return sampleRate;
 }
 
-PD_LOCAL t_float canvas_getBlockSize (t_glist *glist)
+t_float canvas_getBlockSize (t_glist *glist)
 {
     t_float blockSize = INTERNAL_BLOCKSIZE;
     

@@ -41,7 +41,7 @@ static void undoback_redo (t_undoback *z, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undoback_new (t_object *o, t_undosnippet *snippet)
+t_undoaction *undoback_new (t_object *o, t_undosnippet *snippet)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undoback_class);
     t_undoback *z   = (t_undoback *)x;
@@ -67,7 +67,7 @@ static void undoback_free (t_undoback *z)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undoback_setup (void)
+void undoback_setup (void)
 {
     t_class *c = NULL;
     
@@ -84,7 +84,7 @@ PD_LOCAL void undoback_setup (void)
     undoback_class = c;
 }
 
-PD_LOCAL void undoback_destroy (void)
+void undoback_destroy (void)
 {
     class_free (undoback_class);
 }

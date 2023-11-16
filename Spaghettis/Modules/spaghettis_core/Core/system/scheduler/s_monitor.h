@@ -20,10 +20,10 @@ typedef void (*t_pollfn)                (void *p, int fd);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    monitor_blocking        (double milliseconds);
-PD_LOCAL int    monitor_nonBlocking     (void);
-PD_LOCAL void   monitor_addPoller       (int fd, t_pollfn fn, void *ptr);
-PD_LOCAL void   monitor_removePoller    (int fd);
+int    monitor_blocking        (double milliseconds);
+int    monitor_nonBlocking     (void);
+void   monitor_addPoller       (int fd, t_pollfn fn, void *ptr);
+void   monitor_removePoller    (int fd);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -140,7 +140,7 @@ static void bindlist_free (t_bindlist *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void bindlist_setup (void)
+void bindlist_setup (void)
 {
     t_class *c = NULL;
     
@@ -160,7 +160,7 @@ PD_LOCAL void bindlist_setup (void)
     bindlist_class = c;
 }
 
-PD_LOCAL void bindlist_destroy (void)
+void bindlist_destroy (void)
 {
     class_free (bindlist_class);
 }
@@ -169,7 +169,7 @@ PD_LOCAL void bindlist_destroy (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void pd_bind (t_pd *x, t_symbol *s)
+void pd_bind (t_pd *x, t_symbol *s)
 {
     PD_ASSERT (s != &s__A);
     PD_ASSERT (s != &s__N);
@@ -235,12 +235,12 @@ static t_error pd_unbindProceed (t_pd *x, t_symbol *s)
     return PD_ERROR;
 }
 
-PD_LOCAL void pd_unbindQuiet (t_pd *x, t_symbol *s)
+void pd_unbindQuiet (t_pd *x, t_symbol *s)
 {
     pd_unbindProceed (x, s);
 }
 
-PD_LOCAL void pd_unbind (t_pd *x, t_symbol *s)
+void pd_unbind (t_pd *x, t_symbol *s)
 {
     t_error err = pd_unbindProceed (x, s);
     
@@ -278,12 +278,12 @@ static int symbol_hasThingProceed (t_symbol *s, int withError, t_object *o)
     return k;
 }
 
-PD_LOCAL int symbol_hasThing (t_symbol *s, t_object *o)
+int symbol_hasThing (t_symbol *s, t_object *o)
 {
     return symbol_hasThingProceed (s, 1, o);
 }
 
-PD_LOCAL int symbol_hasThingQuiet (t_symbol *s)
+int symbol_hasThingQuiet (t_symbol *s)
 {
     return symbol_hasThingProceed (s, 0, NULL);
 }
@@ -292,7 +292,7 @@ PD_LOCAL int symbol_hasThingQuiet (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_pd *symbol_getThingByClass (t_symbol *s, t_class *c)
+t_pd *symbol_getThingByClass (t_symbol *s, t_class *c)
 {
     t_pd *x = NULL;
     
@@ -314,7 +314,7 @@ PD_LOCAL t_pd *symbol_getThingByClass (t_symbol *s, t_class *c)
     return x;
 }
 
-PD_LOCAL t_pd *symbol_getThing (t_symbol *s)
+t_pd *symbol_getThing (t_symbol *s)
 {
     if (symbol_hasThingQuiet (s)) { return s->s_thing; }
     else {
@@ -326,7 +326,7 @@ PD_LOCAL t_pd *symbol_getThing (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL const char *symbol_getName (t_symbol *s)
+const char *symbol_getName (t_symbol *s)
 {
     return s->s_name;
 }

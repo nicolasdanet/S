@@ -84,7 +84,7 @@ static void *midisystemout_new (t_float port)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void midisystemout_setup (void)
+void midisystemout_setup (void)
 {
     t_class *c = NULL;
     
@@ -109,7 +109,7 @@ PD_LOCAL void midisystemout_setup (void)
     midisystemout_class = c;
 }
 
-PD_LOCAL void midisystemout_destroy (void)
+void midisystemout_destroy (void)
 {
     class_free (midisystemout_class);
 }

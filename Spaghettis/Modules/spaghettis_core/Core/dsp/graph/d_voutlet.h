@@ -29,9 +29,9 @@ struct _voutlet {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   voutlet_dsp             (t_voutlet *x, t_signal **sp);
-PD_LOCAL void   voutlet_dspPrologue     (t_voutlet *x, t_signal **sp, t_blockproperties *p);
-PD_LOCAL void   voutlet_dspEpilogue     (t_voutlet *x, t_signal **sp, t_blockproperties *p);
+void   voutlet_dsp             (t_voutlet *x, t_signal **sp);
+void   voutlet_dspPrologue     (t_voutlet *x, t_signal **sp, t_blockproperties *p);
+void   voutlet_dspEpilogue     (t_voutlet *x, t_signal **sp, t_blockproperties *p);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

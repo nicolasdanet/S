@@ -47,7 +47,7 @@ static void tabwrite_tilde_dismiss (t_tabwrite_tilde *);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error tab_fetchArray (t_symbol *s, int *size, t_word **data)
+t_error tab_fetchArray (t_symbol *s, int *size, t_word **data)
 {
     t_garray *a = garray_fetch (s);
     
@@ -308,7 +308,7 @@ static void tabwrite_tilde_free (t_tabwrite_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void tabwrite_tilde_setup (void)
+void tabwrite_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -335,7 +335,7 @@ PD_LOCAL void tabwrite_tilde_setup (void)
     tabwrite_tilde_class = c;
 }
 
-PD_LOCAL void tabwrite_tilde_destroy (void)
+void tabwrite_tilde_destroy (void)
 {
     class_free (tabwrite_tilde_class);
 }

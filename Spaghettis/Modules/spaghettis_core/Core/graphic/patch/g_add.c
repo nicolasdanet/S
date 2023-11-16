@@ -13,13 +13,13 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void   glist_undoDisable   (t_glist *);
+void   glist_undoDisable   (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_objectAddRaw (t_glist *glist, t_object *y, t_object *first, int prepend)
+void glist_objectAddRaw (t_glist *glist, t_object *y, t_object *first, int prepend)
 {
     y->g_next = NULL;
     
@@ -53,7 +53,7 @@ static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_objectAdd (t_glist *glist, t_object *y)
+void glist_objectAdd (t_glist *glist, t_object *y)
 {
     PD_ASSERT (object_getOwner (y) == glist);
     
@@ -84,7 +84,7 @@ static void glist_objectRemoveWithCacheForInletsProceed (t_glist *glist, t_objec
     SET_OBJECT (&a, y); buffer_insertAtIndex (glist->gl_sorterObjects, i, &a);
 }
 
-PD_LOCAL void glist_objectRemoveWithCacheForInlets (t_glist *glist, t_object *y)
+void glist_objectRemoveWithCacheForInlets (t_glist *glist, t_object *y)
 {
     if (pd_class (y) == vinlet_class)       { glist_objectRemoveWithCacheForInletsProceed (glist, y, 1); }
     else if (pd_class (y) == voutlet_class) { glist_objectRemoveWithCacheForInletsProceed (glist, y, 0); }
@@ -93,7 +93,7 @@ PD_LOCAL void glist_objectRemoveWithCacheForInlets (t_glist *glist, t_object *y)
     }
 }
 
-PD_LOCAL void glist_objectRemovePurgeCacheForInlets (t_glist *glist)
+void glist_objectRemovePurgeCacheForInlets (t_glist *glist)
 {
     int i;
     
@@ -105,7 +105,7 @@ PD_LOCAL void glist_objectRemovePurgeCacheForInlets (t_glist *glist)
     buffer_clear (glist->gl_sorterObjects);
 }
 
-PD_LOCAL void glist_objectRemoveRaw (t_glist *glist, t_object *y)
+void glist_objectRemoveRaw (t_glist *glist, t_object *y)
 {
     if (glist->gl_graphics == y) { glist->gl_graphics = y->g_next; }
     else {
@@ -138,7 +138,7 @@ static void glist_objectRemoveFree (t_glist *glist, t_object *y)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
+void glist_objectRemove (t_glist *glist, t_object *y)
 {
     int needToRebuild = object_hasDsp (y);
     int undoable      = glist_undoIsOk (glist);
@@ -180,7 +180,7 @@ PD_LOCAL void glist_objectRemove (t_glist *glist, t_object *y)
 
 /* If needed the DSP is suspended to avoid multiple rebuilds of DSP graph. */
 
-PD_LOCAL void glist_objectRemoveAll (t_glist *glist)
+void glist_objectRemoveAll (t_glist *glist)
 {
     t_object *t1 = NULL;
     t_object *t2 = NULL;
@@ -209,7 +209,7 @@ PD_LOCAL void glist_objectRemoveAll (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_objectRemoveSelectedProceed (t_glist *glist)
+void glist_objectRemoveSelectedProceed (t_glist *glist)
 {
     t_object *t1 = NULL;
     t_object *t2 = NULL;
@@ -238,7 +238,7 @@ PD_LOCAL void glist_objectRemoveSelectedProceed (t_glist *glist)
     if (dspSuspended) { dsp_resume (dspState); }
 }
 
-PD_LOCAL void glist_objectRemoveSelected (t_glist *glist)
+void glist_objectRemoveSelected (t_glist *glist)
 {
     glist_objectRemoveSelectedProceed (glist);
     
@@ -249,12 +249,12 @@ PD_LOCAL void glist_objectRemoveSelected (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int glist_objectGetNumberOf (t_glist *glist)
+int glist_objectGetNumberOf (t_glist *glist)
 {
     return glist_objectGetIndexOf (glist, NULL);
 }
 
-PD_LOCAL int glist_objectGetNumberOfSelected (t_glist *glist)
+int glist_objectGetNumberOfSelected (t_glist *glist)
 {
     int n = 0; t_object *y = NULL;
     
@@ -263,7 +263,7 @@ PD_LOCAL int glist_objectGetNumberOfSelected (t_glist *glist)
     return n;
 }
 
-PD_LOCAL void glist_objectDeselectAll (t_glist *glist)
+void glist_objectDeselectAll (t_glist *glist)
 {
     t_object *y = NULL;
     
@@ -278,7 +278,7 @@ PD_LOCAL void glist_objectDeselectAll (t_glist *glist)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL std::vector<UniqueId> glist_objectGetAll (t_glist *glist)
+std::vector<UniqueId> glist_objectGetAll (t_glist *glist)
 {
     std::vector<UniqueId> v;
     

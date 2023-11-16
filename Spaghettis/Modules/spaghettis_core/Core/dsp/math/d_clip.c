@@ -139,7 +139,7 @@ static void *clip_tilde_new (t_float low, t_float high)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void clip_tilde_setup (void)
+void clip_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -164,7 +164,7 @@ PD_LOCAL void clip_tilde_setup (void)
     clip_tilde_class = c;
 }
 
-PD_LOCAL void clip_tilde_destroy (void)
+void clip_tilde_destroy (void)
 {
     class_free (clip_tilde_class);
 }

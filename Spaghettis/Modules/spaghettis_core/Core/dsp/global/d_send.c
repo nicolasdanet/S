@@ -98,7 +98,7 @@ static void send_tilde_free (t_send_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void send_tilde_setup (void)
+void send_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -120,7 +120,7 @@ PD_LOCAL void send_tilde_setup (void)
     send_tilde_class = c;
 }
 
-PD_LOCAL void send_tilde_destroy (void)
+void send_tilde_destroy (void)
 {
     class_free (send_tilde_class);
 }

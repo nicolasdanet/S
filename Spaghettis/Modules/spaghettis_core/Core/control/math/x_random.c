@@ -136,7 +136,7 @@ static void *random_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void random_setup (void)
+void random_setup (void)
 {
     t_class *c = NULL;
     
@@ -160,7 +160,7 @@ PD_LOCAL void random_setup (void)
     random_class = c;
 }
 
-PD_LOCAL void random_destroy (void)
+void random_destroy (void)
 {
     class_free (random_class);
 }

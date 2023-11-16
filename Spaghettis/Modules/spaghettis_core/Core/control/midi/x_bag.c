@@ -195,7 +195,7 @@ static void bag_free (t_bag *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void bag_setup (void)
+void bag_setup (void)
 {
     t_class *c = NULL;
     
@@ -220,7 +220,7 @@ PD_LOCAL void bag_setup (void)
     bag_class = c;
 }
 
-PD_LOCAL void bag_destroy (void)
+void bag_destroy (void)
 {
     class_free (bag_class);
 }

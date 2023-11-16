@@ -95,7 +95,7 @@ static void *adc_tilde_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void adc_tilde_setup (void)
+void adc_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -114,7 +114,7 @@ PD_LOCAL void adc_tilde_setup (void)
     adc_tilde_class = c;
 }
 
-PD_LOCAL void adc_tilde_destroy (void)
+void adc_tilde_destroy (void)
 {
     class_free (adc_tilde_class);
 }

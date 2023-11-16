@@ -14,21 +14,21 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_pathlist     *searchpath_getExtended         (void);
+t_pathlist     *searchpath_getExtended         (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_FORCE void       searchpath_clear                    (void);
-PD_FORCE void       searchpath_appendRoot               (const char *filepath);
+void       searchpath_clear                    (void);
+void       searchpath_appendRoot               (const char *filepath);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL int        searchpath_isExternalAvailable      (t_symbol *s);
-PD_LOCAL int        searchpath_isAbstractionAvailable   (t_symbol *s);
+int        searchpath_isExternalAvailable      (t_symbol *s);
+int        searchpath_isAbstractionAvailable   (t_symbol *s);
 
-PD_LOCAL void       searchpath_rescan                   (int logged);
+void       searchpath_rescan                   (int logged);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

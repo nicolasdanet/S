@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audiodevice_set (t_audiodevice *device, AudioObjectID deviceID)
+t_error audiodevice_set (t_audiodevice *device, AudioObjectID deviceID)
 {
     device->d_ID            = deviceID;
     device->d_unit          = NULL;
@@ -26,7 +26,7 @@ PD_LOCAL t_error audiodevice_set (t_audiodevice *device, AudioObjectID deviceID)
     return (device->d_ID == kAudioObjectUnknown);
 }
 
-PD_LOCAL t_error audiodevice_setAsInput (t_audiodevice *device, AudioObjectID deviceID)
+t_error audiodevice_setAsInput (t_audiodevice *device, AudioObjectID deviceID)
 {
     t_error err = audiodevice_set (device, deviceID);
     
@@ -35,7 +35,7 @@ PD_LOCAL t_error audiodevice_setAsInput (t_audiodevice *device, AudioObjectID de
     return err;
 }
 
-PD_LOCAL t_error audiodevice_setAsOutput (t_audiodevice *device, AudioObjectID deviceID)
+t_error audiodevice_setAsOutput (t_audiodevice *device, AudioObjectID deviceID)
 {
     t_error err = audiodevice_set (device, deviceID);
     
@@ -44,7 +44,7 @@ PD_LOCAL t_error audiodevice_setAsOutput (t_audiodevice *device, AudioObjectID d
     return err;
 }
 
-PD_LOCAL t_error audiodevice_setAsDuplex (t_audiodevice *device, AudioObjectID deviceID)
+t_error audiodevice_setAsDuplex (t_audiodevice *device, AudioObjectID deviceID)
 {
     t_error err = audiodevice_set (device, deviceID);
     
@@ -53,32 +53,32 @@ PD_LOCAL t_error audiodevice_setAsDuplex (t_audiodevice *device, AudioObjectID d
     return err;
 }
 
-PD_LOCAL AudioObjectID audiodevice_getIdentifier (t_audiodevice *device)
+AudioObjectID audiodevice_getIdentifier (t_audiodevice *device)
 {
     return device->d_ID;
 }
 
-PD_LOCAL void audiodevice_setInvalid (t_audiodevice *device)
+void audiodevice_setInvalid (t_audiodevice *device)
 {
     audiodevice_set (device, kAudioObjectUnknown);
 }
 
-PD_LOCAL int audiodevice_isValid (t_audiodevice *device)
+int audiodevice_isValid (t_audiodevice *device)
 {
     return (audiodevice_getIdentifier (device) != kAudioObjectUnknown);
 }
 
-PD_LOCAL int audiodevice_isInput (t_audiodevice *device)
+int audiodevice_isInput (t_audiodevice *device)
 {
     return (device->d_isInput  != 0);
 }
 
-PD_LOCAL int audiodevice_isOutput (t_audiodevice *device)
+int audiodevice_isOutput (t_audiodevice *device)
 {
     return (device->d_isOutput != 0);
 }
 
-PD_LOCAL int audiodevice_isDuplex (t_audiodevice *device)
+int audiodevice_isDuplex (t_audiodevice *device)
 {
     return (device->d_isDuplex != 0);
 }
@@ -120,12 +120,12 @@ static int audiodevice_getNumberOfChannelsProceed (t_audiodevice *device, int is
     return result;
 }
 
-PD_LOCAL int audiodevice_getNumberOfChannelsIn (t_audiodevice *device)
+int audiodevice_getNumberOfChannelsIn (t_audiodevice *device)
 {
     return audiodevice_getNumberOfChannelsProceed (device, 1);
 }
 
-PD_LOCAL int audiodevice_getNumberOfChannelsOut (t_audiodevice *device)
+int audiodevice_getNumberOfChannelsOut (t_audiodevice *device)
 {
     return audiodevice_getNumberOfChannelsProceed (device, 0);
 }
@@ -181,12 +181,12 @@ static int audiodevice_getLatencyProceed (t_audiodevice *device, int isInput)
     return (int)n;
 }
 
-PD_LOCAL int audiodevice_getLatencyIn (t_audiodevice *device)
+int audiodevice_getLatencyIn (t_audiodevice *device)
 {
     return audiodevice_getLatencyProceed (device, 1);
 }
 
-PD_LOCAL int audiodevice_getLatencyOut (t_audiodevice *device)
+int audiodevice_getLatencyOut (t_audiodevice *device)
 {
     return audiodevice_getLatencyProceed (device, 0);
 }
@@ -197,7 +197,7 @@ PD_LOCAL int audiodevice_getLatencyOut (t_audiodevice *device)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int audiodevice_getSampleRate (t_audiodevice *device)
+int audiodevice_getSampleRate (t_audiodevice *device)
 {
     PD_ASSERT (device->d_ID != kAudioObjectUnknown);
     
@@ -222,7 +222,7 @@ PD_LOCAL int audiodevice_getSampleRate (t_audiodevice *device)
     return (int)f;
 }
 
-PD_LOCAL t_symbol *audiodevice_getName (t_audiodevice *device)
+t_symbol *audiodevice_getName (t_audiodevice *device)
 {
     PD_ASSERT (device->d_ID != kAudioObjectUnknown);
 
@@ -250,7 +250,7 @@ PD_LOCAL t_symbol *audiodevice_getName (t_audiodevice *device)
     return name;
 }
 
-PD_LOCAL int audiodevice_getBufferSize (t_audiodevice *device)
+int audiodevice_getBufferSize (t_audiodevice *device)
 {
     PD_ASSERT (device->d_ID != kAudioObjectUnknown);
 
@@ -279,7 +279,7 @@ PD_LOCAL int audiodevice_getBufferSize (t_audiodevice *device)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audiodevice_setBufferSize (t_audiodevice *device, int size)
+t_error audiodevice_setBufferSize (t_audiodevice *device, int size)
 {
     PD_ASSERT (device->d_ID != kAudioObjectUnknown);
     

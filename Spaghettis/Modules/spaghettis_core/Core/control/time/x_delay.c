@@ -32,7 +32,7 @@ typedef struct _delay {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void clock_set (t_clock *, t_systime);
+void clock_set (t_clock *, t_systime);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -187,7 +187,7 @@ static void delay_free (t_delay *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void delay_setup (void)
+void delay_setup (void)
 {
     t_class *c = NULL;
     
@@ -215,7 +215,7 @@ PD_LOCAL void delay_setup (void)
     delay_class = c;
 }
 
-PD_LOCAL void delay_destroy (void)
+void delay_destroy (void)
 {
     class_free (delay_class);
 }

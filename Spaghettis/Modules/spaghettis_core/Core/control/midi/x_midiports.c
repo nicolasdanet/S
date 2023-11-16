@@ -98,7 +98,7 @@ static void midiports_free (t_midiports *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void midiports_setup (void)
+void midiports_setup (void)
 {
     t_class *c = NULL;
     
@@ -117,7 +117,7 @@ PD_LOCAL void midiports_setup (void)
     midiports_class = c;
 }
 
-PD_LOCAL void midiports_destroy (void)
+void midiports_destroy (void)
 {
     class_free (midiports_class);
 }

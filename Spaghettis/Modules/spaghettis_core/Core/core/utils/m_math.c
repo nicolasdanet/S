@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_float math_midiToFrequency (t_float f)
+t_float math_midiToFrequency (t_float f)
 {
     if (f <= -1500.0) { return 0.0; }
     else {
@@ -21,7 +21,7 @@ PD_LOCAL t_float math_midiToFrequency (t_float f)
     }
 }
 
-PD_LOCAL t_float math_frequencyToMidi (t_float f)
+t_float math_frequencyToMidi (t_float f)
 {
     if (f <= 0.0) { return (t_float)-1500.0; }
     else { 
@@ -29,7 +29,7 @@ PD_LOCAL t_float math_frequencyToMidi (t_float f)
     }
 }
 
-PD_LOCAL t_float math_powerToDecibel (t_float f)
+t_float math_powerToDecibel (t_float f)
 {
     if (f <= 0.0) { return 0.0; }
     else {
@@ -37,7 +37,7 @@ PD_LOCAL t_float math_powerToDecibel (t_float f)
     }
 }
 
-PD_LOCAL t_float math_decibelToPower (t_float f)
+t_float math_decibelToPower (t_float f)
 {
     if (f <= 0.0) { return 0.0; }
     else {
@@ -45,7 +45,7 @@ PD_LOCAL t_float math_decibelToPower (t_float f)
     }
 }
 
-PD_LOCAL t_float math_rootMeanSquareToDecibel (t_float f)
+t_float math_rootMeanSquareToDecibel (t_float f)
 {
     if (f <= 0.0) { return 0.0; }
     else {
@@ -53,7 +53,7 @@ PD_LOCAL t_float math_rootMeanSquareToDecibel (t_float f)
     }
 }
 
-PD_LOCAL t_float math_decibelToRootMeanSquare (t_float f)
+t_float math_decibelToRootMeanSquare (t_float f)
 {
     if (f <= 0.0) { return 0.0; }
     else {
@@ -65,14 +65,14 @@ PD_LOCAL t_float math_decibelToRootMeanSquare (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int math_compareFloat (t_float a, t_float b)
+int math_compareFloat (t_float a, t_float b)
 {
     /* Basic implementation of comparaison function. */
     
     if (a < b) { return -1; } else if (b > a) { return 1; } else { return 0; }
 }
 
-PD_LOCAL t_float math_euclideanDistance (t_float a, t_float b, t_float c, t_float d)
+t_float math_euclideanDistance (t_float a, t_float b, t_float c, t_float d)
 {
     double x = ((double)c - a);
     double y = ((double)d - b);
@@ -82,7 +82,7 @@ PD_LOCAL t_float math_euclideanDistance (t_float a, t_float b, t_float c, t_floa
 
 #if defined ( PD_BUILDING_TESTS )
 
-PD_LOCAL int math_areEquivalent (t_float a, t_float b, t_float f)
+int math_areEquivalent (t_float a, t_float b, t_float f)
 {
     return ((PD_ABS (b - a)) < f);
 }

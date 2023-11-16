@@ -264,7 +264,7 @@ static void te_freeParameters (te_expr *x)
     }
 }
 
-PD_LOCAL void te_free (te_expr *x)
+void te_free (te_expr *x)
 {
     if (x) {
     //
@@ -582,7 +582,7 @@ static te_expr *te_list (te_state *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL double te_eval (const te_expr *x)
+double te_eval (const te_expr *x)
 {
     if (x) {
     //
@@ -650,7 +650,7 @@ static void te_optimize (te_expr *x)
     }
 }
 
-PD_LOCAL te_expr *te_compile (const char *expression, const te_variable *variables, int count)
+te_expr *te_compile (const char *expression, const te_variable *variables, int count)
 {
     te_state s;
     

@@ -61,7 +61,7 @@ static void *list_makeObject (t_pd *dummy, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void list_setup (void)
+void list_setup (void)
 {
     class_addCreator ((t_newmethod)list_makeObject, &s_list, A_GIMME, A_NULL);
 }

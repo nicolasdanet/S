@@ -42,7 +42,7 @@ typedef struct _line {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error clock_reschedule (t_clock *x, double, double, t_systime);
+t_error clock_reschedule (t_clock *x, double, double, t_systime);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -226,7 +226,7 @@ static void line_free (t_line *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void line_setup (void)
+void line_setup (void)
 {
     t_class *c = NULL;
     
@@ -253,7 +253,7 @@ PD_LOCAL void line_setup (void)
     line_class = c;
 }
 
-PD_LOCAL void line_destroy (void)
+void line_destroy (void)
 {
     class_free (line_class);
 }

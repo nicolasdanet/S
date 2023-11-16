@@ -87,7 +87,7 @@ static void *max_tilde_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void max_tilde_setup (void)
+void max_tilde_setup (void)
 {
     max_tilde_class = class_new (sym_max__tilde__,
                                     (t_newmethod)max_tilde_new,
@@ -120,7 +120,7 @@ PD_LOCAL void max_tilde_setup (void)
     class_setHelpName (maxScalar_tilde_class, sym_math__tilde__);
 }
 
-PD_LOCAL void max_tilde_destroy (void)
+void max_tilde_destroy (void)
 {
     class_free (max_tilde_class);
     class_free (maxScalar_tilde_class);

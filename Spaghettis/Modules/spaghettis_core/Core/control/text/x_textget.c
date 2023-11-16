@@ -122,7 +122,7 @@ static void textget_restore (t_textget *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *textget_new (t_symbol *s, int argc, t_atom *argv)
+void *textget_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_textget *x = (t_textget *)pd_new (textget_class);
     
@@ -159,7 +159,7 @@ PD_LOCAL void *textget_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void textget_setup (void)
+void textget_setup (void)
 {
     t_class *c = NULL;
     
@@ -183,7 +183,7 @@ PD_LOCAL void textget_setup (void)
     textget_class = c;
 }
 
-PD_LOCAL void textget_destroy (void)
+void textget_destroy (void)
 {
     class_free (textget_class);
 }

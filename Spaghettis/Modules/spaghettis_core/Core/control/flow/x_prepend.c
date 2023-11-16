@@ -155,7 +155,7 @@ static void prepend_free (t_prepend *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void prepend_setup (void)
+void prepend_setup (void)
 {
     t_class *c = NULL;
     
@@ -181,7 +181,7 @@ PD_LOCAL void prepend_setup (void)
     prepend_class = c;
 }
 
-PD_LOCAL void prepend_destroy (void)
+void prepend_destroy (void)
 {
     class_free (prepend_class);
 }

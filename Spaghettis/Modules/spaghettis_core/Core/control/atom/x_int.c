@@ -86,7 +86,7 @@ static void *int_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void int_setup (void)
+void int_setup (void)
 {
     t_class *c = NULL;
     
@@ -111,7 +111,7 @@ PD_LOCAL void int_setup (void)
     int_class = c;
 }
 
-PD_LOCAL void int_destroy (void)
+void int_destroy (void)
 {
     class_free (int_class);
 }

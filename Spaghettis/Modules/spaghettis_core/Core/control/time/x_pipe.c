@@ -47,7 +47,7 @@ typedef struct _pipe {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error clock_parseUnit (t_float, t_symbol *, t_float *, int *);
+t_error clock_parseUnit (t_float, t_symbol *, t_float *, int *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -342,7 +342,7 @@ static void pipe_free (t_pipe *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void pipe_setup (void)
+void pipe_setup (void)
 {
     t_class *c = NULL;
     
@@ -370,7 +370,7 @@ PD_LOCAL void pipe_setup (void)
     pipe_class = c;
 }
 
-PD_LOCAL void pipe_destroy (void)
+void pipe_destroy (void)
 {
     class_free (pipe_class);
 }

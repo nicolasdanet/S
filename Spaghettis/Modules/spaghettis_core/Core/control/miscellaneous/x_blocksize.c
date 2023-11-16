@@ -49,7 +49,7 @@ static void *blocksize_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void blocksize_setup (void)
+void blocksize_setup (void)
 {
     t_class *c = NULL;
     
@@ -65,7 +65,7 @@ PD_LOCAL void blocksize_setup (void)
     blocksize_class = c;
 }
 
-PD_LOCAL void blocksize_destroy (void)
+void blocksize_destroy (void)
 {
     class_free (blocksize_class);
 }

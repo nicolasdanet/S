@@ -101,7 +101,7 @@ static void *clip_new (t_float f2, t_float f3)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void clip_setup (void)
+void clip_setup (void)
 {
     t_class *c = NULL;
     
@@ -127,7 +127,7 @@ PD_LOCAL void clip_setup (void)
     clip_class = c;
 }
 
-PD_LOCAL void clip_destroy (void)
+void clip_destroy (void)
 {
     class_free (clip_class);
 }

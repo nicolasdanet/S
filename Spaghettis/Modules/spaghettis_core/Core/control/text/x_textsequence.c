@@ -26,7 +26,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int atom_copyAtomsExpandedWithArguments (t_atom *, int, t_atom *, int, t_glist *, int, t_atom *);
+int atom_copyAtomsExpandedWithArguments (t_atom *, int, t_atom *, int, t_glist *, int, t_atom *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -409,7 +409,7 @@ static void textsequence_restore (t_textsequence *x, t_symbol *s, int argc, t_at
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *textsequence_new (t_symbol *s, int argc, t_atom *argv)
+void *textsequence_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_textsequence *x = (t_textsequence *)pd_new (textsequence_class);
         
@@ -490,7 +490,7 @@ static void textsequence_free (t_textsequence *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void textsequence_setup (void)
+void textsequence_setup (void)
 {
     t_class *c = NULL;
     
@@ -525,7 +525,7 @@ PD_LOCAL void textsequence_setup (void)
     textsequence_class = c;
 }
 
-PD_LOCAL void textsequence_destroy (void)
+void textsequence_destroy (void)
 {
     class_free (textsequence_class);
 }

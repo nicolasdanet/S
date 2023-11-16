@@ -137,7 +137,7 @@ static void snapshot_tilde_free (t_snapshot_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void snapshot_tilde_setup (void)
+void snapshot_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -161,7 +161,7 @@ PD_LOCAL void snapshot_tilde_setup (void)
     snapshot_tilde_class = c;
 }
 
-PD_LOCAL void snapshot_tilde_destroy (void)
+void snapshot_tilde_destroy (void)
 {
     class_free (snapshot_tilde_class);
 }

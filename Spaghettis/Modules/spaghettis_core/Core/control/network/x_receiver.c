@@ -44,7 +44,7 @@ struct _receiver {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL char *heapstring_clearBorrow (t_heapstring *);         /* Caller acquires ownership. */
+char *heapstring_clearBorrow (t_heapstring *);         /* Caller acquires ownership. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ static void receiver_closeProceed (t_receiver *x)
     }
 }
 
-PD_LOCAL int receiver_isClosed (t_receiver *x)
+int receiver_isClosed (t_receiver *x)
 {
     return x->r_isClosed;
 }
@@ -147,7 +147,7 @@ static void receiver_readBinary (t_receiver *x, int fd)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_receiver *receiver_new (void *owner,
+t_receiver *receiver_new (void *owner,
     int fd,
     t_notifyfn notify,
     t_receivefn receive,
@@ -171,7 +171,7 @@ PD_LOCAL t_receiver *receiver_new (void *owner,
     return x;
 }
 
-PD_LOCAL void receiver_free (t_receiver *x)
+void receiver_free (t_receiver *x)
 {
     receiver_closeProceed (x);
     

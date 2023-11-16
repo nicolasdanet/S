@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audiodevicelist_get (t_deviceslist *list)
+t_error audiodevicelist_get (t_deviceslist *list)
 {
     AudioObjectPropertyAddress property;
     
@@ -74,7 +74,7 @@ PD_LOCAL t_error audiodevicelist_get (t_deviceslist *list)
     return err;
 }
 
-PD_LOCAL AudioObjectID audiodevicelist_fetch (t_symbol *name)
+AudioObjectID audiodevicelist_fetch (t_symbol *name)
 {
     AudioObjectID deviceId = kAudioObjectUnknown;
     

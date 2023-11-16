@@ -175,7 +175,7 @@ static void *dial_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void dial_setup (void)
+void dial_setup (void)
 {
     t_class *c = NULL;
     
@@ -211,7 +211,7 @@ PD_LOCAL void dial_setup (void)
     dial_class = c;
 }
 
-PD_LOCAL void dial_destroy (void)
+void dial_destroy (void)
 {
     class_free (dial_class);
 }

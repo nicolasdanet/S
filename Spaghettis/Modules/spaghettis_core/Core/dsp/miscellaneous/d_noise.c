@@ -71,7 +71,7 @@ static void *noise_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void noise_tilde_setup (void)
+void noise_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -87,7 +87,7 @@ PD_LOCAL void noise_tilde_setup (void)
     noise_tilde_class = c;
 }
 
-PD_LOCAL void noise_tilde_destroy (void)
+void noise_tilde_destroy (void)
 {
     class_free (noise_tilde_class);
 }

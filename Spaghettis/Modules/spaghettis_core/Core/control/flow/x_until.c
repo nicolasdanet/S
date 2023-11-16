@@ -75,7 +75,7 @@ static void *until_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void until_setup (void)
+void until_setup (void)
 {
     t_class *c = NULL;
     
@@ -94,7 +94,7 @@ PD_LOCAL void until_setup (void)
     until_class = c;
 }
 
-PD_LOCAL void until_destroy (void)
+void until_destroy (void)
 {
     class_free (until_class);
 }

@@ -79,7 +79,7 @@ static void catch_tilde_free (t_catch_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void catch_tilde_setup (void)
+void catch_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -99,7 +99,7 @@ PD_LOCAL void catch_tilde_setup (void)
     catch_tilde_class = c;
 }
 
-PD_LOCAL void catch_tilde_destroy (void)
+void catch_tilde_destroy (void)
 {
     class_free (catch_tilde_class);
 }

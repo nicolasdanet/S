@@ -33,18 +33,18 @@ struct _inlet {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_inlet *inlet_new (t_object *owner, t_pd *receiver, t_symbol *t, t_symbol *m);
+t_inlet *inlet_new (t_object *owner, t_pd *receiver, t_symbol *t, t_symbol *m);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   inlet_free              (t_inlet *x);
-PD_LOCAL void   inlet_setHot            (t_inlet *x);
-PD_LOCAL void   inlet_moveFirst         (t_inlet *x);
-PD_LOCAL int    inlet_isSignal          (t_inlet *x);
-PD_LOCAL int    inlet_getIndex          (t_inlet *x);
-PD_LOCAL int    inlet_getIndexAsSignal  (t_inlet *x);
+void   inlet_free              (t_inlet *x);
+void   inlet_setHot            (t_inlet *x);
+void   inlet_moveFirst         (t_inlet *x);
+int    inlet_isSignal          (t_inlet *x);
+int    inlet_getIndex          (t_inlet *x);
+int    inlet_getIndexAsSignal  (t_inlet *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

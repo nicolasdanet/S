@@ -149,7 +149,7 @@ static void toggle_free (t_toggle *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void toggle_setup (void)
+void toggle_setup (void)
 {
     t_class *c = NULL;
     
@@ -182,7 +182,7 @@ PD_LOCAL void toggle_setup (void)
     toggle_class = c;
 }
 
-PD_LOCAL void toggle_destroy (void)
+void toggle_destroy (void)
 {
     class_free (toggle_class);
 }

@@ -15,7 +15,7 @@
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_zero (t_int *w)
+t_int *perform_zero (t_int *w)
 {
     PD_RESTRICTED s = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     int n = (int)(w[2]);
@@ -27,7 +27,7 @@ PD_LOCAL t_int *perform_zero (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_scalar (t_int *w)
+t_int *perform_scalar (t_int *w)
 {
     t_float64Atomic *t = (t_float64Atomic *)(w[1]);
     t_sample f = PD_ATOMIC_FLOAT64_READ (t);
@@ -41,7 +41,7 @@ PD_LOCAL t_int *perform_scalar (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_copy (t_int *w)
+t_int *perform_copy (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     PD_RESTRICTED s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -54,7 +54,7 @@ PD_LOCAL t_int *perform_copy (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_copyZero (t_int *w)
+t_int *perform_copyZero (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     PD_RESTRICTED s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -67,7 +67,7 @@ PD_LOCAL t_int *perform_copyZero (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_squareRoot (t_int *w)
+t_int *perform_squareRoot (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     PD_RESTRICTED s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -80,7 +80,7 @@ PD_LOCAL t_int *perform_squareRoot (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_inverseSquareRoot (t_int *w)
+t_int *perform_inverseSquareRoot (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     PD_RESTRICTED s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -93,7 +93,7 @@ PD_LOCAL t_int *perform_inverseSquareRoot (t_int *w)
 
 /* Aliasing. */
 
-PD_LOCAL t_int *perform_plusAliased (t_int *w)
+t_int *perform_plusAliased (t_int *w)
 {
     t_sample *s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_sample *s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -114,7 +114,7 @@ PD_LOCAL t_int *perform_plusAliased (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_plusScalar (t_int *w)
+t_int *perform_plusScalar (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_float64Atomic *t = (t_float64Atomic *)(w[2]);
@@ -129,7 +129,7 @@ PD_LOCAL t_int *perform_plusScalar (t_int *w)
 
 /* Aliasing. */
 
-PD_LOCAL t_int *perform_subtractAliased (t_int *w)
+t_int *perform_subtractAliased (t_int *w)
 {
     t_sample *s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_sample *s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -150,7 +150,7 @@ PD_LOCAL t_int *perform_subtractAliased (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_subtractScalar (t_int *w)
+t_int *perform_subtractScalar (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_float64Atomic *t = (t_float64Atomic *)(w[2]);
@@ -165,7 +165,7 @@ PD_LOCAL t_int *perform_subtractScalar (t_int *w)
 
 /* Aliasing. */
 
-PD_LOCAL t_int *perform_multiplyAliased (t_int *w)
+t_int *perform_multiplyAliased (t_int *w)
 {
     t_sample *s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_sample *s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -186,7 +186,7 @@ PD_LOCAL t_int *perform_multiplyAliased (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_multiplyScalar (t_int *w)
+t_int *perform_multiplyScalar (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_float64Atomic *t = (t_float64Atomic *)(w[2]);
@@ -201,7 +201,7 @@ PD_LOCAL t_int *perform_multiplyScalar (t_int *w)
 
 /* Aliasing. */
 
-PD_LOCAL t_int *perform_divideAliased (t_int *w)
+t_int *perform_divideAliased (t_int *w)
 {
     t_sample *s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_sample *s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -225,7 +225,7 @@ PD_LOCAL t_int *perform_divideAliased (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_divideScalar (t_int *w)
+t_int *perform_divideScalar (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_float64Atomic *t = (t_float64Atomic *)(w[2]);
@@ -249,7 +249,7 @@ PD_LOCAL t_int *perform_divideScalar (t_int *w)
 
 /* Aliasing. */
 
-PD_LOCAL t_int *perform_maximumAliased (t_int *w)
+t_int *perform_maximumAliased (t_int *w)
 {
     t_sample *s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_sample *s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -270,7 +270,7 @@ PD_LOCAL t_int *perform_maximumAliased (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_maximumScalar (t_int *w)
+t_int *perform_maximumScalar (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_float64Atomic *t = (t_float64Atomic *)(w[2]);
@@ -285,7 +285,7 @@ PD_LOCAL t_int *perform_maximumScalar (t_int *w)
 
 /* Aliasing. */
 
-PD_LOCAL t_int *perform_minimumAliased (t_int *w)
+t_int *perform_minimumAliased (t_int *w)
 {
     t_sample *s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_sample *s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -306,7 +306,7 @@ PD_LOCAL t_int *perform_minimumAliased (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_minimumScalar (t_int *w)
+t_int *perform_minimumScalar (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_float64Atomic *t = (t_float64Atomic *)(w[2]);
@@ -321,7 +321,7 @@ PD_LOCAL t_int *perform_minimumScalar (t_int *w)
 
 /* Aliasing. */
 
-PD_LOCAL t_int *perform_greaterAliased (t_int *w)
+t_int *perform_greaterAliased (t_int *w)
 {
     t_sample *s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_sample *s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -342,7 +342,7 @@ PD_LOCAL t_int *perform_greaterAliased (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_greaterScalar (t_int *w)
+t_int *perform_greaterScalar (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_float64Atomic *t = (t_float64Atomic *)(w[2]);
@@ -357,7 +357,7 @@ PD_LOCAL t_int *perform_greaterScalar (t_int *w)
 
 /* Aliasing. */
 
-PD_LOCAL t_int *perform_lessAliased (t_int *w)
+t_int *perform_lessAliased (t_int *w)
 {
     t_sample *s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_sample *s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -378,7 +378,7 @@ PD_LOCAL t_int *perform_lessAliased (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_lessScalar (t_int *w)
+t_int *perform_lessScalar (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     t_float64Atomic *t = (t_float64Atomic *)(w[2]);
@@ -393,7 +393,7 @@ PD_LOCAL t_int *perform_lessScalar (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_magnitude (t_int *w)
+t_int *perform_magnitude (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     PD_RESTRICTED s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));
@@ -414,7 +414,7 @@ PD_LOCAL t_int *perform_magnitude (t_int *w)
 
 /* No aliasing. */
 
-PD_LOCAL t_int *perform_inverseMagnitude (t_int *w)
+t_int *perform_inverseMagnitude (t_int *w)
 {
     PD_RESTRICTED s1 = (t_sample *)PD_ALIGNED ((t_sample *)(w[1]));
     PD_RESTRICTED s2 = (t_sample *)PD_ALIGNED ((t_sample *)(w[2]));

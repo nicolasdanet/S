@@ -18,7 +18,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_error textclient_init (t_textclient *x, int *ac, t_atom **av)
+t_error textclient_init (t_textclient *x, int *ac, t_atom **av)
 {
     int argc = *ac;
     t_atom *argv = *av;
@@ -49,12 +49,12 @@ PD_LOCAL t_error textclient_init (t_textclient *x, int *ac, t_atom **av)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *textclient_getName (t_textclient *x)
+t_symbol *textclient_getName (t_textclient *x)
 {
     return x->tc_name;
 }
 
-PD_LOCAL void textclient_setName (t_textclient *x, t_symbol *s)
+void textclient_setName (t_textclient *x, t_symbol *s)
 {
     x->tc_name = s;
 }
@@ -63,7 +63,7 @@ PD_LOCAL void textclient_setName (t_textclient *x, t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *textclient_fetchBuffer (t_textclient *x)
+t_buffer *textclient_fetchBuffer (t_textclient *x)
 {
     if (x->tc_name) {
     //
@@ -79,7 +79,7 @@ PD_LOCAL t_buffer *textclient_fetchBuffer (t_textclient *x)
     return NULL;
 }
 
-PD_LOCAL t_glist *textclient_fetchOwner (t_textclient *x)
+t_glist *textclient_fetchOwner (t_textclient *x)
 {
     if (x->tc_name) {
     //
@@ -99,7 +99,7 @@ PD_LOCAL t_glist *textclient_fetchOwner (t_textclient *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void textclient_update (t_textclient *x)
+void textclient_update (t_textclient *x)
 {
     if (x->tc_name) {
     //

@@ -84,7 +84,7 @@ static void *noteout_new (t_float channel)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void noteout_setup (void)
+void noteout_setup (void)
 {
     t_class *c = NULL;
     
@@ -106,7 +106,7 @@ PD_LOCAL void noteout_setup (void)
     noteout_class = c;
 }
 
-PD_LOCAL void noteout_destroy (void)
+void noteout_destroy (void)
 {
     class_free (noteout_class);
 }

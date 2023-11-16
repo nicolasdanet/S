@@ -18,9 +18,9 @@ t_class *vinlet_class;  /* Shared. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_inlet    *glist_inletAdd     (t_glist *, t_pd *, int);
+t_inlet    *glist_inletAdd     (t_glist *, t_pd *, int);
 
-PD_LOCAL void       glist_inletRemove   (t_glist *, t_inlet *);
+void       glist_inletRemove   (t_glist *, t_inlet *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -31,17 +31,17 @@ static void vinlet_dismiss (t_vinlet *);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int vinlet_isSignal (t_vinlet *x)
+int vinlet_isSignal (t_vinlet *x)
 {
     return (x->vi_buffer != NULL);
 }
 
-PD_LOCAL int vinlet_getIndex (t_vinlet *x)
+int vinlet_getIndex (t_vinlet *x)
 {
     return inlet_getIndex (vinlet_getInlet (cast_pd (x)));
 }
 
-PD_LOCAL t_inlet *vinlet_getInlet (t_pd *x)
+t_inlet *vinlet_getInlet (t_pd *x)
 {
     PD_ASSERT (pd_class (x) == vinlet_class); return (((t_vinlet *)x)->vi_inlet);
 }
@@ -137,7 +137,7 @@ static void vinlet_free (t_vinlet *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void vinlet_setup (void)
+void vinlet_setup (void)
 {
     t_class *c = NULL;
     
@@ -164,7 +164,7 @@ PD_LOCAL void vinlet_setup (void)
     vinlet_class = c;
 }
 
-PD_LOCAL void vinlet_destroy (void)
+void vinlet_destroy (void)
 {
     class_free (vinlet_class);
 }

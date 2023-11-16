@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error buffer_fromFile (t_buffer *x, const char *name, const char *directory)
+t_error buffer_fromFile (t_buffer *x, const char *name, const char *directory)
 {
     t_error err = PD_ERROR;
     
@@ -53,7 +53,7 @@ PD_LOCAL t_error buffer_fromFile (t_buffer *x, const char *name, const char *dir
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error buffer_fileRead (t_buffer *x, t_symbol *name, t_glist *glist, t_object *owner)
+t_error buffer_fileRead (t_buffer *x, t_symbol *name, t_glist *glist, t_object *owner)
 {
     t_error err = PD_ERROR;
     
@@ -68,7 +68,7 @@ PD_LOCAL t_error buffer_fileRead (t_buffer *x, t_symbol *name, t_glist *glist, t
     return err;
 }
 
-PD_LOCAL t_error buffer_fileWrite (t_buffer *x, t_symbol *name, t_symbol *directory)
+t_error buffer_fileWrite (t_buffer *x, t_symbol *name, t_symbol *directory)
 {
     t_error err = PD_ERROR;
 

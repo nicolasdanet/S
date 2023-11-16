@@ -77,7 +77,7 @@ static void polytouchin_free (t_polytouchin *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void polytouchin_setup (void)
+void polytouchin_setup (void)
 {
     t_class *c = NULL;
     
@@ -96,7 +96,7 @@ PD_LOCAL void polytouchin_setup (void)
     polytouchin_class = c;
 }
 
-PD_LOCAL void polytouchin_destroy (void)
+void polytouchin_destroy (void)
 {
     class_free (polytouchin_class);
 }

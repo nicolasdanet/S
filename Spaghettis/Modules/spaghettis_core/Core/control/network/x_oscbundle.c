@@ -184,7 +184,7 @@ static void oscbundle_free (t_oscbundle *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void oscbundle_setup (void)
+void oscbundle_setup (void)
 {
     t_class *c = NULL;
     
@@ -202,7 +202,7 @@ PD_LOCAL void oscbundle_setup (void)
     oscbundle_class = c;
 }
 
-PD_LOCAL void oscbundle_destroy (void)
+void oscbundle_destroy (void)
 {
     class_free (oscbundle_class);
 }

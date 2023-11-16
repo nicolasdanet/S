@@ -24,11 +24,11 @@ typedef struct _iterator {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_iterator *iterator_new   (int argc, t_atom *argv);
+t_iterator *iterator_new   (int argc, t_atom *argv);
 
-PD_LOCAL void   iterator_free       (t_iterator *x);
-PD_LOCAL int    iterator_get        (t_iterator *x);
-PD_LOCAL int    iterator_next       (t_iterator *x, t_atom **a);
+void   iterator_free       (t_iterator *x);
+int    iterator_get        (t_iterator *x);
+int    iterator_next       (t_iterator *x, t_atom **a);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

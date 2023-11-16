@@ -117,7 +117,7 @@ static void *counter_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void counter_setup (void)
+void counter_setup (void)
 {
     t_class *c = NULL;
     
@@ -142,7 +142,7 @@ PD_LOCAL void counter_setup (void)
     counter_class = c;
 }
 
-PD_LOCAL void counter_destroy (void)
+void counter_destroy (void)
 {
     class_free (counter_class);
 }

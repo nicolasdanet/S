@@ -78,7 +78,7 @@ static uint64_t time_makeSeed (void)
 
 /* Do NOT fit for cryptography purpose. */
 
-PD_LOCAL t_seed time_makeRandomSeed (void)
+t_seed time_makeRandomSeed (void)
 {
     static int once = 0;
     static uint64_t base = 0;   /* Static. */
@@ -100,7 +100,7 @@ PD_LOCAL t_seed time_makeRandomSeed (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void time_set (t_time *t)
+void time_set (t_time *t)
 {
     struct timespec time;
     
@@ -112,12 +112,12 @@ PD_LOCAL void time_set (t_time *t)
     (*t) = (seconds * TIME_NSEC_PER_SEC) + nanoseconds;
 }
 
-PD_LOCAL void time_addNanoseconds (t_time *t, t_nano ns)
+void time_addNanoseconds (t_time *t, t_nano ns)
 {
     (*t) += ns;
 }
 
-PD_LOCAL t_error time_elapsedNanoseconds (const t_time *t0, const t_time *t1, t_nano *r)
+t_error time_elapsedNanoseconds (const t_time *t0, const t_time *t1, t_nano *r)
 {
     (*r) = 0ULL;
     
@@ -132,7 +132,7 @@ PD_LOCAL t_error time_elapsedNanoseconds (const t_time *t0, const t_time *t1, t_
 
 #if PD_LINUX
 
-PD_LOCAL void time_wait (t_time *t)
+void time_wait (t_time *t)
 {
     struct timespec deadline;
 
@@ -146,7 +146,7 @@ PD_LOCAL void time_wait (t_time *t)
 
 #if PD_APPLE
 
-PD_LOCAL void time_wait (t_time *t)
+void time_wait (t_time *t)
 {
     t_nano ns; t_time now; time_set (&now);
     
@@ -163,7 +163,7 @@ PD_LOCAL void time_wait (t_time *t)
 
 /* < https://www.gnu.org/software/libc/manual/html_node/Sleeping.html > */
 
-PD_LOCAL void nano_sleep (t_nano ns)
+void nano_sleep (t_nano ns)
 {
     if (ns != 0ULL) {
     //
@@ -188,7 +188,7 @@ PD_LOCAL void nano_sleep (t_nano ns)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void stamp_set (t_stamp *stamp)
+void stamp_set (t_stamp *stamp)
 {
     uint64_t s, f;
     struct timeval tv;
@@ -201,7 +201,7 @@ PD_LOCAL void stamp_set (t_stamp *stamp)
     (*stamp) = (s << 32) | f; 
 }
 
-PD_LOCAL void stamp_addNanoseconds (t_stamp *stamp, t_nano ns)
+void stamp_addNanoseconds (t_stamp *stamp, t_nano ns)
 {
     uint64_t hi = ((*stamp) >> 32);
     uint64_t lo = ((*stamp) & 0xffffffffULL);
@@ -214,7 +214,7 @@ PD_LOCAL void stamp_addNanoseconds (t_stamp *stamp, t_nano ns)
     (*stamp) = (s << 32) | ((uint64_t)((n << 32) / TIME_NSEC_PER_SEC));
 }
 
-PD_LOCAL t_error stamp_elapsedNanoseconds (const t_stamp *t0, const t_stamp *t1, t_nano *r)
+t_error stamp_elapsedNanoseconds (const t_stamp *t0, const t_stamp *t1, t_nano *r)
 {
     t_error err = PD_ERROR_NONE;
 
@@ -240,17 +240,17 @@ PD_LOCAL t_error stamp_elapsedNanoseconds (const t_stamp *t0, const t_stamp *t1,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int stamp_isTagElement (t_symbol *s)
+int stamp_isTagElement (t_symbol *s)
 {
     return utils_uInt64IsElement (s);
 }
 
-PD_LOCAL t_error stamp_setAsTags (int argc, t_atom *argv, t_stamp *stamp)
+t_error stamp_setAsTags (int argc, t_atom *argv, t_stamp *stamp)
 {
     return utils_uInt64Serialize (argc, argv, stamp);
 }
 
-PD_LOCAL t_error stamp_getWithTags (int argc, t_atom *argv, t_stamp *stamp)
+t_error stamp_getWithTags (int argc, t_atom *argv, t_stamp *stamp)
 {
     return utils_uInt64Deserialize (argc, argv, stamp);
 }

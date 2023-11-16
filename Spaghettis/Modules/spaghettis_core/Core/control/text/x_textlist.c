@@ -37,7 +37,7 @@ typedef struct _textfromlist {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *texttolist_new (t_symbol *s, int argc, t_atom *argv)
+void *texttolist_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_texttolist *x = (t_texttolist *)pd_new (texttolist_class);
     
@@ -104,7 +104,7 @@ static void texttolist_restore (t_texttolist *x, t_symbol *s, int argc, t_atom *
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *textfromlist_new (t_symbol *s, int argc, t_atom *argv)
+void *textfromlist_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_textfromlist *x = (t_textfromlist *)pd_new (textfromlist_class);
     
@@ -173,7 +173,7 @@ static void textfromlist_restore (t_textfromlist *x, t_symbol *s, int argc, t_at
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void textlist_setup (void)
+void textlist_setup (void)
 {
     t_class *c = NULL;
     
@@ -211,7 +211,7 @@ PD_LOCAL void textlist_setup (void)
     textfromlist_class = c;
 }
 
-PD_LOCAL void textlist_destroy (void)
+void textlist_destroy (void)
 {
     class_free (texttolist_class);
     class_free (textfromlist_class);

@@ -225,7 +225,7 @@ static void env_tilde_free (t_env_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void env_tilde_setup (void)
+void env_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -246,7 +246,7 @@ PD_LOCAL void env_tilde_setup (void)
     env_tilde_class = c;
 }
 
-PD_LOCAL void env_tilde_destroy (void)
+void env_tilde_destroy (void)
 {
     class_free (env_tilde_class);
 }

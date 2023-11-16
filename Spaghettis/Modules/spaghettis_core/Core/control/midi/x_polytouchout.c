@@ -84,7 +84,7 @@ static void *polytouchout_new (t_float channel)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void polytouchout_setup (void)
+void polytouchout_setup (void)
 {
     t_class *c = NULL;
     
@@ -108,7 +108,7 @@ PD_LOCAL void polytouchout_setup (void)
     polytouchout_class = c;
 }
 
-PD_LOCAL void polytouchout_destroy (void)
+void polytouchout_destroy (void)
 {
     class_free (polytouchout_class);
 }

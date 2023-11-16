@@ -99,7 +99,7 @@ static void *panel_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void panel_setup (void)
+void panel_setup (void)
 {
     t_class *c = NULL;
     
@@ -121,7 +121,7 @@ PD_LOCAL void panel_setup (void)
     panel_class = c;
 }
 
-PD_LOCAL void panel_destroy (void)
+void panel_destroy (void)
 {
     class_free (panel_class);
 }

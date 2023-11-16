@@ -56,7 +56,7 @@ static void *arguments_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void arguments_setup (void)
+void arguments_setup (void)
 {
     t_class *c = NULL;
     
@@ -72,7 +72,7 @@ PD_LOCAL void arguments_setup (void)
     arguments_class = c;
 }
 
-PD_LOCAL void arguments_destroy (void)
+void arguments_destroy (void)
 {
     class_free (arguments_class);
 }

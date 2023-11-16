@@ -34,16 +34,16 @@ struct _binopscalar_tilde {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer   *unop_tilde_functionData            (t_object *z, int flags);
-PD_LOCAL t_buffer   *binop_tilde_functionData           (t_object *z, int flags);
-PD_LOCAL t_buffer   *binopScalar_tilde_functionData     (t_object *z, int flags);
+t_buffer   *unop_tilde_functionData            (t_object *z, int flags);
+t_buffer   *binop_tilde_functionData           (t_object *z, int flags);
+t_buffer   *binopScalar_tilde_functionData     (t_object *z, int flags);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       binopScalar_tilde_float             (struct _binopscalar_tilde *x, t_float f);
-PD_LOCAL void       binopScalar_tilde_restore           (struct _binopscalar_tilde *x);
+void       binopScalar_tilde_float             (struct _binopscalar_tilde *x, t_float f);
+void       binopScalar_tilde_restore           (struct _binopscalar_tilde *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

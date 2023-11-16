@@ -52,14 +52,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   dsp_setState    (int n);
-PD_LOCAL int    dsp_getState    (void);
+void   dsp_setState    (int n);
+int    dsp_getState    (void);
 
-PD_LOCAL void   dsp_update      (void);
-PD_LOCAL int    dsp_suspend     (void);
-PD_LOCAL void   dsp_resume      (int oldState);
+void   dsp_update      (void);
+int    dsp_suspend     (void);
+void   dsp_resume      (int oldState);
 
-PD_LOCAL void   dsp_close       (void);
+void   dsp_close       (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

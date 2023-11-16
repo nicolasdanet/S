@@ -18,7 +18,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int undomanager_undoNeedToSuspend (t_undomanager *x)
+int undomanager_undoNeedToSuspend (t_undomanager *x)
 {
     t_undoaction *a = x->um_tail;
 
@@ -34,7 +34,7 @@ PD_LOCAL int undomanager_undoNeedToSuspend (t_undomanager *x)
     return 0;
 }
 
-PD_LOCAL int undomanager_redoNeedToSuspend (t_undomanager *x)
+int undomanager_redoNeedToSuspend (t_undomanager *x)
 {
     t_undoaction *a = x->um_tail;
     

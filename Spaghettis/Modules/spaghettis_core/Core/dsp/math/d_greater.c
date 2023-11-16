@@ -90,7 +90,7 @@ static void *greater_tilde_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void greater_tilde_setup (void)
+void greater_tilde_setup (void)
 {
     greater_tilde_class = class_new (sym___greater____tilde__,
                                     (t_newmethod)greater_tilde_new,
@@ -123,7 +123,7 @@ PD_LOCAL void greater_tilde_setup (void)
     class_setHelpName (greaterScalar_tilde_class, sym_logical__tilde__);
 }
 
-PD_LOCAL void greater_tilde_destroy (void)
+void greater_tilde_destroy (void)
 {
     class_free (greater_tilde_class);
     class_free (greaterScalar_tilde_class);

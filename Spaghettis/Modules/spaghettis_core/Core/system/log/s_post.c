@@ -35,7 +35,7 @@
 
 #if PD_WITH_DEBUG
     
-PD_LOCAL void post_syslog (const char *s)
+void post_syslog (const char *s)
 {
     #if PD_APPLE
         syslog (LOG_ERR, "%s", s);
@@ -99,7 +99,7 @@ static void post_console (t_object *dummy, int k, const char *s, int type)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void post (t_object *x, const char *fmt, ...)
+void post (t_object *x, const char *fmt, ...)
 {
     int k; char t[PD_STRING] = { 0 }; va_list ap;
     
@@ -110,7 +110,7 @@ PD_LOCAL void post (t_object *x, const char *fmt, ...)
     post_console (x, k, t, POST_NORMAL);
 }
 
-PD_LOCAL void post_system (t_object *x, const char *fmt, ...)
+void post_system (t_object *x, const char *fmt, ...)
 {
     int k; char t[PD_STRING] = { 0 }; va_list ap;
     
@@ -121,7 +121,7 @@ PD_LOCAL void post_system (t_object *x, const char *fmt, ...)
     post_console (x, k, t, POST_SYSTEM);
 }
 
-PD_LOCAL void post_warning (t_object *x, const char *fmt, ...)
+void post_warning (t_object *x, const char *fmt, ...)
 {
     int k; char t[PD_STRING] = { 0 }; va_list ap;
     
@@ -132,7 +132,7 @@ PD_LOCAL void post_warning (t_object *x, const char *fmt, ...)
     post_console (x, k, t, POST_WARNING);
 }
 
-PD_LOCAL void post_error (t_object *x, const char *fmt, ...)
+void post_error (t_object *x, const char *fmt, ...)
 {
     int k; char t[PD_STRING] = { 0 }; va_list ap;
     
@@ -149,7 +149,7 @@ PD_LOCAL void post_error (t_object *x, const char *fmt, ...)
 
 #if PD_WITH_DEBUG
 
-PD_LOCAL void post_log (const char *fmt, ...)
+void post_log (const char *fmt, ...)
 {
     int k;
     char t[PD_STRING] = { 0 };
@@ -168,7 +168,7 @@ PD_LOCAL void post_log (const char *fmt, ...)
 
 #else
 
-PD_LOCAL void post_log (const char *fmt, ...)
+void post_log (const char *fmt, ...)
 {
 }
 

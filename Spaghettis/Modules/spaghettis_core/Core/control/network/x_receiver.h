@@ -21,14 +21,14 @@ typedef void (*t_receivefn) (void *owner, t_buffer *b);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_receiver *receiver_new       (void *owner,
+t_receiver *receiver_new       (void *owner,
                                             int fd,
                                             t_notifyfn notify,      /* Socket closed. */
                                             t_receivefn receive,    /* Data received. */
                                             int isBinary);
 
-PD_LOCAL void       receiver_free       (t_receiver *x);
-PD_LOCAL int        receiver_isClosed   (t_receiver *x);
+void       receiver_free       (t_receiver *x);
+int        receiver_isClosed   (t_receiver *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL double audio_getNanosecondsToSleep (void);
+double audio_getNanosecondsToSleep (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -67,18 +67,18 @@ static t_uint32Atomic       jack_bufferSize;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void audio_vectorShrinkIn   (int);
-PD_LOCAL void audio_vectorShrinkOut  (int);
+void audio_vectorShrinkIn   (int);
+void audio_vectorShrinkOut  (int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int  metadata_getCV         (int isOutput, int n);
-PD_LOCAL int  metadata_getMinimum    (int isOutput, int n);
-PD_LOCAL int  metadata_getMaximum    (int isOutput, int n);
+int  metadata_getCV         (int isOutput, int n);
+int  metadata_getMinimum    (int isOutput, int n);
+int  metadata_getMaximum    (int isOutput, int n);
 
-PD_LOCAL t_symbol *metadata_getName  (int isOutput, int n);
+t_symbol *metadata_getName  (int isOutput, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -249,17 +249,17 @@ static void jack_shutdownCallback (void *dummy)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL const char *audio_nameNative (void)
+const char *audio_nameNative (void)
 {
     static const char *name = "JACK"; return name;      /* Static. */
 }
 
-PD_LOCAL t_error audio_initializeNative (void)
+t_error audio_initializeNative (void)
 {
     return PD_ERROR_NONE;
 }
 
-PD_LOCAL void audio_releaseNative (void)
+void audio_releaseNative (void)
 {
     jack_buffersFree();
 }
@@ -268,7 +268,7 @@ PD_LOCAL void audio_releaseNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audio_openNative (t_devices *p)
+t_error audio_openNative (t_devices *p)
 {
     int numberOfChannelsIn  = devices_getInSize (p)  ? devices_getInChannelsAtIndex (p, 0)  : 0;
     int numberOfChannelsOut = devices_getOutSize (p) ? devices_getOutChannelsAtIndex (p, 0) : 0;
@@ -348,7 +348,7 @@ PD_LOCAL t_error audio_openNative (t_devices *p)
     return PD_ERROR;
 }
 
-PD_LOCAL void audio_closeNative (void) 
+void audio_closeNative (void) 
 {
     if (jack_client) {
     //
@@ -376,7 +376,7 @@ PD_LOCAL void audio_closeNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int audio_pollNative (void)
+int audio_pollNative (void)
 {
     int i;
     int status = DACS_YES;
@@ -446,7 +446,7 @@ PD_LOCAL int audio_pollNative (void)
     return status;
 }
 
-PD_LOCAL int audio_getVectorSizeNative (void)
+int audio_getVectorSizeNative (void)
 {
     return PD_ATOMIC_UINT32_READ (&jack_bufferSize);
 }
@@ -455,7 +455,7 @@ PD_LOCAL int audio_getVectorSizeNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audio_getListsNative (t_deviceslist *p) 
+t_error audio_getListsNative (t_deviceslist *p) 
 {
     t_error err = PD_ERROR_NONE;
     

@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL char *heapstring_freeBorrowUnzeroed (t_heapstring *);      /* Caller acquires ownership. */
+char *heapstring_freeBorrowUnzeroed (t_heapstring *);      /* Caller acquires ownership. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -138,7 +138,7 @@ static int buffer_parseNextFloatState (int floatState, char c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void buffer_withStringUnzeroed (t_buffer *x, const char *s, int size)
+void buffer_withStringUnzeroed (t_buffer *x, const char *s, int size)
 {
     const char *text = s;
     const char *tBound = s + size;
@@ -203,7 +203,7 @@ PD_LOCAL void buffer_withStringUnzeroed (t_buffer *x, const char *s, int size)
 
 /* Caller acquires string ownership. */
 
-PD_LOCAL void buffer_toStringUnzeroed (t_buffer *x, char **s, int *size)
+void buffer_toStringUnzeroed (t_buffer *x, char **s, int *size)
 {
     t_heapstring *h = heapstring_new (0);
     
@@ -235,7 +235,7 @@ PD_LOCAL void buffer_toStringUnzeroed (t_buffer *x, char **s, int *size)
     *size = heapstring_getSize (h); *s = heapstring_freeBorrowUnzeroed (h);
 }
 
-PD_LOCAL char *buffer_toString (t_buffer *x)
+char *buffer_toString (t_buffer *x)
 {
     char *s = NULL;
     int n, length = 0;
@@ -263,7 +263,7 @@ static void buffer_reparseProceed (t_buffer *x)
     PD_MEMORY_FREE (s);
 }
 
-PD_LOCAL void buffer_reparseIfContainsWhitespace (t_buffer *x)
+void buffer_reparseIfContainsWhitespace (t_buffer *x)
 {
     int i, size = buffer_getSize (x);
     int reparse = 0;
@@ -285,7 +285,7 @@ PD_LOCAL void buffer_reparseIfContainsWhitespace (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void buffer_serialize (t_buffer *x, t_buffer *y)
+void buffer_serialize (t_buffer *x, t_buffer *y)
 {
     t_buffer *copy = buffer_newCopy (y);
     int i;
@@ -307,7 +307,7 @@ PD_LOCAL void buffer_serialize (t_buffer *x, t_buffer *y)
     buffer_free (copy);
 }
 
-PD_LOCAL void buffer_deserialize (t_buffer *x, int argc, t_atom *argv)
+void buffer_deserialize (t_buffer *x, int argc, t_atom *argv)
 {
     int i;
     

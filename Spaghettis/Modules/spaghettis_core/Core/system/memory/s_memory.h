@@ -14,10 +14,10 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   *memory_get                     (size_t n);
-PD_LOCAL void   *memory_getResize               (void *ptr, size_t oldSize, size_t newSize);
+void   *memory_get                     (size_t n);
+void   *memory_getResize               (void *ptr, size_t oldSize, size_t newSize);
 
-PD_LOCAL void   memory_free                     (void *ptr);
+void   memory_free                     (void *ptr);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -25,18 +25,18 @@ PD_LOCAL void   memory_free                     (void *ptr);
 
 #if PD_WITH_DEBUG
 
-PD_LOCAL void   *leak_getMemoryChecked          (size_t n, const char *f, int line);
-PD_LOCAL void   *leak_getMemoryResizeChecked    (void *ptr,
+void   *leak_getMemoryChecked          (size_t n, const char *f, int line);
+void   *leak_getMemoryResizeChecked    (void *ptr,
                                                     size_t oldSize,
                                                     size_t newSize,
                                                     const char *f,
                                                     int line);
 
-PD_LOCAL void   leak_freeMemoryChecked          (void *ptr, const char *f, int line);
+void   leak_freeMemoryChecked          (void *ptr, const char *f, int line);
 
 
-PD_LOCAL void   leak_initialize                 (void);
-PD_LOCAL void   leak_release                    (void);
+void   leak_initialize                 (void);
+void   leak_release                    (void);
 
 #endif // PD_WITH_DEBUG
 

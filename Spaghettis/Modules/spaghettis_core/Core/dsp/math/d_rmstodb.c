@@ -68,7 +68,7 @@ static void *rmstodb_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void rmstodb_tilde_setup (void)
+void rmstodb_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -89,7 +89,7 @@ PD_LOCAL void rmstodb_tilde_setup (void)
     rmstodb_tilde_class = c;
 }
 
-PD_LOCAL void rmstodb_tilde_destroy (void)
+void rmstodb_tilde_destroy (void)
 {
     class_free (rmstodb_tilde_class);
 }

@@ -100,7 +100,7 @@ static void midiport_inputCallback (const MIDIPacketList *pktlist,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error midiport_openInput (t_midiport *midiport, t_symbol *name)
+t_error midiport_openInput (t_midiport *midiport, t_symbol *name)
 {
     midiport_init (midiport);
     
@@ -138,7 +138,7 @@ PD_LOCAL t_error midiport_openInput (t_midiport *midiport, t_symbol *name)
     return err;
 }
 
-PD_LOCAL t_error midiport_openOutput (t_midiport *midiport, t_symbol *name)
+t_error midiport_openOutput (t_midiport *midiport, t_symbol *name)
 {
     midiport_init (midiport);
     
@@ -170,7 +170,7 @@ PD_LOCAL t_error midiport_openOutput (t_midiport *midiport, t_symbol *name)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void midiport_close (t_midiport *midiport)
+void midiport_close (t_midiport *midiport)
 {
     if (midiport->mp_bufferSysex) { ringbuffer_free (midiport->mp_bufferSysex); }
     if (midiport->mp_buffer)      { ringbuffer_free (midiport->mp_buffer); }
@@ -193,7 +193,7 @@ PD_LOCAL void midiport_close (t_midiport *midiport)
 
 /* Largely stolen from JUCE (assume that 32 bytes is enough size for packet's headers). */
 
-PD_LOCAL void midiport_pushSysex (t_midiport *midiport, int argc, t_atom *argv)
+void midiport_pushSysex (t_midiport *midiport, int argc, t_atom *argv)
 {
     const int maximumPacketSize = 256;
     const int numberOfPackets   = (argc + maximumPacketSize - 1) / maximumPacketSize;
@@ -226,7 +226,7 @@ PD_LOCAL void midiport_pushSysex (t_midiport *midiport, int argc, t_atom *argv)
     PD_MEMORY_FREE (allocatedBuffer);
 }
 
-PD_LOCAL void midiport_push (t_midiport *midiport, int status, int a, int b)
+void midiport_push (t_midiport *midiport, int status, int a, int b)
 {
     if (midiport->mp_port) {
     //
@@ -284,7 +284,7 @@ static void midiport_pollProceed (t_midiport *midiport, int port)
     }
 }
 
-PD_LOCAL void midiport_poll (t_midiport *midiport, int port)
+void midiport_poll (t_midiport *midiport, int port)
 {
     midiport_pollProceedSysex (midiport, port);
     midiport_pollProceed (midiport, port);

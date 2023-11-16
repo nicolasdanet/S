@@ -41,7 +41,7 @@ static void arrayquantile_float (t_arrayquantile *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *arrayquantile_new (t_symbol *s, int argc, t_atom *argv)
+void *arrayquantile_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_arrayquantile *x = (t_arrayquantile *)arrayrange_new (arrayquantile_class, argc, argv, 1, 1);
     
@@ -58,7 +58,7 @@ PD_LOCAL void *arrayquantile_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void arrayquantile_setup (void)
+void arrayquantile_setup (void)
 {
     t_class *c = NULL;
     
@@ -82,7 +82,7 @@ PD_LOCAL void arrayquantile_setup (void)
     arrayquantile_class = c;
 }
 
-PD_LOCAL void arrayquantile_destroy (void)
+void arrayquantile_destroy (void)
 {
     class_free (arrayquantile_class);
 }

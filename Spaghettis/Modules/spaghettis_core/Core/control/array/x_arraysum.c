@@ -58,7 +58,7 @@ static void arraysum_float (t_arraysum *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *arraysum_new (t_symbol *s, int argc, t_atom *argv)
+void *arraysum_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_arraysum *x = (t_arraysum *)arrayrange_new (arraysum_class, argc, argv, 0, 1);
     
@@ -75,7 +75,7 @@ PD_LOCAL void *arraysum_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void arraysum_setup (void)
+void arraysum_setup (void)
 {
     t_class *c = NULL;
     
@@ -100,7 +100,7 @@ PD_LOCAL void arraysum_setup (void)
     arraysum_class = c;
 }
 
-PD_LOCAL void arraysum_destroy (void)
+void arraysum_destroy (void)
 {
     class_free (arraysum_class);
 }

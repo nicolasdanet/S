@@ -69,7 +69,7 @@ static void *logger_task (void *dummy)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error logger_initialize (void)
+t_error logger_initialize (void)
 {
     char t[PD_STRING] = { 0 };
     t_error err = string_sprintf (t, PD_STRING, "%s/log-XXXXXX", main_directorySupport->s_name);
@@ -90,7 +90,7 @@ PD_LOCAL t_error logger_initialize (void)
     return PD_ERROR;
 }
 
-PD_LOCAL void logger_release (void)
+void logger_release (void)
 {
     PD_ATOMIC_INT32_WRITE (1, &logger_quit);
     
@@ -103,12 +103,12 @@ PD_LOCAL void logger_release (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void logger_appendString (const char *s)
+void logger_appendString (const char *s)
 {
     ringbuffer_write (logger_ring, s, (int32_t)strlen (s));
 }
 
-PD_LOCAL void logger_appendFloat (double f)
+void logger_appendFloat (double f)
 {
     char t[LOGGER_FLOAT_STRING] = { 0 }; logger_appendString (logger_stringWithFloat (t, f));
 }
@@ -122,12 +122,12 @@ PD_LOCAL void logger_appendFloat (double f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error logger_initialize (void)
+t_error logger_initialize (void)
 {
     return PD_ERROR_NONE;
 }
 
-PD_LOCAL void logger_release (void)
+void logger_release (void)
 {
 }
 

@@ -76,7 +76,7 @@ static void *mag_tilde_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void mag_tilde_setup (void)
+void mag_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -95,7 +95,7 @@ PD_LOCAL void mag_tilde_setup (void)
     mag_tilde_class = c;
 }
 
-PD_LOCAL void mag_tilde_destroy (void)
+void mag_tilde_destroy (void)
 {
     class_free (mag_tilde_class);
 }

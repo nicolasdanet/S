@@ -73,7 +73,7 @@ static t_error mididevicelist_getDestinations (t_deviceslist *list)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error mididevicelist_get (t_deviceslist *list)
+t_error mididevicelist_get (t_deviceslist *list)
 {
     t_error err = PD_ERROR_NONE;
     
@@ -87,7 +87,7 @@ PD_LOCAL t_error mididevicelist_get (t_deviceslist *list)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL MIDIEndpointRef mididevicelist_fetchSource (t_symbol *name)
+MIDIEndpointRef mididevicelist_fetchSource (t_symbol *name)
 {
     core_pump();
     
@@ -106,7 +106,7 @@ PD_LOCAL MIDIEndpointRef mididevicelist_fetchSource (t_symbol *name)
     }
 }
 
-PD_LOCAL MIDIEndpointRef mididevicelist_fetchDestination (t_symbol *name)
+MIDIEndpointRef mididevicelist_fetchDestination (t_symbol *name)
 {
     core_pump();
     

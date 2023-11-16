@@ -70,7 +70,7 @@ static void loadmess_free (t_loadmess *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void loadmess_setup (void)
+void loadmess_setup (void)
 {
     t_class *c = NULL;
     
@@ -87,7 +87,7 @@ PD_LOCAL void loadmess_setup (void)
     loadmess_class = c;
 }
 
-PD_LOCAL void loadmess_destroy (void)
+void loadmess_destroy (void)
 {
     class_free (loadmess_class);
 }

@@ -77,7 +77,7 @@ static void ctlin_free (t_ctlin *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void ctlin_setup (void)
+void ctlin_setup (void)
 {
     t_class *c = NULL;
     
@@ -94,7 +94,7 @@ PD_LOCAL void ctlin_setup (void)
     ctlin_class = c;
 }
 
-PD_LOCAL void ctlin_destroy (void)
+void ctlin_destroy (void)
 {
     class_free (ctlin_class);
 }

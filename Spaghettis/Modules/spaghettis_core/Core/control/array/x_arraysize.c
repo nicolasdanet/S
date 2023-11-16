@@ -81,7 +81,7 @@ static void arraysize_restore (t_arraysize *x, t_symbol *s, int argc, t_atom *ar
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *arraysize_new (t_symbol *s, int argc, t_atom *argv)
+void *arraysize_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_arraysize *x = (t_arraysize *)pd_new (arraysize_class);
     
@@ -109,7 +109,7 @@ PD_LOCAL void *arraysize_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void arraysize_setup (void)
+void arraysize_setup (void)
 {
     t_class *c = NULL;
     
@@ -134,7 +134,7 @@ PD_LOCAL void arraysize_setup (void)
     arraysize_class = c;
 }
 
-PD_LOCAL void arraysize_destroy (void)
+void arraysize_destroy (void)
 {
     class_free (arraysize_class);
 }

@@ -90,7 +90,7 @@ static void *realtime_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void realtime_setup (void)
+void realtime_setup (void)
 {
     t_class *c = NULL;
     
@@ -112,7 +112,7 @@ PD_LOCAL void realtime_setup (void)
     realtime_class = c;
 }
 
-PD_LOCAL void realtime_destroy (void)
+void realtime_destroy (void)
 {
     class_free (realtime_class);
 }

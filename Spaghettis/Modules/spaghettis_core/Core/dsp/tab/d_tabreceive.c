@@ -178,7 +178,7 @@ static void tabreceive_tilde_free (t_tabreceive_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void tabreceive_tilde_setup (void)
+void tabreceive_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -200,7 +200,7 @@ PD_LOCAL void tabreceive_tilde_setup (void)
     tabreceive_tilde_class = c;
 }
 
-PD_LOCAL void tabreceive_tilde_destroy (void)
+void tabreceive_tilde_destroy (void)
 {
     class_free (tabreceive_tilde_class);
 }

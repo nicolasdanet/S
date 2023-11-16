@@ -202,7 +202,7 @@ static void tabread4_tilde_free (t_tabread4_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void tabread4_tilde_setup (void)
+void tabread4_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -225,7 +225,7 @@ PD_LOCAL void tabread4_tilde_setup (void)
     tabread4_tilde_class = c;
 }
 
-PD_LOCAL void tabread4_tilde_destroy (void)
+void tabread4_tilde_destroy (void)
 {
     class_free (tabread4_tilde_class);
 }

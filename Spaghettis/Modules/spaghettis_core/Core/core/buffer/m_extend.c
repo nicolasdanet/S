@@ -15,7 +15,7 @@
 
 /* Ending element is not included (can be the buffer size). */
 
-PD_LOCAL t_error buffer_extend (t_buffer *x, int start, int end, int n)
+t_error buffer_extend (t_buffer *x, int start, int end, int n)
 {
     PD_ASSERT (n >= 0); n = PD_MAX (n, 0);
     
@@ -39,7 +39,7 @@ PD_LOCAL t_error buffer_extend (t_buffer *x, int start, int end, int n)
 
 /* Ending element is not included (can be the buffer size). */
 
-PD_LOCAL t_error buffer_replace (t_buffer *x, int start, int end, int argc, t_atom *argv)
+t_error buffer_replace (t_buffer *x, int start, int end, int argc, t_atom *argv)
 {
     t_error err = PD_ERROR;
     
@@ -54,7 +54,7 @@ PD_LOCAL t_error buffer_replace (t_buffer *x, int start, int end, int argc, t_at
     return err;
 }
 
-PD_LOCAL void buffer_prepend (t_buffer *x, int argc, t_atom *argv)
+void buffer_prepend (t_buffer *x, int argc, t_atom *argv)
 {
     if (argc && x->b_size) { buffer_extend (x, 0, 0, argc); atom_copyAtoms (argv, argc, x->b_vector, argc); }
     else {
@@ -66,7 +66,7 @@ PD_LOCAL void buffer_prepend (t_buffer *x, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error buffer_insertAtIndex (t_buffer *x, int n, t_atom *a)
+t_error buffer_insertAtIndex (t_buffer *x, int n, t_atom *a)
 {
     if (n >= 0 && n <= x->b_size) {
     //
@@ -86,12 +86,12 @@ PD_LOCAL t_error buffer_insertAtIndex (t_buffer *x, int n, t_atom *a)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void buffer_shuffle (t_buffer *x)
+void buffer_shuffle (t_buffer *x)
 {
     atom_shuffle (buffer_getSize (x), buffer_getAtoms (x));
 }
 
-PD_LOCAL t_error buffer_pop (t_buffer *x, t_atom *a)
+t_error buffer_pop (t_buffer *x, t_atom *a)
 {
     int n = buffer_getSize (x);
     

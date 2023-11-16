@@ -30,7 +30,7 @@ static t_class *binopMinimum_class;         /* Shared. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void *binop_new (t_class *c, t_float f)
+void *binop_new (t_class *c, t_float f)
 {
     t_binop *x = (t_binop *)pd_new (c);
     
@@ -47,7 +47,7 @@ PD_LOCAL void *binop_new (t_class *c, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *binop_functionData (t_object *z, int flags)
+t_buffer *binop_functionData (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
     //
@@ -65,7 +65,7 @@ PD_LOCAL t_buffer *binop_functionData (t_object *z, int flags)
     return NULL;
 }
 
-PD_LOCAL void binop_restore (t_binop *x, t_symbol *s, int argc, t_atom *argv)
+void binop_restore (t_binop *x, t_symbol *s, int argc, t_atom *argv)
 {
     t_binop *old = (t_binop *)instance_pendingFetch (cast_object (x));
     
@@ -244,7 +244,7 @@ static void binopMinimum_float (t_binop *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void binop1_setup (void)
+void binop1_setup (void)
 {
     binopAdd_class = class_new (sym___plus__,
                             (t_newmethod)binopAdd_new,
@@ -365,7 +365,7 @@ PD_LOCAL void binop1_setup (void)
     class_setHelpName (binopMinimum_class,      sym_math);
 }
 
-PD_LOCAL void binop1_destroy (void)
+void binop1_destroy (void)
 {
     class_free (binopAdd_class);
     class_free (binopSubtract_class);

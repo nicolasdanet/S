@@ -38,7 +38,7 @@ static void listsum_list (t_listsum *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listsum_new (t_symbol *s, int argc, t_atom *argv)
+void *listsum_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listsum *x = (t_listsum *)pd_new (listsum_class);
     
@@ -53,7 +53,7 @@ PD_LOCAL void *listsum_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listsum_setup (void)
+void listsum_setup (void)
 {
     t_class *c = NULL;
     
@@ -72,7 +72,7 @@ PD_LOCAL void listsum_setup (void)
     listsum_class = c;
 }
 
-PD_LOCAL void listsum_destroy (void)
+void listsum_destroy (void)
 {
     class_free (listsum_class);
 }

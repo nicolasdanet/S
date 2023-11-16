@@ -19,17 +19,17 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_clocks   *clocks_new     (void);
+t_clocks   *clocks_new     (void);
 
-PD_LOCAL void       clocks_free     (t_clocks *x);
+void       clocks_free     (t_clocks *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void       clocks_add      (t_clocks *x, t_clock *c);
-PD_LOCAL void       clocks_remove   (t_clocks *x, t_clock *c);
-PD_LOCAL void       clocks_destroy  (t_clocks *x, t_clock *c);
-PD_LOCAL void       clocks_tick     (t_clocks *x, t_systime systime);
+void       clocks_add      (t_clocks *x, t_clock *c);
+void       clocks_remove   (t_clocks *x, t_clock *c);
+void       clocks_destroy  (t_clocks *x, t_clock *c);
+void       clocks_tick     (t_clocks *x, t_systime systime);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

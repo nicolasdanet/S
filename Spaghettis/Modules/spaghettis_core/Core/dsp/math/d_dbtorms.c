@@ -68,7 +68,7 @@ static void *dbtorms_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void dbtorms_tilde_setup (void)
+void dbtorms_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -89,7 +89,7 @@ PD_LOCAL void dbtorms_tilde_setup (void)
     dbtorms_tilde_class = c;
 }
 
-PD_LOCAL void dbtorms_tilde_destroy (void)
+void dbtorms_tilde_destroy (void)
 {
     class_free (dbtorms_tilde_class);
 }

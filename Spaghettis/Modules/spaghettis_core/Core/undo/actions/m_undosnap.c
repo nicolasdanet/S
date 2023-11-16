@@ -26,7 +26,7 @@ typedef struct _undosnap {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undosnap_new (void)
+t_undoaction *undosnap_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undosnap_class);
     
@@ -42,7 +42,7 @@ PD_LOCAL t_undoaction *undosnap_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undosnap_setup (void)
+void undosnap_setup (void)
 {
     t_class *c = NULL;
     
@@ -56,7 +56,7 @@ PD_LOCAL void undosnap_setup (void)
     undosnap_class = c;
 }
 
-PD_LOCAL void undosnap_destroy (void)
+void undosnap_destroy (void)
 {
     class_free (undosnap_class);
 }

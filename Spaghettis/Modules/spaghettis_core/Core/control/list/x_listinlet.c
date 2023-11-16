@@ -67,17 +67,17 @@ static void listinlet_reduce (t_listinlet *x, int toRemove)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listinlet_listClear (t_listinlet *x)
+void listinlet_listClear (t_listinlet *x)
 {
     listinlet_free (x); listinlet_init (x);
 }
 
-PD_LOCAL void listinlet_listSet (t_listinlet *x, int argc, t_atom *argv)
+void listinlet_listSet (t_listinlet *x, int argc, t_atom *argv)
 {
     listinlet_listClear (x); listinlet_listAppend (x, argc, argv);
 }
 
-PD_LOCAL void listinlet_listSetByCopy (t_listinlet *x, t_listinlet *toCopy)
+void listinlet_listSetByCopy (t_listinlet *x, t_listinlet *toCopy)
 {
     t_buffer *b = buffer_new();
     
@@ -87,17 +87,17 @@ PD_LOCAL void listinlet_listSetByCopy (t_listinlet *x, t_listinlet *toCopy)
     buffer_free (b);
 }
 
-PD_LOCAL void listinlet_listAppend (t_listinlet *x, int argc, t_atom *argv)
+void listinlet_listAppend (t_listinlet *x, int argc, t_atom *argv)
 {
     listinlet_listInsert (x, x->li_size, argc, argv);
 }
 
-PD_LOCAL void listinlet_listPrepend (t_listinlet *x, int argc, t_atom *argv)
+void listinlet_listPrepend (t_listinlet *x, int argc, t_atom *argv)
 {
     listinlet_listInsert (x, 0, argc, argv);
 }
 
-PD_LOCAL void listinlet_listSetAt (t_listinlet *x, int i, int argc, t_atom *argv)
+void listinlet_listSetAt (t_listinlet *x, int i, int argc, t_atom *argv)
 {
     if (argc && i >= 0 && i < x->li_size) {
     //
@@ -108,7 +108,7 @@ PD_LOCAL void listinlet_listSetAt (t_listinlet *x, int i, int argc, t_atom *argv
     }
 }
 
-PD_LOCAL void listinlet_listInsert (t_listinlet *x, int i, int argc, t_atom *argv)
+void listinlet_listInsert (t_listinlet *x, int i, int argc, t_atom *argv)
 {
     if (argc && i >= 0 && i <= x->li_size) {
     //
@@ -120,7 +120,7 @@ PD_LOCAL void listinlet_listInsert (t_listinlet *x, int i, int argc, t_atom *arg
     }
 }
 
-PD_LOCAL void listinlet_listRemove (t_listinlet *x, int i, int n)
+void listinlet_listRemove (t_listinlet *x, int i, int n)
 {
     if (i >= 0 && n > 0) {
     //
@@ -140,7 +140,7 @@ PD_LOCAL void listinlet_listRemove (t_listinlet *x, int i, int n)
     }
 }
 
-PD_LOCAL void listinlet_listReplace (t_listinlet *x, int i, int n, int argc, t_atom *argv)
+void listinlet_listReplace (t_listinlet *x, int i, int n, int argc, t_atom *argv)
 {
     listinlet_listRemove (x, i, n); listinlet_listInsert (x, i, argc, argv);
 }
@@ -148,7 +148,7 @@ PD_LOCAL void listinlet_listReplace (t_listinlet *x, int i, int n, int argc, t_a
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL int listinlet_listIsEqualTo (t_listinlet *x, int argc, t_atom *argv)
+int listinlet_listIsEqualTo (t_listinlet *x, int argc, t_atom *argv)
 {
     if (argc != x->li_size) { return 0; }
     else {
@@ -169,12 +169,12 @@ PD_LOCAL int listinlet_listIsEqualTo (t_listinlet *x, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void listinlet_listGet (t_listinlet *x, t_buffer *b)
+void listinlet_listGet (t_listinlet *x, t_buffer *b)
 {
     int i; for (i = 0; i < x->li_size; i++) { buffer_appendAtom (b, listinlet_getAtIndex (x, i)); }
 }
 
-PD_LOCAL int listinlet_listSize (t_listinlet *x)
+int listinlet_listSize (t_listinlet *x)
 {
     return x->li_size;
 }
@@ -183,24 +183,24 @@ PD_LOCAL int listinlet_listSize (t_listinlet *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listinlet_init (t_listinlet *x)
+void listinlet_init (t_listinlet *x)
 {
     x->li_pd     = listinlet_class;
     x->li_size   = 0;
     x->li_vector = (t_listinletelement *)PD_MEMORY_GET (0);
 }
 
-PD_LOCAL void listinlet_free (t_listinlet *x)
+void listinlet_free (t_listinlet *x)
 {
     PD_ASSERT (x->li_vector); PD_MEMORY_FREE (x->li_vector);
 }
 
-PD_LOCAL void listinlet_copyAtomsUnchecked (t_listinlet *x, t_atom *a)
+void listinlet_copyAtomsUnchecked (t_listinlet *x, t_atom *a)
 {
     int i; for (i = 0; i < x->li_size; i++) { *(a + i) = *listinlet_getAtIndex (x, i); }
 }
 
-PD_LOCAL t_atom *listinlet_getAtomAtIndex (t_listinlet *x, int i)
+t_atom *listinlet_getAtomAtIndex (t_listinlet *x, int i)
 {
     PD_ASSERT (i >= 0); if (i < x->li_size) { return listinlet_getAtIndex (x, i); }
     
@@ -225,7 +225,7 @@ static void listinlet_anything (t_listinlet *x, t_symbol *s, int argc, t_atom *a
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listinlet_setup (void)
+void listinlet_setup (void)
 {
     t_class *c = NULL;
     
@@ -242,7 +242,7 @@ PD_LOCAL void listinlet_setup (void)
     listinlet_class = c;
 }
 
-PD_LOCAL void listinlet_destroy (void)
+void listinlet_destroy (void)
 {
     class_free (listinlet_class);
 }

@@ -18,34 +18,34 @@ extern t_symbol *main_directoryHelp;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int object_isDummy (t_object *x)
+int object_isDummy (t_object *x)
 {
     return (pd_class (x) == comment_class && object_isObject (x));
 }
 
-PD_LOCAL int object_isCanvas (t_object *x)
+int object_isCanvas (t_object *x)
 {
     return (pd_class (x) == canvas_class);
 }
 
-PD_LOCAL int object_isObject (t_object *x)
+int object_isObject (t_object *x)
 {
     return (x->g_type == TYPE_OBJECT);
 }
 
-PD_LOCAL int object_isComment (t_object *x)
+int object_isComment (t_object *x)
 {
     return (x->g_type == TYPE_COMMENT);
 }
 
-PD_LOCAL int object_isMessage (t_object *x)
+int object_isMessage (t_object *x)
 {
     return (x->g_type == TYPE_MESSAGE);
 }
 
 #if 0
 
-PD_LOCAL int object_isAtom (t_object *x)
+int object_isAtom (t_object *x)
 {
     return (x->g_type == TYPE_ATOM);
 }
@@ -66,12 +66,12 @@ static int object_hasDspProceed (t_object *x, int k)
     }
 }
 
-PD_LOCAL int object_hasDspOrIsGraphicArray (t_object *x)
+int object_hasDspOrIsGraphicArray (t_object *x)
 {
     return object_hasDspProceed (x, 1);
 }
 
-PD_LOCAL int object_hasDsp (t_object *x)
+int object_hasDsp (t_object *x)
 {
     return object_hasDspProceed (x, 0);
 }
@@ -80,7 +80,7 @@ PD_LOCAL int object_hasDsp (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *object_getUnexpandedNameAt (t_object *x, int i)
+t_symbol *object_getUnexpandedNameAt (t_object *x, int i)
 {
     t_buffer *z = buffer_new();
     buffer_serialize (z, object_getBuffer (x));
@@ -94,7 +94,7 @@ PD_LOCAL t_symbol *object_getUnexpandedNameAt (t_object *x, int i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int object_setSnappedX (t_object *x, int n)
+int object_setSnappedX (t_object *x, int n)
 {
     int k = object_getX (x);
     
@@ -105,7 +105,7 @@ PD_LOCAL int object_setSnappedX (t_object *x, int n)
     return (object_getX (x) - k);
 }
 
-PD_LOCAL int object_setSnappedY (t_object *x, int n)
+int object_setSnappedY (t_object *x, int n)
 {
     int k = object_getY (x);
 
@@ -120,7 +120,7 @@ PD_LOCAL int object_setSnappedY (t_object *x, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void object_setBuffer (t_object *x, t_buffer *b)      /* Acquires ownership. */
+void object_setBuffer (t_object *x, t_buffer *b)      /* Acquires ownership. */
 {
     if (x->g_buffer) { buffer_free (x->g_buffer); }
     
@@ -133,7 +133,7 @@ PD_LOCAL void object_setBuffer (t_object *x, t_buffer *b)      /* Acquires owner
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void object_distributeAtomsOnInlets (t_object *x, int argc, t_atom *argv)
+void object_distributeAtomsOnInlets (t_object *x, int argc, t_atom *argv)
 {
     if (argc) { 
         
@@ -174,7 +174,7 @@ PD_LOCAL void object_distributeAtomsOnInlets (t_object *x, int argc, t_atom *arg
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_outconnect *object_connect (t_object *src, int m, t_object *dest, int n, t_glist *glist)
+t_outconnect *object_connect (t_object *src, int m, t_object *dest, int n, t_glist *glist)
 {
     t_outconnect *oc = NULL;
     t_outlet *o = NULL;
@@ -222,7 +222,7 @@ PD_LOCAL t_outconnect *object_connect (t_object *src, int m, t_object *dest, int
     return oc;
 }
 
-PD_LOCAL t_error object_disconnect (t_object *src, int m, t_object *dest, int n, t_glist *glist)
+t_error object_disconnect (t_object *src, int m, t_object *dest, int n, t_glist *glist)
 {
     t_error err = PD_ERROR;
     
@@ -293,7 +293,7 @@ static void object_openHelp (const char *directory, const char *name)
 /* Then look for in the application "help" folder. */
 /* And last in the user search path. */
 
-PD_FORCE void object_help (t_object *y)
+void object_help (t_object *y)
 {
     const char *directory = NULL;
     char name[PD_STRING] = { 0 };
@@ -317,7 +317,7 @@ PD_FORCE void object_help (t_object *y)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int object_getNumberOfInlets (t_object *x)
+int object_getNumberOfInlets (t_object *x)
 {
     int n = 0;
     t_inlet *i = NULL;
@@ -326,7 +326,7 @@ PD_LOCAL int object_getNumberOfInlets (t_object *x)
     return n;
 }
 
-PD_LOCAL int object_getNumberOfOutlets (t_object *x)
+int object_getNumberOfOutlets (t_object *x)
 {
     int n = 0;
     t_outlet *o = NULL;
@@ -334,7 +334,7 @@ PD_LOCAL int object_getNumberOfOutlets (t_object *x)
     return n;
 }
 
-PD_LOCAL int object_getNumberOfSignalInlets (t_object *x)
+int object_getNumberOfSignalInlets (t_object *x)
 {
     int n = 0;
     t_inlet *i = NULL;
@@ -343,7 +343,7 @@ PD_LOCAL int object_getNumberOfSignalInlets (t_object *x)
     return n;
 }
 
-PD_LOCAL int object_getNumberOfSignalOutlets (t_object *x)
+int object_getNumberOfSignalOutlets (t_object *x)
 {
     int n = 0;
     t_outlet *o = NULL;
@@ -355,7 +355,7 @@ PD_LOCAL int object_getNumberOfSignalOutlets (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int object_getIndexAsSignalOfInlet (t_object *x, int m)
+int object_getIndexAsSignalOfInlet (t_object *x, int m)
 {
     int n = 0;
     t_inlet *i = NULL;
@@ -379,7 +379,7 @@ PD_LOCAL int object_getIndexAsSignalOfInlet (t_object *x, int m)
     return -1;
 }
 
-PD_LOCAL int object_getIndexAsSignalOfOutlet (t_object *x, int m)
+int object_getIndexAsSignalOfOutlet (t_object *x, int m)
 {
     int n = 0;
     t_outlet *o = NULL;
@@ -404,7 +404,7 @@ PD_LOCAL int object_getIndexAsSignalOfOutlet (t_object *x, int m)
 
 #if 0
 
-PD_LOCAL int object_isSignalInlet (t_object *x, int m)
+int object_isSignalInlet (t_object *x, int m)
 {
     t_inlet *i = NULL;
     
@@ -422,7 +422,7 @@ PD_LOCAL int object_isSignalInlet (t_object *x, int m)
 
 #endif
 
-PD_LOCAL int object_isSignalOutlet (t_object *x, int m)
+int object_isSignalOutlet (t_object *x, int m)
 {
     t_outlet *o = NULL;
     
@@ -437,7 +437,7 @@ PD_LOCAL int object_isSignalOutlet (t_object *x, int m)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL juce::String object_getTypeOfInlets (t_object *x)
+juce::String object_getTypeOfInlets (t_object *x)
 {
     juce::StringArray s;
     
@@ -455,7 +455,7 @@ PD_LOCAL juce::String object_getTypeOfInlets (t_object *x)
     return s.joinIntoString (" ");
 }
 
-PD_LOCAL juce::String object_getTypeOfOutlets (t_object *x)
+juce::String object_getTypeOfOutlets (t_object *x)
 {
     juce::StringArray s;
     
@@ -483,7 +483,7 @@ juce::String object_getBufferAsString (t_object* x)
     return s;
 }
 
-PD_LOCAL bool object_setBufferWithString (t_object *x, const juce::String& s)
+bool object_setBufferWithString (t_object *x, const juce::String& s)
 {
     jassert (x);
     
@@ -504,7 +504,7 @@ PD_LOCAL bool object_setBufferWithString (t_object *x, const juce::String& s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *object_functionData (t_object *z, int flags)
+t_buffer *object_functionData (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
     //
@@ -519,7 +519,7 @@ PD_LOCAL t_buffer *object_functionData (t_object *z, int flags)
     return NULL;
 }
 
-PD_LOCAL void object_save (t_object *x, t_buffer *b, int flags)
+void object_save (t_object *x, t_buffer *b, int flags)
 {
     if (class_hasSaveFunction (pd_class (x))) { (*(class_getSaveFunction (pd_class (x)))) (x, b, flags); }
     
@@ -537,14 +537,14 @@ PD_LOCAL void object_save (t_object *x, t_buffer *b, int flags)
     }
 }
 
-PD_LOCAL void object_saveIdentifiers (t_object *x, t_buffer *b, int flags)
+void object_saveIdentifiers (t_object *x, t_buffer *b, int flags)
 {
     if (flags & SAVE_UNDO)        { object_serializeUnique (x, sym__tagobject, b); }
     if (flags & SAVE_ENCAPSULATE) { object_serializeUnique (x, sym__tagobjectsource, b); }
     if (flags & SAVE_UPDATE)      { object_serializeSource (x, sym__tagobjectsource, b); }
 }
 
-PD_LOCAL void object_serializeLabel (t_object *x, t_buffer *b)
+void object_serializeLabel (t_object *x, t_buffer *b)
 {
     if (object_hasLabel (x)) {
     //
@@ -560,7 +560,7 @@ PD_LOCAL void object_serializeLabel (t_object *x, t_buffer *b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_float64Atomic *object_getSignalAtIndex (t_object *x, int m)
+t_float64Atomic *object_getSignalAtIndex (t_object *x, int m)
 {
     t_inlet *i = NULL;
     
@@ -593,7 +593,7 @@ static t_float object_getSignalValueAtIndex (t_object *x, int m)
     PD_BUG; return 0.0;
 }
 
-PD_LOCAL void object_getSignalValues (t_object *x, t_buffer *b)
+void object_getSignalValues (t_object *x, t_buffer *b)
 {
     int i, n = object_getNumberOfSignalInlets (x);
     
@@ -609,7 +609,7 @@ static void object_setSignalValueAtIndex (t_object *x, int m, t_float f)
     if (t) { PD_ATOMIC_FLOAT64_WRITE (f, t); } else { PD_BUG; }
 }
 
-PD_LOCAL void object_setSignalValues (t_object *x, int argc, t_atom *argv)
+void object_setSignalValues (t_object *x, int argc, t_atom *argv)
 {
     int i;
     
@@ -620,14 +620,14 @@ PD_LOCAL void object_setSignalValues (t_object *x, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void object_copySignalValues (t_object *x, t_object *old)
+void object_copySignalValues (t_object *x, t_object *old)
 {
     int i, n = object_getNumberOfSignalInlets (x);
     
     for (i = 0; i < n; i++) { object_setSignalValueAtIndex (x, i, object_getSignalValueAtIndex (old, i)); }
 }
 
-PD_LOCAL void object_fetchAndCopySignalValuesIfRequired (t_object *x)
+void object_fetchAndCopySignalValuesIfRequired (t_object *x)
 {
     if (object_dspNeedInitializer (x)) {
     //
@@ -646,7 +646,7 @@ PD_LOCAL void object_fetchAndCopySignalValuesIfRequired (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int object_setLabelUpdate (t_object *x, t_symbol *s)
+int object_setLabelUpdate (t_object *x, t_symbol *s)
 {
     if (object_getLabel (x) != s) {
         object_setLabel (x, s);

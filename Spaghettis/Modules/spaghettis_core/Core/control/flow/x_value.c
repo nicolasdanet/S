@@ -210,7 +210,7 @@ static void value_free (t_value *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void value_setup (void)
+void value_setup (void)
 {
     valuecommon_class = class_new (sym_value,
                                 NULL,
@@ -240,7 +240,7 @@ PD_LOCAL void value_setup (void)
     class_requirePending (value_class);
 }
 
-PD_LOCAL void value_destroy (void)
+void value_destroy (void)
 {
     class_free (valuecommon_class);
     class_free (value_class);

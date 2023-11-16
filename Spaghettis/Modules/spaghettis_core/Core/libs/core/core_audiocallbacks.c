@@ -12,9 +12,9 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void    core_setVectorSize  (UInt32);
-PD_LOCAL t_error core_buffersPush    (UInt32, AudioBufferList *, t_audiograph *);
-PD_LOCAL t_error core_buffersPull    (UInt32, AudioBufferList *, t_audiograph *);
+void    core_setVectorSize  (UInt32);
+t_error core_buffersPush    (UInt32, AudioBufferList *, t_audiograph *);
+t_error core_buffersPull    (UInt32, AudioBufferList *, t_audiograph *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ static inline void audiodevice_bufferListZeroed (AudioBufferList *ioData)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL OSStatus audiodevice_listenerCallback (AudioObjectID inObjectID,
+OSStatus audiodevice_listenerCallback (AudioObjectID inObjectID,
     UInt32 inNumberAddresses,
     const AudioObjectPropertyAddress *inAddresses,
     void *inClientData)
@@ -80,7 +80,7 @@ PD_LOCAL OSStatus audiodevice_listenerCallback (AudioObjectID inObjectID,
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL OSStatus audiodevice_inputCallback (void *inRefCon,
+OSStatus audiodevice_inputCallback (void *inRefCon,
     AudioUnitRenderActionFlags *ioActionFlags,
     const AudioTimeStamp *inTimeStamp,
     UInt32 inBusNumber,
@@ -113,7 +113,7 @@ PD_LOCAL OSStatus audiodevice_inputCallback (void *inRefCon,
     return noErr;
 }
 
-PD_LOCAL OSStatus audiodevice_outputCallback (void *inRefCon,
+OSStatus audiodevice_outputCallback (void *inRefCon,
     AudioUnitRenderActionFlags *ioActionFlags,
     const AudioTimeStamp *inTimeStamp,
     UInt32 inBusNumber,
@@ -132,7 +132,7 @@ PD_LOCAL OSStatus audiodevice_outputCallback (void *inRefCon,
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL OSStatus audiodevice_duplexCallback (void *inRefCon,
+OSStatus audiodevice_duplexCallback (void *inRefCon,
     AudioUnitRenderActionFlags *ioActionFlags,
     const AudioTimeStamp *inTimeStamp,
     UInt32 inBusNumber,

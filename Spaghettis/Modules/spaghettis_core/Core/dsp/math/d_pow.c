@@ -86,7 +86,7 @@ static void *pow_tilde_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void pow_tilde_setup (void)
+void pow_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -106,7 +106,7 @@ PD_LOCAL void pow_tilde_setup (void)
     pow_tilde_class = c;
 }
 
-PD_LOCAL void pow_tilde_destroy (void)
+void pow_tilde_destroy (void)
 {
     class_free (pow_tilde_class);
 }

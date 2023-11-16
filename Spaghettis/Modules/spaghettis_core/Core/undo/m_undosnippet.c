@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undosnippet *undosnippet_new (t_object *y)
+t_undosnippet *undosnippet_new (t_object *y)
 {
     t_undosnippet *x = (t_undosnippet *)PD_MEMORY_GET (sizeof (t_undosnippet));
     
@@ -29,7 +29,7 @@ PD_LOCAL t_undosnippet *undosnippet_new (t_object *y)
     return x;
 }
 
-PD_LOCAL void undosnippet_free (t_undosnippet *x)
+void undosnippet_free (t_undosnippet *x)
 {
     buffer_free (x->us_buffer);
     
@@ -40,7 +40,7 @@ PD_LOCAL void undosnippet_free (t_undosnippet *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undosnippet_load (t_undosnippet *x)
+void undosnippet_load (t_undosnippet *x)
 {
     if (instance_registerContains (x->us_object) == 0) {
     //
@@ -55,7 +55,7 @@ PD_LOCAL void undosnippet_load (t_undosnippet *x)
     }
 }
 
-PD_LOCAL void undosnippet_update (t_undosnippet *x)
+void undosnippet_update (t_undosnippet *x)
 {
     t_object *t = instance_registerGetObject (x->us_object);
     
@@ -66,7 +66,7 @@ PD_LOCAL void undosnippet_update (t_undosnippet *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undosnippet_z (t_undosnippet *x)
+void undosnippet_z (t_undosnippet *x)
 {
     if (instance_registerContains (x->us_object) == 1) {
     //
@@ -81,7 +81,7 @@ PD_LOCAL void undosnippet_z (t_undosnippet *x)
     }
 }
 
-PD_LOCAL void undosnippet_front (t_undosnippet *x)
+void undosnippet_front (t_undosnippet *x)
 {
     if (instance_registerContains (x->us_object) == 1) {
     //
@@ -96,7 +96,7 @@ PD_LOCAL void undosnippet_front (t_undosnippet *x)
     }
 }
 
-PD_LOCAL void undosnippet_back (t_undosnippet *x)
+void undosnippet_back (t_undosnippet *x)
 {
     if (instance_registerContains (x->us_object) == 1) {
     //

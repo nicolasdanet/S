@@ -13,13 +13,13 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_systime scheduler_addMillisecondsToLogicalTime (t_systime, double);
+t_systime scheduler_addMillisecondsToLogicalTime (t_systime, double);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error clock_parseUnit (t_float f, t_symbol *s, t_float *n, int *isSamples)
+t_error clock_parseUnit (t_float f, t_symbol *s, t_float *n, int *isSamples)
 {
     t_error err = (f <= 0.0);
     
@@ -52,7 +52,7 @@ static void clock_setUnit (t_clock *x, double unit, int isSamples)
     double d = isSamples ? -unit : unit; PD_ATOMIC_FLOAT64_WRITE (d, &x->c_unit);
 }
 
-PD_LOCAL t_error clock_setUnitParsed (t_clock *x, t_float f, t_symbol *unitName)
+t_error clock_setUnitParsed (t_clock *x, t_float f, t_symbol *unitName)
 {
     t_float n; int isSamples;
     t_error err = clock_parseUnit (f, unitName, &n, &isSamples);
@@ -72,7 +72,7 @@ PD_LOCAL t_error clock_setUnitParsed (t_clock *x, t_float f, t_symbol *unitName)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_systime clock_getLogicalTime (t_clock *x)
+t_systime clock_getLogicalTime (t_clock *x)
 {
     return (t_systime)PD_ATOMIC_FLOAT64_READ (&x->c_systime);
 }
@@ -83,12 +83,12 @@ PD_LOCAL t_systime clock_getLogicalTime (t_clock *x)
 
 /* Copy of systime used only while executed. */
 
-PD_LOCAL t_systime clock_getExecuteTime (t_clock *x)
+t_systime clock_getExecuteTime (t_clock *x)
 {
     return x->c_t;
 }
 
-PD_LOCAL void clock_setExecuteTime (t_clock *x, t_systime t)
+void clock_setExecuteTime (t_clock *x, t_systime t)
 {
     x->c_t = t;
 }
@@ -118,28 +118,28 @@ For instance:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void clock_increment (t_clock *x)
+void clock_increment (t_clock *x)
 {
     int t = PD_ATOMIC_INT32_INCREMENT (&x->c_count);
     
     PD_UNUSED (t); PD_ASSERT (t == 0 || t == 1 || t == 2);
 }
 
-PD_LOCAL void clock_decrement (t_clock *x)
+void clock_decrement (t_clock *x)
 {
     int t = PD_ATOMIC_INT32_DECREMENT (&x->c_count);
     
     PD_UNUSED (t); PD_ASSERT (t == 1 || t == 0 || t == -1);
 }
 
-PD_LOCAL int clock_isSet (t_clock *x)
+int clock_isSet (t_clock *x)
 {
     return (PD_ATOMIC_INT32_READ (&x->c_count) > 0);
 }
 
 #if ( PD_WITH_DEBUG ) || defined ( PD_BUILDING_TESTS )
 
-PD_LOCAL int clock_isGood (t_clock *x)
+int clock_isGood (t_clock *x)
 {
     return (PD_ATOMIC_INT32_READ (&x->c_count) == 0);
 }
@@ -150,12 +150,12 @@ PD_LOCAL int clock_isGood (t_clock *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void clock_inhibit (t_clock *x)
+void clock_inhibit (t_clock *x)
 {
     x->c_fn = NULL;
 }
 
-PD_LOCAL void clock_execute (t_clock *x)
+void clock_execute (t_clock *x)
 {
     if (x->c_fn) { (*x->c_fn)(x->c_owner); }
 }
@@ -164,7 +164,7 @@ PD_LOCAL void clock_execute (t_clock *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_clock *clock_new (void *owner, t_method fn)
+t_clock *clock_new (void *owner, t_method fn)
 {
     t_clock *x = (t_clock *)PD_MEMORY_GET (sizeof (t_clock));
     
@@ -176,7 +176,7 @@ PD_LOCAL t_clock *clock_new (void *owner, t_method fn)
     return x;
 }
 
-PD_LOCAL void clock_free (t_clock *x)
+void clock_free (t_clock *x)
 {
     instance_clocksDestroy (x);
 }
@@ -185,12 +185,12 @@ PD_LOCAL void clock_free (t_clock *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void clock_unset (t_clock *x)
+void clock_unset (t_clock *x)
 {
     instance_clocksRemove (x);
 }
 
-PD_LOCAL void clock_set (t_clock *x, t_systime t)
+void clock_set (t_clock *x, t_systime t)
 {
     clock_unset (x);
     
@@ -218,12 +218,12 @@ static double clock_quantum (t_clock *x, double t)
     return d;
 }
 
-PD_LOCAL void clock_delay (t_clock *x, double delay)       /* Could be in milliseconds or in samples. */
+void clock_delay (t_clock *x, double delay)       /* Could be in milliseconds or in samples. */
 {
     clock_set (x, scheduler_getLogicalTimeAfter (clock_quantum (x, delay)));
 }
 
-PD_LOCAL t_error clock_reschedule (t_clock *x, double delay, double ms, t_systime t)
+t_error clock_reschedule (t_clock *x, double delay, double ms, t_systime t)
 {
     t_systime now = scheduler_getLogicalTime();
     

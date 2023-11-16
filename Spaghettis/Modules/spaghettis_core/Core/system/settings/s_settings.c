@@ -13,22 +13,22 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    properties_loadBegin    (void);
-PD_LOCAL void       properties_loadClose    (void);
-PD_LOCAL int        properties_getKey       (const char *, char *, int size);
+t_error    properties_loadBegin    (void);
+void       properties_loadClose    (void);
+int        properties_getKey       (const char *, char *, int size);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_error    properties_saveBegin    (void);
-PD_LOCAL void       properties_saveClose    (void);
-PD_LOCAL void       properties_setKey       (const char *, const char *);
+t_error    properties_saveBegin    (void);
+void       properties_saveClose    (void);
+void       properties_setKey       (const char *, const char *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void settings_load (void)
+void settings_load (void)
 {
     t_devices midi;    
     t_devices audio;   
@@ -124,7 +124,7 @@ PD_LOCAL void settings_load (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void settings_save (void)
+void settings_save (void)
 {
     t_devices midi;    
     t_devices audio;   

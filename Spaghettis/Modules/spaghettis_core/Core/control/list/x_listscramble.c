@@ -59,7 +59,7 @@ static void listscramble_anything (t_listscramble *x, t_symbol *s, int argc, t_a
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listscramble_new (t_symbol *s, int argc, t_atom *argv)
+void *listscramble_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listscramble *x = (t_listscramble *)pd_new (listscramble_class);
     
@@ -74,7 +74,7 @@ PD_LOCAL void *listscramble_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listscramble_setup (void)
+void listscramble_setup (void)
 {
     t_class *c = NULL;
     
@@ -94,7 +94,7 @@ PD_LOCAL void listscramble_setup (void)
     listscramble_class = c;
 }
 
-PD_LOCAL void listscramble_destroy (void)
+void listscramble_destroy (void)
 {
     class_free (listscramble_class);
 }

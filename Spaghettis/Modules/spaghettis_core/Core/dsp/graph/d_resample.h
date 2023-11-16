@@ -27,31 +27,31 @@ typedef struct _resample {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   resample_init           (t_resample *x, t_object *owner, t_symbol *type);
-PD_LOCAL void   resample_free           (t_resample *x);
+void   resample_init           (t_resample *x, t_object *owner, t_symbol *type);
+void   resample_free           (t_resample *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    resample_isRequired     (t_resample *x);
+int    resample_isRequired     (t_resample *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   resample_set            (t_resample *x, int downsample, int upsample);
+void   resample_set            (t_resample *x, int downsample, int upsample);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_sample   *resample_getBufferInlet    (t_resample *x,
+t_sample   *resample_getBufferInlet    (t_resample *x,
                                                     t_sample *s,
                                                     int vectorSize,
                                                     int resampledSize);
                                                     
-PD_LOCAL t_sample   *resample_getBufferOutlet   (t_resample *x,
+t_sample   *resample_getBufferOutlet   (t_resample *x,
                                                     t_sample *s,
                                                     int vectorSize,
                                                     int resampledSize);

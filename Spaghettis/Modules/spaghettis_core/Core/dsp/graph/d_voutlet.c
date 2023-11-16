@@ -82,7 +82,7 @@ static void voutlet_initialize (void *lhs, void *rhs)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void voutlet_dspPrologue (t_voutlet *x, t_signal **signals, t_blockproperties *p)
+void voutlet_dspPrologue (t_voutlet *x, t_signal **signals, t_blockproperties *p)
 {
     PD_ASSERT (x->vo_closure == NULL);
     
@@ -100,7 +100,7 @@ PD_LOCAL void voutlet_dspPrologue (t_voutlet *x, t_signal **signals, t_blockprop
     }
 }
 
-PD_LOCAL void voutlet_dsp (t_voutlet *x, t_signal **sp)
+void voutlet_dsp (t_voutlet *x, t_signal **sp)
 {
     if (voutlet_isSignal (x)) {
     //
@@ -126,7 +126,7 @@ PD_LOCAL void voutlet_dsp (t_voutlet *x, t_signal **sp)
     }
 }
 
-PD_LOCAL void voutlet_dspEpilogue (t_voutlet *x, t_signal **signals, t_blockproperties *p)
+void voutlet_dspEpilogue (t_voutlet *x, t_signal **signals, t_blockproperties *p)
 {
     if (voutlet_isSignal (x)) {
     //

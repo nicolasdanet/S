@@ -176,7 +176,7 @@ static void *framp_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void framp_tilde_setup (void)
+void framp_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -194,7 +194,7 @@ PD_LOCAL void framp_tilde_setup (void)
     framp_tilde_class = c;
 }
 
-PD_LOCAL void framp_tilde_destroy (void)
+void framp_tilde_destroy (void)
 {
     class_free (framp_tilde_class);
 }

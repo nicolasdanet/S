@@ -14,30 +14,30 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL const char     *midi_nameNative        (void);
+const char     *midi_nameNative        (void);
 
-PD_LOCAL t_error    midi_getListsNative         (t_deviceslist *);
-PD_LOCAL void       midi_initializeNative       (void);
-PD_LOCAL void       midi_releaseNative          (void);
-PD_LOCAL void       midi_openNative             (t_devices *);
-PD_LOCAL void       midi_closeNative            (void);
-PD_LOCAL void       midi_pushNative             (int, int, int, int);
-PD_LOCAL void       midi_pushSysexNative        (int, int, t_atom *);
-PD_LOCAL void       midi_pollNative             (void);
+t_error    midi_getListsNative         (t_deviceslist *);
+void       midi_initializeNative       (void);
+void       midi_releaseNative          (void);
+void       midi_openNative             (t_devices *);
+void       midi_closeNative            (void);
+void       midi_pushNative             (int, int, int, int);
+void       midi_pushSysexNative        (int, int, t_atom *);
+void       midi_pollNative             (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL const char     *audio_nameNative       (void);
+const char     *audio_nameNative       (void);
 
-PD_LOCAL int        audio_getVectorSizeNative   (void);
-PD_LOCAL t_error    audio_getListsNative        (t_deviceslist *);
-PD_LOCAL t_error    audio_initializeNative      (void);
-PD_LOCAL void       audio_releaseNative         (void);
-PD_LOCAL void       audio_closeNative           (void);
-PD_LOCAL t_error    audio_openNative            (t_devices *);
-PD_LOCAL int        audio_pollNative            (void);
+int        audio_getVectorSizeNative   (void);
+t_error    audio_getListsNative        (t_deviceslist *);
+t_error    audio_initializeNative      (void);
+void       audio_releaseNative         (void);
+void       audio_closeNative           (void);
+t_error    audio_openNative            (t_devices *);
+int        audio_pollNative            (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -48,47 +48,47 @@ PD_LOCAL int        audio_pollNative            (void);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       midi_open                   (void);
-PD_LOCAL void       midi_close                  (void);
+void       midi_open                   (void);
+void       midi_close                  (void);
 
-PD_LOCAL void       midi_getDevices             (t_devices *p);
-PD_LOCAL void       midi_setDevices             (t_devices *p, int setAlsoParameters);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_LOCAL t_error    audio_open                  (void);
-PD_LOCAL void       audio_close                 (void);
-PD_LOCAL int        audio_isOpened              (void);
-
-PD_LOCAL void       audio_getDevices            (t_devices *p);
-PD_LOCAL void       audio_setDevices            (t_devices *p, int setAlsoParameters);
-
-PD_LOCAL t_error    audio_check                 (t_devices *p);
+void       midi_getDevices             (t_devices *p);
+void       midi_setDevices             (t_devices *p, int setAlsoParameters);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int        midi_deviceAsNumber         (int isOutput, t_symbol *name);
-PD_LOCAL int        audio_deviceAsNumber        (int isOutput, t_symbol *name);
+t_error    audio_open                  (void);
+void       audio_close                 (void);
+int        audio_isOpened              (void);
 
-PD_LOCAL t_symbol   *midi_deviceAsSymbol        (int isOutput, int k);
-PD_LOCAL t_symbol   *audio_deviceAsSymbol       (int isOutput, int k);
+void       audio_getDevices            (t_devices *p);
+void       audio_setDevices            (t_devices *p, int setAlsoParameters);
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-PD_LOCAL t_error    midi_deviceAsString         (int isOutput, int k, char *dest, size_t size);
-PD_LOCAL t_error    audio_deviceAsString        (int isOutput, int k, char *dest, size_t size);
+t_error    audio_check                 (t_devices *p);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void       midi_rescanDevices          (void);
-PD_FORCE void       audio_rescanDevices         (void);
+int        midi_deviceAsNumber         (int isOutput, t_symbol *name);
+int        audio_deviceAsNumber        (int isOutput, t_symbol *name);
+
+t_symbol   *midi_deviceAsSymbol        (int isOutput, int k);
+t_symbol   *audio_deviceAsSymbol       (int isOutput, int k);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+t_error    midi_deviceAsString         (int isOutput, int k, char *dest, size_t size);
+t_error    audio_deviceAsString        (int isOutput, int k, char *dest, size_t size);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void       midi_rescanDevices          (void);
+void       audio_rescanDevices         (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -18,22 +18,22 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_quit (void)
+void outputs_quit (void)
 {
     wrapper_send (Outputs::quit());
 }
 
-PD_LOCAL void outputs_clearConsole (void)
+void outputs_clearConsole (void)
 {
     wrapper_send (Outputs::clearConsole());
 }
 
-PD_LOCAL void outputs_reportDsp (int n)
+void outputs_reportDsp (int n)
 {
     wrapper_send (Outputs::reportDsp (n ? true : false));
 }
 
-PD_LOCAL void outputs_patchOpened (t_symbol *name, t_symbol *directory)
+void outputs_patchOpened (t_symbol *name, t_symbol *directory)
 {
     jassert (name && directory);
     
@@ -100,22 +100,22 @@ static std::vector<MidiDevice> outputs_getMidiOut (t_deviceslist *l)
     return d;
 }
 
-PD_LOCAL void outputs_reportAvailableAudioDevices (t_deviceslist *l)
+void outputs_reportAvailableAudioDevices (t_deviceslist *l)
 {
     wrapper_send (Outputs::reportAvailableAudioDevices (outputs_getAudioIn (l), outputs_getAudioOut (l)));
 }
 
-PD_LOCAL void outputs_reportCurrentAudioDevices (t_deviceslist *l)
+void outputs_reportCurrentAudioDevices (t_deviceslist *l)
 {
     wrapper_send (Outputs::reportCurrentAudioDevices (outputs_getAudioIn (l), outputs_getAudioOut (l)));
 }
 
-PD_LOCAL void outputs_reportAvailableMidiDevices (t_deviceslist *l)
+void outputs_reportAvailableMidiDevices (t_deviceslist *l)
 {
     wrapper_send (Outputs::reportAvailableMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
 }
 
-PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
+void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 {
     wrapper_send (Outputs::reportCurrentMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
 }
@@ -124,7 +124,7 @@ PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void outputs_classNew (t_symbol *s)
+void outputs_classNew (t_symbol *s)
 {
     wrapper_send (Outputs::classNew (makeString (symbol_getName (s))));
 }
@@ -133,58 +133,58 @@ PD_LOCAL void outputs_classNew (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void outputs_objectAdded (t_object *x)
+void outputs_objectAdded (t_object *x)
 {
     const UniquePath p (x); wrapper_send (Outputs::added (p, Report::object (p, x, Tags())));
 }
 
-PD_LOCAL void outputs_objectChanged (t_object *x, const Tags& t)
+void outputs_objectChanged (t_object *x, const Tags& t)
 {
     const UniquePath p (x); wrapper_send (Outputs::changed (p, Report::object (p, x, t)));
 }
 
-PD_LOCAL void outputs_objectUpdated (t_object *x, const Tags& t)
+void outputs_objectUpdated (t_object *x, const Tags& t)
 {
     outputs_objectChanged (x, t);
     
     glist_setDirty (object_getOwner (cast_object (x)), 1);
 }
 
-PD_LOCAL void outputs_objectRemoved (t_object *x)
+void outputs_objectRemoved (t_object *x)
 {
     wrapper_send (Outputs::removed (UniquePath (x)));
 }
 
-PD_LOCAL void outputs_objectRenamed (t_object *x, t_id t)
+void outputs_objectRenamed (t_object *x, t_id t)
 {
     wrapper_send (Outputs::renamed (UniquePath (x), t));
 }
 
-PD_LOCAL void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)
+void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)
 {
     const UniquePath p (u, owner);
     
     wrapper_send (Outputs::added (p,   Report::lineAdded (p, src, m, dest, n)));
 }
 
-PD_LOCAL void outputs_lineChanged (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)
+void outputs_lineChanged (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)
 {
     const UniquePath p (u, owner);
     
     wrapper_send (Outputs::changed (p, Report::lineChanged (p, src, m, dest, n)));
 }
 
-PD_LOCAL void outputs_lineRemoved (t_id u, t_glist *owner)
+void outputs_lineRemoved (t_id u, t_glist *owner)
 {
     wrapper_send (Outputs::removed (UniquePath (u, owner)));
 }
 
-PD_LOCAL void outputs_patchOrder (t_glist *g, std::vector<UniqueId>&& ids)
+void outputs_patchOrder (t_glist *g, std::vector<UniqueId>&& ids)
 {
     wrapper_send (Outputs::patchOrder (UniquePath (cast_object (g)), std::move (ids)));
 }
 
-PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
+void outputs_patchDirty (t_glist *g, int isDirty)
 {
     wrapper_send (Outputs::patchDirty (UniquePath (cast_object (g)), isDirty));
 }
@@ -198,13 +198,13 @@ PD_LOCAL void outputs_patchDirty (t_glist *g, int isDirty)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void main_exit (void);
+void main_exit (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void outputs_quit (void)
+void outputs_quit (void)
 {
     #if defined ( PD_BUILDING_TERMINAL )
     
@@ -216,31 +216,31 @@ PD_LOCAL void outputs_quit (void)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void outputs_clearConsole (void)
+void outputs_clearConsole (void)
 {
 }
 
-PD_LOCAL void outputs_reportDsp (int n)
+void outputs_reportDsp (int n)
 {
 }
 
-PD_LOCAL void outputs_patchOpened (t_symbol *name, t_symbol *directory)
+void outputs_patchOpened (t_symbol *name, t_symbol *directory)
 {
 }
 
-PD_LOCAL void outputs_reportAvailableAudioDevices (t_deviceslist *l)
+void outputs_reportAvailableAudioDevices (t_deviceslist *l)
 {
 }
 
-PD_LOCAL void outputs_reportCurrentAudioDevices (t_deviceslist *l)
+void outputs_reportCurrentAudioDevices (t_deviceslist *l)
 {
 }
 
-PD_LOCAL void outputs_reportAvailableMidiDevices (t_deviceslist *l)
+void outputs_reportAvailableMidiDevices (t_deviceslist *l)
 {
 }
 
-PD_LOCAL void outputs_reportCurrentMidiDevices (t_deviceslist *l)
+void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 {
 }
 

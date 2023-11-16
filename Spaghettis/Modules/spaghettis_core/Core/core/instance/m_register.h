@@ -36,15 +36,15 @@ typedef struct _register {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_register     *register_new           (void);
-PD_LOCAL t_object       *register_getObject     (t_register *x, t_id u);
-PD_LOCAL t_glist        *register_getOwner      (t_register *x, t_id u);
+t_register     *register_new           (void);
+t_object       *register_getObject     (t_register *x, t_id u);
+t_glist        *register_getOwner      (t_register *x, t_id u);
 
-PD_LOCAL void           register_free           (t_register *x);
-PD_LOCAL void           register_add            (t_register *x, t_object *o);
-PD_LOCAL t_error        register_remove         (t_register *x, t_id u);
-PD_LOCAL void           register_rename         (t_register *x, t_id u, t_id newUnique);
-PD_LOCAL int            register_contains       (t_register *x, t_id u);
+void           register_free           (t_register *x);
+void           register_add            (t_register *x, t_object *o);
+t_error        register_remove         (t_register *x, t_id u);
+void           register_rename         (t_register *x, t_id u, t_id newUnique);
+int            register_contains       (t_register *x, t_id u);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

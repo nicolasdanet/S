@@ -127,7 +127,7 @@ static void *rfft_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void rfft_tilde_setup (void)
+void rfft_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -145,7 +145,7 @@ PD_LOCAL void rfft_tilde_setup (void)
     rfft_tilde_class = c;
 }
 
-PD_LOCAL void rfft_tilde_destroy (void)
+void rfft_tilde_destroy (void)
 {
     class_free (rfft_tilde_class);
 }

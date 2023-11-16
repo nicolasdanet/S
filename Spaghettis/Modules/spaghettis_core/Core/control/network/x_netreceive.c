@@ -354,7 +354,7 @@ static void netreceive_free (t_netreceive *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void netreceive_setup (void)
+void netreceive_setup (void)
 {
     t_class *c = NULL;
     
@@ -372,7 +372,7 @@ PD_LOCAL void netreceive_setup (void)
     netreceive_class = c;
 }
 
-PD_LOCAL void netreceive_destroy (void)
+void netreceive_destroy (void)
 {
     class_free (netreceive_class);
 }

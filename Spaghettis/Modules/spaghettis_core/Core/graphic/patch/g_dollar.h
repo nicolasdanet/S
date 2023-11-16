@@ -16,15 +16,15 @@
 
 /* Expand dollar symbol. */
 
-PD_LOCAL t_symbol   *dollar_expandSymbolWithArguments   (t_symbol *s, t_glist *glist, int argc, t_atom *argv);
-PD_LOCAL t_symbol   *dollar_expandSymbol                (t_symbol *s, t_glist *glist);
+t_symbol   *dollar_expandSymbolWithArguments   (t_symbol *s, t_glist *glist, int argc, t_atom *argv);
+t_symbol   *dollar_expandSymbol                (t_symbol *s, t_glist *glist);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 /* Expand dollar number. */
 
-PD_LOCAL int dollar_expandWithArguments (t_atom *dollar, t_atom *a, t_glist *glist, int argc, t_atom *argv);
+int dollar_expandWithArguments (t_atom *dollar, t_atom *a, t_glist *glist, int argc, t_atom *argv);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -54,7 +54,7 @@ static void arrayrandom_seed (t_arrayrandom *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *arrayrandom_new (t_symbol *s, int argc, t_atom *argv)
+void *arrayrandom_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_arrayrandom *x = (t_arrayrandom *)arrayrange_new (arrayrandom_class, argc, argv, 0, 1);
     
@@ -74,7 +74,7 @@ PD_LOCAL void *arrayrandom_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void arrayrandom_setup (void)
+void arrayrandom_setup (void)
 {
     t_class *c = NULL;
     
@@ -100,7 +100,7 @@ PD_LOCAL void arrayrandom_setup (void)
     arrayrandom_class = c;
 }
 
-PD_LOCAL void arrayrandom_destroy (void)
+void arrayrandom_destroy (void)
 {
     class_free (arrayrandom_class);
 }

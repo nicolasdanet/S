@@ -152,7 +152,7 @@ static void listgroup_restore (t_listgroup *x, t_symbol *s, int argc, t_atom *ar
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listgroup_new (t_symbol *s, int argc, t_atom *argv)
+void *listgroup_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listgroup *x = (t_listgroup *)pd_new (listgroup_class);
     
@@ -178,7 +178,7 @@ static void listgroup_free (t_listgroup *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listgroup_setup (void)
+void listgroup_setup (void)
 {
     t_class *c = NULL;
     
@@ -207,7 +207,7 @@ PD_LOCAL void listgroup_setup (void)
     listgroup_class = c;
 }
 
-PD_LOCAL void listgroup_destroy (void)
+void listgroup_destroy (void)
 {
     class_free (listgroup_class);
 }

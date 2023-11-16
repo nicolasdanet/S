@@ -96,7 +96,7 @@ static void *swap_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void swap_setup (void)
+void swap_setup (void)
 {
     t_class *c = NULL;
     
@@ -119,7 +119,7 @@ PD_LOCAL void swap_setup (void)
     swap_class = c;
 }
 
-PD_LOCAL void swap_destroy (void)
+void swap_destroy (void)
 {
     class_free (swap_class);
 }

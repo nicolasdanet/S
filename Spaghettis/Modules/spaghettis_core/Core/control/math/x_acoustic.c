@@ -34,7 +34,7 @@ typedef t_unop t_acoustic;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *unop_functionData (t_object *z, int flags)
+t_buffer *unop_functionData (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
     //
@@ -51,7 +51,7 @@ PD_LOCAL t_buffer *unop_functionData (t_object *z, int flags)
     return NULL;
 }
 
-PD_LOCAL void unop_restore (t_unop *x, t_float f)
+void unop_restore (t_unop *x, t_float f)
 {
     t_unop *old = (t_unop *)instance_pendingFetch (cast_object (x));
 
@@ -200,7 +200,7 @@ static void dbtorms_float (t_acoustic *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void acoustic_setup (void)
+void acoustic_setup (void)
 {
     mtof_class = class_new (sym_mtof, 
                         (t_newmethod)mtof_new,
@@ -290,7 +290,7 @@ PD_LOCAL void acoustic_setup (void)
     class_addCreator ((t_newmethod)rmstodb_new, sym_amptodb, A_NULL);
 }
 
-PD_LOCAL void acoustic_destroy (void)
+void acoustic_destroy (void)
 {
     class_free (mtof_class);
     class_free (ftom_class);

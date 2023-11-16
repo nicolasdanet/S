@@ -75,9 +75,9 @@ static inline t_symbol *core_CFStringToSymbol (CFStringRef string)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error        audiodevicelist_get     (t_deviceslist *list);
+t_error        audiodevicelist_get     (t_deviceslist *list);
 
-PD_LOCAL AudioObjectID  audiodevicelist_fetch   (t_symbol *name);
+AudioObjectID  audiodevicelist_fetch   (t_symbol *name);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -115,34 +115,34 @@ typedef struct _audiograph {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    audiodevice_set                         (t_audiodevice *device, AudioObjectID deviceID);
-PD_LOCAL t_error    audiodevice_setAsInput                  (t_audiodevice *device, AudioObjectID deviceID);
-PD_LOCAL t_error    audiodevice_setAsOutput                 (t_audiodevice *device, AudioObjectID deviceID);
-PD_LOCAL t_error    audiodevice_setAsDuplex                 (t_audiodevice *device, AudioObjectID deviceID);
-PD_LOCAL void       audiodevice_setInvalid                  (t_audiodevice *device);
-PD_LOCAL int        audiodevice_isValid                     (t_audiodevice *device);
-PD_LOCAL int        audiodevice_isInput                     (t_audiodevice *device);
-PD_LOCAL int        audiodevice_isOutput                    (t_audiodevice *device);
-PD_LOCAL int        audiodevice_isDuplex                    (t_audiodevice *device);
+t_error    audiodevice_set                         (t_audiodevice *device, AudioObjectID deviceID);
+t_error    audiodevice_setAsInput                  (t_audiodevice *device, AudioObjectID deviceID);
+t_error    audiodevice_setAsOutput                 (t_audiodevice *device, AudioObjectID deviceID);
+t_error    audiodevice_setAsDuplex                 (t_audiodevice *device, AudioObjectID deviceID);
+void       audiodevice_setInvalid                  (t_audiodevice *device);
+int        audiodevice_isValid                     (t_audiodevice *device);
+int        audiodevice_isInput                     (t_audiodevice *device);
+int        audiodevice_isOutput                    (t_audiodevice *device);
+int        audiodevice_isDuplex                    (t_audiodevice *device);
 
-PD_LOCAL t_symbol   *audiodevice_getName                    (t_audiodevice *device);
+t_symbol   *audiodevice_getName                    (t_audiodevice *device);
 
-PD_LOCAL AudioObjectID  audiodevice_getIdentifier           (t_audiodevice *device);
-PD_LOCAL int            audiodevice_getNumberOfChannelsIn   (t_audiodevice *device);
-PD_LOCAL int            audiodevice_getNumberOfChannelsOut  (t_audiodevice *device);
-PD_LOCAL int            audiodevice_getSampleRate           (t_audiodevice *device);
+AudioObjectID  audiodevice_getIdentifier           (t_audiodevice *device);
+int            audiodevice_getNumberOfChannelsIn   (t_audiodevice *device);
+int            audiodevice_getNumberOfChannelsOut  (t_audiodevice *device);
+int            audiodevice_getSampleRate           (t_audiodevice *device);
 
-PD_LOCAL int        audiodevice_getBufferSize               (t_audiodevice *device);
-PD_LOCAL t_error    audiodevice_setBufferSize               (t_audiodevice *device, int size);
+int        audiodevice_getBufferSize               (t_audiodevice *device);
+t_error    audiodevice_setBufferSize               (t_audiodevice *device, int size);
 
-PD_LOCAL t_error    audiodevice_addListeners                (t_audiodevice *device, t_audiograph *graph);
-PD_LOCAL t_error    audiodevice_removeListeners             (t_audiodevice *device, t_audiograph *graph);
+t_error    audiodevice_addListeners                (t_audiodevice *device, t_audiograph *graph);
+t_error    audiodevice_removeListeners             (t_audiodevice *device, t_audiograph *graph);
 
-PD_LOCAL t_error    audiodevice_open                        (t_audiodevice *device, t_audiograph *graph);
-PD_LOCAL t_error    audiodevice_close                       (t_audiodevice *device, t_audiograph *graph);
+t_error    audiodevice_open                        (t_audiodevice *device, t_audiograph *graph);
+t_error    audiodevice_close                       (t_audiodevice *device, t_audiograph *graph);
 
-PD_LOCAL t_error    audiodevice_start                       (t_audiodevice *device);
-PD_LOCAL t_error    audiodevice_stop                        (t_audiodevice *device);
+t_error    audiodevice_start                       (t_audiodevice *device);
+t_error    audiodevice_stop                        (t_audiodevice *device);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -157,10 +157,10 @@ static inline AudioUnit audiodevice_getAudioUnit (t_audiodevice *device)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    audiograph_initialize                   (t_audiograph *graph);
-PD_LOCAL void       audiograph_release                      (t_audiograph *graph);
+t_error    audiograph_initialize                   (t_audiograph *graph);
+void       audiograph_release                      (t_audiograph *graph);
 
-PD_LOCAL t_error    audiograph_open                         (t_audiograph *graph,
+t_error    audiograph_open                         (t_audiograph *graph,
                                                                 t_symbol *deviceIn,
                                                                 t_symbol *deviceOut,
                                                                 int numberOfChannelsIn,
@@ -168,9 +168,9 @@ PD_LOCAL t_error    audiograph_open                         (t_audiograph *graph
                                                                 int sampleRate,
                                                                 int vectorSize);
 
-PD_LOCAL void       audiograph_close                        (t_audiograph *graph);
+void       audiograph_close                        (t_audiograph *graph);
 
-PD_LOCAL t_error    audiograph_check                        (t_audiograph *graph, int close);
+t_error    audiograph_check                        (t_audiograph *graph, int close);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

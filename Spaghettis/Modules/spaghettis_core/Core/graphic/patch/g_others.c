@@ -16,7 +16,7 @@
 /* Files are searching in the directory of the patch first. */
 /* Without success it tries to find it using the search path. */
 
-PD_LOCAL int glist_fileExist (t_glist *glist, const char *name, const char *extension, t_fileproperties *p)
+int glist_fileExist (t_glist *glist, const char *name, const char *extension, t_fileproperties *p)
 {
     int f = glist_fileOpen (glist, name, extension, p);
     
@@ -27,7 +27,7 @@ PD_LOCAL int glist_fileExist (t_glist *glist, const char *name, const char *exte
 
 /* Caller is responsible to close the file. */
 
-PD_LOCAL int glist_fileOpen (t_glist *glist, const char *name, const char *extension, t_fileproperties *p)
+int glist_fileOpen (t_glist *glist, const char *name, const char *extension, t_fileproperties *p)
 {
     const char *directory = glist ? environment_getDirectoryAsString (glist_getEnvironment (glist)) : ".";
     
@@ -40,7 +40,7 @@ PD_LOCAL int glist_fileOpen (t_glist *glist, const char *name, const char *exten
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_setUniqueAndSourceOfLast (t_glist *glist, int argc, t_atom *argv)
+void glist_setUniqueAndSourceOfLast (t_glist *glist, int argc, t_atom *argv)
 {
     t_object *o = glist_objectGetLast (glist);
     
@@ -56,7 +56,7 @@ PD_LOCAL void glist_setUniqueAndSourceOfLast (t_glist *glist, int argc, t_atom *
     }
 }
 
-PD_LOCAL void glist_setSourceOfLast (t_glist *glist, int argc, t_atom *argv)
+void glist_setSourceOfLast (t_glist *glist, int argc, t_atom *argv)
 {
     t_object *o = glist_objectGetLast (glist);
     
@@ -71,7 +71,7 @@ PD_LOCAL void glist_setSourceOfLast (t_glist *glist, int argc, t_atom *argv)
     }
 }
 
-PD_LOCAL void glist_setLabelOfLast (t_glist *glist, t_symbol *s)
+void glist_setLabelOfLast (t_glist *glist, t_symbol *s)
 {
     t_object *o = glist_objectGetLast (glist);
     
@@ -82,7 +82,7 @@ PD_LOCAL void glist_setLabelOfLast (t_glist *glist, t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_rectangle glist_getBoundingBoxOfAll (t_glist *glist)
+t_rectangle glist_getBoundingBoxOfAll (t_glist *glist)
 {
     t_rectangle r; rectangle_setNothing (&r);
     
@@ -97,7 +97,7 @@ PD_LOCAL t_rectangle glist_getBoundingBoxOfAll (t_glist *glist)
     return r;
 }
 
-PD_LOCAL t_rectangle glist_getBoundingBoxOfSelected (t_glist *glist)
+t_rectangle glist_getBoundingBoxOfSelected (t_glist *glist)
 {
     t_rectangle r; rectangle_setNothing (&r);
     

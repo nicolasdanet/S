@@ -63,7 +63,7 @@ static t_outconnect *traverser_outletNext (t_outconnect *previous, t_object **de
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void traverser_start (t_traverser *t, t_glist *glist)
+void traverser_start (t_traverser *t, t_glist *glist)
 {
     t->tr_owner                 = glist;
     t->tr_connectionCached      = NULL;
@@ -75,7 +75,7 @@ PD_LOCAL void traverser_start (t_traverser *t, t_glist *glist)
 /* Get the cords outlet per outlet, object per object. */
 /* Coordinates are set at the same time. */
 
-PD_LOCAL t_outconnect *traverser_next (t_traverser *t)
+t_outconnect *traverser_next (t_traverser *t)
 {
     t_outconnect *connection = t->tr_connectionCached;
     
@@ -122,7 +122,7 @@ PD_LOCAL t_outconnect *traverser_next (t_traverser *t)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error traverser_disconnect (t_traverser *t, t_glist *glist)
+t_error traverser_disconnect (t_traverser *t, t_glist *glist)
 {
     t_object *src  = t->tr_srcObject;
     t_object *dest = t->tr_destObject;

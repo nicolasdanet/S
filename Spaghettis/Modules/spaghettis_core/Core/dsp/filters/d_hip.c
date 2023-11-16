@@ -160,7 +160,7 @@ static void *hip_tilde_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void hip_tilde_setup (void)
+void hip_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -181,7 +181,7 @@ PD_LOCAL void hip_tilde_setup (void)
     hip_tilde_class = c;
 }
 
-PD_LOCAL void hip_tilde_destroy (void)
+void hip_tilde_destroy (void)
 {   
     class_free (hip_tilde_class);
 }

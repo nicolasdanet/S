@@ -22,16 +22,16 @@ typedef uint64_t t_stamp;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       time_set                    (t_time *t);
-PD_LOCAL void       time_addNanoseconds         (t_time *t, t_nano ns);
-PD_LOCAL t_error    time_elapsedNanoseconds     (const t_time *t0, const t_time *t1, t_nano *elapsed);
-PD_LOCAL void       time_wait                   (t_time *t);
+void       time_set                    (t_time *t);
+void       time_addNanoseconds         (t_time *t, t_nano ns);
+t_error    time_elapsedNanoseconds     (const t_time *t0, const t_time *t1, t_nano *elapsed);
+void       time_wait                   (t_time *t);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       nano_sleep                  (t_nano ns);
+void       nano_sleep                  (t_nano ns);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -48,13 +48,13 @@ PD_LOCAL void       nano_sleep                  (t_nano ns);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       stamp_set                   (t_stamp *stamp);
-PD_LOCAL void       stamp_addNanoseconds        (t_stamp *stamp, t_nano ns);
-PD_LOCAL t_error    stamp_elapsedNanoseconds    (const t_stamp *t0, const t_stamp *t1, t_nano *elapsed);
+void       stamp_set                   (t_stamp *stamp);
+void       stamp_addNanoseconds        (t_stamp *stamp, t_nano ns);
+t_error    stamp_elapsedNanoseconds    (const t_stamp *t0, const t_stamp *t1, t_nano *elapsed);
 
-PD_LOCAL int        stamp_isTagElement          (t_symbol *s);
-PD_LOCAL t_error    stamp_setAsTags             (int argc, t_atom *argv, t_stamp *stamp);
-PD_LOCAL t_error    stamp_getWithTags           (int argc, t_atom *argv, t_stamp *stamp);
+int        stamp_isTagElement          (t_symbol *s);
+t_error    stamp_setAsTags             (int argc, t_atom *argv, t_stamp *stamp);
+t_error    stamp_getWithTags           (int argc, t_atom *argv, t_stamp *stamp);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

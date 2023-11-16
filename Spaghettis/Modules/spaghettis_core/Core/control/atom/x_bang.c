@@ -78,7 +78,7 @@ static void *bang_newByRegular (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void bang_setup (void)
+void bang_setup (void)
 {
     t_class *c = NULL;
     
@@ -100,7 +100,7 @@ PD_LOCAL void bang_setup (void)
     bang_class = c;
 }
 
-PD_LOCAL void bang_destroy (void)
+void bang_destroy (void)
 {
     class_free (bang_class);
 }

@@ -88,7 +88,7 @@ static void textfile_free (t_qlist *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void textfile_setup (void)
+void textfile_setup (void)
 {
     t_class *c = NULL;
     
@@ -118,7 +118,7 @@ PD_LOCAL void textfile_setup (void)
     textfile_class = c;
 }
 
-PD_LOCAL void textfile_destroy (void)
+void textfile_destroy (void)
 {
     class_free (textfile_class);
 }

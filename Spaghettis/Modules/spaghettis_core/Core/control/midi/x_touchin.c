@@ -70,7 +70,7 @@ static void touchin_free (t_touchin *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void touchin_setup (void)
+void touchin_setup (void)
 {
     t_class *c = NULL;
     
@@ -89,7 +89,7 @@ PD_LOCAL void touchin_setup (void)
     touchin_class = c;
 }
 
-PD_LOCAL void touchin_destroy (void)
+void touchin_destroy (void)
 {
     class_free (touchin_class);
 }

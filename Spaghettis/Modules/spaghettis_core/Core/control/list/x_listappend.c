@@ -23,7 +23,7 @@ static t_class *listappend_class;   /* Shared. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void listappend_list (t_listappend *x, t_symbol *s, int argc, t_atom *argv)
+void listappend_list (t_listappend *x, t_symbol *s, int argc, t_atom *argv)
 {
     t_atom *t = NULL; int count = listinlet_listSize (&x->x_h.lh_listinlet) + argc;
     
@@ -41,7 +41,7 @@ PD_LOCAL void listappend_list (t_listappend *x, t_symbol *s, int argc, t_atom *a
     }
 }
 
-PD_LOCAL void listappend_anything (t_listappend *x, t_symbol *s, int argc, t_atom *argv)
+void listappend_anything (t_listappend *x, t_symbol *s, int argc, t_atom *argv)
 {
     utils_anythingToList (cast_pd (x), (t_listmethod)listappend_list, s, argc, argv);
 }
@@ -50,7 +50,7 @@ PD_LOCAL void listappend_anything (t_listappend *x, t_symbol *s, int argc, t_ato
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *listhelper_functionData (t_object *z, int flags)
+t_buffer *listhelper_functionData (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
     //
@@ -67,7 +67,7 @@ PD_LOCAL t_buffer *listhelper_functionData (t_object *z, int flags)
     return NULL;
 }
 
-PD_LOCAL void listhelper_restore (t_listinlethelper *x, t_symbol *s, int argc, t_atom *argv)
+void listhelper_restore (t_listinlethelper *x, t_symbol *s, int argc, t_atom *argv)
 {
     t_listinlethelper *old = (t_listinlethelper *)instance_pendingFetch (cast_object (x));
 
@@ -81,7 +81,7 @@ PD_LOCAL void listhelper_restore (t_listinlethelper *x, t_symbol *s, int argc, t
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listappend_new (t_symbol *s, int argc, t_atom *argv)
+void *listappend_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listappend *x = (t_listappend *)pd_new (listappend_class);
     
@@ -104,7 +104,7 @@ static void listappend_free (t_listappend *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listappend_setup (void)
+void listappend_setup (void)
 {
     t_class *c = NULL;
     
@@ -129,7 +129,7 @@ PD_LOCAL void listappend_setup (void)
     listappend_class = c;
 }
 
-PD_LOCAL void listappend_destroy (void)
+void listappend_destroy (void)
 {
     class_free (listappend_class);
 }

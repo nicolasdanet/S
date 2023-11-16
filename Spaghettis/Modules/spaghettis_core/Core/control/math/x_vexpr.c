@@ -209,7 +209,7 @@ static void vexpr_free (t_vexpr *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void vexpr_setup (void)
+void vexpr_setup (void)
 {
     t_class *c = NULL;
     
@@ -237,7 +237,7 @@ PD_LOCAL void vexpr_setup (void)
     vexpr_class = c;
 }
 
-PD_LOCAL void vexpr_destroy (void)
+void vexpr_destroy (void)
 {
     class_free (vexpr_class);
 }

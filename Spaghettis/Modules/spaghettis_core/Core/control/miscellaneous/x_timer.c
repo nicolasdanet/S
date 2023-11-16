@@ -32,7 +32,7 @@ typedef struct _timer {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error clock_parseUnit (t_float, t_symbol *, t_float *, int *);
+t_error clock_parseUnit (t_float, t_symbol *, t_float *, int *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -129,7 +129,7 @@ static void *timer_new (t_symbol *unitName, t_float unit)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void timer_setup (void)
+void timer_setup (void)
 {
     t_class *c = NULL;
     
@@ -155,7 +155,7 @@ PD_LOCAL void timer_setup (void)
     timer_class = c;
 }
 
-PD_LOCAL void timer_destroy (void)
+void timer_destroy (void)
 {
     class_free (timer_class);
 }

@@ -190,7 +190,7 @@ static void liststore_pop (t_liststore *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *liststore_new (t_symbol *s, int argc, t_atom *argv)
+void *liststore_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_liststore *x = (t_liststore *)pd_new (liststore_class);
     
@@ -213,7 +213,7 @@ static void liststore_free (t_liststore *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void liststore_setup (void)
+void liststore_setup (void)
 {
     t_class *c = NULL;
     
@@ -249,7 +249,7 @@ PD_LOCAL void liststore_setup (void)
     liststore_class = c;
 }
 
-PD_LOCAL void liststore_destroy (void)
+void liststore_destroy (void)
 {
     class_free (liststore_class);
 }

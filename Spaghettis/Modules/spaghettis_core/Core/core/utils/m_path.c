@@ -18,17 +18,17 @@ extern t_symbol *main_directorySupport;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int path_isFileExist (const char *filepath)
+int path_isFileExist (const char *filepath)
 {
     return (access (filepath, F_OK) == 0);
 }
 
-PD_LOCAL int path_isFileExistAsRegularFile (const char *filepath)
+int path_isFileExistAsRegularFile (const char *filepath)
 {
     struct stat t; return ((stat (filepath, &t) == 0) && S_ISREG (t.st_mode));
 }
 
-PD_LOCAL int path_isFileExistAsDirectory (const char *filepath)
+int path_isFileExistAsDirectory (const char *filepath)
 {
     struct stat t; return ((stat (filepath, &t) == 0) && S_ISDIR (t.st_mode));
 }
@@ -47,7 +47,7 @@ static int path_isInsideSupport (const char *filepath)
     return string_startWith (filepath, main_directorySupport->s_name);
 }
 
-PD_LOCAL int path_isValid (const char *filepath)
+int path_isValid (const char *filepath)
 {
     if (path_containsHiddenDirectory (filepath) && !path_isInsideSupport (filepath)) { return 0; }
     
@@ -60,12 +60,12 @@ PD_LOCAL int path_isValid (const char *filepath)
 
 /* Note that it fails in case of missing directory in path. */
 
-PD_LOCAL t_error path_createDirectory (const char *filepath)
+t_error path_createDirectory (const char *filepath)
 {
     return (mkdir (filepath, S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH) != 0);
 }
 
-PD_LOCAL t_error path_createDirectoryIfNeeded (const char *filepath)
+t_error path_createDirectoryIfNeeded (const char *filepath)
 {
     t_error err = PD_ERROR_NONE;
     
@@ -78,7 +78,7 @@ PD_LOCAL t_error path_createDirectoryIfNeeded (const char *filepath)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error path_withDirectoryAndName (char *dest, size_t size, const char *directory, const char *name)
+t_error path_withDirectoryAndName (char *dest, size_t size, const char *directory, const char *name)
 {
     t_error err = PD_ERROR;
     
@@ -103,7 +103,7 @@ PD_LOCAL t_error path_withDirectoryAndName (char *dest, size_t size, const char 
     return err;
 }
 
-PD_LOCAL t_error path_toDirectoryAndName (char *dest, size_t size, t_symbol **directory, t_symbol **name)
+t_error path_toDirectoryAndName (char *dest, size_t size, t_symbol **directory, t_symbol **name)
 {
     char *t = NULL;
     

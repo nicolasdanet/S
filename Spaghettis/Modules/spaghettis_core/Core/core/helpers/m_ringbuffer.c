@@ -34,14 +34,14 @@ struct _ringbuffer {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int32_t atomic_int32ReadRelaxed    (t_int32Atomic *);
-PD_LOCAL void    atomic_int32WriteRelaxed   (int32_t, t_int32Atomic *);
+int32_t atomic_int32ReadRelaxed    (t_int32Atomic *);
+void    atomic_int32WriteRelaxed   (int32_t, t_int32Atomic *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_ringbuffer *ringbuffer_new (int32_t sizeOfElementInBytes, int32_t numberOfElements)
+t_ringbuffer *ringbuffer_new (int32_t sizeOfElementInBytes, int32_t numberOfElements)
 {
     t_ringbuffer *x = (t_ringbuffer *)PD_MEMORY_GET (sizeof (t_ringbuffer));
     
@@ -61,7 +61,7 @@ PD_LOCAL t_ringbuffer *ringbuffer_new (int32_t sizeOfElementInBytes, int32_t num
     return x;
 }
 
-PD_LOCAL void ringbuffer_free (t_ringbuffer *x)
+void ringbuffer_free (t_ringbuffer *x)
 {
     PD_MEMORY_FREE (x->rb_vector);
     PD_MEMORY_FREE (x);
@@ -71,14 +71,14 @@ PD_LOCAL void ringbuffer_free (t_ringbuffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int32_t ringbuffer_getAvailableRead (t_ringbuffer *x)
+int32_t ringbuffer_getAvailableRead (t_ringbuffer *x)
 {
     /* Get absolute value (assume two's complement representation). */
     
     return ((atomic_int32ReadRelaxed (&x->rb_write) - atomic_int32ReadRelaxed (&x->rb_read)) & x->rb_hiMask);
 }
 
-PD_LOCAL int32_t ringbuffer_getAvailableWrite (t_ringbuffer *x)
+int32_t ringbuffer_getAvailableWrite (t_ringbuffer *x)
 {
     return (x->rb_size - ringbuffer_getAvailableRead (x));
 }
@@ -121,7 +121,7 @@ static int32_t ringbuffer_getWriteRegions (t_ringbuffer *x, int32_t n,
     return n;
 }
 
-PD_LOCAL int32_t ringbuffer_write (t_ringbuffer *x, const void *data, int32_t n)
+int32_t ringbuffer_write (t_ringbuffer *x, const void *data, int32_t n)
 {
     int32_t size1;
     int32_t size2;
@@ -182,7 +182,7 @@ static int32_t ringbuffer_getReadRegions (t_ringbuffer *x,
     return n;
 }
 
-PD_LOCAL int32_t ringbuffer_read (t_ringbuffer *x, void *data, int32_t n)
+int32_t ringbuffer_read (t_ringbuffer *x, void *data, int32_t n)
 {
     int32_t size1;
     int32_t size2;

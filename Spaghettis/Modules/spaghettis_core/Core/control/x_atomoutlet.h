@@ -35,35 +35,35 @@ enum {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol   *atomoutlet_parseAbbreviated    (t_symbol *s);
+t_symbol   *atomoutlet_parseAbbreviated    (t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_atom     *atomoutlet_getAtom             (t_atomoutlet *x);
-PD_LOCAL t_inlet    *atomoutlet_getInlet            (t_atomoutlet *x);
-PD_LOCAL t_outlet   *atomoutlet_getOutlet           (t_atomoutlet *x);
+t_atom     *atomoutlet_getAtom             (t_atomoutlet *x);
+t_inlet    *atomoutlet_getInlet            (t_atomoutlet *x);
+t_outlet   *atomoutlet_getOutlet           (t_atomoutlet *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       atomoutlet_copyAtom             (t_atomoutlet *x, t_atom *a);
-PD_LOCAL t_error    atomoutlet_setAtom              (t_atomoutlet *x, t_atom *a);
-PD_LOCAL int        atomoutlet_isEqualToAtom        (t_atomoutlet *x, t_atom *a);
-PD_LOCAL t_error    atomoutlet_broadcastIfTypeMatch (t_atomoutlet *x, t_atom *a);
+void       atomoutlet_copyAtom             (t_atomoutlet *x, t_atom *a);
+t_error    atomoutlet_setAtom              (t_atomoutlet *x, t_atom *a);
+int        atomoutlet_isEqualToAtom        (t_atomoutlet *x, t_atom *a);
+t_error    atomoutlet_broadcastIfTypeMatch (t_atomoutlet *x, t_atom *a);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       atomoutlet_makeFloat            (t_atomoutlet *x, t_object *o, int flags, t_float f);
-PD_LOCAL void       atomoutlet_makeSymbol           (t_atomoutlet *x, t_object *o, int flags, t_symbol *s);
-PD_LOCAL void       atomoutlet_make                 (t_atomoutlet *x, t_object *o, int flags, t_atom *a);
+void       atomoutlet_makeFloat            (t_atomoutlet *x, t_object *o, int flags, t_float f);
+void       atomoutlet_makeSymbol           (t_atomoutlet *x, t_object *o, int flags, t_symbol *s);
+void       atomoutlet_make                 (t_atomoutlet *x, t_object *o, int flags, t_atom *a);
 
-PD_LOCAL void       atomoutlet_makeSymbolParsed     (t_atomoutlet *x, t_object *o, int flags, t_atom *a);
-PD_LOCAL void       atomoutlet_makeParsed           (t_atomoutlet *x, t_object *o, int flags, t_atom *a);
+void       atomoutlet_makeSymbolParsed     (t_atomoutlet *x, t_object *o, int flags, t_atom *a);
+void       atomoutlet_makeParsed           (t_atomoutlet *x, t_object *o, int flags, t_atom *a);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

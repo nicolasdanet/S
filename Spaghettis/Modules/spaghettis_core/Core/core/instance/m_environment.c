@@ -23,7 +23,7 @@ static void instance_environmentSetFileProceed (t_symbol *name, t_symbol *direct
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_environmentSetFile (t_symbol *name, t_symbol *directory)
+void instance_environmentSetFile (t_symbol *name, t_symbol *directory)
 {
     PD_ASSERT (name && name != &s_);
     PD_ASSERT (directory && directory != &s_);
@@ -31,7 +31,7 @@ PD_LOCAL void instance_environmentSetFile (t_symbol *name, t_symbol *directory)
     instance_environmentSetFileProceed (name, directory);
 }
 
-PD_LOCAL void instance_environmentSetArguments (int argc, t_atom *argv)
+void instance_environmentSetArguments (int argc, t_atom *argv)
 {
     if (instance_get()->pd_environment.env_argv) { PD_MEMORY_FREE (instance_get()->pd_environment.env_argv); }
     
@@ -43,12 +43,12 @@ PD_LOCAL void instance_environmentSetArguments (int argc, t_atom *argv)
     if (argc) { atom_copyAtoms (argv, argc, instance_get()->pd_environment.env_argv, argc); }
 }
 
-PD_LOCAL void instance_environmentResetFile (void)
+void instance_environmentResetFile (void)
 {
     instance_environmentSetFileProceed (&s_, &s_);
 }
 
-PD_LOCAL void instance_environmentResetArguments (void)
+void instance_environmentResetArguments (void)
 {
     instance_environmentSetArguments (0, NULL);
 }
@@ -59,7 +59,7 @@ PD_LOCAL void instance_environmentResetArguments (void)
 
 /* Caller is responsible to free the environment returned. */
 
-PD_LOCAL t_environment *instance_environmentFetchIfAny (void)
+t_environment *instance_environmentFetchIfAny (void)
 {
     static int dollarZero = 1000;   /* Static. */
     
@@ -91,7 +91,7 @@ PD_LOCAL t_environment *instance_environmentFetchIfAny (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void environment_free (t_environment *e)
+void environment_free (t_environment *e)
 {
     if (e) {
         PD_MEMORY_FREE (e->env_argv);
@@ -105,7 +105,7 @@ PD_LOCAL void environment_free (t_environment *e)
 
 /* Always contains an extension. */
 
-PD_LOCAL void environment_setFileName (t_environment *e, t_symbol *name)
+void environment_setFileName (t_environment *e, t_symbol *name)
 {
     int hasExtension = 0;
     

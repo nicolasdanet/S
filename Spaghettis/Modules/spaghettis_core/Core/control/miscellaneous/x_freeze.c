@@ -55,7 +55,7 @@ static void *freeze_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void freeze_setup (void)
+void freeze_setup (void)
 {
     t_class *c = NULL;
     
@@ -70,7 +70,7 @@ PD_LOCAL void freeze_setup (void)
     freeze_class = c;
 }
 
-PD_LOCAL void freeze_destroy (void)
+void freeze_destroy (void)
 {
     class_free (freeze_class);
 }

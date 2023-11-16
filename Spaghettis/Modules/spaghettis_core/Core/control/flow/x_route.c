@@ -282,7 +282,7 @@ static void route_free (t_route *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void route_setup (void)
+void route_setup (void)
 {
     t_class *c = NULL;
     
@@ -305,7 +305,7 @@ PD_LOCAL void route_setup (void)
     route_class = c;
 }
 
-PD_LOCAL void route_destroy (void)
+void route_destroy (void)
 {
     class_free (route_class);
 }

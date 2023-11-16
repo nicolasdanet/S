@@ -18,8 +18,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       chain_addClosure    (t_chain *, t_closure *);
-PD_LOCAL t_closure  *chain_fetchClosure (t_chain *, t_object *);
+void       chain_addClosure    (t_chain *, t_closure *);
+t_closure  *chain_fetchClosure (t_chain *, t_object *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -40,12 +40,12 @@ enum {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void fft_stateRelease (t_FFTState *x)
+void fft_stateRelease (t_FFTState *x)
 {
     if (x->s_cache) { PD_MEMORY_FREE (x->s_cache); } x->s_size = 0;
 }
 
-PD_LOCAL void fft_stateInitialize (t_FFTState *x, int n)
+void fft_stateInitialize (t_FFTState *x, int n)
 {
     PD_ASSERT (n >= FFT_MINIMUM && n <= FFT_MAXIMUM);
     
@@ -65,7 +65,7 @@ PD_LOCAL void fft_stateInitialize (t_FFTState *x, int n)
 
 /* Return if initialization is required (i.e. encapsulation). */
 
-PD_LOCAL int object_dspNeedInitializer (t_object *x)
+int object_dspNeedInitializer (t_object *x)
 {
     t_id u = object_getUnique (x);
     t_id s = object_getSource (x);
@@ -97,14 +97,14 @@ static t_closure *closure_fetch (t_object *owner, int type)
 
 #if 0
 
-PD_LOCAL t_space *space_fetch (t_object *o)
+t_space *space_fetch (t_object *o)
 {
     return (t_space *)closure_fetch (o, CLOSURES_SPACE);
 }
 
 #endif
 
-PD_LOCAL t_object *garbage_fetch (t_object *o)
+t_object *garbage_fetch (t_object *o)
 {
     t_garbage *g = (t_garbage *)closure_fetch (o, CLOSURES_OBJECT);
     
@@ -115,7 +115,7 @@ PD_LOCAL t_object *garbage_fetch (t_object *o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_space *space_new (t_object *owner)
+t_space *space_new (t_object *owner)
 {
     t_space *x = (t_space *)PD_MEMORY_GET (sizeof (t_space));
     
@@ -128,7 +128,7 @@ PD_LOCAL t_space *space_new (t_object *owner)
     return x;
 }
 
-PD_LOCAL t_sfvectors *sfvectors_new (t_object *owner)
+t_sfvectors *sfvectors_new (t_object *owner)
 {
     t_sfvectors *x = (t_sfvectors *)PD_MEMORY_GET (sizeof (t_sfvectors));
     
@@ -141,7 +141,7 @@ PD_LOCAL t_sfvectors *sfvectors_new (t_object *owner)
     return x;
 }
 
-PD_LOCAL t_FFTState *fftstate_new (t_object *owner, int n)
+t_FFTState *fftstate_new (t_object *owner, int n)
 {
     t_FFTState *x = (t_FFTState *)PD_MEMORY_GET (sizeof (t_FFTState));
     
@@ -160,7 +160,7 @@ PD_LOCAL t_FFTState *fftstate_new (t_object *owner, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_blockclosure *block_newClosure (t_object *owner)
+t_blockclosure *block_newClosure (t_object *owner)
 {
     t_blockclosure *x = (t_blockclosure *)PD_MEMORY_GET (sizeof (t_blockclosure));
     
@@ -173,7 +173,7 @@ PD_LOCAL t_blockclosure *block_newClosure (t_object *owner)
     return x;
 }
 
-PD_LOCAL t_vinletclosure *vinlet_newClosure (t_object *owner)
+t_vinletclosure *vinlet_newClosure (t_object *owner)
 {
     t_vinletclosure *x = (t_vinletclosure *)PD_MEMORY_GET (sizeof (t_vinletclosure));
     
@@ -186,7 +186,7 @@ PD_LOCAL t_vinletclosure *vinlet_newClosure (t_object *owner)
     return x;
 }
 
-PD_LOCAL t_voutletclosure *voutlet_newClosure (t_object *owner)
+t_voutletclosure *voutlet_newClosure (t_object *owner)
 {
     t_voutletclosure *x = (t_voutletclosure *)PD_MEMORY_GET (sizeof (t_voutletclosure));
     
@@ -203,7 +203,7 @@ PD_LOCAL t_voutletclosure *voutlet_newClosure (t_object *owner)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void garbage_newRaw (void *m)
+void garbage_newRaw (void *m)
 {
     t_chain *chain = instance_chainGetCurrent();
     
@@ -224,7 +224,7 @@ PD_LOCAL void garbage_newRaw (void *m)
     }
 }
 
-PD_LOCAL int garbage_newObject (t_object *o)
+int garbage_newObject (t_object *o)
 {
     t_chain *chain = instance_chainGetCurrent();
     
@@ -255,7 +255,7 @@ PD_LOCAL int garbage_newObject (t_object *o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void closure_free (t_closure *x)
+void closure_free (t_closure *x)
 {
     if (x->s_type == CLOSURES_FFT) { fft_stateRelease ((t_FFTState *)x); }
     

@@ -66,17 +66,17 @@ struct _dspcontext {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_float dspcontext_getSampleRate (t_dspcontext *context)
+t_float dspcontext_getSampleRate (t_dspcontext *context)
 {
     return context->dc_sampleRate;
 }
 
-PD_LOCAL int dspcontext_getBlockSize (t_dspcontext *context)
+int dspcontext_getBlockSize (t_dspcontext *context)
 {
     return context->dc_blockSize;
 }
 
-PD_LOCAL int dspcontext_getOverlap (t_dspcontext *context)
+int dspcontext_getOverlap (t_dspcontext *context)
 {
     return context->dc_overlap;
 }
@@ -85,7 +85,7 @@ PD_LOCAL int dspcontext_getOverlap (t_dspcontext *context)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void block_getAndSetProperties (t_block *, t_blockproperties *, t_blockclosure *);
+void block_getAndSetProperties (t_block *, t_blockproperties *, t_blockclosure *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -355,7 +355,7 @@ static void ugen_graphDelete (t_dspcontext *context)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_dspcontext *ugen_graphStart (int isTopLevel, t_signal **sp, int m, int n)
+t_dspcontext *ugen_graphStart (int isTopLevel, t_signal **sp, int m, int n)
 {
     t_dspcontext *context = (t_dspcontext *)PD_MEMORY_GET (sizeof (t_dspcontext));
 
@@ -394,7 +394,7 @@ PD_LOCAL t_dspcontext *ugen_graphStart (int isTopLevel, t_signal **sp, int m, in
     return context;
 }
 
-PD_LOCAL void ugen_graphAdd (t_dspcontext *context, t_object *o)
+void ugen_graphAdd (t_dspcontext *context, t_object *o)
 {
     t_ugenbox *x = (t_ugenbox *)PD_MEMORY_GET (sizeof (t_ugenbox));
 
@@ -408,7 +408,7 @@ PD_LOCAL void ugen_graphAdd (t_dspcontext *context, t_object *o)
     context->dc_ugens = x;
 }
 
-PD_LOCAL void ugen_graphConnect (t_dspcontext *context, t_object *o1, int m, t_object *o2, int n)
+void ugen_graphConnect (t_dspcontext *context, t_object *o1, int m, t_object *o2, int n)
 {
     t_ugenbox *u1 = ugen_graphFetchUgen (context, o1);
     t_ugenbox *u2 = ugen_graphFetchUgen (context, o2);
@@ -428,7 +428,7 @@ PD_LOCAL void ugen_graphConnect (t_dspcontext *context, t_object *o1, int m, t_o
 /* Note that it is respectively divided and multiplied in case of overlap. */
 /* In that case the period represents the factor for the hop size. */
 
-PD_LOCAL void ugen_graphClose (t_dspcontext *context)
+void ugen_graphClose (t_dspcontext *context)
 {
     t_dspcontext *parentContext = context->dc_parentContext;
     t_float parentSampleRate    = parentContext ? parentContext->dc_sampleRate : audio_getSampleRate();

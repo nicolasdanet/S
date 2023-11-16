@@ -13,9 +13,9 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_float    dspcontext_getSampleRate    (t_dspcontext *);
-PD_LOCAL int        dspcontext_getBlockSize     (t_dspcontext *);
-PD_LOCAL int        dspcontext_getOverlap       (t_dspcontext *);
+t_float    dspcontext_getSampleRate    (t_dspcontext *);
+int        dspcontext_getBlockSize     (t_dspcontext *);
+int        dspcontext_getOverlap       (t_dspcontext *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -42,12 +42,12 @@ static t_signal *signal_new (t_float sampleRate, int vectorSize, int overlap)
     return s;
 }
 
-PD_LOCAL t_signal *signal_newWithSignal (t_signal *s)
+t_signal *signal_newWithSignal (t_signal *s)
 {
     return signal_new (s->s_sampleRate, s->s_vectorSize, s->s_overlap);
 }
 
-PD_LOCAL t_signal *signal_newWithContext (t_dspcontext *c)
+t_signal *signal_newWithContext (t_dspcontext *c)
 {
     return signal_new (dspcontext_getSampleRate (c), dspcontext_getBlockSize (c), dspcontext_getOverlap (c));
 }
@@ -56,7 +56,7 @@ PD_LOCAL t_signal *signal_newWithContext (t_dspcontext *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int signal_isCompatibleWith (t_signal *s1, t_signal *s2)
+int signal_isCompatibleWith (t_signal *s1, t_signal *s2)
 {
     int a = (s1->s_vectorSize == s2->s_vectorSize);
     int b = (s1->s_sampleRate == s2->s_sampleRate);
@@ -69,7 +69,7 @@ PD_LOCAL int signal_isCompatibleWith (t_signal *s1, t_signal *s2)
     return (a && b && c);
 }
 
-PD_LOCAL void signal_borrow (t_signal *s, t_signal *toBeBorrowed)
+void signal_borrow (t_signal *s, t_signal *toBeBorrowed)
 {
     PD_ASSERT (s->s_hasBorrowed == 0);
     PD_ASSERT (signal_isCompatibleWith (s, toBeBorrowed));

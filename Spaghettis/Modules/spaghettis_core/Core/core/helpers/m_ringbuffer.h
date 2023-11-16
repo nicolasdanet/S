@@ -21,9 +21,9 @@
 
 /* The number of elements MUST be a power of two. */
 
-PD_LOCAL t_ringbuffer   *ringbuffer_new         (int32_t sizeOfElementInBytes, int32_t numberOfElements);
+t_ringbuffer   *ringbuffer_new         (int32_t sizeOfElementInBytes, int32_t numberOfElements);
 
-PD_LOCAL void           ringbuffer_free         (t_ringbuffer *x);
+void           ringbuffer_free         (t_ringbuffer *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -33,10 +33,10 @@ PD_LOCAL void           ringbuffer_free         (t_ringbuffer *x);
 
 /* Usable in DSP. */
 
-PD_LOCAL int32_t ringbuffer_getAvailableWrite   (t_ringbuffer *x);
-PD_LOCAL int32_t ringbuffer_getAvailableRead    (t_ringbuffer *x);
-PD_LOCAL int32_t ringbuffer_write               (t_ringbuffer *x, const void *v, int32_t n);
-PD_LOCAL int32_t ringbuffer_read                (t_ringbuffer *x, void *v, int32_t n);
+int32_t ringbuffer_getAvailableWrite   (t_ringbuffer *x);
+int32_t ringbuffer_getAvailableRead    (t_ringbuffer *x);
+int32_t ringbuffer_write               (t_ringbuffer *x, const void *v, int32_t n);
+int32_t ringbuffer_read                (t_ringbuffer *x, void *v, int32_t n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

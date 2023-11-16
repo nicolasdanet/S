@@ -37,14 +37,14 @@ pthread_mutex_t         audio_mutex;                /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void audio_vectorInitialize (t_float, int, int);
-PD_LOCAL void metadata_report        (t_error err);
+void audio_vectorInitialize (t_float, int, int);
+void metadata_report        (t_error err);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int audio_isOpened (void)
+int audio_isOpened (void)
 {
     return (audio_state != 0);
 }
@@ -89,7 +89,7 @@ static void audio_report (t_error err, t_devices *p)
 
 /* Notice that for now only the first device is opened. */
 
-PD_LOCAL t_error audio_open (void)
+t_error audio_open (void)
 {
     t_error err = PD_ERROR;
     
@@ -119,7 +119,7 @@ PD_LOCAL t_error audio_open (void)
     return err;
 }
 
-PD_LOCAL void audio_close (void)
+void audio_close (void)
 {
     pthread_mutex_lock (&audio_mutex);
     
@@ -128,7 +128,7 @@ PD_LOCAL void audio_close (void)
     pthread_mutex_unlock (&audio_mutex);
 }
 
-PD_LOCAL int audio_poll (void)
+int audio_poll (void)
 {
     int k = DACS_NO;
     
@@ -147,12 +147,12 @@ PD_LOCAL int audio_poll (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audio_stop (void)
+t_error audio_stop (void)
 {
     if (audio_isOpened()) { audio_close(); } return PD_ERROR_NONE;
 }
 
-PD_LOCAL t_error audio_start (void)
+t_error audio_start (void)
 {
     if (!audio_isOpened()) { return audio_open(); } else { return PD_ERROR_NONE; }
 }
@@ -161,7 +161,7 @@ PD_LOCAL t_error audio_start (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL double audio_getNanosecondsToSleep (void)
+double audio_getNanosecondsToSleep (void)
 {
     double t = INTERNAL_BLOCKSIZE / audio_getSampleRate();
     
@@ -172,17 +172,17 @@ PD_LOCAL double audio_getNanosecondsToSleep (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_float audio_getSampleRate (void)
+t_float audio_getSampleRate (void)
 {
     t_float f = PD_ATOMIC_FLOAT64_READ (&audio_sampleRate); return (f <= 0.0 ? AUDIO_DEFAULT_SAMPLERATE : f);
 }
 
-PD_LOCAL int audio_getTotalOfChannelsIn (void) 
+int audio_getTotalOfChannelsIn (void) 
 {
     return audio_totalOfChannelsIn;
 }
 
-PD_LOCAL int audio_getTotalOfChannelsOut (void)
+int audio_getTotalOfChannelsOut (void)
 {
     return audio_totalOfChannelsOut; 
 }
@@ -191,7 +191,7 @@ PD_LOCAL int audio_getTotalOfChannelsOut (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void audio_vectorInitialize (t_float sampleRate, int totalOfChannelsIn, int totalOfChannelsOut)
+void audio_vectorInitialize (t_float sampleRate, int totalOfChannelsIn, int totalOfChannelsOut)
 {
     int m = (int)((INTERNAL_BLOCKSIZE * sizeof (t_sample)) * (totalOfChannelsIn ? totalOfChannelsIn : 2));
     int n = (int)((INTERNAL_BLOCKSIZE * sizeof (t_sample)) * (totalOfChannelsOut ? totalOfChannelsOut : 2));
@@ -211,14 +211,14 @@ PD_LOCAL void audio_vectorInitialize (t_float sampleRate, int totalOfChannelsIn,
     PD_ATOMIC_FLOAT64_WRITE (sampleRate, &audio_sampleRate);
 }
 
-PD_LOCAL void audio_vectorShrinkIn (int totalOfChannelsIn)
+void audio_vectorShrinkIn (int totalOfChannelsIn)
 {
     PD_ASSERT (totalOfChannelsIn <= audio_totalOfChannelsIn);
     
     audio_totalOfChannelsIn = totalOfChannelsIn;
 }
 
-PD_LOCAL void audio_vectorShrinkOut (int totalOfChannelsOut)
+void audio_vectorShrinkOut (int totalOfChannelsOut)
 {
     PD_ASSERT (totalOfChannelsOut <= audio_totalOfChannelsOut);
     
@@ -229,12 +229,12 @@ PD_LOCAL void audio_vectorShrinkOut (int totalOfChannelsOut)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audio_initialize (void)
+t_error audio_initialize (void)
 {
     pthread_mutex_init (&audio_mutex, NULL); return audio_initializeNative();
 }
 
-PD_LOCAL void audio_release (void)
+void audio_release (void)
 {
     audio_releaseNative();
     

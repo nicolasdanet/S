@@ -58,21 +58,21 @@ static void pool_push (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *pool_get (void)
+t_symbol *pool_get (void)
 {
     t_atom a; t_error err = buffer_pop (instance_get()->pd_pool, &a);
     
     if (!err) { return GET_SYMBOL (&a); } else { return pool_generate(); }
 }
 
-PD_LOCAL void pool_relinquish (t_symbol *s)
+void pool_relinquish (t_symbol *s)
 {
     pool_push (s);
 }
 
 /* Check if it looks like valid. */
 
-PD_LOCAL int pool_check (t_symbol *s)
+int pool_check (t_symbol *s)
 {
     const char *p = s->s_name; return ((*p == '@') && (strlen (p) == POOL_STRING));
 }

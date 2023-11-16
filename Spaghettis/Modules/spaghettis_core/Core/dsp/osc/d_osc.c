@@ -35,7 +35,7 @@ typedef struct _osc_tilde {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int atomic_float64CompareAndSwap (double *, double, t_float64Atomic *);
+int atomic_float64CompareAndSwap (double *, double, t_float64Atomic *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -151,7 +151,7 @@ static void *osc_tilde_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void osc_tilde_setup (void)
+void osc_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -173,7 +173,7 @@ PD_LOCAL void osc_tilde_setup (void)
     osc_tilde_class = c;
 }
 
-PD_LOCAL void osc_tilde_destroy (void)
+void osc_tilde_destroy (void)
 {
     class_free (osc_tilde_class);
 }

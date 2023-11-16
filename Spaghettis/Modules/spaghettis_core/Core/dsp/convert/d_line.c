@@ -217,7 +217,7 @@ static void line_tilde_free (t_line_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void line_tilde_setup (void)
+void line_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -238,7 +238,7 @@ PD_LOCAL void line_tilde_setup (void)
     line_tilde_class = c;
 }
 
-PD_LOCAL void line_tilde_destroy (void)
+void line_tilde_destroy (void)
 {
     class_free (line_tilde_class);
 }

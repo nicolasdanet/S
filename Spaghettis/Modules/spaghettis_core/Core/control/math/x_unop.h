@@ -24,9 +24,9 @@ typedef struct _unop {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer   *unop_functionData  (t_object *z, int flags);
+t_buffer   *unop_functionData  (t_object *z, int flags);
 
-PD_LOCAL void       unop_restore        (t_unop *x, t_float f);
+void       unop_restore        (t_unop *x, t_float f);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

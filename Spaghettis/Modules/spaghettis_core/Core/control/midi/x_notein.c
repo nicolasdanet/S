@@ -77,7 +77,7 @@ static void notein_free (t_notein *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void notein_setup (void)
+void notein_setup (void)
 {
     t_class *c = NULL;
     
@@ -94,7 +94,7 @@ PD_LOCAL void notein_setup (void)
     notein_class = c;
 }
 
-PD_LOCAL void notein_destroy (void)
+void notein_destroy (void)
 {
     class_free (notein_class);
 }

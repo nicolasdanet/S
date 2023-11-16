@@ -32,11 +32,11 @@ struct _complex_raw_tilde {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer   *real_raw_functionData      (t_object *z, int flags);
-PD_LOCAL t_buffer   *complex_raw_functionData   (t_object *z, int flags);
+t_buffer   *real_raw_functionData      (t_object *z, int flags);
+t_buffer   *complex_raw_functionData   (t_object *z, int flags);
 
-PD_LOCAL void       real_raw_initializer        (t_object *x);
-PD_LOCAL void       complex_raw_initializer     (t_object *x);
+void       real_raw_initializer        (t_object *x);
+void       complex_raw_initializer     (t_object *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

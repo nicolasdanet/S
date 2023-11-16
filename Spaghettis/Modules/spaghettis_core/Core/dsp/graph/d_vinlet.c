@@ -95,7 +95,7 @@ static void vinlet_initialize (void *lhs, void *rhs)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void vinlet_dspPrologue (t_vinlet *x, t_signal **signals, t_blockproperties *p)
+void vinlet_dspPrologue (t_vinlet *x, t_signal **signals, t_blockproperties *p)
 {
     PD_ASSERT (x->vi_closure == NULL);
     
@@ -168,7 +168,7 @@ PD_LOCAL void vinlet_dspPrologue (t_vinlet *x, t_signal **signals, t_blockproper
     }
 }
 
-PD_LOCAL void vinlet_dsp (t_vinlet *x, t_signal **sp)
+void vinlet_dsp (t_vinlet *x, t_signal **sp)
 {
     if (vinlet_isSignal (x)) {
     //

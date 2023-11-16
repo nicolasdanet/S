@@ -52,7 +52,7 @@ static void arrayset_list (t_arrayset *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *arrayset_new (t_symbol *s, int argc, t_atom *argv)
+void *arrayset_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_arrayset *x = (t_arrayset *)arrayrange_new (arrayset_class, argc, argv, 1, 0);
     
@@ -68,7 +68,7 @@ PD_LOCAL void *arrayset_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void arrayset_setup (void)
+void arrayset_setup (void)
 {
     t_class *c = NULL;
     
@@ -91,7 +91,7 @@ PD_LOCAL void arrayset_setup (void)
     arrayset_class = c;
 }
 
-PD_LOCAL void arrayset_destroy (void)
+void arrayset_destroy (void)
 {
     class_free (arrayset_class);
 }

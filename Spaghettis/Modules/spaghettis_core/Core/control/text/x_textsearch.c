@@ -197,7 +197,7 @@ static void textsearch_restore (t_textsearch *x, t_symbol *s, int argc, t_atom *
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *textsearch_new (t_symbol *s, int argc, t_atom *argv)
+void *textsearch_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_textsearch *x = (t_textsearch *)pd_new (textsearch_class);
     
@@ -269,7 +269,7 @@ static void textsearch_free (t_textsearch *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void textsearch_setup (void)
+void textsearch_setup (void)
 {
     t_class *c = NULL;
     
@@ -294,7 +294,7 @@ PD_LOCAL void textsearch_setup (void)
     textsearch_class = c;
 }
 
-PD_LOCAL void textsearch_destroy (void)
+void textsearch_destroy (void)
 {
     class_free (textsearch_class);
 }

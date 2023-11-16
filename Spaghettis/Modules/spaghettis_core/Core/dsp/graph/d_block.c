@@ -29,12 +29,12 @@ t_class *block_class;                       /* Shared. */
 /* < https://lists.puredata.info/pipermail/pd-list/2005-07/029490.html > */
 /* < https://www.mail-archive.com/pd-list@iem.at/msg60031.html > */
 
-PD_LOCAL t_float block_getResamplingRatio (t_block *x)
+t_float block_getResamplingRatio (t_block *x)
 {
     return ((t_float)x->bk_upsample / (t_float)x->bk_downsample);
 }
 
-PD_LOCAL int block_getBlockSize (t_block *x)
+int block_getBlockSize (t_block *x)
 {
     return x->bk_blockSize;
 }
@@ -43,7 +43,7 @@ PD_LOCAL int block_getBlockSize (t_block *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void block_getAndSetProperties (t_block *x, t_blockproperties *p, t_blockclosure *c)
+void block_getAndSetProperties (t_block *x, t_blockproperties *p, t_blockclosure *c)
 {
     int parentBlockSize         = p->bp_blockSize;
     int isTopPatch              = p->bp_reblocked;
@@ -105,7 +105,7 @@ static void block_dsp (t_block *x, t_signal **sp)
 /* By-pass it the rest of the times. */
 /* Notice that with a period of 1 (i.e. NOT or smaller reblocked) it is triggered each time. */
 
-PD_LOCAL t_int *block_performPrologue (t_int *w)
+t_int *block_performPrologue (t_int *w)
 {
     // t_block *x = (t_block *)w[1];
     t_blockclosure *c = (t_blockclosure *)w[2];
@@ -126,7 +126,7 @@ PD_LOCAL t_int *block_performPrologue (t_int *w)
 /* Perform the context several time (according to the frequency set above). */
 /* It is required for instance if the block size of a context is smaller than its parent's one. */
 
-PD_LOCAL t_int *block_performEpilogue (t_int *w)
+t_int *block_performEpilogue (t_int *w)
 {
     // t_block *x = (t_block *)w[1];
     t_blockclosure *c = (t_blockclosure *)w[2];
@@ -186,7 +186,7 @@ static void *block_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void block_tilde_setup (void)
+void block_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -203,7 +203,7 @@ PD_LOCAL void block_tilde_setup (void)
     block_class = c;
 }
 
-PD_LOCAL void block_tilde_destroy (void)
+void block_tilde_destroy (void)
 {
     class_free (block_class);
 }

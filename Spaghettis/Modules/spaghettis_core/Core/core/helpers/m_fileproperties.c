@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error fileproperties_set (t_fileproperties *p, char *filepath)
+t_error fileproperties_set (t_fileproperties *p, char *filepath)
 {
     t_error err = string_copy (p->f_directory, PD_STRING, filepath);
     

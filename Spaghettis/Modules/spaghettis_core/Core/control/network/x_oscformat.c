@@ -477,7 +477,7 @@ static void oscformat_free (t_oscformat *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void oscformat_setup (void)
+void oscformat_setup (void)
 {
     t_class *c = NULL;
     
@@ -501,7 +501,7 @@ PD_LOCAL void oscformat_setup (void)
     oscformat_class = c;
 }
 
-PD_LOCAL void oscformat_destroy (void)
+void oscformat_destroy (void)
 {
     class_free (oscformat_class);
 }

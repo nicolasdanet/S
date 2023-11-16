@@ -13,8 +13,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void   glist_objectRemoveRaw   (t_glist *, t_object *);
-PD_LOCAL void   glist_objectAddRaw      (t_glist *, t_object *, t_object *, int);
+void   glist_objectRemoveRaw   (t_glist *, t_object *);
+void   glist_objectAddRaw      (t_glist *, t_object *, t_object *, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ PD_LOCAL void   glist_objectAddRaw      (t_glist *, t_object *, t_object *, int)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL std::vector<UniqueId> glist_objectGetAll (t_glist *);
+std::vector<UniqueId> glist_objectGetAll (t_glist *);
 
 static void glist_objectMoveNotify (t_glist *g)
 {
@@ -42,21 +42,21 @@ static void glist_objectMoveNotify (t_glist *g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_objectMoveAtFirst (t_glist *glist, t_object *y)
+void glist_objectMoveAtFirst (t_glist *glist, t_object *y)
 {
     glist_objectRemoveRaw (glist, y);
     glist_objectAddRaw (glist, y, NULL, 1);
     glist_objectMoveNotify (glist);
 }
 
-PD_LOCAL void glist_objectMoveAtLast (t_glist *glist, t_object *y)
+void glist_objectMoveAtLast (t_glist *glist, t_object *y)
 {
     glist_objectRemoveRaw (glist, y);
     glist_objectAddRaw (glist, y, NULL, 0);
     glist_objectMoveNotify (glist);
 }
 
-PD_LOCAL void glist_objectMoveAt (t_glist *glist, t_object *y, int n)
+void glist_objectMoveAt (t_glist *glist, t_object *y, int n)
 {
     if (n < 1) { glist_objectMoveAtFirst (glist, y); }
     else {
@@ -68,7 +68,7 @@ PD_LOCAL void glist_objectMoveAt (t_glist *glist, t_object *y, int n)
     }
 }
 
-PD_LOCAL void glist_objectMoveBack (t_glist *glist, t_object *y)
+void glist_objectMoveBack (t_glist *glist, t_object *y)
 {
     if (glist_undoIsOk (glist)) {
     //
@@ -80,7 +80,7 @@ PD_LOCAL void glist_objectMoveBack (t_glist *glist, t_object *y)
     glist_setDirty (glist, 1);
 }
 
-PD_LOCAL void glist_objectMoveFront (t_glist *glist, t_object *y)
+void glist_objectMoveFront (t_glist *glist, t_object *y)
 {
     if (glist_undoIsOk (glist)) {
     //
@@ -96,7 +96,7 @@ PD_LOCAL void glist_objectMoveFront (t_glist *glist, t_object *y)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int glist_objectGetIndexOf (t_glist *glist, t_object *y)
+int glist_objectGetIndexOf (t_glist *glist, t_object *y)
 {
     t_object *t = NULL;
     int n = 0;
@@ -122,7 +122,7 @@ static int glist_objectGetIndexOfAmong (t_glist *glist, t_object *y, int selecte
     return n;
 }
 
-PD_LOCAL int glist_objectGetIndexOfAmongSelected (t_glist *glist, t_object *y)
+int glist_objectGetIndexOfAmongSelected (t_glist *glist, t_object *y)
 {
     return glist_objectGetIndexOfAmong (glist, y, 1);
 }
@@ -131,7 +131,7 @@ PD_LOCAL int glist_objectGetIndexOfAmongSelected (t_glist *glist, t_object *y)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_object *glist_objectGetAt (t_glist *glist, int n)
+t_object *glist_objectGetAt (t_glist *glist, int n)
 {
     t_object *t = NULL;
     int i = 0;
@@ -144,7 +144,7 @@ PD_LOCAL t_object *glist_objectGetAt (t_glist *glist, int n)
     return NULL;
 }
 
-PD_LOCAL t_object *glist_objectGetLast (t_glist *g)
+t_object *glist_objectGetLast (t_glist *g)
 {
     if (g->gl_graphics) {
     //

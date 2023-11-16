@@ -23,7 +23,7 @@ t_deviceslist audio_devices;        /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void audio_vectorInitialize (t_float, int, int);
+void audio_vectorInitialize (t_float, int, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -55,12 +55,12 @@ static t_error audio_getDevicesList (t_deviceslist *l, int reload)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void audio_getDevices (t_devices *p)
+void audio_getDevices (t_devices *p)
 {
     deviceslist_getDevices (&audio_devices, p);
 }
 
-PD_LOCAL void audio_setDevices (t_devices *p, int setParameters)
+void audio_setDevices (t_devices *p, int setParameters)
 {
     int m, n;
     
@@ -80,7 +80,7 @@ PD_LOCAL void audio_setDevices (t_devices *p, int setParameters)
 
 /* Check maximum device channels (if defined) before to open stream. */
 
-PD_LOCAL t_error audio_check (t_devices *p)
+t_error audio_check (t_devices *p)
 {
     t_deviceslist l; t_error err = audio_getDevicesList (&l, 0);
     
@@ -123,7 +123,7 @@ PD_LOCAL t_error audio_check (t_devices *p)
     return err;
 }
 
-PD_FORCE void audio_rescanDevices (void)
+void audio_rescanDevices (void)
 {
     t_deviceslist l; t_error err = audio_getDevicesList (&l, 1);
     
@@ -134,7 +134,7 @@ PD_FORCE void audio_rescanDevices (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int audio_deviceAsNumber (int isOutput, t_symbol *name)
+int audio_deviceAsNumber (int isOutput, t_symbol *name)
 {
     t_deviceslist l;
     
@@ -148,7 +148,7 @@ PD_LOCAL int audio_deviceAsNumber (int isOutput, t_symbol *name)
     return -1;
 }
 
-PD_LOCAL t_error audio_deviceAsString (int isOutput, int k, char *dest, size_t size)
+t_error audio_deviceAsString (int isOutput, int k, char *dest, size_t size)
 {
     t_error err = PD_ERROR;
     t_symbol *t = audio_deviceAsSymbol (isOutput, k);
@@ -159,7 +159,7 @@ PD_LOCAL t_error audio_deviceAsString (int isOutput, int k, char *dest, size_t s
     return err;
 }
 
-PD_LOCAL t_symbol *audio_deviceAsSymbol (int isOutput, int k)
+t_symbol *audio_deviceAsSymbol (int isOutput, int k)
 {
     t_deviceslist l;
     

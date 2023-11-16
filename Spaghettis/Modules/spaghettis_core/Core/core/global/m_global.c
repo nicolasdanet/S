@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void metadata_setParsed (int, t_atom *);
+void metadata_setParsed (int, t_atom *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -71,7 +71,7 @@ static void global_default (void *dummy, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void global_setup (void)
+void global_setup (void)
 {
     t_class *c = NULL;
     
@@ -96,7 +96,7 @@ PD_LOCAL void global_setup (void)
     pd_bind (&global_class, sym_pd);        /* Fake binding the abstract class. */
 }
 
-PD_LOCAL void global_destroy (void)
+void global_destroy (void)
 {
     pd_unbind (&global_class, sym_pd);
     

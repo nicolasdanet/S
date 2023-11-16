@@ -89,7 +89,7 @@ static void *change_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void change_setup (void)
+void change_setup (void)
 {
     t_class *c = NULL;
     
@@ -113,7 +113,7 @@ PD_LOCAL void change_setup (void)
     change_class = c;
 }
 
-PD_LOCAL void change_destroy (void)
+void change_destroy (void)
 {
     class_free (change_class);
 }

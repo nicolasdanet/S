@@ -138,7 +138,7 @@ static void textset_restore (t_textset *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *textset_new (t_symbol *s, int argc, t_atom *argv)
+void *textset_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_textset *x = (t_textset *)pd_new (textset_class);
     
@@ -173,7 +173,7 @@ PD_LOCAL void *textset_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void textset_setup (void)
+void textset_setup (void)
 {
     t_class *c = NULL;
     
@@ -198,7 +198,7 @@ PD_LOCAL void textset_setup (void)
     textset_class = c;
 }
 
-PD_LOCAL void textset_destroy (void)
+void textset_destroy (void)
 {
     class_free (textset_class);
 }

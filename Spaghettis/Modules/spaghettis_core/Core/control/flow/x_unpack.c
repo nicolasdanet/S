@@ -88,7 +88,7 @@ static void unpack_free (t_unpack *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void unpack_setup (void)
+void unpack_setup (void)
 {
     t_class *c = NULL;
     
@@ -106,7 +106,7 @@ PD_LOCAL void unpack_setup (void)
     unpack_class = c;
 }
 
-PD_LOCAL void unpack_destroy (void)
+void unpack_destroy (void)
 {
     class_free (unpack_class);
 }

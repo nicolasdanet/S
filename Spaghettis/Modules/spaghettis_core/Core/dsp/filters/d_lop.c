@@ -153,7 +153,7 @@ static void *lop_tilde_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void lop_tilde_setup (void)
+void lop_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -174,7 +174,7 @@ PD_LOCAL void lop_tilde_setup (void)
     lop_tilde_class = c;
 }
 
-PD_LOCAL void lop_tilde_destroy (void)
+void lop_tilde_destroy (void)
 {
     class_free (lop_tilde_class);
 }

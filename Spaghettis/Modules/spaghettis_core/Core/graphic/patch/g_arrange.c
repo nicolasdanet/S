@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void glist_objectPosition (t_glist *glist, t_object *object, int x, int y, int notify)
+void glist_objectPosition (t_glist *glist, t_object *object, int x, int y, int notify)
 {
     int oldX   = object_getX (object);
     int oldY   = object_getY (object);
@@ -41,7 +41,7 @@ PD_LOCAL void glist_objectPosition (t_glist *glist, t_object *object, int x, int
     }
 }
 
-PD_LOCAL void glist_objectDisplace (t_glist *glist, t_object *object, int deltaX, int deltaY, int notify)
+void glist_objectDisplace (t_glist *glist, t_object *object, int deltaX, int deltaY, int notify)
 {
     int x = object_getX (object) + deltaX;
     int y = object_getY (object) + deltaY;
@@ -49,7 +49,7 @@ PD_LOCAL void glist_objectDisplace (t_glist *glist, t_object *object, int deltaX
     glist_objectPosition (glist, object, x, y, notify);
 }
 
-PD_LOCAL void glist_objectSnap (t_glist *glist, t_object *y, int notify)
+void glist_objectSnap (t_glist *glist, t_object *y, int notify)
 {
     int a = object_getX (y);
     int b = object_getY (y);

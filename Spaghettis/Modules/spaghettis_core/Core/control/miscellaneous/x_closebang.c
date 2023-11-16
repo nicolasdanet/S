@@ -49,7 +49,7 @@ static void *closebang_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void closebang_setup (void)
+void closebang_setup (void)
 {
     t_class *c = NULL;
     
@@ -65,7 +65,7 @@ PD_LOCAL void closebang_setup (void)
     closebang_class = c;
 }
 
-PD_LOCAL void closebang_destroy (void)
+void closebang_destroy (void)
 {
     class_free (closebang_class);
 }

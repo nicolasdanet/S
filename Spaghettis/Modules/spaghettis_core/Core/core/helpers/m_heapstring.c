@@ -36,12 +36,12 @@ static void heapstring_reserve (t_heapstring *x, size_t size)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL char *heapstring_getRaw (t_heapstring *x)
+char *heapstring_getRaw (t_heapstring *x)
 {
     return x->hs_raw;
 }
 
-PD_LOCAL int heapstring_getSize (t_heapstring *x)
+int heapstring_getSize (t_heapstring *x)
 {
     int size = (int)x->hs_size; PD_ASSERT (size >= 0); return size;
 }
@@ -52,7 +52,7 @@ PD_LOCAL int heapstring_getSize (t_heapstring *x)
 
 /* Caller acquires string ownership. */
 
-PD_LOCAL char *heapstring_clearBorrow (t_heapstring *x)
+char *heapstring_clearBorrow (t_heapstring *x)
 {
     char *borrowed = x->hs_raw;
     
@@ -64,7 +64,7 @@ PD_LOCAL char *heapstring_clearBorrow (t_heapstring *x)
 
 /* Caller acquires string ownership. */
 
-PD_LOCAL char *heapstring_freeBorrowUnzeroed (t_heapstring *x)
+char *heapstring_freeBorrowUnzeroed (t_heapstring *x)
 {
     char *borrowed = (char *)PD_MEMORY_RESIZE (x->hs_raw, x->hs_allocated, x->hs_size);
     
@@ -79,7 +79,7 @@ PD_LOCAL char *heapstring_freeBorrowUnzeroed (t_heapstring *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int heapstring_containsCharacterAtEnd (t_heapstring *x, char c)
+int heapstring_containsCharacterAtEnd (t_heapstring *x, char c)
 {
     if (x->hs_size) {
     //
@@ -90,7 +90,7 @@ PD_LOCAL int heapstring_containsCharacterAtEnd (t_heapstring *x, char c)
     return 0;
 }
 
-PD_LOCAL void heapstring_removeCharacterIfContainsAtEnd (t_heapstring *x, char c)
+void heapstring_removeCharacterIfContainsAtEnd (t_heapstring *x, char c)
 {
     if (heapstring_containsCharacterAtEnd (x, c)) {
     //
@@ -103,12 +103,12 @@ PD_LOCAL void heapstring_removeCharacterIfContainsAtEnd (t_heapstring *x, char c
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error heapstring_add (t_heapstring *x, const char *src)
+t_error heapstring_add (t_heapstring *x, const char *src)
 {
     return heapstring_append (x, src, -1);
 }
 
-PD_LOCAL t_error heapstring_append (t_heapstring *x, const char *src, int n)
+t_error heapstring_append (t_heapstring *x, const char *src, int n)
 {
     size_t size = 0;
         
@@ -131,7 +131,7 @@ PD_LOCAL t_error heapstring_append (t_heapstring *x, const char *src, int n)
 
 #if defined ( PD_BUILDING_TESTS )
 
-PD_LOCAL t_error heapstring_addSprintf (t_heapstring *x, const char *format, ...)
+t_error heapstring_addSprintf (t_heapstring *x, const char *format, ...)
 {
     size_t required = x->hs_size + (x->hs_allocated / 4);
     t_error err = PD_ERROR_NONE;
@@ -169,7 +169,7 @@ PD_LOCAL t_error heapstring_addSprintf (t_heapstring *x, const char *format, ...
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void heapstring_clear (t_heapstring *x)
+void heapstring_clear (t_heapstring *x)
 {
     x->hs_size = 0; x->hs_raw[0] = 0;
 }
@@ -178,7 +178,7 @@ PD_LOCAL void heapstring_clear (t_heapstring *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_heapstring *heapstring_new (int size)
+t_heapstring *heapstring_new (int size)
 {
     t_heapstring *x = (t_heapstring *)PD_MEMORY_GET (sizeof (t_heapstring));
  
@@ -189,7 +189,7 @@ PD_LOCAL t_heapstring *heapstring_new (int size)
     return x;
 }
 
-PD_LOCAL void heapstring_free (t_heapstring *x)
+void heapstring_free (t_heapstring *x)
 {
     if (x->hs_raw) { PD_MEMORY_FREE (x->hs_raw); }
     

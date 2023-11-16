@@ -66,7 +66,7 @@ static void *dbtopow_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void dbtopow_tilde_setup (void)
+void dbtopow_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -85,7 +85,7 @@ PD_LOCAL void dbtopow_tilde_setup (void)
     dbtopow_tilde_class = c;
 }
 
-PD_LOCAL void dbtopow_tilde_destroy (void)
+void dbtopow_tilde_destroy (void)
 {
     class_free (dbtopow_tilde_class);
 }

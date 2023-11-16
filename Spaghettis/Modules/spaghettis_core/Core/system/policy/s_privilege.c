@@ -20,7 +20,7 @@ static uid_t privilege_euid;     /* Static. */
 
 /* < https://wiki.sei.cmu.edu/confluence/pages/viewpage.action?pageId=87152405 > */
 
-PD_LOCAL t_error privilege_start (void)
+t_error privilege_start (void)
 {
     privilege_euid = geteuid();
     
@@ -29,12 +29,12 @@ PD_LOCAL t_error privilege_start (void)
     return (getuid() == 0);
 }
 
-PD_LOCAL t_error privilege_drop (void)
+t_error privilege_drop (void)
 {
     return (seteuid (getuid()) != 0);
 }
 
-PD_LOCAL t_error privilege_restore (void)
+t_error privilege_restore (void)
 {
     t_error err = PD_ERROR_NONE;
     
@@ -43,14 +43,14 @@ PD_LOCAL t_error privilege_restore (void)
     return err;
 }
 
-PD_LOCAL void privilege_check (void)
+void privilege_check (void)
 {
     t_error err = (setuid (0) != -1);
     
     PD_ASSERT (!err); PD_ABORT (err);
 }
 
-PD_LOCAL t_error privilege_relinquish (void)
+t_error privilege_relinquish (void)
 {
     t_error err = privilege_restore();
     

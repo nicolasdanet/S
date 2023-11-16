@@ -70,7 +70,7 @@ static void bendin_free (t_bendin *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void bendin_setup (void)
+void bendin_setup (void)
 {
     t_class *c = NULL;
     
@@ -89,7 +89,7 @@ PD_LOCAL void bendin_setup (void)
     bendin_class = c;
 }
 
-PD_LOCAL void bendin_destroy (void)
+void bendin_destroy (void)
 {
     class_free (bendin_class);
 }

@@ -37,17 +37,17 @@ static void deviceslist_initProceed (t_deviceslist *p, int k)
     }
 }
 
-PD_LOCAL void deviceslist_init (t_deviceslist *p)
+void deviceslist_init (t_deviceslist *p)
 {
     deviceslist_initProceed (p, 1);
 }
 
-PD_LOCAL void deviceslist_reset (t_deviceslist *p)
+void deviceslist_reset (t_deviceslist *p)
 {
     deviceslist_initProceed (p, 0);
 }
 
-PD_LOCAL void deviceslist_copy (t_deviceslist *dest, t_deviceslist *src)
+void deviceslist_copy (t_deviceslist *dest, t_deviceslist *src)
 {
     int i;
     
@@ -70,7 +70,7 @@ PD_LOCAL void deviceslist_copy (t_deviceslist *dest, t_deviceslist *src)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int deviceslist_areEquals (t_deviceslist *p, t_deviceslist *q)
+int deviceslist_areEquals (t_deviceslist *p, t_deviceslist *q)
 {
     if (p->d_sampleRate             != q->d_sampleRate)     { return 0; }
     else if (p->d_vectorSize        != q->d_vectorSize)     { return 0; }
@@ -98,7 +98,7 @@ PD_LOCAL int deviceslist_areEquals (t_deviceslist *p, t_deviceslist *q)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int deviceslist_containsIn (t_deviceslist *p, t_symbol *device)
+int deviceslist_containsIn (t_deviceslist *p, t_symbol *device)
 {
     PD_ASSERT (device);
     
@@ -107,7 +107,7 @@ PD_LOCAL int deviceslist_containsIn (t_deviceslist *p, t_symbol *device)
     return -1;
 }
 
-PD_LOCAL int deviceslist_containsOut (t_deviceslist *p, t_symbol *device)
+int deviceslist_containsOut (t_deviceslist *p, t_symbol *device)
 {
     PD_ASSERT (device);
     
@@ -120,37 +120,37 @@ PD_LOCAL int deviceslist_containsOut (t_deviceslist *p, t_symbol *device)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void deviceslist_setSampleRate (t_deviceslist *p, int n)
+void deviceslist_setSampleRate (t_deviceslist *p, int n)
 {
     p->d_sampleRate = n;
 }
 
-PD_LOCAL int deviceslist_getSampleRate (t_deviceslist *p)
+int deviceslist_getSampleRate (t_deviceslist *p)
 {
     return p->d_sampleRate;
 }
 
-PD_LOCAL void deviceslist_setVectorSize (t_deviceslist *p, int n)
+void deviceslist_setVectorSize (t_deviceslist *p, int n)
 {
     p->d_vectorSize = n;
 }
 
-PD_LOCAL int deviceslist_getVectorSize (t_deviceslist *p)
+int deviceslist_getVectorSize (t_deviceslist *p)
 {
     return p->d_vectorSize;
 }
 
-PD_LOCAL int deviceslist_getInSize (t_deviceslist *p)
+int deviceslist_getInSize (t_deviceslist *p)
 {
     return p->d_inSize;
 }
 
-PD_LOCAL int deviceslist_getOutSize (t_deviceslist *p)
+int deviceslist_getOutSize (t_deviceslist *p)
 {
     return p->d_outSize;
 }
 
-PD_LOCAL int deviceslist_getInChannelsAtIndex (t_deviceslist *p, int i)
+int deviceslist_getInChannelsAtIndex (t_deviceslist *p, int i)
 {
     PD_ASSERT (i >= 0);
     PD_ASSERT (i < DEVICES_MAXIMUM_IO);
@@ -158,7 +158,7 @@ PD_LOCAL int deviceslist_getInChannelsAtIndex (t_deviceslist *p, int i)
     return p->d_inChannels[i];
 }
 
-PD_LOCAL int deviceslist_getOutChannelsAtIndex (t_deviceslist *p, int i)
+int deviceslist_getOutChannelsAtIndex (t_deviceslist *p, int i)
 {
     PD_ASSERT (i >= 0);
     PD_ASSERT (i < DEVICES_MAXIMUM_IO);
@@ -166,7 +166,7 @@ PD_LOCAL int deviceslist_getOutChannelsAtIndex (t_deviceslist *p, int i)
     return p->d_outChannels[i];
 }
 
-PD_LOCAL t_symbol *deviceslist_getInAtIndex (t_deviceslist *p, int i)
+t_symbol *deviceslist_getInAtIndex (t_deviceslist *p, int i)
 {
     PD_ASSERT (i >= 0);
     PD_ASSERT (i < DEVICES_MAXIMUM_IO);
@@ -174,7 +174,7 @@ PD_LOCAL t_symbol *deviceslist_getInAtIndex (t_deviceslist *p, int i)
     return p->d_inNames[i];
 }
 
-PD_LOCAL t_symbol *deviceslist_getOutAtIndex (t_deviceslist *p, int i)
+t_symbol *deviceslist_getOutAtIndex (t_deviceslist *p, int i)
 {
     PD_ASSERT (i >= 0);
     PD_ASSERT (i < DEVICES_MAXIMUM_IO);
@@ -186,7 +186,7 @@ PD_LOCAL t_symbol *deviceslist_getOutAtIndex (t_deviceslist *p, int i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int deviceslist_getTotalOfChannelsIn (t_deviceslist *p)
+int deviceslist_getTotalOfChannelsIn (t_deviceslist *p)
 {
     int i, k = 0;
     
@@ -197,7 +197,7 @@ PD_LOCAL int deviceslist_getTotalOfChannelsIn (t_deviceslist *p)
     return k;
 }
 
-PD_LOCAL int deviceslist_getTotalOfChannelsOut (t_deviceslist *p)
+int deviceslist_getTotalOfChannelsOut (t_deviceslist *p)
 {
     int i, k = 0;
     
@@ -212,7 +212,7 @@ PD_LOCAL int deviceslist_getTotalOfChannelsOut (t_deviceslist *p)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error deviceslist_appendMidiIn (t_deviceslist *p, t_symbol *device)
+t_error deviceslist_appendMidiIn (t_deviceslist *p, t_symbol *device)
 {
     if (p->d_inSize < DEVICES_MAXIMUM_IO) {
     //
@@ -225,7 +225,7 @@ PD_LOCAL t_error deviceslist_appendMidiIn (t_deviceslist *p, t_symbol *device)
     return PD_ERROR;
 }
 
-PD_LOCAL t_error deviceslist_appendMidiOut (t_deviceslist *p, t_symbol *device)
+t_error deviceslist_appendMidiOut (t_deviceslist *p, t_symbol *device)
 {
     if (p->d_outSize < DEVICES_MAXIMUM_IO) {
     //
@@ -238,7 +238,7 @@ PD_LOCAL t_error deviceslist_appendMidiOut (t_deviceslist *p, t_symbol *device)
     return PD_ERROR;
 }
 
-PD_LOCAL t_error deviceslist_appendAudioIn (t_deviceslist *p, t_symbol *device, int channels)
+t_error deviceslist_appendAudioIn (t_deviceslist *p, t_symbol *device, int channels)
 {
     if (p->d_inSize < DEVICES_MAXIMUM_IO) {
     //
@@ -253,7 +253,7 @@ PD_LOCAL t_error deviceslist_appendAudioIn (t_deviceslist *p, t_symbol *device, 
     return PD_ERROR;
 }
 
-PD_LOCAL t_error deviceslist_appendAudioOut (t_deviceslist *p, t_symbol *device, int channels)
+t_error deviceslist_appendAudioOut (t_deviceslist *p, t_symbol *device, int channels)
 {
     if (p->d_outSize < DEVICES_MAXIMUM_IO) {
     //

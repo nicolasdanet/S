@@ -18,7 +18,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void *arrayrange_new (t_class *c, int argc, t_atom *argv, int makeOnsetInlet, int makeSizeInlet)
+void *arrayrange_new (t_class *c, int argc, t_atom *argv, int makeOnsetInlet, int makeSizeInlet)
 {
     t_arrayrange *x = (t_arrayrange *)pd_new (c);
 
@@ -47,22 +47,22 @@ PD_LOCAL void *arrayrange_new (t_class *c, int argc, t_atom *argv, int makeOnset
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void arrayrange_setOnset (t_arrayrange *x, t_float f)
+void arrayrange_setOnset (t_arrayrange *x, t_float f)
 {
     x->ar_onset = f;
 }
 
-PD_LOCAL void arrayrange_setSize (t_arrayrange *x, t_float f)
+void arrayrange_setSize (t_arrayrange *x, t_float f)
 {
     x->ar_size = f;
 }
 
-PD_LOCAL t_float arrayrange_getOnset (t_arrayrange *x)
+t_float arrayrange_getOnset (t_arrayrange *x)
 {
     return x->ar_onset;
 }
 
-PD_LOCAL t_float arrayrange_getSize (t_arrayrange *x)
+t_float arrayrange_getSize (t_arrayrange *x)
 {
     return x->ar_size;
 }
@@ -71,7 +71,7 @@ PD_LOCAL t_float arrayrange_getSize (t_arrayrange *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_garray *arrayrange_getRange (t_arrayrange *x, int *i, int *n)
+t_garray *arrayrange_getRange (t_arrayrange *x, int *i, int *n)
 {
     t_garray *a = arrayclient_fetchGraphicArray ((t_arrayclient *)x);
     
@@ -100,7 +100,7 @@ PD_LOCAL t_garray *arrayrange_getRange (t_arrayrange *x, int *i, int *n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error arrayrange_quantile (t_arrayrange *x, t_float f, t_float *v)
+t_error arrayrange_quantile (t_arrayrange *x, t_float f, t_float *v)
 {
     int start, n; t_garray *a = arrayrange_getRange (x, &start, &n);
 
@@ -138,7 +138,7 @@ PD_LOCAL t_error arrayrange_quantile (t_arrayrange *x, t_float f, t_float *v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *arrayrange_functionData (t_object *z, int flags)
+t_buffer *arrayrange_functionData (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
     //
@@ -157,7 +157,7 @@ PD_LOCAL t_buffer *arrayrange_functionData (t_object *z, int flags)
     return NULL;
 }
 
-PD_LOCAL void arrayrange_restore (t_arrayrange *x, t_symbol *s, int argc, t_atom *argv)
+void arrayrange_restore (t_arrayrange *x, t_symbol *s, int argc, t_atom *argv)
 {
     t_arrayrange *old = (t_arrayrange *)instance_pendingFetch (cast_object (x));
 

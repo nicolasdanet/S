@@ -114,26 +114,26 @@ static void garray_setWithSineWaves (t_garray *x, t_symbol *s, int argc, t_atom 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int garray_getSize (t_garray *x)
+int garray_getSize (t_garray *x)
 {
     return x->x_size;
 }
 
 /* Due to resizing it must NOT be cached unless marked used in DSP. */
 
-PD_LOCAL void garray_getData (t_garray *x, int *size, t_word **w)
+void garray_getData (t_garray *x, int *size, t_word **w)
 {
     *size = x->x_size; *w = x->x_data;
 }
 
-PD_LOCAL void garray_setFloatAtIndex (t_garray *x, int i, t_float f)
+void garray_setFloatAtIndex (t_garray *x, int i, t_float f)
 {
     int size = x->x_size;
     
     if (size) { int n = PD_CLAMP (i, 0, size - 1); GARRAY_SET (n, f); garray_redraw (x); }
 }
 
-PD_LOCAL t_float garray_getFloatAtIndex (t_garray *x, int i)
+t_float garray_getFloatAtIndex (t_garray *x, int i)
 {
     int size = x->x_size;
     
@@ -142,7 +142,7 @@ PD_LOCAL t_float garray_getFloatAtIndex (t_garray *x, int i)
     return 0;
 }
 
-PD_LOCAL void garray_setFloatFromIndex (t_garray *x, int i, t_float f)
+void garray_setFloatFromIndex (t_garray *x, int i, t_float f)
 {
     int n, size = x->x_size;
     
@@ -155,7 +155,7 @@ PD_LOCAL void garray_setFloatFromIndex (t_garray *x, int i, t_float f)
     }
 }
 
-PD_LOCAL t_float garray_getAmplitude (t_garray *x)
+t_float garray_getAmplitude (t_garray *x)
 {
     int i, size = x->x_size;
     
@@ -175,12 +175,12 @@ static t_symbol *garray_getUnexpandedName (t_garray *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void garray_setAsUsedInDsp (t_garray *x, int usedInDsp)
+void garray_setAsUsedInDsp (t_garray *x, int usedInDsp)
 {
     x->x_isUsedInDsp = (usedInDsp != 0);
 }
 
-PD_LOCAL int garray_isUsedInDsp (t_garray *x)
+int garray_isUsedInDsp (t_garray *x)
 {
     return (x->x_isUsedInDsp != 0);
 }
@@ -446,7 +446,7 @@ static void garray_resizeProceed (t_garray *x, int n)
     }
 }
 
-PD_LOCAL void garray_resize (t_garray *x, t_float f)
+void garray_resize (t_garray *x, t_float f)
 {
     PD_ASSERT (sys_isControlThread()); garray_resizeProceed (x, (int)f);
 }
@@ -541,7 +541,7 @@ static void garray_restore (t_garray *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_garray *garray_fetch (t_symbol *s)
+t_garray *garray_fetch (t_symbol *s)
 {
     return (t_garray *)symbol_getThingByClass (s, garray_class);
 }
@@ -722,7 +722,7 @@ static void garray_free (t_garray *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void garray_setup (void)
+void garray_setup (void)
 {
     t_class *c = NULL;
     
@@ -761,7 +761,7 @@ PD_LOCAL void garray_setup (void)
     garray_class = c;
 }
 
-PD_LOCAL void garray_destroy (void)
+void garray_destroy (void)
 {
     class_free (garray_class);
 }

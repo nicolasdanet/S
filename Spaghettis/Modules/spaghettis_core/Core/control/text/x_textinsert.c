@@ -113,7 +113,7 @@ static void textinsert_restore (t_textinsert *x, t_symbol *s, int argc, t_atom *
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *textinsert_new (t_symbol *s, int argc, t_atom *argv)
+void *textinsert_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_textinsert *x = (t_textinsert *)pd_new (textinsert_class);
     
@@ -145,7 +145,7 @@ PD_LOCAL void *textinsert_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void textinsert_setup (void)
+void textinsert_setup (void)
 {
     t_class *c = NULL;
     
@@ -170,7 +170,7 @@ PD_LOCAL void textinsert_setup (void)
     textinsert_class = c;
 }
 
-PD_LOCAL void textinsert_destroy (void)
+void textinsert_destroy (void)
 {
     class_free (textinsert_class);
 }

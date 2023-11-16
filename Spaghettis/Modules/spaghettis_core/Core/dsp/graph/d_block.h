@@ -54,15 +54,15 @@ typedef struct _block {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_int      *block_performPrologue      (t_int *w);
-PD_LOCAL t_int      *block_performEpilogue      (t_int *w);
+t_int      *block_performPrologue      (t_int *w);
+t_int      *block_performEpilogue      (t_int *w);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_float    block_getResamplingRatio    (t_block *x);
-PD_LOCAL int        block_getBlockSize          (t_block *x);
+t_float    block_getResamplingRatio    (t_block *x);
+int        block_getBlockSize          (t_block *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

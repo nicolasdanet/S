@@ -13,28 +13,16 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL const char *midi_nameNative (void)
+const char *midi_nameNative (void)
 {
     static const char *name = "Dummy"; return name;     /* Static. */
 }
 
-PD_LOCAL void midi_initializeNative (void)
+void midi_initializeNative (void)
 {
 }
 
-PD_LOCAL void midi_releaseNative (void)
-{
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_LOCAL void midi_openNative (t_devices *p)
-{
-}
-
-PD_LOCAL void midi_closeNative (void)
+void midi_releaseNative (void)
 {
 }
 
@@ -42,19 +30,11 @@ PD_LOCAL void midi_closeNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void midi_pushSysexNative (int port, int argc, t_atom *argv)
+void midi_openNative (t_devices *p)
 {
 }
 
-PD_LOCAL void midi_pushNative (int port, int status, int a, int b)
-{
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_LOCAL void midi_pollNative (void)
+void midi_closeNative (void)
 {
 }
 
@@ -62,7 +42,27 @@ PD_LOCAL void midi_pollNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error midi_getListsNative (t_deviceslist *p)
+void midi_pushSysexNative (int port, int argc, t_atom *argv)
+{
+}
+
+void midi_pushNative (int port, int status, int a, int b)
+{
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void midi_pollNative (void)
+{
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+t_error midi_getListsNative (t_deviceslist *p)
 {
     t_error err = PD_ERROR_NONE;
     

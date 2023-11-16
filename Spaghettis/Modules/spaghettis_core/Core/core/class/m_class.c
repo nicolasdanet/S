@@ -152,7 +152,7 @@ static void class_notify (t_symbol *s)
 /* For now it is valid to add inlets with CLASS_NOINLET set at first. */
 /* Probably best to make that more restrictive in the future. */
 
-PD_LOCAL t_class *class_new (t_symbol *s,
+t_class *class_new (t_symbol *s,
     t_newmethod newMethod, 
     t_method freeMethod, 
     size_t size, 
@@ -218,7 +218,7 @@ PD_LOCAL t_class *class_new (t_symbol *s,
     return c;
 }
 
-PD_LOCAL void class_addCreator (t_newmethod newMethod, t_symbol *s, t_atomtype type1, ...)
+void class_addCreator (t_newmethod newMethod, t_symbol *s, t_atomtype type1, ...)
 {
     va_list ap;
     t_atomtype args[PD_ARGUMENTS + 1] = { A_NULL };
@@ -241,7 +241,7 @@ PD_LOCAL void class_addCreator (t_newmethod newMethod, t_symbol *s, t_atomtype t
     class_notify (s);
 }
 
-PD_LOCAL void class_free (t_class *c)
+void class_free (t_class *c)
 {
     PD_MEMORY_FREE (c->c_methods);
     PD_MEMORY_FREE (c);
@@ -251,7 +251,7 @@ PD_LOCAL void class_free (t_class *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void class_addMethod (t_class *c, t_method fn, t_symbol *s, t_atomtype type1, ...)
+void class_addMethod (t_class *c, t_method fn, t_symbol *s, t_atomtype type1, ...)
 {
     va_list ap;
     t_atomtype argtype = type1;
@@ -329,35 +329,35 @@ PD_LOCAL void class_addMethod (t_class *c, t_method fn, t_symbol *s, t_atomtype 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void class_addBang (t_class *c, t_method fn)
+void class_addBang (t_class *c, t_method fn)
 {
     PD_ASSERT (c->c_methodBang == class_defaultBang);
     
     c->c_methodBang = (t_bangmethod)fn;
 }
 
-PD_LOCAL void class_addFloat (t_class *c, t_method fn)
+void class_addFloat (t_class *c, t_method fn)
 {
     PD_ASSERT (c->c_methodFloat == class_defaultFloat);
     
     c->c_methodFloat = (t_floatmethod)fn;
 }
 
-PD_LOCAL void class_addSymbol (t_class *c, t_method fn)
+void class_addSymbol (t_class *c, t_method fn)
 {
     PD_ASSERT (c->c_methodSymbol == class_defaultSymbol);
     
     c->c_methodSymbol = (t_symbolmethod)fn;
 }
 
-PD_LOCAL void class_addList (t_class *c, t_method fn)
+void class_addList (t_class *c, t_method fn)
 {
     PD_ASSERT (c->c_methodList == class_defaultList);
     
     c->c_methodList = (t_listmethod)fn;
 }
 
-PD_LOCAL void class_addAnything (t_class *c, t_method fn)
+void class_addAnything (t_class *c, t_method fn)
 {
     PD_ASSERT (c->c_methodAnything == class_defaultAnything);
     
@@ -368,7 +368,7 @@ PD_LOCAL void class_addAnything (t_class *c, t_method fn)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_method class_getMethod (t_class *c, t_symbol *s)
+t_method class_getMethod (t_class *c, t_symbol *s)
 {
     t_entry *m = NULL;
     int i;
@@ -380,7 +380,7 @@ PD_LOCAL t_method class_getMethod (t_class *c, t_symbol *s)
     return NULL;
 }
 
-PD_LOCAL int class_hasMethod (t_class *c, t_symbol *s)
+int class_hasMethod (t_class *c, t_symbol *s)
 {
     return (class_getMethod (c, s) != NULL);
 }
@@ -389,7 +389,7 @@ PD_LOCAL int class_hasMethod (t_class *c, t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int class_hasOverrideBangMethod (t_class *c)
+int class_hasOverrideBangMethod (t_class *c)
 {
     return (c->c_methodBang != class_defaultBang);
 }
@@ -398,7 +398,7 @@ PD_LOCAL int class_hasOverrideBangMethod (t_class *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void class_requirePending (t_class *c)
+void class_requirePending (t_class *c)
 {
     if (!class_hasDsp (c)) { c->c_requirePending = 1; }
     else {
@@ -410,22 +410,22 @@ PD_LOCAL void class_requirePending (t_class *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void class_setHelpName (t_class *c, t_symbol *s)
+void class_setHelpName (t_class *c, t_symbol *s)
 {
     c->c_helpName = s;
 }
 
-PD_LOCAL void class_setHelpDirectory (t_class *c, t_symbol *s)
+void class_setHelpDirectory (t_class *c, t_symbol *s)
 {
     c->c_helpDirectory = s;
 }
 
-PD_LOCAL void class_setDataFunction (t_class *c, t_datafn f)
+void class_setDataFunction (t_class *c, t_datafn f)
 {
     c->c_fnData = f;
 }
 
-PD_LOCAL void class_setDismissFunction (t_class *c, t_dismissfn f)
+void class_setDismissFunction (t_class *c, t_dismissfn f)
 {
     c->c_fnDismiss = f;
 }

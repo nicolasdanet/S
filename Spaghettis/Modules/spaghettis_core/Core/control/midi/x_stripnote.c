@@ -85,7 +85,7 @@ static void *stripnote_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void stripnote_setup (void)
+void stripnote_setup (void)
 {
     t_class *c = NULL;
     
@@ -106,7 +106,7 @@ PD_LOCAL void stripnote_setup (void)
     stripnote_class = c;
 }
 
-PD_LOCAL void stripnote_destroy (void)
+void stripnote_destroy (void)
 {
     class_free (stripnote_class);
 }

@@ -22,9 +22,9 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void eval_buffer       (t_buffer *, t_pd *, int, t_atom *);
-PD_LOCAL void eval_fileByBuffer (t_symbol *, t_symbol *, t_buffer *);
-PD_LOCAL void eval_file         (t_symbol *, t_symbol *);
+void eval_buffer       (t_buffer *, t_pd *, int, t_atom *);
+void eval_fileByBuffer (t_symbol *, t_symbol *, t_buffer *);
+void eval_file         (t_symbol *, t_symbol *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -124,7 +124,7 @@ static t_error instance_loadAbstractionSnippet (t_symbol *key, int argc, t_atom 
     return PD_ERROR;
 }
 
-PD_LOCAL void instance_loadAbstraction (t_symbol *name, int argc, t_atom *argv)
+void instance_loadAbstraction (t_symbol *name, int argc, t_atom *argv)
 {
     if (pool_check (name)) {    /* Abstraction cached (e.g. encapsulation)? */
     //
@@ -183,7 +183,7 @@ static int instance_loadPatch (t_symbol *name, t_symbol *directory)
 
 /* Context of the stack temporary bypassed to eval the buffer. */
 
-PD_LOCAL void instance_loadSnippet (t_glist *glist, t_buffer *b)
+void instance_loadSnippet (t_glist *glist, t_buffer *b)
 {
     instance_contextStore();
     instance_contextSetCurrent (glist);
@@ -195,7 +195,7 @@ PD_LOCAL void instance_loadSnippet (t_glist *glist, t_buffer *b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void instance_patchNew (t_symbol *name, t_symbol *directory)
+void instance_patchNew (t_symbol *name, t_symbol *directory)
 {
     instance_environmentSetFile (name, directory);
     
@@ -204,7 +204,7 @@ PD_FORCE void instance_patchNew (t_symbol *name, t_symbol *directory)
     instance_environmentResetFile();
 }
 
-PD_LOCAL t_error instance_patchOpen (t_symbol *name, t_symbol *directory)
+t_error instance_patchOpen (t_symbol *name, t_symbol *directory)
 {
     int state = dsp_suspend();
     int done  = instance_loadPatch (name, directory);

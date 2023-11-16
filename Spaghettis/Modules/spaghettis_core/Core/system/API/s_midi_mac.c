@@ -27,17 +27,17 @@ static t_midiport core_portOut[DEVICES_MAXIMUM_IO];         /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL const char *midi_nameNative (void)
+const char *midi_nameNative (void)
 {
     static const char *name = "Core MIDI"; return name;     /* Static. */
 }
 
-PD_LOCAL void midi_initializeNative (void)
+void midi_initializeNative (void)
 {
     coreclient_initialize();
 }
 
-PD_LOCAL void midi_releaseNative (void)
+void midi_releaseNative (void)
 {
     coreclient_release();
 }
@@ -64,7 +64,7 @@ static t_error midi_openNativeDestination (t_symbol *name)
     return err;
 }
 
-PD_LOCAL void midi_openNative (t_devices *p)
+void midi_openNative (t_devices *p)
 {
     int numberOfDevicesIn  = devices_getInSize (p);
     int numberOfDevicesOut = devices_getOutSize (p);
@@ -94,7 +94,7 @@ PD_LOCAL void midi_openNative (t_devices *p)
     }
 }
 
-PD_LOCAL void midi_closeNative (void)
+void midi_closeNative (void)
 {
     int i;
     
@@ -109,12 +109,12 @@ PD_LOCAL void midi_closeNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void midi_pushNative (int port, int status, int a, int b)
+void midi_pushNative (int port, int status, int a, int b)
 {
     if (port >= 0 && port < core_numberOfPortOut) { midiport_push (&core_portOut[port], status, a, b); }
 }
 
-PD_LOCAL void midi_pushSysexNative (int port, int argc, t_atom *argv)
+void midi_pushSysexNative (int port, int argc, t_atom *argv)
 {
     if (port >= 0 && port < core_numberOfPortOut) { midiport_pushSysex (&core_portOut[port], argc, argv); }
 }
@@ -123,7 +123,7 @@ PD_LOCAL void midi_pushSysexNative (int port, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void midi_pollNative (void)
+void midi_pollNative (void)
 {
     int i; for (i = 0; i < core_numberOfPortIn; i++) { midiport_poll (&core_portIn[i], i); }
 }
@@ -132,7 +132,7 @@ PD_LOCAL void midi_pollNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error midi_getListsNative (t_deviceslist *p)
+t_error midi_getListsNative (t_deviceslist *p)
 {
     return mididevicelist_get (p);
 }

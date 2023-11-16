@@ -37,26 +37,26 @@ struct _clocks {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int atomic_pointerCompareAndSwap       (void **, void *, t_pointerAtomic *);
-PD_LOCAL int atomic_int32CompareAndSwap         (int32_t *, int32_t, t_int32Atomic *);
+int atomic_pointerCompareAndSwap       (void **, void *, t_pointerAtomic *);
+int atomic_int32CompareAndSwap         (int32_t *, int32_t, t_int32Atomic *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void       scheduler_setLogicalTime    (t_systime);
-PD_LOCAL t_systime  clock_getExecuteTime        (t_clock *);
-PD_LOCAL void       clock_setExecuteTime        (t_clock *, t_systime);
-PD_LOCAL void       clock_increment             (t_clock *);
-PD_LOCAL void       clock_decrement             (t_clock *);
-PD_LOCAL void       clock_inhibit               (t_clock *);
-PD_LOCAL void       clock_execute               (t_clock *);
+void       scheduler_setLogicalTime    (t_systime);
+t_systime  clock_getExecuteTime        (t_clock *);
+void       clock_setExecuteTime        (t_clock *, t_systime);
+void       clock_increment             (t_clock *);
+void       clock_decrement             (t_clock *);
+void       clock_inhibit               (t_clock *);
+void       clock_execute               (t_clock *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 #if ( PD_WITH_DEBUG ) || defined ( PD_BUILDING_TESTS )
 
-PD_LOCAL int clock_isGood (t_clock *);
+int clock_isGood (t_clock *);
 
 #endif
 
@@ -89,7 +89,7 @@ static int clocks_fetchMaximum (t_clocks *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void clocks_add (t_clocks *x, t_clock *c)
+void clocks_add (t_clocks *x, t_clock *c)
 {
     t_error err = PD_ERROR;
     
@@ -110,7 +110,7 @@ PD_LOCAL void clocks_add (t_clocks *x, t_clock *c)
     if (err) { PD_BUG; PD_ABORT (1); }
 }
 
-PD_LOCAL void clocks_remove (t_clocks *x, t_clock *c)
+void clocks_remove (t_clocks *x, t_clock *c)
 {
     if (clock_isSet (c)) {
     //
@@ -144,7 +144,7 @@ PD_LOCAL void clocks_remove (t_clocks *x, t_clock *c)
 /* Theoritically a clock could trigger deletion of another one already in cached. */
 /* Wait that all clocks have fired before to remove them. */
 
-PD_LOCAL void clocks_destroy (t_clocks *x, t_clock *c)
+void clocks_destroy (t_clocks *x, t_clock *c)
 {
     t_atom a; SET_CLOCK (&a, c);
     
@@ -226,7 +226,7 @@ static void clocks_tickExecute (t_clocks *x)
     }
 }
 
-PD_LOCAL void clocks_tick (t_clocks *x, t_systime systime)
+void clocks_tick (t_clocks *x, t_systime systime)
 {
     int i = clocks_fetchMaximum (x);
     
@@ -245,7 +245,7 @@ PD_LOCAL void clocks_tick (t_clocks *x, t_systime systime)
 
 static char clocks_string[CLOCKS_SIZE + 1];     /* Static. */
 
-PD_LOCAL char *clocks_debug (t_clocks *x, int n)
+char *clocks_debug (t_clocks *x, int n)
 {
     int i;
     
@@ -266,7 +266,7 @@ PD_LOCAL char *clocks_debug (t_clocks *x, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_clocks *clocks_new (void)
+t_clocks *clocks_new (void)
 {
     t_clocks *x  = (t_clocks *)PD_MEMORY_GET (sizeof (t_clocks));
     
@@ -277,7 +277,7 @@ PD_LOCAL t_clocks *clocks_new (void)
     return x;
 }
 
-PD_LOCAL void clocks_free (t_clocks *x)
+void clocks_free (t_clocks *x)
 {
     clocks_purge (x);
     

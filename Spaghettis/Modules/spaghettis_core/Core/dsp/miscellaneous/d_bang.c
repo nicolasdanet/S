@@ -87,7 +87,7 @@ static void bang_tilde_free (t_bang_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void bang_tilde_setup (void)
+void bang_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -105,7 +105,7 @@ PD_LOCAL void bang_tilde_setup (void)
     bang_tilde_class = c;
 }
 
-PD_LOCAL void bang_tilde_destroy (void)
+void bang_tilde_destroy (void)
 {
     class_free (bang_tilde_class);
 }

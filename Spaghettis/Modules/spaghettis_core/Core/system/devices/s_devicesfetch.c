@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *devices_getInAtIndexAsSymbol (t_devices *p, int i)
+t_symbol *devices_getInAtIndexAsSymbol (t_devices *p, int i)
 {
     if (p->d_isMidi) {
         return midi_deviceAsSymbol (0,  devices_getInAtIndex (p, i));
@@ -22,7 +22,7 @@ PD_LOCAL t_symbol *devices_getInAtIndexAsSymbol (t_devices *p, int i)
     }
 }
 
-PD_LOCAL t_symbol *devices_getOutAtIndexAsSymbol (t_devices *p, int i)
+t_symbol *devices_getOutAtIndexAsSymbol (t_devices *p, int i)
 {
     if (p->d_isMidi) {
         return midi_deviceAsSymbol (1,  devices_getOutAtIndex (p, i));
@@ -35,7 +35,7 @@ PD_LOCAL t_symbol *devices_getOutAtIndexAsSymbol (t_devices *p, int i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error devices_getInAtIndexAsString (t_devices *p, int i, char *dest, size_t size)
+t_error devices_getInAtIndexAsString (t_devices *p, int i, char *dest, size_t size)
 {
     if (p->d_isMidi) {
         return midi_deviceAsString (0,  devices_getInAtIndex (p, i), dest, size);
@@ -44,7 +44,7 @@ PD_LOCAL t_error devices_getInAtIndexAsString (t_devices *p, int i, char *dest, 
     }
 }
 
-PD_LOCAL t_error devices_getOutAtIndexAsString (t_devices *p, int i, char *dest, size_t size)
+t_error devices_getOutAtIndexAsString (t_devices *p, int i, char *dest, size_t size)
 {
     if (p->d_isMidi) {
         return midi_deviceAsString (1,  devices_getOutAtIndex (p, i), dest, size);
@@ -89,28 +89,28 @@ static t_error devices_appendAudioOutWithSymbol (t_devices *p, t_symbol *device,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error devices_appendMidiInWithString (t_devices *p, char *device)
+t_error devices_appendMidiInWithString (t_devices *p, char *device)
 {
     if (device) { return devices_appendMidiInWithSymbol (p, gensym (device)); }
     
     return PD_ERROR;
 }
 
-PD_LOCAL t_error devices_appendMidiOutWithString (t_devices *p, char *device)
+t_error devices_appendMidiOutWithString (t_devices *p, char *device)
 {
     if (device) { return devices_appendMidiOutWithSymbol (p, gensym (device)); }
     
     return PD_ERROR;
 }
 
-PD_LOCAL t_error devices_appendAudioInWithString (t_devices *p, char *device, int channels)
+t_error devices_appendAudioInWithString (t_devices *p, char *device, int channels)
 {
     if (device) { return devices_appendAudioInWithSymbol (p, gensym (device), channels); }
     
     return PD_ERROR;
 }
 
-PD_LOCAL t_error devices_appendAudioOutWithString (t_devices *p, char *device, int channels)
+t_error devices_appendAudioOutWithString (t_devices *p, char *device, int channels)
 {
     if (device) { return devices_appendAudioOutWithSymbol (p, gensym (device), channels); }
     
@@ -123,28 +123,28 @@ PD_LOCAL t_error devices_appendAudioOutWithString (t_devices *p, char *device, i
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL t_error devices_appendAudioIn (t_devices *p, const AudioDevice& d)
+t_error devices_appendAudioIn (t_devices *p, const AudioDevice& d)
 {
     t_symbol *s = gensym (d.getName().toRawUTF8());
 
     return devices_appendAudioInWithSymbol (p, s, d.getChannels());
 }
 
-PD_LOCAL t_error devices_appendAudioOut (t_devices *p, const AudioDevice& d)
+t_error devices_appendAudioOut (t_devices *p, const AudioDevice& d)
 {
     t_symbol *s = gensym (d.getName().toRawUTF8());
 
     return devices_appendAudioOutWithSymbol (p, s, d.getChannels());
 }
 
-PD_LOCAL t_error devices_appendMidiIn (t_devices *p, const MidiDevice& d)
+t_error devices_appendMidiIn (t_devices *p, const MidiDevice& d)
 {
     t_symbol *s = gensym (d.getName().toRawUTF8());
 
     return devices_appendMidiInWithSymbol (p, s);
 }
 
-PD_LOCAL t_error devices_appendMidiOut (t_devices *p, const MidiDevice& d)
+t_error devices_appendMidiOut (t_devices *p, const MidiDevice& d)
 {
     t_symbol *s = gensym (d.getName().toRawUTF8());
 
@@ -197,7 +197,7 @@ static t_error deviceslist_appendAudioOutAsNumber (t_deviceslist *p, int n, int 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void deviceslist_setDevices (t_deviceslist *l, t_devices *p, int setParameters)
+void deviceslist_setDevices (t_deviceslist *l, t_devices *p, int setParameters)
 {
     int i;
     
@@ -232,7 +232,7 @@ PD_LOCAL void deviceslist_setDevices (t_deviceslist *l, t_devices *p, int setPar
     }
 }
 
-PD_LOCAL void deviceslist_getDevices (t_deviceslist *l, t_devices *p)
+void deviceslist_getDevices (t_deviceslist *l, t_devices *p)
 {
     int i;
     

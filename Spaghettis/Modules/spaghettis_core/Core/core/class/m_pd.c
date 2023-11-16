@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_pd *pd_new (t_class *c)
+t_pd *pd_new (t_class *c)
 {
     t_pd *x;
     
@@ -40,7 +40,7 @@ PD_LOCAL t_pd *pd_new (t_class *c)
     return x;
 }
 
-PD_LOCAL void pd_free (t_pd *x)
+void pd_free (t_pd *x)
 {
     t_class *c = pd_class (x);
 
@@ -68,7 +68,7 @@ PD_LOCAL void pd_free (t_pd *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_object *pd_asObjectIfBox (t_pd *x)
+t_object *pd_asObjectIfBox (t_pd *x)
 {
     return class_isBox (pd_class (x)) ? cast_object (x) : NULL;
 }

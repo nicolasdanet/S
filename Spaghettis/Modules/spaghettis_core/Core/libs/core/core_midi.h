@@ -64,37 +64,37 @@ typedef struct _midiport {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *midiname_get (MIDIEndpointRef endpoint);
+t_symbol *midiname_get (MIDIEndpointRef endpoint);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL MIDIClientRef      coreclient_get                  (void);
+MIDIClientRef      coreclient_get                  (void);
 
-PD_LOCAL void       coreclient_initialize                   (void);
-PD_LOCAL void       coreclient_release                      (void);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PD_LOCAL t_error    mididevicelist_get                      (t_deviceslist *list);
-
-PD_LOCAL MIDIEndpointRef    mididevicelist_fetchSource      (t_symbol *name);
-PD_LOCAL MIDIEndpointRef    mididevicelist_fetchDestination (t_symbol *name);
+void       coreclient_initialize                   (void);
+void       coreclient_release                      (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    midiport_openInput                      (t_midiport *midiport, t_symbol *name);
-PD_LOCAL t_error    midiport_openOutput                     (t_midiport *midiport, t_symbol *name);
+t_error    mididevicelist_get                      (t_deviceslist *list);
 
-PD_LOCAL void       midiport_close                          (t_midiport *midiport);
+MIDIEndpointRef    mididevicelist_fetchSource      (t_symbol *name);
+MIDIEndpointRef    mididevicelist_fetchDestination (t_symbol *name);
 
-PD_LOCAL void       midiport_pushSysex                      (t_midiport *midiport, int argc, t_atom *argv);
-PD_LOCAL void       midiport_push                           (t_midiport *midiport, int status, int a, int b);
-PD_LOCAL void       midiport_poll                           (t_midiport *midiport, int port);
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+t_error    midiport_openInput                      (t_midiport *midiport, t_symbol *name);
+t_error    midiport_openOutput                     (t_midiport *midiport, t_symbol *name);
+
+void       midiport_close                          (t_midiport *midiport);
+
+void       midiport_pushSysex                      (t_midiport *midiport, int argc, t_atom *argv);
+void       midiport_push                           (t_midiport *midiport, int status, int a, int b);
+void       midiport_poll                           (t_midiport *midiport, int port);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

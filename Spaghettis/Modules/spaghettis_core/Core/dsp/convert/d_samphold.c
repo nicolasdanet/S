@@ -151,7 +151,7 @@ static void *samphold_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void samphold_tilde_setup (void)
+void samphold_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -171,7 +171,7 @@ PD_LOCAL void samphold_tilde_setup (void)
     samphold_tilde_class = c;
 }
 
-PD_LOCAL void samphold_tilde_destroy (void)
+void samphold_tilde_destroy (void)
 {
     class_free (samphold_tilde_class);
 }

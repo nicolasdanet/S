@@ -18,7 +18,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_error arrayclient_init (t_arrayclient *x, int *ac, t_atom **av)
+t_error arrayclient_init (t_arrayclient *x, int *ac, t_atom **av)
 {
     int argc = *ac; t_atom *argv = *av;
     
@@ -44,7 +44,7 @@ PD_LOCAL t_error arrayclient_init (t_arrayclient *x, int *ac, t_atom **av)
     return PD_ERROR_NONE;
 }
 
-PD_LOCAL void arrayclient_free (t_arrayclient *x)
+void arrayclient_free (t_arrayclient *x)
 {
 
 }
@@ -53,12 +53,12 @@ PD_LOCAL void arrayclient_free (t_arrayclient *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *arrayclient_getName (t_arrayclient *x)
+t_symbol *arrayclient_getName (t_arrayclient *x)
 {
     return (x->ac_name ? x->ac_name : &s_);
 }
 
-PD_LOCAL void arrayclient_setName (t_arrayclient *x, t_symbol *s)
+void arrayclient_setName (t_arrayclient *x, t_symbol *s)
 {
     if (s && s != &s_) { x->ac_name = s; }
 }
@@ -67,7 +67,7 @@ PD_LOCAL void arrayclient_setName (t_arrayclient *x, t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void arrayclient_restore (t_arrayclient *x, t_arrayclient *old)
+void arrayclient_restore (t_arrayclient *x, t_arrayclient *old)
 {
     arrayclient_setName (x, arrayclient_getName (old));
 }
@@ -76,7 +76,7 @@ PD_LOCAL void arrayclient_restore (t_arrayclient *x, t_arrayclient *old)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_garray *arrayclient_fetchGraphicArray (t_arrayclient *x)
+t_garray *arrayclient_fetchGraphicArray (t_arrayclient *x)
 {
     t_symbol *s = x->ac_name;
     

@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void instance_chainSetInitialized (void);
+void instance_chainSetInitialized (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -61,15 +61,15 @@ enum {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL double audio_getNanosecondsToSleep (void);
+double audio_getNanosecondsToSleep (void);
 
-PD_LOCAL t_error priority_setPolicy (pthread_t);
+t_error priority_setPolicy (pthread_t);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int dspthread_isChainSafeToDelete (t_dspthread *x, t_chain *chainToDelete)
+int dspthread_isChainSafeToDelete (t_dspthread *x, t_chain *chainToDelete)
 {
     if (x) {
     //
@@ -84,7 +84,7 @@ PD_LOCAL int dspthread_isChainSafeToDelete (t_dspthread *x, t_chain *chainToDele
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void dspthread_run (t_dspthread *x)
+void dspthread_run (t_dspthread *x)
 {
     pthread_mutex_lock (&x->x_lock);
     
@@ -93,7 +93,7 @@ PD_LOCAL void dspthread_run (t_dspthread *x)
     pthread_mutex_unlock (&x->x_lock);
 }
 
-PD_LOCAL void dspthread_stop (t_dspthread *x)
+void dspthread_stop (t_dspthread *x)
 {
     pthread_mutex_lock (&x->x_lock);
     
@@ -203,7 +203,7 @@ static void *dspthread_thread (void *z)
     return (NULL);
 }
 
-PD_LOCAL t_error dspthread_create (t_dspthread *x)
+t_error dspthread_create (t_dspthread *x)
 {
     t_error err  = PD_ERROR_NONE;
     t_error err1 = PD_ERROR_NONE;
@@ -234,7 +234,7 @@ PD_LOCAL t_error dspthread_create (t_dspthread *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_systime dspthread_time (t_dspthread *x)
+t_systime dspthread_time (t_dspthread *x)
 {
     return (t_systime)PD_ATOMIC_FLOAT64_READ (&x->x_time);
 }
@@ -243,7 +243,7 @@ PD_LOCAL t_systime dspthread_time (t_dspthread *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_dspthread *dspthread_new (void)
+t_dspthread *dspthread_new (void)
 {
     t_dspthread *x = (t_dspthread *)PD_MEMORY_GET (sizeof (t_dspthread));
     
@@ -252,7 +252,7 @@ PD_LOCAL t_dspthread *dspthread_new (void)
     return x;
 }
 
-PD_LOCAL void dspthread_free (t_dspthread *x)
+void dspthread_free (t_dspthread *x)
 {
     if (!x->x_error) {
     //

@@ -194,7 +194,7 @@ static void oscstream_free (t_oscstream *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void oscstream_setup (void)
+void oscstream_setup (void)
 {
     t_class *c = NULL;
     
@@ -211,7 +211,7 @@ PD_LOCAL void oscstream_setup (void)
     oscstream_class = c;
 }
 
-PD_LOCAL void oscstream_destroy (void)
+void oscstream_destroy (void)
 {
     class_free (oscstream_class);
 }

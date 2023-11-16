@@ -64,7 +64,7 @@ static void listiterate_anything (t_listiterate *x, t_symbol *s, int argc, t_ato
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listiterate_new (t_symbol *s, int argc, t_atom *argv)
+void *listiterate_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listiterate *x = (t_listiterate *)pd_new (listiterate_class);
     
@@ -81,7 +81,7 @@ PD_LOCAL void *listiterate_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listiterate_setup (void)
+void listiterate_setup (void)
 {
     t_class *c = NULL;
     
@@ -101,7 +101,7 @@ PD_LOCAL void listiterate_setup (void)
     listiterate_class = c;
 }
 
-PD_LOCAL void listiterate_destroy (void)
+void listiterate_destroy (void)
 {
     class_free (listiterate_class);
 }

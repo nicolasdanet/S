@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void rectangle_set (t_rectangle *r, int a, int b, int c, int d)
+void rectangle_set (t_rectangle *r, int a, int b, int c, int d)
 {
     r->rect_topLeftX     = PD_MIN (a, c);
     r->rect_topLeftY     = PD_MIN (b, d);
@@ -22,12 +22,12 @@ PD_LOCAL void rectangle_set (t_rectangle *r, int a, int b, int c, int d)
     r->rect_isNothing    = 0;
 }
 
-PD_LOCAL void rectangle_setNothing (t_rectangle *r)
+void rectangle_setNothing (t_rectangle *r)
 {
     rectangle_set (r, 0, 0, 0, 0); r->rect_isNothing = 1;
 }
 
-PD_LOCAL void rectangle_setCopy (t_rectangle *r, t_rectangle *toCopy)
+void rectangle_setCopy (t_rectangle *r, t_rectangle *toCopy)
 {
     r->rect_topLeftX     = toCopy->rect_topLeftX;
     r->rect_topLeftY     = toCopy->rect_topLeftY;
@@ -38,7 +38,7 @@ PD_LOCAL void rectangle_setCopy (t_rectangle *r, t_rectangle *toCopy)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL void rectangle_setCopy (t_rectangle *r, const juce::Rectangle<int>& toCopy)
+void rectangle_setCopy (t_rectangle *r, const juce::Rectangle<int>& toCopy)
 {
     rectangle_set (r,
         toCopy.getTopLeft().getX(),
@@ -53,7 +53,7 @@ PD_LOCAL void rectangle_setCopy (t_rectangle *r, const juce::Rectangle<int>& toC
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int rectangle_areEquals (t_rectangle *r1, t_rectangle *r2)
+int rectangle_areEquals (t_rectangle *r1, t_rectangle *r2)
 {
     if (r1->rect_isNothing         != r2->rect_isNothing)    { return 0; }
     else if (r1->rect_topLeftX     != r2->rect_topLeftX)     { return 0; }
@@ -68,7 +68,7 @@ PD_LOCAL int rectangle_areEquals (t_rectangle *r1, t_rectangle *r2)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int rectangle_isNothing (t_rectangle *r)
+int rectangle_isNothing (t_rectangle *r)
 {
     t_rectangle t; rectangle_setNothing (&t);
     
@@ -93,12 +93,12 @@ static void rectangle_addRectangle (t_rectangle *r, t_rectangle *toAdd)
     }
 }
 
-PD_LOCAL void rectangle_addPoint (t_rectangle *r, t_point *pt)
+void rectangle_addPoint (t_rectangle *r, t_point *pt)
 {
     rectangle_add (r, point_getX (pt), point_getY (pt));
 }
 
-PD_LOCAL void rectangle_add (t_rectangle *r, int x, int y)
+void rectangle_add (t_rectangle *r, int x, int y)
 {
     t_rectangle t; rectangle_set (&t, x, y, x, y);
     

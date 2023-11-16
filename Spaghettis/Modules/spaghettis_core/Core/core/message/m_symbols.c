@@ -614,7 +614,7 @@ t_symbol *sym_writesf__tilde__;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void symbols_initialize (void)
+void symbols_initialize (void)
 {
     sym_JACK                                    = gensym ("JACK");
     sym_Untitled                                = gensym ("Untitled");

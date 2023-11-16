@@ -257,7 +257,7 @@ static void menubutton_free (t_menubutton *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void menubutton_setup (void)
+void menubutton_setup (void)
 {
     t_class *c = NULL;
     
@@ -288,7 +288,7 @@ PD_LOCAL void menubutton_setup (void)
     menubutton_class = c;
 }
 
-PD_LOCAL void menubutton_destroy (void)
+void menubutton_destroy (void)
 {
     class_free (menubutton_class);
 }

@@ -23,7 +23,7 @@ static t_pathlist *pendendfiles_list;       /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void startup_appendPendedFiles (char *path)
+void startup_appendPendedFiles (char *path)
 {
     pendendfiles_list = pathlist_newAppend (pendendfiles_list, NULL, path);
 }
@@ -48,7 +48,7 @@ static void startup_openPendedFilesProceed (const char *path)
     }
 }
 
-PD_LOCAL void startup_openPendedFiles (void)
+void startup_openPendedFiles (void)
 {
     t_pathlist *l = pendendfiles_list;
 
@@ -63,7 +63,7 @@ PD_LOCAL void startup_openPendedFiles (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void startup_release (void)
+void startup_release (void)
 {
     pathlist_free (pendendfiles_list);
 }

@@ -17,7 +17,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *midiname_get (MIDIEndpointRef endpoint)
+t_symbol *midiname_get (MIDIEndpointRef endpoint)
 {
     t_symbol *name = NULL;
     

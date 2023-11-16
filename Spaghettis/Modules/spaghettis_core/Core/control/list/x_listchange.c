@@ -43,7 +43,7 @@ static void listchange_anything (t_listchange *x, t_symbol *s, int argc, t_atom 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listchange_new (t_symbol *s, int argc, t_atom *argv)
+void *listchange_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listchange *x = (t_listchange *)pd_new (listchange_class);
     
@@ -67,7 +67,7 @@ static void listchange_free (t_listchange *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listchange_setup (void)
+void listchange_setup (void)
 {
     t_class *c = NULL;
     
@@ -92,7 +92,7 @@ PD_LOCAL void listchange_setup (void)
     listchange_class = c;
 }
 
-PD_LOCAL void listchange_destroy (void)
+void listchange_destroy (void)
 {
     class_free (listchange_class);
 }

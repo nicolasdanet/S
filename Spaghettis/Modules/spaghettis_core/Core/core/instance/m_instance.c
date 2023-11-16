@@ -30,35 +30,35 @@ t_pdinstance *pd_this;          /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void   canvas_new                      (void *, t_symbol *, int, t_atom *);
-PD_LOCAL int    dspthread_isChainSafeToDelete   (t_dspthread *, t_chain *);
-PD_LOCAL void   legacy_start                    (void *, t_symbol *, int, t_atom *);
-PD_LOCAL void   legacy_view                     (void *, t_symbol *, int, t_atom *);
-PD_LOCAL void   glist_setNext                   (t_glist *, t_glist *);
-PD_LOCAL int    loader_load                     (t_glist *, t_symbol *);
+void   canvas_new                      (void *, t_symbol *, int, t_atom *);
+int    dspthread_isChainSafeToDelete   (t_dspthread *, t_chain *);
+void   legacy_start                    (void *, t_symbol *, int, t_atom *);
+void   legacy_view                     (void *, t_symbol *, int, t_atom *);
+void   glist_setNext                   (t_glist *, t_glist *);
+int    loader_load                     (t_glist *, t_symbol *);
 
-PD_LOCAL void   *atomic_pointerSwap             (void *, t_pointerAtomic *);
+void   *atomic_pointerSwap             (void *, t_pointerAtomic *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_glist *instance_contextGetCurrent (void)
+t_glist *instance_contextGetCurrent (void)
 {
     return cast_glist (instance_getBoundX());
 }
 
-PD_LOCAL t_dspcontext *instance_contextGetUgen (void)
+t_dspcontext *instance_contextGetUgen (void)
 {
     return instance_get()->pd_ugenContext;
 }
 
-PD_LOCAL void instance_contextSetCurrent (t_glist *glist)
+void instance_contextSetCurrent (t_glist *glist)
 {
     instance_setBoundX (cast_pd (glist));
 }
 
-PD_LOCAL void instance_contextSetUgen (t_dspcontext *context)
+void instance_contextSetUgen (t_dspcontext *context)
 {
     instance_get()->pd_ugenContext = context;
 }
@@ -67,17 +67,17 @@ PD_LOCAL void instance_contextSetUgen (t_dspcontext *context)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_pd *instance_getMakerObject (void)
+t_pd *instance_getMakerObject (void)
 {
     return &(instance_get()->pd_objectMaker);
 }
 
-PD_LOCAL t_class *instance_getMakerObjectClass (void)
+t_class *instance_getMakerObjectClass (void)
 {
     return (instance_get()->pd_objectMaker);
 }
 
-PD_LOCAL int instance_isMakerObject (t_pd *x)
+int instance_isMakerObject (t_pd *x)
 {
     return (x == instance_getMakerObject());
 }
@@ -86,17 +86,17 @@ PD_LOCAL int instance_isMakerObject (t_pd *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int instance_undoIsRecursive (void)
+int instance_undoIsRecursive (void)
 {
     return (instance_get()->pd_isUndoRecursive > 0);
 }
 
-PD_LOCAL void instance_undoSetRecursive (void)
+void instance_undoSetRecursive (void)
 {
     instance_get()->pd_isUndoRecursive++;
 }
 
-PD_LOCAL void instance_undoUnsetRecursive (void)
+void instance_undoUnsetRecursive (void)
 {
     instance_get()->pd_isUndoRecursive--;
 }
@@ -105,22 +105,22 @@ PD_LOCAL void instance_undoUnsetRecursive (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int instance_hasPending (void)
+int instance_hasPending (void)
 {
     return (instance_get()->pd_hasPending != 0);
 }
 
-PD_LOCAL void instance_pendingBegin (void)
+void instance_pendingBegin (void)
 {
     instance_get()->pd_hasPending++;
 }
 
-PD_LOCAL void instance_pendingEnd (void)
+void instance_pendingEnd (void)
 {
     instance_get()->pd_hasPending--; if (instance_get()->pd_hasPending == 0) { instance_pendingRelease(); }
 }
 
-PD_LOCAL void instance_pendingRelease (void)
+void instance_pendingRelease (void)
 {
     t_object *y = instance_get()->pd_pending; instance_get()->pd_pending = NULL;
     
@@ -131,12 +131,12 @@ PD_LOCAL void instance_pendingRelease (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_pd *instance_objectGetNewest (void)
+t_pd *instance_objectGetNewest (void)
 {
     return instance_get()->pd_newest;
 }
 
-PD_LOCAL void instance_objectSetNewest (t_pd *x)
+void instance_objectSetNewest (t_pd *x)
 {
     instance_get()->pd_newest = x;
 }
@@ -145,14 +145,14 @@ PD_LOCAL void instance_objectSetNewest (t_pd *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_rootsAdd (t_glist *glist)
+void instance_rootsAdd (t_glist *glist)
 {
     glist_setNext (glist, instance_get()->pd_roots); instance_get()->pd_roots = glist;
     
     instance_registerAdd (cast_object (glist));
 }
 
-PD_LOCAL void instance_rootsRemove (t_glist *glist)
+void instance_rootsRemove (t_glist *glist)
 {
     instance_registerRemove (cast_object (glist));
     
@@ -164,7 +164,7 @@ PD_LOCAL void instance_rootsRemove (t_glist *glist)
     }
 }
 
-PD_LOCAL void instance_rootsFreeAll (void)
+void instance_rootsFreeAll (void)
 {    
     while (1) {
 
@@ -189,7 +189,7 @@ static t_glist *instance_rootsGet (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_registerAdd (t_object *o)
+void instance_registerAdd (t_object *o)
 {
     register_add (instance_get()->pd_register, o);
     
@@ -200,7 +200,7 @@ PD_LOCAL void instance_registerAdd (t_object *o)
     #endif
 }
 
-PD_LOCAL t_error instance_registerRemove (t_object *o)
+t_error instance_registerRemove (t_object *o)
 {
     t_error err = PD_ERROR_NONE;
     
@@ -217,7 +217,7 @@ PD_LOCAL t_error instance_registerRemove (t_object *o)
     return err;
 }
 
-PD_LOCAL void instance_registerRename (t_object *o, t_id newUnique)
+void instance_registerRename (t_object *o, t_id newUnique)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
@@ -228,17 +228,17 @@ PD_LOCAL void instance_registerRename (t_object *o, t_id newUnique)
     register_rename (instance_get()->pd_register, object_getUnique (o), newUnique);
 }
 
-PD_LOCAL int instance_registerContains (t_id u)
+int instance_registerContains (t_id u)
 {
     return register_contains (instance_get()->pd_register, u);
 }
 
-PD_LOCAL t_object *instance_registerGetObject (t_id u)
+t_object *instance_registerGetObject (t_id u)
 {
     return register_getObject (instance_get()->pd_register, u);
 }
 
-PD_LOCAL t_glist *instance_registerGetOwner (t_id u)
+t_glist *instance_registerGetOwner (t_id u)
 {
     return register_getOwner (instance_get()->pd_register, u);
 }
@@ -247,24 +247,24 @@ PD_LOCAL t_glist *instance_registerGetOwner (t_id u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_clocksAdd (t_clock *c)
+void instance_clocksAdd (t_clock *c)
 {
     clocks_add (instance_get()->pd_clocks, c);
 }
 
-PD_LOCAL void instance_clocksRemove (t_clock *c)
+void instance_clocksRemove (t_clock *c)
 {
     clocks_remove (instance_get()->pd_clocks, c);
 }
 
-PD_LOCAL void instance_clocksDestroy (t_clock *c)
+void instance_clocksDestroy (t_clock *c)
 {
     PD_ASSERT (sys_isControlThread());
     
     clocks_destroy (instance_get()->pd_clocks, c);
 }
 
-PD_LOCAL void instance_clocksTick (t_systime t)
+void instance_clocksTick (t_systime t)
 {
     PD_ASSERT (sys_isControlThread());
     
@@ -275,7 +275,7 @@ PD_LOCAL void instance_clocksTick (t_systime t)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_chain *instance_chainGetCurrent (void)
+t_chain *instance_chainGetCurrent (void)
 {
     return (t_chain *)PD_ATOMIC_POINTER_READ (&instance_get()->pd_chain);
 }
@@ -287,7 +287,7 @@ static void instance_chainSetCurrent (t_chain *chain)
     if (oldChain) { chain_release (oldChain); }
 }
 
-PD_LOCAL t_chain *instance_chainGetTemporary (void)
+t_chain *instance_chainGetTemporary (void)
 {
     t_chain *chain = instance_get()->pd_build; PD_ASSERT (chain); return chain;
 }
@@ -308,14 +308,14 @@ static void instance_chainPushTemporary (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int instance_isChainSafeToDelete (t_chain *chain)
+int instance_isChainSafeToDelete (t_chain *chain)
 {
     if (PD_ATOMIC_INT32_READ (&instance_get()->pd_chainRetain)) { return 0; }
     
     return dspthread_isChainSafeToDelete (instance_get()->pd_dsp, chain);
 }
 
-PD_LOCAL void instance_chainSetInitialized (void)
+void instance_chainSetInitialized (void)
 {
     PD_ATOMIC_INT32_WRITE (0, &instance_get()->pd_chainRetain);
 }
@@ -324,12 +324,12 @@ PD_LOCAL void instance_chainSetInitialized (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error instance_dspCreate (void)
+t_error instance_dspCreate (void)
 {
     return dspthread_create (instance_get()->pd_dsp);
 }
 
-PD_LOCAL void instance_dspStart (void)
+void instance_dspStart (void)
 {
     t_glist *glist;
 
@@ -346,12 +346,12 @@ PD_LOCAL void instance_dspStart (void)
     dspthread_run (instance_get()->pd_dsp);
 }
 
-PD_LOCAL void instance_dspStop (void)
+void instance_dspStop (void)
 {
     dspthread_stop (instance_get()->pd_dsp);
 }
 
-PD_LOCAL void instance_dspClean (void)
+void instance_dspClean (void)
 {
     if (instance_chainGetCurrent()) {
     //
@@ -370,7 +370,7 @@ PD_LOCAL void instance_dspClean (void)
     }
 }
 
-PD_LOCAL void instance_dspFree (void)
+void instance_dspFree (void)
 {
     instance_chainSetCurrent (NULL); dspthread_free (instance_get()->pd_dsp);
 }
@@ -384,7 +384,7 @@ static void instance_audioCloseTask (void *dummy)
     int old = dsp_getState(); dsp_setState (0); if (old) { error_unexpected (NULL, sym_audio, sym_shutdown); }
 }
 
-PD_LOCAL void instance_audioCloseWithError (void)
+void instance_audioCloseWithError (void)
 {
     clock_delay (instance_get()->pd_stop, 0.0);
 }
@@ -393,7 +393,7 @@ PD_LOCAL void instance_audioCloseWithError (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error instance_overflowPush (t_object *y)
+t_error instance_overflowPush (t_object *y)
 {
     int count   = ++instance_get()->pd_overflowCount;
     t_error err = (count >= INSTANCE_OVERFLOW);
@@ -405,7 +405,7 @@ PD_LOCAL t_error instance_overflowPush (t_object *y)
     return err;
 }
 
-PD_LOCAL void instance_overflowPop (void)
+void instance_overflowPop (void)
 {
     int count = --instance_get()->pd_overflowCount; if (count == 0) { instance_get()->pd_overflow = 0; }
 }
@@ -505,14 +505,14 @@ static void instance_free (t_pdinstance *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void instance_initialize (void)
+void instance_initialize (void)
 {
     pd_this = instance_new();
     
     instance_setBoundN (&(instance_get()->pd_canvasMaker));
 }
 
-PD_LOCAL void instance_release (void)
+void instance_release (void)
 {
     instance_setBoundA (NULL);
     instance_setBoundN (NULL);

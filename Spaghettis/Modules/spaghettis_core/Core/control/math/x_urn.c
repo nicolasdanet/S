@@ -181,7 +181,7 @@ static void urn_free (t_urn *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void urn_setup (void)
+void urn_setup (void)
 {
     t_class *c = NULL;
     
@@ -205,7 +205,7 @@ PD_LOCAL void urn_setup (void)
     urn_class = c;
 }
 
-PD_LOCAL void urn_destroy (void)
+void urn_destroy (void)
 {
     class_free (urn_class);
 }

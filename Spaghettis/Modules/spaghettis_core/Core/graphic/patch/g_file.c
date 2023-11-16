@@ -88,7 +88,7 @@ static void glist_serializeFooter (t_glist *glist, t_buffer *b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void legacy_version (t_buffer *);
+void legacy_version (t_buffer *);
 
 static void glist_serializeView (t_glist *glist, t_buffer *b)
 {
@@ -112,7 +112,7 @@ static void glist_serializeView (t_glist *glist, t_buffer *b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_serialize (t_glist *glist, t_buffer *b, int flags, int isAbstraction)
+void glist_serialize (t_glist *glist, t_buffer *b, int flags, int isAbstraction)
 {
     if (isAbstraction) {    /* Encapsulation. */
     //
@@ -159,7 +159,7 @@ static void glist_saveProceed (t_glist *glist, t_symbol *name, t_symbol *directo
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_save (t_glist *glist)
+void glist_save (t_glist *glist)
 {
     t_glist *root  = glist_getTop (glist);
     t_symbol *name = environment_getFileName (glist_getEnvironment (root));

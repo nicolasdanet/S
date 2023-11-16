@@ -229,7 +229,7 @@ static void atan_float (t_math *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void math_setup (void)
+void math_setup (void)
 {
     sin_class = class_new (sym_sin,
                     (t_newmethod)sin_new,
@@ -342,7 +342,7 @@ PD_LOCAL void math_setup (void)
     class_setHelpName (atan_class,      sym_math);
 }
 
-PD_LOCAL void math_destroy (void)
+void math_destroy (void)
 {
     class_free (sin_class);
     class_free (cos_class);

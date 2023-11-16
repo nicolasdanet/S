@@ -26,16 +26,16 @@ typedef struct _rectangle {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   rectangle_set               (t_rectangle *r, int a, int b, int c, int d);
-PD_LOCAL void   rectangle_setNothing        (t_rectangle *r);
-PD_LOCAL void   rectangle_setCopy           (t_rectangle *r, t_rectangle *toCopy);
+void   rectangle_set               (t_rectangle *r, int a, int b, int c, int d);
+void   rectangle_setNothing        (t_rectangle *r);
+void   rectangle_setCopy           (t_rectangle *r, t_rectangle *toCopy);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL void   rectangle_setCopy           (t_rectangle *r, const juce::Rectangle<int>& toCopy);
+void   rectangle_setCopy           (t_rectangle *r, const juce::Rectangle<int>& toCopy);
 
 #endif
 
@@ -43,15 +43,15 @@ PD_LOCAL void   rectangle_setCopy           (t_rectangle *r, const juce::Rectang
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    rectangle_isNothing         (t_rectangle *r);
-PD_LOCAL int    rectangle_areEquals         (t_rectangle *r1, t_rectangle *r2);
+int    rectangle_isNothing         (t_rectangle *r);
+int    rectangle_areEquals         (t_rectangle *r1, t_rectangle *r2);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   rectangle_addPoint          (t_rectangle *r, t_point *pt);
-PD_LOCAL void   rectangle_add               (t_rectangle *r, int x, int y);
+void   rectangle_addPoint          (t_rectangle *r, t_point *pt);
+void   rectangle_add               (t_rectangle *r, int x, int y);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

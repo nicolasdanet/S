@@ -227,7 +227,7 @@ static t_error method_slot (t_pd *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void pd_message (t_pd *x, t_symbol *s, int argc, t_atom *argv)
+void pd_message (t_pd *x, t_symbol *s, int argc, t_atom *argv)
 {
     t_error err = PD_ERROR_NONE;
 
@@ -267,22 +267,22 @@ PD_LOCAL void pd_message (t_pd *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void pd_bang (t_pd *x)
+void pd_bang (t_pd *x)
 {
     (*(class_getBangMethod (pd_class (x)))) (x);
 }
 
-PD_LOCAL void pd_float (t_pd *x, t_float f)
+void pd_float (t_pd *x, t_float f)
 {
     (*(class_getFloatMethod (pd_class (x)))) (x, f);
 }
 
-PD_LOCAL void pd_symbol (t_pd *x, t_symbol *s)
+void pd_symbol (t_pd *x, t_symbol *s)
 {
     (*(class_getSymbolMethod (pd_class (x)))) (x, s);
 }
 
-PD_LOCAL void pd_list (t_pd *x, int argc, t_atom *argv)
+void pd_list (t_pd *x, int argc, t_atom *argv)
 {
     (*(class_getListMethod (pd_class (x)))) (x, &s_list, argc, argc ? argv : NULL);
 }

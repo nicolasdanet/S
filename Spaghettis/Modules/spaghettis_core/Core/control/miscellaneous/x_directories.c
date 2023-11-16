@@ -69,7 +69,7 @@ static void *directories_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void directories_setup (void)
+void directories_setup (void)
 {
     t_class *c = NULL;
     
@@ -87,7 +87,7 @@ PD_LOCAL void directories_setup (void)
     directories_class = c;
 }
 
-PD_LOCAL void directories_destroy (void)
+void directories_destroy (void)
 {
     class_free (directories_class);
 }

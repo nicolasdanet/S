@@ -104,7 +104,7 @@ static void *tabread4_new (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void tabread4_setup (void)
+void tabread4_setup (void)
 {
     t_class *c = NULL;
     
@@ -127,7 +127,7 @@ PD_LOCAL void tabread4_setup (void)
     tabread4_class = c;
 }
 
-PD_LOCAL void tabread4_destroy (void)
+void tabread4_destroy (void)
 {
     class_free (tabread4_class);
 }

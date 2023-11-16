@@ -18,7 +18,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL double audio_getNanosecondsToSleep (void);
+double audio_getNanosecondsToSleep (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -113,7 +113,7 @@ static int core_buffersWritable (int channels, UInt32 inNumberFrames)
     }
 }
 
-PD_LOCAL t_error core_buffersPush (UInt32 inNumberFrames, AudioBufferList *ioData, t_audiograph *graph)
+t_error core_buffersPush (UInt32 inNumberFrames, AudioBufferList *ioData, t_audiograph *graph)
 {
     int i, channels = ioData->mNumberBuffers;
     
@@ -152,7 +152,7 @@ static int core_buffersReadable (int channels, UInt32 inNumberFrames)
     }
 }
 
-PD_LOCAL t_error core_buffersPull (UInt32 inNumberFrames, AudioBufferList *ioData, t_audiograph *graph)
+t_error core_buffersPull (UInt32 inNumberFrames, AudioBufferList *ioData, t_audiograph *graph)
 {
     int i, channels = ioData->mNumberBuffers;
     
@@ -180,7 +180,7 @@ PD_LOCAL t_error core_buffersPull (UInt32 inNumberFrames, AudioBufferList *ioDat
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void core_setVectorSize (UInt32 n)
+void core_setVectorSize (UInt32 n)
 {
     PD_ATOMIC_UINT32_WRITE (n, &core_vectorSize);
 }
@@ -189,17 +189,17 @@ PD_LOCAL void core_setVectorSize (UInt32 n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL const char *audio_nameNative (void)
+const char *audio_nameNative (void)
 {
     static const char *name = "Core Audio"; return name;    /* Static. */
 }
 
-PD_LOCAL t_error audio_initializeNative (void)
+t_error audio_initializeNative (void)
 {
     return audiograph_initialize (&core_graph);
 }
 
-PD_LOCAL void audio_releaseNative (void)
+void audio_releaseNative (void)
 {
     audiograph_release (&core_graph); core_buffersFree();
 }
@@ -208,7 +208,7 @@ PD_LOCAL void audio_releaseNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audio_openNative (t_devices *p)
+t_error audio_openNative (t_devices *p)
 {
     t_error err = PD_ERROR;
     
@@ -236,7 +236,7 @@ PD_LOCAL t_error audio_openNative (t_devices *p)
     return err;
 }
 
-PD_LOCAL void audio_closeNative() 
+void audio_closeNative() 
 {
     audiograph_close (&core_graph); core_buffersFree();
 }
@@ -245,7 +245,7 @@ PD_LOCAL void audio_closeNative()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int audio_pollNative() 
+int audio_pollNative() 
 {
     int i;
     int status = DACS_YES;
@@ -315,7 +315,7 @@ PD_LOCAL int audio_pollNative()
     return status;
 }
 
-PD_LOCAL int audio_getVectorSizeNative (void)
+int audio_getVectorSizeNative (void)
 {
     return PD_ATOMIC_UINT32_READ (&core_vectorSize);
 }
@@ -324,7 +324,7 @@ PD_LOCAL int audio_getVectorSizeNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audio_getListsNative (t_deviceslist *p) 
+t_error audio_getListsNative (t_deviceslist *p) 
 {
     return audiodevicelist_get (p);
 }

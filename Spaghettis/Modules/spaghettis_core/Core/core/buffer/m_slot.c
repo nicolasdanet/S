@@ -38,7 +38,7 @@ static int buffer_containsSemicolonOrComma (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int buffer_messagesIsLastProperlyEnded (t_buffer *x)
+int buffer_messagesIsLastProperlyEnded (t_buffer *x)
 {
     int size = buffer_getSize (x);
     
@@ -48,7 +48,7 @@ PD_LOCAL int buffer_messagesIsLastProperlyEnded (t_buffer *x)
     }
 }
 
-PD_LOCAL int buffer_messagesGetNumberOf (t_buffer *x)
+int buffer_messagesGetNumberOf (t_buffer *x)
 {
     int i, count = 0;
 
@@ -61,7 +61,7 @@ PD_LOCAL int buffer_messagesGetNumberOf (t_buffer *x)
     return count;
 }
 
-PD_LOCAL t_error buffer_messagesGetAt (t_buffer *x, int n, int *start, int *end)
+t_error buffer_messagesGetAt (t_buffer *x, int n, int *start, int *end)
 {
     *start = 0; *end = 0;
     
@@ -89,7 +89,7 @@ PD_LOCAL t_error buffer_messagesGetAt (t_buffer *x, int n, int *start, int *end)
     return PD_ERROR;
 }
 
-PD_LOCAL t_error buffer_messagesGetAtWithTypeOfEnd (t_buffer *x,
+t_error buffer_messagesGetAtWithTypeOfEnd (t_buffer *x,
     int n,
     int *start,
     int *end,
@@ -115,22 +115,22 @@ PD_LOCAL t_error buffer_messagesGetAtWithTypeOfEnd (t_buffer *x,
 
 /* Semicolon separated simple container for list of atoms. */
 
-PD_LOCAL void buffer_slotsClear (t_buffer *x)
+void buffer_slotsClear (t_buffer *x)
 {
     buffer_clear (x);
 }
 
-PD_LOCAL int buffer_slotsSize (t_buffer *x)
+int buffer_slotsSize (t_buffer *x)
 {
     return buffer_messagesGetNumberOf (x);
 }
 
-PD_LOCAL int buffer_slotsIsEmpty (t_buffer *x)
+int buffer_slotsIsEmpty (t_buffer *x)
 {
     return (buffer_getSize (x) == 0);
 }
 
-PD_LOCAL t_error buffer_slotsGet (t_buffer *x, int n, t_buffer *b)
+t_error buffer_slotsGet (t_buffer *x, int n, t_buffer *b)
 {
     t_atomtype type;
     int start   = 0;
@@ -154,14 +154,14 @@ PD_LOCAL t_error buffer_slotsGet (t_buffer *x, int n, t_buffer *b)
     return PD_ERROR;
 }
 
-PD_LOCAL void buffer_slotsAppend (t_buffer *x, t_buffer *b)
+void buffer_slotsAppend (t_buffer *x, t_buffer *b)
 {
     PD_ASSERT (!buffer_containsSemicolonOrComma (b));
     
     buffer_appendBuffer (x, b); buffer_appendSemicolon (x);
 }
 
-PD_LOCAL t_error buffer_slotsSet (t_buffer *x, int n, t_buffer *b)
+t_error buffer_slotsSet (t_buffer *x, int n, t_buffer *b)
 {
     t_atomtype type;
     int start   = 0;

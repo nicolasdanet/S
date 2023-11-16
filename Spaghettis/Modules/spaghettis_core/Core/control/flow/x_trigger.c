@@ -135,7 +135,7 @@ static void trigger_free (t_trigger *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void trigger_setup (void)
+void trigger_setup (void)
 {
     t_class *c = NULL;
     
@@ -158,7 +158,7 @@ PD_LOCAL void trigger_setup (void)
     trigger_class = c;
 }
 
-PD_LOCAL void trigger_destroy (void)
+void trigger_destroy (void)
 {
     class_free (trigger_class);
 }

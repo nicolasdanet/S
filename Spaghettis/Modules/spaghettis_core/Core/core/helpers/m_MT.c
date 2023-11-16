@@ -65,17 +65,17 @@ static int randMT_uInt32NextPower2Index (uint32_t v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_randMT *randMT_new (void)
+t_randMT *randMT_new (void)
 {
     return genrand32_new();
 }
 
-PD_LOCAL void randMT_free (t_randMT *x)
+void randMT_free (t_randMT *x)
 {
     genrand32_free (x);
 }
 
-PD_LOCAL double randMT_getDouble (t_randMT *x)
+double randMT_getDouble (t_randMT *x)
 {
     return genrand32_res53 (x);
 }
@@ -84,7 +84,7 @@ PD_LOCAL double randMT_getDouble (t_randMT *x)
 
 /* < http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/efaq.html > */
 
-PD_LOCAL long randMT_getInteger (t_randMT *x, long v)
+long randMT_getInteger (t_randMT *x, long v)
 {
     if (v <= 1) { return 0; }
     else {
@@ -159,17 +159,17 @@ static int randMT_uInt64NextPower2Index (uint64_t v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_randMT *randMT_new (void)
+t_randMT *randMT_new (void)
 {
     return genrand64_new();
 }
 
-PD_LOCAL void randMT_free (t_randMT *x)
+void randMT_free (t_randMT *x)
 {
     genrand64_free (x);
 }
 
-PD_LOCAL double randMT_getDouble (t_randMT *x)
+double randMT_getDouble (t_randMT *x)
 {
     return genrand64_real2 (x);
 }
@@ -178,7 +178,7 @@ PD_LOCAL double randMT_getDouble (t_randMT *x)
 
 /* < http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/efaq.html > */
 
-PD_LOCAL long randMT_getInteger (t_randMT *x, long v)
+long randMT_getInteger (t_randMT *x, long v)
 {
     if (v <= 1) { return 0; }
     else {

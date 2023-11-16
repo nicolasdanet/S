@@ -18,10 +18,10 @@ t_class *voutlet_class;         /* Shared. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_outlet   *glist_outletAddSignal  (t_glist *);
-PD_LOCAL t_outlet   *glist_outletAdd        (t_glist *);
+t_outlet   *glist_outletAddSignal  (t_glist *);
+t_outlet   *glist_outletAdd        (t_glist *);
 
-PD_LOCAL void       glist_outletRemove      (t_glist *, t_outlet *);
+void       glist_outletRemove      (t_glist *, t_outlet *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -32,17 +32,17 @@ static void voutlet_dismiss (t_voutlet *);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int voutlet_isSignal (t_voutlet *x)
+int voutlet_isSignal (t_voutlet *x)
 {
     return (x->vo_buffer != NULL);
 }
 
-PD_LOCAL int voutlet_getIndex (t_voutlet *x)
+int voutlet_getIndex (t_voutlet *x)
 {
     return outlet_getIndex (voutlet_getOutlet (cast_pd (x)));
 }
 
-PD_LOCAL t_outlet *voutlet_getOutlet (t_pd *x)
+t_outlet *voutlet_getOutlet (t_pd *x)
 {
     PD_ASSERT (pd_class (x) == voutlet_class); return (((t_voutlet *)x)->vo_outlet);
 }
@@ -139,7 +139,7 @@ static void voutlet_free (t_voutlet *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void voutlet_setup (void)
+void voutlet_setup (void)
 {
     t_class *c = NULL;
     
@@ -166,7 +166,7 @@ PD_LOCAL void voutlet_setup (void)
     voutlet_class = c;
 }
 
-PD_LOCAL void voutlet_destroy (void)
+void voutlet_destroy (void)
 {
     class_free (voutlet_class);
 }

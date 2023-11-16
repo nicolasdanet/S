@@ -13,13 +13,13 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void legacy_convert (t_buffer *);
+void legacy_convert (t_buffer *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error buffer_fromFile (t_buffer *, const char *, const char *);
+t_error buffer_fromFile (t_buffer *, const char *, const char *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ static int eval_bufferGetMessage (t_atom *v, t_pd *object, t_pd **next, t_atom *
     return end;
 }
 
-PD_LOCAL void eval_bufferProceed (int size, t_atom *v, t_pd *object, int argc, t_atom *argv)
+void eval_bufferProceed (int size, t_atom *v, t_pd *object, int argc, t_atom *argv)
 {
     t_atom *message = NULL;
     t_atom *m = NULL;
@@ -143,7 +143,7 @@ PD_LOCAL void eval_bufferProceed (int size, t_atom *v, t_pd *object, int argc, t
     PD_ATOMS_FREEA (message, size);
 }
 
-PD_LOCAL void eval_buffer (t_buffer *x, t_pd *object, int argc, t_atom *argv)
+void eval_buffer (t_buffer *x, t_pd *object, int argc, t_atom *argv)
 {
     eval_bufferProceed (buffer_getSize (x), buffer_getAtoms (x), object, argc, argv);
 }
@@ -152,7 +152,7 @@ PD_LOCAL void eval_buffer (t_buffer *x, t_pd *object, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void eval_fileByBuffer (t_symbol *name, t_symbol *directory, t_buffer *b)
+void eval_fileByBuffer (t_symbol *name, t_symbol *directory, t_buffer *b)
 {
     int state = dsp_suspend();
     
@@ -165,7 +165,7 @@ PD_LOCAL void eval_fileByBuffer (t_symbol *name, t_symbol *directory, t_buffer *
     dsp_resume (state);
 }
 
-PD_LOCAL void eval_file (t_symbol *name, t_symbol *directory)
+void eval_file (t_symbol *name, t_symbol *directory)
 {
     t_buffer *t = buffer_new();
     

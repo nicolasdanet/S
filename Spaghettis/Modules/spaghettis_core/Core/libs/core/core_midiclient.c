@@ -17,7 +17,7 @@ static MIDIClientRef coreclient_handle;        /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL MIDIClientRef coreclient_get (void)
+MIDIClientRef coreclient_get (void)
 {
     PD_ASSERT (coreclient_handle); return coreclient_handle;
 }
@@ -26,14 +26,14 @@ PD_LOCAL MIDIClientRef coreclient_get (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void coreclient_initialize (void)
+void coreclient_initialize (void)
 {
     t_error err = coremidi_error (MIDIClientCreate (CFSTR (PD_NAME), NULL, NULL, &coreclient_handle));
 
     PD_ASSERT (!err); PD_ABORT (err);
 }
 
-PD_LOCAL void coreclient_release (void)
+void coreclient_release (void)
 {
     if (coreclient_handle) { MIDIClientDispose (coreclient_handle); }
 }

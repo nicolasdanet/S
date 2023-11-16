@@ -33,29 +33,29 @@ char **main_argv;                               /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_error    audio_initialize            (void);
-PD_LOCAL void       audio_release               (void);
-PD_LOCAL void       message_initialize          (void);
-PD_LOCAL void       message_release             (void);
-PD_LOCAL void       midi_initialize             (void);
-PD_LOCAL void       midi_release                (void);
-PD_LOCAL void       setup_initialize            (void);
-PD_LOCAL void       setup_release               (void);
-PD_LOCAL void       startup_release             (void);
+t_error    audio_initialize            (void);
+void       audio_release               (void);
+void       message_initialize          (void);
+void       message_release             (void);
+void       midi_initialize             (void);
+void       midi_release                (void);
+void       setup_initialize            (void);
+void       setup_release               (void);
+void       startup_release             (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 #if defined ( PD_BUILDING_TERMINAL )
 
-PD_LOCAL void       sys_setSignalHandlers       (void);
+void       sys_setSignalHandlers       (void);
 
 #endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void       startup_appendPendedFiles   (char *);
+void       startup_appendPendedFiles   (char *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -307,7 +307,7 @@ static t_error main_create (void)
 
 /* Note that order of calls below may be critical. */
 
-PD_LOCAL int main_start (void)
+int main_start (void)
 {
     t_error err = privilege_start();
     
@@ -390,7 +390,7 @@ PD_LOCAL int main_start (void)
     return err;
 }
 
-PD_LOCAL void main_exit (void)
+void main_exit (void)
 {
     scheduler_needToExit();
 }

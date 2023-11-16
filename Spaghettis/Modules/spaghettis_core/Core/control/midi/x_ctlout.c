@@ -84,7 +84,7 @@ static void *ctlout_new (t_float control, t_float channel)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void ctlout_setup (void)
+void ctlout_setup (void)
 {
     t_class *c = NULL;
     
@@ -107,7 +107,7 @@ PD_LOCAL void ctlout_setup (void)
     ctlout_class = c;
 }
 
-PD_LOCAL void ctlout_destroy (void)
+void ctlout_destroy (void)
 {
     class_free (ctlout_class);
 }

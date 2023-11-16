@@ -162,7 +162,7 @@ static void bng_free (t_bng *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void bng_setup (void)
+void bng_setup (void)
 {
     t_class *c = NULL;
     
@@ -197,7 +197,7 @@ PD_LOCAL void bng_setup (void)
     bng_class = c;
 }
 
-PD_LOCAL void bng_destroy (void)
+void bng_destroy (void)
 {
     class_free (bng_class);
 }

@@ -99,7 +99,7 @@ static void *send_new (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void send_setup (void)
+void send_setup (void)
 {
     t_class *c = NULL;
     
@@ -127,7 +127,7 @@ PD_LOCAL void send_setup (void)
     send_class = c;
 }
 
-PD_LOCAL void send_destroy (void)
+void send_destroy (void)
 {
     class_free (send_class);
 }

@@ -19,26 +19,26 @@ static t_buffer *clipboard_bufferDuplicate;     /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void glist_pasteBegin  (t_glist *);
-PD_LOCAL void glist_pasteEnd    (t_glist *);
+void glist_pasteBegin  (t_glist *);
+void glist_pasteEnd    (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_rectangle glist_getBoundingBoxOfSelected (t_glist *);
+t_rectangle glist_getBoundingBoxOfSelected (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void snippet_renameArrays            (t_buffer *x, t_glist *glist);
-PD_LOCAL void snippet_addOffsetToLines        (t_buffer *x, int i);
-PD_LOCAL void snippet_substractOffsetToLines  (t_buffer *x, int i);
+void snippet_renameArrays            (t_buffer *x, t_glist *glist);
+void snippet_addOffsetToLines        (t_buffer *x, int i);
+void snippet_substractOffsetToLines  (t_buffer *x, int i);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *clipboard_copyProceed (t_glist *glist, int copyAll, int isEncapsulate)
+t_buffer *clipboard_copyProceed (t_glist *glist, int copyAll, int isEncapsulate)
 {
     t_buffer *b = buffer_new();
 
@@ -95,12 +95,12 @@ static void clipboard_copyRaw (t_glist *glist, int isDuplicate)
     }
 }
 
-PD_LOCAL void clipboard_copyDuplicate (t_glist *glist)
+void clipboard_copyDuplicate (t_glist *glist)
 {
     clipboard_copyRaw (glist, 1);
 }
 
-PD_LOCAL void clipboard_copy (t_glist *glist)
+void clipboard_copy (t_glist *glist)
 {
     clipboard_copyRaw (glist, 0);
 }
@@ -193,7 +193,7 @@ int clipboard_pasteProceedSelect (t_glist *glist, int alreadyThere)
     return isDirty;
 }
 
-PD_LOCAL int clipboard_pasteProceed (t_glist *glist, t_buffer *b, t_point *pt, int renameArrays)
+int clipboard_pasteProceed (t_glist *glist, t_buffer *b, t_point *pt, int renameArrays)
 {
     int alreadyThere = glist_objectGetNumberOf (glist);
 
@@ -263,12 +263,12 @@ static void clipboard_pasteRaw (t_glist *glist, t_point *m)
     if (isDuplicate) { buffer_clear (clipboard_bufferDuplicate); }
 }
 
-PD_LOCAL void clipboard_pasteDuplicate (t_glist *glist)
+void clipboard_pasteDuplicate (t_glist *glist)
 {
     clipboard_pasteRaw (glist, NULL);
 }
 
-PD_LOCAL void clipboard_paste (t_glist *glist, t_point *m)
+void clipboard_paste (t_glist *glist, t_point *m)
 {
     clipboard_pasteRaw (glist, m);
 }
@@ -277,13 +277,13 @@ PD_LOCAL void clipboard_paste (t_glist *glist, t_point *m)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void clipboard_initialize (void)
+void clipboard_initialize (void)
 {
     clipboard_bufferCopyPaste = buffer_new();
     clipboard_bufferDuplicate = buffer_new();
 }
 
-PD_LOCAL void clipboard_release (void)
+void clipboard_release (void)
 {
     if (clipboard_bufferCopyPaste) { buffer_free (clipboard_bufferCopyPaste); }
     if (clipboard_bufferDuplicate) { buffer_free (clipboard_bufferDuplicate); }

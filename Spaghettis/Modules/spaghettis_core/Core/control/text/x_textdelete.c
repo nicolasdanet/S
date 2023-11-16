@@ -84,7 +84,7 @@ static void textdelete_restore (t_textdelete *x, t_symbol *s, int argc, t_atom *
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *textdelete_new (t_symbol *s, int argc, t_atom *argv)
+void *textdelete_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_textdelete *x = (t_textdelete *)pd_new (textdelete_class);
     
@@ -110,7 +110,7 @@ PD_LOCAL void *textdelete_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void textdelete_setup (void)
+void textdelete_setup (void)
 {
     t_class *c = NULL;
     
@@ -134,7 +134,7 @@ PD_LOCAL void textdelete_setup (void)
     textdelete_class = c;
 }
 
-PD_LOCAL void textdelete_destroy (void)
+void textdelete_destroy (void)
 {
     class_free (textdelete_class);
 }

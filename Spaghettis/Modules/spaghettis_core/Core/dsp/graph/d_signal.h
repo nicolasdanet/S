@@ -14,11 +14,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_signal   *signal_newWithSignal       (t_signal *s);
-PD_LOCAL t_signal   *signal_newWithContext      (t_dspcontext *c);
+t_signal   *signal_newWithSignal       (t_signal *s);
+t_signal   *signal_newWithContext      (t_dspcontext *c);
 
-PD_LOCAL void       signal_borrow               (t_signal *s,  t_signal *toBeBorrowed);
-PD_LOCAL int        signal_isCompatibleWith     (t_signal *s1, t_signal *s2);
+void       signal_borrow               (t_signal *s,  t_signal *toBeBorrowed);
+int        signal_isCompatibleWith     (t_signal *s1, t_signal *s2);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

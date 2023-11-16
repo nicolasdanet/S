@@ -124,7 +124,7 @@ static void *czero_tilde_new (t_float real, t_float imaginary)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void czero_tilde_setup (void)
+void czero_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -144,7 +144,7 @@ PD_LOCAL void czero_tilde_setup (void)
     czero_tilde_class = c;
 }
 
-PD_LOCAL void czero_tilde_destroy (void)
+void czero_tilde_destroy (void)
 {
     class_free (czero_tilde_class);
 }

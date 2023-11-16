@@ -52,7 +52,7 @@ static int abstractions_fetch (t_abstractions *x, t_symbol *key)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_symbol *abstractions_cache (t_abstractions *x, t_glist *glist, t_symbol *name, t_buffer *b)
+t_symbol *abstractions_cache (t_abstractions *x, t_glist *glist, t_symbol *name, t_buffer *b)
 {
     t_environment *e = glist_getEnvironment (glist);
     
@@ -69,7 +69,7 @@ PD_LOCAL t_symbol *abstractions_cache (t_abstractions *x, t_glist *glist, t_symb
     return key;
 }
 
-PD_LOCAL t_symbol *abstractions_getName (t_abstractions *x, t_symbol *key)
+t_symbol *abstractions_getName (t_abstractions *x, t_symbol *key)
 {
     int i = abstractions_fetch (x, key);
     
@@ -78,7 +78,7 @@ PD_LOCAL t_symbol *abstractions_getName (t_abstractions *x, t_symbol *key)
     return NULL;
 }
 
-PD_LOCAL t_buffer *abstractions_getSnippet (t_abstractions *x,
+t_buffer *abstractions_getSnippet (t_abstractions *x,
     t_symbol *key,
     t_symbol **filename,
     t_symbol **directory)
@@ -131,7 +131,7 @@ static void abstractions_clear (t_abstractions *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_abstractions *abstractions_new (void)
+t_abstractions *abstractions_new (void)
 {
     t_abstractions *x = (t_abstractions *)PD_MEMORY_GET (sizeof (t_abstractions));
     
@@ -144,7 +144,7 @@ PD_LOCAL t_abstractions *abstractions_new (void)
     return x;
 }
 
-PD_LOCAL void abstractions_free (t_abstractions *x)
+void abstractions_free (t_abstractions *x)
 {
     if (x) {
     //

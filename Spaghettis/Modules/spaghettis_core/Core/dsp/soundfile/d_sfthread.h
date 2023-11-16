@@ -25,21 +25,21 @@ enum {
 
 /* Takes file ownership. */
 
-PD_LOCAL t_sfthread     *sfthread_new           (t_object *x,
+t_sfthread     *sfthread_new           (t_object *x,
                                                     int type,
                                                     int bufferSize,
                                                     int fd,
                                                     t_audioproperties *p);
                                                     
-PD_LOCAL t_ringbuffer   *sfthread_getBuffer     (t_sfthread *x);
+t_ringbuffer   *sfthread_getBuffer     (t_sfthread *x);
 
-PD_LOCAL void   sfthread_release                (t_sfthread *x);
+void   sfthread_release                (t_sfthread *x);
 
-PD_LOCAL int    sfthread_getNumberOfChannels    (t_sfthread *x);
-PD_LOCAL int    sfthread_getBytesPerSample      (t_sfthread *x);
-PD_LOCAL int    sfthread_isBigEndian            (t_sfthread *x);
-PD_LOCAL int    sfthread_isEnd                  (t_sfthread *x);
-PD_LOCAL void   sfthread_setCorrupted           (t_sfthread *x);
+int    sfthread_getNumberOfChannels    (t_sfthread *x);
+int    sfthread_getBytesPerSample      (t_sfthread *x);
+int    sfthread_isBigEndian            (t_sfthread *x);
+int    sfthread_isEnd                  (t_sfthread *x);
+void   sfthread_setCorrupted           (t_sfthread *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

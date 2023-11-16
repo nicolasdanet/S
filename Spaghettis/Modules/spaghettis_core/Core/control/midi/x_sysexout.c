@@ -117,7 +117,7 @@ static void sysexout_free (t_sysexout *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void sysexout_setup (void)
+void sysexout_setup (void)
 {
     t_class *c = NULL;
     
@@ -141,7 +141,7 @@ PD_LOCAL void sysexout_setup (void)
     sysexout_class = c;
 }
 
-PD_LOCAL void sysexout_destroy (void)
+void sysexout_destroy (void)
 {
     class_free (sysexout_class);
 }

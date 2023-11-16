@@ -40,7 +40,7 @@ typedef struct _metro {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error clock_reschedule (t_clock *x, double, double, t_systime);
+t_error clock_reschedule (t_clock *x, double, double, t_systime);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -227,7 +227,7 @@ static void metro_free (t_metro *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void metro_setup (void)
+void metro_setup (void)
 {
     t_class *c = NULL;
     
@@ -255,7 +255,7 @@ PD_LOCAL void metro_setup (void)
     metro_class = c;
 }
 
-PD_LOCAL void metro_destroy (void)
+void metro_destroy (void)
 {
     class_free (metro_class);
 }

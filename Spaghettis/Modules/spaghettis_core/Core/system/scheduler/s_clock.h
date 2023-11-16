@@ -33,10 +33,10 @@ struct _clock {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    clock_setUnitParsed         (t_clock *x, t_float f, t_symbol *unitName);
+t_error    clock_setUnitParsed         (t_clock *x, t_float f, t_symbol *unitName);
 
-PD_LOCAL int        clock_isSet                 (t_clock *);
-PD_LOCAL t_systime  clock_getLogicalTime        (t_clock *);
+int        clock_isSet                 (t_clock *);
+t_systime  clock_getLogicalTime        (t_clock *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

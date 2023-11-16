@@ -81,7 +81,7 @@ static t_registerelement *register_fetch (t_register *x, t_id u)
 
 /* Append the element. */
 
-PD_LOCAL void register_add (t_register *x, t_object *o)
+void register_add (t_register *x, t_object *o)
 {
     if (x->r_size == x->r_allocated) { register_enlarge (x); }
     
@@ -102,7 +102,7 @@ PD_LOCAL void register_add (t_register *x, t_object *o)
 
 /* Fetch, swap with the last, then down size by one. */
 
-PD_LOCAL t_error register_remove (t_register *x, t_id u)
+t_error register_remove (t_register *x, t_id u)
 {
     size_t i; t_registerelement *toDelete = NULL;
     
@@ -130,7 +130,7 @@ PD_LOCAL t_error register_remove (t_register *x, t_id u)
     return PD_ERROR;
 }
 
-PD_LOCAL void register_rename (t_register *x, t_id u, t_id v)
+void register_rename (t_register *x, t_id u, t_id v)
 {
     size_t i;
     
@@ -144,7 +144,7 @@ PD_LOCAL void register_rename (t_register *x, t_id u, t_id v)
     }
 }
 
-PD_LOCAL int register_contains (t_register *x, t_id u)
+int register_contains (t_register *x, t_id u)
 {
     return (register_getObject (x, u) != NULL);
 }
@@ -153,12 +153,12 @@ PD_LOCAL int register_contains (t_register *x, t_id u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_object *register_getObject (t_register *x, t_id u)
+t_object *register_getObject (t_register *x, t_id u)
 {
     t_registerelement *e = register_fetch (x, u); return (e ? e->re_object : NULL);
 }
 
-PD_LOCAL t_glist *register_getOwner (t_register *x, t_id u)
+t_glist *register_getOwner (t_register *x, t_id u)
 {
     t_registerelement *e = register_fetch (x, u);
     
@@ -177,7 +177,7 @@ PD_LOCAL t_glist *register_getOwner (t_register *x, t_id u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_register *register_new (void)
+t_register *register_new (void)
 {
     t_register *x = (t_register *)PD_MEMORY_GET (sizeof (t_register));
  
@@ -190,7 +190,7 @@ PD_LOCAL t_register *register_new (void)
     return x;
 }
 
-PD_LOCAL void register_free (t_register *x)
+void register_free (t_register *x)
 {
     PD_MEMORY_FREE (x->r_raw);
     PD_MEMORY_FREE (x);

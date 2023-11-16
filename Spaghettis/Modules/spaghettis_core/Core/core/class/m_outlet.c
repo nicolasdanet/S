@@ -29,7 +29,7 @@ static int outlet_connectionAlreadyExist (t_outlet *x, t_pd *receiver)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_outconnect *outlet_addConnection (t_outlet *x, t_pd *receiver)
+t_outconnect *outlet_addConnection (t_outlet *x, t_pd *receiver)
 {
     if (!outlet_connectionAlreadyExist (x, receiver)) {
     //
@@ -53,7 +53,7 @@ PD_LOCAL t_outconnect *outlet_addConnection (t_outlet *x, t_pd *receiver)
     return NULL;
 }
 
-PD_LOCAL t_error outlet_removeConnection (t_outlet *x, t_pd *receiver, t_id *u)
+t_error outlet_removeConnection (t_outlet *x, t_pd *receiver, t_id *u)
 {
     t_outconnect *oc1 = NULL;
     t_outconnect *oc2 = NULL;
@@ -114,7 +114,7 @@ static int outlet_isMixed (t_outlet *x)
 
 #endif // PD_WITH_DEBUG
 
-PD_LOCAL int outlet_isSignal (t_outlet *x)
+int outlet_isSignal (t_outlet *x)
 {
     return (x->o_type == &s_signal);
 }
@@ -123,7 +123,7 @@ PD_LOCAL int outlet_isSignal (t_outlet *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void outlet_moveFirst (t_outlet *x)
+void outlet_moveFirst (t_outlet *x)
 {
     t_object *owner = x->o_owner;
     
@@ -145,7 +145,7 @@ PD_LOCAL void outlet_moveFirst (t_outlet *x)
     }
 }
 
-PD_LOCAL int outlet_getIndex (t_outlet *x)
+int outlet_getIndex (t_outlet *x)
 {
     t_outlet *o = NULL;
     int n = 0;
@@ -155,7 +155,7 @@ PD_LOCAL int outlet_getIndex (t_outlet *x)
     return n;
 }
 
-PD_LOCAL int outlet_getIndexAsSignal (t_outlet *x)
+int outlet_getIndexAsSignal (t_outlet *x)
 {
     t_outlet *o = NULL;
     int n = 0;
@@ -192,7 +192,7 @@ static void outlet_checkType (t_outlet *x, int match)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void outlet_bang (t_outlet *x)
+void outlet_bang (t_outlet *x)
 {
     outlet_checkType (x, outlet_isBang (x));
     
@@ -204,7 +204,7 @@ PD_LOCAL void outlet_bang (t_outlet *x)
     instance_overflowPop();
 }
 
-PD_LOCAL void outlet_float (t_outlet *x, t_float f)
+void outlet_float (t_outlet *x, t_float f)
 {
     outlet_checkType (x, outlet_isFloat (x));
         
@@ -216,7 +216,7 @@ PD_LOCAL void outlet_float (t_outlet *x, t_float f)
     instance_overflowPop();
 }
 
-PD_LOCAL void outlet_symbol (t_outlet *x, t_symbol *s)
+void outlet_symbol (t_outlet *x, t_symbol *s)
 {
     outlet_checkType (x, outlet_isSymbol (x));
         
@@ -228,7 +228,7 @@ PD_LOCAL void outlet_symbol (t_outlet *x, t_symbol *s)
     instance_overflowPop();
 }
 
-PD_LOCAL void outlet_list (t_outlet *x, int argc, t_atom *argv)
+void outlet_list (t_outlet *x, int argc, t_atom *argv)
 {
     outlet_checkType (x, outlet_isList (x));
         
@@ -240,7 +240,7 @@ PD_LOCAL void outlet_list (t_outlet *x, int argc, t_atom *argv)
     instance_overflowPop();
 }
 
-PD_LOCAL void outlet_anything (t_outlet *x, t_symbol *s, int argc, t_atom *argv)
+void outlet_anything (t_outlet *x, t_symbol *s, int argc, t_atom *argv)
 {
     outlet_checkType (x, outlet_isAnything (x));
         
@@ -277,7 +277,7 @@ static t_outlet *outlet_new (t_object *owner, t_symbol *s)
     return x;
 }
 
-PD_LOCAL void outlet_free (t_outlet *x)
+void outlet_free (t_outlet *x)
 {
     t_object *y = x->o_owner;
     t_outlet *o = NULL;
@@ -298,37 +298,37 @@ PD_LOCAL void outlet_free (t_outlet *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_outlet *outlet_newBang (t_object *owner)
+t_outlet *outlet_newBang (t_object *owner)
 {
     return outlet_new (owner, &s_bang);
 }
 
-PD_LOCAL t_outlet *outlet_newFloat (t_object *owner)
+t_outlet *outlet_newFloat (t_object *owner)
 {
     return outlet_new (owner, &s_float);
 }
 
-PD_LOCAL t_outlet *outlet_newSymbol (t_object *owner)
+t_outlet *outlet_newSymbol (t_object *owner)
 {
     return outlet_new (owner, &s_symbol);
 }
 
-PD_LOCAL t_outlet *outlet_newList (t_object *owner)
+t_outlet *outlet_newList (t_object *owner)
 {
     return outlet_new (owner, &s_list);
 }
 
-PD_LOCAL t_outlet *outlet_newAnything (t_object *owner)
+t_outlet *outlet_newAnything (t_object *owner)
 {
     return outlet_new (owner, &s_anything);
 }
 
-PD_LOCAL t_outlet *outlet_newMixed (t_object *owner)
+t_outlet *outlet_newMixed (t_object *owner)
 {
     return outlet_new (owner, sym_mixed);
 }
 
-PD_LOCAL t_outlet *outlet_newSignal (t_object *owner)
+t_outlet *outlet_newSignal (t_object *owner)
 {
     return outlet_new (owner, &s_signal);
 }

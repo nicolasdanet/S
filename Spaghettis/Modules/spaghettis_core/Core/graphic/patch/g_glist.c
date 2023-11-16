@@ -22,9 +22,9 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_loadBegin   (t_glist *);
+void glist_loadBegin   (t_glist *);
 
-PD_LOCAL void eval_buffer       (t_buffer *, t_pd *, int, t_atom *);
+void eval_buffer       (t_buffer *, t_pd *, int, t_atom *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ static t_glist *glist_new (t_symbol *name, t_rectangle *window)
     return x;
 }
 
-PD_LOCAL void glist_free (t_glist *glist)
+void glist_free (t_glist *glist)
 {
     PD_ASSERT (!glist_objectGetNumberOf (glist));
     
@@ -71,7 +71,7 @@ PD_LOCAL void glist_free (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_glist *glist_newPatchPop (t_symbol *name, t_rectangle *window)
+t_glist *glist_newPatchPop (t_symbol *name, t_rectangle *window)
 {
     t_glist *x = glist_newPatch (name, window);
         
@@ -82,7 +82,7 @@ PD_LOCAL t_glist *glist_newPatchPop (t_symbol *name, t_rectangle *window)
     return x;
 }
 
-PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window)
+t_glist *glist_newPatch (t_symbol *name, t_rectangle *window)
 {
     t_rectangle t;
     
@@ -119,7 +119,7 @@ PD_LOCAL t_glist *glist_newPatch (t_symbol *name, t_rectangle *window)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_makeObjectProceed (t_glist *glist, int a, int b, t_buffer *t)
+void glist_makeObjectProceed (t_glist *glist, int a, int b, t_buffer *t)
 {
     instance_objectSetNewest (NULL);
     
@@ -181,7 +181,7 @@ PD_LOCAL void glist_makeObjectProceed (t_glist *glist, int a, int b, t_buffer *t
     instance_stackPop (glist);
 }
 
-PD_LOCAL void glist_makeObject (t_glist *glist, int argc, t_atom *argv)
+void glist_makeObject (t_glist *glist, int argc, t_atom *argv)
 {
     if (argc > 2) {
     //
@@ -201,7 +201,7 @@ PD_LOCAL void glist_makeObject (t_glist *glist, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_close (t_glist *glist)
+void glist_close (t_glist *glist)
 {
     if (glist_isRoot (glist)) {
     //
@@ -245,7 +245,7 @@ static void glist_loadbangSubpatches (t_glist *glist)
     }
 }
 
-PD_LOCAL void glist_loadbang (t_glist *glist)
+void glist_loadbang (t_glist *glist)
 {
     glist_loadbangAbstractions (glist);
     glist_loadbangSubpatches (glist);
@@ -288,7 +288,7 @@ static void glist_closebangSubpatches (t_glist *glist)
     glist->gl_isCloseBanged = 1;
 }
 
-PD_LOCAL void glist_closebang (t_glist *glist)
+void glist_closebang (t_glist *glist)
 {
     if (!glist->gl_isCloseBanged) {
     //

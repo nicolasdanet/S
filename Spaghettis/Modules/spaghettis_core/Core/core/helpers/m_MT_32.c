@@ -110,7 +110,7 @@ static void init_genrand32ByArray (MTState32 *x, long key_length, uint32_t *init
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL MTState32 *genrand32_new (void)
+MTState32 *genrand32_new (void)
 {
     MTState32 *x = NULL;
     
@@ -123,7 +123,7 @@ PD_LOCAL MTState32 *genrand32_new (void)
 
 #if defined ( PD_BUILDING_TESTS )
 
-PD_LOCAL MTState32 *genrand32_newByArray (long argc, uint32_t *argv)
+MTState32 *genrand32_newByArray (long argc, uint32_t *argv)
 {
     MTState32 *x = NULL;
     
@@ -136,7 +136,7 @@ PD_LOCAL MTState32 *genrand32_newByArray (long argc, uint32_t *argv)
 
 #endif
 
-PD_LOCAL void genrand32_free (MTState32 *x)
+void genrand32_free (MTState32 *x)
 {
     if (x) {
         PD_MEMORY_FREE (x);
@@ -145,14 +145,14 @@ PD_LOCAL void genrand32_free (MTState32 *x)
 
 #if defined ( PD_BUILDING_TESTS )
 
-PD_LOCAL double genrand32_real2 (MTState32 *x)
+double genrand32_real2 (MTState32 *x)
 {
     return genrand32_int32 (x) * (1.0 / 4294967296.0); 
 }
 
 #endif
 
-PD_LOCAL double genrand32_res53 (MTState32 *x)        /* Version due to Isaku Wada. */
+double genrand32_res53 (MTState32 *x)        /* Version due to Isaku Wada. */
 { 
     uint32_t a = genrand32_int32 (x) >> 5;
     uint32_t b = genrand32_int32 (x) >> 6;
@@ -163,7 +163,7 @@ PD_LOCAL double genrand32_res53 (MTState32 *x)        /* Version due to Isaku Wa
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL uint32_t genrand32_int32 (MTState32 *x)
+uint32_t genrand32_int32 (MTState32 *x)
 {
     uint32_t y;
     static const uint32_t mag01[2] = { 0x0UL, PIZ_MT32_A };     /* Static. */

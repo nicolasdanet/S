@@ -30,8 +30,8 @@ struct _vinlet {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   vinlet_dsp          (t_vinlet *x, t_signal **sp);
-PD_LOCAL void   vinlet_dspPrologue  (t_vinlet *x, t_signal **sp,  t_blockproperties *p);
+void   vinlet_dsp          (t_vinlet *x, t_signal **sp);
+void   vinlet_dspPrologue  (t_vinlet *x, t_signal **sp,  t_blockproperties *p);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

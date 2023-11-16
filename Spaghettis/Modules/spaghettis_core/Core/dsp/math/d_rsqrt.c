@@ -39,7 +39,7 @@ t_sample rsqrt_tableExponential[RSQRT_EXPONENTIAL_SIZE];     /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void rsqrt_tilde_initialize (void)
+void rsqrt_tilde_initialize (void)
 {
     #if defined ( PD_BUILDING_TESTS )
     
@@ -97,7 +97,7 @@ static void *rsqrt_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void rsqrt_tilde_setup (void)
+void rsqrt_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -116,7 +116,7 @@ PD_LOCAL void rsqrt_tilde_setup (void)
     rsqrt_tilde_class = c;
 }
 
-PD_LOCAL void rsqrt_tilde_destroy (void)
+void rsqrt_tilde_destroy (void)
 {
     class_free (rsqrt_tilde_class);
 }

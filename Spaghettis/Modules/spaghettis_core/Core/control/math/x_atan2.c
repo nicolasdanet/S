@@ -54,7 +54,7 @@ static void atan2_float (t_atan2 *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void atan2_setup (void)
+void atan2_setup (void)
 {
     t_class *c = NULL;
 
@@ -78,7 +78,7 @@ PD_LOCAL void atan2_setup (void)
     atan2_class = c;
 }
 
-PD_LOCAL void atan2_destroy (void)
+void atan2_destroy (void)
 {
     class_free (atan2_class);
 }

@@ -18,7 +18,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_symbol *atomoutlet_parseAbbreviated (t_symbol *s)
+t_symbol *atomoutlet_parseAbbreviated (t_symbol *s)
 {
     t_symbol *t = s;
     
@@ -35,17 +35,17 @@ PD_LOCAL t_symbol *atomoutlet_parseAbbreviated (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_atom *atomoutlet_getAtom (t_atomoutlet *x)
+t_atom *atomoutlet_getAtom (t_atomoutlet *x)
 {
     return &x->ao_atom;
 }
 
-PD_LOCAL t_inlet *atomoutlet_getInlet (t_atomoutlet *x)
+t_inlet *atomoutlet_getInlet (t_atomoutlet *x)
 {
     return x->ao_inlet;
 }
 
-PD_LOCAL t_outlet *atomoutlet_getOutlet (t_atomoutlet *x)
+t_outlet *atomoutlet_getOutlet (t_atomoutlet *x)
 {
     return x->ao_outlet;
 }
@@ -54,12 +54,12 @@ PD_LOCAL t_outlet *atomoutlet_getOutlet (t_atomoutlet *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void atomoutlet_copyAtom (t_atomoutlet *x, t_atom *a)
+void atomoutlet_copyAtom (t_atomoutlet *x, t_atom *a)
 {
     *a = *atomoutlet_getAtom (x);
 }
 
-PD_LOCAL t_error atomoutlet_setAtom (t_atomoutlet *x, t_atom *a)
+t_error atomoutlet_setAtom (t_atomoutlet *x, t_atom *a)
 {
     if (!atom_typesAreEquals (&x->ao_atom, a)) { return PD_ERROR; }
     else {
@@ -75,7 +75,7 @@ PD_LOCAL t_error atomoutlet_setAtom (t_atomoutlet *x, t_atom *a)
     return PD_ERROR_NONE;
 }
 
-PD_LOCAL int atomoutlet_isEqualToAtom (t_atomoutlet *x, t_atom *a)
+int atomoutlet_isEqualToAtom (t_atomoutlet *x, t_atom *a)
 {
     if (atom_typesAreEquals (&x->ao_atom, a)) {
     //
@@ -87,7 +87,7 @@ PD_LOCAL int atomoutlet_isEqualToAtom (t_atomoutlet *x, t_atom *a)
     return 0;
 }
 
-PD_LOCAL t_error atomoutlet_broadcastIfTypeMatch (t_atomoutlet *x, t_atom *a)
+t_error atomoutlet_broadcastIfTypeMatch (t_atomoutlet *x, t_atom *a)
 {
     if (!atom_typesAreEquals (&x->ao_atom, a)) { return PD_ERROR; }
     else {
@@ -114,7 +114,7 @@ static void atomoutlet_init (t_atomoutlet *x)
     x->ao_outlet = NULL;
 }
 
-PD_LOCAL void atomoutlet_makeFloat (t_atomoutlet *x, t_object *owner, int flags, t_float f)
+void atomoutlet_makeFloat (t_atomoutlet *x, t_object *owner, int flags, t_float f)
 {
     atomoutlet_init (x);
     SET_FLOAT (&x->ao_atom, f);
@@ -122,7 +122,7 @@ PD_LOCAL void atomoutlet_makeFloat (t_atomoutlet *x, t_object *owner, int flags,
     if (flags & ATOMOUTLET_INLET)  { x->ao_inlet  = inlet_newFloat (owner, ADDRESS_FLOAT (&x->ao_atom)); }
 }
 
-PD_LOCAL void atomoutlet_makeSymbol (t_atomoutlet *x, t_object *owner, int flags, t_symbol *s)
+void atomoutlet_makeSymbol (t_atomoutlet *x, t_object *owner, int flags, t_symbol *s)
 {
     atomoutlet_init (x);
     SET_SYMBOL (&x->ao_atom, s);
@@ -134,7 +134,7 @@ PD_LOCAL void atomoutlet_makeSymbol (t_atomoutlet *x, t_object *owner, int flags
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void atomoutlet_make (t_atomoutlet *x, t_object *owner, int flags, t_atom *a)
+void atomoutlet_make (t_atomoutlet *x, t_object *owner, int flags, t_atom *a)
 {
     if (IS_SYMBOL (a)) {
         atomoutlet_makeSymbol (x, owner, flags, GET_SYMBOL (a));
@@ -147,7 +147,7 @@ PD_LOCAL void atomoutlet_make (t_atomoutlet *x, t_object *owner, int flags, t_at
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void atomoutlet_makeSymbolParsed (t_atomoutlet *x, t_object *owner, int flags, t_atom *a)
+void atomoutlet_makeSymbolParsed (t_atomoutlet *x, t_object *owner, int flags, t_atom *a)
 {
     t_symbol *t = atomoutlet_parseAbbreviated (atom_getSymbol (a));
     
@@ -156,7 +156,7 @@ PD_LOCAL void atomoutlet_makeSymbolParsed (t_atomoutlet *x, t_object *owner, int
     atomoutlet_makeSymbol (x, owner, flags, t);
 }
 
-PD_LOCAL void atomoutlet_makeParsed (t_atomoutlet *x, t_object *owner, int flags, t_atom *a)
+void atomoutlet_makeParsed (t_atomoutlet *x, t_object *owner, int flags, t_atom *a)
 {
     t_symbol *t = atomoutlet_parseAbbreviated (atom_getSymbol (a));
     

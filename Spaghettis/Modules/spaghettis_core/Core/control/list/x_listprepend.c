@@ -50,7 +50,7 @@ static void listprepend_anything (t_listprepend *x, t_symbol *s, int argc, t_ato
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listprepend_new (t_symbol *s, int argc, t_atom *argv)
+void *listprepend_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listprepend *x = (t_listprepend *)pd_new (listprepend_class);
     
@@ -73,7 +73,7 @@ static void listprepend_free (t_listprepend *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listprepend_setup (void)
+void listprepend_setup (void)
 {
     t_class *c = NULL;
     
@@ -98,7 +98,7 @@ PD_LOCAL void listprepend_setup (void)
     listprepend_class = c;
 }
 
-PD_LOCAL void listprepend_destroy (void)
+void listprepend_destroy (void)
 {
     class_free (listprepend_class);
 }

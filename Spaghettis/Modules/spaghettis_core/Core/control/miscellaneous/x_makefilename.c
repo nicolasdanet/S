@@ -211,7 +211,7 @@ static void *makefilename_new (t_symbol *dummy, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void makefilename_setup (void)
+void makefilename_setup (void)
 {
     t_class *c = NULL;
     
@@ -237,7 +237,7 @@ PD_LOCAL void makefilename_setup (void)
     makefilename_class = c;
 }
 
-PD_LOCAL void makefilename_destroy (void)
+void makefilename_destroy (void)
 {
     class_free (makefilename_class);
 }

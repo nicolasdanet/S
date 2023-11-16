@@ -54,19 +54,19 @@ struct _outlet {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_outconnect   *outlet_addConnection       (t_outlet *x, t_pd *receiver);
+t_outconnect   *outlet_addConnection       (t_outlet *x, t_pd *receiver);
 
-PD_LOCAL t_error        outlet_removeConnection     (t_outlet *x, t_pd *receiver, t_id *u);
+t_error        outlet_removeConnection     (t_outlet *x, t_pd *receiver, t_id *u);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   outlet_free                         (t_outlet *x);
-PD_LOCAL void   outlet_moveFirst                    (t_outlet *x);
-PD_LOCAL int    outlet_isSignal                     (t_outlet *x);
-PD_LOCAL int    outlet_getIndex                     (t_outlet *x);
-PD_LOCAL int    outlet_getIndexAsSignal             (t_outlet *x);
+void   outlet_free                         (t_outlet *x);
+void   outlet_moveFirst                    (t_outlet *x);
+int    outlet_isSignal                     (t_outlet *x);
+int    outlet_getIndex                     (t_outlet *x);
+int    outlet_getIndexAsSignal             (t_outlet *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

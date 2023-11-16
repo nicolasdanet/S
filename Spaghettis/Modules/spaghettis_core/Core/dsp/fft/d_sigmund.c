@@ -1231,7 +1231,7 @@ static void sigmund_tilde_free (t_sigmund_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void sigmund_tilde_setup (void)
+void sigmund_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -1253,7 +1253,7 @@ PD_LOCAL void sigmund_tilde_setup (void)
     sigmund_tilde_class = c;
 }
 
-PD_LOCAL void sigmund_tilde_destroy (void)
+void sigmund_tilde_destroy (void)
 {
     class_free (sigmund_tilde_class);
 }

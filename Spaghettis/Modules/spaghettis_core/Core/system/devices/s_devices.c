@@ -32,14 +32,14 @@ static void devices_init (t_devices *p)
     }
 }
 
-PD_LOCAL void devices_initAsAudio (t_devices *p)
+void devices_initAsAudio (t_devices *p)
 {
     devices_init (p);
     
     p->d_isMidi = 0;
 }
 
-PD_LOCAL void devices_initAsMidi (t_devices *p)
+void devices_initAsMidi (t_devices *p)
 {
     devices_init (p);
     
@@ -78,7 +78,7 @@ static void devices_setDefaultsMidi (t_devices *p)
     }
 }
 
-PD_LOCAL void devices_setDefaultsIfNone (t_devices *p)
+void devices_setDefaultsIfNone (t_devices *p)
 {
     if (p->d_isMidi) { devices_setDefaultsMidi (p); }
     else {
@@ -90,7 +90,7 @@ PD_LOCAL void devices_setDefaultsIfNone (t_devices *p)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void devices_setSampleRate (t_devices *p, int n)
+void devices_setSampleRate (t_devices *p, int n)
 {
     PD_ASSERT (!p->d_isMidi);
     
@@ -99,44 +99,44 @@ PD_LOCAL void devices_setSampleRate (t_devices *p, int n)
     p->d_sampleRate = n;
 }
 
-PD_LOCAL int devices_getSampleRate (t_devices *p)
+int devices_getSampleRate (t_devices *p)
 {
     return p->d_sampleRate;
 }
 
-PD_LOCAL void devices_setVectorSize (t_devices *p, int n)
+void devices_setVectorSize (t_devices *p, int n)
 {
     PD_ASSERT (!p->d_isMidi);
     
     if (n > 0 && PD_IS_POWER_2 (n)) { p->d_vectorSize = n; }
 }
 
-PD_LOCAL int devices_getVectorSize (t_devices *p)
+int devices_getVectorSize (t_devices *p)
 {
     return p->d_vectorSize;
 }
 
-PD_LOCAL int devices_getInSize (t_devices *p)
+int devices_getInSize (t_devices *p)
 {
     return p->d_inSize;
 }
 
-PD_LOCAL int devices_getOutSize (t_devices *p)
+int devices_getOutSize (t_devices *p)
 {
     return p->d_outSize;
 }
 
-PD_LOCAL int devices_getInAtIndex (t_devices *p, int i)
+int devices_getInAtIndex (t_devices *p, int i)
 {
     return (i < p->d_inSize) ? p->d_in[i] : -1;
 }
 
-PD_LOCAL int devices_getOutAtIndex (t_devices *p, int i)
+int devices_getOutAtIndex (t_devices *p, int i)
 {
     return (i < p->d_outSize) ? p->d_out[i] : -1;
 }
 
-PD_LOCAL int devices_getInChannelsAtIndex (t_devices *p, int i)
+int devices_getInChannelsAtIndex (t_devices *p, int i)
 {
     PD_ASSERT (!p->d_isMidi);
     PD_ASSERT (i < DEVICES_MAXIMUM_IO);
@@ -144,7 +144,7 @@ PD_LOCAL int devices_getInChannelsAtIndex (t_devices *p, int i)
     return p->d_inChannels[i];
 }
 
-PD_LOCAL int devices_getOutChannelsAtIndex (t_devices *p, int i)
+int devices_getOutChannelsAtIndex (t_devices *p, int i)
 {
     PD_ASSERT (!p->d_isMidi);
     PD_ASSERT (i < DEVICES_MAXIMUM_IO);
@@ -156,7 +156,7 @@ PD_LOCAL int devices_getOutChannelsAtIndex (t_devices *p, int i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void devices_check (t_devices *p)
+void devices_check (t_devices *p)
 {
     int i;
     
@@ -172,7 +172,7 @@ PD_LOCAL void devices_check (t_devices *p)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error devices_appendMidiIn (t_devices *p, int n)
+t_error devices_appendMidiIn (t_devices *p, int n)
 {
     PD_ASSERT (p->d_isMidi);
     
@@ -185,7 +185,7 @@ PD_LOCAL t_error devices_appendMidiIn (t_devices *p, int n)
     return PD_ERROR_NONE;
 }
 
-PD_LOCAL t_error devices_appendMidiOut (t_devices *p, int n)
+t_error devices_appendMidiOut (t_devices *p, int n)
 {
     PD_ASSERT (p->d_isMidi);
     
@@ -198,7 +198,7 @@ PD_LOCAL t_error devices_appendMidiOut (t_devices *p, int n)
     return PD_ERROR_NONE;
 }
 
-PD_LOCAL t_error devices_appendAudioIn (t_devices *p, int n, int channels)
+t_error devices_appendAudioIn (t_devices *p, int n, int channels)
 {
     PD_ASSERT (!p->d_isMidi);
     
@@ -214,7 +214,7 @@ PD_LOCAL t_error devices_appendAudioIn (t_devices *p, int n, int channels)
     return PD_ERROR_NONE;
 }
 
-PD_LOCAL t_error devices_appendAudioOut (t_devices *p, int n, int channels)
+t_error devices_appendAudioOut (t_devices *p, int n, int channels)
 {
     PD_ASSERT (!p->d_isMidi);
     

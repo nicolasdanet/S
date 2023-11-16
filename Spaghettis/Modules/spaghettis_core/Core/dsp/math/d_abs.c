@@ -55,7 +55,7 @@ static void abs_tilde_dsp (t_abs_tilde *x, t_signal **sp)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *unop_tilde_functionData (t_object *z, int flags)
+t_buffer *unop_tilde_functionData (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
     //
@@ -88,7 +88,7 @@ static void *abs_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void abs_tilde_setup (void)
+void abs_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -107,7 +107,7 @@ PD_LOCAL void abs_tilde_setup (void)
     abs_tilde_class = c;
 }
 
-PD_LOCAL void abs_tilde_destroy (void)
+void abs_tilde_destroy (void)
 {
     class_free (abs_tilde_class);
 }

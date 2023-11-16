@@ -343,7 +343,7 @@ static void legacy_convertProceed (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void legacy_convert (t_buffer *x)
+void legacy_convert (t_buffer *x)
 {
     if (buffer_getSize (x) > 5) {
     if (atom_getSymbol (buffer_getAtomAtIndex (x, 0)) == sym___hash__N)  {
@@ -360,7 +360,7 @@ PD_LOCAL void legacy_convert (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void legacy_version (t_buffer *x)
+void legacy_version (t_buffer *x)
 {
     buffer_appendSymbol (x, sym___hash__N);
     buffer_appendSymbol (x, sym_spaghettis);
@@ -374,12 +374,12 @@ PD_LOCAL void legacy_version (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void legacy_start (void *dummy, t_symbol *s, int argc, t_atom *argv)
+void legacy_start (void *dummy, t_symbol *s, int argc, t_atom *argv)
 {
     instance_viewReset();
 }
 
-PD_LOCAL void legacy_view (void *dummy, t_symbol *s, int argc, t_atom *argv)
+void legacy_view (void *dummy, t_symbol *s, int argc, t_atom *argv)
 {
     t_rectangle r; rectangle_setNothing (&r);
     

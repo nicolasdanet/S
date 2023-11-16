@@ -49,7 +49,7 @@ static void addScalar_tilde_dsp (t_addscalar_tilde *x, t_signal **sp)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *binop_tilde_functionData (t_object *z, int flags)
+t_buffer *binop_tilde_functionData (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
     //
@@ -69,7 +69,7 @@ PD_LOCAL t_buffer *binop_tilde_functionData (t_object *z, int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *binopScalar_tilde_functionData (t_object *z, int flags)
+t_buffer *binopScalar_tilde_functionData (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
     //
@@ -88,7 +88,7 @@ PD_LOCAL t_buffer *binopScalar_tilde_functionData (t_object *z, int flags)
     return NULL;
 }
 
-PD_LOCAL void binopScalar_tilde_restore (struct _binopscalar_tilde *x)
+void binopScalar_tilde_restore (struct _binopscalar_tilde *x)
 {
     if (object_dspNeedInitializer (cast_object (x))) {
     //
@@ -105,7 +105,7 @@ PD_LOCAL void binopScalar_tilde_restore (struct _binopscalar_tilde *x)
     }
 }
 
-PD_LOCAL void binopScalar_tilde_float (struct _binopscalar_tilde *x, t_float f)
+void binopScalar_tilde_float (struct _binopscalar_tilde *x, t_float f)
 {
     PD_ATOMIC_FLOAT64_WRITE (f, &x->x_scalar);
 }
@@ -155,7 +155,7 @@ static void *add_tilde_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void add_tilde_setup (void)
+void add_tilde_setup (void)
 {
     add_tilde_class = class_new (sym___plus____tilde__,
                                 (t_newmethod)add_tilde_new,
@@ -188,7 +188,7 @@ PD_LOCAL void add_tilde_setup (void)
     class_setHelpName (addScalar_tilde_class, sym_arithmetic__tilde__);
 }
 
-PD_LOCAL void add_tilde_destroy (void)
+void add_tilde_destroy (void)
 {
     class_free (add_tilde_class);
     class_free (addScalar_tilde_class);

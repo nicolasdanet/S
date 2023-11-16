@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL OSStatus audiodevice_listenerCallback (AudioObjectID,
+OSStatus audiodevice_listenerCallback (AudioObjectID,
     UInt32,
     const AudioObjectPropertyAddress *,
     void *);
@@ -20,21 +20,21 @@ PD_LOCAL OSStatus audiodevice_listenerCallback (AudioObjectID,
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL OSStatus audiodevice_inputCallback (void *,
+OSStatus audiodevice_inputCallback (void *,
     AudioUnitRenderActionFlags *,
     const AudioTimeStamp *,
     UInt32,
     UInt32,
     AudioBufferList *);
 
-PD_LOCAL OSStatus audiodevice_outputCallback (void *,
+OSStatus audiodevice_outputCallback (void *,
     AudioUnitRenderActionFlags *,
     const AudioTimeStamp *,
     UInt32,
     UInt32,
     AudioBufferList *);
 
-PD_LOCAL OSStatus audiodevice_duplexCallback (void *,
+OSStatus audiodevice_duplexCallback (void *,
     AudioUnitRenderActionFlags *,
     const AudioTimeStamp *,
     UInt32,
@@ -45,7 +45,7 @@ PD_LOCAL OSStatus audiodevice_duplexCallback (void *,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audiodevice_addListeners (t_audiodevice *device, t_audiograph *graph)
+t_error audiodevice_addListeners (t_audiodevice *device, t_audiograph *graph)
 {
     t_error err = PD_ERROR;
     
@@ -71,7 +71,7 @@ PD_LOCAL t_error audiodevice_addListeners (t_audiodevice *device, t_audiograph *
     return err;
 }
 
-PD_LOCAL t_error audiodevice_removeListeners (t_audiodevice *device, t_audiograph *graph)
+t_error audiodevice_removeListeners (t_audiodevice *device, t_audiograph *graph)
 {
     t_error err = PD_ERROR_NONE;
     
@@ -162,7 +162,7 @@ static t_error audiodevice_openSetFormatProceed (t_audiodevice *device, t_audiog
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audiodevice_open (t_audiodevice *device, t_audiograph *graph)
+t_error audiodevice_open (t_audiodevice *device, t_audiograph *graph)
 {
     t_error err = (device->d_ID == kAudioObjectUnknown);
 
@@ -276,7 +276,7 @@ PD_LOCAL t_error audiodevice_open (t_audiodevice *device, t_audiograph *graph)
     return err;
 }
 
-PD_LOCAL t_error audiodevice_close (t_audiodevice *device, t_audiograph *graph)
+t_error audiodevice_close (t_audiodevice *device, t_audiograph *graph)
 {
     t_error err = PD_ERROR_NONE;
     
@@ -298,7 +298,7 @@ PD_LOCAL t_error audiodevice_close (t_audiodevice *device, t_audiograph *graph)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error audiodevice_start (t_audiodevice *device)
+t_error audiodevice_start (t_audiodevice *device)
 {
     t_error err = PD_ERROR;
     
@@ -313,7 +313,7 @@ PD_LOCAL t_error audiodevice_start (t_audiodevice *device)
     return err;
 }
 
-PD_LOCAL t_error audiodevice_stop (t_audiodevice *device)
+t_error audiodevice_stop (t_audiodevice *device)
 {
     t_error err = PD_ERROR;
     

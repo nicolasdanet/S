@@ -13,17 +13,17 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_FORCE void instance_snapSet (int n)
+void instance_snapSet (int n)
 {
     instance_get()->pd_hasGrid = (n != 0);
 }
 
-PD_FORCE void instance_snapSetGrid (int n)
+void instance_snapSetGrid (int n)
 {
     instance_get()->pd_gridSize = PD_MAX (1, n);
 }
 
-PD_LOCAL int instance_snapIsSet (void)
+int instance_snapIsSet (void)
 {
     return instance_get()->pd_hasGrid;
 }
@@ -32,7 +32,7 @@ PD_LOCAL int instance_snapIsSet (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int instance_snapGetGrid (void)
+int instance_snapGetGrid (void)
 {
     return instance_get()->pd_gridSize;
 }
@@ -41,7 +41,7 @@ PD_LOCAL int instance_snapGetGrid (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int instance_snapGetSnapped (int n)
+int instance_snapGetSnapped (int n)
 {
     int k = instance_snapGetGrid();
     

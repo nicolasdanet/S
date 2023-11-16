@@ -48,12 +48,12 @@ static void inlet_add (t_inlet *x, t_object *owner)
     }
 }
 
-PD_LOCAL int inlet_isSignal (t_inlet *x)
+int inlet_isSignal (t_inlet *x)
 {
     return (x->i_type == &s_signal);
 }
 
-PD_LOCAL void inlet_moveFirst (t_inlet *x)
+void inlet_moveFirst (t_inlet *x)
 {
     t_object *owner = x->i_owner;
     
@@ -75,7 +75,7 @@ PD_LOCAL void inlet_moveFirst (t_inlet *x)
     }
 }
 
-PD_LOCAL int inlet_getIndex (t_inlet *x)
+int inlet_getIndex (t_inlet *x)
 {
     t_inlet *i = NULL;
     int n = 0;
@@ -85,7 +85,7 @@ PD_LOCAL int inlet_getIndex (t_inlet *x)
     return n;
 }
 
-PD_LOCAL int inlet_getIndexAsSignal (t_inlet *x)
+int inlet_getIndexAsSignal (t_inlet *x)
 {
     t_inlet *i = NULL;
     int n = 0;
@@ -205,7 +205,7 @@ static void symbolinlet_anything (t_inlet *x, t_symbol *s, int argc, t_atom *arg
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void inlet_setHot (t_inlet *x)
+void inlet_setHot (t_inlet *x)
 {
     t_class *c = pd_class (x); if (c == floatinlet_class || c == symbolinlet_class) { x->i_hot = 1; }
 }
@@ -216,7 +216,7 @@ PD_LOCAL void inlet_setHot (t_inlet *x)
 
 /* Typed inlet that just store the incoming value. */
 
-PD_LOCAL t_inlet *inlet_newFloat (t_object *owner, t_float *fp)
+t_inlet *inlet_newFloat (t_object *owner, t_float *fp)
 {
     t_inlet *x = (t_inlet *)pd_new (floatinlet_class);
     
@@ -234,7 +234,7 @@ PD_LOCAL t_inlet *inlet_newFloat (t_object *owner, t_float *fp)
     return x;
 }
 
-PD_LOCAL t_inlet *inlet_newSymbol (t_object *owner, t_symbol **sp)
+t_inlet *inlet_newSymbol (t_object *owner, t_symbol **sp)
 {
     t_inlet *x = (t_inlet *)pd_new (symbolinlet_class);
     
@@ -255,7 +255,7 @@ PD_LOCAL t_inlet *inlet_newSymbol (t_object *owner, t_symbol **sp)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_inlet *inlet_newSignal (t_object *owner)
+t_inlet *inlet_newSignal (t_object *owner)
 {
     t_inlet *x = inlet_new (owner, NULL, &s_signal, NULL);
     
@@ -272,7 +272,7 @@ PD_LOCAL t_inlet *inlet_newSignal (t_object *owner)
 /* Broadcasting rules are defined according to its type. */
 /* A signal inlet is always typed. */
 
-PD_LOCAL t_inlet *inlet_new (t_object *owner, t_pd *receiver, t_symbol *type, t_symbol *method)
+t_inlet *inlet_new (t_object *owner, t_pd *receiver, t_symbol *type, t_symbol *method)
 {
     t_inlet *x = (t_inlet *)pd_new (inlet_class);
     
@@ -295,7 +295,7 @@ PD_LOCAL t_inlet *inlet_new (t_object *owner, t_pd *receiver, t_symbol *type, t_
     return x;
 }
 
-PD_LOCAL void inlet_free (t_inlet *x)
+void inlet_free (t_inlet *x)
 {
     t_object *y = x->i_owner;
     t_inlet *i  = NULL;
@@ -317,7 +317,7 @@ PD_LOCAL void inlet_free (t_inlet *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void inlet_setup (void)
+void inlet_setup (void)
 {
     inlet_class = class_new (sym_inlet,
                             NULL,
@@ -353,7 +353,7 @@ PD_LOCAL void inlet_setup (void)
     class_addAnything (symbolinlet_class,   (t_method)symbolinlet_anything);
 }
 
-PD_LOCAL void inlet_destroy (void)
+void inlet_destroy (void)
 {
     class_free (inlet_class);
     class_free (floatinlet_class);

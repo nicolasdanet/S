@@ -39,14 +39,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error subchunk_readFileHeaderWAVE (int, t_headerhelper *, t_audioproperties *);
-PD_LOCAL t_error subchunk_readFileHeaderAIFF (int, t_headerhelper *, t_audioproperties *);
+t_error subchunk_readFileHeaderWAVE (int, t_headerhelper *, t_audioproperties *);
+t_error subchunk_readFileHeaderAIFF (int, t_headerhelper *, t_audioproperties *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error soundfile_readFileParse (t_glist *dummy,
+t_error soundfile_readFileParse (t_glist *dummy,
     t_symbol *s,
     int *ac,
     t_atom **av,
@@ -349,7 +349,7 @@ static int soundfile_readFileHeaderProceed (int f, t_audioproperties *args)
 
 /* Caller is responsible to close the file. */
 
-PD_LOCAL int soundfile_readFileHeader (t_glist *glist, t_audioproperties *args)
+int soundfile_readFileHeader (t_glist *glist, t_audioproperties *args)
 {
     t_fileproperties p; fileproperties_init (&p);
     
@@ -367,7 +367,7 @@ PD_LOCAL int soundfile_readFileHeader (t_glist *glist, t_audioproperties *args)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error soundfile_writeFileParse (t_glist *glist,
+t_error soundfile_writeFileParse (t_glist *glist,
     t_symbol *s,
     int *ac,
     t_atom **av,
@@ -635,7 +635,7 @@ static t_error soundfile_writeFileHeaderNEXT (t_headerhelper *t, t_audioproperti
 
 /* Caller is responsible to close the file. */
 
-PD_LOCAL int soundfile_writeFileHeader (t_glist *glist, t_audioproperties *args, t_object *owner)
+int soundfile_writeFileHeader (t_glist *glist, t_audioproperties *args, t_object *owner)
 {
     t_error err = PD_ERROR_NONE;
     char name[PD_STRING] = { 0 };
@@ -761,7 +761,7 @@ static t_error soundfile_writeFileCloseNEXT (int f, t_audioproperties *args)
 
 /* Report the proper data size if necessary. */
 
-PD_LOCAL t_error soundfile_writeFileClose (int f, int items, t_audioproperties *args)
+t_error soundfile_writeFileClose (int f, int items, t_audioproperties *args)
 {
     t_error err = PD_ERROR_NONE;
     

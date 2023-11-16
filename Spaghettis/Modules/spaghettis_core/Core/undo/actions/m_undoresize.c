@@ -28,7 +28,7 @@ typedef struct _undoresize {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undoresize_collapse (t_undoaction *kept, t_undoaction *deleted)
+void undoresize_collapse (t_undoaction *kept, t_undoaction *deleted)
 {
     t_undoresize *a = (t_undoresize *)kept;
     t_undoresize *b = (t_undoresize *)deleted;
@@ -67,7 +67,7 @@ static void undoresize_redo (t_undoresize *z, t_symbol *s, int argc, t_atom *arg
 
 #if 0
 
-PD_LOCAL t_undoaction *undoresize_new (t_object *o, int m, int n)
+t_undoaction *undoresize_new (t_object *o, int m, int n)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undoresize_class);
     t_undoresize *z = (t_undoresize *)x;
@@ -89,7 +89,7 @@ PD_LOCAL t_undoaction *undoresize_new (t_object *o, int m, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undoresize_setup (void)
+void undoresize_setup (void)
 {
     t_class *c = NULL;
     
@@ -106,7 +106,7 @@ PD_LOCAL void undoresize_setup (void)
     undoresize_class = c;
 }
 
-PD_LOCAL void undoresize_destroy (void)
+void undoresize_destroy (void)
 {
     class_free (undoresize_class);
 }

@@ -52,7 +52,7 @@ static void *sqrt_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void sqrt_tilde_setup (void)
+void sqrt_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -71,7 +71,7 @@ PD_LOCAL void sqrt_tilde_setup (void)
     sqrt_tilde_class = c;
 }
 
-PD_LOCAL void sqrt_tilde_destroy (void)
+void sqrt_tilde_destroy (void)
 {
     class_free (sqrt_tilde_class);
 }

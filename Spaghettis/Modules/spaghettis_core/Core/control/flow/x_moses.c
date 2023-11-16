@@ -86,7 +86,7 @@ static void *moses_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void moses_setup (void)
+void moses_setup (void)
 {
     t_class *c = NULL;
     
@@ -108,7 +108,7 @@ PD_LOCAL void moses_setup (void)
     moses_class = c;
 }
 
-PD_LOCAL void moses_destroy (void)
+void moses_destroy (void)
 {
     class_free (moses_class);
 }

@@ -18,22 +18,22 @@ t_class *canvas_class;      /* Shared. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void canvas_dsp    (t_glist *, t_signal **);
+void canvas_dsp    (t_glist *, t_signal **);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void       glist_setUniqueAndSource            (t_glist *, int, t_atom *);
-PD_LOCAL void       glist_setUniqueAndSourceOfLast      (t_glist *, int, t_atom *);
-PD_LOCAL void       glist_setSourceOfLast               (t_glist *, int, t_atom *);
-PD_LOCAL void       glist_setLabelOfLast                (t_glist *, t_symbol *);
-PD_LOCAL t_error    glist_lineConnectByIndex            (t_glist *, int, int, int, int);
-PD_LOCAL t_error    glist_lineDisconnectByIndex         (t_glist *, int, int, int, int);
+void       glist_setUniqueAndSource            (t_glist *, int, t_atom *);
+void       glist_setUniqueAndSourceOfLast      (t_glist *, int, t_atom *);
+void       glist_setSourceOfLast               (t_glist *, int, t_atom *);
+void       glist_setLabelOfLast                (t_glist *, t_symbol *);
+t_error    glist_lineConnectByIndex            (t_glist *, int, int, int, int);
+t_error    glist_lineDisconnectByIndex         (t_glist *, int, int, int, int);
 
-PD_LOCAL void       glist_serialize     (t_glist *g, t_buffer *b, int flags, int isAbstraction);
+void       glist_serialize     (t_glist *g, t_buffer *b, int flags, int isAbstraction);
 
-PD_LOCAL void       glist_undoDisable                   (t_glist *);
+void       glist_undoDisable                   (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -222,12 +222,12 @@ static void canvas_functionSave (t_object *x, t_buffer *b, int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *canvas_newSubpatch (t_symbol *s)
+void *canvas_newSubpatch (t_symbol *s)
 {
     return glist_newPatchPop (s, NULL);
 }
 
-PD_LOCAL void canvas_new (void *dummy, t_symbol *s, int argc, t_atom *argv)
+void canvas_new (void *dummy, t_symbol *s, int argc, t_atom *argv)
 {  
     t_rectangle r; rectangle_setNothing (&r);
     
@@ -256,7 +256,7 @@ static void canvas_free (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void canvas_setup (void)
+void canvas_setup (void)
 {
     t_class *c = NULL;
         
@@ -301,7 +301,7 @@ PD_LOCAL void canvas_setup (void)
     canvas_class = c;
 }
 
-PD_LOCAL void canvas_destroy (void)
+void canvas_destroy (void)
 {
     class_free (canvas_class);
 }

@@ -95,7 +95,7 @@ static void *symbol_new (t_pd *dummy, t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void symbol_setup (void)
+void symbol_setup (void)
 {
     t_class *c = NULL;
     
@@ -119,7 +119,7 @@ PD_LOCAL void symbol_setup (void)
     symbol_class = c;
 }
 
-PD_LOCAL void symbol_destroy (void)
+void symbol_destroy (void)
 {
     class_free (symbol_class);
 }

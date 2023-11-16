@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int main_start (void);
+int main_start (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ extern char **main_argv;
 
 #if PD_WITH_DEBUG
 
-PD_LOCAL int sys_isControlThread (void)
+int sys_isControlThread (void)
 {
     #if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL )
     

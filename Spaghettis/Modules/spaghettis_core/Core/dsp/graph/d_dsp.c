@@ -35,7 +35,7 @@ static void dsp_report (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void dsp_setState (int n)
+void dsp_setState (int n)
 {
     n = (n != 0);
     
@@ -53,7 +53,7 @@ PD_LOCAL void dsp_setState (int n)
     }
 }
 
-PD_LOCAL int dsp_getState (void)
+int dsp_getState (void)
 {
     return dsp_status;
 }
@@ -62,14 +62,14 @@ PD_LOCAL int dsp_getState (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void dsp_update (void)
+void dsp_update (void)
 {
     dsp_resume (dsp_suspend());
 }
 
 /* Note that DSP chain is NOT suspended while the new chain is builded. */
 
-PD_LOCAL int dsp_suspend (void)
+int dsp_suspend (void)
 {
     dsp_count++;    /* Check that each suspend and resume calls are balanced. */
     
@@ -78,14 +78,14 @@ PD_LOCAL int dsp_suspend (void)
     return 0;
 }
 
-PD_LOCAL void dsp_resume (int n)
+void dsp_resume (int n)
 {
     dsp_count--; PD_ASSERT (dsp_count >= 0);
     
     if (n) { dsp_suspended = 0; if (dsp_status) { instance_dspStart(); } }
 }
 
-PD_LOCAL void dsp_close (void)
+void dsp_close (void)
 {
     PD_ASSERT (dsp_count == 0); instance_dspStop(); dsp_status = 0; instance_dspFree();
 }

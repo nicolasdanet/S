@@ -79,7 +79,7 @@ static int searchpath_scanProceed (const char *path, const struct stat *b, int f
     if (abort) { return 1; } else { return scheduler_isExiting(); }
 }
 
-PD_LOCAL t_error searchpath_scan (void)
+t_error searchpath_scan (void)
 {
     t_error err = PD_ERROR_NONE;
     t_pathlist *l = searchpath_roots;
@@ -240,7 +240,7 @@ static void searchpath_report (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int searchpath_isExternalAvailable (t_symbol *s)
+int searchpath_isExternalAvailable (t_symbol *s)
 {
     int available = 0; char t[PD_STRING] = { 0 };
     
@@ -251,7 +251,7 @@ PD_LOCAL int searchpath_isExternalAvailable (t_symbol *s)
     return available;
 }
 
-PD_LOCAL int searchpath_isAbstractionAvailable (t_symbol *s)
+int searchpath_isAbstractionAvailable (t_symbol *s)
 {
     int available = 0; char t[PD_STRING] = { 0 };
     
@@ -262,7 +262,7 @@ PD_LOCAL int searchpath_isAbstractionAvailable (t_symbol *s)
     return available;
 }
 
-PD_LOCAL int searchpath_hasDuplicates (void)
+int searchpath_hasDuplicates (void)
 {
     return (pathlist_getSize (searchpath_duplicates) != 0);
 }
@@ -271,7 +271,7 @@ PD_LOCAL int searchpath_hasDuplicates (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void searchpath_extendedMatchedAtIndex (int n)
+void searchpath_extendedMatchedAtIndex (int n)
 {
     PD_ASSERT (searchpath_extended);
     
@@ -284,12 +284,12 @@ PD_LOCAL void searchpath_extendedMatchedAtIndex (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_FORCE void searchpath_clear (void)
+void searchpath_clear (void)
 {
     pathlist_free (searchpath_roots); searchpath_roots = NULL;
 }
 
-PD_FORCE void searchpath_appendRoot (const char *filepath)
+void searchpath_appendRoot (const char *filepath)
 {
     searchpath_roots = pathlist_newAppend (searchpath_roots, NULL, filepath);
 }
@@ -297,7 +297,7 @@ PD_FORCE void searchpath_appendRoot (const char *filepath)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL t_pathlist *searchpath_getExtended (void)
+t_pathlist *searchpath_getExtended (void)
 {
     return searchpath_extended;
 }
@@ -306,7 +306,7 @@ PD_LOCAL t_pathlist *searchpath_getExtended (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void searchpath_rescan (int logged)
+void searchpath_rescan (int logged)
 {
     t_error err = searchpath_scan();
     
@@ -322,7 +322,7 @@ PD_LOCAL void searchpath_rescan (int logged)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void searchpath_release (void)
+void searchpath_release (void)
 {
     PD_ASSERT (!pathlist_check (searchpath_roots));
     PD_ASSERT (!pathlist_check (searchpath_extended));

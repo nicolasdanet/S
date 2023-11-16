@@ -263,7 +263,7 @@ static void writesf_tilde_free (t_writesf_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void writesf_tilde_setup (void)
+void writesf_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -287,7 +287,7 @@ PD_LOCAL void writesf_tilde_setup (void)
     writesf_tilde_class = c;
 }
 
-PD_LOCAL void writesf_tilde_destroy (void)
+void writesf_tilde_destroy (void)
 {
     class_free (writesf_tilde_class);
 }

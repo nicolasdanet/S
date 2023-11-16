@@ -98,7 +98,7 @@ static void *rzero_rev_tilde_new (t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void rzero_rev_tilde_setup (void)
+void rzero_rev_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -117,7 +117,7 @@ PD_LOCAL void rzero_rev_tilde_setup (void)
     rzero_rev_tilde_class = c;
 }
 
-PD_LOCAL void rzero_rev_tilde_destroy (void)
+void rzero_rev_tilde_destroy (void)
 {
     class_free (rzero_rev_tilde_class);
 }

@@ -13,12 +13,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void glist_copy (t_glist *glist)
+void glist_copy (t_glist *glist)
 {
     clipboard_copy (glist);
 }
 
-PD_LOCAL void glist_cut (t_glist *glist)
+void glist_cut (t_glist *glist)
 {
     glist_copy (glist);
     
@@ -27,12 +27,12 @@ PD_LOCAL void glist_cut (t_glist *glist)
     glist_objectRemoveSelected (glist);
 }
 
-PD_LOCAL void glist_paste (t_glist *glist, t_point *m)
+void glist_paste (t_glist *glist, t_point *m)
 {
     clipboard_paste (glist, m);
 }
 
-PD_LOCAL void glist_duplicate (t_glist *glist)
+void glist_duplicate (t_glist *glist)
 {
     clipboard_copyDuplicate (glist);
     clipboard_pasteDuplicate (glist);

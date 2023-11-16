@@ -79,7 +79,7 @@ static void *touchout_new (t_float channel)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void touchout_setup (void)
+void touchout_setup (void)
 {
     t_class *c = NULL;
     
@@ -103,7 +103,7 @@ PD_LOCAL void touchout_setup (void)
     touchout_class = c;
 }
 
-PD_LOCAL void touchout_destroy (void)
+void touchout_destroy (void)
 {
     class_free (touchout_class);
 }

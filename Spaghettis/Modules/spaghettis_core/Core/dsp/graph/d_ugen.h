@@ -14,11 +14,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_dspcontext   *ugen_graphStart    (int isTopLevel, t_signal **sp, int m, int n);
+t_dspcontext   *ugen_graphStart    (int isTopLevel, t_signal **sp, int m, int n);
 
-PD_LOCAL void   ugen_graphAdd               (t_dspcontext *c, t_object *o);
-PD_LOCAL void   ugen_graphConnect           (t_dspcontext *c, t_object *o1, int m, t_object *o2, int n);
-PD_LOCAL void   ugen_graphClose             (t_dspcontext *c);
+void   ugen_graphAdd               (t_dspcontext *c, t_object *o);
+void   ugen_graphConnect           (t_dspcontext *c, t_object *o1, int m, t_object *o2, int n);
+void   ugen_graphClose             (t_dspcontext *c);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

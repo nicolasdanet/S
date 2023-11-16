@@ -159,7 +159,7 @@ static void print_tilde_free (t_print_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void print_tilde_setup (void)
+void print_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -183,7 +183,7 @@ PD_LOCAL void print_tilde_setup (void)
     print_tilde_class = c;
 }
 
-PD_LOCAL void print_tilde_destroy (void)
+void print_tilde_destroy (void)
 {
     class_free (print_tilde_class);
 }

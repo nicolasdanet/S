@@ -79,7 +79,7 @@ static void listsplit_restore (t_listsplit *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listsplit_new (t_symbol *s, int argc, t_atom *argv)
+void *listsplit_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listsplit *x = (t_listsplit *)pd_new (listsplit_class);
     
@@ -100,7 +100,7 @@ PD_LOCAL void *listsplit_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listsplit_setup (void)
+void listsplit_setup (void)
 {
     t_class *c = NULL;
     
@@ -125,7 +125,7 @@ PD_LOCAL void listsplit_setup (void)
     listsplit_class = c;
 }
 
-PD_LOCAL void listsplit_destroy (void)
+void listsplit_destroy (void)
 {
     class_free (listsplit_class);
 }

@@ -51,11 +51,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   trylock_init    (t_trylock *t);
-PD_LOCAL void   trylock_destroy (t_trylock *t);
-PD_LOCAL int    trylock_trylock (t_trylock *t);
-PD_LOCAL void   trylock_lock    (t_trylock *t);
-PD_LOCAL void   trylock_unlock  (t_trylock *t);
+void   trylock_init    (t_trylock *t);
+void   trylock_destroy (t_trylock *t);
+int    trylock_trylock (t_trylock *t);
+void   trylock_lock    (t_trylock *t);
+void   trylock_unlock  (t_trylock *t);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

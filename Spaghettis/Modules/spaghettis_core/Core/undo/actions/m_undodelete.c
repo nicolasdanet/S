@@ -27,8 +27,8 @@ typedef struct _undodelete {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int    object_hasDspOrIsGraphicArray   (t_object *);
-PD_LOCAL void   undoaction_setInletsAndOutlets  (t_undoaction *, t_object *);
+int    object_hasDspOrIsGraphicArray   (t_object *);
+void   undoaction_setInletsAndOutlets  (t_undoaction *, t_object *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ static void undodelete_redo (t_undodelete *z, t_symbol *s, int argc, t_atom *arg
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undodelete_new (t_object *o, t_undosnippet *snippet)
+t_undoaction *undodelete_new (t_object *o, t_undosnippet *snippet)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undodelete_class);
     t_undodelete *z = (t_undodelete *)x;
@@ -82,7 +82,7 @@ static void undodelete_free (t_undodelete *z)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undodelete_setup (void)
+void undodelete_setup (void)
 {
     t_class *c = NULL;
     
@@ -99,7 +99,7 @@ PD_LOCAL void undodelete_setup (void)
     undodelete_class = c;
 }
 
-PD_LOCAL void undodelete_destroy (void)
+void undodelete_destroy (void)
 {
     class_free (undodelete_class);
 }

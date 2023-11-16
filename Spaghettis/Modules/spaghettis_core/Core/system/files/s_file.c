@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void searchpath_extendedMatchedAtIndex (int);
+void searchpath_extendedMatchedAtIndex (int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -31,12 +31,12 @@ static int file_openRawNative (const char *filepath, int oflag)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int file_openWrite (const char *filepath)
+int file_openWrite (const char *filepath)
 {
     return file_openRawNative (filepath, O_CREAT | O_TRUNC | O_WRONLY);
 }
 
-PD_LOCAL int file_openRead (const char *filepath)
+int file_openRead (const char *filepath)
 {
     if (!(path_isFileExist (filepath))) { return -1; }
     else if (!(path_isFileExistAsRegularFile (filepath))) { return -1; }
@@ -49,7 +49,7 @@ PD_LOCAL int file_openRead (const char *filepath)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int file_openReadWithDirectoryAndName (const char *directory,
+int file_openReadWithDirectoryAndName (const char *directory,
     const char *name, 
     const char *extension,
     t_fileproperties *p)
@@ -77,7 +77,7 @@ PD_LOCAL int file_openReadWithDirectoryAndName (const char *directory,
     return -1;
 }
 
-PD_LOCAL int file_openReadConsideringSearchPath (const char *directory, 
+int file_openReadConsideringSearchPath (const char *directory, 
     const char *name, 
     const char *extension,
     t_fileproperties *p)
@@ -122,7 +122,7 @@ PD_LOCAL int file_openReadConsideringSearchPath (const char *directory,
 
 #if 0
 
-PD_LOCAL t_error file_lock (int fd)
+t_error file_lock (int fd)
 {
     struct flock lock;
     

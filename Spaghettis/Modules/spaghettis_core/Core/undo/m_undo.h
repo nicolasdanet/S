@@ -91,23 +91,23 @@ typedef struct _undomanager {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undomanager  *undomanager_new            (t_glist *owner);
+t_undomanager  *undomanager_new            (t_glist *owner);
 
-PD_LOCAL void   undomanager_free                    (t_undomanager *x);
+void   undomanager_free                    (t_undomanager *x);
 
-PD_LOCAL int    undomanager_hasSeparatorAtLast      (t_undomanager *x);
-PD_LOCAL void   undomanager_appendSeparator         (t_undomanager *x);
-PD_LOCAL void   undomanager_append                  (t_undomanager *x, t_undoaction *a);
+int    undomanager_hasSeparatorAtLast      (t_undomanager *x);
+void   undomanager_appendSeparator         (t_undomanager *x);
+void   undomanager_append                  (t_undomanager *x, t_undoaction *a);
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-PD_LOCAL juce::String undomanager_getUndoLabel      (t_undomanager *x);
-PD_LOCAL juce::String undomanager_getRedoLabel      (t_undomanager *x);
+juce::String undomanager_getUndoLabel      (t_undomanager *x);
+juce::String undomanager_getRedoLabel      (t_undomanager *x);
 
 #endif
 
-PD_LOCAL void   undomanager_undo                    (t_undomanager *x);
-PD_LOCAL void   undomanager_redo                    (t_undomanager *x);
+void   undomanager_undo                    (t_undomanager *x);
+void   undomanager_redo                    (t_undomanager *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -124,15 +124,15 @@ typedef struct _undosnippet {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undosnippet  *undosnippet_new            (t_object *o);
+t_undosnippet  *undosnippet_new            (t_object *o);
 
-PD_LOCAL void           undosnippet_free            (t_undosnippet *x);
-PD_LOCAL void           undosnippet_load            (t_undosnippet *x);
-PD_LOCAL void           undosnippet_update          (t_undosnippet *x);
+void           undosnippet_free            (t_undosnippet *x);
+void           undosnippet_load            (t_undosnippet *x);
+void           undosnippet_update          (t_undosnippet *x);
 
-PD_LOCAL void           undosnippet_z               (t_undosnippet *x);
-PD_LOCAL void           undosnippet_front           (t_undosnippet *x);
-PD_LOCAL void           undosnippet_back            (t_undosnippet *x);
+void           undosnippet_z               (t_undosnippet *x);
+void           undosnippet_front           (t_undosnippet *x);
+void           undosnippet_back            (t_undosnippet *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

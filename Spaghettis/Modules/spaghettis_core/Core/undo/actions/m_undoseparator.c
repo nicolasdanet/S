@@ -26,7 +26,7 @@ typedef struct _undoseparator {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undoseparator_new (void)
+t_undoaction *undoseparator_new (void)
 {
     t_undoaction *x = (t_undoaction *)pd_new (undoseparator_class);
     
@@ -42,7 +42,7 @@ PD_LOCAL t_undoaction *undoseparator_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undoseparator_setup (void)
+void undoseparator_setup (void)
 {
     t_class *c = NULL;
     
@@ -56,7 +56,7 @@ PD_LOCAL void undoseparator_setup (void)
     undoseparator_class = c;
 }
 
-PD_LOCAL void undoseparator_destroy (void)
+void undoseparator_destroy (void)
 {
     class_free (undoseparator_class);
 }

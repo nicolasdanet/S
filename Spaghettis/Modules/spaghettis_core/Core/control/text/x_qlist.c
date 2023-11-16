@@ -187,7 +187,7 @@ static void qlist_next (t_qlist *x, t_float f)
     }
 }
 
-PD_LOCAL void qlist_rewind (t_qlist *x)
+void qlist_rewind (t_qlist *x)
 {
     if (x->ql_clock) { clock_unset (x->ql_clock); }
     
@@ -200,25 +200,25 @@ PD_LOCAL void qlist_rewind (t_qlist *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void qlist_clear (t_qlist *x)
+void qlist_clear (t_qlist *x)
 {
     qlist_rewind (x);
     buffer_clear (textbuffer_getBuffer (&x->ql_textbuffer));
 }
 
-PD_LOCAL void qlist_set (t_qlist *x, t_symbol *s, int argc, t_atom *argv)
+void qlist_set (t_qlist *x, t_symbol *s, int argc, t_atom *argv)
 {
     qlist_clear (x);
     buffer_deserialize (textbuffer_getBuffer (&x->ql_textbuffer), argc, argv);
 }
 
-PD_LOCAL void qlist_add (t_qlist *x, t_symbol *s, int argc, t_atom *argv)
+void qlist_add (t_qlist *x, t_symbol *s, int argc, t_atom *argv)
 {
     buffer_append (textbuffer_getBuffer (&x->ql_textbuffer), argc, argv);
     buffer_appendSemicolon (textbuffer_getBuffer (&x->ql_textbuffer));
 }
 
-PD_LOCAL void qlist_append (t_qlist *x, t_symbol *s, int argc, t_atom *argv)
+void qlist_append (t_qlist *x, t_symbol *s, int argc, t_atom *argv)
 {
     buffer_append (textbuffer_getBuffer (&x->ql_textbuffer), argc, argv);
 }
@@ -227,7 +227,7 @@ PD_LOCAL void qlist_append (t_qlist *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void qlist_read (t_qlist *x, t_symbol *s)
+void qlist_read (t_qlist *x, t_symbol *s)
 {
     if (s != &s_) {
     //
@@ -237,7 +237,7 @@ PD_LOCAL void qlist_read (t_qlist *x, t_symbol *s)
     }
 }
 
-PD_LOCAL void qlist_write (t_qlist *x, t_symbol *s)
+void qlist_write (t_qlist *x, t_symbol *s)
 {
     textbuffer_write (&x->ql_textbuffer, s);
 }
@@ -259,7 +259,7 @@ static void qlist_unit (t_qlist *x, t_symbol *unitName, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_buffer *qlist_functionData (t_object *z, int flags)
+t_buffer *qlist_functionData (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
     //
@@ -290,7 +290,7 @@ static void qlist_functionDismiss (t_object *z)
     qlist_dismiss ((t_qlist *)z);
 }
 
-PD_LOCAL void qlist_restore (t_qlist *x, t_symbol *s, int argc, t_atom *argv)
+void qlist_restore (t_qlist *x, t_symbol *s, int argc, t_atom *argv)
 {
     t_qlist *old = (t_qlist *)instance_pendingFetch (cast_object (x));
     
@@ -343,7 +343,7 @@ static void qlist_free (t_qlist *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void qlist_setup (void)
+void qlist_setup (void)
 {
     t_class *c = NULL;
     
@@ -376,7 +376,7 @@ PD_LOCAL void qlist_setup (void)
     qlist_class = c;
 }
 
-PD_LOCAL void qlist_destroy (void)
+void qlist_destroy (void)
 {
     class_free (qlist_class);
 }

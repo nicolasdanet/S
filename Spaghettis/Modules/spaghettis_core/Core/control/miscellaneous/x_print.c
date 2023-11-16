@@ -93,7 +93,7 @@ static void *print_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void print_setup (void)
+void print_setup (void)
 {
     t_class *c = NULL;
     
@@ -114,7 +114,7 @@ PD_LOCAL void print_setup (void)
     print_class = c;
 }
 
-PD_LOCAL void print_destroy (void)
+void print_destroy (void)
 {
     class_free (print_class);
 }

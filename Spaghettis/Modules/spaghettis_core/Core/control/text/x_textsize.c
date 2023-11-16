@@ -91,7 +91,7 @@ static void textsize_restore (t_textsize *x, t_symbol *s, int argc, t_atom *argv
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *textsize_new (t_symbol *s, int argc, t_atom *argv)
+void *textsize_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_textsize *x = (t_textsize *)pd_new (textsize_class);
     
@@ -119,7 +119,7 @@ PD_LOCAL void *textsize_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void textsize_setup (void)
+void textsize_setup (void)
 {
     t_class *c = NULL;
     
@@ -144,7 +144,7 @@ PD_LOCAL void textsize_setup (void)
     textsize_class = c;
 }
 
-PD_LOCAL void textsize_destroy (void)
+void textsize_destroy (void)
 {
     class_free (textsize_class);
 }

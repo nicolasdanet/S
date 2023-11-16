@@ -13,12 +13,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void items_init (t_items *items)
+void items_init (t_items *items)
 {
     int j; for (j = 0; j < ITEMS_ELEMENTS; j++) { items->i_items[j] = 0U; }
 }
 
-PD_LOCAL void items_setAtIndex (t_items *items, int i)
+void items_setAtIndex (t_items *items, int i)
 {
     if (i < ITEMS_SIZE) {
     //
@@ -30,7 +30,7 @@ PD_LOCAL void items_setAtIndex (t_items *items, int i)
     } else { PD_BUG; }
 }
 
-PD_LOCAL int items_isSetAtIndex (t_items *items, int i)
+int items_isSetAtIndex (t_items *items, int i)
 {
     if (i < ITEMS_SIZE) {
     //

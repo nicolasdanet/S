@@ -428,7 +428,7 @@ static t_soundfiler *soundfiler_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void soundfiler_setup (void)
+void soundfiler_setup (void)
 {
     t_class *c = NULL;
     
@@ -445,7 +445,7 @@ PD_LOCAL void soundfiler_setup (void)
     soundfiler_class = c;
 }
 
-PD_LOCAL void soundfiler_destroy (void)
+void soundfiler_destroy (void)
 {
     class_free (soundfiler_class);
 }

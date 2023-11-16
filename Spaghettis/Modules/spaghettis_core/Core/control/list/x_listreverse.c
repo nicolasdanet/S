@@ -59,7 +59,7 @@ static void listreverse_anything (t_listreverse *x, t_symbol *s, int argc, t_ato
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listreverse_new (t_symbol *s, int argc, t_atom *argv)
+void *listreverse_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listreverse *x = (t_listreverse *)pd_new (listreverse_class);
     
@@ -74,7 +74,7 @@ PD_LOCAL void *listreverse_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listreverse_setup (void)
+void listreverse_setup (void)
 {
     t_class *c = NULL;
     
@@ -94,7 +94,7 @@ PD_LOCAL void listreverse_setup (void)
     listreverse_class = c;
 }
 
-PD_LOCAL void listreverse_destroy (void)
+void listreverse_destroy (void)
 {
     class_free (listreverse_class);
 }

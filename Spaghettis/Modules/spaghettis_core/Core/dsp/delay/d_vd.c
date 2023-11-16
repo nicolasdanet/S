@@ -123,7 +123,7 @@ static void *vd_tilde_new (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void vd_tilde_setup (void)
+void vd_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -142,7 +142,7 @@ PD_LOCAL void vd_tilde_setup (void)
     vd_tilde_class = c;
 }
 
-PD_LOCAL void vd_tilde_destroy (void)
+void vd_tilde_destroy (void)
 {
     class_free (vd_tilde_class);
 }

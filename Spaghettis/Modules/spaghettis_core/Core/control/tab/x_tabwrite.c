@@ -96,7 +96,7 @@ static void *tabwrite_new (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void tabwrite_setup (void)
+void tabwrite_setup (void)
 {
     t_class *c = NULL;
     
@@ -119,7 +119,7 @@ PD_LOCAL void tabwrite_setup (void)
     tabwrite_class = c;
 }
 
-PD_LOCAL void tabwrite_destroy (void)
+void tabwrite_destroy (void)
 {
     class_free (tabwrite_class);
 }

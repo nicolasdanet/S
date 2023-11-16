@@ -57,7 +57,7 @@ static int expr_getNumberOfVariables (char *expression)
     return n;
 }
 
-PD_LOCAL int expr_initializeExpression (t_expr *x, int argc, t_atom *argv)
+int expr_initializeExpression (t_expr *x, int argc, t_atom *argv)
 {
     char *z  = (char *)"0";
     char *t  = argc ? atom_atomsToString (argc, argv) : z;
@@ -163,7 +163,7 @@ static void expr_free (t_expr *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void expr_setup (void)
+void expr_setup (void)
 {
     t_class *c = NULL;
     
@@ -186,7 +186,7 @@ PD_LOCAL void expr_setup (void)
     expr_class = c;
 }
 
-PD_LOCAL void expr_destroy (void)
+void expr_destroy (void)
 {
     class_free (expr_class);
 }

@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *memory_get (size_t n)
+void *memory_get (size_t n)
 {
     void *r = calloc (n < 1 ? 1 : n, 1);
 
@@ -23,7 +23,7 @@ PD_LOCAL void *memory_get (size_t n)
     return r;
 }
 
-PD_LOCAL void *memory_getResize (void *ptr, size_t oldSize, size_t newSize)
+void *memory_getResize (void *ptr, size_t oldSize, size_t newSize)
 {
     void *r = NULL;
     
@@ -40,7 +40,7 @@ PD_LOCAL void *memory_getResize (void *ptr, size_t oldSize, size_t newSize)
     return r;
 }
 
-PD_LOCAL void memory_free (void *ptr)
+void memory_free (void *ptr)
 {
     free (ptr);
 }

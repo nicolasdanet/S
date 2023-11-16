@@ -64,7 +64,7 @@ static void arraymax_float (t_arraymax *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *arraymax_new (t_symbol *s, int argc, t_atom *argv)
+void *arraymax_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_arraymax *x = (t_arraymax *)arrayrange_new (arraymax_class, argc, argv, 0, 1);
     
@@ -84,7 +84,7 @@ PD_LOCAL void *arraymax_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void arraymax_setup (void)
+void arraymax_setup (void)
 {
     t_class *c = NULL;
     
@@ -109,7 +109,7 @@ PD_LOCAL void arraymax_setup (void)
     arraymax_class = c;
 }
 
-PD_LOCAL void arraymax_destroy (void)
+void arraymax_destroy (void)
 {
     class_free (arraymax_class);
 }

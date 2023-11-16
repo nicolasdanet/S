@@ -77,17 +77,17 @@ static int monitor_proceed (int microseconds)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int monitor_blocking (double milliseconds)
+int monitor_blocking (double milliseconds)
 {
     return monitor_proceed (PD_MILLISECONDS_TO_MICROSECONDS (milliseconds));
 }
 
-PD_LOCAL int monitor_nonBlocking (void)
+int monitor_nonBlocking (void)
 {
     return monitor_proceed (0);
 }
 
-PD_LOCAL void monitor_addPoller (int fd, t_pollfn fn, void *ptr)
+void monitor_addPoller (int fd, t_pollfn fn, void *ptr)
 {
     int n = monitor_pollersSize;
     int oldSize = (int)(n * sizeof (t_fdpoll));
@@ -109,7 +109,7 @@ PD_LOCAL void monitor_addPoller (int fd, t_pollfn fn, void *ptr)
     if (fd > monitor_maximumFileDescriptor) { monitor_maximumFileDescriptor = fd; }
 }
 
-PD_LOCAL void monitor_removePoller (int fd)
+void monitor_removePoller (int fd)
 {
     int n = monitor_pollersSize;
     int oldSize = (int)(n * sizeof (t_fdpoll));
@@ -137,12 +137,12 @@ PD_LOCAL void monitor_removePoller (int fd)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void monitor_initialize (void)
+void monitor_initialize (void)
 {
     monitor_pollers = (t_fdpoll *)PD_MEMORY_GET (0);
 }
 
-PD_LOCAL void monitor_release (void)
+void monitor_release (void)
 {
     PD_MEMORY_FREE (monitor_pollers);
 }

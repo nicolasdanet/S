@@ -19,14 +19,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void   undoaction_releaseAllFrom       (t_undoaction *, t_undomanager *);
-PD_LOCAL void   undomanager_collapse            (t_undomanager *);
+void   undoaction_releaseAllFrom       (t_undoaction *, t_undomanager *);
+void   undomanager_collapse            (t_undomanager *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL int    undomanager_undoNeedToSuspend   (t_undomanager *);
-PD_LOCAL int    undomanager_redoNeedToSuspend   (t_undomanager *);
+int    undomanager_undoNeedToSuspend   (t_undomanager *);
+int    undomanager_redoNeedToSuspend   (t_undomanager *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ static void undomanager_task (t_undomanager *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undomanager_getUndoAction (t_undomanager *x)
+t_undoaction *undomanager_getUndoAction (t_undomanager *x)
 {
     t_undoaction *a = x->um_tail;
     
@@ -56,7 +56,7 @@ PD_LOCAL t_undoaction *undomanager_getUndoAction (t_undomanager *x)
     return NULL;
 }
 
-PD_LOCAL t_undoaction *undomanager_getRedoAction (t_undomanager *x)
+t_undoaction *undomanager_getRedoAction (t_undomanager *x)
 {
     t_undoaction *a = x->um_tail;
     
@@ -85,7 +85,7 @@ static juce::String undomanager_getLabel (t_undoaction *a)
     return makeString (symbol_getName (s));
 }
 
-PD_LOCAL juce::String undomanager_getUndoLabel (t_undomanager *x)
+juce::String undomanager_getUndoLabel (t_undomanager *x)
 {
     t_undoaction *a = undomanager_getUndoAction (x);
     
@@ -94,7 +94,7 @@ PD_LOCAL juce::String undomanager_getUndoLabel (t_undomanager *x)
     return juce::String();
 }
 
-PD_LOCAL juce::String undomanager_getRedoLabel (t_undomanager *x)
+juce::String undomanager_getRedoLabel (t_undomanager *x)
 {
     t_undoaction *a = undomanager_getRedoAction (x);
     
@@ -124,7 +124,7 @@ static void undomanager_notify (t_undomanager *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int undomanager_hasSeparatorAtLast (t_undomanager *x)
+int undomanager_hasSeparatorAtLast (t_undomanager *x)
 {
     return (x->um_tail && (undoaction_getType (x->um_tail) == UNDO_SEPARATOR));
 }
@@ -169,7 +169,7 @@ static void undomanager_appendSeparatorLater (t_undomanager *x)
     clock_delay (x->um_clock, UNDOMANAGER_DELAY);
 }
 
-PD_LOCAL void undomanager_appendSeparator (t_undomanager *x)
+void undomanager_appendSeparator (t_undomanager *x)
 {
     if (!undomanager_hasSeparatorAtLast (x)) {
     //
@@ -182,7 +182,7 @@ PD_LOCAL void undomanager_appendSeparator (t_undomanager *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void undomanager_append (t_undomanager *x, t_undoaction *a)
+void undomanager_append (t_undomanager *x, t_undoaction *a)
 {
     undomanager_appendAction (x, a); undomanager_appendSeparatorLater (x);
 }
@@ -193,7 +193,7 @@ PD_LOCAL void undomanager_append (t_undomanager *x, t_undoaction *a)
 
 /* Notice that DSP is suspended globally only to avoid unnecessary consecutive rebuilds. */
 
-PD_LOCAL void undomanager_undo (t_undomanager *x)
+void undomanager_undo (t_undomanager *x)
 {
     clock_unset (x->um_clock);
     
@@ -235,7 +235,7 @@ PD_LOCAL void undomanager_undo (t_undomanager *x)
     }
 }
 
-PD_LOCAL void undomanager_redo (t_undomanager *x)
+void undomanager_redo (t_undomanager *x)
 {
     clock_unset (x->um_clock);
     
@@ -281,7 +281,7 @@ PD_LOCAL void undomanager_redo (t_undomanager *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undomanager *undomanager_new (t_glist *owner)
+t_undomanager *undomanager_new (t_glist *owner)
 {
     t_undomanager *x = (t_undomanager *)PD_MEMORY_GET (sizeof (t_undomanager));
     
@@ -293,7 +293,7 @@ PD_LOCAL t_undomanager *undomanager_new (t_glist *owner)
     return x;
 }
 
-PD_LOCAL void undomanager_free (t_undomanager *x)
+void undomanager_free (t_undomanager *x)
 {
     if (x) {
     //

@@ -185,7 +185,7 @@ static void loader_externalClose (t_handle handle, t_symbol *name)
 
 /* An anything object would by-pass all the load mechanism for abstractions and exterals. */
 
-PD_LOCAL int loader_load (t_glist *glist, t_symbol *name)
+int loader_load (t_glist *glist, t_symbol *name)
 {
     if (name == &s_anything) { return 0; } else { return loader_externalOpen (glist, name); }
 }
@@ -194,7 +194,7 @@ PD_LOCAL int loader_load (t_glist *glist, t_symbol *name)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void loader_release (void)
+void loader_release (void)
 {
     t_loaded *l = loader_alreadyLoaded;
 

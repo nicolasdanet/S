@@ -75,7 +75,7 @@ static void sysexin_free (t_sysexin *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void sysexin_setup (void)
+void sysexin_setup (void)
 {
     t_class *c = NULL;
     
@@ -92,7 +92,7 @@ PD_LOCAL void sysexin_setup (void)
     sysexin_class = c;
 }
 
-PD_LOCAL void sysexin_destroy (void)
+void sysexin_destroy (void)
 {
     class_free (sysexin_class);
 }

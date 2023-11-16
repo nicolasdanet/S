@@ -99,7 +99,7 @@ static void listrotate_restore (t_listrotate *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *listrotate_new (t_symbol *s, int argc, t_atom *argv)
+void *listrotate_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_listrotate *x = (t_listrotate *)pd_new (listrotate_class);
     
@@ -118,7 +118,7 @@ PD_LOCAL void *listrotate_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void listrotate_setup (void)
+void listrotate_setup (void)
 {
     t_class *c = NULL;
     
@@ -143,7 +143,7 @@ PD_LOCAL void listrotate_setup (void)
     listrotate_class = c;
 }
 
-PD_LOCAL void listrotate_destroy (void)
+void listrotate_destroy (void)
 {
     class_free (listrotate_class);
 }

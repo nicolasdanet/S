@@ -236,7 +236,7 @@ static void biquad_tilde_free (t_biquad_tilde *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void biquad_tilde_setup (void)
+void biquad_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -256,7 +256,7 @@ PD_LOCAL void biquad_tilde_setup (void)
     biquad_tilde_class = c;
 }
 
-PD_LOCAL void biquad_tilde_destroy (void)
+void biquad_tilde_destroy (void)
 {
     class_free (biquad_tilde_class);
 }

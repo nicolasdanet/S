@@ -14,9 +14,9 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_error    utils_version               (char *dest, size_t size);
+t_error    utils_version               (char *dest, size_t size);
 
-PD_LOCAL void       utils_anythingToList        (t_pd *x,
+void       utils_anythingToList        (t_pd *x,
                                                     t_listmethod fn,
                                                     t_symbol *s,
                                                     int argc,
@@ -26,21 +26,21 @@ PD_LOCAL void       utils_anythingToList        (t_pd *x,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_id       utils_unique                (void);
-PD_LOCAL t_error    utils_uniqueWithAtoms       (int argc, t_atom *argv, t_id *u);
+t_id       utils_unique                (void);
+t_error    utils_uniqueWithAtoms       (int argc, t_atom *argv, t_id *u);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL void       utils_appendUnique          (t_buffer *b, t_id u);
+void       utils_appendUnique          (t_buffer *b, t_id u);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int        utils_uInt64IsElement       (t_symbol *s);
-PD_LOCAL t_error    utils_uInt64Serialize       (int argc, t_atom *argv, uint64_t *n);
-PD_LOCAL t_error    utils_uInt64Deserialize     (int argc, t_atom *argv, uint64_t *n);
+int        utils_uInt64IsElement       (t_symbol *s);
+t_error    utils_uInt64Serialize       (int argc, t_atom *argv, uint64_t *n);
+t_error    utils_uInt64Deserialize     (int argc, t_atom *argv, uint64_t *n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -64,7 +64,7 @@ static void arraymin_float (t_arraymin *x, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void *arraymin_new (t_symbol *s, int argc, t_atom *argv)
+void *arraymin_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_arraymin *x = (t_arraymin *)arrayrange_new (arraymin_class, argc, argv, 0, 1);
 
@@ -84,7 +84,7 @@ PD_LOCAL void *arraymin_new (t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void arraymin_setup (void)
+void arraymin_setup (void)
 {
     t_class *c = NULL;
     
@@ -109,7 +109,7 @@ PD_LOCAL void arraymin_setup (void)
     arraymin_class = c;
 }
 
-PD_LOCAL void arraymin_destroy (void)
+void arraymin_destroy (void)
 {
     class_free (arraymin_class);
 }

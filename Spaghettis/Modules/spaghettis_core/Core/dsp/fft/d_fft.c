@@ -112,7 +112,7 @@ static void *fft_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void fft_tilde_setup (void)
+void fft_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -130,7 +130,7 @@ PD_LOCAL void fft_tilde_setup (void)
     fft_tilde_class = c;
 }
 
-PD_LOCAL void fft_tilde_destroy (void)
+void fft_tilde_destroy (void)
 {
     class_free (fft_tilde_class);
 }

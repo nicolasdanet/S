@@ -15,7 +15,7 @@
 
 /* The ending semicolon is included in the count. */
 
-PD_LOCAL int iterator_next (t_iterator *x, t_atom **a)
+int iterator_next (t_iterator *x, t_atom **a)
 {
     if (x->iter_argc > 0) {
     //
@@ -39,7 +39,7 @@ PD_LOCAL int iterator_next (t_iterator *x, t_atom **a)
     return 0;
 }
 
-PD_LOCAL int iterator_get (t_iterator *x)
+int iterator_get (t_iterator *x)
 {
     return x->iter_index;
 }
@@ -48,7 +48,7 @@ PD_LOCAL int iterator_get (t_iterator *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_iterator *iterator_new (int argc, t_atom *argv)
+t_iterator *iterator_new (int argc, t_atom *argv)
 {
     t_iterator *x = (t_iterator *)PD_MEMORY_GET (sizeof (t_iterator));
     
@@ -59,7 +59,7 @@ PD_LOCAL t_iterator *iterator_new (int argc, t_atom *argv)
     return x;
 }
 
-PD_LOCAL void iterator_free (t_iterator *x)
+void iterator_free (t_iterator *x)
 {
     PD_MEMORY_FREE (x);
 }

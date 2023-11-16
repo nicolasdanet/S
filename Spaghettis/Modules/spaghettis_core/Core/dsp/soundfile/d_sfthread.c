@@ -153,32 +153,32 @@ static void *sfthread_writerThread (void *z)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_ringbuffer *sfthread_getBuffer (t_sfthread *x)
+t_ringbuffer *sfthread_getBuffer (t_sfthread *x)
 {
     return x->sft_buffer;
 }
 
-PD_LOCAL int sfthread_getNumberOfChannels (t_sfthread *x)
+int sfthread_getNumberOfChannels (t_sfthread *x)
 {
     return x->sft_properties.ap_numberOfChannels;
 }
 
-PD_LOCAL int sfthread_getBytesPerSample (t_sfthread *x)
+int sfthread_getBytesPerSample (t_sfthread *x)
 {
     return x->sft_properties.ap_bytesPerSample;
 }
 
-PD_LOCAL int sfthread_isBigEndian (t_sfthread *x)
+int sfthread_isBigEndian (t_sfthread *x)
 {
     return x->sft_properties.ap_isBigEndian;
 }
 
-PD_LOCAL int sfthread_isEnd (t_sfthread *x)
+int sfthread_isEnd (t_sfthread *x)
 {
     return (PD_ATOMIC_INT32_READ (&x->sft_flag) != 0);
 }
 
-PD_LOCAL void sfthread_setCorrupted (t_sfthread *x)
+void sfthread_setCorrupted (t_sfthread *x)
 {
     if (!sfthread_isEnd (x)) { PD_ATOMIC_INT32_WRITE (SFTHREAD_CORRUPTED, &x->sft_corrupted); }
 }
@@ -187,7 +187,7 @@ PD_LOCAL void sfthread_setCorrupted (t_sfthread *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_sfthread *sfthread_new (t_object *owner, int type, int bufferSize, int fd, t_audioproperties *p)
+t_sfthread *sfthread_new (t_object *owner, int type, int bufferSize, int fd, t_audioproperties *p)
 {
     t_sfthread *x = (t_sfthread *)pd_new (sfthread_class);
     
@@ -255,7 +255,7 @@ static void sfthread_free (t_sfthread *x)
     ringbuffer_free (x->sft_buffer);
 }
 
-PD_LOCAL void sfthread_release (t_sfthread *x)
+void sfthread_release (t_sfthread *x)
 {
     if (x) {
     //
@@ -275,7 +275,7 @@ static void sfthread_autorelease (t_sfthread *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void sfthread_setup (void)
+void sfthread_setup (void)
 {
     t_class *c = NULL;
     
@@ -291,7 +291,7 @@ PD_LOCAL void sfthread_setup (void)
     sfthread_class = c;
 }
 
-PD_LOCAL void sfthread_destroy (void)
+void sfthread_destroy (void)
 {
     class_free (sfthread_class);
 }

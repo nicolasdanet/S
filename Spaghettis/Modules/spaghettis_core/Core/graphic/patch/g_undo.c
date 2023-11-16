@@ -13,15 +13,15 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PD_LOCAL int undomanager_undoNeedToTriggerParent (t_undomanager *, t_items *, t_items *);
-PD_LOCAL int undomanager_redoNeedToTriggerParent (t_undomanager *, t_items *, t_items *);
-PD_LOCAL int undomanager_triggerParentIsPossible (t_glist *, t_items *, t_items *);
+int undomanager_undoNeedToTriggerParent (t_undomanager *, t_items *, t_items *);
+int undomanager_redoNeedToTriggerParent (t_undomanager *, t_items *, t_items *);
+int undomanager_triggerParentIsPossible (t_glist *, t_items *, t_items *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int glist_undoIsOk (t_glist *glist)
+int glist_undoIsOk (t_glist *glist)
 {
     if (glist_isAbstractionOrInside (glist)) { return 0; }
     
@@ -32,7 +32,7 @@ PD_LOCAL int glist_undoIsOk (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int glist_undoHasSeparatorAtLast (t_glist *glist)
+int glist_undoHasSeparatorAtLast (t_glist *glist)
 {
     return (undomanager_hasSeparatorAtLast (glist_getUndoManager (glist)));
 }
@@ -41,12 +41,12 @@ PD_LOCAL int glist_undoHasSeparatorAtLast (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_undoAppendSeparator (t_glist *glist)
+void glist_undoAppendSeparator (t_glist *glist)
 {
     undomanager_appendSeparator (glist_getUndoManager (glist));
 }
 
-PD_LOCAL void glist_undoAppend (t_glist *glist, t_undoaction *a)
+void glist_undoAppend (t_glist *glist, t_undoaction *a)
 {
     undomanager_append (glist_getUndoManager (glist), a);
 }
@@ -57,7 +57,7 @@ PD_LOCAL void glist_undoAppend (t_glist *glist, t_undoaction *a)
 
 /* Raw function to use with extra care. */
 
-PD_LOCAL t_undomanager *glist_undoReplaceManager (t_glist *glist, t_undomanager *undo)
+t_undomanager *glist_undoReplaceManager (t_glist *glist, t_undomanager *undo)
 {
     t_undomanager *t = glist->gl_undomanager; glist->gl_undomanager = undo; return t;
 }
@@ -66,7 +66,7 @@ PD_LOCAL t_undomanager *glist_undoReplaceManager (t_glist *glist, t_undomanager 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void glist_undo (t_glist *glist)
+void glist_undo (t_glist *glist)
 {
     PD_ASSERT (glist);
     
@@ -82,7 +82,7 @@ PD_LOCAL void glist_undo (t_glist *glist)
     }
 }
 
-PD_LOCAL void glist_redo (t_glist *glist)
+void glist_redo (t_glist *glist)
 {
     PD_ASSERT (glist);
     

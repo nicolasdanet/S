@@ -34,7 +34,7 @@ typedef struct _cost_tilde {
 
 #if 0
 
-PD_LOCAL void cos_tilde_initialize (void)
+void cos_tilde_initialize (void)
 {
     if (!cos_tilde_table) {
     //
@@ -60,7 +60,7 @@ PD_LOCAL void cos_tilde_initialize (void)
 
 /* < https://github.com/pure-data/pure-data/pull/106 > */
 
-PD_LOCAL void cos_tilde_initialize (void)
+void cos_tilde_initialize (void)
 {
     if (!cos_tilde_table) {
     //
@@ -80,7 +80,7 @@ PD_LOCAL void cos_tilde_initialize (void)
     }
 }
 
-PD_LOCAL void cos_tilde_release (void)
+void cos_tilde_release (void)
 {
     if (cos_tilde_table) { PD_MEMORY_FREE (cos_tilde_table); }
 }
@@ -152,7 +152,7 @@ static void *cos_tilde_new (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL void cos_tilde_setup (void)
+void cos_tilde_setup (void)
 {
     t_class *c = NULL;
     
@@ -170,7 +170,7 @@ PD_LOCAL void cos_tilde_setup (void)
     cos_tilde_class = c;
 }
 
-PD_LOCAL void cos_tilde_destroy (void)
+void cos_tilde_destroy (void)
 {
     class_free (cos_tilde_class);
 }

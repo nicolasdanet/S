@@ -18,15 +18,15 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL t_undoaction *undomanager_getUndoAction (t_undomanager *);
-PD_LOCAL t_undoaction *undomanager_getRedoAction (t_undomanager *);
+t_undoaction *undomanager_getUndoAction (t_undomanager *);
+t_undoaction *undomanager_getRedoAction (t_undomanager *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PD_LOCAL int undodisconnect_match           (t_undoaction *, t_id, t_items *, t_items *);
-PD_LOCAL int undoaction_getInletsAndOutlets (t_undoaction *, t_items *, t_items *);
+int undodisconnect_match           (t_undoaction *, t_id, t_items *, t_items *);
+int undoaction_getInletsAndOutlets (t_undoaction *, t_items *, t_items *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ static int undomanager_undoContainsDelete (t_undomanager *x, t_items *i, t_items
     return k;
 }
 
-PD_LOCAL int undomanager_undoNeedToTriggerParent (t_undomanager *x, t_items *i, t_items *o)
+int undomanager_undoNeedToTriggerParent (t_undomanager *x, t_items *i, t_items *o)
 {
     t_undoaction *a = undomanager_getUndoAction (x);
     
@@ -87,7 +87,7 @@ static int undomanager_redoContainsCreate (t_undomanager *x, t_items *i, t_items
     return k;
 }
 
-PD_LOCAL int undomanager_redoNeedToTriggerParent (t_undomanager *x, t_items *i, t_items *o)
+int undomanager_redoNeedToTriggerParent (t_undomanager *x, t_items *i, t_items *o)
 {
     t_undoaction *a = undomanager_getRedoAction (x);
     
@@ -126,7 +126,7 @@ static int undomanager_undoContainsDisconnect (t_undomanager *x, t_glist *glist,
     return 1;
 }
 
-PD_LOCAL int undomanager_triggerParentIsPossible (t_glist *glist, t_items *i, t_items *o)
+int undomanager_triggerParentIsPossible (t_glist *glist, t_items *i, t_items *o)
 {
     if (glist_hasParent (glist)) {
     //
