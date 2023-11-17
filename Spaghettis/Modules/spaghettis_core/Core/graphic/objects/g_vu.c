@@ -31,8 +31,8 @@ typedef struct _vu {
     t_object    x_obj;          /* MUST be the first. */
     int         x_width;
     int         x_height;
-    t_float     x_peakValue;
-    t_float     x_decibelValue;
+    t_float     x_peak;
+    t_float     x_decibel;
     t_outlet    *x_outletLeft;
     t_outlet    *x_outletRight;
     } t_vu;
@@ -43,20 +43,20 @@ typedef struct _vu {
 
 static void vu_bang (t_vu *x)
 {
-    outlet_float (x->x_outletRight, x->x_peakValue);
-    outlet_float (x->x_outletLeft, x->x_decibelValue);
+    outlet_float (x->x_outletRight, x->x_peak);
+    outlet_float (x->x_outletLeft,  x->x_decibel);
 }
 
 static void vu_floatPeak (t_vu *x, t_float peak)
 {
-    x->x_peakValue = peak; outlet_float (x->x_outletRight, peak);
+    x->x_peak = peak; outlet_float (x->x_outletRight, peak);
 }
 
 static void vu_float (t_vu *x, t_float decibel)
 {
-    x->x_decibelValue = decibel;
+    x->x_decibel = decibel;
     
-    if (x->x_decibelValue > x->x_peakValue) { vu_floatPeak (x, decibel); }
+    if (x->x_decibel > x->x_peak) { vu_floatPeak (x, decibel); }
     
     outlet_float (x->x_outletLeft, decibel);
 }
