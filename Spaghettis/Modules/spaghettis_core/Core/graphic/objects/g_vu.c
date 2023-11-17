@@ -111,6 +111,31 @@ static void vu_restore (t_vu *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+static constexpr int vu_flags()
+{
+    return GUI_NONE
+            | GUI_WIDTH
+            | GUI_HEIGHT;
+}
+
+static void vu_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+{
+    gui_getParameters (o, group, t, dial_flags());
+}
+
+static void vu_functionSetParameters (t_object *o, const core::Group& group)
+{
+    gui_setParameters (o, group, dial_flags());
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void *vu_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_vu *x = (t_vu *)pd_new (vu_class);
@@ -152,6 +177,12 @@ void vu_setup (void)
     class_addMethod (c, (t_method)vu_size,      sym_size,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)vu_restore,   sym__restore,   A_NULL);
 
+    #if defined ( PD_BUILDING_APPLICATION )
+    
+    class_setParametersFunctions (c, vu_functionGetParameters, vu_functionSetParameters);
+    
+    #endif
+    
     class_setSaveFunction (c, vu_functionSave);
     class_setDataFunction (c, object_functionData);
     class_requirePending (c);
