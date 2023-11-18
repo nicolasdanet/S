@@ -24,23 +24,6 @@ static void comment_anything (t_object *x, t_symbol *s, int argc, t_atom *argv)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-#if defined ( PD_BUILDING_APPLICATION )
-
-static void comment_set (t_object *o, const juce::String& s)
-{
-    if (object_setBufferWithString (o, s)) {
-    //
-    outputs_objectUpdated (o, Tags::attributes (Tag::Content));
-    outputs_objectUpdated (o, Tags::parameters (Tag::Text));
-    //
-    }
-}
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
@@ -74,22 +57,12 @@ void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 
 static void comment_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
 {
-    static DelegateCache delegate;
-    
-    if (t.contains (Tag::Text)) {
-        group.addParameter (Tag::Text,
-            NEEDS_TRANS ("Text"),
-            NEEDS_TRANS ("Text of comment"),
-            object_getBufferAsString (o),
-            delegate);
-    }
+    gui_getParameters (o, group, t, GUI_TEXT);
 }
 
 static void comment_functionSetParameters (t_object *o, const core::Group& group)
 {
-    jassert (group.hasParameter (Tag::Text));
-    
-    comment_set (o, group.getParameter (Tag::Text).getValueTyped<juce::String>());
+    gui_setParameters (o, group, GUI_TEXT);
 }
 
 #endif

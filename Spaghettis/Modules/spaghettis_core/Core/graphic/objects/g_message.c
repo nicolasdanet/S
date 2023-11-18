@@ -301,30 +301,12 @@ static void message_free (t_message *x)
 
 static void message_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
 {
-    static DelegateCache delegate;
-    
-    if (t.contains (Tag::Text)) {
-        group.addParameter (Tag::Text,
-            NEEDS_TRANS ("Text"),
-            NEEDS_TRANS ("Text of message"),
-            object_getBufferAsString (o),
-            delegate);
-    }
+    gui_getParameters (o, group, t, GUI_TEXT);
 }
 
 static void message_functionSetParameters (t_object *o, const core::Group& group)
 {
-    t_message *x = (t_message *)o;
-    
-    jassert (group.hasParameter (Tag::Text));
-    
-    if (object_setBufferWithString (o, group.getParameter (Tag::Text).getValueTyped<juce::String>())) {
-    //
-    message_dirty (x, 1);
-    
-    glist_setDirty (object_getOwner (o), 1);
-    //
-    }
+    if (gui_setParameters (o, group, GUI_TEXT)) { message_dirty ((t_message *)o, 0); }
 }
 
 #endif

@@ -215,8 +215,9 @@ enum {
     GUI_TIME                = (1 << 13),
     GUI_DIGITS              = (1 << 14),
     GUI_BUTTONS             = (1 << 15),
-    GUI_WIDTH               = (1 << 16),
-    GUI_HEIGHT              = (1 << 17)
+    GUI_TEXT                = (1 << 16),
+    GUI_WIDTH               = (1 << 17),
+    GUI_HEIGHT              = (1 << 18)
     };
 
 #endif

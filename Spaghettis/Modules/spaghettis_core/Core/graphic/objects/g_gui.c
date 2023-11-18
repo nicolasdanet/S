@@ -422,6 +422,14 @@ void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flag
             delegate).setRange (juce::Range<int> (GUI_BUTTONS_MINIMUM, GUI_BUTTONS_MAXIMUM));
     }
     
+    if ((flags & GUI_TEXT) && t.contains (Tag::Text)) {
+        group.addParameter (Tag::Text,
+            NEEDS_TRANS ("Text"),
+            NEEDS_TRANS ("Text of object"),
+            object_getBufferAsString (o),
+            delegate);
+    }
+    
     if ((flags & GUI_WIDTH) && t.contains (Tag::Width)) {
         group.addParameter (Tag::Width,
             NEEDS_TRANS ("Width"),
@@ -536,6 +544,15 @@ bool gui_setParameters (t_object *o, const core::Group& group, int flags)
         jassert (group.hasParameter (Tag::State));
         const bool f = group.getParameter (Tag::State).getValueTyped<bool>();
         if (gui_updateState (x, f, 1)) { trigger |= true; }
+    }
+    
+    if (flags & GUI_TEXT) {
+        jassert (group.hasParameter (Tag::Text));
+        if (object_setBufferWithString (o, group.getParameter (Tag::Text).getValueTyped<juce::String>())) {
+            outputs_objectUpdated (o, Tags::attributes (Tag::Content));
+            outputs_objectUpdated (o, Tags::parameters (Tag::Text));
+            trigger |= true;
+        }
     }
     
     return trigger;
