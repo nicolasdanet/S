@@ -107,6 +107,25 @@ void gui_updateNonZero (t_gui *x, t_float f, int notify)
     }
 }
 
+int gui_updatePeak (t_gui *x, t_float f, int notify)
+{
+    if (x->x_peak != f) {
+    //
+    x->x_peak = f;
+    
+    if (notify) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Peak));
+        #endif
+    }
+    
+    return 1;
+    //
+    }
+    
+    return 0;
+}
+
 void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
 {
     if (x->x_isLogarithmic != isLogarithmic) {
@@ -358,6 +377,14 @@ void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flag
             delegate);
     }
     
+    if ((flags & GUI_PEAK) && t.contains (Tag::Peak)) {
+        group.addParameter (Tag::Peak,
+            NEEDS_TRANS ("Peak"),
+            NEEDS_TRANS ("Peak value"),
+            gui_getPeak (x),
+            delegate);
+    }
+    
     if ((flags & GUI_LOGARITHMIC) && t.contains (Tag::Logarithmic)) {
         group.addParameter (Tag::Logarithmic,
             NEEDS_TRANS ("Logarithmic"),
@@ -538,6 +565,12 @@ bool gui_setParameters (t_object *o, const core::Group& group, int flags)
         jassert (group.hasParameter (Tag::Value));
         const t_float f = group.getParameter (Tag::Value).getValueTyped<t_float>();
         if (gui_updateValue (x, f, 1)) { trigger |= true; }
+    }
+    
+    if (flags & GUI_PEAK) {
+        jassert (group.hasParameter (Tag::Peak));
+        const t_float f = group.getParameter (Tag::Peak).getValueTyped<t_float>();
+        if (gui_updatePeak (x, f, 1)) { trigger |= true; }
     }
     
     if (flags & GUI_STATE) {

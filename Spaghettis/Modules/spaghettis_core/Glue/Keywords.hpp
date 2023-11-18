@@ -98,6 +98,7 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (PatchBackground);
     DECLARE_STRING (PatchText);
     DECLARE_STRING (Path);
+    DECLARE_STRING (Peak);
     DECLARE_STRING (PinAnything);
     DECLARE_STRING (PinBang);
     DECLARE_STRING (PinFloat);
