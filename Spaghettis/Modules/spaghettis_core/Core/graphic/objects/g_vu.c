@@ -13,52 +13,49 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#define VU_WIDTH_DEFAULT        15
-#define VU_WIDTH_MINIMUM        8
-#define VU_HEIGHT_DEFAULT       120
-#define VU_HEIGHT_MINIMUM       40
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static t_class *vu_class;       /* Shared. */
+static t_class *vu_class;               /* Shared. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 typedef struct _vu {
-    t_object    x_obj;          /* MUST be the first. */
-    int         x_width;
-    int         x_height;
-    t_float     x_peak;
-    t_float     x_decibel;
+    t_gui       x_obj;                  /* MUST be the first. */
     t_outlet    *x_outletLeft;
     t_outlet    *x_outletRight;
     } t_vu;
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void vu_outPeak (t_vu *x)
+{
+    outlet_float (x->x_outletRight, gui_getPeak (cast_gui (x)));
+}
+
+static void vu_outValue (t_vu *x)
+{
+    outlet_float (x->x_outletLeft,  gui_getValue (cast_gui (x)));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 static void vu_bang (t_vu *x)
 {
-    outlet_float (x->x_outletRight, x->x_peak);
-    outlet_float (x->x_outletLeft,  x->x_decibel);
+    vu_outPeak (x);
+    vu_outValue (x);
 }
 
-static void vu_floatPeak (t_vu *x, t_float peak)
+static void vu_peak (t_vu *x, t_float f)
 {
-    x->x_peak = peak; outlet_float (x->x_outletRight, peak);
+    if (gui_updatePeak (cast_gui (x), f, 1))  { vu_outPeak (x); }
 }
 
-static void vu_float (t_vu *x, t_float decibel)
+static void vu_float (t_vu *x, t_float f)
 {
-    x->x_decibel = decibel;
-    
-    if (x->x_decibel > x->x_peak) { vu_floatPeak (x, decibel); }
-    
-    outlet_float (x->x_outletLeft, decibel);
+    if (gui_updateValue (cast_gui (x), f, 1)) { vu_outValue (x); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -67,15 +64,10 @@ static void vu_float (t_vu *x, t_float decibel)
 
 static void vu_size (t_vu *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) {
-    //
-    int n = atom_getFloatAtIndex (0, argc, argv); x->x_width = PD_MAX (n, VU_WIDTH_MINIMUM);
-    //
-    }
-    
     if (argc > 1) {
     //
-    int n = atom_getFloatAtIndex (1, argc, argv); x->x_height = PD_MAX (n, VU_HEIGHT_MINIMUM);
+    gui_updateWidth (cast_gui (x),  (int)atom_getFloatAtIndex (0, argc, argv), 1);
+    gui_updateHeight (cast_gui (x), (int)atom_getFloatAtIndex (1, argc, argv), 1);
     //
     }
 }
@@ -93,8 +85,8 @@ static void vu_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  object_getX (cast_object (x)));
     buffer_appendFloat (b,  object_getY (cast_object (x)));
     buffer_appendSymbol (b, sym_vu);
-    buffer_appendFloat (b,  x->x_width);
-    buffer_appendFloat (b,  x->x_height);
+    buffer_appendFloat (b,  gui_getWidth (cast_gui (x)));
+    buffer_appendFloat (b,  gui_getHeight (cast_gui (x)));
     buffer_appendSemicolon (b);
     
     object_saveIdentifiers (z, b, flags);
@@ -116,18 +108,20 @@ static void vu_restore (t_vu *x)
 static constexpr int vu_flags()
 {
     return GUI_NONE
+            | GUI_VALUE
+            | GUI_PEAK
             | GUI_WIDTH
             | GUI_HEIGHT;
 }
 
 static void vu_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
 {
-    gui_getParameters (o, group, t, dial_flags());
+    gui_getParameters (o, group, t, vu_flags());
 }
 
 static void vu_functionSetParameters (t_object *o, const core::Group& group)
 {
-    gui_setParameters (o, group, dial_flags());
+    gui_setParameters (o, group, vu_flags());
 }
 
 #endif
@@ -140,11 +134,13 @@ static void *vu_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_vu *x = (t_vu *)pd_new (vu_class);
 
-    int width   = (argc > 1) ? (int)atom_getFloat (argv + 0) : VU_WIDTH_DEFAULT;
-    int height  = (argc > 1) ? (int)atom_getFloat (argv + 1) : VU_HEIGHT_DEFAULT;
+    int widthDefault    = GUI_SIZE_DEFAULT;
+    int heightDefault   = GUI_SIZE_DEFAULT * 8;
+    int width           = (argc > 1) ? (int)atom_getFloat (argv + 0) : widthDefault;
+    int height          = (argc > 1) ? (int)atom_getFloat (argv + 1) : heightDefault;
 
-    x->x_width  = PD_MAX (width, VU_WIDTH_MINIMUM);
-    x->x_height = PD_MAX (height, VU_HEIGHT_MINIMUM);
+    gui_updateWidth (cast_gui (x), width, 0);
+    gui_updateHeight (cast_gui (x), height, 0);
     
     inlet_new2 (x, &s_float);
     
@@ -173,7 +169,7 @@ void vu_setup (void)
     class_addBang (c, (t_method)vu_bang);
     class_addFloat (c, (t_method)vu_float);
     
-    class_addMethod (c, (t_method)vu_floatPeak, sym__inlet2,    A_FLOAT, A_NULL);
+    class_addMethod (c, (t_method)vu_peak,      sym__inlet2,    A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)vu_size,      sym_size,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)vu_restore,   sym__restore,   A_NULL);
 
