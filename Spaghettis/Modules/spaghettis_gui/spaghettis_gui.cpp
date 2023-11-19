@@ -83,6 +83,7 @@
 #include "GUI/Patches/Graphics/Painters/SliderPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/RadioPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/TogglePainter.cpp"
+#include "GUI/Patches/Graphics/Painters/VuPainter.cpp"
 #include "GUI/Patches/Graphics/PinComponent.cpp"
 #include "GUI/Patches/Graphics/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/LineComponent.cpp"

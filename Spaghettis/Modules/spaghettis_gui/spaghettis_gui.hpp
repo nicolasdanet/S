@@ -154,6 +154,7 @@
 #include "GUI/Patches/Graphics/Painters/RadioPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/SliderPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/TogglePainter.hpp"
+#include "GUI/Patches/Graphics/Painters/VuPainter.hpp"
 #include "GUI/Patches/Graphics/PinComponent.hpp"
 #include "GUI/Patches/Graphics/ObjectComponent.hpp"
 #include "GUI/Patches/Graphics/LineComponent.hpp"
