@@ -134,7 +134,7 @@ static void *vu_new (t_symbol *s, int argc, t_atom *argv)
 {
     t_vu *x = (t_vu *)pd_new (vu_class);
 
-    int widthDefault    = GUI_SIZE_DEFAULT;
+    int widthDefault    = GUI_SIZE_DEFAULT * 2;
     int heightDefault   = GUI_SIZE_DEFAULT * 8;
     int width           = (argc > 1) ? (int)atom_getFloat (argv + 0) : widthDefault;
     int height          = (argc > 1) ? (int)atom_getFloat (argv + 1) : heightDefault;
