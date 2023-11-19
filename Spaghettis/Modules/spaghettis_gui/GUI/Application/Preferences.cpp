@@ -239,6 +239,26 @@ core::Data getDefaultPreferences()
         NEEDS_TRANS ("Dial Text"),
         NEEDS_TRANS ("Set color of text"),
         Colours::getPalette()->textBox);
+    
+    colors.addParameter (Tag::VuBackground,
+        NEEDS_TRANS ("Vu Background"),
+        NEEDS_TRANS ("Set background color of VU meters"),
+        Colours::getPalette()->backgroundWidget);
+    
+    colors.addParameter (Tag::VuBarCold,
+        NEEDS_TRANS ("Vu Bar Cold"),
+        NEEDS_TRANS ("Set foreground color of low VU bars"),
+        Colours::getPalette()->backgroundPopup);
+    
+    colors.addParameter (Tag::VuBarWarm,
+        NEEDS_TRANS ("Vu Bar Warm"),
+        NEEDS_TRANS ("Set foreground color of middle VU bars"),
+        Colours::getPalette()->backgroundPopup);
+    
+    colors.addParameter (Tag::VuBarHot,
+        NEEDS_TRANS ("Vu Bar Hot"),
+        NEEDS_TRANS ("Set foreground color of top VU bars"),
+        Colours::getPalette()->backgroundPopup);
         
     colors.addParameter (Tag::CommentBackground,
         NEEDS_TRANS ("Comment Background"),

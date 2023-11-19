@@ -124,6 +124,10 @@ namespace spaghettis::core::Keywords {
     DECLARE_STRING (Value);
     DECLARE_STRING (Vertical);
     DECLARE_STRING (Visible);
+    DECLARE_STRING (VuBackground);
+    DECLARE_STRING (VuBarCold);
+    DECLARE_STRING (VuBarHot);
+    DECLARE_STRING (VuBarWarm);
     DECLARE_STRING (Width);
     DECLARE_STRING (X);
     DECLARE_STRING (Y);

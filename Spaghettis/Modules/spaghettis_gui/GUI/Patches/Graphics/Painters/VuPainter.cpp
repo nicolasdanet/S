@@ -14,15 +14,15 @@ namespace spaghettis {
 
 VuPainter::VuPainter (ObjectComponent* owner) :
     PainterPolicy (owner),
-    vuBackgroundColour_ (Spaghettis()->getCachedColour (Tag::SliderBackground)),
-    vuBarColour_ (Spaghettis()->getCachedColour (Tag::SliderBar)),
+    vuBackgroundColour_ (Spaghettis()->getCachedColour (Tag::VuBackground)),
+    vuBarColdColour_ (Spaghettis()->getCachedColour (Tag::VuBarCold)),
     value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
     peak_ (object_.getCached<double> (Tag::Parameters, Tag::Peak)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
     height_ (object_.getCached<int> (Tag::Parameters, Tag::Height))
 {
     vuBackgroundColour_.attach (repaint (component_));
-    vuBarColour_.attach (repaint (component_));
+    vuBarColdColour_.attach (repaint (component_));
     value_.attach (repaint (component_));
     peak_.attach (repaint (component_));
     width_.attach (resized (component_));
