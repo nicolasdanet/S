@@ -36,6 +36,8 @@ public:
 private:
     core::Cached<juce::Colour> vuBackgroundColour_;
     core::Cached<juce::Colour> vuBarColdColour_;
+    core::Cached<juce::Colour> vuBarWarmColour_;
+    core::Cached<juce::Colour> vuBarHotColour_;
     core::Cached<double> value_;
     core::Cached<double> peak_;
     core::Cached<int> width_;
