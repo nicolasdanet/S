@@ -27,6 +27,17 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    juce::ColourGradient getGradient (const juce::Rectangle<int>&);
+
+private:
+    void paintBar (const juce::Rectangle<int>&, const juce::ColourGradient&, juce::Graphics&);
+    void paintPeak (const juce::Rectangle<int>&, const juce::ColourGradient&, juce::Graphics&);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     void paintObject (juce::Rectangle<int>, juce::Graphics&) override;
     juce::Rectangle<int> getRequiredBoundsForObject() override;

@@ -24,9 +24,9 @@ VuPainter::VuPainter (ObjectComponent* owner) :
     height_ (object_.getCached<int> (Tag::Parameters, Tag::Height))
 {
     vuBackgroundColour_.attach (repaint (component_));
-    vuBarColdColour_.attach (resized (component_));
-    vuBarWarmColour_.attach (resized (component_));
-    vuBarHotColour_.attach (resized (component_));
+    vuBarColdColour_.attach (repaint (component_));
+    vuBarWarmColour_.attach (repaint (component_));
+    vuBarHotColour_.attach (repaint (component_));
     value_.attach (repaint (component_));
     peak_.attach (repaint (component_));
     width_.attach (resized (component_));
@@ -37,10 +37,72 @@ VuPainter::VuPainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+double getNormalizedPosition (double f)
+{
+    return 1.0 - Normalized (true, -100.0, 12.0).convert (f);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::ColourGradient VuPainter::getGradient (const juce::Rectangle<int>& r)
+{
+    const juce::Colour hot  (vuBarHotColour_.get());
+    const juce::Colour warm (vuBarWarmColour_.get());
+    const juce::Colour cold (vuBarColdColour_.get());
+    
+    juce::ColourGradient c (juce::ColourGradient::vertical (hot, cold, r));
+    
+    //c.addColour (getNormalizedValue (0.0), warm);
+    
+    return c;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void VuPainter::paintBar (const juce::Rectangle<int>& r,
+    const juce::ColourGradient& gradient,
+    juce::Graphics& g)
+{
+    const int margins = static_cast<int> (4.0f * getScale());
+    
+    g.setGradientFill (gradient);
+    g.fillRect (r.reduced (margins));
+}
+
+void VuPainter::paintPeak (const juce::Rectangle<int>& r,
+    const juce::ColourGradient& gradient,
+    juce::Graphics& g)
+{
+    //const double f = peak_.get();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void VuPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
+    const juce::ColourGradient gradient (getGradient (r));
+    
     g.setColour (vuBackgroundColour_.get());
     g.fillRect (r);
+    
+    // paintBar (r, gradient, g);
+    paintPeak (r, gradient, g);
 }
 
 juce::Rectangle<int> VuPainter::getRequiredBoundsForObject()

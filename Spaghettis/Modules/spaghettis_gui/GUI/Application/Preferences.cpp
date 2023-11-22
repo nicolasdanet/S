@@ -248,17 +248,17 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::VuBarCold,
         NEEDS_TRANS ("Vu Bar Cold"),
         NEEDS_TRANS ("Set foreground color of low VU bars"),
-        Colours::getPalette()->backgroundPopup);
+        Colours::getPalette()->vuCold);
     
     colors.addParameter (Tag::VuBarWarm,
         NEEDS_TRANS ("Vu Bar Warm"),
         NEEDS_TRANS ("Set foreground color of middle VU bars"),
-        Colours::getPalette()->backgroundPopup);
+        Colours::getPalette()->vuWarm);
     
     colors.addParameter (Tag::VuBarHot,
         NEEDS_TRANS ("Vu Bar Hot"),
         NEEDS_TRANS ("Set foreground color of top VU bars"),
-        Colours::getPalette()->backgroundPopup);
+        Colours::getPalette()->vuHot);
         
     colors.addParameter (Tag::CommentBackground,
         NEEDS_TRANS ("Comment Background"),
