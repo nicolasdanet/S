@@ -42,9 +42,16 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-double getNormalizedPosition (double f)
+double getNormalizedValue (double f)
 {
     return 1.0 - Normalized (true, -100.0, 12.0).convert (f);
+}
+
+int getNormalizedPosition (const juce::Rectangle<int>& r, double f)
+{
+    const int h = static_cast<int> (r.getHeight() * getNormalizedValue (f));
+    
+    return h + r.getY();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -87,7 +94,13 @@ void VuPainter::paintPeak (const juce::Rectangle<int>& r,
     const juce::ColourGradient& gradient,
     juce::Graphics& g)
 {
-    //const double f = peak_.get();
+    const double f = peak_.get();
+    
+    juce::Rectangle<int> marker (r.getX(), getNormalizedPosition (r, f), r.getWidth(), 1);
+    
+    g.setColour (gradient.getColourAtPosition (getNormalizedValue (f)));
+    
+    g.fillRect (marker);
 }
 
 // -----------------------------------------------------------------------------------------------------------
