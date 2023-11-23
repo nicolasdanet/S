@@ -82,10 +82,8 @@ juce::ColourGradient VuPainter::getGradient (const juce::Rectangle<int>& r)
 
 void VuPainter::paintBar (juce::Rectangle<int> r, const juce::ColourGradient& gradient, juce::Graphics& g)
 {
-    const int margins = static_cast<int> (4.0f * getScale());
-    
     g.setGradientFill (gradient);
-    g.fillRect (r.reduced (margins));
+    g.fillRect (r);
 }
 
 void VuPainter::paintPeak (juce::Rectangle<int> r, const juce::ColourGradient& gradient, juce::Graphics& g)
@@ -114,7 +112,7 @@ void VuPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.setColour (vuBackgroundColour_.get());
     g.fillRect (r);
     
-    // paintBar (r, gradient, g);
+    paintBar (r.reduced (4.0f * getScale()), gradient, g);
     paintPeak (r.reduced (1, 2), gradient, g);
 }
 
