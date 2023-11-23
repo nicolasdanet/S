@@ -96,11 +96,11 @@ void VuPainter::paintPeak (const juce::Rectangle<int>& r,
 {
     const double f = peak_.get();
     
-    juce::Rectangle<int> marker (r.getX(), getNormalizedPosition (r, f), r.getWidth(), 1);
+    const juce::Rectangle<int> marker (r.getX(), getNormalizedPosition (r, f), r.getWidth(), 1);
     
     g.setColour (gradient.getColourAtPosition (getNormalizedValue (f)));
     
-    g.fillRect (marker);
+    g.fillRect (marker.expanded (0, 1));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ void VuPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.fillRect (r);
     
     // paintBar (r, gradient, g);
-    paintPeak (r, gradient, g);
+    paintPeak (r.reduced (1, 2), gradient, g);
 }
 
 juce::Rectangle<int> VuPainter::getRequiredBoundsForObject()
