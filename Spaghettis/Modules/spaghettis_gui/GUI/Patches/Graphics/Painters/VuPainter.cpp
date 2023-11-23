@@ -44,7 +44,7 @@ namespace {
 
 double getNormalizedValue (double f)
 {
-    return 1.0 - Normalized (false, -60.0, 12.0).convert (f);
+    return 1.0 - Normalized (false, VuPainter::rangeLow_, VuPainter::rangeHigh_).convert (f);
 }
 
 int getNormalizedPosition (const juce::Rectangle<int>& r, double f)
@@ -80,9 +80,7 @@ juce::ColourGradient VuPainter::getGradient (const juce::Rectangle<int>& r)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void VuPainter::paintBar (const juce::Rectangle<int>& r,
-    const juce::ColourGradient& gradient,
-    juce::Graphics& g)
+void VuPainter::paintBar (juce::Rectangle<int> r, const juce::ColourGradient& gradient, juce::Graphics& g)
 {
     const int margins = static_cast<int> (4.0f * getScale());
     
@@ -90,17 +88,19 @@ void VuPainter::paintBar (const juce::Rectangle<int>& r,
     g.fillRect (r.reduced (margins));
 }
 
-void VuPainter::paintPeak (const juce::Rectangle<int>& r,
-    const juce::ColourGradient& gradient,
-    juce::Graphics& g)
+void VuPainter::paintPeak (juce::Rectangle<int> r, const juce::ColourGradient& gradient, juce::Graphics& g)
 {
     const double f = peak_.get();
     
+    if (f > rangeLow_) {
+    //
+    g.setColour (gradient.getColourAtPosition (getNormalizedValue (f)));
+
     const juce::Rectangle<int> marker (r.getX(), getNormalizedPosition (r, f), r.getWidth(), 1);
     
-    g.setColour (gradient.getColourAtPosition (getNormalizedValue (f)));
-    
     g.fillRect (marker.expanded (0, 1));
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

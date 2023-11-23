@@ -138,9 +138,13 @@ static void *vu_new (t_symbol *s, int argc, t_atom *argv)
     int heightDefault   = GUI_SIZE_DEFAULT * 8;
     int width           = (argc > 1) ? (int)atom_getFloat (argv + 0) : widthDefault;
     int height          = (argc > 1) ? (int)atom_getFloat (argv + 1) : heightDefault;
+    float value         = -100.0f;
+    float peak          = -100.0f;
 
     gui_updateWidth (cast_gui (x), width, 0);
     gui_updateHeight (cast_gui (x), height, 0);
+    gui_updateValue (cast_gui (x), value, 0);
+    gui_updatePeak (cast_gui (x), peak, 0);
     
     inlet_new2 (x, &s_float);
     

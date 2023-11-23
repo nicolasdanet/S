@@ -31,8 +31,8 @@ private:
     juce::ColourGradient getGradient (const juce::Rectangle<int>&);
 
 private:
-    void paintBar (const juce::Rectangle<int>&, const juce::ColourGradient&, juce::Graphics&);
-    void paintPeak (const juce::Rectangle<int>&, const juce::ColourGradient&, juce::Graphics&);
+    void paintBar (juce::Rectangle<int>, const juce::ColourGradient&, juce::Graphics&);
+    void paintPeak (juce::Rectangle<int>, const juce::ColourGradient&, juce::Graphics&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -53,6 +53,10 @@ private:
     core::Cached<double> peak_;
     core::Cached<int> width_;
     core::Cached<int> height_;
+
+public:
+    static constexpr double rangeLow_  = -60.0;
+    static constexpr double rangeHigh_ =  12.0;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VuPainter)
