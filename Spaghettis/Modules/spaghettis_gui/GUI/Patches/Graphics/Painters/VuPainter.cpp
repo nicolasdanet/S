@@ -44,7 +44,7 @@ namespace {
 
 double getNormalizedValue (double f)
 {
-    return 1.0 - Normalized (true, -100.0, 12.0).convert (f);
+    return 1.0 - Normalized (false, -60.0, 12.0).convert (f);
 }
 
 int getNormalizedPosition (const juce::Rectangle<int>& r, double f)
