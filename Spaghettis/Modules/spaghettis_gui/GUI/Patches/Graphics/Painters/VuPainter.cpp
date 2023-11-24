@@ -90,7 +90,7 @@ void VuPainter::paintBar (juce::Rectangle<int> r, const juce::ColourGradient& gr
     if (f > rangeLow_) {
     //
     g.setGradientFill (gradient);
-    g.fillRect (r);
+    g.fillRect (r.reduced (4.0f * getScale(), 0));
     //
     }
 }
@@ -121,7 +121,7 @@ void VuPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.setColour (vuBackgroundColour_.get());
     g.fillRect (r);
     
-    paintBar (r.reduced (4.0f * getScale()), gradient, g);
+    paintBar (r.reduced (0, 2), gradient, g);
     paintPeak (r.reduced (1, 2), gradient, g);
 }
 
