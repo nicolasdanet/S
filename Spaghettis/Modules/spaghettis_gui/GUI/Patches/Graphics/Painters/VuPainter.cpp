@@ -71,7 +71,10 @@ juce::ColourGradient VuPainter::getGradient (const juce::Rectangle<int>& r)
     
     juce::ColourGradient c (juce::ColourGradient::vertical (hot, cold, r));
     
-    //c.addColour (getNormalizedValue (0.0), warm);
+    c.addColour (getNormalizedValue (  3.0), hot);
+    c.addColour (getNormalizedValue (  0.0), warm);
+    c.addColour (getNormalizedValue (-12.0), warm);
+    c.addColour (getNormalizedValue (-15.0), cold);
     
     return c;
 }
@@ -82,8 +85,14 @@ juce::ColourGradient VuPainter::getGradient (const juce::Rectangle<int>& r)
 
 void VuPainter::paintBar (juce::Rectangle<int> r, const juce::ColourGradient& gradient, juce::Graphics& g)
 {
+    const double f = value_.get();
+    
+    if (f > rangeLow_) {
+    //
     g.setGradientFill (gradient);
     g.fillRect (r);
+    //
+    }
 }
 
 void VuPainter::paintPeak (juce::Rectangle<int> r, const juce::ColourGradient& gradient, juce::Graphics& g)
