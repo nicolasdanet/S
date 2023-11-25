@@ -91,6 +91,8 @@ void VuPainter::paintBar (juce::Rectangle<int> r, const juce::ColourGradient& gr
     //
     g.setGradientFill (gradient);
     g.fillRect (r.reduced (4.0f * getScale(), 0));
+    g.setColour (vuBackgroundColour_.get());
+    g.fillRect (r.withBottom (getNormalizedPosition (r, f)));
     //
     }
 }
