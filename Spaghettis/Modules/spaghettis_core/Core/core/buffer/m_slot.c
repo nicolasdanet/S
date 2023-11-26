@@ -13,31 +13,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if PD_WITH_DEBUG
-
-static int buffer_containsSemicolonOrComma (t_buffer *x)
-{
-    int i;
-    
-    for (i = 0; i < buffer_getSize (x); i++) {
-        if (IS_SEMICOLON_OR_COMMA (buffer_getAtomAtIndex (x, i))) { return 1; }
-    }
-    
-    return 0;
-}
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-// TODO: Give a typedef name for slots to avoid confusion?
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 int buffer_messagesIsLastProperlyEnded (t_buffer *x)
 {
     int size = buffer_getSize (x);
@@ -107,81 +82,6 @@ t_error buffer_messagesGetAtWithTypeOfEnd (t_buffer *x,
     }
     
     return err;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-/* Semicolon separated simple container for list of atoms. */
-
-void buffer_slotsClear (t_buffer *x)
-{
-    buffer_clear (x);
-}
-
-int buffer_slotsSize (t_buffer *x)
-{
-    return buffer_messagesGetNumberOf (x);
-}
-
-int buffer_slotsIsEmpty (t_buffer *x)
-{
-    return (buffer_getSize (x) == 0);
-}
-
-t_error buffer_slotsGet (t_buffer *x, int n, t_buffer *b)
-{
-    t_atomtype type;
-    int start   = 0;
-    int end     = 0;
-    t_error err = buffer_messagesGetAtWithTypeOfEnd (x, n, &start, &end, &type);
-    
-    if (!err) {
-    //
-    int count = end - start;
-    
-    PD_ASSERT (type == A_SEMICOLON);
-    
-    if (count > 0) {
-    //
-    buffer_append (b, count, buffer_getAtoms (x) + start); return PD_ERROR_NONE;
-    //
-    }
-    //
-    }
-    
-    return PD_ERROR;
-}
-
-void buffer_slotsAppend (t_buffer *x, t_buffer *b)
-{
-    PD_ASSERT (!buffer_containsSemicolonOrComma (b));
-    
-    buffer_appendBuffer (x, b); buffer_appendSemicolon (x);
-}
-
-t_error buffer_slotsSet (t_buffer *x, int n, t_buffer *b)
-{
-    t_atomtype type;
-    int start   = 0;
-    int end     = 0;
-    t_error err = buffer_messagesGetAtWithTypeOfEnd (x, n, &start, &end, &type);
-    
-    PD_ASSERT (!buffer_containsSemicolonOrComma (b));
-    
-    if (!err) {
-    //
-    PD_ASSERT (end - start > 0);
-    PD_ASSERT (type == A_SEMICOLON);
-    
-    buffer_replace (x, start, end, buffer_getSize (b), buffer_getAtoms (b));
-    
-    return PD_ERROR_NONE;
-    //
-    }
-    
-    return PD_ERROR;
 }
 
 // -----------------------------------------------------------------------------------------------------------

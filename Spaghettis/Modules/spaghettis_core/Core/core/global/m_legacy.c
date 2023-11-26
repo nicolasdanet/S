@@ -332,7 +332,6 @@ static void legacy_convertProceed (t_buffer *x)
     while (legacy_convertGUI (x, sym_hslider, 24, 0, 13))   { }
     while (legacy_convertGUI (x, sym_dial, 24, 0, 13))      { }
     while (legacy_convertGUI (x, sym_vu, 18, 0, 10))        { }
-    while (legacy_convertGUI (x, sym_menubutton, 17, 0, 9)) { }
 }
 
 // -----------------------------------------------------------------------------------------------------------

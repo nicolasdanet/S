@@ -193,7 +193,6 @@ namespace spaghettis::core {
 #include "graphic/objects/g_slider.c"
 #include "graphic/objects/g_dial.c"
 #include "graphic/objects/g_vu.c"
-#include "graphic/objects/g_menubutton.c"
 
 /* Control. */
 

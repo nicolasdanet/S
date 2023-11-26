@@ -52,13 +52,6 @@ t_error    buffer_messagesGetAtWithTypeOfEnd   (t_buffer *x,
                                                             int *end,
                                                             t_atomtype *t);
 
-void       buffer_slotsClear                   (t_buffer *x);
-int        buffer_slotsSize                    (t_buffer *x);
-int        buffer_slotsIsEmpty                 (t_buffer *x);
-void       buffer_slotsAppend                  (t_buffer *x, t_buffer *b);
-t_error    buffer_slotsGet                     (t_buffer *x, int n, t_buffer *b);
-t_error    buffer_slotsSet                     (t_buffer *x, int n, t_buffer *b);
-
 void       buffer_serialize                    (t_buffer *x, t_buffer *y);
 void       buffer_deserialize                  (t_buffer *x, int argc, t_atom *argv);
 
