@@ -269,7 +269,6 @@
 		378972241C4F716800263434 /* g_bang.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971C01C4F716700263434 /* g_bang.c */; };
 		378972251C4F716800263434 /* g_canvas.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971C11C4F716700263434 /* g_canvas.c */; };
 		3789722A1C4F716800263434 /* g_slider.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971C71C4F716700263434 /* g_slider.c */; };
-		3789722D1C4F716800263434 /* g_panel.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971CB1C4F716700263434 /* g_panel.c */; };
 		3789722E1C4F716800263434 /* g_dial.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971CC1C4F716700263434 /* g_dial.c */; };
 		378972331C4F716800263434 /* g_comment.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971D11C4F716700263434 /* g_comment.c */; };
 		378972341C4F716800263434 /* g_toggle.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971D21C4F716700263434 /* g_toggle.c */; };
@@ -741,7 +740,6 @@
 		378971C11C4F716700263434 /* g_canvas.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = g_canvas.c; sourceTree = "<group>"; };
 		378971C21C4F716700263434 /* g_graphic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = g_graphic.h; sourceTree = "<group>"; };
 		378971C71C4F716700263434 /* g_slider.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = g_slider.c; sourceTree = "<group>"; };
-		378971CB1C4F716700263434 /* g_panel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = g_panel.c; sourceTree = "<group>"; };
 		378971CC1C4F716700263434 /* g_dial.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = g_dial.c; sourceTree = "<group>"; };
 		378971D11C4F716700263434 /* g_comment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = g_comment.c; sourceTree = "<group>"; };
 		378971D21C4F716700263434 /* g_toggle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = g_toggle.c; sourceTree = "<group>"; };
@@ -1657,7 +1655,6 @@
 				378971C71C4F716700263434 /* g_slider.c */,
 				378971CC1C4F716700263434 /* g_dial.c */,
 				378971D61C4F716700263434 /* g_vu.c */,
-				378971CB1C4F716700263434 /* g_panel.c */,
 				17C46D28211AB578002EC3AC /* g_menubutton.c */,
 			);
 			path = objects;
@@ -1955,7 +1952,6 @@
 				1772020A2621811C0075D798 /* w_wrapper.c in Sources */,
 				378972251C4F716800263434 /* g_canvas.c in Sources */,
 				3789722A1C4F716800263434 /* g_slider.c in Sources */,
-				3789722D1C4F716800263434 /* g_panel.c in Sources */,
 				3789722E1C4F716800263434 /* g_dial.c in Sources */,
 				174B465C2147FDE400B9A939 /* m_undosnippet.c in Sources */,
 				17AE9228261C9791001B0FB6 /* m_encapsulate.c in Sources */,

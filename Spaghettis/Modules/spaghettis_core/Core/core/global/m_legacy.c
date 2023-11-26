@@ -168,7 +168,6 @@ static int legacy_replaceObjects (t_buffer *x)
     else if (s == sym_hsl)                  { SET_SYMBOL (atoms + 4, sym_hslider);           }
     else if (s == sym_vsl)                  { SET_SYMBOL (atoms + 4, sym_vslider);           }
     else if (s == sym_nbx)                  { SET_SYMBOL (atoms + 4, sym_dial);              }
-    else if (s == sym_cnv)                  { SET_SYMBOL (atoms + 4, sym_panel);             }
     else if (s == sym_table)                { SET_SYMBOL (atoms + 4, sym_garray);            }
     //
     }
@@ -286,7 +285,6 @@ static int legacy_convertGUI (t_buffer *x, t_symbol *key, int length, int m, int
         
         if (key == sym_vradio) { SET_FLOAT (atoms + 6, 0.0); atoms[7] = atoms[8]; }
         if (key == sym_hradio) { SET_FLOAT (atoms + 6, 0.0); atoms[7] = atoms[8]; }
-        if (key == sym_panel)  { atoms[5] = atoms[6]; atoms[6] = atoms[7]; }
         if (key == sym_dial)   {
             t_float k  = 1e+37 / 2.0;
             t_float f1 = atom_getFloat (atoms + 5);
@@ -334,8 +332,6 @@ static void legacy_convertProceed (t_buffer *x)
     while (legacy_convertGUI (x, sym_hslider, 24, 0, 13))   { }
     while (legacy_convertGUI (x, sym_dial, 24, 0, 13))      { }
     while (legacy_convertGUI (x, sym_vu, 18, 0, 10))        { }
-    while (legacy_convertGUI (x, sym_panel, 18, 0, 10))     { }
-    while (legacy_convertGUI (x, sym_panel, 19, 0, 11))     { }
     while (legacy_convertGUI (x, sym_menubutton, 17, 0, 9)) { }
 }
 
