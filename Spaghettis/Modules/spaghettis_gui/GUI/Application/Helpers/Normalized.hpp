@@ -21,7 +21,8 @@ class Normalized {
 public:
     explicit Normalized (bool isLogarithmic, double min, double max, double interval = 0.0) :
         isLogarithmic_ (isLogarithmic),
-        r_ (min, max),
+        min_ (juce::jmin (min, max)),
+        max_ (juce::jmax (min, max)),
         interval_ (interval)
     {
     }
@@ -39,14 +40,24 @@ public:
 // MARK: -
 
 private:
+    bool isValid() const
+    {
+        return (min_ != max_);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
     juce::NormalisableRange<double> getLinearRange() const
     {
-        return juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_);
+        return juce::NormalisableRange<double> (min_, max_, interval_);
     }
     
     juce::NormalisableRange<double> getLogarithmicRange() const
     {
-        return juce::NormalisableRange<double> (r_.getStart(), r_.getEnd(), interval_, skew_);
+        return juce::NormalisableRange<double> (min_, min_, interval_, skew_);
     }
     
     juce::NormalisableRange<double> getRange() const
@@ -61,12 +72,28 @@ private:
 public:
     double convert (double v) const
     {
-        auto r = getRange(); return r.convertTo0to1 (r.snapToLegalValue (v));
+        if (isValid()) {
+        //
+        auto r = getRange();
+        
+        return r.convertTo0to1 (r.snapToLegalValue (v));
+        //
+        }
+        
+        return 0.0;
     }
     
     double map (double v) const
     {
-        auto r = getRange(); return r.snapToLegalValue (r.convertFrom0to1 (juce::jlimit (0.0, 1.0, v)));
+        if (isValid()) {
+        //
+        auto r = getRange();
+        
+        return r.snapToLegalValue (r.convertFrom0to1 (juce::jlimit (0.0, 1.0, v)));
+        //
+        }
+            
+        return min_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -74,7 +101,8 @@ public:
 
 private:
     bool isLogarithmic_;
-    juce::Range<double> r_;
+    double min_;
+    double max_;
     double interval_;
     
 private:
