@@ -63,8 +63,8 @@ static void gatom_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  object_getX (cast_object (x)));
     buffer_appendFloat (b,  object_getY (cast_object (x)));
     buffer_appendFloat (b,  gui_getDigits (cast_gui (x)));
-    buffer_appendFloat (b,  gui_getMinimum (cast_gui (x)));
-    buffer_appendFloat (b,  gui_getMaximum (cast_gui (x)));
+    buffer_appendFloat (b,  gui_getLow (cast_gui (x)));
+    buffer_appendFloat (b,  gui_getHigh (cast_gui (x)));
     buffer_appendFloat (b,  gui_getInterval (cast_gui (x)));
     if (SAVED_DEEP (flags)) { buffer_appendFloat (b, gui_getValue (cast_gui (x))); }
     buffer_appendSemicolon (b);
@@ -97,8 +97,8 @@ static void gatom_restore (t_gatom *x)
     
     if (old) {      /* ??? */
     //
-    t_float min = gui_getMinimum (cast_gui (old));
-    t_float max = gui_getMaximum (cast_gui (old));
+    t_float min = gui_getLow (cast_gui (old));
+    t_float max = gui_getHigh (cast_gui (old));
     
     gui_updateRange (cast_gui (x), min, max, 1);
     //

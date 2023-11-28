@@ -95,8 +95,8 @@ static void dial_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendSymbol (b, sym_dial);
     buffer_appendFloat (b,  gui_getWidth (x));
     buffer_appendFloat (b,  gui_getDigits (x));
-    buffer_appendFloat (b,  gui_getMinimum (x));
-    buffer_appendFloat (b,  gui_getMaximum (x));
+    buffer_appendFloat (b,  gui_getLow (x));
+    buffer_appendFloat (b,  gui_getHigh (x));
     buffer_appendFloat (b,  gui_isLogarithmic (x));
     buffer_appendFloat (b,  gui_getInterval (x));
     if (SAVED_DEEP (flags)) { buffer_appendFloat (b, gui_getValue (x)); }

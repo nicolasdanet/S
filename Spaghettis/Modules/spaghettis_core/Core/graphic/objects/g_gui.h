@@ -30,8 +30,8 @@ typedef struct _gui {
     t_float     x_peak;
     t_float     x_nonZero;
     t_float     x_interval;
-    t_float     x_minimum;
-    t_float     x_maximum;
+    t_float     x_low;
+    t_float     x_high;
     t_float     x_value;
     } t_gui;
 
@@ -115,14 +115,14 @@ inline t_float gui_getInterval (t_gui *x)
     return x->x_interval;
 }
 
-inline t_float gui_getMinimum (t_gui *x)
+inline t_float gui_getLow (t_gui *x)
 {
-    return x->x_minimum;
+    return x->x_low;
 }
 
-inline t_float gui_getMaximum (t_gui *x)
+inline t_float gui_getHigh (t_gui *x)
 {
-    return x->x_maximum;
+    return x->x_high;
 }
 
 inline t_float gui_getValue (t_gui *x)

@@ -55,19 +55,19 @@ int gui_updateState (t_gui *x, int n, int notify)
 
 void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
 {
-    t_float min = x->x_minimum;
-    t_float max = x->x_maximum;
+    t_float min = x->x_low;
+    t_float max = x->x_high;
 
-    x->x_minimum = minimum;
-    x->x_maximum = maximum;
+    x->x_low  = minimum;
+    x->x_high = maximum;
     
     if (notify) {
-        if (min != x->x_minimum) {
+        if (min != x->x_low) {
             #if defined ( PD_BUILDING_APPLICATION )
             outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Low));
             #endif
         }
-        if (max != x->x_maximum) {
+        if (max != x->x_high) {
             #if defined ( PD_BUILDING_APPLICATION )
             outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::High));
             #endif
@@ -349,7 +349,7 @@ void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flag
         group.addParameter (Tag::Low,
             NEEDS_TRANS ("Low Range"),
             NEEDS_TRANS ("Minimum settable value"),
-            gui_getMinimum (x),
+            gui_getLow (x),
             delegate);
     }
     
@@ -357,7 +357,7 @@ void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flag
         group.addParameter (Tag::High,
             NEEDS_TRANS ("High Range"),
             NEEDS_TRANS ("Maximum settable value"),
-            gui_getMaximum (x),
+            gui_getHigh (x),
             delegate);
     }
     

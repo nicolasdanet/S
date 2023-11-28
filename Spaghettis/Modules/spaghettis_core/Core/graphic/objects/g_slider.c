@@ -85,8 +85,8 @@ static void slider_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendSymbol (b, gui_isVertical (cast_gui (x)) ? sym_vslider : sym_hslider);
     buffer_appendFloat (b,  gui_getWidth (cast_gui (x)));
     buffer_appendFloat (b,  gui_getHeight (cast_gui (x)));
-    buffer_appendFloat (b,  gui_getMinimum (cast_gui (x)));
-    buffer_appendFloat (b,  gui_getMaximum (cast_gui (x)));
+    buffer_appendFloat (b,  gui_getLow (cast_gui (x)));
+    buffer_appendFloat (b,  gui_getHigh (cast_gui (x)));
     buffer_appendFloat (b,  gui_isLogarithmic (cast_gui (x)));
     buffer_appendFloat (b,  gui_getInterval (cast_gui (x)));
     if (SAVED_DEEP (flags)) { buffer_appendFloat (b, gui_getValue (cast_gui (x))); }
