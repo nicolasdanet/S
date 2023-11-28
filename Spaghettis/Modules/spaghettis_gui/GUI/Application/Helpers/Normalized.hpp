@@ -57,7 +57,7 @@ private:
     
     juce::NormalisableRange<double> getLogarithmicRange() const
     {
-        return juce::NormalisableRange<double> (min_, min_, interval_, skew_);
+        return juce::NormalisableRange<double> (min_, max_, interval_, skew_);
     }
     
     juce::NormalisableRange<double> getRange() const
