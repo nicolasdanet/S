@@ -87,7 +87,7 @@ void       atomic_uInt32Write          (uint32_t n, t_uint32Atomic *q);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_TESTS )
+#if 0
 
 uint64_t   atomic_uInt64Read           (t_uint64Atomic *q);
 void       atomic_uInt64Write          (uint64_t n, t_uint64Atomic *q);

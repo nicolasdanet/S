@@ -78,7 +78,7 @@ static void init_genrand32 (MTState32 *x, uint32_t s)
     }
 }
 
-#if defined ( PD_BUILDING_TESTS )
+#if 0
 
 static void init_genrand32ByArray (MTState32 *x, long key_length, uint32_t *init_key)
 {
@@ -121,7 +121,7 @@ MTState32 *genrand32_new (void)
     return x;
 }
 
-#if defined ( PD_BUILDING_TESTS )
+#if 0
 
 MTState32 *genrand32_newByArray (long argc, uint32_t *argv)
 {
@@ -143,7 +143,7 @@ void genrand32_free (MTState32 *x)
     }
 }
 
-#if defined ( PD_BUILDING_TESTS )
+#if 0
 
 double genrand32_real2 (MTState32 *x)
 {

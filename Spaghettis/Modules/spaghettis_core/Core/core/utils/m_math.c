@@ -80,14 +80,5 @@ t_float math_euclideanDistance (t_float a, t_float b, t_float c, t_float d)
     return (t_float)sqrt (x * x + y * y);
 }
 
-#if defined ( PD_BUILDING_TESTS )
-
-int math_areEquivalent (t_float a, t_float b, t_float f)
-{
-    return ((PD_ABS (b - a)) < f);
-}
-
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

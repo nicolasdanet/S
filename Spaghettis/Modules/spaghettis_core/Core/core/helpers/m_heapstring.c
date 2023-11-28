@@ -129,7 +129,7 @@ t_error heapstring_append (t_heapstring *x, const char *src, int n)
     return PD_ERROR_NONE;
 }
 
-#if defined ( PD_BUILDING_TESTS )
+#if 0
 
 t_error heapstring_addSprintf (t_heapstring *x, const char *format, ...)
 {

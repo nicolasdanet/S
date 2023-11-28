@@ -86,7 +86,7 @@ t_error string_sprintf (char *dest, size_t size, const char *format, ...)
     }
 }
 
-#if ( PD_WITH_DEBUG ) || defined ( PD_BUILDING_TESTS )
+#if 0
 
 t_error string_addSprintf (char *dest, size_t size, const char *format, ...)
 {
@@ -121,18 +121,6 @@ t_error string_addAtom (char *dest, size_t size, t_atom *a)
     
     return err;
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if defined ( PD_BUILDING_TESTS )
-
-void string_clear (char *dest, size_t size)
-{
-    (void)size; dest[0] = 0;
-}
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

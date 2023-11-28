@@ -80,7 +80,7 @@ static void init_genrand64 (MTState64 *x, uint64_t s)
     }
 }
 
-#if defined ( PD_BUILDING_TESTS )
+#if 0
 
 static void init_genrand64ByArray (MTState64 *x, long key_length, uint64_t *key)
 {
@@ -128,7 +128,7 @@ MTState64 *genrand64_new (void)
     return x;
 }
 
-#if defined ( PD_BUILDING_TESTS )
+#if 0
 
 MTState64 *genrand64_newByArray (long argc, uint64_t *argv)
 {

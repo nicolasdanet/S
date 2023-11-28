@@ -26,7 +26,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_TESTS )
+#if 0
 
 static const int randMT_DeBruijn32[] =      /* Static. */
     {
@@ -59,7 +59,7 @@ static int randMT_uInt32NextPower2Index (uint32_t v)
     }
 }
 
-#endif // PD_BUILDING_TESTS
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ double randMT_getDouble (t_randMT *x)
     return genrand32_res53 (x);
 }
 
-#if defined ( PD_BUILDING_TESTS )
+#if 0
 
 /* < http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/efaq.html > */
 
@@ -101,7 +101,7 @@ long randMT_getInteger (t_randMT *x, long v)
     }
 }
 
-#endif // PD_BUILDING_TESTS
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -117,7 +117,7 @@ long randMT_getInteger (t_randMT *x, long v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_TESTS )
+#if 0
 
 static const int randMT_DeBruijn64[] =      /* Static. */
     {
@@ -153,7 +153,7 @@ static int randMT_uInt64NextPower2Index (uint64_t v)
     }
 }
 
-#endif // PD_BUILDING_TESTS
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -174,7 +174,7 @@ double randMT_getDouble (t_randMT *x)
     return genrand64_real2 (x);
 }
 
-#if defined ( PD_BUILDING_TESTS )
+#if 0
 
 /* < http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/efaq.html > */
 
@@ -195,7 +195,7 @@ long randMT_getInteger (t_randMT *x, long v)
     }
 }
 
-#endif // PD_BUILDING_TESTS
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

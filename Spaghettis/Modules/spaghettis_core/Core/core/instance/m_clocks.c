@@ -54,7 +54,7 @@ void       clock_execute               (t_clock *);
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#if ( PD_WITH_DEBUG ) || defined ( PD_BUILDING_TESTS )
+#if ( PD_WITH_DEBUG )
 
 int clock_isGood (t_clock *);
 
@@ -236,31 +236,6 @@ void clocks_tick (t_clocks *x, t_systime systime)
     
     clocks_tickExecute (x); clocks_purge (x);
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if defined ( PD_BUILDING_TESTS )
-
-static char clocks_string[CLOCKS_SIZE + 1];     /* Static. */
-
-char *clocks_debug (t_clocks *x, int n)
-{
-    int i;
-    
-    for (i = 0; i < CLOCKS_SIZE; i++) {
-    //
-    clocks_string[i] = PD_ATOMIC_POINTER_READ (x->x_clocks + i) ? 'X' : '.';
-    //
-    }
-    
-    if (n) { clocks_string[PD_CLAMP (n, 0, CLOCKS_SIZE)] = 0; }
-    
-    return clocks_string;
-}
-
-#endif // PD_BUILDING_TESTS
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -137,7 +137,7 @@ int clock_isSet (t_clock *x)
     return (PD_ATOMIC_INT32_READ (&x->c_count) > 0);
 }
 
-#if ( PD_WITH_DEBUG ) || defined ( PD_BUILDING_TESTS )
+#if ( PD_WITH_DEBUG )
 
 int clock_isGood (t_clock *x)
 {
