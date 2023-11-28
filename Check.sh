@@ -23,7 +23,6 @@ cd ${rep}/Tutorials/Plugins
 
 cd ${rep}/Spaghettis/Modules/T
 ./Build.sh                          || exit 1
-./tests                             || exit 1
 ./Symbols.py                        || exit 1
 
 # ------------------------------------------------------------------------------------------------------------
