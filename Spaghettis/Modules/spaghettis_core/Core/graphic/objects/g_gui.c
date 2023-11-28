@@ -58,8 +58,8 @@ void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
     t_float min = x->x_minimum;
     t_float max = x->x_maximum;
 
-    x->x_minimum = PD_MIN (minimum, maximum);
-    x->x_maximum = PD_MAX (minimum, maximum);
+    x->x_minimum = minimum;
+    x->x_maximum = maximum;
     
     if (notify) {
         if (min != x->x_minimum) {
