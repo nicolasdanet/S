@@ -103,7 +103,7 @@ static t_int *line_tilde_perform (t_int *w)
     
     while (n--) {
     //
-    if (x->x_retarget && trylock_trylock (&x->x_mutex)) {
+    if (trylock_trylock (&x->x_mutex)) {
     //
     if (x->x_retarget) {
         x->x_dspCurrent = x->x_rebase ? x->x_base : x->x_dspCurrent;
