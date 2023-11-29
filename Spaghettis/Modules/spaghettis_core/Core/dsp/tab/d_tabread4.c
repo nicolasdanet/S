@@ -80,7 +80,7 @@ static t_int *tabread4_tilde_perform (t_int *w)
     t_space *t          = (t_space *)(w[4]);
     int n = (int)(w[5]);
     
-    if (trylock_trylock (&x->x_mutex) == 0) {
+    if (trylock_trylock (&x->x_mutex)) {
     //
     if (x->x_set) {
         t->s_int0     = x->x_size;

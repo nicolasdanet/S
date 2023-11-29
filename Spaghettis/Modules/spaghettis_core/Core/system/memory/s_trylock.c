@@ -20,6 +20,21 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+static int trylock_perform (t_trylock *t)
+{
+    #if defined ( __cplusplus )
+
+    using std::memory_order_acquire;
+
+    #endif
+
+    return atomic_flag_test_and_set_explicit (t, memory_order_acquire);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void trylock_init (t_trylock *t)
 {
     atomic_flag_clear (t);
@@ -32,22 +47,12 @@ void trylock_destroy (t_trylock *t)
 
 int trylock_trylock (t_trylock *t)
 {
-    #if defined ( __cplusplus )
-
-    using std::memory_order_acquire;
-
-    #endif
-
-    int b = atomic_flag_test_and_set_explicit (t, memory_order_acquire);
-    
-    if (b) { PD_LOG ("*?*"); }
-    
-    return b;
+    return (trylock_perform (t) == 0);
 }
 
 void trylock_lock (t_trylock *t)
 {
-    while (trylock_trylock (t)) { nano_sleep (PD_MILLISECONDS_TO_NANOSECONDS (0.1)); }
+    while (trylock_perform (t)) { nano_sleep (PD_MILLISECONDS_TO_NANOSECONDS (0.1)); }
 }
 
 void trylock_unlock (t_trylock *t)

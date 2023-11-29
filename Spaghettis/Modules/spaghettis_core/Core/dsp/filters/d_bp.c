@@ -95,7 +95,7 @@ static t_int *bp_tilde_perform (t_int *w)
     t_space *t        = (t_space *)(w[4]);
     int n = (int)(w[5]);
 
-    if (trylock_trylock (&x->x_mutex) == 0) {
+    if (trylock_trylock (&x->x_mutex)) {
     //
     if (x->x_set) { bp_tilde_space (t, x->x_frequency, x->x_q); x->x_set = 0; }
     

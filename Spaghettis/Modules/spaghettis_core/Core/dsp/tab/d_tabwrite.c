@@ -146,7 +146,7 @@ static t_int *tabwrite_tilde_perform (t_int *w)
     t_space *t          = (t_space *)(w[3]);
     int n = (int)(w[4]);
     
-    if (trylock_trylock (&x->x_mutex) == 0) {
+    if (trylock_trylock (&x->x_mutex)) {
     //
     if (x->x_set) {
     

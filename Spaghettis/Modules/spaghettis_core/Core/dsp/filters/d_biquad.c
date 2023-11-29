@@ -94,7 +94,7 @@ static t_int *biquad_tilde_perform (t_int *w)
     t_space *t        = (t_space *)(w[4]);
     int n = (int)(w[5]);
     
-    if (trylock_trylock (&x->x_mutex) == 0) {
+    if (trylock_trylock (&x->x_mutex)) {
     //
     if (x->x_set) { biquad_tilde_space (t, x->x_a1, x->x_a2, x->x_b0, x->x_b1, x->x_b2); x->x_set = 0; }
     

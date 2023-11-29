@@ -154,7 +154,7 @@ static t_int *writesf_tilde_perform (t_int *w)
     t_sfvectors *t     = (t_sfvectors *)(w[2]);
     int n = (int)(w[3]);
     
-    if (trylock_trylock (&x->sf_mutex) == 0) {
+    if (trylock_trylock (&x->sf_mutex)) {
     //
     if (x->sf_run && x->sf_thread && !sfthread_isEnd (x->sf_thread)) {
     //

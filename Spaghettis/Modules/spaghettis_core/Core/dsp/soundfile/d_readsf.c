@@ -174,7 +174,7 @@ static t_int *readsf_tilde_perform (t_int *w)
     int numberOfFramesRead = 0;
     int isEnd = 0;
     
-    if (trylock_trylock (&x->sf_mutex) == 0) {
+    if (trylock_trylock (&x->sf_mutex)) {
     //
     if (x->sf_run && x->sf_thread) {
     //
