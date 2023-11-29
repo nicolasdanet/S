@@ -14,38 +14,19 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* < https://forum.juce.com/t/is-it-safe-to-use-std-try-lock-or-scopedtrylock-on-the-realtime-thread > */
+#if defined ( __cplusplus )
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#define TRYLOCK_EXPERIMENTAL    1
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if TRYLOCK_EXPERIMENTAL
-
-    #if defined ( __cplusplus )
-
-        #include <atomic>
+    #include <atomic>
+    
+    typedef std::atomic_flag t_trylock;
         
-        typedef std::atomic_flag t_trylock;
-            
-    #else
-
-        #include <stdatomic.h>
-        
-        typedef atomic_flag t_trylock;
-        
-    #endif
-
 #else
 
-    typedef pthread_mutex_t t_trylock;
+    #include <stdatomic.h>
     
-#endif // TRYLOCK_EXPERIMENTAL
+    typedef atomic_flag t_trylock;
+    
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
