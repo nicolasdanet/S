@@ -11,6 +11,36 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/* TODO: Check required alignment? */
+
+/* https://en.cppreference.com/w/cpp/atomic/atomic_ref/required_alignment */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( __cplusplus )
+
+static_assert (std::atomic<t_int32Atomic>::is_always_lock_free);
+static_assert (std::atomic<t_uint32Atomic>::is_always_lock_free);
+static_assert (std::atomic<t_uint64Atomic>::is_always_lock_free);
+static_assert (std::atomic<t_pointerAtomic>::is_always_lock_free);
+static_assert (std::atomic<t_float64Atomic>::is_always_lock_free);
+
+#else
+
+static_assert (__atomic_always_lock_free (sizeof (t_int32Atomic),   0), "");
+static_assert (__atomic_always_lock_free (sizeof (t_uint32Atomic),  0), "");
+static_assert (__atomic_always_lock_free (sizeof (t_uint64Atomic),  0), "");
+static_assert (__atomic_always_lock_free (sizeof (t_pointerAtomic), 0), "");
+static_assert (__atomic_always_lock_free (sizeof (t_float64Atomic), 0), "");
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 /* < https://gcc.gnu.org/onlinedocs/gcc-4.8.2/gcc/_005f_005fatomic-Builtins.html > */
 
