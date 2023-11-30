@@ -14,7 +14,7 @@ LIB       = -ldl -lpthread
 LDFLAGS   = -framework Carbon -framework CoreMIDI -framework CoreAudio -framework AudioUnit
 CPPFLAGS  = -DNDEBUG -DPD_BUILDING_TERMINAL
 CFLAGS    = -g -O3 -ffast-math $(CPUFLAGS) -fvisibility=hidden $(WARNINGS)
-CXXFLAGS  = -std=c++11 $(CFLAGS)
+CXXFLAGS  = -std=c++17 $(CFLAGS)
 
 # Sources amalgamated.
 

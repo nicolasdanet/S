@@ -23,6 +23,8 @@
 
 #if defined ( __cplusplus )
 
+#include <atomic>
+
 static_assert (std::atomic<t_int32Atomic>::is_always_lock_free);
 static_assert (std::atomic<t_uint32Atomic>::is_always_lock_free);
 static_assert (std::atomic<t_uint64Atomic>::is_always_lock_free);
