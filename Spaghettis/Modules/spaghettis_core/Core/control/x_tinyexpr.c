@@ -49,8 +49,8 @@
 
 #if defined ( __cplusplus )
 
-#define TE_NAN              std::numeric_limits < double >::quiet_NaN()
-#define TE_INFINITY         std::numeric_limits < double >::infinity()
+#define TE_NAN              std::numeric_limits<double>::quiet_NaN()
+#define TE_INFINITY         std::numeric_limits<double>::infinity()
 
 #else
 
