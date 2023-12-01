@@ -147,6 +147,7 @@ void post_log (const char *, ...);
 // MARK: -
 
 /* < https://locklessinc.com/articles/vectorize/ > */
+/* < https://www.gnu.org/software/libc/manual/html_node/Aligned-Memory-Blocks.html > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
