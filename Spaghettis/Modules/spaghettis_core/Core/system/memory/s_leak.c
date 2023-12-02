@@ -75,6 +75,8 @@ void leak_release (void)
 
 static void leak_set (int i, t_int t, const char *f, const int line)
 {
+    PD_ASSERT (!PD_ASSUME_ALIGNED || PD_IS_ALIGNED_16 (t));
+    
     leak_allocated[i] = t;
     leak_function[i]  = f;
     leak_line[i]      = line;
@@ -127,11 +129,11 @@ static void leak_add (t_int t, const char *f, const int line)
     if (slot >= 0) { leak_set (slot, t, f, line); }
 }
 
-static void leak_update (t_int ptr, t_int t, const char *f, const int line)
+static void leak_update (t_int oldPtr, t_int newPtr, const char *f, const int line)
 {
-    int slot = leak_contains (ptr);
+    int slot = leak_contains (oldPtr);
     
-    if (slot >= 0) { leak_unset (slot); leak_set (slot, t, f, line); }
+    if (slot >= 0) { leak_unset (slot); leak_set (slot, newPtr, f, line); }
 }
 
 static void leak_remove (t_int ptr, const char *f, const int line)
@@ -166,13 +168,15 @@ void *leak_getMemoryResizeChecked (void *ptr,
     const char *f,
     int line)
 {
-    void *t = memory_getResize (ptr, oldSize, newSize);
+    t_int oldPtr = (t_int)ptr;
+    void *t      = memory_getResize (ptr, oldSize, newSize);
+    t_int newPtr = (t_int)t;
     
     PD_ASSERT (sys_isControlThread());
     
     pthread_mutex_lock (&leak_mutex);
     
-        leak_update ((t_int)ptr, (t_int)t, f, line);
+        leak_update (oldPtr, newPtr, f, line);
     
     pthread_mutex_unlock (&leak_mutex);
     
