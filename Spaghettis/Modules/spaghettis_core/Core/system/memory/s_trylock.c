@@ -35,6 +35,8 @@ static int trylock_perform (t_trylock *t)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Cannot use ATOMIC_FLAG INT in assignment. */
+
 void trylock_init (t_trylock *t)
 {
     atomic_flag_clear (t);
