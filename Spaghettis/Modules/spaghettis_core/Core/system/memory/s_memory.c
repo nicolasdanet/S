@@ -29,6 +29,8 @@
 
 #if defined ( __cplusplus )
 
+#include <cstddef>
+
 static_assert (alignof (std::max_align_t) >= 16);
 
 #else
