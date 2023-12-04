@@ -16,7 +16,7 @@
   vendor:             Spaghettis
   version:            0.9
   name:               GUI
-  description:        GUI of Spaghettis.
+  description:        The GUI of Spaghettis.
   website:            https://github.com/Spaghettis
   license:            BSD
 
