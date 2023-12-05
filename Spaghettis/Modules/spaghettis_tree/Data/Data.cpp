@@ -127,25 +127,6 @@ juce::ValueTree getCopyPruned (const juce::ValueTree& tree)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String Data::debug (const Data& data)
-{
-    return debug (data.asValueTree());
-}
-
-juce::String Data::debug (const juce::ValueTree& tree)
-{
-    return getCopyPruned (tree).toXmlString();
-}
-
-juce::String Data::debug (const Item& item)
-{
-    return debug (item.asValueTree());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -218,9 +199,9 @@ void addFrom (Data& data, const juce::ValueTree& other)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Data::apply (const Item& item)
+void Data::apply (const juce::ValueTree& tree)
 {
-    changeValuesFrom (*this, getCopyPruned (item.asValueTree()));
+    changeValuesFrom (*this, getCopyPruned (tree));
 }
 
 // -----------------------------------------------------------------------------------------------------------

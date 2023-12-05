@@ -47,27 +47,11 @@
 #include "Glue/Point.hpp"
 #include "Glue/Area.hpp"
 #include "Glue/Geometry.hpp"
-#include "Glue/Cast.hpp"
-#include "Glue/Identifiers.hpp"
 #include "Glue/Keywords.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Data/Iterator.hpp"
-#include "Data/Invariant.hpp"
-#include "Data/Delegate.hpp"
-#include "Data/Filter.hpp"
-#include "Data/Parameter.hpp"
-#include "Data/Group.hpp"
-#include "Data/Observer.hpp"
-#include "Data/Data.hpp"
-#include "Data/Cached.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Glue/Colours.hpp"
 #include "Glue/Glue.hpp"
 #include "Glue/Unique.hpp"
 #include "Glue/Tags.hpp"
