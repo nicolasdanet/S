@@ -16,19 +16,27 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Glue/Area.cpp"
-#include "Glue/Geometry.cpp"
+#include "Geometry/Vector.cpp"
+#include "Geometry/Point.cpp"
+#include "Geometry/Area.cpp"
+#include "Geometry/Geometry.cpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "Glue/Glue.cpp"
-#include "Glue/Unique.cpp"
-#include "Glue/Tree.cpp"
-#include "Glue/Item.cpp"
-#include "Glue/Object.cpp"
-#include "Glue/Patch.cpp"
-#include "Glue/Report.cpp"
 #include "Glue/Maker.cpp"
-#include "Glue/Vector.cpp"
-#include "Glue/Point.cpp"
 #include "Glue/String.cpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#include "Item/Unique.cpp"
+#include "Item/Tree.cpp"
+#include "Item/Item.cpp"
+#include "Item/Object.cpp"
+#include "Item/Patch.cpp"
+#include "Item/Report.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

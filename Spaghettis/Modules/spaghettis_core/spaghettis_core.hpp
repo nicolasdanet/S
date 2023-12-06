@@ -42,25 +42,29 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Glue/String.hpp"
-#include "Glue/Vector.hpp"
-#include "Glue/Point.hpp"
-#include "Glue/Area.hpp"
-#include "Glue/Geometry.hpp"
+#include "Geometry/Vector.hpp"
+#include "Geometry/Point.hpp"
+#include "Geometry/Area.hpp"
+#include "Geometry/Geometry.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 #include "Glue/Glue.hpp"
-#include "Glue/Unique.hpp"
-#include "Glue/Tags.hpp"
-#include "Glue/Tree.hpp"
-#include "Glue/Item.hpp"
-#include "Glue/Report.hpp"
-#include "Glue/Line.hpp"
-#include "Glue/Object.hpp"
-#include "Glue/Patch.hpp"
+#include "Glue/String.hpp"
 #include "Glue/Maker.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#include "Item/Unique.hpp"
+#include "Item/Tags.hpp"
+#include "Item/Tree.hpp"
+#include "Item/Item.hpp"
+#include "Item/Report.hpp"
+#include "Item/Line.hpp"
+#include "Item/Object.hpp"
+#include "Item/Patch.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
