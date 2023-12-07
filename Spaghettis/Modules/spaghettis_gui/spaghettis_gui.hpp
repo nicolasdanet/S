@@ -20,7 +20,7 @@
   website:            https://github.com/Spaghettis
   license:            BSD
 
-  dependencies:       spaghettis_core
+  dependencies:       spaghettis_tree spaghettis_core
   OSXFrameworks:
   OSXLibs:
   linuxLibs:
