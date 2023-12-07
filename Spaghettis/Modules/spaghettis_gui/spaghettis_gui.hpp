@@ -55,7 +55,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Helpers/Helpers.hpp"
 #include "GUI/Application/Helpers/WeakPointer.hpp"
 #include "GUI/Application/Helpers/SafeRegister.hpp"
 #include "GUI/Application/Helpers/AlertWindowRegister.hpp"
@@ -83,6 +82,11 @@
 #include "GUI/Application/Parameters/ParametersColour.hpp"
 #include "GUI/Application/Parameters/ParametersNumber.hpp"
 #include "GUI/Application/Parameters/ParametersText.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#include "GUI/Application/Helpers/Helpers.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
