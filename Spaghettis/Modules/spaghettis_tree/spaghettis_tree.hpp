@@ -67,6 +67,10 @@
 
 #include "Helpers/Helpers.hpp"
 #include "Helpers/Colours.hpp"
+#include "Helpers/WeakPointer.hpp"
+#include "Helpers/SafeRegister.hpp"
+#include "Helpers/AlertWindowRegister.hpp"
+#include "Helpers/CallOutBoxRegister.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
