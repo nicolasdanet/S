@@ -102,7 +102,7 @@ juce::String AtomPainter::getPlaceholder() const
 
 juce::String AtomPainter::getText() const
 {
-    return Helpers::withNumberOfDigitsTruncated (value_.get(), getDigits());
+    return Strings::withNumberOfDigitsTruncated (value_.get(), getDigits());
 }
 
 // -----------------------------------------------------------------------------------------------------------

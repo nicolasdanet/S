@@ -424,7 +424,7 @@ juce::String EditView::getUndoAction() const
 {
     if (hasUndo()) {
     //
-    return juce::String (NEEDS_TRANS ("Undo")) + " " + Helpers::firstLetterCapitalized (undo_.get());
+    return juce::String (NEEDS_TRANS ("Undo")) + " " + Strings::firstLetterCapitalized (undo_.get());
     //
     }
     
@@ -435,7 +435,7 @@ juce::String EditView::getRedoAction() const
 {
     if (hasRedo()) {
     //
-    return juce::String (NEEDS_TRANS ("Redo")) + " " + Helpers::firstLetterCapitalized (redo_.get());
+    return juce::String (NEEDS_TRANS ("Redo")) + " " + Strings::firstLetterCapitalized (redo_.get());
     //
     }
     

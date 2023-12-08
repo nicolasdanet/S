@@ -65,7 +65,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Helpers/Helpers.hpp"
+#include "Helpers/Strings.hpp"
 #include "Helpers/Colours.hpp"
 #include "Helpers/WeakPointer.hpp"
 #include "Helpers/SafeRegister.hpp"

@@ -81,7 +81,7 @@ juce::Font DialPainter::getFont (int h) const
 
 juce::String DialPainter::getText() const
 {
-    return Helpers::withNumberOfDigitsTruncated (value_.get(), digits_.get());
+    return Strings::withNumberOfDigitsTruncated (value_.get(), digits_.get());
 }
 
 float DialPainter::getNormalizedValue() const

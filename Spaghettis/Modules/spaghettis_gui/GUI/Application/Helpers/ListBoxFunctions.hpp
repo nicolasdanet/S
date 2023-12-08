@@ -38,6 +38,12 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    static juce::SparseSet<int> getSparseSetFor (int i)
+    {
+        juce::SparseSet<int> set; set.addRange ({i, i + 1}); return set;
+    }
+ 
 public:
     template <class T>
     static void selectFirstRowIfEqual (juce::ListBox& listBox, const T& items, const juce::String& s)
@@ -46,7 +52,7 @@ public:
         
         if (static_cast<int> (items.size()) > i) {
             if (items[i] == s) {
-                listBox.setSelectedRows (Helpers::getSparseSetFor (i), juce::dontSendNotification);
+                listBox.setSelectedRows (getSparseSetFor (i), juce::dontSendNotification);
             }
         }
     }

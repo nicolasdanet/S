@@ -67,7 +67,7 @@ void MakerDocumentation::showDocumentation (const juce::String& s)
 
 void MakerDocumentation::valueChanged (juce::Value& v)
 {
-    const juce::String s (Helpers::upToWhitespace (v.toString()));
+    const juce::String s (Strings::upToWhitespace (v.toString()));
     
     if (s != previous_) { showDocumentation (s); previous_ = s; }
 }

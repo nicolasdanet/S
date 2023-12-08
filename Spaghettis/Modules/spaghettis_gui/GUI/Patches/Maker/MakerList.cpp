@@ -67,7 +67,7 @@ void MakerList::returnKeyPressed (int)
 
 void MakerList::valueChanged (juce::Value& v)
 {
-    const juce::String s (Helpers::upToWhitespace (v.toString()));
+    const juce::String s (Strings::upToWhitespace (v.toString()));
     
     if (!isEqualToSelectedItem (s)) {
     //

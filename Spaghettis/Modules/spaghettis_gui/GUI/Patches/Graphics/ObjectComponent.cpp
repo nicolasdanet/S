@@ -511,7 +511,7 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float
 
 juce::String getPinTooltip (const core::Data& documentation, const juce::String& type, bool isOutlet, int i)
 {
-    const juce::String t = Helpers::firstLetterCapitalized (type);
+    const juce::String t = Strings::firstLetterCapitalized (type);
     const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i);
     
     if (documentation.hasParameter (Tag::Documentation, k)) {
