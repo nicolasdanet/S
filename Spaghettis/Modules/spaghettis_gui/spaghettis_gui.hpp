@@ -55,7 +55,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Helpers/CallOutBoxTracker.hpp"
 #include "GUI/Application/Helpers/ColourSelector/ColourSlider.hpp"
 #include "GUI/Application/Helpers/ColourSelector/ColourSpace.hpp"
 #include "GUI/Application/Helpers/ColourSelector/HueSelector.hpp"

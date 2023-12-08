@@ -71,6 +71,7 @@
 #include "Helpers/SafeRegister.hpp"
 #include "Helpers/AlertWindowRegister.hpp"
 #include "Helpers/CallOutBoxRegister.hpp"
+#include "Helpers/CallOutBoxTracker.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

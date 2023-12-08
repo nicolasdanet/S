@@ -12,24 +12,37 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-CallOutBoxTracker::~CallOutBoxTracker()
-{
-    dismiss();
-}
+class CallOutBoxTracker {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void CallOutBoxTracker::track (juce::CallOutBox& box)
-{
-    Spaghettis()->getBoxRegister().add (owner_, &box);
-}
+public:
+    explicit CallOutBoxTracker (juce::Component* owner) : owner_ (owner)
+    {
+    }
+    
+    ~CallOutBoxTracker();
 
-void CallOutBoxTracker::dismiss()
-{
-    Spaghettis()->getBoxRegister().dismiss (owner_);
-}
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void track (juce::CallOutBox&);
+    
+    void dismiss();
+
+private:
+    static CallOutBoxRegister* getRegister();
+    
+private:
+    juce::Component* owner_;
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CallOutBoxTracker)
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -38,3 +51,4 @@ void CallOutBoxTracker::dismiss()
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+

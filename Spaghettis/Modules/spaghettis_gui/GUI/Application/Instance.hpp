@@ -40,7 +40,6 @@ public:
         commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
         menu_ (std::make_unique<MenuModel> (commandManager_.get())),
         core_ (std::make_unique<Wrapper>()),
-        boxRegister_ (std::make_unique<CallOutBoxRegister>()),
         alertRegister_ (std::make_unique<AlertWindowRegister>()),
         audioDevices_ (std::make_unique<AudioDevices>()),
         midiDevices_ (std::make_unique<MidiDevices>()),
@@ -274,11 +273,6 @@ public:
     Preferences& getPreferences()
     {
         return *preferences_;
-    }
-    
-    CallOutBoxRegister& getBoxRegister()
-    {
-        return *boxRegister_;
     }
     
     AlertWindowRegister& getAlertRegister()

@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class CallOutBoxRegister : public SafeRegister<juce::Component, juce::CallOutBox> {
+class CallOutBoxRegister : public  SafeRegister<juce::Component, juce::CallOutBox>,
+                           private juce::DeletedAtShutdown {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
