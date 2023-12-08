@@ -33,9 +33,6 @@ public:
     void track (juce::CallOutBox&);
     
     void dismiss();
-
-private:
-    static CallOutBoxRegister* getRegister();
     
 private:
     juce::Component* owner_;

@@ -12,17 +12,6 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-CallOutBoxRegister* CallOutBoxTracker::getRegister()
-{
-    static CallOutBoxRegister* instance = new CallOutBoxRegister();
-    
-    return instance;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 CallOutBoxTracker::~CallOutBoxTracker()
 {
     dismiss();
@@ -34,12 +23,12 @@ CallOutBoxTracker::~CallOutBoxTracker()
 
 void CallOutBoxTracker::track (juce::CallOutBox& box)
 {
-    getRegister()->add (owner_, &box);
+    CallOutBoxRegister::getInstance().add (owner_, &box);
 }
 
 void CallOutBoxTracker::dismiss()
 {
-    getRegister()->dismiss (owner_);
+    CallOutBoxRegister::getInstance().dismiss (owner_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

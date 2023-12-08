@@ -31,6 +31,18 @@ public:
         for (const auto& child : getChilds (component)) { child->dismiss(); }
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static CallOutBoxRegister& getInstance()
+    {
+        static CallOutBoxRegister* instance = new CallOutBoxRegister();
+        
+        return *instance;
+    }
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CallOutBoxRegister)
 };
