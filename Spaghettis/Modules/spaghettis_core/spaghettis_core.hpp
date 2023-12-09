@@ -16,7 +16,7 @@
   vendor:             Spaghettis
   version:            0.9
   name:               Core
-  description:        The control and DSP engines of Spaghettis.
+  description:        Core
   website:            https://github.com/Spaghettis
   license:            BSD
 

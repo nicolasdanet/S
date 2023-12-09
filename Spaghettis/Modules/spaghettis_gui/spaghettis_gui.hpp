@@ -16,11 +16,11 @@
   vendor:             Spaghettis
   version:            0.9
   name:               GUI
-  description:        The GUI of Spaghettis.
+  description:        GUI
   website:            https://github.com/Spaghettis
   license:            BSD
 
-  dependencies:       spaghettis_tree spaghettis_core
+  dependencies:       spaghettis_core
   OSXFrameworks:
   OSXLibs:
   linuxLibs:

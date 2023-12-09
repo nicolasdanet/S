@@ -12,15 +12,15 @@
 
  BEGIN_JUCE_MODULE_DECLARATION
 
-  ID:                 spaghettis_tree
+  ID:                 spaghettis_look
   vendor:             Spaghettis
   version:            0.9
-  name:               Tree
-  description:        Tree
+  name:               Look
+  description:        Look
   website:            https://github.com/Spaghettis
   license:            BSD
 
-  dependencies:       spaghettis_look
+  dependencies:       juce_core juce_data_structures juce_events juce_graphics juce_gui_basics
   OSXFrameworks:
   OSXLibs:
   linuxLibs:
@@ -44,34 +44,6 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-#include "Identifiers/Identifiers.hpp"
-#include "Identifiers/Keywords.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Data/Cast.hpp"
-#include "Data/Iterator.hpp"
-#include "Data/Invariant.hpp"
-#include "Data/Delegate.hpp"
-#include "Data/Filter.hpp"
-#include "Data/Parameter.hpp"
-#include "Data/Group.hpp"
-#include "Data/Observer.hpp"
-#include "Data/Data.hpp"
-#include "Data/Cached.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Helpers/Strings.hpp"
-#include "Helpers/Colours.hpp"
-#include "Helpers/WeakPointer.hpp"
-#include "Helpers/SafeRegister.hpp"
-#include "Helpers/AlertWindowRegister.hpp"
-#include "Helpers/CallOutBoxRegister.hpp"
-#include "Helpers/CallOutBoxTracker.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
