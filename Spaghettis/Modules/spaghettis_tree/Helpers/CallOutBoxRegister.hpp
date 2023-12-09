@@ -20,7 +20,8 @@ class CallOutBoxRegister : public  SafeRegister<juce::Component, juce::CallOutBo
 // MARK: -
 
 public:
-    CallOutBoxRegister() = default;
+    CallOutBoxRegister()  = default;
+    ~CallOutBoxRegister() = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

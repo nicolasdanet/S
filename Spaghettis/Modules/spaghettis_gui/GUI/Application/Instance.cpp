@@ -75,7 +75,7 @@ bool SpaghettisInstance::requestToQuit()
 {
     /* On Linux don't let quitting while already opened modal windows remain. */
     
-    if (!alertRegister_->isEmpty()) { return false; }
+    if (!AlertWindowRegister::getInstance().isEmpty()) { return false; }
     else {
     //
     quit_ = QuitStatus::quit;

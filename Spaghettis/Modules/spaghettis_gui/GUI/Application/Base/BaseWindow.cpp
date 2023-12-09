@@ -228,7 +228,7 @@ void BaseWindow::ensureAlertWindowsAlwaysOnTop()
 {
     #if JUCE_LINUX
     
-    Spaghettis()->getAlertRegister().ensureAlertWindowsAlwaysOnTop();
+    AlertWindowRegister::getInstance().ensureAlertWindowsAlwaysOnTop();
     
     #endif
 }

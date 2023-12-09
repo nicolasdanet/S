@@ -119,7 +119,7 @@ juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
     createAlertWindowSetBounds (w);
     
     if (associatedComponent) {
-        Spaghettis()->getAlertRegister().add (associatedComponent, w.get());
+        AlertWindowRegister::getInstance().add (associatedComponent, w.get());
     }
     
     w->setAlwaysOnTop (true);

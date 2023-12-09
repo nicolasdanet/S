@@ -40,7 +40,6 @@ public:
         commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
         menu_ (std::make_unique<MenuModel> (commandManager_.get())),
         core_ (std::make_unique<Wrapper>()),
-        alertRegister_ (std::make_unique<AlertWindowRegister>()),
         audioDevices_ (std::make_unique<AudioDevices>()),
         midiDevices_ (std::make_unique<MidiDevices>()),
         patches_ (std::make_unique<PatchesHolder>()),
@@ -275,11 +274,6 @@ public:
         return *preferences_;
     }
     
-    AlertWindowRegister& getAlertRegister()
-    {
-        return *alertRegister_;
-    }
-    
     AudioDevices& getAudioDevices()
     {
         return *audioDevices_;
@@ -331,8 +325,6 @@ private:
     const std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
     const std::unique_ptr<MenuModel> menu_;
     const std::unique_ptr<Wrapper> core_;
-    const std::unique_ptr<CallOutBoxRegister> boxRegister_;
-    const std::unique_ptr<AlertWindowRegister> alertRegister_;              /* Only used on Linux. */
     const std::unique_ptr<AudioDevices> audioDevices_;
     const std::unique_ptr<MidiDevices> midiDevices_;
     const std::unique_ptr<PatchesHolder> patches_;
