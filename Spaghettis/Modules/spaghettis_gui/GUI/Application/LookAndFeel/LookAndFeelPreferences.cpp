@@ -153,13 +153,15 @@ void drawLinearSliderHorizontalBar (juce::Graphics& g,
     float min,
     float max,
     const juce::Slider::SliderStyle style,
-    juce::Slider& slider)
+    juce::Slider& slider,
+    const juce::Colour& background,
+    const juce::Colour& track)
 {
     const juce::Rectangle<int> r (x, y, w, h);
     
-    g.setColour (Spaghettis()->getColour (Colours::parametersSliderBackground));
+    g.setColour (background);
     g.fillRect (r);
-    g.setColour (Spaghettis()->getColour (Colours::parametersSliderTrack));
+    g.setColour (track);
     g.fillRect (r.reduced (0, 1).withTrimmedRight (static_cast<int> (w - position)));
 }
 
@@ -216,11 +218,15 @@ void LookAndFeel::drawLinearSlider (juce::Graphics& g,
     juce::Slider& slider)
 {
     if (slider.isHorizontal() && !slider.isTwoValue() && !slider.isThreeValue()) {
-        if (slider.isBar()) {
-            drawLinearSliderHorizontalBar (g, x, y, w, h, position, min, max, style, slider);
-        } else {
-            drawLinearSliderHorizontal (g, x, y, w, h, position, min, max, style, slider);
-        }
+    //
+    if (slider.isBar()) {
+        const juce::Colour background = findColour (Colours::parametersSliderBackground);
+        const juce::Colour track      = findColour (Colours::parametersSliderTrack);
+        drawLinearSliderHorizontalBar (g, x, y, w, h, position, min, max, style, slider, background, track);
+    } else {
+        drawLinearSliderHorizontal (g, x, y, w, h, position, min, max, style, slider);
+    }
+    //
     } else { juce::LookAndFeel_V4::drawLinearSlider (g, x, y, w, h, position, min, max, style, slider); }
 }
                                 
