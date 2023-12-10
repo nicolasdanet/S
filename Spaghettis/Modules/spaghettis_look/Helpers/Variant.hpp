@@ -5,39 +5,45 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-namespace spaghettis {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParameterColourEditor::paint (juce::Graphics& g)
+namespace juce {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+template<> struct VariantConverter<Colour> {
+
+static Colour fromVar (const var& v)
 {
-    const juce::Colour c (Colours::getColourFromValue (value_));
-    
-    g.fillAll (Spaghettis()->getColour (Colours::parametersColourBackground));
-    
-    g.fillCheckerBoard (getColourBounds().toFloat(),
-        11.0f,
-        11.0f,
-        juce::Colours::grey.overlaidWith (c),
-        juce::Colours::white.overlaidWith (c));
-    
-    g.setFont (Spaghettis()->getLookAndFeel().getColourFont());
-    g.setColour (Spaghettis()->getColour (Colours::parametersColourText));
-    g.drawText (Colours::getDisplayStringFromColour (c),
-        getTextBounds(),
-        juce::Justification::centredLeft,
-        true);
-    
-    g.drawRect (getColourBounds().toFloat());
+    return Colour (spaghettis::Colours::getColourFromString (v.toString()));
 }
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
+static var toVar (const juce::Colour& c)
+{
+    return var (spaghettis::Colours::getColourAsString (c));
+}
 
-}
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+template<> struct VariantConverter<Rectangle<int>> {
+
+static Rectangle<int> fromVar (const var& v)
+{
+    return Rectangle<int>::fromString (v.toString());
+}
+    
+static var toVar (const Rectangle<int>& r)
+{
+    return var (r.toString());
+}
+
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+} // namespace juce
