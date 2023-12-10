@@ -55,7 +55,9 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/LookAndFeel/Colours.hpp"
+
+#include "GUI/Application/Parameters/ParametersWidth.hpp"
+
 #include "GUI/Application/LookAndFeel/LookAndFeel.hpp"
 #include "GUI/Application/LookAndFeel/SliderLabel.hpp"
 
@@ -72,7 +74,6 @@
 
 #include "GUI/Application/Parameters/ParametersHeader.hpp"
 #include "GUI/Application/Parameters/ParametersView.hpp"
-#include "GUI/Application/Parameters/ParametersWidth.hpp"
 #include "GUI/Application/Parameters/ParametersBoolean.hpp"
 #include "GUI/Application/Parameters/ParametersColour.hpp"
 #include "GUI/Application/Parameters/ParametersNumber.hpp"
@@ -85,7 +86,6 @@
 #include "GUI/Application/Autocomplete.hpp"
 #include "GUI/Application/Commands.hpp"
 #include "GUI/Application/Documentation.hpp"
-#include "GUI/Application/Icons.hpp"
 #include "GUI/Application/MenuModel.hpp"
 #include "GUI/Application/Preferences.hpp"
 #include "GUI/Application/Instance.hpp"
@@ -94,9 +94,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Helpers/IconsButton.hpp"
-#include "GUI/Application/Helpers/IconsFactory.hpp"
-#include "GUI/Application/Helpers/IconsFactoryHelper.hpp"
+
 #include "GUI/Application/Helpers/ListBoxFunctions.hpp"
 #include "GUI/Application/Helpers/Normalized.hpp"
 

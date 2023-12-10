@@ -42,8 +42,10 @@ void Icons::addIconProceed (const juce::String& name,
     bool isToggle,
     bool defaultStateIsOn)
 {
-    auto t1 (getDrawable (imageOff, Spaghettis()->getColour (Colours::toolbarIconOff)));
-    auto t2 (getDrawable (imageOn,  Spaghettis()->getColour (Colours::toolbarIconOn)));
+    juce::LookAndFeel& lnf = juce::LookAndFeel::getDefaultLookAndFeel();
+    
+    auto t1 (getDrawable (imageOff, lnf.findColour (Colours::toolbarIconOff)));
+    auto t2 (getDrawable (imageOn,  lnf.findColour (Colours::toolbarIconOn)));
     
     jassert (extra >= 0);
     
