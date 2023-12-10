@@ -51,7 +51,7 @@ ColourSelector::ColourSelector (const juce::Value& v) :
 
 void ColourSelector::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::callOutBoxBackground));
+    g.fillAll (findColour (Colours::callOutBoxBackground));
 }
     
 void ColourSelector::resized()
