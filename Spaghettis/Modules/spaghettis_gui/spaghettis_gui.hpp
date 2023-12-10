@@ -55,14 +55,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Helpers/ColourSelector/ColourSlider.hpp"
-#include "GUI/Application/Helpers/ColourSelector/ColourSpace.hpp"
-#include "GUI/Application/Helpers/ColourSelector/HueSelector.hpp"
-#include "GUI/Application/Helpers/ColourSelector/ColourSelector.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 #include "GUI/Application/Parameters/ParametersHeader.hpp"
 #include "GUI/Application/Parameters/ParametersView.hpp"
 #include "GUI/Application/Parameters/ParametersBoolean.hpp"
