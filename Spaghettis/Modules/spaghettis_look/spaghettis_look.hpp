@@ -46,11 +46,19 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "Helpers/ParameterWidth.hpp"
+#include "Helpers/Strings.hpp"
+#include "Helpers/WeakPointer.hpp"
+#include "Helpers/SafeRegister.hpp"
+#include "Helpers/AlertWindowRegister.hpp"
+#include "Helpers/CallOutBoxRegister.hpp"
+#include "Helpers/CallOutBoxTracker.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 #include "LookAndFeel/Colours.hpp"
+#include "LookAndFeel/LookAndFeel.hpp"
+#include "LookAndFeel/SliderLabel.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

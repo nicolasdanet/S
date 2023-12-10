@@ -55,12 +55,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/LookAndFeel/LookAndFeel.hpp"
-#include "GUI/Application/LookAndFeel/SliderLabel.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 #include "GUI/Application/Helpers/ColourSelector/ColourSlider.hpp"
 #include "GUI/Application/Helpers/ColourSelector/ColourSpace.hpp"
 #include "GUI/Application/Helpers/ColourSelector/HueSelector.hpp"

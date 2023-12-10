@@ -27,21 +27,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/LookAndFeel/LookAndFeel.cpp"
-#include "GUI/Application/LookAndFeel/LookAndFeelAlertWindow.cpp"
-#include "GUI/Application/LookAndFeel/LookAndFeelCallOutBox.cpp"
-#include "GUI/Application/LookAndFeel/LookAndFeelComboBox.cpp"
-#include "GUI/Application/LookAndFeel/LookAndFeelMaker.cpp"
-#include "GUI/Application/LookAndFeel/LookAndFeelMenubar.cpp"
-#include "GUI/Application/LookAndFeel/LookAndFeelPopup.cpp"
-#include "GUI/Application/LookAndFeel/LookAndFeelPreferences.cpp"
-#include "GUI/Application/LookAndFeel/LookAndFeelResizer.cpp"
-#include "GUI/Application/LookAndFeel/LookAndFeelToolbar.cpp"
-#include "GUI/Application/LookAndFeel/LookAndFeelTooltip.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 #include "GUI/Application/Parameters/ParametersHeader.cpp"
 #include "GUI/Application/Parameters/ParametersView.cpp"
 #include "GUI/Application/Parameters/ParametersColour.cpp"
