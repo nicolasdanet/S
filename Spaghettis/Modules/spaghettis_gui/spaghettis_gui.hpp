@@ -55,9 +55,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-
-#include "GUI/Application/Parameters/ParametersWidth.hpp"
-
 #include "GUI/Application/LookAndFeel/LookAndFeel.hpp"
 #include "GUI/Application/LookAndFeel/SliderLabel.hpp"
 
