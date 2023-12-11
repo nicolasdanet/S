@@ -21,7 +21,7 @@ ColourSelector::ColourSelector (const juce::Value& v) :
     colourSpace_ (std::make_unique<ColourSpace> (*this, margin_, h_, s_, v_)),
     hueSelector_ (std::make_unique<HueSelector> (*this, margin_, h_))
 {
-    fetchColour(); updateHSV();
+    getColour(); updateHSV();
     
     std::get<0> (sliders_).reset (new ColourSlider());
     std::get<1> (sliders_).reset (new ColourSlider());
@@ -78,7 +78,7 @@ void ColourSelector::resized()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ColourSelector::fetchColour()
+void ColourSelector::getColour()
 {
     colour_ = Colours::getColourFromValue (value_);
 }

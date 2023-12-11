@@ -39,7 +39,7 @@ public:
 // MARK: -
 
 private:
-    void fetchColour();
+    void getColour();
     void pushColour();
     void updateHSV();
     void updateViews();
