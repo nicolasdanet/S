@@ -16,7 +16,7 @@ void ParameterColourEditor::paint (juce::Graphics& g)
 {
     const juce::Colour c (Colours::getColourFromValue (value_));
     
-    g.fillAll (Spaghettis()->getColour (Colours::parametersColourBackground));
+    g.fillAll (Colours::fetchColour<Colours::parametersColourBackground>());
     
     g.fillCheckerBoard (getColourBounds().toFloat(),
         11.0f,
@@ -25,7 +25,7 @@ void ParameterColourEditor::paint (juce::Graphics& g)
         juce::Colours::white.overlaidWith (c));
     
     g.setFont (Spaghettis()->getLookAndFeel().getColourFont());
-    g.setColour (Spaghettis()->getColour (Colours::parametersColourText));
+    g.setColour (Colours::fetchColour<Colours::parametersColourText>());
     g.drawText (Colours::getDisplayStringFromColour (c),
         getTextBounds(),
         juce::Justification::centredLeft,
