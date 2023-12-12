@@ -11,7 +11,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class ParameterText :   public ParameterWidth,
+class ParameterText :   public ParameterBase,
                         public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ class ParameterText :   public ParameterWidth,
 
 public:
     explicit ParameterText (const core::Parameter& p, int w) :
-        ParameterWidth (w),
+        ParameterBase (w),
         juce::TextPropertyComponent (p.getValueAsValue (false), p.getLabel(), 64, false)
     {
         setEnabled (p.isEditable());

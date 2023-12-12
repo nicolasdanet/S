@@ -29,7 +29,7 @@ public:
     {
         jassert (w > 0);
         
-        buildConcertinaPanel (data_, *this, w, getPropertyPanelHeight());
+        buildConcertinaPanel (data_, font_, *this, w, getPropertyPanelHeight());
     }
     
     virtual ~ParameterView() = default;
@@ -79,7 +79,7 @@ private:
 // MARK: -
 
 private:
-    static void buildConcertinaPanel (const core::Data&, ParameterView&, int, int);
+    static void buildConcertinaPanel (const core::Data&, const juce::Font&, ParameterView&, int, int);
 
 protected:
     juce::ConcertinaPanel panel_;

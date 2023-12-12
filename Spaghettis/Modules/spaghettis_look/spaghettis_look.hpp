@@ -46,7 +46,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "Helpers/Normalized.hpp"
-#include "Helpers/ParameterWidth.hpp"
+#include "Helpers/ParameterBase.hpp"
 #include "Helpers/Strings.hpp"
 #include "Helpers/WeakPointer.hpp"
 #include "Helpers/SafeRegister.hpp"

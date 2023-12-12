@@ -75,7 +75,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterColour : public ParameterWidth,
+class ParameterColour : public ParameterBase,
                         public juce::PropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -84,7 +84,7 @@ class ParameterColour : public ParameterWidth,
 
 public:
     explicit ParameterColour (const core::Parameter& p, int w) :
-        ParameterWidth (w),
+        ParameterBase (w),
         juce::PropertyComponent (p.getLabel()), editor_ (p.getValueAsValue (false))
     {
         addAndMakeVisible (editor_);

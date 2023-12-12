@@ -110,9 +110,11 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const core::Parameter& p, int w)
+std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const juce::Font& font,
+    const core::Parameter& p,
+    int w)
 {
-    // return std::make_unique<ParameterSlider> (p, w);
+    // return std::make_unique<ParameterSlider> (p, font, w);
     
     if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, w); }
     else if (p.isColour())  { return std::make_unique<ParameterColour> (p, w);  }
@@ -123,12 +125,13 @@ std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const core::Pa
     }
 }
 
-void buildConcertinaPanelParameter (const core::Parameter& p,
+void buildConcertinaPanelParameter (const juce::Font& font,
+    const core::Parameter& p,
     juce::Array<juce::PropertyComponent*>& c,
     int w,
     int h)
 {
-    std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p, w));
+    std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (font, p, w));
     
     t->setPreferredHeight (h);
     t->setTooltip (p.getInfo());
@@ -145,7 +148,11 @@ void buildConcertinaPanelParameter (const core::Parameter& p,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParameterView::buildConcertinaPanel (const core::Data& data, ParameterView& v, int w, int h)
+void ParameterView::buildConcertinaPanel (const core::Data& data,
+    const juce::Font& font,
+    ParameterView& v,
+    int w,
+    int h)
 {
     for (const auto& group : data) {
     //
@@ -156,7 +163,7 @@ void ParameterView::buildConcertinaPanel (const core::Data& data, ParameterView&
     juce::Array<juce::PropertyComponent*> components;
     
     for (const auto& parameter : group) {
-        if (!parameter.isHidden()) { buildConcertinaPanelParameter (parameter, components, w, h); }
+        if (!parameter.isHidden()) { buildConcertinaPanelParameter (font, parameter, components, w, h); }
     }
     
     panel->addProperties (components);

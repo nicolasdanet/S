@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterBoolean :    public ParameterWidth,
+class ParameterBoolean :    public ParameterBase,
                             public juce::BooleanPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ class ParameterBoolean :    public ParameterWidth,
 
 public:
     explicit ParameterBoolean (const core::Parameter& p, int w) :
-        ParameterWidth (w),
+        ParameterBase (w),
         juce::BooleanPropertyComponent (p.getValueAsValue (false), p.getLabel(), "")
     {
         setEnabled (p.isEditable());

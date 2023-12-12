@@ -18,7 +18,7 @@ juce::Rectangle<int> LookAndFeel::getPropertyComponentContentPosition (juce::Pro
 {
     juce::Rectangle<int> r (c.getWidth(), c.getHeight() - 1);
         
-    ParameterWidth* w = dynamic_cast<ParameterWidth*> (&c);
+    ParameterBase* w = dynamic_cast<ParameterBase*> (&c);
     const int requiredWidth = w ? w->getRequiredWidthForLabel() : 250;
     const int labelWidth    = juce::jmin (requiredWidth, r.getWidth());
         
