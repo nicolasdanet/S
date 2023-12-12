@@ -12,14 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int ParameterView::getNumberOfPanels() const
-{
-    return panel_.getNumPanels();
-}
-
 juce::Font ParameterView::getFont() const
 {
     return font_;
+}
+
+int ParameterView::getNumberOfPanels() const
+{
+    return panel_.getNumPanels();
 }
 
 // -----------------------------------------------------------------------------------------------------------
