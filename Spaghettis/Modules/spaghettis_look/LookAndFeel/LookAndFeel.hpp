@@ -206,7 +206,6 @@ public:
     void drawPropertyComponentLabel (juce::Graphics&, int, int, juce::PropertyComponent&) override;
     
     int getPropertyPanelSectionHeaderHeight (const juce::String& s) override;
-    int getPropertyPanelHeight();
 
 public:
     void drawToggleButton (juce::Graphics&, juce::ToggleButton&, bool, bool) override;

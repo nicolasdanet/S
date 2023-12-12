@@ -26,7 +26,9 @@ public:
         expanded_ (0),
         expandedLast_ (0)
     {
-        jassert (w > 0); buildConcertinaPanel (data_, *this, w);
+        jassert (w > 0);
+        
+        buildConcertinaPanel (data_, *this, w, getPropertyPanelHeight());
     }
     
     virtual ~ParameterView() = default;
@@ -65,12 +67,15 @@ public:
 private:
     void addPanel (juce::PropertyPanel*);
 
+private:
+    int getPropertyPanelHeight() const;
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    static void buildConcertinaPanel (const core::Data&, ParameterView&, int);
+    static void buildConcertinaPanel (const core::Data&, ParameterView&, int, int);
 
 protected:
     juce::ConcertinaPanel panel_;

@@ -67,14 +67,12 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
 
 int LookAndFeel::getPropertyPanelSectionHeaderHeight (const juce::String& s)
 {
-    if (s.isEmpty()) { return 0; } else { return getPropertyPanelHeight(); }
+    if (s.isEmpty()) { return 0; }
+    else {
+        return static_cast<int> (getConsoleFont().getHeight() * 1.5);
+    }
 }
 
-int LookAndFeel::getPropertyPanelHeight()
-{
-    return static_cast<int> (getConsoleFont().getHeight() * 1.5);
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
