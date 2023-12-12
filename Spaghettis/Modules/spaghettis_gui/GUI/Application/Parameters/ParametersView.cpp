@@ -81,7 +81,7 @@ void ParameterView::timerCallback()
 
 int ParameterView::getPropertyPanelHeight() const
 {
-    return juce::LookAndFeel::getDefaultLookAndFeel().getPropertyPanelSectionHeaderHeight ("Foo");
+    return font_.getHeight() * 1.5;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ int ParameterView::getPropertyPanelHeight() const
 
 void ParameterView::addPanel (juce::PropertyPanel* p)
 {
-    const int headerSize = height_ + 6;
+    const int headerSize = getPropertyPanelHeight() + 6;
     const int i = getNumberOfPanels();
     auto h = std::make_unique<ParameterHeader> (p->getName(), i, this);
     

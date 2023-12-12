@@ -24,13 +24,12 @@ public:
     explicit ParameterView (const core::Data& data, const juce::Font& font, int w) :
         data_ (data),
         font_ (font),
-        height_ (getPropertyPanelHeight()),
         expanded_ (0),
         expandedLast_ (0)
     {
         jassert (w > 0);
         
-        buildConcertinaPanel (data_, *this, w, height_);
+        buildConcertinaPanel (data_, *this, w, getPropertyPanelHeight());
     }
     
     virtual ~ParameterView() = default;
@@ -88,7 +87,6 @@ protected:
 private:
     core::Data data_;
     juce::Font font_;
-    int height_;
     int expanded_;
     int expandedLast_;
     juce::String requiredPanel_;
