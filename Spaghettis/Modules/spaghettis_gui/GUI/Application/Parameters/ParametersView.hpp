@@ -23,12 +23,13 @@ class ParameterView : private juce::Timer {
 public:
     explicit ParameterView (const core::Data& data, int w) :
         data_ (data),
+        height_ (getPropertyPanelHeight()),
         expanded_ (0),
         expandedLast_ (0)
     {
         jassert (w > 0);
         
-        buildConcertinaPanel (data_, *this, w, getPropertyPanelHeight());
+        buildConcertinaPanel (data_, *this, w, height_);
     }
     
     virtual ~ParameterView() = default;
@@ -82,10 +83,11 @@ protected:
 
 private:
     core::Data data_;
+    int height_;
     int expanded_;
     int expandedLast_;
     juce::String requiredPanel_;
-    
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterView)
 };
