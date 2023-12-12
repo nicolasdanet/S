@@ -21,8 +21,9 @@ class ParameterView : private juce::Timer {
 /* Notice that only the left and right margins are used. */
 
 public:
-    explicit ParameterView (const core::Data& data, int w) :
+    explicit ParameterView (const core::Data& data, const juce::Font& font, int w) :
         data_ (data),
+        font_ (font),
         height_ (getPropertyPanelHeight()),
         expanded_ (0),
         expandedLast_ (0)
@@ -41,6 +42,9 @@ public:
 public:
     int getNumberOfPanels() const;
 
+public:
+    juce::Font getFont() const;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -83,6 +87,7 @@ protected:
 
 private:
     core::Data data_;
+    juce::Font font_;
     int height_;
     int expanded_;
     int expandedLast_;

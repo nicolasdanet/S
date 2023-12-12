@@ -51,7 +51,8 @@ void MakerDocumentation::showDocumentation (const juce::String& s)
     removeChildComponent (shown_);
     
     if (Documentation::has (s)) {
-        fetched_ = std::make_unique<ParameterView> (Documentation::get (s), 150);
+        const juce::Font font (Spaghettis()->getLookAndFeel().getConsoleFont());
+        fetched_ = std::make_unique<ParameterView> (Documentation::get (s), font, 150);
         shown_   = &fetched_->getPanel();
     } else {
         fetched_ = nullptr;

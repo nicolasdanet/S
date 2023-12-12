@@ -34,7 +34,7 @@ void ParameterHeader::paint (juce::Graphics& g)
     paintArrow (g, b.removeFromLeft (b.getCentreY()));
     
     g.setColour (Colours::fetchColour<Colours::parametersHeaderText>());
-    g.setFont (Spaghettis()->getLookAndFeel().getConsoleFont());
+    g.setFont (owner_->getFont());
     g.drawText (getName(), b.reduced (4, 0), juce::Justification::centredLeft, true);
 }
 
