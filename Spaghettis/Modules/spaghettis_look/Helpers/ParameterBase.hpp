@@ -19,24 +19,44 @@ class ParameterBase {
 // MARK: -
 
 public:
-    explicit ParameterBase (int w) : width_ (w)
+    explicit ParameterBase (const juce::Font& font, int w) : font_ (font), width_ (w)
     {
+        jassert (w > 0);
     }
 
+    ~ParameterBase() = default;
+    
+public:
+    ParameterBase (const ParameterBase&) = default;
+    ParameterBase (ParameterBase&&) = default;
+    ParameterBase& operator = (const ParameterBase&) = default;
+    ParameterBase& operator = (ParameterBase&&) = default;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    int getRequiredWidthForLabel() const
+    juce::Font getFont() const
+    {
+        return font_;
+    }
+    
+    int getWidth() const
     {
         return width_;
     }
 
+    int getHeight() const
+    {
+        return font_.getHeight() * 1.5;
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
+    juce::Font font_;
     int width_;
 };
 

@@ -14,7 +14,7 @@ namespace spaghettis {
 
 juce::Font ParameterView::getFont() const
 {
-    return font_;
+    return base_.getFont();
 }
 
 int ParameterView::getNumberOfPanels() const
@@ -79,18 +79,9 @@ void ParameterView::timerCallback()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int ParameterView::getPropertyPanelHeight() const
-{
-    return font_.getHeight() * 1.5;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void ParameterView::addPanel (juce::PropertyPanel* p)
 {
-    const int headerSize = getPropertyPanelHeight() + 6;
+    const int headerSize = base_.getHeight() + 6;
     const int i = getNumberOfPanels();
     auto h = std::make_unique<ParameterHeader> (p->getName(), i, this);
     
@@ -110,30 +101,27 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const juce::Font& font,
-    const core::Parameter& p,
-    int w)
+std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const core::Parameter& p,
+    const ParameterBase& base)
 {
-    // return std::make_unique<ParameterSlider> (p, font, w);
+    // return std::make_unique<ParameterSlider> (p, base);
     
-    if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, w); }
-    else if (p.isColour())  { return std::make_unique<ParameterColour> (p, w);  }
-    else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p, w); }
-    else if (p.isFloat())   { return std::make_unique<ParameterFloat> (p, w);   }
+    if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, base); }
+    else if (p.isColour())  { return std::make_unique<ParameterColour> (p, base);  }
+    else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p, base); }
+    else if (p.isFloat())   { return std::make_unique<ParameterFloat> (p, base);   }
     else {
-        return std::make_unique<ParameterText> (p, w);
+        return std::make_unique<ParameterText> (p, base);
     }
 }
 
-void buildConcertinaPanelParameter (const juce::Font& font,
-    const core::Parameter& p,
-    juce::Array<juce::PropertyComponent*>& c,
-    int w,
-    int h)
+void buildConcertinaPanelParameter (const core::Parameter& p,
+    const ParameterBase& base,
+    juce::Array<juce::PropertyComponent*>& c)
 {
-    std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (font, p, w));
+    std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p, base));
     
-    t->setPreferredHeight (h);
+    t->setPreferredHeight (base.getHeight());
     t->setTooltip (p.getInfo());
     
     c.add (t.release());
@@ -148,11 +136,7 @@ void buildConcertinaPanelParameter (const juce::Font& font,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParameterView::buildConcertinaPanel (const core::Data& data,
-    const juce::Font& font,
-    ParameterView& v,
-    int w,
-    int h)
+void ParameterView::buildConcertinaPanel (const core::Data& data, const ParameterBase& base, ParameterView& v)
 {
     for (const auto& group : data) {
     //
@@ -163,7 +147,7 @@ void ParameterView::buildConcertinaPanel (const core::Data& data,
     juce::Array<juce::PropertyComponent*> components;
     
     for (const auto& parameter : group) {
-        if (!parameter.isHidden()) { buildConcertinaPanelParameter (font, parameter, components, w, h); }
+        if (!parameter.isHidden()) { buildConcertinaPanelParameter (parameter, base, components); }
     }
     
     panel->addProperties (components);

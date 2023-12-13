@@ -21,15 +21,13 @@ class ParameterView : private juce::Timer {
 /* Notice that only the left and right margins are used. */
 
 public:
-    explicit ParameterView (const core::Data& data, const juce::Font& font, int w) :
+    explicit ParameterView (const core::Data& data, const ParameterBase& base) :
         data_ (data),
-        font_ (font),
         expanded_ (0),
-        expandedLast_ (0)
+        expandedLast_ (0),
+        base_ (base)
     {
-        jassert (w > 0);
-        
-        buildConcertinaPanel (data_, font_, *this, w, getPropertyPanelHeight());
+        buildConcertinaPanel (data_, base_, *this);
     }
     
     virtual ~ParameterView() = default;
@@ -71,25 +69,24 @@ public:
 private:
     void addPanel (juce::PropertyPanel*);
 
-private:
-    int getPropertyPanelHeight() const;
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    static void buildConcertinaPanel (const core::Data&, const juce::Font&, ParameterView&, int, int);
+    static void buildConcertinaPanel (const core::Data&, const ParameterBase& base, ParameterView&);
 
 protected:
     juce::ConcertinaPanel panel_;
 
 private:
     core::Data data_;
-    juce::Font font_;
     int expanded_;
     int expandedLast_;
     juce::String requiredPanel_;
+
+private:
+    ParameterBase base_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterView)
