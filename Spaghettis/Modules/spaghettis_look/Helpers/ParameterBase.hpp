@@ -19,7 +19,10 @@ class ParameterBase {
 // MARK: -
 
 public:
-    explicit ParameterBase (const juce::Font& font, int w) : font_ (font), width_ (w)
+    explicit ParameterBase (const juce::Font& font, const juce::Font& fontMonospaced, int w) :
+        font_ (font),
+        fontMonospaced_ (fontMonospaced),
+        width_ (w)
     {
         jassert (w > 0);
     }
@@ -42,12 +45,17 @@ public:
         return font_;
     }
     
-    int getWidth() const
+    juce::Font getFontMonospaced() const
+    {
+        return fontMonospaced_;
+    }
+    
+    int getRequiredWidth() const
     {
         return width_;
     }
 
-    int getHeight() const
+    int getRequiredHeight() const
     {
         return font_.getHeight() * 1.5;
     }
@@ -57,6 +65,7 @@ public:
 
 private:
     juce::Font font_;
+    juce::Font fontMonospaced_;
     int width_;
 };
 

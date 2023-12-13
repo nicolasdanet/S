@@ -20,7 +20,10 @@ class ParameterColourEditor :   public  juce::Component,
 // MARK: -
 
 public:
-    explicit ParameterColourEditor (const juce::Value& v) : tracker_ (this), value_ (v)
+    explicit ParameterColourEditor (const juce::Value& v, const juce::Font& font) :
+        tracker_ (this),
+        value_ (v),
+        font_ (font)
     {
         value_.addListener (this);
     }
@@ -66,6 +69,7 @@ private:
 private:
     CallOutBoxTracker tracker_;
     juce::Value value_;
+    juce::Font font_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterColourEditor)
@@ -85,7 +89,8 @@ class ParameterColour : public ParameterBase,
 public:
     explicit ParameterColour (const core::Parameter& p, const ParameterBase& base) :
         ParameterBase (base),
-        juce::PropertyComponent (p.getLabel()), editor_ (p.getValueAsValue (false))
+        juce::PropertyComponent (p.getLabel()),
+        editor_ (p.getValueAsValue (false), base.getFontMonospaced())
     {
         addAndMakeVisible (editor_);
         setEnabled (p.isEditable());

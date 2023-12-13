@@ -81,7 +81,7 @@ void ParameterView::timerCallback()
 
 void ParameterView::addPanel (juce::PropertyPanel* p)
 {
-    const int headerSize = base_.getHeight() + 6;
+    const int headerSize = base_.getRequiredHeight() + 6;
     const int i = getNumberOfPanels();
     auto h = std::make_unique<ParameterHeader> (p->getName(), i, this);
     
@@ -121,7 +121,7 @@ void buildConcertinaPanelParameter (const core::Parameter& p,
 {
     std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p, base));
     
-    t->setPreferredHeight (base.getHeight());
+    t->setPreferredHeight (base.getRequiredHeight());
     t->setTooltip (p.getInfo());
     
     c.add (t.release());

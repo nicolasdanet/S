@@ -24,7 +24,7 @@ void ParameterColourEditor::paint (juce::Graphics& g)
         juce::Colours::grey.overlaidWith (c),
         juce::Colours::white.overlaidWith (c));
     
-    g.setFont (Spaghettis()->getLookAndFeel().getColourFont());
+    g.setFont (font_);
     g.setColour (Colours::fetchColour<Colours::parametersColourText>());
     g.drawText (Colours::getDisplayStringFromColour (c),
         getTextBounds(),
