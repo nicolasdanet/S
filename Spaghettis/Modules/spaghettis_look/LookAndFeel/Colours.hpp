@@ -30,8 +30,6 @@ enum ColourIds : int {
     consoleTextSystem,
     consoleTextWarning,
     consoleTextError,
-    consoleBackground,
-    consoleBackgroundAlternate,
     menubarBackground,
     menubarText,
     menubarPopupBackground,
@@ -98,8 +96,6 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (consoleTextSystem,                                   t.textSystem);
     lf->setColour (consoleTextWarning,                                  t.textWarning);
     lf->setColour (consoleTextError,                                    t.textError);
-    lf->setColour (consoleBackground,                                   t.background);
-    lf->setColour (consoleBackgroundAlternate,                          t.backgroundAlternate);
     lf->setColour (menubarBackground,                                   t.backgroundMenu);
     lf->setColour (menubarText,                                         t.textMenu);
     lf->setColour (menubarPopupBackground,                              t.backgroundPopup);
