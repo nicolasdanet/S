@@ -205,11 +205,9 @@ static void initialize (juce::LookAndFeel* lf)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <int N> static juce::Colour fetchColour()
+static juce::Colour fetchColour (ColourIds i)
 {
-    static juce::Colour c = juce::LookAndFeel::getDefaultLookAndFeel().findColour (N);
-    
-    return c;
+    return juce::LookAndFeel::getDefaultLookAndFeel().findColour (i);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -42,8 +42,8 @@ void Icons::addIconProceed (const juce::String& name,
     bool isToggle,
     bool defaultStateIsOn)
 {
-    auto t1 (getDrawable (imageOff, Colours::fetchColour<Colours::toolbarIconOff>()));
-    auto t2 (getDrawable (imageOn,  Colours::fetchColour<Colours::toolbarIconOn>()));
+    auto t1 (getDrawable (imageOff, Colours::fetchColour (Colours::toolbarIconOff)));
+    auto t2 (getDrawable (imageOn,  Colours::fetchColour (Colours::toolbarIconOn)));
     
     jassert (extra >= 0);
     
