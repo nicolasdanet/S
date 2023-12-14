@@ -25,7 +25,7 @@ struct Colours {
 // MARK: -
 
 enum ColourIds : int {
-    windowBackground                            = SPAGHETTIS_COLOUR (0),
+    windowsBackground                               = SPAGHETTIS_COLOUR (0),
     consoleTextDefault,
     consoleTextSystem,
     consoleTextWarning,
@@ -94,7 +94,7 @@ static void initialize (juce::LookAndFeel* lf)
 {
     const Palette& t = Palette::getInstance();
     
-    lf->setColour (windowBackground,                                    t.backgroundMenu);
+    lf->setColour (windowsBackground,                                   t.backgroundMenu);
     lf->setColour (consoleTextDefault,                                  t.textDefault);
     lf->setColour (consoleTextSystem,                                   t.textSystem);
     lf->setColour (consoleTextWarning,                                  t.textWarning);

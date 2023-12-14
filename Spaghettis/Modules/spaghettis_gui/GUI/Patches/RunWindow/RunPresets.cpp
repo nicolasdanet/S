@@ -23,7 +23,7 @@ RunPresets::RunPresets() : resizer_ (*this)
 
 void RunPresets::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::windowBackground));
+    g.fillAll (Spaghettis()->getColour (Colours::windowsBackground));
 }
 
 void RunPresets::resized()
