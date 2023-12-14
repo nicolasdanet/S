@@ -20,16 +20,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "View/ColourSelector/ColourSpace.cpp"
-#include "View/ColourSelector/HueSelector.cpp"
-#include "View/ColourSelector/ColourSelector.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "View/Parameters/ParametersHeader.cpp"
-#include "View/Parameters/ParametersView.cpp"
-#include "View/Parameters/ParametersColour.cpp"
+#include "View/ColourSpace.cpp"
+#include "View/HueSelector.cpp"
+#include "View/ColourSelector.cpp"
+#include "View/ParametersHeader.cpp"
+#include "View/ParametersView.cpp"
+#include "View/ParametersColour.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

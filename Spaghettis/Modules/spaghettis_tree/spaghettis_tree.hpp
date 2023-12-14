@@ -70,20 +70,16 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "View/ColourSelector/ColourSlider.hpp"
-#include "View/ColourSelector/ColourSpace.hpp"
-#include "View/ColourSelector/HueSelector.hpp"
-#include "View/ColourSelector/ColourSelector.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "View/Parameters/ParametersHeader.hpp"
-#include "View/Parameters/ParametersView.hpp"
-#include "View/Parameters/ParametersBoolean.hpp"
-#include "View/Parameters/ParametersColour.hpp"
-#include "View/Parameters/ParametersNumber.hpp"
-#include "View/Parameters/ParametersText.hpp"
+#include "View/ColourSlider.hpp"
+#include "View/ColourSpace.hpp"
+#include "View/HueSelector.hpp"
+#include "View/ColourSelector.hpp"
+#include "View/ParametersHeader.hpp"
+#include "View/ParametersView.hpp"
+#include "View/ParametersBoolean.hpp"
+#include "View/ParametersColour.hpp"
+#include "View/ParametersNumber.hpp"
+#include "View/ParametersText.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
