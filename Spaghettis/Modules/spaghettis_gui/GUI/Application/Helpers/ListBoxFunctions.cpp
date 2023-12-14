@@ -19,13 +19,13 @@ namespace {
 
 juce::Colour getColourForType (Logger::Type type)
 {
-    int c = Colours::consoleTextError;
+    Colours::ColourIds c = Colours::consoleTextError;
                 
     if (type == Logger::Type::normal)       { c = Colours::consoleTextDefault; }
     else if (type == Logger::Type::system)  { c = Colours::consoleTextSystem;  }
     else if (type == Logger::Type::warning) { c = Colours::consoleTextWarning; }
                 
-    return Spaghettis()->getColour (c);
+    return Colours::fetchColour (c);
 }
 
 // -----------------------------------------------------------------------------------------------------------
