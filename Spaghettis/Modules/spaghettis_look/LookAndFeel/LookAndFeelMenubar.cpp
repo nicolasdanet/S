@@ -24,7 +24,7 @@ juce::Font LookAndFeel::getMenuBarFont (juce::MenuBarComponent&, int, const juce
 
 void LookAndFeel::drawMenuBarBackground (juce::Graphics& g, int, int, bool, juce::MenuBarComponent&)
 {
-    g.fillAll (findColour (Colours::menubarBackground));
+    g.fillAll (Colours::fetchColour (Colours::menubarBackground));
 }
     
 void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
@@ -39,9 +39,9 @@ void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
 {
     const bool highlighted = (isMenuOpen || isMouseOverItem) && m.isEnabled();
         
-    if (highlighted) { g.fillAll (findColour (Colours::menubarPopupBackgroundHighlighted)); }
+    if (highlighted) { g.fillAll (Colours::fetchColour (Colours::menubarPopupBackgroundHighlighted)); }
 
-    g.setColour (findColour (Colours::menubarText));
+    g.setColour (Colours::fetchColour (Colours::menubarText));
     g.setFont (getMenuBarFont (m, index, text));
     g.drawText (text, 0, 0, width, height, juce::Justification::centred, true);
 }

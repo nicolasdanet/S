@@ -28,7 +28,7 @@ int LookAndFeel::getPopupMenuBorderSize()
 
 void LookAndFeel::drawPopupMenuBackgroundProceed (juce::Graphics& g)
 {
-    g.fillAll (findColour (Colours::menubarPopupBackground));
+    g.fillAll (Colours::fetchColour (Colours::menubarPopupBackground));
 }
     
 void LookAndFeel::drawPopupMenuBackgroundWithOptions (juce::Graphics& g,
@@ -69,12 +69,12 @@ void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
 
 void LookAndFeel::drawPopupMenuItemSelector (juce::Graphics& g, const juce::Rectangle<int>& area)
 {
-    g.setColour (findColour (Colours::menubarPopupSeparator).withAlpha (0.25f)); g.fillRect (area);
+    g.setColour (Colours::fetchColour (Colours::menubarPopupSeparator).withAlpha (0.25f)); g.fillRect (area);
 }
 
 void LookAndFeel::drawPopupMenuItemBackground (juce::Graphics& g, const juce::Rectangle<int>& area)
 {
-    g.setColour (findColour (Colours::menubarPopupBackgroundHighlighted));
+    g.setColour (Colours::fetchColour (Colours::menubarPopupBackgroundHighlighted));
     g.fillRect (area);
 }
 
@@ -119,8 +119,10 @@ void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
     //
     if (isHighlighted && isActive) { drawPopupMenuItemBackground (g, area); }
     
-    const int n = isHighlighted ? Colours::menubarPopupTextHighlighted : Colours::menubarPopupText;
-    const juce::Colour c1 = findColour (n);
+    const Colours::ColourIds n = isHighlighted ?
+                                    Colours::menubarPopupTextHighlighted :
+                                    Colours::menubarPopupText;
+    const juce::Colour c1 = Colours::fetchColour (n);
     const juce::Colour c2 = c1.withMultipliedAlpha (0.5f);
     
     g.setColour (isActive ? c1 : c2);
