@@ -1,80 +1,65 @@
 
-/* Copyright (c) 2023 Jojo and others. */
+/* Copyright (c) 2021 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-// ====================================
-
-/*************************************************************************************************************
-
- BEGIN_JUCE_MODULE_DECLARATION
-
-  ID:                 spaghettis_look
-  vendor:             Spaghettis
-  version:            0.9
-  name:               Look
-  description:        Look
-  website:            https://github.com/Spaghettis
-  license:            BSD
-
-  dependencies:       juce_core juce_data_structures juce_events juce_graphics juce_gui_basics
-  OSXFrameworks:
-  OSXLibs:
-  linuxLibs:
-
- END_JUCE_MODULE_DECLARATION
-
-*************************************************************************************************************/
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#pragma once
+struct Colour {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::String getDisplayStringFromColour (const juce::Colour& colour)
+{
+    return colour.toDisplayString (true);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::String getColourAsString (const juce::Colour& c)
+{
+    return c.toString().paddedLeft ('0', 8);
+}
+
+static juce::Colour getColourFromString (const juce::String& s)
+{
+    return juce::Colour::fromString (s.length() == 8 ? s : "ff000000");
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::Colour getColourFromValue (const juce::Value& v)
+{
+    return getColourFromString (v.toString());
+}
+
+static void setValueWithColour (juce::Value& v, const juce::Colour& c)
+{
+    v.setValue (getColourAsString (c));
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "juce_core/juce_core.h"
-#include "juce_data_structures/juce_data_structures.h"
-#include "juce_events/juce_events.h"
-#include "juce_gui_basics/juce_gui_basics.h"
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Helpers/Colour.hpp"
-#include "Helpers/Normalized.hpp"
-#include "Helpers/ParameterBase.hpp"
-#include "Helpers/Strings.hpp"
-#include "Helpers/WeakPointer.hpp"
-#include "Helpers/SafeRegister.hpp"
-#include "Helpers/AlertWindowRegister.hpp"
-#include "Helpers/CallOutBoxRegister.hpp"
-#include "Helpers/CallOutBoxTracker.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "LookAndFeel/Palette.hpp"
-#include "LookAndFeel/Colours.hpp"
-#include "LookAndFeel/LookAndFeel.hpp"
-#include "LookAndFeel/SliderLabel.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Helpers/VariantConverter.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Icons/Icons.hpp"
-#include "Icons/IconsButton.hpp"
-#include "Icons/IconsFactory.hpp"
-#include "Icons/IconsFactoryHelper.hpp"
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

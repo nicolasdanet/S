@@ -80,12 +80,12 @@ void ColourSelector::resized()
 
 void ColourSelector::getColour()
 {
-    colour_ = Colours::getColourFromValue (value_);
+    colour_ = Colour::getColourFromValue (value_);
 }
 
 void ColourSelector::pushColour()
 {
-    Colours::setValueWithColour (value_, colour_);
+    Colour::setValueWithColour (value_, colour_);
 }
 
 void ColourSelector::updateHSV()

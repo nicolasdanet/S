@@ -212,43 +212,6 @@ static juce::Colour fetchColour (ColourIds i)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static juce::String getDisplayStringFromColour (const juce::Colour& colour)
-{
-    return colour.toDisplayString (true);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static juce::String getColourAsString (const juce::Colour& c)
-{
-    return c.toString().paddedLeft ('0', 8);
-}
-
-static juce::Colour getColourFromString (const juce::String& s)
-{
-    return juce::Colour::fromString (s.length() == 8 ? s : "ff000000");
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static juce::Colour getColourFromValue (const juce::Value& v)
-{
-    return getColourFromString (v.toString());
-}
-
-static void setValueWithColour (juce::Value& v, const juce::Colour& c)
-{
-    v.setValue (getColourAsString (c));
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 };
 

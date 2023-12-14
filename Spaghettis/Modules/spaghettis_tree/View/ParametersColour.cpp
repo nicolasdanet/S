@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void ParameterColourEditor::paint (juce::Graphics& g)
 {
-    const juce::Colour c (Colours::getColourFromValue (value_));
+    const juce::Colour c (Colour::getColourFromValue (value_));
     
     g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
     
@@ -26,7 +26,7 @@ void ParameterColourEditor::paint (juce::Graphics& g)
     
     g.setFont (font_);
     g.setColour (Colours::fetchColour (Colours::parametersColourText));
-    g.drawText (Colours::getDisplayStringFromColour (c),
+    g.drawText (Colour::getDisplayStringFromColour (c),
         getTextBounds(),
         juce::Justification::centredLeft,
         true);

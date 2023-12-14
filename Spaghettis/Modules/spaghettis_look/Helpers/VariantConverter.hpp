@@ -36,12 +36,12 @@ template<> struct VariantConverter<Colour> {
 
 static Colour fromVar (const var& v)
 {
-    return Colour (spaghettis::Colours::getColourFromString (v.toString()));
+    return Colour (spaghettis::Colour::getColourFromString (v.toString()));
 }
     
 static var toVar (const juce::Colour& c)
 {
-    return var (spaghettis::Colours::getColourAsString (c));
+    return var (spaghettis::Colour::getColourAsString (c));
 }
 
 };
