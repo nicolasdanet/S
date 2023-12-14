@@ -25,7 +25,7 @@ struct Colours {
 // MARK: -
 
 enum ColourIds : int {
-    windowBackground        = SPAGHETTIS_COLOUR (0),
+    windowBackground                            = SPAGHETTIS_COLOUR (0),
     consoleTextDefault,
     consoleTextSystem,
     consoleTextWarning,
@@ -94,6 +94,7 @@ static void initialize (juce::LookAndFeel* lf)
 {
     const Palette& t = Palette::getInstance();
     
+    lf->setColour (windowBackground,                                    t.backgroundMenu);
     lf->setColour (consoleTextDefault,                                  t.textDefault);
     lf->setColour (consoleTextSystem,                                   t.textSystem);
     lf->setColour (consoleTextWarning,                                  t.textWarning);
@@ -153,8 +154,6 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (listBoxText,                                         t.textSystem);
     lf->setColour (listBoxTextHighlighted,                              t.textHighlighted);
     
-    lf->setColour (windowBackground,                                    lf->findColour (toolbarBackground));
-    
     /* Scroll bar. */
     
     lf->setColour (juce::ScrollBar::thumbColourId,                      t.thumb);
@@ -206,6 +205,17 @@ static void initialize (juce::LookAndFeel* lf)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+template <int N> static juce::Colour fetchColour()
+{
+    static juce::Colour c = juce::LookAndFeel::getDefaultLookAndFeel().findColour (N);
+    
+    return c;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static juce::String getDisplayStringFromColour (const juce::Colour& colour)
 {
     return colour.toDisplayString (true);
@@ -237,17 +247,6 @@ static juce::Colour getColourFromValue (const juce::Value& v)
 static void setValueWithColour (juce::Value& v, const juce::Colour& c)
 {
     v.setValue (getColourAsString (c));
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-template <int N> static juce::Colour fetchColour()
-{
-    static juce::Colour c = juce::LookAndFeel::getDefaultLookAndFeel().findColour (N);
-    
-    return c;
 }
 
 // -----------------------------------------------------------------------------------------------------------
