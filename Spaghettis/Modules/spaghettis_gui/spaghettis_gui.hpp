@@ -55,16 +55,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Parameters/ParametersHeader.hpp"
-#include "GUI/Application/Parameters/ParametersView.hpp"
-#include "GUI/Application/Parameters/ParametersBoolean.hpp"
-#include "GUI/Application/Parameters/ParametersColour.hpp"
-#include "GUI/Application/Parameters/ParametersNumber.hpp"
-#include "GUI/Application/Parameters/ParametersText.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 #include "GUI/Application/EditDistance.hpp"
 #include "GUI/Application/Autocomplete.hpp"
 #include "GUI/Application/Commands.hpp"

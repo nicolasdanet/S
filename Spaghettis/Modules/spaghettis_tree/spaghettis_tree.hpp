@@ -77,3 +77,13 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+#include "View/Parameters/ParametersHeader.hpp"
+#include "View/Parameters/ParametersView.hpp"
+#include "View/Parameters/ParametersBoolean.hpp"
+#include "View/Parameters/ParametersColour.hpp"
+#include "View/Parameters/ParametersNumber.hpp"
+#include "View/Parameters/ParametersText.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
