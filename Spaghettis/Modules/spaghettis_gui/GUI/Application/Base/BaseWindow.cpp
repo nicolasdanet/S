@@ -14,7 +14,7 @@ namespace spaghettis {
 
 BaseWindow::BaseWindow (const juce::String& name, const juce::String& s) :
     juce::DocumentWindow (name,
-        Spaghettis()->getColour (Colours::windowsBackground),
+        Colours::fetchColour (Colours::windowsBackground),
         DocumentWindow::allButtons,
         false),
     name_ (name),

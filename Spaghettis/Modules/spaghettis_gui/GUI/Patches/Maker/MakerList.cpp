@@ -86,7 +86,7 @@ void MakerList::valueChanged (juce::Value& v)
 
 void MakerList::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::windowsBackground));
+    g.fillAll (Colours::fetchColour (Colours::windowsBackground));
 }
     
 void MakerList::resized()

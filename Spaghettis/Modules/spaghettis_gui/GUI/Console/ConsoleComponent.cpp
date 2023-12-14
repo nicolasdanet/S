@@ -198,7 +198,7 @@ void ConsoleComponent::listBoxItemClicked (int row, const juce::MouseEvent& e)
 
 void ConsoleComponent::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::windowsBackground));
+    g.fillAll (Colours::fetchColour (Colours::windowsBackground));
 }
 
 void ConsoleComponent::resized()

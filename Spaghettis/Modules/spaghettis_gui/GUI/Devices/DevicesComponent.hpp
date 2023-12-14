@@ -85,7 +85,7 @@ public:
 public:
     void paint (juce::Graphics& g) override
     {
-        g.fillAll (Spaghettis()->getColour (Colours::windowsBackground));
+        g.fillAll (Colours::fetchColour (Colours::windowsBackground));
     }
     
     void resized() override

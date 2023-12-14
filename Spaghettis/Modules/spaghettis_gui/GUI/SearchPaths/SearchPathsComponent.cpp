@@ -104,7 +104,7 @@ void SearchPathsComponent::deleteKeyPressed (int)
 
 void SearchPathsComponent::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::windowsBackground));
+    g.fillAll (Colours::fetchColour (Colours::windowsBackground));
 }
 
 void SearchPathsComponent::resized()

@@ -136,7 +136,7 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
 
 void EditComponent::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::windowsBackground));
+    g.fillAll (Colours::fetchColour (Colours::windowsBackground));
 }
 
 void EditComponent::resized()

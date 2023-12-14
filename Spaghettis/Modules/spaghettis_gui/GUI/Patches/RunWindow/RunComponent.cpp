@@ -62,7 +62,7 @@ RunComponent::RunComponent (PatchRoot& patch, const juce::ValueTree& tree) :
 
 void RunComponent::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::windowsBackground));
+    g.fillAll (Colours::fetchColour (Colours::windowsBackground));
 }
 
 void RunComponent::resized()
