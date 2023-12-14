@@ -1,79 +1,70 @@
 
-/* Copyright (c) 2023 Jojo and others. */
+/* Copyright (c) 2021 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-// ====================================
-
-/*************************************************************************************************************
-
- BEGIN_JUCE_MODULE_DECLARATION
-
-  ID:                 spaghettis_look
-  vendor:             Spaghettis
-  version:            0.9
-  name:               Look
-  description:        Look
-  website:            https://github.com/Spaghettis
-  license:            BSD
-
-  dependencies:       juce_core juce_data_structures juce_events juce_graphics juce_gui_basics
-  OSXFrameworks:
-  OSXLibs:
-  linuxLibs:
-
- END_JUCE_MODULE_DECLARATION
-
-*************************************************************************************************************/
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#pragma once
+class ParameterView;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "juce_core/juce_core.h"
-#include "juce_data_structures/juce_data_structures.h"
-#include "juce_events/juce_events.h"
-#include "juce_gui_basics/juce_gui_basics.h"
+class ParameterHeader : public juce::Component {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit ParameterHeader (const juce::String& name, int index, ParameterView *owner) :
+        juce::Component (name),
+        index_ (index),
+        owner_ (owner)
+    {
+    }
+
+    ~ParameterHeader() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void resized() override
+    {
+    }
+
+    void paint (juce::Graphics&) override;
+
+    void mouseUp (const juce::MouseEvent&) override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void paintArrow (juce::Graphics&, const juce::Rectangle<int>&);
+    
+private:
+    int index_;
+    ParameterView *owner_;
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterHeader)
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Helpers/Normalized.hpp"
-#include "Helpers/ParameterBase.hpp"
-#include "Helpers/Strings.hpp"
-#include "Helpers/WeakPointer.hpp"
-#include "Helpers/SafeRegister.hpp"
-#include "Helpers/AlertWindowRegister.hpp"
-#include "Helpers/CallOutBoxRegister.hpp"
-#include "Helpers/CallOutBoxTracker.hpp"
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "LookAndFeel/Palette.hpp"
-#include "LookAndFeel/Colours.hpp"
-#include "LookAndFeel/LookAndFeel.hpp"
-#include "LookAndFeel/SliderLabel.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Helpers/VariantConverter.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Icons/Icons.hpp"
-#include "Icons/IconsButton.hpp"
-#include "Icons/IconsFactory.hpp"
-#include "Icons/IconsFactoryHelper.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------

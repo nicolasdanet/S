@@ -1,79 +1,102 @@
 
-/* Copyright (c) 2023 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-// ====================================
+namespace spaghettis {
 
-/*************************************************************************************************************
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
- BEGIN_JUCE_MODULE_DECLARATION
+class ParameterView : private juce::Timer {
 
-  ID:                 spaghettis_look
-  vendor:             Spaghettis
-  version:            0.9
-  name:               Look
-  description:        Look
-  website:            https://github.com/Spaghettis
-  license:            BSD
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-  dependencies:       juce_core juce_data_structures juce_events juce_graphics juce_gui_basics
-  OSXFrameworks:
-  OSXLibs:
-  linuxLibs:
+/* Notice that only the left and right margins are used. */
 
- END_JUCE_MODULE_DECLARATION
+public:
+    explicit ParameterView (const core::Data& data, const ParameterBase& base) :
+        data_ (data),
+        expanded_ (0),
+        expandedLast_ (0),
+        base_ (base)
+    {
+        buildConcertinaPanel (data_, base_, *this);
+    }
+    
+    virtual ~ParameterView() = default;
 
-*************************************************************************************************************/
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::Font getFont() const;
+    
+public:
+    int getNumberOfPanels() const;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void requireExpandPanel (const juce::String& group = juce::String());
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    juce::ConcertinaPanel& getPanel();
+    void resizePanel (const juce::Rectangle<int>&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void expandPanel (int);
+    bool isExpanded (int);
+    void timerCallback();
+    
+private:
+    void addPanel (juce::PropertyPanel*);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    static void buildConcertinaPanel (const core::Data&, const ParameterBase& base, ParameterView&);
+
+protected:
+    juce::ConcertinaPanel panel_;
+
+private:
+    core::Data data_;
+    int expanded_;
+    int expandedLast_;
+    juce::String requiredPanel_;
+
+private:
+    ParameterBase base_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterView)
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#pragma once
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "juce_core/juce_core.h"
-#include "juce_data_structures/juce_data_structures.h"
-#include "juce_events/juce_events.h"
-#include "juce_gui_basics/juce_gui_basics.h"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Helpers/Normalized.hpp"
-#include "Helpers/ParameterBase.hpp"
-#include "Helpers/Strings.hpp"
-#include "Helpers/WeakPointer.hpp"
-#include "Helpers/SafeRegister.hpp"
-#include "Helpers/AlertWindowRegister.hpp"
-#include "Helpers/CallOutBoxRegister.hpp"
-#include "Helpers/CallOutBoxTracker.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "LookAndFeel/Palette.hpp"
-#include "LookAndFeel/Colours.hpp"
-#include "LookAndFeel/LookAndFeel.hpp"
-#include "LookAndFeel/SliderLabel.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Helpers/VariantConverter.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Icons/Icons.hpp"
-#include "Icons/IconsButton.hpp"
-#include "Icons/IconsFactory.hpp"
-#include "Icons/IconsFactoryHelper.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
