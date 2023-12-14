@@ -48,242 +48,242 @@ core::Data getDefaultPreferences()
     colors.addParameter (Tag::PatchBackground,
         NEEDS_TRANS ("Patch Background"),
         NEEDS_TRANS ("Set background color of patch"),
-        Palette::getPalette()->background);
+        Palette::getInstance().background);
 
     colors.addParameter (Tag::PatchText,
         NEEDS_TRANS ("Patch Text"),
         NEEDS_TRANS ("Set text color of patch"),
-        Palette::getPalette()->backgroundPopup);
+        Palette::getInstance().backgroundPopup);
     
     colors.addParameter (Tag::Lasso,
         NEEDS_TRANS ("Lasso"),
         NEEDS_TRANS ("Set color of lasso"),
-        Palette::getPalette()->selection);
+        Palette::getInstance().selection);
     
     colors.addParameter (Tag::Locator,
         NEEDS_TRANS ("Locator"),
         NEEDS_TRANS ("Set color of locator"),
-        Palette::getPalette()->textError);
+        Palette::getInstance().textError);
         
     colors.addParameter (Tag::BoxBackground,
         NEEDS_TRANS ("Box Background"),
         NEEDS_TRANS ("Set background color of objects"),
-        Palette::getPalette()->backgroundBox);
+        Palette::getInstance().backgroundBox);
     
     colors.addParameter (Tag::BoxPinsBackground,
         NEEDS_TRANS ("Box Pin Background"),
         NEEDS_TRANS ("Set background color of pins"),
-        Palette::getPalette()->backgroundBox.contrasting (0.05f));
+        Palette::getInstance().backgroundBox.contrasting (0.05f));
     
     colors.addParameter (Tag::BoxSelected,
         NEEDS_TRANS ("Box Selected"),
         NEEDS_TRANS ("Set highlight color for selected object"),
-        Palette::getPalette()->selection);
+        Palette::getInstance().selection);
     
     colors.addParameter (Tag::BoxWrong,
         NEEDS_TRANS ("Box Wrong"),
         NEEDS_TRANS ("Set highlight color for bad object"),
-        Palette::getPalette()->textError);
+        Palette::getInstance().textError);
         
     colors.addParameter (Tag::BoxText,
         NEEDS_TRANS ("Box Text"),
         NEEDS_TRANS ("Set text color of objects"),
-        Palette::getPalette()->textBox);
+        Palette::getInstance().textBox);
     
     colors.addParameter (Tag::LabelBackground,
         NEEDS_TRANS ("Label Background"),
         NEEDS_TRANS ("Set background color of run view labels"),
-        Palette::getPalette()->backgroundBox.withAlpha (0.5f));
+        Palette::getInstance().backgroundBox.withAlpha (0.5f));
         
     colors.addParameter (Tag::LabelText,
         NEEDS_TRANS ("Label Text"),
         NEEDS_TRANS ("Set text color of run view labels"),
-        Palette::getPalette()->textBox);
+        Palette::getInstance().textBox);
         
     colors.addParameter (Tag::Line,
         NEEDS_TRANS ("Line"),
         NEEDS_TRANS ("Set color of connections"),
-        Palette::getPalette()->backgroundBox.contrasting (0.25f));
+        Palette::getInstance().backgroundBox.contrasting (0.25f));
     
     colors.addParameter (Tag::LineSignal,
         NEEDS_TRANS ("Line Signal"),
         NEEDS_TRANS ("Set color of signal connections"),
-        Palette::getPalette()->signal);
+        Palette::getInstance().signal);
     
     colors.addParameter (Tag::LineSelected,
         NEEDS_TRANS ("Line Selected"),
         NEEDS_TRANS ("Set highlight color for selected lines"),
-        Palette::getPalette()->selection);
+        Palette::getInstance().selection);
         
     colors.addParameter (Tag::PinOver,
         NEEDS_TRANS ("Pin Over"),
         NEEDS_TRANS ("Set color of pins while mouse is over"),
-        Palette::getPalette()->selection);
+        Palette::getInstance().selection);
     
     colors.addParameter (Tag::PinSignal,
         NEEDS_TRANS ("Pin Signal"),
         NEEDS_TRANS ("Set color of signal pins"),
-        Palette::getPalette()->signal);
+        Palette::getInstance().signal);
     
     colors.addParameter (Tag::PinBang,
         NEEDS_TRANS ("Pin Bang"),
         NEEDS_TRANS ("Set color of bang pins"),
-        Palette::getPalette()->bang);
+        Palette::getInstance().bang);
     
     colors.addParameter (Tag::PinFloat,
         NEEDS_TRANS ("Pin Float"),
         NEEDS_TRANS ("Set color of float pins"),
-        Palette::getPalette()->backgroundBox.contrasting (0.25f));
+        Palette::getInstance().backgroundBox.contrasting (0.25f));
     
     colors.addParameter (Tag::PinSymbol,
         NEEDS_TRANS ("Pin Symbol"),
         NEEDS_TRANS ("Set color of symbol pins"),
-        Palette::getPalette()->backgroundBox.contrasting (0.25f));
+        Palette::getInstance().backgroundBox.contrasting (0.25f));
     
     colors.addParameter (Tag::PinList,
         NEEDS_TRANS ("Pin List"),
         NEEDS_TRANS ("Set color of list pins"),
-        Palette::getPalette()->backgroundBox.contrasting (0.25f));
+        Palette::getInstance().backgroundBox.contrasting (0.25f));
         
     colors.addParameter (Tag::PinAnything,
         NEEDS_TRANS ("Pin Anything"),
         NEEDS_TRANS ("Set color of anything pins"),
-        Palette::getPalette()->backgroundBox.contrasting (0.25f));
+        Palette::getInstance().backgroundBox.contrasting (0.25f));
     
     colors.addParameter (Tag::ArrayBackground,
         NEEDS_TRANS ("Array Background"),
         NEEDS_TRANS ("Set background color of graphic arrays"),
-        Palette::getPalette()->backgroundBox);
+        Palette::getInstance().backgroundBox);
     
     colors.addParameter (Tag::ArrayValue,
         NEEDS_TRANS ("Array Value"),
         NEEDS_TRANS ("Set content color of graphic arrays"),
-        Palette::getPalette()->backgroundPopup);
+        Palette::getInstance().backgroundPopup);
         
     colors.addParameter (Tag::AtomBackground,
         NEEDS_TRANS ("Atom Background"),
         NEEDS_TRANS ("Set background color of number boxes"),
-        Palette::getPalette()->backgroundBox);
+        Palette::getInstance().backgroundBox);
         
     colors.addParameter (Tag::AtomText,
         NEEDS_TRANS ("Atom Text"),
         NEEDS_TRANS ("Set text color of number boxes"),
-        Palette::getPalette()->textBox);
+        Palette::getInstance().textBox);
     
     colors.addParameter (Tag::AtomClicked,
         NEEDS_TRANS ("Atom Clicked"),
         NEEDS_TRANS ("Set triangle color while changing value"),
-        Palette::getPalette()->textWarning);
+        Palette::getInstance().textWarning);
         
     colors.addParameter (Tag::BangBackground,
         NEEDS_TRANS ("Bang Background"),
         NEEDS_TRANS ("Set background color of bang"),
-        Palette::getPalette()->backgroundWidget);
+        Palette::getInstance().backgroundWidget);
     
     colors.addParameter (Tag::BangFlashOff,
         NEEDS_TRANS ("Bang Flash Off"),
         NEEDS_TRANS ("Set color of bang for flash off"),
-        Palette::getPalette()->backgroundAlternate);
+        Palette::getInstance().backgroundAlternate);
         
     colors.addParameter (Tag::BangFlashOn,
         NEEDS_TRANS ("Bang Flash On"),
         NEEDS_TRANS ("Set color of bang for flash on"),
-        Palette::getPalette()->textWarning);
+        Palette::getInstance().textWarning);
 
     colors.addParameter (Tag::ToggleBackground,
         NEEDS_TRANS ("Toggle Background"),
         NEEDS_TRANS ("Set background color of toggle"),
-        Palette::getPalette()->backgroundWidget);
+        Palette::getInstance().backgroundWidget);
     
     colors.addParameter (Tag::Toggle,
         NEEDS_TRANS ("Toggle"),
         NEEDS_TRANS ("Set color of cross"),
-        Palette::getPalette()->backgroundPopup);
+        Palette::getInstance().backgroundPopup);
     
     colors.addParameter (Tag::RadioBackground,
         NEEDS_TRANS ("Radio buttons Background"),
         NEEDS_TRANS ("Set background color of radio buttons"),
-        Palette::getPalette()->backgroundWidget);
+        Palette::getInstance().backgroundWidget);
     
     colors.addParameter (Tag::RadioButton,
         NEEDS_TRANS ("Radio Button"),
         NEEDS_TRANS ("Set color of activated radio buttons"),
-        Palette::getPalette()->backgroundPopup);
+        Palette::getInstance().backgroundPopup);
     
     colors.addParameter (Tag::SliderBackground,
         NEEDS_TRANS ("Slider Background"),
         NEEDS_TRANS ("Set background color of sliders"),
-        Palette::getPalette()->backgroundWidget);
+        Palette::getInstance().backgroundWidget);
     
     colors.addParameter (Tag::SliderBar,
         NEEDS_TRANS ("Slider Bar"),
         NEEDS_TRANS ("Set foreground color of sliders"),
-        Palette::getPalette()->backgroundPopup);
+        Palette::getInstance().backgroundPopup);
     
     colors.addParameter (Tag::DialBackground,
         NEEDS_TRANS ("Dial Background"),
         NEEDS_TRANS ("Set background color of dials"),
-        Palette::getPalette()->backgroundBox);
+        Palette::getInstance().backgroundBox);
     
     colors.addParameter (Tag::DialForeground,
         NEEDS_TRANS ("Dial Foreground"),
         NEEDS_TRANS ("Set inactive foreground color"),
-        Palette::getPalette()->backgroundPopup);
+        Palette::getInstance().backgroundPopup);
         
     colors.addParameter (Tag::DialNeedle,
         NEEDS_TRANS ("Dial Needle"),
         NEEDS_TRANS ("Set active foreground color"),
-        Palette::getPalette()->textWarning);
+        Palette::getInstance().textWarning);
     
     colors.addParameter (Tag::DialText,
         NEEDS_TRANS ("Dial Text"),
         NEEDS_TRANS ("Set color of text"),
-        Palette::getPalette()->textBox);
+        Palette::getInstance().textBox);
     
     colors.addParameter (Tag::VuBackground,
         NEEDS_TRANS ("Vu Background"),
         NEEDS_TRANS ("Set background color of VU meters"),
-        Palette::getPalette()->backgroundWidget);
+        Palette::getInstance().backgroundWidget);
     
     colors.addParameter (Tag::VuBarCold,
         NEEDS_TRANS ("Vu Bar Cold"),
         NEEDS_TRANS ("Set foreground color of low VU bars"),
-        Palette::getPalette()->vuCold);
+        Palette::getInstance().vuCold);
     
     colors.addParameter (Tag::VuBarWarm,
         NEEDS_TRANS ("Vu Bar Warm"),
         NEEDS_TRANS ("Set foreground color of middle VU bars"),
-        Palette::getPalette()->vuWarm);
+        Palette::getInstance().vuWarm);
     
     colors.addParameter (Tag::VuBarHot,
         NEEDS_TRANS ("Vu Bar Hot"),
         NEEDS_TRANS ("Set foreground color of top VU bars"),
-        Palette::getPalette()->vuHot);
+        Palette::getInstance().vuHot);
         
     colors.addParameter (Tag::CommentBackground,
         NEEDS_TRANS ("Comment Background"),
         NEEDS_TRANS ("Set background color of comments"),
-        Palette::getPalette()->transparent);
+        Palette::getInstance().transparent);
         
     colors.addParameter (Tag::CommentText,
         NEEDS_TRANS ("Comment Text"),
         NEEDS_TRANS ("Set text color of comments"),
-        Palette::getPalette()->textComment);
+        Palette::getInstance().textComment);
     
     colors.addParameter (Tag::MessageBackground,
         NEEDS_TRANS ("Message Background"),
         NEEDS_TRANS ("Set background color of messages"),
-        Palette::getPalette()->backgroundBox);
+        Palette::getInstance().backgroundBox);
         
     colors.addParameter (Tag::MessageText,
         NEEDS_TRANS ("Message Text"),
         NEEDS_TRANS ("Set text color of messages"),
-        Palette::getPalette()->textBox);
+        Palette::getInstance().textBox);
         
     colors.addParameter (Tag::MessageClicked,
         NEEDS_TRANS ("Message Clicked"),
         NEEDS_TRANS ("Set text color clicking messages"),
-        Palette::getPalette()->textWarning.brighter (0.25));
+        Palette::getInstance().textWarning.brighter (0.25));
         
     return data;
 }

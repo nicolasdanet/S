@@ -81,9 +81,9 @@ public:
     Palette& operator = (Palette&&) = default;
 
 public:
-    static Palette* getPalette()
+    static Palette& getInstance()
     {
-        static Palette p; return &p;
+        static Palette p; return p;
     }
     
 public:
