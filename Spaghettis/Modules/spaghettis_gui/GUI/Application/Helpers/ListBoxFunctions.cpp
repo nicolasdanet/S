@@ -45,7 +45,7 @@ juce::Colour ListBoxFunctions::getColourForElement (const Logger::MessagesElemen
         
         if (p.isValid()) {
             if (Spaghettis()->getPatches().contains (p)) {
-                return Spaghettis()->getColour (Colours::listBoxTextHighlighted);
+                return Colours::fetchColour (Colours::listBoxTextHighlighted);
             }
         }
     }

@@ -144,7 +144,7 @@ public:
         int height,
         bool isSelected)
     {
-        if (row % 2) { g.fillAll (Spaghettis()->getColour (Colours::listBoxBackgroundAlternate)); }
+        if (row % 2) { g.fillAll (Colours::fetchColour (Colours::listBoxBackgroundAlternate)); }
 
         if (juce::isPositiveAndBelow (row, items.size())) {
         //
@@ -160,8 +160,8 @@ public:
         } else {
         
             const juce::String t = e;
-            const juce::Colour c = isSelected   ? Spaghettis()->getColour (Colours::listBoxTextHighlighted)
-                                                : Spaghettis()->getColour (Colours::listBoxText);
+            const juce::Colour c = isSelected   ? Colours::fetchColour (Colours::listBoxTextHighlighted)
+                                                : Colours::fetchColour (Colours::listBoxText);
                                                 
             paintItemProceed (t, c, g, width, height);
         }

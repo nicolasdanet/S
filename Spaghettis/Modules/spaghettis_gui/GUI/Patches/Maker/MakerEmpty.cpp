@@ -22,7 +22,7 @@ MakerEmpty::MakerEmpty() : patchTextColour_ (Spaghettis()->getCachedColour (Tag:
 // MARK: -
 void MakerEmpty::paint (juce::Graphics& g)
 {
-    g.setColour (Spaghettis()->getColour (Colours::makerBackground));
+    g.setColour (Colours::fetchColour (Colours::makerBackground));
     g.fillRect (getLocalBounds().reduced (1));
     
     g.setColour (patchTextColour_.get());

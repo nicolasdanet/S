@@ -40,7 +40,7 @@ void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
     
     const int width = r.getX();     /* Compute its width from the component's offset. */
     
-    g.setColour (findColour (Colours::parametersParameterBackground));
+    g.setColour (Colours::fetchColour (Colours::parametersParameterBackground));
     g.fillRect (juce::Rectangle<int> (width, h).withTrimmedBottom (1).withTrimmedRight (2));
 }
 
@@ -55,7 +55,7 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
     
     const int width = r.getX();     /* Compute its width from the component's offset. */
     
-    const juce::Colour t (findColour (Colours::parametersParameterText));
+    const juce::Colour t (Colours::fetchColour (Colours::parametersParameterText));
     
     g.setColour (c.isEnabled() ? t : t.withAlpha (0.25f));
     g.setFont (getConsoleFont());
@@ -84,11 +84,11 @@ void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bo
     
     const juce::Rectangle<float> r (juce::Rectangle<float> (h, h).withSizeKeepingCentre (t, t));
 
-    g.setColour (findColour (Colours::parametersBoolean));
+    g.setColour (Colours::fetchColour (Colours::parametersBoolean));
     g.drawRoundedRectangle (r, 4.0f, 1.0f);
     
     if (b.getToggleState()) {
-        g.setColour (findColour (Colours::parametersBooleanTick));
+        g.setColour (Colours::fetchColour (Colours::parametersBooleanTick));
         LookAndFeel::drawTick (g, r.toNearestInt().reduced (4, 5));
     }
 }
@@ -218,8 +218,8 @@ void LookAndFeel::drawLinearSlider (juce::Graphics& g,
     if (slider.isHorizontal() && !slider.isTwoValue() && !slider.isThreeValue()) {
     //
     if (slider.isBar()) {
-        const juce::Colour background = findColour (Colours::parametersSliderBackground);
-        const juce::Colour track      = findColour (Colours::parametersSliderTrack);
+        const juce::Colour background = Colours::fetchColour (Colours::parametersSliderBackground);
+        const juce::Colour track      = Colours::fetchColour (Colours::parametersSliderTrack);
         drawLinearSliderHorizontalBar (g, x, y, w, h, position, min, max, style, slider, background, track);
     } else {
         drawLinearSliderHorizontal (g, x, y, w, h, position, min, max, style, slider);
