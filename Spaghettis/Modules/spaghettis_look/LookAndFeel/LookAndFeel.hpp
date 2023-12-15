@@ -19,7 +19,7 @@ class LNF : public juce::LookAndFeel_V4 {
 // MARK: -
 
 public:
-    explicit LNF();
+    LNF();
     
     ~LNF() = default;
 
