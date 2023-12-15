@@ -57,7 +57,7 @@ int getMakerEntryHeight()
 
 void MakerComponent::paint (juce::Graphics& g)
 {
-    g.fillAll (Spaghettis()->getColour (Colours::callOutBoxBackground));
+    g.fillAll (Colours::fetchColour (Colours::callOutBoxBackground));
 }
 
 void MakerComponent::resized()

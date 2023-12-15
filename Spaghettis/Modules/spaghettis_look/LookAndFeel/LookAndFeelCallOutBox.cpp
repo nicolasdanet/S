@@ -17,10 +17,10 @@ void LookAndFeel::drawCallOutBoxBackground (juce::CallOutBox&,
     const juce::Path& path,
     juce::Image&)
 {
-    g.setColour (findColour (Colours::callOutBoxBackground));
+    g.setColour (Colours::fetchColour (Colours::callOutBoxBackground));
     g.fillPath (path);
 
-    g.setColour (findColour (Colours::callOutBoxOutline));
+    g.setColour (Colours::fetchColour (Colours::callOutBoxOutline));
     g.strokePath (path, juce::PathStrokeType (2.0f));
 }
 

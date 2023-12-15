@@ -18,7 +18,7 @@ juce::TextLayout LookAndFeel::getTooltipLayout (const juce::String& text)
     
     juce::AttributedString s;
     s.setJustification (juce::Justification::centred);
-    s.append (text, getTooltipsFont(), findColour (Colours::tooltipText));
+    s.append (text, getTooltipsFont(), Colours::fetchColour (Colours::tooltipText));
 
     juce::TextLayout t;
     t.createLayoutWithBalancedLineLengths (s, maximum);
@@ -46,7 +46,7 @@ juce::Rectangle<int> LookAndFeel::getTooltipBounds (const juce::String& text,
 
 void LookAndFeel::drawTooltip (juce::Graphics& g, const juce::String& text, int width, int height)
 {
-    g.fillAll (findColour (Colours::tooltipBackground));
+    g.fillAll (Colours::fetchColour (Colours::tooltipBackground));
 
     getTooltipLayout (text).draw (g, juce::Rectangle<float> (width, height));
 }

@@ -47,7 +47,7 @@ enum ColourIds : int {
     devicesParameterText,
     devicesComboBoxBackground,
     devicesComboBoxBackgroundActive,
-    devicesComboBoxArrow, //
+    devicesComboBoxArrow,
     tooltipBackground,
     tooltipText,
     resizerHighlighted,

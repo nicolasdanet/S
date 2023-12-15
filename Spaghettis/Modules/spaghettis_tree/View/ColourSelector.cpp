@@ -51,7 +51,7 @@ ColourSelector::ColourSelector (const juce::Value& v) :
 
 void ColourSelector::paint (juce::Graphics& g)
 {
-    g.fillAll (findColour (Colours::callOutBoxBackground));
+    g.fillAll (Colours::fetchColour (Colours::callOutBoxBackground));
 }
     
 void ColourSelector::resized()

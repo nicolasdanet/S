@@ -140,12 +140,12 @@ void LookAndFeel::drawButtonBackground (juce::Graphics& g,
     const float cornerSize = 6.0f;
     const juce::Rectangle<float> bounds = button.getLocalBounds().toFloat().reduced (0.5f);
     const juce::Colour background = (shouldDrawButtonAsDown || shouldDrawButtonAsHighlighted)
-            ? findColour (Colours::alertWindowButtonBackgroundOver)
-            : findColour (Colours::alertWindowButtonBackground);
+            ? Colours::fetchColour (Colours::alertWindowButtonBackgroundOver)
+            : Colours::fetchColour (Colours::alertWindowButtonBackground);
             
     g.setColour (background);
     g.fillRoundedRectangle (bounds, cornerSize);
-    g.setColour (findColour (Colours::alertWindowButtonOutline));
+    g.setColour (Colours::fetchColour (Colours::alertWindowButtonOutline));
     g.drawRoundedRectangle (bounds, cornerSize, 1.0f);
 }
 
@@ -154,7 +154,7 @@ void LookAndFeel::drawButtonText (juce::Graphics& g, juce::TextButton& button, b
     const juce::Rectangle<int> r (button.getWidth(), button.getHeight());
     
     const bool hightlighted   = button.isRegisteredForShortcut (juce::KeyPress (juce::KeyPress::returnKey));
-    const juce::Colour colour = (findColour (hightlighted
+    const juce::Colour colour = (Colours::fetchColour (hightlighted
                                     ? Colours::alertWindowButtonTextHighlighted
                                     : Colours::alertWindowButtonText));
         
@@ -217,9 +217,9 @@ void LookAndFeel::drawAlertBoxBackground (juce::Graphics& g,
     juce::Rectangle<int> bounds,
     float cornerSize)
 {
-    g.setColour (findColour (Colours::alertWindowBackground));
+    g.setColour (Colours::fetchColour (Colours::alertWindowBackground));
     g.fillRoundedRectangle (bounds.toFloat(), cornerSize);
-    g.setColour (findColour (Colours::alertWindowOutline));
+    g.setColour (Colours::fetchColour (Colours::alertWindowOutline));
     g.drawRoundedRectangle (bounds.expanded (1).toFloat(), cornerSize, 2.0f);
 }
 
@@ -227,7 +227,7 @@ void LookAndFeel::drawAlertBoxIcon (juce::Graphics& g,
     juce::Rectangle<int> iconArea,
     juce::AlertWindow& alert)
 {
-    g.setColour (juce::Colour (findColour (Colours::alertWindowIcon)));
+    g.setColour (Colours::fetchColour (Colours::alertWindowIcon));
     g.fillPath (drawAlertBoxIconPath (iconArea.toFloat(), alert.getAlertType()));
 }
 
@@ -235,7 +235,7 @@ void LookAndFeel::drawAlertBoxText (juce::Graphics& g,
     juce::Rectangle<int> bounds,
     const juce::TextLayout& textLayout)
 {
-    g.setColour (findColour (Colours::alertWindowText));
+    g.setColour (Colours::fetchColour (Colours::alertWindowText));
 
     textLayout.draw (g, bounds.toFloat());
 }
