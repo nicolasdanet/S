@@ -7,12 +7,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define SPAGHETTIS_COLOUR(c)    (c | 0x7f000000)
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -25,7 +19,7 @@ struct Colours {
 // MARK: -
 
 enum ColourIds : int {
-    windowsBackground                               = SPAGHETTIS_COLOUR (0),
+    windowsBackground   = 0,
     consoleTextDefault,
     consoleTextSystem,
     consoleTextWarning,
@@ -86,7 +80,64 @@ enum ColourIds : int {
 
 static juce::Colour fetchColour (ColourIds i)
 {
-    return juce::LookAndFeel::getDefaultLookAndFeel().findColour (i);
+    const Palette& t = Palette::getInstance();
+    
+    switch (i) {
+        case windowsBackground :                                    return t.backgroundMenu;
+        case consoleTextDefault :                                   return t.textDefault;
+        case consoleTextSystem :                                    return t.textSystem;
+        case consoleTextWarning :                                   return t.textWarning;
+        case consoleTextError :                                     return t.textError;
+        case menubarBackground :                                    return t.backgroundMenu;
+        case menubarText :                                          return t.textMenu;
+        case menubarPopupBackground :                               return t.backgroundPopup;
+        case menubarPopupBackgroundHighlighted :                    return t.textError;
+        case menubarPopupText :                                     return t.textPopup;
+        case menubarPopupTextHighlighted :                          return t.textMenu;
+        case menubarPopupSeparator :                                return t.thumb;
+        case toolbarBackground :                                    return t.backgroundMenu;
+        case toolbarBackgroundDown :                                return t.backgroundPopup;
+        case toolbarBackgroundOver :                                return t.backgroundMenu;
+        case toolbarIconOn :                                        return t.textMenu;
+        case toolbarIconOff :                                       return t.thumb;
+        case toolbarZoom :                                          return t.textSystem;
+        case devicesParameterBackground :                           return t.background;
+        case devicesParameterText :                                 return t.textSystem;
+        case devicesComboBoxBackground :                            return t.backgroundAlternate;
+        case devicesComboBoxBackgroundActive :                      return t.backgroundBox;
+        case devicesComboBoxArrow :                                 return t.textSystem;
+        case tooltipBackground :                                    return t.backgroundMenu;
+        case tooltipText :                                          return t.textMenu;
+        case resizerHighlighted :                                   return t.backgroundPopup;
+        case callOutBoxBackground :                                 return t.backgroundMenu;
+        case callOutBoxOutline :                                    return t.textSystem;
+        case alertWindowBackground :                                return t.backgroundMenu;
+        case alertWindowOutline :                                   return t.textSystem;
+        case alertWindowText :                                      return t.textMenu;
+        case alertWindowIcon :                                      return t.textError;
+        case alertWindowButtonBackground :                          return t.backgroundWidget;
+        case alertWindowButtonBackgroundOver :                      return t.textError;
+        case alertWindowButtonOutline :                             return t.textSystem;
+        case alertWindowButtonText :                                return t.textSystem;
+        case alertWindowButtonTextHighlighted :                     return t.textMenu;
+        case parametersBackground :                                 return t.backgroundMenu;
+        case parametersHeaderBackground :                           return t.background;
+        case parametersHeaderText :                                 return t.textMenu;
+        case parametersHeaderArrow :                                return t.textSystem;
+        case parametersParameterBackground :                        return t.background;
+        case parametersParameterText :                              return t.textSystem;
+        case parametersSliderBackground :                           return t.backgroundAlternate;
+        case parametersSliderTrack :                                return t.backgroundWidget;
+        case parametersColourBackground :                           return t.backgroundAlternate;
+        case parametersColourText :                                 return t.textSystem;
+        case parametersBoolean :                                    return t.textSystem;
+        case parametersBooleanTick :                                return t.textMenu;
+        case makerBackground :                                      return t.background;
+        case listBoxBackgroundAlternate :                           return t.backgroundAlternate;
+        case listBoxText :                                          return t.textSystem;
+        case listBoxTextHighlighted :                               return t.textHighlighted;
+        default :                                                   return juce::Colours::black;
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -96,60 +147,6 @@ static juce::Colour fetchColour (ColourIds i)
 static void initialize (juce::LookAndFeel* lf)
 {
     const Palette& t = Palette::getInstance();
-    
-    lf->setColour (windowsBackground,                                   t.backgroundMenu);
-    lf->setColour (consoleTextDefault,                                  t.textDefault);
-    lf->setColour (consoleTextSystem,                                   t.textSystem);
-    lf->setColour (consoleTextWarning,                                  t.textWarning);
-    lf->setColour (consoleTextError,                                    t.textError);
-    lf->setColour (menubarBackground,                                   t.backgroundMenu);
-    lf->setColour (menubarText,                                         t.textMenu);
-    lf->setColour (menubarPopupBackground,                              t.backgroundPopup);
-    lf->setColour (menubarPopupBackgroundHighlighted,                   t.textError);
-    lf->setColour (menubarPopupText,                                    t.textPopup);
-    lf->setColour (menubarPopupTextHighlighted,                         t.textMenu);
-    lf->setColour (menubarPopupSeparator,                               t.thumb);
-    lf->setColour (toolbarBackground,                                   t.backgroundMenu);
-    lf->setColour (toolbarBackgroundDown,                               t.backgroundPopup);
-    lf->setColour (toolbarBackgroundOver,                               t.backgroundMenu);
-    lf->setColour (toolbarIconOn,                                       t.textMenu);
-    lf->setColour (toolbarIconOff,                                      t.thumb);
-    lf->setColour (toolbarZoom,                                         t.textSystem);
-    lf->setColour (devicesParameterBackground,                          t.background);
-    lf->setColour (devicesParameterText,                                t.textSystem);
-    lf->setColour (devicesComboBoxBackground,                           t.backgroundAlternate);
-    lf->setColour (devicesComboBoxBackgroundActive,                     t.backgroundBox);
-    lf->setColour (devicesComboBoxArrow,                                t.textSystem);
-    lf->setColour (tooltipBackground,                                   t.backgroundMenu);
-    lf->setColour (tooltipText,                                         t.textMenu);
-    lf->setColour (resizerHighlighted,                                  t.backgroundPopup);
-    lf->setColour (callOutBoxBackground,                                t.backgroundMenu);
-    lf->setColour (callOutBoxOutline,                                   t.textSystem);
-    lf->setColour (alertWindowBackground,                               t.backgroundMenu);
-    lf->setColour (alertWindowOutline,                                  t.textSystem);
-    lf->setColour (alertWindowText,                                     t.textMenu);
-    lf->setColour (alertWindowIcon,                                     t.textError);
-    lf->setColour (alertWindowButtonBackground,                         t.backgroundWidget);
-    lf->setColour (alertWindowButtonBackgroundOver,                     t.textError);
-    lf->setColour (alertWindowButtonOutline,                            t.textSystem);
-    lf->setColour (alertWindowButtonText,                               t.textSystem);
-    lf->setColour (alertWindowButtonTextHighlighted,                    t.textMenu);
-    lf->setColour (parametersBackground,                                t.backgroundMenu);
-    lf->setColour (parametersHeaderBackground,                          t.background);
-    lf->setColour (parametersHeaderText,                                t.textMenu);
-    lf->setColour (parametersHeaderArrow,                               t.textSystem);
-    lf->setColour (parametersParameterBackground,                       t.background);
-    lf->setColour (parametersParameterText,                             t.textSystem);
-    lf->setColour (parametersSliderBackground,                          t.backgroundAlternate);
-    lf->setColour (parametersSliderTrack,                               t.backgroundWidget);
-    lf->setColour (parametersColourBackground,                          t.backgroundAlternate);
-    lf->setColour (parametersColourText,                                t.textSystem);
-    lf->setColour (parametersBoolean,                                   t.textSystem);
-    lf->setColour (parametersBooleanTick,                               t.textMenu);
-    lf->setColour (makerBackground,                                     t.background);
-    lf->setColour (listBoxBackgroundAlternate,                          t.backgroundAlternate);
-    lf->setColour (listBoxText,                                         t.textSystem);
-    lf->setColour (listBoxTextHighlighted,                              t.textHighlighted);
     
     /* Scroll bar. */
     
