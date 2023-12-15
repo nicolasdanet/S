@@ -209,8 +209,8 @@ private:
     
     void initializeLabel (juce::Label& label, StringGenerator& f)
     {
-        const juce::Colour text (Spaghettis()->getColour (Colours::devicesParameterText));
-        const juce::Colour background (Spaghettis()->getColour (Colours::devicesParameterBackground));
+        const juce::Colour text (Colours::fetchColour (Colours::devicesParameterText));
+        const juce::Colour background (Colours::fetchColour (Colours::devicesParameterBackground));
         
         label.setText (f(), juce::dontSendNotification);
         label.setColour (juce::Label::textColourId,       text);

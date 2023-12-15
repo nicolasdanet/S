@@ -40,10 +40,10 @@ void LookAndFeel::drawComboBox (juce::Graphics& g,
     
     juce::Rectangle<int> b (0, 0, width, height);
     
-    g.setColour (findColour (popupActive ? Colours::devicesComboBoxBackgroundActive
-                                         : Colours::devicesComboBoxBackground));
+    g.setColour (Colours::fetchColour (popupActive ? Colours::devicesComboBoxBackgroundActive
+                                                   : Colours::devicesComboBoxBackground));
     g.fillRect (b);
-    g.setColour (findColour (Colours::devicesComboBoxArrow));
+    g.setColour (Colours::fetchColour (Colours::devicesComboBoxArrow));
     
     if (!popupActive) {
         b.removeFromRight (b.getCentreY());

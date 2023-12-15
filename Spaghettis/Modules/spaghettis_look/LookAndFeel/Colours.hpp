@@ -43,12 +43,11 @@ enum ColourIds : int {
     toolbarIconOn,
     toolbarIconOff,
     toolbarZoom,
-    searchpathsBackground,
     devicesParameterBackground,
     devicesParameterText,
     devicesComboBoxBackground,
     devicesComboBoxBackgroundActive,
-    devicesComboBoxArrow,
+    devicesComboBoxArrow, //
     tooltipBackground,
     tooltipText,
     resizerHighlighted,
@@ -87,6 +86,15 @@ enum ColourIds : int {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static juce::Colour fetchColour (ColourIds i)
+{
+    return juce::LookAndFeel::getDefaultLookAndFeel().findColour (i);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void initialize (juce::LookAndFeel* lf)
 {
     const Palette& t = Palette::getInstance();
@@ -109,7 +117,6 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (toolbarIconOn,                                       t.textMenu);
     lf->setColour (toolbarIconOff,                                      t.thumb);
     lf->setColour (toolbarZoom,                                         t.textSystem);
-    lf->setColour (searchpathsBackground,                               t.background);
     lf->setColour (devicesParameterBackground,                          t.background);
     lf->setColour (devicesParameterText,                                t.textSystem);
     lf->setColour (devicesComboBoxBackground,                           t.backgroundAlternate);
@@ -193,15 +200,6 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (juce::TextEditor::outlineColourId,                   t.transparent);
     lf->setColour (juce::TextEditor::focusedOutlineColourId,            t.transparent);
     lf->setColour (juce::TextEditor::shadowColourId,                    t.transparent);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static juce::Colour fetchColour (ColourIds i)
-{
-    return juce::LookAndFeel::getDefaultLookAndFeel().findColour (i);
 }
 
 // -----------------------------------------------------------------------------------------------------------

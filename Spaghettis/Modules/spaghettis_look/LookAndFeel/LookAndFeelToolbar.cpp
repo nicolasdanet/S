@@ -23,7 +23,7 @@ int LookAndFeel::getToolbarHeight()
     
 void LookAndFeel::paintToolbarBackground (juce::Graphics& g, int w, int h, juce::Toolbar& toolbar)
 {
-    g.fillAll (findColour (Colours::toolbarBackground));
+    g.fillAll (Colours::fetchColour (Colours::toolbarBackground));
 }
 
 void LookAndFeel::paintToolbarButtonBackground (juce::Graphics& g,
@@ -35,10 +35,10 @@ void LookAndFeel::paintToolbarButtonBackground (juce::Graphics& g,
 {
     if (isMouseDown) {
         if (Icons::getInstance().isToggle (component.getItemId()) == false) {
-            g.fillAll (findColour (Colours::toolbarBackgroundDown));
+            g.fillAll (Colours::fetchColour (Colours::toolbarBackgroundDown));
         }
         
-    } else if (isMouseOver) { g.fillAll (findColour (Colours::toolbarBackgroundOver)); }
+    } else if (isMouseOver) { g.fillAll (Colours::fetchColour (Colours::toolbarBackgroundOver)); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
