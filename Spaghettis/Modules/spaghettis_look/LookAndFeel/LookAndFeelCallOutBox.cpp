@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawCallOutBoxBackground (juce::CallOutBox&,
+void LNF::drawCallOutBoxBackground (juce::CallOutBox&,
     juce::Graphics& g,
     const juce::Path& path,
     juce::Image&)

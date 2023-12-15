@@ -100,7 +100,7 @@ void createAlertWindowSetBounds (const std::unique_ptr<juce::AlertWindow>& w)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
+juce::AlertWindow* LNF::createAlertWindow (const juce::String& title,
     const juce::String& message,
     const juce::String& button1,
     const juce::String& button2,
@@ -131,7 +131,7 @@ juce::AlertWindow* LookAndFeel::createAlertWindow (const juce::String& title,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawButtonBackground (juce::Graphics& g,
+void LNF::drawButtonBackground (juce::Graphics& g,
     juce::Button& button,
     const juce::Colour&,
     bool shouldDrawButtonAsHighlighted,
@@ -149,7 +149,7 @@ void LookAndFeel::drawButtonBackground (juce::Graphics& g,
     g.drawRoundedRectangle (bounds, cornerSize, 1.0f);
 }
 
-void LookAndFeel::drawButtonText (juce::Graphics& g, juce::TextButton& button, bool, bool)
+void LNF::drawButtonText (juce::Graphics& g, juce::TextButton& button, bool, bool)
 {
     const juce::Rectangle<int> r (button.getWidth(), button.getHeight());
     
@@ -213,7 +213,7 @@ juce::Path drawAlertBoxIconPath (const juce::Rectangle<float>& r, juce::MessageB
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawAlertBoxBackground (juce::Graphics& g,
+void LNF::drawAlertBoxBackground (juce::Graphics& g,
     juce::Rectangle<int> bounds,
     float cornerSize)
 {
@@ -223,7 +223,7 @@ void LookAndFeel::drawAlertBoxBackground (juce::Graphics& g,
     g.drawRoundedRectangle (bounds.expanded (1).toFloat(), cornerSize, 2.0f);
 }
 
-void LookAndFeel::drawAlertBoxIcon (juce::Graphics& g,
+void LNF::drawAlertBoxIcon (juce::Graphics& g,
     juce::Rectangle<int> iconArea,
     juce::AlertWindow& alert)
 {
@@ -231,7 +231,7 @@ void LookAndFeel::drawAlertBoxIcon (juce::Graphics& g,
     g.fillPath (drawAlertBoxIconPath (iconArea.toFloat(), alert.getAlertType()));
 }
 
-void LookAndFeel::drawAlertBoxText (juce::Graphics& g,
+void LNF::drawAlertBoxText (juce::Graphics& g,
     juce::Rectangle<int> bounds,
     const juce::TextLayout& textLayout)
 {
@@ -243,7 +243,7 @@ void LookAndFeel::drawAlertBoxText (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void LookAndFeel::drawAlertBox (juce::Graphics& g,
+void LNF::drawAlertBox (juce::Graphics& g,
     juce::AlertWindow& alert,
     const juce::Rectangle<int>& textArea,
     juce::TextLayout& textLayout)
@@ -265,32 +265,32 @@ void LookAndFeel::drawAlertBox (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int LookAndFeel::getAlertWindowButtonHeight()
+int LNF::getAlertWindowButtonHeight()
 {
     return static_cast<int> (getMenuFont().getHeight() * 1.75);
 }
 
-juce::Font LookAndFeel::getAlertWindowTitleFont()
+juce::Font LNF::getAlertWindowTitleFont()
 {
     return getMenuFont();
 }
 
-juce::Font LookAndFeel::getAlertWindowMessageFont()
+juce::Font LNF::getAlertWindowMessageFont()
 {
     return getTooltipsFont();
 }
 
-juce::Font LookAndFeel::getAlertWindowFont()
+juce::Font LNF::getAlertWindowFont()
 {
     return getMenuFont();
 }
 
-juce::Font LookAndFeel::getTextButtonFont()
+juce::Font LNF::getTextButtonFont()
 {
     return getMenuFont();
 }
 
-juce::Font LookAndFeel::getTextButtonFont (juce::TextButton&, int)
+juce::Font LNF::getTextButtonFont (juce::TextButton&, int)
 {
     return getTextButtonFont();
 }

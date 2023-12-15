@@ -57,7 +57,7 @@ juce::Rectangle<float> getSelectorPosition (const juce::Rectangle<int>& r, bool 
 
 void paintStateAt (const juce::Rectangle<int>& r, juce::Graphics& g, bool vertical, float width, int i)
 {
-    LookAndFeel::drawTick (g, getSelectorPosition (r, vertical, width, i).toNearestInt().reduced (3));
+    LNF::drawTick (g, getSelectorPosition (r, vertical, width, i).toNearestInt().reduced (3));
 }
 
 // -----------------------------------------------------------------------------------------------------------

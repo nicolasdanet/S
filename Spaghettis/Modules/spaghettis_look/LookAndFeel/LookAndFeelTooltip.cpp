@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::TextLayout LookAndFeel::getTooltipLayout (const juce::String& text)
+juce::TextLayout LNF::getTooltipLayout (const juce::String& text)
 {
     const float maximum = 400;
     
@@ -25,7 +25,7 @@ juce::TextLayout LookAndFeel::getTooltipLayout (const juce::String& text)
     return t;
 }
 
-juce::Rectangle<int> LookAndFeel::getTooltipBounds (const juce::String& text,
+juce::Rectangle<int> LNF::getTooltipBounds (const juce::String& text,
     juce::Point<int> pt,
     juce::Rectangle<int> area)
 {
@@ -44,7 +44,7 @@ juce::Rectangle<int> LookAndFeel::getTooltipBounds (const juce::String& text,
     return juce::Rectangle<int> (x, y, w, h).constrainedWithin (area);
 }
 
-void LookAndFeel::drawTooltip (juce::Graphics& g, const juce::String& text, int width, int height)
+void LNF::drawTooltip (juce::Graphics& g, const juce::String& text, int width, int height)
 {
     g.fillAll (Colours::fetchColour (Colours::tooltipBackground));
 

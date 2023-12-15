@@ -18,9 +18,9 @@ void ParameterHeader::paintArrow (juce::Graphics& g, const juce::Rectangle<int>&
     
     g.setColour ((owner_->getNumberOfPanels() > 1) ? c : c.withAlpha (0.25f));
 
-    if (owner_->isExpanded (index_)) { LookAndFeel::drawArrowDown (g, r); }
+    if (owner_->isExpanded (index_)) { LNF::drawArrowDown (g, r); }
     else {
-        LookAndFeel::drawArrowRight (g, r);
+        LNF::drawArrowRight (g, r);
     }
 }
 

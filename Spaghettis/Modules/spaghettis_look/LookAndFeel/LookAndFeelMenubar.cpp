@@ -12,22 +12,22 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int LookAndFeel::getDefaultMenuBarHeight()
+int LNF::getDefaultMenuBarHeight()
 {
     return 28;
 }
 
-juce::Font LookAndFeel::getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&)
+juce::Font LNF::getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&)
 {
     return getMenuFont();
 }
 
-void LookAndFeel::drawMenuBarBackground (juce::Graphics& g, int, int, bool, juce::MenuBarComponent&)
+void LNF::drawMenuBarBackground (juce::Graphics& g, int, int, bool, juce::MenuBarComponent&)
 {
     g.fillAll (Colours::fetchColour (Colours::menubarBackground));
 }
     
-void LookAndFeel::drawMenuBarItem (juce::Graphics& g,
+void LNF::drawMenuBarItem (juce::Graphics& g,
     int width,
     int height,
     int index,

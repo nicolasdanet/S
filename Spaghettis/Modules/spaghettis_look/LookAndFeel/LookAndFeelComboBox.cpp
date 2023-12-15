@@ -12,12 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font LookAndFeel::getComboBoxFont() const
+juce::Font LNF::getComboBoxFont() const
 {
     return getMenuFont();
 }
 
-juce::Font LookAndFeel::getComboBoxFont (juce::ComboBox& box)
+juce::Font LNF::getComboBoxFont (juce::ComboBox& box)
 {
     return getComboBoxFont();
 }
@@ -26,7 +26,7 @@ juce::Font LookAndFeel::getComboBoxFont (juce::ComboBox& box)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawComboBox (juce::Graphics& g,
+void LNF::drawComboBox (juce::Graphics& g,
     int width,
     int height,
     bool,
@@ -47,11 +47,11 @@ void LookAndFeel::drawComboBox (juce::Graphics& g,
     
     if (!popupActive) {
         b.removeFromRight (b.getCentreY());
-        LookAndFeel::drawArrowDown (g, b.removeFromRight (b.getCentreY()));
+        LNF::drawArrowDown (g, b.removeFromRight (b.getCentreY()));
     }
 }
 
-void LookAndFeel::positionComboBoxText (juce::ComboBox& box, juce::Label& label)
+void LNF::positionComboBoxText (juce::ComboBox& box, juce::Label& label)
 {
     const juce::Rectangle<int> b (0, 0, box.getWidth(), box.getHeight());
     
@@ -59,7 +59,7 @@ void LookAndFeel::positionComboBoxText (juce::ComboBox& box, juce::Label& label)
     label.setFont (getComboBoxFont());
 }
 
-void LookAndFeel::drawComboBoxTextWhenNothingSelected (juce::Graphics&, juce::ComboBox&, juce::Label&)
+void LNF::drawComboBoxTextWhenNothingSelected (juce::Graphics&, juce::ComboBox&, juce::Label&)
 {
 
 }

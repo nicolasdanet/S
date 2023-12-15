@@ -61,9 +61,9 @@ void InletPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.setColour (arrowColour_.get().withAlpha (0.75f));
     
     if (f > 0.5) {
-        if (isOutlet_) { LookAndFeel::drawArrowUp (g, r.reduced (2 * f)); }
+        if (isOutlet_) { LNF::drawArrowUp (g, r.reduced (2 * f)); }
         else {
-            LookAndFeel::drawArrowDown (g, r.reduced (2 * f));
+            LNF::drawArrowDown (g, r.reduced (2 * f));
         }
     }
 }

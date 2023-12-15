@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-LookAndFeel::LookAndFeel() : windowTitleHeight_ (0)
+LNF::LNF() : windowTitleHeight_ (0)
 {
     Colours::initialize (this);
         
@@ -50,7 +50,7 @@ juce::String initializeFontsBest (const juce::StringArray& check)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::initializeFonts()
+void LNF::initializeFonts()
 {
     #if JUCE_LINUX
     
@@ -86,27 +86,27 @@ void LookAndFeel::initializeFonts()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font LookAndFeel::getConsoleFont() const
+juce::Font LNF::getConsoleFont() const
 {
     return font18_;
 }
 
-juce::Font LookAndFeel::getMenuFont() const
+juce::Font LNF::getMenuFont() const
 {
     return font18_;
 }
 
-juce::Font LookAndFeel::getColourFont() const
+juce::Font LNF::getColourFont() const
 {
     return font18Monospaced_;
 }
 
-juce::Font LookAndFeel::getMenuShortcutsFont() const
+juce::Font LNF::getMenuShortcutsFont() const
 {
     return font18Monospaced_;
 }
 
-juce::Font LookAndFeel::getTooltipsFont() const
+juce::Font LNF::getTooltipsFont() const
 {
     return font16Bold_;
 }
@@ -159,17 +159,17 @@ juce::Font getFontRescaled (const juce::Font& base, std::vector<std::tuple<int, 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font LookAndFeel::getListBoxFont() const
+juce::Font LNF::getListBoxFont() const
 {
     return getConsoleFont();
 }
 
-juce::Font LookAndFeel::getObjectsFontRescaled (float scale)
+juce::Font LNF::getObjectsFontRescaled (float scale)
 {
     return getFontRescaled (font18_, objectsFonts_, scale);
 }
 
-juce::Font LookAndFeel::getDialsFontWithHeight (int height)
+juce::Font LNF::getDialsFontWithHeight (int height)
 {
     return getFontAtHeight (font18Monospaced_, dialsFonts_, height);
 }
@@ -180,7 +180,7 @@ juce::Font LookAndFeel::getDialsFontWithHeight (int height)
 
 /* Cache the window title height (assume that it doesn't change). */
 
-int LookAndFeel::getWindowTitleHeight (juce::Component *c)
+int LNF::getWindowTitleHeight (juce::Component *c)
 {
     if (!windowTitleHeight_) {
     //
@@ -201,7 +201,7 @@ int LookAndFeel::getWindowTitleHeight (juce::Component *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawArrowDown (juce::Graphics& g, const juce::Rectangle<int>& r)
+void LNF::drawArrowDown (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
     const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;
     const float x    = static_cast<float> (r.getCentreX());
@@ -217,7 +217,7 @@ void LookAndFeel::drawArrowDown (juce::Graphics& g, const juce::Rectangle<int>& 
     g.strokePath (path, juce::PathStrokeType (2.0f));
 }
 
-void LookAndFeel::drawArrowUp (juce::Graphics& g, const juce::Rectangle<int>& r)
+void LNF::drawArrowUp (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
     const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;
     const float x    = static_cast<float> (r.getCentreX());
@@ -233,7 +233,7 @@ void LookAndFeel::drawArrowUp (juce::Graphics& g, const juce::Rectangle<int>& r)
     g.strokePath (path, juce::PathStrokeType (2.0f));
 }
 
-void LookAndFeel::drawArrowRight (juce::Graphics& g, const juce::Rectangle<int>& r)
+void LNF::drawArrowRight (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
     const float side = juce::jmin (r.getWidth(), r.getHeight()) * 0.65f;
     const float x    = static_cast<float> (r.getCentreX());
@@ -253,7 +253,7 @@ void LookAndFeel::drawArrowRight (juce::Graphics& g, const juce::Rectangle<int>&
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawCross (juce::Graphics& g, const juce::Rectangle<int>& r)
+void LNF::drawCross (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
     /* LookAndFeel_V4::getCrossShape */
     
@@ -281,7 +281,7 @@ void LookAndFeel::drawCross (juce::Graphics& g, const juce::Rectangle<int>& r)
     g.fillPath (path, path.getTransformToScaleToFit (r.toFloat(), false));
 }
 
-void LookAndFeel::drawTick (juce::Graphics& g, const juce::Rectangle<int>& r)
+void LNF::drawTick (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
     /* LookAndFeel_V4::getTickShape */
     

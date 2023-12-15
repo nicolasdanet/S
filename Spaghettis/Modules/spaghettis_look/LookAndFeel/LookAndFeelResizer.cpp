@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawStretchableLayoutResizerBar (juce::Graphics& g, int, int, bool, bool over, bool drag)
+void LNF::drawStretchableLayoutResizerBar (juce::Graphics& g, int, int, bool, bool over, bool drag)
 {
     if (over || drag) { g.fillAll (Colours::fetchColour (Colours::resizerHighlighted)); }
 }

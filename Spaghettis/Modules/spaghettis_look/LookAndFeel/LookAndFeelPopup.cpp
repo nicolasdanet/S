@@ -12,12 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font LookAndFeel::getPopupMenuFont()
+juce::Font LNF::getPopupMenuFont()
 {
     return getMenuFont();
 }
 
-int LookAndFeel::getPopupMenuBorderSize()
+int LNF::getPopupMenuBorderSize()
 {
     return 0;
 }
@@ -26,12 +26,12 @@ int LookAndFeel::getPopupMenuBorderSize()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawPopupMenuBackgroundProceed (juce::Graphics& g)
+void LNF::drawPopupMenuBackgroundProceed (juce::Graphics& g)
 {
     g.fillAll (Colours::fetchColour (Colours::menubarPopupBackground));
 }
     
-void LookAndFeel::drawPopupMenuBackgroundWithOptions (juce::Graphics& g,
+void LNF::drawPopupMenuBackgroundWithOptions (juce::Graphics& g,
     int width,
     int height,
     const juce::PopupMenu::Options& options)
@@ -43,7 +43,7 @@ void LookAndFeel::drawPopupMenuBackgroundWithOptions (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
+void LNF::getIdealPopupMenuItemSize (const juce::String& text,
     const bool isSeparator,
     int,
     int& w,
@@ -67,30 +67,30 @@ void LookAndFeel::getIdealPopupMenuItemSize (const juce::String& text,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawPopupMenuItemSelector (juce::Graphics& g, const juce::Rectangle<int>& area)
+void LNF::drawPopupMenuItemSelector (juce::Graphics& g, const juce::Rectangle<int>& area)
 {
     g.setColour (Colours::fetchColour (Colours::menubarPopupSeparator).withAlpha (0.25f)); g.fillRect (area);
 }
 
-void LookAndFeel::drawPopupMenuItemBackground (juce::Graphics& g, const juce::Rectangle<int>& area)
+void LNF::drawPopupMenuItemBackground (juce::Graphics& g, const juce::Rectangle<int>& area)
 {
     g.setColour (Colours::fetchColour (Colours::menubarPopupBackgroundHighlighted));
     g.fillRect (area);
 }
 
-void LookAndFeel::drawPopupMenuItemTick (juce::Graphics& g, juce::Rectangle<int>& t)
+void LNF::drawPopupMenuItemTick (juce::Graphics& g, juce::Rectangle<int>& t)
 {
-    LookAndFeel::drawTick (g, t.reduced (5));
+    LNF::drawTick (g, t.reduced (5));
 }
 
-void LookAndFeel::drawPopupMenuItemSubMenu (juce::Graphics& g, juce::Rectangle<int>& r)
+void LNF::drawPopupMenuItemSubMenu (juce::Graphics& g, juce::Rectangle<int>& r)
 {
     const int h = r.getHeight();
     
-    LookAndFeel::drawArrowRight (g, r.removeFromRight (h / 2).reduced (0, h / 4));
+    LNF::drawArrowRight (g, r.removeFromRight (h / 2).reduced (0, h / 4));
 }
 
-void LookAndFeel::drawPopupMenuItemShortcut (juce::Graphics& g,
+void LNF::drawPopupMenuItemShortcut (juce::Graphics& g,
     const juce::Rectangle<int>& r,
     const juce::String& shortcutText)
 {
@@ -103,7 +103,7 @@ void LookAndFeel::drawPopupMenuItemShortcut (juce::Graphics& g,
     g.drawText (parsed, r, juce::Justification::centredRight, true);
 }
 
-void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
+void LNF::drawPopupMenuItemProceed (juce::Graphics& g,
     const juce::Rectangle<int>& area,
     const bool isSeparator,
     const bool isActive,
@@ -148,7 +148,7 @@ void LookAndFeel::drawPopupMenuItemProceed (juce::Graphics& g,
     }
 }
 
-void LookAndFeel::drawPopupMenuItemWithOptions (juce::Graphics& g,
+void LNF::drawPopupMenuItemWithOptions (juce::Graphics& g,
     const juce::Rectangle<int>& area,
     bool  isHighlighted,
     const juce::PopupMenu::Item& i,

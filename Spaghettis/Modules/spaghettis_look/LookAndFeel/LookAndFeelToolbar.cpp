@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int LookAndFeel::getToolbarHeight()
+int LNF::getToolbarHeight()
 {
     #if JUCE_LINUX
         return 30;
@@ -21,12 +21,12 @@ int LookAndFeel::getToolbarHeight()
     #endif
 }
     
-void LookAndFeel::paintToolbarBackground (juce::Graphics& g, int w, int h, juce::Toolbar& toolbar)
+void LNF::paintToolbarBackground (juce::Graphics& g, int w, int h, juce::Toolbar& toolbar)
 {
     g.fillAll (Colours::fetchColour (Colours::toolbarBackground));
 }
 
-void LookAndFeel::paintToolbarButtonBackground (juce::Graphics& g,
+void LNF::paintToolbarButtonBackground (juce::Graphics& g,
     int width,
     int height,
     bool isMouseOver,

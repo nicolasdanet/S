@@ -14,7 +14,7 @@ namespace spaghettis {
 
 /* Compute the area for the component by removing a placeholder for the label. */
 
-juce::Rectangle<int> LookAndFeel::getPropertyComponentContentPosition (juce::PropertyComponent& c)
+juce::Rectangle<int> LNF::getPropertyComponentContentPosition (juce::PropertyComponent& c)
 {
     juce::Rectangle<int> r (c.getWidth(), c.getHeight() - 1);
         
@@ -31,7 +31,7 @@ juce::Rectangle<int> LookAndFeel::getPropertyComponentContentPosition (juce::Pro
 
 /* Draw the background of the label. */
 
-void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
+void LNF::drawPropertyComponentBackground (juce::Graphics& g,
     int w,
     int h,
     juce::PropertyComponent& c)
@@ -46,7 +46,7 @@ void LookAndFeel::drawPropertyComponentBackground (juce::Graphics& g,
 
 /* Draw the label. */
 
-void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
+void LNF::drawPropertyComponentLabel (juce::Graphics& g,
     int w,
     int h,
     juce::PropertyComponent& c)
@@ -65,7 +65,7 @@ void LookAndFeel::drawPropertyComponentLabel (juce::Graphics& g,
         true);
 }
 
-int LookAndFeel::getPropertyPanelSectionHeaderHeight (const juce::String& s)
+int LNF::getPropertyPanelSectionHeaderHeight (const juce::String& s)
 {
     if (s.isEmpty()) { return 0; }
     else {
@@ -77,7 +77,7 @@ int LookAndFeel::getPropertyPanelSectionHeaderHeight (const juce::String& s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bool, bool)
+void LNF::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bool, bool)
 {
     const int   h = b.getHeight();
     const float t = h * 0.6f;
@@ -89,7 +89,7 @@ void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bo
     
     if (b.getToggleState()) {
         g.setColour (Colours::fetchColour (Colours::parametersBooleanTick));
-        LookAndFeel::drawTick (g, r.toNearestInt().reduced (4, 5));
+        LNF::drawTick (g, r.toNearestInt().reduced (4, 5));
     }
 }
 
@@ -97,7 +97,7 @@ void LookAndFeel::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bo
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawLabel (juce::Graphics& g, juce::Label& l)
+void LNF::drawLabel (juce::Graphics& g, juce::Label& l)
 {
     g.fillAll (l.findColour (juce::Label::backgroundColourId));
 
@@ -113,12 +113,12 @@ void LookAndFeel::drawLabel (juce::Graphics& g, juce::Label& l)
     }
 }
 
-juce::Font LookAndFeel::getLabelFont (juce::Label&)
+juce::Font LNF::getLabelFont (juce::Label&)
 {
     return getConsoleFont();
 }
 
-juce::BorderSize<int> LookAndFeel::getLabelBorderSize (juce::Label&)
+juce::BorderSize<int> LNF::getLabelBorderSize (juce::Label&)
 {
     /* Avoid the text to drift down when editing in preferences. */
     
@@ -204,7 +204,7 @@ void drawLinearSliderHorizontal (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LookAndFeel::drawLinearSlider (juce::Graphics& g,
+void LNF::drawLinearSlider (juce::Graphics& g,
     int x,
     int y,
     int w,
@@ -228,7 +228,7 @@ void LookAndFeel::drawLinearSlider (juce::Graphics& g,
     } else { juce::LookAndFeel_V4::drawLinearSlider (g, x, y, w, h, position, min, max, style, slider); }
 }
                                 
-juce::Label* LookAndFeel::createSliderTextBox (juce::Slider& slider)
+juce::Label* LNF::createSliderTextBox (juce::Slider& slider)
 {
     return new SliderLabel();
 }
