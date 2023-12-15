@@ -303,14 +303,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Save some keyboard typing and line width. */
-
 public:
-    juce::Colour getColour (int colourId) const
-    {
-        return lookAndFeel_->findColour (colourId);
-    }
-
     core::Cached<juce::Colour> getCachedColour (const juce::String& key) const
     {
         return preferences_->getCached<juce::Colour> (Tag::Colors, key);
