@@ -67,7 +67,7 @@ void LNF::initializeFonts()
     if (fontName.isEmpty())           { fontName           = juce::Font::getDefaultSansSerifFontName();  }
     if (fontMonospacedName.isEmpty()) { fontMonospacedName = juce::Font::getDefaultMonospacedFontName(); }
     
-    setDefaultSansSerifTypefaceName (fontName);
+    // setDefaultSansSerifTypefaceName (fontName);
 
     font18_             = juce::Font (fontName, 18.0, juce::Font::plain);
     font18Monospaced_   = juce::Font (fontMonospacedName, 18.0, juce::Font::plain);

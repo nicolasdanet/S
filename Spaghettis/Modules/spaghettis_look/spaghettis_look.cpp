@@ -16,6 +16,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "LookAndFeel/Fonts.cpp"
 #include "LookAndFeel/LookAndFeel.cpp"
 #include "LookAndFeel/LookAndFeelAlertWindow.cpp"
 #include "LookAndFeel/LookAndFeelCallOutBox.cpp"
