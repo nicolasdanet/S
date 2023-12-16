@@ -267,27 +267,27 @@ void LNF::drawAlertBox (juce::Graphics& g,
 
 int LNF::getAlertWindowButtonHeight()
 {
-    return static_cast<int> (getMenuFont().getHeight() * 1.75);
+    return static_cast<int> (Fonts::getMenuFont().getHeight() * 1.75);
 }
 
 juce::Font LNF::getAlertWindowTitleFont()
 {
-    return getMenuFont();
+    return Fonts::getMenuFont();
 }
 
 juce::Font LNF::getAlertWindowMessageFont()
 {
-    return getTooltipsFont();
+    return Fonts::getTooltipsFont();
 }
 
 juce::Font LNF::getAlertWindowFont()
 {
-    return getMenuFont();
+    return Fonts::getMenuFont();
 }
 
 juce::Font LNF::getTextButtonFont()
 {
-    return getMenuFont();
+    return Fonts::getMenuFont();
 }
 
 juce::Font LNF::getTextButtonFont (juce::TextButton&, int)

@@ -57,7 +57,7 @@ juce::Colour MessagePainter::getPinsBackground()
 
 juce::Font MessagePainter::getFont() const
 {
-    return Spaghettis()->getLookAndFeel().getObjectsFontRescaled (getScale());
+    return Fonts::getObjectsFontRescaled (getScale());
 }
 
 int MessagePainter::getExtra() const

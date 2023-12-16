@@ -17,7 +17,7 @@ MakerEntry::MakerEntry (MakerComponent& owner, const juce::Value& v) : owner_ (o
     v_.addListener (this);
     text_.addListener (this);
     
-    text_.setFont (Spaghettis()->getLookAndFeel().getMakerEntryFont());
+    text_.setFont (Fonts::getConsoleFont());
     text_.setPopupMenuEnabled (false);
     
     addAndMakeVisible (text_);

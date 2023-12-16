@@ -28,7 +28,7 @@ void EditZoom::paint (juce::Graphics& g)
     if (v_ != 100) {
     //
     g.setColour (Colours::fetchColour (Colours::toolbarZoom));
-    g.setFont (Spaghettis()->getLookAndFeel().getTooltipsFont());
+    g.setFont (Fonts::getTooltipsFont());
     g.drawText (v_.toString() + " %", getLocalBounds(), juce::Justification::centredRight, true);
     //
     }

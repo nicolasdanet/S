@@ -43,7 +43,7 @@ namespace {
 
 int getMakerEntryHeight()
 {
-    return static_cast<int> (Spaghettis()->getLookAndFeel().getMakerEntryFont().getHeight() * 1.75);
+    return static_cast<int> (Fonts::getConsoleFont().getHeight() * 1.75);
 }
 
 // -----------------------------------------------------------------------------------------------------------

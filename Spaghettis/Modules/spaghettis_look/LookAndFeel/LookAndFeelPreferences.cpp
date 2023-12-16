@@ -58,7 +58,7 @@ void LNF::drawPropertyComponentLabel (juce::Graphics& g,
     const juce::Colour t (Colours::fetchColour (Colours::parametersParameterText));
     
     g.setColour (c.isEnabled() ? t : t.withAlpha (0.25f));
-    g.setFont (getConsoleFont());
+    g.setFont (Fonts::getConsoleFont());
     g.drawText (c.getName(),
         juce::Rectangle<int> (width, h).reduced (4, 0).withTrimmedLeft (30),
         juce::Justification::centredLeft,
@@ -69,7 +69,7 @@ int LNF::getPropertyPanelSectionHeaderHeight (const juce::String& s)
 {
     if (s.isEmpty()) { return 0; }
     else {
-        return static_cast<int> (getConsoleFont().getHeight() * 1.5);
+        return static_cast<int> (Fonts::getConsoleFont().getHeight() * 1.5);
     }
 }
 
@@ -115,7 +115,7 @@ void LNF::drawLabel (juce::Graphics& g, juce::Label& l)
 
 juce::Font LNF::getLabelFont (juce::Label&)
 {
-    return getConsoleFont();
+    return Fonts::getConsoleFont();
 }
 
 juce::BorderSize<int> LNF::getLabelBorderSize (juce::Label&)

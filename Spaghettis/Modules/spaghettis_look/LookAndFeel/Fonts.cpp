@@ -39,7 +39,9 @@ juce::String initializeBest (const juce::StringArray& check)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Fonts::Fonts()
+/* < https://forum.juce.com/t/fonts-need-to-be-initialized-on-rpi > */
+
+FontsOwner::FontsOwner()
 {
     #if JUCE_LINUX
     
@@ -107,17 +109,17 @@ juce::Font fontRescaled (const juce::Font& base, std::vector<std::tuple<int, juc
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font Fonts::getFont() const
+juce::Font FontsOwner::getFont() const
 {
     return font_;
 }
 
-juce::Font Fonts::getFontRescaled (float scale)
+juce::Font FontsOwner::getFontRescaled (float scale)
 {
     return fontRescaled (font_, fonts_, scale);
 }
 
-juce::Font Fonts::getFontWithHeight (int height)
+juce::Font FontsOwner::getFontWithHeight (int height)
 {
     return fontAtHeight (font_, fonts_, height);
 }
@@ -126,17 +128,17 @@ juce::Font Fonts::getFontWithHeight (int height)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font Fonts::getMonospacedFont() const
+juce::Font FontsOwner::getMonospacedFont() const
 {
     return fontMonospaced_;
 }
 
-juce::Font Fonts::getMonospacedFontRescaled (float scale)
+juce::Font FontsOwner::getMonospacedFontRescaled (float scale)
 {
     return fontRescaled (fontMonospaced_, fontsMonospaced_, scale);
 }
 
-juce::Font Fonts::getMonospacedFontWithHeight (int height)
+juce::Font FontsOwner::getMonospacedFontWithHeight (int height)
 {
     return fontAtHeight (fontMonospaced_, fontsMonospaced_, height);
 }
@@ -145,17 +147,17 @@ juce::Font Fonts::getMonospacedFontWithHeight (int height)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font Fonts::getBoldFont() const
+juce::Font FontsOwner::getBoldFont() const
 {
     return fontBold_;
 }
 
-juce::Font Fonts::getBoldFontRescaled (float scale)
+juce::Font FontsOwner::getBoldFontRescaled (float scale)
 {
     return fontRescaled (fontBold_, fontsBold_, scale);
 }
 
-juce::Font Fonts::getBoldFontWithHeight (int height)
+juce::Font FontsOwner::getBoldFontWithHeight (int height)
 {
     return fontAtHeight (fontBold_, fontsBold_, height);
 }

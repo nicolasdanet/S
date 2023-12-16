@@ -39,7 +39,7 @@ namespace {
 
 juce::Font getLabelFont()
 {
-    return Spaghettis()->getLookAndFeel().getColourFont();
+    return Fonts::getColourFont();
 }
 
 int getLabelWidth (const juce::String& s)

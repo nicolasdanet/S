@@ -18,7 +18,7 @@ juce::TextLayout LNF::getTooltipLayout (const juce::String& text)
     
     juce::AttributedString s;
     s.setJustification (juce::Justification::centred);
-    s.append (text, getTooltipsFont(), Colours::fetchColour (Colours::tooltipText));
+    s.append (text, Fonts::getTooltipsFont(), Colours::fetchColour (Colours::tooltipText));
 
     juce::TextLayout t;
     t.createLayoutWithBalancedLineLengths (s, maximum);
@@ -29,7 +29,7 @@ juce::Rectangle<int> LNF::getTooltipBounds (const juce::String& text,
     juce::Point<int> pt,
     juce::Rectangle<int> area)
 {
-    const float extra = getTooltipsFont().getHeight();
+    const float extra = Fonts::getTooltipsFont().getHeight();
     const int offsetX = 12;
     const int offsetY = 6;
     

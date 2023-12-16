@@ -14,7 +14,7 @@ namespace spaghettis {
 
 juce::Font LNF::getPopupMenuFont()
 {
-    return getMenuFont();
+    return Fonts::getMenuFont();
 }
 
 int LNF::getPopupMenuBorderSize()
@@ -98,7 +98,7 @@ void LNF::drawPopupMenuItemShortcut (juce::Graphics& g,
     
     juce::String parsed (shortcutText.upToFirstOccurrenceOf (",", false, true));
     
-    g.setFont (getMenuShortcutsFont());
+    g.setFont (Fonts::getMenuShortcutsFont());
     
     g.drawText (parsed, r, juce::Justification::centredRight, true);
 }

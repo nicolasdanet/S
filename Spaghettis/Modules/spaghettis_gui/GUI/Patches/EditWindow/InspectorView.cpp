@@ -14,9 +14,7 @@ namespace spaghettis {
 
 InspectorView::InspectorView (Sync&& s, int w) :
     ParameterView (s.getData(),
-        ParameterBase (Spaghettis()->getLookAndFeel().getConsoleFont(),
-            Spaghettis()->getLookAndFeel().getColourFont(),
-            w)),
+        ParameterBase (Fonts::getConsoleFont(), Fonts::getColourFont(), w)),
     sync_ (std::move (s))
 {
     sync_.bind (this);

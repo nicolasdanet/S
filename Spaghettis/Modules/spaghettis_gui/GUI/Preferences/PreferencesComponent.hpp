@@ -22,9 +22,7 @@ class PreferencesComponent :    public ParameterView,
 public:
     explicit PreferencesComponent (const juce::String& keyName) :
         ParameterView (Spaghettis()->getPreferences().getData(),
-            ParameterBase (Spaghettis()->getLookAndFeel().getConsoleFont(),
-                Spaghettis()->getLookAndFeel().getColourFont(),
-                250)),
+            ParameterBase (Fonts::getConsoleFont(), Fonts::getColourFont(), 250)),
         BaseComponent (nullptr, keyName)
     {
         addAndMakeVisible (&getPanel());

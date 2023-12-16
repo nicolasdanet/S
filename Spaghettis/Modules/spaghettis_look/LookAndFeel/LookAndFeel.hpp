@@ -27,28 +27,6 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    void initializeFonts();
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-public:
-    juce::Font getConsoleFont() const;
-    juce::Font getMenuFont() const;
-    juce::Font getColourFont() const;
-    juce::Font getMenuShortcutsFont() const;
-    juce::Font getTooltipsFont() const;
-    
-    juce::Font getListBoxFont() const;
-    
-    juce::Font getObjectsFontRescaled (float);
-    juce::Font getDialsFontWithHeight (int);
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 public:
     int getWindowTitleHeight (juce::Component *);
 
@@ -124,13 +102,6 @@ public:
     void positionComboBoxText (juce::ComboBox&, juce::Label&) override;
     void drawComboBoxTextWhenNothingSelected (juce::Graphics&, juce::ComboBox&, juce::Label&) override;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    juce::Font getMakerEntryFont() const;
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -265,23 +236,6 @@ public:
 private:
     juce::TextLayout getTooltipLayout (const juce::String&);
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-private:
-    juce::String font18Name_;
-    juce::String font18MonospacedName_;
-    juce::String font16BoldName_;
-    
-private:
-    juce::Font font18_;
-    juce::Font font18Monospaced_;
-    juce::Font font16Bold_;
-    
-private:
-    std::vector<std::tuple<int, juce::Font>> objectsFonts_;
-    std::vector<std::tuple<int, juce::Font>> dialsFonts_;
-    
 private:
     int windowTitleHeight_;
 

@@ -14,7 +14,7 @@ namespace spaghettis {
 
 juce::Font LNF::getComboBoxFont() const
 {
-    return getMenuFont();
+    return Fonts::getMenuFont();
 }
 
 juce::Font LNF::getComboBoxFont (juce::ComboBox& box)

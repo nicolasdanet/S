@@ -19,7 +19,7 @@ int LNF::getDefaultMenuBarHeight()
 
 juce::Font LNF::getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&)
 {
-    return getMenuFont();
+    return Fonts::getMenuFont();
 }
 
 void LNF::drawMenuBarBackground (juce::Graphics& g, int, int, bool, juce::MenuBarComponent&)
