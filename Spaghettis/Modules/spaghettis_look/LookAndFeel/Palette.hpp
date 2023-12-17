@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class Palette {
+class Palette : private juce::DeletedAtShutdown {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -72,20 +72,13 @@ public:
         #endif
     }
 
-    ~Palette() = default;
-
-public:
-    Palette (const Palette&) = default;
-    Palette (Palette&&) = default;
-    Palette& operator = (const Palette&) = default;
-    Palette& operator = (Palette&&) = default;
-
-public:
-    static Palette& getInstance()
+    ~Palette()
     {
-        static Palette p; return p;
+        clearSingletonInstance();
     }
-    
+
+    JUCE_DECLARE_SINGLETON_SINGLETHREADED (Palette, true);
+
 public:
     juce::Colour textDefault;
     juce::Colour textSystem;
@@ -110,6 +103,9 @@ public:
     juce::Colour backgroundBox;
     juce::Colour backgroundMenu;
     juce::Colour backgroundWidget;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Palette)
 };
 
 // -----------------------------------------------------------------------------------------------------------

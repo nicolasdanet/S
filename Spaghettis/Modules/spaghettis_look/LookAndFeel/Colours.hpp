@@ -80,62 +80,62 @@ enum ColourIds : int {
 
 static juce::Colour fetchColour (ColourIds i)
 {
-    const Palette& t = Palette::getInstance();
+    const Palette* p = Palette::getInstance();
     
     switch (i) {
-        case windowsBackground :                                    return t.backgroundMenu;
-        case consoleTextDefault :                                   return t.textDefault;
-        case consoleTextSystem :                                    return t.textSystem;
-        case consoleTextWarning :                                   return t.textWarning;
-        case consoleTextError :                                     return t.textError;
-        case menubarBackground :                                    return t.backgroundMenu;
-        case menubarText :                                          return t.textMenu;
-        case menubarPopupBackground :                               return t.backgroundPopup;
-        case menubarPopupBackgroundHighlighted :                    return t.textError;
-        case menubarPopupText :                                     return t.textPopup;
-        case menubarPopupTextHighlighted :                          return t.textMenu;
-        case menubarPopupSeparator :                                return t.thumb;
-        case toolbarBackground :                                    return t.backgroundMenu;
-        case toolbarBackgroundDown :                                return t.backgroundPopup;
-        case toolbarBackgroundOver :                                return t.backgroundMenu;
-        case toolbarIconOn :                                        return t.textMenu;
-        case toolbarIconOff :                                       return t.thumb;
-        case toolbarZoom :                                          return t.textSystem;
-        case devicesParameterBackground :                           return t.background;
-        case devicesParameterText :                                 return t.textSystem;
-        case devicesComboBoxBackground :                            return t.backgroundAlternate;
-        case devicesComboBoxBackgroundActive :                      return t.backgroundBox;
-        case devicesComboBoxArrow :                                 return t.textSystem;
-        case tooltipBackground :                                    return t.backgroundMenu;
-        case tooltipText :                                          return t.textMenu;
-        case resizerHighlighted :                                   return t.backgroundPopup;
-        case callOutBoxBackground :                                 return t.backgroundMenu;
-        case callOutBoxOutline :                                    return t.textSystem;
-        case alertWindowBackground :                                return t.backgroundMenu;
-        case alertWindowOutline :                                   return t.textSystem;
-        case alertWindowText :                                      return t.textMenu;
-        case alertWindowIcon :                                      return t.textError;
-        case alertWindowButtonBackground :                          return t.backgroundWidget;
-        case alertWindowButtonBackgroundOver :                      return t.textError;
-        case alertWindowButtonOutline :                             return t.textSystem;
-        case alertWindowButtonText :                                return t.textSystem;
-        case alertWindowButtonTextHighlighted :                     return t.textMenu;
-        case parametersBackground :                                 return t.backgroundMenu;
-        case parametersHeaderBackground :                           return t.background;
-        case parametersHeaderText :                                 return t.textMenu;
-        case parametersHeaderArrow :                                return t.textSystem;
-        case parametersParameterBackground :                        return t.background;
-        case parametersParameterText :                              return t.textSystem;
-        case parametersSliderBackground :                           return t.backgroundAlternate;
-        case parametersSliderTrack :                                return t.backgroundWidget;
-        case parametersColourBackground :                           return t.backgroundAlternate;
-        case parametersColourText :                                 return t.textSystem;
-        case parametersBoolean :                                    return t.textSystem;
-        case parametersBooleanTick :                                return t.textMenu;
-        case makerBackground :                                      return t.background;
-        case listBoxBackgroundAlternate :                           return t.backgroundAlternate;
-        case listBoxText :                                          return t.textSystem;
-        case listBoxTextHighlighted :                               return t.textHighlighted;
+        case windowsBackground :                                    return p->backgroundMenu;
+        case consoleTextDefault :                                   return p->textDefault;
+        case consoleTextSystem :                                    return p->textSystem;
+        case consoleTextWarning :                                   return p->textWarning;
+        case consoleTextError :                                     return p->textError;
+        case menubarBackground :                                    return p->backgroundMenu;
+        case menubarText :                                          return p->textMenu;
+        case menubarPopupBackground :                               return p->backgroundPopup;
+        case menubarPopupBackgroundHighlighted :                    return p->textError;
+        case menubarPopupText :                                     return p->textPopup;
+        case menubarPopupTextHighlighted :                          return p->textMenu;
+        case menubarPopupSeparator :                                return p->thumb;
+        case toolbarBackground :                                    return p->backgroundMenu;
+        case toolbarBackgroundDown :                                return p->backgroundPopup;
+        case toolbarBackgroundOver :                                return p->backgroundMenu;
+        case toolbarIconOn :                                        return p->textMenu;
+        case toolbarIconOff :                                       return p->thumb;
+        case toolbarZoom :                                          return p->textSystem;
+        case devicesParameterBackground :                           return p->background;
+        case devicesParameterText :                                 return p->textSystem;
+        case devicesComboBoxBackground :                            return p->backgroundAlternate;
+        case devicesComboBoxBackgroundActive :                      return p->backgroundBox;
+        case devicesComboBoxArrow :                                 return p->textSystem;
+        case tooltipBackground :                                    return p->backgroundMenu;
+        case tooltipText :                                          return p->textMenu;
+        case resizerHighlighted :                                   return p->backgroundPopup;
+        case callOutBoxBackground :                                 return p->backgroundMenu;
+        case callOutBoxOutline :                                    return p->textSystem;
+        case alertWindowBackground :                                return p->backgroundMenu;
+        case alertWindowOutline :                                   return p->textSystem;
+        case alertWindowText :                                      return p->textMenu;
+        case alertWindowIcon :                                      return p->textError;
+        case alertWindowButtonBackground :                          return p->backgroundWidget;
+        case alertWindowButtonBackgroundOver :                      return p->textError;
+        case alertWindowButtonOutline :                             return p->textSystem;
+        case alertWindowButtonText :                                return p->textSystem;
+        case alertWindowButtonTextHighlighted :                     return p->textMenu;
+        case parametersBackground :                                 return p->backgroundMenu;
+        case parametersHeaderBackground :                           return p->background;
+        case parametersHeaderText :                                 return p->textMenu;
+        case parametersHeaderArrow :                                return p->textSystem;
+        case parametersParameterBackground :                        return p->background;
+        case parametersParameterText :                              return p->textSystem;
+        case parametersSliderBackground :                           return p->backgroundAlternate;
+        case parametersSliderTrack :                                return p->backgroundWidget;
+        case parametersColourBackground :                           return p->backgroundAlternate;
+        case parametersColourText :                                 return p->textSystem;
+        case parametersBoolean :                                    return p->textSystem;
+        case parametersBooleanTick :                                return p->textMenu;
+        case makerBackground :                                      return p->background;
+        case listBoxBackgroundAlternate :                           return p->backgroundAlternate;
+        case listBoxText :                                          return p->textSystem;
+        case listBoxTextHighlighted :                               return p->textHighlighted;
         default :                                                   return juce::Colours::black;
     }
 }
@@ -146,53 +146,53 @@ static juce::Colour fetchColour (ColourIds i)
 
 static void initialize (juce::LookAndFeel* lf)
 {
-    const Palette& t = Palette::getInstance();
+    const Palette* p = Palette::getInstance();
     
     /* Scroll bar. */
     
-    lf->setColour (juce::ScrollBar::thumbColourId,                      t.thumb);
-    lf->setColour (juce::ListBox::backgroundColourId,                   t.background);
+    lf->setColour (juce::ScrollBar::thumbColourId,                      p->thumb);
+    lf->setColour (juce::ListBox::backgroundColourId,                   p->background);
     
     /* Text based parameters. */
     
-    lf->setColour (juce::TextPropertyComponent::textColourId,           t.textSystem);
-    lf->setColour (juce::TextPropertyComponent::outlineColourId,        t.transparent);
-    lf->setColour (juce::TextPropertyComponent::backgroundColourId,     t.backgroundAlternate);
+    lf->setColour (juce::TextPropertyComponent::textColourId,           p->textSystem);
+    lf->setColour (juce::TextPropertyComponent::outlineColourId,        p->transparent);
+    lf->setColour (juce::TextPropertyComponent::backgroundColourId,     p->backgroundAlternate);
                    
-    lf->setColour (juce::TextEditor::highlightColourId,                 t.transparent);
-    lf->setColour (juce::TextEditor::highlightedTextColourId,           t.textHighlighted);
+    lf->setColour (juce::TextEditor::highlightColourId,                 p->transparent);
+    lf->setColour (juce::TextEditor::highlightedTextColourId,           p->textHighlighted);
     
-    lf->setColour (juce::CaretComponent::caretColourId,                 t.textMenu);
-    lf->setColour (juce::Label::backgroundWhenEditingColourId,          t.transparent);
-    lf->setColour (juce::Label::textWhenEditingColourId,                t.textSystem);
-    lf->setColour (juce::Label::outlineWhenEditingColourId,             t.transparent);
+    lf->setColour (juce::CaretComponent::caretColourId,                 p->textMenu);
+    lf->setColour (juce::Label::backgroundWhenEditingColourId,          p->transparent);
+    lf->setColour (juce::Label::textWhenEditingColourId,                p->textSystem);
+    lf->setColour (juce::Label::outlineWhenEditingColourId,             p->transparent);
     
     /* Boolean parameters. */
     
-    lf->setColour (juce::BooleanPropertyComponent::outlineColourId,     t.transparent);
-    lf->setColour (juce::BooleanPropertyComponent::backgroundColourId,  t.backgroundAlternate);
+    lf->setColour (juce::BooleanPropertyComponent::outlineColourId,     p->transparent);
+    lf->setColour (juce::BooleanPropertyComponent::backgroundColourId,  p->backgroundAlternate);
     
     /* Slider parameters. */
     
-    lf->setColour (juce::Label::textColourId,                           t.textSystem);
+    lf->setColour (juce::Label::textColourId,                           p->textSystem);
     
     /* Colour selector sliders. */
     
-    lf->setColour (juce::Slider::backgroundColourId,                    t.backgroundWidget);
-    lf->setColour (juce::Slider::trackColourId,                         t.background);
-    lf->setColour (juce::Slider::thumbColourId,                         t.thumb);
+    lf->setColour (juce::Slider::backgroundColourId,                    p->backgroundWidget);
+    lf->setColour (juce::Slider::trackColourId,                         p->background);
+    lf->setColour (juce::Slider::thumbColourId,                         p->thumb);
     
     /* Devices combo box. */
     
-    lf->setColour (juce::ComboBox::textColourId,                        t.textSystem);
+    lf->setColour (juce::ComboBox::textColourId,                        p->textSystem);
     
     /* Maker entry. */
     
-    lf->setColour (juce::TextEditor::textColourId,                      t.textSystem);
-    lf->setColour (juce::TextEditor::backgroundColourId,                t.transparent);
-    lf->setColour (juce::TextEditor::outlineColourId,                   t.transparent);
-    lf->setColour (juce::TextEditor::focusedOutlineColourId,            t.transparent);
-    lf->setColour (juce::TextEditor::shadowColourId,                    t.transparent);
+    lf->setColour (juce::TextEditor::textColourId,                      p->textSystem);
+    lf->setColour (juce::TextEditor::backgroundColourId,                p->transparent);
+    lf->setColour (juce::TextEditor::outlineColourId,                   p->transparent);
+    lf->setColour (juce::TextEditor::focusedOutlineColourId,            p->transparent);
+    lf->setColour (juce::TextEditor::shadowColourId,                    p->transparent);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -18,6 +18,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "LookAndFeel/Palette.cpp"
 #include "LookAndFeel/Fonts.cpp"
 #include "LookAndFeel/LookAndFeel.cpp"
 #include "LookAndFeel/LookAndFeelAlertWindow.cpp"
