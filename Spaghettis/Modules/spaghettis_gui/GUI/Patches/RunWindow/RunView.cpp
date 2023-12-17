@@ -42,7 +42,7 @@ void RunView::paint (juce::Graphics& g)
     const juce::String text (NEEDS_TRANS ("Widgets"));
     
     g.setColour (patchTextColour_.get());
-    g.setFont (Fonts::getObjectsFontRescaled (1.5f));
+    g.setFont (Fonts::getFontRescaled (1.5f));
     g.drawText (text, getLocalBounds(), juce::Justification::centred, true);
     //
     }

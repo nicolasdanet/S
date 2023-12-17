@@ -21,7 +21,7 @@ struct ListBoxFunctions {
 public:
     static void initialize (juce::ListBox& listBox, bool multiple)
     {
-        const int h = static_cast<int> (Fonts::getConsoleFont().getHeight() * 1.5);
+        const int h = static_cast<int> (Fonts::getFont().getHeight() * 1.5);
         
         listBox.setMultipleSelectionEnabled (multiple);
         listBox.setClickingTogglesRowSelection (true);
@@ -126,7 +126,7 @@ private:
         const juce::Rectangle<int> r (width, height);
         
         g.setColour (c);
-        g.setFont (Fonts::getConsoleFont());
+        g.setFont (Fonts::getFont());
         g.drawText (text, r.reduced (4, 0), juce::Justification::centredLeft, true);
     }
     

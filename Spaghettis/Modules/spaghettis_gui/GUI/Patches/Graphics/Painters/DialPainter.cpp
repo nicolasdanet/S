@@ -76,7 +76,7 @@ void DialPainter::mouseUp (const juce::MouseEvent&)
 
 juce::Font DialPainter::getFont (int h) const
 {
-    return Fonts::getDialsFontWithHeight (h);
+    return Fonts::getMonospacedFontWithHeight (h);
 }
 
 juce::String DialPainter::getText() const

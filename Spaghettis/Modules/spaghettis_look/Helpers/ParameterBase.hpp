@@ -45,7 +45,7 @@ public:
         return font_;
     }
     
-    juce::Font getFontMonospaced() const
+    juce::Font getMonospacedFont() const
     {
         return fontMonospaced_;
     }

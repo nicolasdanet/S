@@ -89,48 +89,47 @@ struct Fonts {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static juce::Font getConsoleFont()
+static juce::Font getFont()
 {
     return FontsOwner::getInstance().getFont();
 }
 
-static juce::Font getMenuFont()
-{
-    return getConsoleFont();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-static juce::Font getColourFont()
-{
-    return FontsOwner::getInstance().getMonospacedFont();
-}
-
-static juce::Font getMenuShortcutsFont()
-{
-    return getColourFont();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-static juce::Font getTooltipsFont()
-{
-    return FontsOwner::getInstance().getBoldFontWithHeight (16);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-static juce::Font getObjectsFontRescaled (float scale)
+static juce::Font getFontRescaled (float scale)
 {
     return FontsOwner::getInstance().getFontRescaled (scale);
 }
 
-static juce::Font getDialsFontWithHeight (int height)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::Font getMonospacedFont()
+{
+    return FontsOwner::getInstance().getMonospacedFont();
+}
+
+static juce::Font getMonospacedFontWithHeight (int height)
 {
     return FontsOwner::getInstance().getMonospacedFontWithHeight (height);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::Font getMenuFont()
+{
+    return getFont();
+}
+
+static juce::Font getMenuShortcutsFont()
+{
+    return getMonospacedFont();
+}
+
+static juce::Font getTooltipsFont()
+{
+    return FontsOwner::getInstance().getBoldFontWithHeight (16);
 }
 
 // -----------------------------------------------------------------------------------------------------------

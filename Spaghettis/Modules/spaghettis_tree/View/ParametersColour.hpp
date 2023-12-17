@@ -90,7 +90,7 @@ public:
     explicit ParameterColour (const core::Parameter& p, const ParameterBase& base) :
         ParameterBase (base),
         juce::PropertyComponent (p.getLabel()),
-        editor_ (p.getValueAsValue (false), base.getFontMonospaced())
+        editor_ (p.getValueAsValue (false), base.getMonospacedFont())
     {
         addAndMakeVisible (editor_);
         setEnabled (p.isEditable());

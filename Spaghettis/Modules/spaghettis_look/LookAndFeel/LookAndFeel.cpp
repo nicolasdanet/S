@@ -16,7 +16,7 @@ LNF::LNF() : windowTitleHeight_ (0)
 {
     Colours::initialize (this);
     
-    setDefaultSansSerifTypefaceName (Fonts::getConsoleFont().getTypefaceName());
+    setDefaultSansSerifTypefaceName (Fonts::getFont().getTypefaceName());
 }
     
 // -----------------------------------------------------------------------------------------------------------

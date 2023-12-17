@@ -71,7 +71,7 @@ void InletPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 juce::Rectangle<int> InletPainter::getRequiredBoundsForObject()
 {
     const float f = getScale();
-    const int w   = Fonts::getObjectsFontRescaled (f).getHeight();
+    const int w   = Fonts::getFontRescaled (f).getHeight();
     
     return getRequiredBoundsFromVector (core::Vector::Scaled (w, w, f));
 }

@@ -90,7 +90,7 @@ int AtomPainter::getTriangleWidth() const
 
 juce::Font AtomPainter::getFont() const
 {
-    return Fonts::getObjectsFontRescaled (getScale());
+    return Fonts::getFontRescaled (getScale());
 }
 
 juce::String AtomPainter::getPlaceholder() const

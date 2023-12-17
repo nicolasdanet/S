@@ -39,7 +39,7 @@ namespace {
 
 juce::Font getLabelFont()
 {
-    return Fonts::getColourFont();
+    return Fonts::getMonospacedFont();
 }
 
 int getLabelWidth (const juce::String& s)
