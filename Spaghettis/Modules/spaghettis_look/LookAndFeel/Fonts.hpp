@@ -21,8 +21,13 @@ class FontsOwner : private juce::DeletedAtShutdown {
 public:
     FontsOwner();
     
-    ~FontsOwner() = default;
+    ~FontsOwner()
+    {
+        clearSingletonInstance();
+    }
 
+    JUCE_DECLARE_SINGLETON_SINGLETHREADED (FontsOwner, true);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -49,18 +54,6 @@ public:
     juce::Font getBoldFont() const;
     juce::Font getBoldFontRescaled (float scale);
     juce::Font getBoldFontWithHeight (int height);
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static FontsOwner& getInstance()
-    {
-        static FontsOwner* instance = new FontsOwner();
-        
-        return *instance;
-    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -91,12 +84,12 @@ struct Fonts {
 
 static juce::Font getFont()
 {
-    return FontsOwner::getInstance().getFont();
+    return FontsOwner::getInstance()->getFont();
 }
 
 static juce::Font getFontRescaled (float scale)
 {
-    return FontsOwner::getInstance().getFontRescaled (scale);
+    return FontsOwner::getInstance()->getFontRescaled (scale);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -105,12 +98,12 @@ static juce::Font getFontRescaled (float scale)
 
 static juce::Font getMonospacedFont()
 {
-    return FontsOwner::getInstance().getMonospacedFont();
+    return FontsOwner::getInstance()->getMonospacedFont();
 }
 
 static juce::Font getMonospacedFontWithHeight (int height)
 {
-    return FontsOwner::getInstance().getMonospacedFontWithHeight (height);
+    return FontsOwner::getInstance()->getMonospacedFontWithHeight (height);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -129,7 +122,7 @@ static juce::Font getMenuShortcutsFont()
 
 static juce::Font getTooltipsFont()
 {
-    return FontsOwner::getInstance().getBoldFontWithHeight (16);
+    return FontsOwner::getInstance()->getBoldFontWithHeight (16);
 }
 
 // -----------------------------------------------------------------------------------------------------------
