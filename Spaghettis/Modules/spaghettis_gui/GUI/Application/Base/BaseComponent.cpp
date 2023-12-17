@@ -165,7 +165,7 @@ void BaseComponent::loadToolbarButtonsStates()
 
         for (auto* e : root->getChildWithTagNameIterator (Id::BUTTON)) {
             if (e->hasAttribute (Id::item) && e->hasAttribute (Id::state)) {
-                const int itemId = Icons::getInstance().getItemId (e->getStringAttribute (Id::item));
+                const int itemId = Icons::getInstance()->getItemId (e->getStringAttribute (Id::item));
                 const bool state = e->getBoolAttribute (Id::state);
                 setButtonState (itemId, state);
             }

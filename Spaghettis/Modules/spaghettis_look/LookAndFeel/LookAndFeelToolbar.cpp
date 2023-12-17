@@ -34,7 +34,7 @@ void LNF::paintToolbarButtonBackground (juce::Graphics& g,
     juce::ToolbarItemComponent& component)
 {
     if (isMouseDown) {
-        if (Icons::getInstance().isToggle (component.getItemId()) == false) {
+        if (Icons::getInstance()->isToggle (component.getItemId()) == false) {
             g.fillAll (Colours::fetchColour (Colours::toolbarBackgroundDown));
         }
         
