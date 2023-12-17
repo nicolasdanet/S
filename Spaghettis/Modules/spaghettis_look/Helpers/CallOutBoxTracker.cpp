@@ -23,12 +23,12 @@ CallOutBoxTracker::~CallOutBoxTracker()
 
 void CallOutBoxTracker::track (juce::CallOutBox& box)
 {
-    CallOutBoxRegister::getInstance().add (owner_, &box);
+    CallOutBoxRegister::getInstance()->add (owner_, &box);
 }
 
 void CallOutBoxTracker::dismiss()
 {
-    CallOutBoxRegister::getInstance().dismiss (owner_);
+    CallOutBoxRegister::getInstance()->dismiss (owner_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

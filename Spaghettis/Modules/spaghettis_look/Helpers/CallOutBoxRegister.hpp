@@ -20,8 +20,14 @@ class CallOutBoxRegister : public  SafeRegister<juce::Component, juce::CallOutBo
 // MARK: -
 
 public:
-    CallOutBoxRegister()  = default;
-    ~CallOutBoxRegister() = default;
+    CallOutBoxRegister() = default;
+    
+    ~CallOutBoxRegister()
+    {
+        clearSingletonInstance();
+    }
+    
+    JUCE_DECLARE_SINGLETON_SINGLETHREADED (CallOutBoxRegister, true);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -30,18 +36,6 @@ public:
     void dismiss (juce::Component* component)
     {
         for (const auto& child : getChilds (component)) { child->dismiss(); }
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static CallOutBoxRegister& getInstance()
-    {
-        static CallOutBoxRegister* instance = new CallOutBoxRegister();
-        
-        return *instance;
     }
 
 private:
