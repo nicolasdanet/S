@@ -228,7 +228,7 @@ void BaseWindow::ensureAlertWindowsAlwaysOnTop()
 {
     #if JUCE_LINUX
     
-    AlertWindowRegister::getInstance().ensureAlertWindowsAlwaysOnTop();
+    AlertWindowRegister::getInstance()->ensureAlertWindowsAlwaysOnTop();
     
     #endif
 }

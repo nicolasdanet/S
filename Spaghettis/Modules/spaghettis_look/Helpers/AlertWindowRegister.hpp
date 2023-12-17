@@ -19,8 +19,14 @@ class AlertWindowRegister : public  SafeRegister<juce::Component, juce::AlertWin
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    AlertWindowRegister()  = default;
-    ~AlertWindowRegister() = default;
+    AlertWindowRegister() = default;
+    
+    ~AlertWindowRegister()
+    {
+        clearSingletonInstance();
+    }
+    
+    JUCE_DECLARE_SINGLETON_SINGLETHREADED (AlertWindowRegister, true);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -37,18 +43,6 @@ public:
         perform (f);
     }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    static AlertWindowRegister& getInstance()
-    {
-        static AlertWindowRegister* instance = new AlertWindowRegister();
-        
-        return *instance;
-    }
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

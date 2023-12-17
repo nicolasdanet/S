@@ -119,7 +119,7 @@ juce::AlertWindow* LNF::createAlertWindow (const juce::String& title,
     createAlertWindowSetBounds (w);
     
     if (associatedComponent) {
-        AlertWindowRegister::getInstance().add (associatedComponent, w.get());
+        AlertWindowRegister::getInstance()->add (associatedComponent, w.get());
     }
     
     w->setAlwaysOnTop (true);
