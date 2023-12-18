@@ -10,31 +10,6 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::Colour getColourForType (Logger::Type type)
-{
-    Colours::ColourIds c = Colours::consoleTextError;
-                
-    if (type == Logger::Type::normal)       { c = Colours::consoleTextDefault; }
-    else if (type == Logger::Type::system)  { c = Colours::consoleTextSystem;  }
-    else if (type == Logger::Type::warning) { c = Colours::consoleTextWarning; }
-                
-    return Colours::fetchColour (c);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 juce::Colour ListBoxFunctions::getColourForElement (const Logger::MessagesElement& e, bool isSelected)
@@ -50,7 +25,7 @@ juce::Colour ListBoxFunctions::getColourForElement (const Logger::MessagesElemen
         }
     }
 
-    return getColourForType (Logger::getType (e));
+    return Logger::getColourForType (Logger::getType (e));
 }
 
 // -----------------------------------------------------------------------------------------------------------

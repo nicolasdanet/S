@@ -37,6 +37,22 @@ private:
         LOGGER_TYPE     = 1,
         LOGGER_UNIQUE
     };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static juce::Colour getColourForType (Logger::Type type)
+    {
+        Colours::ColourIds c = Colours::consoleTextError;
+                    
+        if (type == Logger::Type::normal)       { c = Colours::consoleTextDefault; }
+        else if (type == Logger::Type::system)  { c = Colours::consoleTextSystem;  }
+        else if (type == Logger::Type::warning) { c = Colours::consoleTextWarning; }
+                    
+        return Colours::fetchColour (c);
+    }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -58,7 +74,6 @@ public:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
     static juce::String getText (const MessagesElement& e)
