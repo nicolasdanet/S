@@ -84,6 +84,7 @@
 #include "GUI/Console/ConsoleFactory.hpp"
 #include "GUI/Console/ConsoleComponent.hpp"
 #include "GUI/Console/ConsoleWindow.hpp"
+#include "GUI/Console/ConsoleConverter.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

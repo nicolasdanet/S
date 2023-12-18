@@ -12,6 +12,20 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+template <class T> struct ListBoxColourConverter {
+
+    static juce::Colour fromElement (const T&, bool isSelected)
+    {
+        return isSelected ? Colours::fetchColour (Colours::listBoxTextHighlighted)
+                          : Colours::fetchColour (Colours::listBoxText);
+    }
+
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 struct ListBoxFunctions {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -130,8 +144,6 @@ private:
         g.drawText (text, r.reduced (4, 0), juce::Justification::centredLeft, true);
     }
     
-    static juce::Colour getColourForElement (const Logger::MessagesElement& e, bool isSelected);
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -150,20 +162,16 @@ public:
         //
         auto e = items[row];
         
+        const juce::Colour c = ListBoxColourConverter<decltype (e)>::fromElement (e, isSelected);
+
         if constexpr (std::is_same_v<decltype (e), Logger::MessagesElement>) {
-            
-            const juce::String t = Logger::getText (e);
-            const juce::Colour c = getColourForElement (e, isSelected);
                                                 
-            paintItemProceed (t, c, g, width, height);
+            paintItemProceed (Logger::getText (e), c, g, width, height);
             
         } else {
-        
-            const juce::String t = e;
-            const juce::Colour c = isSelected   ? Colours::fetchColour (Colours::listBoxTextHighlighted)
-                                                : Colours::fetchColour (Colours::listBoxText);
                                                 
-            paintItemProceed (t, c, g, width, height);
+            paintItemProceed (e, c, g, width, height);
+            
         }
         //
         }

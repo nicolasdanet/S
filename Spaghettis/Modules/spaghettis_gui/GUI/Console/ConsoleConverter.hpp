@@ -10,23 +10,32 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+struct ConsoleConverter {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Colour ListBoxFunctions::getColourForElement (const Logger::MessagesElement& e, bool isSelected)
-{
-    if (isSelected) {
+static juce::Colour fromElement (const Logger::MessagesElement&, bool);
     
-        core::UniquePath p = Logger::getUniquePath (e);
-        
-        if (p.isValid()) {
-            if (Spaghettis()->getPatches().contains (p)) {
-                return Colours::fetchColour (Colours::listBoxTextHighlighted);
-            }
-        }
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+template<> struct ListBoxColourConverter<Logger::MessagesElement> {
+
+    static juce::Colour fromElement (const Logger::MessagesElement& e, bool isSelected)
+    {
+        return ConsoleConverter::fromElement (e, isSelected);
     }
 
-    return Logger::getColourForType (Logger::getType (e));
-}
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
