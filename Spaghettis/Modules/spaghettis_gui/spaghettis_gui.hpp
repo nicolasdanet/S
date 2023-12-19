@@ -57,7 +57,9 @@
 
 #include "GUI/Application/Commands.hpp"
 #include "GUI/Application/MenuModel.hpp"
-#include "GUI/Application/Preferences.hpp"
+
+#include "GUI/Preferences/Preferences.hpp"
+
 #include "GUI/Application/Instance.hpp"
 #include "GUI/Application/Spaghettis.hpp"
 
