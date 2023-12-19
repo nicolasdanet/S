@@ -55,10 +55,18 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Commands.hpp"
-#include "GUI/Application/MenuModel.hpp"
+#include "GUI/Menus/Commands.hpp"
+#include "GUI/Menus/MenuModel.hpp"
+#include "GUI/Menus/MenuCommand.hpp"
+#include "GUI/Menus/BaseCommands.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Preferences/Preferences.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/Instance.hpp"
 #include "GUI/Application/Spaghettis.hpp"
@@ -66,8 +74,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Base/MenuCommand.hpp"
-#include "GUI/Application/Base/BaseCommands.hpp"
 #include "GUI/Application/Base/BaseComponent.hpp"
 #include "GUI/Application/Base/BaseWindow.hpp"
  
