@@ -14,6 +14,7 @@
 #include "Helpers/AlertWindowRegister.cpp"
 #include "Helpers/CallOutBoxRegister.cpp"
 #include "Helpers/CallOutBoxTracker.cpp"
+#include "Helpers/Autocomplete.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

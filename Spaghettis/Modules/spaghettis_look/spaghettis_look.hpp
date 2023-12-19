@@ -54,6 +54,8 @@
 #include "Helpers/AlertWindowRegister.hpp"
 #include "Helpers/CallOutBoxRegister.hpp"
 #include "Helpers/CallOutBoxTracker.hpp"
+#include "Helpers/EditDistance.hpp"
+#include "Helpers/Autocomplete.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

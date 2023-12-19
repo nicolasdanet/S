@@ -18,7 +18,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Application/Autocomplete.cpp"
 #include "GUI/Application/Documentation.cpp"
 #include "GUI/Application/MenuModel.cpp"
 #include "GUI/Application/Preferences.cpp"
