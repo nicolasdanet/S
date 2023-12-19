@@ -148,7 +148,7 @@ public:
     }
     
 private:
-    spaghettis::BaseCommands commands_;
+    spaghettis::CommandsManager commands_;
     spaghettis::SpaghettisOwner spaghettis_;
     
 private:

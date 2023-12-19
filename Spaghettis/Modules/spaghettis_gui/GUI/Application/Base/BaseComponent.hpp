@@ -85,7 +85,7 @@ public:
 private:
     juce::String keyName_;
     std::unique_ptr<juce::Toolbar> toolbar_;
-    BaseCommands commands_;
+    CommandsManager commands_;
         
 #if SPAGHETTIS_MENUBAR
 

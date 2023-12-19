@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseCommands::set (MenuCommand m)
+void CommandsManager::set (MenuCommand m)
 {
     jassert (!has (m.command_)); enabled_.push_back (m);
 }
@@ -21,7 +21,7 @@ void BaseCommands::set (MenuCommand m)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool BaseCommands::has (juce::CommandID command)
+bool CommandsManager::has (juce::CommandID command)
 {
     for (const auto& m : enabled_) {
         if (m.command_ == command) { return m.check_(); }
@@ -30,7 +30,7 @@ bool BaseCommands::has (juce::CommandID command)
     return false;
 }
 
-bool BaseCommands::invoke (const juce::ApplicationCommandTarget::InvocationInfo& info)
+bool CommandsManager::invoke (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
     const juce::CommandID command (info.commandID);
     
@@ -46,7 +46,7 @@ bool BaseCommands::invoke (const juce::ApplicationCommandTarget::InvocationInfo&
     return false;
 }
 
-juce::String BaseCommands::name (juce::CommandID command, juce::String fallback)
+juce::String CommandsManager::name (juce::CommandID command, juce::String fallback)
 {
     for (const auto& m : enabled_) {
         if (m.command_ == command) {
@@ -61,7 +61,7 @@ juce::String BaseCommands::name (juce::CommandID command, juce::String fallback)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String BaseCommands::getCommandText (juce::CommandID command)
+juce::String CommandsManager::getCommandText (juce::CommandID command)
 {
     switch (command) {
     //
@@ -104,7 +104,7 @@ juce::String BaseCommands::getCommandText (juce::CommandID command)
     return juce::String();
 }
 
-juce::String BaseCommands::getCommandDescription (juce::CommandID command)
+juce::String CommandsManager::getCommandDescription (juce::CommandID command)
 {
     switch (command) {
     //
@@ -151,7 +151,7 @@ juce::String BaseCommands::getCommandDescription (juce::CommandID command)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCommandInfo& r)
+void CommandsManager::getCommandInfo (juce::CommandID command, juce::ApplicationCommandInfo& r)
 {
     const juce::String general = NEEDS_TRANS ("General");
     const juce::String file    = NEEDS_TRANS ("File");
@@ -314,7 +314,7 @@ void BaseCommands::getCommandInfo (juce::CommandID command, juce::ApplicationCom
     }
 }
 
-void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
+void CommandsManager::getAllCommands (juce::Array<juce::CommandID>& c)
 {
     juce::Array<juce::CommandID> commands
         {
@@ -355,7 +355,7 @@ void BaseCommands::getAllCommands (juce::Array<juce::CommandID>& c)
     c.addArray (commands);
 }
 
-void BaseCommands::getApplicationCommands (juce::Array<juce::CommandID>& c)
+void CommandsManager::getApplicationCommands (juce::Array<juce::CommandID>& c)
 {
     c.add (Commands::preferences);
 }
@@ -409,7 +409,7 @@ bool performDefaultCommand (const juce::ApplicationCommandTarget::InvocationInfo
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool BaseCommands::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
+bool CommandsManager::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
     if (invoke (info) == false) { return performDefaultCommand (info); }
     

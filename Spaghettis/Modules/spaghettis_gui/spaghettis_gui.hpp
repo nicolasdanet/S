@@ -58,7 +58,7 @@
 #include "GUI/Menus/Commands.hpp"
 #include "GUI/Menus/MenuModel.hpp"
 #include "GUI/Menus/MenuCommand.hpp"
-#include "GUI/Menus/BaseCommands.hpp"
+#include "GUI/Menus/CommandsManager.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
