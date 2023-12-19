@@ -12,14 +12,18 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> struct ListBoxColourConverter {
+template <class T> struct ListBoxConverter {
 
-    static juce::Colour fromElement (const T&, bool isSelected)
+    static juce::Colour getColour (const T& e, bool isSelected)
     {
         return isSelected ? Colours::fetchColour (Colours::listBoxTextHighlighted)
                           : Colours::fetchColour (Colours::listBoxText);
     }
 
+    static juce::String getText (const T& e)
+    {
+        return juce::String (e);
+    }
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -162,17 +166,10 @@ public:
         //
         auto e = items[row];
         
-        const juce::Colour c = ListBoxColourConverter<decltype (e)>::fromElement (e, isSelected);
-
-        if constexpr (std::is_same_v<decltype (e), Logger::MessagesElement>) {
-                                                
-            paintItemProceed (Logger::getText (e), c, g, width, height);
-            
-        } else {
-                                                
-            paintItemProceed (e, c, g, width, height);
-            
-        }
+        const juce::Colour c = ListBoxConverter<decltype (e)>::getColour (e, isSelected);
+        const juce::String s = ListBoxConverter<decltype (e)>::getText (e);
+        
+        paintItemProceed (s, c, g, width, height);
         //
         }
     }

@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Colour ConsoleConverter::fromElement (const Logger::MessagesElement& e, bool isSelected)
+juce::Colour ConsoleConverter::getColourFromElement (const Logger::MessagesElement& e, bool isSelected)
 {
     if (isSelected) {
 

@@ -17,7 +17,7 @@ struct ConsoleConverter {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static juce::Colour fromElement (const Logger::MessagesElement&, bool);
+static juce::Colour getColourFromElement (const Logger::MessagesElement&, bool);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -28,11 +28,16 @@ static juce::Colour fromElement (const Logger::MessagesElement&, bool);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template<> struct ListBoxColourConverter<Logger::MessagesElement> {
+template<> struct ListBoxConverter<Logger::MessagesElement> {
 
-    static juce::Colour fromElement (const Logger::MessagesElement& e, bool isSelected)
+    static juce::Colour getColour (const Logger::MessagesElement& e, bool isSelected)
     {
-        return ConsoleConverter::fromElement (e, isSelected);
+        return ConsoleConverter::getColourFromElement (e, isSelected);
+    }
+    
+    static juce::String getText (const Logger::MessagesElement& e)
+    {
+        return Logger::getText (e);
     }
 
 };
