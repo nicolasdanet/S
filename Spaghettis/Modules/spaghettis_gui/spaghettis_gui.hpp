@@ -56,7 +56,6 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Application/Commands.hpp"
-#include "GUI/Application/Documentation.hpp"
 #include "GUI/Application/MenuModel.hpp"
 #include "GUI/Application/Preferences.hpp"
 #include "GUI/Application/Instance.hpp"
