@@ -204,7 +204,7 @@ juce::Rectangle<int> BaseComponent::setBoundsForBarsAndGetRemaining()
     //
     const int border = 2;
     
-    auto t = b.removeFromBottom (Spaghettis()->getLookAndFeel().getToolbarHeight());
+    auto t = b.removeFromBottom (WindowsProperties::getToolbarHeight());
     
     toolbar_->setBounds (t.reduced (border));
     //

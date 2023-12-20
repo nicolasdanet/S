@@ -72,7 +72,7 @@ public:
     
     static int getTotalHeight()
     {
-        const int toolbar = Spaghettis()->getLookAndFeel().getToolbarHeight();
+        const int toolbar = WindowsProperties::getToolbarHeight();
         const int devices = getComboBoxHeight() * numberOfDevices() * 4;
         
         return toolbar + devices;

@@ -20,6 +20,7 @@ struct WindowsProperties {
 static int getTitleHeight (juce::Component *c);
 
 static int getMenuBarHeight();
+static int getToolbarHeight();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

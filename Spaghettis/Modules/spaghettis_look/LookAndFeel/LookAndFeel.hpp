@@ -205,8 +205,6 @@ public:
 // MARK: -
 
 public:
-    int getToolbarHeight();
-
     void paintToolbarBackground (juce::Graphics&, int w, int h, juce::Toolbar&) override;
     void paintToolbarButtonBackground (juce::Graphics&,
         int,

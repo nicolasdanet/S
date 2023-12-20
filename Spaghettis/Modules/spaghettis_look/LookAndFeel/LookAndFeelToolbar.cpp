@@ -11,16 +11,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-int LNF::getToolbarHeight()
-{
-    #if JUCE_LINUX
-        return 30;
-    #else
-        return 32;
-    #endif
-}
-    
+  
 void LNF::paintToolbarBackground (juce::Graphics& g, int w, int h, juce::Toolbar& toolbar)
 {
     g.fillAll (Colours::fetchColour (Colours::toolbarBackground));
