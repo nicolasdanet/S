@@ -104,7 +104,7 @@ void BaseWindow::timerCallback()
     //
     /* < https://forum.juce.com/t/getting-the-title-bar-height-in-a-windows-osx-app/38461/14 > */
     
-    const int h = Spaghettis()->getLookAndFeel().getWindowTitleHeight (this);
+    const int h = WindowsProperties::getTitleHeight (this);
     
     if (h != 0) {
     //

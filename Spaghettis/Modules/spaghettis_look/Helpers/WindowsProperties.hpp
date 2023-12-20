@@ -6,37 +6,29 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_look.hpp"
+namespace spaghettis {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+struct WindowsProperties {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Helpers/AlertWindowRegister.cpp"
-#include "Helpers/CallOutBoxRegister.cpp"
-#include "Helpers/CallOutBoxTracker.cpp"
-#include "Helpers/Autocomplete.cpp"
-#include "Helpers/WindowsProperties.cpp"
+static int getTitleHeight (juce::Component *c);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "LookAndFeel/Palette.cpp"
-#include "LookAndFeel/Fonts.cpp"
-#include "LookAndFeel/LookAndFeel.cpp"
-#include "LookAndFeel/LookAndFeelAlertWindow.cpp"
-#include "LookAndFeel/LookAndFeelCallOutBox.cpp"
-#include "LookAndFeel/LookAndFeelComboBox.cpp"
-#include "LookAndFeel/LookAndFeelMenubar.cpp"
-#include "LookAndFeel/LookAndFeelPopup.cpp"
-#include "LookAndFeel/LookAndFeelPreferences.cpp"
-#include "LookAndFeel/LookAndFeelResizer.cpp"
-#include "LookAndFeel/LookAndFeelToolbar.cpp"
-#include "LookAndFeel/LookAndFeelTooltip.cpp"
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Icons/Icons.cpp"
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+

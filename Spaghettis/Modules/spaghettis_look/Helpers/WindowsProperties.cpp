@@ -6,37 +6,55 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_look.hpp"
+namespace spaghettis {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Helpers/AlertWindowRegister.cpp"
-#include "Helpers/CallOutBoxRegister.cpp"
-#include "Helpers/CallOutBoxTracker.cpp"
-#include "Helpers/Autocomplete.cpp"
-#include "Helpers/WindowsProperties.cpp"
+int fetchTitleHeight (juce::Component *c)
+{
+    juce::ComponentPeer *p = c->getPeer();
+    
+    jassert (p);
+    
+    const juce::ComponentPeer::OptionalBorderSize frameSize = p->getFrameSizeIfPresent();
+    
+    if (frameSize) { return frameSize->getTop(); }
+    else {
+        return 0;
+    }
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "LookAndFeel/Palette.cpp"
-#include "LookAndFeel/Fonts.cpp"
-#include "LookAndFeel/LookAndFeel.cpp"
-#include "LookAndFeel/LookAndFeelAlertWindow.cpp"
-#include "LookAndFeel/LookAndFeelCallOutBox.cpp"
-#include "LookAndFeel/LookAndFeelComboBox.cpp"
-#include "LookAndFeel/LookAndFeelMenubar.cpp"
-#include "LookAndFeel/LookAndFeelPopup.cpp"
-#include "LookAndFeel/LookAndFeelPreferences.cpp"
-#include "LookAndFeel/LookAndFeelResizer.cpp"
-#include "LookAndFeel/LookAndFeelToolbar.cpp"
-#include "LookAndFeel/LookAndFeelTooltip.cpp"
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/* Cache the window title height (assume that it doesn't change once successfully fetched). */
+
+int WindowsProperties::getTitleHeight (juce::Component *c)
+{
+    static int h = 0;
+    
+    if (h == 0) { h = fetchTitleHeight (c); }
+    
+    return h;
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Icons/Icons.cpp"
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

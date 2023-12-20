@@ -12,36 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-LNF::LNF() : windowTitleHeight_ (0)
+LNF::LNF()
 {
     Colours::initialize (this);
     
     setDefaultSansSerifTypefaceName (Fonts::getFont().getTypefaceName());
 }
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-/* Cache the window title height (assume that it doesn't change). */
-
-int LNF::getWindowTitleHeight (juce::Component *c)
-{
-    if (!windowTitleHeight_) {
-    //
-    juce::ComponentPeer *p = c->getPeer();
-    
-    jassert (p);
-    
-    const juce::ComponentPeer::OptionalBorderSize frameSize = p->getFrameSizeIfPresent();
-    
-    if (frameSize) { windowTitleHeight_ = frameSize->getTop(); }
-    //
-    }
-    
-    return windowTitleHeight_;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

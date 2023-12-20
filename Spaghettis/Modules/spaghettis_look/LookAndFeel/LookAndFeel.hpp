@@ -28,13 +28,6 @@ public:
 // MARK: -
 
 public:
-    int getWindowTitleHeight (juce::Component *);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     static void drawArrowDown (juce::Graphics&, const juce::Rectangle<int>&);
     static void drawArrowUp (juce::Graphics&, const juce::Rectangle<int>&);
     static void drawArrowRight (juce::Graphics&, const juce::Rectangle<int>&);
@@ -235,9 +228,6 @@ public:
 
 private:
     juce::TextLayout getTooltipLayout (const juce::String&);
-
-private:
-    int windowTitleHeight_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LNF)
