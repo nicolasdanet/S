@@ -88,7 +88,6 @@ public:
 // MARK: -
 
 public:
-    juce::Font getComboBoxFont() const;
     juce::Font getComboBoxFont (juce::ComboBox&) override;
 
     void drawComboBox (juce::Graphics&, int, int, bool, int, int, int, int, juce::ComboBox&) override;

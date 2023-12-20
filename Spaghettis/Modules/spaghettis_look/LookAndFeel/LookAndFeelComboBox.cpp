@@ -12,14 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font LNF::getComboBoxFont() const
+juce::Font LNF::getComboBoxFont (juce::ComboBox&)
 {
     return Fonts::getMenuFont();
-}
-
-juce::Font LNF::getComboBoxFont (juce::ComboBox& box)
-{
-    return getComboBoxFont();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -56,7 +51,7 @@ void LNF::positionComboBoxText (juce::ComboBox& box, juce::Label& label)
     const juce::Rectangle<int> b (0, 0, box.getWidth(), box.getHeight());
     
     label.setBounds (b.withTrimmedRight (b.getCentreY() * 2).reduced (1));
-    label.setFont (getComboBoxFont());
+    label.setFont (getComboBoxFont (box));
 }
 
 void LNF::drawComboBoxTextWhenNothingSelected (juce::Graphics&, juce::ComboBox&, juce::Label&)
