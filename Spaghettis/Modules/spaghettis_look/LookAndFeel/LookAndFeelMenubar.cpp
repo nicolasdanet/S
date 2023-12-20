@@ -14,7 +14,7 @@ namespace spaghettis {
 
 int LNF::getDefaultMenuBarHeight()
 {
-    return 28;
+    return WindowsProperties::getMenuBarHeight();
 }
 
 juce::Font LNF::getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&)

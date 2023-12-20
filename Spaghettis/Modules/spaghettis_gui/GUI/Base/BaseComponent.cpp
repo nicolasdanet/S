@@ -196,7 +196,7 @@ juce::Rectangle<int> BaseComponent::setBoundsForBarsAndGetRemaining()
 
     #if SPAGHETTIS_MENUBAR
     
-    menubar_->setBounds (b.removeFromTop (Spaghettis()->getLookAndFeel().getDefaultMenuBarHeight()));
+    menubar_->setBounds (b.removeFromTop (WindowsProperties::getMenuBarHeight()));
     
     #endif
 

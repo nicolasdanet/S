@@ -204,7 +204,7 @@ void BaseWindow::applyMinimumHeight (int h)
     
     #if SPAGHETTIS_MENUBAR
     
-    n += Spaghettis()->getLookAndFeel().getDefaultMenuBarHeight();
+    n += WindowsProperties::getMenuBarHeight();
     
     #endif
     
