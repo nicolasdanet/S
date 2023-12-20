@@ -45,7 +45,7 @@ public:
 public:
     void initialise (const juce::String&) override
     {
-        juce::LookAndFeel::setDefaultLookAndFeel (&spaghettis::Spaghettis()->getLookAndFeel());
+        juce::LookAndFeel::setDefaultLookAndFeel (&lnf_);
         
         spaghettis::Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
         spaghettis::Spaghettis()->start (getCommandLineParameterArray());
@@ -146,6 +146,9 @@ public:
             return true;
         }
     }
+
+private:
+    spaghettis::LNF lnf_;
     
 private:
     spaghettis::CommandsManager commands_;

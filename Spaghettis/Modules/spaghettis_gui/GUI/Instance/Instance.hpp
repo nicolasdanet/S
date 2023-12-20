@@ -36,7 +36,6 @@ class SpaghettisInstance {
 
 public:
     explicit SpaghettisInstance() :
-        lookAndFeel_ (std::make_unique<LNF>()),
         commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
         menu_ (std::make_unique<MenuModel> (commandManager_.get())),
         core_ (std::make_unique<Wrapper>()),
@@ -249,11 +248,6 @@ public:
 // MARK: -
 
 public:
-    LNF& getLookAndFeel()
-    {
-        return *lookAndFeel_;
-    }
-
     juce::MenuBarModel& getMenuBarModel()
     {
         return *menu_;
@@ -314,7 +308,6 @@ public:
 // MARK: -
 
 private:
-    const std::unique_ptr<LNF> lookAndFeel_;
     const std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
     const std::unique_ptr<MenuModel> menu_;
     const std::unique_ptr<Wrapper> core_;
