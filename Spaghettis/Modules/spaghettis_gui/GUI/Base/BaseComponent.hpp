@@ -20,7 +20,7 @@ class BaseComponent :   public juce::Component,
 // MARK: -
 
 public:
-    BaseComponent (IconsFactory* factory, const juce::String& s = juce::String());
+    BaseComponent (IconsFactory* factory, const juce::String& key = juce::String());
     
     ~BaseComponent() override;
 
