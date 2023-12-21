@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-BaseComponent::BaseComponent (IconsFactory* factory, const juce::String& s) : keyName_ (s)
+BaseComponent::BaseComponent (IconsFactory* factory, const juce::String& key) : keyName_ (key)
 {
     Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
     

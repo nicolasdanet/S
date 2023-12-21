@@ -12,13 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-BaseWindow::BaseWindow (const juce::String& name, const juce::String& s) :
+BaseWindow::BaseWindow (const juce::String& name, const juce::String& key) :
     juce::DocumentWindow (name,
         Colours::fetchColour (Colours::windowsBackground),
         DocumentWindow::allButtons,
         false),
     name_ (name),
-    keyName_ (s),
+    keyName_ (key),
     timerCount_ (0),
     mimimumHeight_ (0),
     initialized_ (false)

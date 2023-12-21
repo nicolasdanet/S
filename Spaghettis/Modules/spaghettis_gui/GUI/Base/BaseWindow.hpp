@@ -20,7 +20,7 @@ class BaseWindow :  public  juce::DocumentWindow,
 // MARK: -
 
 public:
-    explicit BaseWindow (const juce::String& name, const juce::String& s = juce::String());
+    explicit BaseWindow (const juce::String& name, const juce::String& key = juce::String());
     
     ~BaseWindow() override;
 
@@ -28,25 +28,31 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-protected:
+public:
     juce::String getKeyName() const;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
+public:
+    void requireMinimumHeight (int);
+    
 public:
     void setDirtyFlag (bool) const;
     void close();
     
+public:
+    bool isFullyInitialized() const;
+    void grabFocus();
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    bool isFullyInitialized() const;
-    void grabFocus();
+protected:
+    void makeVisible (juce::Rectangle<int> window = juce::Rectangle<int>(), bool showAsLocked = false);
     
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     void timerCallback() override;
     void timerStart();
@@ -63,15 +69,9 @@ private:
 private:
     virtual void hasBeenChanged();
     
-protected:
-    void makeVisible (juce::Rectangle<int> window = juce::Rectangle<int>(), bool showAsLocked = false);
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-public:
-    void requireMinimumHeight (int);
 
 private:
     void applyMinimumHeight (int);
