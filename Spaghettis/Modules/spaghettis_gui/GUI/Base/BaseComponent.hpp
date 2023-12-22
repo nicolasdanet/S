@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class BaseComponent :   public juce::Component,
+class BaseComponent :   public BaseWindowFocus,
+                        public juce::Component,
                         public juce::ApplicationCommandTarget {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -23,16 +24,6 @@ public:
     BaseComponent (IconsFactory* factory, const juce::String& key = juce::String());
     
     ~BaseComponent() override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-protected:
-    static bool tryGrabFocusForComponent (juce::Component*);
-    
-public:
-    virtual bool tryGrabFocus() = 0;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

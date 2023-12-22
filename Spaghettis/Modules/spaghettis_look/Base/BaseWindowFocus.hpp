@@ -1,72 +1,48 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2023 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-namespace spaghettis::core::Identifiers {
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define DECLARE_ID(name)  static const juce::Identifier name (#name)
+class BaseWindowFocus {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-    DECLARE_ID (destination);
-    DECLARE_ID (editable);
-    DECLARE_ID (hidden);
-    DECLARE_ID (identifier);
-    DECLARE_ID (info);
-    DECLARE_ID (item);
-    DECLARE_ID (key);
-    DECLARE_ID (label);
-    DECLARE_ID (locked);
-    DECLARE_ID (maximum);
-    DECLARE_ID (minimum);
-    DECLARE_ID (name);
-    DECLARE_ID (path);
-    DECLARE_ID (state);
-    DECLARE_ID (source);
-    DECLARE_ID (type);
-    DECLARE_ID (value);
+public:
+    BaseWindowFocus()          = default;
+    virtual ~BaseWindowFocus() = default;
+
+public:
+    BaseWindowFocus (const BaseWindowFocus&) = default;
+    BaseWindowFocus (BaseWindowFocus&&) = default;
+    BaseWindowFocus& operator = (const BaseWindowFocus&) = default;
+    BaseWindowFocus& operator = (BaseWindowFocus&&) = default;
     
-    DECLARE_ID (BUTTON);
-    DECLARE_ID (BUTTONS);
-    DECLARE_ID (DATA);
-    DECLARE_ID (DELEGATE);
-    DECLARE_ID (DOCUMENTATION);
-    DECLARE_ID (GROUP);
-    DECLARE_ID (LINE);
-    DECLARE_ID (OBJECT);
-    DECLARE_ID (PARAMETER);
-    DECLARE_ID (PATCH);
-    DECLARE_ID (POSITION);
-    DECLARE_ID (PREFERENCES);
-    DECLARE_ID (RECENTFILE);
-    DECLARE_ID (RECENTFILES);
-    DECLARE_ID (SEARCHPATH);
-    DECLARE_ID (SEARCHPATHS);
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-#undef DECLARE_ID
+protected:
+    static bool tryGrabFocusForComponent (juce::Component*);
+    
+public:
+    virtual bool tryGrabFocus() = 0;
+    
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-namespace Id = spaghettis::core::Identifiers;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

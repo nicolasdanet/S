@@ -109,9 +109,11 @@ void BaseWindow::timerCallback()
     
     if (WindowsProperties::getTitleHeight (this)) {
     //
-    BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());
-        
-    if (!c || c->tryGrabFocus()) {
+    BaseWindowFocus* c = dynamic_cast<BaseWindowFocus*> (getContentComponent());
+    
+    jassert (c);
+    
+    if (c->tryGrabFocus()) {
         stopTimer();
         applyMinimumHeight();
         commandManager_.commandStatusChanged();

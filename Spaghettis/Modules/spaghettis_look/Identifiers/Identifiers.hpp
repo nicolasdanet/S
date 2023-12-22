@@ -1,48 +1,72 @@
 
-/* Copyright (c) 2023 Jojo and others. */
+/* Copyright (c) 2021 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_look.hpp"
+namespace spaghettis::Identifiers {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#define DECLARE_ID(name)  static const juce::Identifier name (#name)
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+    DECLARE_ID (destination);
+    DECLARE_ID (editable);
+    DECLARE_ID (hidden);
+    DECLARE_ID (identifier);
+    DECLARE_ID (info);
+    DECLARE_ID (item);
+    DECLARE_ID (key);
+    DECLARE_ID (label);
+    DECLARE_ID (locked);
+    DECLARE_ID (maximum);
+    DECLARE_ID (minimum);
+    DECLARE_ID (name);
+    DECLARE_ID (path);
+    DECLARE_ID (state);
+    DECLARE_ID (source);
+    DECLARE_ID (type);
+    DECLARE_ID (value);
+    
+    DECLARE_ID (BUTTON);
+    DECLARE_ID (BUTTONS);
+    DECLARE_ID (DATA);
+    DECLARE_ID (DELEGATE);
+    DECLARE_ID (DOCUMENTATION);
+    DECLARE_ID (GROUP);
+    DECLARE_ID (LINE);
+    DECLARE_ID (OBJECT);
+    DECLARE_ID (PARAMETER);
+    DECLARE_ID (PATCH);
+    DECLARE_ID (POSITION);
+    DECLARE_ID (PREFERENCES);
+    DECLARE_ID (RECENTFILE);
+    DECLARE_ID (RECENTFILES);
+    DECLARE_ID (SEARCHPATH);
+    DECLARE_ID (SEARCHPATHS);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Helpers/AlertWindowRegister.cpp"
-#include "Helpers/CallOutBoxRegister.cpp"
-#include "Helpers/CallOutBoxTracker.cpp"
-#include "Helpers/Autocomplete.cpp"
-#include "Helpers/WindowsProperties.cpp"
+#undef DECLARE_ID
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "LookAndFeel/Palette.cpp"
-#include "LookAndFeel/Fonts.cpp"
-#include "LookAndFeel/LookAndFeel.cpp"
-#include "LookAndFeel/LookAndFeelAlertWindow.cpp"
-#include "LookAndFeel/LookAndFeelCallOutBox.cpp"
-#include "LookAndFeel/LookAndFeelComboBox.cpp"
-#include "LookAndFeel/LookAndFeelMenubar.cpp"
-#include "LookAndFeel/LookAndFeelPopup.cpp"
-#include "LookAndFeel/LookAndFeelPreferences.cpp"
-#include "LookAndFeel/LookAndFeelResizer.cpp"
-#include "LookAndFeel/LookAndFeelToolbar.cpp"
-#include "LookAndFeel/LookAndFeelTooltip.cpp"
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Icons/Icons.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Base/BaseWindow.cpp"
-#include "Base/BaseWindowFocus.cpp"
+namespace Id = spaghettis::Identifiers;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
