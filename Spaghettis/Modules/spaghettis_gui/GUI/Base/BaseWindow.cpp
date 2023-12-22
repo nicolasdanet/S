@@ -13,6 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 BaseWindow::BaseWindow (juce::ApplicationCommandManager& commandManager,
+    juce::PropertiesFile& propertiesFile,
     const juce::String& name,
     const juce::String& key) :
         juce::DocumentWindow (name,
@@ -20,6 +21,7 @@ BaseWindow::BaseWindow (juce::ApplicationCommandManager& commandManager,
             DocumentWindow::allButtons,
             false),
         commandManager_ (commandManager),
+        propertiesFile_ (propertiesFile),
         name_ (name),
         keyName_ (key),
         timerCount_ (0),
@@ -38,13 +40,11 @@ BaseWindow::~BaseWindow()
     
     if (keyName_.isNotEmpty()) {
     //
-    juce::PropertiesFile& p = Spaghettis()->getProperties();
-    
     auto e = std::make_unique<juce::XmlElement> (Id::POSITION);
     
     e->setAttribute (Id::value, getWindowStateAsString());
     
-    p.setValue (keyName_ + "Position", e.get());
+    propertiesFile_.setValue (keyName_ + "Position", e.get());
     //
     }
 }
@@ -171,9 +171,7 @@ void BaseWindow::makeVisible (juce::Rectangle<int> window, bool locked)
     if (!window.isEmpty()) { setBounds (window); }
     else if (keyName_.isNotEmpty()) {
     //
-    juce::PropertiesFile& p = Spaghettis()->getProperties();
-    
-    const std::unique_ptr<juce::XmlElement> e (p.getXmlValue (keyName_ + "Position"));
+    const std::unique_ptr<juce::XmlElement> e (propertiesFile_.getXmlValue (keyName_ + "Position"));
     
     if (e && e->hasTagName (Id::POSITION) && e->hasAttribute (Id::value)) {
         const juce::String s = e->getStringAttribute (Id::value);

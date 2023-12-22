@@ -175,7 +175,7 @@ juce::StringArray SpaghettisInstance::getSearchPaths()
 {
     juce::StringArray searchPaths;
     
-    const std::unique_ptr<juce::XmlElement> root (properties_->getXmlValue ("SearchPaths"));
+    const std::unique_ptr<juce::XmlElement> root (propertiesFile_->getXmlValue ("SearchPaths"));
         
     if (root && root->hasTagName (Id::SEARCHPATHS)) {
     //
@@ -199,7 +199,7 @@ void SpaghettisInstance::setSearchPaths (const juce::StringArray& searchpaths)
         e->setAttribute (Id::path, p);
     }
         
-    properties_->setValue ("SearchPaths", root.get());
+    propertiesFile_->setValue ("SearchPaths", root.get());
     
     updateSearchPaths (searchpaths, Inputs::Logged::base);
 }
@@ -299,7 +299,7 @@ void SpaghettisInstance::openRecentFile (int n)
 
 void SpaghettisInstance::loadRecentFiles()
 {
-    const std::unique_ptr<juce::XmlElement> root (properties_->getXmlValue ("RecentFiles"));
+    const std::unique_ptr<juce::XmlElement> root (propertiesFile_->getXmlValue ("RecentFiles"));
         
     if (root && root->hasTagName (Id::RECENTFILES)) {
     //
@@ -325,7 +325,7 @@ void SpaghettisInstance::saveRecentFiles()
         e->setAttribute (Id::path, f);
     }
         
-    properties_->setValue ("RecentFiles", root.get());
+    propertiesFile_->setValue ("RecentFiles", root.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------

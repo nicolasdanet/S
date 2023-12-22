@@ -130,7 +130,7 @@ void BaseComponent::saveToolbarButtonsStates()
 {
     if (toolbar_ && keyName_.isNotEmpty()) {
     //
-    juce::PropertiesFile& p = Spaghettis()->getProperties();
+    juce::PropertiesFile& p = Spaghettis()->getPropertiesFile();
     
     auto root   = std::make_unique<juce::XmlElement> (Id::BUTTONS);
     const int n = toolbar_->getNumItems();
@@ -157,7 +157,7 @@ void BaseComponent::loadToolbarButtonsStates()
 {
     if (toolbar_ && keyName_.isNotEmpty()) {
     //
-    juce::PropertiesFile& p = Spaghettis()->getProperties();
+    juce::PropertiesFile& p = Spaghettis()->getPropertiesFile();
     
     const std::unique_ptr<juce::XmlElement> root (p.getXmlValue (keyName_ + "Buttons"));
     

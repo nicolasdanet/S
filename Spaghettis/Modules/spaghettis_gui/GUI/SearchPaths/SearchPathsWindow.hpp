@@ -20,7 +20,10 @@ class SearchPathsWindow : public BaseWindow {
 
 public:
     explicit SearchPathsWindow() :
-        BaseWindow (Spaghettis()->getCommandManager(), "Paths", "SearchPathsWindow")
+        BaseWindow (Spaghettis()->getCommandManager(),
+            Spaghettis()->getPropertiesFile(),
+            "Paths",
+            "SearchPathsWindow")
     {
         setContentOwned (new SearchPathsComponent (getKeyName()), true);
 

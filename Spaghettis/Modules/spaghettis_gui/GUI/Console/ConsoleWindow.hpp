@@ -20,7 +20,10 @@ class ConsoleWindow : public BaseWindow {
 
 public:
     explicit ConsoleWindow() :
-        BaseWindow (Spaghettis()->getCommandManager(), core::getApplicationName(), "ConsoleWindow")
+        BaseWindow (Spaghettis()->getCommandManager(),
+            Spaghettis()->getPropertiesFile(),
+            core::getApplicationName(),
+            "ConsoleWindow")
     {
         content_ = std::make_unique<ConsoleComponent> (getKeyName());
         

@@ -20,7 +20,10 @@ class PreferencesWindow : public BaseWindow {
 
 public:
     explicit PreferencesWindow() :
-        BaseWindow (Spaghettis()->getCommandManager(), "Preferences", "PreferencesWindow")
+        BaseWindow (Spaghettis()->getCommandManager(),
+            Spaghettis()->getPropertiesFile(),
+            "Preferences",
+            "PreferencesWindow")
     {
         setContentOwned (new PreferencesComponent (getKeyName()), true);
 
