@@ -77,7 +77,7 @@ private:
 // MARK: -
 
 private:
-    void applyMinimumHeight (int);
+    void applyMinimumHeight();
     void showAsLocked();
     
 // -----------------------------------------------------------------------------------------------------------

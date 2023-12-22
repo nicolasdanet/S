@@ -107,15 +107,13 @@ void BaseWindow::timerCallback()
     //
     /* < https://forum.juce.com/t/getting-the-title-bar-height-in-a-windows-osx-app/38461/14 > */
     
-    const int h = WindowsProperties::getTitleHeight (this);
-    
-    if (h != 0) {
+    if (WindowsProperties::getTitleHeight (this)) {
     //
     BaseComponent* c = dynamic_cast<BaseComponent*> (getContentComponent());
         
     if (!c || c->tryGrabFocus()) {
         stopTimer();
-        applyMinimumHeight (h);
+        applyMinimumHeight();
         commandManager_.commandStatusChanged();
         initialized_ = true;
     }
@@ -193,7 +191,7 @@ void BaseWindow::makeVisible (juce::Rectangle<int> window, bool locked)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BaseWindow::applyMinimumHeight (int h)
+void BaseWindow::applyMinimumHeight()
 {
     if (mimimumHeight_) {
     //
@@ -209,7 +207,7 @@ void BaseWindow::applyMinimumHeight (int h)
     
     #endif
     
-    n += h;
+    n += WindowsProperties::getTitleHeight (this);
     
     c->setMinimumHeight (n);
     //
