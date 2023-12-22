@@ -12,26 +12,29 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-BaseWindow::BaseWindow (const juce::String& name, const juce::String& key) :
-    juce::DocumentWindow (name,
-        Colours::fetchColour (Colours::windowsBackground),
-        DocumentWindow::allButtons,
-        false),
-    name_ (name),
-    keyName_ (key),
-    timerCount_ (0),
-    mimimumHeight_ (0),
-    initialized_ (false)
+BaseWindow::BaseWindow (juce::ApplicationCommandManager& commandManager,
+    const juce::String& name,
+    const juce::String& key) :
+        juce::DocumentWindow (name,
+            Colours::fetchColour (Colours::windowsBackground),
+            DocumentWindow::allButtons,
+            false),
+        commandManager_ (commandManager),
+        name_ (name),
+        keyName_ (key),
+        timerCount_ (0),
+        mimimumHeight_ (0),
+        initialized_ (false)
 {
     setUsingNativeTitleBar (true);
     setResizable (true, true);
     
-    addKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
+    addKeyListener (commandManager_.getKeyMappings());
 }
 
 BaseWindow::~BaseWindow()
 {
-    removeKeyListener (Spaghettis()->getCommandManager().getKeyMappings());
+    removeKeyListener (commandManager_.getKeyMappings());
     
     if (keyName_.isNotEmpty()) {
     //
@@ -113,7 +116,7 @@ void BaseWindow::timerCallback()
     if (!c || c->tryGrabFocus()) {
         stopTimer();
         applyMinimumHeight (h);
-        Spaghettis()->updateMenuBar();
+        commandManager_.commandStatusChanged();
         initialized_ = true;
     }
     //

@@ -20,7 +20,9 @@ class BaseWindow :  public  juce::DocumentWindow,
 // MARK: -
 
 public:
-    explicit BaseWindow (const juce::String& name, const juce::String& key = juce::String());
+    explicit BaseWindow (juce::ApplicationCommandManager& commandManager,
+        const juce::String& name,
+        const juce::String& key = juce::String());
     
     ~BaseWindow() override;
 
@@ -95,6 +97,9 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    juce::ApplicationCommandManager& commandManager_;
+    
 private:
     juce::String name_;
     juce::String keyName_;

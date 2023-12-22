@@ -19,7 +19,7 @@ class DevicesWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit DevicesWindow() : BaseWindow ("Devices", "DevicesWindow")
+    explicit DevicesWindow() : BaseWindow (Spaghettis()->getCommandManager(), "Devices", "DevicesWindow")
     {
         setContentOwned (new DevicesComponent (getKeyName()), true);
         

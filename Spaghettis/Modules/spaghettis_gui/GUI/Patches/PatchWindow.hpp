@@ -20,7 +20,8 @@ class PatchWindow : public BaseWindow {
 
 public:
     explicit PatchWindow (PatchRoot& patch, const juce::ValueTree& tree) :
-        BaseWindow (core::Patch (tree).get<juce::String> (Tag::Attributes, Tag::Title)),
+        BaseWindow (Spaghettis()->getCommandManager(),
+            core::Patch (tree).get<juce::String> (Tag::Attributes, Tag::Title)),
         patch_ (patch),
         viewTree_ (tree)
     {

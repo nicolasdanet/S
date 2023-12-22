@@ -19,7 +19,8 @@ class PreferencesWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit PreferencesWindow() : BaseWindow ("Preferences", "PreferencesWindow")
+    explicit PreferencesWindow() :
+        BaseWindow (Spaghettis()->getCommandManager(), "Preferences", "PreferencesWindow")
     {
         setContentOwned (new PreferencesComponent (getKeyName()), true);
 

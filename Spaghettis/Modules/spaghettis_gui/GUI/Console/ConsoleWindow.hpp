@@ -19,7 +19,8 @@ class ConsoleWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit ConsoleWindow() : BaseWindow (core::getApplicationName(), "ConsoleWindow")
+    explicit ConsoleWindow() :
+        BaseWindow (Spaghettis()->getCommandManager(), core::getApplicationName(), "ConsoleWindow")
     {
         content_ = std::make_unique<ConsoleComponent> (getKeyName());
         

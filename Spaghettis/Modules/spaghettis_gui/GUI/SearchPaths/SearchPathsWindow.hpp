@@ -19,7 +19,8 @@ class SearchPathsWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit SearchPathsWindow() : BaseWindow ("Paths", "SearchPathsWindow")
+    explicit SearchPathsWindow() :
+        BaseWindow (Spaghettis()->getCommandManager(), "Paths", "SearchPathsWindow")
     {
         setContentOwned (new SearchPathsComponent (getKeyName()), true);
 
