@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RunWindow::hasBeenChanged()
+void RunWindow::hasBeenMovedOrResized()
 {
     if (isFullyInitialized()) {
         Spaghettis()->handle (Inputs::setRunView (getIdentifier(), getBounds()));

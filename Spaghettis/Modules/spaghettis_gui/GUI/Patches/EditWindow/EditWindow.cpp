@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditWindow::hasBeenChanged()
+void EditWindow::hasBeenMovedOrResized()
 {
     if (isFullyInitialized()) {
         Spaghettis()->handle (Inputs::setEditView (getIdentifier(), getBounds()));

@@ -49,7 +49,7 @@ public:
 // MARK: -
 
 private:
-    void hasBeenChanged() override;
+    void hasBeenMovedOrResized() override;
 
 private:
     std::unique_ptr<EditComponent> content_;
