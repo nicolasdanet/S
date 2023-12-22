@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class BaseComponent :   public BaseWindowFocus,
+class BaseComponent :   public BaseComponentFocus,
                         public juce::Component,
                         public juce::ApplicationCommandTarget {
 

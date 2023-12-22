@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool BaseWindowFocus::tryGrabFocusForComponent (juce::Component *c)
+bool BaseComponentFocus::tryGrabFocusForComponent (juce::Component *c)
 {
     c->grabKeyboardFocus();
     

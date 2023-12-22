@@ -12,20 +12,20 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class BaseWindowFocus {
+class BaseComponentFocus {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    BaseWindowFocus()          = default;
-    virtual ~BaseWindowFocus() = default;
+    BaseComponentFocus()          = default;
+    virtual ~BaseComponentFocus() = default;
 
 public:
-    BaseWindowFocus (const BaseWindowFocus&) = default;
-    BaseWindowFocus (BaseWindowFocus&&) = default;
-    BaseWindowFocus& operator = (const BaseWindowFocus&) = default;
-    BaseWindowFocus& operator = (BaseWindowFocus&&) = default;
+    BaseComponentFocus (const BaseComponentFocus&) = default;
+    BaseComponentFocus (BaseComponentFocus&&) = default;
+    BaseComponentFocus& operator = (const BaseComponentFocus&) = default;
+    BaseComponentFocus& operator = (BaseComponentFocus&&) = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

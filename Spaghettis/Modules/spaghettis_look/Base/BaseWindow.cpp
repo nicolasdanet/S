@@ -109,7 +109,7 @@ void BaseWindow::timerCallback()
     
     if (WindowsProperties::getTitleHeight (this)) {
     //
-    BaseWindowFocus* c = dynamic_cast<BaseWindowFocus*> (getContentComponent());
+    BaseComponentFocus* c = dynamic_cast<BaseComponentFocus*> (getContentComponent());
     
     jassert (c);
     
