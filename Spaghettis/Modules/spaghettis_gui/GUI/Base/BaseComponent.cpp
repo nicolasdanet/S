@@ -199,7 +199,7 @@ juce::ApplicationCommandTarget* BaseComponent::getNextCommandTarget()
 
 void BaseComponent::getAllCommands (juce::Array<juce::CommandID>& c)
 {
-    commands_.getCommands (c);
+    commands_.getCommands (c, false);
 }
 
 void BaseComponent::getCommandInfo (juce::CommandID c, juce::ApplicationCommandInfo& r)

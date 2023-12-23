@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2022 Jojo and others. */
+/* Copyright (c) 2023 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -12,81 +12,48 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class MenuCommand {
+class BaseCommands {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-friend class BaseCommands;
+public:
+    BaseCommands()          = default;
+    virtual ~BaseCommands() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit MenuCommand (juce::CommandID c) : command_ (c),
-        invoke_ (MenuCommand::defaultInvoke),
-        check_  (MenuCommand::defaultCheck),
-        name_   (MenuCommand::defaultName)
-    {
-    }
-
-public:
-    ~MenuCommand() = default;
-
-public:
-    MenuCommand (const MenuCommand&) = default;
-    MenuCommand (MenuCommand&&) = default;
-    MenuCommand& operator = (const MenuCommand&) = default;
-    MenuCommand& operator = (MenuCommand&&) = default;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    MenuCommand& setInvoke (std::function<void (const juce::ApplicationCommandTarget::InvocationInfo&)> f)
-    {
-        invoke_ = f; return *this;
-    }
+    void set (MenuCommand);
+    bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
     
-    MenuCommand& setCheck (std::function<bool()> f)
-    {
-        check_ = f;  return *this;
-    }
-    
-    MenuCommand& setName (std::function<juce::String()> f)
-    {
-        name_ = f;   return *this;
-    }
+protected:
+    bool has (juce::CommandID);
+    juce::String name (juce::CommandID, juce::String);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    static void defaultInvoke (const juce::ApplicationCommandTarget::InvocationInfo&) { }
-    static bool defaultCheck() { return true; }
-    static juce::String defaultName() { return juce::String(); }
-
+    bool invoke (const juce::ApplicationCommandTarget::InvocationInfo&);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    static bool isFromMenu (const juce::ApplicationCommandTarget::InvocationInfo& info)
-    {
-        return (info.invocationMethod == juce::ApplicationCommandTarget::InvocationInfo::fromMenu);
-    }
+    virtual void getInfo (juce::CommandID, juce::ApplicationCommandInfo&) = 0;
+    virtual void getCommands (juce::Array<juce::CommandID>&, bool application) = 0;
+    virtual bool performCommand (const juce::ApplicationCommandTarget::InvocationInfo&) = 0;
+
+private:
+    std::vector<MenuCommand> enabled_;
     
 private:
-    juce::CommandID command_;
-    std::function<void (const juce::ApplicationCommandTarget::InvocationInfo&)> invoke_;
-    std::function<bool()> check_;
-    std::function<juce::String()> name_;
-    
-private:
-    JUCE_LEAK_DETECTOR (MenuCommand)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BaseCommands)
 };
 
 // -----------------------------------------------------------------------------------------------------------
