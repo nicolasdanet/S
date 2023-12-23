@@ -199,12 +199,12 @@ juce::ApplicationCommandTarget* BaseComponent::getNextCommandTarget()
 
 void BaseComponent::getAllCommands (juce::Array<juce::CommandID>& c)
 {
-    commands_.getAllCommands (c);
+    commands_.getCommands (c);
 }
 
 void BaseComponent::getCommandInfo (juce::CommandID c, juce::ApplicationCommandInfo& r)
 {
-    commands_.getCommandInfo (c, r);
+    commands_.getInfo (c, r);
 }
 
 bool BaseComponent::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)

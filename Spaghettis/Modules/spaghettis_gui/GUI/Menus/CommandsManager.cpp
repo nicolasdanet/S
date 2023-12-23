@@ -17,6 +17,13 @@ void CommandsManager::set (MenuCommand m)
     jassert (!has (m.command_)); enabled_.push_back (m);
 }
 
+bool CommandsManager::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
+{
+    if (invoke (info) == false) { return performCommand (info); }
+    
+    return true;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -151,7 +158,7 @@ juce::String CommandsManager::getCommandDescription (juce::CommandID command)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void CommandsManager::getCommandInfo (juce::CommandID command, juce::ApplicationCommandInfo& r)
+void CommandsManager::getInfo (juce::CommandID command, juce::ApplicationCommandInfo& r)
 {
     const juce::String general = NEEDS_TRANS ("General");
     const juce::String file    = NEEDS_TRANS ("File");
@@ -314,8 +321,11 @@ void CommandsManager::getCommandInfo (juce::CommandID command, juce::Application
     }
 }
 
-void CommandsManager::getAllCommands (juce::Array<juce::CommandID>& c)
+void CommandsManager::getCommands (juce::Array<juce::CommandID>& c, bool application)
 {
+    if (application) { c.add (Commands::preferences); }
+    else {
+    //
     juce::Array<juce::CommandID> commands
         {
             Commands::preferences,
@@ -353,23 +363,11 @@ void CommandsManager::getAllCommands (juce::Array<juce::CommandID>& c)
         };
         
     c.addArray (commands);
+    //
+    }
 }
 
-void CommandsManager::getApplicationCommands (juce::Array<juce::CommandID>& c)
-{
-    c.add (Commands::preferences);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-bool performDefaultCommand (const juce::ApplicationCommandTarget::InvocationInfo& info)
+bool CommandsManager::performCommand (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
     switch (info.commandID) {
     //
@@ -398,22 +396,6 @@ bool performDefaultCommand (const juce::ApplicationCommandTarget::InvocationInfo
     }
 
     return false;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool CommandsManager::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
-{
-    if (invoke (info) == false) { return performDefaultCommand (info); }
-    
-    return true;
 }
 
 // -----------------------------------------------------------------------------------------------------------

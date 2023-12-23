@@ -131,12 +131,12 @@ public:
 public:
     void getAllCommands (juce::Array<juce::CommandID>& c) override
     {
-        juce::JUCEApplication::getAllCommands (c); commands_.getApplicationCommands (c);
+        juce::JUCEApplication::getAllCommands (c); commands_.getCommands (c, true);
     }
 
     void getCommandInfo (juce::CommandID c, juce::ApplicationCommandInfo& r) override
     {
-        juce::JUCEApplication::getCommandInfo (c, r); commands_.getCommandInfo (c, r);
+        juce::JUCEApplication::getCommandInfo (c, r); commands_.getInfo (c, r);
     }
 
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo& info) override

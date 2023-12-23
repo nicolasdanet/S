@@ -27,7 +27,12 @@ public:
 
 public:
     void set (MenuCommand);
-    
+    bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     bool has (juce::CommandID);
     bool invoke (const juce::ApplicationCommandTarget::InvocationInfo&);
@@ -38,10 +43,13 @@ private:
 // MARK: -
 
 public:
-    void getCommandInfo (juce::CommandID, juce::ApplicationCommandInfo&);
-    void getAllCommands (juce::Array<juce::CommandID>&);
-    void getApplicationCommands (juce::Array<juce::CommandID>&);
-    bool perform (const juce::ApplicationCommandTarget::InvocationInfo&);
+    void getInfo (juce::CommandID, juce::ApplicationCommandInfo&);
+    void getCommands (juce::Array<juce::CommandID>&, bool application = false);
+    bool performCommand (const juce::ApplicationCommandTarget::InvocationInfo&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 private:
     juce::String getCommandText (juce::CommandID);
