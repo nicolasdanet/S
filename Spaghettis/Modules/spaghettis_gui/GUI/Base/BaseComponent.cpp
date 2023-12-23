@@ -110,7 +110,6 @@ bool BaseComponent::toggleButtonState (int itemId)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 void BaseComponent::saveToolbarButtonsStates()
 {
@@ -174,32 +173,8 @@ void BaseComponent::loadToolbarButtonsStates()
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-juce::Rectangle<int> BaseComponent::setBoundsForBarsAndGetRemaining()
-{
-    juce::Rectangle<int> b = getLocalBounds();
-
-    #if SPAGHETTIS_MENUBAR
-    
-    menubar_->setBounds (b.removeFromTop (WindowsProperties::getMenuBarHeight()));
-    
-    #endif
-
-    if (toolbar_) {
-    //
-    const int border = 2;
-    
-    auto t = b.removeFromBottom (WindowsProperties::getToolbarHeight());
-    
-    toolbar_->setBounds (t.reduced (border));
-    //
-    }
-    
-    return b;
-}
-
-juce::Rectangle<int> BaseComponent::getBoundsForToolbar() const
+juce::Rectangle<int> BaseComponent::getToolbarBounds() const
 {
     return toolbar_->getBounds();
 }
@@ -235,6 +210,33 @@ void BaseComponent::getCommandInfo (juce::CommandID c, juce::ApplicationCommandI
 bool BaseComponent::perform (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
     return commands_.perform (info);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Rectangle<int> BaseComponent::setBoundsForBarsAndGetRemaining()
+{
+    juce::Rectangle<int> b = getLocalBounds();
+
+    #if SPAGHETTIS_MENUBAR
+    
+    menubar_->setBounds (b.removeFromTop (WindowsProperties::getMenuBarHeight()));
+    
+    #endif
+
+    if (toolbar_) {
+    //
+    const int border = 2;
+    
+    auto t = b.removeFromBottom (WindowsProperties::getToolbarHeight());
+    
+    toolbar_->setBounds (t.reduced (border));
+    //
+    }
+    
+    return b;
 }
 
 // -----------------------------------------------------------------------------------------------------------

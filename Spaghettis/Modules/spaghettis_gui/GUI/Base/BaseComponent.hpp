@@ -32,23 +32,17 @@ public:
 public:
     bool getButtonState (int itemId);
     void setButtonState (int itemId, bool shouldBeOn);      /* Does NOT trigger the associated action. */
-    bool toggleButtonState (int itemId);                    /* Ditto. */
-    void loadToolbarButtonsStates();
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
-private:
+public:
+    bool toggleButtonState (int itemId);                    /* Ditto. */
+
+public:
+    void loadToolbarButtonsStates();
     void saveToolbarButtonsStates();
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-protected:
-    juce::Rectangle<int> setBoundsForBarsAndGetRemaining();
-    juce::Rectangle<int> getBoundsForToolbar() const;
-
+public:
+    juce::Rectangle<int> getToolbarBounds() const;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -60,12 +54,19 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     juce::ApplicationCommandTarget* getNextCommandTarget() override;
     void getAllCommands (juce::Array<juce::CommandID>&) override;
     void getCommandInfo (juce::CommandID, juce::ApplicationCommandInfo&) override;
     bool perform (const juce::ApplicationCommandTarget::InvocationInfo&) override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+protected:
+    juce::Rectangle<int> setBoundsForBarsAndGetRemaining();
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

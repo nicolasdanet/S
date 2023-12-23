@@ -236,7 +236,7 @@ void EditComponent::updateLayout()
 
     editPort_.setBounds (bounds);
     
-    updateZoom (editZoom_, getBoundsForToolbar());
+    updateZoom (editZoom_, getToolbarBounds());
 }
     
 // -----------------------------------------------------------------------------------------------------------
