@@ -105,6 +105,7 @@
 
 #include "Base/MenuCommand.hpp"
 #include "Base/BaseComponentFocus.hpp"
+#include "Base/BaseComponentToolbar.hpp"
 #include "Base/BaseWindow.hpp"
 #include "Base/BaseCommands.hpp"
 
