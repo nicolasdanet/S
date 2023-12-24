@@ -46,7 +46,7 @@ bool BaseComponentToolbar::hasToolbar() const
 
 void BaseComponentToolbar::makeVisible (juce::Component& c)
 {
-    c.addAndMakeVisible (toolbar_.get());
+    jassert (toolbar_); c.addAndMakeVisible (toolbar_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -60,7 +60,9 @@ namespace {
 
 IconsButton* fetchButton (juce::Toolbar* toolbar, int itemId)
 {
-    jassert (toolbar); const int n = toolbar->getNumItems();
+    jassert (toolbar);
+    
+    const int n = toolbar->getNumItems();
     
     for (int i = 0; i < n; ++i) {
     //
@@ -173,12 +175,12 @@ void BaseComponentToolbar::loadToolbarButtonsStates()
 
 juce::Rectangle<int> BaseComponentToolbar::getToolbarBounds() const
 {
-    return toolbar_->getBounds();
+    jassert (toolbar_); return toolbar_->getBounds();
 }
 
 void BaseComponentToolbar::setToolbarBounds (const juce::Rectangle<int>& bounds)
 {
-    toolbar_->setBounds (bounds);
+    jassert (toolbar_); toolbar_->setBounds (bounds);
 }
 
 // -----------------------------------------------------------------------------------------------------------
