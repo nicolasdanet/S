@@ -12,7 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String CommandsManager::getCommandText (juce::CommandID command)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::String getCommandText (juce::CommandID command)
 {
     switch (command) {
     //
@@ -55,7 +60,7 @@ juce::String CommandsManager::getCommandText (juce::CommandID command)
     return juce::String();
 }
 
-juce::String CommandsManager::getCommandDescription (juce::CommandID command)
+juce::String getCommandDescription (juce::CommandID command)
 {
     switch (command) {
     //
@@ -96,6 +101,11 @@ juce::String CommandsManager::getCommandDescription (juce::CommandID command)
     }
     
     return juce::String();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 }
 
 // -----------------------------------------------------------------------------------------------------------

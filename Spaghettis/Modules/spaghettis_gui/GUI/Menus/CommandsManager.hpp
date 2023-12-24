@@ -30,14 +30,6 @@ public:
     void getCommands (juce::Array<juce::CommandID>&, bool application) override;
     bool performCommand (const juce::ApplicationCommandTarget::InvocationInfo&) override;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    juce::String getCommandText (juce::CommandID);
-    juce::String getCommandDescription (juce::CommandID);
-    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CommandsManager)
 };
