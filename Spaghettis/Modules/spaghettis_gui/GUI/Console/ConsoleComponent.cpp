@@ -12,9 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ConsoleComponent::ConsoleComponent (const juce::String& keyName) :
+ConsoleComponent::ConsoleComponent (juce::PropertiesFile& propertiesFile, const juce::String& keyName) :
     ConsoleFactoryHelper (this),
-    BaseComponent (getIconsFactory(), Spaghettis()->getPropertiesFile(), keyName)
+    BaseComponent (getIconsFactory(), propertiesFile, keyName)
 {
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, false);
