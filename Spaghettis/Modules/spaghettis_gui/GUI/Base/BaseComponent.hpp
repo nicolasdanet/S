@@ -13,6 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 class BaseComponent :   public BaseComponentFocus,
+                        public BaseComponentToolbar,
                         public juce::Component,
                         public juce::ApplicationCommandTarget {
 
@@ -21,28 +22,10 @@ class BaseComponent :   public BaseComponentFocus,
 // MARK: -
 
 public:
-    BaseComponent (IconsFactory* factory, const juce::String& key = juce::String());
+    BaseComponent (IconsFactory*, const juce::String& key = juce::String());
     
     ~BaseComponent() override;
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    bool getButtonState (int itemId);
-    void setButtonState (int itemId, bool shouldBeOn);      /* Does NOT trigger the associated action. */
-
-public:
-    bool toggleButtonState (int itemId);                    /* Ditto. */
-
-public:
-    void loadToolbarButtonsStates();
-    void saveToolbarButtonsStates();
-
-public:
-    juce::Rectangle<int> getToolbarBounds() const;
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -75,8 +58,6 @@ public:
     static BaseComponent* getComponent (juce::Component*);
 
 private:
-    juce::String keyName_;
-    std::unique_ptr<juce::Toolbar> toolbar_;
     CommandsManager commands_;
         
 #if SPAGHETTIS_MENUBAR

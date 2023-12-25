@@ -44,9 +44,9 @@ bool BaseComponentToolbar::hasToolbar() const
     return toolbar_ != nullptr;
 }
 
-void BaseComponentToolbar::makeVisible (juce::Component& c)
+void BaseComponentToolbar::makeVisible (juce::Component* c)
 {
-    jassert (toolbar_); c.addAndMakeVisible (toolbar_.get());
+    jassert (toolbar_); c->addAndMakeVisible (toolbar_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------

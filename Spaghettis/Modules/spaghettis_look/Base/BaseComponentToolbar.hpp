@@ -19,9 +19,7 @@ class BaseComponentToolbar {
 // MARK: -
 
 public:
-    BaseComponentToolbar (IconsFactory* factory,
-        juce::PropertiesFile& propertiesFile,
-        const juce::String& key);
+    BaseComponentToolbar (IconsFactory*, juce::PropertiesFile&, const juce::String&);
     
     ~BaseComponentToolbar();
 
@@ -32,7 +30,7 @@ public:
 public:
     bool hasToolbar() const;
     
-    void makeVisible (juce::Component&);
+    void makeVisible (juce::Component*);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
