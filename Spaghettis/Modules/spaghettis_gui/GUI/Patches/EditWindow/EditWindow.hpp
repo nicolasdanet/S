@@ -19,9 +19,12 @@ class EditWindow : public PatchWindow {
 // MARK: -
 
 public:
-    explicit EditWindow (PatchRoot& owner, const juce::ValueTree& tree) : PatchWindow (owner, tree)
+    explicit EditWindow (juce::PropertiesFile& propertiesFile,
+        PatchRoot& owner,
+        const juce::ValueTree& tree) :
+            PatchWindow (propertiesFile, owner, tree)
     {
-        content_ = std::make_unique<EditComponent> (owner, tree);
+        content_ = std::make_unique<EditComponent> (propertiesFile, owner, tree);
         
         setContentNonOwned (content_.get(), true);
                 

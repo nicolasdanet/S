@@ -19,12 +19,14 @@ class PatchWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit PatchWindow (PatchRoot& patch, const juce::ValueTree& tree) :
-        BaseWindow (Spaghettis()->getCommandManager(),
-            Spaghettis()->getPropertiesFile(),
-            core::Patch (tree).get<juce::String> (Tag::Attributes, Tag::Title)),
-        patch_ (patch),
-        viewTree_ (tree)
+    explicit PatchWindow (juce::PropertiesFile& propertiesFile,
+        PatchRoot& patch,
+        const juce::ValueTree& tree) :
+            BaseWindow (Spaghettis()->getCommandManager(),
+                propertiesFile,
+                core::Patch (tree).get<juce::String> (Tag::Attributes, Tag::Title)),
+            patch_ (patch),
+            viewTree_ (tree)
     {
     }
 

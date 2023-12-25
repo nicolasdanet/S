@@ -114,9 +114,9 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template <class T> void createOrOpenWindow (std::unique_ptr<T>& p)
+template <class T> void createOrOpenWindow (std::unique_ptr<T>& p, juce::PropertiesFile& propertiesFile)
 {
-    if (p == nullptr) { p = std::make_unique<T>(); }
+    if (p == nullptr) { p = std::make_unique<T> (propertiesFile); }
     else {
         p.get()->toFront (true);
     }
@@ -133,7 +133,7 @@ template <class T> void createOrOpenWindow (std::unique_ptr<T>& p)
 
 void SpaghettisInstance::openPreferencesWindow()
 {
-    createOrOpenWindow (preferencesWindow_);
+    createOrOpenWindow (preferencesWindow_, *propertiesFile_);
 }
 
 void SpaghettisInstance::closePreferencesWindow()
@@ -143,7 +143,7 @@ void SpaghettisInstance::closePreferencesWindow()
 
 void SpaghettisInstance::openDevicesWindow()
 {
-    createOrOpenWindow (devicesWindow_);
+    createOrOpenWindow (devicesWindow_, *propertiesFile_);
 }
 
 void SpaghettisInstance::closeDevicesWindow()
@@ -153,7 +153,7 @@ void SpaghettisInstance::closeDevicesWindow()
 
 void SpaghettisInstance::openSearchPathsWindow()
 {
-    createOrOpenWindow (searchPathsWindow_);
+    createOrOpenWindow (searchPathsWindow_, *propertiesFile_);
 }
 
 void SpaghettisInstance::closeSearchPathsWindow()
