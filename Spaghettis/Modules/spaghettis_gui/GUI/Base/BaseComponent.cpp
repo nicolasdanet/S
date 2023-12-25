@@ -12,8 +12,10 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-BaseComponent::BaseComponent (IconsFactory* factory, const juce::String& key) :
-    BaseComponentToolbar (factory, Spaghettis()->getPropertiesFile(), key)
+BaseComponent::BaseComponent (IconsFactory* factory,
+    juce::PropertiesFile& propertiesFile,
+    const juce::String& key) :
+        BaseComponentToolbar (factory, propertiesFile, key)
 {
     Spaghettis()->getCommandManager().registerAllCommandsForTarget (this);
     
