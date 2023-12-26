@@ -14,7 +14,7 @@ namespace spaghettis {
 
 ConsoleComponent::ConsoleComponent (juce::PropertiesFile* propertiesFile, const juce::String& keyName) :
     ConsoleFactoryHelper (this),
-    BaseComponent (getIconsFactory(), propertiesFile, keyName)
+    BaseComponent (getIconsFactory(), Spaghettis()->getCommandManager(), propertiesFile, keyName)
 {
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, false);
