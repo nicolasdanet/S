@@ -19,7 +19,7 @@ class BaseComponentToolbar {
 // MARK: -
 
 public:
-    BaseComponentToolbar (IconsFactory*, juce::PropertiesFile&, const juce::String&);
+    BaseComponentToolbar (IconsFactory*, juce::PropertiesFile*, const juce::String&);
     
     ~BaseComponentToolbar();
 
@@ -65,7 +65,7 @@ public:
 // MARK: -
 
 private:
-    juce::PropertiesFile& propertiesFile_;
+    juce::PropertiesFile* propertiesFile_;
     juce::String keyName_;
     std::unique_ptr<juce::Toolbar> toolbar_;
         

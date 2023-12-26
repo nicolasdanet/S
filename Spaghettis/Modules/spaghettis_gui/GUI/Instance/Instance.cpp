@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void SpaghettisInstance::start (const juce::StringArray& commandLine)
 {
-    consoleWindow_ = std::make_unique<ConsoleWindow> (*propertiesFile_);
+    consoleWindow_ = std::make_unique<ConsoleWindow> (propertiesFile_.get());
 
     #if ! ( SPAGHETTIS_MENUBAR )
         
@@ -114,7 +114,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template <class T> void createOrOpenWindow (std::unique_ptr<T>& p, juce::PropertiesFile& propertiesFile)
+template <class T> void createOrOpenWindow (std::unique_ptr<T>& p, juce::PropertiesFile* propertiesFile)
 {
     if (p == nullptr) { p = std::make_unique<T> (propertiesFile); }
     else {
@@ -133,7 +133,7 @@ template <class T> void createOrOpenWindow (std::unique_ptr<T>& p, juce::Propert
 
 void SpaghettisInstance::openPreferencesWindow()
 {
-    createOrOpenWindow (preferencesWindow_, *propertiesFile_);
+    createOrOpenWindow (preferencesWindow_, propertiesFile_.get());
 }
 
 void SpaghettisInstance::closePreferencesWindow()
@@ -143,7 +143,7 @@ void SpaghettisInstance::closePreferencesWindow()
 
 void SpaghettisInstance::openDevicesWindow()
 {
-    createOrOpenWindow (devicesWindow_, *propertiesFile_);
+    createOrOpenWindow (devicesWindow_, propertiesFile_.get());
 }
 
 void SpaghettisInstance::closeDevicesWindow()
@@ -153,7 +153,7 @@ void SpaghettisInstance::closeDevicesWindow()
 
 void SpaghettisInstance::openSearchPathsWindow()
 {
-    createOrOpenWindow (searchPathsWindow_, *propertiesFile_);
+    createOrOpenWindow (searchPathsWindow_, propertiesFile_.get());
 }
 
 void SpaghettisInstance::closeSearchPathsWindow()

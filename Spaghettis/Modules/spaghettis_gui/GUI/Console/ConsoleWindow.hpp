@@ -19,7 +19,7 @@ class ConsoleWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit ConsoleWindow (juce::PropertiesFile& propertiesFile) :
+    explicit ConsoleWindow (juce::PropertiesFile* propertiesFile) :
         BaseWindow (Spaghettis()->getCommandManager(),
             propertiesFile,
             core::getApplicationName(),

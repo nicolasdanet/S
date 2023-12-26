@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 BaseComponentToolbar::BaseComponentToolbar (IconsFactory* factory,
-    juce::PropertiesFile& propertiesFile,
+    juce::PropertiesFile* propertiesFile,
     const juce::String& key) :
         propertiesFile_ (propertiesFile),
         keyName_ (key)
@@ -115,7 +115,7 @@ bool BaseComponentToolbar::toggleButtonState (int itemId)
 
 void BaseComponentToolbar::saveToolbarButtonsStates()
 {
-    if (toolbar_ && keyName_.isNotEmpty()) {
+    if (toolbar_ && propertiesFile_ && keyName_.isNotEmpty()) {
     //
     auto root   = std::make_unique<juce::XmlElement> (Id::BUTTONS);
     const int n = toolbar_->getNumItems();
@@ -133,16 +133,16 @@ void BaseComponentToolbar::saveToolbarButtonsStates()
     //
     }
     
-    if (save) { propertiesFile_.setValue (keyName_ + "Buttons", root.get()); }
+    if (save) { propertiesFile_->setValue (keyName_ + "Buttons", root.get()); }
     //
     }
 }
 
 void BaseComponentToolbar::loadToolbarButtonsStates()
 {
-    if (toolbar_ && keyName_.isNotEmpty()) {
+    if (toolbar_ && propertiesFile_ && keyName_.isNotEmpty()) {
     //
-    const std::unique_ptr<juce::XmlElement> root (propertiesFile_.getXmlValue (keyName_ + "Buttons"));
+    const std::unique_ptr<juce::XmlElement> root (propertiesFile_->getXmlValue (keyName_ + "Buttons"));
     
     if (root && root->hasTagName (Id::BUTTONS)) {
 

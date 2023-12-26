@@ -23,7 +23,7 @@ class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the f
 // MARK: -
 
 public:
-    explicit ConsoleComponent (juce::PropertiesFile& propertiesFile, const juce::String& keyName);
+    explicit ConsoleComponent (juce::PropertiesFile* propertiesFile, const juce::String& keyName);
     
     ~ConsoleComponent() override;
 

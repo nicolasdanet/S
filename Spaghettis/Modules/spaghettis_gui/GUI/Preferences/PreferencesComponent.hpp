@@ -20,7 +20,7 @@ class PreferencesComponent :    public ParameterView,
 // MARK: -
 
 public:
-    explicit PreferencesComponent (juce::PropertiesFile& propertiesFile, const juce::String& keyName) :
+    explicit PreferencesComponent (juce::PropertiesFile* propertiesFile, const juce::String& keyName) :
         ParameterView (Spaghettis()->getPreferences().getData(),
             ParameterBase (Fonts::getFont(), Fonts::getMonospacedFont(), 250)),
         BaseComponent (nullptr, propertiesFile, keyName)

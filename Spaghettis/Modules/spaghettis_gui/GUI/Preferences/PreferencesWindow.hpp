@@ -19,7 +19,7 @@ class PreferencesWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit PreferencesWindow (juce::PropertiesFile& propertiesFile) :
+    explicit PreferencesWindow (juce::PropertiesFile* propertiesFile) :
         BaseWindow (Spaghettis()->getCommandManager(),
             propertiesFile,
             "Preferences",

@@ -33,7 +33,7 @@ using StringGenerator = std::function<juce::String()>;
 // MARK: -
 
 public:
-    explicit DevicesComponent (juce::PropertiesFile& propertiesFile, const juce::String& keyName) :
+    explicit DevicesComponent (juce::PropertiesFile* propertiesFile, const juce::String& keyName) :
         DevicesFactoryHelper (this),
         BaseComponent (getIconsFactory(), propertiesFile, keyName),
         audioInTag_ ("Audio In"),

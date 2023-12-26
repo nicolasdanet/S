@@ -21,7 +21,7 @@ class BaseWindow :  public  juce::DocumentWindow,
 
 public:
     explicit BaseWindow (juce::ApplicationCommandManager& commandManager,
-        juce::PropertiesFile& propertiesFile,
+        juce::PropertiesFile* propertiesFile,
         const juce::String& name,
         const juce::String& key = juce::String());
     
@@ -100,7 +100,7 @@ public:
 
 private:
     juce::ApplicationCommandManager& commandManager_;
-    juce::PropertiesFile& propertiesFile_;
+    juce::PropertiesFile* propertiesFile_;
     
 private:
     juce::String name_;

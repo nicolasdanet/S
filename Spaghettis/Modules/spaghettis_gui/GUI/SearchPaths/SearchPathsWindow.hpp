@@ -19,7 +19,7 @@ class SearchPathsWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit SearchPathsWindow (juce::PropertiesFile& propertiesFile) :
+    explicit SearchPathsWindow (juce::PropertiesFile* propertiesFile) :
         BaseWindow (Spaghettis()->getCommandManager(),
             propertiesFile,
             "Paths",

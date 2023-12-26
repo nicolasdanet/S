@@ -258,11 +258,6 @@ public:
         return *commandManager_;
     }
 
-    juce::PropertiesFile& getPropertiesFile()
-    {
-        return *propertiesFile_;
-    }
-    
     Preferences& getPreferences()
     {
         return *preferences_;

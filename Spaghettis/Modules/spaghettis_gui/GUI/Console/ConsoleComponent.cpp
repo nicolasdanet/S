@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ConsoleComponent::ConsoleComponent (juce::PropertiesFile& propertiesFile, const juce::String& keyName) :
+ConsoleComponent::ConsoleComponent (juce::PropertiesFile* propertiesFile, const juce::String& keyName) :
     ConsoleFactoryHelper (this),
     BaseComponent (getIconsFactory(), propertiesFile, keyName)
 {

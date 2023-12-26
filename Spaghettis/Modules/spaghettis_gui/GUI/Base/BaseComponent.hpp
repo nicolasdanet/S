@@ -22,7 +22,7 @@ class BaseComponent :   public BaseComponentFocus,
 // MARK: -
 
 public:
-    BaseComponent (IconsFactory*, juce::PropertiesFile&, const juce::String& key = juce::String());
+    BaseComponent (IconsFactory*, juce::PropertiesFile*, const juce::String& key = juce::String());
     
     ~BaseComponent() override;
 

@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-SearchPathsComponent::SearchPathsComponent (juce::PropertiesFile& propertiesFile,
+SearchPathsComponent::SearchPathsComponent (juce::PropertiesFile* propertiesFile,
     const juce::String& keyName) :
         SearchPathsFactoryHelper (this),
         BaseComponent (getIconsFactory(), propertiesFile, keyName),

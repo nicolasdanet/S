@@ -31,9 +31,9 @@ juce::String getInspectorMenuText (const EditInspector& i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditComponent::EditComponent (juce::PropertiesFile& propertiesFile, PatchRoot& patch, const juce::ValueTree& tree) :
+EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     EditFactoryHelper (this),
-    BaseComponent (getIconsFactory(), propertiesFile),
+    BaseComponent (getIconsFactory(), nullptr),
     editView_ (patch, tree),
     editPort_ (editView_, patch.getOffset (editView_), patch.getZoom (editView_)),
     editZoom_ (editPort_.getZoomAsValue()),

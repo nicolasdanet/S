@@ -19,7 +19,7 @@ class DevicesWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit DevicesWindow (juce::PropertiesFile& propertiesFile) :
+    explicit DevicesWindow (juce::PropertiesFile* propertiesFile) :
         BaseWindow (Spaghettis()->getCommandManager(),
             propertiesFile,
             "Devices",

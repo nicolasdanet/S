@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 BaseComponent::BaseComponent (IconsFactory* factory,
-    juce::PropertiesFile& propertiesFile,
+    juce::PropertiesFile* propertiesFile,
     const juce::String& key) :
         BaseComponentToolbar (factory, propertiesFile, key)
 {

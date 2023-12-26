@@ -19,10 +19,9 @@ class RunWindow : public PatchWindow {
 // MARK: -
 
 public:
-    explicit RunWindow (juce::PropertiesFile& propertiesFile, PatchRoot& owner, const juce::ValueTree& tree) :
-        PatchWindow (propertiesFile, owner, tree)
+    explicit RunWindow (PatchRoot& owner, const juce::ValueTree& tree) : PatchWindow (owner, tree)
     {
-        setContentOwned (new RunComponent (propertiesFile, owner, tree), true);
+        setContentOwned (new RunComponent (owner, tree), true);
         
         makeVisible (core::Patch (tree).get<juce::Rectangle<int>> (Tag::Attributes, Tag::RunView), false);
     }
