@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void SpaghettisInstance::start (const juce::StringArray& commandLine)
 {
-    consoleWindow_ = std::make_unique<ConsoleWindow> (propertiesFile_.get());
+    consoleWindow_ = std::make_unique<ConsoleWindow> (*commandManager_, propertiesFile_.get());
 
     #if ! ( SPAGHETTIS_MENUBAR )
         
@@ -114,9 +114,11 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template <class T> void createOrOpenWindow (std::unique_ptr<T>& p, juce::PropertiesFile* propertiesFile)
+template <class T> void createOrOpenWindow (std::unique_ptr<T>& p,
+    juce::ApplicationCommandManager& commandManager,
+    juce::PropertiesFile* propertiesFile)
 {
-    if (p == nullptr) { p = std::make_unique<T> (propertiesFile); }
+    if (p == nullptr) { p = std::make_unique<T> (commandManager, propertiesFile); }
     else {
         p.get()->toFront (true);
     }
@@ -133,7 +135,7 @@ template <class T> void createOrOpenWindow (std::unique_ptr<T>& p, juce::Propert
 
 void SpaghettisInstance::openPreferencesWindow()
 {
-    createOrOpenWindow (preferencesWindow_, propertiesFile_.get());
+    createOrOpenWindow (preferencesWindow_, *commandManager_, propertiesFile_.get());
 }
 
 void SpaghettisInstance::closePreferencesWindow()
@@ -143,7 +145,7 @@ void SpaghettisInstance::closePreferencesWindow()
 
 void SpaghettisInstance::openDevicesWindow()
 {
-    createOrOpenWindow (devicesWindow_, propertiesFile_.get());
+    createOrOpenWindow (devicesWindow_, *commandManager_, propertiesFile_.get());
 }
 
 void SpaghettisInstance::closeDevicesWindow()
@@ -153,7 +155,7 @@ void SpaghettisInstance::closeDevicesWindow()
 
 void SpaghettisInstance::openSearchPathsWindow()
 {
-    createOrOpenWindow (searchPathsWindow_, propertiesFile_.get());
+    createOrOpenWindow (searchPathsWindow_, *commandManager_, propertiesFile_.get());
 }
 
 void SpaghettisInstance::closeSearchPathsWindow()

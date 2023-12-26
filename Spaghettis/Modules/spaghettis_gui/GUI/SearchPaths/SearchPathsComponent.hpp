@@ -22,7 +22,9 @@ class SearchPathsComponent :    protected SearchPathsFactoryHelper,     /* MUST 
 // MARK: -
 
 public:
-    explicit SearchPathsComponent (juce::PropertiesFile* propertiesFile, const juce::String& keyName);
+    explicit SearchPathsComponent (juce::ApplicationCommandManager&,
+        juce::PropertiesFile* propertiesFile,
+        const juce::String& keyName);
     
     ~SearchPathsComponent() = default;
 

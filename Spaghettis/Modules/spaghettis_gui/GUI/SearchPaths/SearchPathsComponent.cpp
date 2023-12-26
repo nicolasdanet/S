@@ -12,10 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-SearchPathsComponent::SearchPathsComponent (juce::PropertiesFile* propertiesFile,
+SearchPathsComponent::SearchPathsComponent (juce::ApplicationCommandManager& command,
+    juce::PropertiesFile* propertiesFile,
     const juce::String& keyName) :
         SearchPathsFactoryHelper (this),
-        BaseComponent (getIconsFactory(), Spaghettis()->getCommandManager(), propertiesFile, keyName),
+        BaseComponent (getIconsFactory(), command, propertiesFile, keyName),
         paths_ (Spaghettis()->getSearchPaths())
 {
     listBox_.setModel (this);

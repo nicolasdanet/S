@@ -19,13 +19,10 @@ class ConsoleWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit ConsoleWindow (juce::PropertiesFile* propertiesFile) :
-        BaseWindow (Spaghettis()->getCommandManager(),
-            propertiesFile,
-            core::getApplicationName(),
-            "ConsoleWindow")
+    explicit ConsoleWindow (juce::ApplicationCommandManager& command, juce::PropertiesFile* propertiesFile) :
+        BaseWindow (command, propertiesFile, core::getApplicationName(), "ConsoleWindow")
     {
-        content_ = std::make_unique<ConsoleComponent> (propertiesFile, getKeyName());
+        content_ = std::make_unique<ConsoleComponent> (command, propertiesFile, getKeyName());
         
         setContentNonOwned (content_.get(), true);
 

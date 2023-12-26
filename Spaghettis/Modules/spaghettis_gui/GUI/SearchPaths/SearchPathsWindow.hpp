@@ -19,13 +19,11 @@ class SearchPathsWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit SearchPathsWindow (juce::PropertiesFile* propertiesFile) :
-        BaseWindow (Spaghettis()->getCommandManager(),
-            propertiesFile,
-            "Paths",
-            "SearchPathsWindow")
+    explicit SearchPathsWindow (juce::ApplicationCommandManager& command,
+        juce::PropertiesFile* propertiesFile) :
+            BaseWindow (command, propertiesFile, "Paths", "SearchPathsWindow")
     {
-        setContentOwned (new SearchPathsComponent (propertiesFile, getKeyName()), true);
+        setContentOwned (new SearchPathsComponent (command, propertiesFile, getKeyName()), true);
 
         makeVisible();
     }

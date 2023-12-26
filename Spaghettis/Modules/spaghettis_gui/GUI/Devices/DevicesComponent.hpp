@@ -33,14 +33,16 @@ using StringGenerator = std::function<juce::String()>;
 // MARK: -
 
 public:
-    explicit DevicesComponent (juce::PropertiesFile* propertiesFile, const juce::String& keyName) :
-        DevicesFactoryHelper (this),
-        BaseComponent (getIconsFactory(), Spaghettis()->getCommandManager(), propertiesFile, keyName),
-        audioInTag_ ("Audio In"),
-        audioOutTag_ ("Audio Out"),
-        midiInTag_ ("Midi In"),
-        midiOutTag_ ("Midi Out"),
-        noneTag_ ("No Device")
+    explicit DevicesComponent (juce::ApplicationCommandManager& command,
+        juce::PropertiesFile* propertiesFile,
+        const juce::String& keyName) :
+            DevicesFactoryHelper (this),
+            BaseComponent (getIconsFactory(), command, propertiesFile, keyName),
+            audioInTag_ ("Audio In"),
+            audioOutTag_ ("Audio Out"),
+            midiInTag_ ("Midi In"),
+            midiOutTag_ ("Midi Out"),
+            noneTag_ ("No Device")
     {
         Spaghettis()->getAudioDevices().addChangeListener (this);
         Spaghettis()->getMidiDevices().addChangeListener (this);

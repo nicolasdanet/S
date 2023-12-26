@@ -19,13 +19,10 @@ class PreferencesWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit PreferencesWindow (juce::PropertiesFile* propertiesFile) :
-        BaseWindow (Spaghettis()->getCommandManager(),
-            propertiesFile,
-            "Preferences",
-            "PreferencesWindow")
+    explicit PreferencesWindow (juce::ApplicationCommandManager& command, juce::PropertiesFile* propertiesFile) :
+        BaseWindow (command, propertiesFile, "Preferences", "PreferencesWindow")
     {
-        setContentOwned (new PreferencesComponent (propertiesFile, getKeyName()), true);
+        setContentOwned (new PreferencesComponent (command, propertiesFile, getKeyName()), true);
 
         makeVisible();
     }

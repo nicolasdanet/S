@@ -19,13 +19,10 @@ class DevicesWindow : public BaseWindow {
 // MARK: -
 
 public:
-    explicit DevicesWindow (juce::PropertiesFile* propertiesFile) :
-        BaseWindow (Spaghettis()->getCommandManager(),
-            propertiesFile,
-            "Devices",
-            "DevicesWindow")
+    explicit DevicesWindow (juce::ApplicationCommandManager& command, juce::PropertiesFile* propertiesFile) :
+        BaseWindow (command, propertiesFile, "Devices", "DevicesWindow")
     {
-        setContentOwned (new DevicesComponent (propertiesFile, getKeyName()), true);
+        setContentOwned (new DevicesComponent (command, propertiesFile, getKeyName()), true);
         
         requireMinimumHeight (DevicesComponent::getTotalHeight());
         
