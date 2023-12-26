@@ -20,7 +20,10 @@ class PreferencesWindow : public BaseWindow {
 
 public:
     explicit PreferencesWindow (juce::ApplicationCommandManager& command, juce::PropertiesFile* propertiesFile) :
-        BaseWindow (command, propertiesFile, "Preferences", "PreferencesWindow")
+        BaseWindow (command,
+            propertiesFile,
+            "Preferences",
+            "PreferencesWindow")
     {
         setContentOwned (new PreferencesComponent (command, propertiesFile, getKeyName()), true);
 

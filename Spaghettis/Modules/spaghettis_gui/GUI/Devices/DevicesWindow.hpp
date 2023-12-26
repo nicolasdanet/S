@@ -20,7 +20,10 @@ class DevicesWindow : public BaseWindow {
 
 public:
     explicit DevicesWindow (juce::ApplicationCommandManager& command, juce::PropertiesFile* propertiesFile) :
-        BaseWindow (command, propertiesFile, "Devices", "DevicesWindow")
+        BaseWindow (command,
+            propertiesFile,
+            "Devices",
+            "DevicesWindow")
     {
         setContentOwned (new DevicesComponent (command, propertiesFile, getKeyName()), true);
         

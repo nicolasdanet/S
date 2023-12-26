@@ -20,7 +20,10 @@ class ConsoleWindow : public BaseWindow {
 
 public:
     explicit ConsoleWindow (juce::ApplicationCommandManager& command, juce::PropertiesFile* propertiesFile) :
-        BaseWindow (command, propertiesFile, core::getApplicationName(), "ConsoleWindow")
+        BaseWindow (command,
+            propertiesFile,
+            core::getApplicationName(),
+            "ConsoleWindow")
     {
         content_ = std::make_unique<ConsoleComponent> (command, propertiesFile, getKeyName());
         

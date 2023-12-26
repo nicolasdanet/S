@@ -21,7 +21,10 @@ class SearchPathsWindow : public BaseWindow {
 public:
     explicit SearchPathsWindow (juce::ApplicationCommandManager& command,
         juce::PropertiesFile* propertiesFile) :
-            BaseWindow (command, propertiesFile, "Paths", "SearchPathsWindow")
+            BaseWindow (command,
+                propertiesFile,
+                "Paths",
+                "SearchPathsWindow")
     {
         setContentOwned (new SearchPathsComponent (command, propertiesFile, getKeyName()), true);
 
