@@ -58,7 +58,7 @@ public:
     static BaseComponent* getComponent (juce::Component*);
 
 private:
-    CommandsManager commands_;
+    CommandsHandler commands_;
         
 #if SPAGHETTIS_MENUBAR
 

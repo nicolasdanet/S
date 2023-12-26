@@ -112,7 +112,7 @@ juce::String getCommandDescription (juce::CommandID command)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void CommandsManager::getInfo (juce::CommandID command, juce::ApplicationCommandInfo& r)
+void CommandsHandler::getInfo (juce::CommandID command, juce::ApplicationCommandInfo& r)
 {
     const juce::String general = NEEDS_TRANS ("General");
     const juce::String file    = NEEDS_TRANS ("File");
@@ -275,7 +275,7 @@ void CommandsManager::getInfo (juce::CommandID command, juce::ApplicationCommand
     }
 }
 
-void CommandsManager::getCommands (juce::Array<juce::CommandID>& c, bool application)
+void CommandsHandler::getCommands (juce::Array<juce::CommandID>& c, bool application)
 {
     if (application) { c.add (Commands::preferences); }
     else {
@@ -321,7 +321,7 @@ void CommandsManager::getCommands (juce::Array<juce::CommandID>& c, bool applica
     }
 }
 
-bool CommandsManager::performCommand (const juce::ApplicationCommandTarget::InvocationInfo& info)
+bool CommandsHandler::performCommand (const juce::ApplicationCommandTarget::InvocationInfo& info)
 {
     switch (info.commandID) {
     //

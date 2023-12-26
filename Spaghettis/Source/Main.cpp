@@ -151,7 +151,7 @@ private:
     spaghettis::LNF lnf_;
     
 private:
-    spaghettis::CommandsManager commands_;
+    spaghettis::CommandsHandler commands_;
     spaghettis::SpaghettisOwner spaghettis_;
     
 private:

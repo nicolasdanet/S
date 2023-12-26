@@ -12,14 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class CommandsManager : public BaseCommands {
+class CommandsHandler : public BaseCommands {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    CommandsManager()  = default;
-    ~CommandsManager() = default;
+    CommandsHandler()  = default;
+    ~CommandsHandler() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ public:
     bool performCommand (const juce::ApplicationCommandTarget::InvocationInfo&) override;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CommandsManager)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CommandsHandler)
 };
 
 // -----------------------------------------------------------------------------------------------------------
