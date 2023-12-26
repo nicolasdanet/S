@@ -37,7 +37,7 @@ public:
         juce::PropertiesFile* propertiesFile,
         const juce::String& keyName) :
             DevicesFactoryHelper (this),
-            BaseComponent (getIconsFactory(), command, propertiesFile, keyName),
+            BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), command, propertiesFile, keyName),
             audioInTag_ ("Audio In"),
             audioOutTag_ ("Audio Out"),
             midiInTag_ ("Midi In"),

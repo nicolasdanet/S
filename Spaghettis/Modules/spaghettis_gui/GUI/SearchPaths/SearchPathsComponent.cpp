@@ -16,7 +16,7 @@ SearchPathsComponent::SearchPathsComponent (juce::ApplicationCommandManager& com
     juce::PropertiesFile* propertiesFile,
     const juce::String& keyName) :
         SearchPathsFactoryHelper (this),
-        BaseComponent (getIconsFactory(), command, propertiesFile, keyName),
+        BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), command, propertiesFile, keyName),
         paths_ (Spaghettis()->getSearchPaths())
 {
     listBox_.setModel (this);

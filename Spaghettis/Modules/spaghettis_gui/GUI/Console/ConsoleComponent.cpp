@@ -16,7 +16,7 @@ ConsoleComponent::ConsoleComponent (juce::ApplicationCommandManager& command,
     juce::PropertiesFile* propertiesFile,
     const juce::String& keyName) :
         ConsoleFactoryHelper (this),
-        BaseComponent (getIconsFactory(), command, propertiesFile, keyName)
+        BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), command, propertiesFile, keyName)
 {
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, false);

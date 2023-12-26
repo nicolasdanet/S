@@ -25,7 +25,7 @@ public:
         const juce::String& keyName) :
             ParameterView (Spaghettis()->getPreferences().getData(),
                 ParameterBase (Fonts::getFont(), Fonts::getMonospacedFont(), 250)),
-            BaseComponent (nullptr, command, propertiesFile, keyName)
+            BaseComponent (nullptr, Spaghettis()->getMenu(), command, propertiesFile, keyName)
     {
         addAndMakeVisible (&getPanel());
         

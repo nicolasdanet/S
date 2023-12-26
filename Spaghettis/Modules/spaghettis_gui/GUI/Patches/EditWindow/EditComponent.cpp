@@ -33,7 +33,7 @@ juce::String getInspectorMenuText (const EditInspector& i)
 
 EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     EditFactoryHelper (this),
-    BaseComponent (getIconsFactory(), Spaghettis()->getCommandManager(), nullptr),
+    BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager(), nullptr),
     editView_ (patch, tree),
     editPort_ (editView_, patch.getOffset (editView_), patch.getZoom (editView_)),
     editZoom_ (editPort_.getZoomAsValue()),

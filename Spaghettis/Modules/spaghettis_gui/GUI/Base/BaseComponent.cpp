@@ -13,6 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 BaseComponent::BaseComponent (IconsFactory* factory,
+    juce::MenuBarModel* menu,
     juce::ApplicationCommandManager& commandManager,
     juce::PropertiesFile* propertiesFile,
     const juce::String& key) :
@@ -22,7 +23,7 @@ BaseComponent::BaseComponent (IconsFactory* factory,
     
     #if SPAGHETTIS_MENUBAR
     
-    menubar_ = std::make_unique<juce::MenuBarComponent> (&Spaghettis()->getMenuBarModel());
+    menubar_ = std::make_unique<juce::MenuBarComponent> (menu);
     
     addAndMakeVisible (menubar_.get());
     
