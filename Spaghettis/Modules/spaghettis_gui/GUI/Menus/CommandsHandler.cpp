@@ -354,6 +354,18 @@ bool CommandsHandler::performCommand (const juce::ApplicationCommandTarget::Invo
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void CommandsHandler::addCloseWindowCommand (BaseComponent<CommandsHandler>* c)
+{
+    c->addMenuCommand (MenuCommand (Commands::closeWindow)
+            .setInvoke (
+                [c] (const auto&) { BaseWindow::getWindow (c)->close(); }
+            ));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 }
 

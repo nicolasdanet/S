@@ -39,6 +39,8 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     editZoom_ (editPort_.getZoomAsValue()),
     editInspector_ (editView_)
 {
+    CommandsHandler::addCloseWindowCommand (this);
+    
     addAndMakeVisible (editPort_);
     addChildComponent (editZoom_);
     addChildComponent (editInspector_);
@@ -128,6 +130,8 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
         .setInvoke ([this] (const auto&) { editView_.getPatchRoot().openMainEditWindow(); }));
         
     setOpaque (true); setSize (600, 300);
+    
+    
 }
     
 // -----------------------------------------------------------------------------------------------------------

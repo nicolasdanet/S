@@ -44,6 +44,8 @@ public:
             midiOutTag_ ("Midi Out"),
             noneTag_ ("No Device")
     {
+        CommandsHandler::addCloseWindowCommand (this);
+        
         Spaghettis()->getAudioDevices().addChangeListener (this);
         Spaghettis()->getMidiDevices().addChangeListener (this);
         

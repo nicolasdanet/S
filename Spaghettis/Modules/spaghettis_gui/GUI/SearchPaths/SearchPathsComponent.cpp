@@ -19,6 +19,8 @@ SearchPathsComponent::SearchPathsComponent (juce::ApplicationCommandManager& com
         BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), command, propertiesFile, keyName),
         paths_ (Spaghettis()->getSearchPaths())
 {
+    CommandsHandler::addCloseWindowCommand (this);
+    
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, true);
     ListBoxFunctions::update (listBox_, paths_);

@@ -37,6 +37,8 @@ RunComponent::RunComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     runView_ (patch, tree),
     hasPresets_ (false)
 {
+    CommandsHandler::addCloseWindowCommand (this);
+    
     addAndMakeVisible (runView_);
     addChildComponent (runPresets_);
     

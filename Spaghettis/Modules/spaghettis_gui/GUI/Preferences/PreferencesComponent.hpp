@@ -27,6 +27,8 @@ public:
                 ParameterBase (Fonts::getFont(), Fonts::getMonospacedFont(), 250)),
             BaseComponent (nullptr, Spaghettis()->getMenu(), command, propertiesFile, keyName)
     {
+        CommandsHandler::addCloseWindowCommand (this);
+        
         addAndMakeVisible (&getPanel());
         
         requireExpandPanel();

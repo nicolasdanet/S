@@ -18,6 +18,8 @@ ConsoleComponent::ConsoleComponent (juce::ApplicationCommandManager& command,
         ConsoleFactoryHelper (this),
         BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), command, propertiesFile, keyName)
 {
+    CommandsHandler::addCloseWindowCommand (this);
+    
     listBox_.setModel (this);
     ListBoxFunctions::initialize (listBox_, false);
     ListBoxFunctions::update (listBox_, messages_);
