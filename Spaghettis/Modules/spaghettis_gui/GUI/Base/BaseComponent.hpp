@@ -23,7 +23,7 @@ class BaseComponent :   public BaseComponentFocus,
 
 public:
     BaseComponent (IconsFactory*,
-        juce::MenuBarModel*,
+        juce::MenuBarModel&,
         juce::ApplicationCommandManager& commandManager,
         juce::PropertiesFile*,
         const juce::String& key = juce::String());
