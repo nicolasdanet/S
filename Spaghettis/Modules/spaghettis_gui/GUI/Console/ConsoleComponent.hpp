@@ -61,7 +61,7 @@ private:
 // MARK: -
 
 public:
-    int getNumRows() override;
+    int  getNumRows() override;
     void paintListBoxItem (int, juce::Graphics&, int, int, bool) override;
     void listBoxItemClicked (int, const juce::MouseEvent&) override;
 
