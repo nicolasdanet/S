@@ -41,11 +41,13 @@ public:
         
         if (hasToolbar()) { makeVisible (this); }
         
+        /*
         addMenuCommand (MenuCommand (Commands::closeWindow)
             .setInvoke (
                 [this] (const auto&) { BaseWindow::getWindow (this)->close(); }
                 ));
-
+        */
+        
         setWantsKeyboardFocus (true);
     }
 
