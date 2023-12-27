@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 class PreferencesComponent :    public ParameterView,
-                                public BaseComponent {
+                                public BaseComponent<CommandsHandler> {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

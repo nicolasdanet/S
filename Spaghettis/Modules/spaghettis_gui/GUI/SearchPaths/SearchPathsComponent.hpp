@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 class SearchPathsComponent :    protected SearchPathsFactoryHelper,     /* MUST be the first. */
-                                public    BaseComponent,
+                                public    BaseComponent<CommandsHandler>,
                                 public    juce::ListBoxModel,
                                 private   juce::AsyncUpdater  {
 

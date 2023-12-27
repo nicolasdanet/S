@@ -19,7 +19,7 @@ constexpr int numberOfDevices() { return 2; }
 // MARK: -
 
 class DevicesComponent :    protected DevicesFactoryHelper,
-                            public  BaseComponent,
+                            public  BaseComponent<CommandsHandler>,
                             private juce::ComboBox::Listener,
                             private juce::ChangeListener {
 

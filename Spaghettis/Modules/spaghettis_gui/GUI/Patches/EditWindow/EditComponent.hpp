@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 class EditComponent :   protected EditFactoryHelper,    /* MUST be the first. */
-                        public    BaseComponent {
+                        public    BaseComponent<CommandsHandler> {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

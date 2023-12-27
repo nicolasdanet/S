@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 class ConsoleComponent :    protected ConsoleFactoryHelper,     /* MUST be the first. */
-                            public    BaseComponent,
+                            public    BaseComponent<CommandsHandler>,
                             public    juce::ListBoxModel,
                             public    spaghettis::Logger,
                             private   juce::AsyncUpdater {

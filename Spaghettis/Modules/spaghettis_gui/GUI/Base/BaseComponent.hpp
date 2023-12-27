@@ -12,10 +12,10 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class BaseComponent :   public BaseComponentFocus,
-                        public BaseComponentToolbar,
-                        public juce::Component,
-                        public juce::ApplicationCommandTarget {
+template <class T> class BaseComponent :    public BaseComponentFocus,
+                                            public BaseComponentToolbar,
+                                            public juce::Component,
+                                            public juce::ApplicationCommandTarget {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -118,7 +118,7 @@ protected:
     }
     
 private:
-    CommandsHandler commands_;
+    T commands_;
         
 #if SPAGHETTIS_MENUBAR
 

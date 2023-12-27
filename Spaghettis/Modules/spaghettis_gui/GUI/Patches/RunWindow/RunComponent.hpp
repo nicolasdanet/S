@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 class RunComponent :    protected RunFactoryHelper,    /* MUST be the first. */
-                        public    BaseComponent {
+                        public    BaseComponent<CommandsHandler> {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
