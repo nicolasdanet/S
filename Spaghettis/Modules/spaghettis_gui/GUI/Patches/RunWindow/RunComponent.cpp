@@ -33,7 +33,7 @@ juce::String getPresetsMenuText (bool hasPresets)
 
 RunComponent::RunComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     RunFactoryHelper (this),
-    BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager(), nullptr),
+    BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager()),
     runView_ (patch, tree),
     hasPresets_ (false)
 {
