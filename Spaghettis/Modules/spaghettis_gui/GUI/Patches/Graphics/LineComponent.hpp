@@ -28,7 +28,7 @@ friend class EditView;
 // MARK: -
 
 public:
-    explicit LineComponent (View*, const core::Line&);
+    explicit LineComponent (PatchView*, const core::Line&);
     
     ~LineComponent();
 

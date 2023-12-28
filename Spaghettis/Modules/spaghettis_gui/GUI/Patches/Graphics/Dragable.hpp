@@ -31,7 +31,7 @@ class Dragable {
 // MARK: -
     
 public:
-    explicit Dragable (View*);
+    explicit Dragable (PatchView*);
     
     virtual ~Dragable();
 
@@ -40,7 +40,7 @@ public:
 // MARK: -
 
 public:
-    View* getView() const
+    PatchView* getView() const
     {
         return view_;
     }
@@ -57,7 +57,7 @@ public:
     void forwardMouseUp (const juce::MouseEvent&, PainterPolicy*);
     
 private:
-    View* view_;
+    PatchView* view_;
     
 private:
     bool isForwarding_;

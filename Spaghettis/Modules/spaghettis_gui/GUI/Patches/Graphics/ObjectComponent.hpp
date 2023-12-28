@@ -33,7 +33,7 @@ friend class EditView;
 // MARK: -
 
 public:
-    explicit ObjectComponent (View*, const core::Object&);
+    explicit ObjectComponent (PatchView*, const core::Object&);
     
     ~ObjectComponent();
 

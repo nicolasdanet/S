@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditView* View::asEditView (View* view)
+EditView* PatchView::asEditView (PatchView* view)
 {
     return dynamic_cast<EditView*> (view);
 }

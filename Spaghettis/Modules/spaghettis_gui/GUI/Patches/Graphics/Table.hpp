@@ -36,7 +36,7 @@ public:
 // MARK: -
 
 public:
-    template <class U> void add (View* owner, const U& t)
+    template <class U> void add (PatchView* owner, const U& t)
     {
         v_.push_back (std::make_unique<T> (owner, t));
     }

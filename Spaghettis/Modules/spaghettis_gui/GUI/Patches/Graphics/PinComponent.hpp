@@ -21,7 +21,7 @@ class PinComponent :    public juce::Component,
 // MARK: -
 
 public:
-    explicit PinComponent (View*, const core::Object&, int, const juce::String&, bool);
+    explicit PinComponent (PatchView*, const core::Object&, int, const juce::String&, bool);
 
     ~PinComponent();
 

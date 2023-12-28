@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Dragable::Dragable (View* view) : view_ (view), isForwarding_ (false), isDraggingView_ (false)
+Dragable::Dragable (PatchView* view) : view_ (view), isForwarding_ (false), isDraggingView_ (false)
 {
 }
 
@@ -31,7 +31,7 @@ Dragable::~Dragable()
 
 EditView* Dragable::getEditView() const
 {
-    return View::asEditView (getView());
+    return PatchView::asEditView (getView());
 }
     
 // -----------------------------------------------------------------------------------------------------------

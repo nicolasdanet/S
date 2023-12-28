@@ -49,17 +49,21 @@ juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r, float scale)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PinComponent::PinComponent (View* v, const core::Object& o, int i, const juce::String& type, bool isOutlet) :
-    Dragable (v),
-    object_ (o),
-    selected_ (o.getCached<bool> (Tag::Attributes, Tag::Selected)),
-    pinColour_ (getColourFromType (type)),
-    pinOverColour_ (Spaghettis()->getCachedColour (Tag::PinOver)),
-    boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
-    index_ (i),
-    isOutlet_ (isOutlet),
-    isSignal_ (isPinSignal (type)),
-    isOver_ (false)
+PinComponent::PinComponent (PatchView* v,
+    const core::Object& o,
+    int i,
+    const juce::String& type,
+    bool isOutlet) :
+        Dragable (v),
+        object_ (o),
+        selected_ (o.getCached<bool> (Tag::Attributes, Tag::Selected)),
+        pinColour_ (getColourFromType (type)),
+        pinOverColour_ (Spaghettis()->getCachedColour (Tag::PinOver)),
+        boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
+        index_ (i),
+        isOutlet_ (isOutlet),
+        isSignal_ (isPinSignal (type)),
+        isOver_ (false)
 {
     selected_.attach (PainterPolicy::repaint (this));
     pinColour_.attach (PainterPolicy::repaint (this));

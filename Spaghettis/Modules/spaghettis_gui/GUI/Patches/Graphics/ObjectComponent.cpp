@@ -45,7 +45,7 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const juce
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ObjectComponent::ObjectComponent (View* view, const core::Object& object) :
+ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     Dragable (view),
     object_ (object),
     x_ (object.getCached<int> (Tag::Attributes, Tag::X)),
@@ -122,7 +122,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void openPatch (const core::Object& o, View* v)
+void openPatch (const core::Object& o, PatchView* v)
 {
     if (o.isPatch()) { v->getPatchRoot().showEditWindow (o.getIdentifier()); }
 }
@@ -525,7 +525,7 @@ std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& 
     const juce::Rectangle<int>& bounds,
     const core::Object& object,
     const core::Data& documentation,
-    View* view,
+    PatchView* view,
     float scale,
     bool isOutlet)
 {

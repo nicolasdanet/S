@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 EditView::EditView (PatchRoot& patch, const juce::ValueTree& tree) :
-    View (patch, tree),
+    PatchView (patch, tree),
     maker_ (this),
     isAbstraction_ (core::Patch (viewTree_).isAbstraction()),
     isLocked_ (core::Patch (viewTree_).isLocked()),
