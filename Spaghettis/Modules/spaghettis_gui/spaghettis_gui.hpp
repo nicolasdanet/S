@@ -85,6 +85,16 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Maker/Maker.hpp"
+#include "GUI/Maker/MakerEntry.hpp"
+#include "GUI/Maker/MakerList.hpp"
+#include "GUI/Maker/MakerEmpty.hpp"
+#include "GUI/Maker/MakerDocumentation.hpp"
+#include "GUI/Maker/MakerComponent.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Patches/WindowBounds.hpp"
 #include "GUI/Patches/PatchRoot.hpp"
 #include "GUI/Patches/PatchesHolder.hpp"
@@ -110,13 +120,6 @@
 #include "GUI/Patches/Graphics/PinComponent.hpp"
 #include "GUI/Patches/Graphics/ObjectComponent.hpp"
 #include "GUI/Patches/Graphics/LineComponent.hpp"
-
-#include "GUI/Patches/Maker/Maker.hpp"
-#include "GUI/Patches/Maker/MakerEntry.hpp"
-#include "GUI/Patches/Maker/MakerList.hpp"
-#include "GUI/Patches/Maker/MakerEmpty.hpp"
-#include "GUI/Patches/Maker/MakerDocumentation.hpp"
-#include "GUI/Patches/Maker/MakerComponent.hpp"
 
 #include "GUI/Patches/EditWindow/DragAction.hpp"
 #include "GUI/Patches/EditWindow/EditCommands.hpp"

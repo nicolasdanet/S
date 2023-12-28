@@ -36,6 +36,16 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Maker/Maker.cpp"
+#include "GUI/Maker/MakerEntry.cpp"
+#include "GUI/Maker/MakerList.cpp"
+#include "GUI/Maker/MakerEmpty.cpp"
+#include "GUI/Maker/MakerDocumentation.cpp"
+#include "GUI/Maker/MakerComponent.cpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Patches/WindowBounds.cpp"
 #include "GUI/Patches/PatchRoot.cpp"
 #include "GUI/Patches/PatchesHolder.cpp"
@@ -58,13 +68,6 @@
 #include "GUI/Patches/Graphics/PinComponent.cpp"
 #include "GUI/Patches/Graphics/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/LineComponent.cpp"
-
-#include "GUI/Patches/Maker/Maker.cpp"
-#include "GUI/Patches/Maker/MakerEntry.cpp"
-#include "GUI/Patches/Maker/MakerList.cpp"
-#include "GUI/Patches/Maker/MakerEmpty.cpp"
-#include "GUI/Patches/Maker/MakerDocumentation.cpp"
-#include "GUI/Patches/Maker/MakerComponent.cpp"
 
 #include "GUI/Patches/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/EditWindow/Actions/PinTracker.cpp"
