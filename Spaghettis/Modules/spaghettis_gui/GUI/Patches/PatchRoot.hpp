@@ -177,7 +177,7 @@ private:
     std::vector<std::unique_ptr<PatchWindow>> windows_;
 
 private:
-    WindowBounds bounds_;
+    WindowsBounds bounds_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchRoot)

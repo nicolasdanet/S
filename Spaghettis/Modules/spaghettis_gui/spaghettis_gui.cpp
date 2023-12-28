@@ -46,7 +46,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/WindowBounds.cpp"
+#include "GUI/Patches/WindowsBounds.cpp"
 #include "GUI/Patches/PatchRoot.cpp"
 #include "GUI/Patches/PatchesHolder.cpp"
 #include "GUI/Patches/View.cpp"
