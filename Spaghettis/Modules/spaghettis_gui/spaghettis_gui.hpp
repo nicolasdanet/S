@@ -71,6 +71,20 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Preferences/PreferencesFactory.hpp"
+#include "GUI/Preferences/PreferencesComponent.hpp"
+#include "GUI/Preferences/PreferencesWindow.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#include "GUI/SearchPaths/SearchPathsFactory.hpp"
+#include "GUI/SearchPaths/SearchPathsComponent.hpp"
+#include "GUI/SearchPaths/SearchPathsWindow.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Patches/Mouse.hpp"
 #include "GUI/Patches/WindowBounds.hpp"
 #include "GUI/Patches/PatchRoot.hpp"
@@ -134,20 +148,6 @@
 #include "GUI/Patches/RunWindow/RunPresets.hpp"
 #include "GUI/Patches/RunWindow/RunComponent.hpp"
 #include "GUI/Patches/RunWindow/RunWindow.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "GUI/Preferences/PreferencesFactory.hpp"
-#include "GUI/Preferences/PreferencesComponent.hpp"
-#include "GUI/Preferences/PreferencesWindow.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "GUI/SearchPaths/SearchPathsFactory.hpp"
-#include "GUI/SearchPaths/SearchPathsComponent.hpp"
-#include "GUI/SearchPaths/SearchPathsWindow.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
