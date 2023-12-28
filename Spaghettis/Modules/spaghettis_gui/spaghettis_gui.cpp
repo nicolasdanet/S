@@ -49,8 +49,7 @@
 #include "GUI/Patches/PatchBounds.cpp"
 #include "GUI/Patches/PatchRoot.cpp"
 #include "GUI/Patches/PatchesHolder.cpp"
-
-#include "GUI/Patches/Windows/View.cpp"
+#include "GUI/Patches/View.cpp"
 
 #include "GUI/Patches/Graphics/Dragable.cpp"
 #include "GUI/Patches/Graphics/PainterPolicy.cpp"

@@ -98,9 +98,8 @@
 #include "GUI/Patches/PatchBounds.hpp"
 #include "GUI/Patches/PatchRoot.hpp"
 #include "GUI/Patches/PatchesHolder.hpp"
-
-#include "GUI/Patches/Windows/PatchWindow.hpp"
-#include "GUI/Patches/Windows/View.hpp"
+#include "GUI/Patches/PatchWindow.hpp"
+#include "GUI/Patches/View.hpp"
 
 #include "GUI/Patches/Graphics/PainterPolicy.hpp"
 #include "GUI/Patches/Graphics/Dragable.hpp"
