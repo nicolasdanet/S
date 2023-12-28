@@ -95,7 +95,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/WindowsBounds.hpp"
+#include "GUI/Patches/PatchBounds.hpp"
 #include "GUI/Patches/PatchRoot.hpp"
 #include "GUI/Patches/PatchesHolder.hpp"
 

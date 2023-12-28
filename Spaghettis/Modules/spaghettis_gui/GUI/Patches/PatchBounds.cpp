@@ -19,15 +19,15 @@ namespace {
 
 auto hasSameIdentifier (core::UniqueId u)
 {
-    return [u](const WindowsBounds::BoundsElement& e)
+    return [u](const PatchBounds::BoundsElement& e)
     {
-        return (std::get<WindowsBounds::BOUNDS_ID> (e) == u);
+        return (std::get<PatchBounds::BOUNDS_ID> (e) == u);
     };
 }
 
-auto hasSameIdentifier (WindowsBounds::BoundsElement e)
+auto hasSameIdentifier (PatchBounds::BoundsElement e)
 {
-    return hasSameIdentifier (std::get<WindowsBounds::BOUNDS_ID> (e));
+    return hasSameIdentifier (std::get<PatchBounds::BOUNDS_ID> (e));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -39,14 +39,14 @@ auto hasSameIdentifier (WindowsBounds::BoundsElement e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void WindowsBounds::set (BoundsElement e)
+void PatchBounds::set (BoundsElement e)
 {
     auto r = std::find_if (bounds_.begin(), bounds_.end(), hasSameIdentifier (e));
     
     if (r != bounds_.end()) { *r = e; } else { bounds_.push_back (e); }
 }
 
-WindowsBounds::BoundsElement WindowsBounds::get (core::UniqueId u) const
+PatchBounds::BoundsElement PatchBounds::get (core::UniqueId u) const
 {
     auto r = std::find_if (bounds_.begin(), bounds_.end(), hasSameIdentifier (u));
     
