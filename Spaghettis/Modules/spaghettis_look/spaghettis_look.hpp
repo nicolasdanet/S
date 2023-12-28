@@ -71,6 +71,7 @@
 #include "Helpers/Autocomplete.hpp"
 #include "Helpers/WindowsProperties.hpp"
 #include "Helpers/Mouse.hpp"
+#include "Helpers/Resizer.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
