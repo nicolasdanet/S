@@ -85,7 +85,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/Mouse.hpp"
 #include "GUI/Patches/WindowBounds.hpp"
 #include "GUI/Patches/PatchRoot.hpp"
 #include "GUI/Patches/PatchesHolder.hpp"

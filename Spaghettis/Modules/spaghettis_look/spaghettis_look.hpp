@@ -70,6 +70,7 @@
 #include "Helpers/EditDistance.hpp"
 #include "Helpers/Autocomplete.hpp"
 #include "Helpers/WindowsProperties.hpp"
+#include "Helpers/Mouse.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
