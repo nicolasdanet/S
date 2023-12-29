@@ -75,7 +75,7 @@ void LineComponent::disconnect() const
     const int m = line_.get<int> (Tag::Attributes, Tag::Outlet);
     const int n = line_.get<int> (Tag::Attributes, Tag::Inlet);
     
-    EditCommands::disconnect (u, m, v, n);
+    Broadcast::disconnect (u, m, v, n);
     //
     }
 }

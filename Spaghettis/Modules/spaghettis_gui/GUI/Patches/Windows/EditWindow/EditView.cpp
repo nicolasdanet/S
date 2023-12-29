@@ -402,12 +402,12 @@ void EditView::snapToGrid (ObjectComponent* c)
 
 void EditView::undo()
 {
-    if (!isAbstractionOrInside()) { EditCommands::undo (getIdentifier()); }
+    if (!isAbstractionOrInside()) { Broadcast::undo (getIdentifier()); }
 }
 
 void EditView::redo()
 {
-    if (!isAbstractionOrInside()) { EditCommands::redo (getIdentifier()); }
+    if (!isAbstractionOrInside()) { Broadcast::redo (getIdentifier()); }
 }
 
 bool EditView::hasUndo() const
@@ -452,7 +452,7 @@ void EditView::cut()
     //
     setPaste();
     
-    EditCommands::cut (getIdentifier());
+    Broadcast::cut (getIdentifier());
     //
     }
 }
@@ -463,7 +463,7 @@ void EditView::copy()
     //
     setPaste();
     
-    EditCommands::copy (getIdentifier());
+    Broadcast::copy (getIdentifier());
     //
     }
 }
@@ -524,7 +524,7 @@ void EditView::paste()
     const core::Point::Real selection = getPositionNextSelectedObjects (objects_).value_or (mouse);
     const core::Point::Real pt        = area.contains (selection) ? selection : centre;
     
-    EditCommands::paste (getIdentifier(), pt);
+    Broadcast::paste (getIdentifier(), pt);
     //
     }
 }
@@ -533,7 +533,7 @@ void EditView::duplicate()
 {
     if (!isAbstractionOrInside()) {
     //
-    EditCommands::duplicate (getIdentifier());
+    Broadcast::duplicate (getIdentifier());
     //
     }
 }
@@ -542,7 +542,7 @@ void EditView::remove()
 {
     if (!isAbstractionOrInside()) {
     //
-    EditCommands::remove (getIdentifier());     /* Remove all selected objects. */
+    Broadcast::remove (getIdentifier());     /* Remove all selected objects. */
     
     deconnectSelectedLines (lines_);
     //
@@ -606,7 +606,7 @@ void EditView::dismissMaker()
 
 void EditView::encapsulate()
 {
-    EditCommands::encapsulate (getIdentifier());
+    Broadcast::encapsulate (getIdentifier());
 }
 
 void EditView::deencapsulate()
@@ -618,7 +618,7 @@ void EditView::deencapsulate()
     jassert (o);
     jassert (o->isPatch());
     
-    EditCommands::deencapsulate (o->getIdentifier());
+    Broadcast::deencapsulate (o->getIdentifier());
     //
     }
 }

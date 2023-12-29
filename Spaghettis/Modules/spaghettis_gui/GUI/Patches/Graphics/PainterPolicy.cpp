@@ -301,7 +301,7 @@ void PainterPolicy::setDimensionsByParameters (core::Vector::Real v)
         group.getParameter (Tag::Height).changeValue (h);
     }
     
-    EditCommands::parameters (getIdentifier(), group);
+    Broadcast::parameters (getIdentifier(), group);
     //
     }
     //

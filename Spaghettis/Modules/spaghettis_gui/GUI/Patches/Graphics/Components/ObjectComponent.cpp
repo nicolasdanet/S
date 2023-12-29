@@ -237,7 +237,7 @@ void ObjectComponent::drag (core::Vector::Real offset)
 {
     if (!isLocked()) {
     //
-    EditCommands::position (object_.getIdentifier(), origin_ + offset);
+    Broadcast::position (object_.getIdentifier(), origin_ + offset);
     //
     }
 }
@@ -380,9 +380,9 @@ core::Point::Real ObjectComponent::getPosition() const
 void ObjectComponent::setSelected (bool isSelected)
 {
     if (selected_.get() != isSelected) {
-        if (isSelected) { EditCommands::select (object_.getIdentifier()); }
+        if (isSelected) { Broadcast::select (object_.getIdentifier()); }
         else {
-            EditCommands::deselect (object_.getIdentifier());
+            Broadcast::deselect (object_.getIdentifier());
         }
         
         /* Don't wait core engine feedback. */
@@ -423,17 +423,17 @@ void ObjectComponent::moveAllPinsFront()
 
 void ObjectComponent::moveBack()
 {
-    if (!isLocked()) { EditCommands::moveBack (object_.getIdentifier()); }
+    if (!isLocked()) { Broadcast::moveBack (object_.getIdentifier()); }
 }
 
 void ObjectComponent::moveFront()
 {
-    if (!isLocked()) { EditCommands::moveFront (object_.getIdentifier()); }
+    if (!isLocked()) { Broadcast::moveFront (object_.getIdentifier()); }
 }
 
 void ObjectComponent::snap()
 {
-    if (!isLocked()) { EditCommands::snap (object_.getIdentifier()); }
+    if (!isLocked()) { Broadcast::snap (object_.getIdentifier()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

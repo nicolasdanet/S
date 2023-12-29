@@ -33,7 +33,7 @@ void InspectorView::parameterHasChanged (const core::Group& group, const core::P
 {
     if (group.getName() == Tag::Parameters) {
     //
-    EditCommands::parameters (sync_.getIdentifier(), core::Group::makeCopy (group));
+    Broadcast::parameters (sync_.getIdentifier(), core::Group::makeCopy (group));
     //
     }
 }

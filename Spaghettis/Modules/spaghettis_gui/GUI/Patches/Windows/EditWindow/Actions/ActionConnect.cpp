@@ -50,7 +50,7 @@ void ActionConnect::connect()
     const int m = o->getIndex();
     const int n = i->getIndex();
     
-    EditCommands::connect (u, m, v, n);
+    Broadcast::connect (u, m, v, n);
     //
     }
 }

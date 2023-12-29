@@ -124,8 +124,7 @@
 
 #include "GUI/Patches/Windows/Table.hpp"
 
-#include "GUI/Patches/Windows/EditWindow/EditCommands.hpp"
-#include "GUI/Patches/Windows/EditWindow/EditFactory.hpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/Broadcast.hpp"
 
 #include "GUI/Patches/Windows/EditWindow/Actions/DragAction.hpp"
 #include "GUI/Patches/Windows/EditWindow/Actions/PinTracker.hpp"
@@ -137,6 +136,7 @@
 #include "GUI/Patches/Windows/EditWindow/Actions/ActionMove.hpp"
 #include "GUI/Patches/Windows/EditWindow/Actions/ActionResize.hpp"
 
+#include "GUI/Patches/Windows/EditWindow/EditFactory.hpp"
 #include "GUI/Patches/Windows/EditWindow/ContextMenu.hpp"
 #include "GUI/Patches/Windows/EditWindow/Sync.hpp"
 #include "GUI/Patches/Windows/EditWindow/EditView.hpp"
