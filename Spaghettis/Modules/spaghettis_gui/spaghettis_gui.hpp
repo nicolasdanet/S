@@ -101,6 +101,9 @@
 #include "GUI/Patches/PatchWindow.hpp"
 #include "GUI/Patches/PatchView.hpp"
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Patches/Graphics/PainterPolicy.hpp"
 
 #include "GUI/Patches/Graphics/Painters/ArrayPainter.hpp"
@@ -122,9 +125,19 @@
 #include "GUI/Patches/Graphics/Components/ObjectComponent.hpp"
 #include "GUI/Patches/Graphics/Components/LineComponent.hpp"
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Patches/Windows/Table.hpp"
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Patches/Windows/EditWindow/Helpers/Broadcast.hpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/ContextMenu.hpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/Sync.hpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/Locator.hpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/InspectorView.hpp"
 
 #include "GUI/Patches/Windows/EditWindow/Actions/DragAction.hpp"
 #include "GUI/Patches/Windows/EditWindow/Actions/PinTracker.hpp"
@@ -137,22 +150,15 @@
 #include "GUI/Patches/Windows/EditWindow/Actions/ActionResize.hpp"
 
 #include "GUI/Patches/Windows/EditWindow/EditFactory.hpp"
-
-#include "GUI/Patches/Windows/EditWindow/Helpers/ContextMenu.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Sync.hpp"
-
 #include "GUI/Patches/Windows/EditWindow/EditView.hpp"
-
-#include "GUI/Patches/Windows/EditWindow/Helpers/Locator.hpp"
-
 #include "GUI/Patches/Windows/EditWindow/EditPort.hpp"
-
-#include "GUI/Patches/Windows/EditWindow/Helpers/InspectorView.hpp"
-
 #include "GUI/Patches/Windows/EditWindow/EditInspector.hpp"
 #include "GUI/Patches/Windows/EditWindow/EditZoom.hpp"
 #include "GUI/Patches/Windows/EditWindow/EditComponent.hpp"
 #include "GUI/Patches/Windows/EditWindow/EditWindow.hpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Patches/Windows/RunWindow/RunFactory.hpp"
 #include "GUI/Patches/Windows/RunWindow/RunLayout.hpp"
