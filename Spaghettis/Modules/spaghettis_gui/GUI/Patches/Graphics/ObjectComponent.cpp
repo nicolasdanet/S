@@ -46,7 +46,7 @@ std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const juce
 // MARK: -
 
 ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
-    Dragable (view),
+    DragHandler (view),
     object_ (object),
     x_ (object.getCached<int> (Tag::Attributes, Tag::X)),
     y_ (object.getCached<int> (Tag::Attributes, Tag::Y)),

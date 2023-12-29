@@ -12,11 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Dragable::Dragable (PatchView* view) : view_ (view), isForwarding_ (false), isDraggingView_ (false)
+DragHandler::DragHandler (PatchView* view) : view_ (view), isForwarding_ (false), isDraggingView_ (false)
 {
 }
 
-Dragable::~Dragable()
+DragHandler::~DragHandler()
 {
     if (isDraggingView_) {
         if (auto view = getEditView()) {
@@ -29,7 +29,7 @@ Dragable::~Dragable()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditView* Dragable::getEditView() const
+EditView* DragHandler::getEditView() const
 {
     return PatchView::asEditView (getView());
 }
@@ -38,7 +38,7 @@ EditView* Dragable::getEditView() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool Dragable::forwardMouseDown (const juce::MouseEvent& e, PainterPolicy* p)
+bool DragHandler::forwardMouseDown (const juce::MouseEvent& e, PainterPolicy* p)
 {
     isForwarding_   = Mouse::isCommandClick (e);
     isDraggingView_ = false;
@@ -48,7 +48,7 @@ bool Dragable::forwardMouseDown (const juce::MouseEvent& e, PainterPolicy* p)
     return isForwarding_;
 }
 
-void Dragable::forwardMouseDrag (const juce::MouseEvent& e, PainterPolicy* p, DragFlag flag)
+void DragHandler::forwardMouseDrag (const juce::MouseEvent& e, PainterPolicy* p, DragFlag flag)
 {
     if (isForwarding_) { if (p) { p->mouseDrag (e); } }
     else {
@@ -56,7 +56,7 @@ void Dragable::forwardMouseDrag (const juce::MouseEvent& e, PainterPolicy* p, Dr
     }
 }
 
-void Dragable::forwardMouseUp (const juce::MouseEvent& e, PainterPolicy* p)
+void DragHandler::forwardMouseUp (const juce::MouseEvent& e, PainterPolicy* p)
 {
     if (isForwarding_) { if (p) { p->mouseUp (e); } }
     else {

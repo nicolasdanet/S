@@ -102,7 +102,7 @@
 #include "GUI/Patches/PatchView.hpp"
 
 #include "GUI/Patches/Graphics/PainterPolicy.hpp"
-#include "GUI/Patches/Graphics/Dragable.hpp"
+#include "GUI/Patches/Graphics/DragHandler.hpp"
 #include "GUI/Patches/Graphics/Scalable.hpp"
 #include "GUI/Patches/Graphics/Painters/ArrayPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/AtomPainter.hpp"

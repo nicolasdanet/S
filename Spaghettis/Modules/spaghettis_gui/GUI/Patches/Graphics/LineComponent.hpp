@@ -15,7 +15,7 @@ namespace spaghettis {
 class LineComponent :   public  juce::Component,
                         private core::Observer,
                         private juce::ChangeListener,
-                        public  Dragable,
+                        public  DragHandler,
                         public  Scalable {
 
 // -----------------------------------------------------------------------------------------------------------

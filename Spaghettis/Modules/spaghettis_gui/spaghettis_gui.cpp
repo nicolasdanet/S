@@ -51,7 +51,7 @@
 #include "GUI/Patches/PatchesHolder.cpp"
 #include "GUI/Patches/PatchView.cpp"
 
-#include "GUI/Patches/Graphics/Dragable.cpp"
+#include "GUI/Patches/Graphics/DragHandler.cpp"
 #include "GUI/Patches/Graphics/PainterPolicy.cpp"
 #include "GUI/Patches/Graphics/Painters/ArrayPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/AtomPainter.cpp"
