@@ -51,8 +51,8 @@
 #include "GUI/Patches/PatchesHolder.cpp"
 #include "GUI/Patches/PatchView.cpp"
 
-#include "GUI/Patches/Graphics/DragHandler.cpp"
 #include "GUI/Patches/Graphics/PainterPolicy.cpp"
+
 #include "GUI/Patches/Graphics/Painters/ArrayPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/AtomPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/BangPainter.cpp"
@@ -65,9 +65,11 @@
 #include "GUI/Patches/Graphics/Painters/RadioPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/TogglePainter.cpp"
 #include "GUI/Patches/Graphics/Painters/VuPainter.cpp"
-#include "GUI/Patches/Graphics/PinComponent.cpp"
-#include "GUI/Patches/Graphics/ObjectComponent.cpp"
-#include "GUI/Patches/Graphics/LineComponent.cpp"
+
+#include "GUI/Patches/Graphics/Components/DragHandler.cpp"
+#include "GUI/Patches/Graphics/Components/PinComponent.cpp"
+#include "GUI/Patches/Graphics/Components/ObjectComponent.cpp"
+#include "GUI/Patches/Graphics/Components/LineComponent.cpp"
 
 #include "GUI/Patches/Windows/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/Windows/EditWindow/Actions/PinTracker.cpp"

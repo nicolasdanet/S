@@ -102,8 +102,7 @@
 #include "GUI/Patches/PatchView.hpp"
 
 #include "GUI/Patches/Graphics/PainterPolicy.hpp"
-#include "GUI/Patches/Graphics/DragHandler.hpp"
-#include "GUI/Patches/Graphics/Scalable.hpp"
+
 #include "GUI/Patches/Graphics/Painters/ArrayPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/AtomPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/BangPainter.hpp"
@@ -116,9 +115,12 @@
 #include "GUI/Patches/Graphics/Painters/SliderPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/TogglePainter.hpp"
 #include "GUI/Patches/Graphics/Painters/VuPainter.hpp"
-#include "GUI/Patches/Graphics/PinComponent.hpp"
-#include "GUI/Patches/Graphics/ObjectComponent.hpp"
-#include "GUI/Patches/Graphics/LineComponent.hpp"
+
+#include "GUI/Patches/Graphics/Components/DragHandler.hpp"
+#include "GUI/Patches/Graphics/Components/Scalable.hpp"
+#include "GUI/Patches/Graphics/Components/PinComponent.hpp"
+#include "GUI/Patches/Graphics/Components/ObjectComponent.hpp"
+#include "GUI/Patches/Graphics/Components/LineComponent.hpp"
 
 #include "GUI/Patches/Windows/Table.hpp"
 
