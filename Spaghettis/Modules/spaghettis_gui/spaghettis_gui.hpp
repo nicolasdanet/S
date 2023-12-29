@@ -137,12 +137,18 @@
 #include "GUI/Patches/Windows/EditWindow/Actions/ActionResize.hpp"
 
 #include "GUI/Patches/Windows/EditWindow/EditFactory.hpp"
-#include "GUI/Patches/Windows/EditWindow/ContextMenu.hpp"
-#include "GUI/Patches/Windows/EditWindow/Sync.hpp"
+
+#include "GUI/Patches/Windows/EditWindow/Helpers/ContextMenu.hpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/Sync.hpp"
+
 #include "GUI/Patches/Windows/EditWindow/EditView.hpp"
-#include "GUI/Patches/Windows/EditWindow/Locator.hpp"
+
+#include "GUI/Patches/Windows/EditWindow/Helpers/Locator.hpp"
+
 #include "GUI/Patches/Windows/EditWindow/EditPort.hpp"
-#include "GUI/Patches/Windows/EditWindow/InspectorView.hpp"
+
+#include "GUI/Patches/Windows/EditWindow/Helpers/InspectorView.hpp"
+
 #include "GUI/Patches/Windows/EditWindow/EditInspector.hpp"
 #include "GUI/Patches/Windows/EditWindow/EditZoom.hpp"
 #include "GUI/Patches/Windows/EditWindow/EditComponent.hpp"

@@ -51,6 +51,9 @@
 #include "GUI/Patches/PatchesHolder.cpp"
 #include "GUI/Patches/PatchView.cpp"
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 #include "GUI/Patches/Graphics/PainterPolicy.cpp"
 
 #include "GUI/Patches/Graphics/Painters/ArrayPainter.cpp"
@@ -71,7 +74,14 @@
 #include "GUI/Patches/Graphics/Components/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/Components/LineComponent.cpp"
 
-#include "GUI/Patches/Windows/EditWindow/EditFactory.cpp"
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#include "GUI/Patches/Windows/EditWindow/Helpers/ContextMenu.cpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/Sync.cpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/Locator.cpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/InspectorView.cpp"
+
 #include "GUI/Patches/Windows/EditWindow/Actions/PinTracker.cpp"
 #include "GUI/Patches/Windows/EditWindow/Actions/ActionConnectComponent.cpp"
 #include "GUI/Patches/Windows/EditWindow/Actions/ActionConnect.cpp"
@@ -80,16 +90,17 @@
 #include "GUI/Patches/Windows/EditWindow/Actions/ActionHand.cpp"
 #include "GUI/Patches/Windows/EditWindow/Actions/ActionMove.cpp"
 #include "GUI/Patches/Windows/EditWindow/Actions/ActionResize.cpp"
-#include "GUI/Patches/Windows/EditWindow/ContextMenu.cpp"
-#include "GUI/Patches/Windows/EditWindow/Sync.cpp"
+
+#include "GUI/Patches/Windows/EditWindow/EditFactory.cpp"
 #include "GUI/Patches/Windows/EditWindow/EditView.cpp"
-#include "GUI/Patches/Windows/EditWindow/Locator.cpp"
 #include "GUI/Patches/Windows/EditWindow/EditPort.cpp"
-#include "GUI/Patches/Windows/EditWindow/InspectorView.cpp"
 #include "GUI/Patches/Windows/EditWindow/EditInspector.cpp"
 #include "GUI/Patches/Windows/EditWindow/EditZoom.cpp"
 #include "GUI/Patches/Windows/EditWindow/EditComponent.cpp"
 #include "GUI/Patches/Windows/EditWindow/EditWindow.cpp"
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Patches/Windows/RunWindow/RunFactory.cpp"
 #include "GUI/Patches/Windows/RunWindow/RunLayout.cpp"
