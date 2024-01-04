@@ -63,17 +63,17 @@ public:
     void setDimensions (core::Vector::Real) override;
 
 private:
-    core::Cached<juce::Colour> dialBackgroundColour_;
-    core::Cached<juce::Colour> dialForegroundColour_;
-    core::Cached<juce::Colour> dialNeedleColour_;
-    core::Cached<juce::Colour> dialTextColour_;
-    core::Cached<double> value_;
-    core::Cached<double> low_;
-    core::Cached<double> high_;
-    core::Cached<double> interval_;
-    core::Cached<bool> isLogarithmic_;
-    core::Cached<int> width_;
-    core::Cached<int> digits_;
+    data::Cached<juce::Colour> dialBackgroundColour_;
+    data::Cached<juce::Colour> dialForegroundColour_;
+    data::Cached<juce::Colour> dialNeedleColour_;
+    data::Cached<juce::Colour> dialTextColour_;
+    data::Cached<double> value_;
+    data::Cached<double> low_;
+    data::Cached<double> high_;
+    data::Cached<double> interval_;
+    data::Cached<bool> isLogarithmic_;
+    data::Cached<int> width_;
+    data::Cached<int> digits_;
     juce::Rectangle<float> painted_;
     float v_;
     bool dragged_;

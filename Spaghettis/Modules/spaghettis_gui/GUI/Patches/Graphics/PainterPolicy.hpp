@@ -143,9 +143,9 @@ public:
 protected:
     ObjectComponent* component_;
     core::Object object_;
-    core::Cached<juce::Colour> boxPinsBackgroundColour_;
-    core::Cached<juce::Colour> labelBackgroundColour_;
-    core::Cached<juce::Colour> labelTextColour_;
+    data::Cached<juce::Colour> boxPinsBackgroundColour_;
+    data::Cached<juce::Colour> labelBackgroundColour_;
+    data::Cached<juce::Colour> labelTextColour_;
     int objectWidth_;
 
 public:

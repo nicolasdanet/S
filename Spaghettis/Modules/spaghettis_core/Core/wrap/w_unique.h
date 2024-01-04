@@ -44,7 +44,7 @@ t_error    unique_objectMessage        (t_id u, t_symbol *s, int argc, t_atom *a
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-t_error    unique_objectParameter      (t_id u, const core::Group&);
+t_error    unique_objectParameter      (t_id u, const data::Group&);
 t_error    unique_objectHelp           (t_id u);
 
 #endif

@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-core::Cached<juce::Colour> getContentColour (const core::Object& o)
+data::Cached<juce::Colour> getContentColour (const core::Object& o)
 {
     const bool isSignal = o.get<juce::String> (Tag::Attributes, Tag::Content).endsWith ("~");
     

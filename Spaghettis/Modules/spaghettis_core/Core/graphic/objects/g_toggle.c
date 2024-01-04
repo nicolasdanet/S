@@ -80,12 +80,12 @@ static constexpr int toggle_flags()
             | GUI_WIDTH;
 }
 
-static void toggle_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+static void toggle_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
     gui_getParameters (o, group, t, toggle_flags());
 }
 
-static void toggle_functionSetParameters (t_object *o, const core::Group& group)
+static void toggle_functionSetParameters (t_object *o, const data::Group& group)
 {
     if (gui_setParameters (o, group, toggle_flags())) { toggle_output ((t_toggle *)o); }
 }

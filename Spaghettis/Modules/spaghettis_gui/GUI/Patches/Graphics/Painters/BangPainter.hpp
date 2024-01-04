@@ -40,11 +40,11 @@ public:
     void setDimensions (core::Vector::Real) override;
     
 private:
-    core::Cached<juce::Colour> bangBackgroundColour_;
-    core::Cached<juce::Colour> bangFlashOffColour_;
-    core::Cached<juce::Colour> bangFlashOnColour_;
-    core::Cached<bool> flashed_;
-    core::Cached<int> width_;
+    data::Cached<juce::Colour> bangBackgroundColour_;
+    data::Cached<juce::Colour> bangFlashOffColour_;
+    data::Cached<juce::Colour> bangFlashOnColour_;
+    data::Cached<bool> flashed_;
+    data::Cached<int> width_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BangPainter)

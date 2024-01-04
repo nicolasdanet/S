@@ -283,9 +283,9 @@ private:
     Maker maker_;
     bool isAbstraction_;
     bool isLocked_;
-    core::Cached<juce::String> undo_;
-    core::Cached<juce::String> redo_;
-    core::Cached<juce::Colour> patchBackgroundColour_;
+    data::Cached<juce::String> undo_;
+    data::Cached<juce::String> redo_;
+    data::Cached<juce::Colour> patchBackgroundColour_;
     Table<ObjectComponent> objects_;
     Table<LineComponent> lines_;
     float scale_;

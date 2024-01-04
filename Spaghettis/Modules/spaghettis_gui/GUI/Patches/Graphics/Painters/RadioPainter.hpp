@@ -55,13 +55,13 @@ private:
     void paintBackground (const juce::Rectangle<int>&, juce::Graphics&);
 
 private:
-    core::Cached<juce::Colour> radioBackgroundColour_;
-    core::Cached<juce::Colour> radioButtonColour_;
-    core::Cached<double> value_;
-    core::Cached<bool> isVertical_;
-    core::Cached<bool> isMultiple_;
-    core::Cached<int> buttons_;
-    core::Cached<int> width_;
+    data::Cached<juce::Colour> radioBackgroundColour_;
+    data::Cached<juce::Colour> radioButtonColour_;
+    data::Cached<double> value_;
+    data::Cached<bool> isVertical_;
+    data::Cached<bool> isMultiple_;
+    data::Cached<int> buttons_;
+    data::Cached<int> width_;
     juce::Rectangle<int> painted_;
 
 private:

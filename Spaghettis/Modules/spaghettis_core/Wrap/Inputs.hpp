@@ -93,7 +93,7 @@ static Perform openHelp (core::UniqueId);
 
 static Perform createObject (core::UniqueId, core::Point::Real, juce::String);
 
-static Perform parametersObject (core::UniqueId, core::Group);
+static Perform parametersObject (core::UniqueId, data::Group);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

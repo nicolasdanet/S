@@ -36,7 +36,7 @@ bool hasResource (const juce::String& c)
     auto [n, p] = findResource (c); return (n && p);
 }
 
-void findDocumentationForClass (core::Data& data, const juce::String& c)
+void findDocumentationForClass (data::Data& data, const juce::String& c)
 {
     if (c.isNotEmpty()) {
     //
@@ -51,12 +51,12 @@ void findDocumentationForClass (core::Data& data, const juce::String& c)
     }
 }
 
-void addDocumentation (core::Data& data, const juce::String& c)
+void addDocumentation (data::Data& data, const juce::String& c)
 {
     findDocumentationForClass (data, c);
 }
 
-void addDocumentation (core::Data& data, const core::Item& i)
+void addDocumentation (data::Data& data, const core::Item& i)
 {
     if (i.has (Tag::Attributes, Tag::Class)) {
     //
@@ -83,18 +83,18 @@ bool Documentation::has (const juce::String& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Data Documentation::get (const juce::String& c)
+data::Data Documentation::get (const juce::String& c)
 {
-    core::Data data (Id::DOCUMENTATION);
+    data::Data data (Id::DOCUMENTATION);
     
     addDocumentation (data, c);
     
     return data;
 }
 
-core::Data Documentation::get (const core::Item& item)
+data::Data Documentation::get (const core::Item& item)
 {
-    core::Data data (Id::DOCUMENTATION);
+    data::Data data (Id::DOCUMENTATION);
     
     addDocumentation (data, item);
     
@@ -105,9 +105,9 @@ core::Data Documentation::get (const core::Item& item)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Data Documentation::getCopyWithDocumentation (const core::Item& item)
+data::Data Documentation::getCopyWithDocumentation (const core::Item& item)
 {
-    core::Data data (core::Data::makeCopy (item.getData()));
+    data::Data data (data::Data::makeCopy (item.getData()));
 
     addDocumentation (data, item);
     

@@ -53,7 +53,7 @@ public:
 // MARK: -
 
 public:
-    Group getCopyOfParameters() const;
+    data::Group getCopyOfParameters() const;
 
 private:
     JUCE_LEAK_DETECTOR (Object)

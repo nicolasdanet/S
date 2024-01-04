@@ -236,8 +236,8 @@ enum {
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-void gui_getParameters (t_object *, core::Group&, const Tags&, int);
-bool gui_setParameters (t_object *, const core::Group&, int);
+void gui_getParameters (t_object *, data::Group&, const Tags&, int);
+bool gui_setParameters (t_object *, const data::Group&, int);
 
 #endif
 

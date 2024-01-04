@@ -19,7 +19,7 @@ class ParameterText :   public ParameterBase,
 // MARK: -
 
 public:
-    explicit ParameterText (const core::Parameter& p, const ParameterBase& base) :
+    explicit ParameterText (const data::Parameter& p, const ParameterBase& base) :
         ParameterBase (base),
         juce::TextPropertyComponent (p.getValueAsValue (false), p.getLabel(), 64, false)
     {

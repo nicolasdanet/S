@@ -170,14 +170,14 @@ private:
     
 private:
     core::Object object_;
-    core::Cached<int> x_;
-    core::Cached<int> y_;
-    core::Cached<bool> selected_;
-    core::Cached<bool> visible_;
-    core::Cached<juce::String> inlets_;
-    core::Cached<juce::String> outlets_;
-    core::Cached<juce::String> label_;
-    core::Cached<juce::Colour> boxSelectedColour_;
+    data::Cached<int> x_;
+    data::Cached<int> y_;
+    data::Cached<bool> selected_;
+    data::Cached<bool> visible_;
+    data::Cached<juce::String> inlets_;
+    data::Cached<juce::String> outlets_;
+    data::Cached<juce::String> label_;
+    data::Cached<juce::Colour> boxSelectedColour_;
     std::unique_ptr<PainterPolicy> painter_;
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;

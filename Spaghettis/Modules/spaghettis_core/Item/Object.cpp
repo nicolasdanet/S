@@ -12,11 +12,11 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Group Object::getCopyOfParameters() const
+data::Group Object::getCopyOfParameters() const
 {
     jassert (isGraphic());
     
-    return Group::makeCopy (data_.getGroup (Tag::Parameters));
+    return data::Group::makeCopy (data_.getGroup (Tag::Parameters));
 }
 
 // -----------------------------------------------------------------------------------------------------------

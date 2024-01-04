@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 class LineComponent :   public  juce::Component,
-                        private core::Observer,
+                        private data::Observer,
                         private juce::ChangeListener,
                         public  DragHandler,
                         public  Scalable {
@@ -104,7 +104,7 @@ public:
 // MARK: -
 
 private:
-    virtual void parameterHasChanged (const core::Group&, const core::Parameter&) override;
+    virtual void parameterHasChanged (const data::Group&, const data::Parameter&) override;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -125,10 +125,10 @@ private:
     core::Line line_;
     WeakPointer<ObjectComponent> source_;
     WeakPointer<ObjectComponent> destination_;
-    core::Cached<bool> selected_;
-    core::Cached<juce::Colour> lineColour_;
-    core::Cached<juce::Colour> lineSelectedColour_;
-    core::Cached<juce::Colour> lineSignalColour_;
+    data::Cached<bool> selected_;
+    data::Cached<juce::Colour> lineColour_;
+    data::Cached<juce::Colour> lineSelectedColour_;
+    data::Cached<juce::Colour> lineSignalColour_;
     juce::Line<float> straight_;
     juce::Path linePath_;
     juce::Path hitPath_;

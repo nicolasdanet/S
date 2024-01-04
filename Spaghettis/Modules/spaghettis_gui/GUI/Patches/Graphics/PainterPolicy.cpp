@@ -289,7 +289,7 @@ void PainterPolicy::setDimensionsByParameters (core::Vector::Real v)
     
     if (w > 0 && h > 0) {
     //
-    core::Group group    = object_.getCopyOfParameters();
+    data::Group group    = object_.getCopyOfParameters();
     const bool hasWidth  = group.hasParameter (Tag::Width);
     const bool hasHeight = group.hasParameter (Tag::Height);
     

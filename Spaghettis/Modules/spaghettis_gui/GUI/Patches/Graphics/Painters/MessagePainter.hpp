@@ -63,10 +63,10 @@ private:
     void paintBackground (juce::Rectangle<int>&, juce::Graphics&);
     
 private:
-    core::Cached<juce::Colour> messageBackgroundColour_;
-    core::Cached<juce::Colour> messageTextColour_;
-    core::Cached<juce::Colour> messageClickedColour_;
-    core::Cached<juce::String> text_;
+    data::Cached<juce::Colour> messageBackgroundColour_;
+    data::Cached<juce::Colour> messageTextColour_;
+    data::Cached<juce::Colour> messageClickedColour_;
+    data::Cached<juce::String> text_;
     bool isClicked_;
 
 private:

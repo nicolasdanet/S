@@ -130,12 +130,12 @@ static constexpr int dial_flags()
             | GUI_WIDTH;
 }
 
-static void dial_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+static void dial_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
     gui_getParameters (o, group, t, dial_flags());
 }
 
-static void dial_functionSetParameters (t_object *o, const core::Group& group)
+static void dial_functionSetParameters (t_object *o, const data::Group& group)
 {
     if (gui_setParameters (o, group, dial_flags())) { dial_bang ((t_dial *)o); }
 }

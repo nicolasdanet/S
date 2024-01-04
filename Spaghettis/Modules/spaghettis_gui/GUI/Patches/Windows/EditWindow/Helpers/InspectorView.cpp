@@ -29,11 +29,11 @@ InspectorView::~InspectorView()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void InspectorView::parameterHasChanged (const core::Group& group, const core::Parameter& parameter)
+void InspectorView::parameterHasChanged (const data::Group& group, const data::Parameter& parameter)
 {
     if (group.getName() == Tag::Parameters) {
     //
-    Broadcast::parameters (sync_.getIdentifier(), core::Group::makeCopy (group));
+    Broadcast::parameters (sync_.getIdentifier(), data::Group::makeCopy (group));
     //
     }
 }

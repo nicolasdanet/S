@@ -45,14 +45,14 @@ public:
     void setDimensions (core::Vector::Real) override;
 
 private:
-    core::Cached<juce::Colour> vuBackgroundColour_;
-    core::Cached<juce::Colour> vuBarColdColour_;
-    core::Cached<juce::Colour> vuBarWarmColour_;
-    core::Cached<juce::Colour> vuBarHotColour_;
-    core::Cached<double> value_;
-    core::Cached<double> peak_;
-    core::Cached<int> width_;
-    core::Cached<int> height_;
+    data::Cached<juce::Colour> vuBackgroundColour_;
+    data::Cached<juce::Colour> vuBarColdColour_;
+    data::Cached<juce::Colour> vuBarWarmColour_;
+    data::Cached<juce::Colour> vuBarHotColour_;
+    data::Cached<double> value_;
+    data::Cached<double> peak_;
+    data::Cached<int> width_;
+    data::Cached<int> height_;
 
 public:
     static constexpr double rangeLow_  = -60.0;

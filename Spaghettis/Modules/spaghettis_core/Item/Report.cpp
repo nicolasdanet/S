@@ -83,9 +83,9 @@ bool getVisible (t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setObjectAttributesClass (Group& group, t_object* o, const Tags& t)
+void setObjectAttributesClass (data::Group& group, t_object* o, const Tags& t)
 {
-    static DelegateCache delegate;
+    static data::DelegateCache delegate;
     
     if (t.contains (Tag::Class)) {
         group.addParameter (Tag::Class,
@@ -96,9 +96,9 @@ void setObjectAttributesClass (Group& group, t_object* o, const Tags& t)
     }
 }
 
-void setObjectAttributesForObject (Group& group, t_object* o, const Tags& t)
+void setObjectAttributesForObject (data::Group& group, t_object* o, const Tags& t)
 {
-    static DelegateCache delegate;
+    static data::DelegateCache delegate;
     
     if (t.contains (Tag::Content)) {
         group.addParameter (Tag::Content,
@@ -157,9 +157,9 @@ void setObjectAttributesForObject (Group& group, t_object* o, const Tags& t)
     }
 }
 
-void setObjectAttributesForPatch (Group& group, t_object* o, const Tags& t)
+void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t)
 {
-    static DelegateCache delegate;
+    static data::DelegateCache delegate;
         
     t_glist* g = cast_glist (o);
     
@@ -229,9 +229,9 @@ void setObjectAttributesForPatch (Group& group, t_object* o, const Tags& t)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void setObjectAttributes (Data& data, t_object* o, const Tags& t)
+void setObjectAttributes (data::Data& data, t_object* o, const Tags& t)
 {
-    Group group (data.addGroup (Tag::Attributes));
+    data::Group group (data.addGroup (Tag::Attributes));
     
     setObjectAttributesClass (group, o, t);
     
@@ -243,15 +243,15 @@ void setObjectAttributes (Data& data, t_object* o, const Tags& t)
     for (auto parameter : group) { parameter.setEditable (false); }
 }
 
-void setObjectParameters (Data& data, t_object* o, const Tags& t)
+void setObjectParameters (data::Data& data, t_object* o, const Tags& t)
 {
     t_class* c = pd_class (o);
     
     if (class_hasParametersFunction (c)) {
     //
-    static DelegateCache delegate;
+    static data::DelegateCache delegate;
     
-    Group group (data.addGroup (Tag::Parameters));
+    data::Group group (data.addGroup (Tag::Parameters));
     
     if (t.contains (Tag::Label)) {
         group.addParameter (Tag::Label,
@@ -265,7 +265,7 @@ void setObjectParameters (Data& data, t_object* o, const Tags& t)
     
     const bool isAbstraction = glist_isAbstractionOrInside (object_getOwner (o));
     
-    for (auto parameter : group) { parameter.setEditable (!isAbstraction, ParameterScope::local); }
+    for (auto parameter : group) { parameter.setEditable (!isAbstraction, data::ParameterScope::local); }
     //
     }
 }
@@ -278,12 +278,12 @@ juce::ValueTree getObject (const UniquePath& u, t_object* o, const Tags& t)
 {
     juce::ValueTree tree (object_isCanvas (o) ? Id::PATCH : Id::OBJECT);
     
-    tree.setProperty (Id::identifier,   Cast::toVar (u.getIdentifier()), nullptr);
-    tree.setProperty (Id::locked,       Cast::toVar (u.isInsideAbstraction()), nullptr);
+    tree.setProperty (Id::identifier,   data::Cast::toVar (u.getIdentifier()), nullptr);
+    tree.setProperty (Id::locked,       data::Cast::toVar (u.isInsideAbstraction()), nullptr);
 
     if (o) {
     //
-    Data data (Id::DATA);
+    data::Data data (Id::DATA);
     
     if (t.hasAttributes()) { setObjectAttributes (data, o, t); }
     if (t.hasParameters()) { setObjectParameters (data, o, t); }
@@ -318,11 +318,11 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void setLineAttributes (Data& data, int m, int n, bool b)
+void setLineAttributes (data::Data& data, int m, int n, bool b)
 {
-    static DelegateCache delegate;
+    static data::DelegateCache delegate;
     
-    Group group (data.addGroup (Tag::Attributes));
+    data::Group group (data.addGroup (Tag::Attributes));
     
     group.addParameter (Tag::Outlet,
         NEEDS_TRANS ("Outlet"),
@@ -351,12 +351,12 @@ juce::ValueTree getLine (const UniquePath& u, t_object* src, int m, t_object* de
 {
     juce::ValueTree t (Id::LINE);
     
-    t.setProperty (Id::identifier,  Cast::toVar (u.getIdentifier()), nullptr);
-    t.setProperty (Id::locked,      Cast::toVar (u.isInsideAbstraction()), nullptr);
-    t.setProperty (Id::source,      Cast::toVar (object_getUnique (src)), nullptr);
-    t.setProperty (Id::destination, Cast::toVar (object_getUnique (dest)), nullptr);
+    t.setProperty (Id::identifier,  data::Cast::toVar (u.getIdentifier()), nullptr);
+    t.setProperty (Id::locked,      data::Cast::toVar (u.isInsideAbstraction()), nullptr);
+    t.setProperty (Id::source,      data::Cast::toVar (object_getUnique (src)), nullptr);
+    t.setProperty (Id::destination, data::Cast::toVar (object_getUnique (dest)), nullptr);
     
-    Data data (Id::DATA); setLineAttributes (data, m, n, b);
+    data::Data data (Id::DATA); setLineAttributes (data, m, n, b);
     
     t.appendChild (data.asValueTree(), nullptr);
     

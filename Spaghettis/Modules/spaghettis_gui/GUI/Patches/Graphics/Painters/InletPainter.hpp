@@ -31,8 +31,8 @@ public:
     juce::Rectangle<int> getRequiredBoundsForObject() override;
     
 private:
-    core::Cached<juce::Colour> boxBackgroundColour_;
-    core::Cached<juce::Colour> arrowColour_;
+    data::Cached<juce::Colour> boxBackgroundColour_;
+    data::Cached<juce::Colour> arrowColour_;
     bool isOutlet_;
 
 private:

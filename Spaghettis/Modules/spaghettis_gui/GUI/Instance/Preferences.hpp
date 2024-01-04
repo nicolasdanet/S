@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Preferences : private core::Observer,
+class Preferences : private data::Observer,
                     private juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ public:
 // MARK: -
 
 public:
-    core::Data getData()
+    data::Data getData()
     {
         return data_;
     }
@@ -44,9 +44,9 @@ public:
 // MARK: -
 
 public:
-    template <class T> core::Cached<T> getCached (const juce::String& group, const juce::String& key) const
+    template <class T> data::Cached<T> getCached (const juce::String& group, const juce::String& key) const
     {
-        return core::Cached<T>::make (data_, group, key, false);
+        return data::Cached<T>::make (data_, group, key, false);
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -72,11 +72,11 @@ public:
 // MARK: -
 
 public:
-    void parameterHasChanged (const core::Group&, const core::Parameter&) override;
+    void parameterHasChanged (const data::Group&, const data::Parameter&) override;
 
 private:
     juce::File file_;
-    core::Data data_;
+    data::Data data_;
     bool isReading_;
     
 private:

@@ -87,7 +87,7 @@ class ParameterColour : public ParameterBase,
 // MARK: -
 
 public:
-    explicit ParameterColour (const core::Parameter& p, const ParameterBase& base) :
+    explicit ParameterColour (const data::Parameter& p, const ParameterBase& base) :
         ParameterBase (base),
         juce::PropertyComponent (p.getLabel()),
         editor_ (p.getValueAsValue (false), base.getMonospacedFont())

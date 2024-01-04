@@ -101,7 +101,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const core::Parameter& p,
+std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const data::Parameter& p,
     const ParameterBase& base)
 {
     // return std::make_unique<ParameterSlider> (p, base);
@@ -115,7 +115,7 @@ std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const core::Pa
     }
 }
 
-void buildConcertinaPanelParameter (const core::Parameter& p,
+void buildConcertinaPanelParameter (const data::Parameter& p,
     const ParameterBase& base,
     juce::Array<juce::PropertyComponent*>& c)
 {
@@ -136,7 +136,7 @@ void buildConcertinaPanelParameter (const core::Parameter& p,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParameterView::buildConcertinaPanel (const core::Data& data, const ParameterBase& base, ParameterView& v)
+void ParameterView::buildConcertinaPanel (const data::Data& data, const ParameterBase& base, ParameterView& v)
 {
     for (const auto& group : data) {
     //

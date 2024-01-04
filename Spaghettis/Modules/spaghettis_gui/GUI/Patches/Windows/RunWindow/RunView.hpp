@@ -84,8 +84,8 @@ private:
     void initialize (const juce::ValueTree&);
     
 private:
-    core::Cached<juce::Colour> patchBackgroundColour_;
-    core::Cached<juce::Colour> patchTextColour_;
+    data::Cached<juce::Colour> patchBackgroundColour_;
+    data::Cached<juce::Colour> patchTextColour_;
     Table<ObjectComponent> objects_;
     RunLayout layout_;
         

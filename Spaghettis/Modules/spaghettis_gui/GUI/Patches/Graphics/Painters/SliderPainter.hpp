@@ -52,16 +52,16 @@ public:
     void setDimensions (core::Vector::Real) override;
 
 private:
-    core::Cached<juce::Colour> sliderBackgroundColour_;
-    core::Cached<juce::Colour> sliderBarColour_;
-    core::Cached<double> value_;
-    core::Cached<double> low_;
-    core::Cached<double> high_;
-    core::Cached<double> interval_;
-    core::Cached<bool> isVertical_;
-    core::Cached<bool> isLogarithmic_;
-    core::Cached<int> width_;
-    core::Cached<int> height_;
+    data::Cached<juce::Colour> sliderBackgroundColour_;
+    data::Cached<juce::Colour> sliderBarColour_;
+    data::Cached<double> value_;
+    data::Cached<double> low_;
+    data::Cached<double> high_;
+    data::Cached<double> interval_;
+    data::Cached<bool> isVertical_;
+    data::Cached<bool> isLogarithmic_;
+    data::Cached<int> width_;
+    data::Cached<int> height_;
     juce::Rectangle<int> painted_;
     bool dragged_;
 

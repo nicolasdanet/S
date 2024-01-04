@@ -76,12 +76,12 @@ static constexpr int radio_flags()
             | GUI_ORIENTATION;
 }
 
-static void radio_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+static void radio_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
     gui_getParameters (o, group, t, radio_flags());
 }
 
-static void radio_functionSetParameters (t_object *o, const core::Group& group)
+static void radio_functionSetParameters (t_object *o, const data::Group& group)
 {
     gui_setParameters (o, group, radio_flags());
 }

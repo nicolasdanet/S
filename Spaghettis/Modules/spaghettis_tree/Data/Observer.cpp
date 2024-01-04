@@ -6,7 +6,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-namespace spaghettis::core {
+namespace spaghettis::data {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ void Observer::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Iden
     //
     const Parameter p (tree);
     
-    callParameterHandlers (p); parameterHasChanged (core::Group::getFromParameter (p), p);
+    callParameterHandlers (p); parameterHasChanged (Group::getFromParameter (p), p);
     //
     }
 }

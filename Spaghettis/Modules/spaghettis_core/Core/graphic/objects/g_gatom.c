@@ -121,12 +121,12 @@ static constexpr int gatom_flags()
             | GUI_DIGITS;
 }
 
-static void gatom_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+static void gatom_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
     gui_getParameters (o, group, t, gatom_flags());
 }
 
-static void gatom_functionSetParameters (t_object *o, const core::Group& group)
+static void gatom_functionSetParameters (t_object *o, const data::Group& group)
 {
     if (gui_setParameters (o, group, gatom_flags())) { gatom_bang ((t_gatom *)o); }
 }

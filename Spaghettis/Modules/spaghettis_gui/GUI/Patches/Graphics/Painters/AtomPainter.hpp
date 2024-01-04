@@ -61,14 +61,14 @@ public:
     juce::Rectangle<int> getRequiredBoundsForObject() override;
     
 private:
-    core::Cached<juce::Colour> atomBackgroundColour_;
-    core::Cached<juce::Colour> atomTextColour_;
-    core::Cached<juce::Colour> atomClickedColour_;
-    core::Cached<int> digits_;
-    core::Cached<double> value_;
-    core::Cached<double> low_;
-    core::Cached<double> high_;
-    core::Cached<double> interval_;
+    data::Cached<juce::Colour> atomBackgroundColour_;
+    data::Cached<juce::Colour> atomTextColour_;
+    data::Cached<juce::Colour> atomClickedColour_;
+    data::Cached<int> digits_;
+    data::Cached<double> value_;
+    data::Cached<double> low_;
+    data::Cached<double> high_;
+    data::Cached<double> interval_;
     double v_;
     bool dragged_;
 

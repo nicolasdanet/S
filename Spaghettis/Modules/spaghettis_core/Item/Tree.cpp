@@ -14,7 +14,7 @@ namespace spaghettis::core {
 
 juce::ValueTree Tree::getParentIfChangedPropertyEquals (const juce::ValueTree& t, juce::String key)
 {
-    if (t.hasType (Id::PARAMETER) && (core::Parameter (t).getKey() == key)) {
+    if (t.hasType (Id::PARAMETER) && (data::Parameter (t).getKey() == key)) {
     //
     return t.getParent().getParent().getParent();
     //

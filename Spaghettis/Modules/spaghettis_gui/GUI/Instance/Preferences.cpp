@@ -17,13 +17,13 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Data getDefaultPreferences()
+data::Data getDefaultPreferences()
 {
-    core::Data data (Id::PREFERENCES);
+    data::Data data (Id::PREFERENCES);
     
-    core::Group general (data.addGroup (Tag::General));
-    core::Group editing (data.addGroup (Tag::Editing));
-    core::Group colors  (data.addGroup (Tag::Colors));
+    data::Group general (data.addGroup (Tag::General));
+    data::Group editing (data.addGroup (Tag::Editing));
+    data::Group colors  (data.addGroup (Tag::Colors));
     
     const Palette* p = Palette::getInstance();
     
@@ -304,11 +304,11 @@ Preferences::Preferences (const juce::File& file) :
     data_ (getDefaultPreferences()),
     isReading_ (false)
 {
-    addParameterHandler (Tag::SnapToGrid, [] (const core::Parameter& p) {
+    addParameterHandler (Tag::SnapToGrid, [] (const data::Parameter& p) {
             Spaghettis()->handle (Inputs::setSnapToGrid (p.getValue()));
         });
         
-    addParameterHandler (Tag::GridSize,   [] (const core::Parameter& p) {
+    addParameterHandler (Tag::GridSize,   [] (const data::Parameter& p) {
             Spaghettis()->handle (Inputs::setSnapToGridSize (p.getValue()));
         });
     
@@ -326,7 +326,7 @@ Preferences::~Preferences()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Preferences::parameterHasChanged (const core::Group&, const core::Parameter&)
+void Preferences::parameterHasChanged (const data::Group&, const data::Parameter&)
 {
     if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }
 }

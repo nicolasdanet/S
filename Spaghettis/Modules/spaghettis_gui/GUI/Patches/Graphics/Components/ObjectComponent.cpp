@@ -509,7 +509,7 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float
     return bounds.expanded (PainterPolicy::pinGripX (f), PainterPolicy::pinGripY (f));
 }
 
-juce::String getPinTooltip (const core::Data& documentation, const juce::String& type, bool isOutlet, int i)
+juce::String getPinTooltip (const data::Data& documentation, const juce::String& type, bool isOutlet, int i)
 {
     const juce::String t = Strings::firstLetterCapitalized (type);
     const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i);
@@ -524,7 +524,7 @@ juce::String getPinTooltip (const core::Data& documentation, const juce::String&
 std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& a,
     const juce::Rectangle<int>& bounds,
     const core::Object& object,
-    const core::Data& documentation,
+    const data::Data& documentation,
     PatchView* view,
     float scale,
     bool isOutlet)
@@ -577,7 +577,7 @@ void ObjectComponent::createInletsAndOutlets()
     
     const juce::Rectangle<int> bounds (getBounds());
     
-    const core::Data documentation (Documentation::get (object_));
+    const data::Data documentation (Documentation::get (object_));
     
     if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, documentation, getView(), scale, false); }
     if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, documentation, getView(), scale, true);  }

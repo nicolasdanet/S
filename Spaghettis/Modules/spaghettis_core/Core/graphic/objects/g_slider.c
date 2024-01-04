@@ -122,12 +122,12 @@ static constexpr int slider_flags()
             | GUI_SWAP;
 }
 
-static void slider_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+static void slider_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
     gui_getParameters (o, group, t, slider_flags());
 }
 
-static void slider_functionSetParameters (t_object *o, const core::Group& group)
+static void slider_functionSetParameters (t_object *o, const data::Group& group)
 {
     if (gui_setParameters (o, group, slider_flags())) { slider_bang ((t_slider *)o); }
 }

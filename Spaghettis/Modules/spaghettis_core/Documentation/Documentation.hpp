@@ -26,15 +26,15 @@ public:
 // MARK: -
 
 public:
-    static core::Data get (const juce::String&);
-    static core::Data get (const core::Item&);
+    static data::Data get (const juce::String&);
+    static data::Data get (const core::Item&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    static core::Data getCopyWithDocumentation (const core::Item&);
+    static data::Data getCopyWithDocumentation (const core::Item&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

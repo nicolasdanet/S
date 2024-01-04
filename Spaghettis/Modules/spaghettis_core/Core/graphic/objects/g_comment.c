@@ -55,12 +55,12 @@ void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-static void comment_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+static void comment_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
     gui_getParameters (o, group, t, GUI_TEXT);
 }
 
-static void comment_functionSetParameters (t_object *o, const core::Group& group)
+static void comment_functionSetParameters (t_object *o, const data::Group& group)
 {
     gui_setParameters (o, group, GUI_TEXT);
 }

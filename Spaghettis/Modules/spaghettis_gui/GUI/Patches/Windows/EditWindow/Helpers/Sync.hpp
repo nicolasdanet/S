@@ -17,7 +17,7 @@ class InspectorView;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Sync : private core::Observer {
+class Sync : private data::Observer {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ public:
 // MARK: -
 
 public:
-    core::Data getData() const;
+    data::Data getData() const;
     core::UniqueId getIdentifier() const;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -56,11 +56,11 @@ public:
 // MARK: -
 
 private:
-    virtual void parameterHasChanged (const core::Group&, const core::Parameter&) override;
+    virtual void parameterHasChanged (const data::Group&, const data::Parameter&) override;
     
 private:
     core::Item source_;
-    core::Data data_;
+    data::Data data_;
 
 private:
     InspectorView* observer_;

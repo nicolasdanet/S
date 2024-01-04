@@ -114,12 +114,12 @@ static constexpr int vu_flags()
             | GUI_HEIGHT;
 }
 
-static void vu_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+static void vu_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
     gui_getParameters (o, group, t, vu_flags());
 }
 
-static void vu_functionSetParameters (t_object *o, const core::Group& group)
+static void vu_functionSetParameters (t_object *o, const data::Group& group)
 {
     gui_setParameters (o, group, vu_flags());
 }

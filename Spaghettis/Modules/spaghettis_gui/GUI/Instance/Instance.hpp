@@ -293,7 +293,7 @@ public:
 // MARK: -
 
 public:
-    core::Cached<juce::Colour> getCachedColour (const juce::String& key) const
+    data::Cached<juce::Colour> getCachedColour (const juce::String& key) const
     {
         return preferences_->getCached<juce::Colour> (Tag::Colors, key);
     }

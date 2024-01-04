@@ -39,7 +39,7 @@ static bool isPatch (const juce::ValueTree& tree)
 
 static juce::ValueTree getChild (const juce::ValueTree& t, core::UniqueId i)
 {
-    return t.getChildWithProperty (Id::identifier, core::Cast::toVar (i));
+    return t.getChildWithProperty (Id::identifier, data::Cast::toVar (i));
 }
 
 static juce::ValueTree findChild (const juce::ValueTree& t, core::UniqueId i)

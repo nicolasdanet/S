@@ -26,7 +26,7 @@ Sync::Sync (Sync&& o) : source_ (std::move (o.source_)), data_ (std::move (o.dat
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-core::Data Sync::getData() const
+data::Data Sync::getData() const
 {
     return data_;
 }
@@ -67,7 +67,7 @@ class ScopedNoObserver {
 // MARK: -
 
 public:
-    ScopedNoObserver (core::Data& data, core::Observer* observer) : data_ (data), observer_ (observer)
+    ScopedNoObserver (data::Data& data, data::Observer* observer) : data_ (data), observer_ (observer)
     {
         data_.removeObserver (observer_);
     }
@@ -78,15 +78,15 @@ public:
     }
     
 public:
-    core::Data& data_;
-    core::Observer* observer_;
+    data::Data& data_;
+    data::Observer* observer_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Sync::parameterHasChanged (const core::Group& group, const core::Parameter& parameter)
+void Sync::parameterHasChanged (const data::Group& group, const data::Parameter& parameter)
 {
     ScopedNoObserver suspend (data_, observer_);        /* Break any possible feedback-loop. */
     

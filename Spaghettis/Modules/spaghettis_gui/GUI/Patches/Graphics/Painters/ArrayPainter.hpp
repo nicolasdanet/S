@@ -51,13 +51,13 @@ public:
     void setDimensions (core::Vector::Real) override;
 
 private:
-    core::Cached<juce::Colour> arrayBackgroundColour_;
-    core::Cached<juce::Colour> arrayValueColour_;
-    core::Cached<juce::String> name_;
-    core::Cached<int> width_;
-    core::Cached<int> height_;
-    core::Cached<int> size_;
-    core::Cached<int> count_;
+    data::Cached<juce::Colour> arrayBackgroundColour_;
+    data::Cached<juce::Colour> arrayValueColour_;
+    data::Cached<juce::String> name_;
+    data::Cached<int> width_;
+    data::Cached<int> height_;
+    data::Cached<int> size_;
+    data::Cached<int> count_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArrayPainter)

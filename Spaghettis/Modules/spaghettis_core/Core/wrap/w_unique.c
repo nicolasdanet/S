@@ -215,7 +215,7 @@ t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *argv)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-t_error unique_objectParameter (t_id u, const core::Group& group)
+t_error unique_objectParameter (t_id u, const data::Group& group)
 {
     t_object *object = instance_registerGetObject (u);
     t_glist *glist   = instance_registerGetOwner (u);

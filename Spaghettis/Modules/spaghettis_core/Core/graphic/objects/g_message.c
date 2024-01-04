@@ -299,12 +299,12 @@ static void message_free (t_message *x)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-static void message_functionGetParameters (t_object *o, core::Group& group, const Tags& t)
+static void message_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
     gui_getParameters (o, group, t, GUI_TEXT);
 }
 
-static void message_functionSetParameters (t_object *o, const core::Group& group)
+static void message_functionSetParameters (t_object *o, const data::Group& group)
 {
     if (gui_setParameters (o, group, GUI_TEXT)) { message_dirty ((t_message *)o, 0); }
 }

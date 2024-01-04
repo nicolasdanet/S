@@ -42,7 +42,7 @@ public:
         return tree_;
     }
     
-    core::Data getData() const
+    data::Data getData() const
     {
         return data_;
     }
@@ -72,12 +72,12 @@ public:
 // MARK: -
 
 public:
-    void addObserver (Observer* observer)
+    void addObserver (data::Observer* observer)
     {
         data_.addObserver (observer);
     }
     
-    void removeObserver (Observer* observer)
+    void removeObserver (data::Observer* observer)
     {
         data_.removeObserver (observer);
     }
@@ -89,7 +89,7 @@ public:
 public:
     void changeIdentifier (UniqueId i)
     {
-        tree_.setProperty (Id::identifier, Cast::toVar (i), nullptr);
+        tree_.setProperty (Id::identifier, data::Cast::toVar (i), nullptr);
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -104,7 +104,7 @@ public:
     
     UniqueId getIdentifier() const
     {
-        return Cast::fromVar<UniqueId> (tree_.getProperty (Id::identifier));
+        return data::Cast::fromVar<UniqueId> (tree_.getProperty (Id::identifier));
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -118,9 +118,9 @@ public:
     }
     
     template <class T>
-    Cached<T> getCached (const juce::String& group, const juce::String& key, bool synchronous = false) const
+    data::Cached<T> getCached (const juce::String& group, const juce::String& key, bool synchronous = false) const
     {
-        return Cached<T>::make (data_, group, key, synchronous);
+        return data::Cached<T>::make (data_, group, key, synchronous);
     }
     
     template <class T>
@@ -138,7 +138,7 @@ public:
 
 protected:
     juce::ValueTree tree_;
-    core::Data data_;
+    data::Data data_;
     
 private:
     JUCE_LEAK_DETECTOR (Item)

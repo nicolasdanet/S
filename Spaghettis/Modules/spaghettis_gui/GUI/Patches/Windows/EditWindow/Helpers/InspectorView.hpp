@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class InspectorView :   public core::Observer,
+class InspectorView :   public data::Observer,
                         public ParameterView {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ public:
 // MARK: -
 
 private:
-    virtual void parameterHasChanged (const core::Group&, const core::Parameter&) override;
+    virtual void parameterHasChanged (const data::Group&, const data::Parameter&) override;
     
 private:
     Sync sync_;

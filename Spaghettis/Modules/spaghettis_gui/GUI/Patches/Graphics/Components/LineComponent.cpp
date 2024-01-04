@@ -259,7 +259,7 @@ void makeLinePaths (juce::Line<float> straight, juce::Path& line, juce::Path& hi
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LineComponent::parameterHasChanged (const core::Group&, const core::Parameter& p)
+void LineComponent::parameterHasChanged (const data::Group&, const data::Parameter& p)
 {
     if (p.getKey() != Tag::Selected) { update(); }
     

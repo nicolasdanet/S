@@ -40,10 +40,10 @@ public:
     void setDimensions (core::Vector::Real) override;
     
 private:
-    core::Cached<juce::Colour> toggleBackgroundColour_;
-    core::Cached<juce::Colour> toggleColour_;
-    core::Cached<bool> state_;
-    core::Cached<int> width_;
+    data::Cached<juce::Colour> toggleBackgroundColour_;
+    data::Cached<juce::Colour> toggleColour_;
+    data::Cached<bool> state_;
+    data::Cached<int> width_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TogglePainter)

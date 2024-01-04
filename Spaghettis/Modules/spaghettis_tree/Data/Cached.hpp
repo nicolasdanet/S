@@ -6,7 +6,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-namespace spaghettis::core {
+namespace spaghettis::data {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ template <class T> class Cached : private juce::Value::Listener {
 // MARK: -
 
 private:
-    explicit Cached (const core::Group& group, const juce::String& key, bool updateSynchronously) :
+    explicit Cached (const Group& group, const juce::String& key, bool updateSynchronously) :
         value_ (group.getParameter (key).getValueAsValue (updateSynchronously))
     {
         value_.addListener (this);
@@ -91,7 +91,7 @@ private:
 // MARK: -
 
 public:
-    static Cached make (const core::Group& group, const juce::String& key, bool updateSynchronously)
+    static Cached make (const Group& group, const juce::String& key, bool updateSynchronously)
     {
         if (group.hasParameter (key)) {
         //
@@ -104,7 +104,7 @@ public:
         return Cached();
     }
     
-    static Cached make (const core::Data& data,
+    static Cached make (const Data& data,
         const juce::String& group,
         const juce::String& key,
         bool updateSynchronously)

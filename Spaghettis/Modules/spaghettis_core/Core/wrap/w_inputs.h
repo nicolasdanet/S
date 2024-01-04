@@ -84,7 +84,7 @@ void inputs_openHelp           (core::UniqueId);
 
 void inputs_createObject       (core::UniqueId, Point::Real pt, juce::String);
 
-void inputs_parametersObject   (core::UniqueId, const core::Group&);
+void inputs_parametersObject   (core::UniqueId, const data::Group&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

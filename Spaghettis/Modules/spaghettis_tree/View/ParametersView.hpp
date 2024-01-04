@@ -21,7 +21,7 @@ class ParameterView : private juce::Timer {
 /* Notice that only the left and right margins are used. */
 
 public:
-    explicit ParameterView (const core::Data& data, const ParameterBase& base) :
+    explicit ParameterView (const data::Data& data, const ParameterBase& base) :
         data_ (data),
         expanded_ (0),
         expandedLast_ (0),
@@ -74,13 +74,13 @@ private:
 // MARK: -
 
 private:
-    static void buildConcertinaPanel (const core::Data&, const ParameterBase& base, ParameterView&);
+    static void buildConcertinaPanel (const data::Data&, const ParameterBase& base, ParameterView&);
 
 protected:
     juce::ConcertinaPanel panel_;
 
 private:
-    core::Data data_;
+    data::Data data_;
     int expanded_;
     int expandedLast_;
     juce::String requiredPanel_;

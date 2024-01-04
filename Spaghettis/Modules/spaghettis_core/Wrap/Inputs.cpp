@@ -218,7 +218,7 @@ Perform Inputs::createObject (core::UniqueId u, core::Point::Real pt, juce::Stri
     return [u, pt, s]() { core::inputs_createObject (u, pt, s); };
 }
 
-Perform Inputs::parametersObject (core::UniqueId u, core::Group group)
+Perform Inputs::parametersObject (core::UniqueId u, data::Group group)
 {
     return [u, g = std::move (group)]() { core::inputs_parametersObject (u, g); };
 }

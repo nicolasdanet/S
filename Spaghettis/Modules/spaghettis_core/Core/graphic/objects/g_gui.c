@@ -323,11 +323,11 @@ void gui_updateHeight (t_gui *x, int height, int notify)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flags)
+void gui_getParameters (t_object *o, data::Group& group, const Tags& t, int flags)
 {
     t_gui *x = cast_gui (o);
     
-    static DelegateCache delegate;
+    static data::DelegateCache delegate;
     
     if ((flags & GUI_VALUE) && t.contains (Tag::Value)) {
         group.addParameter (Tag::Value,
@@ -474,7 +474,7 @@ void gui_getParameters (t_object *o, core::Group& group, const Tags& t, int flag
     }
 }
 
-bool gui_setParameters (t_object *o, const core::Group& group, int flags)
+bool gui_setParameters (t_object *o, const data::Group& group, int flags)
 {
     t_gui *x = (t_gui *)o;
     

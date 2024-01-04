@@ -6,7 +6,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-namespace spaghettis::core {
+namespace spaghettis::data {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -265,12 +265,12 @@ juce::var Parameter::forceRange (const juce::var& v) const
 
 juce::Value Parameter::filtered (const juce::Value& v) const
 {
-    if (isBoolean())        { return core::Filter<bool>::make (v);   }
-    else if (isInteger())   { return core::Filter<int>::make (v);    }
-    else if (isFloat())     { return core::Filter<double>::make (v); }
-    else if (isRectangle()) { return core::Filter<juce::Rectangle<int>>::make (v); }
+    if (isBoolean())        { return data::Filter<bool>::make (v);   }
+    else if (isInteger())   { return data::Filter<int>::make (v);    }
+    else if (isFloat())     { return data::Filter<double>::make (v); }
+    else if (isRectangle()) { return data::Filter<juce::Rectangle<int>>::make (v); }
     else {
-        return core::Filter<juce::String>::make (v);
+        return data::Filter<juce::String>::make (v);
     }
 }
 

@@ -33,7 +33,7 @@ public:
     void resized() override;
 
 private:
-    core::Cached<juce::Colour> patchTextColour_;
+    data::Cached<juce::Colour> patchTextColour_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MakerEmpty)

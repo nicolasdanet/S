@@ -248,7 +248,7 @@ void inputs_createObject (core::UniqueId u, Point::Real pt, juce::String s)
     unique_patchCreateObject (u, pt, s);
 }
 
-void inputs_parametersObject (core::UniqueId u, const core::Group& group)
+void inputs_parametersObject (core::UniqueId u, const data::Group& group)
 {
     unique_objectParameter (u, group);
 }

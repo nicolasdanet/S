@@ -93,7 +93,7 @@ static void position (core::UniqueId i, core::Point::Real pt)
     Spaghettis()->handle (Inputs::positionObject (i, pt));
 }
 
-static void parameters (core::UniqueId i, const core::Group& copy)
+static void parameters (core::UniqueId i, const data::Group& copy)
 {
     jassert (copy.hasUniqueOwnership());    /* Parameters MUST be a deep copy. */
     

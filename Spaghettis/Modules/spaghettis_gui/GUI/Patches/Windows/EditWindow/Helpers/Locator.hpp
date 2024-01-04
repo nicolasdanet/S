@@ -30,7 +30,7 @@ public:
     void paint (juce::Graphics&) override;
 
 private:
-    core::Cached<juce::Colour> locatorColour_;
+    data::Cached<juce::Colour> locatorColour_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Locator)

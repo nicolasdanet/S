@@ -47,9 +47,9 @@ private:
     juce::String getText() const;
     
 private:
-    core::Cached<juce::Colour> commentBackgroundColour_;
-    core::Cached<juce::Colour> commentTextColour_;
-    core::Cached<juce::String> text_;
+    data::Cached<juce::Colour> commentBackgroundColour_;
+    data::Cached<juce::Colour> commentTextColour_;
+    data::Cached<juce::String> text_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CommentPainter)

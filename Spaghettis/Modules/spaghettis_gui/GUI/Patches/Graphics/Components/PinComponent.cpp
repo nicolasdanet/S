@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-core::Cached<juce::Colour> getColourFromType (const juce::String& type)
+data::Cached<juce::Colour> getColourFromType (const juce::String& type)
 {
     juce::String key = Tag::PinSignal;
     

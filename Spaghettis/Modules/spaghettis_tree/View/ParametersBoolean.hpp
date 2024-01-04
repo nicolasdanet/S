@@ -20,7 +20,7 @@ class ParameterBoolean :    public ParameterBase,
 // MARK: -
 
 public:
-    explicit ParameterBoolean (const core::Parameter& p, const ParameterBase& base) :
+    explicit ParameterBoolean (const data::Parameter& p, const ParameterBase& base) :
         ParameterBase (base),
         juce::BooleanPropertyComponent (p.getValueAsValue (false), p.getLabel(), "")
     {
