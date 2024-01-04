@@ -12,11 +12,11 @@
 
  BEGIN_JUCE_MODULE_DECLARATION
 
-  ID:                 spaghettis_look
+  ID:                 spaghettis_base
   vendor:             Spaghettis
   version:            0.9
-  name:               Look
-  description:        Look
+  name:               Base
+  description:        Look&Feel
   website:            https://github.com/Spaghettis
   license:            BSD
 
