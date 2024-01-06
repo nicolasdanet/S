@@ -77,13 +77,13 @@ public:
 public:
     void attach (std::function<void()> f)
     {
-        onChange = f;
+        onChange_ = f;
     }
     
 private:
     void valueChanged (juce::Value& value) override
     {
-        if (onChange != nullptr) { onChange(); }
+        if (onChange_ != nullptr) { onChange_(); }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ public:
     }
     
 private:
-    std::function<void()> onChange;
+    std::function<void()> onChange_;
     
 private:
     juce::Value value_;
