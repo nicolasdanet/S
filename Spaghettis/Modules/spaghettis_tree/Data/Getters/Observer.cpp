@@ -17,6 +17,17 @@ void Observer::addParameterHandler (const juce::String& key, std::function<void 
     handlers_.emplace_back (key, f);
 }
 
+void Observer::callParameterHandlers (const Parameter& parameter)
+{
+    const juce::String key (parameter.getKey());
+    
+    for (const auto& h : handlers_) { if (h.key_ == key) { h.f_ (parameter); } }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void Observer::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Identifier&)
 {
     if (tree.hasType (Id::PARAMETER)) {
@@ -26,13 +37,6 @@ void Observer::valueTreePropertyChanged (juce::ValueTree& tree, const juce::Iden
     callParameterHandlers (p); parameterHasChanged (Group::getFromParameter (p), p);
     //
     }
-}
-
-void Observer::callParameterHandlers (const Parameter& parameter)
-{
-    const juce::String key (parameter.getKey());
-    
-    for (const auto& h : handlers_) { if (h.key_ == key) { h.f_ (parameter); } }
 }
 
 // -----------------------------------------------------------------------------------------------------------
