@@ -14,7 +14,9 @@
 #include "Data/Delegate.cpp"
 #include "Data/Parameter.cpp"
 #include "Data/Group.cpp"
-#include "Data/Observer.cpp"
+
+#include "Data/Getters/Observer.cpp"
+
 #include "Data/Data.cpp"
 
 // -----------------------------------------------------------------------------------------------------------

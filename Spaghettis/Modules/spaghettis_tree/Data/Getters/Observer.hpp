@@ -59,12 +59,11 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override;
+public:
+    virtual void parameterHasChanged (const Group&, const Parameter&) = 0;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
     void addParameterHandler (const juce::String& key, std::function<void (const Parameter&)> f);
@@ -74,17 +73,15 @@ public:
 // MARK: -
 
 private:
-    void callParameterHandlers (const Parameter&);
-
+    void valueTreePropertyChanged (juce::ValueTree&, const juce::Identifier&) override;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 private:
-    virtual void parameterHasChanged (const Group&, const Parameter&)
-    {
-    }
-    
+    void callParameterHandlers (const Parameter&);
+
 private:
     std::vector<Handler> handlers_;
 
