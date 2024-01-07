@@ -1,32 +1,39 @@
 
-/* Copyright (c) 2023 Jojo and others. */
+/* Copyright (c) 2022 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_tree.hpp"
+namespace spaghettis::data {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+DelegateShared* DelegateManager::create (const Invariant& i)
+{
+    DelegateShared::Ptr p (new DelegateShared (i));
+    
+    delegates_.push_back (p);
+    
+    return p.get();
+}
+
+DelegateShared* DelegateManager::getOrCreate (const Invariant& i)
+{
+    for (const auto& p : delegates_) {
+        if (p->shared_.getProperty (Id::key).toString() == i.key) { return p.get(); }
+    }
+    
+    return create (i);
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Data/Delegate/DelegateShared.cpp"
-#include "Data/Delegate/DelegateManager.cpp"
-#include "Data/Parameter.cpp"
-#include "Data/Group.cpp"
-#include "Data/Data.cpp"
-#include "Data/Getters/Observer.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "View/ColourSpace.cpp"
-#include "View/HueSelector.cpp"
-#include "View/ColourSelector.cpp"
-#include "View/ParametersHeader.cpp"
-#include "View/ParametersView.cpp"
-#include "View/ParametersColour.cpp"
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

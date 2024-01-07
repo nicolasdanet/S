@@ -12,37 +12,38 @@ namespace spaghettis::data {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DelegateCache {
+class DelegateShared : public juce::ReferenceCountedObject {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+friend class DelegateManager;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+using Ptr = juce::ReferenceCountedObjectPtr<DelegateShared>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    DelegateCache() : p_ (new DelegateManager())
-    {
-    }
+    explicit DelegateShared (const Invariant& i);
     
-    ~DelegateCache() = default;
+    ~DelegateShared() = default;
 
 public:
-    DelegateCache (const DelegateCache&) = delete;
-    DelegateCache (DelegateCache&&) = delete;
-    DelegateCache& operator = (const DelegateCache&) = delete;
-    DelegateCache& operator = (DelegateCache&&) = delete;
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    operator DelegateManager*() const
+    juce::ValueTree getValueTree() const
     {
-        return p_;
+        return shared_;
     }
     
 private:
-    DelegateManager* p_;
+    juce::ValueTree shared_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelegateShared)
 };
 
 // -----------------------------------------------------------------------------------------------------------

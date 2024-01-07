@@ -19,28 +19,6 @@ DelegateShared::DelegateShared (const Invariant& i) : shared_ (Id::DELEGATE)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-DelegateShared* DelegateManager::create (const Invariant& i)
-{
-    DelegateShared::Ptr p (new DelegateShared (i));
-    
-    delegates_.push_back (p);
-    
-    return p.get();
-}
-
-DelegateShared* DelegateManager::getOrCreate (const Invariant& i)
-{
-    for (const auto& p : delegates_) {
-        if (p->shared_.getProperty (Id::key).toString() == i.key) { return p.get(); }
-    }
-    
-    return create (i);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 }
 

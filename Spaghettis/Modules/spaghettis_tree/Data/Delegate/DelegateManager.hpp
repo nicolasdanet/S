@@ -12,37 +12,33 @@ namespace spaghettis::data {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DelegateCache {
+class DelegateManager : private juce::DeletedAtShutdown {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
-    DelegateCache() : p_ (new DelegateManager())
-    {
-    }
-    
-    ~DelegateCache() = default;
-
-public:
-    DelegateCache (const DelegateCache&) = delete;
-    DelegateCache (DelegateCache&&) = delete;
-    DelegateCache& operator = (const DelegateCache&) = delete;
-    DelegateCache& operator = (DelegateCache&&) = delete;
+    DelegateManager()  = default;
+    ~DelegateManager() = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    DelegateShared* create (const Invariant&);
+    
 public:
-    operator DelegateManager*() const
-    {
-        return p_;
-    }
+    DelegateShared* getOrCreate (const Invariant&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+private:
+    std::vector<DelegateShared::Ptr> delegates_;
     
 private:
-    DelegateManager* p_;
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelegateManager)
 };
 
 // -----------------------------------------------------------------------------------------------------------

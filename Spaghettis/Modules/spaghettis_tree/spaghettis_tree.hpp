@@ -53,17 +53,14 @@
 #include "Data/Getters/Cast.hpp"
 #include "Data/Getters/Iterator.hpp"
 #include "Data/Getters/Filter.hpp"
-
 #include "Data/Delegate/Invariant.hpp"
+#include "Data/Delegate/DelegateShared.hpp"
+#include "Data/Delegate/DelegateManager.hpp"
 #include "Data/Delegate/Delegate.hpp"
-
 #include "Data/Parameter.hpp"
 #include "Data/Group.hpp"
-
 #include "Data/Getters/Observer.hpp"
-
 #include "Data/Data.hpp"
-
 #include "Data/Getters/Cached.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
