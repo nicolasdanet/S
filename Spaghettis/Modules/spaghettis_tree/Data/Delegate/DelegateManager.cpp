@@ -24,7 +24,7 @@ DelegateShared* DelegateManager::create (const Invariant& i)
 DelegateShared* DelegateManager::getOrCreate (const Invariant& i)
 {
     for (const auto& p : delegates_) {
-        if (p->shared_.getProperty (Id::key).toString() == i.key) { return p.get(); }
+        if (p->getValueTree().getProperty (Id::key).toString() == i.key) { return p.get(); }
     }
     
     return create (i);
