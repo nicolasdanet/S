@@ -51,11 +51,11 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "Data/Getters/Cast.hpp"
+#include "Data/Getters/Iterator.hpp"
+#include "Data/Getters/Filter.hpp"
 
-#include "Data/Iterator.hpp"
 #include "Data/Invariant.hpp"
 #include "Data/Delegate.hpp"
-#include "Data/Filter.hpp"
 #include "Data/Parameter.hpp"
 #include "Data/Group.hpp"
 
