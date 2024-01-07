@@ -54,8 +54,9 @@
 #include "Data/Getters/Iterator.hpp"
 #include "Data/Getters/Filter.hpp"
 
-#include "Data/Invariant.hpp"
-#include "Data/Delegate.hpp"
+#include "Data/Delegate/Invariant.hpp"
+#include "Data/Delegate/Delegate.hpp"
+
 #include "Data/Parameter.hpp"
 #include "Data/Group.hpp"
 
