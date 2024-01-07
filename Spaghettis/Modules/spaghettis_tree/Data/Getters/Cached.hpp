@@ -35,11 +35,19 @@ public:
 public:
     Cached (Cached&&) = default;
     Cached& operator = (Cached&&) = default;
-
-public:
     Cached (const Cached&) = delete;                            /* Movable only. */
     Cached& operator = (const Cached&) = delete;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool isValid() const
+    {
+        return (value_.getValue().isVoid() == false);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -65,16 +73,6 @@ public:
 // MARK: -
 
 public:
-    bool isValid() const
-    {
-        return (value_.getValue().isVoid() == false);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void attach (std::function<void()> f)
     {
         onChange_ = f;
@@ -90,26 +88,26 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     static Cached make (const Group& group, const juce::String& key, bool updateSynchronously)
     {
         if (group.hasParameter (key)) {
-        //
-        jassert (group.getParameter (key).getType() == ParameterType<T>::get());
-        
-        return Cached (group, key, updateSynchronously);
-        //
+            jassert (group.getParameter (key).getType() == ParameterType<T>::get());
+            return Cached (group, key, updateSynchronously);
         }
         
         return Cached();
     }
-    
+
+public:
     static Cached make (const Data& data,
         const juce::String& group,
         const juce::String& key,
         bool updateSynchronously)
     {
-        if (data.hasGroup (group)) { return make (data.getGroup (group), key, updateSynchronously); }
+        if (data.hasGroup (group)) {
+            return make (data.getGroup (group), key, updateSynchronously);
+        }
         
         return Cached();
     }
