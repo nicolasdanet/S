@@ -21,6 +21,8 @@ template <class T> class BaseComponent :    public BaseComponentFocus,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Note that ApplicationCommandManager and PropertiesFile provided must be kept alive. */
+
 public:
     BaseComponent (IconsFactory* factory,
         juce::MenuBarModel& menu,

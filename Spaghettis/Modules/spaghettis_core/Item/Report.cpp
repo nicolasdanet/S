@@ -85,7 +85,7 @@ bool getVisible (t_object* o)
 
 void setObjectAttributesClass (data::Group& group, t_object* o, const Tags& t)
 {
-    static data::DelegateCache delegate;
+    static data::Delegate delegate;
     
     if (t.contains (Tag::Class)) {
         group.addParameter (Tag::Class,
@@ -98,7 +98,7 @@ void setObjectAttributesClass (data::Group& group, t_object* o, const Tags& t)
 
 void setObjectAttributesForObject (data::Group& group, t_object* o, const Tags& t)
 {
-    static data::DelegateCache delegate;
+    static data::Delegate delegate;
     
     if (t.contains (Tag::Content)) {
         group.addParameter (Tag::Content,
@@ -159,7 +159,7 @@ void setObjectAttributesForObject (data::Group& group, t_object* o, const Tags& 
 
 void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t)
 {
-    static data::DelegateCache delegate;
+    static data::Delegate delegate;
         
     t_glist* g = cast_glist (o);
     
@@ -249,7 +249,7 @@ void setObjectParameters (data::Data& data, t_object* o, const Tags& t)
     
     if (class_hasParametersFunction (c)) {
     //
-    static data::DelegateCache delegate;
+    static data::Delegate delegate;
     
     data::Group group (data.addGroup (Tag::Parameters));
     
@@ -320,7 +320,7 @@ namespace {
 
 void setLineAttributes (data::Data& data, int m, int n, bool b)
 {
-    static data::DelegateCache delegate;
+    static data::Delegate delegate;
     
     data::Group group (data.addGroup (Tag::Attributes));
     

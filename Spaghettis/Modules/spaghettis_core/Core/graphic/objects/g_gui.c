@@ -327,7 +327,7 @@ void gui_getParameters (t_object *o, data::Group& group, const Tags& t, int flag
 {
     t_gui *x = cast_gui (o);
     
-    static data::DelegateCache delegate;
+    static data::Delegate delegate;
     
     if ((flags & GUI_VALUE) && t.contains (Tag::Value)) {
         group.addParameter (Tag::Value,
