@@ -104,7 +104,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/Graphics/PainterPolicy.hpp"
+#include "GUI/Patches/Graphics/PainterStrategy.hpp"
 
 #include "GUI/Patches/Graphics/Painters/ArrayPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/AtomPainter.hpp"

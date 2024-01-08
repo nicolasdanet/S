@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 BoxPainter::BoxPainter (ObjectComponent* owner) :
-    PainterPolicy (owner),
+    PainterStrategy (owner),
     boxBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxBackground)),
     boxTextColour_ (Spaghettis()->getCachedColour (Tag::BoxText)),
     boxWrongColour_ (Spaghettis()->getCachedColour (Tag::BoxWrong)),

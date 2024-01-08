@@ -14,7 +14,7 @@ namespace spaghettis {
 
 MakerEmpty::MakerEmpty() : patchTextColour_ (Spaghettis()->getCachedColour (Tag::PatchText))
 {
-    patchTextColour_.attach (PainterPolicy::repaint (this));
+    patchTextColour_.attach (PainterStrategy::repaint (this));
 }
 
 // -----------------------------------------------------------------------------------------------------------

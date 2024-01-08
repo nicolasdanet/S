@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 VuPainter::VuPainter (ObjectComponent* owner) :
-    PainterPolicy (owner),
+    PainterStrategy (owner),
     vuBackgroundColour_ (Spaghettis()->getCachedColour (Tag::VuBackground)),
     vuBarColdColour_ (Spaghettis()->getCachedColour (Tag::VuBarCold)),
     vuBarWarmColour_ (Spaghettis()->getCachedColour (Tag::VuBarWarm)),

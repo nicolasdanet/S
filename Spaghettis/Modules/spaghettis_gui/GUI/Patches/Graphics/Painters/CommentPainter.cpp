@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 CommentPainter::CommentPainter (ObjectComponent* owner) :
-    PainterPolicy (owner),
+    PainterStrategy (owner),
     commentBackgroundColour_ (Spaghettis()->getCachedColour (Tag::CommentBackground)),
     commentTextColour_ (Spaghettis()->getCachedColour (Tag::CommentText)),
     text_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text))

@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 DialPainter::DialPainter (ObjectComponent* owner) :
-    PainterPolicy (owner),
+    PainterStrategy (owner),
     dialBackgroundColour_ (Spaghettis()->getCachedColour (Tag::DialBackground)),
     dialForegroundColour_ (Spaghettis()->getCachedColour (Tag::DialForeground)),
     dialNeedleColour_ (Spaghettis()->getCachedColour (Tag::DialNeedle)),

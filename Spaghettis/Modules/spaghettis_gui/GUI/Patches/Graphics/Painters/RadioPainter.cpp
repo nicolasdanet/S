@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 RadioPainter::RadioPainter (ObjectComponent* owner) :
-    PainterPolicy (owner),
+    PainterStrategy (owner),
     radioBackgroundColour_ (Spaghettis()->getCachedColour (Tag::RadioBackground)),
     radioButtonColour_ (Spaghettis()->getCachedColour (Tag::RadioButton)),
     value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),

@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-std::unique_ptr<PainterPolicy> createPainter (ObjectComponent* owner, const juce::String& type)
+std::unique_ptr<PainterStrategy> createPainter (ObjectComponent* owner, const juce::String& type)
 {
     if (type == "bng")          { return std::make_unique<BangPainter> (owner);     }
     else if (type == "comment") { return std::make_unique<CommentPainter> (owner);  }
@@ -77,8 +77,8 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     x_.attach (f);
     y_.attach (f);
     
-    selected_.attach (PainterPolicy::repaint (this));
-    boxSelectedColour_.attach (PainterPolicy::repaint (this));
+    selected_.attach (PainterStrategy::repaint (this));
+    boxSelectedColour_.attach (PainterStrategy::repaint (this));
     
     if (isInsideRunView()) { addMouseListener (painter_.get(), true); }
 }
@@ -311,12 +311,12 @@ namespace {
 
 juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>& r, float f)
 {
-    return r.reduced (0, PainterPolicy::pinHeight (f));
+    return r.reduced (0, PainterStrategy::pinHeight (f));
 }
 
 juce::Rectangle<int> getBoundsFromPaintedArea (const juce::Rectangle<int>& r, float f)
 {
-    return r.expanded (0, PainterPolicy::pinHeight (f));
+    return r.expanded (0, PainterStrategy::pinHeight (f));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -494,19 +494,19 @@ namespace {
 
 juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float f, bool isOutlet)
 {
-    const int w = PainterPolicy::pinGripX (f) * 2 + PainterPolicy::pinWidth (f);
+    const int w = PainterStrategy::pinGripX (f) * 2 + PainterStrategy::pinWidth (f);
     const int x = bounds.getX() + (index * w);
     
     bounds.setX (x);
-    bounds.setWidth (PainterPolicy::pinWidth (f));
+    bounds.setWidth (PainterStrategy::pinWidth (f));
     
     if (isOutlet) {
-        bounds = bounds.removeFromBottom (PainterPolicy::pinHeight (f));
+        bounds = bounds.removeFromBottom (PainterStrategy::pinHeight (f));
     } else {
-        bounds = bounds.removeFromTop (PainterPolicy::pinHeight (f));
+        bounds = bounds.removeFromTop (PainterStrategy::pinHeight (f));
     }
     
-    return bounds.expanded (PainterPolicy::pinGripX (f), PainterPolicy::pinGripY (f));
+    return bounds.expanded (PainterStrategy::pinGripX (f), PainterStrategy::pinGripY (f));
 }
 
 juce::String getPinTooltip (const data::Data& documentation, const juce::String& type, bool isOutlet, int i)

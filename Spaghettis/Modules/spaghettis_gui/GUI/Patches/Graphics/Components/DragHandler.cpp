@@ -38,7 +38,7 @@ EditView* DragHandler::getEditView() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool DragHandler::forwardMouseDown (const juce::MouseEvent& e, PainterPolicy* p)
+bool DragHandler::forwardMouseDown (const juce::MouseEvent& e, PainterStrategy* p)
 {
     isForwarding_   = Mouse::isCommandClick (e);
     isDraggingView_ = false;
@@ -48,7 +48,7 @@ bool DragHandler::forwardMouseDown (const juce::MouseEvent& e, PainterPolicy* p)
     return isForwarding_;
 }
 
-void DragHandler::forwardMouseDrag (const juce::MouseEvent& e, PainterPolicy* p, DragFlag flag)
+void DragHandler::forwardMouseDrag (const juce::MouseEvent& e, PainterStrategy* p, DragFlag flag)
 {
     if (isForwarding_) { if (p) { p->mouseDrag (e); } }
     else {
@@ -56,7 +56,7 @@ void DragHandler::forwardMouseDrag (const juce::MouseEvent& e, PainterPolicy* p,
     }
 }
 
-void DragHandler::forwardMouseUp (const juce::MouseEvent& e, PainterPolicy* p)
+void DragHandler::forwardMouseUp (const juce::MouseEvent& e, PainterStrategy* p)
 {
     if (isForwarding_) { if (p) { p->mouseUp (e); } }
     else {

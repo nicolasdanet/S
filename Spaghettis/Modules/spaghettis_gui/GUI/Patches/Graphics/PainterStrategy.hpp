@@ -17,16 +17,16 @@ class ObjectComponent;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PainterPolicy : public juce::MouseListener {
+class PainterStrategy : public juce::MouseListener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit PainterPolicy (ObjectComponent*);
+    explicit PainterStrategy (ObjectComponent*);
     
-    virtual ~PainterPolicy() = default;
+    virtual ~PainterStrategy() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -155,7 +155,7 @@ public:
     static int pinGripY  (float f) { return (f >= 1.0f) ? 3 : 0; }
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PainterPolicy)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PainterStrategy)
 };
 
 // -----------------------------------------------------------------------------------------------------------

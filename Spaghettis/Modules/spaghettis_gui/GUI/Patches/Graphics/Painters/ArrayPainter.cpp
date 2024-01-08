@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 ArrayPainter::ArrayPainter (ObjectComponent* owner) :
-    PainterPolicy (owner),
+    PainterStrategy (owner),
     arrayBackgroundColour_ (Spaghettis()->getCachedColour (Tag::ArrayBackground)),
     arrayValueColour_ (Spaghettis()->getCachedColour (Tag::ArrayValue)),
     name_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Name)),

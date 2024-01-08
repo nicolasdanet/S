@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 TogglePainter::TogglePainter (ObjectComponent* owner) :
-    PainterPolicy (owner),
+    PainterStrategy (owner),
     toggleBackgroundColour_ (Spaghettis()->getCachedColour (Tag::ToggleBackground)),
     toggleColour_ (Spaghettis()->getCachedColour (Tag::Toggle)),
     state_ (object_.getCached<bool> (Tag::Parameters, Tag::State)),

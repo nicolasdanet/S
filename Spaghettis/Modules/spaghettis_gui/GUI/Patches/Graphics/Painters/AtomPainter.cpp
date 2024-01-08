@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 AtomPainter::AtomPainter (ObjectComponent* owner) :
-    PainterPolicy (owner),
+    PainterStrategy (owner),
     atomBackgroundColour_ (Spaghettis()->getCachedColour (Tag::AtomBackground)),
     atomTextColour_ (Spaghettis()->getCachedColour (Tag::AtomText)),
     atomClickedColour_ (Spaghettis()->getCachedColour (Tag::AtomClicked)),

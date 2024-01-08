@@ -18,8 +18,8 @@ RunView::RunView (PatchRoot& patch, const juce::ValueTree& tree) :
     patchTextColour_ (Spaghettis()->getCachedColour (Tag::PatchText))
 {
     viewTree_.addListener (this);
-    patchBackgroundColour_.attach (PainterPolicy::repaint (this));
-    patchTextColour_.attach (PainterPolicy::repaint (this));
+    patchBackgroundColour_.attach (PainterStrategy::repaint (this));
+    patchTextColour_.attach (PainterStrategy::repaint (this));
     setOpaque (true);
     initialize (viewTree_);
 }

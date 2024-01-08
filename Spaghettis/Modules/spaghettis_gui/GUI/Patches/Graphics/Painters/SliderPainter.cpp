@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 SliderPainter::SliderPainter (ObjectComponent* owner) :
-    PainterPolicy (owner),
+    PainterStrategy (owner),
     sliderBackgroundColour_ (Spaghettis()->getCachedColour (Tag::SliderBackground)),
     sliderBarColour_ (Spaghettis()->getCachedColour (Tag::SliderBar)),
     value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),

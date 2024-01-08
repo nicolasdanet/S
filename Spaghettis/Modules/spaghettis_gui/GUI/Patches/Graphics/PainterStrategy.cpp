@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PainterPolicy::PainterPolicy (ObjectComponent* owner) :
+PainterStrategy::PainterStrategy (ObjectComponent* owner) :
     component_ (owner),
     object_ (owner->getObject()),
     boxPinsBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxPinsBackground)),
@@ -56,7 +56,7 @@ int getLabelWidth (const juce::String& s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PainterPolicy::paintLabel (juce::Rectangle<int> r, juce::Graphics& g)
+void PainterStrategy::paintLabel (juce::Rectangle<int> r, juce::Graphics& g)
 {
     const juce::Font font (getLabelFont());
     
@@ -71,7 +71,7 @@ void PainterPolicy::paintLabel (juce::Rectangle<int> r, juce::Graphics& g)
     }
 }
 
-void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
+void PainterStrategy::paint (juce::Rectangle<int> r, juce::Graphics& g)
 {
     if (component_->isInsideRunView() && component_->hasLabel()) {              /* Paint label. */
     //
@@ -90,7 +90,7 @@ void PainterPolicy::paint (juce::Rectangle<int> r, juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> PainterPolicy::getRequiredBounds()
+juce::Rectangle<int> PainterStrategy::getRequiredBounds()
 {
     juce::Rectangle<int> t = withMinimumWidthForPins (getRequiredBoundsForObject());
         
@@ -105,22 +105,22 @@ juce::Rectangle<int> PainterPolicy::getRequiredBounds()
     return t;
 }
 
-int PainterPolicy::getWidthOfPinsBackground() const
+int PainterStrategy::getWidthOfPinsBackground() const
 {
     return objectWidth_;
 }
 
-float PainterPolicy::getScale() const
+float PainterStrategy::getScale() const
 {
     return component_->getScale();
 }
 
-core::Point::Scaled PainterPolicy::getPosition() const
+core::Point::Scaled PainterStrategy::getPosition() const
 {
     return core::Point::Scaled (component_->getPosition(), getScale());
 }
 
-core::UniqueId PainterPolicy::getIdentifier() const
+core::UniqueId PainterStrategy::getIdentifier() const
 {
     return object_.getIdentifier();
 }
@@ -143,9 +143,9 @@ int getMinimumWidth (float f, int m, int n)
 {
     const int pins = juce::jmax (m, n, 1);
     
-    int w = pins * PainterPolicy::pinWidth (f);
+    int w = pins * PainterStrategy::pinWidth (f);
     
-    if (pins > 1) { w += (pins - 1) * PainterPolicy::pinGripX (f) * 2; }
+    if (pins > 1) { w += (pins - 1) * PainterStrategy::pinGripX (f) * 2; }
     
     return w;
 }
@@ -159,7 +159,7 @@ int getMinimumWidth (float f, int m, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> PainterPolicy::withMinimumWidthForPins (juce::Rectangle<int> r)
+juce::Rectangle<int> PainterStrategy::withMinimumWidthForPins (juce::Rectangle<int> r)
 {
     const int m = component_->getNumberOfInlets();
     const int n = component_->getNumberOfOutlets();
@@ -174,12 +174,12 @@ juce::Rectangle<int> PainterPolicy::withMinimumWidthForPins (juce::Rectangle<int
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> PainterPolicy::getRequiredBoundsFromVector (core::Vector::Scaled v)
+juce::Rectangle<int> PainterStrategy::getRequiredBoundsFromVector (core::Vector::Scaled v)
 {
     return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) + getPosition().getPoint();
 }
 
-juce::Rectangle<int> PainterPolicy::getRequiredBoundsFromDimensions()
+juce::Rectangle<int> PainterStrategy::getRequiredBoundsFromDimensions()
 {
     std::optional<core::Vector::Real> t = getDimensions();
     
@@ -188,7 +188,7 @@ juce::Rectangle<int> PainterPolicy::getRequiredBoundsFromDimensions()
     return getRequiredBoundsFromVector (core::Vector::Scaled (t.value(), getScale()));
 }
 
-juce::Rectangle<int> PainterPolicy::getRequiredBoundsFromText (const juce::String& text,
+juce::Rectangle<int> PainterStrategy::getRequiredBoundsFromText (const juce::String& text,
     const juce::Font& font,
     int extra)
 {
@@ -209,7 +209,7 @@ juce::Rectangle<int> PainterPolicy::getRequiredBoundsFromText (const juce::Strin
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PainterPolicy::paintText (juce::Rectangle<int> r,
+void PainterStrategy::paintText (juce::Rectangle<int> r,
     juce::Graphics& g,
     const juce::String& text,
     const juce::Font& font,
@@ -264,7 +264,7 @@ void paintGlyphs (juce::Rectangle<float> r, juce::Graphics& g, const juce::Glyph
 
 /* Workaround to centre the digits without considering the minus sign. */
 
-void PainterPolicy::paintTextAsDigits (juce::Rectangle<int> r,
+void PainterStrategy::paintTextAsDigits (juce::Rectangle<int> r,
     juce::Graphics& g,
     const juce::String& text,
     const juce::Font& font)
@@ -282,7 +282,7 @@ void PainterPolicy::paintTextAsDigits (juce::Rectangle<int> r,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PainterPolicy::setDimensionsByParameters (core::Vector::Real v)
+void PainterStrategy::setDimensionsByParameters (core::Vector::Real v)
 {
     const int w = v.getPoint().getX();
     const int h = v.getPoint().getY();

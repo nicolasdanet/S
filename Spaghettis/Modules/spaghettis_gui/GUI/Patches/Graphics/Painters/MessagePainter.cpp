@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 MessagePainter::MessagePainter (ObjectComponent* owner) :
-    PainterPolicy (owner),
+    PainterStrategy (owner),
     messageBackgroundColour_ (Spaghettis()->getCachedColour (Tag::MessageBackground)),
     messageTextColour_ (Spaghettis()->getCachedColour (Tag::MessageText)),
     messageClickedColour_ (Spaghettis()->getCachedColour (Tag::MessageClicked)),

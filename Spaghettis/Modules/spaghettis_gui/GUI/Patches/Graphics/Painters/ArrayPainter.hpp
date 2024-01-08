@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ArrayPainter : public  PainterPolicy,
+class ArrayPainter : public  PainterStrategy,
                      private juce::Timer {
 
 // -----------------------------------------------------------------------------------------------------------
