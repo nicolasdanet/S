@@ -12,46 +12,6 @@ namespace spaghettis::data {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> struct ParameterType { };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-template<> struct ParameterType<bool>
-{
-    static const char* get() { return "boolean"; }
-};
-
-template<> struct ParameterType<juce::Colour>
-{
-    static const char* get() { return "color"; }
-};
-
-template<> struct ParameterType<juce::Rectangle<int>>
-{
-    static const char* get() { return "rectangle"; }
-};
-
-template<> struct ParameterType<int>
-{
-    static const char* get() { return "integer"; }
-};
-
-template<> struct ParameterType<double>
-{
-    static const char* get() { return "float"; }
-};
-
-template<> struct ParameterType<juce::String>
-{
-    static const char* get() { return "text"; }
-};
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 enum class ParameterScope { local, delegate };
 
 // -----------------------------------------------------------------------------------------------------------

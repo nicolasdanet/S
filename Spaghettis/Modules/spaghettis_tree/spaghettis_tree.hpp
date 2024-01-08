@@ -57,6 +57,7 @@
 #include "Data/Delegate/Delegate.hpp"
 #include "Data/Delegate/DelegateManager.hpp"
 #include "Data/Delegate/DelegateCache.hpp"
+#include "Data/ParameterType.hpp"
 #include "Data/Parameter.hpp"
 #include "Data/Group.hpp"
 #include "Data/Getters/Observer.hpp"
