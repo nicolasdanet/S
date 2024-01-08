@@ -162,7 +162,7 @@ namespace {
 
 juce::ValueTree baseDelegate (const juce::ValueTree& tree)
 {
-    auto p = dynamic_cast<DelegateShared*> (tree.getProperty (Id::DELEGATE).getObject());
+    auto p = dynamic_cast<Delegate*> (tree.getProperty (Id::DELEGATE).getObject());
     
     jassert (p);
     

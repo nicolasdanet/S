@@ -11,7 +11,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Data/Delegate/DelegateShared.cpp"
+#include "Data/Delegate/Delegate.cpp"
 #include "Data/Delegate/DelegateManager.cpp"
 #include "Data/Parameter.cpp"
 #include "Data/Group.cpp"

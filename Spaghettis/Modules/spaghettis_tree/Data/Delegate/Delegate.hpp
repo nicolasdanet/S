@@ -12,22 +12,22 @@ namespace spaghettis::data {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DelegateShared : public juce::ReferenceCountedObject {
+class Delegate : public juce::ReferenceCountedObject {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    using Ptr = juce::ReferenceCountedObjectPtr<DelegateShared>;
+    using Ptr = juce::ReferenceCountedObjectPtr<Delegate>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit DelegateShared (const Invariant& i);
+    explicit Delegate (const Invariant& i);
     
-    ~DelegateShared() = default;
+    ~Delegate() = default;
 
 public:
     juce::ValueTree getValueTree() const
@@ -39,7 +39,7 @@ private:
     juce::ValueTree shared_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelegateShared)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Delegate)
 };
 
 // -----------------------------------------------------------------------------------------------------------

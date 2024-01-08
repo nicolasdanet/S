@@ -12,7 +12,7 @@ namespace spaghettis::data {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-DelegateShared::DelegateShared (const Invariant& i) : shared_ (Id::DELEGATE)
+Delegate::Delegate (const Invariant& i) : shared_ (Id::DELEGATE)
 {
     Invariant::setProperties (shared_, i);
 }

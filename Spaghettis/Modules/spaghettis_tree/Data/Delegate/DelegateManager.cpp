@@ -12,16 +12,16 @@ namespace spaghettis::data {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-DelegateShared* DelegateManager::create (const Invariant& i)
+Delegate* DelegateManager::create (const Invariant& i)
 {
-    DelegateShared::Ptr p (new DelegateShared (i));
+    Delegate::Ptr p (new Delegate (i));
     
     delegates_.push_back (p);
     
     return p.get();
 }
 
-DelegateShared* DelegateManager::getOrCreate (const Invariant& i)
+Delegate* DelegateManager::getOrCreate (const Invariant& i)
 {
     for (const auto& p : delegates_) {
         if (p->getValueTree().getProperty (Id::key).toString() == i.key) { return p.get(); }

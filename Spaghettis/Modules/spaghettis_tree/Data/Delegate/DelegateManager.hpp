@@ -26,16 +26,16 @@ public:
 // MARK: -
 
 private:
-    DelegateShared* create (const Invariant&);
+    Delegate* create (const Invariant&);
     
 public:
-    DelegateShared* getOrCreate (const Invariant&);
+    Delegate* getOrCreate (const Invariant&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    std::vector<DelegateShared::Ptr> delegates_;
+    std::vector<Delegate::Ptr> delegates_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelegateManager)
