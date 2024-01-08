@@ -584,7 +584,7 @@ static void garray_getParameters (t_object *o, data::Group& group, const Tags& t
 {
     t_garray *x = (t_garray *)o;
     
-    static data::Delegate delegate;
+    static data::DelegateCache delegate;
     
     if (t.contains (Tag::Name)) {
         group.addParameter (Tag::Name,

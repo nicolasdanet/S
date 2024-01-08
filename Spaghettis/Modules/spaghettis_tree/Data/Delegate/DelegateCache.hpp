@@ -12,24 +12,24 @@ namespace spaghettis::data {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Delegate {
+class DelegateCache {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    Delegate() : p_ (new DelegateManager())
+    DelegateCache() : p_ (new DelegateManager())
     {
     }
     
-    ~Delegate() = default;
+    ~DelegateCache() = default;
 
 public:
-    Delegate (const Delegate&) = delete;
-    Delegate (Delegate&&) = delete;
-    Delegate& operator = (const Delegate&) = delete;
-    Delegate& operator = (Delegate&&) = delete;
+    DelegateCache (const DelegateCache&) = delete;
+    DelegateCache (DelegateCache&&) = delete;
+    DelegateCache& operator = (const DelegateCache&) = delete;
+    DelegateCache& operator = (DelegateCache&&) = delete;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
