@@ -57,11 +57,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Item/Unique.hpp"
-#include "Item/Tags.hpp"
-#include "Item/Tree.hpp"
+#include "Item/Builder/Unique.hpp"
+#include "Item/Builder/Tags.hpp"
+#include "Item/Helpers/Tree.hpp"
 #include "Item/Item.hpp"
-#include "Item/Report.hpp"
+#include "Item/Builder/Report.hpp"
 #include "Item/Line.hpp"
 #include "Item/Object.hpp"
 #include "Item/Patch.hpp"
