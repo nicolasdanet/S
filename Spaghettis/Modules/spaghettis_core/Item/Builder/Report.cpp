@@ -265,7 +265,12 @@ void setObjectParameters (data::Data& data, t_object* o, const Tags& t)
     
     const bool isAbstraction = glist_isAbstractionOrInside (object_getOwner (o));
     
-    for (auto parameter : group) { parameter.setEditable (!isAbstraction, data::ParameterScope::local); }
+    for (auto parameter : group) {
+        if (isAbstraction) { parameter.setEditable (false, data::ParameterScope::local); }
+        else {
+            parameter.setEditable (true);
+        }
+    }
     //
     }
 }
