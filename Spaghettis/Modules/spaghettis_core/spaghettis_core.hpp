@@ -57,8 +57,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Item/Builder/Unique.hpp"
-#include "Item/Builder/Tags.hpp"
+#include "Item/Helpers/Unique.hpp"
+#include "Item/Helpers/Tags.hpp"
 #include "Item/Helpers/Tree.hpp"
 #include "Item/Item.hpp"
 #include "Item/Builder/Report.hpp"
