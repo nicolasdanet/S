@@ -74,7 +74,7 @@ UniquePath::UniquePath (UniqueId u, t_glist* owner) : u_ (u), r_ (0), inside_ (f
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::String UniquePath::toString() const
+juce::String UniquePath::toDebugString() const
 {
     juce::StringArray s;
     
