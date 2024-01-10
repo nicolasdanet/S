@@ -19,8 +19,6 @@ class BaseWindow :  public  juce::DocumentWindow,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Note that ApplicationCommandManager and PropertiesFile provided must be kept alive. */
-
 public:
     explicit BaseWindow (juce::ApplicationCommandManager& commandManager,
         juce::PropertiesFile* propertiesFile,
