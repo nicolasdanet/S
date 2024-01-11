@@ -76,6 +76,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "LookAndFeel/FontsElement.hpp"
 #include "LookAndFeel/Fonts.hpp"
 #include "LookAndFeel/Palette.hpp"
 #include "LookAndFeel/Colours.hpp"
