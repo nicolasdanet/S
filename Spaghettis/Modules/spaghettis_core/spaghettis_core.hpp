@@ -75,14 +75,14 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "Wrap/Logger/Debug.hpp"
-#include "Wrap/Devices.hpp"
+#include "Wrap/Devices/Devices.hpp"
 #include "Wrap/Logger/Logger.hpp"
 #include "Wrap/Logger/Post.hpp"
 #include "Wrap/Commands/Queues.hpp"
 #include "Wrap/Commands/Inputs.hpp"
 #include "Wrap/Commands/Outputs.hpp"
-#include "Wrap/Snapshot.hpp"
-#include "Wrap/Snapshots.hpp"
+#include "Wrap/Snapshots/Snapshot.hpp"
+#include "Wrap/Snapshots/Snapshots.hpp"
 #include "Wrap/Wrapper.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
