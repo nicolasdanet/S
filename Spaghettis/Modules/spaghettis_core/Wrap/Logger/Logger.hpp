@@ -12,6 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+enum class LoggerType { normal, system, warning, error };
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 class Logger {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -19,17 +25,11 @@ class Logger {
 // MARK: -
 
 public:
-    enum class Type { normal, system, warning, error };
+    using MessagesElement = std::tuple<juce::String, LoggerType, core::UniquePath>;
+    using MessagesPacket  = std::vector<Logger::MessagesElement>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-using MessagesElement = std::tuple<juce::String, Logger::Type, core::UniquePath>;
-using MessagesPacket  = std::vector<Logger::MessagesElement>;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 private:
     enum {
@@ -43,13 +43,13 @@ private:
 // MARK: -
 
 public:
-    static juce::Colour getColourForType (Logger::Type type)
+    static juce::Colour getColourForType (LoggerType type)
     {
         Colours::ColourIds c = Colours::consoleTextError;
                     
-        if (type == Logger::Type::normal)       { c = Colours::consoleTextDefault; }
-        else if (type == Logger::Type::system)  { c = Colours::consoleTextSystem;  }
-        else if (type == Logger::Type::warning) { c = Colours::consoleTextWarning; }
+        if (type == LoggerType::normal)       { c = Colours::consoleTextDefault; }
+        else if (type == LoggerType::system)  { c = Colours::consoleTextSystem;  }
+        else if (type == LoggerType::warning) { c = Colours::consoleTextWarning; }
                     
         return Colours::fetchColour (c);
     }
@@ -81,7 +81,7 @@ public:
         return std::get<LOGGER_MESSAGE> (e);
     }
     
-    static Type getType (const MessagesElement& e)
+    static LoggerType getType (const MessagesElement& e)
     {
         return std::get<LOGGER_TYPE> (e);
     }

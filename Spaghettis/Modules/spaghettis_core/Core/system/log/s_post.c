@@ -15,10 +15,10 @@
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-#define POST_NORMAL     Logger::Type::normal
-#define POST_SYSTEM     Logger::Type::system
-#define POST_WARNING    Logger::Type::warning
-#define POST_ERROR      Logger::Type::error
+#define POST_NORMAL     LoggerType::normal
+#define POST_SYSTEM     LoggerType::system
+#define POST_WARNING    LoggerType::warning
+#define POST_ERROR      LoggerType::error
 
 #else
 
@@ -54,16 +54,16 @@ void post_syslog (const char *s)
 
 extern Wrapper *main_wrapper;
 
-static void post_toUpperCase (int k, char *s, Logger::Type type)
+static void post_toUpperCase (int k, char *s, LoggerType type)
 {
-    if (type != Logger::Type::normal) {
+    if (type != LoggerType::normal) {
     if (k) {
     if (char_isAlphabeticLowercase (*s)) { *s = toupper (*s); }
     }
     }
 }
 
-static void post_console (t_object *o, int k, char *s, Logger::Type type)
+static void post_console (t_object *o, int k, char *s, LoggerType type)
 {
     jassert (main_wrapper != nullptr);
     

@@ -97,11 +97,11 @@ template <class T> void parseMessages (T& m, bool showMessages, bool showErrors)
     //
     auto f = [showMessages, showErrors] (const Logger::MessagesElement& e)
     {
-        Logger::Type t = Logger::getType (e);
+        LoggerType t = Logger::getType (e);
         
-        if ((t == Logger::Type::normal || t == Logger::Type::system) && showMessages == false) {
+        if ((t == LoggerType::normal || t == LoggerType::system) && showMessages == false) {
             return true;
-        } else if ((t == Logger::Type::warning || t == Logger::Type::error) && showErrors == false) {
+        } else if ((t == LoggerType::warning || t == LoggerType::error) && showErrors == false) {
             return true;
         } else {
             return false;

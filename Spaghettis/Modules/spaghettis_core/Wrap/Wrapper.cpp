@@ -21,7 +21,7 @@ void Wrapper::run()
         //
         juce::String s = juce::String (PD_NAME_LOWERCASE) + juce::String (": core error");
         
-        post (NEEDS_TRANS (s), Logger::Type::error, core::UniquePath::invalid());
+        post (NEEDS_TRANS (s), LoggerType::error, core::UniquePath::invalid());
         //
         }
     }
