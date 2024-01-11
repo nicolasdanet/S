@@ -72,25 +72,25 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Font fontAtHeight (const juce::Font& base, std::vector<std::tuple<int, juce::Font>>& v, int required)
+juce::Font fontAtHeight (const juce::Font& base, std::vector<FontsElement>& v, int required)
 {
     int height = static_cast<int> (base.getHeight());
     
     if (required == height) { return base; }
     else {
     //
-    for (const auto& [h, f] : v) { if (h == required) { return f; } }
+    for (const auto& e : v) { if (e.getHeight() == required) { return e.getFont(); } }
     
     juce::Font font (base.withHeight (static_cast<float> (required)));
     
-    v.emplace_back (required, font);
+    v.emplace_back (font, required);
     
     return font;
     //
     }
 }
 
-juce::Font fontRescaled (const juce::Font& base, std::vector<std::tuple<int, juce::Font>>& v, float scale)
+juce::Font fontRescaled (const juce::Font& base, std::vector<FontsElement>& v, float scale)
 {
     jassert (scale > 0);
     

@@ -64,9 +64,9 @@ private:
     juce::Font fontMonospaced_;
     
 private:
-    std::vector<std::tuple<int, juce::Font>> fonts_;
-    std::vector<std::tuple<int, juce::Font>> fontsBold_;
-    std::vector<std::tuple<int, juce::Font>> fontsMonospaced_;
+    std::vector<FontsElement> fonts_;
+    std::vector<FontsElement> fontsBold_;
+    std::vector<FontsElement> fontsMonospaced_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FontsOwner)
