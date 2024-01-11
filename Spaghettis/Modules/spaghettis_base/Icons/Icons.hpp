@@ -21,26 +21,6 @@ class Icons : private juce::DeletedAtShutdown {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-using DrawablePointer   = std::unique_ptr<juce::Drawable>;
-using DrawableTuple     = std::tuple<juce::String, int, DrawablePointer, DrawablePointer, bool, bool>;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    enum {
-        ICONS_NAME      = 0,
-        ICONS_EXTRA     = 1,
-        ICONS_OFF,
-        ICONS_ON,
-        ICONS_TOGGLE,
-        ICONS_STATE
-    };
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
@@ -88,7 +68,7 @@ public:
     {
         clearSingletonInstance();
     }
-    
+
     JUCE_DECLARE_SINGLETON_SINGLETHREADED (Icons, true);
     
 // -----------------------------------------------------------------------------------------------------------
@@ -106,32 +86,32 @@ public:
 public:
     juce::String getName (int itemId) const
     {
-        return std::get<ICONS_NAME> (drawables_[getIconIndex (itemId)]);
+        return drawables_[getIconIndex (itemId)].name_;
     }
     
     int getExtraSpace (int itemId) const
     {
-        return std::get<ICONS_EXTRA> (drawables_[getIconIndex (itemId)]);
+        return drawables_[getIconIndex (itemId)].extra_;
     }
     
     std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
     {
-        return std::get<ICONS_OFF> (drawables_[getIconIndex (itemId)])->createCopy();
+        return drawables_[getIconIndex (itemId)].off_->createCopy();
     }
 
     std::unique_ptr<juce::Drawable> getIconOn (int itemId) const
     {
-        return std::get<ICONS_ON> (drawables_[getIconIndex (itemId)])->createCopy();
+        return drawables_[getIconIndex (itemId)].on_->createCopy();
     }
     
     bool isToggle (int itemId) const
     {
-        return std::get<ICONS_TOGGLE> (drawables_[getIconIndex (itemId)]);
+        return drawables_[getIconIndex (itemId)].isToggle_;
     }
     
     bool getDefaultState (int itemId) const
     {
-        return std::get<ICONS_STATE> (drawables_[getIconIndex (itemId)]);
+        return drawables_[getIconIndex (itemId)].isDefaultStateOn_;
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -143,7 +123,7 @@ public:
     {
         int size = static_cast<int> (drawables_.size());
         
-        for (int i = 0; i < size; ++i) { if (std::get<ICONS_NAME> (drawables_[i]) == name) { return i + 1; } }
+        for (int i = 0; i < size; ++i) { if (drawables_[i].name_ == name) { return i + 1; } }
         
         return 0;
     }
@@ -158,9 +138,9 @@ private:
         int i = itemId - 1;
         
         jassert (i >= 0);
-        jassert (static_cast<std::vector<DrawableTuple>::size_type> (i) < drawables_.size());
-        jassert (std::get<ICONS_OFF> (drawables_[i]) != nullptr);
-        jassert (std::get<ICONS_ON> (drawables_[i]) != nullptr);
+        jassert (static_cast<std::vector<IconsElement>::size_type> (i) < drawables_.size());
+        jassert (drawables_[i].off_ != nullptr);
+        jassert (drawables_[i].on_  != nullptr);
         
         return i;
     }
@@ -186,7 +166,7 @@ private:
     void addIconProceed (const juce::String&, int, const char*, const char*, bool, bool);
     
 private:
-    std::vector<DrawableTuple> drawables_;
+    std::vector<IconsElement> drawables_;
 };
  
 // -----------------------------------------------------------------------------------------------------------

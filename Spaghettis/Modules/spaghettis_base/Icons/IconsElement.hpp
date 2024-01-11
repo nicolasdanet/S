@@ -16,14 +16,14 @@ class IconsElement {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 friend class Icons;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-private:
+public:
     explicit IconsElement (const juce::String& name,
             int extra,
             std::unique_ptr<juce::Drawable> off,
@@ -39,17 +39,6 @@ private:
     {
     }
 
-public:
-    ~IconsElement() = default;
-    
-public:
-    IconsElement (const IconsElement&) = delete;
-    IconsElement& operator = (const IconsElement&) = delete;
-    
-public:
-    IconsElement (IconsElement&&) = default;
-    IconsElement& operator = (IconsElement&&) = default;
-    
 private:
     juce::String name_;
     int extra_;
