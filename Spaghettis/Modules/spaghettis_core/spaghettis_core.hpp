@@ -77,7 +77,7 @@
 #include "Wrap/Logger/Debug.hpp"
 #include "Wrap/Devices.hpp"
 #include "Wrap/Logger/Logger.hpp"
-#include "Wrap/Post.hpp"
+#include "Wrap/Logger/Post.hpp"
 #include "Wrap/Queues.hpp"
 #include "Wrap/Inputs.hpp"
 #include "Wrap/Outputs.hpp"
