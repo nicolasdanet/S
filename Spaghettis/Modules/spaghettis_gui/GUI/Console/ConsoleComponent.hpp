@@ -44,7 +44,7 @@ public:
 public:
     void update (bool);
     void handleAsyncUpdate() override;
-    void logMessage (MessagesPacket& m) override;
+    void logMessage (std::vector<Logger::MessagesElement>& m) override;
     void clear();
     void parse();
     void restore();
@@ -54,7 +54,7 @@ public:
 // MARK: -
 
 private:
-    void logMessageProceed (MessagesPacket&);
+    void logMessageProceed (std::vector<Logger::MessagesElement>&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

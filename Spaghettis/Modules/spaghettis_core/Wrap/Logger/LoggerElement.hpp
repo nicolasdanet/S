@@ -30,6 +30,9 @@ public:
         type_ (type),
         path_ (path)
     {
+        // TODO: Make it trivially copyable for efficiency?
+        
+        static_assert (std::is_trivially_copyable_v<LoggerElement> == false);
     }
 
 // -----------------------------------------------------------------------------------------------------------

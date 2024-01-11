@@ -20,7 +20,6 @@ class Logger {
 
 public:
     using MessagesElement = std::tuple<juce::String, LoggerType, core::UniquePath>;
-    using MessagesPacket  = std::vector<Logger::MessagesElement>;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -64,7 +63,7 @@ protected:
     Logger& operator = (Logger&&) = default;
 
 public:
-    virtual void logMessage (MessagesPacket& m) = 0;
+    virtual void logMessage (std::vector<Logger::MessagesElement>& m) = 0;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

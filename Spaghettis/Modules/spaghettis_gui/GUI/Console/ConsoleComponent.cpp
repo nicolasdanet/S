@@ -138,7 +138,7 @@ void ConsoleComponent::handleAsyncUpdate()
     update (false);
 }
 
-void ConsoleComponent::logMessage (MessagesPacket& m)
+void ConsoleComponent::logMessage (std::vector<Logger::MessagesElement>& m)
 {
     removeMessagesIfRequired (messages_);
     removeMessagesIfRequired (history_);
@@ -162,7 +162,7 @@ void ConsoleComponent::parse()
 
 void ConsoleComponent::restore()
 {
-    MessagesPacket m (history_.cbegin(), history_.cend());
+    std::vector<Logger::MessagesElement> m (history_.cbegin(), history_.cend());
     
     messages_.clear(); logMessageProceed (m); update (true);
 }
@@ -171,7 +171,7 @@ void ConsoleComponent::restore()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ConsoleComponent::logMessageProceed (MessagesPacket& m)
+void ConsoleComponent::logMessageProceed (std::vector<Logger::MessagesElement>& m)
 {
     parseMessages (m, getButtonState (Icons::message), getButtonState (Icons::error));
     
