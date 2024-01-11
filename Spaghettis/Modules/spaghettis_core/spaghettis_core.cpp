@@ -48,7 +48,7 @@
 
 #include "Wrap/Logger/Debug.cpp"
 #include "Wrap/Devices.cpp"
-#include "Wrap/Inputs.cpp"
+#include "Wrap/Commands/Inputs.cpp"
 #include "Wrap/Snapshot.cpp"
 #include "Wrap/Snapshots.cpp"
 #include "Wrap/Wrapper.cpp"
