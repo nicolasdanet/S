@@ -47,7 +47,7 @@ void ConsoleComponent::locate()
     
     if (juce::isPositiveAndBelow (n, messages_.size())) {
     //
-    auto f = [u = Logger::getUniquePath (messages_[n])]()
+    auto f = [u = messages_[n].getUniquePath()]()
     {
         if (Spaghettis()->getPatches().locate (u) == false) { Spaghettis()->resetConsole(); }
     };
@@ -73,7 +73,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void removeMessagesIfRequired (std::deque<Logger::MessagesElement>& messages)
+void removeMessagesIfRequired (std::deque<LoggerMessage>& messages)
 {
     const int maximum_ = 2048;
     const int removed_ = 64;
@@ -95,9 +95,9 @@ template <class T> void parseMessages (T& m, bool showMessages, bool showErrors)
 {
     if (showMessages == false || showErrors == false) {
     //
-    auto f = [showMessages, showErrors] (const Logger::MessagesElement& e)
+    auto f = [showMessages, showErrors] (const LoggerMessage& e)
     {
-        LoggerType t = Logger::getType (e);
+        LoggerType t = e.getType();
         
         if ((t == LoggerType::normal || t == LoggerType::system) && showMessages == false) {
             return true;
@@ -138,7 +138,7 @@ void ConsoleComponent::handleAsyncUpdate()
     update (false);
 }
 
-void ConsoleComponent::logMessage (std::vector<Logger::MessagesElement>& m)
+void ConsoleComponent::logMessage (std::vector<LoggerMessage>& m)
 {
     removeMessagesIfRequired (messages_);
     removeMessagesIfRequired (history_);
@@ -162,7 +162,7 @@ void ConsoleComponent::parse()
 
 void ConsoleComponent::restore()
 {
-    std::vector<Logger::MessagesElement> m (history_.cbegin(), history_.cend());
+    std::vector<LoggerMessage> m (history_.cbegin(), history_.cend());
     
     messages_.clear(); logMessageProceed (m); update (true);
 }
@@ -171,7 +171,7 @@ void ConsoleComponent::restore()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ConsoleComponent::logMessageProceed (std::vector<Logger::MessagesElement>& m)
+void ConsoleComponent::logMessageProceed (std::vector<LoggerMessage>& m)
 {
     parseMessages (m, getButtonState (Icons::message), getButtonState (Icons::error));
     

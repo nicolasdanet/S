@@ -12,11 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Colour ConsoleConverter::getColourFromElement (const Logger::MessagesElement& e, bool isSelected)
+juce::Colour ConsoleConverter::getColourFromElement (const LoggerMessage& e, bool isSelected)
 {
     if (isSelected) {
 
-        core::UniquePath p = Logger::getUniquePath (e);
+        core::UniquePath p = e.getUniquePath();
         
         if (p.isValid()) {
             if (Spaghettis()->getPatches().contains (p)) {
@@ -25,7 +25,7 @@ juce::Colour ConsoleConverter::getColourFromElement (const Logger::MessagesEleme
         }
     }
 
-    return Logger::getColourForType (Logger::getType (e));
+    return Logger::getColourForType (e.getType());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -44,7 +44,7 @@ public:
 public:
     void update (bool);
     void handleAsyncUpdate() override;
-    void logMessage (std::vector<Logger::MessagesElement>& m) override;
+    void logMessage (std::vector<LoggerMessage>& m) override;
     void clear();
     void parse();
     void restore();
@@ -54,7 +54,7 @@ public:
 // MARK: -
 
 private:
-    void logMessageProceed (std::vector<Logger::MessagesElement>&);
+    void logMessageProceed (std::vector<LoggerMessage>&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -87,8 +87,8 @@ public:
 
 private:
     juce::ListBox listBox_;
-    std::deque<Logger::MessagesElement> messages_;
-    std::deque<Logger::MessagesElement> history_;
+    std::deque<LoggerMessage> messages_;
+    std::deque<LoggerMessage> history_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ConsoleComponent)

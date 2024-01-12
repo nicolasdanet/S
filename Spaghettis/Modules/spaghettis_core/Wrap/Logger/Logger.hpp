@@ -19,21 +19,20 @@ class Logger {
 // MARK: -
 
 public:
-    using MessagesElement = std::tuple<juce::String, LoggerType, core::UniquePath>;
+    Logger()          = default;
+    virtual ~Logger() = default;
+
+public:
+    Logger (const Logger&) = default;
+    Logger (Logger&&) = default;
+    Logger& operator = (const Logger&) = default;
+    Logger& operator = (Logger&&) = default;
+
+public:
+    virtual void logMessage (std::vector<LoggerMessage>& m) = 0;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-private:
-    enum {
-        LOGGER_MESSAGE  = 0,
-        LOGGER_TYPE     = 1,
-        LOGGER_UNIQUE
-    };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 public:
     static juce::Colour getColourForType (LoggerType type)
@@ -45,43 +44,6 @@ public:
         else if (type == LoggerType::warning) { c = Colours::consoleTextWarning; }
                     
         return Colours::fetchColour (c);
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    virtual ~Logger() = default;
-
-protected:
-    Logger() = default;
-    
-    Logger (const Logger&) = default;
-    Logger (Logger&&) = default;
-    Logger& operator = (const Logger&) = default;
-    Logger& operator = (Logger&&) = default;
-
-public:
-    virtual void logMessage (std::vector<Logger::MessagesElement>& m) = 0;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-public:
-    static juce::String getText (const MessagesElement& e)
-    {
-        return std::get<LOGGER_MESSAGE> (e);
-    }
-    
-    static LoggerType getType (const MessagesElement& e)
-    {
-        return std::get<LOGGER_TYPE> (e);
-    }
-    
-    static core::UniquePath getUniquePath (const MessagesElement& e)
-    {
-        return std::get<LOGGER_UNIQUE> (e);
     }
 };
 

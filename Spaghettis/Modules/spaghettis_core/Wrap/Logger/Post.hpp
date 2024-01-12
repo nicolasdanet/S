@@ -33,7 +33,7 @@ public:
     
     void log (Logger *logger)
     {
-        std::vector<Logger::MessagesElement> scoped;
+        std::vector<LoggerMessage> scoped;
         
         {
             const std::lock_guard<std::mutex> l (lock_); scoped.swap (messages_);
@@ -43,7 +43,7 @@ public:
     }
     
 private:
-    std::vector<Logger::MessagesElement> messages_;
+    std::vector<LoggerMessage> messages_;
     std::mutex lock_;
 
 private:
