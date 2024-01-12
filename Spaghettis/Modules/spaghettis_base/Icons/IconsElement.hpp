@@ -16,11 +16,6 @@ class IconsElement {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-friend class Icons;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
@@ -37,8 +32,41 @@ public:
         isToggle_ (isToggle),
         isDefaultStateOn_ (isDefaultStateOn)
     {
+        static_assert (std::is_nothrow_move_constructible_v<IconsElement> == true);
+        static_assert (std::is_nothrow_move_assignable_v<IconsElement> == true);
     }
 
+public:
+    juce::String getName() const
+    {
+        return name_;
+    }
+    
+    int getExtraSpace() const
+    {
+        return extra_;
+    }
+    
+    std::unique_ptr<juce::Drawable> getIconOff() const
+    {
+        jassert (off_ != nullptr); return off_->createCopy();
+    }
+    
+    std::unique_ptr<juce::Drawable> getIconOn() const
+    {
+        jassert (on_ != nullptr); return on_->createCopy();
+    }
+    
+    bool isToggle() const
+    {
+        return isToggle_;
+    }
+    
+    bool getDefaultState() const
+    {
+        return isDefaultStateOn_;
+    }
+    
 private:
     juce::String name_;
     int extra_;

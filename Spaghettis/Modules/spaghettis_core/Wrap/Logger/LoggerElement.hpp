@@ -32,7 +32,8 @@ public:
     {
         // TODO: Make it trivially copyable for efficiency?
         
-        static_assert (std::is_trivially_copyable_v<LoggerElement> == false);
+        static_assert (std::is_nothrow_move_constructible_v<LoggerElement> == true);
+        static_assert (std::is_nothrow_move_assignable_v<LoggerElement> == true);
     }
 
 // -----------------------------------------------------------------------------------------------------------

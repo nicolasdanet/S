@@ -27,6 +27,8 @@ class FontsElement {
 public:
     explicit FontsElement (const juce::Font& font, int height) : font_ (font), height_ (height)
     {
+        static_assert (std::is_nothrow_move_constructible_v<FontsElement> == true);
+        static_assert (std::is_nothrow_move_assignable_v<FontsElement> == true);
     }
 
 // -----------------------------------------------------------------------------------------------------------

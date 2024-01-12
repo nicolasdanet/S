@@ -86,32 +86,32 @@ public:
 public:
     juce::String getName (int itemId) const
     {
-        return drawables_[getIconIndex (itemId)].name_;
+        return drawables_[getIconIndex (itemId)].getName();
     }
     
     int getExtraSpace (int itemId) const
     {
-        return drawables_[getIconIndex (itemId)].extra_;
+        return drawables_[getIconIndex (itemId)].getExtraSpace();
     }
     
     std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
     {
-        return drawables_[getIconIndex (itemId)].off_->createCopy();
+        return drawables_[getIconIndex (itemId)].getIconOff();
     }
 
     std::unique_ptr<juce::Drawable> getIconOn (int itemId) const
     {
-        return drawables_[getIconIndex (itemId)].on_->createCopy();
+        return drawables_[getIconIndex (itemId)].getIconOn();
     }
     
     bool isToggle (int itemId) const
     {
-        return drawables_[getIconIndex (itemId)].isToggle_;
+        return drawables_[getIconIndex (itemId)].isToggle();
     }
     
     bool getDefaultState (int itemId) const
     {
-        return drawables_[getIconIndex (itemId)].isDefaultStateOn_;
+        return drawables_[getIconIndex (itemId)].getDefaultState();
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -123,7 +123,7 @@ public:
     {
         int size = static_cast<int> (drawables_.size());
         
-        for (int i = 0; i < size; ++i) { if (drawables_[i].name_ == name) { return i + 1; } }
+        for (int i = 0; i < size; ++i) { if (drawables_[i].getName() == name) { return i + 1; } }
         
         return 0;
     }
@@ -139,8 +139,6 @@ private:
         
         jassert (i >= 0);
         jassert (static_cast<std::vector<IconsElement>::size_type> (i) < drawables_.size());
-        jassert (drawables_[i].off_ != nullptr);
-        jassert (drawables_[i].on_  != nullptr);
         
         return i;
     }
