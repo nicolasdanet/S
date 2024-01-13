@@ -19,9 +19,9 @@ namespace {
 
 auto hasSameIdentifier (core::UniqueId u)
 {
-    return [u](const Snapshots::SnapshotsElement& e)
+    return [u](const SnapshotsElement& e)
     {
-        return (std::get<Snapshots::SNAPSHOTS_UNIQUE> (e) == u);
+        return (e.getUnique() == u);
     };
 }
 
@@ -59,8 +59,8 @@ void Snapshots::fetch (core::UniqueId u, Snapshot& s)
     auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (u));
     
     if (r != v_.cend()) {
-        void* p = std::get<Snapshots::SNAPSHOTS_POINTER> (*r);
-        int n   = std::get<Snapshots::SNAPSHOTS_SIZE> (*r);
+        void* p = r->getData();
+        int n   = r->getSize();
         s.fetch (p, n);
     }
 }

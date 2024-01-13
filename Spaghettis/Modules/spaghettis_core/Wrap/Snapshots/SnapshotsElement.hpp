@@ -12,21 +12,21 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class SpnapshotsElement {
+class SnapshotsElement {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit SpnapshotsElement (core::UniqueId u, void* data, int size) :
+    explicit SnapshotsElement (core::UniqueId u, void* data, int size) :
         u_ (u),
         data_ (data),
         size_ (size)
     {
-        static_assert (std::is_trivially_copyable_v<SpnapshotsElement> == true);
-        static_assert (std::is_nothrow_move_constructible_v<SpnapshotsElement> == true);
-        static_assert (std::is_nothrow_move_assignable_v<SpnapshotsElement> == true);
+        static_assert (std::is_trivially_copyable_v<SnapshotsElement> == true);
+        static_assert (std::is_nothrow_move_constructible_v<SnapshotsElement> == true);
+        static_assert (std::is_nothrow_move_assignable_v<SnapshotsElement> == true);
     }
 
 // -----------------------------------------------------------------------------------------------------------
