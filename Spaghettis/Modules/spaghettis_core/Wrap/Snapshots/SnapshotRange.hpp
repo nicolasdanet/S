@@ -21,6 +21,9 @@ class SnapshotRange {
 public:
     SnapshotRange() : low_ (0.0), high_ (0.0), width_ (0)
     {
+        static_assert (std::is_trivially_copyable_v<SnapshotRange> == true);
+        static_assert (std::is_nothrow_move_constructible_v<SnapshotRange> == true);
+        static_assert (std::is_nothrow_move_assignable_v<SnapshotRange> == true);
     }
     
     ~SnapshotRange() = default;
