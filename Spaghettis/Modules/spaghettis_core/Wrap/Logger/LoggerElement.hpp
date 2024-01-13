@@ -25,10 +25,10 @@ class LoggerElement {
 // MARK: -
 
 public:
-    explicit LoggerElement (const juce::String& text, LoggerType type, const core::UniquePath& path) :
+    explicit LoggerElement (const core::UniquePath& path, const juce::String& text, LoggerType type) :
+        path_ (path),
         text_ (text),
-        type_ (type),
-        path_ (path)
+        type_ (type)
     {
         // TODO: Make it trivially copyable for efficiency?
         
@@ -41,6 +41,11 @@ public:
 // MARK: -
 
 public:
+    core::UniquePath getUniquePath() const
+    {
+        return path_;
+    }
+    
     juce::String getText() const
     {
         return text_;
@@ -51,15 +56,10 @@ public:
         return type_;
     }
 
-    core::UniquePath getUniquePath() const
-    {
-        return path_;
-    }
-    
 private:
+    core::UniquePath path_;
     juce::String text_;
     LoggerType type_;
-    core::UniquePath path_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

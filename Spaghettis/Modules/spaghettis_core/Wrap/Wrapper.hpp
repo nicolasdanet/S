@@ -110,9 +110,9 @@ private:
 // MARK: -
 
 public:
-    void post (const juce::String& m, LoggerType type, const core::UniquePath& u)
+    void post (const core::UniquePath& u, const juce::String& m, LoggerType type)
     {
-        post_.add (m, type, u); triggerAsyncUpdate();
+        post_.add (u, m, type); triggerAsyncUpdate();
     }
     
 private:

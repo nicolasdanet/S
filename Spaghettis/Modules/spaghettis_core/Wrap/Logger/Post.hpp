@@ -26,9 +26,9 @@ public:
 // MARK: -
 
 public:
-    void add (const juce::String& m, LoggerType type, const core::UniquePath& u)
+    void add (const core::UniquePath& u, const juce::String& m, LoggerType type)
     {
-        const std::lock_guard<std::mutex> l (lock_); messages_.emplace_back (m, type, u);
+        const std::lock_guard<std::mutex> l (lock_); messages_.emplace_back (u, m, type);
     }
     
     void log (Logger *logger)

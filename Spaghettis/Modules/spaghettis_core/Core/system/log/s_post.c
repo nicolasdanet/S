@@ -74,7 +74,7 @@ static void post_console (t_object *o, int k, char *s, LoggerType type)
     
     UniquePath u = o ? UniquePath (o) : UniquePath::invalid();
     
-    main_wrapper->post (makeString (s), type, u);
+    main_wrapper->post (u, makeString (s), type);
     //
     }
 }
