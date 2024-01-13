@@ -52,9 +52,9 @@ private:
         width_  = 1;
     }
 
-    void enlarge()
+    bool isSet() const
     {
-        ++width_;
+        return (width_ > 0);
     }
     
     void scale (juce::Range<double> range, juce::Rectangle<int> painted)
@@ -68,37 +68,28 @@ private:
         r_ = juce::Range<int> (static_cast<int> (std::round (a)), static_cast<int> (std::round (b)));
     }
     
+    void enlarge()
+    {
+        ++width_;
+    }
+    
     bool collapse (SnapshotElement& s)
     {
         if (r_ == s.r_) { width_ += s.width_; s.width_ = 0; return true; }
-        
-        return false;
+        else {
+            return false;
+        }
     }
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
     juce::Rectangle<float> getRectangle() const
     {
         juce::Point<float> a = juce::Point<float> (0, r_.getStart());
-        juce::Point<float> b = juce::Point<float> (getWidth(), r_.getEnd());
+        juce::Point<float> b = juce::Point<float> (width_, r_.getEnd());
     
         if (high_ == 0.0) { a = a.translated (0.0, -0.5f); }
         if (low_  == 0.0) { b = b.translated (0.0,  0.5f); }
         
         return juce::Rectangle<float> (a, b);
-    }
-    
-    int getWidth() const
-    {
-        return width_;
-    }
-    
-    bool isSet() const
-    {
-        return (width_ > 0);
     }
     
 private:
