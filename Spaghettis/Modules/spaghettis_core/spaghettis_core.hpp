@@ -83,6 +83,7 @@
 #include "Wrap/Commands/Inputs.hpp"
 #include "Wrap/Commands/Outputs.hpp"
 #include "Wrap/Snapshots/Snapshot.hpp"
+#include "Wrap/Snapshots/SnapshotsElement.hpp"
 #include "Wrap/Snapshots/Snapshots.hpp"
 #include "Wrap/Wrapper.hpp"
 
