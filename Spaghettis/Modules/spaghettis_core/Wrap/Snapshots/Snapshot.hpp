@@ -53,7 +53,7 @@ private:
     juce::Range<int> domain_;
     juce::Range<double> range_;
     juce::Rectangle<int> painted_;
-    std::vector<SnapshotRange> v_;
+    std::vector<SnapshotElement> v_;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

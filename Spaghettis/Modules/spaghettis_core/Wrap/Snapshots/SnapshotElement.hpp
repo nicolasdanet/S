@@ -12,33 +12,39 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class SnapshotRange {
+class SnapshotElement {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+friend class Snapshot;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    SnapshotRange() : low_ (0.0), high_ (0.0), width_ (0)
+    SnapshotElement() : low_ (0.0), high_ (0.0), width_ (0)
     {
-        static_assert (std::is_trivially_copyable_v<SnapshotRange> == true);
-        static_assert (std::is_nothrow_move_constructible_v<SnapshotRange> == true);
-        static_assert (std::is_nothrow_move_assignable_v<SnapshotRange> == true);
+        static_assert (std::is_trivially_copyable_v<SnapshotElement> == true);
+        static_assert (std::is_nothrow_move_constructible_v<SnapshotElement> == true);
+        static_assert (std::is_nothrow_move_assignable_v<SnapshotElement> == true);
     }
-    
-    ~SnapshotRange() = default;
 
 public:
-    SnapshotRange (const SnapshotRange&) = default;
-    SnapshotRange (SnapshotRange&&) = default;
-    SnapshotRange& operator = (const SnapshotRange&) = default;
-    SnapshotRange& operator = (SnapshotRange&&) = default;
+    ~SnapshotElement() = default;
+
+public:
+    SnapshotElement (const SnapshotElement&) = default;
+    SnapshotElement (SnapshotElement&&) = default;
+    SnapshotElement& operator = (const SnapshotElement&) = default;
+    SnapshotElement& operator = (SnapshotElement&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     void set (double f)
     {
         low_    = juce::jmin (f, low_);
@@ -62,7 +68,7 @@ public:
         r_ = juce::Range<int> (static_cast<int> (std::round (a)), static_cast<int> (std::round (b)));
     }
     
-    bool collapse (SnapshotRange& s)
+    bool collapse (SnapshotElement& s)
     {
         if (r_ == s.r_) { width_ += s.width_; s.width_ = 0; return true; }
         
@@ -73,7 +79,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     juce::Rectangle<float> getRectangle() const
     {
         juce::Point<float> a = juce::Point<float> (0, r_.getStart());
@@ -84,7 +90,7 @@ public:
         
         return juce::Rectangle<float> (a, b);
     }
-
+    
     int getWidth() const
     {
         return width_;
