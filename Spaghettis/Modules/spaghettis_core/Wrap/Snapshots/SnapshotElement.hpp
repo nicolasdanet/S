@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2023 Jojo and others. */
+/* Copyright (c) 2024 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
