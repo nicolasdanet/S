@@ -162,6 +162,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Patches/Windows/RunWindow/RunFactory.hpp"
+#include "GUI/Patches/Windows/RunWindow/RunLayoutElement.hpp"
 #include "GUI/Patches/Windows/RunWindow/RunLayout.hpp"
 #include "GUI/Patches/Windows/RunWindow/RunView.hpp"
 #include "GUI/Patches/Windows/RunWindow/RunPresets.hpp"
