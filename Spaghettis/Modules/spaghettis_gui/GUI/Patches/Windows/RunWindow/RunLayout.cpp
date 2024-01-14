@@ -19,18 +19,18 @@ namespace {
 
 auto isSameObject (ObjectComponent* o)
 {
-    return [o](const RunLayout::LayoutElement& e)
+    return [o](const RunLayoutElement& e)
     {
-        return (std::get<RunLayout::LAYOUT_POINTER> (e) == o);
+        return (e.getObject() == o);
     };
 }
 
 auto compareLabel()
 {
-    return [](const RunLayout::LayoutElement& a, const RunLayout::LayoutElement& b)
+    return [](const RunLayoutElement& a, const RunLayoutElement& b)
     {
-        ObjectComponent* t1 = std::get<RunLayout::LAYOUT_POINTER> (a);
-        ObjectComponent* t2 = std::get<RunLayout::LAYOUT_POINTER> (b);
+        ObjectComponent* t1 = a.getObject();
+        ObjectComponent* t2 = b.getObject();
         
         return t1->getLabel() < t2->getLabel();
     };
@@ -49,7 +49,7 @@ void RunLayout::add (ObjectComponent* o, const juce::Rectangle<int>& bounds)
 {
     auto r = std::find_if (viewed_.begin(), viewed_.end(), isSameObject (o));
     
-    if (r != viewed_.end()) { std::get<RunLayout::LAYOUT_BOUNDS> (*r) = bounds.withZeroOrigin(); }
+    if (r != viewed_.end()) { r->setBounds (bounds.withZeroOrigin()); }
     else {
         viewed_.emplace_back (o, bounds.withZeroOrigin());
     }
@@ -128,12 +128,15 @@ juce::Array<juce::Grid::TrackInfo> getColumns (const juce::Rectangle<int>& bound
     return getTracks (juce::jmax (n, 1), getColumnTrack());
 }
 
-juce::Array<juce::GridItem> getGridItems (const RunLayout::LayoutContainer& viewed)
+juce::Array<juce::GridItem> getGridItems (const std::vector<RunLayoutElement>& viewed)
 {
     juce::Array<juce::GridItem> items;
     
-    for (const auto& [o, bounds] : viewed) {
+    for (const auto& e : viewed) {
     //
+    const auto o      = e.getObject();
+    const auto bounds = e.getBounds();
+    
     const int w = bounds.getWidth();
     const int h = bounds.getHeight();
     const juce::GridItem::Span rSpan (getRowSpan (h));
