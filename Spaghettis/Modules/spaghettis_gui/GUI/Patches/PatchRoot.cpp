@@ -163,17 +163,17 @@ bool PatchRoot::isDirty() const
 
 void PatchRoot::registerWindowBounds (core::UniqueId u, core::Point::Real pt, int zoom)
 {
-    bounds_.set ({ u, pt, zoom });
+    bounds_.set (PatchBoundsElement (u, pt, zoom));
 }
 
 core::Point::Real PatchRoot::getOffset (const EditView& view) const
 {
-    return std::get<PatchBounds::BOUNDS_POINT> (bounds_.get (view.getIdentifier()));
+    return bounds_.get (view.getIdentifier()).getOffset();
 }
 
 int PatchRoot::getZoom (const EditView& view) const
 {
-    return std::get<PatchBounds::BOUNDS_ZOOM> (bounds_.get (view.getIdentifier()));
+    return bounds_.get (view.getIdentifier()).getZoom();
 }
 
 // -----------------------------------------------------------------------------------------------------------

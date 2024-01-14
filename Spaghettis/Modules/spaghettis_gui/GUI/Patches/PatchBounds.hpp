@@ -18,24 +18,6 @@ class PatchBounds {
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    using BoundsElement   = std::tuple<core::UniqueId, core::Point::Real, int>;
-    using BoundsContainer = std::vector<BoundsElement>;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    enum {
-        BOUNDS_ID       = 0,
-        BOUNDS_POINT    = 1,
-        BOUNDS_ZOOM     = 2
-    };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-public:
     PatchBounds()  = default;
     ~PatchBounds() = default;
     
@@ -44,12 +26,12 @@ public:
 // MARK: -
 
 public:
-    void set (BoundsElement);
+    void set (PatchBoundsElement);
     
-    BoundsElement get (core::UniqueId) const;
+    PatchBoundsElement get (core::UniqueId) const;
 
 private:
-    BoundsContainer bounds_;
+    std::vector<PatchBoundsElement> bounds_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchBounds)

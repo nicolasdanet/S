@@ -19,9 +19,9 @@ class PatchBoundsElement {
 // MARK: -
 
 public:
-    explicit PatchBoundsElement (core::UniqueId u, core::Point::Real pt, int zoom) :
+    explicit PatchBoundsElement (core::UniqueId u, core::Point::Real offset, int zoom) :
         u_ (u),
-        offset_ (pt),
+        offset_ (offset),
         zoom_ (zoom)
     {
         static_assert (std::is_trivially_copyable_v<PatchBoundsElement> == true);

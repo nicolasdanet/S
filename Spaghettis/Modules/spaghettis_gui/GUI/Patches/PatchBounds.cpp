@@ -19,15 +19,10 @@ namespace {
 
 auto hasSameIdentifier (core::UniqueId u)
 {
-    return [u](const PatchBounds::BoundsElement& e)
+    return [u](const PatchBoundsElement& e)
     {
-        return (std::get<PatchBounds::BOUNDS_ID> (e) == u);
+        return (e.getUnique() == u);
     };
-}
-
-auto hasSameIdentifier (PatchBounds::BoundsElement e)
-{
-    return hasSameIdentifier (std::get<PatchBounds::BOUNDS_ID> (e));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -39,18 +34,21 @@ auto hasSameIdentifier (PatchBounds::BoundsElement e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchBounds::set (BoundsElement e)
+void PatchBounds::set (PatchBoundsElement e)
 {
-    auto r = std::find_if (bounds_.begin(), bounds_.end(), hasSameIdentifier (e));
+    auto r = std::find_if (bounds_.begin(), bounds_.end(), hasSameIdentifier (e.getUnique()));
     
     if (r != bounds_.end()) { *r = e; } else { bounds_.push_back (e); }
 }
 
-PatchBounds::BoundsElement PatchBounds::get (core::UniqueId u) const
+PatchBoundsElement PatchBounds::get (core::UniqueId u) const
 {
     auto r = std::find_if (bounds_.begin(), bounds_.end(), hasSameIdentifier (u));
     
-    if (r != bounds_.end()) { return *r; } else { return { 0, core::Point::Real (0, 0), 100 }; }
+    if (r != bounds_.end()) { return *r; }
+    else {
+        return PatchBoundsElement (0, core::Point::Real (0, 0), 100);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
