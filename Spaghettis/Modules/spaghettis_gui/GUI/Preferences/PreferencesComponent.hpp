@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PreferencesComponent :    public ParameterView,
+class PreferencesComponent :    protected PreferencesFactoryHelper,
+                                public ParameterView,
                                 public BaseComponent<CommandsHandler> {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -23,9 +24,10 @@ public:
     explicit PreferencesComponent (juce::ApplicationCommandManager& command,
         juce::PropertiesFile* propertiesFile,
         const juce::String& keyName) :
+            PreferencesFactoryHelper (this),
             ParameterView (Spaghettis()->getPreferences().getData(),
                 ParameterBase (Fonts::getFont(), Fonts::getMonospacedFont(), 250)),
-            BaseComponent (nullptr, Spaghettis()->getMenu(), command, propertiesFile, keyName)
+            BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), command, propertiesFile, keyName)
     {
         CommandsHandler::addCloseWindowCommand (this);
         
