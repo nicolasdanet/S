@@ -16,16 +16,16 @@ PainterStrategy::PainterStrategy (ObjectComponent* owner) :
     component_ (owner),
     object_ (owner->getObject()),
     boxPinsBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxPinsBackground)),
-    labelBackgroundColour_ (Spaghettis()->getCachedColour (Tag::LabelBackground)),
-    labelTextColour_ (Spaghettis()->getCachedColour (Tag::LabelText)),
+    patchLabelBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchLabelBackground)),
+    patchLabelTextColour_ (Spaghettis()->getCachedColour (Tag::PatchLabelText)),
     objectWidth_ (0)
 {
     jassert (owner);
     jassert (object_.isObject());
     
     boxPinsBackgroundColour_.attach (repaint (component_));
-    labelBackgroundColour_.attach (repaint (component_));
-    labelTextColour_.attach (repaint (component_));
+    patchLabelBackgroundColour_.attach (repaint (component_));
+    patchLabelTextColour_.attach (repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -62,9 +62,9 @@ void PainterStrategy::paintLabel (juce::Rectangle<int> r, juce::Graphics& g)
     
     if (r.getHeight() >= font.getHeight()) {
     //
-    g.setColour (labelBackgroundColour_.get());
+    g.setColour (patchLabelBackgroundColour_.get());
     g.fillRect (r);
-    g.setColour (labelTextColour_.get());
+    g.setColour (patchLabelTextColour_.get());
     g.setFont (font);
     g.drawText (component_->getLabel(), r.translated (-1, -1), juce::Justification::bottomRight, true);
     //

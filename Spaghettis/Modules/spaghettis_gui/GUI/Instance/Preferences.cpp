@@ -56,6 +56,18 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Set the background color of patches"),
         p->background);
 
+    colors.addParameter (Tag::PatchLabelBackground,
+        NEEDS_TRANS ("Patch Label Background"),
+        NEEDS_TRANS ("Set the background color of labels in run view"),
+        p->backgroundBox.withAlpha (0.5f));
+        
+    colors.addParameter (Tag::PatchLabelText,
+        NEEDS_TRANS ("Patch Label Text"),
+        NEEDS_TRANS ("Set the text color of labels in run view"),
+        p->textBox);
+    
+    //
+        
     colors.addParameter (Tag::BoxBackground,
         NEEDS_TRANS ("Box Background"),
         NEEDS_TRANS ("Set the background color of objects"),
@@ -81,6 +93,7 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Set the highlight color for bad object"),
         p->textError);
         
+    //
     
     colors.addParameter (Tag::Lasso,
         NEEDS_TRANS ("Lasso"),
@@ -92,15 +105,7 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Set color of locator"),
         p->textError);
         
-    colors.addParameter (Tag::LabelBackground,
-        NEEDS_TRANS ("Label Background"),
-        NEEDS_TRANS ("Set background color of run view labels"),
-        p->backgroundBox.withAlpha (0.5f));
-        
-    colors.addParameter (Tag::LabelText,
-        NEEDS_TRANS ("Label Text"),
-        NEEDS_TRANS ("Set text color of run view labels"),
-        p->textBox);
+
         
     colors.addParameter (Tag::Line,
         NEEDS_TRANS ("Line"),
