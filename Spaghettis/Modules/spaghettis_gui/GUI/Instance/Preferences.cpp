@@ -29,57 +29,57 @@ data::Data getDefaultPreferences()
     
     general.addParameter (Tag::AskBeforeQuit,
         NEEDS_TRANS ("Ask Before Quitting"),
-        NEEDS_TRANS ("Show dialog box to confirm quitting"),
+        NEEDS_TRANS ("Show a dialog box to confirm quitting"),
         true);
         
     general.addParameter (Tag::DefaultIsRunView,
         NEEDS_TRANS ("Default Is Run View"),
-        NEEDS_TRANS ("Open a patch into a run view"),
+        NEEDS_TRANS ("Open a patch as a run view"),
         false);
     
-    
-    
-    editing.addParameter (Tag::GridSize,
-        NEEDS_TRANS ("Grid Size"),
-        NEEDS_TRANS ("Set magnetic grid spacing"),
-        12).setRange (juce::Range<int> (1, 64));
+    /* */
         
     editing.addParameter (Tag::SnapToGrid,
         NEEDS_TRANS ("Snap To Grid"),
-        NEEDS_TRANS ("Enable magnetic grid"),
+        NEEDS_TRANS ("Enable the magnetic grid"),
         true);
 
+    editing.addParameter (Tag::GridSize,
+        NEEDS_TRANS ("Grid Size"),
+        NEEDS_TRANS ("Set the magnetic grid spacing"),
+        12).setRange (juce::Range<int> (1, 64));
 
+    /* */
     
     colors.addParameter (Tag::PatchBackground,
         NEEDS_TRANS ("Patch Background"),
-        NEEDS_TRANS ("Set background color of patch"),
+        NEEDS_TRANS ("Set the background color of patches"),
         p->background);
 
     colors.addParameter (Tag::BoxBackground,
         NEEDS_TRANS ("Box Background"),
-        NEEDS_TRANS ("Set background color of objects"),
+        NEEDS_TRANS ("Set the background color of objects"),
         p->backgroundBox);
     
+    colors.addParameter (Tag::BoxText,
+        NEEDS_TRANS ("Box Text"),
+        NEEDS_TRANS ("Set the text color of objects"),
+        p->textBox);
+        
     colors.addParameter (Tag::BoxPinsBackground,
         NEEDS_TRANS ("Box Pin Background"),
-        NEEDS_TRANS ("Set background color of pins"),
+        NEEDS_TRANS ("Set the background color of pins"),
         p->backgroundBox.contrasting (0.05f));
     
     colors.addParameter (Tag::BoxSelected,
         NEEDS_TRANS ("Box Selected"),
-        NEEDS_TRANS ("Set highlight color for selected object"),
+        NEEDS_TRANS ("Set the highlight color for selected object"),
         p->selection);
     
     colors.addParameter (Tag::BoxWrong,
         NEEDS_TRANS ("Box Wrong"),
-        NEEDS_TRANS ("Set highlight color for bad object"),
+        NEEDS_TRANS ("Set the highlight color for bad object"),
         p->textError);
-        
-    colors.addParameter (Tag::BoxText,
-        NEEDS_TRANS ("Box Text"),
-        NEEDS_TRANS ("Set text color of objects"),
-        p->textBox);
         
     
     colors.addParameter (Tag::Lasso,
