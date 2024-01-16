@@ -85,7 +85,6 @@ private:
     
 private:
     data::Cached<juce::Colour> patchBackgroundColour_;
-    data::Cached<juce::Colour> patchTextColour_;
     Table<ObjectComponent> objects_;
     RunLayout layout_;
         

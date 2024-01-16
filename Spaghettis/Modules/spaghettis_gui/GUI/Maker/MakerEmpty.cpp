@@ -11,21 +11,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-MakerEmpty::MakerEmpty() : patchTextColour_ (Spaghettis()->getCachedColour (Tag::PatchText))
-{
-    patchTextColour_.attach (PainterStrategy::repaint (this));
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 void MakerEmpty::paint (juce::Graphics& g)
 {
     g.setColour (Colours::fetchColour (Colours::makerBackground));
     g.fillRect (getLocalBounds().reduced (1));
     
-    g.setColour (patchTextColour_.get());
+    g.setColour (Colours::fetchColour (Colours::windowsText));
     g.setFont (Fonts::getFontRescaled (1.5f));
     g.drawText (juce::String (NEEDS_TRANS ("Documentation")),
         getLocalBounds(),

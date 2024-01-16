@@ -37,36 +37,25 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Open a patch into a run view"),
         false);
     
+    
+    
+    editing.addParameter (Tag::GridSize,
+        NEEDS_TRANS ("Grid Size"),
+        NEEDS_TRANS ("Set magnetic grid spacing"),
+        12).setRange (juce::Range<int> (1, 64));
+        
     editing.addParameter (Tag::SnapToGrid,
         NEEDS_TRANS ("Snap To Grid"),
         NEEDS_TRANS ("Enable magnetic grid"),
         true);
 
-    editing.addParameter (Tag::GridSize,
-        NEEDS_TRANS ("Grid Size"),
-        NEEDS_TRANS ("Set magnetic grid spacing"),
-        12).setRange (juce::Range<int> (1, 64));
+
     
     colors.addParameter (Tag::PatchBackground,
         NEEDS_TRANS ("Patch Background"),
         NEEDS_TRANS ("Set background color of patch"),
         p->background);
 
-    colors.addParameter (Tag::PatchText,
-        NEEDS_TRANS ("Patch Text"),
-        NEEDS_TRANS ("Set text color of patch"),
-        p->backgroundPopup);
-    
-    colors.addParameter (Tag::Lasso,
-        NEEDS_TRANS ("Lasso"),
-        NEEDS_TRANS ("Set color of lasso"),
-        p->selection);
-    
-    colors.addParameter (Tag::Locator,
-        NEEDS_TRANS ("Locator"),
-        NEEDS_TRANS ("Set color of locator"),
-        p->textError);
-        
     colors.addParameter (Tag::BoxBackground,
         NEEDS_TRANS ("Box Background"),
         NEEDS_TRANS ("Set background color of objects"),
@@ -91,7 +80,18 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Box Text"),
         NEEDS_TRANS ("Set text color of objects"),
         p->textBox);
+        
     
+    colors.addParameter (Tag::Lasso,
+        NEEDS_TRANS ("Lasso"),
+        NEEDS_TRANS ("Set color of lasso"),
+        p->selection);
+    
+    colors.addParameter (Tag::Locator,
+        NEEDS_TRANS ("Locator"),
+        NEEDS_TRANS ("Set color of locator"),
+        p->textError);
+        
     colors.addParameter (Tag::LabelBackground,
         NEEDS_TRANS ("Label Background"),
         NEEDS_TRANS ("Set background color of run view labels"),

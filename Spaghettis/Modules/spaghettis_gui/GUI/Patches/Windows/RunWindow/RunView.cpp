@@ -14,12 +14,10 @@ namespace spaghettis {
 
 RunView::RunView (PatchRoot& patch, const juce::ValueTree& tree) :
     PatchView (patch, tree),
-    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),
-    patchTextColour_ (Spaghettis()->getCachedColour (Tag::PatchText))
+    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground))
 {
     viewTree_.addListener (this);
     patchBackgroundColour_.attach (PainterStrategy::repaint (this));
-    patchTextColour_.attach (PainterStrategy::repaint (this));
     setOpaque (true);
     initialize (viewTree_);
 }
@@ -41,7 +39,7 @@ void RunView::paint (juce::Graphics& g)
     //
     const juce::String text (NEEDS_TRANS ("Widgets"));
     
-    g.setColour (patchTextColour_.get());
+    g.setColour (Colours::fetchColour (Colours::windowsText));
     g.setFont (Fonts::getFontRescaled (1.5f));
     g.drawText (text, getLocalBounds(), juce::Justification::centred, true);
     //

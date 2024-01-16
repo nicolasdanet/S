@@ -20,6 +20,7 @@ struct Colours {
 
 enum ColourIds : int {
     windowsBackground   = 0,
+    windowsText,
     consoleTextDefault,
     consoleTextSystem,
     consoleTextWarning,
@@ -84,6 +85,7 @@ static juce::Colour fetchColour (ColourIds i)
     
     switch (i) {
         case windowsBackground :                                    return p->backgroundMenu;
+        case windowsText :                                          return p->backgroundPopup;
         case consoleTextDefault :                                   return p->textDefault;
         case consoleTextSystem :                                    return p->textSystem;
         case consoleTextWarning :                                   return p->textWarning;
