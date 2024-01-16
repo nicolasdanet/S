@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 ActionLassoComponent::ActionLassoComponent (const juce::Rectangle<int>& bounds) :
-    lassoColour_ (Spaghettis()->getCachedColour (Tag::Lasso))
+    patchLassoColour_ (Spaghettis()->getCachedColour (Tag::PatchLasso))
 {
     setAlwaysOnTop (true);
     setInterceptsMouseClicks (false, true);
@@ -26,7 +26,7 @@ ActionLassoComponent::ActionLassoComponent (const juce::Rectangle<int>& bounds) 
 
 void ActionLassoComponent::paint (juce::Graphics& g)
 {
-    g.setColour (lassoColour_.get()); g.drawRect (getLocalBounds());
+    g.setColour (patchLassoColour_.get()); g.drawRect (getLocalBounds());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -66,6 +66,16 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Set the text color of labels in run view"),
         p->textBox);
     
+    colors.addParameter (Tag::PatchLasso,
+        NEEDS_TRANS ("Patch Lasso"),
+        NEEDS_TRANS ("Set the color of the lasso"),
+        p->selection);
+    
+    colors.addParameter (Tag::PatchLocator,
+        NEEDS_TRANS ("Patch Locator"),
+        NEEDS_TRANS ("Set the color of the locator"),
+        p->textError);
+        
     //
         
     colors.addParameter (Tag::BoxBackground,
@@ -94,18 +104,6 @@ data::Data getDefaultPreferences()
         p->textError);
         
     //
-    
-    colors.addParameter (Tag::Lasso,
-        NEEDS_TRANS ("Lasso"),
-        NEEDS_TRANS ("Set color of lasso"),
-        p->selection);
-    
-    colors.addParameter (Tag::Locator,
-        NEEDS_TRANS ("Locator"),
-        NEEDS_TRANS ("Set color of locator"),
-        p->textError);
-        
-
         
     colors.addParameter (Tag::Line,
         NEEDS_TRANS ("Line"),

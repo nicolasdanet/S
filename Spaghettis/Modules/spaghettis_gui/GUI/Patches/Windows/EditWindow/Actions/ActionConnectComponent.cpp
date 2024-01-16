@@ -15,7 +15,7 @@ namespace spaghettis {
 ActionConnectComponent::ActionConnectComponent (core::Point::Scaled pt) :
     start_ (pt),
     end_ (pt),
-    connectColour_ (Spaghettis()->getCachedColour (Tag::Lasso))
+    connectColour_ (Spaghettis()->getCachedColour (Tag::PatchLasso))
 {
     setAlwaysOnTop (true);
     setInterceptsMouseClicks (false, true);

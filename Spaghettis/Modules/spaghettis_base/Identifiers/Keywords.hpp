@@ -76,8 +76,6 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (Inlet);
     DECLARE_STRING (Inlets);
     DECLARE_STRING (Label);
-    DECLARE_STRING (Lasso);
-    DECLARE_STRING (Locator);
     DECLARE_STRING (Low);
     DECLARE_STRING (Line);
     DECLARE_STRING (LineSelected);
@@ -96,6 +94,8 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (PatchBackground);
     DECLARE_STRING (PatchLabelBackground);
     DECLARE_STRING (PatchLabelText);
+    DECLARE_STRING (PatchLasso);
+    DECLARE_STRING (PatchLocator);
     DECLARE_STRING (Path);
     DECLARE_STRING (Peak);
     DECLARE_STRING (PinAnything);

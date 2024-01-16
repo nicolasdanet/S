@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 Locator::Locator (const juce::Rectangle<int>& bounds) :
-    locatorColour_ (Spaghettis()->getCachedColour (Tag::Locator))
+    patchLocatorColour_ (Spaghettis()->getCachedColour (Tag::PatchLocator))
 {
     setAlwaysOnTop (true);
     setInterceptsMouseClicks (false, true);
@@ -53,7 +53,7 @@ juce::Path getDashedRectangle (const juce::Rectangle<int>& r)
 
 void Locator::paint (juce::Graphics& g)
 {
-    g.setColour (locatorColour_.get());
+    g.setColour (patchLocatorColour_.get());
     
     g.fillPath (getDashedRectangle (getLocalBounds()));
 }
