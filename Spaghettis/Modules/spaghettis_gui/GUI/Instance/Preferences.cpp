@@ -122,11 +122,6 @@ data::Data getDefaultPreferences()
         
     //
         
-    colors.addParameter (Tag::PinOver,
-        NEEDS_TRANS ("Pin Over"),
-        NEEDS_TRANS ("Set color of pins while mouse is over"),
-        p->selection);
-    
     colors.addParameter (Tag::PinSignal,
         NEEDS_TRANS ("Pin Signal"),
         NEEDS_TRANS ("Set color of signal pins"),

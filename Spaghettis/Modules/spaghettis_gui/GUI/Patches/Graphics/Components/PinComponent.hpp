@@ -73,7 +73,6 @@ private:
     core::Object object_;
     data::Cached<bool> selected_;                   /* Is owning object selected? */
     data::Cached<juce::Colour> pinColour_;
-    data::Cached<juce::Colour> pinOverColour_;
     data::Cached<juce::Colour> boxSelectedColour_;
     int  index_;
     bool isOutlet_;

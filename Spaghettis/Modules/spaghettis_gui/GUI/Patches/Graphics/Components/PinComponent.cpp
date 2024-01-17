@@ -58,7 +58,6 @@ PinComponent::PinComponent (PatchView* v,
         object_ (o),
         selected_ (o.getCached<bool> (Tag::Attributes, Tag::Selected)),
         pinColour_ (getColourFromType (type)),
-        pinOverColour_ (Spaghettis()->getCachedColour (Tag::PinOver)),
         boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
         index_ (i),
         isOutlet_ (isOutlet),
@@ -121,9 +120,9 @@ float PinComponent::getScale() const
 
 void PinComponent::paint (juce::Graphics& g)
 {
-    const juce::Colour c (selected_.get() ? boxSelectedColour_.get().contrasting (0.25f) : pinColour_.get());
-        
-    g.setColour (isOver_ ? pinOverColour_.get() : c);
+    if (isOver_)              { g.setColour (boxSelectedColour_.get()); }
+    else if (selected_.get()) { g.setColour (boxSelectedColour_.get().contrasting (0.25f)); }
+    else                      { g.setColour (pinColour_.get()); }
     
     g.fillRect (getBoundWithoutGrip (getLocalBounds(), getScale()));
 }
