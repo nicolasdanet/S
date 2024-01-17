@@ -39,120 +39,17 @@ data::Data getDefaultPreferences()
     
     /* */
         
-    editing.addParameter (Tag::SnapToGrid,
-        NEEDS_TRANS ("Snap To Grid"),
-        NEEDS_TRANS ("Enable magnetic grid"),
-        true);
-
     editing.addParameter (Tag::GridSize,
         NEEDS_TRANS ("Grid Size"),
         NEEDS_TRANS ("Set magnetic grid spacing"),
         12).setRange (juce::Range<int> (1, 64));
 
+    editing.addParameter (Tag::SnapToGrid,
+        NEEDS_TRANS ("Snap To Grid"),
+        NEEDS_TRANS ("Enable magnetic grid"),
+        true);
+        
     /* */
-    
-    colors.addParameter (Tag::PatchBackground,
-        NEEDS_TRANS ("Patch Background"),
-        NEEDS_TRANS ("Set background color of patches"),
-        p->background);
-
-    colors.addParameter (Tag::PatchLabelBackground,
-        NEEDS_TRANS ("Patch Label Background"),
-        NEEDS_TRANS ("Set background color of labels in run view"),
-        p->backgroundBox.withAlpha (0.5f));
-        
-    colors.addParameter (Tag::PatchLabelText,
-        NEEDS_TRANS ("Patch Label Text"),
-        NEEDS_TRANS ("Set text color of labels in run view"),
-        p->textBox);
-    
-    colors.addParameter (Tag::PatchLasso,
-        NEEDS_TRANS ("Patch Lasso"),
-        NEEDS_TRANS ("Set color of lasso"),
-        p->selection);
-    
-    colors.addParameter (Tag::PatchLocator,
-        NEEDS_TRANS ("Patch Locator"),
-        NEEDS_TRANS ("Set color of locator"),
-        p->textError);
-    
-    //
-        
-    colors.addParameter (Tag::Line,
-        NEEDS_TRANS ("Line"),
-        NEEDS_TRANS ("Set color of connections"),
-        p->backgroundBox.contrasting (0.25f));
-    
-    colors.addParameter (Tag::LineSignal,
-        NEEDS_TRANS ("Line Signal"),
-        NEEDS_TRANS ("Set color for signal connections"),
-        p->signal);
-    
-    colors.addParameter (Tag::LineSelected,
-        NEEDS_TRANS ("Line Selected"),
-        NEEDS_TRANS ("Set highlight color for selected lines"),
-        p->selection);
-        
-    //
-        
-    colors.addParameter (Tag::BoxBackground,
-        NEEDS_TRANS ("Box Background"),
-        NEEDS_TRANS ("Set background color of objects"),
-        p->backgroundBox);
-    
-    colors.addParameter (Tag::BoxText,
-        NEEDS_TRANS ("Box Text"),
-        NEEDS_TRANS ("Set text color of objects"),
-        p->textBox);
-        
-    colors.addParameter (Tag::BoxPinsBackground,
-        NEEDS_TRANS ("Box Pin Background"),
-        NEEDS_TRANS ("Set background color of pins"),
-        p->backgroundBox.contrasting (0.05f));
-    
-    colors.addParameter (Tag::BoxSelected,
-        NEEDS_TRANS ("Box Selected"),
-        NEEDS_TRANS ("Set highlight color for selected object"),
-        p->selection);
-    
-    colors.addParameter (Tag::BoxWrong,
-        NEEDS_TRANS ("Box Wrong"),
-        NEEDS_TRANS ("Set highlight color for missing object"),
-        p->textError);
-        
-    //
-        
-    colors.addParameter (Tag::PinSignal,
-        NEEDS_TRANS ("Pin Signal"),
-        NEEDS_TRANS ("Set color of signal pins"),
-        p->signal);
-    
-    colors.addParameter (Tag::PinBang,
-        NEEDS_TRANS ("Pin Bang"),
-        NEEDS_TRANS ("Set color of bang pins"),
-        p->bang);
-    
-    colors.addParameter (Tag::PinFloat,
-        NEEDS_TRANS ("Pin Float"),
-        NEEDS_TRANS ("Set color of float pins"),
-        p->backgroundBox.contrasting (0.25f));
-    
-    colors.addParameter (Tag::PinSymbol,
-        NEEDS_TRANS ("Pin Symbol"),
-        NEEDS_TRANS ("Set color of symbol pins"),
-        p->backgroundBox.contrasting (0.25f));
-    
-    colors.addParameter (Tag::PinList,
-        NEEDS_TRANS ("Pin List"),
-        NEEDS_TRANS ("Set color of list pins"),
-        p->backgroundBox.contrasting (0.25f));
-        
-    colors.addParameter (Tag::PinAnything,
-        NEEDS_TRANS ("Pin Anything"),
-        NEEDS_TRANS ("Set color of anything pins"),
-        p->backgroundBox.contrasting (0.25f));
-    
-    //
     
     colors.addParameter (Tag::ArrayBackground,
         NEEDS_TRANS ("Array Background"),
@@ -200,6 +97,33 @@ data::Data getDefaultPreferences()
 
     //
         
+    colors.addParameter (Tag::BoxBackground,
+        NEEDS_TRANS ("Box Background"),
+        NEEDS_TRANS ("Set background color of objects"),
+        p->backgroundBox);
+    
+    colors.addParameter (Tag::BoxText,
+        NEEDS_TRANS ("Box Text"),
+        NEEDS_TRANS ("Set text color of objects"),
+        p->textBox);
+        
+    colors.addParameter (Tag::BoxPinsBackground,
+        NEEDS_TRANS ("Box Pin Background"),
+        NEEDS_TRANS ("Set background color of pins"),
+        p->backgroundBox.contrasting (0.05f));
+    
+    colors.addParameter (Tag::BoxSelected,
+        NEEDS_TRANS ("Box Selected"),
+        NEEDS_TRANS ("Set highlight color for selected object"),
+        p->selection);
+    
+    colors.addParameter (Tag::BoxWrong,
+        NEEDS_TRANS ("Box Wrong"),
+        NEEDS_TRANS ("Set highlight color for missing object"),
+        p->textError);
+        
+    //
+        
     colors.addParameter (Tag::CommentBackground,
         NEEDS_TRANS ("Comment Background"),
         NEEDS_TRANS ("Set background color of comments"),
@@ -234,6 +158,23 @@ data::Data getDefaultPreferences()
     
     //
         
+    colors.addParameter (Tag::Line,
+        NEEDS_TRANS ("Line"),
+        NEEDS_TRANS ("Set color of connections"),
+        p->backgroundBox.contrasting (0.25f));
+    
+    colors.addParameter (Tag::LineSignal,
+        NEEDS_TRANS ("Line Signal"),
+        NEEDS_TRANS ("Set color for signal connections"),
+        p->signal);
+    
+    colors.addParameter (Tag::LineSelected,
+        NEEDS_TRANS ("Line Selected"),
+        NEEDS_TRANS ("Set highlight color for selected lines"),
+        p->selection);
+        
+    //
+        
     colors.addParameter (Tag::MessageBackground,
         NEEDS_TRANS ("Message Background"),
         NEEDS_TRANS ("Set background color of messages"),
@@ -248,6 +189,65 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Message Clicked"),
         NEEDS_TRANS ("Set text color clicking messages"),
         p->textWarning.brighter (0.25));
+    
+    //
+        
+    colors.addParameter (Tag::PatchBackground,
+        NEEDS_TRANS ("Patch Background"),
+        NEEDS_TRANS ("Set background color of patches"),
+        p->background);
+
+    colors.addParameter (Tag::PatchLabelBackground,
+        NEEDS_TRANS ("Patch Label Background"),
+        NEEDS_TRANS ("Set background color of labels in run view"),
+        p->backgroundBox.withAlpha (0.5f));
+        
+    colors.addParameter (Tag::PatchLabelText,
+        NEEDS_TRANS ("Patch Label Text"),
+        NEEDS_TRANS ("Set text color of labels in run view"),
+        p->textBox);
+    
+    colors.addParameter (Tag::PatchLasso,
+        NEEDS_TRANS ("Patch Lasso"),
+        NEEDS_TRANS ("Set color of lasso"),
+        p->selection);
+    
+    colors.addParameter (Tag::PatchLocator,
+        NEEDS_TRANS ("Patch Locator"),
+        NEEDS_TRANS ("Set color of locator"),
+        p->textError);
+        
+    //
+        
+    colors.addParameter (Tag::PinSignal,
+        NEEDS_TRANS ("Pin Signal"),
+        NEEDS_TRANS ("Set color of signal pins"),
+        p->signal);
+    
+    colors.addParameter (Tag::PinBang,
+        NEEDS_TRANS ("Pin Bang"),
+        NEEDS_TRANS ("Set color of bang pins"),
+        p->bang);
+    
+    colors.addParameter (Tag::PinFloat,
+        NEEDS_TRANS ("Pin Float"),
+        NEEDS_TRANS ("Set color of float pins"),
+        p->backgroundBox.contrasting (0.25f));
+    
+    colors.addParameter (Tag::PinSymbol,
+        NEEDS_TRANS ("Pin Symbol"),
+        NEEDS_TRANS ("Set color of symbol pins"),
+        p->backgroundBox.contrasting (0.25f));
+    
+    colors.addParameter (Tag::PinList,
+        NEEDS_TRANS ("Pin List"),
+        NEEDS_TRANS ("Set color of list pins"),
+        p->backgroundBox.contrasting (0.25f));
+        
+    colors.addParameter (Tag::PinAnything,
+        NEEDS_TRANS ("Pin Anything"),
+        NEEDS_TRANS ("Set color of anything pins"),
+        p->backgroundBox.contrasting (0.25f));
         
     //
         
