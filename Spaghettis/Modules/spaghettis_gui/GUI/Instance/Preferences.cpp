@@ -152,17 +152,19 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Set color of anything pins"),
         p->backgroundBox.contrasting (0.25f));
     
+    //
+    
     colors.addParameter (Tag::ArrayBackground,
         NEEDS_TRANS ("Array Background"),
         NEEDS_TRANS ("Set background color of graphic arrays"),
         p->backgroundBox);
     
-    //
-        
     colors.addParameter (Tag::ArrayValue,
         NEEDS_TRANS ("Array Value"),
         NEEDS_TRANS ("Set content color of graphic arrays"),
         p->backgroundPopup);
+    
+    //
         
     colors.addParameter (Tag::AtomBackground,
         NEEDS_TRANS ("Atom Background"),
@@ -178,6 +180,8 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Atom Clicked"),
         NEEDS_TRANS ("Set triangle color while changing value"),
         p->textWarning);
+    
+    //
         
     colors.addParameter (Tag::BangBackground,
         NEEDS_TRANS ("Bang Background"),
@@ -194,36 +198,20 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Set color of bang for flash on"),
         p->textWarning);
 
-    colors.addParameter (Tag::ToggleBackground,
-        NEEDS_TRANS ("Toggle Background"),
-        NEEDS_TRANS ("Set background color of toggle"),
-        p->backgroundWidget);
-    
-    colors.addParameter (Tag::Toggle,
-        NEEDS_TRANS ("Toggle"),
-        NEEDS_TRANS ("Set color of cross"),
-        p->backgroundPopup);
-    
-    colors.addParameter (Tag::RadioBackground,
-        NEEDS_TRANS ("Radio buttons Background"),
-        NEEDS_TRANS ("Set background color of radio buttons"),
-        p->backgroundWidget);
-    
-    colors.addParameter (Tag::RadioButton,
-        NEEDS_TRANS ("Radio Button"),
-        NEEDS_TRANS ("Set color of activated radio buttons"),
-        p->backgroundPopup);
-    
-    colors.addParameter (Tag::SliderBackground,
-        NEEDS_TRANS ("Slider Background"),
-        NEEDS_TRANS ("Set background color of sliders"),
-        p->backgroundWidget);
-    
-    colors.addParameter (Tag::SliderBar,
-        NEEDS_TRANS ("Slider Bar"),
-        NEEDS_TRANS ("Set foreground color of sliders"),
-        p->backgroundPopup);
-    
+    //
+        
+    colors.addParameter (Tag::CommentBackground,
+        NEEDS_TRANS ("Comment Background"),
+        NEEDS_TRANS ("Set background color of comments"),
+        p->transparent);
+        
+    colors.addParameter (Tag::CommentText,
+        NEEDS_TRANS ("Comment Text"),
+        NEEDS_TRANS ("Set text color of comments"),
+        p->textComment);
+        
+    //
+        
     colors.addParameter (Tag::DialBackground,
         NEEDS_TRANS ("Dial Background"),
         NEEDS_TRANS ("Set background color of dials"),
@@ -244,6 +232,61 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Set color of text"),
         p->textBox);
     
+    //
+        
+    colors.addParameter (Tag::MessageBackground,
+        NEEDS_TRANS ("Message Background"),
+        NEEDS_TRANS ("Set background color of messages"),
+        p->backgroundBox);
+        
+    colors.addParameter (Tag::MessageText,
+        NEEDS_TRANS ("Message Text"),
+        NEEDS_TRANS ("Set text color of messages"),
+        p->textBox);
+        
+    colors.addParameter (Tag::MessageClicked,
+        NEEDS_TRANS ("Message Clicked"),
+        NEEDS_TRANS ("Set text color clicking messages"),
+        p->textWarning.brighter (0.25));
+        
+    //
+        
+    colors.addParameter (Tag::RadioBackground,
+        NEEDS_TRANS ("Radio buttons Background"),
+        NEEDS_TRANS ("Set background color of radio buttons"),
+        p->backgroundWidget);
+    
+    colors.addParameter (Tag::RadioButton,
+        NEEDS_TRANS ("Radio Button"),
+        NEEDS_TRANS ("Set color of activated radio buttons"),
+        p->backgroundPopup);
+    
+    //
+        
+    colors.addParameter (Tag::SliderBackground,
+        NEEDS_TRANS ("Slider Background"),
+        NEEDS_TRANS ("Set background color of sliders"),
+        p->backgroundWidget);
+    
+    colors.addParameter (Tag::SliderBar,
+        NEEDS_TRANS ("Slider Bar"),
+        NEEDS_TRANS ("Set foreground color of sliders"),
+        p->backgroundPopup);
+    
+    //
+        
+    colors.addParameter (Tag::ToggleBackground,
+        NEEDS_TRANS ("Toggle Background"),
+        NEEDS_TRANS ("Set background color of toggle"),
+        p->backgroundWidget);
+    
+    colors.addParameter (Tag::Toggle,
+        NEEDS_TRANS ("Toggle"),
+        NEEDS_TRANS ("Set color of cross"),
+        p->backgroundPopup);
+    
+    //
+    
     colors.addParameter (Tag::VuBackground,
         NEEDS_TRANS ("Vu Background"),
         NEEDS_TRANS ("Set background color of VU meters"),
@@ -263,31 +306,6 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Vu Bar Hot"),
         NEEDS_TRANS ("Set foreground color of top VU bars"),
         p->vuHot);
-        
-    colors.addParameter (Tag::CommentBackground,
-        NEEDS_TRANS ("Comment Background"),
-        NEEDS_TRANS ("Set background color of comments"),
-        p->transparent);
-        
-    colors.addParameter (Tag::CommentText,
-        NEEDS_TRANS ("Comment Text"),
-        NEEDS_TRANS ("Set text color of comments"),
-        p->textComment);
-    
-    colors.addParameter (Tag::MessageBackground,
-        NEEDS_TRANS ("Message Background"),
-        NEEDS_TRANS ("Set background color of messages"),
-        p->backgroundBox);
-        
-    colors.addParameter (Tag::MessageText,
-        NEEDS_TRANS ("Message Text"),
-        NEEDS_TRANS ("Set text color of messages"),
-        p->textBox);
-        
-    colors.addParameter (Tag::MessageClicked,
-        NEEDS_TRANS ("Message Clicked"),
-        NEEDS_TRANS ("Set text color clicking messages"),
-        p->textWarning.brighter (0.25));
         
     return data;
 }
