@@ -560,6 +560,7 @@
 		17C02C072015EDDC00C7EDEE /* d_vperform.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_vperform.c; sourceTree = "<group>"; };
 		17C0B2F4212FD4B300DF3E2A /* m_undoseparator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_undoseparator.c; sourceTree = "<group>"; };
 		17C15CE91F8E4EF7000695B7 /* x_arguments.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_arguments.c; sourceTree = "<group>"; };
+		17C1C7B72B5A4AF500ACAA1E /* m_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_headers.h; sourceTree = "<group>"; };
 		17C3797B202062F6009B00A6 /* x_blocksize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_blocksize.c; sourceTree = "<group>"; };
 		17C519491F23195900113504 /* x_uzi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_uzi.c; sourceTree = "<group>"; };
 		17C7712220148CF400584EE6 /* d_cos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = d_cos.h; sourceTree = "<group>"; };
@@ -1320,6 +1321,7 @@
 				378971C21C4F716700263434 /* g_graphic.h */,
 				376962D01DBFAF50001B91B5 /* d_dsp.h */,
 				17AE921A261C610C001B0FB6 /* w_wrap.h */,
+				17C1C7B72B5A4AF500ACAA1E /* m_headers.h */,
 				3722C5331C4F920B00D2BF6F /* core */,
 				17FBC6E0212DB34E001D6A87 /* undo */,
 				17AE9212261C5AD2001B0FB6 /* wrap */,
