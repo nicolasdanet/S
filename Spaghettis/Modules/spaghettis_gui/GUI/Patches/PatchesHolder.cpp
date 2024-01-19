@@ -12,6 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool PatchesHolder::isEmpty() const
+{
+    return roots_.empty();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -221,11 +230,11 @@ void PatchesHolder::handleSaveRequest (core::UniqueId i, CloseResult result)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool PatchesHolder::isEmpty() const
+bool PatchesHolder::isAllRequestsDone() const
 {
-    return roots_.empty();
+    return requests_.empty();
 }
-
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -245,7 +254,7 @@ void PatchesHolder::requestClosePatch (core::UniqueId i, CloseType notify)
     }
 }
 
-void PatchesHolder::closeAllPatches()
+void PatchesHolder::requestCloseAllPatches()
 {
     std::vector<core::UniqueId> t;
     

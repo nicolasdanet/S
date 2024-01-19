@@ -12,8 +12,17 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-enum class CloseType    { none, yesNo, yesNoCancel };
-enum class CloseResult  { yes, no, cancel };
+enum class CloseType {
+    none,
+    yesNo,
+    yesNoCancel
+};
+
+enum class CloseResult {
+    yes,
+    no,
+    cancel
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -31,6 +40,13 @@ public:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+public:
+    bool isEmpty() const;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     void add (const core::UniquePath&, const core::Report&);
@@ -58,25 +74,20 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    void showSaveRequest (const std::shared_ptr<PatchRoot>&, CloseType);
-    
 public:
     void requestClosePatch (core::UniqueId, CloseType);
-    void handleSaveRequest (core::UniqueId, CloseResult);
-    
-    bool isAllRequestsDone()
-    {
-        return requests_.empty();
-    }
+    void requestCloseAllPatches();
 
+public:
+    bool isAllRequestsDone() const;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    bool isEmpty() const;
-    void closeAllPatches();
+private:
+    void showSaveRequest (const std::shared_ptr<PatchRoot>&, CloseType);
+    void handleSaveRequest (core::UniqueId, CloseResult);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

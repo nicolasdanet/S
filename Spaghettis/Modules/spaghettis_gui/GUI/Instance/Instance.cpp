@@ -93,7 +93,7 @@ bool SpaghettisInstance::requestToQuit()
     
 void SpaghettisInstance::closeAllPatches()
 {
-    patches_->closeAllPatches();
+    patches_->requestCloseAllPatches();
 }
 
 ExitStatus SpaghettisInstance::getExitStatus() const
