@@ -46,26 +46,7 @@ public:
 // MARK: -
 
 public:
-    void add (const core::UniquePath&, const core::Report&);
-    void change (const core::UniquePath&, const core::Report&);
-    void remove (const core::UniquePath&);
-    void rename (const core::UniquePath&, core::UniqueId);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    bool locate (const core::UniquePath&);
-    bool contains (const core::UniquePath&);
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v);
-    void setDirty (bool isDirty);
+    SPAGHETTIS_DECLARE_REPORT
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
