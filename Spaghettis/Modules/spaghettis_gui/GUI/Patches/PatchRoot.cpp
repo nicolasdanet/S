@@ -67,19 +67,19 @@ void PatchRoot::close (bool saveFirst) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchRoot::registerWindowBounds (core::UniqueId u, core::Point::Real pt, int zoom)
+void PatchRoot::registerOffsetAndZoom (core::UniqueId u, core::Point::Real pt, int zoom)
 {
     bounds_.set (PatchBoundsElement (u, pt, zoom));
 }
 
-core::Point::Real PatchRoot::getOffset (const EditView& view) const
+core::Point::Real PatchRoot::getRegisteredOffset (core::UniqueId u) const
 {
-    return bounds_.get (view.getIdentifier()).getOffset();
+    return bounds_.get (u).getOffset();
 }
 
-int PatchRoot::getZoom (const EditView& view) const
+int PatchRoot::getRegisteredZoom (core::UniqueId u) const
 {
-    return bounds_.get (view.getIdentifier()).getZoom();
+    return bounds_.get (u).getZoom();
 }
 
 // -----------------------------------------------------------------------------------------------------------
