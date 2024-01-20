@@ -25,21 +25,30 @@ PatchRoot::~PatchRoot()
         
     // DBG (data::Data::toDebugString (rootTree_));
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void PatchRoot::updateDirty() const
-{
-    setDirtyFlagIfRequired();
-}
 
 bool PatchRoot::isDirty() const
 {
     return dirty_;
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PatchRoot::save() const
+{
+    Spaghettis()->handle (Inputs::savePatch (getIdentifier()));
+}
+    
+void PatchRoot::close (bool saveFirst) const
+{
+    if (saveFirst) { save(); } Spaghettis()->handle (Inputs::closePatch (getIdentifier()));
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -101,7 +110,7 @@ void PatchRoot::showEditWindow (core::UniqueId i)
         }
     }
     
-    updateDirty();
+    setDirtyFlagIfRequired();
 }
 
 void PatchRoot::showRunWindow()
@@ -113,7 +122,7 @@ void PatchRoot::showRunWindow()
         windows_.push_back (std::make_unique<RunWindow> (*this, rootTree_));
     }
     
-    updateDirty();
+    setDirtyFlagIfRequired();
 }
 
 // -----------------------------------------------------------------------------------------------------------
