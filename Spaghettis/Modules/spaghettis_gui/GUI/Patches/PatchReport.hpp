@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define SPAGHETTIS_DECLARE_REPORT \
+#define SPAGHETTIS_REPORT_PROTOCOLS \
     \
     void add (const core::UniquePath&, const core::Report&); \
     void change (const core::UniquePath&, const core::Report&); \

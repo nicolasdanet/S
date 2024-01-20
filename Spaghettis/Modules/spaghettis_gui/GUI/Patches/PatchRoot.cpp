@@ -12,6 +12,24 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+PatchRoot::PatchRoot (const core::Report& v) : rootTree_ (v.asValueTree()), dirty_ (false)
+{
+    openMainWindow();
+}
+
+PatchRoot::~PatchRoot()
+{
+    Spaghettis()->appendRecentFile (getFile());
+        
+    releaseAllWindows();
+        
+    // DBG (data::Data::toDebugString (rootTree_));
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void PatchRoot::updateDirty() const
 {
     setDirtyFlagIfRequired();

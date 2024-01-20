@@ -27,26 +27,16 @@ class PatchRoot {
 // MARK: -
 
 public:
-    explicit PatchRoot (const core::Report& v) : rootTree_ (v.asValueTree()), dirty_ (false)
-    {
-        openMainWindow();
-    }
+    explicit PatchRoot (const core::Report& v);
 
-    ~PatchRoot()
-    {
-        Spaghettis()->appendRecentFile (getFile());
-        
-        releaseAllWindows();
-        
-        // DBG (data::Data::toDebugString (rootTree_));
-    }
+    ~PatchRoot();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    SPAGHETTIS_DECLARE_REPORT
+    SPAGHETTIS_REPORT_PROTOCOLS
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
