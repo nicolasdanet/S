@@ -62,25 +62,6 @@ void PatchRoot::close (bool saveFirst) const
 {
     if (saveFirst) { save(); } Spaghettis()->handle (Inputs::closePatch (getIdentifier()));
 }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void PatchRoot::registerOffsetAndZoom (core::UniqueId u, core::Point::Real pt, int zoom)
-{
-    bounds_.set (PatchBoundsElement (u, pt, zoom));
-}
-
-core::Point::Real PatchRoot::getRegisteredOffset (core::UniqueId u) const
-{
-    return bounds_.get (u).getOffset();
-}
-
-int PatchRoot::getRegisteredZoom (core::UniqueId u) const
-{
-    return bounds_.get (u).getZoom();
-}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -139,10 +120,6 @@ void PatchRoot::showRunWindow()
     setDirtyFlagIfRequired();
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void PatchRoot::closeWindowButtonPressed (PatchWindow* w)
 {
     if (windows_.size() > 1) { removeWindow (w); }
@@ -151,6 +128,25 @@ void PatchRoot::closeWindowButtonPressed (PatchWindow* w)
     Spaghettis()->getPatches().requestClosePatch (getIdentifier(), CloseType::yesNoCancel);
     //
     }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PatchRoot::registerOffsetAndZoom (core::UniqueId u, core::Point::Real pt, int zoom)
+{
+    bounds_.set (PatchBoundsElement (u, pt, zoom));
+}
+
+core::Point::Real PatchRoot::getRegisteredOffset (core::UniqueId u) const
+{
+    return bounds_.get (u).getOffset();
+}
+
+int PatchRoot::getRegisteredZoom (core::UniqueId u) const
+{
+    return bounds_.get (u).getZoom();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -176,7 +172,7 @@ void PatchRoot::releaseAllWindows()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Component* PatchRoot::getMainWindow() const
+juce::Component* PatchRoot::fetchMainWindow() const
 {
     jassert (windows_.empty() == false);
     
@@ -186,10 +182,6 @@ juce::Component* PatchRoot::getMainWindow() const
         return dynamic_cast<juce::Component*> (windows_.front().get());
     }
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 EditWindow* PatchRoot::fetchEditWindow (core::UniqueId i) const
 {

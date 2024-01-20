@@ -181,7 +181,7 @@ bool PatchesHolder::isEmpty() const
 
 void PatchesHolder::showSaveRequest (const std::shared_ptr<PatchRoot>& p, CloseType notify)
 {
-    juce::Component* window = p->getMainWindow();
+    juce::Component* window = p->fetchMainWindow();
     
     jassert (window);
     
