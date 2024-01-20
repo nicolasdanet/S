@@ -39,6 +39,20 @@ bool PatchRoot::isDirty() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+core::UniqueId PatchRoot::getIdentifier() const
+{
+    return core::Patch (rootTree_).getIdentifier();
+}
+
+juce::File PatchRoot::getFile() const
+{
+    return juce::File (core::Patch (rootTree_).get<juce::String> (Tag::Attributes, Tag::Path));
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void PatchRoot::save() const
 {
     Spaghettis()->handle (Inputs::savePatch (getIdentifier()));
