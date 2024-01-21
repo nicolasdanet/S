@@ -96,14 +96,6 @@ public:
 // MARK: -
 
 private:
-    void releaseAllWindows();
-    void removeWindow (PatchWindow*);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
     juce::Component* fetchMainWindow() const;
     EditWindow* fetchEditWindow (core::UniqueId) const;
     RunWindow*  fetchRunWindow() const;

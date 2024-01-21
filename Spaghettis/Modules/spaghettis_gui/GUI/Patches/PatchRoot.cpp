@@ -10,6 +10,35 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void releaseWindow (std::vector<std::unique_ptr<PatchWindow>>& v, PatchWindow* window)
+{
+    auto f = [w = window](const std::unique_ptr<PatchWindow>& p)
+    {
+        return (p.get() == w);
+    };
+        
+    v.erase (std::remove_if (v.begin(), v.end(), f), v.end());
+}
+
+void releaseAllWindows (std::vector<std::unique_ptr<PatchWindow>>& v)
+{
+    v.clear();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 PatchRoot::PatchRoot (const core::Report& v) : rootTree_ (v.asValueTree()), dirty_ (false)
@@ -21,7 +50,7 @@ PatchRoot::~PatchRoot()
 {
     Spaghettis()->appendRecentFile (getFile());
         
-    releaseAllWindows();
+    releaseAllWindows (windows_);
         
     // DBG (data::Data::toDebugString (rootTree_));
 }
@@ -122,7 +151,7 @@ void PatchRoot::showRunWindow()
 
 void PatchRoot::closeWindowButtonPressed (PatchWindow* w)
 {
-    if (windows_.size() > 1) { removeWindow (w); }
+    if (windows_.size() > 1) { releaseWindow (windows_, w); }
     else {
     //
     Spaghettis()->getPatches().requestClosePatch (getIdentifier(), CloseType::yesNoCancel);
@@ -147,25 +176,6 @@ core::Point::Real PatchRoot::getRegisteredOffset (core::UniqueId u) const
 int PatchRoot::getRegisteredZoom (core::UniqueId u) const
 {
     return bounds_.get (u).getZoom();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void PatchRoot::removeWindow (PatchWindow* window)
-{
-    auto f = [w = window](const std::unique_ptr<PatchWindow>& p)
-    {
-        return (p.get() == w);
-    };
-        
-    windows_.erase (std::remove_if (windows_.begin(), windows_.end(), f), windows_.end());
-}
-
-void PatchRoot::releaseAllWindows()
-{
-    windows_.clear();
 }
 
 // -----------------------------------------------------------------------------------------------------------
