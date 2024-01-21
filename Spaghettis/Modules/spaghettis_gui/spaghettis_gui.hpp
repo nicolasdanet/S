@@ -100,6 +100,7 @@
 #include "GUI/Patches/PatchReport.hpp"
 #include "GUI/Patches/PatchRoot.hpp"
 #include "GUI/Patches/PatchesHolder.hpp"
+#include "GUI/Patches/PatchBase.hpp"
 #include "GUI/Patches/PatchWindow.hpp"
 #include "GUI/Patches/PatchView.hpp"
 
