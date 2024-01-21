@@ -34,12 +34,18 @@ auto hasSameIdentifier (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchBounds::set (PatchBoundsElement e)
+void PatchBounds::set (core::UniqueId u, core::Point::Real offset, int zoom)
 {
+    const PatchBoundsElement e (u, offset, zoom);
+    
     auto r = std::find_if (bounds_.begin(), bounds_.end(), hasSameIdentifier (e.getUnique()));
     
     if (r != bounds_.end()) { *r = e; } else { bounds_.push_back (e); }
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 PatchBoundsElement PatchBounds::get (core::UniqueId u) const
 {

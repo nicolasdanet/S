@@ -36,8 +36,8 @@ EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
     BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager()),
     editView_ (patch, tree),
     editPort_ (editView_,
-        patch.getRegisteredOffset (editView_.getIdentifier()),
-        patch.getRegisteredZoom (editView_.getIdentifier())),
+        patch.getBounds().get (editView_.getIdentifier()).getOffset(),
+        patch.getBounds().get (editView_.getIdentifier()).getZoom()),
     editZoom_ (editPort_.getZoomAsValue()),
     editInspector_ (editView_)
 {

@@ -77,7 +77,12 @@ juce::File PatchRoot::getFile() const
 {
     return juce::File (core::Patch (rootTree_).get<juce::String> (Tag::Attributes, Tag::Path));
 }
-    
+
+PatchBounds& PatchRoot::getBounds()
+{
+    return bounds_;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -157,25 +162,6 @@ void PatchRoot::closeWindowButtonPressed (PatchWindow* w)
     Spaghettis()->getPatches().requestClosePatch (getIdentifier(), CloseType::yesNoCancel);
     //
     }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void PatchRoot::registerOffsetAndZoom (core::UniqueId u, core::Point::Real pt, int zoom)
-{
-    bounds_.set (PatchBoundsElement (u, pt, zoom));
-}
-
-core::Point::Real PatchRoot::getRegisteredOffset (core::UniqueId u) const
-{
-    return bounds_.get (u).getOffset();
-}
-
-int PatchRoot::getRegisteredZoom (core::UniqueId u) const
-{
-    return bounds_.get (u).getZoom();
 }
 
 // -----------------------------------------------------------------------------------------------------------

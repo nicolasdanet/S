@@ -26,10 +26,11 @@ public:
 // MARK: -
 
 public:
-    void set (PatchBoundsElement);
-    
-    PatchBoundsElement get (core::UniqueId) const;
+    void set (core::UniqueId, core::Point::Real, int);
 
+public:
+    PatchBoundsElement get (core::UniqueId) const;
+        
 private:
     std::vector<PatchBoundsElement> bounds_;
     

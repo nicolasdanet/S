@@ -55,6 +55,8 @@ public:
 public:
     core::UniqueId getIdentifier() const;
     juce::File getFile() const;
+
+    PatchBounds& getBounds();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -81,15 +83,6 @@ public:
     void showEditWindow (core::UniqueId);
     void showRunWindow();
     void closeWindowButtonPressed (PatchWindow*);
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void registerOffsetAndZoom (core::UniqueId, core::Point::Real, int zoom);
-    core::Point::Real getRegisteredOffset (core::UniqueId) const;
-    int getRegisteredZoom (core::UniqueId) const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
