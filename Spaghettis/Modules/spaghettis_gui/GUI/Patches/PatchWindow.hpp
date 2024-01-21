@@ -24,7 +24,7 @@ public:
         PatchBase (patch, tree),
         BaseWindow (Spaghettis()->getCommandManager(),
             nullptr,
-            core::Patch (tree).get<juce::String> (Tag::Attributes, Tag::Title))
+            core::Patch (getViewTree()).get<juce::String> (Tag::Attributes, Tag::Title))
     {
     }
 

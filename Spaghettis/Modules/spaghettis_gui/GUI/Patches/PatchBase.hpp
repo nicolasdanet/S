@@ -39,6 +39,11 @@ public:
     {
         return patch_;
     }
+    
+    juce::ValueTree getViewTree() const
+    {
+        return viewTree_;
+    }
 
 public:
     core::UniqueId getIdentifier() const
