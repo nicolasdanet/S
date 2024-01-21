@@ -105,14 +105,6 @@ private:
 // MARK: -
 
 private:
-    juce::ValueTree getParent (const core::UniquePath& u) const;
-    bool hasChild (const core::UniquePath& u) const;
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
     juce::ValueTree rootTree_;
     bool dirty_;
 

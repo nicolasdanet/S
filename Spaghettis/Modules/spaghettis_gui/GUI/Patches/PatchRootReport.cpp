@@ -12,22 +12,32 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree PatchRoot::getParent (const core::UniquePath& u) const
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::ValueTree getParent (const juce::ValueTree& root, const core::UniquePath& u)
 {
-    juce::ValueTree t (rootTree_);
+    juce::ValueTree t (root);
     
     if (u.hasPath()) { for (const auto& i : u.getPath()) { t = Tree::getChild (t, i); } }
     
     return t;
 }
 
-bool PatchRoot::hasChild (const core::UniquePath& u) const
+bool hasChild (const juce::ValueTree& root, const core::UniquePath& u)
 {
-    juce::ValueTree parent (getParent (u));
+    juce::ValueTree parent (getParent (root, u));
     
     if (parent.isValid()) { return Tree::getChild (parent, u.getIdentifier()).isValid(); }
     
     return false;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -38,7 +48,7 @@ void PatchRoot::add (const core::UniquePath& u, const core::Report& v)
 {
     jassert (!u.isRoot());
     
-    juce::ValueTree parent (getParent (u));
+    juce::ValueTree parent (getParent (rootTree_, u));
     
     if (v.isPatch()) {
         juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
@@ -54,7 +64,7 @@ void PatchRoot::add (const core::UniquePath& u, const core::Report& v)
 
 void PatchRoot::change (const core::UniquePath& u, const core::Report& v)
 {
-    juce::ValueTree parent (getParent (u));
+    juce::ValueTree parent (getParent (rootTree_, u));
     
     if (u.isRoot()) { core::Patch (parent).apply (v); }
     else {
@@ -75,7 +85,7 @@ void PatchRoot::remove (const core::UniquePath& u)
 {
     jassert (!u.isRoot());
     
-    juce::ValueTree parent (getParent (u));
+    juce::ValueTree parent (getParent (rootTree_, u));
     juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
     
     if (child.isValid()) { parent.removeChild (child, nullptr); }
@@ -85,7 +95,7 @@ void PatchRoot::rename (const core::UniquePath& u, core::UniqueId i)
 {
     jassert (!u.isRoot());
     
-    juce::ValueTree parent (getParent (u));
+    juce::ValueTree parent (getParent (rootTree_, u));
     juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
 
     if (child.isValid()) {
@@ -101,7 +111,7 @@ bool PatchRoot::locate (const core::UniquePath& u)
 {
     if (contains (u)) {
     //
-    const core::UniqueId parent = core::Patch (getParent (u)).getIdentifier();
+    const core::UniqueId parent = core::Patch (getParent (rootTree_, u)).getIdentifier();
     const core::UniqueId object = u.getIdentifier();
     
     showEditWindow (parent);
@@ -115,7 +125,7 @@ bool PatchRoot::locate (const core::UniquePath& u)
 
 bool PatchRoot::contains (const core::UniquePath& u)
 {
-    jassert (!u.isRoot()); return hasChild (u);
+    jassert (!u.isRoot()); return hasChild (rootTree_, u);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -124,7 +134,7 @@ bool PatchRoot::contains (const core::UniquePath& u)
 
 void PatchRoot::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
 {
-    juce::ValueTree parent (getParent (u));
+    juce::ValueTree parent (getParent (rootTree_, u));
     
     if (u.isRoot()) { core::Patch (parent).sortObjects (v); }
     else {
