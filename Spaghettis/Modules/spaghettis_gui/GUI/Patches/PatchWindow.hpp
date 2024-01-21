@@ -12,7 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PatchWindow : public BaseWindow {
+class PatchWindow   :   public PatchBase,
+                        public BaseWindow {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -20,11 +21,10 @@ class PatchWindow : public BaseWindow {
 
 public:
     explicit PatchWindow (PatchRoot& patch, const juce::ValueTree& tree) :
+        PatchBase (patch, tree),
         BaseWindow (Spaghettis()->getCommandManager(),
             nullptr,
-            core::Patch (tree).get<juce::String> (Tag::Attributes, Tag::Title)),
-        patch_ (patch),
-        viewTree_ (tree)
+            core::Patch (tree).get<juce::String> (Tag::Attributes, Tag::Title))
     {
     }
 
@@ -35,26 +35,10 @@ public:
 // MARK: -
 
 public:
-    core::UniqueId getIdentifier() const
-    {
-        return core::Patch (viewTree_).getIdentifier();
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void closeButtonPressed() override
     {
-        patch_.closeWindowButtonPressed (this);
+        getPatchRoot().closeWindowButtonPressed (this);
     }
-
-private:
-    PatchRoot& patch_;
-
-private:
-    juce::ValueTree viewTree_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchWindow)
