@@ -31,7 +31,7 @@ DragHandler::~DragHandler()
 
 EditView* DragHandler::getEditView() const
 {
-    return PatchView::asEditView (getView());
+    return dynamic_cast<EditView*> (getView());
 }
     
 // -----------------------------------------------------------------------------------------------------------
