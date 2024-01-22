@@ -15,19 +15,19 @@ namespace spaghettis {
 EditView::EditView (PatchRoot& patch, const juce::ValueTree& tree) :
     PatchView (patch, tree),
     maker_ (this),
-    isAbstraction_ (core::Patch (viewTree_).isAbstraction()),
-    isLocked_ (core::Patch (viewTree_).isLocked()),
-    undo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Undo)),
-    redo_ (core::Patch (viewTree_).getCached<juce::String> (Tag::Attributes, Tag::Redo)),
+    isAbstraction_ (core::Patch (getViewTree()).isAbstraction()),
+    isLocked_ (core::Patch (getViewTree()).isLocked()),
+    undo_ (core::Patch (getViewTree()).getCached<juce::String> (Tag::Attributes, Tag::Undo)),
+    redo_ (core::Patch (getViewTree()).getCached<juce::String> (Tag::Attributes, Tag::Redo)),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),
     scale_ (1.0f)
 {
-    viewTree_.addListener (this);
+    getViewTree().addListener (this);
     undo_.attach ([]() { Spaghettis()->updateMenuBar(); });
     redo_.attach ([]() { Spaghettis()->updateMenuBar(); });
     patchBackgroundColour_.attach (PainterStrategy::repaint (this));
     setOpaque (true);
-    initialize (viewTree_);
+    initialize (getViewTree());
 }
 
 EditView::~EditView()
@@ -277,12 +277,12 @@ bool EditView::selectLines (const juce::Rectangle<int>& r)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Sync EditView::getSynchronized() const
+Sync EditView::getSynchronized()
 {
     if (getNumberOfSelectedLines() == 1)        { return Sync (getSelectedLine()->getLine());     }
     else if (getNumberOfSelectedObjects() == 1) { return Sync (getSelectedObject()->getObject()); }
     else {
-        return Sync (core::Patch (viewTree_));
+        return Sync (core::Patch (getViewTree()));
     }
 }
 
@@ -726,7 +726,7 @@ void EditView::initialize (const juce::ValueTree& tree)
 
 void EditView::updateOrder()
 {
-    objects_.sort (core::Patch (viewTree_).getObjects());
+    objects_.sort (core::Patch (getViewTree()).getObjects());
     
     auto f = [c = static_cast<juce::Component*> (nullptr)](const auto& p) mutable
     {
@@ -749,24 +749,24 @@ void EditView::handleAsyncUpdate()
 
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    if (t == viewTree_) { addComponent (child); }
+    if (t == getViewTree()) { addComponent (child); }
 }
 
 void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    if (t == viewTree_) { removeComponent (child); }
+    if (t == getViewTree()) { removeComponent (child); }
 }
 
 void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int newIndex)
 {
-    if (t == viewTree_) { triggerAsyncUpdate(); }
+    if (t == getViewTree()) { triggerAsyncUpdate(); }
 }
 
 void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
 {
     juce::ValueTree i (Tree::getParentIfChangedPropertyEquals (t, Tag::Selected));
     
-    if (i.isValid() && isChildOf (viewTree_, i) && inspector_) { inspector_->update(); }
+    if (i.isValid() && isChildOf (getViewTree(), i) && inspector_) { inspector_->update(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

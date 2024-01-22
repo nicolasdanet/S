@@ -17,7 +17,8 @@ class ObjectComponent;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class PatchView :   public juce::Component,
+class PatchView :   public PatchBase,
+                    public juce::Component,
                     public juce::ValueTree::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -25,7 +26,7 @@ class PatchView :   public juce::Component,
 // MARK: -
 
 public:
-    explicit PatchView (PatchRoot& patch, const juce::ValueTree& tree) : patch_ (patch), viewTree_ (tree)
+    explicit PatchView (PatchRoot& patch, const juce::ValueTree& tree) : PatchBase (patch, tree)
     {
     }
     
@@ -43,32 +44,6 @@ public:
 
 public:
     virtual float getScale() const = 0;
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    PatchRoot& getPatchRoot() const
-    {
-        return patch_;
-    }
-
-public:
-    core::UniqueId getIdentifier() const
-    {
-        return core::Patch (viewTree_).getIdentifier();
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    PatchRoot& patch_;
-    
-protected:
-    juce::ValueTree viewTree_;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

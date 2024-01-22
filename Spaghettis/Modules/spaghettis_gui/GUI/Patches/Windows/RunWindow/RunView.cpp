@@ -16,10 +16,10 @@ RunView::RunView (PatchRoot& patch, const juce::ValueTree& tree) :
     PatchView (patch, tree),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground))
 {
-    viewTree_.addListener (this);
+    getViewTree().addListener (this);
     patchBackgroundColour_.attach (PainterStrategy::repaint (this));
     setOpaque (true);
-    initialize (viewTree_);
+    initialize (getViewTree());
 }
 
 RunView::~RunView()

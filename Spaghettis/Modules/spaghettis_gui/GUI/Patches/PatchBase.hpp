@@ -40,7 +40,7 @@ public:
         return patch_;
     }
     
-    juce::ValueTree getViewTree() const
+    juce::ValueTree& getViewTree()
     {
         return viewTree_;
     }
