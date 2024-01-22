@@ -68,7 +68,7 @@ public:
 public:
     bool isSameAs (const juce::ValueTree& t) const
     {
-        return (viewTree_ == t);
+        return (t == viewTree_);
     }
     
 // -----------------------------------------------------------------------------------------------------------
