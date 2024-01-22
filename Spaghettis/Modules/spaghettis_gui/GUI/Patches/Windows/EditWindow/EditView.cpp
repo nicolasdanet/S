@@ -15,10 +15,10 @@ namespace spaghettis {
 EditView::EditView (PatchRoot& patch, const juce::ValueTree& tree) :
     PatchView (patch, tree),
     maker_ (this),
-    isAbstraction_ (core::Patch (getViewTree()).isAbstraction()),
-    isLocked_ (core::Patch (getViewTree()).isLocked()),
-    undo_ (core::Patch (getViewTree()).getCached<juce::String> (Tag::Attributes, Tag::Undo)),
-    redo_ (core::Patch (getViewTree()).getCached<juce::String> (Tag::Attributes, Tag::Redo)),
+    isAbstraction_ (getPatch().isAbstraction()),
+    isLocked_ (getPatch().isLocked()),
+    undo_ (getPatch().getCached<juce::String> (Tag::Attributes, Tag::Undo)),
+    redo_ (getPatch().getCached<juce::String> (Tag::Attributes, Tag::Redo)),
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),
     scale_ (1.0f)
 {
@@ -282,7 +282,7 @@ Sync EditView::getSynchronized()
     if (getNumberOfSelectedLines() == 1)        { return Sync (getSelectedLine()->getLine());     }
     else if (getNumberOfSelectedObjects() == 1) { return Sync (getSelectedObject()->getObject()); }
     else {
-        return Sync (core::Patch (getViewTree()));
+        return Sync (getPatch());
     }
 }
 
@@ -726,7 +726,7 @@ void EditView::initialize (const juce::ValueTree& tree)
 
 void EditView::updateOrder()
 {
-    objects_.sort (core::Patch (getViewTree()).getObjects());
+    objects_.sort (getPatch().getObjects());
     
     auto f = [c = static_cast<juce::Component*> (nullptr)](const auto& p) mutable
     {
