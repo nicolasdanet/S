@@ -26,7 +26,7 @@ class PatchView :   public PatchBase,
 // MARK: -
 
 public:
-    explicit PatchView (PatchRoot& patch, const juce::ValueTree& tree) : PatchBase (patch, tree)
+    explicit PatchView (PatchBase base) : PatchBase (base)
     {
     }
     
