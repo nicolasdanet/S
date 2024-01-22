@@ -19,7 +19,7 @@ class RunView : public PatchView, private juce::AsyncUpdater {
 // MARK: -
 
 public:
-    explicit RunView (PatchRoot&, const juce::ValueTree&);
+    explicit RunView (const PatchBase&);
     
     ~RunView();
 

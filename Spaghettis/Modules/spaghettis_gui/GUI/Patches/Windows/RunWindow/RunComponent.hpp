@@ -20,7 +20,7 @@ class RunComponent :    protected RunFactoryHelper,    /* MUST be the first. */
 // MARK: -
 
 public:
-    explicit RunComponent (PatchRoot&, const juce::ValueTree&);
+    explicit RunComponent (const PatchBase&);
     
     ~RunComponent() = default;
 

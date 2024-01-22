@@ -26,7 +26,7 @@ class PatchView :   public PatchBase,
 // MARK: -
 
 public:
-    explicit PatchView (PatchBase base) : PatchBase (base)
+    explicit PatchView (const PatchBase& base) : PatchBase (base)
     {
     }
     

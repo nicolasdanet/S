@@ -131,11 +131,11 @@ void PatchRoot::showEditWindow (core::UniqueId i)
     if (w) { w->toFront (true); }
     else {
         if (getIdentifier() == i) {
-            windows_.push_back (std::make_unique<EditWindow> (*this, rootTree_));
+            windows_.push_back (std::make_unique<EditWindow> (PatchBase (*this, rootTree_)));
         } else {
             juce::ValueTree t (Tree::findChild (rootTree_, i));
             jassert (t.isValid());
-            windows_.push_back (std::make_unique<EditWindow> (*this, t));
+            windows_.push_back (std::make_unique<EditWindow> (PatchBase (*this, t)));
         }
     }
     
@@ -148,7 +148,7 @@ void PatchRoot::showRunWindow()
     
     if (w) { w->toFront (true); }
     else {
-        windows_.push_back (std::make_unique<RunWindow> (*this, rootTree_));
+        windows_.push_back (std::make_unique<RunWindow> (PatchBase (*this, rootTree_)));
     }
     
     setDirtyFlagIfRequired();

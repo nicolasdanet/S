@@ -31,13 +31,13 @@ juce::String getInspectorMenuText (const EditInspector& i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditComponent::EditComponent (PatchRoot& patch, const juce::ValueTree& tree) :
+EditComponent::EditComponent (const PatchBase& base) :
     EditFactoryHelper (this),
     BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager()),
-    editView_ (patch, tree),
+    editView_ (base),
     editPort_ (editView_,
-        patch.getBounds().get (editView_.getIdentifier()).getOffset(),
-        patch.getBounds().get (editView_.getIdentifier()).getZoom()),
+        getPatchRoot().getBounds().get (editView_.getIdentifier()).getOffset(),
+        getPatchRoot().getBounds().get (editView_.getIdentifier()).getZoom()),
     editZoom_ (editPort_.getZoomAsValue()),
     editInspector_ (editView_)
 {

@@ -20,7 +20,7 @@ class PatchWindow   :   public PatchBase,
 // MARK: -
 
 public:
-    explicit PatchWindow (PatchBase base) :
+    explicit PatchWindow (const PatchBase& base) :
         PatchBase (base),
         BaseWindow (Spaghettis()->getCommandManager(),
             nullptr,

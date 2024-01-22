@@ -19,9 +19,9 @@ class RunWindow : public PatchWindow {
 // MARK: -
 
 public:
-    explicit RunWindow (PatchRoot& owner, const juce::ValueTree& tree) : PatchWindow (PatchBase (owner, tree))
+    explicit RunWindow (const PatchBase& base) : PatchWindow (base)
     {
-        setContentOwned (new RunComponent (owner, tree), true);
+        setContentOwned (new RunComponent (base), true);
         
         makeVisible (getPatch().get<juce::Rectangle<int>> (Tag::Attributes, Tag::RunView), false);
     }

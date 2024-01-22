@@ -31,10 +31,10 @@ juce::String getPresetsMenuText (bool hasPresets)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-RunComponent::RunComponent (PatchRoot& patch, const juce::ValueTree& tree) :
+RunComponent::RunComponent (const PatchBase& base) :
     RunFactoryHelper (this),
     BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager()),
-    runView_ (patch, tree),
+    runView_ (base),
     hasPresets_ (false)
 {
     CommandsHandler::addCloseWindowCommand (this);
