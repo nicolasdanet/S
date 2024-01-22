@@ -66,7 +66,7 @@ public:
 // MARK: -
 
 public:
-    bool isSameAs (const juce::ValueTree& t) const
+    bool isSameAsPatch (const juce::ValueTree& t) const
     {
         return (t == viewTree_);
     }

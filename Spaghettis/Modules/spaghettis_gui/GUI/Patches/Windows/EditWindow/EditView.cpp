@@ -730,24 +730,24 @@ void EditView::handleAsyncUpdate()
 
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    if (isSameAs (t)) { addComponent (child); }
+    if (isSameAsPatch (t)) { addComponent (child); }
 }
 
 void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    if (isSameAs (t)) { removeComponent (child); }
+    if (isSameAsPatch (t)) { removeComponent (child); }
 }
 
 void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int newIndex)
 {
-    if (isSameAs (t)) { triggerAsyncUpdate(); }
+    if (isSameAsPatch (t)) { triggerAsyncUpdate(); }
 }
 
 void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
 {
     juce::ValueTree i (Tree::getParentIfChangedPropertyEquals (t, Tag::Selected));
     
-    if (i.isValid() && isSameAs (i.getParent()) && inspector_) { inspector_->update(); }
+    if (i.isValid() && isSameAsPatch (i.getParent()) && inspector_) { inspector_->update(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
