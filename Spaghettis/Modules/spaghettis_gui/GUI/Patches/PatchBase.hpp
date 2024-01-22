@@ -35,7 +35,7 @@ public:
 // MARK: -
 
 public:
-    PatchRoot& getPatchRoot() const
+    PatchRoot& getPatchRoot()
     {
         return patch_;
     }

@@ -59,7 +59,7 @@ private:
 // MARK: -
 
 public:
-    PatchRoot& getPatchRoot() const
+    PatchRoot& getPatchRoot()
     {
         return runView_.getPatchRoot();
     }
