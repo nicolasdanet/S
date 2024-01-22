@@ -749,17 +749,17 @@ void EditView::handleAsyncUpdate()
 
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    if (t == getViewTree()) { addComponent (child); }
+    if (isSameAs (t)) { addComponent (child); }
 }
 
 void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    if (t == getViewTree()) { removeComponent (child); }
+    if (isSameAs (t)) { removeComponent (child); }
 }
 
 void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int newIndex)
 {
-    if (t == getViewTree()) { triggerAsyncUpdate(); }
+    if (isSameAs (t)) { triggerAsyncUpdate(); }
 }
 
 void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
