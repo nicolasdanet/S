@@ -28,6 +28,8 @@ public:
 public:
     PatchBase (const PatchBase&) = default;
     PatchBase (PatchBase&&) = default;
+
+public:
     PatchBase& operator = (const PatchBase&) = delete;
     PatchBase& operator = (PatchBase&&) = delete;
     
@@ -61,6 +63,16 @@ public:
         return getPatch().getIdentifier();
     }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool isLocked() const
+    {
+        return (getPatch().isAbstraction() || getPatch().isLocked());
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
