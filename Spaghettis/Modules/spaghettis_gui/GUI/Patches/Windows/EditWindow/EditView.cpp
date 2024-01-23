@@ -142,7 +142,7 @@ void EditView::setMouseCursorRecursive (const juce::MouseCursor& m)
 {
     auto f = [m](const auto& p) { p->setMouseCursor (m); };
     
-    objects_.forEach (f); lines_.forEach (f);
+    objects_.doForEach (f); lines_.doForEach (f);
     
     setMouseCursor (m);
 }
@@ -185,7 +185,7 @@ namespace {
 
 template <class T> int getNumberOfSelected (T& t)
 {
-    auto n = t.countIf ([](const auto& p) { return p->isSelected(); });
+    auto n = t.doCountIf ([](const auto& p) { return p->isSelected(); });
 
     return static_cast<int> (n);
 }
@@ -196,14 +196,14 @@ template <class T> core::UniqueId getSelected (T& t)
     
     auto f = [&u](const auto& p) { u = p->getIdentifier(); };
 
-    t.forEachSelected (f);
+    t.doForEachSelected (f);
     
     return u;
 }
 
 void deconnectSelectedLines (Table<LineComponent>& t)
 {
-    t.forEachSelected ([](const auto& p) { p->disconnect(); });
+    t.doForEachSelected ([](const auto& p) { p->disconnect(); });
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -254,7 +254,7 @@ bool EditView::selectObjects (const juce::Rectangle<int>& r)
         if (r.intersects (p->getBounds())) { p->setSelected (true); done = true; }
     };
 
-    objects_.forEach (f);
+    objects_.doForEach (f);
 
     return done;
 }
@@ -268,7 +268,7 @@ bool EditView::selectLines (const juce::Rectangle<int>& r)
         if (p->intersects (t)) { p->setSelected (true); done = true; }
     };
 
-    lines_.forEach (f);
+    lines_.doForEach (f);
 
     return done;
 }
@@ -320,13 +320,13 @@ bool EditView::hasPaste() const
 
 void EditView::deselectAll()
 {
-    lines_.forEach   ([](const auto& p) { p->setSelected (false); });
-    objects_.forEach ([](const auto& p) { p->setSelected (false); });
+    lines_.doForEach   ([](const auto& p) { p->setSelected (false); });
+    objects_.doForEach ([](const auto& p) { p->setSelected (false); });
 }
 
 void EditView::selectAll()
 {
-    objects_.forEach ([](const auto& p) { p->setSelected (true); });
+    objects_.doForEach ([](const auto& p) { p->setSelected (true); });
 }
 
 void EditView::select (const juce::Rectangle<int>& r)
@@ -342,7 +342,7 @@ void EditView::dragObjectsStart()
 {
     if (!isAbstractionOrInside()) {
     //
-    objects_.forEach ([](const auto& p) { p->dragStart(); });
+    objects_.doForEach ([](const auto& p) { p->dragStart(); });
     //
     }
 }
@@ -351,7 +351,7 @@ void EditView::dragObjects (core::Vector::Real offset)
 {
     if (!isAbstractionOrInside()) {
     //
-    objects_.forEachSelected ([offset](const auto& p) { p->drag (offset); });
+    objects_.doForEachSelected ([offset](const auto& p) { p->drag (offset); });
     //
     }
 }
@@ -360,7 +360,7 @@ void EditView::resizeObjects (core::Vector::Real offset)
 {
     if (!isAbstractionOrInside()) {
     //
-    objects_.forEachSelected ([offset](const auto& p) { p->resize (offset); });
+    objects_.doForEachSelected ([offset](const auto& p) { p->resize (offset); });
     //
     }
 }
@@ -500,7 +500,7 @@ std::optional<core::Point::Real> getPositionNextSelectedObjects (Table<ObjectCom
         pt = getMinimum (pt, p->getPosition()) + core::Vector::Real (n * 2, n * 2);
     };
 
-    objects.forEachSelected (f);
+    objects.doForEachSelected (f);
     
     return pt;
 }
@@ -672,7 +672,7 @@ void EditView::setScale (float scale)
     
     auto f = [](const auto& p) { p->scaleChanged(); };
     
-    objects_.forEach (f); lines_.forEach (f);
+    objects_.doForEach (f); lines_.doForEach (f);
 }
 
 float EditView::getScale() const
@@ -714,9 +714,9 @@ void EditView::updateOrder()
         p->moveBehind (c); c = p.get();
     };
     
-    objects_.forEachReversed (f);
+    objects_.doForEachReversed (f);
     
-    lines_.forEachReversed ([](const auto& p) { p->updateOrder(); });
+    lines_.doForEachReversed ([](const auto& p) { p->updateOrder(); });
 }
 
 void EditView::handleAsyncUpdate()

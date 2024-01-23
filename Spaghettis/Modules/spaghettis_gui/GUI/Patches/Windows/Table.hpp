@@ -58,31 +58,31 @@ public:
 // MARK: -
 
 public:
-    template <class F> void forEach (F f) const
+    template <class F> void doForEach (F f) const
     {
         for_each (v_.cbegin(), v_.cend(), f);
     }
     
-    template <class F> void forEachReversed (F f) const
+    template <class F> void doForEachReversed (F f) const
     {
         for_each (v_.crbegin(), v_.crend(), f);
     }
     
-    template <class F> void forEachSelected (F f) const
+    template <class F> void doForEachSelected (F f) const
     {
         auto g = [h = f](const auto& p) { if (p->isSelected()) { h (p); } };
         
-        forEach (g);
+        doForEach (g);
     }
 
-    template <class F> void forUnique (F f, core::UniqueId identifier) const
+    template <class F> void doForUnique (F f, core::UniqueId identifier) const
     {
         auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (identifier));
         
         if (r != v_.cend()) { f (*r); }
     }
     
-    template <class F> auto countIf (F f) const
+    template <class F> auto doCountIf (F f) const
     {
         return count_if (v_.cbegin(), v_.cend(), f);
     }
