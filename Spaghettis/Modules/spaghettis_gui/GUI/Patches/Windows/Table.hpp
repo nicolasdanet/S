@@ -26,24 +26,19 @@ public:
 // MARK: -
 
 public:
-    void clear()
-    {
-        v_.clear();
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     template <class U> void add (PatchView* owner, const U& t)
     {
         v_.push_back (std::make_unique<T> (owner, t));
     }
-
-    template <class U> void remove (const U& t)
+    
+    void remove (core::UniqueId u)
     {
-        v_.erase (std::remove_if (v_.begin(), v_.end(), hasSameIdentifier (t.getIdentifier())), v_.end());
+        v_.erase (std::remove_if (v_.begin(), v_.end(), hasSameIdentifier (u)), v_.end());
+    }
+    
+    void clear()
+    {
+        v_.clear();
     }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -692,8 +692,8 @@ void EditView::addComponent (const juce::ValueTree& child)
 
 void EditView::removeComponent (const juce::ValueTree& child)
 {
-    if (Tree::isObject (child))    { objects_.remove (core::Object (child)); }
-    else if (Tree::isLine (child)) { lines_.remove (core::Line (child));     }
+    if (Tree::isObject (child))    { objects_.remove (core::Object (child).getIdentifier()); }
+    else if (Tree::isLine (child)) { lines_.remove (core::Line (child).getIdentifier());     }
 }
 
 void EditView::initialize (const juce::ValueTree& tree)

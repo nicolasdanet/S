@@ -109,7 +109,7 @@ void RunView::removeComponent (const juce::ValueTree& child)
     //
     const core::Object object (child);
     
-    if (object.isGraphic()) { objects_.remove (object); }
+    if (object.isGraphic()) { objects_.remove (object.getIdentifier()); }
     //
     }
 }
