@@ -36,6 +36,13 @@ public:
         v_.erase (std::remove_if (v_.begin(), v_.end(), hasSameIdentifier (u)), v_.end());
     }
     
+    void sort (const std::vector<core::UniqueId>& t)
+    {
+        jassert (v_.size() == t.size());
+        
+        int i = 0; for (auto u : t) { moveAt (i++, u); }
+    }
+    
     void clear()
     {
         v_.clear();
@@ -97,14 +104,9 @@ private:
         auto r = std::find_if (v_.begin(), v_.end(), hasSameIdentifier (identifier));
         
         if (r != v_.end()) { r->swap (v_[i]); }
-    }
-
-public:
-    void sort (const std::vector<core::UniqueId>& t)
-    {
-        jassert (v_.size() == t.size());
-        
-        int i = 0; for (auto u : t) { moveAt (i++, u); }
+        else {
+            jassertfalse;
+        }
     }
 
 // -----------------------------------------------------------------------------------------------------------
