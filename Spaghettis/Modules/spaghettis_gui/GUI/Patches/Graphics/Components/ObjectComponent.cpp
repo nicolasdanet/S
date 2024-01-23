@@ -77,8 +77,8 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     x_.attach (f);
     y_.attach (f);
     
-    selected_.attach (PainterStrategy::repaint (this));
-    boxSelectedColour_.attach (PainterStrategy::repaint (this));
+    selected_.attach (Painter::repaint (this));
+    boxSelectedColour_.attach (Painter::repaint (this));
     
     if (isInsideRunView()) { addMouseListener (painter_.get(), true); }
 }
@@ -311,12 +311,12 @@ namespace {
 
 juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>& r, float f)
 {
-    return r.reduced (0, PainterStrategy::pinHeight (f));
+    return r.reduced (0, Painter::pinHeight (f));
 }
 
 juce::Rectangle<int> getBoundsFromPaintedArea (const juce::Rectangle<int>& r, float f)
 {
-    return r.expanded (0, PainterStrategy::pinHeight (f));
+    return r.expanded (0, Painter::pinHeight (f));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -494,19 +494,19 @@ namespace {
 
 juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float f, bool isOutlet)
 {
-    const int w = PainterStrategy::pinGripX (f) * 2 + PainterStrategy::pinWidth (f);
+    const int w = Painter::pinGripX (f) * 2 + Painter::pinWidth (f);
     const int x = bounds.getX() + (index * w);
     
     bounds.setX (x);
-    bounds.setWidth (PainterStrategy::pinWidth (f));
+    bounds.setWidth (Painter::pinWidth (f));
     
     if (isOutlet) {
-        bounds = bounds.removeFromBottom (PainterStrategy::pinHeight (f));
+        bounds = bounds.removeFromBottom (Painter::pinHeight (f));
     } else {
-        bounds = bounds.removeFromTop (PainterStrategy::pinHeight (f));
+        bounds = bounds.removeFromTop (Painter::pinHeight (f));
     }
     
-    return bounds.expanded (PainterStrategy::pinGripX (f), PainterStrategy::pinGripY (f));
+    return bounds.expanded (Painter::pinGripX (f), Painter::pinGripY (f));
 }
 
 juce::String getPinTooltip (const data::Data& documentation, const juce::String& type, bool isOutlet, int i)

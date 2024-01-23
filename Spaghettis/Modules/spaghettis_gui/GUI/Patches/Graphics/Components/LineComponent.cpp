@@ -27,9 +27,9 @@ LineComponent::LineComponent (PatchView* view, const core::Line& line) :
 {
     jassert (view);
     
-    lineColour_.attach (PainterStrategy::repaint (this));
-    lineSelectedColour_.attach (PainterStrategy::repaint (this));
-    lineSignalColour_.attach (PainterStrategy::repaint (this));
+    lineColour_.attach (Painter::repaint (this));
+    lineSelectedColour_.attach (Painter::repaint (this));
+    lineSignalColour_.attach (Painter::repaint (this));
     
     update();
     
@@ -220,9 +220,9 @@ auto getStraightLine (const juce::Rectangle<int>& bounds,
     /* If the inlet is above the outlet, use the inside borders of pins. */
     /* Normal case, use the outside borders. */
     
-    if (bounds.getHeight() > PainterStrategy::pinHeight (f) * 2) {
+    if (bounds.getHeight() > Painter::pinHeight (f) * 2) {
     //
-    const float h = PainterStrategy::pinHeight (f) / 2.0f;
+    const float h = Painter::pinHeight (f) / 2.0f;
         
     if (iPin.getY() < oPin.getY()) { p1.addXY (0, -h); p2.addXY (0,  h); }
     else                           { p1.addXY (0,  h); p2.addXY (0, -h); }

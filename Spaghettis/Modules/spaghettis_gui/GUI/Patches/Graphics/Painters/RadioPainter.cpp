@@ -23,13 +23,13 @@ RadioPainter::RadioPainter (ObjectComponent* owner) :
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
     painted_()
 {
-    radioBackgroundColour_.attach (repaint (component_));
-    radioButtonColour_.attach (repaint (component_));
-    value_.attach (repaint (component_));
-    isMultiple_.attach (repaint (component_));
-    isVertical_.attach (resized (component_));
-    buttons_.attach (resized (component_));
-    width_.attach (resized (component_));
+    radioBackgroundColour_.attach (Painter::repaint (component_));
+    radioButtonColour_.attach (Painter::repaint (component_));
+    value_.attach (Painter::repaint (component_));
+    isMultiple_.attach (Painter::repaint (component_));
+    isVertical_.attach (Painter::resized (component_));
+    buttons_.attach (Painter::resized (component_));
+    width_.attach (Painter::resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

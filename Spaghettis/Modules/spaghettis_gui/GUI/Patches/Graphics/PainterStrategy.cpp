@@ -23,9 +23,9 @@ PainterStrategy::PainterStrategy (ObjectComponent* owner) :
     jassert (owner);
     jassert (object_.isObject());
     
-    boxPinsBackgroundColour_.attach (repaint (component_));
-    patchLabelBackgroundColour_.attach (repaint (component_));
-    patchLabelTextColour_.attach (repaint (component_));
+    boxPinsBackgroundColour_.attach (Painter::repaint (component_));
+    patchLabelBackgroundColour_.attach (Painter::repaint (component_));
+    patchLabelTextColour_.attach (Painter::repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -143,9 +143,9 @@ int getMinimumWidth (float f, int m, int n)
 {
     const int pins = juce::jmax (m, n, 1);
     
-    int w = pins * PainterStrategy::pinWidth (f);
+    int w = pins * Painter::pinWidth (f);
     
-    if (pins > 1) { w += (pins - 1) * PainterStrategy::pinGripX (f) * 2; }
+    if (pins > 1) { w += (pins - 1) * Painter::pinGripX (f) * 2; }
     
     return w;
 }

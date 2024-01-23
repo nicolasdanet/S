@@ -125,21 +125,6 @@ protected:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    static auto repaint (juce::Component* component)
-    {
-        return [c = component]() { c->repaint(); };
-    }
-
-    static auto resized (juce::Component* component)
-    {
-        return [c = component]() { c->resized(); };
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 protected:
     ObjectComponent* component_;
     core::Object object_;
@@ -147,12 +132,6 @@ protected:
     data::Cached<juce::Colour> patchLabelBackgroundColour_;
     data::Cached<juce::Colour> patchLabelTextColour_;
     int objectWidth_;
-
-public:
-    static int pinHeight (float f) { return static_cast<int> (std::round (4 * f)); }
-    static int pinWidth  (float f) { return static_cast<int> (std::round (8 * f)); }
-    static int pinGripX  (float f) { return (f >= 1.0f) ? 1 : 0; }
-    static int pinGripY  (float f) { return (f >= 1.0f) ? 3 : 0; }
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PainterStrategy)

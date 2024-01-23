@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2023 Jojo and others. */
+/* Copyright (c) 2024 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -12,61 +12,36 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-TogglePainter::TogglePainter (ObjectComponent* owner) :
-    PainterStrategy (owner),
-    toggleBackgroundColour_ (Spaghettis()->getCachedColour (Tag::ToggleBackground)),
-    toggleColour_ (Spaghettis()->getCachedColour (Tag::Toggle)),
-    state_ (object_.getCached<bool> (Tag::Parameters, Tag::State)),
-    width_ (object_.getCached<int> (Tag::Parameters, Tag::Width))
+struct Painter {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static auto repaint (juce::Component* component)
 {
-    toggleBackgroundColour_.attach (Painter::repaint (component_));
-    toggleColour_.attach (Painter::repaint (component_));
-    state_.attach (Painter::repaint (component_));
-    width_.attach (Painter::resized (component_));
+    return [c = component]() { c->repaint(); };
+}
+
+static auto resized (juce::Component* component)
+{
+    return [c = component]() { c->resized(); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void TogglePainter::mouseDown (const juce::MouseEvent& e)
-{
-    Spaghettis()->handle (Inputs::sendObjectBang (getIdentifier()));
-}
+static int pinHeight (float f) { return static_cast<int> (std::round (4 * f)); }
+static int pinWidth  (float f) { return static_cast<int> (std::round (8 * f)); }
+static int pinGripX  (float f) { return (f >= 1.0f) ? 1 : 0; }
+static int pinGripY  (float f) { return (f >= 1.0f) ? 3 : 0; }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-void TogglePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
-{
-    g.setColour (toggleBackgroundColour_.get());
-    g.fillRect (r);
-    
-    if (state_.get()) {
-        g.setColour (toggleColour_.get()); LNF::drawCross (g, r.reduced (1));
-    }
-}
+};
 
-juce::Rectangle<int> TogglePainter::getRequiredBoundsForObject()
-{
-    return getRequiredBoundsFromDimensions();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-std::optional<core::Vector::Real> TogglePainter::getDimensions()
-{
-    const int w = width_.get(); return core::Vector::Real (w, w);
-}
-
-void TogglePainter::setDimensions (core::Vector::Real v)
-{
-    setDimensionsByParameters (v);
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -74,3 +49,4 @@ void TogglePainter::setDimensions (core::Vector::Real v)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+

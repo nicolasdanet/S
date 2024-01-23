@@ -20,11 +20,11 @@ BangPainter::BangPainter (ObjectComponent* owner) :
     flashed_ (object_.getCached<bool> (Tag::Parameters, Tag::Flashed)),
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width))
 {
-    bangBackgroundColour_.attach (repaint (component_));
-    bangFlashOffColour_.attach (repaint (component_));
-    bangFlashOnColour_.attach (repaint (component_));
-    flashed_.attach (repaint (component_));
-    width_.attach (resized (component_));
+    bangBackgroundColour_.attach (Painter::repaint (component_));
+    bangFlashOffColour_.attach (Painter::repaint (component_));
+    bangFlashOnColour_.attach (Painter::repaint (component_));
+    flashed_.attach (Painter::repaint (component_));
+    width_.attach (Painter::resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

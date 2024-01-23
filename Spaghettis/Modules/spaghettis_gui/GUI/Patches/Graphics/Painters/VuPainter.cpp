@@ -23,14 +23,14 @@ VuPainter::VuPainter (ObjectComponent* owner) :
     width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
     height_ (object_.getCached<int> (Tag::Parameters, Tag::Height))
 {
-    vuBackgroundColour_.attach (repaint (component_));
-    vuBarColdColour_.attach (repaint (component_));
-    vuBarWarmColour_.attach (repaint (component_));
-    vuBarHotColour_.attach (repaint (component_));
-    value_.attach (repaint (component_));
-    peak_.attach (repaint (component_));
-    width_.attach (resized (component_));
-    height_.attach (resized (component_));
+    vuBackgroundColour_.attach (Painter::repaint (component_));
+    vuBarColdColour_.attach (Painter::repaint (component_));
+    vuBarWarmColour_.attach (Painter::repaint (component_));
+    vuBarHotColour_.attach (Painter::repaint (component_));
+    value_.attach (Painter::repaint (component_));
+    peak_.attach (Painter::repaint (component_));
+    width_.attach (Painter::resized (component_));
+    height_.attach (Painter::resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

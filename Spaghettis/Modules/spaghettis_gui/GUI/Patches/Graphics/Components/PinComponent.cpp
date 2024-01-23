@@ -37,7 +37,7 @@ bool isPinSignal (const juce::String& type)
 
 juce::Rectangle<int> getBoundWithoutGrip (juce::Rectangle<int> r, float scale)
 {
-    return r.reduced (PainterStrategy::pinGripX (scale), PainterStrategy::pinGripY (scale));
+    return r.reduced (Painter::pinGripX (scale), Painter::pinGripY (scale));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -64,9 +64,9 @@ PinComponent::PinComponent (PatchView* v,
         isSignal_ (isPinSignal (type)),
         isOver_ (false)
 {
-    selected_.attach (PainterStrategy::repaint (this));
-    pinColour_.attach (PainterStrategy::repaint (this));
-    boxSelectedColour_.attach (PainterStrategy::repaint (this));
+    selected_.attach (Painter::repaint (this));
+    pinColour_.attach (Painter::repaint (this));
+    boxSelectedColour_.attach (Painter::repaint (this));
     
     getView()->addChildComponent (this);
 }
