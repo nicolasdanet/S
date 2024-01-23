@@ -45,7 +45,17 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Use C++20 range based approach? */
+public:
+    T* get (core::UniqueId identifier) const
+    {
+        auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (identifier));
+        
+        return (r != v_.cend()) ? r->get() : nullptr;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     template <class F> void forEach (F f) const
@@ -64,7 +74,7 @@ public:
         
         forEach (g);
     }
-    
+
     template <class F> void forUnique (F f, core::UniqueId identifier) const
     {
         auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (identifier));
@@ -77,18 +87,6 @@ public:
         return count_if (v_.cbegin(), v_.cend(), f);
     }
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    T* get (core::UniqueId identifier) const
-    {
-        auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (identifier));
-        
-        return (r != v_.cend()) ? r->get() : nullptr;
-    }
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
