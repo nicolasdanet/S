@@ -22,15 +22,15 @@ ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     size_ (object_.getCached<int> (Tag::Parameters, Tag::Size)),
     count_ (object_.getCached<int> (Tag::Parameters, Tag::Count))
 {
-    arrayBackgroundColour_.attach (Painter::repaint (component_));
-    arrayValueColour_.attach (Painter::repaint (component_));
+    arrayBackgroundColour_.attach (data::Update::repaint (component_));
+    arrayValueColour_.attach (data::Update::repaint (component_));
           
-    name_.attach (Painter::repaint (component_));
-    width_.attach (Painter::resized (component_));
-    height_.attach (Painter::resized (component_));
-    size_.attach (Painter::repaint (component_));
+    name_.attach (data::Update::repaint (component_));
+    width_.attach (data::Update::resized (component_));
+    height_.attach (data::Update::resized (component_));
+    size_.attach (data::Update::repaint (component_));
     
-    count_.attach (Painter::repaint (component_));       /* Repaint when garray is updated. */
+    count_.attach (data::Update::repaint (component_));       /* Repaint when garray is updated. */
     
     /* Repaint from time to time to in case of missed (e.g. content changed from DSP). */
     /* Use random period to spread the draws. */

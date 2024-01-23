@@ -25,10 +25,10 @@ AtomPainter::AtomPainter (ObjectComponent* owner) :
     v_ (0.0),
     dragged_ (false)
 {
-    atomBackgroundColour_.attach (Painter::repaint (component_));
-    atomTextColour_.attach (Painter::repaint (component_));
-    digits_.attach (Painter::resized (component_));
-    value_.attach (Painter::repaint (component_));
+    atomBackgroundColour_.attach (data::Update::repaint (component_));
+    atomTextColour_.attach (data::Update::repaint (component_));
+    digits_.attach (data::Update::resized (component_));
+    value_.attach (data::Update::repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -20,9 +20,9 @@ MessagePainter::MessagePainter (ObjectComponent* owner) :
     text_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text)),
     isClicked_ (false)
 {
-    messageBackgroundColour_.attach (Painter::repaint (component_));
-    messageTextColour_.attach (Painter::repaint (component_));
-    text_.attach (Painter::resized (component_));
+    messageBackgroundColour_.attach (data::Update::repaint (component_));
+    messageTextColour_.attach (data::Update::repaint (component_));
+    text_.attach (data::Update::resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

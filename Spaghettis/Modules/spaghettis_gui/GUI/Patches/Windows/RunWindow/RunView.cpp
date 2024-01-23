@@ -17,7 +17,7 @@ RunView::RunView (const PatchBase& base) :
     patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground))
 {
     getViewTree().addListener (this);
-    patchBackgroundColour_.attach (Painter::repaint (this));
+    patchBackgroundColour_.attach (data::Update::repaint (this));
     setOpaque (true);
     initialize (getViewTree());
 }

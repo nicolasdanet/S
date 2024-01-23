@@ -62,6 +62,7 @@
 #include "Data/Group.hpp"
 #include "Data/Getters/Observer.hpp"
 #include "Data/Data.hpp"
+#include "Data/Getters/Update.hpp"
 #include "Data/Getters/Cached.hpp"
 
 // -----------------------------------------------------------------------------------------------------------

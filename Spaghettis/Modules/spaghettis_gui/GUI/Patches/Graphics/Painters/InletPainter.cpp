@@ -44,8 +44,8 @@ InletPainter::InletPainter (ObjectComponent* owner) :
     arrowColour_ (getContentColour (object_)),
     isOutlet_ (isOutlet (object_))
 {
-    boxBackgroundColour_.attach (Painter::repaint (component_));
-    arrowColour_.attach (Painter::repaint (component_));
+    boxBackgroundColour_.attach (data::Update::repaint (component_));
+    arrowColour_.attach (data::Update::repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

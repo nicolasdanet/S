@@ -25,7 +25,7 @@ EditView::EditView (const PatchBase& base) :
     getViewTree().addListener (this);
     undo_.attach ([]() { Spaghettis()->updateMenuBar(); });
     redo_.attach ([]() { Spaghettis()->updateMenuBar(); });
-    patchBackgroundColour_.attach (Painter::repaint (this));
+    patchBackgroundColour_.attach (data::Update::repaint (this));
     setOpaque (true);
     initialize (getViewTree());
 }

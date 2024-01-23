@@ -27,16 +27,16 @@ SliderPainter::SliderPainter (ObjectComponent* owner) :
     painted_(),
     dragged_ (false)
 {
-    sliderBackgroundColour_.attach (Painter::repaint (component_));
-    sliderBarColour_.attach (Painter::repaint (component_));
-    value_.attach (Painter::repaint (component_));
-    low_.attach (Painter::repaint (component_));
-    high_.attach (Painter::repaint (component_));
-    interval_.attach (Painter::repaint (component_));
-    isLogarithmic_.attach (Painter::repaint (component_));
-    isVertical_.attach (Painter::resized (component_));
-    width_.attach (Painter::resized (component_));
-    height_.attach (Painter::resized (component_));
+    sliderBackgroundColour_.attach (data::Update::repaint (component_));
+    sliderBarColour_.attach (data::Update::repaint (component_));
+    value_.attach (data::Update::repaint (component_));
+    low_.attach (data::Update::repaint (component_));
+    high_.attach (data::Update::repaint (component_));
+    interval_.attach (data::Update::repaint (component_));
+    isLogarithmic_.attach (data::Update::repaint (component_));
+    isVertical_.attach (data::Update::resized (component_));
+    width_.attach (data::Update::resized (component_));
+    height_.attach (data::Update::resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

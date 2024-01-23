@@ -27,9 +27,9 @@ LineComponent::LineComponent (PatchView* view, const core::Line& line) :
 {
     jassert (view);
     
-    lineColour_.attach (Painter::repaint (this));
-    lineSelectedColour_.attach (Painter::repaint (this));
-    lineSignalColour_.attach (Painter::repaint (this));
+    lineColour_.attach (data::Update::repaint (this));
+    lineSelectedColour_.attach (data::Update::repaint (this));
+    lineSignalColour_.attach (data::Update::repaint (this));
     
     update();
     

@@ -18,9 +18,9 @@ CommentPainter::CommentPainter (ObjectComponent* owner) :
     commentTextColour_ (Spaghettis()->getCachedColour (Tag::CommentText)),
     text_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text))
 {
-    commentBackgroundColour_.attach (Painter::repaint (component_));
-    commentTextColour_.attach (Painter::repaint (component_));
-    text_.attach (Painter::resized (component_));
+    commentBackgroundColour_.attach (data::Update::repaint (component_));
+    commentTextColour_.attach (data::Update::repaint (component_));
+    text_.attach (data::Update::resized (component_));
     
     component_->setBufferedToImage (true);
 }

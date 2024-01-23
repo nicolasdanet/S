@@ -29,17 +29,17 @@ DialPainter::DialPainter (ObjectComponent* owner) :
     v_ (0.0f),
     dragged_ (false)
 {
-    dialBackgroundColour_.attach (Painter::repaint (component_));
-    dialForegroundColour_.attach (Painter::repaint (component_));
-    dialNeedleColour_.attach (Painter::repaint (component_));
-    dialTextColour_.attach (Painter::repaint (component_));
-    value_.attach (Painter::repaint (component_));
-    low_.attach (Painter::repaint (component_));
-    high_.attach (Painter::repaint (component_));
-    interval_.attach (Painter::repaint (component_));
-    isLogarithmic_.attach (Painter::repaint (component_));
-    width_.attach (Painter::resized (component_));
-    digits_.attach (Painter::repaint (component_));
+    dialBackgroundColour_.attach (data::Update::repaint (component_));
+    dialForegroundColour_.attach (data::Update::repaint (component_));
+    dialNeedleColour_.attach (data::Update::repaint (component_));
+    dialTextColour_.attach (data::Update::repaint (component_));
+    value_.attach (data::Update::repaint (component_));
+    low_.attach (data::Update::repaint (component_));
+    high_.attach (data::Update::repaint (component_));
+    interval_.attach (data::Update::repaint (component_));
+    isLogarithmic_.attach (data::Update::repaint (component_));
+    width_.attach (data::Update::resized (component_));
+    digits_.attach (data::Update::repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

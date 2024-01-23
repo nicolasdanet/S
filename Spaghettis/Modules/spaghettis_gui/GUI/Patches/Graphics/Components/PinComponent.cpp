@@ -64,9 +64,9 @@ PinComponent::PinComponent (PatchView* v,
         isSignal_ (isPinSignal (type)),
         isOver_ (false)
 {
-    selected_.attach (Painter::repaint (this));
-    pinColour_.attach (Painter::repaint (this));
-    boxSelectedColour_.attach (Painter::repaint (this));
+    selected_.attach (data::Update::repaint (this));
+    pinColour_.attach (data::Update::repaint (this));
+    boxSelectedColour_.attach (data::Update::repaint (this));
     
     getView()->addChildComponent (this);
 }

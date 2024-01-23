@@ -23,9 +23,9 @@ PainterStrategy::PainterStrategy (ObjectComponent* owner) :
     jassert (owner);
     jassert (object_.isObject());
     
-    boxPinsBackgroundColour_.attach (Painter::repaint (component_));
-    patchLabelBackgroundColour_.attach (Painter::repaint (component_));
-    patchLabelTextColour_.attach (Painter::repaint (component_));
+    boxPinsBackgroundColour_.attach (data::Update::repaint (component_));
+    patchLabelBackgroundColour_.attach (data::Update::repaint (component_));
+    patchLabelTextColour_.attach (data::Update::repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

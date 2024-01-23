@@ -20,10 +20,10 @@ BoxPainter::BoxPainter (ObjectComponent* owner) :
     content_ (object_.getCached<juce::String> (Tag::Attributes, Tag::Content)),
     class_ (object_.getCached<juce::String> (Tag::Attributes, Tag::Class))
 {
-    boxBackgroundColour_.attach (Painter::repaint (component_));
-    boxTextColour_.attach (Painter::repaint (component_));
-    boxWrongColour_.attach (Painter::repaint (component_));
-    content_.attach (Painter::resized (component_));
+    boxBackgroundColour_.attach (data::Update::repaint (component_));
+    boxTextColour_.attach (data::Update::repaint (component_));
+    boxWrongColour_.attach (data::Update::repaint (component_));
+    content_.attach (data::Update::resized (component_));
     
     component_->setBufferedToImage (true);
 }

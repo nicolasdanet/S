@@ -77,8 +77,8 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     x_.attach (f);
     y_.attach (f);
     
-    selected_.attach (Painter::repaint (this));
-    boxSelectedColour_.attach (Painter::repaint (this));
+    selected_.attach (data::Update::repaint (this));
+    boxSelectedColour_.attach (data::Update::repaint (this));
     
     if (isInsideRunView()) { addMouseListener (painter_.get(), true); }
 }
