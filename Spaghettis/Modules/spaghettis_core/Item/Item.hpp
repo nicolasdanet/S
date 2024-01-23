@@ -128,7 +128,9 @@ public:
     }
     
     template <class T>
-    data::Cached<T> getCached (const juce::String& group, const juce::String& key, bool synchronous = false) const
+    data::Cached<T> getCached (const juce::String& group,
+        const juce::String& key,
+        bool synchronous = false) const
     {
         return data::Cached<T>::make (data_, group, key, synchronous);
     }
