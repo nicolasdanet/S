@@ -14,22 +14,15 @@ namespace spaghettis {
 
 RadioPainter::RadioPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    radioBackgroundColour_ (Spaghettis()->getCachedColour (Tag::RadioBackground)),
-    radioButtonColour_ (Spaghettis()->getCachedColour (Tag::RadioButton)),
-    value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
-    isVertical_ (object_.getCached<bool> (Tag::Parameters, Tag::Vertical)),
-    isMultiple_ (object_.getCached<bool> (Tag::Parameters, Tag::Multiple)),
-    buttons_ (object_.getCached<int> (Tag::Parameters, Tag::Buttons)),
-    width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
+    radioBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::RadioBackground), component_)),
+    radioButtonColour_ (Painted (Spaghettis()->getCachedColour (Tag::RadioButton), component_)),
+    value_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Value), component_)),
+    isVertical_ (Resized (object_.getCached<bool> (Tag::Parameters, Tag::Vertical), component_)),
+    isMultiple_ (Painted (object_.getCached<bool> (Tag::Parameters, Tag::Multiple), component_)),
+    buttons_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Buttons), component_)),
+    width_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Width), component_)),
     painted_()
 {
-    radioBackgroundColour_.attach (data::Update::repaint (component_));
-    radioButtonColour_.attach (data::Update::repaint (component_));
-    value_.attach (data::Update::repaint (component_));
-    isMultiple_.attach (data::Update::repaint (component_));
-    isVertical_.attach (data::Update::resized (component_));
-    buttons_.attach (data::Update::resized (component_));
-    width_.attach (data::Update::resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

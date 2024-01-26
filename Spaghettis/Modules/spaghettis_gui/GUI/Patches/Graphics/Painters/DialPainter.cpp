@@ -14,32 +14,21 @@ namespace spaghettis {
 
 DialPainter::DialPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    dialBackgroundColour_ (Spaghettis()->getCachedColour (Tag::DialBackground)),
-    dialForegroundColour_ (Spaghettis()->getCachedColour (Tag::DialForeground)),
-    dialNeedleColour_ (Spaghettis()->getCachedColour (Tag::DialNeedle)),
-    dialTextColour_ (Spaghettis()->getCachedColour (Tag::DialText)),
-    value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
-    low_ (object_.getCached<double> (Tag::Parameters, Tag::Low)),
-    high_ (object_.getCached<double> (Tag::Parameters, Tag::High)),
-    interval_ (object_.getCached<double> (Tag::Parameters, Tag::Interval)),
-    isLogarithmic_ (object_.getCached<bool> (Tag::Parameters, Tag::Logarithmic)),
-    width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
-    digits_ (object_.getCached<int> (Tag::Parameters, Tag::Digits)),
+    dialBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialBackground), component_)),
+    dialForegroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialForeground), component_)),
+    dialNeedleColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialNeedle), component_)),
+    dialTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialText), component_)),
+    value_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Value), component_)),
+    low_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Low), component_)),
+    high_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::High), component_)),
+    interval_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Interval), component_)),
+    isLogarithmic_ (Painted (object_.getCached<bool> (Tag::Parameters, Tag::Logarithmic), component_)),
+    width_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Width), component_)),
+    digits_ (Painted (object_.getCached<int> (Tag::Parameters, Tag::Digits), component_)),
     painted_(),
     v_ (0.0f),
     dragged_ (false)
 {
-    dialBackgroundColour_.attach (data::Update::repaint (component_));
-    dialForegroundColour_.attach (data::Update::repaint (component_));
-    dialNeedleColour_.attach (data::Update::repaint (component_));
-    dialTextColour_.attach (data::Update::repaint (component_));
-    value_.attach (data::Update::repaint (component_));
-    low_.attach (data::Update::repaint (component_));
-    high_.attach (data::Update::repaint (component_));
-    interval_.attach (data::Update::repaint (component_));
-    isLogarithmic_.attach (data::Update::repaint (component_));
-    width_.attach (data::Update::resized (component_));
-    digits_.attach (data::Update::repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

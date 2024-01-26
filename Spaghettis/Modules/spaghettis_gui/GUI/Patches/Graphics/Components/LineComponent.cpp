@@ -18,18 +18,14 @@ LineComponent::LineComponent (PatchView* view, const core::Line& line) :
     source_ (view->getObjectComponent (line.getIdentifierOfSource())),
     destination_ (view->getObjectComponent (line.getIdentifierOfDestination())),
     selected_ (line.getCached<bool> (Tag::Attributes, Tag::Selected)),
-    lineColour_ (Spaghettis()->getCachedColour (Tag::Line)),
-    lineSelectedColour_ (Spaghettis()->getCachedColour (Tag::LineSelected)),
-    lineSignalColour_ (Spaghettis()->getCachedColour (Tag::LineSignal)),
+    lineColour_ (Painted (Spaghettis()->getCachedColour (Tag::Line), this)),
+    lineSelectedColour_ (Painted (Spaghettis()->getCachedColour (Tag::LineSelected), this)),
+    lineSignalColour_ (Painted (Spaghettis()->getCachedColour (Tag::LineSignal), this)),
     isSignal_ (false),
     isOver_ (false),
     isLocked_ (line_.isLocked())
 {
     jassert (view);
-    
-    lineColour_.attach (data::Update::repaint (this));
-    lineSelectedColour_.attach (data::Update::repaint (this));
-    lineSignalColour_.attach (data::Update::repaint (this));
     
     update();
     

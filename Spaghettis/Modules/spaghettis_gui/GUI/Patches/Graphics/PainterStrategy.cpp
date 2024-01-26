@@ -15,17 +15,13 @@ namespace spaghettis {
 PainterStrategy::PainterStrategy (ObjectComponent* owner) :
     component_ (owner),
     object_ (owner->getObject()),
-    boxPinsBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxPinsBackground)),
-    patchLabelBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchLabelBackground)),
-    patchLabelTextColour_ (Spaghettis()->getCachedColour (Tag::PatchLabelText)),
+    boxPinsBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxPinsBackground), component_)),
+    patchLabelBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelBackground), component_)),
+    patchLabelTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelText), component_)),
     objectWidth_ (0)
 {
     jassert (owner);
     jassert (object_.isObject());
-    
-    boxPinsBackgroundColour_.attach (data::Update::repaint (component_));
-    patchLabelBackgroundColour_.attach (data::Update::repaint (component_));
-    patchLabelTextColour_.attach (data::Update::repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -50,12 +50,12 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     object_ (object),
     x_ (object.getCached<int> (Tag::Attributes, Tag::X)),
     y_ (object.getCached<int> (Tag::Attributes, Tag::Y)),
-    selected_ (object.getCached<bool> (Tag::Attributes, Tag::Selected)),
+    selected_ (Painted (object.getCached<bool> (Tag::Attributes, Tag::Selected), this)),
     visible_ (object.getCached<bool> (Tag::Attributes, Tag::Visible, true)),
     inlets_ (object.getCached<juce::String> (Tag::Attributes, Tag::Inlets, true)),
     outlets_ (object.getCached<juce::String> (Tag::Attributes, Tag::Outlets, true)),
     label_ (object.getCached<juce::String> (Tag::Parameters, Tag::Label, true)),
-    boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
+    boxSelectedColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxSelected), this)),
     painter_ (createPainter (this, object.get<juce::String> (Tag::Attributes, Tag::Class))),
     origin_ (0, 0),
     hasResize_ (false),
@@ -76,9 +76,6 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     label_.attach (f);
     x_.attach (f);
     y_.attach (f);
-    
-    selected_.attach (data::Update::repaint (this));
-    boxSelectedColour_.attach (data::Update::repaint (this));
     
     if (isInsideRunView()) { addMouseListener (painter_.get(), true); }
 }

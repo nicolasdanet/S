@@ -14,17 +14,12 @@ namespace spaghettis {
 
 BangPainter::BangPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    bangBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BangBackground)),
-    bangFlashOffColour_ (Spaghettis()->getCachedColour (Tag::BangFlashOff)),
-    bangFlashOnColour_ (Spaghettis()->getCachedColour (Tag::BangFlashOn)),
-    flashed_ (object_.getCached<bool> (Tag::Parameters, Tag::Flashed)),
-    width_ (object_.getCached<int> (Tag::Parameters, Tag::Width))
+    bangBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::BangBackground), component_)),
+    bangFlashOffColour_ (Painted (Spaghettis()->getCachedColour (Tag::BangFlashOff), component_)),
+    bangFlashOnColour_ (Painted (Spaghettis()->getCachedColour (Tag::BangFlashOn), component_)),
+    flashed_ (Painted (object_.getCached<bool> (Tag::Parameters, Tag::Flashed), component_)),
+    width_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Width), component_))
 {
-    bangBackgroundColour_.attach (data::Update::repaint (component_));
-    bangFlashOffColour_.attach (data::Update::repaint (component_));
-    bangFlashOnColour_.attach (data::Update::repaint (component_));
-    flashed_.attach (data::Update::repaint (component_));
-    width_.attach (data::Update::resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

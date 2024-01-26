@@ -14,15 +14,11 @@ namespace spaghettis {
 
 TogglePainter::TogglePainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    toggleBackgroundColour_ (Spaghettis()->getCachedColour (Tag::ToggleBackground)),
-    toggleColour_ (Spaghettis()->getCachedColour (Tag::Toggle)),
-    state_ (object_.getCached<bool> (Tag::Parameters, Tag::State)),
-    width_ (object_.getCached<int> (Tag::Parameters, Tag::Width))
+    toggleBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::ToggleBackground), component_)),
+    toggleColour_ (Painted (Spaghettis()->getCachedColour (Tag::Toggle), component_)),
+    state_ (Painted (object_.getCached<bool> (Tag::Parameters, Tag::State), component_)),
+    width_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Width), component_))
 {
-    toggleBackgroundColour_.attach (data::Update::repaint (component_));
-    toggleColour_.attach (data::Update::repaint (component_));
-    state_.attach (data::Update::repaint (component_));
-    width_.attach (data::Update::resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

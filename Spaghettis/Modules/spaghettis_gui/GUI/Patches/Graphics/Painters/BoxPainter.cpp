@@ -14,17 +14,12 @@ namespace spaghettis {
 
 BoxPainter::BoxPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    boxBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxBackground)),
-    boxTextColour_ (Spaghettis()->getCachedColour (Tag::BoxText)),
-    boxWrongColour_ (Spaghettis()->getCachedColour (Tag::BoxWrong)),
-    content_ (object_.getCached<juce::String> (Tag::Attributes, Tag::Content)),
+    boxBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxBackground), component_)),
+    boxTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxText), component_)),
+    boxWrongColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxWrong), component_)),
+    content_ (Resized (object_.getCached<juce::String> (Tag::Attributes, Tag::Content), component_)),
     class_ (object_.getCached<juce::String> (Tag::Attributes, Tag::Class))
 {
-    boxBackgroundColour_.attach (data::Update::repaint (component_));
-    boxTextColour_.attach (data::Update::repaint (component_));
-    boxWrongColour_.attach (data::Update::repaint (component_));
-    content_.attach (data::Update::resized (component_));
-    
     component_->setBufferedToImage (true);
 }
 

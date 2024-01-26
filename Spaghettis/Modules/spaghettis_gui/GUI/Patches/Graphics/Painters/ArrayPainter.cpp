@@ -14,24 +14,14 @@ namespace spaghettis {
 
 ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    arrayBackgroundColour_ (Spaghettis()->getCachedColour (Tag::ArrayBackground)),
-    arrayValueColour_ (Spaghettis()->getCachedColour (Tag::ArrayValue)),
-    name_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Name)),
-    width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
-    height_ (object_.getCached<int> (Tag::Parameters, Tag::Height)),
-    size_ (object_.getCached<int> (Tag::Parameters, Tag::Size)),
-    count_ (object_.getCached<int> (Tag::Parameters, Tag::Count))
+    arrayBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::ArrayBackground), component_)),
+    arrayValueColour_ (Painted (Spaghettis()->getCachedColour (Tag::ArrayValue), component_)),
+    name_ (Painted (object_.getCached<juce::String> (Tag::Parameters, Tag::Name), component_)),
+    width_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Width), component_)),
+    height_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Height), component_)),
+    size_ (Painted (object_.getCached<int> (Tag::Parameters, Tag::Size), component_)),
+    count_ (Painted (object_.getCached<int> (Tag::Parameters, Tag::Count), component_))
 {
-    arrayBackgroundColour_.attach (data::Update::repaint (component_));
-    arrayValueColour_.attach (data::Update::repaint (component_));
-          
-    name_.attach (data::Update::repaint (component_));
-    width_.attach (data::Update::resized (component_));
-    height_.attach (data::Update::resized (component_));
-    size_.attach (data::Update::repaint (component_));
-    
-    count_.attach (data::Update::repaint (component_));       /* Repaint when garray is updated. */
-    
     /* Repaint from time to time to in case of missed (e.g. content changed from DSP). */
     /* Use random period to spread the draws. */
     

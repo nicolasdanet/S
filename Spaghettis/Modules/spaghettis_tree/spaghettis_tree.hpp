@@ -64,6 +64,8 @@
 #include "Data/Getters/Observer.hpp"
 #include "Data/Data.hpp"
 #include "Data/Getters/Cached.hpp"
+#include "Data/Update/Painted.hpp"
+#include "Data/Update/Resized.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

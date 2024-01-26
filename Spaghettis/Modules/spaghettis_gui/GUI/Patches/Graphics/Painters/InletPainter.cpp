@@ -40,12 +40,10 @@ bool isOutlet (const core::Object& o)
 
 InletPainter::InletPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    boxBackgroundColour_ (Spaghettis()->getCachedColour (Tag::BoxBackground)),
-    arrowColour_ (getContentColour (object_)),
+    boxBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxBackground), component_)),
+    arrowColour_ (Painted (getContentColour (object_), component_)),
     isOutlet_ (isOutlet (object_))
 {
-    boxBackgroundColour_.attach (data::Update::repaint (component_));
-    arrowColour_.attach (data::Update::repaint (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -28,15 +28,20 @@ private:
     explicit Cached()
     {
     }
-    
+
 public:
     ~Cached() = default;
 
 public:
-    Cached (Cached&&) = default;
-    Cached& operator = (Cached&&) = default;
-    Cached (const Cached&) = delete;                            /* Movable only. */
+    Cached (const Cached& other) : onChange_ (other.onChange_), value_ (other.value_)
+    {
+        value_.addListener (this);
+    }
+    
+public:
     Cached& operator = (const Cached&) = delete;
+    Cached (Cached&&) = delete;
+    Cached& operator = (Cached&&) = delete;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

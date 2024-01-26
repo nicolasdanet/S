@@ -56,18 +56,14 @@ PinComponent::PinComponent (PatchView* v,
     bool isOutlet) :
         DragHandler (v),
         object_ (o),
-        selected_ (o.getCached<bool> (Tag::Attributes, Tag::Selected)),
-        pinColour_ (getColourFromType (type)),
-        boxSelectedColour_ (Spaghettis()->getCachedColour (Tag::BoxSelected)),
+        selected_ (Painted (o.getCached<bool> (Tag::Attributes, Tag::Selected), this)),
+        pinColour_ (Painted (getColourFromType (type), this)),
+        boxSelectedColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxSelected), this)),
         index_ (i),
         isOutlet_ (isOutlet),
         isSignal_ (isPinSignal (type)),
         isOver_ (false)
 {
-    selected_.attach (data::Update::repaint (this));
-    pinColour_.attach (data::Update::repaint (this));
-    boxSelectedColour_.attach (data::Update::repaint (this));
-    
     getView()->addChildComponent (this);
 }
 

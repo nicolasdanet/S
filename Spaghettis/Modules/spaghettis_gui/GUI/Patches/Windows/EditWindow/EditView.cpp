@@ -19,13 +19,12 @@ EditView::EditView (const PatchBase& base) :
     isLocked_ (getPatch().isLocked()),
     undo_ (getPatch().getCached<juce::String> (Tag::Attributes, Tag::Undo)),
     redo_ (getPatch().getCached<juce::String> (Tag::Attributes, Tag::Redo)),
-    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground)),
+    patchBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchBackground), this)),
     scale_ (1.0f)
 {
     getViewTree().addListener (this);
     undo_.attach ([]() { Spaghettis()->updateMenuBar(); });
     redo_.attach ([]() { Spaghettis()->updateMenuBar(); });
-    patchBackgroundColour_.attach (data::Update::repaint (this));
     setOpaque (true);
     initialize (getViewTree());
 }

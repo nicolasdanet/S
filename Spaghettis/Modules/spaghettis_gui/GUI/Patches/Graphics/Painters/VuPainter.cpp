@@ -14,23 +14,15 @@ namespace spaghettis {
 
 VuPainter::VuPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    vuBackgroundColour_ (Spaghettis()->getCachedColour (Tag::VuBackground)),
-    vuBarColdColour_ (Spaghettis()->getCachedColour (Tag::VuBarCold)),
-    vuBarWarmColour_ (Spaghettis()->getCachedColour (Tag::VuBarWarm)),
-    vuBarHotColour_ (Spaghettis()->getCachedColour (Tag::VuBarHot)),
-    value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
-    peak_ (object_.getCached<double> (Tag::Parameters, Tag::Peak)),
-    width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
-    height_ (object_.getCached<int> (Tag::Parameters, Tag::Height))
+    vuBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBackground), component_)),
+    vuBarColdColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarCold), component_)),
+    vuBarWarmColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarWarm), component_)),
+    vuBarHotColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarHot), component_)),
+    value_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Value), component_)),
+    peak_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Peak), component_)),
+    width_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Width), component_)),
+    height_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Height), component_))
 {
-    vuBackgroundColour_.attach (data::Update::repaint (component_));
-    vuBarColdColour_.attach (data::Update::repaint (component_));
-    vuBarWarmColour_.attach (data::Update::repaint (component_));
-    vuBarHotColour_.attach (data::Update::repaint (component_));
-    value_.attach (data::Update::repaint (component_));
-    peak_.attach (data::Update::repaint (component_));
-    width_.attach (data::Update::resized (component_));
-    height_.attach (data::Update::resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

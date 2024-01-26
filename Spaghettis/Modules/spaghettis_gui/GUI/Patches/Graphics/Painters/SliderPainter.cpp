@@ -14,29 +14,19 @@ namespace spaghettis {
 
 SliderPainter::SliderPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    sliderBackgroundColour_ (Spaghettis()->getCachedColour (Tag::SliderBackground)),
-    sliderBarColour_ (Spaghettis()->getCachedColour (Tag::SliderBar)),
-    value_ (object_.getCached<double> (Tag::Parameters, Tag::Value)),
-    low_ (object_.getCached<double> (Tag::Parameters, Tag::Low)),
-    high_ (object_.getCached<double> (Tag::Parameters, Tag::High)),
-    interval_ (object_.getCached<double> (Tag::Parameters, Tag::Interval)),
-    isVertical_ (object_.getCached<bool> (Tag::Parameters, Tag::Vertical)),
-    isLogarithmic_ (object_.getCached<bool> (Tag::Parameters, Tag::Logarithmic)),
-    width_ (object_.getCached<int> (Tag::Parameters, Tag::Width)),
-    height_ (object_.getCached<int> (Tag::Parameters, Tag::Height)),
+    sliderBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::SliderBackground), component_)),
+    sliderBarColour_ (Painted (Spaghettis()->getCachedColour (Tag::SliderBar), component_)),
+    value_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Value), component_)),
+    low_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Low), component_)),
+    high_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::High), component_)),
+    interval_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Interval), component_)),
+    isVertical_ (Resized (object_.getCached<bool> (Tag::Parameters, Tag::Vertical), component_)),
+    isLogarithmic_ (Painted (object_.getCached<bool> (Tag::Parameters, Tag::Logarithmic), component_)),
+    width_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Width), component_)),
+    height_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Height), component_)),
     painted_(),
     dragged_ (false)
 {
-    sliderBackgroundColour_.attach (data::Update::repaint (component_));
-    sliderBarColour_.attach (data::Update::repaint (component_));
-    value_.attach (data::Update::repaint (component_));
-    low_.attach (data::Update::repaint (component_));
-    high_.attach (data::Update::repaint (component_));
-    interval_.attach (data::Update::repaint (component_));
-    isLogarithmic_.attach (data::Update::repaint (component_));
-    isVertical_.attach (data::Update::resized (component_));
-    width_.attach (data::Update::resized (component_));
-    height_.attach (data::Update::resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

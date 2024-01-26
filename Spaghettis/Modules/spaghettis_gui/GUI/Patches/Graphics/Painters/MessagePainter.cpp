@@ -14,15 +14,12 @@ namespace spaghettis {
 
 MessagePainter::MessagePainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    messageBackgroundColour_ (Spaghettis()->getCachedColour (Tag::MessageBackground)),
-    messageTextColour_ (Spaghettis()->getCachedColour (Tag::MessageText)),
-    messageClickedColour_ (Spaghettis()->getCachedColour (Tag::MessageClicked)),
-    text_ (object_.getCached<juce::String> (Tag::Parameters, Tag::Text)),
+    messageBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageBackground), component_)),
+    messageTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageText), component_)),
+    messageClickedColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageClicked), component_)),
+    text_ (Resized (object_.getCached<juce::String> (Tag::Parameters, Tag::Text), component_)),
     isClicked_ (false)
 {
-    messageBackgroundColour_.attach (data::Update::repaint (component_));
-    messageTextColour_.attach (data::Update::repaint (component_));
-    text_.attach (data::Update::resized (component_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

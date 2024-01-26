@@ -14,10 +14,9 @@ namespace spaghettis {
 
 RunView::RunView (const PatchBase& base) :
     PatchView (base),
-    patchBackgroundColour_ (Spaghettis()->getCachedColour (Tag::PatchBackground))
+    patchBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchBackground), this))
 {
     getViewTree().addListener (this);
-    patchBackgroundColour_.attach (data::Update::repaint (this));
     setOpaque (true);
     initialize (getViewTree());
 }
