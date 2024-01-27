@@ -44,6 +44,7 @@ std::optional<core::Vector::Real> PainterStrategy::getDimensions()
 
 void PainterStrategy::setDimensions (core::Vector::Real)
 {
+
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -65,6 +66,25 @@ int getLabelWidth (const juce::String& s)
     return getLabelFont().getStringWidth (s);
 }
 
+void paintLabel (juce::Rectangle<int> r,
+    juce::Graphics& g,
+    juce::Colour backgroundColour,
+    juce::Colour textColour,
+    const juce::String& text)
+{
+    const juce::Font font (getLabelFont());
+    
+    if (r.getHeight() >= font.getHeight()) {
+    //
+    g.setColour (backgroundColour);
+    g.fillRect (r);
+    g.setColour (textColour);
+    g.setFont (font);
+    g.drawText (text, r.translated (-1, -1), juce::Justification::bottomRight, true);
+    //
+    }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -74,28 +94,17 @@ int getLabelWidth (const juce::String& s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PainterStrategy::paintLabel (juce::Rectangle<int> r, juce::Graphics& g)
-{
-    const juce::Font font (getLabelFont());
-    
-    if (r.getHeight() >= font.getHeight()) {
-    //
-    g.setColour (patchLabelBackgroundColour_.get());
-    g.fillRect (r);
-    g.setColour (patchLabelTextColour_.get());
-    g.setFont (font);
-    g.drawText (component_->getLabel(), r.translated (-1, -1), juce::Justification::bottomRight, true);
-    //
-    }
-}
-
 void PainterStrategy::paint (juce::Rectangle<int> r, juce::Graphics& g)
 {
     if (component_->isInsideRunView() && component_->hasLabel()) {              /* Paint label. */
     //
     const juce::Rectangle<int> t (r.removeFromLeft (objectWidth_));
     
-    paintLabel (r.withTrimmedLeft (4), g);
+    paintLabel (r.withTrimmedLeft (4),
+        g,
+        patchLabelBackgroundColour_.get(),
+        patchLabelTextColour_.get(),
+        component_->getLabel());
     
     r = t;
     //
