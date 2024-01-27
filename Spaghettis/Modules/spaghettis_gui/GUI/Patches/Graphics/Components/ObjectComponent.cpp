@@ -333,7 +333,7 @@ void ObjectComponent::paint (juce::Graphics& g)
     
     if (!isInsideRunView() && selected_.get()) { g.setColour (boxSelectedColour_.get()); }
     else {
-        g.setColour (painter_->getPinsBackground());
+        g.setColour (painter_->getPinsBackgroundColour());
     }
     
     g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(), painted.getTopRight()).withWidth (w));

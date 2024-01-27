@@ -25,7 +25,7 @@ CommentPainter::CommentPainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Colour CommentPainter::getPinsBackground()
+juce::Colour CommentPainter::getPinsBackgroundColour()
 {
     return commentBackgroundColour_.get();
 }

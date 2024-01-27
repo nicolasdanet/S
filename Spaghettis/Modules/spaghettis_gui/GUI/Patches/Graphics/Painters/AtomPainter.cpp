@@ -65,7 +65,7 @@ void AtomPainter::mouseUp (const juce::MouseEvent&)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Colour AtomPainter::getPinsBackground()
+juce::Colour AtomPainter::getPinsBackgroundColour()
 {
     return atomBackgroundColour_.get();
 }
@@ -135,7 +135,7 @@ void paintTriangle (juce::Rectangle<float> r, juce::Graphics& g)
 
 void AtomPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    g.setColour (getPinsBackground());
+    g.setColour (getPinsBackgroundColour());
     
     g.fillRect (r);
     

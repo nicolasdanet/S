@@ -47,7 +47,7 @@ void MessagePainter::mouseDown (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Colour MessagePainter::getPinsBackground()
+juce::Colour MessagePainter::getPinsBackgroundColour()
 {
     return messageBackgroundColour_.get();
 }
@@ -99,7 +99,7 @@ void MessagePainter::paintBackground (juce::Rectangle<int>& r, juce::Graphics& g
 
 void MessagePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    g.setColour (getPinsBackground());
+    g.setColour (getPinsBackgroundColour());
     
     paintBackground (r, g);
     

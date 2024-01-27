@@ -40,24 +40,9 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    virtual juce::Colour getPinsBackground()
-    {
-        return boxPinsBackgroundColour_.get();
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    virtual std::optional<core::Vector::Real> getDimensions()
-    {
-        return std::nullopt;
-    }
-    
-    virtual void setDimensions (core::Vector::Real)
-    {
-    }
+    virtual juce::Colour getPinsBackgroundColour();
+    virtual std::optional<core::Vector::Real> getDimensions();
+    virtual void setDimensions (core::Vector::Real);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
