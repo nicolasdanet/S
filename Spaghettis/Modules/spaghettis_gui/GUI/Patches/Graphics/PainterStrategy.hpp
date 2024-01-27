@@ -33,8 +33,8 @@ public:
 // MARK: -
 
 private:
-    virtual void paintObject (juce::Rectangle<int>, juce::Graphics&) = 0;
-    virtual juce::Rectangle<int> getRequiredBoundsForObject() = 0;
+    virtual void paintWidget (juce::Rectangle<int>, juce::Graphics&) = 0;
+    virtual juce::Rectangle<int> getRequiredBoundsForWidget() = 0;
 
 public:
     void paint (juce::Rectangle<int>, juce::Graphics&);
@@ -46,6 +46,12 @@ public:
 
 public:
     virtual juce::Colour getPinsBackgroundColour();
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     virtual std::optional<core::Vector::Real> getDimensions();
     virtual void setDimensions (core::Vector::Real);
 

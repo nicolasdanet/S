@@ -133,7 +133,7 @@ void paintTriangle (juce::Rectangle<float> r, juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void AtomPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void AtomPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (getPinsBackgroundColour());
     
@@ -148,7 +148,7 @@ void AtomPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     paintText (r, g, getText(), getFont(), juce::Justification::centredRight);
 }
 
-juce::Rectangle<int> AtomPainter::getRequiredBoundsForObject()
+juce::Rectangle<int> AtomPainter::getRequiredBoundsForWidget()
 {
     return getRequiredBoundsFromText (getPlaceholder(), getFont(), getTriangleWidth());
 }

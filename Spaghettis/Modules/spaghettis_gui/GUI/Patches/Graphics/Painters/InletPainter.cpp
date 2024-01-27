@@ -50,7 +50,7 @@ InletPainter::InletPainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void InletPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void InletPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     const float f = getScale();
     
@@ -66,7 +66,7 @@ void InletPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     }
 }
 
-juce::Rectangle<int> InletPainter::getRequiredBoundsForObject()
+juce::Rectangle<int> InletPainter::getRequiredBoundsForWidget()
 {
     const float f = getScale();
     const int w   = Fonts::getFontRescaled (f).getHeight();

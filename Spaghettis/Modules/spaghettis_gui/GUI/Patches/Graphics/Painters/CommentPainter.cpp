@@ -50,7 +50,7 @@ juce::String CommentPainter::getText() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void CommentPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void CommentPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (commentBackgroundColour_.get());
     g.fillRect (r);
@@ -59,7 +59,7 @@ void CommentPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     paintText (r, g, getText(), getFont(), juce::Justification::centredLeft);
 }
 
-juce::Rectangle<int> CommentPainter::getRequiredBoundsForObject()
+juce::Rectangle<int> CommentPainter::getRequiredBoundsForWidget()
 {
     return getRequiredBoundsFromText (getText(), getFont());
 }

@@ -35,7 +35,7 @@ void BangPainter::mouseDown (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BangPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void BangPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (bangBackgroundColour_.get());
     g.fillRect (r);
@@ -43,7 +43,7 @@ void BangPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     g.fillEllipse (r.reduced (1).toFloat());
 }
 
-juce::Rectangle<int> BangPainter::getRequiredBoundsForObject()
+juce::Rectangle<int> BangPainter::getRequiredBoundsForWidget()
 {
     return getRequiredBoundsFromDimensions();
 }

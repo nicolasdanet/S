@@ -34,7 +34,7 @@ void TogglePainter::mouseDown (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void TogglePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void TogglePainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (toggleBackgroundColour_.get());
     g.fillRect (r);
@@ -44,7 +44,7 @@ void TogglePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     }
 }
 
-juce::Rectangle<int> TogglePainter::getRequiredBoundsForObject()
+juce::Rectangle<int> TogglePainter::getRequiredBoundsForWidget()
 {
     return getRequiredBoundsFromDimensions();
 }

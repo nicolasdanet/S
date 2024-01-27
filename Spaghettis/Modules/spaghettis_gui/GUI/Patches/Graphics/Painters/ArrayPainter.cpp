@@ -73,7 +73,7 @@ void ArrayPainter::paintSignal (juce::Rectangle<int> r, juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ArrayPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void ArrayPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (arrayBackgroundColour_.get());
     g.fillRect (r);
@@ -81,7 +81,7 @@ void ArrayPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     paintSignal (r, g);
 }
 
-juce::Rectangle<int> ArrayPainter::getRequiredBoundsForObject()
+juce::Rectangle<int> ArrayPainter::getRequiredBoundsForWidget()
 {
     return getRequiredBoundsFromDimensions();
 }

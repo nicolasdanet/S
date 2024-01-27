@@ -107,7 +107,7 @@ void SliderPainter::paintBar (juce::Rectangle<int> r, juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void SliderPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void SliderPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (sliderBackgroundColour_.get());
     g.fillRect (r);
@@ -118,7 +118,7 @@ void SliderPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     paintBar (painted_, g);
 }
 
-juce::Rectangle<int> SliderPainter::getRequiredBoundsForObject()
+juce::Rectangle<int> SliderPainter::getRequiredBoundsForWidget()
 {
     return getRequiredBoundsFromDimensions();
 }

@@ -27,8 +27,8 @@ public:
 // MARK: -
 
 public:
-    void paintObject (juce::Rectangle<int>, juce::Graphics&) override;
-    juce::Rectangle<int> getRequiredBoundsForObject() override;
+    void paintWidget (juce::Rectangle<int>, juce::Graphics&) override;
+    juce::Rectangle<int> getRequiredBoundsForWidget() override;
     
 private:
     data::Cached<juce::Colour> boxBackgroundColour_;

@@ -106,7 +106,7 @@ void VuPainter::paintPeak (juce::Rectangle<int> r, const juce::ColourGradient& g
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void VuPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void VuPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     const juce::ColourGradient gradient (getGradient (r));
     
@@ -117,7 +117,7 @@ void VuPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     paintPeak (r.reduced (1, 2), gradient, g);
 }
 
-juce::Rectangle<int> VuPainter::getRequiredBoundsForObject()
+juce::Rectangle<int> VuPainter::getRequiredBoundsForWidget()
 {
     return getRequiredBoundsFromDimensions();
 }

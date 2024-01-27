@@ -179,7 +179,7 @@ void RadioPainter::paintBackground (const juce::Rectangle<int>& r, juce::Graphic
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RadioPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void RadioPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     const juce::Colour c (radioBackgroundColour_.get());
     
@@ -196,7 +196,7 @@ void RadioPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     painted_ = r;
 }
 
-juce::Rectangle<int> RadioPainter::getRequiredBoundsForObject()
+juce::Rectangle<int> RadioPainter::getRequiredBoundsForWidget()
 {
     return getRequiredBoundsFromDimensions();
 }

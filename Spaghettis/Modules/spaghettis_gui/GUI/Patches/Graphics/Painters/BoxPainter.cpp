@@ -43,7 +43,7 @@ juce::String BoxPainter::getText() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void BoxPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void BoxPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     const bool wrong = class_.get().isEmpty();
     
@@ -54,7 +54,7 @@ void BoxPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     paintText (r, g, getText(), getFont(), juce::Justification::centredLeft);
 }
 
-juce::Rectangle<int> BoxPainter::getRequiredBoundsForObject()
+juce::Rectangle<int> BoxPainter::getRequiredBoundsForWidget()
 {
     return getRequiredBoundsFromText (getText(), getFont());
 }

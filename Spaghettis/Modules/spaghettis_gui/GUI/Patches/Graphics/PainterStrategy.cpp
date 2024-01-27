@@ -110,7 +110,7 @@ void PainterStrategy::paint (juce::Rectangle<int> r, juce::Graphics& g)
     //
     }
         
-    paintObject (r, g);
+    paintWidget (r, g);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -119,7 +119,7 @@ void PainterStrategy::paint (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> PainterStrategy::getRequiredBounds()
 {
-    juce::Rectangle<int> t = withMinimumWidthForPins (getRequiredBoundsForObject());
+    juce::Rectangle<int> t = withMinimumWidthForPins (getRequiredBoundsForWidget());
         
     objectWidth_ = t.getWidth();
     

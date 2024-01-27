@@ -97,7 +97,7 @@ void MessagePainter::paintBackground (juce::Rectangle<int>& r, juce::Graphics& g
     g.fillRect (r);
 }
 
-void MessagePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void MessagePainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     g.setColour (getPinsBackgroundColour());
     
@@ -108,7 +108,7 @@ void MessagePainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     paintText (r, g, text_.get(), getFont(), juce::Justification::centredLeft);
 }
 
-juce::Rectangle<int> MessagePainter::getRequiredBoundsForObject()
+juce::Rectangle<int> MessagePainter::getRequiredBoundsForWidget()
 {
     return getRequiredBoundsFromText (text_.get(), getFont(), getExtra() * 2);
 }

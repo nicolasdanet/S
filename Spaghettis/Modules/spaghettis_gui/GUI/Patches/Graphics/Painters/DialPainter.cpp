@@ -175,7 +175,7 @@ juce::Rectangle<float> DialPainter::paintDial (juce::Rectangle<float> r, juce::G
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
+void DialPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
     const int heightDigits = r.proportionOfWidth (kDigits_);
 
@@ -193,7 +193,7 @@ void DialPainter::paintObject (juce::Rectangle<int> r, juce::Graphics& g)
     }
 }
 
-juce::Rectangle<int> DialPainter::getRequiredBoundsForObject()
+juce::Rectangle<int> DialPainter::getRequiredBoundsForWidget()
 {
     return getRequiredBoundsFromDimensions();
 }
