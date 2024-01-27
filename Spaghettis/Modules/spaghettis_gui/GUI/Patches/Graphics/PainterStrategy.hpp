@@ -39,6 +39,7 @@ private:
 public:
     void paint (juce::Rectangle<int>, juce::Graphics&);
     juce::Rectangle<int> getRequiredBounds();
+    int getWidgetWidth() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -54,13 +55,6 @@ public:
 public:
     virtual std::optional<core::Vector::Real> getDimensions();
     virtual void setDimensions (core::Vector::Real);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    int getWidthOfPinsBackground() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -116,7 +110,7 @@ protected:
     data::Cached<juce::Colour> boxPinsBackgroundColour_;
     data::Cached<juce::Colour> patchLabelBackgroundColour_;
     data::Cached<juce::Colour> patchLabelTextColour_;
-    int objectWidth_;
+    int widgetWidth_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PainterStrategy)

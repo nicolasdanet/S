@@ -329,7 +329,7 @@ void ObjectComponent::paint (juce::Graphics& g)
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
     const juce::Rectangle<int> painted (getPaintedAreaFromBounds (bounds, getScale()));
-    const int w = painter_->getWidthOfPinsBackground();
+    const int w = painter_->getWidgetWidth();
     
     if (!isInsideRunView() && selected_.get()) { g.setColour (boxSelectedColour_.get()); }
     else {

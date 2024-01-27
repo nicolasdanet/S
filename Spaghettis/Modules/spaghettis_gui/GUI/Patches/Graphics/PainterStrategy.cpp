@@ -18,7 +18,7 @@ PainterStrategy::PainterStrategy (ObjectComponent* owner) :
     boxPinsBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxPinsBackground), component_)),
     patchLabelBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelBackground), component_)),
     patchLabelTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelText), component_)),
-    objectWidth_ (0)
+    widgetWidth_ (0)
 {
     jassert (owner);
     jassert (object_.isObject());
@@ -98,7 +98,7 @@ void PainterStrategy::paint (juce::Rectangle<int> r, juce::Graphics& g)
 {
     if (component_->isInsideRunView() && component_->hasLabel()) {              /* Paint label. */
     //
-    const juce::Rectangle<int> t (r.removeFromLeft (objectWidth_));
+    const juce::Rectangle<int> t (r.removeFromLeft (getWidgetWidth()));
     
     paintLabel (r.withTrimmedLeft (4),
         g,
@@ -121,20 +121,20 @@ juce::Rectangle<int> PainterStrategy::getRequiredBounds()
 {
     juce::Rectangle<int> t = withMinimumWidthForPins (getRequiredBoundsForWidget());
         
-    objectWidth_ = t.getWidth();
+    widgetWidth_ = t.getWidth();
     
     if (component_->isInsideRunView() && component_->hasLabel()) {              /* Add label bounds. */
     //
-    t.setWidth (RunLayout::snapWidthToFitColumns (objectWidth_ + getLabelWidth (component_->getLabel())));
+    t.setWidth (RunLayout::snapWidthToFitColumns (getWidgetWidth() + getLabelWidth (component_->getLabel())));
     //
     }
     
     return t;
 }
 
-int PainterStrategy::getWidthOfPinsBackground() const
+int PainterStrategy::getWidgetWidth() const
 {
-    return objectWidth_;
+    return widgetWidth_;
 }
 
 float PainterStrategy::getScale() const
