@@ -195,7 +195,7 @@ void DialPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> DialPainter::getRequiredBoundsForWidget()
 {
-    return getRequiredBoundsFromDimensions();
+    return PainterHelpers::getRequiredBoundsFromDimensions (*this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

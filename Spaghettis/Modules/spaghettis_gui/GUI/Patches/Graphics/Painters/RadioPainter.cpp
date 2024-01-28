@@ -198,7 +198,7 @@ void RadioPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> RadioPainter::getRequiredBoundsForWidget()
 {
-    return getRequiredBoundsFromDimensions();
+    return PainterHelpers::getRequiredBoundsFromDimensions (*this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

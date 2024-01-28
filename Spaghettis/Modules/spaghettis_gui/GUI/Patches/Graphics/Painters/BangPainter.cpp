@@ -45,7 +45,7 @@ void BangPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> BangPainter::getRequiredBoundsForWidget()
 {
-    return getRequiredBoundsFromDimensions();
+    return PainterHelpers::getRequiredBoundsFromDimensions (*this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

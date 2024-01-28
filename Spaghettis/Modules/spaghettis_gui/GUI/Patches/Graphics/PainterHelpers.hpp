@@ -18,6 +18,19 @@ struct PainterHelpers {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static int getTextMargins (float f);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static juce::Rectangle<int> getRequiredBoundsFromDimensions (PainterStrategy&);
+static juce::Rectangle<int> getRequiredBoundsFromVector (PainterStrategy&, core::Vector::Scaled);
+static juce::Rectangle<int> getRequiredBoundsFromText (PainterStrategy&,
+                                const juce::String&,
+                                const juce::Font&,
+                                int extra = 0);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

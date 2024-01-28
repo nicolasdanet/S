@@ -83,7 +83,7 @@ void ArrayPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> ArrayPainter::getRequiredBoundsForWidget()
 {
-    return getRequiredBoundsFromDimensions();
+    return PainterHelpers::getRequiredBoundsFromDimensions (*this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

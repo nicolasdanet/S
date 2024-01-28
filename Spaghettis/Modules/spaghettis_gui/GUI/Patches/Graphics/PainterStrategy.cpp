@@ -192,60 +192,6 @@ core::UniqueId PainterStrategy::getIdentifier() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-int getTextMargins (float f)
-{
-    return std::round (3 * f);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::Rectangle<int> PainterStrategy::getRequiredBoundsFromVector (core::Vector::Scaled v)
-{
-    return juce::Rectangle<int> (v.getPoint().getX(), v.getPoint().getY()) + getPosition().getPoint();
-}
-
-juce::Rectangle<int> PainterStrategy::getRequiredBoundsFromDimensions()
-{
-    std::optional<core::Vector::Real> t = getDimensions();
-    
-    jassert (t.has_value());
-    
-    return getRequiredBoundsFromVector (core::Vector::Scaled (t.value(), getScale()));
-}
-
-juce::Rectangle<int> PainterStrategy::getRequiredBoundsFromText (const juce::String& text,
-    const juce::Font& font,
-    int extra)
-{
-    const float f = getScale();
-    const int w   = font.getStringWidth (text);
-    const int h   = font.getHeight();
-    const int k   = getTextMargins (f) * 2;
-    
-    core::Vector::Scaled v (w + k, h + k, f);
-    juce::Rectangle<int> t (getRequiredBoundsFromVector (v));
-    
-    if (extra > 0) { t.setWidth (t.getWidth() + extra); }
-    
-    return t;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void PainterStrategy::paintText (juce::Rectangle<int> r,
     juce::Graphics& g,
     const juce::String& text,
@@ -256,7 +202,7 @@ void PainterStrategy::paintText (juce::Rectangle<int> r,
         
     if (f > 0.5) {
     //
-    const juce::Rectangle<int> t (r.reduced (getTextMargins (f)));
+    const juce::Rectangle<int> t (r.reduced (PainterHelpers::getTextMargins (f)));
     
     g.setFont (font);
     

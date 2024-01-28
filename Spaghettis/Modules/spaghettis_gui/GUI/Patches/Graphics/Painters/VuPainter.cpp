@@ -119,7 +119,7 @@ void VuPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> VuPainter::getRequiredBoundsForWidget()
 {
-    return getRequiredBoundsFromDimensions();
+    return PainterHelpers::getRequiredBoundsFromDimensions (*this);
 }
 
 // -----------------------------------------------------------------------------------------------------------

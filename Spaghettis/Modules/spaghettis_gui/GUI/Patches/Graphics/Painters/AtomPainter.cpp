@@ -150,7 +150,7 @@ void AtomPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> AtomPainter::getRequiredBoundsForWidget()
 {
-    return getRequiredBoundsFromText (getPlaceholder(), getFont(), getTriangleWidth());
+    return PainterHelpers::getRequiredBoundsFromText (*this, getPlaceholder(), getFont(), getTriangleWidth());
 }
 
 // -----------------------------------------------------------------------------------------------------------

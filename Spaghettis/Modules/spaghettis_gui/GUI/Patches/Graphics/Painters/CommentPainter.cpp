@@ -61,7 +61,7 @@ void CommentPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> CommentPainter::getRequiredBoundsForWidget()
 {
-    return getRequiredBoundsFromText (getText(), getFont());
+    return PainterHelpers::getRequiredBoundsFromText (*this, getText(), getFont());
 }
 
 // -----------------------------------------------------------------------------------------------------------

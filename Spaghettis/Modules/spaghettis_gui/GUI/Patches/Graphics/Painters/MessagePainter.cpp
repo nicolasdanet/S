@@ -110,7 +110,7 @@ void MessagePainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> MessagePainter::getRequiredBoundsForWidget()
 {
-    return getRequiredBoundsFromText (text_.get(), getFont(), getExtra() * 2);
+    return PainterHelpers::getRequiredBoundsFromText (*this, text_.get(), getFont(), getExtra() * 2);
 }
 
 // -----------------------------------------------------------------------------------------------------------

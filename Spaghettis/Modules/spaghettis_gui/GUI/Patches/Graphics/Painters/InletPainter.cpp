@@ -71,7 +71,7 @@ juce::Rectangle<int> InletPainter::getRequiredBoundsForWidget()
     const float f = getScale();
     const int w   = Fonts::getFontRescaled (f).getHeight();
     
-    return getRequiredBoundsFromVector (core::Vector::Scaled (w, w, f));
+    return PainterHelpers::getRequiredBoundsFromVector (*this, core::Vector::Scaled (w, w, f));
 }
 
 // -----------------------------------------------------------------------------------------------------------

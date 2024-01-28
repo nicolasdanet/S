@@ -72,15 +72,6 @@ public:
 // MARK: -
 
 protected:
-    juce::Rectangle<int> getRequiredBoundsFromDimensions();
-    juce::Rectangle<int> getRequiredBoundsFromVector (core::Vector::Scaled);
-    juce::Rectangle<int> getRequiredBoundsFromText (const juce::String&, const juce::Font&, int extra = 0);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-protected:
     void paintText (juce::Rectangle<int>,
             juce::Graphics&,
             const juce::String&,
