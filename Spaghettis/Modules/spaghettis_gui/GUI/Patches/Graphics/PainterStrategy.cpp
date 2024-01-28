@@ -62,6 +62,28 @@ void paintLabel (juce::Rectangle<int> r,
     }
 }
 
+int getMinimumWidth (float f, int m, int n)
+{
+    const int pins = juce::jmax (m, n, 1);
+    
+    int w = pins * Painter::pinWidth (f);
+    
+    if (pins > 1) { w += (pins - 1) * Painter::pinGripX (f) * 2; }
+    
+    return w;
+}
+
+juce::Rectangle<int> withMinimumWidthForPins (ObjectComponent* c, juce::Rectangle<int> r)
+{
+    const int m = c->getNumberOfInlets();
+    const int n = c->getNumberOfOutlets();
+    const int w = getMinimumWidth (c->getScale(), m, n);
+
+    if (r.getWidth() < w) { r.setWidth (w); }
+    
+    return r;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -92,7 +114,7 @@ void PainterStrategy::paint (juce::Rectangle<int> r, juce::Graphics& g)
 
 juce::Rectangle<int> PainterStrategy::getRequiredBounds()
 {
-    juce::Rectangle<int> t = withMinimumWidthForPins (getRequiredBoundsForWidget());
+    juce::Rectangle<int> t = withMinimumWidthForPins (component_, getRequiredBoundsForWidget());
         
     widgetWidth_ = t.getWidth();
     
@@ -166,35 +188,9 @@ int getTextMargins (float f)
     return std::round (3 * f);
 }
 
-int getMinimumWidth (float f, int m, int n)
-{
-    const int pins = juce::jmax (m, n, 1);
-    
-    int w = pins * Painter::pinWidth (f);
-    
-    if (pins > 1) { w += (pins - 1) * Painter::pinGripX (f) * 2; }
-    
-    return w;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::Rectangle<int> PainterStrategy::withMinimumWidthForPins (juce::Rectangle<int> r)
-{
-    const int m = component_->getNumberOfInlets();
-    const int n = component_->getNumberOfOutlets();
-    const int w = getMinimumWidth (getScale(), m, n);
-
-    if (r.getWidth() < w) { r.setWidth (w); }
-    
-    return r;
 }
 
 // -----------------------------------------------------------------------------------------------------------

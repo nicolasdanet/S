@@ -69,9 +69,6 @@ protected:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    juce::Rectangle<int> withMinimumWidthForPins (juce::Rectangle<int>);
-    
 protected:
     juce::Rectangle<int> getRequiredBoundsFromDimensions();
     juce::Rectangle<int> getRequiredBoundsFromVector (core::Vector::Scaled);
