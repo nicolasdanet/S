@@ -109,6 +109,7 @@
 
 #include "GUI/Patches/Graphics/PainterStrategy.hpp"
 #include "GUI/Patches/Graphics/Painter.hpp"
+#include "GUI/Patches/Graphics/PainterHelpers.hpp"
 
 #include "GUI/Patches/Graphics/Painters/ArrayPainter.hpp"
 #include "GUI/Patches/Graphics/Painters/AtomPainter.hpp"
