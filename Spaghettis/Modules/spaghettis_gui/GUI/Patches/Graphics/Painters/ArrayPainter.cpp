@@ -14,13 +14,13 @@ namespace spaghettis {
 
 ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    arrayBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::ArrayBackground), component_)),
-    arrayValueColour_ (Painted (Spaghettis()->getCachedColour (Tag::ArrayValue), component_)),
-    name_ (Painted (getObject().getCached<juce::String> (Tag::Parameters, Tag::Name), component_)),
-    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), component_)),
-    height_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Height), component_)),
-    size_ (Painted (getObject().getCached<int> (Tag::Parameters, Tag::Size), component_)),
-    count_ (Painted (getObject().getCached<int> (Tag::Parameters, Tag::Count), component_))
+    arrayBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::ArrayBackground), getOwner())),
+    arrayValueColour_ (Painted (Spaghettis()->getCachedColour (Tag::ArrayValue), getOwner())),
+    name_ (Painted (getObject().getCached<juce::String> (Tag::Parameters, Tag::Name), getOwner())),
+    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), getOwner())),
+    height_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Height), getOwner())),
+    size_ (Painted (getObject().getCached<int> (Tag::Parameters, Tag::Size), getOwner())),
+    count_ (Painted (getObject().getCached<int> (Tag::Parameters, Tag::Count), getOwner()))
 {
     /* Repaint from time to time to in case of missed (e.g. content changed from DSP). */
     /* Use random period to spread the draws. */
@@ -39,7 +39,7 @@ ArrayPainter::~ArrayPainter()
 
 void ArrayPainter::timerCallback()
 {
-    component_->repaint();
+    getOwner()->repaint();
 }
 
 // -----------------------------------------------------------------------------------------------------------

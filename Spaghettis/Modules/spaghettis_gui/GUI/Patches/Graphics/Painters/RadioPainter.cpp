@@ -14,13 +14,13 @@ namespace spaghettis {
 
 RadioPainter::RadioPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    radioBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::RadioBackground), component_)),
-    radioButtonColour_ (Painted (Spaghettis()->getCachedColour (Tag::RadioButton), component_)),
-    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), component_)),
-    isVertical_ (Resized (getObject().getCached<bool> (Tag::Parameters, Tag::Vertical), component_)),
-    isMultiple_ (Painted (getObject().getCached<bool> (Tag::Parameters, Tag::Multiple), component_)),
-    buttons_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Buttons), component_)),
-    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), component_)),
+    radioBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::RadioBackground), getOwner())),
+    radioButtonColour_ (Painted (Spaghettis()->getCachedColour (Tag::RadioButton), getOwner())),
+    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), getOwner())),
+    isVertical_ (Resized (getObject().getCached<bool> (Tag::Parameters, Tag::Vertical), getOwner())),
+    isMultiple_ (Painted (getObject().getCached<bool> (Tag::Parameters, Tag::Multiple), getOwner())),
+    buttons_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Buttons), getOwner())),
+    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), getOwner())),
     painted_()
 {
 }

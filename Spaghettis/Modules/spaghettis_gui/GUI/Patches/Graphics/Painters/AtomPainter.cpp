@@ -14,11 +14,11 @@ namespace spaghettis {
 
 AtomPainter::AtomPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    atomBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::AtomBackground), component_)),
-    atomTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::AtomText), component_)),
+    atomBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::AtomBackground), getOwner())),
+    atomTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::AtomText), getOwner())),
     atomClickedColour_ (Spaghettis()->getCachedColour (Tag::AtomClicked)),
-    digits_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Digits), component_)),
-    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), component_)),
+    digits_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Digits), getOwner())),
+    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), getOwner())),
     low_ (getObject().getCached<double> (Tag::Parameters, Tag::Low)),
     high_ (getObject().getCached<double> (Tag::Parameters, Tag::High)),
     interval_ (getObject().getCached<double> (Tag::Parameters, Tag::Interval)),
@@ -36,7 +36,7 @@ void AtomPainter::mouseDown (const juce::MouseEvent& e)
     dragged_ = true;
     v_       = value_.get();
         
-    component_->repaint();
+    getOwner()->repaint();
 }
 
 void AtomPainter::mouseDrag (const juce::MouseEvent& e)
@@ -58,7 +58,7 @@ void AtomPainter::mouseUp (const juce::MouseEvent&)
 {
     dragged_ = false;
     
-    component_->repaint();
+    getOwner()->repaint();
 }
     
 // -----------------------------------------------------------------------------------------------------------

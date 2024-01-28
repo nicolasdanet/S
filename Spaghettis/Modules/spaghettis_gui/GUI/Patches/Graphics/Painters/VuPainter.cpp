@@ -14,14 +14,14 @@ namespace spaghettis {
 
 VuPainter::VuPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    vuBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBackground), component_)),
-    vuBarColdColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarCold), component_)),
-    vuBarWarmColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarWarm), component_)),
-    vuBarHotColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarHot), component_)),
-    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), component_)),
-    peak_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Peak), component_)),
-    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), component_)),
-    height_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Height), component_))
+    vuBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBackground), getOwner())),
+    vuBarColdColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarCold), getOwner())),
+    vuBarWarmColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarWarm), getOwner())),
+    vuBarHotColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarHot), getOwner())),
+    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), getOwner())),
+    peak_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Peak), getOwner())),
+    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), getOwner())),
+    height_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Height), getOwner()))
 {
 }
 

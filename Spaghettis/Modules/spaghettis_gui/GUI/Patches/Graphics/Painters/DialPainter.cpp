@@ -14,17 +14,17 @@ namespace spaghettis {
 
 DialPainter::DialPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    dialBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialBackground), component_)),
-    dialForegroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialForeground), component_)),
-    dialNeedleColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialNeedle), component_)),
-    dialTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialText), component_)),
-    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), component_)),
-    low_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Low), component_)),
-    high_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::High), component_)),
-    interval_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Interval), component_)),
-    isLogarithmic_ (Painted (getObject().getCached<bool> (Tag::Parameters, Tag::Logarithmic), component_)),
-    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), component_)),
-    digits_ (Painted (getObject().getCached<int> (Tag::Parameters, Tag::Digits), component_)),
+    dialBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialBackground), getOwner())),
+    dialForegroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialForeground), getOwner())),
+    dialNeedleColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialNeedle), getOwner())),
+    dialTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::DialText), getOwner())),
+    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), getOwner())),
+    low_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Low), getOwner())),
+    high_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::High), getOwner())),
+    interval_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Interval), getOwner())),
+    isLogarithmic_ (Painted (getObject().getCached<bool> (Tag::Parameters, Tag::Logarithmic), getOwner())),
+    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), getOwner())),
+    digits_ (Painted (getObject().getCached<int> (Tag::Parameters, Tag::Digits), getOwner())),
     painted_(),
     v_ (0.0f),
     dragged_ (false)
@@ -40,7 +40,7 @@ void DialPainter::mouseDown (const juce::MouseEvent& e)
     dragged_ = true;
     v_       = getNormalizedValue();
     
-    component_->repaint();
+    getOwner()->repaint();
 }
 
 void DialPainter::mouseDrag (const juce::MouseEvent& e)
@@ -56,7 +56,7 @@ void DialPainter::mouseUp (const juce::MouseEvent&)
 {
     dragged_ = false;
     
-    component_->repaint();
+    getOwner()->repaint();
 }
 
 // -----------------------------------------------------------------------------------------------------------

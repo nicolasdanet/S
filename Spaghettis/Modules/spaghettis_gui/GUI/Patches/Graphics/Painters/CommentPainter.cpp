@@ -14,11 +14,11 @@ namespace spaghettis {
 
 CommentPainter::CommentPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    commentBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::CommentBackground), component_)),
-    commentTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::CommentText), component_)),
-    text_ (Resized (getObject().getCached<juce::String> (Tag::Parameters, Tag::Text), component_))
+    commentBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::CommentBackground), getOwner())),
+    commentTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::CommentText), getOwner())),
+    text_ (Resized (getObject().getCached<juce::String> (Tag::Parameters, Tag::Text), getOwner()))
 {
-    component_->setBufferedToImage (true);
+    getOwner()->setBufferedToImage (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------

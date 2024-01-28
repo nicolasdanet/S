@@ -14,10 +14,10 @@ namespace spaghettis {
 
 MessagePainter::MessagePainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    messageBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageBackground), component_)),
-    messageTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageText), component_)),
-    messageClickedColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageClicked), component_)),
-    text_ (Resized (getObject().getCached<juce::String> (Tag::Parameters, Tag::Text), component_)),
+    messageBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageBackground), getOwner())),
+    messageTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageText), getOwner())),
+    messageClickedColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageClicked), getOwner())),
+    text_ (Resized (getObject().getCached<juce::String> (Tag::Parameters, Tag::Text), getOwner())),
     isClicked_ (false)
 {
 }
@@ -28,7 +28,7 @@ MessagePainter::MessagePainter (ObjectComponent* owner) :
 
 void MessagePainter::clicked (bool isClicked)
 {
-    if (isClicked != isClicked_) { isClicked_ = isClicked; component_->repaint(); }
+    if (isClicked != isClicked_) { isClicked_ = isClicked; getOwner()->repaint(); }
 }
 
 void MessagePainter::timerCallback()

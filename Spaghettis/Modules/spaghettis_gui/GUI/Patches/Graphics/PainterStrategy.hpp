@@ -33,6 +33,8 @@ public:
 // MARK: -
 
 public:
+    ObjectComponent* getOwner();
+    
     core::Object& getObject();
     
 // -----------------------------------------------------------------------------------------------------------
@@ -108,10 +110,8 @@ protected:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-protected:
-    ObjectComponent* component_;
-
 private:
+    ObjectComponent* component_;
     core::Object object_;
     data::Cached<juce::Colour> boxPinsBackgroundColour_;
     data::Cached<juce::Colour> patchLabelBackgroundColour_;

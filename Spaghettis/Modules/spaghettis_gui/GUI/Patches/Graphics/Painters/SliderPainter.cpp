@@ -14,16 +14,16 @@ namespace spaghettis {
 
 SliderPainter::SliderPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
-    sliderBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::SliderBackground), component_)),
-    sliderBarColour_ (Painted (Spaghettis()->getCachedColour (Tag::SliderBar), component_)),
-    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), component_)),
-    low_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Low), component_)),
-    high_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::High), component_)),
-    interval_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Interval), component_)),
-    isVertical_ (Resized (getObject().getCached<bool> (Tag::Parameters, Tag::Vertical), component_)),
-    isLogarithmic_ (Painted (getObject().getCached<bool> (Tag::Parameters, Tag::Logarithmic), component_)),
-    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), component_)),
-    height_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Height), component_)),
+    sliderBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::SliderBackground), getOwner())),
+    sliderBarColour_ (Painted (Spaghettis()->getCachedColour (Tag::SliderBar), getOwner())),
+    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), getOwner())),
+    low_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Low), getOwner())),
+    high_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::High), getOwner())),
+    interval_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Interval), getOwner())),
+    isVertical_ (Resized (getObject().getCached<bool> (Tag::Parameters, Tag::Vertical), getOwner())),
+    isLogarithmic_ (Painted (getObject().getCached<bool> (Tag::Parameters, Tag::Logarithmic), getOwner())),
+    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), getOwner())),
+    height_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Height), getOwner())),
     painted_(),
     dragged_ (false)
 {

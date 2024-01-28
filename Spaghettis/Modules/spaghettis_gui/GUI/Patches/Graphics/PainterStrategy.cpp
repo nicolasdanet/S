@@ -28,6 +28,11 @@ PainterStrategy::PainterStrategy (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+ObjectComponent* PainterStrategy::getOwner()
+{
+    return component_;
+}
+
 core::Object& PainterStrategy::getObject()
 {
     return object_;
