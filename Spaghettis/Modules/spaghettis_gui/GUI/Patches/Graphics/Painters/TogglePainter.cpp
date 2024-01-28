@@ -16,8 +16,8 @@ TogglePainter::TogglePainter (ObjectComponent* owner) :
     PainterStrategy (owner),
     toggleBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::ToggleBackground), component_)),
     toggleColour_ (Painted (Spaghettis()->getCachedColour (Tag::Toggle), component_)),
-    state_ (Painted (object_.getCached<bool> (Tag::Parameters, Tag::State), component_)),
-    width_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Width), component_))
+    state_ (Painted (getObject().getCached<bool> (Tag::Parameters, Tag::State), component_)),
+    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), component_))
 {
 }
 

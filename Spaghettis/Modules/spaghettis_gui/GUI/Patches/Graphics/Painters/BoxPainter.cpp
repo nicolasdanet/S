@@ -17,8 +17,8 @@ BoxPainter::BoxPainter (ObjectComponent* owner) :
     boxBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxBackground), component_)),
     boxTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxText), component_)),
     boxWrongColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxWrong), component_)),
-    content_ (Resized (object_.getCached<juce::String> (Tag::Attributes, Tag::Content), component_)),
-    class_ (object_.getCached<juce::String> (Tag::Attributes, Tag::Class))
+    content_ (Resized (getObject().getCached<juce::String> (Tag::Attributes, Tag::Content), component_)),
+    class_ (getObject().getCached<juce::String> (Tag::Attributes, Tag::Class))
 {
     component_->setBufferedToImage (true);
 }

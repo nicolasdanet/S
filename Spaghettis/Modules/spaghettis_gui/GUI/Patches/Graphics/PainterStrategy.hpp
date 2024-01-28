@@ -32,6 +32,13 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    core::Object& getObject();
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     virtual void paintWidget (juce::Rectangle<int>, juce::Graphics&) = 0;
     virtual juce::Rectangle<int> getRequiredBoundsForWidget() = 0;
@@ -103,6 +110,8 @@ protected:
 
 protected:
     ObjectComponent* component_;
+
+private:
     core::Object object_;
     data::Cached<juce::Colour> boxPinsBackgroundColour_;
     data::Cached<juce::Colour> patchLabelBackgroundColour_;

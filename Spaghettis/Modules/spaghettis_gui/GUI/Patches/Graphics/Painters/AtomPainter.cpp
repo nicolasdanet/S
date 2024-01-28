@@ -17,11 +17,11 @@ AtomPainter::AtomPainter (ObjectComponent* owner) :
     atomBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::AtomBackground), component_)),
     atomTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::AtomText), component_)),
     atomClickedColour_ (Spaghettis()->getCachedColour (Tag::AtomClicked)),
-    digits_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Digits), component_)),
-    value_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Value), component_)),
-    low_ (object_.getCached<double> (Tag::Parameters, Tag::Low)),
-    high_ (object_.getCached<double> (Tag::Parameters, Tag::High)),
-    interval_ (object_.getCached<double> (Tag::Parameters, Tag::Interval)),
+    digits_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Digits), component_)),
+    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), component_)),
+    low_ (getObject().getCached<double> (Tag::Parameters, Tag::Low)),
+    high_ (getObject().getCached<double> (Tag::Parameters, Tag::High)),
+    interval_ (getObject().getCached<double> (Tag::Parameters, Tag::Interval)),
     v_ (0.0),
     dragged_ (false)
 {

@@ -17,7 +17,7 @@ MessagePainter::MessagePainter (ObjectComponent* owner) :
     messageBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageBackground), component_)),
     messageTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageText), component_)),
     messageClickedColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageClicked), component_)),
-    text_ (Resized (object_.getCached<juce::String> (Tag::Parameters, Tag::Text), component_)),
+    text_ (Resized (getObject().getCached<juce::String> (Tag::Parameters, Tag::Text), component_)),
     isClicked_ (false)
 {
 }

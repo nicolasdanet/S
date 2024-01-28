@@ -16,11 +16,11 @@ ArrayPainter::ArrayPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
     arrayBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::ArrayBackground), component_)),
     arrayValueColour_ (Painted (Spaghettis()->getCachedColour (Tag::ArrayValue), component_)),
-    name_ (Painted (object_.getCached<juce::String> (Tag::Parameters, Tag::Name), component_)),
-    width_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Width), component_)),
-    height_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Height), component_)),
-    size_ (Painted (object_.getCached<int> (Tag::Parameters, Tag::Size), component_)),
-    count_ (Painted (object_.getCached<int> (Tag::Parameters, Tag::Count), component_))
+    name_ (Painted (getObject().getCached<juce::String> (Tag::Parameters, Tag::Name), component_)),
+    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), component_)),
+    height_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Height), component_)),
+    size_ (Painted (getObject().getCached<int> (Tag::Parameters, Tag::Size), component_)),
+    count_ (Painted (getObject().getCached<int> (Tag::Parameters, Tag::Count), component_))
 {
     /* Repaint from time to time to in case of missed (e.g. content changed from DSP). */
     /* Use random period to spread the draws. */

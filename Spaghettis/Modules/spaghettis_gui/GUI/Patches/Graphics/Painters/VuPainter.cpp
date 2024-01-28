@@ -18,10 +18,10 @@ VuPainter::VuPainter (ObjectComponent* owner) :
     vuBarColdColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarCold), component_)),
     vuBarWarmColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarWarm), component_)),
     vuBarHotColour_ (Painted (Spaghettis()->getCachedColour (Tag::VuBarHot), component_)),
-    value_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Value), component_)),
-    peak_ (Painted (object_.getCached<double> (Tag::Parameters, Tag::Peak), component_)),
-    width_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Width), component_)),
-    height_ (Resized (object_.getCached<int> (Tag::Parameters, Tag::Height), component_))
+    value_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Value), component_)),
+    peak_ (Painted (getObject().getCached<double> (Tag::Parameters, Tag::Peak), component_)),
+    width_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Width), component_)),
+    height_ (Resized (getObject().getCached<int> (Tag::Parameters, Tag::Height), component_))
 {
 }
 
