@@ -105,7 +105,7 @@ void MessagePainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
     
     g.setColour (isClicked_ ? messageClickedColour_.get() : messageTextColour_.get());
     
-    paintText (r, g, text_.get(), getFont(), juce::Justification::centredLeft);
+    PainterHelpers::paintText (*this, r, g, text_.get(), getFont(), juce::Justification::centredLeft);
 }
 
 juce::Rectangle<int> MessagePainter::getRequiredBoundsForWidget()

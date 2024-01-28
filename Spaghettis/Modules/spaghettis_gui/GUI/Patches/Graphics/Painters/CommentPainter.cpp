@@ -56,7 +56,7 @@ void CommentPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
     g.fillRect (r);
     g.setColour (commentTextColour_.get());
     
-    paintText (r, g, getText(), getFont(), juce::Justification::centredLeft);
+    PainterHelpers::paintText (*this, r, g, getText(), getFont(), juce::Justification::centredLeft);
 }
 
 juce::Rectangle<int> CommentPainter::getRequiredBoundsForWidget()

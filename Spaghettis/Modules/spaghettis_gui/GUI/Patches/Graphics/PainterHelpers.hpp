@@ -30,7 +30,24 @@ static juce::Rectangle<int> getRequiredBoundsFromText (PainterStrategy&,
                                 const juce::String&,
                                 const juce::Font&,
                                 int extra = 0);
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void paintText (PainterStrategy& p,
+                juce::Rectangle<int>,
+                juce::Graphics&,
+                const juce::String&,
+                const juce::Font&,
+                juce::Justification);
+                    
+static void paintTextAsDigits (PainterStrategy& p,
+                juce::Rectangle<int>,
+                juce::Graphics&,
+                const juce::String&,
+                const juce::Font&);
+            
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

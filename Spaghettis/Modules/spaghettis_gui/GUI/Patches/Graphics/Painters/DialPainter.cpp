@@ -188,7 +188,11 @@ void DialPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
     if (heightDigits > 10) {
     if (digits_.get() > 0) {
         g.setColour (dragged_ ? dialNeedleColour_.get() : dialTextColour_.get());
-        paintTextAsDigits (r.removeFromBottom (heightDigits), g, getText(), getFont (heightDigits));
+        PainterHelpers::paintTextAsDigits (*this,
+            r.removeFromBottom (heightDigits),
+            g,
+            getText(),
+            getFont (heightDigits));
     }
     }
 }

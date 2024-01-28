@@ -55,6 +55,78 @@ juce::Rectangle<int> PainterHelpers::getRequiredBoundsFromText (PainterStrategy&
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void paintGlyphs (juce::Rectangle<float> r, juce::Graphics& g, const juce::GlyphArrangement& glyphs)
+{
+    const juce::Rectangle<float> box (glyphs.getBoundingBox (0, -1, true));
+    
+    const float spaceX = r.getWidth() - box.getWidth();
+    
+    if (spaceX > 0.0f) {
+    //
+    const float deltaX = spaceX / 2.0f;
+    const float deltaY = r.getY() - (r.getHeight() / 4.0f);
+    
+    glyphs.draw (g, juce::AffineTransform::translation (deltaX, deltaY));
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PainterHelpers::paintText (PainterStrategy& p,
+    juce::Rectangle<int> r,
+    juce::Graphics& g,
+    const juce::String& text,
+    const juce::Font& font,
+    juce::Justification justification)
+{
+    const float f = p.getScale();
+        
+    if (f > 0.5) {
+    //
+    const juce::Rectangle<int> t (r.reduced (PainterHelpers::getTextMargins (f)));
+    
+    g.setFont (font);
+    
+    g.drawText (text, t, justification, true);
+    //
+    }
+}
+
+/* Workaround to centre the digits without considering the minus sign. */
+
+void PainterHelpers::paintTextAsDigits (PainterStrategy& p,
+    juce::Rectangle<int> r,
+    juce::Graphics& g,
+    const juce::String& text,
+    const juce::Font& font)
+{
+    const juce::String s (text.startsWithChar ('-') ? text + " " : text);
+    
+    juce::GlyphArrangement glyphs; glyphs.addLineOfText (font, s, r.getX(), r.getHeight());
+    
+    g.setFont (font);
+    
+    paintGlyphs (r.toFloat(), g, glyphs);
+}
+
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 }
 

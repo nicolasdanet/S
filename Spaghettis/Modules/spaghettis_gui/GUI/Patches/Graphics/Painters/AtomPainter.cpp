@@ -145,7 +145,7 @@ void AtomPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
     
     g.setColour (dragged_ ? atomClickedColour_.get() : atomTextColour_.get());
     
-    paintText (r, g, getText(), getFont(), juce::Justification::centredRight);
+    PainterHelpers::paintText (*this, r, g, getText(), getFont(), juce::Justification::centredRight);
 }
 
 juce::Rectangle<int> AtomPainter::getRequiredBoundsForWidget()

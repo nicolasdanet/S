@@ -72,22 +72,6 @@ public:
 // MARK: -
 
 protected:
-    void paintText (juce::Rectangle<int>,
-            juce::Graphics&,
-            const juce::String&,
-            const juce::Font&,
-            juce::Justification);
-                    
-    void paintTextAsDigits (juce::Rectangle<int>,
-            juce::Graphics&,
-            const juce::String&,
-            const juce::Font&);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-protected:
     void setDimensionsByParameters (core::Vector::Real);
     
 // -----------------------------------------------------------------------------------------------------------
