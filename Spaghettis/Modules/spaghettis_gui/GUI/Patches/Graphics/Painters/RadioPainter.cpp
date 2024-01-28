@@ -222,7 +222,7 @@ void RadioPainter::setDimensions (core::Vector::Real v)
     const int h = v.getPoint().getY();
     const int t = (isVertical_.get() ? h : w) / buttons_.get();
     
-    setDimensionsByParameters (core::Vector::Real (t, t));
+    PainterHelpers::setDimensionsByParameters (*this, core::Vector::Real (t, t));
 }
     
 // -----------------------------------------------------------------------------------------------------------

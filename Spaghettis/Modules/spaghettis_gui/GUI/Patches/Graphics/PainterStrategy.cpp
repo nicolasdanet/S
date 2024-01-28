@@ -190,36 +190,6 @@ core::UniqueId PainterStrategy::getIdentifier() const
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void PainterStrategy::setDimensionsByParameters (core::Vector::Real v)
-{
-    const int w = v.getPoint().getX();
-    const int h = v.getPoint().getY();
-    
-    if (w > 0 && h > 0) {
-    //
-    data::Group group    = object_.getCopyOfParameters();
-    const bool hasWidth  = group.hasParameter (Tag::Width);
-    const bool hasHeight = group.hasParameter (Tag::Height);
-    
-    if (hasWidth) {
-    //
-    group.getParameter (Tag::Width).changeValue (hasHeight ? w : juce::jmax (w, h));
-    
-    if (hasHeight) {
-        group.getParameter (Tag::Height).changeValue (h);
-    }
-    
-    Broadcast::parameters (getIdentifier(), group);
-    //
-    }
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 }
 

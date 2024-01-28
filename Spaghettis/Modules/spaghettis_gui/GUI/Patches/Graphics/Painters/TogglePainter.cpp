@@ -60,7 +60,7 @@ std::optional<core::Vector::Real> TogglePainter::getDimensions()
 
 void TogglePainter::setDimensions (core::Vector::Real v)
 {
-    setDimensionsByParameters (v);
+    PainterHelpers::setDimensionsByParameters (*this, v);
 }
     
 // -----------------------------------------------------------------------------------------------------------

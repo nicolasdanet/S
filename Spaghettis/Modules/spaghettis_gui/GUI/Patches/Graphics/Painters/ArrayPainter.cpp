@@ -100,7 +100,7 @@ std::optional<core::Vector::Real> ArrayPainter::getDimensions()
 
 void ArrayPainter::setDimensions (core::Vector::Real v)
 {
-    setDimensionsByParameters (v);
+    PainterHelpers::setDimensionsByParameters (*this, v);
 }
 
 // -----------------------------------------------------------------------------------------------------------

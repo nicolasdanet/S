@@ -213,7 +213,7 @@ std::optional<core::Vector::Real> DialPainter::getDimensions()
 
 void DialPainter::setDimensions (core::Vector::Real v)
 {
-    setDimensionsByParameters (v);
+    PainterHelpers::setDimensionsByParameters (*this, v);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -59,7 +59,7 @@ std::optional<core::Vector::Real> BangPainter::getDimensions()
 
 void BangPainter::setDimensions (core::Vector::Real v)
 {
-    setDimensionsByParameters (v);
+    PainterHelpers::setDimensionsByParameters (*this, v);
 }
     
 // -----------------------------------------------------------------------------------------------------------

@@ -134,7 +134,7 @@ std::optional<core::Vector::Real> SliderPainter::getDimensions()
 
 void SliderPainter::setDimensions (core::Vector::Real v)
 {
-    setDimensionsByParameters (v);
+    PainterHelpers::setDimensionsByParameters (*this, v);
 }
 
 // -----------------------------------------------------------------------------------------------------------

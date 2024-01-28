@@ -133,7 +133,7 @@ std::optional<core::Vector::Real> VuPainter::getDimensions()
 
 void VuPainter::setDimensions (core::Vector::Real v)
 {
-    setDimensionsByParameters (v);
+    PainterHelpers::setDimensionsByParameters (*this, v);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -124,6 +124,35 @@ void PainterHelpers::paintTextAsDigits (PainterStrategy& p,
     paintGlyphs (r.toFloat(), g, glyphs);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PainterHelpers::setDimensionsByParameters (PainterStrategy& p, core::Vector::Real v)
+{
+    const int w = v.getPoint().getX();
+    const int h = v.getPoint().getY();
+    
+    if (w > 0 && h > 0) {
+    //
+    data::Group group    = p.getObject().getCopyOfParameters();
+    const bool hasWidth  = group.hasParameter (Tag::Width);
+    const bool hasHeight = group.hasParameter (Tag::Height);
+    
+    if (hasWidth) {
+    //
+    group.getParameter (Tag::Width).changeValue (hasHeight ? w : juce::jmax (w, h));
+    
+    if (hasHeight) {
+        group.getParameter (Tag::Height).changeValue (h);
+    }
+    
+    Broadcast::parameters (p.getIdentifier(), group);
+    //
+    }
+    //
+    }
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
