@@ -32,15 +32,6 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    ObjectComponent* getOwner();
-    
-    core::Object& getObject();
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 private:
     virtual void paintWidget (juce::Rectangle<int>, juce::Graphics&) = 0;
     virtual juce::Rectangle<int> getRequiredBoundsForWidget() = 0;
@@ -69,7 +60,9 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-protected:
+public:
+    ObjectComponent* getOwner();
+    core::Object& getObject();
     float getScale() const;
     core::Point::Scaled getPosition() const;
     core::UniqueId getIdentifier() const;
