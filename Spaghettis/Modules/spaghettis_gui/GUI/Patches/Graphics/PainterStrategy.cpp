@@ -37,7 +37,22 @@ core::Object& PainterStrategy::getObject()
 {
     return object_;
 }
-    
+
+float PainterStrategy::getScale() const
+{
+    return component_->getScale();
+}
+
+core::Point::Scaled PainterStrategy::getPosition() const
+{
+    return core::Point::Scaled (component_->getPosition(), getScale());
+}
+
+core::UniqueId PainterStrategy::getIdentifier() const
+{
+    return object_.getIdentifier();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -76,6 +91,24 @@ void paintLabel (juce::Rectangle<int> r,
     }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>& r, float f)
+{
+    return r.reduced (0, Painter::pinHeight (f));
+}
+
+juce::Rectangle<int> getBoundsWithPins (const juce::Rectangle<int>& r, float f)
+{
+    return r.expanded (0, Painter::pinHeight (f));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 int getMinimumWidth (float f, int m, int n)
 {
     const int pins = juce::jmax (m, n, 1);
@@ -106,25 +139,48 @@ juce::Rectangle<int> withMinimumWidthForPins (ObjectComponent* c, juce::Rectangl
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void PainterStrategy::paint (juce::Rectangle<int> r, juce::Graphics& g)
+/*
+void ObjectComponent::paint (juce::Graphics& g)
 {
+    const juce::Rectangle<int> bounds (getLocalBounds());
+    const juce::Rectangle<int> painted (getPaintedAreaFromBounds (bounds, getScale()));
+    const int w = painter_->getWidgetWidth();
+    
+    if (!isInsideRunView() && selected_.get()) { g.setColour (boxSelectedColour_.get()); }
+    else {
+        g.setColour (painter_->getPinsBackgroundColour());
+    }
+    
+    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(), painted.getTopRight()).withWidth (w));
+    g.fillRect (juce::Rectangle<int> (painted.getBottomLeft(), bounds.getBottomRight()).withWidth (w));
+    
+    painter_->paint (painted, g);
+}
+*/
+
+void PainterStrategy::paint (juce::Rectangle<int> bounds, juce::Graphics& g)
+{
+    juce::Rectangle<int> painted (getPaintedAreaFromBounds (bounds, getScale()));
+    
     if (component_->isInsideRunView() && component_->hasLabel()) {              /* Paint label. */
     //
-    const juce::Rectangle<int> t (r.removeFromLeft (getWidgetWidth()));
+    const juce::Rectangle<int> t (painted.removeFromLeft (widgetWidth_));
     
-    paintLabel (r.withTrimmedLeft (4),
+    paintLabel (painted.withTrimmedLeft (4),
         g,
         patchLabelBackgroundColour_.get(),
         patchLabelTextColour_.get(),
         component_->getLabel());
     
-    r = t;
+    painted = t;
     //
     }
         
-    paintWidget (r, g);
+    paintWidget (painted, g);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 juce::Rectangle<int> PainterStrategy::getRequiredBounds()
 {
@@ -134,16 +190,11 @@ juce::Rectangle<int> PainterStrategy::getRequiredBounds()
     
     if (component_->isInsideRunView() && component_->hasLabel()) {              /* Add label bounds. */
     //
-    t.setWidth (RunLayout::snapWidthToFitColumns (getWidgetWidth() + getLabelWidth (component_->getLabel())));
+    t.setWidth (RunLayout::snapWidthToFitColumns (widgetWidth_ + getLabelWidth (component_->getLabel())));
     //
     }
     
-    return t;
-}
-
-int PainterStrategy::getWidgetWidth() const
-{
-    return widgetWidth_;
+    return getBoundsWithPins (t, getScale());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -167,25 +218,6 @@ void PainterStrategy::setDimensions (core::Vector::Real)
 juce::Colour PainterStrategy::getPinsBackgroundColour()
 {
     return boxPinsBackgroundColour_.get();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-float PainterStrategy::getScale() const
-{
-    return component_->getScale();
-}
-
-core::Point::Scaled PainterStrategy::getPosition() const
-{
-    return core::Point::Scaled (component_->getPosition(), getScale());
-}
-
-core::UniqueId PainterStrategy::getIdentifier() const
-{
-    return object_.getIdentifier();
 }
 
 // -----------------------------------------------------------------------------------------------------------

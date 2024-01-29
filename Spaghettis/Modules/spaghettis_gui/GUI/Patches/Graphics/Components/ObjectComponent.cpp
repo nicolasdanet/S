@@ -299,47 +299,11 @@ PinComponent* ObjectComponent::getOutletAt (int n) const
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>& r, float f)
-{
-    return r.reduced (0, Painter::pinHeight (f));
-}
-
-juce::Rectangle<int> getBoundsFromPaintedArea (const juce::Rectangle<int>& r, float f)
-{
-    return r.expanded (0, Painter::pinHeight (f));
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void ObjectComponent::paint (juce::Graphics& g)
 {
-    const juce::Rectangle<int> bounds (getLocalBounds());
-    const juce::Rectangle<int> painted (getPaintedAreaFromBounds (bounds, getScale()));
-    const int w = painter_->getWidgetWidth();
-    
-    if (!isInsideRunView() && selected_.get()) { g.setColour (boxSelectedColour_.get()); }
-    else {
-        g.setColour (painter_->getPinsBackgroundColour());
-    }
-    
-    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(), painted.getTopRight()).withWidth (w));
-    g.fillRect (juce::Rectangle<int> (painted.getBottomLeft(), bounds.getBottomRight()).withWidth (w));
-    
-    painter_->paint (painted, g);
+    painter_->paint (getLocalBounds(), g);
 }
     
 void ObjectComponent::resized()
@@ -468,8 +432,7 @@ void ObjectComponent::update (bool notify)
     removeInletsAndOultets();
     
     if (isVisible) {
-        const juce::Rectangle<int> painted (painter_->getRequiredBounds());
-        getView()->show (this, getBoundsFromPaintedArea (painted, getScale()));
+        getView()->show (this, painter_->getRequiredBounds());
         if (!isRunView) {
             setTooltip (getLabel()); createInletsAndOutlets();
         }
