@@ -34,48 +34,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Font getLabelFont()
-{
-    return Fonts::getMonospacedFont();
-}
-
-int getLabelWidth (const juce::String& s)
-{
-    return getLabelFont().getStringWidth (s);
-}
-
-void paintLabel (juce::Graphics& g,
-    juce::Rectangle<int> r,
-    juce::Colour backgroundColour,
-    juce::Colour textColour,
-    const juce::String& text)
-{
-    const juce::Font font (getLabelFont());
-    
-    if (r.getHeight() >= font.getHeight()) {
-    //
-    g.setColour (backgroundColour);
-    g.fillRect (r);
-    g.setColour (textColour);
-    g.setFont (font);
-    g.drawText (text, r.translated (-1, -1), juce::Justification::bottomRight, true);
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::Rectangle<int> getWidgetAreaFromBounds (juce::Rectangle<int> r, float f)
-{
-    return r.reduced (0, Painter::pinHeight (f));
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 int getMinimumWidthForPins (float f, int m, int n)
 {
     const int pins = juce::jmax (m, n, 1);
@@ -96,6 +54,52 @@ juce::Rectangle<int> withMinimumWidthForPins (ObjectComponent* c, juce::Rectangl
     if (r.getWidth() < w) { r.setWidth (w); }
     
     return r;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Font getLabelFont()
+{
+    return Fonts::getMonospacedFont();
+}
+
+int getLabelWidth (const juce::String& s)
+{
+    return getLabelFont().getStringWidth (s);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void paintLabel (juce::Graphics& g,
+    juce::Rectangle<int> r,
+    juce::Colour backgroundColour,
+    juce::Colour textColour,
+    const juce::String& text)
+{
+    const juce::Font font (getLabelFont());
+    
+    if (r.getHeight() >= font.getHeight()) {
+    //
+    g.setColour (backgroundColour);
+    g.fillRect (r);
+    g.setColour (textColour);
+    g.setFont (font);
+    g.drawText (text, r.translated (-1, -1), juce::Justification::bottomRight, true);
+    //
+    }
+}
+
+juce::Rectangle<int> paintPinsBackground (juce::Graphics& g,
+    juce::Rectangle<int> bounds,
+    float f)
+{
+    juce::Rectangle<int> painted (bounds.reduced (0, Painter::pinHeight (f)));
+    
+    return painted;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -133,23 +137,23 @@ void PainterStrategy::paint (juce::Rectangle<int> bounds, juce::Graphics& g)
     const bool isSelected      = component_->isSelected();
     const bool hasLabel        = component_->hasLabel();
     
-    juce::Rectangle<int> painted (getWidgetAreaFromBounds (bounds, getScale()));
+    juce::Rectangle<int> widget (paintPinsBackground (g, bounds, getScale()));
     
     if (isInsideRunView && hasLabel) {          /* Paint label. */
     //
-    const juce::Rectangle<int> t (painted.removeFromLeft (widgetWidth_));
+    const juce::Rectangle<int> t (widget.removeFromLeft (widgetWidth_));
     
     paintLabel (g,
-        painted.withTrimmedLeft (4),
+        widget.withTrimmedLeft (4),
         patchLabelBackgroundColour_.get(),
         patchLabelTextColour_.get(),
         component_->getLabel());
     
-    painted = t;
+    widget = t;
     //
     }
         
-    paintWidget (painted, g);
+    paintWidget (widget, g);
 }
 
 // -----------------------------------------------------------------------------------------------------------
