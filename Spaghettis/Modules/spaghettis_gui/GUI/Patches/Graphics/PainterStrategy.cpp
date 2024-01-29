@@ -63,25 +63,6 @@ void paintLabel (juce::Graphics& g,
     }
 }
 
-/*
-void paintPinsBackground (juce::Graphics& g)
-{
-    const juce::Rectangle<int> bounds (getLocalBounds());
-    const juce::Rectangle<int> painted (getWidgetAreaFromBounds (bounds, getScale()));
-    const int w = painter_->getWidgetWidth();
-    
-    isSelected()
-    
-    if (!isInsideRunView() && selected_.get()) { g.setColour (boxSelectedColour_.get()); }
-    else {
-        g.setColour (painter_->getPinsBackgroundColour());
-    }
-    
-    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(), painted.getTopRight()).withWidth (w));
-    g.fillRect (juce::Rectangle<int> (painted.getBottomLeft(), bounds.getBottomRight()).withWidth (w));
-}
-*/
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -89,11 +70,6 @@ void paintPinsBackground (juce::Graphics& g)
 juce::Rectangle<int> getWidgetAreaFromBounds (juce::Rectangle<int> r, float f)
 {
     return r.reduced (0, Painter::pinHeight (f));
-}
-
-juce::Rectangle<int> getBoundsFromWidgetArea (juce::Rectangle<int> r, float f)
-{
-    return r.expanded (0, Painter::pinHeight (f));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -158,7 +134,7 @@ void PainterStrategy::paint (juce::Rectangle<int> bounds, juce::Graphics& g)
     const bool hasLabel        = component_->hasLabel();
     
     juce::Rectangle<int> painted (getWidgetAreaFromBounds (bounds, getScale()));
-        
+    
     if (isInsideRunView && hasLabel) {          /* Paint label. */
     //
     const juce::Rectangle<int> t (painted.removeFromLeft (widgetWidth_));
@@ -194,7 +170,7 @@ juce::Rectangle<int> PainterStrategy::getRequiredBounds()
     //
     }
     
-    return getBoundsFromWidgetArea (t, getScale());
+    return t.expanded (0, Painter::pinHeight (getScale()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
