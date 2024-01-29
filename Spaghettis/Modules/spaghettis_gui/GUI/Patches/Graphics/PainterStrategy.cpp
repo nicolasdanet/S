@@ -23,35 +23,6 @@ PainterStrategy::PainterStrategy (ObjectComponent* owner) :
     jassert (owner);
     jassert (object_.isObject());
 }
- 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-ObjectComponent* PainterStrategy::getOwner()
-{
-    return component_;
-}
-
-core::Object& PainterStrategy::getObject()
-{
-    return object_;
-}
-
-float PainterStrategy::getScale() const
-{
-    return component_->getScale();
-}
-
-core::Point::Scaled PainterStrategy::getPosition() const
-{
-    return core::Point::Scaled (component_->getPosition(), getScale());
-}
-
-core::UniqueId PainterStrategy::getIdentifier() const
-{
-    return object_.getIdentifier();
-}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -95,12 +66,12 @@ void paintLabel (juce::Rectangle<int> r,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Rectangle<int> getPaintedAreaFromBounds (const juce::Rectangle<int>& r, float f)
+juce::Rectangle<int> getWidgetAreaFromBounds (juce::Rectangle<int> r, float f)
 {
     return r.reduced (0, Painter::pinHeight (f));
 }
 
-juce::Rectangle<int> getBoundsWithPins (const juce::Rectangle<int>& r, float f)
+juce::Rectangle<int> getBoundsFromWidgetArea (juce::Rectangle<int> r, float f)
 {
     return r.expanded (0, Painter::pinHeight (f));
 }
@@ -109,7 +80,7 @@ juce::Rectangle<int> getBoundsWithPins (const juce::Rectangle<int>& r, float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int getMinimumWidth (float f, int m, int n)
+int getMinimumWidthForPins (float f, int m, int n)
 {
     const int pins = juce::jmax (m, n, 1);
     
@@ -124,7 +95,7 @@ juce::Rectangle<int> withMinimumWidthForPins (ObjectComponent* c, juce::Rectangl
 {
     const int m = c->getNumberOfInlets();
     const int n = c->getNumberOfOutlets();
-    const int w = getMinimumWidth (c->getScale(), m, n);
+    const int w = getMinimumWidthForPins (c->getScale(), m, n);
 
     if (r.getWidth() < w) { r.setWidth (w); }
     
@@ -143,7 +114,7 @@ juce::Rectangle<int> withMinimumWidthForPins (ObjectComponent* c, juce::Rectangl
 void ObjectComponent::paint (juce::Graphics& g)
 {
     const juce::Rectangle<int> bounds (getLocalBounds());
-    const juce::Rectangle<int> painted (getPaintedAreaFromBounds (bounds, getScale()));
+    const juce::Rectangle<int> painted (getWidgetAreaFromBounds (bounds, getScale()));
     const int w = painter_->getWidgetWidth();
     
     if (!isInsideRunView() && selected_.get()) { g.setColour (boxSelectedColour_.get()); }
@@ -160,7 +131,7 @@ void ObjectComponent::paint (juce::Graphics& g)
 
 void PainterStrategy::paint (juce::Rectangle<int> bounds, juce::Graphics& g)
 {
-    juce::Rectangle<int> painted (getPaintedAreaFromBounds (bounds, getScale()));
+    juce::Rectangle<int> painted (getWidgetAreaFromBounds (bounds, getScale()));
     
     if (component_->isInsideRunView() && component_->hasLabel()) {              /* Paint label. */
     //
@@ -194,7 +165,7 @@ juce::Rectangle<int> PainterStrategy::getRequiredBounds()
     //
     }
     
-    return getBoundsWithPins (t, getScale());
+    return getBoundsFromWidgetArea (t, getScale());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -218,6 +189,35 @@ void PainterStrategy::setDimensions (core::Vector::Real)
 juce::Colour PainterStrategy::getPinsBackgroundColour()
 {
     return boxPinsBackgroundColour_.get();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+ObjectComponent* PainterStrategy::getOwner()
+{
+    return component_;
+}
+
+core::Object& PainterStrategy::getObject()
+{
+    return object_;
+}
+
+float PainterStrategy::getScale() const
+{
+    return component_->getScale();
+}
+
+core::Point::Scaled PainterStrategy::getPosition() const
+{
+    return core::Point::Scaled (component_->getPosition(), getScale());
+}
+
+core::UniqueId PainterStrategy::getIdentifier() const
+{
+    return object_.getIdentifier();
 }
 
 // -----------------------------------------------------------------------------------------------------------
