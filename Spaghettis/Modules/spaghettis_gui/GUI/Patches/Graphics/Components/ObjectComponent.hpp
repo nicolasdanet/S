@@ -177,7 +177,6 @@ private:
     data::Cached<juce::String> inlets_;
     data::Cached<juce::String> outlets_;
     data::Cached<juce::String> label_;
-    data::Cached<juce::Colour> boxSelectedColour_;
     std::unique_ptr<PainterStrategy> painter_;
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;

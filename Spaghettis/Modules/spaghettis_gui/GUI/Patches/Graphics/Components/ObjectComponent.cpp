@@ -55,7 +55,6 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     inlets_ (object.getCached<juce::String> (Tag::Attributes, Tag::Inlets, true)),
     outlets_ (object.getCached<juce::String> (Tag::Attributes, Tag::Outlets, true)),
     label_ (object.getCached<juce::String> (Tag::Parameters, Tag::Label, true)),
-    boxSelectedColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxSelected), this)),
     painter_ (createPainter (this, object.get<juce::String> (Tag::Attributes, Tag::Class))),
     origin_ (0, 0),
     hasResize_ (false),
