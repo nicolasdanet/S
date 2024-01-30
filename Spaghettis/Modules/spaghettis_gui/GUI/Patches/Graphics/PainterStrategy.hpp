@@ -24,7 +24,7 @@ class PainterStrategy : public juce::MouseListener {
 // MARK: -
 
 public:
-    explicit PainterStrategy (ObjectComponent*);
+    explicit PainterStrategy (ObjectComponent*, juce::String s = Tag::BoxPinsBackground);
     
     virtual ~PainterStrategy() = default;
 
@@ -53,15 +53,10 @@ public:
 // MARK: -
 
 public:
-    virtual juce::Colour getPinsBackgroundColour();
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     ObjectComponent* getOwner();
     core::Object& getObject();
+
+public:
     float getScale() const;
     core::Point::Scaled getPosition() const;
     core::UniqueId getIdentifier() const;

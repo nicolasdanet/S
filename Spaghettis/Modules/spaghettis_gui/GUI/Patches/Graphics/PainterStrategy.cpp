@@ -12,11 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-PainterStrategy::PainterStrategy (ObjectComponent* owner) :
+PainterStrategy::PainterStrategy (ObjectComponent* owner, juce::String tag) :
     component_ (owner),
     object_ (owner->getObject()),
     boxSelectedColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxSelected), component_)),
-    boxPinsBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxPinsBackground), component_)),
+    boxPinsBackgroundColour_ (Painted (Spaghettis()->getCachedColour (tag), component_)),
     patchLabelBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelBackground), component_)),
     patchLabelTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelText), component_)),
     widgetWidth_ (0)
@@ -123,11 +123,12 @@ void PainterStrategy::paint (juce::Rectangle<int> bounds, juce::Graphics& g)
     const bool isSelected = component_->isSelected();
     const bool hasLabel   = component_->hasLabel();
     
-    const juce::Colour c  = (!isRunView && isSelected) ? boxSelectedColour_.get() : getPinsBackgroundColour();
+    const juce::Colour c  = (!isRunView && isSelected)  ? boxSelectedColour_.get()
+                                                        : boxPinsBackgroundColour_.get();
     
     juce::Rectangle<int> widget (paintPinsBackground (g, bounds, widgetWidth_, c, getScale()));
     
-    if (isRunView && hasLabel) {            /* Paint label. */
+    if (isRunView && hasLabel) {                    /* Paint label. */
     //
     const juce::Rectangle<int> t (widget.removeFromLeft (widgetWidth_));
     
@@ -177,15 +178,6 @@ std::optional<core::Vector::Real> PainterStrategy::getDimensions()
 void PainterStrategy::setDimensions (core::Vector::Real)
 {
 
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::Colour PainterStrategy::getPinsBackgroundColour()
-{
-    return boxPinsBackgroundColour_.get();
 }
 
 // -----------------------------------------------------------------------------------------------------------
