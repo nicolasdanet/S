@@ -95,11 +95,17 @@ void paintLabel (juce::Graphics& g,
 
 juce::Rectangle<int> paintPinsBackground (juce::Graphics& g,
     juce::Rectangle<int> bounds,
+    int w,
+    juce::Colour c,
     float f)
 {
-    juce::Rectangle<int> painted (bounds.reduced (0, Painter::pinHeight (f)));
+    juce::Rectangle<int> widget (bounds.reduced (0, Painter::pinHeight (f)));
     
-    return painted;
+    g.setColour (c);
+    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(), widget.getTopRight()).withWidth (w));
+    g.fillRect (juce::Rectangle<int> (widget.getBottomLeft(), bounds.getBottomRight()).withWidth (w));
+    
+    return widget;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -110,36 +116,18 @@ juce::Rectangle<int> paintPinsBackground (juce::Graphics& g,
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-/*
-void ObjectComponent::paint (juce::Graphics& g)
-{
-    const juce::Rectangle<int> bounds (getLocalBounds());
-    const juce::Rectangle<int> painted (getWidgetAreaFromBounds (bounds, getScale()));
-    const int w = painter_->getWidgetWidth();
-    
-    isSelected()
-    
-    if (!isInsideRunView() && selected_.get()) { g.setColour (boxSelectedColour_.get()); }
-    else {
-        g.setColour (painter_->getPinsBackgroundColour());
-    }
-    
-    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(), painted.getTopRight()).withWidth (w));
-    g.fillRect (juce::Rectangle<int> (painted.getBottomLeft(), bounds.getBottomRight()).withWidth (w));
-    
-    painter_->paint (painted, g);
-}
-*/
 
 void PainterStrategy::paint (juce::Rectangle<int> bounds, juce::Graphics& g)
 {
-    const bool isInsideRunView = component_->isInsideRunView();
-    const bool isSelected      = component_->isSelected();
-    const bool hasLabel        = component_->hasLabel();
+    const bool isRunView  = component_->isInsideRunView();
+    const bool isSelected = component_->isSelected();
+    const bool hasLabel   = component_->hasLabel();
     
-    juce::Rectangle<int> widget (paintPinsBackground (g, bounds, getScale()));
+    const juce::Colour c  = (!isRunView && isSelected) ? boxSelectedColour_.get() : getPinsBackgroundColour();
     
-    if (isInsideRunView && hasLabel) {          /* Paint label. */
+    juce::Rectangle<int> widget (paintPinsBackground (g, bounds, widgetWidth_, c, getScale()));
+    
+    if (isRunView && hasLabel) {            /* Paint label. */
     //
     const juce::Rectangle<int> t (widget.removeFromLeft (widgetWidth_));
     
@@ -168,7 +156,7 @@ juce::Rectangle<int> PainterStrategy::getRequiredBounds()
         
     widgetWidth_ = t.getWidth();
     
-    if (isInsideRunView && hasLabel) {          /* Add label bounds. */
+    if (isInsideRunView && hasLabel) {              /* Add label bounds. */
     //
     t.setWidth (RunLayout::snapWidthToFitColumns (widgetWidth_ + getLabelWidth (component_->getLabel())));
     //
