@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 AtomPainter::AtomPainter (ObjectComponent* owner) :
-    PainterStrategy (owner),
+    PainterStrategy (owner, Tag::AtomBackground),
     atomBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::AtomBackground), getOwner())),
     atomTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::AtomText), getOwner())),
     atomClickedColour_ (Spaghettis()->getCachedColour (Tag::AtomClicked)),
@@ -59,15 +59,6 @@ void AtomPainter::mouseUp (const juce::MouseEvent&)
     dragged_ = false;
     
     getOwner()->repaint();
-}
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::Colour AtomPainter::getPinsBackgroundColour()
-{
-    return atomBackgroundColour_.get();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -135,7 +126,7 @@ void paintTriangle (juce::Rectangle<float> r, juce::Graphics& g)
 
 void AtomPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    g.setColour (getPinsBackgroundColour());
+    g.setColour (atomBackgroundColour_.get());
     
     g.fillRect (r);
     

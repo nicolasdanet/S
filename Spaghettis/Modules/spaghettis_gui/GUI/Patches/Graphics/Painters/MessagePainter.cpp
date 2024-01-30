@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 MessagePainter::MessagePainter (ObjectComponent* owner) :
-    PainterStrategy (owner),
+    PainterStrategy (owner, Tag::MessageBackground),
     messageBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageBackground), getOwner())),
     messageTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageText), getOwner())),
     messageClickedColour_ (Painted (Spaghettis()->getCachedColour (Tag::MessageClicked), getOwner())),
@@ -46,11 +46,6 @@ void MessagePainter::mouseDown (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-juce::Colour MessagePainter::getPinsBackgroundColour()
-{
-    return messageBackgroundColour_.get();
-}
 
 juce::Font MessagePainter::getFont() const
 {
@@ -99,7 +94,7 @@ void MessagePainter::paintBackground (juce::Rectangle<int>& r, juce::Graphics& g
 
 void MessagePainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    g.setColour (getPinsBackgroundColour());
+    g.setColour (messageBackgroundColour_.get());
     
     paintBackground (r, g);
     
