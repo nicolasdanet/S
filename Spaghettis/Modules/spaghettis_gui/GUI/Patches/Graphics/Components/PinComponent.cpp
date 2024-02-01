@@ -54,7 +54,7 @@ PinComponent::PinComponent (PatchView* v,
     int i,
     const juce::String& type,
     bool isOutlet) :
-        DragHandler (v),
+        MouseHandler (v),
         object_ (o),
         selected_ (Painted (o.getCached<bool> (Tag::Attributes, Tag::Selected), this)),
         pinColour_ (Painted (getColourFromType (type), this)),

@@ -70,7 +70,7 @@
 #include "GUI/Patches/Graphics/Painters/TogglePainter.cpp"
 #include "GUI/Patches/Graphics/Painters/VuPainter.cpp"
 
-#include "GUI/Patches/Graphics/Components/DragHandler.cpp"
+#include "GUI/Patches/Graphics/Components/MouseHandler.cpp"
 #include "GUI/Patches/Graphics/Components/PinComponent.cpp"
 #include "GUI/Patches/Graphics/Components/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/Components/LineComponent.cpp"

@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 LineComponent::LineComponent (PatchView* view, const core::Line& line) :
-    DragHandler (view),
+    MouseHandler (view),
     line_ (line),
     source_ (view->getObjectComponent (line.getIdentifierOfSource())),
     destination_ (view->getObjectComponent (line.getIdentifierOfDestination())),

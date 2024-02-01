@@ -24,28 +24,24 @@ class EditView;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DragHandler {
+class MouseHandler {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
     
 public:
-    explicit DragHandler (PatchView*);
+    explicit MouseHandler (PatchView*);
     
-    virtual ~DragHandler();
+    virtual ~MouseHandler();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    PatchView* getView() const
-    {
-        return view_;
-    }
-
-    EditView* getEditView() const;
+    PatchView* getView() const;
+    EditView*  getEditView() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -54,7 +50,7 @@ public:
 public:
     bool forwardMouseDown (const juce::MouseEvent&, PainterStrategy*);
     void forwardMouseDrag (const juce::MouseEvent&, PainterStrategy*, DragFlag);
-    void forwardMouseUp (const juce::MouseEvent&, PainterStrategy*);
+    void forwardMouseUp   (const juce::MouseEvent&, PainterStrategy*);
     
 private:
     PatchView* view_;

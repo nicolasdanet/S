@@ -124,7 +124,7 @@
 #include "GUI/Patches/Graphics/Painters/TogglePainter.hpp"
 #include "GUI/Patches/Graphics/Painters/VuPainter.hpp"
 
-#include "GUI/Patches/Graphics/Components/DragHandler.hpp"
+#include "GUI/Patches/Graphics/Components/MouseHandler.hpp"
 #include "GUI/Patches/Graphics/Components/Scalable.hpp"
 #include "GUI/Patches/Graphics/Components/PinComponent.hpp"
 #include "GUI/Patches/Graphics/Components/ObjectComponent.hpp"

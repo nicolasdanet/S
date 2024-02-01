@@ -20,7 +20,7 @@ class PinComponent;
 class ObjectComponent : public juce::Component,
                         public juce::ChangeBroadcaster,
                         public juce::SettableTooltipClient,
-                        public DragHandler,
+                        public MouseHandler,
                         public Scalable {
 
 // -----------------------------------------------------------------------------------------------------------

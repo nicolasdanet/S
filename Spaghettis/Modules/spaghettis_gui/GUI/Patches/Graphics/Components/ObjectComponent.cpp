@@ -46,7 +46,7 @@ std::unique_ptr<PainterStrategy> createPainter (ObjectComponent* owner, const ju
 // MARK: -
 
 ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
-    DragHandler (view),
+    MouseHandler (view),
     object_ (object),
     x_ (object.getCached<int> (Tag::Attributes, Tag::X)),
     y_ (object.getCached<int> (Tag::Attributes, Tag::Y)),
