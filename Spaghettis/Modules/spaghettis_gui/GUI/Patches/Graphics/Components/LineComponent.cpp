@@ -94,6 +94,15 @@ core::Line LineComponent::getLine() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Colour LineComponent::getLineColour() const
+{
+    if (isSelected())   { return lineSelectedColour_.get(); }
+    else if (isSignal_) { return lineSignalColour_.get(); }
+    else {
+        return lineColour_.get();
+    }
+}
+
 void LineComponent::paint (juce::Graphics& g)
 {
     const juce::Colour c (getLineColour());
@@ -110,15 +119,15 @@ bool LineComponent::intersects (const juce::Rectangle<float>& r) const
 {
     return r.intersects (straight_);
 }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 bool LineComponent::hitTest (int x, int y)
 {
     return hitPath_.contains (juce::Point<float> (x, y));
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void LineComponent::changeListenerCallback (juce::ChangeBroadcaster*)
 {
@@ -138,10 +147,6 @@ void LineComponent::mouseExit (const juce::MouseEvent&)
 {
     isOver_ = false; repaint();
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 void LineComponent::mouseDown (const juce::MouseEvent& e)
 {
@@ -262,6 +267,10 @@ void LineComponent::parameterHasChanged (const data::Group&, const data::Paramet
     repaint();
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LineComponent::updateOrder()
 {
     juce::Component* c = destination_.getComponent(); if (c) { toBehind (c); }
@@ -302,15 +311,6 @@ void LineComponent::update()
     }
     
     setVisible (isVisible);
-}
-
-juce::Colour LineComponent::getLineColour() const
-{
-    if (isSelected())   { return lineSelectedColour_.get(); }
-    else if (isSignal_) { return lineSignalColour_.get(); }
-    else {
-        return lineColour_.get();
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

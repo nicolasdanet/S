@@ -67,9 +67,9 @@ public:
 
 public:
     bool intersects (const juce::Rectangle<float>&) const;
-    
-public:
     bool hitTest (int, int) override;
+
+public:
     void changeListenerCallback (juce::ChangeBroadcaster*) override;
 
 // -----------------------------------------------------------------------------------------------------------
