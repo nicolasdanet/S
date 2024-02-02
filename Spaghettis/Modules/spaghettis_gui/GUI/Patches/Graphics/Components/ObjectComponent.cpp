@@ -67,17 +67,6 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
 
     update();
     
-    /*
-    auto f = [this]() { update(); };
-    
-    visible_.attach (f);
-    inlets_.attach (f);
-    outlets_.attach (f);
-    label_.attach (f);
-    x_.attach (f);
-    y_.attach (f);
-    */
-    
     if (isInsideRunView()) { addMouseListener (painter_.get(), true); }
 }
 
