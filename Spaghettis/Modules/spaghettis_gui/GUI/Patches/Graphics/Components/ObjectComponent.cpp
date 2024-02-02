@@ -48,13 +48,13 @@ std::unique_ptr<PainterStrategy> createPainter (ObjectComponent* owner, const ju
 ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     MouseHandler (view),
     object_ (object),
-    x_ (object.getCached<int> (Tag::Attributes, Tag::X)),
-    y_ (object.getCached<int> (Tag::Attributes, Tag::Y)),
+    x_ (Resized (object.getCached<int> (Tag::Attributes, Tag::X), this)),
+    y_ (Resized (object.getCached<int> (Tag::Attributes, Tag::Y), this)),
     selected_ (Painted (object.getCached<bool> (Tag::Attributes, Tag::Selected), this)),
-    visible_ (object.getCached<bool> (Tag::Attributes, Tag::Visible, true)),
-    inlets_ (object.getCached<juce::String> (Tag::Attributes, Tag::Inlets, true)),
-    outlets_ (object.getCached<juce::String> (Tag::Attributes, Tag::Outlets, true)),
-    label_ (object.getCached<juce::String> (Tag::Parameters, Tag::Label, true)),
+    visible_ (Resized (object.getCached<bool> (Tag::Attributes, Tag::Visible, true), this)),
+    inlets_ (Resized (object.getCached<juce::String> (Tag::Attributes, Tag::Inlets, true), this)),
+    outlets_ (Resized (object.getCached<juce::String> (Tag::Attributes, Tag::Outlets, true), this)),
+    label_ (Resized (object.getCached<juce::String> (Tag::Parameters, Tag::Label, true), this)),
     painter_ (createPainter (this, object.get<juce::String> (Tag::Attributes, Tag::Class))),
     origin_ (0, 0),
     hasResize_ (false),
@@ -67,6 +67,7 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
 
     update();
     
+    /*
     auto f = [this]() { update(); };
     
     visible_.attach (f);
@@ -75,6 +76,7 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     label_.attach (f);
     x_.attach (f);
     y_.attach (f);
+    */
     
     if (isInsideRunView()) { addMouseListener (painter_.get(), true); }
 }
