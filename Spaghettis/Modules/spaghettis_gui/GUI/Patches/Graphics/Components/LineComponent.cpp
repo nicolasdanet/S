@@ -94,18 +94,16 @@ core::Line LineComponent::getLine() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Colour LineComponent::getLineColour() const
-{
-    if (isSelected())   { return lineSelectedColour_.get(); }
-    else if (isSignal_) { return lineSignalColour_.get(); }
-    else {
-        return lineColour_.get();
-    }
-}
-
 void LineComponent::paint (juce::Graphics& g)
 {
-    const juce::Colour c (getLineColour());
+    const juce::Colour c = [&]()
+        {
+            if (isSelected())   { return lineSelectedColour_.get(); }
+            else if (isSignal_) { return lineSignalColour_.get(); }
+            else {
+                return lineColour_.get();
+            }
+        }();
     
     g.setColour (isOver_ ? (c.contrasting (isSignal_ ? 0.5f : 0.35f)) : c);
     g.fillPath (linePath_);
