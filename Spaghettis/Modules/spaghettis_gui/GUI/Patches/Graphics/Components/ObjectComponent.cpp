@@ -67,6 +67,29 @@ bool ObjectComponent::isAbstraction() const
     return object_.isAbstraction();
 }
 
+bool ObjectComponent::isSelected() const
+{
+    return selected_.get();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ObjectComponent::setSelected (bool isSelected)
+{
+    if (selected_.get() != isSelected) {
+        if (isSelected) { Broadcast::select (object_.getIdentifier()); }
+        else {
+            Broadcast::deselect (object_.getIdentifier());
+        }
+        
+        /* Don't wait core engine feedback. */
+        
+        selected_.set (isSelected); Spaghettis()->updateMenuBar();
+    }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -280,29 +303,6 @@ void ObjectComponent::resized()
 void ObjectComponent::scaleChanged()
 {
     update (false); repaint();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void ObjectComponent::setSelected (bool isSelected)
-{
-    if (selected_.get() != isSelected) {
-        if (isSelected) { Broadcast::select (object_.getIdentifier()); }
-        else {
-            Broadcast::deselect (object_.getIdentifier());
-        }
-        
-        /* Don't wait core engine feedback. */
-        
-        selected_.set (isSelected); Spaghettis()->updateMenuBar();
-    }
-}
-
-bool ObjectComponent::isSelected() const
-{
-    return selected_.get();
 }
 
 // -----------------------------------------------------------------------------------------------------------
