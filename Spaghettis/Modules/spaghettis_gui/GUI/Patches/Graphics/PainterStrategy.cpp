@@ -49,7 +49,7 @@ juce::Rectangle<int> withMinimumWidthForPins (ObjectComponent* c, juce::Rectangl
 {
     const int m = c->getNumberOfInlets();
     const int n = c->getNumberOfOutlets();
-    const int w = getMinimumWidthForPins (c->getScale(), m, n);
+    const int w = getMinimumWidthForPins (c->getView()->getScale(), m, n);
 
     if (r.getWidth() < w) { r.setWidth (w); }
     
@@ -196,7 +196,7 @@ core::Object& PainterStrategy::getObject()
 
 float PainterStrategy::getScale() const
 {
-    return component_->getScale();
+    return component_->getView()->getScale();
 }
 
 core::Point::Scaled PainterStrategy::getPosition() const

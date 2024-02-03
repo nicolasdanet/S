@@ -277,11 +277,6 @@ void ObjectComponent::scaleChanged()
     update (false); repaint();
 }
 
-float ObjectComponent::getScale() const
-{
-    return getView()->getScale();
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -487,7 +482,7 @@ int ObjectComponent::getNumberOfOutlets() const
 
 void ObjectComponent::createInletsAndOutlets()
 {
-    const float scale = getScale();
+    const float scale = getView()->getScale();
         
     const juce::StringArray i (juce::StringArray::fromTokens (inlets_.get(), true));
     const juce::StringArray o (juce::StringArray::fromTokens (outlets_.get(), true));
