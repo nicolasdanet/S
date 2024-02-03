@@ -56,6 +56,7 @@
 
 #include "GUI/Patches/Graphics/PainterStrategy.cpp"
 #include "GUI/Patches/Graphics/PainterHelpers.cpp"
+#include "GUI/Patches/Graphics/Painter.cpp"
 
 #include "GUI/Patches/Graphics/Painters/ArrayPainter.cpp"
 #include "GUI/Patches/Graphics/Painters/AtomPainter.cpp"
