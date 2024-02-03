@@ -71,6 +71,20 @@ bool ObjectComponent::isAbstraction() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+core::UniqueId ObjectComponent::getIdentifier() const
+{
+    return object_.getIdentifier();
+}
+
+core::Object ObjectComponent::getObject() const
+{
+    return object_;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -199,20 +213,6 @@ void ObjectComponent::drag (core::Vector::Real offset)
 void ObjectComponent::resize (core::Vector::Real offset)
 {
     if (!isLocked() && dimensions_.has_value()) { painter_->setDimensions (offset + dimensions_.value()); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-core::UniqueId ObjectComponent::getIdentifier() const
-{
-    return object_.getIdentifier();
-}
-
-core::Object ObjectComponent::getObject() const
-{
-    return object_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
