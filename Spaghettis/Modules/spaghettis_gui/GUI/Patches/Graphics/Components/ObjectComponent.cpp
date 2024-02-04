@@ -52,6 +52,11 @@ ObjectComponent::~ObjectComponent()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool ObjectComponent::isInsideRunView() const
+{
+    return isInsideRunView_;
+}
+
 bool ObjectComponent::isLocked() const
 {
     return isLocked_;
@@ -70,6 +75,11 @@ bool ObjectComponent::isAbstraction() const
 bool ObjectComponent::isSelected() const
 {
     return selected_.get();
+}
+
+bool ObjectComponent::hasLabel() const
+{
+    return label_.isValid() && label_.get().isNotEmpty();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -94,6 +104,11 @@ void ObjectComponent::setSelected (bool isSelected)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::String ObjectComponent::getLabel() const
+{
+    return label_.get();
+}
+
 core::UniqueId ObjectComponent::getIdentifier() const
 {
     return object_.getIdentifier();
@@ -107,6 +122,16 @@ core::Object ObjectComponent::getObject() const
 core::Point::Real ObjectComponent::getPosition() const
 {
     return core::Point::Real (x_.get(), y_.get());
+}
+
+int ObjectComponent::getNumberOfInlets() const
+{
+    return juce::StringArray::fromTokens (inlets_.get(), true).size();
+}
+
+int ObjectComponent::getNumberOfOutlets() const
+{
+    return juce::StringArray::fromTokens (outlets_.get(), true).size();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -337,29 +362,6 @@ void ObjectComponent::scaleChanged()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool ObjectComponent::isInsideRunView() const
-{
-    return isInsideRunView_;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool ObjectComponent::hasLabel() const
-{
-    return label_.isValid() && label_.get().isNotEmpty();
-}
-
-juce::String ObjectComponent::getLabel() const
-{
-    return label_.get();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void ObjectComponent::update (bool notify)
 {
     const bool isRunView = isInsideRunView();
@@ -455,20 +457,6 @@ std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int ObjectComponent::getNumberOfInlets() const
-{
-    return juce::StringArray::fromTokens (inlets_.get(), true).size();
-}
-
-int ObjectComponent::getNumberOfOutlets() const
-{
-    return juce::StringArray::fromTokens (outlets_.get(), true).size();
 }
 
 // -----------------------------------------------------------------------------------------------------------
