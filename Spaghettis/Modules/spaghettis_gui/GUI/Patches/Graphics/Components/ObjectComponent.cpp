@@ -286,29 +286,6 @@ void ObjectComponent::resize (core::Vector::Real offset)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ObjectComponent::paint (juce::Graphics& g)
-{
-    painter_->paint (getLocalBounds(), g);
-}
-    
-void ObjectComponent::resized()
-{
-    update();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void ObjectComponent::scaleChanged()
-{
-    update (false); repaint();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void ObjectComponent::moveBehind (juce::Component* c)
 {
     if (c) {
@@ -316,15 +293,6 @@ void ObjectComponent::moveBehind (juce::Component* c)
         for (const auto& i : iPins_) { i->toBehind (c); }
         for (const auto& o : oPins_) { o->toBehind (c); }
     }
-}
-
-void ObjectComponent::moveAllPinsFront()
-{
-    for (const auto& i : iPins_) { i->toBehind (this); }
-    for (const auto& o : oPins_) { o->toBehind (this); }
-    
-    if (!iPins_.empty())      { toBehind (iPins_.front().get()); }
-    else if (!oPins_.empty()) { toBehind (oPins_.front().get()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -343,6 +311,29 @@ void ObjectComponent::moveFront()
 void ObjectComponent::snap()
 {
     if (!isLocked()) { Broadcast::snap (object_.getIdentifier()); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ObjectComponent::paint (juce::Graphics& g)
+{
+    painter_->paint (getLocalBounds(), g);
+}
+    
+void ObjectComponent::resized()
+{
+    update();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ObjectComponent::scaleChanged()
+{
+    update (false); repaint();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -475,6 +466,15 @@ int ObjectComponent::getNumberOfOutlets() const
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+void ObjectComponent::moveAllPinsFront()
+{
+    for (const auto& i : iPins_) { i->toBehind (this); }
+    for (const auto& o : oPins_) { o->toBehind (this); }
+    
+    if (!iPins_.empty())      { toBehind (iPins_.front().get()); }
+    else if (!oPins_.empty()) { toBehind (oPins_.front().get()); }
+}
 
 void ObjectComponent::createInletsAndOutlets()
 {
