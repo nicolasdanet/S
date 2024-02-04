@@ -295,9 +295,6 @@ void ObjectComponent::moveBehind (juce::Component* c)
     }
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 void ObjectComponent::moveBack()
 {
     if (!isLocked()) { Broadcast::moveBack (object_.getIdentifier()); }
@@ -391,6 +388,17 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+void moveAllPinsFront (ObjectComponent *c,
+        std::vector<std::unique_ptr<PinComponent>>& iPins,
+        std::vector<std::unique_ptr<PinComponent>>& oPins)
+{
+    for (const auto& i : iPins) { i->toBehind (c); }
+    for (const auto& o : oPins) { o->toBehind (c); }
+    
+    if (!iPins.empty())      { c->toBehind (iPins.front().get()); }
+    else if (!oPins.empty()) { c->toBehind (oPins.front().get()); }
+}
+
 juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float f, bool isOutlet)
 {
     const int w = Painter::pinGripX (f) * 2 + Painter::pinWidth (f);
@@ -467,15 +475,6 @@ int ObjectComponent::getNumberOfOutlets() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ObjectComponent::moveAllPinsFront()
-{
-    for (const auto& i : iPins_) { i->toBehind (this); }
-    for (const auto& o : oPins_) { o->toBehind (this); }
-    
-    if (!iPins_.empty())      { toBehind (iPins_.front().get()); }
-    else if (!oPins_.empty()) { toBehind (oPins_.front().get()); }
-}
-
 void ObjectComponent::createInletsAndOutlets()
 {
     const float scale = getView()->getScale();
@@ -490,7 +489,7 @@ void ObjectComponent::createInletsAndOutlets()
     if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, documentation, getView(), scale, false); }
     if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, documentation, getView(), scale, true);  }
     
-    moveAllPinsFront();
+    moveAllPinsFront (this, iPins_, oPins_);
 }
 
 void ObjectComponent::removeInletsAndOultets()
