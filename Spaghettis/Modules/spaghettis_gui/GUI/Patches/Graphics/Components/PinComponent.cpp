@@ -86,6 +86,10 @@ bool PinComponent::isSignal() const
     return isSignal_;
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 int PinComponent::getIndex() const
 {
     return index_;
@@ -95,7 +99,11 @@ core::UniqueId PinComponent::getIdentifier() const
 {
     return object_.getIdentifier();
 }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::Rectangle<int> PinComponent::getPinBoundsInView() const
 {
     return getBoundWithoutGrip (getBoundsInParent(), getScale());
