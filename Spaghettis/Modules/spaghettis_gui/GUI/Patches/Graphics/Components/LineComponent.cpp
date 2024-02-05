@@ -57,25 +57,21 @@ bool LineComponent::isLocked() const
 {
     return isLocked_;
 }
-    
+
+bool LineComponent::isSelected() const
+{
+    return selected_.get();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LineComponent::disconnect() const
+void LineComponent::setSelected (bool selected)
 {
-    if (!isLocked()) {
-    //
-    const core::UniqueId u = line_.getIdentifierOfSource();
-    const core::UniqueId v = line_.getIdentifierOfDestination();
-    const int m = line_.get<int> (Tag::Attributes, Tag::Outlet);
-    const int n = line_.get<int> (Tag::Attributes, Tag::Inlet);
-    
-    Broadcast::disconnect (u, m, v, n);
-    //
-    }
+    if (selected != isSelected()) { selected_.set (selected); Spaghettis()->updateMenuBar(); }
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -94,42 +90,18 @@ core::Line LineComponent::getLine() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LineComponent::paint (juce::Graphics& g)
+void LineComponent::disconnect() const
 {
-    const juce::Colour c = [&]()
-        {
-            if (isSelected())   { return lineSelectedColour_.get(); }
-            else if (isSignal_) { return lineSignalColour_.get(); }
-            else {
-                return lineColour_.get();
-            }
-        }();
+    if (!isLocked()) {
+    //
+    const core::UniqueId u = line_.getIdentifierOfSource();
+    const core::UniqueId v = line_.getIdentifierOfDestination();
+    const int m = line_.get<int> (Tag::Attributes, Tag::Outlet);
+    const int n = line_.get<int> (Tag::Attributes, Tag::Inlet);
     
-    g.setColour (isOver_ ? (c.contrasting (isSignal_ ? 0.5f : 0.35f)) : c);
-    g.fillPath (linePath_);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool LineComponent::intersects (const juce::Rectangle<float>& r) const
-{
-    return r.intersects (straight_);
-}
-
-bool LineComponent::hitTest (int x, int y)
-{
-    return hitPath_.contains (juce::Point<float> (x, y));
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void LineComponent::changeListenerCallback (juce::ChangeBroadcaster*)
-{
-    update(); repaint();
+    Broadcast::disconnect (u, m, v, n);
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -172,6 +144,48 @@ void LineComponent::mouseUp (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool LineComponent::intersects (const juce::Rectangle<float>& r) const
+{
+    return r.intersects (straight_);
+}
+
+bool LineComponent::hitTest (int x, int y)
+{
+    return hitPath_.contains (juce::Point<float> (x, y));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LineComponent::paint (juce::Graphics& g)
+{
+    const juce::Colour c = [&]()
+        {
+            if (isSelected())   { return lineSelectedColour_.get(); }
+            else if (isSignal_) { return lineSignalColour_.get(); }
+            else {
+                return lineColour_.get();
+            }
+        }();
+    
+    g.setColour (isOver_ ? (c.contrasting (isSignal_ ? 0.5f : 0.35f)) : c);
+    g.fillPath (linePath_);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LineComponent::changeListenerCallback (juce::ChangeBroadcaster*)
+{
+    update(); repaint();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void LineComponent::scaleChanged()
 {
     update(); repaint();
@@ -180,20 +194,6 @@ void LineComponent::scaleChanged()
 float LineComponent::getScale() const
 {
     return getView()->getScale();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool LineComponent::isSelected() const
-{
-    return selected_.get();
-}
-
-void LineComponent::setSelected (bool selected)
-{
-    if (selected != isSelected()) { selected_.set (selected); Spaghettis()->updateMenuBar(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
