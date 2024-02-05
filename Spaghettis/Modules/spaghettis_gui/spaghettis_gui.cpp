@@ -74,6 +74,7 @@
 #include "GUI/Patches/Graphics/Components/MouseHandler.cpp"
 #include "GUI/Patches/Graphics/Components/PinComponent.cpp"
 #include "GUI/Patches/Graphics/Components/ObjectComponent.cpp"
+#include "GUI/Patches/Graphics/Components/ObjectComponentUpdate.cpp"
 #include "GUI/Patches/Graphics/Components/LineComponent.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
