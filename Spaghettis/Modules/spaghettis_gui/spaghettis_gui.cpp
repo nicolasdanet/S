@@ -76,6 +76,7 @@
 #include "GUI/Patches/Graphics/Components/ObjectComponent.cpp"
 #include "GUI/Patches/Graphics/Components/ObjectComponentUpdate.cpp"
 #include "GUI/Patches/Graphics/Components/LineComponent.cpp"
+#include "GUI/Patches/Graphics/Components/LineComponentUpdate.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
