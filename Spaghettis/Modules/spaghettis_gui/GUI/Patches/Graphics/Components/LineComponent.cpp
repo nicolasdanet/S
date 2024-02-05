@@ -191,9 +191,15 @@ void LineComponent::scaleChanged()
     update(); repaint();
 }
 
-float LineComponent::getScale() const
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LineComponent::parameterHasChanged (const data::Group&, const data::Parameter& p)
 {
-    return getView()->getScale();
+    if (p.getKey() != Tag::Selected) { update(); }
+    
+    repaint();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -258,17 +264,6 @@ void makeLinePaths (juce::Line<float> straight, juce::Path& line, juce::Path& hi
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LineComponent::parameterHasChanged (const data::Group&, const data::Parameter& p)
-{
-    if (p.getKey() != Tag::Selected) { update(); }
-    
-    repaint();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void LineComponent::updateOrder()
 {
     juce::Component* c = destination_.getComponent(); if (c) { toBehind (c); }
@@ -288,7 +283,7 @@ void LineComponent::update()
     
     if (outlet && inlet) {
     //
-    const float scale = getScale();
+    const float scale = getView()->getScale();
     
     const juce::Rectangle<int> iPin (inlet->getPinBoundsInView());
     const juce::Rectangle<int> oPin (outlet->getPinBoundsInView());
