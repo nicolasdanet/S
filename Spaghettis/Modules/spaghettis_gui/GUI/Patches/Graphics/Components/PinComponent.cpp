@@ -106,29 +106,7 @@ core::UniqueId PinComponent::getIdentifier() const
 
 juce::Rectangle<int> PinComponent::getPinBoundsInView() const
 {
-    return getBoundWithoutGrip (getBoundsInParent(), getScale());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-float PinComponent::getScale() const
-{
-    return getView()->getScale();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void PinComponent::paint (juce::Graphics& g)
-{
-    if (isOver_)              { g.setColour (boxSelectedColour_.get()); }
-    else if (selected_.get()) { g.setColour (boxSelectedColour_.get().contrasting (0.25f)); }
-    else                      { g.setColour (pinColour_.get()); }
-    
-    g.fillRect (getBoundWithoutGrip (getLocalBounds(), getScale()));
+    return getBoundWithoutGrip (getBoundsInParent(), getView()->getScale());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -167,6 +145,19 @@ void PinComponent::mouseDrag (const juce::MouseEvent& e)
 void PinComponent::mouseUp (const juce::MouseEvent& e)
 {
     forwardMouseUp (e, nullptr);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PinComponent::paint (juce::Graphics& g)
+{
+    if (isOver_)              { g.setColour (boxSelectedColour_.get()); }
+    else if (selected_.get()) { g.setColour (boxSelectedColour_.get().contrasting (0.25f)); }
+    else                      { g.setColour (pinColour_.get()); }
+    
+    g.fillRect (getBoundWithoutGrip (getLocalBounds(), getView()->getScale()));
 }
 
 // -----------------------------------------------------------------------------------------------------------
