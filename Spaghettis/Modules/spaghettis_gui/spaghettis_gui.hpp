@@ -144,7 +144,7 @@
 #include "GUI/Patches/Windows/EditWindow/Helpers/Locator.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/InspectorView.hpp"
 
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/DragAction.hpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/DragStrategy.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnectPinTracker.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnectComponent.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnect.hpp"

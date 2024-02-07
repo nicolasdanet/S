@@ -289,7 +289,7 @@ private:
     Table<ObjectComponent> objects_;
     Table<LineComponent> lines_;
     float scale_;
-    std::unique_ptr<DragAction> drag_;
+    std::unique_ptr<DragStrategy> drag_;
     EditInspector* inspector_;
     EditPort* port_;
     
