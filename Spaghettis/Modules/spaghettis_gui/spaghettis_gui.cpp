@@ -86,7 +86,7 @@
 #include "GUI/Patches/Windows/EditWindow/Helpers/Locator.cpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/InspectorView.cpp"
 
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/PinTracker.cpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnectPinTracker.cpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnectComponent.cpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnect.cpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionLassoComponent.cpp"

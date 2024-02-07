@@ -145,7 +145,7 @@
 #include "GUI/Patches/Windows/EditWindow/Helpers/InspectorView.hpp"
 
 #include "GUI/Patches/Windows/EditWindow/Helpers/Actions/DragAction.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/PinTracker.hpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnectPinTracker.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnectComponent.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnect.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionLassoComponent.hpp"

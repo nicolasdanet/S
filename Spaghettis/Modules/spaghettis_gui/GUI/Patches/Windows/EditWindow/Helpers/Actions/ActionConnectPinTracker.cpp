@@ -76,11 +76,11 @@ void check (PinComponent* pin, WeakPointer<PinComponent>& source, WeakPointer<Pi
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PinTracker::PinTracker()
+ActionConnectPinTracker::ActionConnectPinTracker()
 {
 }
 
-PinTracker::~PinTracker()
+ActionConnectPinTracker::~ActionConnectPinTracker()
 {
     unsetPointer (destination_);
 }
@@ -89,12 +89,12 @@ PinTracker::~PinTracker()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PinTracker::start (EditView* view, core::Point::Scaled pt)
+void ActionConnectPinTracker::start (EditView* view, core::Point::Scaled pt)
 {
     source_ = getPinComponentAt (view, pt);
 }
 
-void PinTracker::hit (EditView* view, core::Point::Scaled pt)
+void ActionConnectPinTracker::hit (EditView* view, core::Point::Scaled pt)
 {
     if (source_.getComponent()) {
     //
@@ -109,7 +109,7 @@ void PinTracker::hit (EditView* view, core::Point::Scaled pt)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::tuple<PinComponent*, PinComponent*> PinTracker::getPins() const
+std::tuple<PinComponent*, PinComponent*> ActionConnectPinTracker::getPins() const
 {
     PinComponent* s = source_.getComponent();
     PinComponent* d = destination_.getComponent();
