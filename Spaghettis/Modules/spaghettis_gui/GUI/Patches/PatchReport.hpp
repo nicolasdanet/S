@@ -18,10 +18,10 @@ namespace spaghettis {
     void change (const core::UniquePath&, const core::Report&); \
     void remove (const core::UniquePath&); \
     void rename (const core::UniquePath&, core::UniqueId); \
-\
+    \
     bool locate (const core::UniquePath&); \
     bool contains (const core::UniquePath&); \
-\
+    \
     void setOrder (const core::UniquePath&, const std::vector<core::UniqueId>&); \
     void setDirty (const core::UniquePath&, bool); \
     
