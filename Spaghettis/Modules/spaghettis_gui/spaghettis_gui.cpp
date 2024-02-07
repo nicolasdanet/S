@@ -82,7 +82,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Patches/Windows/EditWindow/Helpers/ContextMenu.cpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Sync.cpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/Synchronizer.cpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Locator.cpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/InspectorView.cpp"
 

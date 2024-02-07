@@ -105,7 +105,7 @@ data::Data Documentation::get (const core::Item& item)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-data::Data Documentation::getCopyWithDocumentation (const core::Item& item)
+data::Data Documentation::makeCopy (const core::Item& item)
 {
     data::Data data (data::Data::makeCopy (item.getData()));
 

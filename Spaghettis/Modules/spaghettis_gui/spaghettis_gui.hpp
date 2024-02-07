@@ -140,7 +140,7 @@
 
 #include "GUI/Patches/Windows/EditWindow/Helpers/Broadcast.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/ContextMenu.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Sync.hpp"
+#include "GUI/Patches/Windows/EditWindow/Helpers/Synchronizer.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Locator.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/InspectorView.hpp"
 

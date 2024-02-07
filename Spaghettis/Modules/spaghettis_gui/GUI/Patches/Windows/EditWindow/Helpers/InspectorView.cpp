@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-InspectorView::InspectorView (Sync&& s, int w) :
+InspectorView::InspectorView (Synchronizer&& s, int w) :
     ParameterView (s.getData(),
         ParameterBase (Fonts::getFont(), Fonts::getMonospacedFont(), w)),
     sync_ (std::move (s))
@@ -28,6 +28,8 @@ InspectorView::~InspectorView()
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+/* Called when object is modified by user in parameter view entries. */
 
 void InspectorView::parameterHasChanged (const data::Group& group, const data::Parameter& parameter)
 {

@@ -20,7 +20,7 @@ class InspectorView :   public data::Observer,
 // MARK: -
 
 public:
-    explicit InspectorView (Sync&&, int w);
+    explicit InspectorView (Synchronizer&&, int w);
     
     ~InspectorView();
 
@@ -32,7 +32,7 @@ private:
     virtual void parameterHasChanged (const data::Group&, const data::Parameter&) override;
     
 private:
-    Sync sync_;
+    Synchronizer sync_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InspectorView)
