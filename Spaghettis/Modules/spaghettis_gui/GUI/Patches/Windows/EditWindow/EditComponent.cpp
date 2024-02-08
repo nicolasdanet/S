@@ -36,8 +36,8 @@ EditComponent::EditComponent (const PatchBase& base) :
     BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager()),
     editView_ (base),
     editPort_ (editView_,
-        getPatchRoot().getBounds().get (editView_.getIdentifier()).getOffset(),
-        getPatchRoot().getBounds().get (editView_.getIdentifier()).getZoom()),
+        editView_.getPatchRoot().getBounds().get (editView_.getIdentifier()).getOffset(),
+        editView_.getPatchRoot().getBounds().get (editView_.getIdentifier()).getZoom()),
     editZoom_ (editPort_.getZoomAsValue()),
     editInspector_ (editView_)
 {
@@ -132,10 +132,17 @@ EditComponent::EditComponent (const PatchBase& base) :
         .setInvoke ([this] (const auto&) { editView_.getPatchRoot().openMainEditWindow(); }));
         
     setOpaque (true); setSize (600, 300);
-    
-    
 }
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PatchRoot& EditComponent::getPatchRoot()
+{
+    return editView_.getPatchRoot();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
