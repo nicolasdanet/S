@@ -38,10 +38,9 @@ EditPort::~EditPort()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-
-juce::Value EditPort::getZoomAsValue() const
+float EditPort::getScale() const
 {
-    return v_;
+    return getZoom() / 100.0f;
 }
 
 int EditPort::getZoom() const
@@ -49,11 +48,11 @@ int EditPort::getZoom() const
     return zoom_;
 }
 
-float EditPort::getScale() const
+juce::Value EditPort::getZoomAsValue() const
 {
-    return getZoom() / 100.0f;
+    return v_;
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
