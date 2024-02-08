@@ -69,14 +69,14 @@ core::Area::Real EditPort::getVisibleArea() const
 
 void EditPort::zoomIn()
 {
-    setZoom (nextStep (getZoom()));
+    setZoom (ZoomSteps::next (getZoom()));
     
     update();
 }
 
 void EditPort::zoomOut()
 {
-    setZoom (previousStep (getZoom()));
+    setZoom (ZoomSteps::previous (getZoom()));
     
     update();
 }
@@ -154,7 +154,7 @@ void EditPort::mouseWheelMoveZoom (float y)
     
     if (pt.has_value() == false) { return; }        /* Happened in weird cases. */
     
-    setZoomAroundPoint ((y > 0.0f) ? nextStep (n) : previousStep (n), pt.value());
+    setZoomAroundPoint ((y > 0.0f) ? ZoomSteps::next (n) : ZoomSteps::previous (n), pt.value());
 }
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
@@ -213,8 +213,8 @@ void EditPort::setZoom (int n)
 {
     hideLocator();
     
-    constexpr int min = steps_.front();
-    constexpr int max = steps_.back();
+    constexpr int min = ZoomSteps::min();
+    constexpr int max = ZoomSteps::max();
     
     zoom_ = juce::jlimit (min, max, n);
     v_    = juce::var (zoom_);
