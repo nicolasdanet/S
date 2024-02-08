@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class EditComponent :   protected EditFactoryHelper,    /* MUST be the first. */
+class EditComponent :   protected EditFactoryHelper,                            /* MUST be the first. */
                         public    BaseComponent<CommandsHandler> {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -62,10 +62,11 @@ public:
 // MARK: -
 
 public:
-    bool tryGrabFocus() override
-    {
-        return tryGrabFocusForComponent (this);
-    }
+    bool tryGrabFocus() override;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 private:
     void updateLayout();
