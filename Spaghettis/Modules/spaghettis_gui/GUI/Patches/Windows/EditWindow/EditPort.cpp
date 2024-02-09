@@ -73,7 +73,7 @@ core::Area::Real EditPort::getVisibleArea() const
 
 void EditPort::setOffset (core::Point::Real pt)
 {
-    offset_ = pt;
+    offset_ = pt; update();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -130,8 +130,6 @@ void EditPort::showObject (ObjectComponent* o)
     const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
     
     setOffset (pt - (v / 3));
-    
-    update();
     //
     }
 }
@@ -201,7 +199,7 @@ void EditPort::dragViewStart()
 
 void EditPort::dragView (core::Vector::Real pt)
 {
-    if (origin_.has_value()) { setOffset (origin_.value() - pt); update(); }
+    if (origin_.has_value()) { setOffset (origin_.value() - pt); }
 }
 
 void EditPort::dragViewEnd()
