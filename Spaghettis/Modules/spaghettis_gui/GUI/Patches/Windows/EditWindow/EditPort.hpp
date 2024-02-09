@@ -52,7 +52,15 @@ public:
 private:
     void setOffset (core::Point::Real);
     void setZoom (int);
-    void setZoomAroundPoint (int, core::Point::Real);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void updateOffset (core::Point::Real);
+    void updateZoom (int);
+    void updateZoomAroundPoint (int, core::Point::Real);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -100,7 +108,8 @@ private:
 // MARK: -
 
 private:
-    void update (bool notify);
+    void update();
+    void notify();
     
 private:
     EditView& view_;

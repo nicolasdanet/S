@@ -20,7 +20,7 @@ EditPort::EditPort (EditView& view, core::Point::Real pt, int zoom) :
 {
     view_.setPort (this);
     
-    setZoom (zoom); update (false);
+    setZoom (zoom); update();
         
     addAndMakeVisible (&view_);
 }
@@ -73,7 +73,7 @@ core::Area::Real EditPort::getVisibleArea() const
 
 void EditPort::setOffset (core::Point::Real pt)
 {
-    offset_ = pt; update (true);
+    offset_ = pt;
 }
 
 void EditPort::setZoom (int n)
@@ -89,7 +89,25 @@ void EditPort::setZoom (int n)
     view_.setScale (getScale());
 }
 
-void EditPort::setZoomAroundPoint (int n, core::Point::Real pt)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditPort::updateOffset (core::Point::Real pt)
+{
+    setOffset (pt);
+    
+    update(); notify();
+}
+
+void EditPort::updateZoom (int n)
+{
+    setZoom (n);
+    
+    update(); notify();
+}
+    
+void EditPort::updateZoomAroundPoint (int n, core::Point::Real pt)
 {
     const auto [a, b] = getVisibleArea().getProportions (pt);
     
@@ -98,6 +116,8 @@ void EditPort::setZoomAroundPoint (int n, core::Point::Real pt)
     setZoom (n);
     
     setOffset (getVisibleArea().getOffsetForProportions (pt, a, b));
+    
+    update(); notify();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -106,21 +126,17 @@ void EditPort::setZoomAroundPoint (int n, core::Point::Real pt)
 
 void EditPort::zoomIn()
 {
-    setZoom (ZoomSteps::next (getZoom()));
-    
-    update (true);
+    updateZoom (ZoomSteps::next (getZoom()));
 }
 
 void EditPort::zoomOut()
 {
-    setZoom (ZoomSteps::previous (getZoom()));
-    
-    update (true);
+    updateZoom (ZoomSteps::previous (getZoom()));
 }
 
 void EditPort::zoomReset()
 {
-    setZoom (100); update (true);
+    updateZoom (100);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -153,7 +169,7 @@ void EditPort::showObject (ObjectComponent* o)
     //
     const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
     
-    setOffset (pt - (v / 3));
+    updateOffset (pt - (v / 3));
     //
     }
 }
@@ -180,7 +196,7 @@ void EditPort::mouseWheelMoveDisplace (float x, float y)
         return static_cast<int> (f);
     };
     
-    setOffset (getOffset() + core::Vector::Real (-map (x), -map (y)));
+    updateOffset (getOffset() + core::Vector::Real (-map (x), -map (y)));
 }
 
 void EditPort::mouseWheelMoveZoom (float y)
@@ -191,7 +207,7 @@ void EditPort::mouseWheelMoveZoom (float y)
     
     if (pt.has_value() == false) { return; }        /* Happened in weird cases. */
     
-    setZoomAroundPoint ((y > 0.0f) ? ZoomSteps::next (n) : ZoomSteps::previous (n), pt.value());
+    updateZoomAroundPoint ((y > 0.0f) ? ZoomSteps::next (n) : ZoomSteps::previous (n), pt.value());
 }
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
@@ -208,8 +224,6 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     #endif
         
     if (Mouse::hasAltKey (e)) { mouseWheelMoveZoom (y); } else { mouseWheelMoveDisplace (x, y); }
-    
-    update (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -223,7 +237,7 @@ void EditPort::dragViewStart()
 
 void EditPort::dragView (core::Vector::Real pt)
 {
-    if (origin_.has_value()) { setOffset (origin_.value() - pt); }
+    if (origin_.has_value()) { updateOffset (origin_.value() - pt); }
 }
 
 void EditPort::dragViewEnd()
@@ -235,11 +249,14 @@ void EditPort::dragViewEnd()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditPort::update (bool notify)
+void EditPort::update()
 {
     view_.setBounds (core::Geometry::getCanvasAt (core::Point::Scaled (getOffset(), getScale())));
-    
-    if (notify) { view_.getPatchRoot().getBounds().set (view_.getIdentifier(), getOffset(), getZoom()); }
+}
+
+void EditPort::notify()
+{
+    view_.getPatchRoot().getBounds().set (view_.getIdentifier(), getOffset(), getZoom());
 }
 
 // -----------------------------------------------------------------------------------------------------------
