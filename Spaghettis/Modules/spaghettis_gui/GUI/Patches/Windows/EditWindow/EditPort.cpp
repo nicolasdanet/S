@@ -76,6 +76,30 @@ void EditPort::setOffset (core::Point::Real pt)
     offset_ = pt; update();
 }
 
+void EditPort::setZoom (int n)
+{
+    hideLocator();
+    
+    constexpr int min = ZoomSteps::min();
+    constexpr int max = ZoomSteps::max();
+    
+    zoom_ = juce::jlimit (min, max, n);
+    v_    = juce::var (zoom_);
+    
+    view_.setScale (getScale());
+}
+
+void EditPort::setZoomAroundPoint (int n, core::Point::Real pt)
+{
+    const auto [a, b] = getVisibleArea().getProportions (pt);
+    
+    /* Do NOT cache visible area. */
+    
+    setZoom (n);
+    
+    setOffset (getVisibleArea().getOffsetForProportions (pt, a, b));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -205,34 +229,6 @@ void EditPort::dragView (core::Vector::Real pt)
 void EditPort::dragViewEnd()
 {
     origin_.reset();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditPort::setZoomAroundPoint (int n, core::Point::Real pt)
-{
-    const auto [a, b] = getVisibleArea().getProportions (pt);
-    
-    /* Do NOT cache visible area. */
-    
-    setZoom (n);
-    
-    setOffset (getVisibleArea().getOffsetForProportions (pt, a, b));
-}
-
-void EditPort::setZoom (int n)
-{
-    hideLocator();
-    
-    constexpr int min = ZoomSteps::min();
-    constexpr int max = ZoomSteps::max();
-    
-    zoom_ = juce::jlimit (min, max, n);
-    v_    = juce::var (zoom_);
-    
-    view_.setScale (getScale());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -51,6 +51,8 @@ public:
 
 private:
     void setOffset (core::Point::Real);
+    void setZoom (int);
+    void setZoomAroundPoint (int, core::Point::Real);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -98,8 +100,6 @@ private:
 // MARK: -
 
 private:
-    void setZoomAroundPoint (int, core::Point::Real);
-    void setZoom (int);
     void update (bool notify = true);
     
 private:
