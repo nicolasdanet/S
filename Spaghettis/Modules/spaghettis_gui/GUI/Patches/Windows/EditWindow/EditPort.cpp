@@ -73,7 +73,7 @@ core::Area::Real EditPort::getVisibleArea() const
 
 void EditPort::setOffset (core::Point::Real pt)
 {
-    offset_ = pt; update();
+    offset_ = pt; update (true);
 }
 
 void EditPort::setZoom (int n)
@@ -108,19 +108,19 @@ void EditPort::zoomIn()
 {
     setZoom (ZoomSteps::next (getZoom()));
     
-    update();
+    update (true);
 }
 
 void EditPort::zoomOut()
 {
     setZoom (ZoomSteps::previous (getZoom()));
     
-    update();
+    update (true);
 }
 
 void EditPort::zoomReset()
 {
-    setZoom (100); update();
+    setZoom (100); update (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -209,7 +209,7 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
         
     if (Mouse::hasAltKey (e)) { mouseWheelMoveZoom (y); } else { mouseWheelMoveDisplace (x, y); }
     
-    update();
+    update (true);
 }
 
 // -----------------------------------------------------------------------------------------------------------

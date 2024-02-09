@@ -100,7 +100,7 @@ private:
 // MARK: -
 
 private:
-    void update (bool notify = true);
+    void update (bool notify);
     
 private:
     EditView& view_;
