@@ -38,6 +38,11 @@ EditPort::~EditPort()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+core::Point::Real EditPort::getOffset() const
+{
+    return offset_;
+}
+
 float EditPort::getScale() const
 {
     return getZoom() / 100.0f;
@@ -59,7 +64,16 @@ juce::Value EditPort::getZoomAsValue() const
 
 core::Area::Real EditPort::getVisibleArea() const
 {
-    return core::Area::Real (offset_, core::Vector::Scaled (getWidth(), getHeight(), getScale()));
+    return core::Area::Real (getOffset(), core::Vector::Scaled (getWidth(), getHeight(), getScale()));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditPort::setOffset (core::Point::Real pt)
+{
+    offset_ = pt;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -115,7 +129,7 @@ void EditPort::showObject (ObjectComponent* o)
     //
     const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
     
-    offset_ = pt - (v / 3);
+    setOffset (pt - (v / 3));
     
     update();
     //
@@ -144,7 +158,7 @@ void EditPort::mouseWheelMoveDisplace (float x, float y)
         return static_cast<int> (f);
     };
     
-    offset_ = offset_ + core::Vector::Real (-map (x), -map (y));
+    setOffset (getOffset() + core::Vector::Real (-map (x), -map (y)));
 }
 
 void EditPort::mouseWheelMoveZoom (float y)
@@ -182,12 +196,12 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
 
 void EditPort::dragViewStart()
 {
-    origin_ = offset_;
+    origin_ = getOffset();
 }
 
 void EditPort::dragView (core::Vector::Real pt)
 {
-    if (origin_.has_value()) { offset_ = origin_.value() - pt; update(); }
+    if (origin_.has_value()) { setOffset (origin_.value() - pt); update(); }
 }
 
 void EditPort::dragViewEnd()
@@ -207,7 +221,7 @@ void EditPort::setZoomAroundPoint (int n, core::Point::Real pt)
     
     setZoom (n);
     
-    offset_ = getVisibleArea().getOffsetForProportions (pt, a, b);
+    setOffset (getVisibleArea().getOffsetForProportions (pt, a, b));
 }
 
 void EditPort::setZoom (int n)
@@ -229,9 +243,9 @@ void EditPort::setZoom (int n)
 
 void EditPort::update (bool notify)
 {
-    view_.setBounds (core::Geometry::getCanvasAt (core::Point::Scaled (offset_, getScale())));
+    view_.setBounds (core::Geometry::getCanvasAt (core::Point::Scaled (getOffset(), getScale())));
     
-    if (notify) { view_.getPatchRoot().getBounds().set (view_.getIdentifier(), offset_, getZoom()); }
+    if (notify) { view_.getPatchRoot().getBounds().set (view_.getIdentifier(), getOffset(), getZoom()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
