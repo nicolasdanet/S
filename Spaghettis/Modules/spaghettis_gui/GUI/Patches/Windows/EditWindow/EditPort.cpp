@@ -147,32 +147,25 @@ bool EditPort::locate (core::UniqueId u)
 {
     ObjectComponent* o = view_.getObjectComponent (u);
     
-    if (o) { showObject (o); showLocator (o->getBounds()); return true; }
+    if (!o) { return false; }
     
-    return false;
-}
-
-void EditPort::hideLocator()
-{
-    if (locator_) { view_.removeChildComponent (locator_.get()); locator_ = nullptr; }
+    const core::Point::Real pt (o->getPosition());
+    
+    /* If required, move visible area to reveal object. */
+    
+    if (!getVisibleArea().contains (pt)) {
+        const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
+        updateOffset (pt - (v / 3));
+    }
+    
+    showLocator (o->getBounds());
+    
+    return true;
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void EditPort::showObject (ObjectComponent* o)
-{
-    const core::Point::Real pt (o->getPosition());
-    
-    if (!getVisibleArea().contains (pt)) {
-    //
-    const core::Vector::Real v (core::Vector::Scaled (getWidth(), getHeight(), getScale()));
-    
-    updateOffset (pt - (v / 3));
-    //
-    }
-}
 
 void EditPort::showLocator (const juce::Rectangle<int>& bounds)
 {
@@ -181,6 +174,11 @@ void EditPort::showLocator (const juce::Rectangle<int>& bounds)
     locator_ = std::make_unique<Locator> (bounds);
     
     view_.addAndMakeVisible (locator_.get());
+}
+
+void EditPort::hideLocator()
+{
+    if (locator_) { view_.removeChildComponent (locator_.get()); locator_ = nullptr; }
 }
 
 // -----------------------------------------------------------------------------------------------------------
