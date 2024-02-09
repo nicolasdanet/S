@@ -93,12 +93,21 @@ bool EditPort::locate (core::UniqueId u)
 {
     ObjectComponent* o = view_.getObjectComponent (u);
     
-    if (o) { show (o); return true; }
+    if (o) { showObject (o); showLocator (o->getBounds()); return true; }
     
     return false;
 }
 
-void EditPort::show (ObjectComponent* o)
+void EditPort::hideLocator()
+{
+    if (locator_) { view_.removeChildComponent (locator_.get()); locator_ = nullptr; }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditPort::showObject (ObjectComponent* o)
 {
     const core::Point::Real pt (o->getPosition());
     
@@ -111,8 +120,6 @@ void EditPort::show (ObjectComponent* o)
     update();
     //
     }
-    
-    showLocator (o->getBounds());
 }
 
 void EditPort::showLocator (const juce::Rectangle<int>& bounds)
@@ -124,11 +131,6 @@ void EditPort::showLocator (const juce::Rectangle<int>& bounds)
     view_.addAndMakeVisible (locator_.get());
 }
 
-void EditPort::hideLocator()
-{
-    if (locator_) { view_.removeChildComponent (locator_.get()); locator_ = nullptr; }
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

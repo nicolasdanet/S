@@ -62,7 +62,7 @@ public:
     void hideLocator();
 
 private:
-    void show (ObjectComponent*);
+    void showObject (ObjectComponent*);
     void showLocator (const juce::Rectangle<int>&);
     
 // -----------------------------------------------------------------------------------------------------------
