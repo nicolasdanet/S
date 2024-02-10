@@ -19,14 +19,7 @@ class EditWindow : public PatchWindow {
 // MARK: -
 
 public:
-    explicit EditWindow (const PatchBase& base) : PatchWindow (base)
-    {
-        content_ = std::make_unique<EditComponent> (base);
-        
-        setContentNonOwned (content_.get(), true);
-        
-        makeVisible (getPatch().get<juce::Rectangle<int>> (Tag::Attributes, Tag::EditView), isLocked());
-    }
+    explicit EditWindow (const PatchBase&);
 
     ~EditWindow() = default;
 
@@ -35,10 +28,7 @@ public:
 // MARK: -
 
 public:
-    bool locate (core::UniqueId u)
-    {
-        return content_->locate (u);
-    }
+    bool locate (core::UniqueId);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -12,6 +12,28 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+EditWindow::EditWindow (const PatchBase& base) : PatchWindow (base)
+{
+    content_ = std::make_unique<EditComponent> (base);
+    
+    setContentNonOwned (content_.get(), true);
+    
+    makeVisible (getPatch().get<juce::Rectangle<int>> (Tag::Attributes, Tag::EditView), isLocked());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool EditWindow::locate (core::UniqueId u)
+{
+    return content_->locate (u);
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditWindow::hasBeenMovedOrResized()
 {
     if (isFullyInitialized()) {
