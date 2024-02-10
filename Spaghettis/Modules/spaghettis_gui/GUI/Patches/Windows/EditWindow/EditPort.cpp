@@ -204,24 +204,18 @@ void mouseWheelMoveDisplace (EditPort* p, float x, float y)
     p->updateOffset (p->getOffset() + core::Vector::Real (-withMinimumStep (x), -withMinimumStep (y)));
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
+void mouseWheelMoveZoom (EditPort* p, std::optional<core::Point::Real> pt, float y)
+{
+    if (pt.has_value() == false) { return; }        /* Happened in weird cases. */
+    
+    const int n = p->getZoom();
+        
+    p->updateZoomAroundPoint ((y > 0.0f) ? ZoomSteps::next (n) : ZoomSteps::previous (n), pt.value());
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-void EditPort::mouseWheelMoveZoom (float y)
-{
-    const int n = getZoom();
-    
-    const std::optional<core::Point::Real> pt = view_.getMousePosition();
-    
-    if (pt.has_value() == false) { return; }        /* Happened in weird cases. */
-    
-    updateZoomAroundPoint ((y > 0.0f) ? ZoomSteps::next (n) : ZoomSteps::previous (n), pt.value());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -243,7 +237,7 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     
     #endif
         
-    if (Mouse::hasAltKey (e)) { mouseWheelMoveZoom (y); }
+    if (Mouse::hasAltKey (e)) { mouseWheelMoveZoom (this, view_.getMousePosition(), y); }
     else {
         mouseWheelMoveDisplace (this, x, y);
     }

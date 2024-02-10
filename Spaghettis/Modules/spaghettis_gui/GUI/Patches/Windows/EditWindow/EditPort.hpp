@@ -93,9 +93,6 @@ private:
 // MARK: -
 
 private:
-    void mouseWheelMoveZoom (float y);
-    
-private:
     void mouseWheelMove (const juce::MouseEvent&, const juce::MouseWheelDetails&) override;
 
 // -----------------------------------------------------------------------------------------------------------
