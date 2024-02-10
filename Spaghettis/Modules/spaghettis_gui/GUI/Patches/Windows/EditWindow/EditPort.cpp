@@ -224,7 +224,7 @@ void mouseWheelMoveZoom (EditPort* p, std::optional<core::Point::Real> pt, float
 
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
-    if (origin_.has_value()) { return; }            /* Don't collide with drag operation. */
+    if (view_.isDragging()) { return; }
     
     const float step = 200.0f / getScale();
     
