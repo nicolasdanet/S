@@ -100,15 +100,6 @@ private:
 // MARK: -
 
 private:
-    void dragViewStart();
-    void dragView (core::Vector::Real);
-    void dragViewEnd();
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
     void update();
     void notify();
     
@@ -117,7 +108,6 @@ private:
     core::Point::Real offset_;
     int zoom_;
     juce::Value v_;
-    std::optional<core::Point::Real> origin_;
     std::unique_ptr<Locator> locator_;
         
 private:

@@ -247,25 +247,6 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditPort::dragViewStart()
-{
-    origin_ = getOffset();
-}
-
-void EditPort::dragView (core::Vector::Real pt)
-{
-    if (origin_.has_value()) { updateOffset (origin_.value() - pt); }
-}
-
-void EditPort::dragViewEnd()
-{
-    origin_.reset();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void EditPort::update()
 {
     view_.setBounds (core::Geometry::getCanvasAt (core::Point::Scaled (getOffset(), getScale())));
