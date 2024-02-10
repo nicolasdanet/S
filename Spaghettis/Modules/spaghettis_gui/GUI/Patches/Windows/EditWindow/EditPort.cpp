@@ -185,17 +185,33 @@ void EditPort::hideLocator()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditPort::mouseWheelMoveDisplace (float x, float y)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+/* At least one step increment (zero allowed). */
+
+int withMinimumStep (float f)
 {
-    auto map = [](float f)      /* At least one step increment. */
-    {
-        if (f) { f = std::signbit (f) ? juce::jmin (-1.0f, f) : juce::jmax (1.0f, f); }
+    if (f) { f = std::signbit (f) ? juce::jmin (-1.0f, f) : juce::jmax (1.0f, f); }
         
-        return static_cast<int> (f);
-    };
-    
-    updateOffset (getOffset() + core::Vector::Real (-map (x), -map (y)));
+    return static_cast<int> (f);
 }
+
+void mouseWheelMoveDisplace (EditPort* p, float x, float y)
+{
+    p->updateOffset (p->getOffset() + core::Vector::Real (-withMinimumStep (x), -withMinimumStep (y)));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void EditPort::mouseWheelMoveZoom (float y)
 {
@@ -208,9 +224,13 @@ void EditPort::mouseWheelMoveZoom (float y)
     updateZoomAroundPoint ((y > 0.0f) ? ZoomSteps::next (n) : ZoomSteps::previous (n), pt.value());
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheelDetails &wheel)
 {
-    if (origin_.has_value()) { return; }    /* Don't collide with drag operation. */
+    if (origin_.has_value()) { return; }            /* Don't collide with drag operation. */
     
     const float step = 200.0f / getScale();
     
@@ -218,10 +238,15 @@ void EditPort::mouseWheelMove (const juce::MouseEvent &e, const juce::MouseWheel
     float y = (wheel.isReversed ? -wheel.deltaY : wheel.deltaY) * step;
 
     #if JUCE_LINUX
+    
     if (Mouse::hasShiftKey (e)) { x = y; y = 0.0f; }
+    
     #endif
         
-    if (Mouse::hasAltKey (e)) { mouseWheelMoveZoom (y); } else { mouseWheelMoveDisplace (x, y); }
+    if (Mouse::hasAltKey (e)) { mouseWheelMoveZoom (y); }
+    else {
+        mouseWheelMoveDisplace (this, x, y);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

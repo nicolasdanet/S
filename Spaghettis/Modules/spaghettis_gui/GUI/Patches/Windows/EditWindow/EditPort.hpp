@@ -57,7 +57,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
+public:
     void updateOffset (core::Point::Real);
     void updateZoom (int);
     void updateZoomAroundPoint (int, core::Point::Real);
@@ -93,7 +93,6 @@ private:
 // MARK: -
 
 private:
-    void mouseWheelMoveDisplace (float x, float y);
     void mouseWheelMoveZoom (float y);
     
 private:
