@@ -47,6 +47,24 @@ bool EditView::isDragging() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+EditPort* EditView::getPort() const
+{
+    jassert (port_ != nullptr); return port_;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditView::setPort (EditPort* owner)
+{
+    port_ = owner;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::attach (EditInspector* inspector)
 {
     inspector_ = inspector;
@@ -63,7 +81,7 @@ void EditView::detach (EditInspector* inspector)
 
 void EditView::hideLocator (const juce::MouseEvent& e)
 {
-    if (Mouse::hasAltKey (e) == false) { getPort()->hideLocator(); }
+    if (!Mouse::hasAltKey (e)) { getPort()->hideLocator(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
