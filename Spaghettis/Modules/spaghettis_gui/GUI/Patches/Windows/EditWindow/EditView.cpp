@@ -88,18 +88,32 @@ void EditView::hideLocator (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::mouseDragProceed (const juce::MouseEvent& e, bool isChild, DragFlag flag)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void mouseDragProceed (EditView* view,
+        std::unique_ptr<DragStrategy>& drag,
+        const juce::MouseEvent& e,
+        bool isChild,
+        DragFlag flag)
 {
-    if (!drag_) {
+    if (!drag) {
         if (Mouse::hasCommandKey (e))       { }
-        else if (Mouse::isAltClick (e))     { drag_ = std::make_unique<ActionHand> (this);    }
-        else if (flag == DragFlag::Resize)  { drag_ = std::make_unique<ActionResize> (this);  }
-        else if (flag == DragFlag::Move)    { drag_ = std::make_unique<ActionMove> (this);    }
-        else if (flag == DragFlag::Pin)     { drag_ = std::make_unique<ActionConnect> (this); }
-        else if (!isChild)                  { drag_ = std::make_unique<ActionLasso> (this);   }
+        else if (Mouse::isAltClick (e))     { drag = std::make_unique<ActionHand> (view);    }
+        else if (flag == DragFlag::Resize)  { drag = std::make_unique<ActionResize> (view);  }
+        else if (flag == DragFlag::Move)    { drag = std::make_unique<ActionMove> (view);    }
+        else if (flag == DragFlag::Pin)     { drag = std::make_unique<ActionConnect> (view); }
+        else if (!isChild)                  { drag = std::make_unique<ActionLasso> (view);   }
     }
 
-    if (drag_) { drag_->mouseDrag (e); }
+    if (drag) { drag->mouseDrag (e); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -111,14 +125,14 @@ void EditView::handleMouseDown (const juce::MouseEvent& e)
     mouseDown (e.getEventRelativeTo (this));
 }
 
+void EditView::handleMouseDrag (const juce::MouseEvent& e, DragFlag flag)
+{
+    mouseDragProceed (this, drag_, e.getEventRelativeTo (this), true, flag);
+}
+
 void EditView::handleMouseUp (const juce::MouseEvent& e)
 {
     mouseUp (e.getEventRelativeTo (this));
-}
-
-void EditView::handleMouseDrag (const juce::MouseEvent& e, DragFlag flag)
-{
-    mouseDragProceed (e.getEventRelativeTo (this), true, flag);
 }
 
 void EditView::handleMouseDragAbort()
@@ -150,7 +164,7 @@ void EditView::mouseDown (const juce::MouseEvent& e)
 
 void EditView::mouseDrag (const juce::MouseEvent& e)
 {
-    mouseDragProceed (e.getEventRelativeTo (this), false, DragFlag::None);
+    mouseDragProceed (this, drag_, e.getEventRelativeTo (this), false, DragFlag::None);
 }
 
 void EditView::mouseUp (const juce::MouseEvent& e)

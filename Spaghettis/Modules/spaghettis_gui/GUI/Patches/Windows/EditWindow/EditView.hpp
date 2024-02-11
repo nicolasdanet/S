@@ -71,13 +71,13 @@ public:
 
 public:
     void handleMouseDown (const juce::MouseEvent&);
-    void handleMouseUp (const juce::MouseEvent&);
     void handleMouseDrag (const juce::MouseEvent&, DragFlag);
+    void handleMouseUp (const juce::MouseEvent&);
+    
     void handleMouseDragAbort();
     
 private:
     void mouseDown (const juce::MouseEvent&) override;
-    void mouseDragProceed (const juce::MouseEvent&, bool, DragFlag);
     void mouseDrag (const juce::MouseEvent&) override;
     void mouseUp (const juce::MouseEvent&) override;
 
