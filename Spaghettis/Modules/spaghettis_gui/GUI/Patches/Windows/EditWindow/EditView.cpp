@@ -65,11 +65,6 @@ std::optional<core::Point::Real> EditView::getMousePosition() const
     }
 }
 
-core::Area::Real EditView::getVisibleArea() const
-{
-    return getPort()->getVisibleArea();
-}
-
 EditPort* EditView::getPort() const
 {
     jassert (port_ != nullptr); return port_;
@@ -551,7 +546,7 @@ void EditView::paste()
 {
     if (!isAbstractionOrInside()) {
     //
-    const core::Area::Real area       = getVisibleArea();
+    const core::Area::Real area       = getPort()->getVisibleArea();
     const core::Point::Real centre    = area.getCentre();
     const core::Point::Real mouse     = getMousePosition().value_or (centre);
     const core::Point::Real selection = getPositionNextSelectedObjects (objects_).value_or (mouse);
@@ -608,7 +603,7 @@ void EditView::requireMaker (bool isFromMenu)
     #endif
     
     if (useCentre) {
-        pt = core::Point::Real (getVisibleArea().getCentre());
+        pt = core::Point::Real (getPort()->getVisibleArea().getCentre());
     }
     
     if (pt.has_value()) { maker_.showEditor (core::Point::Scaled (pt.value(), getScale())); }
