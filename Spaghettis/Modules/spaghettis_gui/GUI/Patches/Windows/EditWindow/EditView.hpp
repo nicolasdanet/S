@@ -22,12 +22,6 @@ class EditView : public PatchView, private juce::AsyncUpdater {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-friend class EditPort;
-friend class ActionHand;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
@@ -46,7 +40,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
+public:
     void setPort (EditPort* owner)
     {
         port_ = owner;
@@ -95,7 +89,7 @@ private:
 public:
     void setMouseCursorRecursive (const juce::MouseCursor&);
 
-private:
+public:
     std::optional<core::Point::Real> getMousePosition() const;
     core::Area::Real getVisibleArea() const;
     
@@ -233,7 +227,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
+public:
     ObjectComponent* getObjectComponent (core::UniqueId) const override;
     LineComponent* getLineComponent (core::UniqueId) const;
 
@@ -252,7 +246,7 @@ public:
 public:
     float getScale() const override;
     
-private:
+public:
     void setScale (float f);
 
 // -----------------------------------------------------------------------------------------------------------
