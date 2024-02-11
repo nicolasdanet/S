@@ -393,11 +393,33 @@ void EditView::resizeObjects (core::Vector::Real offset)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+template <class F> void forObject (ObjectComponent* c, Table<ObjectComponent>& objects, F f)
+{
+    if (c && !c->isSelected()) { objects.doForUnique (f, c->getIdentifier()); }
+    else {
+        objects.doForEachSelected (f);
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::moveBack (ObjectComponent* c)
 {
     if (!isAbstractionOrInside()) {
     //
-    forObject (c, [](const auto& p) { p->moveBack(); });
+    forObject (c, objects_, [](const auto& p) { p->moveBack(); });
     //
     }
 }
@@ -406,7 +428,7 @@ void EditView::moveFront (ObjectComponent* c)
 {
     if (!isAbstractionOrInside()) {
     //
-    forObject (c, [](const auto& p) { p->moveFront(); });
+    forObject (c, objects_, [](const auto& p) { p->moveFront(); });
     //
     }
 }
@@ -415,7 +437,7 @@ void EditView::snapToGrid (ObjectComponent* c)
 {
     if (!isAbstractionOrInside()) {
     //
-    forObject (c, [](const auto& p) { p->snap(); });
+    forObject (c, objects_, [](const auto& p) { p->snap(); });
     //
     }
 }

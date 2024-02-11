@@ -258,16 +258,6 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    template <class F> void forObject (ObjectComponent* c, F f)
-    {
-        if (c && !c->isSelected()) { objects_.doForUnique (f, c->getIdentifier()); }
-        else {
-            objects_.doForEachSelected (f);
-        }
-    }
 
 private:
     Maker maker_;
