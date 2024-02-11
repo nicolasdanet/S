@@ -41,6 +41,8 @@ public:
 // MARK: -
 
 public:
+    std::optional<core::Point::Real> getMousePosition() const;
+    core::Area::Real getVisibleArea() const;
     EditPort* getPort() const;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -49,6 +51,7 @@ public:
 
 public:
     void setPort (EditPort*);
+    void setMouseCursorRecursive (const juce::MouseCursor&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -91,12 +94,8 @@ private:
 // MARK: -
 
 public:
-    void setMouseCursorRecursive (const juce::MouseCursor&);
-
-public:
-    std::optional<core::Point::Real> getMousePosition() const;
-    core::Area::Real getVisibleArea() const;
     
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

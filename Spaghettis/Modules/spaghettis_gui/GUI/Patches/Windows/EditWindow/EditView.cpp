@@ -56,6 +56,20 @@ void EditView::dragAbort()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+std::optional<core::Point::Real> EditView::getMousePosition() const
+{
+    if (isMouseOver (true)) {
+        return core::Point::Real (core::Point::Scaled (getMouseXYRelative(), getScale()));
+    } else {
+        return std::nullopt;
+    }
+}
+
+core::Area::Real EditView::getVisibleArea() const
+{
+    return getPort()->getVisibleArea();
+}
+
 EditPort* EditView::getPort() const
 {
     jassert (port_ != nullptr); return port_;
@@ -68,6 +82,15 @@ EditPort* EditView::getPort() const
 void EditView::setPort (EditPort* owner)
 {
     port_ = owner;
+}
+
+void EditView::setMouseCursorRecursive (const juce::MouseCursor& m)
+{
+    auto f = [m](const auto& p) { p->setMouseCursor (m); };
+    
+    objects_.doForEach (f); lines_.doForEach (f);
+    
+    setMouseCursor (m);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -173,37 +196,6 @@ void EditView::mouseUp (const juce::MouseEvent& e)
     if (drag_) { drag_->mouseUp (e); }
     
     dragAbort();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditView::setMouseCursorRecursive (const juce::MouseCursor& m)
-{
-    auto f = [m](const auto& p) { p->setMouseCursor (m); };
-    
-    objects_.doForEach (f); lines_.doForEach (f);
-    
-    setMouseCursor (m);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-std::optional<core::Point::Real> EditView::getMousePosition() const
-{
-    if (isMouseOver (true)) {
-        return core::Point::Real (core::Point::Scaled (getMouseXYRelative(), getScale()));
-    }
-
-    return std::nullopt;
-}
-
-core::Area::Real EditView::getVisibleArea() const
-{
-    return getPort()->getVisibleArea();
 }
 
 // -----------------------------------------------------------------------------------------------------------
