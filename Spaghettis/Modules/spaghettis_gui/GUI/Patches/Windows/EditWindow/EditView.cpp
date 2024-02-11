@@ -47,6 +47,15 @@ bool EditView::isDragging() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditView::dragAbort()
+{
+    drag_ = nullptr;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 EditPort* EditView::getPort() const
 {
     jassert (port_ != nullptr); return port_;
@@ -135,28 +144,20 @@ void EditView::handleMouseUp (const juce::MouseEvent& e)
     mouseUp (e.getEventRelativeTo (this));
 }
 
-void EditView::handleMouseDragAbort()
-{
-    drag_ = nullptr;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-/* First let create the object when dismissing the Maker's CallOut Box clicking into the view. */
 
 void EditView::mouseDown (const juce::MouseEvent& e)
 {
     hideLocator (e);
     
     if (Mouse::isSimpleClick (e)) {
-    //
-    if (maker_.isActive() == false) { deselectAll(); }
-    else {
-        const auto [pt, s] = maker_.getContent(); createObject (pt, s);
-    }
-    //
+        if (maker_.isActive()) {
+            const auto [pt, s] = maker_.getContent(); createObject (pt, s);
+        } else {
+            deselectAll();
+        }
     }
     
     if (Mouse::isRightClick (e)) { ContextMenu (this).open (e); }
@@ -171,7 +172,7 @@ void EditView::mouseUp (const juce::MouseEvent& e)
 {
     if (drag_) { drag_->mouseUp (e); }
     
-    drag_ = nullptr;
+    dragAbort();
 }
 
 // -----------------------------------------------------------------------------------------------------------

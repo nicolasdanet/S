@@ -18,7 +18,7 @@ MouseHandler::MouseHandler (PatchView* view) : view_ (view), isForwarding_ (fals
 
 MouseHandler::~MouseHandler()
 {
-    if (isDraggingView_) { if (auto view = getEditView()) { view->handleMouseDragAbort(); } }
+    if (isDraggingView_) { if (auto view = getEditView()) { view->dragAbort(); } }
 }
 
 // -----------------------------------------------------------------------------------------------------------

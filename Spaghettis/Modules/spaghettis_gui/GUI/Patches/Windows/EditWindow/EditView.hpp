@@ -49,6 +49,13 @@ public:
 
 public:
     void setPort (EditPort*);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void dragAbort();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -73,9 +80,7 @@ public:
     void handleMouseDown (const juce::MouseEvent&);
     void handleMouseDrag (const juce::MouseEvent&, DragFlag);
     void handleMouseUp (const juce::MouseEvent&);
-    
-    void handleMouseDragAbort();
-    
+
 private:
     void mouseDown (const juce::MouseEvent&) override;
     void mouseDrag (const juce::MouseEvent&) override;
