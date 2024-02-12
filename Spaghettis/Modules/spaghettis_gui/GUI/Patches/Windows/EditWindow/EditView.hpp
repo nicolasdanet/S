@@ -42,6 +42,8 @@ public:
 // MARK: -
 
 public:
+    bool hasUndo() const;
+    bool hasRedo() const;
     bool hasPaste() const;
     bool hasSelected() const;
     bool hasSelectedObject() const;
@@ -52,6 +54,8 @@ public:
 // MARK: -
 
 public:
+    juce::String getUndoAction() const;
+    juce::String getRedoAction() const;
     int getNumberOfSelectedObjects() const;
     int getNumberOfSelectedLines() const;
     ObjectComponent* getSelectedObject() const;
@@ -142,18 +146,6 @@ public:
 // MARK: -
 
 public:
-    void undo();
-    void redo();
-    bool hasUndo() const;
-    bool hasRedo() const;
-    juce::String getUndoAction() const;
-    juce::String getRedoAction() const;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void cut();
     void copy();
     void paste();
@@ -163,6 +155,10 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+public:
+    void undo();
+    void redo();
 
 public:
     void encapsulate();

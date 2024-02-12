@@ -84,6 +84,16 @@ template <class T> core::UniqueId getSelected (T& t)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool EditView::hasUndo() const
+{
+    return undo_.get().isNotEmpty();
+}
+
+bool EditView::hasRedo() const
+{
+    return redo_.get().isNotEmpty();
+}
+
 bool EditView::hasPaste() const
 {
     return hasPaste_;
@@ -122,6 +132,28 @@ void EditView::dragAbort()
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+juce::String EditView::getUndoAction() const
+{
+    if (hasUndo()) {
+    //
+    return juce::String (NEEDS_TRANS ("Undo")) + " " + Strings::firstLetterCapitalized (undo_.get());
+    //
+    }
+    
+    return juce::String();
+}
+
+juce::String EditView::getRedoAction() const
+{
+    if (hasRedo()) {
+    //
+    return juce::String (NEEDS_TRANS ("Redo")) + " " + Strings::firstLetterCapitalized (redo_.get());
+    //
+    }
+    
+    return juce::String();
+}
 
 int EditView::getNumberOfSelectedObjects() const
 {
@@ -401,7 +433,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template <class F> void forObject (ObjectComponent* c, Table<ObjectComponent>& objects, F f)
+template <class F> void forObjectOrAllSelected (ObjectComponent* c, Table<ObjectComponent>& objects, F f)
 {
     if (c && !c->isSelected()) { objects.doForUnique (f, c->getIdentifier()); }
     else {
@@ -422,7 +454,7 @@ void EditView::moveBack (ObjectComponent* c)
 {
     if (!isAbstractionOrInside()) {
     //
-    forObject (c, objects_, [](const auto& p) { p->moveBack(); });
+    forObjectOrAllSelected (c, objects_, [](const auto& p) { p->moveBack(); });
     //
     }
 }
@@ -431,7 +463,7 @@ void EditView::moveFront (ObjectComponent* c)
 {
     if (!isAbstractionOrInside()) {
     //
-    forObject (c, objects_, [](const auto& p) { p->moveFront(); });
+    forObjectOrAllSelected (c, objects_, [](const auto& p) { p->moveFront(); });
     //
     }
 }
@@ -440,98 +472,7 @@ void EditView::snapToGrid (ObjectComponent* c)
 {
     if (!isAbstractionOrInside()) {
     //
-    forObject (c, objects_, [](const auto& p) { p->snap(); });
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditView::undo()
-{
-    if (!isAbstractionOrInside()) { Broadcast::undo (getIdentifier()); }
-}
-
-void EditView::redo()
-{
-    if (!isAbstractionOrInside()) { Broadcast::redo (getIdentifier()); }
-}
-
-bool EditView::hasUndo() const
-{
-    return undo_.get().isNotEmpty();
-}
-
-bool EditView::hasRedo() const
-{
-    return redo_.get().isNotEmpty();
-}
-
-juce::String EditView::getUndoAction() const
-{
-    if (hasUndo()) {
-    //
-    return juce::String (NEEDS_TRANS ("Undo")) + " " + Strings::firstLetterCapitalized (undo_.get());
-    //
-    }
-    
-    return juce::String();
-}
-
-juce::String EditView::getRedoAction() const
-{
-    if (hasRedo()) {
-    //
-    return juce::String (NEEDS_TRANS ("Redo")) + " " + Strings::firstLetterCapitalized (redo_.get());
-    //
-    }
-    
-    return juce::String();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-void setPaste (bool& b)
-{
-    if (b == false) { b = true; Spaghettis()->updateMenuBar(); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditView::cut()
-{
-    if (!isAbstractionOrInside()) {
-    //
-    setPaste (hasPaste_);
-    
-    Broadcast::cut (getIdentifier());
-    //
-    }
-}
-
-void EditView::copy()
-{
-    if (!isAbstractionOrInside()) {
-    //
-    setPaste (hasPaste_);
-    
-    Broadcast::copy (getIdentifier());
+    forObjectOrAllSelected (c, objects_, [](const auto& p) { p->snap(); });
     //
     }
 }
@@ -578,6 +519,11 @@ void deconnectSelectedLines (Table<LineComponent>& t)
     t.doForEachSelected ([](const auto& p) { p->disconnect(); });
 }
 
+void setPaste (bool& b)
+{
+    if (b == false) { b = true; Spaghettis()->updateMenuBar(); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -586,6 +532,28 @@ void deconnectSelectedLines (Table<LineComponent>& t)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+void EditView::cut()
+{
+    if (!isAbstractionOrInside()) {
+    //
+    setPaste (hasPaste_);
+    
+    Broadcast::cut (getIdentifier());
+    //
+    }
+}
+
+void EditView::copy()
+{
+    if (!isAbstractionOrInside()) {
+    //
+    setPaste (hasPaste_);
+    
+    Broadcast::copy (getIdentifier());
+    //
+    }
+}
 
 void EditView::paste()
 {
@@ -618,6 +586,43 @@ void EditView::remove()
     Broadcast::remove (getIdentifier());     /* Remove all selected objects. */
     
     deconnectSelectedLines (lines_);
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditView::undo()
+{
+    if (!isAbstractionOrInside()) { Broadcast::undo (getIdentifier()); }
+}
+
+void EditView::redo()
+{
+    if (!isAbstractionOrInside()) { Broadcast::redo (getIdentifier()); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditView::encapsulate()
+{
+    Broadcast::encapsulate (getIdentifier());
+}
+
+void EditView::deencapsulate()
+{
+    if (!isAbstractionOrInside()) {
+    //
+    const ObjectComponent* o = getSelectedObject();
+    
+    jassert (o);
+    jassert (o->isPatch());
+    
+    Broadcast::deencapsulate (o->getIdentifier());
     //
     }
 }
@@ -664,29 +669,6 @@ void EditView::dismissMaker()
     maker_.hideEditor();
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditView::encapsulate()
-{
-    Broadcast::encapsulate (getIdentifier());
-}
-
-void EditView::deencapsulate()
-{
-    if (!isAbstractionOrInside()) {
-    //
-    const ObjectComponent* o = getSelectedObject();
-    
-    jassert (o);
-    jassert (o->isPatch());
-    
-    Broadcast::deencapsulate (o->getIdentifier());
-    //
-    }
-}
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
