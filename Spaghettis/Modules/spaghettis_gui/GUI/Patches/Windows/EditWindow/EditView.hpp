@@ -133,13 +133,6 @@ public:
 // MARK: -
 
 public:
-    void createObject (core::Point::Real, const juce::String&);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     void moveBack (ObjectComponent* c = nullptr);
     void moveFront (ObjectComponent* c = nullptr);
     void snapToGrid (ObjectComponent* c = nullptr);

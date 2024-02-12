@@ -278,7 +278,7 @@ void EditView::mouseDown (const juce::MouseEvent& e)
     
     if (Mouse::isSimpleClick (e)) {
         if (maker_.isActive()) {
-            const auto [pt, s] = maker_.getContent(); createObject (pt, s);
+            const auto [pt, s] = maker_.getContent(); Broadcast::create (getIdentifier(), pt, s);
         } else {
             deselectAll();
         }
@@ -626,15 +626,6 @@ void EditView::remove()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::createObject (core::Point::Real pt, const juce::String& s)
-{
-    if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (getIdentifier(), pt, s)); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void EditView::requireMaker (bool isFromMenu)
 {
     if (!isAbstractionOrInside()) {
@@ -663,7 +654,7 @@ void EditView::openMaker (core::Point::Scaled pt)
 
 void EditView::handleMaker (core::Point::Real pt, const juce::String& s)
 {
-    createObject (pt, s);
+    Broadcast::create (getIdentifier(), pt, s);
     
     dismissMaker();
 }

@@ -110,6 +110,11 @@ static void connect (core::UniqueId u, int m, core::UniqueId v, int n)
     Spaghettis()->handle (Inputs::connectLine (u, m, v, n));
 }
 
+static void create (core::UniqueId u, core::Point::Real pt, const juce::String& s)
+{
+    if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (u, pt, s)); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
