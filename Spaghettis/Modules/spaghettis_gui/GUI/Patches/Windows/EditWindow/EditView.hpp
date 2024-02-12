@@ -56,8 +56,12 @@ public:
 public:
     juce::String getUndoAction() const;
     juce::String getRedoAction() const;
+
+public:
     int getNumberOfSelectedObjects() const;
     int getNumberOfSelectedLines() const;
+
+public:
     ObjectComponent* getSelectedObject() const;
     LineComponent* getSelectedLine() const;
     ObjectComponent* getObjectComponent (core::UniqueId) const override;
