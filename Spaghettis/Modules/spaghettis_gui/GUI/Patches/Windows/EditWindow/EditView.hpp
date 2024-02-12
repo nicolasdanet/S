@@ -37,10 +37,25 @@ public:
     bool isDragging() const;
     bool isAbstractionOrInside() const;
     
+public:
+    bool hasSelected() const;
+    bool hasSelectedObject() const;
+    bool hasOnlyOnePatchSelected() const;
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    int getNumberOfSelectedObjects() const;
+    int getNumberOfSelectedLines() const;
+    ObjectComponent* getSelectedObject() const;
+    LineComponent* getSelectedLine() const;
+    
+public:
+    ObjectComponent* getObjectComponent (core::UniqueId) const override;
+    LineComponent* getLineComponent (core::UniqueId) const;
+    
 public:
     std::optional<core::Point::Real> getMousePosition() const;
     EditPort* getPort() const;
@@ -98,11 +113,6 @@ public:
     void deselectAll();
     void select (const juce::Rectangle<int>&);
 
-public:
-    bool hasSelected() const;
-    bool hasSelectedObject() const;
-    bool hasOnlyOnePatchSelected() const;
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -110,10 +120,6 @@ public:
 private:
     bool selectObjects (const juce::Rectangle<int>&);
     bool selectLines (const juce::Rectangle<int>&);
-    int getNumberOfSelectedObjects() const;
-    int getNumberOfSelectedLines() const;
-    ObjectComponent* getSelectedObject() const;
-    LineComponent* getSelectedLine() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -211,14 +217,6 @@ private:
 
 public:
     void paint (juce::Graphics&) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    ObjectComponent* getObjectComponent (core::UniqueId) const override;
-    LineComponent* getLineComponent (core::UniqueId) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -52,6 +52,63 @@ bool EditView::isAbstractionOrInside() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+template <class T> int getNumberOfSelected (T& t)
+{
+    auto n = t.doCountIf ([](const auto& p) { return p->isSelected(); });
+
+    return static_cast<int> (n);
+}
+
+template <class T> core::UniqueId getSelected (T& t)
+{
+    core::UniqueId u = 0;
+    
+    auto f = [&u](const auto& p) { u = p->getIdentifier(); };
+
+    t.doForEachSelected (f);
+    
+    return u;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool EditView::hasSelected() const
+{
+    return (getNumberOfSelectedObjects() > 0) || (getNumberOfSelectedLines() > 0);
+}
+
+bool EditView::hasSelectedObject() const
+{
+    return (getNumberOfSelectedObjects() > 0);
+}
+
+bool EditView::hasOnlyOnePatchSelected() const
+{
+    if (getNumberOfSelectedObjects() == 1) {
+        if (auto o = getSelectedObject(); o->isPatch() && !o->isAbstraction()) {
+            return true;
+        }
+    }
+        
+    return false;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::dragAbort()
 {
     drag_ = nullptr;
@@ -60,6 +117,36 @@ void EditView::dragAbort()
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+int EditView::getNumberOfSelectedObjects() const
+{
+    return getNumberOfSelected (objects_);
+}
+
+int EditView::getNumberOfSelectedLines() const
+{
+    return getNumberOfSelected (lines_);
+}
+
+ObjectComponent* EditView::getSelectedObject() const
+{
+    return getObjectComponent (getSelected (objects_));
+}
+
+LineComponent* EditView::getSelectedLine() const
+{
+    return getLineComponent (getSelected (lines_));
+}
+
+ObjectComponent* EditView::getObjectComponent (core::UniqueId u) const
+{
+    return objects_.get (u);
+}
+
+LineComponent* EditView::getLineComponent (core::UniqueId u) const
+{
+    return lines_.get (u);
+}
 
 std::optional<core::Point::Real> EditView::getMousePosition() const
 {
@@ -207,24 +294,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template <class T> int getNumberOfSelected (T& t)
-{
-    auto n = t.doCountIf ([](const auto& p) { return p->isSelected(); });
-
-    return static_cast<int> (n);
-}
-
-template <class T> core::UniqueId getSelected (T& t)
-{
-    core::UniqueId u = 0;
-    
-    auto f = [&u](const auto& p) { u = p->getIdentifier(); };
-
-    t.doForEachSelected (f);
-    
-    return u;
-}
-
 void deconnectSelectedLines (Table<LineComponent>& t)
 {
     t.doForEachSelected ([](const auto& p) { p->disconnect(); });
@@ -238,36 +307,6 @@ void deconnectSelectedLines (Table<LineComponent>& t)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-bool EditView::hasSelected() const
-{
-    return (getNumberOfSelectedObjects() > 0) || (getNumberOfSelectedLines() > 0);
-}
-
-bool EditView::hasSelectedObject() const
-{
-    return (getNumberOfSelectedObjects() > 0);
-}
-
-int EditView::getNumberOfSelectedObjects() const
-{
-    return getNumberOfSelected (objects_);
-}
-
-int EditView::getNumberOfSelectedLines() const
-{
-    return getNumberOfSelected (lines_);
-}
-
-ObjectComponent* EditView::getSelectedObject() const
-{
-    return getObjectComponent (getSelected (objects_));
-}
-
-LineComponent* EditView::getSelectedLine() const
-{
-    return getLineComponent (getSelected (lines_));
-}
 
 bool EditView::selectObjects (const juce::Rectangle<int>& r)
 {
@@ -313,20 +352,6 @@ Synchronizer EditView::getSynchronized() const
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-bool EditView::hasOnlyOnePatchSelected() const
-{
-    if (getNumberOfSelectedObjects() == 1) {
-        if (auto o = getSelectedObject(); o->isPatch() && !o->isAbstraction()) {
-            return true;
-        }
-    }
-        
-    return false;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 void EditView::setPaste()
 {
@@ -676,20 +701,6 @@ void EditView::deencapsulate()
 void EditView::paint (juce::Graphics& g)
 {
     g.fillAll (patchBackgroundColour_.get());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-ObjectComponent* EditView::getObjectComponent (core::UniqueId u) const
-{
-    return objects_.get (u);
-}
-
-LineComponent* EditView::getLineComponent (core::UniqueId u) const
-{
-    return lines_.get (u);
 }
 
 // -----------------------------------------------------------------------------------------------------------
