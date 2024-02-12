@@ -84,6 +84,11 @@ template <class T> core::UniqueId getSelected (T& t)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool EditView::hasPaste() const
+{
+    return hasPaste_;
+}
+
 bool EditView::hasSelected() const
 {
     return (getNumberOfSelectedObjects() > 0) || (getNumberOfSelectedLines() > 0);
@@ -353,20 +358,6 @@ Synchronizer EditView::getSynchronized() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::setPaste()
-{
-    if (hasPaste_ == false) { hasPaste_ = true; Spaghettis()->updateMenuBar(); }
-}
-
-bool EditView::hasPaste() const
-{
-    return hasPaste_;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void EditView::deselectAll()
 {
     lines_.doForEach   ([](const auto& p) { p->setSelected (false); });
@@ -517,11 +508,30 @@ juce::String EditView::getRedoAction() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void setPaste (bool& b)
+{
+    if (b == false) { b = true; Spaghettis()->updateMenuBar(); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::cut()
 {
     if (!isAbstractionOrInside()) {
     //
-    setPaste();
+    setPaste (hasPaste_);
     
     Broadcast::cut (getIdentifier());
     //
@@ -532,7 +542,7 @@ void EditView::copy()
 {
     if (!isAbstractionOrInside()) {
     //
-    setPaste();
+    setPaste (hasPaste_);
     
     Broadcast::copy (getIdentifier());
     //

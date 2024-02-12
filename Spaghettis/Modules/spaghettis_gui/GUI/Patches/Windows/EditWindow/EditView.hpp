@@ -36,8 +36,13 @@ public:
 public:
     bool isDragging() const;
     bool isAbstractionOrInside() const;
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
+    bool hasPaste() const;
     bool hasSelected() const;
     bool hasSelectedObject() const;
     bool hasOnlyOnePatchSelected() const;
@@ -51,8 +56,6 @@ public:
     int getNumberOfSelectedLines() const;
     ObjectComponent* getSelectedObject() const;
     LineComponent* getSelectedLine() const;
-    
-public:
     ObjectComponent* getObjectComponent (core::UniqueId) const override;
     LineComponent* getLineComponent (core::UniqueId) const;
     
@@ -120,16 +123,6 @@ public:
 private:
     bool selectObjects (const juce::Rectangle<int>&);
     bool selectLines (const juce::Rectangle<int>&);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    bool hasPaste() const;
-
-private:
-    void setPaste();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
