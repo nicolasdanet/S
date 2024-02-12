@@ -124,9 +124,9 @@ public:
 // MARK: -
 
 public:
-    void dragObjectsStart();
-    void dragObjects (core::Vector::Real);
-    void resizeObjects (core::Vector::Real);
+    void dragStart();
+    void drag (core::Vector::Real);
+    void resize (core::Vector::Real);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

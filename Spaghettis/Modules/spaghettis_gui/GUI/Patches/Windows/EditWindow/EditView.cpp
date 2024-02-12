@@ -365,7 +365,7 @@ void EditView::select (const juce::Rectangle<int>& r)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::dragObjectsStart()
+void EditView::dragStart()
 {
     if (!isAbstractionOrInside()) {
     //
@@ -374,7 +374,7 @@ void EditView::dragObjectsStart()
     }
 }
 
-void EditView::dragObjects (core::Vector::Real offset)
+void EditView::drag (core::Vector::Real offset)
 {
     if (!isAbstractionOrInside()) {
     //
@@ -383,7 +383,7 @@ void EditView::dragObjects (core::Vector::Real offset)
     }
 }
 
-void EditView::resizeObjects (core::Vector::Real offset)
+void EditView::resize (core::Vector::Real offset)
 {
     if (!isAbstractionOrInside()) {
     //

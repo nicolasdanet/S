@@ -14,7 +14,7 @@ namespace spaghettis {
 
 ActionMove::ActionMove (EditView* view) : view_ (view)
 {
-    view_->dragObjectsStart();
+    view_->dragStart();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ ActionMove::ActionMove (EditView* view) : view_ (view)
 
 void ActionMove::mouseDrag (const juce::MouseEvent& e)
 {
-    view_->dragObjects (core::Vector::Scaled (e.getOffsetFromDragStart(), view_->getScale()));
+    view_->drag (core::Vector::Scaled (e.getOffsetFromDragStart(), view_->getScale()));
 }
 
 void ActionMove::mouseUp (const juce::MouseEvent& e)
