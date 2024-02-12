@@ -162,6 +162,15 @@ std::optional<core::Point::Real> EditView::getMousePosition() const
     }
 }
 
+Synchronizer EditView::getSynchronized() const
+{
+    if (getNumberOfSelectedLines() == 1)        { return Synchronizer (getSelectedLine()->getLine());     }
+    else if (getNumberOfSelectedObjects() == 1) { return Synchronizer (getSelectedObject()->getObject()); }
+    else {
+        return Synchronizer (getPatch());
+    }
+}
+
 EditPort* EditView::getPort() const
 {
     jassert (port_ != nullptr); return port_;
@@ -339,19 +348,6 @@ bool EditView::selectLines (const juce::Rectangle<int>& r)
     lines_.doForEach (f);
 
     return done;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-Synchronizer EditView::getSynchronized() const
-{
-    if (getNumberOfSelectedLines() == 1)        { return Synchronizer (getSelectedLine()->getLine());     }
-    else if (getNumberOfSelectedObjects() == 1) { return Synchronizer (getSelectedObject()->getObject()); }
-    else {
-        return Synchronizer (getPatch());
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
