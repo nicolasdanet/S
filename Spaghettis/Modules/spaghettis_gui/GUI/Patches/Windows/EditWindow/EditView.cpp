@@ -303,21 +303,26 @@ void EditView::mouseUp (const juce::MouseEvent& e)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool EditView::selectObjects (const juce::Rectangle<int>& r)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+bool selectObjects (Table<ObjectComponent>& objects, const juce::Rectangle<int>& r)
 {
     bool done = false;
     
-    auto f = [&r, &done](const auto& p)
+    auto f = [&done, t = r](const auto& p)
     {
-        if (r.intersects (p->getBounds())) { p->setSelected (true); done = true; }
+        if (t.intersects (p->getBounds())) { p->setSelected (true); done = true; }
     };
 
-    objects_.doForEach (f);
+    objects.doForEach (f);
 
     return done;
 }
 
-bool EditView::selectLines (const juce::Rectangle<int>& r)
+bool selectLines (Table<LineComponent>& lines, const juce::Rectangle<int>& r)
 {
     bool done = false;
     
@@ -326,9 +331,14 @@ bool EditView::selectLines (const juce::Rectangle<int>& r)
         if (p->intersects (t)) { p->setSelected (true); done = true; }
     };
 
-    lines_.doForEach (f);
+    lines.doForEach (f);
 
     return done;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -348,7 +358,7 @@ void EditView::selectAll()
 
 void EditView::select (const juce::Rectangle<int>& r)
 {
-    if (selectObjects (r) == false) { selectLines (r); }
+    if (selectObjects (objects_, r) == false) { selectLines (lines_, r); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

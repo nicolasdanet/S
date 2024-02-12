@@ -61,6 +61,8 @@ public:
     
 public:
     std::optional<core::Point::Real> getMousePosition() const;
+
+public:
     Synchronizer getSynchronized() const;
     EditPort* getPort() const;
 
@@ -116,14 +118,6 @@ public:
     void selectAll();
     void deselectAll();
     void select (const juce::Rectangle<int>&);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    bool selectObjects (const juce::Rectangle<int>&);
-    bool selectLines (const juce::Rectangle<int>&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
