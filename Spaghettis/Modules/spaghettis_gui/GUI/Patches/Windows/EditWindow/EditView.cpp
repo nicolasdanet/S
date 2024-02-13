@@ -733,6 +733,28 @@ void updateOrder (EditView* view, Table<ObjectComponent>& objects, Table<LineCom
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void addComponent (EditView* view,
+    Table<ObjectComponent>& objects,
+    Table<LineComponent>& lines,
+    const juce::ValueTree& child)
+{
+    if (Tree::isObject (child))    { objects.add (view, core::Object (child)); }
+    else if (Tree::isLine (child)) { lines.add (view, core::Line (child));     }
+}
+
+void removeComponent (EditView* view,
+    Table<ObjectComponent>& objects,
+    Table<LineComponent>& lines,
+    const juce::ValueTree& child)
+{
+    if (Tree::isObject (child))    { objects.remove (core::Object (child).getIdentifier()); }
+    else if (Tree::isLine (child)) { lines.remove (core::Line (child).getIdentifier());     }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 }
 
@@ -749,35 +771,14 @@ void EditView::handleAsyncUpdate()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::addComponent (const juce::ValueTree& child)
-{
-    if (Tree::isObject (child))    { objects_.add (this, core::Object (child)); }
-    else if (Tree::isLine (child)) { lines_.add (this, core::Line (child));     }
-}
-
-void EditView::removeComponent (const juce::ValueTree& child)
-{
-    if (Tree::isObject (child))    { objects_.remove (core::Object (child).getIdentifier()); }
-    else if (Tree::isLine (child)) { lines_.remove (core::Line (child).getIdentifier());     }
-}
-
-void EditView::initialize (const juce::ValueTree& tree)
-{
-    for (const auto& child : tree) { addComponent (child); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    if (isSameAsPatch (t)) { addComponent (child); }
+    if (isSameAsPatch (t)) { addComponent (this, objects_, lines_, child); }
 }
 
 void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    if (isSameAsPatch (t)) { removeComponent (child); }
+    if (isSameAsPatch (t)) { removeComponent (this, objects_, lines_, child); }
 }
 
 void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int newIndex)
@@ -790,6 +791,15 @@ void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identif
     juce::ValueTree i (Tree::getParentIfChangedPropertyEquals (t, Tag::Selected));
     
     if (i.isValid() && isSameAsPatch (i.getParent()) && inspector_) { inspector_->update(); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditView::initialize (const juce::ValueTree& tree)
+{
+    for (const auto& child : tree) { addComponent (this, objects_, lines_, child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
