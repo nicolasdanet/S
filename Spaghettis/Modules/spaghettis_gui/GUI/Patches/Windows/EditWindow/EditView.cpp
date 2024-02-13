@@ -712,6 +712,43 @@ void EditView::hide (ObjectComponent* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void updateOrder (EditView* view, Table<ObjectComponent>& objects, Table<LineComponent>& lines)
+{
+    objects.sort (view->getPatch().getObjects());
+    
+    auto f = [c = static_cast<juce::Component*> (nullptr)](const auto& p) mutable
+    {
+        p->moveBehind (c); c = p.get();
+    };
+    
+    objects.doForEachReversed (f);
+    
+    lines.doForEachReversed ([](const auto& p) { p->updateOrder(); });
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditView::handleAsyncUpdate()
+{
+    updateOrder (this, objects_, lines_);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void EditView::addComponent (const juce::ValueTree& child)
 {
     if (Tree::isObject (child))    { objects_.add (this, core::Object (child)); }
@@ -727,29 +764,6 @@ void EditView::removeComponent (const juce::ValueTree& child)
 void EditView::initialize (const juce::ValueTree& tree)
 {
     for (const auto& child : tree) { addComponent (child); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditView::updateOrder()
-{
-    objects_.sort (getPatch().getObjects());
-    
-    auto f = [c = static_cast<juce::Component*> (nullptr)](const auto& p) mutable
-    {
-        p->moveBehind (c); c = p.get();
-    };
-    
-    objects_.doForEachReversed (f);
-    
-    lines_.doForEachReversed ([](const auto& p) { p->updateOrder(); });
-}
-
-void EditView::handleAsyncUpdate()
-{
-    updateOrder();
 }
 
 // -----------------------------------------------------------------------------------------------------------
