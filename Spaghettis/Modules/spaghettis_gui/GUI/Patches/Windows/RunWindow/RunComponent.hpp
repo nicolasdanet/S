@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class RunComponent :    protected RunFactoryHelper,    /* MUST be the first. */
+class RunComponent :    protected RunFactoryHelper,                         /* MUST be the first. */
                         public    BaseComponent<CommandsHandler> {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -24,6 +24,13 @@ public:
     
     ~RunComponent() = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    PatchRoot& getPatchRoot();
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -46,24 +53,15 @@ public:
 // MARK: -
 
 public:
-    bool tryGrabFocus() override
-    {
-        return tryGrabFocusForComponent (this);
-    }
+    bool tryGrabFocus() override;
 
-private:
-    void updateLayout();
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    PatchRoot& getPatchRoot()
-    {
-        return runView_.getPatchRoot();
-    }
-
+private:
+    void updateLayout();
+    
 private:
     RunView runView_;
     RunPresets runPresets_;
