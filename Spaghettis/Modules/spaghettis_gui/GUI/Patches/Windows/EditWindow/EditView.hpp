@@ -68,6 +68,7 @@ public:
     LineComponent* getLineComponent (core::UniqueId) const;
     
 public:
+    float getScale() const override;
     std::optional<core::Point::Real> getMousePosition() const;
 
 public:
@@ -79,6 +80,7 @@ public:
 // MARK: -
 
 public:
+    void setScale (float f);
     void setPort (EditPort*);
     void setMouseCursorRecursive (const juce::MouseCursor&);
     
@@ -199,16 +201,6 @@ public:
 public:
     void show (ObjectComponent*, const juce::Rectangle<int>&) override;
     void hide (ObjectComponent*) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    float getScale() const override;
-    
-public:
-    void setScale (float f);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

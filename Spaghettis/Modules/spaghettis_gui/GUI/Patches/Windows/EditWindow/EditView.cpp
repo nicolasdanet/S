@@ -185,6 +185,11 @@ LineComponent* EditView::getLineComponent (core::UniqueId u) const
     return lines_.get (u);
 }
 
+float EditView::getScale() const
+{
+    return scale_;
+}
+
 std::optional<core::Point::Real> EditView::getMousePosition() const
 {
     if (isMouseOver (true)) {
@@ -211,6 +216,17 @@ EditPort* EditView::getPort() const
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+void EditView::setScale (float scale)
+{
+    jassert (scale > 0.0f);
+    
+    scale_ = scale;
+    
+    auto f = [](const auto& p) { p->scaleChanged(); };
+    
+    objects_.doForEach (f); lines_.doForEach (f);
+}
 
 void EditView::setPort (EditPort* owner)
 {
@@ -690,26 +706,6 @@ void EditView::show (ObjectComponent* o, const juce::Rectangle<int>& r)
 void EditView::hide (ObjectComponent* o)
 {
     o->setVisible (false);
-}
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditView::setScale (float scale)
-{
-    jassert (scale > 0.0f);
-    
-    scale_ = scale;
-    
-    auto f = [](const auto& p) { p->scaleChanged(); };
-    
-    objects_.doForEach (f); lines_.doForEach (f);
-}
-
-float EditView::getScale() const
-{
-    return scale_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
