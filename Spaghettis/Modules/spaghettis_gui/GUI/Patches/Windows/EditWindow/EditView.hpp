@@ -88,6 +88,7 @@ public:
 
 public:
     void dragAbort();
+    void dragStart();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -132,7 +133,6 @@ public:
 // MARK: -
 
 public:
-    void dragStart();
     void drag (core::Vector::Real);
     void resize (core::Vector::Real);
 
@@ -173,10 +173,10 @@ public:
 // MARK: -
 
 public:
-    void requireMaker (bool);
-    void openMaker (core::Point::Scaled);
-    void handleMaker (core::Point::Real, const juce::String&);
-    void dismissMaker();
+    void makerRequire (bool);
+    void makerOpen (core::Point::Scaled);
+    void makerHandle (core::Point::Real, const juce::String&);
+    void makerDismiss();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

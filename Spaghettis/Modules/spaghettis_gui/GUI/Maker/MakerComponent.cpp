@@ -75,12 +75,12 @@ void MakerComponent::resized()
 
 void MakerComponent::enter()
 {
-    if (view_.getComponent()) { view_->handleMaker (pt_, v_.toString()); }
+    if (view_.getComponent()) { view_->makerHandle (pt_, v_.toString()); }
 }
 
 void MakerComponent::dismiss()
 {
-    if (view_.getComponent()) { view_->dismissMaker(); }
+    if (view_.getComponent()) { view_->makerDismiss(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

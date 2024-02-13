@@ -631,7 +631,7 @@ void EditView::deencapsulate()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::requireMaker (bool isFromMenu)
+void EditView::makerRequire (bool isFromMenu)
 {
     if (!isAbstractionOrInside()) {
     //
@@ -652,19 +652,19 @@ void EditView::requireMaker (bool isFromMenu)
     }
 }
 
-void EditView::openMaker (core::Point::Scaled pt)
+void EditView::makerOpen (core::Point::Scaled pt)
 {
     maker_.showEditor (pt);
 }
 
-void EditView::handleMaker (core::Point::Real pt, const juce::String& s)
+void EditView::makerHandle (core::Point::Real pt, const juce::String& s)
 {
     Broadcast::create (getIdentifier(), pt, s);
     
-    dismissMaker();
+    makerDismiss();
 }
 
-void EditView::dismissMaker()
+void EditView::makerDismiss()
 {
     maker_.hideEditor();
 }
