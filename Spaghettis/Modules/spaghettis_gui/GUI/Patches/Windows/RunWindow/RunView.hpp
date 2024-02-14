@@ -64,13 +64,6 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    void update();
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 public:
     void valueTreeChildAdded (juce::ValueTree&, juce::ValueTree&) override;
     void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
@@ -78,6 +71,8 @@ public:
 private:
     void addComponent (const juce::ValueTree&);
     void removeComponent (const juce::ValueTree&);
+
+private:
     void initialize (const juce::ValueTree&);
     
 private:

@@ -86,14 +86,9 @@ void RunView::hide (ObjectComponent* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RunView::update()
-{
-    repaint(); layout_.sort(); layout_.arrange (getLocalBounds().reduced (10));
-}
-
 void RunView::handleAsyncUpdate()
 {
-    update();
+    repaint(); layout_.sort(); layout_.arrange (getLocalBounds().reduced (10));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -122,11 +117,6 @@ void RunView::removeComponent (const juce::ValueTree& child)
     }
 }
 
-void RunView::initialize (const juce::ValueTree& tree)
-{
-    for (const auto& child : tree) { addComponent (child); initialize (child); }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -139,6 +129,15 @@ void RunView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 void RunView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
     removeComponent (child);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunView::initialize (const juce::ValueTree& tree)
+{
+    for (const auto& child : tree) { addComponent (child); initialize (child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
