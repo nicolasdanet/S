@@ -95,26 +95,36 @@ void RunView::handleAsyncUpdate()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void RunView::addComponent (const juce::ValueTree& child)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void addComponent (RunView* view, Table<ObjectComponent>& objects, const juce::ValueTree& child)
 {
     if (Tree::isObject (child)) {
     //
     const core::Object object (child);
     
-    if (object.isGraphic()) { objects_.add (this, object); }
+    if (object.isGraphic()) { objects.add (view, object); }
     //
     }
 }
 
-void RunView::removeComponent (const juce::ValueTree& child)
+void removeComponent (RunView* view, Table<ObjectComponent>& objects, const juce::ValueTree& child)
 {
     if (Tree::isObject (child)) {
     //
     const core::Object object (child);
     
-    if (object.isGraphic()) { objects_.remove (object.getIdentifier()); }
+    if (object.isGraphic()) { objects.remove (object.getIdentifier()); }
     //
     }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -123,12 +133,12 @@ void RunView::removeComponent (const juce::ValueTree& child)
 
 void RunView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 {
-    addComponent (child);
+    addComponent (this, objects_, child);
 }
 
 void RunView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    removeComponent (child);
+    removeComponent (this, objects_, child);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -137,7 +147,7 @@ void RunView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child,
 
 void RunView::initialize (const juce::ValueTree& tree)
 {
-    for (const auto& child : tree) { addComponent (child); initialize (child); }
+    for (const auto& child : tree) { addComponent (this, objects_, child); initialize (child); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

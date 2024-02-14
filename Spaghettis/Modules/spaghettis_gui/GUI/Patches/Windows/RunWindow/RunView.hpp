@@ -69,10 +69,6 @@ public:
     void valueTreeChildRemoved (juce::ValueTree&, juce::ValueTree&, int) override;
 
 private:
-    void addComponent (const juce::ValueTree&);
-    void removeComponent (const juce::ValueTree&);
-
-private:
     void initialize (const juce::ValueTree&);
     
 private:
