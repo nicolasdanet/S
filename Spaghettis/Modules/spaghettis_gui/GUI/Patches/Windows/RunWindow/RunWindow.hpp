@@ -19,12 +19,7 @@ class RunWindow : public PatchWindow {
 // MARK: -
 
 public:
-    explicit RunWindow (const PatchBase& base) : PatchWindow (base)
-    {
-        setContentOwned (new RunComponent (base), true);
-        
-        makeVisible (getPatch().get<juce::Rectangle<int>> (Tag::Attributes, Tag::RunView), false);
-    }
+    explicit RunWindow (const PatchBase&);
 
     ~RunWindow() = default;
 
