@@ -91,6 +91,7 @@ t_buffer        *object_functionData       (t_object *z, int flags);
 t_float64Atomic *object_getSignalAtIndex   (t_object *x, int m);
 
 int    object_setLabelUpdate               (t_object *x, t_symbol *s);
+int    object_setIncludedUpdate            (t_object *x, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -177,6 +178,11 @@ static inline int object_isSelected (t_object *x)
     return x->g_selected;
 }
 
+static inline int object_isIncluded (t_object *x)
+{
+    return x->g_included;
+}
+
 static inline t_objecttype object_getType (t_object *x)
 {
     return x->g_type;
@@ -204,6 +210,11 @@ static inline void object_setY (t_object *x, int n)
 static inline void object_setLabel (t_object *x, t_symbol *s)
 {
     x->g_label = s;
+}
+
+static inline void object_setIncluded (t_object *x, int n)
+{
+    x->g_included = (n != 0);
 }
 
 static inline void object_setSelected (t_object *x, int n)

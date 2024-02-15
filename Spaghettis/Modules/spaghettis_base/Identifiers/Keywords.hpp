@@ -72,6 +72,7 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (GridSize);
     DECLARE_STRING (Height);
     DECLARE_STRING (High);
+    DECLARE_STRING (Included);
     DECLARE_STRING (Interval);
     DECLARE_STRING (Inlet);
     DECLARE_STRING (Inlets);

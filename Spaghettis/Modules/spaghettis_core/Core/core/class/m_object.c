@@ -658,5 +658,18 @@ int object_setLabelUpdate (t_object *x, t_symbol *s)
     return 0;
 }
 
+int object_setIncludedUpdate (t_object *x, int n)
+{
+    if (object_isIncluded (x) != n) {
+        object_setIncluded (x, n);
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (x, Tags::parameters (Tag::Included));
+        #endif
+        return 1;
+    }
+    
+    return 0;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
