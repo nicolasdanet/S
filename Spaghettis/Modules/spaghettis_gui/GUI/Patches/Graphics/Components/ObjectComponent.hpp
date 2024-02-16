@@ -142,11 +142,11 @@ private:
     core::Object object_;
     data::Cached<int> x_;
     data::Cached<int> y_;
-    data::Cached<bool> included_;
     data::Cached<bool> selected_;
     data::Cached<bool> visible_;
     data::Cached<juce::String> inlets_;
     data::Cached<juce::String> outlets_;
+    data::Cached<bool> included_;
     data::Cached<juce::String> label_;
     std::unique_ptr<PainterStrategy> painter_;
     std::vector<std::unique_ptr<PinComponent>> iPins_;

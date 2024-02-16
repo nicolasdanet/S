@@ -17,11 +17,11 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     object_ (object),
     x_ (Resized (object.getCached<int> (Tag::Attributes, Tag::X), this)),
     y_ (Resized (object.getCached<int> (Tag::Attributes, Tag::Y), this)),
-    included_ (Resized (object.getCached<bool> (Tag::Attributes, Tag::Included), this)),
     selected_ (Painted (object.getCached<bool> (Tag::Attributes, Tag::Selected), this)),
     visible_ (Resized (object.getCached<bool> (Tag::Attributes, Tag::Visible, true), this)),
     inlets_ (Resized (object.getCached<juce::String> (Tag::Attributes, Tag::Inlets, true), this)),
     outlets_ (Resized (object.getCached<juce::String> (Tag::Attributes, Tag::Outlets, true), this)),
+    included_ (Resized (object.getCached<bool> (Tag::Parameters, Tag::Included, true), this)),
     label_ (Resized (object.getCached<juce::String> (Tag::Parameters, Tag::Label, true), this)),
     painter_ (Painter::createPainter (this, object.get<juce::String> (Tag::Attributes, Tag::Class))),
     origin_ (0, 0),
@@ -80,7 +80,7 @@ bool ObjectComponent::isSelected() const
 
 bool ObjectComponent::isIncluded() const
 {
-    return included_.get();
+    return included_.isValid() && included_.get();
 }
 
 bool ObjectComponent::hasLabel() const
