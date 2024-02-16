@@ -17,6 +17,7 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     object_ (object),
     x_ (Resized (object.getCached<int> (Tag::Attributes, Tag::X), this)),
     y_ (Resized (object.getCached<int> (Tag::Attributes, Tag::Y), this)),
+    included_ (Resized (object.getCached<bool> (Tag::Attributes, Tag::Included), this)),
     selected_ (Painted (object.getCached<bool> (Tag::Attributes, Tag::Selected), this)),
     visible_ (Resized (object.getCached<bool> (Tag::Attributes, Tag::Visible, true), this)),
     inlets_ (Resized (object.getCached<juce::String> (Tag::Attributes, Tag::Inlets, true), this)),
@@ -75,6 +76,11 @@ bool ObjectComponent::isAbstraction() const
 bool ObjectComponent::isSelected() const
 {
     return selected_.get();
+}
+
+bool ObjectComponent::isIncluded() const
+{
+    return included_.get();
 }
 
 bool ObjectComponent::hasLabel() const

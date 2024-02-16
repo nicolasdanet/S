@@ -253,13 +253,7 @@ void setObjectParameters (data::Data& data, t_object* o, const Tags& t)
     
     data::Group group (data.addGroup (Tag::Parameters));
     
-    if (t.contains (Tag::Label)) {
-        group.addParameter (Tag::Label,
-            NEEDS_TRANS ("Label"),
-            NEEDS_TRANS ("Parameter name in run view"),
-            makeString (symbol_getName (object_getLabel (o))),
-            delegate);
-    }
+    (*class_getParametersGetter (c)) (o, group, t);
     
     if (t.contains (Tag::Included)) {
         group.addParameter (Tag::Included,
@@ -269,7 +263,13 @@ void setObjectParameters (data::Data& data, t_object* o, const Tags& t)
             delegate);
     }
     
-    (*class_getParametersGetter (c)) (o, group, t);
+    if (t.contains (Tag::Label)) {
+        group.addParameter (Tag::Label,
+            NEEDS_TRANS ("Label"),
+            NEEDS_TRANS ("Parameter name in run view"),
+            makeString (symbol_getName (object_getLabel (o))),
+            delegate);
+    }
     
     const bool isAbstraction = glist_isAbstractionOrInside (object_getOwner (o));
     

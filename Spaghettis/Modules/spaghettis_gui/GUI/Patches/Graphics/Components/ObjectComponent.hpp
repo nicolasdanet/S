@@ -44,6 +44,7 @@ public:
     bool isPatch() const;
     bool isAbstraction() const;
     bool isSelected() const;
+    bool isIncluded() const;
     bool hasLabel() const;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -141,6 +142,7 @@ private:
     core::Object object_;
     data::Cached<int> x_;
     data::Cached<int> y_;
+    data::Cached<bool> included_;
     data::Cached<bool> selected_;
     data::Cached<bool> visible_;
     data::Cached<juce::String> inlets_;
