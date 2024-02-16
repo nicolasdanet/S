@@ -26,7 +26,7 @@ void canvas_dsp    (t_glist *, t_signal **);
 void       glist_setUniqueAndSource            (t_glist *, int, t_atom *);
 void       glist_setUniqueAndSourceOfLast      (t_glist *, int, t_atom *);
 void       glist_setSourceOfLast               (t_glist *, int, t_atom *);
-void       glist_setLabelOfLast                (t_glist *, t_symbol *);
+void       glist_setInclusionOfLast            (t_glist *, int argc, t_atom *argv);
 t_error    glist_lineConnectByIndex            (t_glist *, int, int, int, int);
 t_error    glist_lineDisconnectByIndex         (t_glist *, int, int, int, int);
 
@@ -73,7 +73,7 @@ static void canvas_tagobjectsource (t_glist *glist, t_symbol *s, int argc, t_ato
 
 static void canvas_include (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 {
-    glist_setLabelOfLast (glist, atom_getSymbolAtIndex (0, argc, argv));
+    glist_setInclusionOfLast (glist, argc, argv);
 }
 
 // -----------------------------------------------------------------------------------------------------------

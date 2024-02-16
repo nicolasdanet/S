@@ -70,11 +70,19 @@ void glist_setSourceOfLast (t_glist *glist, int argc, t_atom *argv)
     }
 }
 
-void glist_setLabelOfLast (t_glist *glist, t_symbol *s)
+void glist_setInclusionOfLast (t_glist *glist, int argc, t_atom *argv)
 {
     t_object *o = glist_objectGetLast (glist);
     
-    if (o) { object_setLabelUpdate (o, s); }
+    if (o) {
+    //
+    int n       = atom_getFloatAtIndex (0, argc, argv);
+    t_symbol *s = atom_getSymbolAtIndex (1, argc, argv);
+    
+    object_setIncludedUpdate (o, n);
+    object_setLabelUpdate (o, s);
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

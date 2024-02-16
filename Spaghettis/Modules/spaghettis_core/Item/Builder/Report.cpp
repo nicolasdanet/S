@@ -261,6 +261,14 @@ void setObjectParameters (data::Data& data, t_object* o, const Tags& t)
             delegate);
     }
     
+    if (t.contains (Tag::Included)) {
+        group.addParameter (Tag::Included,
+            NEEDS_TRANS ("Included"),
+            NEEDS_TRANS ("Is widget included in run view"),
+            static_cast<bool> (object_isIncluded (o)),
+            delegate);
+    }
+    
     (*class_getParametersGetter (c)) (o, group, t);
     
     const bool isAbstraction = glist_isAbstractionOrInside (object_getOwner (o));

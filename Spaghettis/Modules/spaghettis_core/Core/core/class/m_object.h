@@ -82,7 +82,7 @@ bool           object_setBufferWithString  (t_object* x, const juce::String&);
 
 void   object_save                         (t_object *x, t_buffer *b, int flags);
 void   object_saveIdentifiers              (t_object *x, t_buffer *b, int flags);
-void   object_serializeLabel               (t_object *x, t_buffer *b);
+void   object_serializeInclusion           (t_object *x, t_buffer *b);
 void   object_distributeAtomsOnInlets      (t_object *x, int argc, t_atom *argv);
 void   object_setSignalValues              (t_object *x, int argc, t_atom *argv);
 

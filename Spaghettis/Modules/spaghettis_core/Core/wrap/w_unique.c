@@ -225,9 +225,11 @@ t_error unique_objectParameter (t_id u, const data::Group& group)
     
     if (class_hasParametersFunction (c)) {
     //
+    int n       = group.getParameter (Tag::Included).getValueTyped<bool>();
     t_symbol *s = gensym (group.getParameter (Tag::Label).getValueTyped<juce::String>().toRawUTF8());
     
-    if (object_setLabelUpdate (object, s)) { glist_setDirty (glist, 1); }
+    if (object_setIncludedUpdate (object, n)) { glist_setDirty (glist, 1); }
+    if (object_setLabelUpdate (object, s))    { glist_setDirty (glist, 1); }
     
     (*class_getParametersSetter (c)) (object, group);
     

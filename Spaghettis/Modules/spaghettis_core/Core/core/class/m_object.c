@@ -543,13 +543,19 @@ void object_saveIdentifiers (t_object *x, t_buffer *b, int flags)
     if (flags & SAVE_UPDATE)      { object_serializeSource (x, sym__tagobjectsource, b); }
 }
 
-void object_serializeLabel (t_object *x, t_buffer *b)
+void object_serializeInclusion (t_object *x, t_buffer *b)
 {
-    if (object_hasLabel (x)) {
+    int hasLabel   = object_hasLabel (x);
+    int isIncluded = object_isIncluded (x);
+    
+    if (hasLabel || isIncluded) {
     //
     buffer_appendSymbol (b, sym___hash__X);
     buffer_appendSymbol (b, sym__include);
+    buffer_appendFloat (b, isIncluded);
+    if (hasLabel) {
     buffer_appendSymbol (b, object_getLabel (x));
+    }
     buffer_appendSemicolon (b);
     //
     }
