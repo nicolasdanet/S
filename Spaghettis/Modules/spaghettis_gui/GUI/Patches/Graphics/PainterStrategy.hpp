@@ -70,7 +70,7 @@ public:
 // MARK: -
 
 private:
-    ObjectComponent* component_;
+    ObjectComponent* owner_;
     core::Object object_;
     data::Cached<juce::Colour> boxSelectedColour_;
     data::Cached<juce::Colour> boxPinsBackgroundColour_;

@@ -13,12 +13,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 
 PainterStrategy::PainterStrategy (ObjectComponent* owner, juce::String tag) :
-    component_ (owner),
+    owner_ (owner),
     object_ (owner->getObject()),
-    boxSelectedColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxSelected), component_)),
-    boxPinsBackgroundColour_ (Painted (Spaghettis()->getCachedColour (tag), component_)),
-    patchLabelBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelBackground), component_)),
-    patchLabelTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelText), component_)),
+    boxSelectedColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxSelected), owner)),
+    boxPinsBackgroundColour_ (Painted (Spaghettis()->getCachedColour (tag), owner)),
+    patchLabelBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelBackground), owner)),
+    patchLabelTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelText), owner)),
     widgetWidth_ (0)
 {
     jassert (owner);
@@ -119,8 +119,8 @@ juce::Rectangle<int> paintPinsBackground (juce::Graphics& g,
 
 void PainterStrategy::paint (juce::Rectangle<int> bounds, juce::Graphics& g)
 {
-    const bool isRunView  = component_->isInsideRunView();
-    const bool isSelected = component_->isSelected();
+    const bool isRunView  = owner_->isInsideRunView();
+    const bool isSelected = owner_->isSelected();
     
     const juce::Colour c  = (!isRunView && isSelected)  ? boxSelectedColour_.get()
                                                         : boxPinsBackgroundColour_.get();
@@ -135,7 +135,7 @@ void PainterStrategy::paint (juce::Rectangle<int> bounds, juce::Graphics& g)
         widget.withTrimmedLeft (4),
         patchLabelBackgroundColour_.get(),
         patchLabelTextColour_.get(),
-        component_->getLabel());
+        owner_->getLabel());
     
     widget = t;
     //
@@ -149,15 +149,15 @@ void PainterStrategy::paint (juce::Rectangle<int> bounds, juce::Graphics& g)
 
 juce::Rectangle<int> PainterStrategy::getRequiredBounds()
 {
-    const bool isRunView = component_->isInsideRunView();
+    const bool isRunView = owner_->isInsideRunView();
     
-    juce::Rectangle<int> t = withMinimumWidthForPins (component_, getRequiredBoundsForWidget());
+    juce::Rectangle<int> t = withMinimumWidthForPins (owner_, getRequiredBoundsForWidget());
         
     widgetWidth_ = t.getWidth();
     
     if (isRunView) {    /* Add label bounds. */
     //
-    t.setWidth (RunLayout::snapWidthToFitColumns (widgetWidth_ + getLabelWidth (component_->getLabel())));
+    t.setWidth (RunLayout::snapWidthToFitColumns (widgetWidth_ + getLabelWidth (owner_->getLabel())));
     //
     }
     
@@ -184,7 +184,7 @@ void PainterStrategy::setDimensions (core::Vector::Real)
 
 ObjectComponent* PainterStrategy::getOwner()
 {
-    return component_;
+    return owner_;
 }
 
 core::Object& PainterStrategy::getObject()
@@ -194,12 +194,12 @@ core::Object& PainterStrategy::getObject()
 
 float PainterStrategy::getScale() const
 {
-    return component_->getView()->getScale();
+    return owner_->getView()->getScale();
 }
 
 core::Point::Scaled PainterStrategy::getPosition() const
 {
-    return core::Point::Scaled (component_->getPosition(), getScale());
+    return core::Point::Scaled (owner_->getPosition(), getScale());
 }
 
 core::UniqueId PainterStrategy::getIdentifier() const
