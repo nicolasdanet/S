@@ -83,11 +83,6 @@ bool ObjectComponent::isIncluded() const
     return included_.isValid() && included_.get();
 }
 
-bool ObjectComponent::hasLabel() const
-{
-    return label_.isValid() && label_.get().isNotEmpty();
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

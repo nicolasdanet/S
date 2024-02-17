@@ -120,7 +120,7 @@ void ObjectComponent::removeInletsAndOultets()
 void ObjectComponent::update (bool notify)
 {
     const bool isRunView = isInsideRunView();
-    const bool isVisible = isRunView ? (hasLabel() && visible_.get()) : visible_.get();
+    const bool isVisible = isRunView ? (isIncluded() && visible_.get()) : visible_.get();
     
     removeInletsAndOultets();
     
