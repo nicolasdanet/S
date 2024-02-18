@@ -214,6 +214,21 @@ t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *argv)
 
 #if defined ( PD_BUILDING_APPLICATION )
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+static void unique_objectSetIncluded (t_object *object, t_glist *glist, const data::Group& group)
+{
+    int n       = group.getParameter (Tag::Included).getValueTyped<bool>();
+    t_symbol *s = gensym (group.getParameter (Tag::Label).getValueTyped<juce::String>().toRawUTF8());
+        
+    if (object_setIncludedUpdate (object, n)) { glist_setDirty (glist, 1); }
+    if (object_setLabelUpdate (object, s))    { glist_setDirty (glist, 1); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 t_error unique_objectParameter (t_id u, const data::Group& group)
 {
     t_object *object = instance_registerGetObject (u);
@@ -225,13 +240,7 @@ t_error unique_objectParameter (t_id u, const data::Group& group)
     
     if (class_hasParametersFunction (c)) {
     //
-    if (class_canBeIncluded (c)) {
-        int n       = group.getParameter (Tag::Included).getValueTyped<bool>();
-        t_symbol *s = gensym (group.getParameter (Tag::Label).getValueTyped<juce::String>().toRawUTF8());
-        
-        if (object_setIncludedUpdate (object, n)) { glist_setDirty (glist, 1); }
-        if (object_setLabelUpdate (object, s))    { glist_setDirty (glist, 1); }
-    }
+    if (class_canBeIncluded (c)) { unique_objectSetIncluded (object, glist, group); }
     
     (*class_getParametersSetter (c)) (object, group);
     
@@ -252,6 +261,9 @@ t_error unique_objectHelp (t_id u)
     
     return PD_ERROR;
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 #endif
 
@@ -475,7 +487,6 @@ t_error unique_patchDeencapsulate (t_id u)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 t_error unique_patchCreateObject (t_id u, Point::Real pt, const juce::String& s)
 {
