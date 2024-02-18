@@ -29,7 +29,7 @@ public:
         
         setContentNonOwned (content_.get(), true);
 
-        tooltip_.setMillisecondsBeforeTipAppears (1500);
+        tooltip_.setMillisecondsBeforeTipAppears (1000);
         
         makeVisible();
     }
