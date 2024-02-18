@@ -186,7 +186,8 @@ void RunLayout::arrange (const juce::Rectangle<int>& bounds)
 
 int RunLayout::snapWidthToFitColumns (int w)
 {
-    const int width = getColumnSpan (w) * RunLayout::width_;
+    const int span  = getColumnSpan (w);
+    const int width = span * RunLayout::width_;
     
     return juce::jmax (w, width - 1);
 }
