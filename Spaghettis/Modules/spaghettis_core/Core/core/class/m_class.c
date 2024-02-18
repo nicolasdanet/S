@@ -204,7 +204,9 @@ t_class *class_new (t_symbol *s,
     #if defined ( PD_BUILDING_APPLICATION )
     c->c_fnGetParameters    = NULL;
     c->c_fnSetParameters    = NULL;
+    c->c_canBeIncluded      = 0;
     #endif
+    c->c_requirePending     = 0;
     c->c_hasSignal          = hasSignal;
     c->c_hasFirstInlet      = ((flags & CLASS_NOINLET) == 0);
     c->c_type               = type;

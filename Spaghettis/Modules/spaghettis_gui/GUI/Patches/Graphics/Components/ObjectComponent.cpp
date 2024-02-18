@@ -80,7 +80,7 @@ bool ObjectComponent::isSelected() const
 
 bool ObjectComponent::isIncluded() const
 {
-    return included_.isValid() && included_.get();
+    return included_.get();
 }
 
 // -----------------------------------------------------------------------------------------------------------

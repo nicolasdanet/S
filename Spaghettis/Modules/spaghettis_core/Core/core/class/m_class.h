@@ -90,6 +90,7 @@ struct _class {
     #if defined ( PD_BUILDING_APPLICATION )
     t_parametersgetfn       c_fnGetParameters;
     t_parameterssetfn       c_fnSetParameters;
+    int                     c_canBeIncluded;
     #endif
     int                     c_requirePending;
     int                     c_hasSignal;
@@ -261,6 +262,11 @@ static inline int class_hasParametersFunction (t_class *c)
     return (c->c_fnGetParameters != NULL && c->c_fnSetParameters != NULL);
 }
 
+static inline int class_canBeIncluded (t_class *c)
+{
+    return (c->c_canBeIncluded != 0);
+}
+
 #endif
 
 // -----------------------------------------------------------------------------------------------------------
@@ -311,6 +317,7 @@ static inline void class_setParametersFunctions (t_class *c, t_parametersgetfn f
 {
     c->c_fnGetParameters = f;
     c->c_fnSetParameters = g;
+    c->c_canBeIncluded   = 1;
 }
 
 #endif
