@@ -34,17 +34,6 @@ auto isSameObject (ObjectComponent* o)
     };
 }
 
-auto compareLabel()
-{
-    return [](const RunLayoutElement& a, const RunLayoutElement& b)
-    {
-        ObjectComponent* t1 = a.getObject();
-        ObjectComponent* t2 = b.getObject();
-        
-        return t1->getLabel() < t2->getLabel();
-    };
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -69,11 +58,6 @@ void RunLayout::remove (ObjectComponent* o)
     o->setVisible (false);
     
     viewed_.erase (std::remove_if (viewed_.begin(), viewed_.end(), isSameObject (o)), viewed_.end());
-}
-
-void RunLayout::sort()
-{
-    std::stable_sort (viewed_.begin(), viewed_.end(), compareLabel());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -178,18 +162,6 @@ void RunLayout::arrange (const juce::Rectangle<int>& bounds)
     grid.items              = getGridItems (viewed_);
     
     grid.performLayout (bounds);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int RunLayout::snapWidthToFitColumns (int w)
-{
-    const int span  = getColumnSpan (w);
-    const int width = span * RunLayout::width_;
-    
-    return juce::jmax (w, width - 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------

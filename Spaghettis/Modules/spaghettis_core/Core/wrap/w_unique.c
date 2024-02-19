@@ -219,11 +219,9 @@ t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *argv)
 
 static void unique_objectSetIncluded (t_object *object, t_glist *glist, const data::Group& group)
 {
-    int n       = group.getParameter (Tag::Included).getValueTyped<bool>();
-    t_symbol *s = gensym (group.getParameter (Tag::Label).getValueTyped<juce::String>().toRawUTF8());
+    int n = group.getParameter (Tag::Included).getValueTyped<bool>();
         
     if (object_setIncludedUpdate (object, n)) { glist_setDirty (glist, 1); }
-    if (object_setLabelUpdate (object, s))    { glist_setDirty (glist, 1); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

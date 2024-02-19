@@ -22,7 +22,6 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
     inlets_ (Resized (object.getCached<juce::String> (Tag::Attributes, Tag::Inlets, true), this)),
     outlets_ (Resized (object.getCached<juce::String> (Tag::Attributes, Tag::Outlets, true), this)),
     included_ (Resized (object.getCached<bool> (Tag::Parameters, Tag::Included, true), this)),
-    label_ (Resized (object.getCached<juce::String> (Tag::Parameters, Tag::Label, true), this)),
     painter_ (Painter::createPainter (this, object.get<juce::String> (Tag::Attributes, Tag::Class))),
     origin_ (0, 0),
     hasResize_ (false),
@@ -104,11 +103,6 @@ void ObjectComponent::setSelected (bool isSelected)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-juce::String ObjectComponent::getLabel() const
-{
-    return label_.get();
-}
 
 core::UniqueId ObjectComponent::getIdentifier() const
 {

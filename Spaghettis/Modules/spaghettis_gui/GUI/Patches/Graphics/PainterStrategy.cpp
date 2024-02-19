@@ -16,10 +16,7 @@ PainterStrategy::PainterStrategy (ObjectComponent* owner, juce::String tag) :
     owner_ (owner),
     object_ (owner->getObject()),
     boxSelectedColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxSelected), owner)),
-    boxPinsBackgroundColour_ (Painted (Spaghettis()->getCachedColour (tag), owner)),
-    patchLabelBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelBackground), owner)),
-    patchLabelTextColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchLabelText), owner)),
-    widgetWidth_ (0)
+    boxPinsBackgroundColour_ (Painted (Spaghettis()->getCachedColour (tag), owner))
 {
     jassert (owner);
     jassert (object_.isObject());
@@ -60,50 +57,16 @@ juce::Rectangle<int> withMinimumWidthForPins (ObjectComponent* c, juce::Rectangl
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Font getLabelFont()
-{
-    return Fonts::getMonospacedFont();
-}
-
-int getLabelWidth (const juce::String& s)
-{
-    return getLabelFont().getStringWidth (s);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void paintLabel (juce::Graphics& g,
-    juce::Rectangle<int> r,
-    juce::Colour backgroundColour,
-    juce::Colour textColour,
-    const juce::String& text)
-{
-    const juce::Font font (getLabelFont());
-    
-    if (r.getHeight() >= font.getHeight()) {
-    //
-    g.setColour (backgroundColour);
-    g.fillRect (r);
-    g.setColour (textColour);
-    g.setFont (font);
-    g.drawText (text, r.translated (-1, -1), juce::Justification::bottomRight, true);
-    //
-    }
-}
-
 juce::Rectangle<int> paintPinsBackground (juce::Graphics& g,
     juce::Rectangle<int> bounds,
-    int w,
     juce::Colour c,
     float f)
 {
     juce::Rectangle<int> widget (bounds.reduced (0, Painter::pinHeight (f)));
     
     g.setColour (c);
-    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(), widget.getTopRight()).withWidth (w));
-    g.fillRect (juce::Rectangle<int> (widget.getBottomLeft(), bounds.getBottomRight()).withWidth (w));
+    g.fillRect (juce::Rectangle<int> (bounds.getTopLeft(), widget.getTopRight()));
+    g.fillRect (juce::Rectangle<int> (widget.getBottomLeft(), bounds.getBottomRight()));
     
     return widget;
 }
@@ -125,22 +88,8 @@ void PainterStrategy::paint (juce::Rectangle<int> bounds, juce::Graphics& g)
     const juce::Colour c  = (!isRunView && isSelected)  ? boxSelectedColour_.get()
                                                         : boxPinsBackgroundColour_.get();
     
-    juce::Rectangle<int> widget (paintPinsBackground (g, bounds, widgetWidth_, c, getScale()));
+    juce::Rectangle<int> widget (paintPinsBackground (g, bounds, c, getScale()));
     
-    if (isRunView) {        /* Paint label. */
-    //
-    const juce::Rectangle<int> t (widget.removeFromLeft (widgetWidth_));
-    
-    paintLabel (g,
-        widget.withTrimmedLeft (4),
-        patchLabelBackgroundColour_.get(),
-        patchLabelTextColour_.get(),
-        owner_->getLabel());
-    
-    widget = t;
-    //
-    }
-        
     paintWidget (widget, g);
 }
 
@@ -149,17 +98,7 @@ void PainterStrategy::paint (juce::Rectangle<int> bounds, juce::Graphics& g)
 
 juce::Rectangle<int> PainterStrategy::getRequiredBounds()
 {
-    const bool isRunView = owner_->isInsideRunView();
-    
     juce::Rectangle<int> t = withMinimumWidthForPins (owner_, getRequiredBoundsForWidget());
-        
-    widgetWidth_ = t.getWidth();
-    
-    if (isRunView) {    /* Add label bounds. */
-    //
-    t.setWidth (RunLayout::snapWidthToFitColumns (widgetWidth_ + getLabelWidth (owner_->getLabel())));
-    //
-    }
     
     return t.expanded (0, Painter::pinHeight (getScale()));
 }

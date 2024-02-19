@@ -545,17 +545,10 @@ void object_saveIdentifiers (t_object *x, t_buffer *b, int flags)
 
 void object_serializeInclusion (t_object *x, t_buffer *b)
 {
-    int hasLabel   = object_hasLabel (x);
-    int isIncluded = object_isIncluded (x);
-    
-    if (hasLabel || isIncluded) {
+    if (object_isIncluded (x)) {
     //
     buffer_appendSymbol (b, sym___hash__X);
     buffer_appendSymbol (b, sym__include);
-    buffer_appendFloat (b, isIncluded);
-    if (hasLabel) {
-    buffer_appendSymbol (b, object_getLabel (x));
-    }
     buffer_appendSemicolon (b);
     //
     }
@@ -650,19 +643,6 @@ void object_fetchAndCopySignalValuesIfRequired (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-int object_setLabelUpdate (t_object *x, t_symbol *s)
-{
-    if (object_getLabel (x) != s) {
-        object_setLabel (x, s);
-        #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectChanged (x, Tags::parameters (Tag::Label));
-        #endif
-        return 1;
-    }
-    
-    return 0;
-}
 
 int object_setIncludedUpdate (t_object *x, int n)
 {

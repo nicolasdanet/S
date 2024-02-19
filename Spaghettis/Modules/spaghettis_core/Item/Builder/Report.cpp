@@ -258,14 +258,6 @@ void setObjectParametersIncluded (data::Group& group, t_object* o, const Tags& t
             static_cast<bool> (object_isIncluded (o)),
             delegate);
     }
-    
-    if (t.contains (Tag::Label)) {
-        group.addParameter (Tag::Label,
-            NEEDS_TRANS ("Label"),
-            NEEDS_TRANS ("Parameter name in run view"),
-            makeString (symbol_getName (object_getLabel (o))),
-            delegate);
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

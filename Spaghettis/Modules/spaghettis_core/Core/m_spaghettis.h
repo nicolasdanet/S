@@ -422,7 +422,6 @@ typedef struct _object {
     int             g_selected;
     int             g_included;
     t_objecttype    g_type;
-    t_symbol        *g_label;
     t_buffer        *g_buffer;
     t_inlet         *g_inlets;
     t_outlet        *g_outlets;

@@ -127,7 +127,7 @@ void ObjectComponent::update (bool notify)
     if (isVisible) {
         getView()->show (this, painter_->getRequiredBounds());
         if (!isRunView) {
-            setTooltip (getLabel()); createInletsAndOutlets();
+            createInletsAndOutlets();
         }
     } else {
         getView()->hide (this);

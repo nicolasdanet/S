@@ -74,15 +74,7 @@ void glist_setInclusionOfLast (t_glist *glist, int argc, t_atom *argv)
 {
     t_object *o = glist_objectGetLast (glist);
     
-    if (o) {
-    //
-    int n       = atom_getFloatAtIndex (0, argc, argv);
-    t_symbol *s = atom_getSymbolAtIndex (1, argc, argv);
-    
-    object_setIncludedUpdate (o, n);
-    object_setLabelUpdate (o, s);
-    //
-    }
+    if (o) { object_setIncludedUpdate (o, 1); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

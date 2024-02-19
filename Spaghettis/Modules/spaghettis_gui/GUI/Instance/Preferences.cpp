@@ -197,16 +197,6 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Set background color of patches"),
         p->background);
 
-    colors.addParameter (Tag::PatchLabelBackground,
-        NEEDS_TRANS ("Patch Label Background"),
-        NEEDS_TRANS ("Set background color of labels in run view"),
-        p->backgroundBox.withAlpha (0.5f));
-        
-    colors.addParameter (Tag::PatchLabelText,
-        NEEDS_TRANS ("Patch Label Text"),
-        NEEDS_TRANS ("Set text color of labels in run view"),
-        p->textBox);
-    
     colors.addParameter (Tag::PatchLasso,
         NEEDS_TRANS ("Patch Lasso"),
         NEEDS_TRANS ("Set color of lasso"),
