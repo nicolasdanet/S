@@ -16,7 +16,6 @@
 #X obj 228 168 vradio 15 1 0 8 empty empty empty 17 7 0 10 #ffffff #ff0000 #000000 4;
 #X text 12 72 A collection of objects to interact with.;
 #X obj 120 216 menubutton 8 1 1 1 empty empty empty #ffffff #000000 #000000 3;
-#A _restore _SLOT_ @0 1 \; bijou _SLOT_ @1 1 \; caillou _SLOT_ @2 1 \; chou _SLOT_ @3 1 \; genou _SLOT_ @4 1 \; hibou _SLOT_ @5 1 \; joujou _SLOT_ @6 1 \; pou;
 #X connect 1 0 4 0;
 #X connect 5 0 1 0;
 #X connect 6 0 7 0;

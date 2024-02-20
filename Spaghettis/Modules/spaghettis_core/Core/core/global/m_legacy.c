@@ -197,12 +197,10 @@ static int legacy_removeUnnecessary (t_buffer *x)
     //
     t_symbol *s1 = atom_getSymbolAtIndex (0, count, atoms);
     t_symbol *s2 = atom_getSymbolAtIndex (1, count, atoms);
-    t_symbol *s3 = atom_getSymbolAtIndex (2, count, atoms);
     
     found |= (s1 == sym___hash__X) && (s2 == sym_coords);
     found |= (s1 == sym___hash__X) && (s2 == sym_scalar);
     found |= (s1 == sym___hash__N) && (s2 == sym_struct);
-    found |= (s1 == sym___hash__A) && (s2 == sym__restore) && (s3 == sym__SLOT_);
     
     if (found) {
         start = iterator_get (iter) - count;

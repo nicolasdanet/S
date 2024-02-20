@@ -35,7 +35,6 @@ t_symbol s_         = { ""          , NULL, NULL };
 t_symbol *sym_JACK;
 t_symbol *sym_Untitled;
 t_symbol *sym__VALUE_;
-t_symbol *sym__SLOT_;
 t_symbol *sym___ampersand__;
 t_symbol *sym___ampersand____ampersand__;
 t_symbol *sym___arrobe__0;
@@ -611,7 +610,6 @@ void symbols_initialize (void)
     sym_JACK                                    = gensym ("JACK");
     sym_Untitled                                = gensym ("Untitled");
     sym__VALUE_                                 = gensym ("_VALUE_");
-    sym__SLOT_                                  = gensym ("_SLOT_");
     sym___ampersand__                           = gensym ("&");
     sym___ampersand____ampersand__              = gensym ("&&");
     sym___arrobe__0                             = gensym ("@0");
