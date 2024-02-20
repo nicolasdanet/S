@@ -12,31 +12,50 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PatchBounds {
+namespace {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-public:
-    PatchBounds()  = default;
-    ~PatchBounds() = default;
-    
+auto hasSameIdentifier (core::UniqueId u)
+{
+    return [u](const PlacementsElement& e)
+    {
+        return (e.getUnique() == u);
+    };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    void set (core::UniqueId, core::Point::Real, int);
-
-public:
-    PatchBoundsElement get (core::UniqueId) const;
-        
-private:
-    std::vector<PatchBoundsElement> bounds_;
+void Placements::set (core::UniqueId u, core::Point::Real offset, int zoom)
+{
+    const PlacementsElement e (u, offset, zoom);
     
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchBounds)
-};
+    auto r = std::find_if (v_.begin(), v_.end(), hasSameIdentifier (e.getUnique()));
+    
+    if (r != v_.end()) { *r = e; } else { v_.push_back (e); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+PlacementsElement Placements::get (core::UniqueId u) const
+{
+    auto r = std::find_if (v_.begin(), v_.end(), hasSameIdentifier (u));
+    
+    if (r != v_.end()) { return *r; }
+    else {
+        return PlacementsElement (0, core::Point::Real (0, 0), 100);
+    }
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

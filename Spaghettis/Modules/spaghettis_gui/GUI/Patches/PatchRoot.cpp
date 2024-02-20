@@ -78,9 +78,9 @@ juce::File PatchRoot::getFile() const
     return juce::File (core::Patch (rootTree_).get<juce::String> (Tag::Attributes, Tag::Path));
 }
 
-PatchBounds& PatchRoot::getBounds()
+Placements& PatchRoot::getPlacements()
 {
-    return bounds_;
+    return placements_;
 }
 
 // -----------------------------------------------------------------------------------------------------------

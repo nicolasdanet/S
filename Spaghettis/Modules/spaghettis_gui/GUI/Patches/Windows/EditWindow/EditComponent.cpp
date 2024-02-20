@@ -36,8 +36,8 @@ EditComponent::EditComponent (const PatchBase& base) :
     BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager()),
     editView_ (base),
     editPort_ (editView_,
-        editView_.getPatchRoot().getBounds().get (editView_.getIdentifier()).getOffset(),
-        editView_.getPatchRoot().getBounds().get (editView_.getIdentifier()).getZoom()),
+        editView_.getPatchRoot().getPlacements().get (editView_.getIdentifier()).getOffset(),
+        editView_.getPatchRoot().getPlacements().get (editView_.getIdentifier()).getZoom()),
     editZoom_ (editPort_.getZoomAsValue()),
     editInspector_ (editView_)
 {

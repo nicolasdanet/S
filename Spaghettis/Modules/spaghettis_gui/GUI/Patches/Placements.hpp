@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2024 Jojo and others. */
+/* Copyright (c) 2023 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -12,47 +12,30 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PatchBoundsElement {
+class Placements {
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+public:
+    Placements()  = default;
+    ~Placements() = default;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit PatchBoundsElement (core::UniqueId u, core::Point::Real offset, int zoom) :
-        u_ (u),
-        offset_ (offset),
-        zoom_ (zoom)
-    {
-        static_assert (std::is_trivially_copyable_v<PatchBoundsElement> == true);
-        static_assert (std::is_nothrow_move_constructible_v<PatchBoundsElement> == true);
-        static_assert (std::is_nothrow_move_assignable_v<PatchBoundsElement> == true);
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
+    void set (core::UniqueId, core::Point::Real, int);
 
 public:
-    core::UniqueId getUnique() const
-    {
-        return u_;
-    }
-    
-    core::Point::Real getOffset() const
-    {
-        return offset_;
-    }
-    
-    int getZoom() const
-    {
-        return zoom_;
-    }
+    PlacementsElement get (core::UniqueId) const;
+        
+private:
+    std::vector<PlacementsElement> v_;
     
 private:
-    core::UniqueId u_;
-    core::Point::Real offset_;
-    int zoom_;
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Placements)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -62,4 +45,3 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-

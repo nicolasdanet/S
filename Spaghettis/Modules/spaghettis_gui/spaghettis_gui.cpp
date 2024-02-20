@@ -46,7 +46,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/PatchBounds.cpp"
+#include "GUI/Patches/Placements.cpp"
 #include "GUI/Patches/PatchRoot.cpp"
 #include "GUI/Patches/PatchRootReport.cpp"
 #include "GUI/Patches/PatchesHolder.cpp"

@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2023 Jojo and others. */
+/* Copyright (c) 2024 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -12,50 +12,48 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
+class PlacementsElement {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-auto hasSameIdentifier (core::UniqueId u)
-{
-    return [u](const PatchBoundsElement& e)
+public:
+    explicit PlacementsElement (core::UniqueId u, core::Point::Real offset, int zoom) :
+        u_ (u),
+        offset_ (offset),
+        zoom_ (zoom)
     {
-        return (e.getUnique() == u);
-    };
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void PatchBounds::set (core::UniqueId u, core::Point::Real offset, int zoom)
-{
-    const PatchBoundsElement e (u, offset, zoom);
-    
-    auto r = std::find_if (bounds_.begin(), bounds_.end(), hasSameIdentifier (e.getUnique()));
-    
-    if (r != bounds_.end()) { *r = e; } else { bounds_.push_back (e); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-PatchBoundsElement PatchBounds::get (core::UniqueId u) const
-{
-    auto r = std::find_if (bounds_.begin(), bounds_.end(), hasSameIdentifier (u));
-    
-    if (r != bounds_.end()) { return *r; }
-    else {
-        return PatchBoundsElement (0, core::Point::Real (0, 0), 100);
+        static_assert (std::is_trivially_copyable_v<PlacementsElement> == true);
+        static_assert (std::is_nothrow_move_constructible_v<PlacementsElement> == true);
+        static_assert (std::is_nothrow_move_assignable_v<PlacementsElement> == true);
     }
-}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    core::UniqueId getUnique() const
+    {
+        return u_;
+    }
+    
+    core::Point::Real getOffset() const
+    {
+        return offset_;
+    }
+    
+    int getZoom() const
+    {
+        return zoom_;
+    }
+    
+private:
+    core::UniqueId u_;
+    core::Point::Real offset_;
+    int zoom_;
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -64,3 +62,4 @@ PatchBoundsElement PatchBounds::get (core::UniqueId u) const
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
