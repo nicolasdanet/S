@@ -37,23 +37,6 @@ juce::Rectangle<int> getEditView (t_glist* glist)
     return juce::Rectangle<int> (x, y, w, h);
 }
 
-juce::Rectangle<int> getRunView (t_glist* glist)
-{
-    t_rectangle* view = glist_getRunView (glist);
-    
-    if (rectangle_isNothing (view)) { return getEditView (glist); }
-    else {
-    //
-    const int x = rectangle_getTopLeftX (view);
-    const int y = rectangle_getTopLeftY (view);
-    const int w = rectangle_getWidth (view);
-    const int h = rectangle_getHeight (view);
-
-    return juce::Rectangle<int> (x, y, w, h);
-    //
-    }
-}
-
 bool getVisible (t_object* o)
 {
     t_glist *owner = object_getOwner (o);
@@ -182,14 +165,6 @@ void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t
     if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o, t); }
     else {
     //
-    if (t.contains (Tag::RunView)) {
-        group.addParameter (Tag::RunView,
-            NEEDS_TRANS ("Run View"),
-            NEEDS_TRANS ("Run window geometry"),
-            getRunView (g),
-            delegate);
-    }
-    
     if (t.contains (Tag::Path)) {
         group.addParameter (Tag::Path,
             NEEDS_TRANS ("Path"),

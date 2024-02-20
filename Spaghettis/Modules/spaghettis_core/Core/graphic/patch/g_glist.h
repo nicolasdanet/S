@@ -25,7 +25,6 @@ struct _glist {
     t_buffer        *gl_sorterObjects;
     t_buffer        *gl_sorterIndexes;
     t_rectangle     gl_editView;
-    t_rectangle     gl_runView;                 /* Root. */
     int             gl_undoEnabled;
     int             gl_isDirty;                 /* Top.  */
     int             gl_isFrozen;                /* Top.  */
@@ -67,7 +66,6 @@ t_symbol           *glist_getUnexpandedName    (t_glist *g);
 t_environment      *glist_getEnvironment       (t_glist *g);
 t_abstractions     *glist_getAbstractions      (t_glist *g);
 t_rectangle        *glist_getEditView          (t_glist *g);
-t_rectangle        *glist_getRunView           (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -83,7 +81,6 @@ void   glist_setName                           (t_glist *g, t_symbol *name);
 void   glist_setDirty                          (t_glist *g, int n);
 void   glist_setFrozen                         (t_glist *g, int n);
 void   glist_setEditView                       (t_glist *g, t_rectangle *r, int notify);
-void   glist_setRunView                        (t_glist *g, t_rectangle *r, int notify);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

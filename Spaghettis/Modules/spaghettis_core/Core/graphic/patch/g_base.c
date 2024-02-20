@@ -71,11 +71,6 @@ t_rectangle *glist_getEditView (t_glist *glist)
     return &glist->gl_editView;
 }
 
-t_rectangle *glist_getRunView (t_glist *glist)
-{
-    return &glist_getRoot (glist)->gl_runView;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -130,21 +125,6 @@ void glist_setEditView (t_glist *glist, t_rectangle *r, int notify)
     if (notify) {
     //
     outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::EditView));
-    //
-    }
-    
-    #endif
-}
-
-void glist_setRunView (t_glist *glist, t_rectangle *r, int notify)
-{
-    rectangle_setCopy (glist_getRunView (glist), r);
-    
-    #if defined ( PD_BUILDING_APPLICATION )
-    
-    if (notify) {
-    //
-    outputs_objectChanged (cast_object (glist_getRoot (glist)), Tags::attributes (Tag::RunView));
     //
     }
     

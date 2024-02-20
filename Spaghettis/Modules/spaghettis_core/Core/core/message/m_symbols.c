@@ -590,7 +590,6 @@ t_symbol *sym_value;
 t_symbol *sym_vcf__tilde__;
 t_symbol *sym_vd__tilde__;
 t_symbol *sym_vexpr;
-t_symbol *sym_view;
 t_symbol *sym_vline__tilde__;
 t_symbol *sym_vradio;
 t_symbol *sym_vsl;
@@ -1167,7 +1166,6 @@ void symbols_initialize (void)
     sym_vcf__tilde__                            = gensym ("vcf~");
     sym_vd__tilde__                             = gensym ("vd~");
     sym_vexpr                                   = gensym ("vexpr");
-    sym_view                                    = gensym ("view");
     sym_vline__tilde__                          = gensym ("vline~");
     sym_vradio                                  = gensym ("vradio");
     sym_vsl                                     = gensym ("vsl");

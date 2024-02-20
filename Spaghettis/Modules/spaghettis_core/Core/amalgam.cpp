@@ -38,7 +38,6 @@ namespace spaghettis::core {
 #include "core/instance/m_polling.c"
 #include "core/instance/m_pending.c"
 #include "core/instance/m_snap.c"
-#include "core/instance/m_view.c"
 #include "core/instance/m_instance.c"
 
 #include "core/message/m_symbols.c"

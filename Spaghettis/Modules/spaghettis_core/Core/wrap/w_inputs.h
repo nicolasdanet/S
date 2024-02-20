@@ -38,7 +38,6 @@ void inputs_setMidiDevices     (const std::vector<MidiDevice>&, const std::vecto
 void inputs_closePatch         (core::UniqueId);
 void inputs_savePatch          (core::UniqueId);
 void inputs_setEditView        (core::UniqueId, juce::Rectangle<int>);
-void inputs_setRunView         (core::UniqueId, juce::Rectangle<int>);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

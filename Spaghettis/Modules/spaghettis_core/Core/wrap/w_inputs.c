@@ -125,13 +125,6 @@ void inputs_setEditView (core::UniqueId u, juce::Rectangle<int> bounds)
     unique_patchSetEditView (u, &r);
 }
 
-void inputs_setRunView (core::UniqueId u, juce::Rectangle<int> bounds)
-{
-    t_rectangle r; rectangle_setCopy (&r, bounds);
-    
-    unique_patchSetRunView (u, &r);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

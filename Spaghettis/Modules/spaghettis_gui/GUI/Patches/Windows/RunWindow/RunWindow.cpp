@@ -16,18 +16,7 @@ RunWindow::RunWindow (const PatchBase& base) : PatchWindow (base)
 {
     setContentOwned (new RunComponent (base), true);
         
-    makeVisible (getPatch().get<juce::Rectangle<int>> (Tag::Attributes, Tag::RunView), false);
-}
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void RunWindow::hasBeenMovedOrResized()
-{
-    if (isFullyInitialized()) {
-        Spaghettis()->handle (Inputs::setRunView (getIdentifier(), getBounds()));
-    }
+    makeVisible (getPatch().get<juce::Rectangle<int>> (Tag::Attributes, Tag::EditView), false);
 }
 
 // -----------------------------------------------------------------------------------------------------------

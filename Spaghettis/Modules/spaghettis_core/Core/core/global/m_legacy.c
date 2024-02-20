@@ -370,25 +370,7 @@ void legacy_version (t_buffer *x)
 
 void legacy_start (void *dummy, t_symbol *s, int argc, t_atom *argv)
 {
-    instance_viewReset();
-}
 
-void legacy_view (void *dummy, t_symbol *s, int argc, t_atom *argv)
-{
-    t_rectangle r; rectangle_setNothing (&r);
-    
-    if (argc && argv) {
-    //
-    int a = atom_getFloatAtIndex (0, argc, argv);
-    int b = atom_getFloatAtIndex (1, argc, argv);
-    int w = atom_getFloatAtIndex (2, argc, argv);
-    int h = atom_getFloatAtIndex (3, argc, argv);
-    
-    rectangle_set (&r, a, b, a + PD_ABS (w), b + PD_ABS (h));
-    
-    instance_viewSet (&r);
-    //
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

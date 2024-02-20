@@ -38,7 +38,6 @@
 		1739F7451FFCE902004656C4 /* m_ringbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 1739F7431FFCE902004656C4 /* m_ringbuffer.c */; };
 		174429AE26359F8500AD6E16 /* w_inputs.c in Sources */ = {isa = PBXBuildFile; fileRef = 174429AD26359F8500AD6E16 /* w_inputs.c */; };
 		174429B42635A35800AD6E16 /* w_outputs.c in Sources */ = {isa = PBXBuildFile; fileRef = 174429B32635A35800AD6E16 /* w_outputs.c */; };
-		17454F65287FDE1D00E0B21B /* m_view.c in Sources */ = {isa = PBXBuildFile; fileRef = 17454F64287FDE1D00E0B21B /* m_view.c */; };
 		1749719C23FEC7B400627D27 /* m_legacy.c in Sources */ = {isa = PBXBuildFile; fileRef = 1749719B23FEC7B400627D27 /* m_legacy.c */; };
 		174B465C2147FDE400B9A939 /* m_undosnippet.c in Sources */ = {isa = PBXBuildFile; fileRef = 174B465B2147FDE400B9A939 /* m_undosnippet.c */; };
 		1753EF4F22C7B11300E7C9D9 /* s_startup.c in Sources */ = {isa = PBXBuildFile; fileRef = 1753EF4E22C7B11300E7C9D9 /* s_startup.c */; };
@@ -449,7 +448,6 @@
 		174429AD26359F8500AD6E16 /* w_inputs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = w_inputs.c; sourceTree = "<group>"; };
 		174429B22635A35800AD6E16 /* w_outputs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = w_outputs.h; sourceTree = "<group>"; };
 		174429B32635A35800AD6E16 /* w_outputs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = w_outputs.c; sourceTree = "<group>"; };
-		17454F64287FDE1D00E0B21B /* m_view.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_view.c; sourceTree = "<group>"; };
 		1749719B23FEC7B400627D27 /* m_legacy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_legacy.c; sourceTree = "<group>"; };
 		174A6B8E201B78060055EA4D /* s_deviceslist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_deviceslist.h; sourceTree = "<group>"; };
 		174AC8BA24824151004EE54C /* m_string.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_string.h; sourceTree = "<group>"; };
@@ -1099,7 +1097,6 @@
 				172E0EC02483A7D000D0E711 /* m_polling.c */,
 				17B168F722672256009EDB39 /* m_pending.c */,
 				17F6BD3B1F110686001E602C /* m_snap.c */,
-				17454F64287FDE1D00E0B21B /* m_view.c */,
 				37F182091C70DBF8003D1A3A /* m_instance.c */,
 			);
 			path = instance;
@@ -2162,7 +2159,6 @@
 				370793E71DBB55A700183F74 /* x_notein.c in Sources */,
 				176B06C822B77AE7001C45CD /* m_pool.c in Sources */,
 				17AFE92B22AE241D0035E4BE /* m_undotrigger.c in Sources */,
-				17454F65287FDE1D00E0B21B /* m_view.c in Sources */,
 				1737C01D260B4702009BC28B /* spaghettis_space.c in Sources */,
 				17DDB369232E798400D6D7AF /* core_midiport.c in Sources */,
 				1723FBD02302F23600C0F975 /* core_audiostream.c in Sources */,

@@ -89,24 +89,6 @@ static void glist_serializeFooter (t_glist *glist, t_buffer *b)
 
 void legacy_version (t_buffer *);
 
-static void glist_serializeView (t_glist *glist, t_buffer *b)
-{
-    PD_ASSERT (glist_isRoot (glist));
-    
-    t_rectangle *t = glist_getRunView (glist);
-    
-    if (rectangle_isNothing (t)) { return; }
-    else {
-        buffer_appendSymbol (b, sym___hash__N);
-        buffer_appendSymbol (b, sym_view);
-        buffer_appendFloat (b,  rectangle_getTopLeftX (t));
-        buffer_appendFloat (b,  rectangle_getTopLeftY (t));
-        buffer_appendFloat (b,  rectangle_getWidth (t));
-        buffer_appendFloat (b,  rectangle_getHeight (t));
-        buffer_appendSemicolon (b);
-    }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -139,7 +121,7 @@ static void glist_saveProceed (t_glist *glist, t_symbol *name, t_symbol *directo
 {
     t_buffer *b = buffer_new();
     
-    legacy_version (b); glist_serializeView (glist, b); glist_serialize (glist, b, SAVE_DEFAULT, 0);
+    legacy_version (b); glist_serialize (glist, b, SAVE_DEFAULT, 0);
     
     if (buffer_fileWrite (b, name, directory)) { error_failsToWrite (cast_object (glist), name); }
     else {

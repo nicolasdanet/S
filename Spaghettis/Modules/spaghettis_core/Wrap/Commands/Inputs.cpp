@@ -98,11 +98,6 @@ Perform Inputs::setEditView (core::UniqueId u, juce::Rectangle<int> bounds)
     return [u, bounds]() { core::inputs_setEditView (u, bounds); };
 }
 
-Perform Inputs::setRunView (core::UniqueId u, juce::Rectangle<int> bounds)
-{
-    return [u, bounds]() { core::inputs_setRunView (u, bounds); };
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

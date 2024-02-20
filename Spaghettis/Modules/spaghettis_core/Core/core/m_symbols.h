@@ -591,7 +591,6 @@ extern t_symbol *sym_value;
 extern t_symbol *sym_vcf__tilde__;
 extern t_symbol *sym_vd__tilde__;
 extern t_symbol *sym_vexpr;
-extern t_symbol *sym_view;
 extern t_symbol *sym_vline__tilde__;
 extern t_symbol *sym_vradio;
 extern t_symbol *sym_vsl;

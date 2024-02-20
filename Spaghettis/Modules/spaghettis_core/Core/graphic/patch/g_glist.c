@@ -43,8 +43,6 @@ static t_glist *glist_new (t_symbol *name, t_rectangle *window)
     x->gl_sorterObjects = buffer_new();
     x->gl_sorterIndexes = buffer_new();
     
-    rectangle_setNothing (&x->gl_runView);
-    
     if (window) { glist_setEditView (x, window, 0); }
     
     if (glist_isRoot (x)) { x->gl_abstractions = abstractions_new(); }
@@ -100,7 +98,7 @@ t_glist *glist_newPatch (t_symbol *name, t_rectangle *window)
     
     /* Behaware that below order matters. */
     
-    if (glist_isRoot (x)) { glist_setRunView (x, instance_viewGet(), 0); instance_rootsAdd (x); }
+    if (glist_isRoot (x)) { instance_rootsAdd (x); }
     else {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectAdded (cast_object (x));

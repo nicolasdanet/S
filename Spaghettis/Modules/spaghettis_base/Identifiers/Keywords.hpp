@@ -105,7 +105,6 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (RadioBackground);
     DECLARE_STRING (RadioButton);
     DECLARE_STRING (Redo);
-    DECLARE_STRING (RunView);
     DECLARE_STRING (Selected);
     DECLARE_STRING (Size);
     DECLARE_STRING (SliderBackground);
