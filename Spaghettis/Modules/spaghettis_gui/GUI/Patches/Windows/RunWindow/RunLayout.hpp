@@ -53,9 +53,9 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 public:
-    static constexpr int width_  = 120;
-    static constexpr int wGap_   = 8;
-    static constexpr int height_ = 10;
+    static constexpr int width_  = 20;
+    static constexpr int wGap_   = 2;
+    static constexpr int height_ = 20;
     static constexpr int hGap_   = 2;
     
 private:

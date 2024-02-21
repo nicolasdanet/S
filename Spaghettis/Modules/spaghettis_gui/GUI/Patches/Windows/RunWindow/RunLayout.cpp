@@ -121,10 +121,13 @@ juce::Array<juce::GridItem> getGridItems (const std::vector<RunLayoutElement>& v
     const auto o      = e.getObject();
     const auto bounds = e.getBounds();
     
-    const int w = bounds.getWidth();
     const int h = bounds.getHeight();
-    const juce::GridItem::Span rSpan (getRowSpan (h));
-    const juce::GridItem::Span cSpan (getColumnSpan (w));
+    const int w = bounds.getWidth();
+    const int m = getRowSpan (h);
+    const int n = getColumnSpan (w);
+    
+    const juce::GridItem::Span rSpan (m);
+    const juce::GridItem::Span cSpan (n);
     
     o->setVisible (true);
     
@@ -144,6 +147,8 @@ juce::Array<juce::GridItem> getGridItems (const std::vector<RunLayoutElement>& v
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content */
+
 void RunLayout::arrange (const juce::Rectangle<int>& bounds)
 {
     juce::Grid grid;
@@ -152,7 +157,7 @@ void RunLayout::arrange (const juce::Rectangle<int>& bounds)
     grid.alignItems         = juce::Grid::AlignItems::start;
     grid.justifyContent     = juce::Grid::JustifyContent::start;
     grid.alignContent       = juce::Grid::AlignContent::start;
-    grid.autoFlow           = juce::Grid::AutoFlow::column;
+    grid.autoFlow           = juce::Grid::AutoFlow::columnDense;
     grid.templateRows       = getRows (bounds);
     grid.templateColumns    = getColumns (bounds);
     grid.autoColumns        = getColumnTrack();
