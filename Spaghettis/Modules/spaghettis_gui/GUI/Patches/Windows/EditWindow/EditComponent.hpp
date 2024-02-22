@@ -62,6 +62,8 @@ public:
 public:
     void showInspector();
     void hideInspector();
+
+public:
     void toggleInspector();
 
 // -----------------------------------------------------------------------------------------------------------

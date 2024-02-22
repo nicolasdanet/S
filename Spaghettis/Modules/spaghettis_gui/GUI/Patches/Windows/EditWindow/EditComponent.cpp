@@ -199,6 +199,9 @@ void EditComponent::hideInspector()
     editInspector_.setActive (false);   updateLayout(); Spaghettis()->updateMenuBar();
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 void EditComponent::toggleInspector()
 {
     if (toggleButtonState (Icons::inspector)) { showInspector(); } else { hideInspector(); }
