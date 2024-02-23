@@ -72,6 +72,7 @@ public:
     std::optional<core::Point::Real> getMousePosition() const;
 
 public:
+    int getInspectorWidth() const;
     Synchronizer getSynchronized() const;
     EditPort* getPort() const;
 

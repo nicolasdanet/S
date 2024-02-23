@@ -132,6 +132,10 @@ EditComponent::EditComponent (const PatchBase& base) :
         .setInvoke ([this] (const auto&) { editView_.getPatchRoot().openMainEditWindow(); }));
         
     setOpaque (true); setSize (600, 300);
+    
+    if (editView_.getPatchRoot().getPlacements().get (editView_.getIdentifier()).hasInspector()) {
+        DBG ("INSPECTOR");
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -254,7 +254,10 @@ void EditPort::update()
 
 void EditPort::notify()
 {
-    view_.getPatchRoot().getPlacements().set (view_.getIdentifier(), getOffset(), getZoom());
+    view_.getPatchRoot().getPlacements().set (view_.getIdentifier(),
+        getOffset(),
+        getZoom(),
+        view_.getInspectorWidth());
 }
 
 // -----------------------------------------------------------------------------------------------------------

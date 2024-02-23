@@ -199,6 +199,13 @@ std::optional<core::Point::Real> EditView::getMousePosition() const
     }
 }
 
+int EditView::getInspectorWidth() const
+{
+    if (inspector_ && inspector_->isActive()) { return inspector_->getWidth(); }
+    
+    return 0;
+}
+
 Synchronizer EditView::getSynchronized() const
 {
     if (getNumberOfSelectedLines() == 1)        { return Synchronizer (getSelectedLine()->getLine());     }
