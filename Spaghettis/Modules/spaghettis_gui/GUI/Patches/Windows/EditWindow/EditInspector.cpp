@@ -17,7 +17,7 @@ EditInspector::EditInspector (EditView& view) :
     active_ (false),
     resizer_ (*this)
 {
-    setOpaque (true); setSize (resizer_.getDefaultWidth(), getHeight());
+    setOpaque (true); setDefaultWidth (resizer_.getDefaultWidth());
     
     view_.attach (this);
 }
@@ -27,6 +27,15 @@ EditInspector::~EditInspector()
     view_.detach (this);
     
     hide();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditInspector::setDefaultWidth (int w)
+{
+    setSize (w, getHeight());
 }
 
 // -----------------------------------------------------------------------------------------------------------

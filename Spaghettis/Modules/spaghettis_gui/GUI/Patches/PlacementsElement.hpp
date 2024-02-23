@@ -55,11 +55,6 @@ public:
         return width_;
     }
     
-    bool hasInspector() const
-    {
-        return getInspectorWidth() > 0;
-    }
-    
 private:
     core::UniqueId u_;
     core::Point::Real offset_;

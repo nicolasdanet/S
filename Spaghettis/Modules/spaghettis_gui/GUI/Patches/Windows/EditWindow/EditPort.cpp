@@ -93,6 +93,11 @@ void EditPort::setZoom (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditPort::updateInspector()
+{
+    notify();
+}
+
 void EditPort::updateOffset (core::Point::Real pt)
 {
     setOffset (pt);

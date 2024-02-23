@@ -53,6 +53,7 @@ private:
 // MARK: -
 
 public:
+    void updateInspector();
     void updateOffset (core::Point::Real);
     void updateZoom (int);
     void updateZoomAroundPoint (int, core::Point::Real);
