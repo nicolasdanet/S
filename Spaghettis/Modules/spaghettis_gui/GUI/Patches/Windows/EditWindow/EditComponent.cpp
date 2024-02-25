@@ -191,12 +191,18 @@ bool EditComponent::locate (core::UniqueId u)
 
 void EditComponent::showInspector()
 {
-    editInspector_.setActive (true);    updateLayout(); Spaghettis()->updateMenuBar();
+    editInspector_.setActive (true);
+    updateLayout();
+    Spaghettis()->updateMenuBar();
+    editPort_.updateInspector();
 }
 
 void EditComponent::hideInspector()
 {
-    editInspector_.setActive (false);   updateLayout(); Spaghettis()->updateMenuBar();
+    editInspector_.setActive (false);
+    updateLayout();
+    Spaghettis()->updateMenuBar();
+    editPort_.updateInspector();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -262,8 +268,6 @@ void EditComponent::updateLayout()
     editPort_.setBounds (bounds);
     
     updateZoom (editZoom_, getToolbarBounds());
-    
-    editPort_.updateInspector();
 }
     
 // -----------------------------------------------------------------------------------------------------------

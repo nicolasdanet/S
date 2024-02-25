@@ -259,6 +259,8 @@ void EditPort::update()
 
 void EditPort::notify()
 {
+    DBG (view_.getInspectorWidth());
+    
     view_.getPatchRoot().getPlacements().set (view_.getIdentifier(),
         getOffset(),
         getZoom(),
