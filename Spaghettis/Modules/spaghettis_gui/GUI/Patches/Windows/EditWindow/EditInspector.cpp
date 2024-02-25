@@ -75,6 +75,8 @@ void EditInspector::resized()
     if (parameters_ != nullptr) { parameters_->resizePanel (getLocalBounds()); }
     
     resizer_.update();
+    
+    if (isActive()) { view_.getPort()->updateInspector(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
