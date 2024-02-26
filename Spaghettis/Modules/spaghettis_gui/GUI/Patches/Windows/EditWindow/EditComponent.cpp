@@ -278,11 +278,12 @@ void EditComponent::updateLayout()
 
 void EditComponent::initializeInspector()
 {
-    int w = editView_.getPatchRoot().getPlacements().get (editView_.getIdentifier()).getInspectorWidth();
+    const auto p = editView_.getPatchRoot().getPlacements().get (editView_.getIdentifier());
+    const int w  = p.getInspectorWidth();
     
-    if (w > 0) {
-        editInspector_.setDefaultWidth (w); toggleInspector();
-    }
+    if (w > 0) { editInspector_.setDefaultWidth (w); }
+    
+    if (p.hasInspector()) { toggleInspector(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

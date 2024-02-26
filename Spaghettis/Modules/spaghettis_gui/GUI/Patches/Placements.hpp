@@ -26,7 +26,7 @@ public:
 // MARK: -
 
 public:
-    void set (core::UniqueId, core::Point::Real, int, int);
+    void set (core::UniqueId, core::Point::Real, int, bool, int);
 
 public:
     PlacementsElement get (core::UniqueId) const;

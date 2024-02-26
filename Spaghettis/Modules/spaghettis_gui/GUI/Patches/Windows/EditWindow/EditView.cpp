@@ -120,6 +120,11 @@ bool EditView::hasOnlyOnePatchSelected() const
     return false;
 }
 
+bool EditView::hasInspector() const
+{
+    return (inspector_ && inspector_->isActive());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -201,7 +206,7 @@ std::optional<core::Point::Real> EditView::getMousePosition() const
 
 int EditView::getInspectorWidth() const
 {
-    if (inspector_ && inspector_->isActive()) { return inspector_->getWidth(); }
+    if (inspector_) { return inspector_->getWidth(); }
     
     return 0;
 }

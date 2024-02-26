@@ -35,7 +35,7 @@ EditInspector::~EditInspector()
 
 void EditInspector::setDefaultWidth (int w)
 {
-    setSize (w, getHeight());
+    if (w >= resizer_.getMinimumWidth()) { setSize (w, getHeight()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
