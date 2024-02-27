@@ -49,7 +49,7 @@ bool EditInspector::isActive() const
     
 void EditInspector::setActive (bool isActive)
 {
-    active_ = isActive; triggerAsyncUpdate();
+    active_ = isActive; notify(); triggerAsyncUpdate();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ void EditInspector::resized()
     
     resizer_.update();
     
-    if (isActive()) { }
+    if (isActive()) { notify(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -103,6 +103,11 @@ void EditInspector::hide()
     parameters_ = nullptr;
     //
     }
+}
+
+void EditInspector::notify()
+{
+    DBG ("???");
 }
 
 // -----------------------------------------------------------------------------------------------------------

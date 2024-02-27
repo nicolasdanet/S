@@ -61,6 +61,9 @@ public:
 private:
     void show();
     void hide();
+
+private:
+    void notify();
     
 private:
     void handleAsyncUpdate() override;
