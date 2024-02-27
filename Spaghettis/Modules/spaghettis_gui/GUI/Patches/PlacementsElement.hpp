@@ -19,16 +19,10 @@ class PlacementsElement {
 // MARK: -
 
 public:
-    explicit PlacementsElement (core::UniqueId u,
-        core::Point::Real offset,
-        int zoom,
-        bool hasInspector,
-        int inspectorWidth) :
-            u_ (u),
-            offset_ (offset),
-            zoom_ (zoom),
-            hasInspector_ (hasInspector),
-            inspectorWidth_ (inspectorWidth)
+    explicit PlacementsElement (core::UniqueId u, core::Point::Real offset, int zoom) :
+    u_ (u),
+    offset_ (offset),
+    zoom_ (zoom)
     {
         static_assert (std::is_trivially_copyable_v<PlacementsElement> == true);
         static_assert (std::is_nothrow_move_constructible_v<PlacementsElement> == true);
@@ -55,22 +49,10 @@ public:
         return zoom_;
     }
     
-    bool hasInspector() const
-    {
-        return hasInspector_;
-    }
-    
-    int getInspectorWidth() const
-    {
-        return inspectorWidth_;
-    }
-    
 private:
     core::UniqueId u_;
     core::Point::Real offset_;
     int zoom_;
-    bool hasInspector_;
-    int inspectorWidth_;
 };
 
 // -----------------------------------------------------------------------------------------------------------

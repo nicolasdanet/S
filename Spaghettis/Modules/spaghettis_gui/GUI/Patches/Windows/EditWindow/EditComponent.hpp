@@ -79,9 +79,6 @@ public:
 
 private:
     void updateLayout();
-
-private:
-    void initializeInspector();
     
 private:
     EditView editView_;

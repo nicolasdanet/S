@@ -120,11 +120,6 @@ bool EditView::hasOnlyOnePatchSelected() const
     return false;
 }
 
-bool EditView::hasInspector() const
-{
-    return (inspector_ && inspector_->isActive());
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -202,13 +197,6 @@ std::optional<core::Point::Real> EditView::getMousePosition() const
     } else {
         return std::nullopt;
     }
-}
-
-int EditView::getInspectorWidth() const
-{
-    if (inspector_) { return inspector_->getWidth(); }
-    
-    return 0;
 }
 
 Synchronizer EditView::getSynchronized() const

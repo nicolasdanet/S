@@ -34,9 +34,9 @@ auto hasSameIdentifier (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Placements::set (core::UniqueId u, core::Point::Real offset, int zoom, bool hasInspector, int w)
+void Placements::set (core::UniqueId u, core::Point::Real offset, int zoom)
 {
-    const PlacementsElement e (u, offset, zoom, hasInspector, w);
+    const PlacementsElement e (u, offset, zoom);
     
     auto r = std::find_if (v_.begin(), v_.end(), hasSameIdentifier (e.getUnique()));
     
@@ -53,7 +53,7 @@ PlacementsElement Placements::get (core::UniqueId u) const
     
     if (r != v_.end()) { return *r; }
     else {
-        return PlacementsElement (0, core::Point::Real (0, 0), 100, false, 0);
+        return PlacementsElement (0, core::Point::Real (0, 0), 100);
     }
 }
 

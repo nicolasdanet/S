@@ -132,8 +132,6 @@ EditComponent::EditComponent (const PatchBase& base) :
         .setInvoke ([this] (const auto&) { editView_.getPatchRoot().openMainEditWindow(); }));
         
     setOpaque (true); setSize (600, 300);
-    
-    initializeInspector();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -270,20 +268,6 @@ void EditComponent::updateLayout()
     editPort_.setBounds (bounds);
     
     updateZoom (editZoom_, getToolbarBounds());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void EditComponent::initializeInspector()
-{
-    const auto p = editView_.getPatchRoot().getPlacements().get (editView_.getIdentifier());
-    const int w  = p.getInspectorWidth();
-    
-    if (w > 0) { editInspector_.setDefaultWidth (w); }
-    
-    if (p.hasInspector()) { toggleInspector(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

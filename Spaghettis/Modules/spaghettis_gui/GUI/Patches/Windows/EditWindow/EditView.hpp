@@ -48,7 +48,6 @@ public:
     bool hasSelected() const;
     bool hasSelectedObject() const;
     bool hasOnlyOnePatchSelected() const;
-    bool hasInspector() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -73,7 +72,6 @@ public:
     std::optional<core::Point::Real> getMousePosition() const;
 
 public:
-    int getInspectorWidth() const;
     Synchronizer getSynchronized() const;
     EditPort* getPort() const;
 
