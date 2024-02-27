@@ -55,8 +55,6 @@ public:
 public:
     core::UniqueId getIdentifier() const;
     juce::File getFile() const;
-
-    Placements& getPlacements();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -110,9 +108,6 @@ private:
 
 private:
     std::vector<std::unique_ptr<PatchWindow>> windows_;
-
-private:
-    Placements placements_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchRoot)

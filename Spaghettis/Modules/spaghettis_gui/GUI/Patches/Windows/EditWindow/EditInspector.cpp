@@ -76,7 +76,7 @@ void EditInspector::resized()
     
     resizer_.update();
     
-    if (isActive()) { view_.getPort()->updateInspector(); }
+    if (isActive()) { }
 }
 
 // -----------------------------------------------------------------------------------------------------------

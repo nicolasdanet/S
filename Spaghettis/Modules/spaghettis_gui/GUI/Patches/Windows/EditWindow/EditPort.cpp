@@ -12,15 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditPort::EditPort (EditView& view, core::Point::Real pt, int zoom) :
-    view_ (view),
-    offset_ (pt),
-    zoom_ (100),
-    v_ (zoom_)
+EditPort::EditPort (EditView& view) : view_ (view), offset_ (0, 0), zoom_ (100), v_ (zoom_)
 {
     view_.setPort (this);
     
-    setZoom (zoom); update();
+    update();
         
     addAndMakeVisible (&view_);
 }
@@ -92,11 +88,6 @@ void EditPort::setZoom (int n)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void EditPort::updateInspector()
-{
-    notify();
-}
 
 void EditPort::updateOffset (core::Point::Real pt)
 {
@@ -259,7 +250,7 @@ void EditPort::update()
 
 void EditPort::notify()
 {
-    view_.getPatchRoot().getPlacements().set (view_.getIdentifier(), getOffset(), getZoom());
+
 }
 
 // -----------------------------------------------------------------------------------------------------------

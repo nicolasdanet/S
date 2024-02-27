@@ -78,11 +78,6 @@ juce::File PatchRoot::getFile() const
     return juce::File (core::Patch (rootTree_).get<juce::String> (Tag::Attributes, Tag::Path));
 }
 
-Placements& PatchRoot::getPlacements()
-{
-    return placements_;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

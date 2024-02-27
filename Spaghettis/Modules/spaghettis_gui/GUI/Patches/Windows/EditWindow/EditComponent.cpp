@@ -35,9 +35,7 @@ EditComponent::EditComponent (const PatchBase& base) :
     EditFactoryHelper (this),
     BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager()),
     editView_ (base),
-    editPort_ (editView_,
-        editView_.getPatchRoot().getPlacements().get (editView_.getIdentifier()).getOffset(),
-        editView_.getPatchRoot().getPlacements().get (editView_.getIdentifier()).getZoom()),
+    editPort_ (editView_),
     editZoom_ (editPort_.getZoomAsValue()),
     editInspector_ (editView_)
 {
@@ -194,7 +192,6 @@ void EditComponent::showInspector()
     editInspector_.setActive (true);
     updateLayout();
     Spaghettis()->updateMenuBar();
-    editPort_.updateInspector();
 }
 
 void EditComponent::hideInspector()
@@ -202,7 +199,6 @@ void EditComponent::hideInspector()
     editInspector_.setActive (false);
     updateLayout();
     Spaghettis()->updateMenuBar();
-    editPort_.updateInspector();
 }
 
 // -----------------------------------------------------------------------------------------------------------

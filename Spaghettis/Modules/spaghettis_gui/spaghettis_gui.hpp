@@ -95,8 +95,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/PlacementsElement.hpp"
-#include "GUI/Patches/Placements.hpp"
 #include "GUI/Patches/PatchReport.hpp"
 #include "GUI/Patches/PatchRoot.hpp"
 #include "GUI/Patches/PatchesHolder.hpp"
