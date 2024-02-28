@@ -89,6 +89,11 @@ void EditPort::setZoom (int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void EditPort::updateInspector()
+{
+    notify();
+}
+
 void EditPort::updateOffset (core::Point::Real pt)
 {
     setOffset (pt);
@@ -250,7 +255,13 @@ void EditPort::update()
 
 void EditPort::notify()
 {
-    DBG ("???");
+    const core::UniqueId u      = view_.getIdentifier();
+    const core::Point::Real pt  = getOffset();
+    const int zoom              = getZoom();
+    const bool hasInspector     = view_.hasInspector();
+    const int inspectorWidth    = view_.getInspectorWidth();
+    
+    Broadcast::view (u, pt, zoom, hasInspector, inspectorWidth);
 }
 
 // -----------------------------------------------------------------------------------------------------------

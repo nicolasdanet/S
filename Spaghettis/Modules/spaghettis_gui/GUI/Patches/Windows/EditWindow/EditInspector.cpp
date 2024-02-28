@@ -107,7 +107,7 @@ void EditInspector::hide()
 
 void EditInspector::notify()
 {
-    DBG ("???");
+    view_.getPort()->updateInspector();
 }
 
 // -----------------------------------------------------------------------------------------------------------

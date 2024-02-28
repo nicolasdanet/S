@@ -46,7 +46,12 @@ static Perform setMidiDevices (std::vector<MidiDevice>&&, std::vector<MidiDevice
 
 static Perform closePatch (core::UniqueId);
 static Perform savePatch (core::UniqueId);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 static Perform setEditView (core::UniqueId, juce::Rectangle<int>);
+static Perform setEditViewPosition (core::UniqueId, core::Point::Real, int, bool, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

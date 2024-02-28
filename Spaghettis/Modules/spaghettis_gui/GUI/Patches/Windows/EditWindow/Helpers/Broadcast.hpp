@@ -115,6 +115,11 @@ static void create (core::UniqueId u, core::Point::Real pt, const juce::String& 
     if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (u, pt, s)); }
 }
 
+static void view (core::UniqueId u, core::Point::Real pt, int zoom, bool hasInspector, int inspectorWidth)
+{
+    Spaghettis()->handle (Inputs::setEditViewPosition (u, pt, zoom, hasInspector, inspectorWidth));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

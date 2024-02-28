@@ -120,6 +120,11 @@ bool EditView::hasOnlyOnePatchSelected() const
     return false;
 }
 
+bool EditView::hasInspector() const
+{
+    jassert (inspector_); return inspector_->isActive();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -183,6 +188,11 @@ ObjectComponent* EditView::getObjectComponent (core::UniqueId u) const
 LineComponent* EditView::getLineComponent (core::UniqueId u) const
 {
     return lines_.get (u);
+}
+
+int EditView::getInspectorWidth() const
+{
+    jassert (inspector_); return inspector_->getWidth();
 }
 
 float EditView::getScale() const
@@ -790,7 +800,9 @@ void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identif
 {
     juce::ValueTree i (Tree::getParentIfChangedPropertyEquals (t, Tag::Selected));
     
-    if (i.isValid() && isSameAsPatch (i.getParent()) && inspector_) { inspector_->update(); }
+    jassert (inspector_);
+    
+    if (i.isValid() && isSameAsPatch (i.getParent())) { inspector_->update(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -93,9 +93,18 @@ Perform Inputs::savePatch (core::UniqueId u)
     return [u]() { core::inputs_savePatch (u); };
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 Perform Inputs::setEditView (core::UniqueId u, juce::Rectangle<int> bounds)
 {
     return [u, bounds]() { core::inputs_setEditView (u, bounds); };
+}
+
+Perform Inputs::setEditViewPosition (core::UniqueId, core::Point::Real, int, bool, int)
+{
+    return []() { };
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -48,6 +48,7 @@ public:
     bool hasSelected() const;
     bool hasSelectedObject() const;
     bool hasOnlyOnePatchSelected() const;
+    bool hasInspector() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -70,6 +71,7 @@ public:
 public:
     float getScale() const override;
     std::optional<core::Point::Real> getMousePosition() const;
+    int getInspectorWidth() const;
 
 public:
     Synchronizer getSynchronized() const;
