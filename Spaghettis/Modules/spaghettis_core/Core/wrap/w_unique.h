@@ -78,7 +78,8 @@ t_error    unique_patchCreateObject    (t_id u, Point::Real, const juce::String&
 t_error    unique_patchClose           (t_id u);
 t_error    unique_patchSave            (t_id u);
 
-t_error    unique_patchSetEditView     (t_id u, t_rectangle *r);
+t_error    unique_patchSetEditView              (t_id u, t_rectangle *r);
+t_error    unique_patchSetEditViewProperties    (t_id u, int, int, int, int, int);
 
 t_error    unique_patchUndo            (t_id u);
 t_error    unique_patchRedo            (t_id u);

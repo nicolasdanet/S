@@ -387,6 +387,11 @@ t_error unique_patchSetEditView (t_id u, t_rectangle *r)
     return PD_ERROR;
 }
 
+t_error unique_patchSetEditViewProperties (t_id u, int x, int y, int z, int inspector, int w)
+{
+    return PD_ERROR;
+}
+
 t_error unique_patchUndo (t_id u)
 {
     t_glist *g = unique_getPatch (u);

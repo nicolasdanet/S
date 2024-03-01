@@ -125,6 +125,14 @@ void inputs_setEditView (core::UniqueId u, juce::Rectangle<int> bounds)
     unique_patchSetEditView (u, &r);
 }
 
+void inputs_setEditViewProperties (core::UniqueId u, core::Point::Real pt, int zoom, bool inspector, int w)
+{
+    int x = pt.getPoint().getX();
+    int y = pt.getPoint().getY();
+    
+    unique_patchSetEditViewProperties (u, x, y, zoom, static_cast<int> (inspector), w);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -35,9 +35,10 @@ void inputs_setMidiDevices     (const std::vector<MidiDevice>&, const std::vecto
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void inputs_closePatch         (core::UniqueId);
-void inputs_savePatch          (core::UniqueId);
-void inputs_setEditView        (core::UniqueId, juce::Rectangle<int>);
+void inputs_closePatch              (core::UniqueId);
+void inputs_savePatch               (core::UniqueId);
+void inputs_setEditView             (core::UniqueId, juce::Rectangle<int>);
+void inputs_setEditViewProperties   (core::UniqueId, core::Point::Real, int, bool, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

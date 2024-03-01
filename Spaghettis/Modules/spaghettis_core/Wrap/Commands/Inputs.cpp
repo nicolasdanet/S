@@ -102,9 +102,9 @@ Perform Inputs::setEditView (core::UniqueId u, juce::Rectangle<int> bounds)
     return [u, bounds]() { core::inputs_setEditView (u, bounds); };
 }
 
-Perform Inputs::setEditViewPosition (core::UniqueId, core::Point::Real, int, bool, int)
+Perform Inputs::setEditViewProperties (core::UniqueId u, core::Point::Real pt, int z, bool inspector, int w)
 {
-    return []() { };
+    return [u, pt, z, inspector, w]() { core::inputs_setEditViewProperties (u, pt, z, inspector, w); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
