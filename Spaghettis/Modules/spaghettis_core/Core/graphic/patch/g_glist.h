@@ -95,6 +95,9 @@ void   glist_setName                           (t_glist *g, t_symbol *name);
 void   glist_setDirty                          (t_glist *g, int n);
 void   glist_setFrozen                         (t_glist *g, int n);
 void   glist_setEditView                       (t_glist *g, t_rectangle *r, int notify);
+void   glist_setOffset                         (t_glist *g, int x, int y);
+void   glist_setZoom                           (t_glist *g, int z);
+void   glist_setInspector                      (t_glist *g, int hasInspector, int w);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

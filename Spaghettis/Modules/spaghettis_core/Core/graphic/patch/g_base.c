@@ -155,6 +155,50 @@ void glist_setEditView (t_glist *glist, t_rectangle *r, int notify)
     #endif
 }
 
+void glist_setOffset (t_glist *glist, int x, int y)
+{
+    if (glist->gl_offsetX != x) {
+        glist->gl_offsetX  = x;
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::OffsetX));
+        #endif
+    }
+    
+    if (glist->gl_offsetY != y) {
+        glist->gl_offsetY  = y;
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::OffsetY));
+        #endif
+    }
+}
+
+void glist_setZoom (t_glist *glist, int z)
+{
+    if (glist->gl_zoom != z) {
+        glist->gl_zoom  = z;
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::Zoom));
+        #endif
+    }
+}
+
+void glist_setInspector (t_glist *glist, int hasInspector, int w)
+{
+    if (glist->gl_hasInspector != hasInspector) {
+        glist->gl_hasInspector  = hasInspector;
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::Inspector));
+        #endif
+    }
+    
+    if (glist->gl_inspectorWidth != w) {
+        glist->gl_inspectorWidth  = w;
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::InspectorWidth));
+        #endif
+    }
+}
+
 void glist_setNext (t_glist *g, t_glist *next)
 {
     g->gl_next = next;
