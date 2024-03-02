@@ -191,7 +191,7 @@ void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t
             NEEDS_TRANS ("Inspector"),
             NEEDS_TRANS ("Edit window has inspector"),
             static_cast<bool> (glist_hasInspector (g)),
-            delegate);
+            delegate).setHidden (true);
     }
     
     if (t.contains (Tag::InspectorWidth)) {
@@ -199,7 +199,7 @@ void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t
             NEEDS_TRANS ("Inspector Width"),
             NEEDS_TRANS ("Edit window inspector width"),
             glist_getInspectorWidth (g),
-            delegate);
+            delegate).setHidden (true);
     }
     
     if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o, t); }
