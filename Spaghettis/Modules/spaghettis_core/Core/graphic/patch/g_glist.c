@@ -42,6 +42,7 @@ static t_glist *glist_new (t_symbol *name, t_rectangle *window)
     x->gl_name          = (name != &s_ ? name : environment_getFileName (x->gl_environment));
     x->gl_sorterObjects = buffer_new();
     x->gl_sorterIndexes = buffer_new();
+    x->gl_zoom          = 100;
     
     if (window) { glist_setEditView (x, window, 0); }
     

@@ -25,6 +25,11 @@ struct _glist {
     t_buffer        *gl_sorterObjects;
     t_buffer        *gl_sorterIndexes;
     t_rectangle     gl_editView;
+    int             gl_offsetX;
+    int             gl_offsetY;
+    int             gl_zoom;
+    int             gl_inspectorWidth;
+    int             gl_hasInspector;
     int             gl_undoEnabled;
     int             gl_isDirty;                 /* Top.  */
     int             gl_isFrozen;                /* Top.  */
@@ -58,6 +63,7 @@ void       glist_save          (t_glist *g);
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
 t_glist            *glist_getRoot              (t_glist *g);
 t_glist            *glist_getTop               (t_glist *g);
 t_glist            *glist_getParent            (t_glist *g);
@@ -72,6 +78,14 @@ t_rectangle        *glist_getEditView          (t_glist *g);
 
 t_symbol           *glist_getName              (t_glist *g);
 t_undomanager      *glist_getUndoManager       (t_glist *g);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+int                glist_getOffsetX            (t_glist *g);
+int                glist_getOffsetY            (t_glist *g);
+int                glist_getZoom               (t_glist *g);
+int                glist_getInspectorWidth     (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -105,6 +119,7 @@ int    glist_isFrozen                          (t_glist *g);
 // MARK: -
 
 int    glist_hasParent                         (t_glist *g);
+int    glist_hasInspector                      (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

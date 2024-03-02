@@ -162,6 +162,46 @@ void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t
             delegate);
     }
     
+    if (t.contains (Tag::OffsetX)) {
+        group.addParameter (Tag::OffsetX,
+            NEEDS_TRANS ("Offset X"),
+            NEEDS_TRANS ("Edit window abscissa offset"),
+            glist_getOffsetX (g),
+            delegate);
+    }
+    
+    if (t.contains (Tag::OffsetY)) {
+        group.addParameter (Tag::OffsetY,
+            NEEDS_TRANS ("Offset Y"),
+            NEEDS_TRANS ("Edit window ordinate offset"),
+            glist_getOffsetY (g),
+            delegate);
+    }
+    
+    if (t.contains (Tag::Zoom)) {
+        group.addParameter (Tag::Zoom,
+            NEEDS_TRANS ("Zoom"),
+            NEEDS_TRANS ("Edit window zoom"),
+            glist_getZoom (g),
+            delegate);
+    }
+
+    if (t.contains (Tag::Inspector)) {
+        group.addParameter (Tag::Inspector,
+            NEEDS_TRANS ("Inspector"),
+            NEEDS_TRANS ("Edit window has inspector"),
+            static_cast<bool> (glist_hasInspector (g)),
+            delegate);
+    }
+    
+    if (t.contains (Tag::InspectorWidth)) {
+        group.addParameter (Tag::InspectorWidth,
+            NEEDS_TRANS ("Inspector Width"),
+            NEEDS_TRANS ("Edit window inspector width"),
+            glist_getInspectorWidth (g),
+            delegate);
+    }
+    
     if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o, t); }
     else {
     //

@@ -76,6 +76,8 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (Interval);
     DECLARE_STRING (Inlet);
     DECLARE_STRING (Inlets);
+    DECLARE_STRING (Inspector);
+    DECLARE_STRING (InspectorWidth);
     DECLARE_STRING (Low);
     DECLARE_STRING (Line);
     DECLARE_STRING (LineSelected);
@@ -87,6 +89,8 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (Multiple);
     DECLARE_STRING (Name);
     DECLARE_STRING (NonZero);
+    DECLARE_STRING (OffsetX);
+    DECLARE_STRING (OffsetY);
     DECLARE_STRING (Outlet);
     DECLARE_STRING (Outlets);
     DECLARE_STRING (Parameters);
@@ -126,6 +130,7 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (Width);
     DECLARE_STRING (X);
     DECLARE_STRING (Y);
+    DECLARE_STRING (Zoom);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

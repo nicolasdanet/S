@@ -75,6 +75,30 @@ t_rectangle *glist_getEditView (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int glist_getOffsetX (t_glist *g)
+{
+    return g->gl_offsetX;
+}
+
+int glist_getOffsetY (t_glist *g)
+{
+    return g->gl_offsetY;
+}
+
+int glist_getZoom (t_glist *g)
+{
+    return g->gl_zoom;
+}
+
+int glist_getInspectorWidth (t_glist *g)
+{
+    return g->gl_inspectorWidth;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void glist_setName (t_glist *glist, t_symbol *name)
 {
     if (name == &s_) { name = sym_Untitled; }
@@ -208,6 +232,11 @@ int glist_isPasting (t_glist *g)
 int glist_hasParent (t_glist *g)
 {
     return (glist_getParent (g) != NULL);
+}
+
+int glist_hasInspector (t_glist *g)
+{
+    return g->gl_hasInspector;
 }
 
 // -----------------------------------------------------------------------------------------------------------
