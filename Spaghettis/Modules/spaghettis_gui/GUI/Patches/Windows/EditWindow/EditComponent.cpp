@@ -35,7 +35,10 @@ EditComponent::EditComponent (const PatchBase& base) :
     EditFactoryHelper (this),
     BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager()),
     editView_ (base),
-    editPort_ (editView_),
+    editPort_ (editView_,
+                    core::Point::Real (base.getPatch().get<int> (Tag::Attributes, Tag::OffsetX),
+                                       base.getPatch().get<int> (Tag::Attributes, Tag::OffsetY)),
+                    base.getPatch().get<int> (Tag::Attributes, Tag::Zoom)),
     editZoom_ (editPort_.getZoomAsValue()),
     editInspector_ (editView_)
 {
