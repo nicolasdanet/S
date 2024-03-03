@@ -132,11 +132,9 @@ EditComponent::EditComponent (const PatchBase& base) :
     addMenuCommand (MenuCommand (Commands::newEditView)
         .setInvoke ([this] (const auto&) { editView_.getPatchRoot().openMainEditWindow(); }));
     
-    /*
     if (base.getPatch().get<bool> (Tag::Attributes, Tag::Inspector)) {
         toggleInspector();
     }
-    */
     
     setOpaque (true); setSize (600, 300);
 }
