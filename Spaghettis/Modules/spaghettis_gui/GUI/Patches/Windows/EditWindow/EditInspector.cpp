@@ -12,12 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditInspector::EditInspector (EditView& view) :
+EditInspector::EditInspector (EditView& view, int w) :
     view_ (view),
     active_ (false),
     resizer_ (*this)
 {
-    setOpaque (true); setDefaultWidth (resizer_.getDefaultWidth());
+    setOpaque (true); setDefaultWidth (w ? w : resizer_.getDefaultWidth());
     
     view_.attach (this);
 }

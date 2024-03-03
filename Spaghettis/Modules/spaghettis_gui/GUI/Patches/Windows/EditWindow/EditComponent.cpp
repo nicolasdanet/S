@@ -40,7 +40,7 @@ EditComponent::EditComponent (const PatchBase& base) :
                                        base.getPatch().get<int> (Tag::Attributes, Tag::OffsetY)),
                     base.getPatch().get<int> (Tag::Attributes, Tag::Zoom)),
     editZoom_ (editPort_.getZoomAsValue()),
-    editInspector_ (editView_)
+    editInspector_ (editView_, base.getPatch().get<int> (Tag::Attributes, Tag::InspectorWidth))
 {
     CommandsHandler::addCloseWindowCommand (this);
     
@@ -131,7 +131,13 @@ EditComponent::EditComponent (const PatchBase& base) :
     
     addMenuCommand (MenuCommand (Commands::newEditView)
         .setInvoke ([this] (const auto&) { editView_.getPatchRoot().openMainEditWindow(); }));
-        
+    
+    /*
+    if (base.getPatch().get<bool> (Tag::Attributes, Tag::Inspector)) {
+        toggleInspector();
+    }
+    */
+    
     setOpaque (true); setSize (600, 300);
 }
 
