@@ -12,21 +12,23 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditInspector::EditInspector (EditView& view, int w) :
+EditInspector::EditInspector (EditView& view, bool isActive, int w) :
     view_ (view),
-    active_ (false),
+    active_ (isActive),
     resizer_ (*this)
 {
-    setOpaque (true); setDefaultWidth (w ? w : resizer_.getDefaultWidth());
+    view_.attach (this);    /* Must be the first. */
     
-    view_.attach (this);
+    setDefaultWidth (w ? w : resizer_.getDefaultWidth());
+    
+    setOpaque (true);
 }
 
 EditInspector::~EditInspector()
 {
-    view_.detach (this);
-    
     hide();
+    
+    view_.detach (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -49,7 +51,7 @@ bool EditInspector::isActive() const
     
 void EditInspector::setActive (bool isActive)
 {
-    active_ = isActive; notify(); triggerAsyncUpdate();
+    active_ = isActive; notify();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -72,11 +74,22 @@ void EditInspector::paint (juce::Graphics& g)
 
 void EditInspector::resized()
 {
-    if (parameters_ != nullptr) { parameters_->resizePanel (getLocalBounds()); }
+    if (parameters_ != nullptr) {
+        parameters_->resizePanel (getLocalBounds());
+    }
     
     resizer_.update();
     
     if (isActive()) { notify(); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void EditInspector::notify()
+{
+    view_.getPort()->updateInspector();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -103,11 +116,6 @@ void EditInspector::hide()
     parameters_ = nullptr;
     //
     }
-}
-
-void EditInspector::notify()
-{
-    view_.getPort()->updateInspector();
 }
 
 // -----------------------------------------------------------------------------------------------------------

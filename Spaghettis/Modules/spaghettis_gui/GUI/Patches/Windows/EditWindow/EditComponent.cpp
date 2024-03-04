@@ -22,6 +22,11 @@ juce::String getInspectorMenuText (const EditInspector& i)
     return i.isActive() ? juce::String ("Hide Inspector") : juce::String ("Show Inspector");
 }
 
+void setInspectorState (EditInspector& i, bool isActive)
+{
+    i.setActive (isActive); Spaghettis()->updateMenuBar();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -40,7 +45,9 @@ EditComponent::EditComponent (const PatchBase& base) :
                                        base.getPatch().get<int> (Tag::Attributes, Tag::OffsetY)),
                     base.getPatch().get<int> (Tag::Attributes, Tag::Zoom)),
     editZoom_ (editPort_.getZoomAsValue()),
-    editInspector_ (editView_, base.getPatch().get<int> (Tag::Attributes, Tag::InspectorWidth))
+    editInspector_ (editView_,
+                        base.getPatch().get<bool> (Tag::Attributes, Tag::Inspector),
+                        base.getPatch().get<int> (Tag::Attributes, Tag::InspectorWidth))
 {
     CommandsHandler::addCloseWindowCommand (this);
     
@@ -132,9 +139,7 @@ EditComponent::EditComponent (const PatchBase& base) :
     addMenuCommand (MenuCommand (Commands::newEditView)
         .setInvoke ([this] (const auto&) { editView_.getPatchRoot().openMainEditWindow(); }));
     
-    if (base.getPatch().get<bool> (Tag::Attributes, Tag::Inspector)) {
-        toggleInspector();
-    }
+    setButtonState (Icons::inspector, editInspector_.isActive());
     
     setOpaque (true); setSize (600, 300);
 }
@@ -196,16 +201,14 @@ bool EditComponent::locate (core::UniqueId u)
 
 void EditComponent::showInspector()
 {
-    editInspector_.setActive (true);
+    setInspectorState (editInspector_, true);
     updateLayout();
-    Spaghettis()->updateMenuBar();
 }
 
 void EditComponent::hideInspector()
 {
-    editInspector_.setActive (false);
+    setInspectorState (editInspector_, false);
     updateLayout();
-    Spaghettis()->updateMenuBar();
 }
 
 // -----------------------------------------------------------------------------------------------------------
