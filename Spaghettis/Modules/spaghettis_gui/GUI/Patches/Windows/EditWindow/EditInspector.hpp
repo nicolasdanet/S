@@ -61,6 +61,7 @@ public:
 private:
     void show();
     void hide();
+    void publish();
 
 private:
     void notify();

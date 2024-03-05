@@ -79,7 +79,9 @@ public:
 
 private:
     void updateLayout();
-    
+
+/* Order of following members matters due to initialization dependencies. */
+
 private:
     EditView editView_;
     EditPort editPort_;

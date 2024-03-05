@@ -22,6 +22,8 @@ EditInspector::EditInspector (EditView& view, bool isActive, int w) :
     setDefaultWidth (w ? w : resizer_.getDefaultWidth());
     
     setOpaque (true);
+    
+    publish();
 }
 
 EditInspector::~EditInspector()
@@ -51,7 +53,7 @@ bool EditInspector::isActive() const
     
 void EditInspector::setActive (bool isActive)
 {
-    active_ = isActive; notify();
+    active_ = isActive; notify(); update();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -118,13 +120,18 @@ void EditInspector::hide()
     }
 }
 
+void EditInspector::publish()
+{
+    hide(); if (isActive()) { show(); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void EditInspector::handleAsyncUpdate()
 {
-    hide(); if (isActive()) { show(); }
+    publish();
 }
 
 // -----------------------------------------------------------------------------------------------------------
