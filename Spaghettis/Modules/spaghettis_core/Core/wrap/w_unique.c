@@ -393,9 +393,9 @@ t_error unique_patchSetEditViewProperties (t_id u, int x, int y, int z, int insp
     
     if (g) {
     //
-    glist_setOffset (g, x, y);
-    glist_setZoom (g, z);
-    glist_setInspector (g, inspector, w);
+    glist_setOffset (g, x, y, 1);
+    glist_setZoom (g, z, 1);
+    glist_setInspector (g, inspector, w, 1);
 
     return PD_ERROR_NONE;
     //
