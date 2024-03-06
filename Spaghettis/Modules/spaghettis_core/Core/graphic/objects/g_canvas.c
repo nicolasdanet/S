@@ -244,6 +244,15 @@ void canvas_new (void *dummy, t_symbol *s, int argc, t_atom *argv)
     glist_newPatch (atom_getSymbolAtIndex (4, argc, argv), &r);
 }
 
+void canvas_view (void *dummy, t_symbol *s, int argc, t_atom *argv)
+{
+    /*
+    glist_setOffset (g, x, y, 1);
+    glist_setZoom (g, z, 1);
+    glist_setInspector (g, inspector, w, 1);
+    */
+}
+
 static void canvas_free (t_glist *glist)
 {
     glist_undoDisable (glist);

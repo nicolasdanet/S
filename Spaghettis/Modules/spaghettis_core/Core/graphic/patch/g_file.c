@@ -12,6 +12,19 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+static void glist_serializeView (t_glist *glist, t_buffer *b)
+{
+    buffer_appendSymbol (b, sym___hash__N);
+    buffer_appendSymbol (b, sym_view);
+    buffer_appendFloat (b,  glist_getOffsetX (glist));
+    buffer_appendFloat (b,  glist_getOffsetY (glist));
+    buffer_appendFloat (b,  glist_getZoom (glist));
+    buffer_appendFloat (b,  glist_hasInspector (glist));
+    buffer_appendFloat (b,  glist_getInspectorWidth (glist));
+    
+    buffer_appendSemicolon (b);
+}
+
 static void glist_serializeHeader (t_glist *glist, t_buffer *b)
 {
     t_rectangle *t = glist_getEditView (glist);
@@ -97,6 +110,7 @@ void glist_serialize (t_glist *glist, t_buffer *b, int flags, int isAbstraction)
 {
     if (isAbstraction) {    /* Encapsulation. */
     //
+    glist_serializeView (glist, b);
     glist_serializeHeader (glist, b);
     glist_serializeDollarZero (glist, b);
     glist_serializeObjects (glist, b, flags);
@@ -104,6 +118,7 @@ void glist_serialize (t_glist *glist, t_buffer *b, int flags, int isAbstraction)
     //
     } else {
     //
+    glist_serializeView (glist, b);
     glist_serializeHeader (glist, b);
     glist_serializeObjects (glist, b, flags);
     glist_serializeLines (glist, b);

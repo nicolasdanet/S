@@ -30,6 +30,7 @@ t_pdinstance *pd_this;          /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 
 void   canvas_new                      (void *, t_symbol *, int, t_atom *);
+void   canvas_view                     (void *, t_symbol *, int, t_atom *);
 void   legacy_start                    (void *, t_symbol *, int, t_atom *);
 int    dspthread_isChainSafeToDelete   (t_dspthread *, t_chain *);
 void   glist_setNext                   (t_glist *, t_glist *);
@@ -467,6 +468,7 @@ static t_pdinstance *instance_new()
     class_addAnything (x->pd_objectMaker, (t_method)instance_factory);
     
     class_addMethod (x->pd_canvasMaker, (t_method)canvas_new,   sym_canvas,     A_GIMME, A_NULL);
+    class_addMethod (x->pd_canvasMaker, (t_method)canvas_view,  sym_view,       A_GIMME, A_NULL);
     class_addMethod (x->pd_canvasMaker, (t_method)legacy_start, sym_spaghettis, A_GIMME, A_NULL);
     
     return x;
