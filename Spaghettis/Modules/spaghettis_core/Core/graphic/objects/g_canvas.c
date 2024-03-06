@@ -226,6 +226,11 @@ void *canvas_newSubpatch (t_symbol *s)
     return glist_newPatchPop (s, NULL);
 }
 
+void canvas_view (void *dummy, t_symbol *s, int argc, t_atom *argv)
+{
+    instance_viewSet (argc, argv);
+}
+
 void canvas_new (void *dummy, t_symbol *s, int argc, t_atom *argv)
 {  
     t_rectangle r; rectangle_setNothing (&r);
@@ -242,15 +247,6 @@ void canvas_new (void *dummy, t_symbol *s, int argc, t_atom *argv)
     }
     
     glist_newPatch (atom_getSymbolAtIndex (4, argc, argv), &r);
-}
-
-void canvas_view (void *dummy, t_symbol *s, int argc, t_atom *argv)
-{
-    /*
-    glist_setOffset (g, x, y, 1);
-    glist_setZoom (g, z, 1);
-    glist_setInspector (g, inspector, w, 1);
-    */
 }
 
 static void canvas_free (t_glist *glist)

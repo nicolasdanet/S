@@ -97,6 +97,8 @@ t_glist *glist_newPatch (t_symbol *name, t_rectangle *window)
     object_setY (cast_object (x), 0);
     object_setType (cast_object (x), TYPE_OBJECT);
     
+    instance_viewConsume (x);
+    
     /* Behaware that below order matters. */
     
     if (glist_isRoot (x)) { instance_rootsAdd (x); }

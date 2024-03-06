@@ -459,6 +459,7 @@ static t_pdinstance *instance_new()
     x->pd_clocks      = clocks_new();
     x->pd_pending     = NULL;
     x->pd_register    = register_new();
+    x->pd_view        = buffer_new();
     x->pd_pool        = buffer_new();
     x->pd_dsp         = dspthread_new();
     x->pd_stop        = clock_new ((void *)x, (t_method)instance_audioCloseTask);
@@ -485,6 +486,7 @@ static void instance_free (t_pdinstance *x)
     
     clock_free (x->pd_stop);
     buffer_free (x->pd_pool);
+    buffer_free (x->pd_view);
     register_free (x->pd_register);
     clocks_free (x->pd_clocks);
     class_free (x->pd_canvasMaker);

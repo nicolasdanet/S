@@ -33,6 +33,7 @@ namespace spaghettis::core {
 #include "core/instance/m_eval.c"
 #include "core/instance/m_stack.c"
 #include "core/instance/m_load.c"
+#include "core/instance/m_view.c"
 #include "core/instance/m_environment.c"
 #include "core/instance/m_autorelease.c"
 #include "core/instance/m_polling.c"

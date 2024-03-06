@@ -63,6 +63,7 @@ typedef struct _pdinstance {
     t_class         *pd_canvasMaker;
     t_object        *pd_pending;
     t_register      *pd_register;
+    t_buffer        *pd_view;
     t_buffer        *pd_pool;
     t_dspthread     *pd_dsp;
     } t_pdinstance;
@@ -185,6 +186,13 @@ void       instance_autoreleaseRun         (void);
 void       instance_autoreleaseStop        (void);
 void       instance_autoreleaseRegister    (t_pd *x);
 void       instance_autoreleaseProceed     (t_pd *x);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void       instance_viewSet                (int argc, t_atom *argv);
+void       instance_viewConsume            (t_glist *glist);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
