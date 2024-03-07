@@ -61,8 +61,8 @@ public:
 // MARK: -
 
 public:
-    void save() const;
-    void close (bool saveFirst = false) const;
+    void save();
+    void close (bool saveFirst = false);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -106,6 +106,9 @@ private:
     juce::ValueTree rootTree_;
     bool dirty_;
 
+private:
+    PatchPresets presets_;
+    
 private:
     std::vector<std::unique_ptr<PatchWindow>> windows_;
 

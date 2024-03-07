@@ -43,6 +43,8 @@ void releaseAllWindows (std::vector<std::unique_ptr<PatchWindow>>& v)
 
 PatchRoot::PatchRoot (const core::Report& v) : rootTree_ (v.asValueTree()), dirty_ (false)
 {
+    presets_.load (getFile());
+    
     openMainWindow();
 }
 
@@ -82,12 +84,14 @@ juce::File PatchRoot::getFile() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchRoot::save() const
+void PatchRoot::save()
 {
+    presets_.save (getFile());
+    
     Spaghettis()->handle (Inputs::savePatch (getIdentifier()));
 }
     
-void PatchRoot::close (bool saveFirst) const
+void PatchRoot::close (bool saveFirst)
 {
     if (saveFirst) { save(); } Spaghettis()->handle (Inputs::closePatch (getIdentifier()));
 }
