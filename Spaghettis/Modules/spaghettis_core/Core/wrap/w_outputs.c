@@ -52,7 +52,7 @@ static std::vector<AudioDevice> outputs_getAudioIn (t_deviceslist *l)
     for (int j = 0; j < deviceslist_getInSize (l); ++j) {
         t_symbol *t  = deviceslist_getInAtIndex (l, j);
         int channels = deviceslist_getInChannelsAtIndex (l, j);
-        PD_ASSERT (t);
+        jassert (t);
         d.emplace_back (t->s_name, channels);
     }
     
@@ -66,7 +66,7 @@ static std::vector<AudioDevice> outputs_getAudioOut (t_deviceslist *l)
     for (int j = 0; j < deviceslist_getOutSize (l); ++j) {
         t_symbol *t  = deviceslist_getOutAtIndex (l, j);
         int channels = deviceslist_getOutChannelsAtIndex (l, j);
-        PD_ASSERT (t);
+        jassert (t);
         d.emplace_back (t->s_name, channels);
     }
     
@@ -79,7 +79,7 @@ static std::vector<MidiDevice> outputs_getMidiIn (t_deviceslist *l)
     
     for (int j = 0; j < deviceslist_getInSize (l); ++j) {
         t_symbol *t  = deviceslist_getInAtIndex (l, j);
-        PD_ASSERT (t);
+        jassert (t);
         d.emplace_back (t->s_name);
     }
     
@@ -92,7 +92,7 @@ static std::vector<MidiDevice> outputs_getMidiOut (t_deviceslist *l)
     
     for (int j = 0; j < deviceslist_getOutSize (l); ++j) {
         t_symbol *t  = deviceslist_getOutAtIndex (l, j);
-        PD_ASSERT (t);
+        jassert (t);
         d.emplace_back (t->s_name);
     }
     
@@ -144,9 +144,13 @@ void outputs_objectChanged (t_object *x, const Tags& t)
 
 void outputs_objectUpdated (t_object *x, const Tags& t)
 {
+    t_glist *g = object_isCanvas (x) ? cast_glist (x) : object_getOwner (x);
+    
     outputs_objectChanged (x, t);
     
-    glist_setDirty (object_getOwner (cast_object (x)), 1);
+    jassert (g);
+    
+    glist_setDirty (g, 1);
 }
 
 void outputs_objectRemoved (t_object *x)
@@ -163,7 +167,7 @@ void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, int n, t_g
 {
     const UniquePath p (u, owner);
     
-    wrapper_send (Outputs::added (p,   Report::lineAdded (p, src, m, dest, n)));
+    wrapper_send (Outputs::added (p, Report::lineAdded (p, src, m, dest, n)));
 }
 
 void outputs_lineChanged (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)

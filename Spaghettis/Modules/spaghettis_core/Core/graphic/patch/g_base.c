@@ -145,13 +145,7 @@ void glist_setEditView (t_glist *glist, t_rectangle *r, int notify)
     rectangle_setCopy (glist_getEditView (glist), r);
     
     #if defined ( PD_BUILDING_APPLICATION )
-    
-    if (notify) {
-    //
-    outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::EditView));
-    //
-    }
-    
+    if (notify) { outputs_objectUpdated (cast_object (glist), Tags::attributes (Tag::EditView)); }
     #endif
 }
 
@@ -160,14 +154,14 @@ void glist_setOffset (t_glist *glist, int x, int y, int notify)
     if (glist->gl_offsetX != x) {
         glist->gl_offsetX  = x;
         #if defined ( PD_BUILDING_APPLICATION )
-        if (notify) { outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::OffsetX)); }
+        if (notify) { outputs_objectUpdated (cast_object (glist), Tags::attributes (Tag::OffsetX)); }
         #endif
     }
     
     if (glist->gl_offsetY != y) {
         glist->gl_offsetY  = y;
         #if defined ( PD_BUILDING_APPLICATION )
-        if (notify) { outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::OffsetY)); }
+        if (notify) { outputs_objectUpdated (cast_object (glist), Tags::attributes (Tag::OffsetY)); }
         #endif
     }
 }
@@ -177,7 +171,7 @@ void glist_setZoom (t_glist *glist, int z, int notify)
     if (glist->gl_zoom != z) {
         glist->gl_zoom  = z;
         #if defined ( PD_BUILDING_APPLICATION )
-        if (notify) { outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::Zoom)); }
+        if (notify) { outputs_objectUpdated (cast_object (glist), Tags::attributes (Tag::Zoom)); }
         #endif
     }
 }
@@ -187,14 +181,14 @@ void glist_setInspector (t_glist *glist, int hasInspector, int w, int notify)
     if (glist->gl_hasInspector != hasInspector) {
         glist->gl_hasInspector  = hasInspector;
         #if defined ( PD_BUILDING_APPLICATION )
-        if (notify) { outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::Inspector)); }
+        if (notify) { outputs_objectUpdated (cast_object (glist), Tags::attributes (Tag::Inspector)); }
         #endif
     }
     
     if (glist->gl_inspectorWidth != w) {
         glist->gl_inspectorWidth  = w;
         #if defined ( PD_BUILDING_APPLICATION )
-        if (notify) { outputs_objectChanged (cast_object (glist), Tags::attributes (Tag::InspectorWidth)); }
+        if (notify) { outputs_objectUpdated (cast_object (glist), Tags::attributes (Tag::InspectorWidth)); }
         #endif
     }
 }
