@@ -19,7 +19,8 @@ class PatchPresets {
 // MARK: -
 
 public:
-    PatchPresets()  = default;
+    explicit PatchPresets (const juce::File&);
+    
     ~PatchPresets() = default;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -27,8 +28,11 @@ public:
 // MARK: -
 
 public:
-    void load (const juce::File&);
-    void save (const juce::File&);
+    void load();
+    void save();
+
+private:
+    juce::File file_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchPresets)
