@@ -244,7 +244,7 @@ void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t
             NEEDS_TRANS ("Dirty"),
             NEEDS_TRANS ("Dirty bit is set"),
             static_cast<bool> (glist_isDirty (g)),
-            delegate);
+            delegate).setHidden (true);
     }
 }
 
