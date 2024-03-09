@@ -238,6 +238,14 @@ void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t
             undomanager_getRedoLabel (glist_getUndoManager (g)),
             delegate).setHidden (true);
     }
+    
+    if (t.contains (Tag::Dirty)) {
+        group.addParameter (Tag::Dirty,
+            NEEDS_TRANS ("Dirty"),
+            NEEDS_TRANS ("Dirty bit is set"),
+            static_cast<bool> (glist_isDirty (g)),
+            delegate);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

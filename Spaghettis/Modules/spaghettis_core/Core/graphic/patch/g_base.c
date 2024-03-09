@@ -126,7 +126,7 @@ void glist_setDirty (t_glist *glist, int n)
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    // outputs_patchDirty (y, isDirty);
+    outputs_objectChanged (cast_object (y), Tags::attributes (Tag::Dirty));
     
     #endif
     //
@@ -234,14 +234,10 @@ int glist_isSubpatch (t_glist *glist)
     return (!glist_isTop (glist));
 }
 
-#if 0
-
 int glist_isDirty (t_glist *glist)
 {
-    return (glist_getTop (glist)->gl_isDirty != 0);
+    return (glist->gl_isDirty != 0);
 }
-
-#endif
 
 int glist_isAbstractionOrInside (t_glist *glist)
 {

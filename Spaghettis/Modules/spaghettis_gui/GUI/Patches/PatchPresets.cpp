@@ -33,7 +33,7 @@ juce::File getPresetFile (const juce::File& file)
 
 PatchPresets::PatchPresets (const juce::File& file) : file_ (getPresetFile (file))
 {
-    DBG (file_.getFullPathName());
+    // DBG (file_.getFullPathName());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -107,7 +107,7 @@ int    glist_isRoot                            (t_glist *g);
 int    glist_isTop                             (t_glist *g);
 int    glist_isAbstraction                     (t_glist *g);
 int    glist_isSubpatch                        (t_glist *g);
-//int    glist_isDirty                         (t_glist *g);
+int    glist_isDirty                           (t_glist *g);
 int    glist_isLoading                         (t_glist *g);
 int    glist_isPasting                         (t_glist *g);
 

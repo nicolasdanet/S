@@ -61,6 +61,7 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (DialNeedle);
     DECLARE_STRING (DialText);
     DECLARE_STRING (Digits);
+    DECLARE_STRING (Dirty);
     DECLARE_STRING (Documentation);
     DECLARE_STRING (Duplicate);
     DECLARE_STRING (Editing);
