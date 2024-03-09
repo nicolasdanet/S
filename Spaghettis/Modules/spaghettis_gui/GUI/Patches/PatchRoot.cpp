@@ -108,7 +108,7 @@ void PatchRoot::close (bool saveFirst)
 
 void PatchRoot::openMainWindow()
 {
-    if (Spaghettis()->getPreferences().getCached<bool> (Tag::General, Tag::DefaultIsRunView)) {
+    if (Spaghettis()->getPreferences().get<bool> (Tag::General, Tag::DefaultIsRunView)) {
         openMainRunWindow();
     } else {
         openMainEditWindow();

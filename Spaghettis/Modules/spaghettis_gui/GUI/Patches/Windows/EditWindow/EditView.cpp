@@ -528,7 +528,7 @@ std::optional<core::Point::Real> getPositionNextSelectedObjects (Table<ObjectCom
 {
     std::optional<core::Point::Real> pt;
     
-    const int n = Spaghettis()->getPreferences().getCached<int> (Tag::Editing, Tag::GridSize);
+    const int n = Spaghettis()->getPreferences().get<int> (Tag::Editing, Tag::GridSize);
     
     auto f = [&pt, n](const auto& p)
     {

@@ -49,6 +49,11 @@ public:
         return data::Cached<T>::make (data_, group, key, false);
     }
 
+    template <class T> T get (const juce::String& group, const juce::String& key) const
+    {
+        return static_cast<T> (getCached<T> (group, key));
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

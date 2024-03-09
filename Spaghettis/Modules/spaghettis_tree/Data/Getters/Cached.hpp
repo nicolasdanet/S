@@ -69,7 +69,7 @@ public:
         value_.setValue (Cast::toVar<T> (v));
     }
     
-    operator T() const
+    explicit operator T() const
     {
         return get();
     }
