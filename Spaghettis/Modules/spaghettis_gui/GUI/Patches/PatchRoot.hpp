@@ -104,7 +104,6 @@ private:
 
 private:
     juce::ValueTree rootTree_;
-    bool dirty_;
 
 private:
     PatchPresets presets_;

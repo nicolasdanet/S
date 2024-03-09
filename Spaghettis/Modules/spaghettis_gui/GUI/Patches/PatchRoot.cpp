@@ -41,10 +41,7 @@ void releaseAllWindows (std::vector<std::unique_ptr<PatchWindow>>& v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PatchRoot::PatchRoot (const core::Report& v) :
-    rootTree_ (v.asValueTree()),
-    dirty_ (false),
-    presets_ (getFile())
+PatchRoot::PatchRoot (const core::Report& v) : rootTree_ (v.asValueTree()), presets_ (getFile())
 {
     presets_.load();
     
@@ -66,7 +63,7 @@ PatchRoot::~PatchRoot()
 
 bool PatchRoot::isDirty() const
 {
-    return dirty_;
+    return false;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -213,7 +210,7 @@ RunWindow* PatchRoot::fetchRunWindow() const
 
 void PatchRoot::setDirtyFlagIfRequired() const
 {
-    for (const auto& p : windows_) { p->setDirtyFlag (dirty_); }
+    for (const auto& p : windows_) { p->setDirtyFlag (isDirty()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

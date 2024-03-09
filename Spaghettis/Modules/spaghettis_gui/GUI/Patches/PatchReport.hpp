@@ -23,7 +23,6 @@ namespace spaghettis {
     bool contains (const core::UniquePath&); \
     \
     void setOrder (const core::UniquePath&, const std::vector<core::UniqueId>&); \
-    void setDirty (const core::UniquePath&, bool); \
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -95,14 +95,6 @@ Perform Outputs::patchOrder (core::UniquePath unique, std::vector<core::UniqueId
     };
 }
 
-Perform Outputs::patchDirty (core::UniquePath unique, bool isDirty)
-{
-    return [u = std::move (unique), b = isDirty]()
-    {
-        Spaghettis()->getPatches().setDirty (u, b);
-    };
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -148,11 +148,6 @@ void PatchRoot::setOrder (const core::UniquePath& u, const std::vector<core::Uni
     }
 }
 
-void PatchRoot::setDirty (const core::UniquePath& u, bool isDirty)
-{
-    dirty_ = isDirty; setDirtyFlagIfRequired();
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

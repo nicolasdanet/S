@@ -161,11 +161,6 @@ void PatchesHolder::setOrder (const core::UniquePath& u, const std::vector<core:
     perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->setOrder (u, v); });
 }
 
-void PatchesHolder::setDirty (const core::UniquePath& u, bool isDirty)
-{
-    perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->setDirty (u, isDirty); });
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

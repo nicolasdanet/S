@@ -126,7 +126,7 @@ void glist_setDirty (t_glist *glist, int n)
     
     #if defined ( PD_BUILDING_APPLICATION )
     
-    outputs_patchDirty (y, isDirty);
+    // outputs_patchDirty (y, isDirty);
     
     #endif
     //
