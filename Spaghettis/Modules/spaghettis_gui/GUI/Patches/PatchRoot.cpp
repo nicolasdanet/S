@@ -41,7 +41,11 @@ void releaseAllWindows (std::vector<std::unique_ptr<PatchWindow>>& v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PatchRoot::PatchRoot (const core::Report& v) : rootTree_ (v.asValueTree()), presets_ (getFile())
+PatchRoot::PatchRoot (const core::Report& v) :
+    rootTree_ (v.asValueTree()),
+    dirty_ (core::Patch (rootTree_).getCached<bool> (Tag::Attributes, Tag::Dirty)),
+    path_ (core::Patch (rootTree_).getCached<juce::String> (Tag::Attributes, Tag::Path)),
+    presets_ (getFile())
 {
     presets_.load();
     
@@ -63,7 +67,7 @@ PatchRoot::~PatchRoot()
 
 bool PatchRoot::isDirty() const
 {
-    return false;
+    return dirty_.get();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -77,7 +81,7 @@ core::UniqueId PatchRoot::getIdentifier() const
 
 juce::File PatchRoot::getFile() const
 {
-    return juce::File (core::Patch (rootTree_).get<juce::String> (Tag::Attributes, Tag::Path));
+    return juce::File (path_.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -106,6 +106,10 @@ private:
     juce::ValueTree rootTree_;
 
 private:
+    data::Cached<bool> dirty_;
+    data::Cached<juce::String> path_;
+
+private:
     PatchPresets presets_;
     
 private:
