@@ -47,6 +47,8 @@ PatchRoot::PatchRoot (const core::Report& v) :
     path_ (core::Patch (rootTree_).getCached<juce::String> (Tag::Attributes, Tag::Path)),
     presets_ (getFile())
 {
+    dirty_.attach ([this]() { setDirtyFlagIfRequired(); });
+    
     presets_.load();
     
     openMainWindow();
