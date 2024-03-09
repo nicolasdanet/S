@@ -107,6 +107,26 @@ void PatchRoot::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PatchRoot::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
+{
+    juce::ValueTree parent (getParent (rootTree_, u));
+    
+    if (u.isRoot()) { core::Patch (parent).sortObjects (v); }
+    else {
+    //
+    juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
+    
+    if (child.isValid()) {
+        core::Patch (child).sortObjects (v);
+    }
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 bool PatchRoot::locate (const core::UniquePath& u)
 {
     if (contains (u)) {
@@ -126,26 +146,6 @@ bool PatchRoot::locate (const core::UniquePath& u)
 bool PatchRoot::contains (const core::UniquePath& u)
 {
     jassert (!u.isRoot()); return hasChild (rootTree_, u);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void PatchRoot::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
-{
-    juce::ValueTree parent (getParent (rootTree_, u));
-    
-    if (u.isRoot()) { core::Patch (parent).sortObjects (v); }
-    else {
-    //
-    juce::ValueTree child (Tree::getChild (parent, u.getIdentifier()));
-    
-    if (child.isValid()) {
-        core::Patch (child).sortObjects (v);
-    }
-    //
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

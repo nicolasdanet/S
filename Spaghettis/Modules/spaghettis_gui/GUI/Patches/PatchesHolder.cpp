@@ -126,6 +126,15 @@ void PatchesHolder::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PatchesHolder::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
+{
+    perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->setOrder (u, v); });
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 bool PatchesHolder::locate (const core::UniquePath& u)
 {
     bool done = false;
@@ -150,15 +159,6 @@ bool PatchesHolder::contains (const core::UniquePath& u)
     }
     
     return false;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void PatchesHolder::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
-{
-    perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->setOrder (u, v); });
 }
 
 // -----------------------------------------------------------------------------------------------------------
