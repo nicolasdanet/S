@@ -19,7 +19,12 @@ namespace {
 
 juce::File getPresetFile (const juce::File& file)
 {
-    return file;
+    return file.withFileExtension ("xml");
+}
+
+bool isFileIsValid (const juce::File& file)
+{
+    return false;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -42,12 +47,22 @@ PatchPresets::PatchPresets (const juce::File& file) : file_ (getPresetFile (file
 
 void PatchPresets::load()
 {
-
+    if (!file_.existsAsFile() || !isFileIsValid (file_)) { return; }
+    else {
+    //
+    
+    //
+    }
 }
 
 void PatchPresets::save()
 {
-
+    if (file_.existsAsFile() && !isFileIsValid (file_))  { return; }
+    else {
+    //
+    
+    //
+    }
 }
     
 // -----------------------------------------------------------------------------------------------------------
