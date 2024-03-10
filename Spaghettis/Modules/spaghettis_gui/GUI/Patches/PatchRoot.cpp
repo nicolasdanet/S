@@ -45,11 +45,9 @@ PatchRoot::PatchRoot (const core::Report& v) :
     rootTree_ (v.asValueTree()),
     dirty_ (core::Patch (rootTree_).getCached<bool> (Tag::Attributes, Tag::Dirty)),
     path_ (core::Patch (rootTree_).getCached<juce::String> (Tag::Attributes, Tag::Path)),
-    presets_()
+    presets_ (getFile())
 {
     dirty_.attach ([this]() { setDirtyFlagIfRequired(); });
-    
-    presets_.load (getFile());
     
     openMainWindow();
 }
@@ -92,7 +90,7 @@ juce::File PatchRoot::getFile() const
 
 void PatchRoot::save()
 {
-    presets_.save (getFile());
+    presets_.save();
     
     Spaghettis()->handle (Inputs::savePatch (getIdentifier()));
 }

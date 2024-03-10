@@ -24,22 +24,6 @@ juce::File getPresetFile (const juce::File& file)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool isFileIsValid (const juce::File& file)
-{
-    return false;
-}
-
-bool hasPresetFile (const juce::File& file)
-{
-    if (file.existsAsFile() && isFileIsValid (file)) { return true; }
-    
-    return false;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 }
 
@@ -47,22 +31,18 @@ bool hasPresetFile (const juce::File& file)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchPresets::load (const juce::File& file)
+PatchPresets::PatchPresets (const juce::File& file)
 {
-    const juce::File f (getPresetFile (file));
-    
-    DBG (f.getFullPathName());
-    
-    if (hasPresetFile (f)) {
-    
-    }
+    DBG (getPresetFile (file).getFullPathName());
 }
 
-void PatchPresets::save (const juce::File& file)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PatchPresets::save()
 {
-    const juce::File f (getPresetFile (file));
-    
-    // TemporaryFile
+
 }
     
 // -----------------------------------------------------------------------------------------------------------
