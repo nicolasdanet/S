@@ -22,8 +22,19 @@ juce::File getPresetFile (const juce::File& file)
     return file.withFileExtension ("xml");
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 bool isFileIsValid (const juce::File& file)
 {
+    return false;
+}
+
+bool hasPresetFile (const juce::File& file)
+{
+    if (file.existsAsFile() && isFileIsValid (file)) { return true; }
+    
     return false;
 }
 
@@ -36,33 +47,22 @@ bool isFileIsValid (const juce::File& file)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PatchPresets::PatchPresets (const juce::File& file) : file_ (getPresetFile (file))
+void PatchPresets::load (const juce::File& file)
 {
-    DBG (file_.getFullPathName());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void PatchPresets::load()
-{
-    if (!file_.existsAsFile() || !isFileIsValid (file_)) { return; }
-    else {
-    //
+    const juce::File f (getPresetFile (file));
     
-    //
+    DBG (f.getFullPathName());
+    
+    if (hasPresetFile (f)) {
+    
     }
 }
 
-void PatchPresets::save()
+void PatchPresets::save (const juce::File& file)
 {
-    if (file_.existsAsFile() && !isFileIsValid (file_))  { return; }
-    else {
-    //
+    const juce::File f (getPresetFile (file));
     
-    //
-    }
+    // TemporaryFile
 }
     
 // -----------------------------------------------------------------------------------------------------------
