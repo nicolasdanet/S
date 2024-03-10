@@ -22,6 +22,15 @@ juce::File getPresetFile (const juce::File& file)
     return file.withFileExtension ("xml");
 }
 
+juce::PropertiesFile::Options getPresetOptions()
+{
+    juce::PropertiesFile::Options options;
+    
+    options.millisecondsBeforeSaving = -1;
+    
+    return options;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -31,9 +40,9 @@ juce::File getPresetFile (const juce::File& file)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PatchPresets::PatchPresets (const juce::File& file)
+PatchPresets::PatchPresets (const juce::File& file) : file_ (getPresetFile (file), getPresetOptions())
 {
-    DBG (getPresetFile (file).getFullPathName());
+    if (file_.isValidFile()) { DBG (file_.getFile().getFullPathName()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -42,7 +51,13 @@ PatchPresets::PatchPresets (const juce::File& file)
 
 void PatchPresets::save()
 {
-
+    if (file_.isValidFile()) {
+    //
+    DBG (juce::String (file_.needsToBeSaved() ? "TRUE" : "FALSE"));
+    
+    file_.saveIfNeeded();
+    //
+    }
 }
     
 // -----------------------------------------------------------------------------------------------------------
