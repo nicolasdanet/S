@@ -57,10 +57,12 @@ public:
         const juce::File file = home.getChildFile (".config/spaghettis");
         #endif
         
+        const juce::PropertiesFile::Options options;
+        
         const juce::File properties  = file.getChildFile ("properties.xml");
         const juce::File preferences = file.getChildFile ("preferences.xml");
         
-        propertiesFile_ = std::make_unique<juce::PropertiesFile> (properties, juce::PropertiesFile::Options());
+        propertiesFile_ = std::make_unique<juce::PropertiesFile> (properties, options);
         preferences_    = std::make_unique<Preferences> (preferences);
         
         loadRecentFiles();  /* MUST be at end. */
