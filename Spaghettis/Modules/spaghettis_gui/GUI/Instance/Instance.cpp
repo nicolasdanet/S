@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void SpaghettisInstance::start (const juce::StringArray& commandLine)
 {
-    consoleWindow_ = std::make_unique<ConsoleWindow> (*commandManager_, propertiesFile_.get());
+    consoleWindow_ = std::make_unique<ConsoleWindow> (*commandManager_, settings_.get());
 
     #if ! ( SPAGHETTIS_MENUBAR )
         
@@ -135,7 +135,7 @@ template <class T> void createOrOpenWindow (std::unique_ptr<T>& p,
 
 void SpaghettisInstance::openPreferencesWindow()
 {
-    createOrOpenWindow (preferencesWindow_, *commandManager_, propertiesFile_.get());
+    createOrOpenWindow (preferencesWindow_, *commandManager_, settings_.get());
 }
 
 void SpaghettisInstance::closePreferencesWindow()
@@ -145,7 +145,7 @@ void SpaghettisInstance::closePreferencesWindow()
 
 void SpaghettisInstance::openDevicesWindow()
 {
-    createOrOpenWindow (devicesWindow_, *commandManager_, propertiesFile_.get());
+    createOrOpenWindow (devicesWindow_, *commandManager_, settings_.get());
 }
 
 void SpaghettisInstance::closeDevicesWindow()
@@ -155,7 +155,7 @@ void SpaghettisInstance::closeDevicesWindow()
 
 void SpaghettisInstance::openSearchPathsWindow()
 {
-    createOrOpenWindow (searchPathsWindow_, *commandManager_, propertiesFile_.get());
+    createOrOpenWindow (searchPathsWindow_, *commandManager_, settings_.get());
 }
 
 void SpaghettisInstance::closeSearchPathsWindow()
@@ -177,7 +177,7 @@ juce::StringArray SpaghettisInstance::getSearchPaths()
 {
     juce::StringArray searchPaths;
     
-    const std::unique_ptr<juce::XmlElement> root (propertiesFile_->getXmlValue ("SearchPaths"));
+    const std::unique_ptr<juce::XmlElement> root (settings_->getXmlValue ("SearchPaths"));
         
     if (root && root->hasTagName (Id::SEARCHPATHS)) {
     //
@@ -201,7 +201,7 @@ void SpaghettisInstance::setSearchPaths (const juce::StringArray& searchpaths)
         e->setAttribute (Id::path, p);
     }
         
-    propertiesFile_->setValue ("SearchPaths", root.get());
+    settings_->setValue ("SearchPaths", root.get());
     
     updateSearchPaths (searchpaths, Inputs::Logged::base);
 }
@@ -301,7 +301,7 @@ void SpaghettisInstance::openRecentFile (int n)
 
 void SpaghettisInstance::loadRecentFiles()
 {
-    const std::unique_ptr<juce::XmlElement> root (propertiesFile_->getXmlValue ("RecentFiles"));
+    const std::unique_ptr<juce::XmlElement> root (settings_->getXmlValue ("RecentFiles"));
         
     if (root && root->hasTagName (Id::RECENTFILES)) {
     //
@@ -327,7 +327,7 @@ void SpaghettisInstance::saveRecentFiles()
         e->setAttribute (Id::path, f);
     }
         
-    propertiesFile_->setValue ("RecentFiles", root.get());
+    settings_->setValue ("RecentFiles", root.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
