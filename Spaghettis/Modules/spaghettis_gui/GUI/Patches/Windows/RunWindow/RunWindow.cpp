@@ -25,9 +25,7 @@ RunWindow::RunWindow (const PatchBase& base) : PatchWindow (base)
 
 void RunWindow::hasBeenMovedOrResized()
 {
-    if (isFullyInitialized()) {
-        
-    }
+    if (isFullyInitialized()) { getPatchRoot().getPresets().setRunWindow (getBounds()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

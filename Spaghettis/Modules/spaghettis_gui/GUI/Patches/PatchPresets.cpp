@@ -40,10 +40,50 @@ juce::PropertiesFile::Options getPresetOptions()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PatchPresets::PatchPresets (const juce::File& file) : file_ (getPresetFile (file), getPresetOptions())
+PatchPresets::PatchPresets (const juce::File& file) : presets_ (getPresetFile (file), getPresetOptions())
 {
-    if (file_.isValidFile()) { DBG (file_.getFile().getFullPathName()); }
 }
+
+PatchPresets::~PatchPresets()
+{
+    presets_.setNeedsToBeSaved (false);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+namespace PresetsConstants
+{
+    constexpr static const char* const PositionTag = "RunWindowPosition";
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PatchPresets::setRunWindow (const juce::Rectangle<int>& bounds)
+{
+    if (presets_.isValidFile()) {
+    //
+    auto e = std::make_unique<juce::XmlElement> (Id::POSITION);
+    
+    e->setAttribute (Id::value, bounds.toString());
+    
+    presets_.setValue (PresetsConstants::PositionTag, e.get());
+    //
+    }
+}
+
+/*
+const std::unique_ptr<juce::XmlElement> e (propertiesFile_->getXmlValue (keyName_ + "Position"));
+    
+    if (e && e->hasTagName (Id::POSITION) && e->hasAttribute (Id::value)) {
+        const juce::String s = e->getStringAttribute (Id::value);
+        if (s.isNotEmpty()) {
+            restoreWindowStateFromString (s);
+        }
+    }
+*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -51,15 +91,9 @@ PatchPresets::PatchPresets (const juce::File& file) : file_ (getPresetFile (file
 
 void PatchPresets::save()
 {
-    if (file_.isValidFile()) {
-    //
-    DBG (juce::String (file_.needsToBeSaved() ? "TRUE" : "FALSE"));
-    
-    file_.saveIfNeeded();
-    //
-    }
+    if (presets_.isValidFile()) { presets_.saveIfNeeded(); }
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
