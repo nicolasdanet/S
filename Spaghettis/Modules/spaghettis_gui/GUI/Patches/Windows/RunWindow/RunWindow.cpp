@@ -15,8 +15,11 @@ namespace spaghettis {
 RunWindow::RunWindow (const PatchBase& base) : PatchWindow (base)
 {
     setContentOwned (new RunComponent (base), true);
-        
-    makeVisible (getPatch().get<juce::Rectangle<int>> (Tag::Attributes, Tag::EditView), false);
+    
+    auto t = getPatchRoot().getPresets().getRunWindow();
+    auto r = t.value_or (getPatch().get<juce::Rectangle<int>> (Tag::Attributes, Tag::EditView));
+    
+    makeVisible (r, false);
 }
 
 // -----------------------------------------------------------------------------------------------------------

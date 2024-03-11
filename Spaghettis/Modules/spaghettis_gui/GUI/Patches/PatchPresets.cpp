@@ -42,11 +42,21 @@ juce::PropertiesFile::Options getPresetOptions()
 
 PatchPresets::PatchPresets (const juce::File& file) : presets_ (getPresetFile (file), getPresetOptions())
 {
+    if (isValid() == false) { }
 }
 
 PatchPresets::~PatchPresets()
 {
-    presets_.setNeedsToBeSaved (false);
+    if (isValid()) { presets_.setNeedsToBeSaved (false); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool PatchPresets::isValid() const
+{
+    return presets_.isValidFile();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -61,9 +71,27 @@ namespace PresetsConstants
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+std::optional<juce::Rectangle<int>> PatchPresets::getRunWindow() const
+{
+    if (isValid()) {
+    //
+    const std::unique_ptr<juce::XmlElement> e (presets_.getXmlValue (PresetsConstants::PositionTag));
+    
+    if (e && e->hasTagName (Id::POSITION) && e->hasAttribute (Id::value)) {
+        const juce::String s = e->getStringAttribute (Id::value);
+        if (s.isNotEmpty()) {
+            return juce::Rectangle<int>::fromString (s);
+        }
+    }
+    //
+    }
+    
+    return std::nullopt;
+}
+
 void PatchPresets::setRunWindow (const juce::Rectangle<int>& bounds)
 {
-    if (presets_.isValidFile()) {
+    if (isValid()) {
     //
     auto e = std::make_unique<juce::XmlElement> (Id::POSITION);
     
@@ -74,24 +102,13 @@ void PatchPresets::setRunWindow (const juce::Rectangle<int>& bounds)
     }
 }
 
-/*
-const std::unique_ptr<juce::XmlElement> e (propertiesFile_->getXmlValue (keyName_ + "Position"));
-    
-    if (e && e->hasTagName (Id::POSITION) && e->hasAttribute (Id::value)) {
-        const juce::String s = e->getStringAttribute (Id::value);
-        if (s.isNotEmpty()) {
-            restoreWindowStateFromString (s);
-        }
-    }
-*/
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void PatchPresets::save()
 {
-    if (presets_.isValidFile()) { presets_.saveIfNeeded(); }
+    if (isValid()) { presets_.saveIfNeeded(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
