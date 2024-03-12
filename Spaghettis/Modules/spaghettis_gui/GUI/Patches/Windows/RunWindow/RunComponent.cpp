@@ -35,8 +35,7 @@ RunComponent::RunComponent (const PatchBase& base) :
     RunFactoryHelper (this),
     BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager()),
     runView_ (base),
-    runPresets_ (0),
-    hasPresets_ (false)
+    runPresets_ (false, 0)
 {
     CommandsHandler::addCloseWindowCommand (this);
     
@@ -48,7 +47,7 @@ RunComponent::RunComponent (const PatchBase& base) :
         
     addMenuCommand (MenuCommand (Commands::inspector)
         .setInvoke ([this] (const auto&) { togglePresets(); })
-        .setName   ([this]() { return getPresetsMenuText (hasPresets_); }));
+        .setName   ([this]() { return getPresetsMenuText (runPresets_.isActive()); }));
     
     addMenuCommand (MenuCommand (Commands::newRunView)
         .setInvoke ([this] (const auto&) { runView_.getPatchRoot().openMainRunWindow(); }));
@@ -56,7 +55,7 @@ RunComponent::RunComponent (const PatchBase& base) :
     addMenuCommand (MenuCommand (Commands::newEditView)
         .setInvoke ([this] (const auto&) { runView_.getPatchRoot().openMainEditWindow(); }));
     
-    setButtonState (Icons::presets, hasPresets_);
+    setButtonState (Icons::presets, runPresets_.isActive());
     
     setOpaque (true); setSize (600, 300);
 }
@@ -90,12 +89,12 @@ void RunComponent::resized()
 
 void RunComponent::showPresets()
 {
-    hasPresets_ = true;  updateLayout(); Spaghettis()->updateMenuBar();
+    runPresets_.setActive (true);  updateLayout(); Spaghettis()->updateMenuBar();
 }
 
 void RunComponent::hidePresets()
 {
-    hasPresets_ = false; updateLayout(); Spaghettis()->updateMenuBar();
+    runPresets_.setActive (false); updateLayout(); Spaghettis()->updateMenuBar();
 }
 
 void RunComponent::togglePresets()
@@ -120,7 +119,7 @@ void RunComponent::updateLayout()
 {
     juce::Rectangle<int> bounds (setBoundsForBarsAndGetRemaining());
     
-    if (hasPresets_) {
+    if (runPresets_.isActive()) {
     //
     const int w = bounds.getWidth() - runPresets_.getWidth();
     
@@ -128,7 +127,7 @@ void RunComponent::updateLayout()
     //
     }
     
-    runPresets_.setVisible (hasPresets_);
+    runPresets_.setVisible (runPresets_.isActive());
     
     runView_.setBounds (bounds);
 }
