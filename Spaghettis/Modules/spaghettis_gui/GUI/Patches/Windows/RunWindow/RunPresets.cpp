@@ -12,7 +12,10 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-RunPresets::RunPresets (bool isActive, int w) : active_ (isActive), resizer_ (*this)
+RunPresets::RunPresets (RunView& view, bool isActive, int w) :
+    view_ (view),
+    active_ (isActive),
+    resizer_ (*this)
 {
     setDefaultWidth (w ? w : resizer_.getDefaultWidth());
     

@@ -35,7 +35,7 @@ RunComponent::RunComponent (const PatchBase& base) :
     RunFactoryHelper (this),
     BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager()),
     runView_ (base),
-    runPresets_ (false, 0)
+    runPresets_ (runView_, false, 0)
 {
     CommandsHandler::addCloseWindowCommand (this);
     

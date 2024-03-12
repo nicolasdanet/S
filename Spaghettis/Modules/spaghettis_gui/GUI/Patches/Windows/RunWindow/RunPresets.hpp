@@ -19,7 +19,7 @@ class RunPresets : public juce::Component {
 // MARK: -
 
 public:
-    explicit RunPresets (bool, int);
+    explicit RunPresets (RunView&, bool, int);
     
     ~RunPresets() = default;
 
@@ -53,6 +53,7 @@ private:
     void notify();
     
 private:
+    RunView& view_;
     bool active_;
     Resizer resizer_;
 
