@@ -36,9 +36,13 @@ private:
 
 public:
     std::optional<juce::Rectangle<int>> getRunWindow() const;
+    std::optional<bool> getTabState() const;
+    std::optional<int> getTabWidth() const;
 
 public:
     void setRunWindow (const juce::Rectangle<int>&);
+    void setTabState (bool);
+    void setTabWidth (int);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

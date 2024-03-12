@@ -65,6 +65,8 @@ bool PatchPresets::isValid() const
 namespace PresetsConstants
 {
     constexpr static const char* const PositionTag = "RunWindowPosition";
+    constexpr static const char* const StateTag    = "TabState";
+    constexpr static const char* const WidthTag    = "TabWidth";
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -89,6 +91,32 @@ std::optional<juce::Rectangle<int>> PatchPresets::getRunWindow() const
     return std::nullopt;
 }
 
+std::optional<bool> PatchPresets::getTabState() const
+{
+    if (isValid() && presets_.containsKey (PresetsConstants::StateTag)) {
+    //
+    return presets_.getBoolValue (PresetsConstants::StateTag);
+    //
+    }
+    
+    return std::nullopt;
+}
+
+std::optional<int> PatchPresets::getTabWidth() const
+{
+    if (isValid() && presets_.containsKey (PresetsConstants::WidthTag)) {
+    //
+    return presets_.getIntValue (PresetsConstants::WidthTag);
+    //
+    }
+    
+    return std::nullopt;
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void PatchPresets::setRunWindow (const juce::Rectangle<int>& bounds)
 {
     if (isValid()) {
@@ -102,6 +130,16 @@ void PatchPresets::setRunWindow (const juce::Rectangle<int>& bounds)
     }
 }
 
+void PatchPresets::setTabState (bool)
+{
+
+}
+
+void PatchPresets::setTabWidth (int)
+{
+
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
