@@ -12,9 +12,20 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-RunPresets::RunPresets() : resizer_ (*this)
+RunPresets::RunPresets (int w) : resizer_ (*this)
 {
-    setOpaque (true); setSize (resizer_.getDefaultWidth(), getHeight());
+    setDefaultWidth (w ? w : resizer_.getDefaultWidth());
+    
+    setOpaque (true);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunPresets::setDefaultWidth (int w)
+{
+    if (w >= resizer_.getMinimumWidth()) { setSize (w, getHeight()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

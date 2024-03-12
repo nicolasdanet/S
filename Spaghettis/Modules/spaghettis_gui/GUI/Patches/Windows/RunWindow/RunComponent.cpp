@@ -35,6 +35,7 @@ RunComponent::RunComponent (const PatchBase& base) :
     RunFactoryHelper (this),
     BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), Spaghettis()->getCommandManager()),
     runView_ (base),
+    runPresets_ (0),
     hasPresets_ (false)
 {
     CommandsHandler::addCloseWindowCommand (this);
@@ -54,7 +55,9 @@ RunComponent::RunComponent (const PatchBase& base) :
     
     addMenuCommand (MenuCommand (Commands::newEditView)
         .setInvoke ([this] (const auto&) { runView_.getPatchRoot().openMainEditWindow(); }));
-        
+    
+    setButtonState (Icons::presets, hasPresets_);
+    
     setOpaque (true); setSize (600, 300);
 }
 
