@@ -19,7 +19,7 @@ class EditPort : public juce::Component {
 // MARK: -
 
 public:
-    explicit EditPort (EditView&, core::Point::Real, int);
+    explicit EditPort (EditView&);
     
     ~EditPort();
 

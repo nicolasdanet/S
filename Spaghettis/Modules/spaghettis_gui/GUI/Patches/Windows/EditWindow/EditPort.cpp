@@ -12,12 +12,36 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditPort::EditPort (EditView& view, core::Point::Real pt, int zoom) :
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+core::Point::Real getEditPortOffset (EditView& view)
+{
+    const int x = view.getPatch().get<int> (Tag::Attributes, Tag::OffsetX);
+    const int y = view.getPatch().get<int> (Tag::Attributes, Tag::OffsetY);
+    
+    return core::Point::Real (x, y);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+EditPort::EditPort (EditView& view) :
     view_ (view),
-    offset_ (pt),
+    offset_ (getEditPortOffset (view_)),
     zoom_ (100),
     v_ (zoom_)
 {
+    const int zoom = view_.getPatch().get<int> (Tag::Attributes, Tag::Zoom);
+    
     view_.setPort (this);
     
     setZoom (zoom); update();
