@@ -130,14 +130,14 @@ void PatchPresets::setRunWindow (const juce::Rectangle<int>& bounds)
     }
 }
 
-void PatchPresets::setTabState (bool)
+void PatchPresets::setTabState (bool isActive)
 {
 
 }
 
-void PatchPresets::setTabWidth (int)
+void PatchPresets::setTabWidth (int w)
 {
-
+    DBG (w);
 }
     
 // -----------------------------------------------------------------------------------------------------------

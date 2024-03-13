@@ -69,7 +69,8 @@ void RunPresets::resized()
 
 void RunPresets::notify()
 {
-    DBG ("?");
+    view_.getPatchRoot().getPresets().setTabState (isActive());
+    view_.getPatchRoot().getPresets().setTabWidth (getWidth());
 }
 
 // -----------------------------------------------------------------------------------------------------------
