@@ -11,12 +11,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-RunPresets::RunPresets (RunView& view, bool isActive, int w) :
+    
+RunPresets::RunPresets (RunView& view) :
     view_ (view),
-    active_ (isActive),
+    active_ (view_.getPatchRoot().getPresets().getTabState().value_or (false)),
     resizer_ (*this)
 {
+    const int w = view_.getPatchRoot().getPresets().getTabWidth().value_or (0);
+    
     setDefaultWidth (w ? w : resizer_.getDefaultWidth());
     
     setOpaque (true);

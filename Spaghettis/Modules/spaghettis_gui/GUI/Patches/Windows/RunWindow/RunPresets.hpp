@@ -19,7 +19,7 @@ class RunPresets : public juce::Component {
 // MARK: -
 
 public:
-    explicit RunPresets (RunView&, bool, int);
+    explicit RunPresets (RunView&);
     
     ~RunPresets() = default;
 
