@@ -12,11 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-EditInspector::EditInspector (EditView& view, bool isActive, int w) :
+EditInspector::EditInspector (EditView& view) :
     view_ (view),
-    active_ (isActive),
+    active_ (view_.getPatch().get<bool> (Tag::Attributes, Tag::Inspector)),
     resizer_ (*this)
 {
+    const int w = view_.getPatch().get<int> (Tag::Attributes, Tag::InspectorWidth);
+    
     view_.attach (this);    /* Must be the first. */
     
     setDefaultWidth (w ? w : resizer_.getDefaultWidth());

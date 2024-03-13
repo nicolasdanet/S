@@ -45,9 +45,7 @@ EditComponent::EditComponent (const PatchBase& base) :
                                        base.getPatch().get<int> (Tag::Attributes, Tag::OffsetY)),
                     base.getPatch().get<int> (Tag::Attributes, Tag::Zoom)),
     editZoom_ (editPort_.getZoomAsValue()),
-    editInspector_ (editView_,
-                        editView_.getPatch().get<bool> (Tag::Attributes, Tag::Inspector),
-                        editView_.getPatch().get<int> (Tag::Attributes, Tag::InspectorWidth))
+    editInspector_ (editView_)
 {
     CommandsHandler::addCloseWindowCommand (this);
     

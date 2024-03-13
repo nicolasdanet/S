@@ -20,7 +20,7 @@ class EditInspector :   private juce::AsyncUpdater,
 // MARK: -
 
 public:
-    explicit EditInspector (EditView&, bool, int);
+    explicit EditInspector (EditView&);
     
     ~EditInspector();
 
