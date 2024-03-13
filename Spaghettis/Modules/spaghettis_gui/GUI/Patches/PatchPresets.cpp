@@ -59,6 +59,11 @@ bool PatchPresets::isValid() const
     return presets_.isValidFile();
 }
 
+bool PatchPresets::isValid (juce::StringRef keyName) const
+{
+    return isValid() && presets_.containsKey (keyName);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -75,7 +80,7 @@ namespace PresetsConstants
 
 std::optional<juce::Rectangle<int>> PatchPresets::getRunWindow() const
 {
-    if (isValid()) {
+    if (isValid (PresetsConstants::PositionTag)) {
     //
     const std::unique_ptr<juce::XmlElement> e (presets_.getXmlValue (PresetsConstants::PositionTag));
     
@@ -93,22 +98,14 @@ std::optional<juce::Rectangle<int>> PatchPresets::getRunWindow() const
 
 std::optional<bool> PatchPresets::getTabState() const
 {
-    if (isValid() && presets_.containsKey (PresetsConstants::StateTag)) {
-    //
-    return presets_.getBoolValue (PresetsConstants::StateTag);
-    //
-    }
+    if (isValid (PresetsConstants::StateTag)) { return presets_.getBoolValue (PresetsConstants::StateTag); }
     
     return std::nullopt;
 }
 
 std::optional<int> PatchPresets::getTabWidth() const
 {
-    if (isValid() && presets_.containsKey (PresetsConstants::WidthTag)) {
-    //
-    return presets_.getIntValue (PresetsConstants::WidthTag);
-    //
-    }
+    if (isValid (PresetsConstants::WidthTag)) { return presets_.getIntValue (PresetsConstants::WidthTag); }
     
     return std::nullopt;
 }
@@ -132,20 +129,12 @@ void PatchPresets::setRunWindow (const juce::Rectangle<int>& bounds)
 
 void PatchPresets::setTabState (bool isActive)
 {
-    if (isValid()) {
-    //
-    return presets_.setValue (PresetsConstants::StateTag, isActive);
-    //
-    }
+    if (isValid()) { return presets_.setValue (PresetsConstants::StateTag, isActive); }
 }
 
 void PatchPresets::setTabWidth (int w)
 {
-    if (isValid()) {
-    //
-    return presets_.setValue (PresetsConstants::WidthTag, w);
-    //
-    }
+    if (isValid()) { return presets_.setValue (PresetsConstants::WidthTag, w); }
 }
     
 // -----------------------------------------------------------------------------------------------------------
