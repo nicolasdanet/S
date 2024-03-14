@@ -42,6 +42,7 @@ public:
     bool isLocked() const;
     bool isPatch() const;
     bool isAbstraction() const;
+    bool isGraphic() const;
     bool isSelected() const;
     bool isIncluded() const;
 

@@ -72,6 +72,11 @@ bool ObjectComponent::isAbstraction() const
     return object_.isAbstraction();
 }
 
+bool ObjectComponent::isGraphic() const
+{
+    return object_.isGraphic();
+}
+
 bool ObjectComponent::isSelected() const
 {
     return selected_.get();

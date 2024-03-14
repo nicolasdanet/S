@@ -238,7 +238,7 @@ t_error unique_objectParameter (t_id u, const data::Group& group)
     
     if (class_hasParametersFunction (c)) {
     //
-    if (class_canBeIncluded (c)) { unique_objectSetIncluded (object, glist, group); }
+    unique_objectSetIncluded (object, glist, group);
     
     (*class_getParametersSetter (c)) (object, group);
     

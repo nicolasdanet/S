@@ -297,7 +297,7 @@ void setObjectParameters (data::Data& data, t_object* o, const Tags& t)
     
     (*class_getParametersGetter (c)) (o, group, t);
     
-    if (class_canBeIncluded (c)) { setObjectParametersIncluded (group, o, t); }
+    setObjectParametersIncluded (group, o, t);
     
     const bool isAbstraction = glist_isAbstractionOrInside (object_getOwner (o));
     
