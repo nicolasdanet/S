@@ -33,7 +33,9 @@ enum Contextual {
     back,
     front,
     snap,
-    add
+    add,
+    include,
+    exclude
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -77,13 +79,20 @@ juce::PopupMenu getContextMenuForObject (ObjectComponent* c)
 {
     juce::PopupMenu m;
     
-    m.addItem (Contextual::help,  NEEDS_TRANS ("Help"));
+    m.addItem (Contextual::help,        NEEDS_TRANS ("Help"));
     m.addSeparator();
-    m.addItem (Contextual::open,  NEEDS_TRANS ("Open"),       c->isPatch());
+    m.addItem (Contextual::open,        NEEDS_TRANS ("Open"),       c->isPatch());
     m.addSeparator();
-    m.addItem (Contextual::back,  NEEDS_TRANS ("Move Back"),  !c->isLocked());
-    m.addItem (Contextual::front, NEEDS_TRANS ("Move Front"), !c->isLocked());
-    m.addItem (Contextual::snap,  NEEDS_TRANS ("Snap"),       !c->isLocked());
+    m.addItem (Contextual::back,        NEEDS_TRANS ("Move Back"),  !c->isLocked());
+    m.addItem (Contextual::front,       NEEDS_TRANS ("Move Front"), !c->isLocked());
+    m.addItem (Contextual::snap,        NEEDS_TRANS ("Snap"),       !c->isLocked());
+    m.addSeparator();
+    
+    if (c->isIncluded()) {
+        m.addItem (Contextual::exclude, NEEDS_TRANS ("Exclude"),    !c->isLocked() && c->isGraphic());
+    } else {
+        m.addItem (Contextual::include, NEEDS_TRANS ("Include"),    !c->isLocked() && c->isGraphic());
+    }
     
     return m;
 }
