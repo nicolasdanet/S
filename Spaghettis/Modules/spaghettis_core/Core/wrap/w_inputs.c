@@ -220,6 +220,20 @@ void inputs_positionObject (core::UniqueId u, Point::Real pt)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void inputs_includeObject (core::UniqueId u)
+{
+    unique_objectInclude (u);
+}
+
+void inputs_excludeObject (core::UniqueId u)
+{
+    unique_objectExclude (u);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void inputs_sendObjectBang (core::UniqueId u)
 {
     unique_objectBang (u);

@@ -646,12 +646,16 @@ void object_fetchAndCopySignalValuesIfRequired (t_object *x)
 
 int object_setIncludedUpdate (t_object *x, int n)
 {
+    if (class_hasParametersFunction (pd_class (x))) {
+    //
     if (object_isIncluded (x) != n) {
         object_setIncluded (x, n);
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectChanged (x, Tags::parameters (Tag::Included));
         #endif
         return 1;
+    }
+    //
     }
     
     return 0;

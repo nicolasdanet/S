@@ -82,6 +82,13 @@ static Perform positionObject (core::UniqueId, core::Point::Real);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static Perform includeObject (core::UniqueId);
+static Perform excludeObject (core::UniqueId);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static Perform sendObjectBang (core::UniqueId);
 static Perform sendObjectFloat (core::UniqueId, double);
 

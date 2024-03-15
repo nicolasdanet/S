@@ -194,6 +194,20 @@ Perform Inputs::positionObject (core::UniqueId u, core::Point::Real pt)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+Perform Inputs::includeObject (core::UniqueId u)
+{
+    return [u]() { core::inputs_includeObject (u); };
+}
+
+Perform Inputs::excludeObject (core::UniqueId u)
+{
+    return [u]() { core::inputs_excludeObject (u); };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 Perform Inputs::sendObjectBang (core::UniqueId u)
 {
     return [u]() { core::inputs_sendObjectBang (u); };

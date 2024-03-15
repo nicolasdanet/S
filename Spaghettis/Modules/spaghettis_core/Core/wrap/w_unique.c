@@ -210,19 +210,17 @@ t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *argv)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+static void unique_objectSetIncluded (t_object *object, t_glist *glist, int n)
+{
+    if (object_setIncludedUpdate (object, n)) { glist_setDirty (glist, 1); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 #if defined ( PD_BUILDING_APPLICATION )
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-static void unique_objectSetIncluded (t_object *object, t_glist *glist, const data::Group& group)
-{
-    int n = group.getParameter (Tag::Included).getValueTyped<bool>();
-        
-    if (object_setIncludedUpdate (object, n)) { glist_setDirty (glist, 1); }
-}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -238,7 +236,9 @@ t_error unique_objectParameter (t_id u, const data::Group& group)
     
     if (class_hasParametersFunction (c)) {
     //
-    unique_objectSetIncluded (object, glist, group);
+    int n = group.getParameter (Tag::Included).getValueTyped<bool>();
+    
+    unique_objectSetIncluded (object, glist, n);
     
     (*class_getParametersSetter (c)) (object, group);
     
@@ -264,6 +264,32 @@ t_error unique_objectHelp (t_id u)
 // -----------------------------------------------------------------------------------------------------------
 
 #endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+t_error unique_objectInclude (t_id u)
+{
+    t_object *object = instance_registerGetObject (u);
+    t_glist *glist   = instance_registerGetOwner (u);
+    
+    if (object && glist) { unique_objectSetIncluded (object, glist, 1); return PD_ERROR_NONE; }
+    else {
+        return PD_ERROR;
+    }
+}
+
+t_error unique_objectExclude (t_id u)
+{
+    t_object *object = instance_registerGetObject (u);
+    t_glist *glist   = instance_registerGetOwner (u);
+
+    if (object && glist) { unique_objectSetIncluded (object, glist, 0); return PD_ERROR_NONE; }
+    else {
+        return PD_ERROR;
+    }
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

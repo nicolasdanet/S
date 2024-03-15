@@ -198,7 +198,7 @@ void openPatch (const core::Object& o, PatchView* v)
 
 bool ObjectComponent::canResize (const juce::MouseEvent& e) const
 {
-    if (!isLocked() && object_.isGraphic() && painter_->getDimensions().has_value()) {
+    if (!isLocked() && isGraphic() && painter_->getDimensions().has_value()) {
     //
     /* Bottom-right quarter of object. */
     
@@ -333,6 +333,16 @@ void ObjectComponent::moveFront()
 void ObjectComponent::snap()
 {
     if (!isLocked()) { Broadcast::snap (object_.getIdentifier()); }
+}
+
+void ObjectComponent::include()
+{
+    if (!isLocked() && isGraphic()) { Broadcast::include (object_.getIdentifier()); }
+}
+
+void ObjectComponent::exclude()
+{
+    if (!isLocked() && isGraphic()) { Broadcast::exclude (object_.getIdentifier()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

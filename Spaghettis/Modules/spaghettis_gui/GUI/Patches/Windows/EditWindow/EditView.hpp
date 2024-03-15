@@ -145,10 +145,12 @@ public:
 // MARK: -
 
 public:
-    void moveBack (ObjectComponent* c = nullptr);
-    void moveFront (ObjectComponent* c = nullptr);
+    void include (ObjectComponent* c    = nullptr);
+    void exclude (ObjectComponent* c    = nullptr);
+    void moveBack (ObjectComponent* c   = nullptr);
+    void moveFront (ObjectComponent* c  = nullptr);
     void snapToGrid (ObjectComponent* c = nullptr);
-
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

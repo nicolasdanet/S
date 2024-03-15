@@ -69,6 +69,13 @@ void inputs_positionObject     (core::UniqueId, Point::Real pt);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void inputs_includeObject       (core::UniqueId);
+void inputs_excludeObject       (core::UniqueId);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void inputs_sendObjectBang     (core::UniqueId);
 void inputs_sendObjectFloat    (core::UniqueId, double);
 
