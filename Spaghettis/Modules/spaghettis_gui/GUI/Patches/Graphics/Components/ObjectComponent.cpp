@@ -31,6 +31,8 @@ ObjectComponent::ObjectComponent (PatchView* view, const core::Object& object) :
 {
     jassert (view);
     
+    label_.attach ([this]() { updateTooltip(); });
+    
     getView()->addChildComponent (this);
 
     update();
