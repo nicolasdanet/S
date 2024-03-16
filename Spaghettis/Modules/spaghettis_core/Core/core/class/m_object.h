@@ -177,6 +177,11 @@ static inline t_objecttype object_getType (t_object *x)
     return x->g_type;
 }
 
+static inline t_symbol *object_getLabel (t_object *x)
+{
+    return x->g_label ? x->g_label : &s_;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -209,6 +214,11 @@ static inline void object_setSelected (t_object *x, int n)
 static inline void object_setType (t_object *x, t_objecttype n)
 {
     x->g_type = n;
+}
+
+static inline void object_setLabel (t_object *x, t_symbol *s)
+{
+    x->g_label = s;
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -79,6 +79,7 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (Inlets);
     DECLARE_STRING (Inspector);
     DECLARE_STRING (InspectorWidth);
+    DECLARE_STRING (Label);
     DECLARE_STRING (Low);
     DECLARE_STRING (Line);
     DECLARE_STRING (LineSelected);
