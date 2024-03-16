@@ -117,6 +117,15 @@ void ObjectComponent::removeInletsAndOultets()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void ObjectComponent::updateTooltip()
+{
+    setTooltip (label_.get());
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ObjectComponent::update (bool notify)
 {
     const bool isRunView = isInsideRunView();
@@ -132,6 +141,8 @@ void ObjectComponent::update (bool notify)
     } else {
         getView()->hide (this);
     }
+    
+    updateTooltip();
     
     if (notify) { sendChangeMessage(); }
 }

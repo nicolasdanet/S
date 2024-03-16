@@ -19,6 +19,7 @@ class PinComponent;
 
 class ObjectComponent : public juce::Component,
                         public juce::ChangeBroadcaster,
+                        public juce::SettableTooltipClient,
                         public MouseHandler,
                         public Scalable {
 
@@ -120,6 +121,13 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    void updateTooltip();
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     void update (bool notify = true);
 
@@ -147,6 +155,7 @@ private:
     data::Cached<juce::String> inlets_;
     data::Cached<juce::String> outlets_;
     data::Cached<bool> included_;
+    data::Cached<juce::String> label_;
     std::unique_ptr<PainterStrategy> painter_;
     std::vector<std::unique_ptr<PinComponent>> iPins_;
     std::vector<std::unique_ptr<PinComponent>> oPins_;
