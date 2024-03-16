@@ -549,6 +549,7 @@ void object_serializeInclusion (t_object *x, t_buffer *b)
     //
     buffer_appendSymbol (b, sym___hash__X);
     buffer_appendSymbol (b, sym__include);
+    buffer_appendSymbol (b, object_getLabel (x));
     buffer_appendSemicolon (b);
     //
     }
@@ -652,6 +653,23 @@ int object_setIncludedUpdate (t_object *x, int n)
         object_setIncluded (x, n);
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectChanged (x, Tags::parameters (Tag::Included));
+        #endif
+        return 1;
+    }
+    //
+    }
+    
+    return 0;
+}
+
+int object_setLabelUpdate (t_object *x, t_symbol *s)
+{
+    if (class_hasParametersFunction (pd_class (x))) {
+    //
+    if (object_getLabel (x) != s) {
+        object_setLabel (x, s);
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (x, Tags::parameters (Tag::Label));
         #endif
         return 1;
     }

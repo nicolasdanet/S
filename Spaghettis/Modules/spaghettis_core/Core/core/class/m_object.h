@@ -91,6 +91,7 @@ t_buffer        *object_functionData       (t_object *z, int flags);
 t_float64Atomic *object_getSignalAtIndex   (t_object *x, int m);
 
 int    object_setIncludedUpdate            (t_object *x, int n);
+int    object_setLabelUpdate               (t_object *x, t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

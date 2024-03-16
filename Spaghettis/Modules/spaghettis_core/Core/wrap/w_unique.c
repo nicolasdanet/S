@@ -216,6 +216,11 @@ static void unique_objectSetIncluded (t_object *object, t_glist *glist, int n)
     if (object_setIncludedUpdate (object, n)) { glist_setDirty (glist, 1); }
 }
 
+static void unique_objectSetLabel (t_object *object, t_glist *glist, t_symbol *s)
+{
+    if (object_setLabelUpdate (object, s)) { glist_setDirty (glist, 1); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -236,9 +241,14 @@ t_error unique_objectParameter (t_id u, const data::Group& group)
     
     if (class_hasParametersFunction (c)) {
     //
-    int n = group.getParameter (Tag::Included).getValueTyped<bool>();
+    jassert (group.hasParameter (Tag::Included));
+    jassert (group.hasParameter (Tag::Label));
+    
+    int n       = group.getParameter (Tag::Included).getValueTyped<bool>();
+    t_symbol *s = gensym (group.getParameter (Tag::Label).getValueTyped<juce::String>().toRawUTF8());
     
     unique_objectSetIncluded (object, glist, n);
+    unique_objectSetLabel (object, glist, s);
     
     (*class_getParametersSetter (c)) (object, group);
     
