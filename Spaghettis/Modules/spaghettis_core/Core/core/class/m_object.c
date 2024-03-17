@@ -647,8 +647,6 @@ void object_fetchAndCopySignalValuesIfRequired (t_object *x)
 
 int object_setIncludedUpdate (t_object *x, int n)
 {
-    if (class_hasParametersFunction (pd_class (x))) {
-    //
     if (object_isIncluded (x) != n) {
         object_setIncluded (x, n);
         #if defined ( PD_BUILDING_APPLICATION )
@@ -656,24 +654,18 @@ int object_setIncludedUpdate (t_object *x, int n)
         #endif
         return 1;
     }
-    //
-    }
     
     return 0;
 }
 
 int object_setLabelUpdate (t_object *x, t_symbol *s)
 {
-    if (class_hasParametersFunction (pd_class (x))) {
-    //
     if (object_getLabel (x) != s) {
         object_setLabel (x, s);
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectChanged (x, Tags::parameters (Tag::Label));
         #endif
         return 1;
-    }
-    //
     }
     
     return 0;

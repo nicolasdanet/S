@@ -216,10 +216,14 @@ static void unique_objectSetIncluded (t_object *object, t_glist *glist, int n)
     if (object_setIncludedUpdate (object, n)) { glist_setDirty (glist, 1); }
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+
 static void unique_objectSetLabel (t_object *object, t_glist *glist, t_symbol *s)
 {
     if (object_setLabelUpdate (object, s)) { glist_setDirty (glist, 1); }
 }
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
