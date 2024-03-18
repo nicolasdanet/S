@@ -19,9 +19,9 @@
 #include <juce_graphics/juce_graphics.h>
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <spaghettis_base/spaghettis_base.hpp>
-#include <spaghettis_core/spaghettis_core.hpp>
+#include <spaghettis_data/spaghettis_data.hpp>
+#include <spaghettis_engine/spaghettis_engine.hpp>
 #include <spaghettis_gui/spaghettis_gui.hpp>
-#include <spaghettis_tree/spaghettis_tree.hpp>
 
 #include "BinaryData.h"
 

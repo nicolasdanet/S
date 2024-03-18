@@ -18,7 +18,7 @@ CXXFLAGS = -std=c++17 $(CFLAGS)
 
 # Sources amalgamated.
 
-SRC = ../spaghettis_core/Core/amalgam.cpp
+SRC = ../spaghettis_engine/Core/amalgam.cpp
 
 # Objects.
 

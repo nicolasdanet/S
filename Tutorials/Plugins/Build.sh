@@ -27,23 +27,23 @@
 
 # Requires Python (>= 3.4) installed.
 
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/hello.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloRoot.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloRelease.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloBad.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloCPP.cpp
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloSimple.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloInlet.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloNew.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloBind.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloClock.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloData.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/hello~.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloSpace~.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloData~.c
-python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/helloBiquad~.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/hello.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloRoot.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloRelease.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloBad.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloCPP.cpp
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloSimple.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloInlet.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloNew.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloBind.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloClock.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloData.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/hello~.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloSpace~.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloData~.c
+python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/helloBiquad~.c
 
-# python3 ../../Spaghettis/Modules/spaghettis_core/Core/m_spaghettis.h Examples/*.c Examples/*.cpp
+# python3 ../../Spaghettis/Modules/spaghettis_engine/Core/m_spaghettis.h Examples/*.c Examples/*.cpp
 
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------

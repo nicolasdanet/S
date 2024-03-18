@@ -12,15 +12,15 @@
 
  BEGIN_JUCE_MODULE_DECLARATION
 
-  ID:                 spaghettis_core
+  ID:                 spaghettis_engine
   vendor:             Spaghettis
   version:            0.9
-  name:               Core
-  description:        Core
+  name:               Engine
+  description:        Engine
   website:            https://github.com/Spaghettis
   license:            BSD
 
-  dependencies:       spaghettis_tree
+  dependencies:       spaghettis_data
   OSXFrameworks:      Carbon CoreMIDI CoreAudio AudioUnit
   OSXLibs:            dl pthread
   linuxLibs:          dl pthread m asound jack
@@ -37,7 +37,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_tree/spaghettis_tree.hpp"
+#include "spaghettis_data/spaghettis_data.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

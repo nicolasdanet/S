@@ -12,11 +12,11 @@
 
  BEGIN_JUCE_MODULE_DECLARATION
 
-  ID:                 spaghettis_tree
+  ID:                 spaghettis_data
   vendor:             Spaghettis
   version:            0.9
-  name:               Tree
-  description:        Tree
+  name:               Data
+  description:        Data
   website:            https://github.com/Spaghettis
   license:            BSD
 
@@ -74,12 +74,12 @@
 #include "View/ColourSpace.hpp"
 #include "View/HueSelector.hpp"
 #include "View/ColourSelector.hpp"
-#include "View/ParametersHeader.hpp"
-#include "View/ParametersView.hpp"
-#include "View/ParametersBoolean.hpp"
-#include "View/ParametersColour.hpp"
-#include "View/ParametersNumber.hpp"
-#include "View/ParametersText.hpp"
+#include "View/ParameterHeader.hpp"
+#include "View/ParameterView.hpp"
+#include "View/ParameterBoolean.hpp"
+#include "View/ParameterColour.hpp"
+#include "View/ParameterNumber.hpp"
+#include "View/ParameterText.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
