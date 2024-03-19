@@ -12,15 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterColourEditor :   public  juce::Component,
-                                private juce::Value::Listener {
+class ColourEditor :    public  juce::Component,
+                        private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterColourEditor (const juce::Value& v, const juce::Font& font) :
+    explicit ColourEditor (const juce::Value& v, const juce::Font& font) :
         tracker_ (this),
         value_ (v),
         font_ (font)
@@ -28,7 +28,7 @@ public:
         value_.addListener (this);
     }
 
-    ~ParameterColourEditor() = default;
+    ~ColourEditor() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ private:
     juce::Font font_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterColourEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourEditor)
 };
     
 // -----------------------------------------------------------------------------------------------------------

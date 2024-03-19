@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParameterColourEditor::paint (juce::Graphics& g)
+void ColourEditor::paint (juce::Graphics& g)
 {
     const juce::Colour c (Colour::getColourFromValue (value_));
     
