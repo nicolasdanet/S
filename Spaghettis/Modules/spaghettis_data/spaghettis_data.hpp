@@ -74,6 +74,8 @@
 #include "View/ColourSpace.hpp"
 #include "View/HueSelector.hpp"
 #include "View/ColourSelector.hpp"
+#include "View/ColourEditor.hpp"
+
 #include "View/ParameterHeader.hpp"
 #include "View/ParameterView.hpp"
 #include "View/ParameterBoolean.hpp"
