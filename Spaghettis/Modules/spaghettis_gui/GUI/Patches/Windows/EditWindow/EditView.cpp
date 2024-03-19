@@ -816,7 +816,7 @@ void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int
 
 void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identifier&)
 {
-    juce::ValueTree i (Tree::getParentIfChangedPropertyEquals (t, Tag::Selected));
+    juce::ValueTree i (Tree::getItemIfChangedPropertyEquals (t, Tag::Selected));
     
     jassert (inspector_);
     

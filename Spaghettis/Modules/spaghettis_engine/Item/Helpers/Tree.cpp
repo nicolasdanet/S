@@ -12,11 +12,15 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::ValueTree Tree::getParentIfChangedPropertyEquals (const juce::ValueTree& t, juce::String key)
+juce::ValueTree Tree::getItemIfChangedPropertyEquals (const juce::ValueTree& t, juce::String key)
 {
     if (t.hasType (Id::PARAMETER) && (data::Parameter (t).getKey() == key)) {
     //
-    return t.getParent().getParent().getParent();
+    const juce::ValueTree root (t.getParent().getParent().getParent());
+    
+    jassert (Item (root).isObject());
+    
+    return root;
     //
     }
     
