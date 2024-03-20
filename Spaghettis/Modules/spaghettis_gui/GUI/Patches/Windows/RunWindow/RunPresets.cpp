@@ -22,6 +22,13 @@ RunPresets::RunPresets (RunView& view) :
     setDefaultWidth (w ? w : resizer_.getDefaultWidth());
     
     setOpaque (true);
+    
+    publish();
+}
+
+RunPresets::~RunPresets()
+{
+    hide();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -35,7 +42,16 @@ bool RunPresets::isActive() const
     
 void RunPresets::setActive (bool isActive)
 {
-    active_ = isActive; notify();
+    active_ = isActive; notify(); update();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunPresets::update()
+{
+    triggerAsyncUpdate();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -58,6 +74,12 @@ void RunPresets::paint (juce::Graphics& g)
 
 void RunPresets::resized()
 {
+    /*
+    if (presets_ != nullptr) {
+        presets_->resizePanel (getLocalBounds());
+    }
+    */
+    
     resizer_.update();
     
     if (isActive()) { notify(); }
@@ -71,6 +93,46 @@ void RunPresets::notify()
 {
     view_.getPatchRoot().getPresets().setTabState (isActive());
     view_.getPatchRoot().getPresets().setTabWidth (getWidth());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunPresets::show()
+{
+    if (presets_ == nullptr) {
+    //
+    //const int w = resizer_.getMinimumWidth();
+    presets_ = std::make_unique<PresetsView> ();
+    // presets_->resizePanel (getLocalBounds());
+    // addAndMakeVisible (&presets_->getPanel());
+    //
+    }
+}
+
+void RunPresets::hide()
+{
+    if (presets_ != nullptr) {
+    //
+    // removeChildComponent (&presets_->getPanel());
+    presets_ = nullptr;
+    //
+    }
+}
+
+void RunPresets::publish()
+{
+    hide(); if (isActive()) { show(); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunPresets::handleAsyncUpdate()
+{
+    publish();
 }
 
 // -----------------------------------------------------------------------------------------------------------
