@@ -26,7 +26,6 @@
 #include "View/Parameters/ColourSelector.cpp"
 #include "View/Parameters/ColourEditor.cpp"
 #include "View/Parameters/ParameterHeader.cpp"
-
 #include "View/ParametersView.cpp"
 #include "View/PresetsView.cpp"
 
