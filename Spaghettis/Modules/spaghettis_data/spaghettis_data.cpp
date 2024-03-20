@@ -21,11 +21,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "View/ColourSpace.cpp"
-#include "View/HueSelector.cpp"
-#include "View/ColourSelector.cpp"
-#include "View/ColourEditor.cpp"
-#include "View/ParameterHeader.cpp"
+#include "View/Parameters/ColourSpace.cpp"
+#include "View/Parameters/HueSelector.cpp"
+#include "View/Parameters/ColourSelector.cpp"
+#include "View/Parameters/ColourEditor.cpp"
+#include "View/Parameters/ParameterHeader.cpp"
+
 #include "View/ParametersView.cpp"
 #include "View/PresetsView.cpp"
 

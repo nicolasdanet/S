@@ -70,19 +70,21 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "View/ColourSlider.hpp"
-#include "View/ColourSpace.hpp"
-#include "View/HueSelector.hpp"
-#include "View/ColourSelector.hpp"
-#include "View/ColourEditor.hpp"
+#include "View/Parameters/ColourSlider.hpp"
+#include "View/Parameters/ColourSpace.hpp"
+#include "View/Parameters/HueSelector.hpp"
+#include "View/Parameters/ColourSelector.hpp"
+#include "View/Parameters/ColourEditor.hpp"
 
-#include "View/ParameterHeader.hpp"
+#include "View/Parameters/ParameterHeader.hpp"
+
 #include "View/ParametersView.hpp"
 #include "View/PresetsView.hpp"
-#include "View/ParameterBoolean.hpp"
-#include "View/ParameterColour.hpp"
-#include "View/ParameterNumber.hpp"
-#include "View/ParameterText.hpp"
+
+#include "View/Parameters/ParameterBoolean.hpp"
+#include "View/Parameters/ParameterColour.hpp"
+#include "View/Parameters/ParameterNumber.hpp"
+#include "View/Parameters/ParameterText.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
