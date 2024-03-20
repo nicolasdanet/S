@@ -53,7 +53,7 @@ private:
 
 private:
     MakerEmpty default_;
-    std::unique_ptr<ParameterView> fetched_;
+    std::unique_ptr<ParametersView> fetched_;
     juce::Component* shown_;
     
 private:

@@ -77,7 +77,8 @@
 #include "View/ColourEditor.hpp"
 
 #include "View/ParameterHeader.hpp"
-#include "View/ParameterView.hpp"
+#include "View/ParametersView.hpp"
+#include "View/PresetsView.hpp"
 #include "View/ParameterBoolean.hpp"
 #include "View/ParameterColour.hpp"
 #include "View/ParameterNumber.hpp"

@@ -165,8 +165,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/Windows/RunWindow/Helpers/PresetsView.hpp"
-
 #include "GUI/Patches/Windows/RunWindow/RunFactory.hpp"
 #include "GUI/Patches/Windows/RunWindow/RunLayoutElement.hpp"
 #include "GUI/Patches/Windows/RunWindow/RunLayout.hpp"

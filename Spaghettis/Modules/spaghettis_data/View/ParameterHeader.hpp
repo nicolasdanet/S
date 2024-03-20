@@ -11,7 +11,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class ParameterView;
+class ParametersView;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ class ParameterHeader : public juce::Component {
 // MARK: -
 
 public:
-    explicit ParameterHeader (const juce::String& name, int index, ParameterView *owner) :
+    explicit ParameterHeader (const juce::String& name, int index, ParametersView *owner) :
         juce::Component (name),
         index_ (index),
         owner_ (owner)
@@ -54,7 +54,7 @@ private:
     
 private:
     int index_;
-    ParameterView *owner_;
+    ParametersView *owner_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterHeader)

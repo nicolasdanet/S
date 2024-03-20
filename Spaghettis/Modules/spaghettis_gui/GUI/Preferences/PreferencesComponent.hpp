@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 class PreferencesComponent :    protected PreferencesFactoryHelper,
-                                public ParameterView,
+                                public ParametersView,
                                 public BaseComponent<CommandsHandler> {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ public:
         juce::PropertiesFile* propertiesFile,
         const juce::String& keyName) :
             PreferencesFactoryHelper (this),
-            ParameterView (Spaghettis()->getPreferences().getData(),
+            ParametersView (Spaghettis()->getPreferences().getData(),
                 ParameterBase (Fonts::getFont(), Fonts::getMonospacedFont(), 250)),
             BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), command, propertiesFile, keyName)
     {

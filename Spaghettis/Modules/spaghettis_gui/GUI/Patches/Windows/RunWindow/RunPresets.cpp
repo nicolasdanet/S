@@ -103,8 +103,8 @@ void RunPresets::show()
 {
     if (presets_ == nullptr) {
     //
-    //const int w = resizer_.getMinimumWidth();
-    presets_ = std::make_unique<PresetsView> ();
+    const int w = resizer_.getMinimumWidth();
+    presets_ = std::make_unique<PresetsView> (w);
     // presets_->resizePanel (getLocalBounds());
     // addAndMakeVisible (&presets_->getPanel());
     //

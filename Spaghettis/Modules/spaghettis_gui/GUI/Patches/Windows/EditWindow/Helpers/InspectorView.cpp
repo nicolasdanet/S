@@ -13,7 +13,7 @@ namespace spaghettis {
 // MARK: -
 
 InspectorView::InspectorView (Synchronizer&& s, int w) :
-    ParameterView (s.getData(),
+    ParametersView (s.getData(),
         ParameterBase (Fonts::getFont(), Fonts::getMonospacedFont(), w)),
     sync_ (std::move (s))
 {
