@@ -81,6 +81,7 @@
 #include "View/Parameters/ParameterText.hpp"
 #include "View/ParametersViewHeader.hpp"
 #include "View/ParametersView.hpp"
+#include "View/PresetsViewHeader.hpp"
 #include "View/PresetsView.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
