@@ -16,21 +16,21 @@ class ParametersView;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class ParameterHeader : public juce::Component {
+class ParametersViewHeader : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterHeader (const juce::String& name, int index, ParametersView *owner) :
+    explicit ParametersViewHeader (const juce::String& name, int index, ParametersView *owner) :
         juce::Component (name),
         index_ (index),
         owner_ (owner)
     {
     }
 
-    ~ParameterHeader() = default;
+    ~ParametersViewHeader() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ private:
     ParametersView *owner_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterHeader)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParametersViewHeader)
 };
 
 // -----------------------------------------------------------------------------------------------------------

@@ -75,11 +75,11 @@
 #include "View/Parameters/HueSelector.hpp"
 #include "View/Parameters/ColourSelector.hpp"
 #include "View/Parameters/ColourEditor.hpp"
-#include "View/Parameters/ParameterHeader.hpp"
 #include "View/Parameters/ParameterBoolean.hpp"
 #include "View/Parameters/ParameterColour.hpp"
 #include "View/Parameters/ParameterNumber.hpp"
 #include "View/Parameters/ParameterText.hpp"
+#include "View/ParametersViewHeader.hpp"
 #include "View/ParametersView.hpp"
 #include "View/PresetsView.hpp"
 

@@ -83,7 +83,7 @@ void ParametersView::addPanel (juce::PropertyPanel* p)
 {
     const int headerSize = base_.getRequiredHeight() + 6;
     const int i = getNumberOfPanels();
-    auto h = std::make_unique<ParameterHeader> (p->getName(), i, this);
+    auto h = std::make_unique<ParametersViewHeader> (p->getName(), i, this);
     
     panel_.addPanel (-1, p, true);
     panel_.setCustomPanelHeader (p, h.release(), true);

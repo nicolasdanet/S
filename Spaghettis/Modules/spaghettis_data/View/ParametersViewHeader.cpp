@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParameterHeader::paintArrow (juce::Graphics& g, const juce::Rectangle<int>& r)
+void ParametersViewHeader::paintArrow (juce::Graphics& g, const juce::Rectangle<int>& r)
 {
     const juce::Colour c (Colours::fetchColour (Colours::parametersHeaderArrow));
     
@@ -24,7 +24,7 @@ void ParameterHeader::paintArrow (juce::Graphics& g, const juce::Rectangle<int>&
     }
 }
 
-void ParameterHeader::paint (juce::Graphics& g)
+void ParametersViewHeader::paint (juce::Graphics& g)
 {
     juce::Rectangle<int> b (getLocalBounds().reduced (1, 0).withTrimmedBottom (1));
     
@@ -42,7 +42,7 @@ void ParameterHeader::paint (juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParameterHeader::mouseUp (const juce::MouseEvent& e)
+void ParametersViewHeader::mouseUp (const juce::MouseEvent& e)
 {
     if (!e.mouseWasDraggedSinceMouseDown()) { owner_->expandPanel (index_); }
 }
