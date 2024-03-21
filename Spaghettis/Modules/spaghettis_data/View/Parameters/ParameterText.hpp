@@ -19,9 +19,9 @@ class ParameterText :   public ParametersBase,
 // MARK: -
 
 public:
-    explicit ParameterText (const data::Parameter& p, const ParametersBase& base) :
+    explicit ParameterText (const data::Parameter& p, const ParametersBase& base, const juce::String& s) :
         ParametersBase (base),
-        juce::TextPropertyComponent (p.getValueAsValue (false), p.getLabel(), 64, false)
+        juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, false)
     {
         setEnabled (p.isEditable());
         setInterestedInFileDrag (false);

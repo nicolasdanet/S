@@ -20,9 +20,9 @@ class ParameterColour : public ParametersBase,
 // MARK: -
 
 public:
-    explicit ParameterColour (const data::Parameter& p, const ParametersBase& base) :
+    explicit ParameterColour (const data::Parameter& p, const ParametersBase& base, const juce::String& s) :
         ParametersBase (base),
-        juce::PropertyComponent (p.getLabel()),
+        juce::PropertyComponent (s),
         editor_ (p.getValueAsValue (false), base.getMonospacedFont())
     {
         addAndMakeVisible (editor_);

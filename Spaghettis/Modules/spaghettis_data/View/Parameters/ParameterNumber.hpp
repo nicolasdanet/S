@@ -20,9 +20,9 @@ template <class T> class ParameterNumber :  public ParametersBase,
 // MARK: -
 
 public:
-    explicit ParameterNumber (const data::Parameter& p, const ParametersBase& base) :
+    explicit ParameterNumber (const data::Parameter& p, const ParametersBase& base, const juce::String& s) :
         ParametersBase (base),
-        juce::TextPropertyComponent (p.getValueAsValue (false), p.getLabel(), 32, false),
+        juce::TextPropertyComponent (p.getValueAsValue (false), s, 32, false),
         v_(),
         range_ (p)
     {
@@ -102,10 +102,10 @@ class ParameterSlider : public ParametersBase,
 // MARK: -
 
 public:
-    explicit ParameterSlider (const data::Parameter& p, const ParametersBase& base) :
+    explicit ParameterSlider (const data::Parameter& p, const ParametersBase& base, const juce::String& s) :
         ParametersBase (base),
         SliderPropertyComponent (p.getValueAsValue (false),
-            p.getLabel(),
+            s,
             p.getMinimumAsDouble(),
             p.getMaximumAsDouble(),
             p.getStep())

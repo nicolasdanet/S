@@ -20,9 +20,9 @@ class ParameterBoolean :    public ParametersBase,
 // MARK: -
 
 public:
-    explicit ParameterBoolean (const data::Parameter& p, const ParametersBase& base) :
+    explicit ParameterBoolean (const data::Parameter& p, const ParametersBase& base, const juce::String& s) :
         ParametersBase (base),
-        juce::BooleanPropertyComponent (p.getValueAsValue (false), p.getLabel(), "")
+        juce::BooleanPropertyComponent (p.getValueAsValue (false), s, "")
     {
         setEnabled (p.isEditable());
     }
