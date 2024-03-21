@@ -1,39 +1,39 @@
 
-/* Copyright (c) 2023 Jojo and others. */
+/* Copyright (c) 2024 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_data.hpp"
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Data/Delegate/Delegate.cpp"
-#include "Data/Delegate/DelegateManager.cpp"
-#include "Data/Parameter.cpp"
-#include "Data/Group.cpp"
-#include "Data/Data.cpp"
-#include "Data/Getters/Observer.cpp"
+struct ViewHeader {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void paint (juce::Graphics& g,
+                        const juce::Rectangle<int>& bounds,
+                        const juce::Font& font,
+                        const juce::String& name,
+                        int numberOfPanels,
+                        bool expanded);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "View/Parameters/ColourSpace.cpp"
-#include "View/Parameters/HueSelector.cpp"
-#include "View/Parameters/ColourSelector.cpp"
-#include "View/Parameters/ColourEditor.cpp"
-#include "View/Parameters/ViewHeader.cpp"
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "View/ParametersViewHeader.cpp"
-#include "View/ParametersView.cpp"
-#include "View/PresetsViewHeader.cpp"
-#include "View/PresetsView.cpp"
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+

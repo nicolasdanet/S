@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2024 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -10,48 +10,24 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-class ParametersView;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-class ParametersViewHeader : public juce::Component {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    explicit ParametersViewHeader (const juce::String& name, int index, ParametersView *owner) :
-        juce::Component (name),
-        index_ (index),
-        owner_ (owner)
-    {
-    }
-
-    ~ParametersViewHeader() = default;
+namespace {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-public:
-    void resized() override
-    {
-    }
-
-    void paint (juce::Graphics&) override;
-
-    void mouseUp (const juce::MouseEvent&) override;
-
-private:
-    int index_;
-    ParametersView *owner_;
+void paintArrow (juce::Graphics& g, const juce::Rectangle<int>& r, int numberOfPanels, bool expanded)
+{
+    const juce::Colour c (Colours::fetchColour (Colours::parametersHeaderArrow));
     
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParametersViewHeader)
-};
+    g.setColour ((numberOfPanels > 1) ? c : c.withAlpha (0.25f));
+
+    if (expanded) { LNF::drawArrowDown (g, r); }
+    else {
+        LNF::drawArrowRight (g, r);
+    }
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -60,4 +36,31 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
+void ViewHeader::paint (juce::Graphics& g,
+    const juce::Rectangle<int>& bounds,
+    const juce::Font& font,
+    const juce::String& name,
+    int numberOfPanels,
+    bool expanded)
+{
+    juce::Rectangle<int> b (bounds.reduced (1, 0).withTrimmedBottom (1));
+    
+    g.setColour (Colours::fetchColour (Colours::parametersHeaderBackground));
+    g.fillRoundedRectangle (b.toFloat(), 2.0f);
+    
+    paintArrow (g, b.removeFromLeft (b.getCentreY()), numberOfPanels, expanded);
+    
+    g.setColour (Colours::fetchColour (Colours::parametersHeaderText));
+    g.setFont (font);
+    g.drawText (name, b.reduced (4, 0), juce::Justification::centredLeft, true);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------

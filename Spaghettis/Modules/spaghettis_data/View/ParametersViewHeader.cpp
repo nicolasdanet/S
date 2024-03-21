@@ -12,30 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParametersViewHeader::paintArrow (juce::Graphics& g, const juce::Rectangle<int>& r)
-{
-    const juce::Colour c (Colours::fetchColour (Colours::parametersHeaderArrow));
-    
-    g.setColour ((owner_->getNumberOfPanels() > 1) ? c : c.withAlpha (0.25f));
-
-    if (owner_->isExpanded (index_)) { LNF::drawArrowDown (g, r); }
-    else {
-        LNF::drawArrowRight (g, r);
-    }
-}
-
 void ParametersViewHeader::paint (juce::Graphics& g)
 {
-    juce::Rectangle<int> b (getLocalBounds().reduced (1, 0).withTrimmedBottom (1));
+    const juce::Rectangle<int> bounds (getLocalBounds());
+    const juce::Font font (owner_->getFont());
+    const juce::String name (getName());
+    const int numberOfPanels (owner_->getNumberOfPanels());
+    const bool isExpanded (owner_->isExpanded (index_));
     
-    g.setColour (Colours::fetchColour (Colours::parametersHeaderBackground));
-    g.fillRoundedRectangle (b.toFloat(), 2.0f);
-    
-    paintArrow (g, b.removeFromLeft (b.getCentreY()));
-    
-    g.setColour (Colours::fetchColour (Colours::parametersHeaderText));
-    g.setFont (owner_->getFont());
-    g.drawText (getName(), b.reduced (4, 0), juce::Justification::centredLeft, true);
+    ViewHeader::paint (g, bounds, font, name, numberOfPanels, isExpanded);
 }
 
 // -----------------------------------------------------------------------------------------------------------

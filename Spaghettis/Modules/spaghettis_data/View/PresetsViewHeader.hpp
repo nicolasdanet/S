@@ -1,39 +1,59 @@
 
-/* Copyright (c) 2023 Jojo and others. */
+/* Copyright (c) 2024 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_data.hpp"
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Data/Delegate/Delegate.cpp"
-#include "Data/Delegate/DelegateManager.cpp"
-#include "Data/Parameter.cpp"
-#include "Data/Group.cpp"
-#include "Data/Data.cpp"
-#include "Data/Getters/Observer.cpp"
+class PresetsView;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "View/Parameters/ColourSpace.cpp"
-#include "View/Parameters/HueSelector.cpp"
-#include "View/Parameters/ColourSelector.cpp"
-#include "View/Parameters/ColourEditor.cpp"
-#include "View/Parameters/ViewHeader.cpp"
+class PresetsViewHeader : public juce::Component {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit PresetsViewHeader (const juce::String& name, PresetsView *owner) :
+        juce::Component (name),
+        owner_ (owner)
+    {
+    }
+
+    ~PresetsViewHeader() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void resized() override
+    {
+    }
+
+    void paint (juce::Graphics&) override;
+
+private:
+    PresetsView *owner_;
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetsViewHeader)
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "View/ParametersViewHeader.cpp"
-#include "View/ParametersView.cpp"
-#include "View/PresetsViewHeader.cpp"
-#include "View/PresetsView.cpp"
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
