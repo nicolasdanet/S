@@ -20,7 +20,7 @@ void ParametersViewHeader::paint (juce::Graphics& g)
     const int numberOfPanels (owner_->getNumberOfPanels());
     const bool isExpanded (owner_->isExpanded (index_));
     
-    ViewHeader::paint (g, bounds, font, name, numberOfPanels, isExpanded);
+    ViewCommon::paint (g, bounds, font, name, numberOfPanels, isExpanded);
 }
 
 // -----------------------------------------------------------------------------------------------------------

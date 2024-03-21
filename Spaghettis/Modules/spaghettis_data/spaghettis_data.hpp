@@ -79,7 +79,7 @@
 #include "View/Parameters/ParameterColour.hpp"
 #include "View/Parameters/ParameterNumber.hpp"
 #include "View/Parameters/ParameterText.hpp"
-#include "View/Parameters/ViewHeader.hpp"
+#include "View/Parameters/ViewCommon.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

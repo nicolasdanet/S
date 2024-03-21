@@ -25,7 +25,7 @@
 #include "View/Parameters/HueSelector.cpp"
 #include "View/Parameters/ColourSelector.cpp"
 #include "View/Parameters/ColourEditor.cpp"
-#include "View/Parameters/ViewHeader.cpp"
+#include "View/Parameters/ViewCommon.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
