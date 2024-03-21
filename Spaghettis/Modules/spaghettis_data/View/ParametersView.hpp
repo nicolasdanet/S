@@ -21,7 +21,7 @@ class ParametersView : private juce::Timer {
 /* Notice that only the left and right margins are used. */
 
 public:
-    explicit ParametersView (const data::Data& data, const ParameterBase& base) :
+    explicit ParametersView (const data::Data& data, const ParametersBase& base) :
         data_ (data),
         expanded_ (0),
         expandedLast_ (0),
@@ -74,7 +74,7 @@ private:
 // MARK: -
 
 private:
-    static void buildConcertinaPanel (const data::Data&, const ParameterBase& base, ParametersView&);
+    static void buildConcertinaPanel (const data::Data&, const ParametersBase& base, ParametersView&);
 
 protected:
     juce::ConcertinaPanel panel_;
@@ -86,7 +86,7 @@ private:
     juce::String requiredPanel_;
 
 private:
-    ParameterBase base_;
+    ParametersBase base_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParametersView)

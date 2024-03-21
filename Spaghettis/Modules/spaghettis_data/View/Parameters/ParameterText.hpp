@@ -11,7 +11,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class ParameterText :   public ParameterBase,
+class ParameterText :   public ParametersBase,
                         public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -19,8 +19,8 @@ class ParameterText :   public ParameterBase,
 // MARK: -
 
 public:
-    explicit ParameterText (const data::Parameter& p, const ParameterBase& base) :
-        ParameterBase (base),
+    explicit ParameterText (const data::Parameter& p, const ParametersBase& base) :
+        ParametersBase (base),
         juce::TextPropertyComponent (p.getValueAsValue (false), p.getLabel(), 64, false)
     {
         setEnabled (p.isEditable());

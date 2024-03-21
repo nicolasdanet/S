@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> class ParameterNumber :  public ParameterBase,
+template <class T> class ParameterNumber :  public ParametersBase,
                                             public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -20,8 +20,8 @@ template <class T> class ParameterNumber :  public ParameterBase,
 // MARK: -
 
 public:
-    explicit ParameterNumber (const data::Parameter& p, const ParameterBase& base) :
-        ParameterBase (base),
+    explicit ParameterNumber (const data::Parameter& p, const ParametersBase& base) :
+        ParametersBase (base),
         juce::TextPropertyComponent (p.getValueAsValue (false), p.getLabel(), 32, false),
         v_(),
         range_ (p)
@@ -94,7 +94,7 @@ using ParameterFloat   = ParameterNumber<double>;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterSlider : public ParameterBase,
+class ParameterSlider : public ParametersBase,
                         public juce::SliderPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -102,8 +102,8 @@ class ParameterSlider : public ParameterBase,
 // MARK: -
 
 public:
-    explicit ParameterSlider (const data::Parameter& p, const ParameterBase& base) :
-        ParameterBase (base),
+    explicit ParameterSlider (const data::Parameter& p, const ParametersBase& base) :
+        ParametersBase (base),
         SliderPropertyComponent (p.getValueAsValue (false),
             p.getLabel(),
             p.getMinimumAsDouble(),

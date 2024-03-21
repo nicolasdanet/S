@@ -12,14 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterBase {
+class ParametersBase {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterBase (const juce::Font& font, const juce::Font& fontMonospaced, int w) :
+    explicit ParametersBase (const juce::Font& font, const juce::Font& fontMonospaced, int w) :
         font_ (font),
         fontMonospaced_ (fontMonospaced),
         width_ (w)
@@ -27,13 +27,13 @@ public:
         jassert (w > 0);
     }
 
-    ~ParameterBase() = default;
+    ~ParametersBase() = default;
     
 public:
-    ParameterBase (const ParameterBase&) = default;
-    ParameterBase (ParameterBase&&) = default;
-    ParameterBase& operator = (const ParameterBase&) = default;
-    ParameterBase& operator = (ParameterBase&&) = default;
+    ParametersBase (const ParametersBase&) = default;
+    ParametersBase (ParametersBase&&) = default;
+    ParametersBase& operator = (const ParametersBase&) = default;
+    ParametersBase& operator = (ParametersBase&&) = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
