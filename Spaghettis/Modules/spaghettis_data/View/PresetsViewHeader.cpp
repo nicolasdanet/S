@@ -14,7 +14,7 @@ namespace spaghettis {
 
 void PresetsViewHeader::paint (juce::Graphics& g)
 {
-    // ViewCommon::paint (g, getLocalBounds(), owner_->getFont(), getName(), 1, false);
+    // ViewCommon::paintHeader (g, getLocalBounds(), owner_->getFont(), getName(), 1, false);
 }
 
 // -----------------------------------------------------------------------------------------------------------

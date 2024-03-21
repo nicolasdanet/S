@@ -17,12 +17,12 @@ struct ViewCommon {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void paint (juce::Graphics& g,
-                        const juce::Rectangle<int>& bounds,
-                        const juce::Font& font,
-                        const juce::String& name,
-                        int numberOfPanels,
-                        bool expanded);
+static void paintHeader (juce::Graphics& g,
+                const juce::Rectangle<int>& bounds,
+                const juce::Font& font,
+                const juce::String& name,
+                int numberOfPanels,
+                bool expanded);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

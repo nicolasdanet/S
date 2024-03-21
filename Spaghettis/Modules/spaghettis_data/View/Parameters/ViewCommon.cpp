@@ -38,7 +38,7 @@ void paintArrow (juce::Graphics& g, const juce::Rectangle<int>& r, int numberOfP
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ViewCommon::paint (juce::Graphics& g,
+void ViewCommon::paintHeader (juce::Graphics& g,
     const juce::Rectangle<int>& bounds,
     const juce::Font& font,
     const juce::String& name,
