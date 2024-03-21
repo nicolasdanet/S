@@ -138,7 +138,9 @@ void buildConcertinaPanelParameter (const data::Parameter& p,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParametersView::buildConcertinaPanel (const data::Data& data, const ParametersBase& base, ParametersView& v)
+void ParametersView::buildConcertinaPanel (const data::Data& data,
+    const ParametersBase& base,
+    ParametersView& v)
 {
     for (const auto& group : data) {
     //
