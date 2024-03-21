@@ -24,6 +24,10 @@ static void paintHeader (juce::Graphics& g,
                 int numberOfPanels,
                 bool expanded);
 
+static void buildConcertinaPanel (const data::Parameter& p,
+                const ParametersBase& base,
+                juce::Array<juce::PropertyComponent*>& c);
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

@@ -91,48 +91,6 @@ void ParametersView::addPanel (juce::PropertyPanel* p)
     
     expanded_ = i;
 }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const data::Parameter& p,
-    const ParametersBase& base)
-{
-    const juce::String label (p.getLabel());
-    
-    // return std::make_unique<ParameterSlider> (p, base, label);
-    
-    if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, base, label); }
-    else if (p.isColour())  { return std::make_unique<ParameterColour> (p, base, label);  }
-    else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p, base, label); }
-    else if (p.isFloat())   { return std::make_unique<ParameterFloat> (p, base, label);   }
-    else {
-        return std::make_unique<ParameterText> (p, base, label);
-    }
-}
-
-void buildConcertinaPanelParameter (const data::Parameter& p,
-    const ParametersBase& base,
-    juce::Array<juce::PropertyComponent*>& c)
-{
-    std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p, base));
-    
-    t->setPreferredHeight (base.getRequiredHeight());
-    t->setTooltip (p.getInfo());
-    
-    c.add (t.release());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -151,7 +109,7 @@ void ParametersView::buildConcertinaPanel (const data::Data& data,
     juce::Array<juce::PropertyComponent*> components;
     
     for (const auto& parameter : group) {
-        if (!parameter.isHidden()) { buildConcertinaPanelParameter (parameter, base, components); }
+        if (!parameter.isHidden()) { ViewCommon::buildConcertinaPanel (parameter, base, components); }
     }
     
     panel->addProperties (components);
