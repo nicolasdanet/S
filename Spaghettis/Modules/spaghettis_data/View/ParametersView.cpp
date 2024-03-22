@@ -12,6 +12,19 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+ParametersView::ParametersView (const data::Data& data, const ParametersBase& base) :
+    data_ (data),
+    base_ (base),
+    expanded_ (0),
+    expandedLast_ (0)
+{
+    ViewCommon::buildConcertinaPanel (data_, base_, *this);
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::Font ParametersView::getFont() const
 {
     return base_.getFont();
@@ -26,16 +39,7 @@ int ParametersView::getNumberOfPanels() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ParametersView::requireExpandPanel (const juce::String& group)
-{
-    const int primeInterval = 307; requiredPanel_ = group; startTimer (primeInterval);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-juce::ConcertinaPanel& ParametersView::getPanel()
+juce::ConcertinaPanel& ParametersView::getConcertinaPanel()
 {
     return panel_;
 }
@@ -68,11 +72,6 @@ void ParametersView::expandPanel (int index)
 bool ParametersView::isExpanded (int i)
 {
     return (i == expanded_);
-}
-
-void ParametersView::timerCallback()
-{
-    stopTimer(); expandPanel (data_.getGroupIndex (requiredPanel_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

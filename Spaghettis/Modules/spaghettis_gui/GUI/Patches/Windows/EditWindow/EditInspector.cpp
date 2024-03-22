@@ -107,7 +107,7 @@ void EditInspector::show()
     const int w = resizer_.getMinimumWidth();
     parameters_ = std::make_unique<InspectorView> (view_.getSynchronized(), w);
     parameters_->resizePanel (getLocalBounds());
-    addAndMakeVisible (&parameters_->getPanel());
+    addAndMakeVisible (&parameters_->getConcertinaPanel());
     //
     }
 }
@@ -116,7 +116,7 @@ void EditInspector::hide()
 {
     if (parameters_ != nullptr) {
     //
-    removeChildComponent (&parameters_->getPanel());
+    removeChildComponent (&parameters_->getConcertinaPanel());
     parameters_ = nullptr;
     //
     }

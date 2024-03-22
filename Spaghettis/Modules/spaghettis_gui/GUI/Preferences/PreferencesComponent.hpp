@@ -31,9 +31,7 @@ public:
     {
         CommandsHandler::addCloseWindowCommand (this);
         
-        addAndMakeVisible (&getPanel());
-        
-        requireExpandPanel();
+        addAndMakeVisible (&getConcertinaPanel());
         
         setOpaque (true); setSize (600, 400);
     }
@@ -62,7 +60,7 @@ public:
 public:
     bool tryGrabFocus() override
     {
-        return tryGrabFocusForComponent (&getPanel());
+        return tryGrabFocusForComponent (&getConcertinaPanel());
     }
 
 private:

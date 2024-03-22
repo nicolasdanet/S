@@ -12,21 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParametersView : private juce::Timer {
+class ParametersView {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParametersView (const data::Data& data, const ParametersBase& base) :
-        data_ (data),
-        expanded_ (0),
-        expandedLast_ (0),
-        base_ (base)
-    {
-        ViewCommon::buildConcertinaPanel (data_, base_, *this);
-    }
+    explicit ParametersView (const data::Data&, const ParametersBase&);
     
     virtual ~ParametersView() = default;
 
@@ -37,23 +30,14 @@ public:
 public:
     juce::Font getFont() const;
     
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     int getNumberOfPanels() const;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void requireExpandPanel (const juce::String& group = juce::String());
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    juce::ConcertinaPanel& getPanel();
-    void resizePanel (const juce::Rectangle<int>&);
+    
+    juce::ConcertinaPanel& getConcertinaPanel();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -61,24 +45,27 @@ public:
 
 public:
     void expandPanel (int);
+    
+    void resizePanel (const juce::Rectangle<int>&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    
     bool isExpanded (int);
-    void timerCallback();
     
 public:
     void addPanel (juce::PropertyPanel*);
 
 private:
     juce::ConcertinaPanel panel_;
-
-private:
     data::Data data_;
+    ParametersBase base_;
     int expanded_;
     int expandedLast_;
-    juce::String requiredPanel_;
-
-private:
-    ParametersBase base_;
-
+        
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParametersView)
 };

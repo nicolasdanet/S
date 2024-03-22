@@ -106,7 +106,7 @@ void RunPresets::show()
     const int w = resizer_.getMinimumWidth();
     presets_ = std::make_unique<PresetsView> (w);
     // presets_->resizePanel (getLocalBounds());
-    // addAndMakeVisible (&presets_->getPanel());
+    // addAndMakeVisible (&presets_->getConcertinaPanel());
     //
     }
 }
@@ -115,7 +115,7 @@ void RunPresets::hide()
 {
     if (presets_ != nullptr) {
     //
-    // removeChildComponent (&presets_->getPanel());
+    // removeChildComponent (&presets_->getConcertinaPanel());
     presets_ = nullptr;
     //
     }

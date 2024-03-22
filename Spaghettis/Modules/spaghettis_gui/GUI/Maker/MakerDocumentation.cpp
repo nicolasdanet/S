@@ -53,7 +53,7 @@ void MakerDocumentation::showDocumentation (const juce::String& s)
     if (Documentation::has (s)) {
         const ParametersBase base (Fonts::getFont(), Fonts::getMonospacedFont(), 150);
         fetched_ = std::make_unique<ParametersView> (Documentation::get (s), base);
-        shown_   = &fetched_->getPanel();
+        shown_   = &fetched_->getConcertinaPanel();
     } else {
         fetched_ = nullptr;
         shown_   = &default_;
