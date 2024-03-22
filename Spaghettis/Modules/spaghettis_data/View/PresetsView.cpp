@@ -12,9 +12,45 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PresetsView::PresetsView (int w)
+PresetsView::PresetsView (const ParametersBase& base) : base_ (base)
 {
+    // ViewCommon::buildConcertinaPanel (base_, *this);
+}
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::Font PresetsView::getFont() const
+{
+    return base_.getFont();
+}
+
+juce::ConcertinaPanel& PresetsView::getConcertinaPanel()
+{
+    return panel_;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PresetsView::resizeConcertinaPanel (const juce::Rectangle<int>& bounds)
+{
+    panel_.setBounds (bounds);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PresetsView::addPanel (juce::PropertyPanel* p)
+{
+    auto h = std::make_unique<PresetsViewHeader> (p->getName(),this);
+    
+    panel_.addPanel (-1, p, true);
+    panel_.setCustomPanelHeader (p, h.release(), true);
+    panel_.setPanelHeaderSize (p, base_.getRequiredHeight() + 6);
 }
 
 // -----------------------------------------------------------------------------------------------------------

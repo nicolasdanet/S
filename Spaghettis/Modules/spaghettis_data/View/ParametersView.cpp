@@ -80,13 +80,13 @@ void ParametersView::resizeConcertinaPanel (const juce::Rectangle<int>& bounds)
 
 void ParametersView::addPanel (juce::PropertyPanel* p)
 {
-    const int headerSize = base_.getRequiredHeight() + 6;
     const int i = getNumberOfPanels();
+    
     auto h = std::make_unique<ParametersViewHeader> (p->getName(), i, this);
     
     panel_.addPanel (-1, p, true);
     panel_.setCustomPanelHeader (p, h.release(), true);
-    panel_.setPanelHeaderSize (p, headerSize);
+    panel_.setPanelHeaderSize (p, base_.getRequiredHeight() + 6);
     
     expanded_ = i;
 }

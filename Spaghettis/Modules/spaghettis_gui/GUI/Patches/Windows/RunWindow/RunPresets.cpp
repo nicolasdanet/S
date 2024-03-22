@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2022 Jojo and others. */
+/* Copyright (c) 2024 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -74,11 +74,9 @@ void RunPresets::paint (juce::Graphics& g)
 
 void RunPresets::resized()
 {
-    /*
     if (presets_ != nullptr) {
         presets_->resizeConcertinaPanel (getLocalBounds());
     }
-    */
     
     resizer_.update();
     
@@ -103,9 +101,8 @@ void RunPresets::show()
 {
     if (presets_ == nullptr) {
     //
-    const int w = resizer_.getMinimumWidth();
-    presets_ = std::make_unique<PresetsView> (w);
-    // presets_->resizeConcertinaPanel (getLocalBounds());
+    presets_ = std::make_unique<PresetsView> (ParametersBase (Fonts::getFont(), Fonts::getMonospacedFont(), resizer_.getMinimumWidth()));
+    presets_->resizeConcertinaPanel (getLocalBounds());
     // addAndMakeVisible (&presets_->getConcertinaPanel());
     //
     }
