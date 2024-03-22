@@ -76,7 +76,7 @@ void RunPresets::resized()
 {
     /*
     if (presets_ != nullptr) {
-        presets_->resizePanel (getLocalBounds());
+        presets_->resizeConcertinaPanel (getLocalBounds());
     }
     */
     
@@ -105,7 +105,7 @@ void RunPresets::show()
     //
     const int w = resizer_.getMinimumWidth();
     presets_ = std::make_unique<PresetsView> (w);
-    // presets_->resizePanel (getLocalBounds());
+    // presets_->resizeConcertinaPanel (getLocalBounds());
     // addAndMakeVisible (&presets_->getConcertinaPanel());
     //
     }

@@ -35,18 +35,18 @@ int ParametersView::getNumberOfPanels() const
     return panel_.getNumPanels();
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 juce::ConcertinaPanel& ParametersView::getConcertinaPanel()
 {
     return panel_;
 }
 
-void ParametersView::resizePanel (const juce::Rectangle<int>& bounds)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool ParametersView::isPanelExpanded (int i)
 {
-    panel_.setBounds (bounds);
+    return (i == expanded_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -69,9 +69,9 @@ void ParametersView::expandPanel (int index)
     }
 }
 
-bool ParametersView::isExpanded (int i)
+void ParametersView::resizeConcertinaPanel (const juce::Rectangle<int>& bounds)
 {
-    return (i == expanded_);
+    panel_.setBounds (bounds);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -79,7 +79,7 @@ void EditInspector::paint (juce::Graphics& g)
 void EditInspector::resized()
 {
     if (parameters_ != nullptr) {
-        parameters_->resizePanel (getLocalBounds());
+        parameters_->resizeConcertinaPanel (getLocalBounds());
     }
     
     resizer_.update();
@@ -106,7 +106,7 @@ void EditInspector::show()
     //
     const int w = resizer_.getMinimumWidth();
     parameters_ = std::make_unique<InspectorView> (view_.getSynchronized(), w);
-    parameters_->resizePanel (getLocalBounds());
+    parameters_->resizeConcertinaPanel (getLocalBounds());
     addAndMakeVisible (&parameters_->getConcertinaPanel());
     //
     }

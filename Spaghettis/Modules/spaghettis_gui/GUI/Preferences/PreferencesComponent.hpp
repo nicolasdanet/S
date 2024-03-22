@@ -50,7 +50,7 @@ public:
     
     void resized() override
     {
-        resizePanel (setBoundsForBarsAndGetRemaining());
+        resizeConcertinaPanel (setBoundsForBarsAndGetRemaining());
     }
 
 // -----------------------------------------------------------------------------------------------------------
