@@ -82,16 +82,7 @@ std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const data::Pa
     }
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void ViewCommon::buildConcertinaPanel (const data::Parameter& p,
+void addPropertyComponent (const data::Parameter& p,
     const ParametersBase& base,
     juce::Array<juce::PropertyComponent*>& c)
 {
@@ -101,6 +92,40 @@ void ViewCommon::buildConcertinaPanel (const data::Parameter& p,
     t->setTooltip (p.getInfo());
     
     c.add (t.release());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ViewCommon::buildConcertinaPanel (const data::Data& data,
+    const ParametersBase& base,
+    ParametersView& v)
+{
+    for (const auto& group : data) {
+    //
+    if (group.isHidden() == false) {
+    //
+    auto panel = std::make_unique<juce::PropertyPanel> (group.getName());
+    
+    juce::Array<juce::PropertyComponent*> components;
+    
+    for (const auto& parameter : group) {
+        if (!parameter.isHidden()) { addPropertyComponent (parameter, base, components); }
+    }
+    
+    panel->addProperties (components);
+    
+    v.addPanel (panel.release());
+    //
+    }
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

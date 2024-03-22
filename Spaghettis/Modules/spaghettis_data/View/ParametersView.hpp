@@ -25,7 +25,7 @@ public:
         expandedLast_ (0),
         base_ (base)
     {
-        buildConcertinaPanel (data_, base_, *this);
+        ViewCommon::buildConcertinaPanel (data_, base_, *this);
     }
     
     virtual ~ParametersView() = default;
@@ -64,15 +64,8 @@ public:
     bool isExpanded (int);
     void timerCallback();
     
-private:
+public:
     void addPanel (juce::PropertyPanel*);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-private:
-    static void buildConcertinaPanel (const data::Data&, const ParametersBase& base, ParametersView&);
 
 private:
     juce::ConcertinaPanel panel_;

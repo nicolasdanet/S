@@ -94,35 +94,6 @@ void ParametersView::addPanel (juce::PropertyPanel* p)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void ParametersView::buildConcertinaPanel (const data::Data& data,
-    const ParametersBase& base,
-    ParametersView& v)
-{
-    for (const auto& group : data) {
-    //
-    if (group.isHidden() == false) {
-    //
-    auto panel = std::make_unique<juce::PropertyPanel> (group.getName());
-    
-    juce::Array<juce::PropertyComponent*> components;
-    
-    for (const auto& parameter : group) {
-        if (!parameter.isHidden()) { ViewCommon::buildConcertinaPanel (parameter, base, components); }
-    }
-    
-    panel->addProperties (components);
-    
-    v.addPanel (panel.release());
-    //
-    }
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 }
 
