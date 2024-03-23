@@ -70,15 +70,16 @@ std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const data::Pa
     const ParametersBase& base)
 {
     const juce::String label (p.getLabel());
+    const bool isEditable (p.isEditable());
     
-    // return std::make_unique<ParameterSlider> (p, base, label);
+    // return std::make_unique<ParameterSlider> (p, base, label, isEditable);
     
-    if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, base, label); }
-    else if (p.isColour())  { return std::make_unique<ParameterColour> (p, base, label);  }
-    else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p, base, label); }
-    else if (p.isFloat())   { return std::make_unique<ParameterFloat> (p, base, label);   }
+    if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, base, label, isEditable); }
+    else if (p.isColour())  { return std::make_unique<ParameterColour> (p, base, label, isEditable);  }
+    else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p, base, label, isEditable); }
+    else if (p.isFloat())   { return std::make_unique<ParameterFloat> (p, base, label, isEditable);   }
     else {
-        return std::make_unique<ParameterText> (p, base, label);
+        return std::make_unique<ParameterText> (p, base, label, isEditable);
     }
 }
 

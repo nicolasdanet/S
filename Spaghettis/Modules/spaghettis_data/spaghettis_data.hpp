@@ -78,6 +78,7 @@
 #include "View/Parameters/ParameterBoolean.hpp"
 #include "View/Parameters/ParameterColour.hpp"
 #include "View/Parameters/ParameterNumber.hpp"
+#include "View/Parameters/ParameterSlider.hpp"
 #include "View/Parameters/ParameterText.hpp"
 #include "View/Parameters/ViewCommon.hpp"
 

@@ -20,14 +20,17 @@ class ParameterColour : public ParametersBase,
 // MARK: -
 
 public:
-    explicit ParameterColour (const data::Parameter& p, const ParametersBase& base, const juce::String& s) :
-        ParametersBase (base),
-        juce::PropertyComponent (s),
-        editor_ (p.getValueAsValue (false), base.getMonospacedFont())
+    explicit ParameterColour (const data::Parameter& p,
+        const ParametersBase& base,
+        const juce::String& s,
+        bool isEditable) :
+            ParametersBase (base),
+            juce::PropertyComponent (s),
+            editor_ (p.getValueAsValue (false), base.getMonospacedFont())
     {
         addAndMakeVisible (editor_);
-        setEnabled (p.isEditable());
-        editor_.setEnabled (p.isEditable());
+        setEnabled (isEditable);
+        editor_.setEnabled (isEditable);
     }
 
     ~ParameterColour() = default;

@@ -20,13 +20,16 @@ template <class T> class ParameterNumber :  public ParametersBase,
 // MARK: -
 
 public:
-    explicit ParameterNumber (const data::Parameter& p, const ParametersBase& base, const juce::String& s) :
-        ParametersBase (base),
-        juce::TextPropertyComponent (p.getValueAsValue (false), s, 32, false),
-        v_(),
-        range_ (p)
+    explicit ParameterNumber (const data::Parameter& p,
+        const ParametersBase& base,
+        const juce::String& s,
+        bool isEditable) :
+            ParametersBase (base),
+            juce::TextPropertyComponent (p.getValueAsValue (false), s, 32, false),
+            v_(),
+            range_ (p)
     {
-        setEnabled (p.isEditable());
+        setEnabled (isEditable);
     }
 
     ~ParameterNumber() = default;
@@ -89,40 +92,6 @@ private:
 
 using ParameterInteger = ParameterNumber<int>;
 using ParameterFloat   = ParameterNumber<double>;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-class ParameterSlider : public ParametersBase,
-                        public juce::SliderPropertyComponent {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    explicit ParameterSlider (const data::Parameter& p, const ParametersBase& base, const juce::String& s) :
-        ParametersBase (base),
-        SliderPropertyComponent (p.getValueAsValue (false),
-            s,
-            p.getMinimumAsDouble(),
-            p.getMaximumAsDouble(),
-            p.getStep())
-    {
-        slider.valueFromTextFunction = [this] (const juce::String& text)
-        {
-            return ParameterNumber<double>::parsedWithDefault (text, slider.getValue());
-        };
-        
-        setEnabled (p.isEditable());
-    }
-
-    ~ParameterSlider() = default;
-    
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterSlider)
-};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -10,30 +10,39 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-class ParameterText :   public ParametersBase,
-                        public juce::TextPropertyComponent {
+class ParameterSlider : public ParametersBase,
+                        public juce::SliderPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterText (const data::Parameter& p,
+    explicit ParameterSlider (const data::Parameter& p,
         const ParametersBase& base,
         const juce::String& s,
         bool isEditable) :
             ParametersBase (base),
-            juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, false)
+            SliderPropertyComponent (p.getValueAsValue (false),
+                s,
+                p.getMinimumAsDouble(),
+                p.getMaximumAsDouble(),
+                p.getStep())
     {
+        slider.valueFromTextFunction = [this] (const juce::String& text)
+        {
+            return ParameterNumber<double>::parsedWithDefault (text, slider.getValue());
+        };
+        
         setEnabled (isEditable);
-        setInterestedInFileDrag (false);
     }
-    
-    ~ParameterText() = default;
+
+    ~ParameterSlider() = default;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterText)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterSlider)
 };
 
 // -----------------------------------------------------------------------------------------------------------
