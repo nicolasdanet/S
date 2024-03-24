@@ -38,6 +38,18 @@ public:
 // MARK: -
 
 public:
+    std::optional<data::Parameter> getPresetParameter() const
+    {
+        if (has (Tag::Parameters, Tag::Value)) { }
+        
+        return std::nullopt;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     bool isGraphic() const
     {
         return data_.hasGroup (Tag::Parameters);

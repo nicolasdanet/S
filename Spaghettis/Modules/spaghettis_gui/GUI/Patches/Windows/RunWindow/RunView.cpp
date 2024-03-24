@@ -68,6 +68,11 @@ ObjectComponent* RunView::getObjectComponent (core::UniqueId u) const
     return objects_.get (u);
 }
 
+std::vector<ObjectComponent*> RunView::getAllObjectsIncluded() const
+{
+    return layout_.getAllObjects();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -48,6 +48,16 @@ public:
 // MARK: -
 
 public:
+    explicit operator ObjectComponent*() const
+    {
+        return getObject();
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void setBounds (const juce::Rectangle<int>& bounds)
     {
         bounds_ = bounds;

@@ -51,7 +51,9 @@ private:
 
 public:
     ObjectComponent* getObjectComponent (core::UniqueId) const override;
-
+    
+    std::vector<ObjectComponent*> getAllObjectsIncluded() const;
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
