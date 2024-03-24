@@ -68,9 +68,22 @@ ObjectComponent* RunView::getObjectComponent (core::UniqueId u) const
     return objects_.get (u);
 }
 
-std::vector<ObjectComponent*> RunView::getAllObjectsIncluded() const
+std::vector<data::Parameter> RunView::getAllParameters() const
 {
-    return layout_.getAllObjects();
+    std::vector<data::Parameter> v;
+    
+    const std::vector<ObjectComponent*> included (layout_.getAllObjects());
+    
+    for (auto o : included) {
+    //
+    auto p = o->getObject().getPresetParameter();
+    if (p) {
+        v.push_back (p.value());
+    }
+    //
+    }
+    
+    return v;
 }
 
 // -----------------------------------------------------------------------------------------------------------
