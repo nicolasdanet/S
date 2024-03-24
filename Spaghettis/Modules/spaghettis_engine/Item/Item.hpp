@@ -127,11 +127,20 @@ public:
 // MARK: -
 
 public:
-    bool has (const juce::String& group, const juce::String& key) const
+    bool hasParameter (const juce::String& group, const juce::String& key) const
     {
         return data_.hasParameter (group, key);
     }
     
+    data::Parameter getParameter (const juce::String& group, const juce::String& key) const
+    {
+        return data_.getParameter (group, key);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+public:
     template <class T>
     data::Cached<T> getCached (const juce::String& group,
         const juce::String& key,
@@ -143,7 +152,7 @@ public:
     template <class T>
     T get (const juce::String& group, const juce::String& key) const
     {
-        return data_.getParameter (group, key).getValueTyped<T>();
+        return getParameter (group, key).getValueTyped<T>();
     }
 
 // -----------------------------------------------------------------------------------------------------------

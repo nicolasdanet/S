@@ -38,12 +38,7 @@ public:
 // MARK: -
 
 public:
-    std::optional<data::Parameter> getPresetParameter() const
-    {
-        if (has (Tag::Parameters, Tag::Value)) { }
-        
-        return std::nullopt;
-    }
+    std::optional<data::Parameter> getPresetParameter() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

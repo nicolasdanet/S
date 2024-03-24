@@ -12,6 +12,18 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+std::optional<data::Parameter> Object::getPresetParameter() const
+{
+    if (hasParameter (Tag::Parameters, Tag::Value)) { return getParameter (Tag::Parameters, Tag::Value); }
+    if (hasParameter (Tag::Parameters, Tag::State)) { return getParameter (Tag::Parameters, Tag::State); }
+    
+    return std::nullopt;
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 data::Group Object::getCopyOfParameters() const
 {
     jassert (isGraphic());

@@ -58,7 +58,7 @@ void addDocumentation (data::Data& data, const juce::String& c)
 
 void addDocumentation (data::Data& data, const core::Item& i)
 {
-    if (i.has (Tag::Attributes, Tag::Class)) {
+    if (i.hasParameter (Tag::Attributes, Tag::Class)) {
     //
     addDocumentation (data, i.get<juce::String> (Tag::Attributes, Tag::Class));
     //
