@@ -12,10 +12,17 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::optional<data::Parameter> Object::getPresetParameter() const
+std::optional<PresetElement> Object::getPresetElement() const
 {
-    if (hasParameter (Tag::Parameters, Tag::Value)) { return getParameter (Tag::Parameters, Tag::Value); }
-    if (hasParameter (Tag::Parameters, Tag::State)) { return getParameter (Tag::Parameters, Tag::State); }
+    const juce::String s (get<juce::String> (Tag::Parameters, Tag::Label));
+    
+    if (hasParameter (Tag::Parameters, Tag::Value)) {
+        return PresetElement (s, getParameter (Tag::Parameters, Tag::Value));
+    }
+    
+    if (hasParameter (Tag::Parameters, Tag::State)) {
+        return PresetElement (s, getParameter (Tag::Parameters, Tag::State));
+    }
     
     return std::nullopt;
 }

@@ -52,7 +52,7 @@ private:
 public:
     ObjectComponent* getObjectComponent (core::UniqueId) const override;
     
-    std::vector<data::Parameter> getAllParameters() const;
+    std::vector<PresetElement> getAllPresetElements() const;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
