@@ -12,6 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 
 class ParametersView;
+class PresetsView;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -29,7 +30,8 @@ static void paintHeader (juce::Graphics& g,
                 int numberOfPanels,
                 bool expanded);
 
-static void buildConcertinaPanel (const data::Data&, const ParametersBase& base, ParametersView&);
+static void buildPanel (const data::Data&, const ParametersBase&, ParametersView&);
+static void buildPanel (const std::vector<PresetElement>&, const ParametersBase&, PresetsView&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

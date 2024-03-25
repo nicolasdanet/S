@@ -24,7 +24,7 @@ friend struct ViewCommon;
 // MARK: -
 
 public:
-    explicit PresetsView (const ParametersBase&);
+    explicit PresetsView (const std::vector<PresetElement>&, const ParametersBase&);
     
     ~PresetsView() = default;
 

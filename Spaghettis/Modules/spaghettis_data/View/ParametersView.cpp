@@ -18,7 +18,7 @@ ParametersView::ParametersView (const data::Data& data, const ParametersBase& ba
     expanded_ (0),
     expandedLast_ (0)
 {
-    ViewCommon::buildConcertinaPanel (data_, base_, *this);
+    ViewCommon::buildPanel (data_, base_, *this);
 }
     
 // -----------------------------------------------------------------------------------------------------------

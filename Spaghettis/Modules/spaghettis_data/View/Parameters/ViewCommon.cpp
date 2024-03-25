@@ -104,7 +104,7 @@ void addPropertyComponent (const data::Parameter& p,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ViewCommon::buildConcertinaPanel (const data::Data& data,
+void ViewCommon::buildPanel (const data::Data& data,
     const ParametersBase& base,
     ParametersView& v)
 {
@@ -127,6 +127,11 @@ void ViewCommon::buildConcertinaPanel (const data::Data& data,
     }
     //
     }
+}
+
+void ViewCommon::buildPanel (const std::vector<PresetElement>& e, const ParametersBase& base, PresetsView& v)
+{
+
 }
 
 // -----------------------------------------------------------------------------------------------------------

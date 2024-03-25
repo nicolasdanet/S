@@ -101,7 +101,9 @@ void RunPresets::show()
 {
     if (presets_ == nullptr) {
     //
-    presets_ = std::make_unique<PresetsView> (ParametersBase (Fonts::getFont(), Fonts::getMonospacedFont(), resizer_.getMinimumWidth()));
+    const auto t = ParametersBase (Fonts::getFont(), Fonts::getMonospacedFont(), resizer_.getMinimumWidth());
+    
+    presets_ = std::make_unique<PresetsView> (view_.getAllPresetElements(), t);
     presets_->resizeConcertinaPanel (getLocalBounds());
     // addAndMakeVisible (&presets_->getConcertinaPanel());
     //
