@@ -56,7 +56,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    juce::PropertiesFile presets_;
+    juce::PropertiesFile presetsFile_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchPresets)

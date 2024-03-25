@@ -74,7 +74,7 @@ private:
     Resizer resizer_;
 
 private:
-    std::unique_ptr<PresetsView> presets_;
+    std::unique_ptr<PresetsView> presetsView_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunPresets)

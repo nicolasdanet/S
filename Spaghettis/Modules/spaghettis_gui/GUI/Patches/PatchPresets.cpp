@@ -40,14 +40,14 @@ juce::PropertiesFile::Options getPresetOptions()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PatchPresets::PatchPresets (const juce::File& file) : presets_ (getPresetFile (file), getPresetOptions())
+PatchPresets::PatchPresets (const juce::File& file) : presetsFile_ (getPresetFile (file), getPresetOptions())
 {
     if (isValid() == false) { }
 }
 
 PatchPresets::~PatchPresets()
 {
-    if (isValid()) { presets_.setNeedsToBeSaved (false); }
+    if (isValid()) { presetsFile_.setNeedsToBeSaved (false); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -56,12 +56,12 @@ PatchPresets::~PatchPresets()
 
 bool PatchPresets::isValid() const
 {
-    return presets_.isValidFile();
+    return presetsFile_.isValidFile();
 }
 
 bool PatchPresets::isValid (juce::StringRef keyName) const
 {
-    return isValid() && presets_.containsKey (keyName);
+    return isValid() && presetsFile_.containsKey (keyName);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ std::optional<juce::Rectangle<int>> PatchPresets::getRunWindow() const
 {
     if (isValid (PresetsConstants::PositionTag)) {
     //
-    const std::unique_ptr<juce::XmlElement> e (presets_.getXmlValue (PresetsConstants::PositionTag));
+    const std::unique_ptr<juce::XmlElement> e (presetsFile_.getXmlValue (PresetsConstants::PositionTag));
     
     if (e && e->hasTagName (Id::POSITION) && e->hasAttribute (Id::value)) {
         const juce::String s = e->getStringAttribute (Id::value);
@@ -98,14 +98,18 @@ std::optional<juce::Rectangle<int>> PatchPresets::getRunWindow() const
 
 std::optional<bool> PatchPresets::getTabState() const
 {
-    if (isValid (PresetsConstants::StateTag)) { return presets_.getBoolValue (PresetsConstants::StateTag); }
+    if (isValid (PresetsConstants::StateTag)) {
+        return presetsFile_.getBoolValue (PresetsConstants::StateTag);
+    }
     
     return std::nullopt;
 }
 
 std::optional<int> PatchPresets::getTabWidth() const
 {
-    if (isValid (PresetsConstants::WidthTag)) { return presets_.getIntValue (PresetsConstants::WidthTag); }
+    if (isValid (PresetsConstants::WidthTag)) {
+        return presetsFile_.getIntValue (PresetsConstants::WidthTag);
+    }
     
     return std::nullopt;
 }
@@ -122,19 +126,19 @@ void PatchPresets::setRunWindow (const juce::Rectangle<int>& bounds)
     
     e->setAttribute (Id::value, bounds.toString());
     
-    presets_.setValue (PresetsConstants::PositionTag, e.get());
+    presetsFile_.setValue (PresetsConstants::PositionTag, e.get());
     //
     }
 }
 
 void PatchPresets::setTabState (bool isActive)
 {
-    if (isValid()) { return presets_.setValue (PresetsConstants::StateTag, isActive); }
+    if (isValid()) { return presetsFile_.setValue (PresetsConstants::StateTag, isActive); }
 }
 
 void PatchPresets::setTabWidth (int w)
 {
-    if (isValid()) { return presets_.setValue (PresetsConstants::WidthTag, w); }
+    if (isValid()) { return presetsFile_.setValue (PresetsConstants::WidthTag, w); }
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -143,7 +147,7 @@ void PatchPresets::setTabWidth (int w)
 
 void PatchPresets::save()
 {
-    if (isValid()) { presets_.saveIfNeeded(); }
+    if (isValid()) { presetsFile_.saveIfNeeded(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
