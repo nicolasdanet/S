@@ -24,7 +24,7 @@ friend struct ViewCommon;
 // MARK: -
 
 public:
-    explicit PresetsView (const std::vector<PresetElement>&, const ParametersBase&);
+    explicit PresetsView (std::vector<PresetElement>&&, const ParametersBase&);
     
     ~PresetsView() = default;
 
@@ -53,6 +53,7 @@ private:
 
 private:
     juce::ConcertinaPanel panel_;
+    std::vector<PresetElement> elements_;
     ParametersBase base_;
         
 private:
