@@ -33,7 +33,9 @@ public:
 public:
     juce::String getLabel() const
     {
-        return label_.isNotEmpty() ? label_ : juce::String ("?");
+        /* Avoid assertion for empty string in juce::PropertyComponent constructor. */
+        
+        return label_.isNotEmpty() ? label_ : juce::String (" ");
     }
     
     data::Parameter getParameter() const
