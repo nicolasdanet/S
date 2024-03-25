@@ -34,7 +34,9 @@ public:
 
 public:
     juce::Font getFont() const;
+    juce::String getName() const;
 
+public:
     juce::ConcertinaPanel& getConcertinaPanel();
 
 // -----------------------------------------------------------------------------------------------------------

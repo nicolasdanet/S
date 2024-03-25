@@ -28,6 +28,11 @@ juce::Font PresetsView::getFont() const
     return base_.getFont();
 }
 
+juce::String PresetsView::getName() const
+{
+    return juce::String (NEEDS_TRANS ("Parameters"));
+}
+
 juce::ConcertinaPanel& PresetsView::getConcertinaPanel()
 {
     return panel_;

@@ -130,9 +130,25 @@ void ViewCommon::buildPanel (const data::Data& data,
     }
 }
 
-void ViewCommon::buildPanel (const std::vector<PresetElement>& e, const ParametersBase& base, PresetsView& v)
+void ViewCommon::buildPanel (const std::vector<PresetElement>& elements,
+    const ParametersBase& base,
+    PresetsView& v)
 {
-
+    auto panel = std::make_unique<juce::PropertyPanel> (v.getName());
+    
+    juce::Array<juce::PropertyComponent*> components;
+    
+    for (const auto& e : elements) {
+    //
+    const auto p (e.getParameter());
+    
+    if (!p.isHidden()) { addPropertyComponent (p, base, e.getLabel(), false, components); }
+    //
+    }
+    
+    panel->addProperties (components);
+    
+    v.addPanel (panel.release());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -33,7 +33,7 @@ public:
 public:
     juce::String getLabel() const
     {
-        return label_;
+        return label_.isNotEmpty() ? label_ : juce::String ("?");
     }
     
     data::Parameter getParameter() const
