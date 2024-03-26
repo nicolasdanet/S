@@ -14,7 +14,8 @@ namespace spaghettis {
 
 RunView::RunView (const PatchBase& base) :
     PatchView (base),
-    patchBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchBackground), this))
+    patchBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::PatchBackground), this)),
+    runPresets_ (nullptr)
 {
     getViewTree().addListener (this);
     setOpaque (true);
@@ -24,6 +25,20 @@ RunView::RunView (const PatchBase& base) :
 RunView::~RunView()
 {
     objects_.clear();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunView::attach (RunPresets* presets)
+{
+    runPresets_ = presets;
+}
+
+void RunView::detach (RunPresets* presets)
+{
+    runPresets_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -90,14 +105,23 @@ std::vector<PresetElement> RunView::getAllPresetElements() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void RunView::updatePresets()
+{
+    if (runPresets_) { runPresets_->update(); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void RunView::show (ObjectComponent* o, const juce::Rectangle<int>& bounds)
 {
-    layout_.add (o, bounds); triggerAsyncUpdate();
+    layout_.add (o, bounds); triggerAsyncUpdate(); updatePresets();
 }
 
 void RunView::hide (ObjectComponent* o)
 {
-    layout_.remove (o); triggerAsyncUpdate();
+    layout_.remove (o); triggerAsyncUpdate(); updatePresets();
 }
 
 // -----------------------------------------------------------------------------------------------------------

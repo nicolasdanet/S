@@ -19,6 +19,8 @@ RunPresets::RunPresets (RunView& view) :
 {
     const int w = view_.getPatchRoot().getPresets().getTabWidth().value_or (0);
     
+    view_.attach (this);    /* Must be the first. */
+    
     setDefaultWidth (w ? w : resizer_.getDefaultWidth());
     
     setOpaque (true);
@@ -29,6 +31,8 @@ RunPresets::RunPresets (RunView& view) :
 RunPresets::~RunPresets()
 {
     hide();
+    
+    view_.detach (this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
