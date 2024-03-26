@@ -34,7 +34,12 @@ EditView* MouseHandler::getEditView() const
 {
     return dynamic_cast<EditView*> (view_);
 }
-    
+
+RunView* MouseHandler::getRunView() const
+{
+    return dynamic_cast<RunView*> (view_);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

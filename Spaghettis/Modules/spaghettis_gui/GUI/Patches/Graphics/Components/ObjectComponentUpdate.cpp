@@ -117,11 +117,16 @@ void ObjectComponent::removeInletsAndOultets()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void ObjectComponent::updateLabel()
+{
+    if (isInsideRunView() && isIncluded()) { getRunView()->updatePresets(); }
+}
+
 void ObjectComponent::updateTooltip()
 {
     setTooltip (label_.get());
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
