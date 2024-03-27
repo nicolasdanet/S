@@ -85,13 +85,14 @@ std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const data::Pa
 void addPropertyComponent (const data::Parameter& p,
     const ParametersBase& base,
     const juce::String& label,
+    const juce::String& info,
     bool isEditable,
     juce::Array<juce::PropertyComponent*>& c)
 {
     std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p, base, label, isEditable));
     
     t->setPreferredHeight (base.getRequiredHeight());
-    t->setTooltip (p.getInfo());
+    t->setTooltip (info);
     
     c.add (t.release());
 }
@@ -118,7 +119,9 @@ void ViewCommon::buildPanel (const data::Data& data,
     juce::Array<juce::PropertyComponent*> components;
     
     for (const auto& p : group) {
-        if (!p.isHidden()) { addPropertyComponent (p, base, p.getLabel(), p.isEditable(), components); }
+        if (!p.isHidden()) {
+            addPropertyComponent (p, base, p.getLabel(), p.getInfo(), p.isEditable(), components);
+        }
     }
     
     panel->addProperties (components);
@@ -142,7 +145,7 @@ void ViewCommon::buildPanel (const std::vector<PresetElement>& elements,
     //
     const data::Parameter p (e.getParameter());
     
-    if (!p.isHidden()) { addPropertyComponent (p, base, e.getLabel(), false, components); }
+    if (!p.isHidden()) { addPropertyComponent (p, base, e.getLabel(), p.getInfo(), false, components); }
     //
     }
     
