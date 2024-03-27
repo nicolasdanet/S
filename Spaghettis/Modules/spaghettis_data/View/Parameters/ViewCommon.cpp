@@ -145,7 +145,7 @@ void ViewCommon::buildPanel (const std::vector<PresetElement>& elements,
     //
     const data::Parameter p (e.getParameter());
     
-    if (!p.isHidden()) { addPropertyComponent (p, base, e.getLabel(), p.getInfo(), false, components); }
+    if (!p.isHidden()) { addPropertyComponent (p, base, e.getLabel(), juce::String(), false, components); }
     //
     }
     
