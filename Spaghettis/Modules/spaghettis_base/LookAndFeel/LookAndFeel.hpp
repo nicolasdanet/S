@@ -50,9 +50,6 @@ public:
         int,
         juce::Component*) override;
 
-    void drawButtonBackground (juce::Graphics&, juce::Button&, const juce::Colour&, bool, bool) override;
-    void drawButtonText (juce::Graphics&, juce::TextButton&, bool, bool) override;
-    
     void drawAlertBox (juce::Graphics&,
         juce::AlertWindow&,
         const juce::Rectangle<int>&,
@@ -69,6 +66,14 @@ public:
     juce::Font getAlertWindowMessageFont() override;
     juce::Font getAlertWindowFont() override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void drawButtonBackground (juce::Graphics&, juce::Button&, const juce::Colour&, bool, bool) override;
+    void drawButtonText (juce::Graphics&, juce::TextButton&, bool, bool) override;
+    
 public:
     juce::Font getTextButtonFont();
     juce::Font getTextButtonFont (juce::TextButton&, int) override;
