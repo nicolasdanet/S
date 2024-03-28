@@ -60,6 +60,7 @@ public:
 private:
     void show();
     void hide();
+    void arrange();
     void publish();
 
 private:

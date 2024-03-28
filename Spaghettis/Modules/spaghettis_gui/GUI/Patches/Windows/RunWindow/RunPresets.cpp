@@ -78,9 +78,7 @@ void RunPresets::paint (juce::Graphics& g)
 
 void RunPresets::resized()
 {
-    if (presetsView_ != nullptr) {
-        presetsView_->resizeConcertinaPanel (getLocalBounds());
-    }
+    arrange();
     
     resizer_.update();
     
@@ -109,7 +107,9 @@ void RunPresets::show()
     
     presetsElements_ = view_.getAllPresetElements();
     presetsView_     = std::make_unique<PresetsView> (presetsElements_, t);
-    presetsView_->resizeConcertinaPanel (getLocalBounds());
+    
+    arrange();
+    
     addAndMakeVisible (&presetsView_->getConcertinaPanel());
     //
     }
@@ -122,6 +122,15 @@ void RunPresets::hide()
     removeChildComponent (&presetsView_->getConcertinaPanel());
     presetsView_ = nullptr;
     presetsElements_.clear();
+    //
+    }
+}
+
+void RunPresets::arrange()
+{
+    if (presetsView_ != nullptr) {
+    //
+    presetsView_->resizeConcertinaPanel (getLocalBounds());
     //
     }
 }
