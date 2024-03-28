@@ -107,7 +107,8 @@ void RunPresets::show()
     //
     const auto t = ParametersBase (Fonts::getFont(), Fonts::getMonospacedFont(), resizer_.getMinimumWidth());
     
-    presetsView_ = std::make_unique<PresetsView> (view_.getAllPresetElements(), t);
+    presetsElements_ = view_.getAllPresetElements();
+    presetsView_     = std::make_unique<PresetsView> (presetsElements_, t);
     presetsView_->resizeConcertinaPanel (getLocalBounds());
     addAndMakeVisible (&presetsView_->getConcertinaPanel());
     //
@@ -120,6 +121,7 @@ void RunPresets::hide()
     //
     removeChildComponent (&presetsView_->getConcertinaPanel());
     presetsView_ = nullptr;
+    presetsElements_.clear();
     //
     }
 }

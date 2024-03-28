@@ -74,6 +74,7 @@ private:
     Resizer resizer_;
 
 private:
+    std::vector<PresetElement> presetsElements_;
     std::unique_ptr<PresetsView> presetsView_;
     
 private:
