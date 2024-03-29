@@ -73,10 +73,12 @@ private:
     RunView& view_;
     bool active_;
     Resizer resizer_;
-
+    juce::TextButton presetsLoad_;
+    juce::TextButton presetsStore_;
+    
 private:
-    std::vector<PresetElement> presetsElements_;
     std::unique_ptr<PresetsView> presetsView_;
+    std::vector<PresetElement> presetsElements_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RunPresets)

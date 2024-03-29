@@ -78,6 +78,9 @@ public:
     juce::Font getTextButtonFont();
     juce::Font getTextButtonFont (juce::TextButton&, int) override;
 
+public:
+    static int getButtonHeight();
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -15,7 +15,9 @@ namespace spaghettis {
 RunPresets::RunPresets (RunView& view) :
     view_ (view),
     active_ (view_.getPatchRoot().getPresets().getTabState().value_or (false)),
-    resizer_ (*this)
+    resizer_ (*this),
+    presetsLoad_ (NEEDS_TRANS ("Load")),
+    presetsStore_ (NEEDS_TRANS ("Store"))
 {
     const int w = view_.getPatchRoot().getPresets().getTabWidth().value_or (0);
     
@@ -99,6 +101,27 @@ void RunPresets::notify()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void RunPresets::arrange()
+{
+    if (presetsView_ != nullptr) {
+    //
+    const int h = LNF::getButtonHeight();
+    juce::Rectangle<int> presets (getLocalBounds());
+    juce::Rectangle<int> buttons (presets.removeFromBottom (h));
+    const int wLoad  = presetsLoad_.getBestWidthForHeight (h);
+    const int wStore = presetsStore_.getBestWidthForHeight (h);
+    
+    presetsLoad_.setBounds (buttons.removeFromLeft (wLoad));
+    presetsStore_.setBounds (buttons.removeFromRight (wStore));
+    
+    presetsView_->resizeConcertinaPanel (presets);
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 void RunPresets::show()
 {
     if (presetsView_ == nullptr) {
@@ -111,6 +134,8 @@ void RunPresets::show()
     arrange();
     
     addAndMakeVisible (&presetsView_->getConcertinaPanel());
+    addAndMakeVisible (&presetsLoad_);
+    addAndMakeVisible (&presetsStore_);
     //
     }
 }
@@ -119,21 +144,18 @@ void RunPresets::hide()
 {
     if (presetsView_ != nullptr) {
     //
+    removeChildComponent (&presetsStore_);
+    removeChildComponent (&presetsLoad_);
     removeChildComponent (&presetsView_->getConcertinaPanel());
+    
     presetsView_ = nullptr;
     presetsElements_.clear();
     //
     }
 }
 
-void RunPresets::arrange()
-{
-    if (presetsView_ != nullptr) {
-    //
-    presetsView_->resizeConcertinaPanel (getLocalBounds());
-    //
-    }
-}
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 void RunPresets::publish()
 {
