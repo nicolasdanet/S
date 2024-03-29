@@ -105,14 +105,11 @@ void RunPresets::arrange()
 {
     if (presetsView_ != nullptr) {
     //
-    const int h = LNF::getButtonHeight();
     juce::Rectangle<int> presets (getLocalBounds());
-    juce::Rectangle<int> buttons (presets.removeFromBottom (h));
-    const int wLoad  = presetsLoad_.getBestWidthForHeight (h);
-    const int wStore = presetsStore_.getBestWidthForHeight (h);
+    juce::Rectangle<int> buttons (presets.removeFromBottom (LNF::getButtonHeight()));
     
-    presetsLoad_.setBounds (buttons.removeFromLeft (wLoad));
-    presetsStore_.setBounds (buttons.removeFromRight (wStore));
+    presetsLoad_.setBounds (buttons.removeFromLeft (buttons.getWidth() / 2).reduced (1));
+    presetsStore_.setBounds (buttons.reduced (1));
     
     presetsView_->resizeConcertinaPanel (presets);
     //
