@@ -52,6 +52,11 @@ enum ColourIds : int {
     alertWindowOutline,
     alertWindowText,
     alertWindowIcon,
+    alertWindowButtonBackground,
+    alertWindowButtonBackgroundOver,
+    alertWindowButtonOutline,
+    alertWindowButtonText,
+    alertWindowButtonTextHighlighted,
     buttonBackground,
     buttonBackgroundOver,
     buttonOutline,
@@ -117,6 +122,11 @@ static juce::Colour fetchColour (ColourIds i)
         case alertWindowOutline :                                   return p->textSystem;
         case alertWindowText :                                      return p->textMenu;
         case alertWindowIcon :                                      return p->textError;
+        case alertWindowButtonBackground :                          return p->backgroundWidget;
+        case alertWindowButtonBackgroundOver :                      return p->textError;
+        case alertWindowButtonOutline :                             return p->textSystem;
+        case alertWindowButtonText :                                return p->textSystem;
+        case alertWindowButtonTextHighlighted :                     return p->textMenu;
         case buttonBackground :                                     return p->backgroundWidget;
         case buttonBackgroundOver :                                 return p->textError;
         case buttonOutline :                                        return p->textSystem;
