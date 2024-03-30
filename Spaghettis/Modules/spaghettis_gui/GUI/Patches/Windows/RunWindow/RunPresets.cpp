@@ -27,6 +27,9 @@ RunPresets::RunPresets (RunView& view) :
     
     setOpaque (true);
     
+    presetsLoad_.onClick  = [this] { load();  };
+    presetsStore_.onClick = [this] { store(); };
+    
     publish();
 }
 
@@ -166,6 +169,24 @@ void RunPresets::publish()
 void RunPresets::handleAsyncUpdate()
 {
     publish();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void RunPresets::load()
+{
+    // view_.getPatchRoot().getPresets()
+    
+    DBG ("LOAD");
+}
+
+void RunPresets::store()
+{
+    // view_.getPatchRoot().getPresets()
+    
+    DBG ("STORE");
 }
 
 // -----------------------------------------------------------------------------------------------------------
