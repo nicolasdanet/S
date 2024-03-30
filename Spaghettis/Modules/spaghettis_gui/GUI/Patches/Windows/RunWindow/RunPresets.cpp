@@ -106,7 +106,7 @@ void RunPresets::arrange()
     if (presetsView_ != nullptr) {
     //
     juce::Rectangle<int> presets (getLocalBounds());
-    juce::Rectangle<int> buttons (presets.removeFromBottom (LNF::getButtonHeight()));
+    juce::Rectangle<int> buttons (presets.removeFromBottom (LNF::getButtonHeight()).reduced (1));
     
     presetsLoad_.setBounds (buttons.removeFromLeft (buttons.getWidth() / 2).reduced (1));
     presetsStore_.setBounds (buttons.reduced (1));

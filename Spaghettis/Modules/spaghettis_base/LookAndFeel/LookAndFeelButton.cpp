@@ -53,22 +53,23 @@ void drawAlertWindowButtonText (juce::Graphics& g,
     g.drawText (button.getButtonText(), r.reduced (10, 5), juce::Justification::centred, true);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void drawCommonButtonBackground (juce::Graphics& g,
     juce::Button& button,
     const juce::Colour&,
     bool buttonAsHighlighted,
     bool buttonAsDown)
 {
-    const float cornerSize = 6.0f;
-    const juce::Rectangle<float> bounds = button.getLocalBounds().toFloat().reduced (0.5f);
+    const juce::Rectangle<int> bounds = button.getLocalBounds();
     const juce::Colour background = (buttonAsDown || buttonAsHighlighted)
-            ? Colours::fetchColour (Colours::alertWindowButtonBackgroundOver)
-            : Colours::fetchColour (Colours::alertWindowButtonBackground);
+            ? Colours::fetchColour (Colours::buttonBackgroundOver)
+            : Colours::fetchColour (Colours::buttonBackground);
             
     g.setColour (background);
-    g.fillRoundedRectangle (bounds, cornerSize);
-    g.setColour (Colours::fetchColour (Colours::alertWindowButtonOutline));
-    g.drawRoundedRectangle (bounds, cornerSize, 1.0f);
+    g.fillRect (bounds);
 }
 
 void drawCommonButtonText (juce::Graphics& g,
@@ -81,8 +82,8 @@ void drawCommonButtonText (juce::Graphics& g,
     
     const bool hightlighted   = button.isRegisteredForShortcut (juce::KeyPress (juce::KeyPress::returnKey));
     const juce::Colour colour = (Colours::fetchColour (hightlighted
-                                    ? Colours::alertWindowButtonTextHighlighted
-                                    : Colours::alertWindowButtonText));
+                                    ? Colours::buttonTextHighlighted
+                                    : Colours::buttonText));
         
     g.setFont (font);
     g.setColour (colour);
