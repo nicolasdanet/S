@@ -75,15 +75,14 @@ void drawCommonButtonBackground (juce::Graphics& g,
 void drawCommonButtonText (juce::Graphics& g,
     juce::TextButton& button,
     const juce::Font& font,
-    bool,
-    bool)
+    bool buttonAsHighlighted,
+    bool buttonAsDown)
 {
     const juce::Rectangle<int> r (button.getWidth(), button.getHeight());
     
-    const bool hightlighted   = button.isRegisteredForShortcut (juce::KeyPress (juce::KeyPress::returnKey));
-    const juce::Colour colour = (Colours::fetchColour (hightlighted
-                                    ? Colours::buttonTextHighlighted
-                                    : Colours::buttonText));
+    const juce::Colour colour = (Colours::fetchColour (buttonAsDown
+            ? Colours::buttonTextHighlighted
+            : Colours::buttonText));
         
     g.setFont (font);
     g.setColour (colour);
