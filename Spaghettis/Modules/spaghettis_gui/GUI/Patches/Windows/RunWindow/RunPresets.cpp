@@ -109,10 +109,10 @@ void RunPresets::arrange()
     if (presetsView_ != nullptr) {
     //
     juce::Rectangle<int> presets (getLocalBounds());
-    juce::Rectangle<int> buttons (presets.removeFromBottom (LNF::getButtonHeight()).reduced (1));
+    juce::Rectangle<int> buttons (presets.removeFromBottom (LNF::getButtonHeight()).reduced (1, 0));
     
-    presetsLoad_.setBounds (buttons.removeFromLeft (buttons.getWidth() / 2).reduced (1));
-    presetsStore_.setBounds (buttons.reduced (1));
+    presetsLoad_.setBounds (buttons.removeFromLeft (buttons.getWidth() / 2).reduced (1, 0));
+    presetsStore_.setBounds (buttons.reduced (1, 0));
     
     presetsView_->resizeConcertinaPanel (presets);
     //
@@ -177,16 +177,12 @@ void RunPresets::handleAsyncUpdate()
 
 void RunPresets::load()
 {
-    // view_.getPatchRoot().getPresets()
-    
-    DBG ("LOAD");
+    view_.getPatchRoot().getPresets().load ("Default");
 }
 
 void RunPresets::store()
 {
-    // view_.getPatchRoot().getPresets()
-    
-    DBG ("STORE");
+    view_.getPatchRoot().getPresets().store ("Default", presetsElements_);
 }
 
 // -----------------------------------------------------------------------------------------------------------
