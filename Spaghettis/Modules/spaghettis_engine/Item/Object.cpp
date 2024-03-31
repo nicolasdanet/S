@@ -14,15 +14,15 @@ namespace spaghettis::core {
 
 std::optional<PresetElement> Object::getPresetElement() const
 {
-    const juce::String s (get<juce::String> (Tag::Parameters, Tag::Label));
+    auto f = [this] (const juce::String& key)
+    {
+        return PresetElement (get<juce::String> (Tag::Parameters, Tag::Label),
+                    getParameter (Tag::Parameters, key),
+                    data::Cast::toVar (getIdentifier()));
+    };
     
-    if (hasParameter (Tag::Parameters, Tag::Value)) {
-        return PresetElement (s, getParameter (Tag::Parameters, Tag::Value));
-    }
-    
-    if (hasParameter (Tag::Parameters, Tag::State)) {
-        return PresetElement (s, getParameter (Tag::Parameters, Tag::State));
-    }
+    if (hasParameter (Tag::Parameters, Tag::Value)) { return f (Tag::Value); }
+    if (hasParameter (Tag::Parameters, Tag::State)) { return f (Tag::State); }
     
     return std::nullopt;
 }

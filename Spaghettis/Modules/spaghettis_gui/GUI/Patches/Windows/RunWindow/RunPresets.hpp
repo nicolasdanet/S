@@ -83,8 +83,6 @@ private:
     Resizer resizer_;
     juce::TextButton presetsLoad_;
     juce::TextButton presetsStore_;
-    
-private:
     std::unique_ptr<PresetsView> presetsView_;
     std::vector<PresetElement> presetsElements_;
     
