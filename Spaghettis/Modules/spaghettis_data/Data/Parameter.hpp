@@ -85,6 +85,11 @@ public:
         jassert (getType() == ParameterType<T>::get()); return Cast::fromVar<T> (getValue());
     }
     
+    template <class T> T getValueTypedUnchecked() const
+    {
+        return Cast::fromVar<T> (getValue());
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -70,8 +70,9 @@ bool PatchPresets::isValid (juce::StringRef keyName) const
 namespace PresetsConstants
 {
     constexpr static const char* const PositionTag = "RunWindowPosition";
-    constexpr static const char* const StateTag    = "TabState";
-    constexpr static const char* const WidthTag    = "TabWidth";
+    constexpr static const char* const StateTag    = "PresetsTabState";
+    constexpr static const char* const WidthTag    = "PresetsTabWidth";
+    constexpr static const char* const PresetTag   = "#";
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -150,9 +151,23 @@ void PatchPresets::load (const juce::String& name)
     DBG ("LOAD");
 }
 
-void PatchPresets::store (const juce::String& name, const std::vector<PresetElement>& e)
+void PatchPresets::store (const juce::String& name, const std::vector<PresetElement>& elements)
 {
-    DBG ("STORE");
+    if (isValid()) {
+    //
+    auto root = std::make_unique<juce::XmlElement> (Id::PRESETS);
+    
+    for (const auto& p : elements) {
+    //
+    juce::XmlElement* e = root->createNewChildElement (Id::PRESET);
+    e->setAttribute (Id::item,  p.getTag().toString());
+    e->setAttribute (Id::value, p.getParameter().getValueTypedUnchecked<double>());
+    //
+    }
+    
+    presetsFile_.setValue (PresetsConstants::PresetTag + name, root.get());
+    //
+    }
 }
     
 // -----------------------------------------------------------------------------------------------------------
