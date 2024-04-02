@@ -168,6 +168,25 @@ void storePresets (juce::PropertiesFile& file,
     file.setValue (PresetsConstants::PresetTag + name, root.get());
 }
 
+void loadPresets (juce::PropertiesFile& file, const juce::String& name)
+{
+    const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
+        
+    if (root && root->hasTagName (Id::PRESETS)) {
+    //
+    for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
+        if (e->hasAttribute (Id::item))  {
+        if (e->hasAttribute (Id::value)) {
+            const core::UniqueId u = data::Cast::fromVar<core::UniqueId> (e->getStringAttribute (Id::item));
+            const double f = e->getDoubleAttribute (Id::value);
+            DBG (juce::String (u) + " / " + juce::String (f));
+        }
+        }
+    }
+    //
+    }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -179,7 +198,7 @@ void storePresets (juce::PropertiesFile& file,
 
 bool PatchPresets::load (const juce::String& name)
 {
-    DBG ("LOAD");
+    if (isValid()) { loadPresets (presetsFile_, name); return true; }
     
     return false;
 }
