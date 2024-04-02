@@ -146,17 +146,15 @@ void PatchPresets::setTabWidth (int w)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool PatchPresets::load (const juce::String& name)
-{
-    DBG ("LOAD");
-    
-    return false;
-}
+namespace {
 
-bool PatchPresets::store (const juce::String& name, const std::vector<PresetElement>& elements)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void storePresets (juce::PropertiesFile& file,
+    const juce::String& name,
+    const std::vector<PresetElement>& elements)
 {
-    if (isValid()) {
-    //
     auto root = std::make_unique<juce::XmlElement> (Id::PRESETS);
     
     for (const auto& p : elements) {
@@ -167,11 +165,28 @@ bool PatchPresets::store (const juce::String& name, const std::vector<PresetElem
     //
     }
     
-    presetsFile_.setValue (PresetsConstants::PresetTag + name, root.get());
+    file.setValue (PresetsConstants::PresetTag + name, root.get());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool PatchPresets::load (const juce::String& name)
+{
+    DBG ("LOAD");
     
-    return true;
-    //
-    }
+    return false;
+}
+
+bool PatchPresets::store (const juce::String& name, const std::vector<PresetElement>& elements)
+{
+    if (isValid()) { storePresets (presetsFile_, name, elements); return true; }
     
     return false;
 }
