@@ -118,6 +118,11 @@ void inputs_savePatch (core::UniqueId u)
     unique_patchSave (u);
 }
 
+void inputs_setDirty (core::UniqueId u)
+{
+    unique_patchSetDirty (u);
+}
+
 void inputs_setEditView (core::UniqueId u, juce::Rectangle<int> bounds)
 {
     t_rectangle r; rectangle_setCopy (&r, bounds);

@@ -182,7 +182,11 @@ void RunPresets::load()
 
 void RunPresets::store()
 {
-    view_.getPatchRoot().getPresets().store ("Default", presetsElements_);
+    if (view_.getPatchRoot().getPresets().store ("Default", presetsElements_)) {
+    //
+    Broadcast::dirty (view_.getIdentifier());
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

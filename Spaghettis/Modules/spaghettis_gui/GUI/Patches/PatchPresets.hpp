@@ -46,8 +46,8 @@ public:
     void setTabWidth (int);
     
 public:
-    void load (const juce::String&);
-    void store (const juce::String&, const std::vector<PresetElement>&);
+    bool load (const juce::String&);
+    bool store (const juce::String&, const std::vector<PresetElement>&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

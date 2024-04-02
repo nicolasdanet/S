@@ -146,12 +146,14 @@ void PatchPresets::setTabWidth (int w)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchPresets::load (const juce::String& name)
+bool PatchPresets::load (const juce::String& name)
 {
     DBG ("LOAD");
+    
+    return false;
 }
 
-void PatchPresets::store (const juce::String& name, const std::vector<PresetElement>& elements)
+bool PatchPresets::store (const juce::String& name, const std::vector<PresetElement>& elements)
 {
     if (isValid()) {
     //
@@ -166,8 +168,12 @@ void PatchPresets::store (const juce::String& name, const std::vector<PresetElem
     }
     
     presetsFile_.setValue (PresetsConstants::PresetTag + name, root.get());
+    
+    return true;
     //
     }
+    
+    return false;
 }
     
 // -----------------------------------------------------------------------------------------------------------

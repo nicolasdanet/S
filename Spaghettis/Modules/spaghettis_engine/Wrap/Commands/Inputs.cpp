@@ -93,6 +93,11 @@ Perform Inputs::savePatch (core::UniqueId u)
     return [u]() { core::inputs_savePatch (u); };
 }
 
+Perform Inputs::setDirty (core::UniqueId u)
+{
+    return [u]() { core::inputs_setDirty (u); };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

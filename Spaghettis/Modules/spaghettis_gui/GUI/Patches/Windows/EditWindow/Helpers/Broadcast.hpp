@@ -18,6 +18,11 @@ struct Broadcast {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void dirty (core::UniqueId u)
+{
+    Spaghettis()->handle (Inputs::setDirty (u));
+}
+
 static void select (core::UniqueId i)
 {
     Spaghettis()->handle (Inputs::selectObject (i));
