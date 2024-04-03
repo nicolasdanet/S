@@ -73,6 +73,7 @@ namespace PresetsConstants
     constexpr static const char* const StateTag    = "PresetsTabState";
     constexpr static const char* const WidthTag    = "PresetsTabWidth";
     constexpr static const char* const PresetTag   = "#";
+    constexpr static const char* const FloatType   = "float";
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -161,6 +162,7 @@ void storePresets (juce::PropertiesFile& file,
     //
     juce::XmlElement* e = root->createNewChildElement (Id::PRESET);
     e->setAttribute (Id::item,  p.getTag().toString());
+    e->setAttribute (Id::type,  PresetsConstants::FloatType);
     e->setAttribute (Id::value, p.getParameter().getValueTypedUnchecked<double>());
     //
     }
