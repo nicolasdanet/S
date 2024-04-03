@@ -95,6 +95,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Patches/Broadcast.hpp"
 #include "GUI/Patches/PatchPresets.hpp"
 #include "GUI/Patches/PatchReport.hpp"
 #include "GUI/Patches/PatchRoot.hpp"
@@ -137,7 +138,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/Windows/EditWindow/Helpers/Broadcast.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/ContextMenu.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Synchronizer.hpp"
 #include "GUI/Patches/Windows/EditWindow/Helpers/Locator.hpp"

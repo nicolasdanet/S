@@ -81,7 +81,7 @@ void SliderPainter::mouseProceed (juce::Point<int> pt)
     const double f = getProportionalPosition (painted_.toFloat(), pt.toFloat(), isVertical_.get());
     const double v = Normalized (isLogarithmic_.get(), low_.get(), high_.get(), interval_.get()).map (f);
         
-    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), v));
+    Broadcast::sendFloat (getIdentifier(), v);
 }
 
 float SliderPainter::getNormalizedValue() const

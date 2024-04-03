@@ -49,7 +49,7 @@ void DialPainter::mouseDrag (const juce::MouseEvent& e)
     const float f  = v_ + (-e.getDistanceFromDragStartY() / h);
     const double v = Normalized (isLogarithmic_.get(), low_.get(), high_.get(), interval_.get()).map (f);
     
-    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), v));
+    Broadcast::sendFloat (getIdentifier(), v);
 }
 
 void DialPainter::mouseUp (const juce::MouseEvent&)

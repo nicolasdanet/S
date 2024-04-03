@@ -38,7 +38,7 @@ void MessagePainter::timerCallback()
 
 void MessagePainter::mouseDown (const juce::MouseEvent& e)
 {
-    Spaghettis()->handle (Inputs::sendObjectBang (getIdentifier()));
+    Broadcast::sendBang (getIdentifier());
     
     clicked (true); startTimer (500);
 }

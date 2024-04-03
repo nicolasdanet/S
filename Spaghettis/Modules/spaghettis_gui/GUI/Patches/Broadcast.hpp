@@ -135,6 +135,16 @@ static void view (core::UniqueId u, core::Point::Real pt, int zoom, bool hasInsp
     Spaghettis()->handle (Inputs::setEditViewProperties (u, pt, zoom, hasInspector, inspectorWidth));
 }
 
+static void sendBang (core::UniqueId u)
+{
+    Spaghettis()->handle (Inputs::sendObjectBang (u));
+}
+
+static void sendFloat (core::UniqueId u, double f)
+{
+    Spaghettis()->handle (Inputs::sendObjectFloat (u, f));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

@@ -28,7 +28,7 @@ BangPainter::BangPainter (ObjectComponent* owner) :
 
 void BangPainter::mouseDown (const juce::MouseEvent& e)
 {
-    Spaghettis()->handle (Inputs::sendObjectBang (getIdentifier()));
+    Broadcast::sendBang (getIdentifier());
 }
 
 // -----------------------------------------------------------------------------------------------------------

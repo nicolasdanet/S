@@ -27,7 +27,7 @@ TogglePainter::TogglePainter (ObjectComponent* owner) :
 
 void TogglePainter::mouseDown (const juce::MouseEvent& e)
 {
-    Spaghettis()->handle (Inputs::sendObjectBang (getIdentifier()));
+    Broadcast::sendBang (getIdentifier());
 }
 
 // -----------------------------------------------------------------------------------------------------------

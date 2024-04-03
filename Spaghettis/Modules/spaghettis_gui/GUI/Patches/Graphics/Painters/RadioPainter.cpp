@@ -87,7 +87,7 @@ int RadioPainter::getSelectorAt (juce::Point<int> pt) const
 
 void RadioPainter::setStateProceed (double f)
 {
-    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), f));
+    Broadcast::sendFloat (getIdentifier(), f);
 }
 
 void RadioPainter::setStateSingle (int n)

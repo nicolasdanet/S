@@ -51,7 +51,7 @@ void AtomPainter::mouseDrag (const juce::MouseEvent& e)
     
     const juce::Range<double> r (juce::jmin (low, high), juce::jmax (low, high));
 
-    Spaghettis()->handle (Inputs::sendObjectFloat (getIdentifier(), r.isEmpty() ? v : r.clipValue (v)));
+    Broadcast::sendFloat (getIdentifier(), r.isEmpty() ? v : r.clipValue (v));
 }
 
 void AtomPainter::mouseUp (const juce::MouseEvent&)
