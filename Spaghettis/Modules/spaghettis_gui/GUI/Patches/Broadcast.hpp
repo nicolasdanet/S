@@ -18,10 +18,19 @@ struct Broadcast {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void dirty (core::UniqueId u)
+static void undo (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::setDirty (u));
+    Spaghettis()->handle (Inputs::undo (i));
 }
+
+static void redo (core::UniqueId i)
+{
+    Spaghettis()->handle (Inputs::redo (i));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 static void select (core::UniqueId i)
 {
@@ -31,16 +40,6 @@ static void select (core::UniqueId i)
 static void deselect (core::UniqueId i)
 {
     Spaghettis()->handle (Inputs::deselectObject (i));
-}
-
-static void undo (core::UniqueId i)
-{
-    Spaghettis()->handle (Inputs::undo (i));
-}
-
-static void redo (core::UniqueId i)
-{
-    Spaghettis()->handle (Inputs::redo (i));
 }
 
 static void cut (core::UniqueId i)
@@ -68,6 +67,24 @@ static void remove (core::UniqueId i)
     Spaghettis()->handle (Inputs::remove (i));
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void disconnect (core::UniqueId u, int m, core::UniqueId v, int n)
+{
+    Spaghettis()->handle (Inputs::disconnectLine (u, m, v, n));
+}
+
+static void connect (core::UniqueId u, int m, core::UniqueId v, int n)
+{
+    Spaghettis()->handle (Inputs::connectLine (u, m, v, n));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void encapsulate (core::UniqueId i)
 {
     Spaghettis()->handle (Inputs::encapsulate (i));
@@ -77,6 +94,10 @@ static void deencapsulate (core::UniqueId i)
 {
     Spaghettis()->handle (Inputs::deencapsulate (i));
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 static void moveBack (core::UniqueId i)
 {
@@ -98,6 +119,10 @@ static void position (core::UniqueId i, core::Point::Real pt)
     Spaghettis()->handle (Inputs::positionObject (i, pt));
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void include (core::UniqueId i)
 {
     Spaghettis()->handle (Inputs::includeObject (i));
@@ -108,21 +133,15 @@ static void exclude (core::UniqueId i)
     Spaghettis()->handle (Inputs::excludeObject (i));
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void parameters (core::UniqueId i, const data::Group& copy)
 {
     jassert (copy.hasUniqueOwnership());    /* Parameters MUST be a deep copy. */
     
     Spaghettis()->handle (Inputs::parametersObject (i, copy));
-}
-
-static void disconnect (core::UniqueId u, int m, core::UniqueId v, int n)
-{
-    Spaghettis()->handle (Inputs::disconnectLine (u, m, v, n));
-}
-
-static void connect (core::UniqueId u, int m, core::UniqueId v, int n)
-{
-    Spaghettis()->handle (Inputs::connectLine (u, m, v, n));
 }
 
 static void create (core::UniqueId u, core::Point::Real pt, const juce::String& s)
@@ -134,6 +153,11 @@ static void create (core::UniqueId u, core::Point::Real pt, const juce::String& 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void dirty (core::UniqueId u)
+{
+    Spaghettis()->handle (Inputs::setDirty (u));
+}
+
 static void editView (core::UniqueId u, const juce::Rectangle<int>& bounds)
 {
     Spaghettis()->handle (Inputs::setEditView (u, bounds));
@@ -143,6 +167,25 @@ static void editViewProperties (core::UniqueId u, core::Point::Real pt, int zoom
 {
     Spaghettis()->handle (Inputs::setEditViewProperties (u, pt, zoom, hasInspector, width));
 }
+
+static void savePatch (core::UniqueId u)
+{
+    Spaghettis()->handle (Inputs::savePatch (u));
+}
+
+static void closePatch (core::UniqueId u)
+{
+    Spaghettis()->handle (Inputs::closePatch (u));
+}
+
+static void openHelp (core::UniqueId u)
+{
+    Spaghettis()->handle (Inputs::openHelp (u));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 static void sendBang (core::UniqueId u)
 {

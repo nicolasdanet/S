@@ -101,12 +101,14 @@ void PatchRoot::save()
 {
     presets_.save();
     
-    Spaghettis()->handle (Inputs::savePatch (getIdentifier()));
+    Broadcast::savePatch (getIdentifier());
 }
     
 void PatchRoot::close (bool saveFirst)
 {
-    if (saveFirst) { save(); } Spaghettis()->handle (Inputs::closePatch (getIdentifier()));
+    if (saveFirst) { save(); }
+    
+    Broadcast::closePatch (getIdentifier());
 }
 
 // -----------------------------------------------------------------------------------------------------------
