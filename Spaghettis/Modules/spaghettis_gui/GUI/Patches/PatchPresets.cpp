@@ -152,7 +152,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void storePresets (juce::PropertiesFile& file,
+void storeSlot (juce::PropertiesFile& file,
     const juce::String& name,
     const std::vector<PresetElement>& elements)
 {
@@ -170,7 +170,7 @@ void storePresets (juce::PropertiesFile& file,
     file.setValue (PresetsConstants::PresetTag + name, root.get());
 }
 
-void loadPresets (juce::PropertiesFile& file, const juce::String& name)
+void loadSlot (juce::PropertiesFile& file, const juce::String& name)
 {
     const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
         
@@ -189,6 +189,16 @@ void loadPresets (juce::PropertiesFile& file, const juce::String& name)
     }
 }
 
+void convertSlot (juce::PropertiesFile& file, const juce::String& name)
+{
+    DBG ("CONVERT " + name);
+}
+
+void resolveSlot (juce::PropertiesFile& file, const juce::String& name)
+{
+    DBG ("RESOLVE " + name);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -200,25 +210,66 @@ void loadPresets (juce::PropertiesFile& file, const juce::String& name)
 
 bool PatchPresets::load (const juce::String& name)
 {
-    if (isValid()) { loadPresets (presetsFile_, name); return true; }
+    if (isValid()) { loadSlot (presetsFile_, name); return true; }
     
     return false;
 }
 
 bool PatchPresets::store (const juce::String& name, const std::vector<PresetElement>& elements)
 {
-    if (isValid()) { storePresets (presetsFile_, name, elements); return true; }
+    if (isValid()) { storeSlot (presetsFile_, name, elements); return true; }
     
     return false;
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void forEachSlot (juce::PropertiesFile& file, std::function<void (juce::PropertiesFile&, juce::String)> f)
+{
+    juce::StringArray keys (file.getAllProperties().getAllKeys());
     
+    for (const auto& k : keys) {
+    //
+    if (k.startsWith (PresetsConstants::PresetTag)) {
+        f (file, k.trimCharactersAtStart (PresetsConstants::PresetTag));
+    }
+    //
+    }
+}
+
+void convertToAbsolute (juce::PropertiesFile& file)
+{
+    forEachSlot (file, convertSlot);
+}
+
+void resolveToLocal (juce::PropertiesFile& file)
+{
+    forEachSlot (file, resolveSlot);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void PatchPresets::save()
 {
-    if (isValid()) { presetsFile_.saveIfNeeded(); }
+    if (isValid() && presetsFile_.needsToBeSaved()) {
+        convertToAbsolute (presetsFile_);
+        presetsFile_.save();
+        resolveToLocal (presetsFile_);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
