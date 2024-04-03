@@ -289,7 +289,7 @@ void EditPort::notify()
     const bool hasInspector     = view_.hasInspector();
     const int inspectorWidth    = view_.getInspectorWidth();
     
-    Broadcast::view (u, pt, zoom, hasInspector, inspectorWidth);
+    Broadcast::editViewProperties (u, pt, zoom, hasInspector, inspectorWidth);
 }
 
 // -----------------------------------------------------------------------------------------------------------

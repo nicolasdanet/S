@@ -36,9 +36,7 @@ bool EditWindow::locate (core::UniqueId u)
 
 void EditWindow::hasBeenMovedOrResized()
 {
-    if (isFullyInitialized()) {
-        Spaghettis()->handle (Inputs::setEditView (getIdentifier(), getBounds()));
-    }
+    if (isFullyInitialized()) { Broadcast::editView (getIdentifier(), getBounds()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -130,9 +130,18 @@ static void create (core::UniqueId u, core::Point::Real pt, const juce::String& 
     if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (u, pt, s)); }
 }
 
-static void view (core::UniqueId u, core::Point::Real pt, int zoom, bool hasInspector, int inspectorWidth)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void editView (core::UniqueId u, const juce::Rectangle<int>& bounds)
 {
-    Spaghettis()->handle (Inputs::setEditViewProperties (u, pt, zoom, hasInspector, inspectorWidth));
+    Spaghettis()->handle (Inputs::setEditView (u, bounds));
+}
+
+static void editViewProperties (core::UniqueId u, core::Point::Real pt, int zoom, bool hasInspector, int width)
+{
+    Spaghettis()->handle (Inputs::setEditViewProperties (u, pt, zoom, hasInspector, width));
 }
 
 static void sendBang (core::UniqueId u)
