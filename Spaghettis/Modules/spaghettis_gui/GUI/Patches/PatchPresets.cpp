@@ -42,7 +42,7 @@ juce::PropertiesFile::Options getPresetOptions()
 
 PatchPresets::PatchPresets (const juce::File& file) : presetsFile_ (getPresetFile (file), getPresetOptions())
 {
-    if (isValid() == false) { }
+    read (false);
 }
 
 PatchPresets::~PatchPresets()
@@ -191,7 +191,7 @@ void loadSlot (juce::PropertiesFile& file, const juce::String& name)
 
 void convertSlot (juce::PropertiesFile& file, const juce::String& name)
 {
-    DBG ("CONVERT " + name);
+
 }
 
 void resolveSlot (juce::PropertiesFile& file, const juce::String& name)
@@ -263,11 +263,21 @@ void resolveToLocal (juce::PropertiesFile& file)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchPresets::save()
+void PatchPresets::write()
 {
     if (isValid() && presetsFile_.needsToBeSaved()) {
         convertToAbsolute (presetsFile_);
         presetsFile_.save();
+        resolveToLocal (presetsFile_);
+    }
+}
+
+void PatchPresets::read (bool reload)
+{
+    if (isValid()) {
+        if (reload) {
+            presetsFile_.reload();
+        }
         resolveToLocal (presetsFile_);
     }
 }

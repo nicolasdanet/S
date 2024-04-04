@@ -99,7 +99,7 @@ PatchPresets& PatchRoot::getPresets()
 
 void PatchRoot::save()
 {
-    presets_.save();
+    presets_.write();
     
     Broadcast::savePatch (getIdentifier());
 }
