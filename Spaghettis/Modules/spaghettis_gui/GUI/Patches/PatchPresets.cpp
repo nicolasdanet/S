@@ -42,7 +42,7 @@ juce::PropertiesFile::Options getPresetOptions()
 
 PatchPresets::PatchPresets (const juce::File& file) : presetsFile_ (getPresetFile (file), getPresetOptions())
 {
-    read (false);
+    resolve();
 }
 
 PatchPresets::~PatchPresets()
@@ -162,6 +162,7 @@ void storeSlot (juce::PropertiesFile& file,
     //
     juce::XmlElement* e = root->createNewChildElement (Id::PRESET);
     e->setAttribute (Id::item,  p.getTag().toString());
+    e->setAttribute (Id::path,  "");
     e->setAttribute (Id::type,  PresetsConstants::FloatType);
     e->setAttribute (Id::value, p.getParameter().getValueTypedUnchecked<double>());
     //
@@ -177,26 +178,45 @@ void loadSlot (juce::PropertiesFile& file, const juce::String& name)
     if (root && root->hasTagName (Id::PRESETS)) {
     //
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        if (e->hasAttribute (Id::item))  {
-        if (e->hasAttribute (Id::value)) {
-            const core::UniqueId u = data::Cast::fromVar<core::UniqueId> (e->getStringAttribute (Id::item));
-            const double f = e->getDoubleAttribute (Id::value);
-            DBG (juce::String (u) + " / " + juce::String (f));
-        }
-        }
+        const core::UniqueId u = data::Cast::fromVar<core::UniqueId> (e->getStringAttribute (Id::item));
+        const double f = e->getDoubleAttribute (Id::value);
+        DBG (juce::String (u) + " / " + juce::String (f));
     }
     //
     }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 void convertSlot (juce::PropertiesFile& file, const juce::String& name)
 {
-
+    const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
+        
+    if (root && root->hasTagName (Id::PRESETS)) {
+    //
+    for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
+        const core::UniqueId u = data::Cast::fromVar<core::UniqueId> (e->getStringAttribute (Id::item));
+    }
+    //
+    }
+    
+    file.setValue (PresetsConstants::PresetTag + name, root.get());
 }
 
 void resolveSlot (juce::PropertiesFile& file, const juce::String& name)
 {
-    DBG ("RESOLVE " + name);
+    const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
+        
+    if (root && root->hasTagName (Id::PRESETS)) {
+    //
+    for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
+        e->setAttribute (Id::item, "0");
+    }
+    //
+    }
+    
+    file.setValue (PresetsConstants::PresetTag + name, root.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -268,18 +288,12 @@ void PatchPresets::write()
     if (isValid() && presetsFile_.needsToBeSaved()) {
         convertToAbsolute (presetsFile_);
         presetsFile_.save();
-        resolveToLocal (presetsFile_);
     }
 }
 
-void PatchPresets::read (bool reload)
+void PatchPresets::resolve()
 {
-    if (isValid()) {
-        if (reload) {
-            presetsFile_.reload();
-        }
-        resolveToLocal (presetsFile_);
-    }
+    if (isValid()) { resolveToLocal (presetsFile_); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
