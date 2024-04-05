@@ -151,6 +151,25 @@ namespace {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+template <class T> core::UniqueId getIdentifierFromXml (T* e)
+{
+    return data::Cast::fromVar<core::UniqueId> (juce::var (e->getStringAttribute (Id::item)));
+}
+
+bool containsElement (core::UniqueId u, const std::vector<PresetElement>& elements)
+{
+    for (const auto& p : elements) {
+    //
+    if (u == data::Cast::fromVar<core::UniqueId> (p.getTag())) { return true; }
+    //
+    }
+    
+    return false;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void storeSlot (juce::PropertiesFile& file,
@@ -180,9 +199,10 @@ void loadSlot (juce::PropertiesFile& file,
     if (root && root->hasTagName (Id::PRESETS)) {
     //
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        const core::UniqueId u = data::Cast::fromVar<core::UniqueId> (e->getStringAttribute (Id::item));
-        const double f = e->getDoubleAttribute (Id::value);
-        DBG (juce::String (u) + " / " + juce::String (f));
+        const core::UniqueId u = getIdentifierFromXml (e);
+        if (containsElement (u, elements)) {
+            Broadcast::sendFloat (u, e->getDoubleAttribute (Id::value));
+        }
     }
     //
     }
@@ -198,7 +218,7 @@ void convertSlot (juce::PropertiesFile& file, const juce::String& name)
     if (root && root->hasTagName (Id::PRESETS)) {
     //
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        // const core::UniqueId u = data::Cast::fromVar<core::UniqueId> (e->getStringAttribute (Id::item));
+        // const core::UniqueId u = getIdentifierFromXml (e);
         e->setAttribute (Id::path, "");
     }
     //
