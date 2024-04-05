@@ -151,6 +151,7 @@ namespace {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void storeSlot (juce::PropertiesFile& file,
     const juce::String& name,
@@ -162,7 +163,6 @@ void storeSlot (juce::PropertiesFile& file,
     //
     juce::XmlElement* e = root->createNewChildElement (Id::PRESET);
     e->setAttribute (Id::item,  p.getTag().toString());
-    e->setAttribute (Id::path,  "");
     e->setAttribute (Id::type,  PresetsConstants::FloatType);
     e->setAttribute (Id::value, p.getParameter().getValueTypedUnchecked<double>());
     //
@@ -171,7 +171,9 @@ void storeSlot (juce::PropertiesFile& file,
     file.setValue (PresetsConstants::PresetTag + name, root.get());
 }
 
-void loadSlot (juce::PropertiesFile& file, const juce::String& name)
+void loadSlot (juce::PropertiesFile& file,
+    const juce::String& name,
+    const std::vector<PresetElement>& elements)
 {
     const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
         
@@ -196,7 +198,8 @@ void convertSlot (juce::PropertiesFile& file, const juce::String& name)
     if (root && root->hasTagName (Id::PRESETS)) {
     //
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        const core::UniqueId u = data::Cast::fromVar<core::UniqueId> (e->getStringAttribute (Id::item));
+        // const core::UniqueId u = data::Cast::fromVar<core::UniqueId> (e->getStringAttribute (Id::item));
+        e->setAttribute (Id::path, "");
     }
     //
     }
@@ -228,9 +231,9 @@ void resolveSlot (juce::PropertiesFile& file, const juce::String& name)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool PatchPresets::load (const juce::String& name)
+bool PatchPresets::load (const juce::String& name, const std::vector<PresetElement>& elements)
 {
-    if (isValid()) { loadSlot (presetsFile_, name); return true; }
+    if (isValid()) { loadSlot (presetsFile_, name, elements); return true; }
     
     return false;
 }
@@ -293,7 +296,7 @@ void PatchPresets::write()
 
 void PatchPresets::resolve()
 {
-    if (isValid()) { resolveToLocal (presetsFile_); }
+    if (isValid()) { resolveToLocal (presetsFile_); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

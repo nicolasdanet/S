@@ -177,7 +177,7 @@ void RunPresets::handleAsyncUpdate()
 
 void RunPresets::load()
 {
-    view_.getPatchRoot().getPresets().load ("Default");
+    view_.getPatchRoot().getPresets().load ("Default", presetsElements_);
 }
 
 void RunPresets::store()
