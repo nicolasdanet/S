@@ -236,7 +236,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void convertSlot (juce::PropertiesFile& file, const juce::String& name, const PresetsPaths& paths)
+void convertSlot (juce::PropertiesFile& file, const juce::String& name, const AbsolutePaths& paths)
 {
     const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
         
@@ -252,7 +252,7 @@ void convertSlot (juce::PropertiesFile& file, const juce::String& name, const Pr
     file.setValue (PresetsConstants::PresetTag + name, root.get());
 }
 
-void resolveSlot (juce::PropertiesFile& file, const juce::String& name, const PresetsPaths& paths)
+void resolveSlot (juce::PropertiesFile& file, const juce::String& name, const LocalPaths& paths)
 {
     const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
         
@@ -271,29 +271,30 @@ void resolveSlot (juce::PropertiesFile& file, const juce::String& name, const Pr
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void forEachSlot (juce::PropertiesFile& file,
-    std::function<void (juce::PropertiesFile&, juce::String, const PresetsPaths& paths)> f,
-    const PresetsPaths& paths)
+void convertToAbsolute (juce::PropertiesFile& file, const AbsolutePaths& paths)
 {
     juce::StringArray keys (file.getAllProperties().getAllKeys());
     
     for (const auto& k : keys) {
     //
     if (k.startsWith (PresetsConstants::PresetTag)) {
-        f (file, k.trimCharactersAtStart (PresetsConstants::PresetTag), paths);
+        convertSlot (file, k.trimCharactersAtStart (PresetsConstants::PresetTag), paths);
     }
     //
     }
 }
 
-void convertToAbsolute (juce::PropertiesFile& file, const PresetsPaths& paths)
+void resolveToLocal (juce::PropertiesFile& file, const LocalPaths& paths)
 {
-    forEachSlot (file, convertSlot, paths);
-}
-
-void resolveToLocal (juce::PropertiesFile& file, const PresetsPaths& paths)
-{
-    forEachSlot (file, resolveSlot, paths);
+    juce::StringArray keys (file.getAllProperties().getAllKeys());
+    
+    for (const auto& k : keys) {
+    //
+    if (k.startsWith (PresetsConstants::PresetTag)) {
+        resolveSlot (file, k.trimCharactersAtStart (PresetsConstants::PresetTag), paths);
+    }
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -308,14 +309,14 @@ void resolveToLocal (juce::PropertiesFile& file, const PresetsPaths& paths)
 void PatchPresets::write()
 {
     if (isValid() && presetsFile_.needsToBeSaved()) {
-        convertToAbsolute (presetsFile_, PresetsPaths (rootTree_));
+        convertToAbsolute (presetsFile_, AbsolutePaths (rootTree_));
         presetsFile_.save();
     }
 }
 
 void PatchPresets::resolve()
 {
-    if (isValid()) { resolveToLocal (presetsFile_, PresetsPaths (rootTree_)); }
+    if (isValid()) { resolveToLocal (presetsFile_, LocalPaths (rootTree_)); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
