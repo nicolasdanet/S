@@ -45,7 +45,7 @@ PatchRoot::PatchRoot (const core::Report& v) :
     rootTree_ (v.asValueTree()),
     dirty_ (core::Patch (rootTree_).getCached<bool> (Tag::Attributes, Tag::Dirty)),
     path_ (core::Patch (rootTree_).getCached<juce::String> (Tag::Attributes, Tag::Path)),
-    presets_ (getFile())
+    presets_ (rootTree_, getFile())
 {
     dirty_.attach ([this]() { setDirtyFlagIfRequired(); });
     

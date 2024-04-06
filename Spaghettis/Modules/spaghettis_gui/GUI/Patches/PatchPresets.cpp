@@ -40,7 +40,9 @@ juce::PropertiesFile::Options getPresetOptions()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PatchPresets::PatchPresets (const juce::File& file) : presetsFile_ (getPresetFile (file), getPresetOptions())
+PatchPresets::PatchPresets (const juce::ValueTree& root, const juce::File& file) :
+    rootTree_ (root),
+    presetsFile_ (getPresetFile (file), getPresetOptions())
 {
     resolve();
 }
@@ -152,11 +154,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-template <class T> core::UniqueId getIdentifierFromXml (T* e)
-{
-    return data::Cast::fromVar<core::UniqueId> (juce::var (e->getStringAttribute (Id::item)));
-}
-
 bool containsElement (core::UniqueId u, const std::vector<PresetElement>& elements)
 {
     for (const auto& p : elements) {
@@ -170,7 +167,6 @@ bool containsElement (core::UniqueId u, const std::vector<PresetElement>& elemen
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 void storeSlot (juce::PropertiesFile& file,
     const juce::String& name,
@@ -199,47 +195,13 @@ void loadSlot (juce::PropertiesFile& file,
     if (root && root->hasTagName (Id::PRESETS)) {
     //
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        const core::UniqueId u = getIdentifierFromXml (e);
+        const core::UniqueId u = data::Cast::fromVar<core::UniqueId> (e->getStringAttribute (Id::item));
         if (containsElement (u, elements)) {
             Broadcast::sendFloat (u, e->getDoubleAttribute (Id::value));
         }
     }
     //
     }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-void convertSlot (juce::PropertiesFile& file, const juce::String& name)
-{
-    const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
-        
-    if (root && root->hasTagName (Id::PRESETS)) {
-    //
-    for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        // const core::UniqueId u = getIdentifierFromXml (e);
-        e->setAttribute (Id::path, "");
-    }
-    //
-    }
-    
-    file.setValue (PresetsConstants::PresetTag + name, root.get());
-}
-
-void resolveSlot (juce::PropertiesFile& file, const juce::String& name)
-{
-    const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
-        
-    if (root && root->hasTagName (Id::PRESETS)) {
-    //
-    for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        e->setAttribute (Id::item, "0");
-    }
-    //
-    }
-    
-    file.setValue (PresetsConstants::PresetTag + name, root.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -273,6 +235,41 @@ namespace {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+void convertSlot (juce::PropertiesFile& file, const juce::String& name)
+{
+    const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
+        
+    if (root && root->hasTagName (Id::PRESETS)) {
+    //
+    for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
+        // const core::UniqueId u = data::Cast::fromVar<core::UniqueId> (e->getStringAttribute (Id::item))
+        e->setAttribute (Id::path, "");
+    }
+    //
+    }
+    
+    file.setValue (PresetsConstants::PresetTag + name, root.get());
+}
+
+void resolveSlot (juce::PropertiesFile& file, const juce::String& name)
+{
+    const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
+        
+    if (root && root->hasTagName (Id::PRESETS)) {
+    //
+    for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
+        e->setAttribute (Id::item, "0");
+    }
+    //
+    }
+    
+    file.setValue (PresetsConstants::PresetTag + name, root.get());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void forEachSlot (juce::PropertiesFile& file, std::function<void (juce::PropertiesFile&, juce::String)> f)
 {

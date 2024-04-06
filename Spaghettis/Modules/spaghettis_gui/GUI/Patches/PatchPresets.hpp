@@ -19,7 +19,7 @@ class PatchPresets {
 // MARK: -
 
 public:
-    PatchPresets (const juce::File&);
+    PatchPresets (const juce::ValueTree&, const juce::File&);
     
     ~PatchPresets();
 
@@ -63,6 +63,7 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
+    juce::ValueTree rootTree_;
     juce::PropertiesFile presetsFile_;
     
 private:
