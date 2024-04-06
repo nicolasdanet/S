@@ -46,6 +46,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Patches/PresetsPaths.cpp"
 #include "GUI/Patches/PatchPresets.cpp"
 #include "GUI/Patches/PatchRoot.cpp"
 #include "GUI/Patches/PatchRootReport.cpp"

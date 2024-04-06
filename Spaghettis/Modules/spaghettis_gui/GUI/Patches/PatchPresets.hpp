@@ -64,6 +64,8 @@ private:
 
 private:
     juce::ValueTree rootTree_;
+
+private:
     juce::PropertiesFile presetsFile_;
     
 private:
