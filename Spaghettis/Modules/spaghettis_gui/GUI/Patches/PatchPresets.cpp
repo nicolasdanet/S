@@ -243,7 +243,7 @@ void convertSlot (juce::PropertiesFile& file, const juce::String& name, const Lo
     if (root && root->hasTagName (Id::PRESETS)) {
     //
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        e->setAttribute (Id::path, paths.getAbsoluteWithLocal (e->getStringAttribute (Id::item)));
+        e->setAttribute (Id::path, paths.getPathWithItem (e->getStringAttribute (Id::item)));
     }
     //
     }
@@ -258,7 +258,7 @@ void resolveSlot (juce::PropertiesFile& file, const juce::String& name, const Ab
     if (root && root->hasTagName (Id::PRESETS)) {
     //
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        e->setAttribute (Id::item, paths.getLocalWithAbsolute (e->getStringAttribute (Id::path)));
+        e->setAttribute (Id::item, paths.getItemWithPath (e->getStringAttribute (Id::path)));
     }
     //
     }

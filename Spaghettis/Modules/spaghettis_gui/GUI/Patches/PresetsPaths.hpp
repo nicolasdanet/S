@@ -39,7 +39,7 @@ public:
     explicit AbsoluteToLocal (const juce::ValueTree&);
 
 public:
-    juce::String getLocalWithAbsolute (const juce::String&) const;
+    juce::String getItemWithPath (const juce::String&) const;
 
 private:
     juce::StringPairArray paths_;
@@ -59,7 +59,7 @@ public:
     explicit LocalToAbsolute (const juce::ValueTree&);
     
 public:
-    juce::String getAbsoluteWithLocal (const juce::String&) const;
+    juce::String getPathWithItem (const juce::String&) const;
 
 private:
     juce::StringPairArray paths_;
