@@ -10,6 +10,40 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PresetsPaths::initialize (const juce::ValueTree&, juce::StringPairArray&, bool absoluteHasKey)
+{
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+AbsoluteToLocal::AbsoluteToLocal (const juce::ValueTree& root)
+{
+    PresetsPaths::initialize (root, paths_, true);
+}
+
+juce::String AbsoluteToLocal::getLocalWithAbsolute (const juce::String&) const
+{
+    return juce::String ("");
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+LocalToAbsolute::LocalToAbsolute (const juce::ValueTree& root)
+{
+    PresetsPaths::initialize (root, paths_, false);
+}
+
+juce::String LocalToAbsolute::getAbsoluteWithLocal (const juce::String&) const
+{
+    return juce::String ("");
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
