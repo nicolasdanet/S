@@ -23,7 +23,8 @@ void addIfIncluded (const juce::ValueTree& child, juce::StringPairArray& paths, 
         const core::Object object (child);
         if (object.isGraphic() && object.get<bool> (Tag::Parameters, Tag::Included)) {
             juce::String item (data::Cast::toVar<core::UniqueId> (object.getIdentifier()).toString());
-            DBG (item);
+            juce::String path (Tree::computePath (child));
+            DBG (item + " - " + path);
         }
     }
 }
