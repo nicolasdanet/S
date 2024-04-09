@@ -44,7 +44,7 @@ PatchPresets::PatchPresets (const juce::ValueTree& root, const juce::File& file)
     rootTree_ (root),
     presetsFile_ (getPresetFile (file), getPresetOptions())
 {
-    resolve();
+
 }
 
 PatchPresets::~PatchPresets()
@@ -242,9 +242,17 @@ void convertSlot (juce::PropertiesFile& file, const juce::String& name, const Lo
         
     if (root && root->hasTagName (Id::PRESETS)) {
     //
+    std::vector<juce::XmlElement*> pruned;
+    
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        e->setAttribute (Id::path, paths.getPathWithItem (e->getStringAttribute (Id::item)));
+        juce::String path (paths.getPathWithItem (e->getStringAttribute (Id::item)));
+        if (path.isEmpty()) { pruned.push_back (e); }
+        else {
+            e->setAttribute (Id::path, path);
+        }
     }
+    
+    for (auto p : pruned) { root->removeChildElement (p, true); }
     //
     }
     
