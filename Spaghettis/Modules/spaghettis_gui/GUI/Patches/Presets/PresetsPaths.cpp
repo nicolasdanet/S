@@ -53,34 +53,6 @@ void PresetsPaths::initialize (const juce::ValueTree& root, juce::StringPairArra
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-AbsoluteToLocal::AbsoluteToLocal (const juce::ValueTree& root)
-{
-    PresetsPaths::initialize (root, paths_, true);
-}
-
-juce::String AbsoluteToLocal::getItemWithPath (const juce::String&) const
-{
-    return juce::String ("");
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-LocalToAbsolute::LocalToAbsolute (const juce::ValueTree& root)
-{
-    PresetsPaths::initialize (root, paths_, false);
-}
-
-juce::String LocalToAbsolute::getPathWithItem (const juce::String&) const
-{
-    return juce::String ("");
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 }
 

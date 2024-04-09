@@ -47,6 +47,8 @@
 // -----------------------------------------------------------------------------------------------------------
 
 #include "GUI/Patches/Presets/PresetsPaths.cpp"
+#include "GUI/Patches/Presets/AbsoluteToLocal.cpp"
+#include "GUI/Patches/Presets/LocalToAbsolute.cpp"
 
 #include "GUI/Patches/PatchPresets.cpp"
 #include "GUI/Patches/PatchRoot.cpp"
