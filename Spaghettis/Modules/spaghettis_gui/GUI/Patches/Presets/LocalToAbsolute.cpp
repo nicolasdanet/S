@@ -14,7 +14,7 @@ namespace spaghettis {
 
 LocalToAbsolute::LocalToAbsolute (const juce::ValueTree& root)
 {
-    PresetsPaths::initialize (root, paths_, false);
+    PresetsAddresses::initialize (root, paths_, false);
 }
 
 juce::String LocalToAbsolute::getPathWithItem (const juce::String&) const

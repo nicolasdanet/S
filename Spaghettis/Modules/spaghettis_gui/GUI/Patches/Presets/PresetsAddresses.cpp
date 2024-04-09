@@ -46,7 +46,7 @@ void fetchPathsRecursive (const juce::ValueTree& tree, juce::StringPairArray& pa
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PresetsPaths::initialize (const juce::ValueTree& root, juce::StringPairArray& paths, bool absoluteHasKey)
+void PresetsAddresses::initialize (const juce::ValueTree& root, juce::StringPairArray& paths, bool absoluteHasKey)
 {
     fetchPathsRecursive (root, paths, absoluteHasKey);
 }
