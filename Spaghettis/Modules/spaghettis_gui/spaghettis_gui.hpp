@@ -95,8 +95,9 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "GUI/Patches/Presets/PresetsPaths.hpp"
+
 #include "GUI/Patches/Broadcast.hpp"
-#include "GUI/Patches/PresetsPaths.hpp"
 #include "GUI/Patches/PatchPresets.hpp"
 #include "GUI/Patches/PatchReport.hpp"
 #include "GUI/Patches/PatchRoot.hpp"
