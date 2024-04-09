@@ -44,7 +44,6 @@ PatchPresets::PatchPresets (const juce::ValueTree& root, const juce::File& file)
     rootTree_ (root),
     presetsFile_ (getPresetFile (file), getPresetOptions())
 {
-
 }
 
 PatchPresets::~PatchPresets()
@@ -167,6 +166,7 @@ bool containsElement (core::UniqueId u, const std::vector<PresetElement>& elemen
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void storeSlot (juce::PropertiesFile& file,
     const juce::String& name,
@@ -245,7 +245,7 @@ void convertSlot (juce::PropertiesFile& file, const juce::String& name, const Lo
     std::vector<juce::XmlElement*> pruned;
     
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        juce::String path (paths.getPathWithItem (e->getStringAttribute (Id::item)));
+        const juce::String path (paths.getPathWithItem (e->getStringAttribute (Id::item)));
         if (path.isEmpty()) { pruned.push_back (e); }
         else {
             e->setAttribute (Id::path, path);
@@ -265,9 +265,17 @@ void resolveSlot (juce::PropertiesFile& file, const juce::String& name, const Ab
         
     if (root && root->hasTagName (Id::PRESETS)) {
     //
+    std::vector<juce::XmlElement*> pruned;
+    
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        e->setAttribute (Id::item, paths.getItemWithPath (e->getStringAttribute (Id::path)));
+        const juce::String item (paths.getItemWithPath (e->getStringAttribute (Id::path)));
+        if (item.isEmpty()) { pruned.push_back (e); }
+        else {
+            e->setAttribute (Id::item, item);
+        }
     }
+    
+    for (auto p : pruned) { root->removeChildElement (p, true); }
     //
     }
     
