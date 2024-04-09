@@ -40,13 +40,13 @@ juce::PropertiesFile::Options getPresetOptions()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PatchPresets::PatchPresets (const juce::ValueTree& root, const juce::File& file) :
+PresetsManager::PresetsManager (const juce::ValueTree& root, const juce::File& file) :
     rootTree_ (root),
     presetsFile_ (getPresetFile (file), getPresetOptions())
 {
 }
 
-PatchPresets::~PatchPresets()
+PresetsManager::~PresetsManager()
 {
     if (isValid()) { presetsFile_.setNeedsToBeSaved (false); }
 }
@@ -55,12 +55,12 @@ PatchPresets::~PatchPresets()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool PatchPresets::isValid() const
+bool PresetsManager::isValid() const
 {
     return presetsFile_.isValidFile();
 }
 
-bool PatchPresets::isValid (juce::StringRef keyName) const
+bool PresetsManager::isValid (juce::StringRef keyName) const
 {
     return isValid() && presetsFile_.containsKey (keyName);
 }
@@ -81,7 +81,7 @@ namespace PresetsConstants
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::optional<juce::Rectangle<int>> PatchPresets::getRunWindow() const
+std::optional<juce::Rectangle<int>> PresetsManager::getRunWindow() const
 {
     if (isValid (PresetsConstants::PositionTag)) {
     //
@@ -99,7 +99,7 @@ std::optional<juce::Rectangle<int>> PatchPresets::getRunWindow() const
     return std::nullopt;
 }
 
-std::optional<bool> PatchPresets::getTabState() const
+std::optional<bool> PresetsManager::getTabState() const
 {
     if (isValid (PresetsConstants::StateTag)) {
         return presetsFile_.getBoolValue (PresetsConstants::StateTag);
@@ -108,7 +108,7 @@ std::optional<bool> PatchPresets::getTabState() const
     return std::nullopt;
 }
 
-std::optional<int> PatchPresets::getTabWidth() const
+std::optional<int> PresetsManager::getTabWidth() const
 {
     if (isValid (PresetsConstants::WidthTag)) {
         return presetsFile_.getIntValue (PresetsConstants::WidthTag);
@@ -121,7 +121,7 @@ std::optional<int> PatchPresets::getTabWidth() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchPresets::setRunWindow (const juce::Rectangle<int>& bounds)
+void PresetsManager::setRunWindow (const juce::Rectangle<int>& bounds)
 {
     if (isValid()) {
     //
@@ -134,12 +134,12 @@ void PatchPresets::setRunWindow (const juce::Rectangle<int>& bounds)
     }
 }
 
-void PatchPresets::setTabState (bool isActive)
+void PresetsManager::setTabState (bool isActive)
 {
     if (isValid()) { return presetsFile_.setValue (PresetsConstants::StateTag, isActive); }
 }
 
-void PatchPresets::setTabWidth (int w)
+void PresetsManager::setTabWidth (int w)
 {
     if (isValid()) { return presetsFile_.setValue (PresetsConstants::WidthTag, w); }
 }
@@ -213,14 +213,14 @@ void loadSlot (juce::PropertiesFile& file,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool PatchPresets::load (const juce::String& name, const std::vector<PresetElement>& elements)
+bool PresetsManager::load (const juce::String& name, const std::vector<PresetElement>& elements)
 {
     if (isValid()) { loadSlot (presetsFile_, name, elements); return true; }
     
     return false;
 }
 
-bool PatchPresets::store (const juce::String& name, const std::vector<PresetElement>& elements)
+bool PresetsManager::store (const juce::String& name, const std::vector<PresetElement>& elements)
 {
     if (isValid()) { storeSlot (presetsFile_, name, elements); return true; }
     
@@ -321,7 +321,7 @@ void resolveToLocal (juce::PropertiesFile& file, const AbsoluteToLocal& paths)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchPresets::write()
+void PresetsManager::write()
 {
     if (isValid() && presetsFile_.needsToBeSaved()) {
         convertToAbsolute (presetsFile_, LocalToAbsolute (rootTree_));
@@ -329,7 +329,7 @@ void PatchPresets::write()
     }
 }
 
-void PatchPresets::resolve()
+void PresetsManager::resolve()
 {
     if (isValid()) { resolveToLocal (presetsFile_, AbsoluteToLocal (rootTree_)); }
 }

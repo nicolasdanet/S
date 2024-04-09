@@ -12,16 +12,16 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class PatchPresets {
+class PresetsManager {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    PatchPresets (const juce::ValueTree&, const juce::File&);
+    PresetsManager (const juce::ValueTree&, const juce::File&);
     
-    ~PatchPresets();
+    ~PresetsManager();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ private:
     juce::PropertiesFile presetsFile_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchPresets)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetsManager)
 };
 
 // -----------------------------------------------------------------------------------------------------------

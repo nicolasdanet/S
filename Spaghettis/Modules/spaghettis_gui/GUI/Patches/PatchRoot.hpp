@@ -69,7 +69,7 @@ public:
 // MARK: -
 
 public:
-    PatchPresets& getPresets();
+    PresetsManager& getPresets();
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -125,7 +125,7 @@ private:
     data::Cached<juce::String> path_;
 
 private:
-    PatchPresets presets_;
+    PresetsManager presets_;
     
 private:
     std::vector<std::unique_ptr<PatchWindow>> windows_;

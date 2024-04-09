@@ -88,7 +88,7 @@ juce::File PatchRoot::getFile() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PatchPresets& PatchRoot::getPresets()
+PresetsManager& PatchRoot::getPresets()
 {
     return presets_;
 }
