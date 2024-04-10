@@ -12,9 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-LocalToAbsolute::LocalToAbsolute (const juce::ValueTree& root)
+LocalToAbsolute::LocalToAbsolute (const juce::ValueTree& root) : paths_ (PresetsAddresses::get (root, false))
 {
-    PresetsAddresses::initialize (root, paths_, false);
+
 }
 
 juce::String LocalToAbsolute::getPathWithItem (const juce::String&) const

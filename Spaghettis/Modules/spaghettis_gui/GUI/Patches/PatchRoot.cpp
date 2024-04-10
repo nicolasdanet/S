@@ -58,7 +58,7 @@ PatchRoot::~PatchRoot()
         
     releaseAllWindows (windows_);
         
-    DBG (data::Data::toDebugString (rootTree_));
+    // DBG (data::Data::toDebugString (rootTree_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

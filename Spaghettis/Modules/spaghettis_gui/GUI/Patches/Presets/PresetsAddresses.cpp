@@ -24,7 +24,10 @@ void addIfIncluded (const juce::ValueTree& child, juce::StringPairArray& paths, 
         if (object.isGraphic() && object.get<bool> (Tag::Parameters, Tag::Included)) {
             juce::String item (data::Cast::toVar<core::UniqueId> (object.getIdentifier()).toString());
             juce::String path (Tree::computePath (child));
-            DBG (item + " - " + path);
+            if (absoluteHasKey) { paths.set (path, item); }
+            else {
+                paths.set (item, path);
+            }
         }
     }
 }
@@ -46,9 +49,13 @@ void fetchPathsRecursive (const juce::ValueTree& tree, juce::StringPairArray& pa
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PresetsAddresses::initialize (const juce::ValueTree& root, juce::StringPairArray& paths, bool absoluteHasKey)
+juce::StringPairArray PresetsAddresses::get (const juce::ValueTree& root, bool absoluteHasKey)
 {
+    juce::StringPairArray paths;
+    
     fetchPathsRecursive (root, paths, absoluteHasKey);
+    
+    return paths;
 }
 
 // -----------------------------------------------------------------------------------------------------------
