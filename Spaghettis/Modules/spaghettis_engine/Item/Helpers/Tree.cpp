@@ -12,25 +12,56 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::String getRepresentation (const core::Object& object)
+{
+    juce::String s (object.get<juce::String> (Tag::Attributes, Tag::Class));
+    
+    s += object.get<int> (Tag::Attributes, Tag::X);
+    s += object.get<int> (Tag::Attributes, Tag::Y);
+
+    return s;
+}
+
+juce::String getPathAsHexString (juce::String path)
+{
+    return juce::String::toHexString (path.toRawUTF8(), static_cast<int> (path.getNumBytesAsUTF8()), 0);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::String Tree::computePath (const juce::ValueTree& tree)
 {
     juce::StringArray path;
     
-    juce::ValueTree child (tree);
-    juce::ValueTree parent (child.getParent());
+    path.add (getRepresentation (core::Object (tree)));
     
-    while (parent.isValid()) {
-    //
-    core::Patch patch (parent);
+        juce::ValueTree child (tree);
+        juce::ValueTree parent (child.getParent());
+        
+        while (parent.isValid()) {
+        //
+        core::Patch patch (parent);
+        
+        path.insert (0, juce::String (patch.getIndexOfObject (core::Object (child))));
+        
+        child  = parent;
+        parent = parent.getParent();
+        //
+        }
     
-    path.insert (0, juce::String (patch.getIndexOfObject (core::Object (child))));
-    
-    child  = parent;
-    parent = parent.getParent();
-    //
-    }
-    
-    return path.joinIntoString ("/");
+    return getPathAsHexString (path.joinIntoString ("/"));
 }
 
 // -----------------------------------------------------------------------------------------------------------
