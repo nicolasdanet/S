@@ -12,6 +12,14 @@ namespace spaghettis::core {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace PresetsConstants
+{
+    constexpr static const char* const AddressSeparator = "#";
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -21,15 +29,12 @@ juce::String getRepresentation (const core::Object& object)
 {
     juce::String s (object.get<juce::String> (Tag::Attributes, Tag::Class));
     
+    s += PresetsConstants::AddressSeparator;
     s += object.get<int> (Tag::Attributes, Tag::X);
+    s += PresetsConstants::AddressSeparator;
     s += object.get<int> (Tag::Attributes, Tag::Y);
 
     return s;
-}
-
-juce::String getPathAsHexString (juce::String path)
-{
-    return juce::String::toHexString (path.toRawUTF8(), static_cast<int> (path.getNumBytesAsUTF8()), 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -61,7 +66,7 @@ juce::String Tree::computePath (const juce::ValueTree& tree)
         //
         }
     
-    return getPathAsHexString (path.joinIntoString ("/"));
+    return path.joinIntoString (PresetsConstants::AddressSeparator);
 }
 
 // -----------------------------------------------------------------------------------------------------------
