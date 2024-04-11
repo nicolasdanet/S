@@ -141,7 +141,9 @@ void instance_loadAbstraction (t_symbol *name, int argc, t_atom *argv)
 static void instance_loadPatchLoadbang (void)
 {
     if (instance_get()->pd_stack.s_contextPopped) {
-        glist_loadbang (instance_get()->pd_stack.s_contextPopped);
+        t_glist *g = instance_get()->pd_stack.s_contextPopped;
+        outputs_patchLoadbang (g);
+        glist_loadbang (g);
         instance_get()->pd_stack.s_contextPopped = NULL;
     }
 }

@@ -109,7 +109,10 @@ void PatchRoot::rename (const core::UniquePath& u, core::UniqueId i)
 
 void PatchRoot::loadbang (const core::UniquePath& u)
 {
-
+    if (u.isRoot()) { DBG ("LOADBANG"); }
+    else {
+        DBG ("!?!");
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -32,6 +32,11 @@ void outputs_reportDsp (int n)
     wrapper_send (Outputs::reportDsp (n ? true : false));
 }
 
+void outputs_patchLoadbang (t_glist *g)
+{
+    wrapper_send (Outputs::patchLoadbang (UniquePath (cast_object (g))));
+}
+
 void outputs_patchOpened (t_symbol *name, t_symbol *directory)
 {
     jassert (name && directory);
@@ -187,11 +192,6 @@ void outputs_patchOrder (t_glist *g, std::vector<UniqueId>&& ids)
     wrapper_send (Outputs::patchOrder (UniquePath (cast_object (g)), std::move (ids)));
 }
 
-void outputs_patchLoadbang (t_glist *g)
-{
-    wrapper_send (Outputs::patchLoadbang (UniquePath (cast_object (g))));
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -224,6 +224,10 @@ void outputs_clearConsole (void)
 }
 
 void outputs_reportDsp (int n)
+{
+}
+
+void outputs_patchLoadbang (t_glist *g)
 {
 }
 

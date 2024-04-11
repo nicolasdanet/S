@@ -17,6 +17,7 @@
 void outputs_quit                          (void);
 void outputs_clearConsole                  (void);
 void outputs_reportDsp                     (int);
+void outputs_patchLoadbang                 (t_glist *g);
 void outputs_patchOpened                   (t_symbol *, t_symbol *);
 void outputs_reportAvailableAudioDevices   (t_deviceslist *);
 void outputs_reportCurrentAudioDevices     (t_deviceslist *);
@@ -54,7 +55,6 @@ void outputs_objectRenamed     (t_object *x, t_id t);
 // -----------------------------------------------------------------------------------------------------------
 
 void outputs_patchOrder        (t_glist *g, std::vector<UniqueId>&&);
-void outputs_patchLoadbang     (t_glist *g);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
