@@ -107,6 +107,15 @@ void PatchRoot::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PatchRoot::loadbang (const core::UniquePath& u)
+{
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void PatchRoot::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
 {
     juce::ValueTree parent (getParent (rootTree_, u));

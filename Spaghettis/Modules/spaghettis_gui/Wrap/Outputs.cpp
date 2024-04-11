@@ -87,6 +87,18 @@ Perform Outputs::classNew (juce::String name)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+Perform Outputs::patchLoadbang (core::UniquePath unique)
+{
+    return [u = std::move (unique)]()
+    {
+        Spaghettis()->getPatches().loadbang (u);
+    };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 Perform Outputs::patchOrder (core::UniquePath unique, std::vector<core::UniqueId>&& ids)
 {
     return [u = std::move (unique), v = std::move (ids)]()

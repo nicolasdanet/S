@@ -126,6 +126,15 @@ void PatchesHolder::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PatchesHolder::loadbang (const core::UniquePath& u)
+{
+    perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->loadbang (u); });
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void PatchesHolder::setOrder (const core::UniquePath& u, const std::vector<core::UniqueId>& v)
 {
     perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->setOrder (u, v); });

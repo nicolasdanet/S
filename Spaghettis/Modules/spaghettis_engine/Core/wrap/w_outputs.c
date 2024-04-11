@@ -187,6 +187,11 @@ void outputs_patchOrder (t_glist *g, std::vector<UniqueId>&& ids)
     wrapper_send (Outputs::patchOrder (UniquePath (cast_object (g)), std::move (ids)));
 }
 
+void outputs_patchLoadbang (t_glist *g)
+{
+    wrapper_send (Outputs::patchLoadbang (UniquePath (cast_object (g))));
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
