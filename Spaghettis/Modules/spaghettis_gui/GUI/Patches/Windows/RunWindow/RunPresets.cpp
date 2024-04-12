@@ -14,12 +14,12 @@ namespace spaghettis {
     
 RunPresets::RunPresets (RunView& view) :
     view_ (view),
-    active_ (view_.getPatchRoot().getPresets().getTabState().value_or (false)),
+    active_ (view_.getPatchRoot().getPresetsManager().getTabState().value_or (false)),
     resizer_ (*this),
     presetsLoad_ (NEEDS_TRANS ("Load")),
     presetsStore_ (NEEDS_TRANS ("Store"))
 {
-    const int w = view_.getPatchRoot().getPresets().getTabWidth().value_or (0);
+    const int w = view_.getPatchRoot().getPresetsManager().getTabWidth().value_or (0);
     
     view_.attach (this);    /* Must be the first. */
     
@@ -96,8 +96,8 @@ void RunPresets::resized()
 
 void RunPresets::notify()
 {
-    view_.getPatchRoot().getPresets().setTabState (isActive());
-    view_.getPatchRoot().getPresets().setTabWidth (getWidth());
+    view_.getPatchRoot().getPresetsManager().setTabState (isActive());
+    view_.getPatchRoot().getPresetsManager().setTabWidth (getWidth());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -177,12 +177,12 @@ void RunPresets::handleAsyncUpdate()
 
 void RunPresets::load()
 {
-    view_.getPatchRoot().getPresets().load ("Default", presetsElements_);
+    view_.getPatchRoot().getPresetsManager().load ("Default", presetsElements_);
 }
 
 void RunPresets::store()
 {
-    if (view_.getPatchRoot().getPresets().store ("Default", presetsElements_)) {
+    if (view_.getPatchRoot().getPresetsManager().store ("Default", presetsElements_)) {
     //
     Broadcast::dirty (view_.getIdentifier());
     //

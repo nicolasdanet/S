@@ -231,6 +231,15 @@ bool PresetsManager::store (const juce::String& name, const std::vector<PresetEl
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PresetsManager::loadbang()
+{
+    resolve();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -245,7 +254,8 @@ void convertSlot (juce::PropertiesFile& file, const juce::String& name, const Lo
     std::vector<juce::XmlElement*> pruned;
     
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        const juce::String path (paths.getPathWithItem (e->getStringAttribute (Id::item)));
+        const juce::String item (e->getStringAttribute (Id::item));
+        const juce::String path (paths.getPathWithItem (item));
         if (path.isEmpty()) { pruned.push_back (e); }
         else {
             e->setAttribute (Id::path, path);
@@ -268,7 +278,8 @@ void resolveSlot (juce::PropertiesFile& file, const juce::String& name, const Ab
     std::vector<juce::XmlElement*> pruned;
     
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
-        const juce::String item (paths.getItemWithPath (e->getStringAttribute (Id::path)));
+        const juce::String path (e->getStringAttribute (Id::path));
+        const juce::String item (paths.getItemWithPath (path));
         if (item.isEmpty()) { pruned.push_back (e); }
         else {
             e->setAttribute (Id::item, item);

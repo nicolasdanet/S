@@ -16,7 +16,7 @@ RunWindow::RunWindow (const PatchBase& base) : PatchWindow (base)
 {
     setContentOwned (new RunComponent (base), true);
     
-    auto t = getPatchRoot().getPresets().getRunWindow();
+    auto t = getPatchRoot().getPresetsManager().getRunWindow();
     auto r = t.value_or (getPatch().get<juce::Rectangle<int>> (Tag::Attributes, Tag::EditView));
     
     makeVisible (r, false);
@@ -28,7 +28,7 @@ RunWindow::RunWindow (const PatchBase& base) : PatchWindow (base)
 
 void RunWindow::hasBeenMovedOrResized()
 {
-    if (isFullyInitialized()) { getPatchRoot().getPresets().setRunWindow (getBounds()); }
+    if (isFullyInitialized()) { getPatchRoot().getPresetsManager().setRunWindow (getBounds()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

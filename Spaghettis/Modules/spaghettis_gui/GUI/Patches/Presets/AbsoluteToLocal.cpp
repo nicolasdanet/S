@@ -17,9 +17,9 @@ AbsoluteToLocal::AbsoluteToLocal (const juce::ValueTree& root) : paths_ (Presets
 
 }
 
-juce::String AbsoluteToLocal::getItemWithPath (const juce::String&) const
+juce::String AbsoluteToLocal::getItemWithPath (const juce::String& key) const
 {
-    return juce::String ("");
+    return paths_.getValue (key, juce::String());
 }
 
 // -----------------------------------------------------------------------------------------------------------
