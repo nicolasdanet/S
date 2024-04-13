@@ -15,8 +15,7 @@
         <FILE id="pyAzqh" name="icon_add.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_add.svg"/>
         <FILE id="W4KSZp" name="icon_construction.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_construction.svg"/>
-        <FILE id="lQeYTz" name="icon_delete_forever.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/icon_delete_forever.svg"/>
+        <FILE id="EtbCqA" name="icon_delete.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_delete.svg"/>
         <FILE id="YbQGbR" name="icon_error_outline.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_error_outline.svg"/>
         <FILE id="MftGP7" name="icon_info.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_info.svg"/>

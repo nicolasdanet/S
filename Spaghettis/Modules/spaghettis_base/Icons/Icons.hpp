@@ -50,7 +50,7 @@ public:
     {
         addIconAction ("Add",           0, "icon_add_svg");
         addIconToggle ("Autoscroll",    0, "icon_system_update_alt_svg");
-        addIconAction ("Clear",         0, "icon_delete_forever_svg");
+        addIconAction ("Clear",         0, "icon_delete_svg");
         addIconAction ("Edit",          0, "icon_construction_svg");
         addIconToggle ("Error",         4, "icon_error_outline_svg");
         addIconAction ("Find",          0, "icon_place_svg");

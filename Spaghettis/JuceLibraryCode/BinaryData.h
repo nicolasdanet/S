@@ -17,8 +17,8 @@ namespace BinaryData
     extern const char*   icon_construction_svg;
     const int            icon_construction_svgSize = 723;
 
-    extern const char*   icon_delete_forever_svg;
-    const int            icon_delete_forever_svgSize = 368;
+    extern const char*   icon_delete_svg;
+    const int            icon_delete_svgSize = 489;
 
     extern const char*   icon_error_outline_svg;
     const int            icon_error_outline_svgSize = 292;

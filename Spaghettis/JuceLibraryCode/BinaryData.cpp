@@ -46,12 +46,12 @@ static const unsigned char temp_binary_data_2[] =
 
 const char* icon_construction_svg = (const char*) temp_binary_data_2;
 
-//================== icon_delete_forever.svg ==================
+//================== icon_delete.svg ==================
 static const unsigned char temp_binary_data_3[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M14.12 10.47L12 12.59l-2.13-2.12-1.41 1.41L10.59 14l-2.12 2.12 1.41 1.41L12 15.41l2.1"
-"2 2.12 1.41-1.41L13.41 14l2.12-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z\"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M292.309-140.001q-29.923 0-51.115-21.193-21.193-21.192-21.193-51.115V-720h-40v-59.999H360v-35.384h240v35.384h179.999V-720h-40v507.691q0 30.308-2"
+"1 51.308t-51.308 21H292.309ZM680-720H280v507.691q0 5.385 3.462 8.847 3.462 3.462 8.847 3.462h375.382q4.616 0 8.463-3.846 3.846-3.847 3.846-8.463V-720ZM376.155-280h59.999v-360h-59.999v360Zm147.691 0h59.999v-360h-59.999v360ZM280-720v520-520Z\"/></svg>";
 
-const char* icon_delete_forever_svg = (const char*) temp_binary_data_3;
+const char* icon_delete_svg = (const char*) temp_binary_data_3;
 
 //================== icon_error_outline.svg ==================
 static const unsigned char temp_binary_data_4[] =
@@ -153,7 +153,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
         case 0x4f50b4e2:  numBytes = 492; return info_bng_xml;
         case 0xa5ac8800:  numBytes = 194; return icon_add_svg;
         case 0x0319b4fc:  numBytes = 723; return icon_construction_svg;
-        case 0xa0922c7e:  numBytes = 368; return icon_delete_forever_svg;
+        case 0x96f96956:  numBytes = 489; return icon_delete_svg;
         case 0xc13ec2ea:  numBytes = 292; return icon_error_outline_svg;
         case 0x642e3859:  numBytes = 307; return icon_info_svg;
         case 0xcb611256:  numBytes = 426; return icon_lock_svg;
@@ -178,7 +178,7 @@ const char* namedResourceList[] =
     "info_bng_xml",
     "icon_add_svg",
     "icon_construction_svg",
-    "icon_delete_forever_svg",
+    "icon_delete_svg",
     "icon_error_outline_svg",
     "icon_info_svg",
     "icon_lock_svg",
@@ -198,7 +198,7 @@ const char* originalFilenames[] =
     "info_bng.xml",
     "icon_add.svg",
     "icon_construction.svg",
-    "icon_delete_forever.svg",
+    "icon_delete.svg",
     "icon_error_outline.svg",
     "icon_info.svg",
     "icon_lock.svg",
