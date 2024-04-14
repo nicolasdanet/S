@@ -48,20 +48,20 @@ public:
 public:
     Icons()
     {
-        addIconAction ("Add",           0, "icon_add_svg");
-        addIconToggle ("Autoscroll",    0, "icon_system_update_alt_svg");
-        addIconAction ("Clear",         0, "icon_delete_svg");
-        addIconAction ("Edit",          0, "icon_construction_svg");
-        addIconToggle ("Error",         4, "icon_error_svg");
-        addIconAction ("Find",          0, "icon_location_on_svg");
-        addIconToggle ("Inspector",     1, "icon_info_svg", false);
-        addIconToggle ("Message",       2, "icon_mail_svg");
-        addIconToggle ("Presets",       0, "icon_tune_svg", false);
-        addIconAction ("Restore",       0, "icon_history_svg");
-        addIconAction ("Run",           0, "icon_visibility_svg");
-        addIconAction ("Synchronize",   0, "icon_sync_svg");
-        addIconAction ("SortUp",        0, "icon_text_rotate_up_svg");
-        addIconAction ("SortDown",      0, "icon_text_rotation_down_svg");
+        addIconAction ("Add",           "icon_add_svg");
+        addIconToggle ("Autoscroll",    "icon_system_update_alt_svg");
+        addIconAction ("Clear",         "icon_delete_svg");
+        addIconAction ("Edit",          "icon_construction_svg");
+        addIconToggle ("Error",         "icon_error_svg");
+        addIconAction ("Find",          "icon_location_on_svg");
+        addIconToggle ("Inspector",     "icon_info_svg", false);
+        addIconToggle ("Message",       "icon_mail_svg");
+        addIconToggle ("Presets",       "icon_tune_svg", false);
+        addIconAction ("Restore",       "icon_history_svg");
+        addIconAction ("Run",           "icon_visibility_svg");
+        addIconAction ("Synchronize",   "icon_sync_svg");
+        addIconAction ("SortUp",        "icon_text_rotate_up_svg");
+        addIconAction ("SortDown",      "icon_text_rotation_down_svg");
     }
 
     ~Icons()
@@ -87,11 +87,6 @@ public:
     juce::String getName (int itemId) const
     {
         return drawables_[getIconIndex (itemId)].getName();
-    }
-    
-    int getExtraSpace (int itemId) const
-    {
-        return drawables_[getIconIndex (itemId)].getExtraSpace();
     }
     
     std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
@@ -147,21 +142,21 @@ private:
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    void addIconAction (const juce::String& s, int extra, const char* image)
+    void addIconAction (const juce::String& s, const char* image)
     {
-        addIconProceed (s, extra, image, image, false, true);
+        addIconProceed (s, image, image, false, true);
     }
     
-    void addIconToggle (const juce::String& s, int extra, const char* image, bool state = true)
+    void addIconToggle (const juce::String& s, const char* image, bool state = true)
     {
-        addIconProceed (s, extra, image, image, true, state);
+        addIconProceed (s, image, image, true, state);
     }
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 private:
-    void addIconProceed (const juce::String&, int, const char*, const char*, bool, bool);
+    void addIconProceed (const juce::String&, const char*, const char*, bool, bool);
     
 private:
     std::vector<IconsElement> drawables_;

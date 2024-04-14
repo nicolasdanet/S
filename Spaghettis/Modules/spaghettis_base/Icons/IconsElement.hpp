@@ -20,13 +20,11 @@ class IconsElement {
 
 public:
     explicit IconsElement (const juce::String& name,
-            int extra,
             std::unique_ptr<juce::Drawable> off,
             std::unique_ptr<juce::Drawable> on,
             bool isToggle,
             bool isDefaultStateOn) :
         name_ (name),
-        extra_ (extra),
         off_ (std::move (off)),
         on_ (std::move (on)),
         isToggle_ (isToggle),
@@ -40,11 +38,6 @@ public:
     juce::String getName() const
     {
         return name_;
-    }
-    
-    int getExtraSpace() const
-    {
-        return extra_;
     }
     
     std::unique_ptr<juce::Drawable> getIconOff() const
@@ -69,7 +62,6 @@ public:
     
 private:
     juce::String name_;
-    int extra_;
     std::unique_ptr<juce::Drawable> off_;
     std::unique_ptr<juce::Drawable> on_;
     bool isToggle_;
