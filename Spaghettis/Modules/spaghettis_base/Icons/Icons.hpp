@@ -48,22 +48,22 @@ public:
 public:
     Icons()
     {
-        /* Must be in same order as IconsIds. */
+        /* Must be in same order as enum above. */
         
-        addIconAction ("Add",           "icon_add_svg");
-        addIconToggle ("Autoscroll",    "icon_system_update_alt_svg",   true);
-        addIconAction ("Clear",         "icon_delete_svg");
-        addIconAction ("Edit",          "icon_construction_svg");
-        addIconToggle ("Error",         "icon_error_svg",               true);
-        addIconAction ("Find",          "icon_location_on_svg");
-        addIconToggle ("Inspector",     "icon_info_svg",                false);
-        addIconToggle ("Message",       "icon_mail_svg",                true);
-        addIconToggle ("Presets",       "icon_tune_svg",                false);
-        addIconAction ("Restore",       "icon_history_svg");
-        addIconAction ("Run",           "icon_visibility_svg");
-        addIconAction ("Synchronize",   "icon_sync_svg");
-        addIconAction ("SortUp",        "icon_text_rotate_up_svg");
-        addIconAction ("SortDown",      "icon_text_rotation_down_svg");
+        addIconAction       ("Add",         "icon_add_svg");
+        addIconToggleOn     ("Autoscroll",  "icon_system_update_alt_svg");
+        addIconAction       ("Clear",       "icon_delete_svg");
+        addIconAction       ("Edit",        "icon_construction_svg");
+        addIconToggleOn     ("Error",       "icon_error_svg");
+        addIconAction       ("Find",        "icon_location_on_svg");
+        addIconToggleOff    ("Inspector",   "icon_info_svg");
+        addIconToggleOn     ("Message",     "icon_mail_svg");
+        addIconToggleOff    ("Presets",     "icon_tune_svg");
+        addIconAction       ("Restore",     "icon_history_svg");
+        addIconAction       ("Run",         "icon_visibility_svg");
+        addIconAction       ("Synchronize", "icon_sync_svg");
+        addIconAction       ("SortUp",      "icon_text_rotate_up_svg");
+        addIconAction       ("SortDown",    "icon_text_rotation_down_svg");
     }
 
     ~Icons()
@@ -149,9 +149,14 @@ private:
         addIconProceed (s, image, image, false, true);
     }
     
-    void addIconToggle (const juce::String& s, const char* image, bool state)
+    void addIconToggleOn (const juce::String& s, const char* image)
     {
-        addIconProceed (s, image, image, true, state);
+        addIconProceed (s, image, image, true, true);
+    }
+    
+    void addIconToggleOff (const juce::String& s, const char* image)
+    {
+        addIconProceed (s, image, image, true, false);
     }
     
 // -----------------------------------------------------------------------------------------------------------
