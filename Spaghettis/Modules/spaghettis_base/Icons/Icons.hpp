@@ -104,7 +104,6 @@ private:
 // MARK: -
 
 public:
-    static juce::Image imagefromSVG (const char*, juce::Rectangle<int>, juce::Colour);
     static juce::Image imagefromSVG (const char*);
     
 private:

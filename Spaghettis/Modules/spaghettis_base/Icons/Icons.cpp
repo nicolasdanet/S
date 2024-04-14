@@ -92,6 +92,18 @@ std::unique_ptr<juce::Drawable> getDrawable (const char* name, juce::Colour colo
     return t;
 }
 
+juce::Image getImagefromSVG (const char* name, juce::Rectangle<int> r, juce::Colour colour)
+{
+    juce::Image image (juce::Image::ARGB, r.getWidth(), r.getHeight(), true);
+    
+        std::unique_ptr<juce::Drawable> drawable (getDrawable (name, colour));
+        juce::Graphics g (image);
+        drawable->setTransformToFit (r.withZeroOrigin().toFloat(), juce::RectanglePlacement::centred);
+        drawable->draw (g, 1.f);
+
+	return image;
+}
+
 void addIconProceed (std::vector<IconsElement>& v,
     const juce::String& name,
     const char* imageOff,
@@ -128,26 +140,14 @@ void Icons::addIconToggleOff (const juce::String& s, const char* image)
 {
     addIconProceed (drawables_, s, image, image, true, false);
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-juce::Image Icons::imagefromSVG (const char* name, juce::Rectangle<int> r, juce::Colour colour)
-{
-    juce::Image image (juce::Image::ARGB, r.getWidth(), r.getHeight(), true);
-    
-        std::unique_ptr<juce::Drawable> drawable (getDrawable (name, colour));
-        juce::Graphics g (image);
-        drawable->setTransformToFit (r.withZeroOrigin().toFloat(), juce::RectanglePlacement::centred);
-        drawable->draw (g, 1.f);
-
-	return image;
-}
-
 juce::Image Icons::imagefromSVG (const char* name)
 {
-    return imagefromSVG (name, juce::Rectangle<int> (24, 24), juce::Colours::grey);
+    return getImagefromSVG (name, juce::Rectangle<int> (24, 24), juce::Colours::grey);
 }
 
 // -----------------------------------------------------------------------------------------------------------
