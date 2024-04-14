@@ -92,16 +92,8 @@ std::unique_ptr<juce::Drawable> getDrawable (const char* name, juce::Colour colo
     return t;
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void Icons::addIconProceed (const juce::String& name,
+void addIconProceed (std::vector<IconsElement>& v,
+    const juce::String& name,
     const char* imageOff,
     const char* imageOn,
     bool isToggle,
@@ -110,7 +102,12 @@ void Icons::addIconProceed (const juce::String& name,
     auto t1 (getDrawable (imageOff, Colours::fetchColour (Colours::toolbarIconOff)));
     auto t2 (getDrawable (imageOn,  Colours::fetchColour (Colours::toolbarIconOn)));
     
-    drawables_.emplace_back (name, std::move (t1), std::move (t2), isToggle, defaultStateIsOn);
+    v.emplace_back (name, std::move (t1), std::move (t2), isToggle, defaultStateIsOn);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -119,17 +116,17 @@ void Icons::addIconProceed (const juce::String& name,
 
 void Icons::addIconAction (const juce::String& s, const char* image)
 {
-    addIconProceed (s, image, image, false, true);
+    addIconProceed (drawables_, s, image, image, false, true);
 }
 
 void Icons::addIconToggleOn (const juce::String& s, const char* image)
 {
-    addIconProceed (s, image, image, true, true);
+    addIconProceed (drawables_, s, image, image, true, true);
 }
 
 void Icons::addIconToggleOff (const juce::String& s, const char* image)
 {
-    addIconProceed (s, image, image, true, false);
+    addIconProceed (drawables_, s, image, image, true, false);
 }
     
 // -----------------------------------------------------------------------------------------------------------
