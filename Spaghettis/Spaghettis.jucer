@@ -32,6 +32,7 @@
         <FILE id="IJLGLO" name="icon_text_rotation_down.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_text_rotation_down.svg"/>
         <FILE id="wLVawc" name="icon_tune.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_tune.svg"/>
+        <FILE id="pgrmyP" name="icon_upload.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_upload.svg"/>
         <FILE id="nhfcRR" name="icon_visibility.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_visibility.svg"/>
       </GROUP>

@@ -33,7 +33,7 @@ const char* info_bng_xml = (const char*) temp_binary_data_0;
 
 //================== icon_add.svg ==================
 static const unsigned char temp_binary_data_1[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z\"/></svg>";
 
 const char* icon_add_svg = (const char*) temp_binary_data_1;
 
@@ -130,13 +130,19 @@ static const unsigned char temp_binary_data_14[] =
 
 const char* icon_tune_svg = (const char*) temp_binary_data_14;
 
-//================== icon_visibility.svg ==================
+//================== icon_upload.svg ==================
 static const unsigned char temp_binary_data_15[] =
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-80v-80h640v80H160Zm200-160v-280H200l280-360 280 360H600v280H360Zm80-80h80v-280h76L480-750 364-600h76v280Zm40-280Z\"/></svg>";
+
+const char* icon_upload_svg = (const char*) temp_binary_data_15;
+
+//================== icon_visibility.svg ==================
+static const unsigned char temp_binary_data_16[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8"
 ".13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z\""
 "/></svg>";
 
-const char* icon_visibility_svg = (const char*) temp_binary_data_15;
+const char* icon_visibility_svg = (const char*) temp_binary_data_16;
 
 
 const char* getNamedResource (const char* resourceNameUTF8, int& numBytes);
@@ -151,7 +157,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
     switch (hash)
     {
         case 0x4f50b4e2:  numBytes = 492; return info_bng_xml;
-        case 0xa5ac8800:  numBytes = 194; return icon_add_svg;
+        case 0xa5ac8800:  numBytes = 163; return icon_add_svg;
         case 0x0319b4fc:  numBytes = 723; return icon_construction_svg;
         case 0x96f96956:  numBytes = 489; return icon_delete_svg;
         case 0xc13ec2ea:  numBytes = 292; return icon_error_outline_svg;
@@ -165,6 +171,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
         case 0x1c7a8c18:  numBytes = 305; return icon_text_rotate_up_svg;
         case 0x223c68dc:  numBytes = 300; return icon_text_rotation_down_svg;
         case 0x5a409ea3:  numBytes = 278; return icon_tune_svg;
+        case 0x1f4ed6ac:  numBytes = 224; return icon_upload_svg;
         case 0xbb05083d:  numBytes = 493; return icon_visibility_svg;
         default: break;
     }
@@ -190,6 +197,7 @@ const char* namedResourceList[] =
     "icon_text_rotate_up_svg",
     "icon_text_rotation_down_svg",
     "icon_tune_svg",
+    "icon_upload_svg",
     "icon_visibility_svg"
 };
 
@@ -210,6 +218,7 @@ const char* originalFilenames[] =
     "icon_text_rotate_up.svg",
     "icon_text_rotation_down.svg",
     "icon_tune.svg",
+    "icon_upload.svg",
     "icon_visibility.svg"
 };
 
