@@ -39,10 +39,8 @@ const char* icon_add_svg = (const char*) temp_binary_data_1;
 
 //================== icon_construction.svg ==================
 static const unsigned char temp_binary_data_2[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" enable-background=\"new 0 0 24 24\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><g><rect fill=\"none\" height=\"24\" width=\"24\"/></g><g><g><rect height=\"8.48\" transform=\"matrix("
-"0.7071 -0.7071 0.7071 0.7071 -6.8717 17.6255)\" width=\"3\" x=\"16.34\" y=\"12.87\"/><path d=\"M17.5,10c1.93,0,3.5-1.57,3.5-3.5c0-0.58-0.16-1.12-0.41-1.6l-2.7,2.7L16.4,6.11l2.7-2.7C18.62,3.16,18.08,3,17.5,3 C15.57,3,14,4.57,14,6.5c0,0.41,0.08,0.8,0.2"
-"1,1.16l-1.85,1.85l-1.78-1.78l0.71-0.71L9.88,5.61L12,3.49 c-1.17-1.17-3.07-1.17-4.24,0L4.22,7.03l1.41,1.41H2.81L2.1,9.15l3.54,3.54l0.71-0.71V9.15l1.41,1.41l0.71-0.71l1.78,1.78 l-7.41,7.41l2.12,2.12L16.34,9.79C16.7,9.92,17.09,10,17.5,10z\"/></g></g></s"
-"vg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M756-120 537-339l84-84 219 219-84 84Zm-552 0-84-84 276-276-68-68-28 28-51-51v82l-28 28-121-121 28-28h82l-50-50 142-142q20-20 43-29t47-9q24 0 47 "
+"9t43 29l-92 92 50 50-28 28 68 68 90-90q-4-11-6.5-23t-2.5-24q0-59 40.5-99.5T701-841q15 0 28.5 3t27.5 9l-99 99 72 72 99-99q7 14 9.5 27.5T841-701q0 59-40.5 99.5T701-561q-12 0-24-2t-23-7L204-120Z\"/></svg>";
 
 const char* icon_construction_svg = (const char*) temp_binary_data_2;
 
@@ -53,80 +51,82 @@ static const unsigned char temp_binary_data_3[] =
 
 const char* icon_delete_svg = (const char*) temp_binary_data_3;
 
-//================== icon_error_outline.svg ==================
+//================== icon_error.svg ==================
 static const unsigned char temp_binary_data_4[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-"
-"8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z\"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156"
+"-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 "
+"227t227 93Zm0-320Z\"/></svg>";
 
-const char* icon_error_outline_svg = (const char*) temp_binary_data_4;
+const char* icon_error_svg = (const char*) temp_binary_data_4;
+
+//================== icon_history.svg ==================
+static const unsigned char temp_binary_data_5[] =
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M480-120q-138 0-240.5-91.5T122-440h82q14 104 92.5 172T480-200q117 0 198.5-81.5T760-480q0-117-81.5-198.5T480-760q-69 0-129 32t-101 88h110v80H120v"
+"-240h80v94q51-64 124.5-99T480-840q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480q0 75-28.5 140.5t-77 114q-48.5 48.5-114 77T480-120Zm112-192L440-464v-216h80v184l128 128-56 56Z\"/></svg>";
+
+const char* icon_history_svg = (const char*) temp_binary_data_5;
 
 //================== icon_info.svg ==================
-static const unsigned char temp_binary_data_5[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 "
-"12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z\"/></svg>";
+static const unsigned char temp_binary_data_6[] =
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-3"
+"1.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 22"
+"7t227 93Zm0-320Z\"/></svg>";
 
-const char* icon_info_svg = (const char*) temp_binary_data_5;
+const char* icon_info_svg = (const char*) temp_binary_data_6;
+
+//================== icon_location_on.svg ==================
+static const unsigned char temp_binary_data_7[] =
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69."
+"5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z\"/></svg>";
+
+const char* icon_location_on_svg = (const char*) temp_binary_data_7;
 
 //================== icon_lock.svg ==================
-static const unsigned char temp_binary_data_6[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><g fill=\"none\"><path d=\"M0 0h24v24H0V0z\"/><path d=\"M0 0h24v24H0V0z\" opacity=\".87\"/></g><path d=\"M18 8h-1V6c0-2.76-2.24-5-5-5S7 3."
-"24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z\"/></svg>";
+static const unsigned char temp_binary_data_8[] =
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v"
+"400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z\"/></svg>";
 
-const char* icon_lock_svg = (const char*) temp_binary_data_6;
+const char* icon_lock_svg = (const char*) temp_binary_data_8;
 
 //================== icon_mail.svg ==================
-static const unsigned char temp_binary_data_7[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 "
-"4.99L4 6h16zm0 12H4V8l8 5 8-5v10z\"/></svg>";
-
-const char* icon_mail_svg = (const char*) temp_binary_data_7;
-
-//================== icon_place.svg ==================
-static const unsigned char temp_binary_data_8[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-1.8C18 6.57 15.35 4 12 4s-6 2.57-6"
-" 6.2c0 2.34 1.95 5.44 6 9.14 4.05-3.7 6-6.8 6-9.14zM12 2c4.2 0 8 3.22 8 8.2 0 3.32-2.67 7.25-8 11.8-5.33-4.55-8-8.48-8-11.8C4 5.22 7.8 2 12 2z\"/></svg>";
-
-const char* icon_place_svg = (const char*) temp_binary_data_8;
-
-//================== icon_restore.svg ==================
 static const unsigned char temp_binary_data_9[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M13 3c-4.97 0-9 4.03-9 9H1l4 3.99L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.9"
-"3 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.25 2.52.77-1.28-3.52-2.09V8z\"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-"
+"400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z\"/></svg>";
 
-const char* icon_restore_svg = (const char*) temp_binary_data_9;
+const char* icon_mail_svg = (const char*) temp_binary_data_9;
 
 //================== icon_sync.svg ==================
 static const unsigned char temp_binary_data_10[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M.01 0h24v24h-24V0z\" fill=\"none\"/><path d=\"M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 "
-"20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z\"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-160v-80h110l-16-14q-52-46-73-105t-21-119q0-111 66.5-197.5T400-790v84q-72 26-116 88.5T240-478q0 45 17 87.5t53 78.5l10 10v-98h80v240H160Zm400"
+"-10v-84q72-26 116-88.5T720-482q0-45-17-87.5T650-648l-10-10v98h-80v-240h240v80H690l16 14q49 49 71.5 106.5T800-482q0 111-66.5 197.5T560-170Z\"/></svg>";
 
 const char* icon_sync_svg = (const char*) temp_binary_data_10;
 
 //================== icon_system_update_alt.svg ==================
 static const unsigned char temp_binary_data_11[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0zm0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M12 16l4-4h-3V3h-2v9H8l4 4zm9-13h-6v1.99h6v14.03H3V4.99h6V3H3c-1.1 0-2"
-" .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 13l4-4h-3V3h-2v9H8l4 4zm9-13h-6v1.99h6v14.03H3V4.99h6V3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z\"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h200v80H160v480h640v-480H600v-80h200q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-16"
+"0H160Zm320-184L280-544l56-56 104 104v-304h80v304l104-104 56 56-200 200Z\"/></svg>";
 
 const char* icon_system_update_alt_svg = (const char*) temp_binary_data_11;
 
 //================== icon_text_rotate_up.svg ==================
 static const unsigned char temp_binary_data_12[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M18 4l-3 3h2v13h2V7h2l-3-3zm-6.2 11.5v-5l2.2-.9V7.5L3 1"
-"2.25v1.5l11 4.75v-2.1l-2.2-.9zM4.98 13L10 11.13v3.74L4.98 13z\"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M760-160h-80v-528l-42 42-56-56 138-138 140 138-58 56-42-42v528ZM560-276 120-440v-80l440-164v76l-112 38v178l112 40v76ZM384-414v-132l-182 64v4l182"
+" 64Z\"/></svg>";
 
 const char* icon_text_rotate_up_svg = (const char*) temp_binary_data_12;
 
 //================== icon_text_rotation_down.svg ==================
 static const unsigned char temp_binary_data_13[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M6 20l3-3H7V4H5v13H3l3 3zm6.2-11.5v5l-2.2.9v2.1l11-4.75"
-"v-1.5L10 5.5v2.1l2.2.9zm6.82 2.5L14 12.87V9.13L19.02 11z\"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M240-120 100-258l58-56 42 42v-528h80v528l42-42 56 56-138 138Zm160-156v-76l112-38v-178l-112-40v-76l440 164v80L400-276Zm176-138 182-64v-4l-182-64v"
+"132Z\"/></svg>";
 
 const char* icon_text_rotation_down_svg = (const char*) temp_binary_data_13;
 
 //================== icon_tune.svg ==================
 static const unsigned char temp_binary_data_14[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-"
-"2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z\"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M440-120v-240h80v80h320v80H520v80h-80Zm-320-80v-80h240v80H120Zm160-160v-80H120v-80h160v-80h80v240h-80Zm160-80v-80h400v80H440Zm160-160v-240h80v80"
+"h160v80H680v80h-80Zm-480-80v-80h400v80H120Z\"/></svg>";
 
 const char* icon_tune_svg = (const char*) temp_binary_data_14;
 
@@ -138,9 +138,9 @@ const char* icon_upload_svg = (const char*) temp_binary_data_15;
 
 //================== icon_visibility.svg ==================
 static const unsigned char temp_binary_data_16[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8"
-".13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z\""
-"/></svg>";
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31."
+"5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T"
+"128-500q50 101 144.5 160.5T480-280Z\"/></svg>";
 
 const char* icon_visibility_svg = (const char*) temp_binary_data_16;
 
@@ -158,21 +158,21 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
     {
         case 0x4f50b4e2:  numBytes = 492; return info_bng_xml;
         case 0xa5ac8800:  numBytes = 163; return icon_add_svg;
-        case 0x0319b4fc:  numBytes = 723; return icon_construction_svg;
+        case 0x0319b4fc:  numBytes = 441; return icon_construction_svg;
         case 0x96f96956:  numBytes = 489; return icon_delete_svg;
-        case 0xc13ec2ea:  numBytes = 292; return icon_error_outline_svg;
-        case 0x642e3859:  numBytes = 307; return icon_info_svg;
-        case 0xcb611256:  numBytes = 426; return icon_lock_svg;
-        case 0x58f62ce2:  numBytes = 277; return icon_mail_svg;
-        case 0x43079ee6:  numBytes = 386; return icon_place_svg;
-        case 0x9ec1766d:  numBytes = 372; return icon_restore_svg;
-        case 0xc5dc2fc6:  numBytes = 386; return icon_sync_svg;
-        case 0x497dd622:  numBytes = 434; return icon_system_update_alt_svg;
-        case 0x1c7a8c18:  numBytes = 305; return icon_text_rotate_up_svg;
-        case 0x223c68dc:  numBytes = 300; return icon_text_rotation_down_svg;
-        case 0x5a409ea3:  numBytes = 278; return icon_tune_svg;
+        case 0xebd92f67:  numBytes = 518; return icon_error_svg;
+        case 0xa0121573:  numBytes = 425; return icon_history_svg;
+        case 0x642e3859:  numBytes = 516; return icon_info_svg;
+        case 0x1d9dac08:  numBytes = 426; return icon_location_on_svg;
+        case 0xcb611256:  numBytes = 480; return icon_lock_svg;
+        case 0x58f62ce2:  numBytes = 309; return icon_mail_svg;
+        case 0xc5dc2fc6:  numBytes = 388; return icon_sync_svg;
+        case 0x497dd622:  numBytes = 321; return icon_system_update_alt_svg;
+        case 0x1c7a8c18:  numBytes = 254; return icon_text_rotate_up_svg;
+        case 0x223c68dc:  numBytes = 254; return icon_text_rotation_down_svg;
+        case 0x5a409ea3:  numBytes = 293; return icon_tune_svg;
         case 0x1f4ed6ac:  numBytes = 224; return icon_upload_svg;
-        case 0xbb05083d:  numBytes = 493; return icon_visibility_svg;
+        case 0xbb05083d:  numBytes = 535; return icon_visibility_svg;
         default: break;
     }
 
@@ -186,12 +186,12 @@ const char* namedResourceList[] =
     "icon_add_svg",
     "icon_construction_svg",
     "icon_delete_svg",
-    "icon_error_outline_svg",
+    "icon_error_svg",
+    "icon_history_svg",
     "icon_info_svg",
+    "icon_location_on_svg",
     "icon_lock_svg",
     "icon_mail_svg",
-    "icon_place_svg",
-    "icon_restore_svg",
     "icon_sync_svg",
     "icon_system_update_alt_svg",
     "icon_text_rotate_up_svg",
@@ -207,12 +207,12 @@ const char* originalFilenames[] =
     "icon_add.svg",
     "icon_construction.svg",
     "icon_delete.svg",
-    "icon_error_outline.svg",
+    "icon_error.svg",
+    "icon_history.svg",
     "icon_info.svg",
+    "icon_location_on.svg",
     "icon_lock.svg",
     "icon_mail.svg",
-    "icon_place.svg",
-    "icon_restore.svg",
     "icon_sync.svg",
     "icon_system_update_alt.svg",
     "icon_text_rotate_up.svg",

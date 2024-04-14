@@ -16,14 +16,14 @@
         <FILE id="W4KSZp" name="icon_construction.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_construction.svg"/>
         <FILE id="EtbCqA" name="icon_delete.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_delete.svg"/>
-        <FILE id="YbQGbR" name="icon_error_outline.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/icon_error_outline.svg"/>
+        <FILE id="QZZRiu" name="icon_error.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_error.svg"/>
+        <FILE id="OumGwc" name="icon_history.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_history.svg"/>
         <FILE id="MftGP7" name="icon_info.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_info.svg"/>
+        <FILE id="B94Cns" name="icon_location_on.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_location_on.svg"/>
         <FILE id="KMYtrE" name="icon_lock.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_lock.svg"/>
         <FILE id="v09zib" name="icon_mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_mail.svg"/>
-        <FILE id="D9nQfi" name="icon_place.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_place.svg"/>
-        <FILE id="WYGHhC" name="icon_restore.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/icon_restore.svg"/>
         <FILE id="uexYI2" name="icon_sync.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_sync.svg"/>
         <FILE id="JrIvGS" name="icon_system_update_alt.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_system_update_alt.svg"/>

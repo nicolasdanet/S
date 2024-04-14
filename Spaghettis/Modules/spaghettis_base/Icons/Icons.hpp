@@ -52,12 +52,12 @@ public:
         addIconToggle ("Autoscroll",    0, "icon_system_update_alt_svg");
         addIconAction ("Clear",         0, "icon_delete_svg");
         addIconAction ("Edit",          0, "icon_construction_svg");
-        addIconToggle ("Error",         4, "icon_error_outline_svg");
-        addIconAction ("Find",          0, "icon_place_svg");
+        addIconToggle ("Error",         4, "icon_error_svg");
+        addIconAction ("Find",          0, "icon_location_on_svg");
         addIconToggle ("Inspector",     1, "icon_info_svg", false);
         addIconToggle ("Message",       2, "icon_mail_svg");
         addIconToggle ("Presets",       0, "icon_tune_svg", false);
-        addIconAction ("Restore",       0, "icon_restore_svg");
+        addIconAction ("Restore",       0, "icon_history_svg");
         addIconAction ("Run",           0, "icon_visibility_svg");
         addIconAction ("Synchronize",   0, "icon_sync_svg");
         addIconAction ("SortUp",        0, "icon_text_rotate_up_svg");
