@@ -78,53 +78,19 @@ public:
 // MARK: -
 
 public:
-    static juce::Image imagefromSVG (const char*, juce::Rectangle<int>, juce::Colour);
-    static juce::Image imagefromSVG (const char*);
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    juce::String getName (int itemId) const
-    {
-        return drawables_[getIconIndex (itemId)].getName();
-    }
-    
-    std::unique_ptr<juce::Drawable> getIconOff (int itemId) const
-    {
-        return drawables_[getIconIndex (itemId)].getIconOff();
-    }
-
-    std::unique_ptr<juce::Drawable> getIconOn (int itemId) const
-    {
-        return drawables_[getIconIndex (itemId)].getIconOn();
-    }
-    
-    bool isToggle (int itemId) const
-    {
-        return drawables_[getIconIndex (itemId)].isToggle();
-    }
-    
-    bool getDefaultState (int itemId) const
-    {
-        return drawables_[getIconIndex (itemId)].getDefaultState();
-    }
+    int getItemId (const juce::String& name) const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    int getItemId (const juce::String& name) const
-    {
-        int size = static_cast<int> (drawables_.size());
-        
-        for (int i = 0; i < size; ++i) { if (drawables_[i].getName() == name) { return i + 1; } }
-        
-        return 0;
-    }
-    
+    juce::String getName (int itemId) const;
+    std::unique_ptr<juce::Drawable> getIconOff (int itemId) const;
+    std::unique_ptr<juce::Drawable> getIconOn (int itemId) const;
+    bool isToggle (int itemId) const;
+    bool getDefaultState (int itemId) const;
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -139,7 +105,7 @@ private:
         
         return i;
     }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -164,6 +130,14 @@ private:
 
 private:
     void addIconProceed (const juce::String&, const char*, const char*, bool, bool);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    static juce::Image imagefromSVG (const char*, juce::Rectangle<int>, juce::Colour);
+    static juce::Image imagefromSVG (const char*);
     
 private:
     std::vector<IconsElement> drawables_;

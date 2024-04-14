@@ -12,6 +12,48 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int Icons::getItemId (const juce::String& name) const
+{
+    int size = static_cast<int> (drawables_.size());
+        
+    for (int i = 0; i < size; ++i) { if (drawables_[i].getName() == name) { return i + 1; } }
+        
+    return 0;
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::String Icons::getName (int itemId) const
+{
+    return drawables_[getIconIndex (itemId)].getName();
+}
+
+std::unique_ptr<juce::Drawable> Icons::getIconOff (int itemId) const
+{
+    return drawables_[getIconIndex (itemId)].getIconOff();
+}
+
+std::unique_ptr<juce::Drawable> Icons::getIconOn (int itemId) const
+{
+    return drawables_[getIconIndex (itemId)].getIconOn();
+}
+
+bool Icons::isToggle (int itemId) const
+{
+    return drawables_[getIconIndex (itemId)].isToggle();
+}
+
+bool Icons::getDefaultState (int itemId) const
+{
+    return drawables_[getIconIndex (itemId)].getDefaultState();
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------
