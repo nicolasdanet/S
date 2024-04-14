@@ -25,7 +25,6 @@ public:
         itemId_ (item),
         name_ (Icons::getInstance()->getName (item)),
         isToggle_ (Icons::getInstance()->isToggle (item)),
-        extra_ (Icons::getInstance()->getExtraSpace (item)),
         default_ (Icons::getInstance()->getDefaultState (item))
     {
         if (isToggle_) { setClickingTogglesState (true); }
@@ -35,23 +34,6 @@ public:
     }
     
     ~IconsButton() = default;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool getToolbarItemSizes (int thickness, bool isVertical, int& size, int& min, int& max) override
-{
-    if (!isVertical) {
-    //
-    min  = thickness;
-    size = thickness + extra_;
-    max  = thickness + extra_ + extra_;
-    //
-    } else { return juce::ToolbarButton::getToolbarItemSizes (thickness, isVertical, size, min, max); }
-    
-    return true;
-}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -97,7 +79,6 @@ private:
     int  itemId_;
     juce::String name_;
     bool isToggle_;
-    int  extra_;
     bool default_;
 
 private:
