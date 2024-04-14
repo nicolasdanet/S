@@ -93,37 +93,11 @@ public:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 private:
-    int getIconIndex (int itemId) const
-    {
-        int i = itemId - 1;
-        
-        jassert (i >= 0);
-        jassert (static_cast<std::vector<IconsElement>::size_type> (i) < drawables_.size());
-        
-        return i;
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-private:
-    void addIconAction (const juce::String& s, const char* image)
-    {
-        addIconProceed (s, image, image, false, true);
-    }
-    
-    void addIconToggleOn (const juce::String& s, const char* image)
-    {
-        addIconProceed (s, image, image, true, true);
-    }
-    
-    void addIconToggleOff (const juce::String& s, const char* image)
-    {
-        addIconProceed (s, image, image, true, false);
-    }
+    void addIconAction (const juce::String&, const char*);
+    void addIconToggleOn (const juce::String&, const char*);
+    void addIconToggleOff (const juce::String&, const char*);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -25,29 +25,53 @@ int Icons::getItemId (const juce::String& name) const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+int getIconIndex (const std::vector<IconsElement>& v, int itemId)
+{
+    int i = itemId - 1;
+        
+    jassert (i >= 0);
+    jassert (static_cast<std::vector<IconsElement>::size_type> (i) < v.size());
+        
+    return i;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 juce::String Icons::getName (int itemId) const
 {
-    return drawables_[getIconIndex (itemId)].getName();
+    return drawables_[getIconIndex (drawables_, itemId)].getName();
 }
 
 std::unique_ptr<juce::Drawable> Icons::getIconOff (int itemId) const
 {
-    return drawables_[getIconIndex (itemId)].getIconOff();
+    return drawables_[getIconIndex (drawables_, itemId)].getIconOff();
 }
 
 std::unique_ptr<juce::Drawable> Icons::getIconOn (int itemId) const
 {
-    return drawables_[getIconIndex (itemId)].getIconOn();
+    return drawables_[getIconIndex (drawables_, itemId)].getIconOn();
 }
 
 bool Icons::isToggle (int itemId) const
 {
-    return drawables_[getIconIndex (itemId)].isToggle();
+    return drawables_[getIconIndex (drawables_, itemId)].isToggle();
 }
 
 bool Icons::getDefaultState (int itemId) const
 {
-    return drawables_[getIconIndex (itemId)].getDefaultState();
+    return drawables_[getIconIndex (drawables_, itemId)].getDefaultState();
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -89,6 +113,25 @@ void Icons::addIconProceed (const juce::String& name,
     drawables_.emplace_back (name, std::move (t1), std::move (t2), isToggle, defaultStateIsOn);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void Icons::addIconAction (const juce::String& s, const char* image)
+{
+    addIconProceed (s, image, image, false, true);
+}
+
+void Icons::addIconToggleOn (const juce::String& s, const char* image)
+{
+    addIconProceed (s, image, image, true, true);
+}
+
+void Icons::addIconToggleOff (const juce::String& s, const char* image)
+{
+    addIconProceed (s, image, image, true, false);
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
