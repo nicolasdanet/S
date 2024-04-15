@@ -72,6 +72,7 @@
 #include "Helpers/WindowsProperties.hpp"
 #include "Helpers/Mouse.hpp"
 #include "Helpers/Resizer.hpp"
+#include "Helpers/ToolbarComponent.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

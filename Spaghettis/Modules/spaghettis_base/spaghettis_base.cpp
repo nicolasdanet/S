@@ -16,6 +16,7 @@
 #include "Helpers/CallOutBoxTracker.cpp"
 #include "Helpers/Autocomplete.cpp"
 #include "Helpers/WindowsProperties.cpp"
+#include "Helpers/ToolbarComponent.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
