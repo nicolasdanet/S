@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2024 Jojo and others. */
 
 /* < https://opensource.org/licenses/BSD-3-Clause > */
 
@@ -11,44 +11,58 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class IconsButton : public juce::ToolbarButton {
+IconsButton::IconsButton (int item) : juce::ToolbarButton (item,
+    "",
+    Icons::getInstance()->getIconOff (item),
+    Icons::getInstance()->getIconOn (item)),
+        itemId_ (item),
+        name_ (Icons::getInstance()->getName (item)),
+        isToggle_ (Icons::getInstance()->isToggle (item)),
+        default_ (Icons::getInstance()->getDefaultState (item))
+{
+    if (isToggle_) { setClickingTogglesState (true); }
+    else {
+        setToggleState (true, juce::dontSendNotification);
+    }
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    explicit IconsButton (int item);
-    
-    ~IconsButton() = default;
+void IconsButton::setState (bool shouldBeOn)
+{
+    setToggleState (shouldBeOn, juce::dontSendNotification);
+}
+
+bool IconsButton::getState() const
+{
+    jassert (isToggle_); return getToggleState();
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    void setState (bool);
-    bool getState() const;
+int IconsButton::getItemId() const
+{
+    return itemId_;
+}
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
+juce::String IconsButton::getName() const
+{
+    return name_;
+}
 
-public:
-    int getItemId() const;
-    juce::String getName() const;
-    bool getDefaultState() const;
-    bool isToggle() const;
-    
-private:
-    int  itemId_;
-    juce::String name_;
-    bool isToggle_;
-    bool default_;
+bool IconsButton::getDefaultState() const
+{
+    return default_;
+}
 
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (IconsButton)
-};
+bool IconsButton::isToggle() const
+{
+    return isToggle_;
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -57,4 +71,3 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
