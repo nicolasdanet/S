@@ -20,7 +20,7 @@ class ToolbarComponent : public juce::ToolbarItemComponent {
 public:
     ToolbarComponent (int);
 
-    ~ToolbarComponent() = default;
+    ~ToolbarComponent();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

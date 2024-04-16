@@ -20,6 +20,11 @@ ToolbarComponent::ToolbarComponent (int item) : ToolbarItemComponent (item, "", 
     
 }
 
+ToolbarComponent::~ToolbarComponent()
+{
+    if (current_) { removeChildComponent (current_); current_ = nullptr; }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
