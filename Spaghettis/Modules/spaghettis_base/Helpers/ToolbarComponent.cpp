@@ -38,12 +38,12 @@ void ToolbarComponent::paintButtonArea (juce::Graphics&, int, int, bool, bool)
 
 void ToolbarComponent::contentAreaChanged (const juce::Rectangle<int>&)
 {
-    buttonStateChanged();
+    updateImage();
 }
 
 void ToolbarComponent::buttonStateChanged()
 {
-    setCurrentImage (getImageToUse());
+    updateImage();
 }
 
 void ToolbarComponent::resized()
@@ -62,8 +62,10 @@ void ToolbarComponent::enablementChanged()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ToolbarComponent::setCurrentImage (juce::Drawable* const newImage)
+void ToolbarComponent::updateImage()
 {
+    juce::Drawable* newImage = getToggleState() ? iconOn_.get() : iconOff_.get();
+    
     if (newImage != current_)
     {
         removeChildComponent (current_);
@@ -86,17 +88,6 @@ void ToolbarComponent::updateDrawable()
         current_->setTransformToFit (getContentArea().toFloat(), juce::RectanglePlacement::centred);
         current_->setAlpha (isEnabled() ? 1.0f : 0.5f);
     }
-}
-
-juce::Drawable* ToolbarComponent::getImageToUse() const
-{
-    if (getStyle() == juce::Toolbar::textOnly)
-        return nullptr;
-
-    if (getToggleState() && iconOn_ != nullptr)
-        return iconOn_.get();
-
-    return iconOff_.get();
 }
 
 // -----------------------------------------------------------------------------------------------------------

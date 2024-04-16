@@ -12,10 +12,8 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-IconsButton::IconsButton (int item) : juce::ToolbarButton (item,
-    "",
-    Icons::getInstance()->getIconOff (item),
-    Icons::getInstance()->getIconOn (item)),
+IconsButton::IconsButton (int item) :
+    ToolbarComponent (item),
         itemId_ (item),
         name_ (Icons::getInstance()->getName (item)),
         isToggle_ (Icons::getInstance()->isToggle (item)),

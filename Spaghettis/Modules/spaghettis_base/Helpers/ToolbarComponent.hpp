@@ -39,9 +39,8 @@ private:
 // MARK: -
 
 private:
-    void setCurrentImage (juce::Drawable* const);
+    void updateImage();
     void updateDrawable();
-    juce::Drawable* getImageToUse() const;
     
 private:
     std::unique_ptr<juce::Drawable> iconOff_;
