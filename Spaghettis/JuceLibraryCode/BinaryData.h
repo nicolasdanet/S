@@ -20,6 +20,9 @@ namespace BinaryData
     extern const char*   icon_delete_svg;
     const int            icon_delete_svgSize = 489;
 
+    extern const char*   icon_directory_sync_svg;
+    const int            icon_directory_sync_svgSize = 366;
+
     extern const char*   icon_error_svg;
     const int            icon_error_svgSize = 518;
 
@@ -37,9 +40,6 @@ namespace BinaryData
 
     extern const char*   icon_mail_svg;
     const int            icon_mail_svgSize = 309;
-
-    extern const char*   icon_sync_svg;
-    const int            icon_sync_svgSize = 388;
 
     extern const char*   icon_system_update_alt_svg;
     const int            icon_system_update_alt_svgSize = 321;

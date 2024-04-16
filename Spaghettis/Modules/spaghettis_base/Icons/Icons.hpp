@@ -45,6 +45,8 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* < https://fonts.google.com/icons > */
+
 public:
     Icons()
     {
@@ -61,7 +63,7 @@ public:
         addIconToggleOff    ("Presets",     "icon_tune_svg");
         addIconAction       ("Restore",     "icon_history_svg");
         addIconAction       ("Run",         "icon_visibility_svg");
-        addIconAction       ("Synchronize", "icon_sync_svg");
+        addIconAction       ("Synchronize", "icon_directory_sync_svg");
         addIconAction       ("SortUp",      "icon_text_rotate_up_svg");
         addIconAction       ("SortDown",    "icon_text_rotation_down_svg");
     }

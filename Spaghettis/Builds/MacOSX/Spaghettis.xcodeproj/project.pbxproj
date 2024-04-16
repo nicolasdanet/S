@@ -59,7 +59,6 @@
 		84CFF020CB4EE5F32E1A5EFE /* icon_text_rotate_up.svg */ /* icon_text_rotate_up.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_text_rotate_up.svg; path = ../../Resources/Icons/SVG/icon_text_rotate_up.svg; sourceTree = SOURCE_ROOT; };
 		872360D0C70C7B5CA52A5B1B /* include_spaghettis_gui.mm */ /* include_spaghettis_gui.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_gui.mm; path = ../../JuceLibraryCode/include_spaghettis_gui.mm; sourceTree = SOURCE_ROOT; };
 		88414932727E53422895EF90 /* icon_location_on.svg */ /* icon_location_on.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_location_on.svg; path = ../../Resources/Icons/SVG/icon_location_on.svg; sourceTree = SOURCE_ROOT; };
-		936A285AAD8D4B98C228C8CA /* icon_sync.svg */ /* icon_sync.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_sync.svg; path = ../../Resources/Icons/SVG/icon_sync.svg; sourceTree = SOURCE_ROOT; };
 		9614B5157A6429A0D0C327AF /* icon_history.svg */ /* icon_history.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_history.svg; path = ../../Resources/Icons/SVG/icon_history.svg; sourceTree = SOURCE_ROOT; };
 		A030B252319C2FD073FBCFBC /* spaghettis_base */ /* spaghettis_base */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_base; path = ../../Modules/spaghettis_base; sourceTree = SOURCE_ROOT; };
 		A1056AE48F0DFF9EC3445D0E /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
@@ -84,6 +83,7 @@
 		E254317D2356EAB61A8F4189 /* icon_upload.svg */ /* icon_upload.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_upload.svg; path = ../../Resources/Icons/SVG/icon_upload.svg; sourceTree = SOURCE_ROOT; };
 		E256EE56D3F74E547832FB86 /* IOKit.framework */ /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		E8CB080AF78BBE2F817E4F92 /* spaghettis_gui */ /* spaghettis_gui */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_gui; path = ../../Modules/spaghettis_gui; sourceTree = SOURCE_ROOT; };
+		F2BA50F421A4C7B4CC0B36CC /* icon_directory_sync.svg */ /* icon_directory_sync.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_directory_sync.svg; path = ../../Resources/Icons/SVG/icon_directory_sync.svg; sourceTree = SOURCE_ROOT; };
 		F7B8712211B93E9BB1C2E308 /* icon_construction.svg */ /* icon_construction.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_construction.svg; path = ../../Resources/Icons/SVG/icon_construction.svg; sourceTree = SOURCE_ROOT; };
 		FAC1F52DAB4CF87E5E85196F /* Cocoa.framework */ /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FCD7AEE22C8C4D8E9A53C1D4 /* icon_create_new_folder.svg */ /* icon_create_new_folder.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_create_new_folder.svg; path = ../../Resources/Icons/SVG/icon_create_new_folder.svg; sourceTree = SOURCE_ROOT; };
@@ -125,13 +125,13 @@
 				F7B8712211B93E9BB1C2E308,
 				FCD7AEE22C8C4D8E9A53C1D4,
 				D1B7A2158F3201553857B5C8,
+				F2BA50F421A4C7B4CC0B36CC,
 				A59F934224FF0801DADAF5AA,
 				9614B5157A6429A0D0C327AF,
 				CCF0435F123DCC7387928296,
 				88414932727E53422895EF90,
 				D1A9E3163E768257A1D48D44,
 				C8EF61C49D8FEC1206D15795,
-				936A285AAD8D4B98C228C8CA,
 				A22E64CAFE68CA74DAB4835B,
 				84CFF020CB4EE5F32E1A5EFE,
 				1F9AA249D13DF00711BB2E4F,

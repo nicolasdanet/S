@@ -17,6 +17,8 @@
         <FILE id="yiZa4b" name="icon_create_new_folder.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_create_new_folder.svg"/>
         <FILE id="EtbCqA" name="icon_delete.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_delete.svg"/>
+        <FILE id="O8jeRs" name="icon_directory_sync.svg" compile="0" resource="1"
+              file="Resources/Icons/SVG/icon_directory_sync.svg"/>
         <FILE id="QZZRiu" name="icon_error.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_error.svg"/>
         <FILE id="OumGwc" name="icon_history.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_history.svg"/>
@@ -25,7 +27,6 @@
               file="Resources/Icons/SVG/icon_location_on.svg"/>
         <FILE id="KMYtrE" name="icon_lock.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_lock.svg"/>
         <FILE id="v09zib" name="icon_mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_mail.svg"/>
-        <FILE id="uexYI2" name="icon_sync.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_sync.svg"/>
         <FILE id="JrIvGS" name="icon_system_update_alt.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_system_update_alt.svg"/>
         <FILE id="ZfmAKG" name="icon_text_rotate_up.svg" compile="0" resource="1"
