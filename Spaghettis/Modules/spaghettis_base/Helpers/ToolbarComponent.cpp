@@ -14,7 +14,8 @@ namespace spaghettis {
 
 ToolbarComponent::ToolbarComponent (int item) : ToolbarItemComponent (item, "", true),
     iconOff_ (Icons::getInstance()->getIconOff (item)),
-    iconOn_ (Icons::getInstance()->getIconOn (item))
+    iconOn_ (Icons::getInstance()->getIconOn (item)),
+    current_ (nullptr)
 {
     
 }
@@ -38,56 +39,47 @@ void ToolbarComponent::paintButtonArea (juce::Graphics&, int, int, bool, bool)
 
 void ToolbarComponent::contentAreaChanged (const juce::Rectangle<int>&)
 {
-    updateImage();
+    updateIcon();
 }
 
 void ToolbarComponent::buttonStateChanged()
 {
-    updateImage();
+    updateIcon();
 }
 
 void ToolbarComponent::resized()
 {
     ToolbarItemComponent::resized();
-    updateDrawable();
+    
+    updateIcon();
 }
 
 void ToolbarComponent::enablementChanged()
 {
     ToolbarItemComponent::enablementChanged();
-    updateDrawable();
+    
+    updateIcon();
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ToolbarComponent::updateImage()
+void ToolbarComponent::updateIcon()
 {
-    juce::Drawable* newImage = getToggleState() ? iconOn_.get() : iconOff_.get();
+    juce::Drawable* icon = getToggleState() ? iconOn_.get() : iconOff_.get();
     
-    if (newImage != current_)
-    {
-        removeChildComponent (current_);
-        current_ = newImage;
-
-        if (current_ != nullptr)
-        {
-            enablementChanged();
-            addAndMakeVisible (current_);
-            updateDrawable();
-        }
+    jassert (icon != nullptr);
+    
+    if (icon != current_) {
+        if (current_) { removeChildComponent (current_); }
+        current_ = icon;
+        addAndMakeVisible (current_);
     }
-}
-
-void ToolbarComponent::updateDrawable()
-{
-    if (current_ != nullptr)
-    {
-        current_->setInterceptsMouseClicks (false, false);
-        current_->setTransformToFit (getContentArea().toFloat(), juce::RectanglePlacement::centred);
-        current_->setAlpha (isEnabled() ? 1.0f : 0.5f);
-    }
+    
+    current_->setInterceptsMouseClicks (false, false);
+    current_->setTransformToFit (getContentArea().reduced (2).toFloat(), juce::RectanglePlacement::centred);
+    current_->setAlpha (isEnabled() ? 1.0f : 0.5f);
 }
 
 // -----------------------------------------------------------------------------------------------------------

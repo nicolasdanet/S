@@ -39,15 +39,14 @@ private:
 // MARK: -
 
 private:
-    void updateImage();
-    void updateDrawable();
+    void updateIcon();
     
 private:
     std::unique_ptr<juce::Drawable> iconOff_;
     std::unique_ptr<juce::Drawable> iconOn_;
 
 private:
-    juce::Drawable* current_ = nullptr;
+    juce::Drawable* current_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ToolbarComponent)
