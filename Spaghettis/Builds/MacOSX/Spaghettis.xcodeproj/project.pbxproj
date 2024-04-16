@@ -61,7 +61,6 @@
 		88414932727E53422895EF90 /* icon_location_on.svg */ /* icon_location_on.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_location_on.svg; path = ../../Resources/Icons/SVG/icon_location_on.svg; sourceTree = SOURCE_ROOT; };
 		936A285AAD8D4B98C228C8CA /* icon_sync.svg */ /* icon_sync.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_sync.svg; path = ../../Resources/Icons/SVG/icon_sync.svg; sourceTree = SOURCE_ROOT; };
 		9614B5157A6429A0D0C327AF /* icon_history.svg */ /* icon_history.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_history.svg; path = ../../Resources/Icons/SVG/icon_history.svg; sourceTree = SOURCE_ROOT; };
-		9941C1828122A62B873CBE50 /* icon_add.svg */ /* icon_add.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_add.svg; path = ../../Resources/Icons/SVG/icon_add.svg; sourceTree = SOURCE_ROOT; };
 		A030B252319C2FD073FBCFBC /* spaghettis_base */ /* spaghettis_base */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_base; path = ../../Modules/spaghettis_base; sourceTree = SOURCE_ROOT; };
 		A1056AE48F0DFF9EC3445D0E /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
 		A22E64CAFE68CA74DAB4835B /* icon_system_update_alt.svg */ /* icon_system_update_alt.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_system_update_alt.svg; path = ../../Resources/Icons/SVG/icon_system_update_alt.svg; sourceTree = SOURCE_ROOT; };
@@ -87,6 +86,7 @@
 		E8CB080AF78BBE2F817E4F92 /* spaghettis_gui */ /* spaghettis_gui */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_gui; path = ../../Modules/spaghettis_gui; sourceTree = SOURCE_ROOT; };
 		F7B8712211B93E9BB1C2E308 /* icon_construction.svg */ /* icon_construction.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_construction.svg; path = ../../Resources/Icons/SVG/icon_construction.svg; sourceTree = SOURCE_ROOT; };
 		FAC1F52DAB4CF87E5E85196F /* Cocoa.framework */ /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		FCD7AEE22C8C4D8E9A53C1D4 /* icon_create_new_folder.svg */ /* icon_create_new_folder.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_create_new_folder.svg; path = ../../Resources/Icons/SVG/icon_create_new_folder.svg; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +122,8 @@
 		314772287FD7DA2C4DAD0866 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				9941C1828122A62B873CBE50,
 				F7B8712211B93E9BB1C2E308,
+				FCD7AEE22C8C4D8E9A53C1D4,
 				D1B7A2158F3201553857B5C8,
 				A59F934224FF0801DADAF5AA,
 				9614B5157A6429A0D0C327AF,

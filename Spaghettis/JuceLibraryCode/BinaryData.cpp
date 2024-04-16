@@ -31,18 +31,19 @@ static const unsigned char temp_binary_data_0[] =
 
 const char* info_bng_xml = (const char*) temp_binary_data_0;
 
-//================== icon_add.svg ==================
-static const unsigned char temp_binary_data_1[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z\"/></svg>";
-
-const char* icon_add_svg = (const char*) temp_binary_data_1;
-
 //================== icon_construction.svg ==================
-static const unsigned char temp_binary_data_2[] =
+static const unsigned char temp_binary_data_1[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M756-120 537-339l84-84 219 219-84 84Zm-552 0-84-84 276-276-68-68-28 28-51-51v82l-28 28-121-121 28-28h82l-50-50 142-142q20-20 43-29t47-9q24 0 47 "
 "9t43 29l-92 92 50 50-28 28 68 68 90-90q-4-11-6.5-23t-2.5-24q0-59 40.5-99.5T701-841q15 0 28.5 3t27.5 9l-99 99 72 72 99-99q7 14 9.5 27.5T841-701q0 59-40.5 99.5T701-561q-12 0-24-2t-23-7L204-120Z\"/></svg>";
 
-const char* icon_construction_svg = (const char*) temp_binary_data_2;
+const char* icon_construction_svg = (const char*) temp_binary_data_1;
+
+//================== icon_create_new_folder.svg ==================
+static const unsigned char temp_binary_data_2[] =
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M560-320h80v-80h80v-80h-80v-80h-80v80h-80v80h80v80ZM160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-"
+"640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z\"/></svg>";
+
+const char* icon_create_new_folder_svg = (const char*) temp_binary_data_2;
 
 //================== icon_delete.svg ==================
 static const unsigned char temp_binary_data_3[] =
@@ -157,8 +158,8 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
     switch (hash)
     {
         case 0x4f50b4e2:  numBytes = 492; return info_bng_xml;
-        case 0xa5ac8800:  numBytes = 163; return icon_add_svg;
         case 0x0319b4fc:  numBytes = 441; return icon_construction_svg;
+        case 0x4531ad6f:  numBytes = 333; return icon_create_new_folder_svg;
         case 0x96f96956:  numBytes = 489; return icon_delete_svg;
         case 0xebd92f67:  numBytes = 518; return icon_error_svg;
         case 0xa0121573:  numBytes = 425; return icon_history_svg;
@@ -183,8 +184,8 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 const char* namedResourceList[] =
 {
     "info_bng_xml",
-    "icon_add_svg",
     "icon_construction_svg",
+    "icon_create_new_folder_svg",
     "icon_delete_svg",
     "icon_error_svg",
     "icon_history_svg",
@@ -204,8 +205,8 @@ const char* namedResourceList[] =
 const char* originalFilenames[] =
 {
     "info_bng.xml",
-    "icon_add.svg",
     "icon_construction.svg",
+    "icon_create_new_folder.svg",
     "icon_delete.svg",
     "icon_error.svg",
     "icon_history.svg",

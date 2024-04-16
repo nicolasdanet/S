@@ -11,11 +11,11 @@ namespace BinaryData
     extern const char*   info_bng_xml;
     const int            info_bng_xmlSize = 492;
 
-    extern const char*   icon_add_svg;
-    const int            icon_add_svgSize = 163;
-
     extern const char*   icon_construction_svg;
     const int            icon_construction_svgSize = 441;
+
+    extern const char*   icon_create_new_folder_svg;
+    const int            icon_create_new_folder_svgSize = 333;
 
     extern const char*   icon_delete_svg;
     const int            icon_delete_svgSize = 489;
