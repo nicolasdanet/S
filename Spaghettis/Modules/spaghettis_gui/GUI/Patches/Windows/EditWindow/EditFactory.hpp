@@ -36,7 +36,6 @@ public:
     {
         ids.add (Icons::edit);
         ids.add (Icons::run);
-        // ids.add (ToolbarItemFactory::spacerId);
         ids.add (Icons::inspector);
     }
 

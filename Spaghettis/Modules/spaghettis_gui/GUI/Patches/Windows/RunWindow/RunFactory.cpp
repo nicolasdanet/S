@@ -18,25 +18,32 @@ void RunFactory::setToolbarButton (IconsButton* button)
 {
     switch (button->getItemId()) {
     //
-    case Icons::edit    : button->setTooltip (NEEDS_TRANS ("Open the main edit view")); break;
-    case Icons::run     : button->setTooltip (NEEDS_TRANS ("Open the run view"));       break;
-    case Icons::presets : button->setTooltip (NEEDS_TRANS ("Show or hide presets"));    break;
-    default             : break;
+    case Icons::edit     : button->setTooltip (NEEDS_TRANS ("Open the main edit view")); break;
+    case Icons::run      : button->setTooltip (NEEDS_TRANS ("Open the run view"));       break;
+    case Icons::presets  : button->setTooltip (NEEDS_TRANS ("Show or hide presets"));    break;
+    case Icons::autoload : button->setTooltip (NEEDS_TRANS ("Enable autoload"));         break;
+    default              : break;
     //
     }
     
     switch (button->getItemId()) {
     //
-    case Icons::edit    : button->onClick = [this]() {
+    case Icons::edit     : button->onClick = [this]() {
                                 owner_->getPatchRoot().openMainEditWindow();
                             }; break;
-    case Icons::run     : button->onClick = [this]() {
+    case Icons::run      : button->onClick = [this]() {
                                 owner_->getPatchRoot().openMainRunWindow();
                             }; break;
-    case Icons::presets : button->onClick = [this, button]() {
+    case Icons::presets  : button->onClick = [this, button]() {
                                 if (button->getState()) { owner_->showPresets(); }
                                 else {
                                     owner_->hidePresets();
+                                }
+                            }; break;
+    case Icons::autoload : button->onClick = [this, button]() {
+                                if (button->getState()) { DBG ("?"); }
+                                else {
+                                    DBG ("!");
                                 }
                             }; break;
     default             : break;
