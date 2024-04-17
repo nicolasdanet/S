@@ -102,32 +102,31 @@ static const unsigned char temp_binary_data_10[] =
 
 const char* icon_sort_svg = (const char*) temp_binary_data_10;
 
-//================== icon_system_update_alt.svg ==================
-static const unsigned char temp_binary_data_11[] =
-"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h200v80H160v480h640v-480H600v-80h200q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-16"
-"0H160Zm320-184L280-544l56-56 104 104v-304h80v304l104-104 56 56-200 200Z\"/></svg>";
-
-const char* icon_system_update_alt_svg = (const char*) temp_binary_data_11;
-
 //================== icon_mail.svg ==================
-static const unsigned char temp_binary_data_12[] =
+static const unsigned char temp_binary_data_11[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-"
 "400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z\"/></svg>";
 
-const char* icon_mail_svg = (const char*) temp_binary_data_12;
+const char* icon_mail_svg = (const char*) temp_binary_data_11;
 
 //================== icon_tune.svg ==================
-static const unsigned char temp_binary_data_13[] =
+static const unsigned char temp_binary_data_12[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M440-120v-240h80v80h320v80H520v80h-80Zm-320-80v-80h240v80H120Zm160-160v-80H120v-80h160v-80h80v240h-80Zm160-80v-80h400v80H440Zm160-160v-240h80v80"
 "h160v80H680v80h-80Zm-480-80v-80h400v80H120Z\"/></svg>";
 
-const char* icon_tune_svg = (const char*) temp_binary_data_13;
+const char* icon_tune_svg = (const char*) temp_binary_data_12;
 
 //================== icon_upload.svg ==================
-static const unsigned char temp_binary_data_14[] =
+static const unsigned char temp_binary_data_13[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-80v-80h640v80H160Zm200-160v-280H200l280-360 280 360H600v280H360Zm80-80h80v-280h76L480-750 364-600h76v280Zm40-280Z\"/></svg>";
 
-const char* icon_upload_svg = (const char*) temp_binary_data_14;
+const char* icon_upload_svg = (const char*) temp_binary_data_13;
+
+//================== icon_vertical_align_bottom.svg ==================
+static const unsigned char temp_binary_data_14[] =
+"<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-120v-80h640v80H160Zm320-160L280-480l56-56 104 104v-408h80v408l104-104 56 56-200 200Z\"/></svg>";
+
+const char* icon_vertical_align_bottom_svg = (const char*) temp_binary_data_14;
 
 //================== icon_visibility.svg ==================
 static const unsigned char temp_binary_data_15[] =
@@ -160,10 +159,10 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
         case 0x1d9dac08:  numBytes = 426; return icon_location_on_svg;
         case 0xcb611256:  numBytes = 480; return icon_lock_svg;
         case 0xbca0d149:  numBytes = 174; return icon_sort_svg;
-        case 0x497dd622:  numBytes = 321; return icon_system_update_alt_svg;
         case 0x58f62ce2:  numBytes = 309; return icon_mail_svg;
         case 0x5a409ea3:  numBytes = 293; return icon_tune_svg;
         case 0x1f4ed6ac:  numBytes = 224; return icon_upload_svg;
+        case 0x044f292d:  numBytes = 195; return icon_vertical_align_bottom_svg;
         case 0xbb05083d:  numBytes = 535; return icon_visibility_svg;
         default: break;
     }
@@ -185,10 +184,10 @@ const char* namedResourceList[] =
     "icon_location_on_svg",
     "icon_lock_svg",
     "icon_sort_svg",
-    "icon_system_update_alt_svg",
     "icon_mail_svg",
     "icon_tune_svg",
     "icon_upload_svg",
+    "icon_vertical_align_bottom_svg",
     "icon_visibility_svg"
 };
 
@@ -205,10 +204,10 @@ const char* originalFilenames[] =
     "icon_location_on.svg",
     "icon_lock.svg",
     "icon_sort.svg",
-    "icon_system_update_alt.svg",
     "icon_mail.svg",
     "icon_tune.svg",
     "icon_upload.svg",
+    "icon_vertical_align_bottom.svg",
     "icon_visibility.svg"
 };
 

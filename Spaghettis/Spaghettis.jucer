@@ -27,11 +27,11 @@
               file="Resources/Icons/SVG/icon_location_on.svg"/>
         <FILE id="KMYtrE" name="icon_lock.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_lock.svg"/>
         <FILE id="Xzcc5E" name="icon_sort.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_sort.svg"/>
-        <FILE id="JrIvGS" name="icon_system_update_alt.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/icon_system_update_alt.svg"/>
         <FILE id="v09zib" name="icon_mail.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_mail.svg"/>
         <FILE id="wLVawc" name="icon_tune.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_tune.svg"/>
         <FILE id="pgrmyP" name="icon_upload.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_upload.svg"/>
+        <FILE id="qGSyDP" name="icon_vertical_align_bottom.svg" compile="0"
+              resource="1" file="Resources/Icons/SVG/icon_vertical_align_bottom.svg"/>
         <FILE id="nhfcRR" name="icon_visibility.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_visibility.svg"/>
       </GROUP>

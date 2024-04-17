@@ -52,7 +52,7 @@ public:
         /* Must be in same order as enum above. */
         
         addIconAction       ("Add",         "icon_create_new_folder_svg");
-        addIconToggleOn     ("Autoscroll",  "icon_system_update_alt_svg");
+        addIconToggleOn     ("Autoscroll",  "icon_vertical_align_bottom_svg");
         addIconAction       ("Clear",       "icon_delete_svg");
         addIconAction       ("Edit",        "icon_construction_svg");
         addIconToggleOn     ("Error",       "icon_error_svg");
