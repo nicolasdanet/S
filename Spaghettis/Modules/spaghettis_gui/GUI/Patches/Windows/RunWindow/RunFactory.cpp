@@ -41,12 +41,9 @@ void RunFactory::setToolbarButton (IconsButton* button)
                                 }
                             }; break;
     case Icons::autoload : button->onClick = [this, button]() {
-                                if (button->getState()) { DBG ("?"); }
-                                else {
-                                    DBG ("!");
-                                }
+                                owner_->getPatchRoot().getPresetsManager().setAutoload (button->getState());
                             }; break;
-    default             : break;
+    default              : break;
     //
     }
 }

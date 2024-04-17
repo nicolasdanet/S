@@ -116,7 +116,12 @@ std::optional<int> PresetsManager::getTabWidth() const
     
     return std::nullopt;
 }
-    
+
+bool PresetsManager::hasAutoload() const
+{
+    return true;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -142,6 +147,14 @@ void PresetsManager::setTabState (bool isActive)
 void PresetsManager::setTabWidth (int w)
 {
     if (isValid()) { return presetsFile_.setValue (PresetsConstants::WidthTag, w); }
+}
+
+void PresetsManager::setAutoload (bool hasAutoload)
+{
+    if (hasAutoload) { DBG ("!"); }
+    else {
+        DBG ("?");
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

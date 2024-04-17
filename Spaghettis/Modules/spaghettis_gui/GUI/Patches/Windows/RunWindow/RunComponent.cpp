@@ -55,7 +55,8 @@ RunComponent::RunComponent (const PatchBase& base) :
     addMenuCommand (MenuCommand (Commands::newEditView)
         .setInvoke ([this] (const auto&) { runView_.getPatchRoot().openMainEditWindow(); }));
     
-    setButtonState (Icons::presets, runPresets_.isActive());
+    setButtonState (Icons::presets,  runPresets_.isActive());
+    setButtonState (Icons::autoload, getPatchRoot().getPresetsManager().hasAutoload());
     
     setOpaque (true); setSize (600, 300);
 }

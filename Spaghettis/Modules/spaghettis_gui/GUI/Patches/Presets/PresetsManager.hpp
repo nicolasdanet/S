@@ -39,11 +39,13 @@ public:
     std::optional<juce::Rectangle<int>> getRunWindow() const;
     std::optional<bool> getTabState() const;
     std::optional<int> getTabWidth() const;
+    bool hasAutoload() const;
 
 public:
     void setRunWindow (const juce::Rectangle<int>&);
     void setTabState (bool);
     void setTabWidth (int);
+    void setAutoload (bool);
     
 public:
     bool load (const juce::String&, const std::vector<PresetElement>&);
