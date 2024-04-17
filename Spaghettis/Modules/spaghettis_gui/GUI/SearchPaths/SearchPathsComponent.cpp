@@ -55,21 +55,11 @@ void SearchPathsComponent::addPaths()
     chooseAndAppendFolder();
 }
 
-void SearchPathsComponent::sortPaths (bool reverse)
+void SearchPathsComponent::sortPaths()
 {
     if (paths_.size() > 1) {
     //
     paths_.sortNatural();
-    
-    if (reverse) {
-    //
-    juce::StringArray scoped; scoped.ensureStorageAllocated (paths_.size());
-    
-    for (const auto& s : paths_) { scoped.insert (0, s); }
-    
-    scoped.swapWith (paths_);
-    //
-    }
     
     ListBoxFunctions::update (listBox_, paths_); setSearchPaths();
     //

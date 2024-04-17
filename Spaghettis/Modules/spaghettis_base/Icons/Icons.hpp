@@ -37,8 +37,7 @@ public:
         restore,
         run,
         synchronize,
-        sortUp,
-        sortDown
+        sort
     };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -64,8 +63,7 @@ public:
         addIconAction       ("Restore",     "icon_history_svg");
         addIconAction       ("Run",         "icon_visibility_svg");
         addIconAction       ("Synchronize", "icon_directory_sync_svg");
-        addIconAction       ("SortUp",      "icon_text_rotate_up_svg");
-        addIconAction       ("SortDown",    "icon_text_rotation_down_svg");
+        addIconAction       ("Sort",        "icon_sort_svg");
     }
 
     ~Icons()

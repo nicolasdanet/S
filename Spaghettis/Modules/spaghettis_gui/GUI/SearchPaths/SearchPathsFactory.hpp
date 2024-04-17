@@ -35,9 +35,7 @@ public:
     {
         ids.add (Icons::add);
         ids.add (Icons::synchronize);
-        ids.add (ToolbarItemFactory::spacerId);
-        ids.add (Icons::sortDown);
-        ids.add (Icons::sortUp);
+        ids.add (Icons::sort);
     }
 
     void getDefaultItemSet (juce::Array<int>& ids) override
