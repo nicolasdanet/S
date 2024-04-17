@@ -107,9 +107,9 @@ void PatchRoot::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchRoot::loadbang (const core::UniquePath& u)
+void PatchRoot::loadbangBegin (const core::UniquePath& u)
 {
-    jassert (u.isRoot()); getPresetsManager().loadbang();
+    jassert (u.isRoot()); getPresetsManager().loadbangBegin();
 }
 
 // -----------------------------------------------------------------------------------------------------------

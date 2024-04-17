@@ -231,7 +231,7 @@ bool PresetsManager::store (const juce::String& name, const std::vector<PresetEl
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PresetsManager::loadbang()
+void PresetsManager::loadbangBegin()
 {
     resolve();
 }

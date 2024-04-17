@@ -19,7 +19,7 @@ namespace spaghettis {
     void remove (const core::UniquePath&); \
     void rename (const core::UniquePath&, core::UniqueId); \
     \
-    void loadbang (const core::UniquePath&); \
+    void loadbangBegin (const core::UniquePath&); \
     \
     void setOrder (const core::UniquePath&, const std::vector<core::UniqueId>&);
     

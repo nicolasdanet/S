@@ -32,9 +32,9 @@ void outputs_reportDsp (int n)
     wrapper_send (Outputs::reportDsp (n ? true : false));
 }
 
-void outputs_patchLoadbang (t_glist *g)
+void outputs_patchLoadbangBegin (t_glist *g)
 {
-    wrapper_send (Outputs::patchLoadbang (UniquePath (cast_object (g))));
+    wrapper_send (Outputs::patchLoadbangBegin (UniquePath (cast_object (g))));
 }
 
 void outputs_patchOpened (t_symbol *name, t_symbol *directory)
@@ -227,7 +227,7 @@ void outputs_reportDsp (int n)
 {
 }
 
-void outputs_patchLoadbang (t_glist *g)
+void outputs_patchLoadbangBegin (t_glist *g)
 {
 }
 

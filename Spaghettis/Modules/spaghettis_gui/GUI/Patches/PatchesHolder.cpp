@@ -126,9 +126,9 @@ void PatchesHolder::rename (const core::UniquePath& u, core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void PatchesHolder::loadbang (const core::UniquePath& u)
+void PatchesHolder::loadbangBegin (const core::UniquePath& u)
 {
-    perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->loadbang (u); });
+    perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->loadbangBegin (u); });
 }
 
 // -----------------------------------------------------------------------------------------------------------

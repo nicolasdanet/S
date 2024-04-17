@@ -142,7 +142,7 @@ static void instance_loadPatchLoadbang (void)
 {
     if (instance_get()->pd_stack.s_contextPopped) {
         t_glist *g = instance_get()->pd_stack.s_contextPopped;
-        outputs_patchLoadbang (g);
+        outputs_patchLoadbangBegin (g);
         glist_loadbang (g);
         instance_get()->pd_stack.s_contextPopped = NULL;
     }
