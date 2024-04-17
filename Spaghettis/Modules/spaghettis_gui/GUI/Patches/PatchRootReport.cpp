@@ -112,6 +112,11 @@ void PatchRoot::loadbangBegin (const core::UniquePath& u)
     jassert (u.isRoot()); getPresetsManager().loadbangBegin();
 }
 
+void PatchRoot::loadbangEnd (const core::UniquePath& u)
+{
+    jassert (u.isRoot()); getPresetsManager().loadbangEnd();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

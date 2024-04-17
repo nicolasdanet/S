@@ -20,6 +20,7 @@ namespace spaghettis {
     void rename (const core::UniquePath&, core::UniqueId); \
     \
     void loadbangBegin (const core::UniquePath&); \
+    void loadbangEnd (const core::UniquePath&); \
     \
     void setOrder (const core::UniquePath&, const std::vector<core::UniqueId>&);
     

@@ -144,6 +144,7 @@ static void instance_loadPatchLoadbang (void)
         t_glist *g = instance_get()->pd_stack.s_contextPopped;
         outputs_patchLoadbangBegin (g);
         glist_loadbang (g);
+        outputs_patchLoadbangEnd (g);
         instance_get()->pd_stack.s_contextPopped = NULL;
     }
 }

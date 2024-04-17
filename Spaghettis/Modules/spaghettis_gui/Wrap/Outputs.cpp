@@ -95,6 +95,14 @@ Perform Outputs::patchLoadbangBegin (core::UniquePath unique)
     };
 }
 
+Perform Outputs::patchLoadbangEnd (core::UniquePath unique)
+{
+    return [u = std::move (unique)]()
+    {
+        Spaghettis()->getPatches().loadbangEnd (u);
+    };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

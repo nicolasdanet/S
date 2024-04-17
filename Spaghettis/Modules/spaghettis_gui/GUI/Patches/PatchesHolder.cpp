@@ -131,6 +131,11 @@ void PatchesHolder::loadbangBegin (const core::UniquePath& u)
     perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->loadbangBegin (u); });
 }
 
+void PatchesHolder::loadbangEnd (const core::UniquePath& u)
+{
+    perform (roots_, u, [&] (const std::shared_ptr<PatchRoot>& p) { p->loadbangEnd (u); });
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

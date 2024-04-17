@@ -37,6 +37,11 @@ void outputs_patchLoadbangBegin (t_glist *g)
     wrapper_send (Outputs::patchLoadbangBegin (UniquePath (cast_object (g))));
 }
 
+void outputs_patchLoadbangEnd (t_glist *g)
+{
+    wrapper_send (Outputs::patchLoadbangEnd (UniquePath (cast_object (g))));
+}
+
 void outputs_patchOpened (t_symbol *name, t_symbol *directory)
 {
     jassert (name && directory);
@@ -228,6 +233,10 @@ void outputs_reportDsp (int n)
 }
 
 void outputs_patchLoadbangBegin (t_glist *g)
+{
+}
+
+void outputs_patchLoadbangEnd (t_glist *g)
 {
 }
 

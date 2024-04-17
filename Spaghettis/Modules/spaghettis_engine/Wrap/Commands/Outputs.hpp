@@ -38,6 +38,7 @@ static Perform classNew                     (juce::String);
 // MARK: -
 
 static Perform patchLoadbangBegin           (core::UniquePath);
+static Perform patchLoadbangEnd             (core::UniquePath);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
