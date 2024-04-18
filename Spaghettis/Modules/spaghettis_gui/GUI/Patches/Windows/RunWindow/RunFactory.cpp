@@ -42,6 +42,7 @@ void RunFactory::setToolbarButton (IconsButton* button)
                             }; break;
     case Icons::autoload : button->onClick = [this, button]() {
                                 owner_->getPatchRoot().getPresetsManager().setAutoload (button->getState());
+                                Broadcast::dirty (owner_->getPatchRoot().getIdentifier());
                             }; break;
     default              : break;
     //
