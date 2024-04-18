@@ -177,12 +177,12 @@ void RunPresets::handleAsyncUpdate()
 
 void RunPresets::load()
 {
-    view_.getPatchRoot().getPresetsManager().load ("Default", presetsElements_);
+    view_.getPatchRoot().getPresetsManager().load (presetsElements_, juce::String());
 }
 
 void RunPresets::store()
 {
-    if (view_.getPatchRoot().getPresetsManager().store ("Default", presetsElements_)) {
+    if (view_.getPatchRoot().getPresetsManager().store (presetsElements_, juce::String())) {
     //
     Broadcast::dirty (view_.getIdentifier());
     //

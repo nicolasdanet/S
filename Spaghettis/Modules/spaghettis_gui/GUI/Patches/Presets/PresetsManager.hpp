@@ -48,8 +48,8 @@ public:
     void setAutoload (bool);
     
 public:
-    bool load (const juce::String&, const std::vector<PresetElement>&);
-    bool store (const juce::String&, const std::vector<PresetElement>&);
+    bool load (const std::vector<PresetElement>&, const juce::String&);
+    bool store (const std::vector<PresetElement>&, const juce::String&);
 
 public:
     void loadbangBegin();
