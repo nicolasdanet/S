@@ -211,7 +211,7 @@ void loadSlot (juce::PropertiesFile& file,
     juce::String name,
     const std::vector<PresetElement>* elements)
 {
-    if (name.isEmpty()) { name = PresetsConstants::DefaultTag; }
+    if (name.isEmpty()) { name = PresetsConstants::DefaultTag; }    /* Must be the first. */
     
     const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
     
@@ -261,7 +261,7 @@ void PresetsManager::loadbangBegin()
 
 void PresetsManager::loadbangEnd()
 {
-    DBG ("LOADBANG");
+    if (hasAutoload()) { loadSlot (presetsFile_, juce::String(), nullptr); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
