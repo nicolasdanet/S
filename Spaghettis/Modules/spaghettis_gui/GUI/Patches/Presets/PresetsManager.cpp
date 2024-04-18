@@ -73,6 +73,7 @@ namespace PresetsConstants
     constexpr static const char* const PositionTag = "RunWindowPosition";
     constexpr static const char* const StateTag    = "PresetsTabState";
     constexpr static const char* const WidthTag    = "PresetsTabWidth";
+    constexpr static const char* const AutoloadTag = "AutoloadState";
     constexpr static const char* const PresetTag   = "#";
     constexpr static const char* const FloatType   = "float";
 }
@@ -119,7 +120,11 @@ std::optional<int> PresetsManager::getTabWidth() const
 
 bool PresetsManager::hasAutoload() const
 {
-    return true;
+    if (isValid (PresetsConstants::AutoloadTag)) {
+        return presetsFile_.getBoolValue (PresetsConstants::AutoloadTag);
+    }
+    
+    return false;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -151,10 +156,7 @@ void PresetsManager::setTabWidth (int w)
 
 void PresetsManager::setAutoload (bool hasAutoload)
 {
-    if (hasAutoload) { DBG ("!"); }
-    else {
-        DBG ("?");
-    }
+    if (isValid()) { return presetsFile_.setValue (PresetsConstants::AutoloadTag, hasAutoload); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
