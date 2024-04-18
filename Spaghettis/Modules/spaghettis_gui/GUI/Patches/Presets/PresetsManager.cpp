@@ -168,12 +168,15 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-bool containsElement (core::UniqueId u, const std::vector<PresetElement>& elements)
+bool containsElement (core::UniqueId u, const std::vector<PresetElement>* elements)
 {
-    for (const auto& p : elements) {
-    //
-    if (u == data::Cast::fromVar<core::UniqueId> (p.getTag())) { return true; }
-    //
+    if (elements == nullptr) { return true; }
+    else {
+        for (const auto& p : *elements) {
+            if (u == data::Cast::fromVar<core::UniqueId> (p.getTag())) {
+                return true;
+            }
+        }
     }
     
     return false;
@@ -185,11 +188,11 @@ bool containsElement (core::UniqueId u, const std::vector<PresetElement>& elemen
 
 void storeSlot (juce::PropertiesFile& file,
     const juce::String& name,
-    const std::vector<PresetElement>& elements)
+    const std::vector<PresetElement>* elements)
 {
     auto root = std::make_unique<juce::XmlElement> (Id::PRESETS);
     
-    for (const auto& p : elements) {
+    for (const auto& p : *elements) {
     //
     juce::XmlElement* e = root->createNewChildElement (Id::PRESET);
     e->setAttribute (Id::item,  p.getTag().toString());
@@ -203,7 +206,7 @@ void storeSlot (juce::PropertiesFile& file,
 
 void loadSlot (juce::PropertiesFile& file,
     const juce::String& name,
-    const std::vector<PresetElement>& elements)
+    const std::vector<PresetElement>* elements)
 {
     const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
         
@@ -230,14 +233,14 @@ void loadSlot (juce::PropertiesFile& file,
 
 bool PresetsManager::load (const juce::String& name, const std::vector<PresetElement>& elements)
 {
-    if (isValid()) { loadSlot (presetsFile_, name, elements); return true; }
+    if (isValid()) { loadSlot (presetsFile_, name, &elements); return true; }
     
     return false;
 }
 
 bool PresetsManager::store (const juce::String& name, const std::vector<PresetElement>& elements)
 {
-    if (isValid()) { storeSlot (presetsFile_, name, elements); return true; }
+    if (isValid()) { storeSlot (presetsFile_, name, &elements); return true; }
     
     return false;
 }
