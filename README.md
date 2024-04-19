@@ -39,4 +39,4 @@ The latest JUCE is required at `~/JUCE`.
 - FFT by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/fft.html)
 - Icons by [Google](https://github.com/google/material-design-icons)
 
-#### Licensed  under the [GPL-3.0 license](https://opensource.org/licenses/GPL-3.0).
+#### Licensed  under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
