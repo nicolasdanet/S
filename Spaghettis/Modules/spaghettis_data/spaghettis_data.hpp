@@ -1,7 +1,7 @@
 
-/* Copyright (c) 2023 Jojo and others. */
+/* Copyright (c) 2023 Spaghettis and others. */
 
-/* < https://opensource.org/licenses/BSD-3-Clause > */
+/* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@
   name:               Data
   description:        Data
   website:            https://github.com/Spaghettis
-  license:            BSD
+  license:            AGPLv3
 
   dependencies:       spaghettis_base
   OSXFrameworks:

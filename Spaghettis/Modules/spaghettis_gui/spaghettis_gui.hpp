@@ -1,7 +1,7 @@
 
-/* Copyright (c) 2021 Jojo and others. */
+/* Copyright (c) 2021 Spaghettis and others. */
 
-/* < https://opensource.org/licenses/BSD-3-Clause > */
+/* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@
   name:               GUI
   description:        GUI
   website:            https://github.com/Spaghettis
-  license:            BSD
+  license:            AGPLv3
 
   dependencies:       spaghettis_engine
   OSXFrameworks:
