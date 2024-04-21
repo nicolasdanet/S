@@ -560,6 +560,11 @@
 		17C0B2F4212FD4B300DF3E2A /* m_undoseparator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_undoseparator.c; sourceTree = "<group>"; };
 		17C15CE91F8E4EF7000695B7 /* x_arguments.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_arguments.c; sourceTree = "<group>"; };
 		17C1C7B72B5A4AF500ACAA1E /* m_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_headers.h; sourceTree = "<group>"; };
+		17C2283C2BD792240052C6EE /* m_float.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_float.h; sourceTree = "<group>"; };
+		17C2283F2BDB832A0052C6EE /* m_punning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_punning.h; sourceTree = "<group>"; };
+		17C228422BDB833D0052C6EE /* m_punning32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_punning32.h; sourceTree = "<group>"; };
+		17C228432BDB833D0052C6EE /* m_punning64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_punning64.h; sourceTree = "<group>"; };
+		17C228452BDCDD9C0052C6EE /* m_punning64Shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_punning64Shared.h; sourceTree = "<group>"; };
 		17C3797B202062F6009B00A6 /* x_blocksize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_blocksize.c; sourceTree = "<group>"; };
 		17C519491F23195900113504 /* x_uzi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_uzi.c; sourceTree = "<group>"; };
 		17C7712220148CF400584EE6 /* d_cos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = d_cos.h; sourceTree = "<group>"; };
@@ -1214,6 +1219,16 @@
 			path = tab;
 			sourceTree = "<group>";
 		};
+		17C228402BDB833D0052C6EE /* punning */ = {
+			isa = PBXGroup;
+			children = (
+				17C228422BDB833D0052C6EE /* m_punning32.h */,
+				17C228432BDB833D0052C6EE /* m_punning64.h */,
+				17C228452BDCDD9C0052C6EE /* m_punning64Shared.h */,
+			);
+			path = punning;
+			sourceTree = "<group>";
+		};
 		17EFE790248143BF003D3F13 /* helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1340,7 +1355,10 @@
 			children = (
 				172457DB2609D2FE008D5035 /* m_externals.h */,
 				378971DD1C4F716700263434 /* m_macros.h */,
+				17C2283F2BDB832A0052C6EE /* m_punning.h */,
+				17C2283C2BD792240052C6EE /* m_float.h */,
 				3791F2E11CDF064000F7481C /* m_symbols.h */,
+				17C228402BDB833D0052C6EE /* punning */,
 				172E0EBF2483915C00D0E711 /* instance */,
 				170C3B192484D9500009DBCF /* message */,
 				172E0EC62483EA6D00D0E711 /* class */,

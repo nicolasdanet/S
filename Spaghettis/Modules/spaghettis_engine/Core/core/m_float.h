@@ -7,74 +7,95 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#include "../../m_headers.h"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "d_math.h"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-static t_class *rsqrt_tilde_class;      /* Shared. */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-typedef struct _unop_tilde t_rsqrt_tilde;
+#ifndef M_FLOAT_H_
+#define M_FLOAT_H_
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void rsqrt_tilde_dsp (t_rsqrt_tilde *x, t_signal **sp)
-{
-    object_fetchAndCopySignalValuesIfRequired (cast_object (x));
+/* Assumed IEEE 754 floating-point format. */
 
-    dsp_addInverseSquareRootPerform (sp[0]->s_vector, sp[1]->s_vector, sp[0]->s_vectorSize);
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+/* True if zero, denormal, infinite, or NaN. */
+
+static inline int PD_FLOAT32_IS_INVALID_OR_ZERO (float f)
+{
+    t_pun32 z;
+    pun32_setFloat (&z, f);
+    pun32_setBitwiseAnd (&z, 0x7f800000);
+    uint32_t i = pun32_getInteger (&z);
+    
+    return ((i == 0) || (i == 0x7f800000));
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static void *rsqrt_tilde_new (void)
+static inline int PD_FLOAT64_IS_INVALID_OR_ZERO (double f)
 {
-    t_rsqrt_tilde *x = (t_rsqrt_tilde *)pd_new (rsqrt_tilde_class);
+    t_pun64 z;
+    pun64_setDouble (&z, f);
+    pun64_setBitwiseAndMostSignificantBytes (&z, 0x7ff00000);
+    uint32_t i = pun64_getMostSignificantBytes (&z);
     
-    x->x_outlet = outlet_newSignal (cast_object (x));
-
-    return x;
+    return ((i == 0) || (i == 0x7ff00000));
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void rsqrt_tilde_setup (void)
+/* Workaround required with ffast-math flag. */
+
+static inline int PD_FLOAT64_IS_INF (double f)
 {
-    t_class *c = NULL;
+    t_pun64 z;
+    pun64_setDouble (&z, f);
+    uint64_t i = pun64_getLongInteger (&z);
     
-    c = class_new (sym_rsqrt__tilde__,
-            (t_newmethod)rsqrt_tilde_new,
-            NULL,
-            sizeof (t_rsqrt_tilde),
-            CLASS_DEFAULT | CLASS_SIGNAL,
-            A_NULL);
-            
-    class_addDsp (c, (t_method)rsqrt_tilde_dsp);
-    
-    class_setDataFunction (c, unop_tilde_functionData);
-    class_setHelpName (c, sym_math__tilde__);
-    
-    rsqrt_tilde_class = c;
+    return (i == 0x7ff0000000000000UL || i == 0xfff0000000000000UL);
 }
 
-void rsqrt_tilde_destroy (void)
+static inline int PD_FLOAT64_IS_NAN (double f)
 {
-    class_free (rsqrt_tilde_class);
+    t_pun64 z;
+    pun64_setDouble (&z, f);
+    pun64_setBitwiseAndMostSignificantBytes (&z, 0x7ff00000);
+    uint32_t i = pun64_getMostSignificantBytes (&z);
+
+    return ((i == 0x7ff00000) && !PD_FLOAT64_IS_INF (f));
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/* True if exponent falls out (-64, 64) range. */
+/* Notice that it is also true for zero, denormal, infinite, or NaN. */
+
+static inline int PD_FLOAT32_IS_BIG_OR_SMALL (float f)
+{
+    t_pun32 z;
+    pun32_setFloat (&z, f);
+    uint32_t i = pun32_getInteger (&z);
+    
+    return ((i & 0x20000000) == ((i >> 1) & 0x20000000));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static inline int PD_FLOAT64_IS_INTEGER (double f)
+{
+    return (trunc (f) - f == 0.0);
+}
+
+static inline int PD_FLOAT32_IS_INTEGER (float f)
+{
+    return (truncf (f) - f == 0.0);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+#endif // M_FLOAT_H_

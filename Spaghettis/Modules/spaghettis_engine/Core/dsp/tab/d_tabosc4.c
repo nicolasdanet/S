@@ -101,25 +101,26 @@ static t_int *tabosc4_tilde_perform (t_int *w)
     const int size = t->s_int0;
     double phase   = (size * x->x_phase) + DSP_UNITBIT;
     
-    t_rawcast64 z;
+    t_pun64 z;
     
     while (n--) {
     //
-    z.z_d = phase;
+    pun64_setDouble (&z, phase);
     phase += (*in++) * size * t->s_float0;
-    t_word *p = (t_word *)t->s_pointer0 + (z.z_i[PD_RAWCAST64_MSB] & (size - 1));
-    z.z_i[PD_RAWCAST64_MSB] = DSP_UNITBIT_MSB;
-    *out++ = (t_sample)dsp_4PointsInterpolationWithWords ((t_float)(z.z_d - DSP_UNITBIT), p);
+    t_word *p = (t_word *)t->s_pointer0 + (pun64_getMostSignificantBytes (&z) & (size - 1));
+    pun64_setMostSignificantBytes (&z, DSP_UNITBIT_MSB);
+    *out++ = (t_sample)dsp_4PointsInterpolationWithWords ((t_float)(pun64_getDouble (&z) - DSP_UNITBIT), p);
     //
     }
 
     /* Wrap the phase (keep only the fractional part). */
     /* Size must be a power of two. */
     
-    z.z_d = DSP_UNITBIT * size; int k = z.z_i[PD_RAWCAST64_MSB];
-    z.z_d = phase + (DSP_UNITBIT * size - DSP_UNITBIT);
-    z.z_i[PD_RAWCAST64_MSB] = k;
-    x->x_phase = (z.z_d - DSP_UNITBIT * size) * (1.0 / size);
+    pun64_setDouble (&z, DSP_UNITBIT * size);
+    uint32_t k = pun64_getMostSignificantBytes (&z);
+    pun64_setDouble (&z, phase + (DSP_UNITBIT * size - DSP_UNITBIT));
+    pun64_setMostSignificantBytes (&z, k);
+    x->x_phase = (pun64_getDouble (&z) - DSP_UNITBIT * size) * (1.0 / size);
     //
     } else { while (n--) { *out++ = 0.0; } }
     

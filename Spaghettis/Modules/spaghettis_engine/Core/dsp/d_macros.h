@@ -153,18 +153,18 @@ extern t_float *cos_tilde_table;
 static inline t_float dsp_getCosineAtLUT (double index)
 {
     t_float f1, f2, f;
-    t_rawcast64 z;
+    t_pun64 z;
     int i;
     
     /* Note that index MUST be <= 2^19 (i.e. 1024 * COSINE_TABLE_SIZE). */
     
-    z.z_d = index + DSP_UNITBIT;
+    pun64_setDouble (&z, index + DSP_UNITBIT);
     
-    i = (int)(z.z_i[PD_RAWCAST64_MSB] & (COSINE_TABLE_SIZE - 1));   /* Integer part. */
+    i = (int)(pun64_getMostSignificantBytes (&z) & (COSINE_TABLE_SIZE - 1));    /* Integer part. */
     
-    z.z_i[PD_RAWCAST64_MSB] = DSP_UNITBIT_MSB;
+    pun64_setMostSignificantBytes (&z, DSP_UNITBIT_MSB);
     
-    f = (t_float)(z.z_d - DSP_UNITBIT);  /* Fractional part. */
+    f = (t_float)(pun64_getDouble (&z) - DSP_UNITBIT);      /* Fractional part. */
     
     /* Linear interpolation. */
     
@@ -191,20 +191,20 @@ static inline double dsp_clipForHoeldrichOverflow (double f)
 
 static double inline dsp_wrapCosine (double phase)
 {
-    t_rawcast64 z;
-    z.z_d = phase + COSINE_UNITBIT;
-    z.z_i[PD_RAWCAST64_MSB] = COSINE_UNITBIT_MSB;
-    return z.z_d - COSINE_UNITBIT;
+    t_pun64 z;
+    pun64_setDouble (&z, phase + COSINE_UNITBIT);
+    pun64_setMostSignificantBytes (&z, COSINE_UNITBIT_MSB);
+    return pun64_getDouble (&z) - COSINE_UNITBIT;
 }
 
 /* Wrap the phase to [0.0, 1.0[ range. */
 
 static double inline dsp_wrapPhasor (double phase)
 {
-    t_rawcast64 z;
-    z.z_d = phase + DSP_UNITBIT;
-    z.z_i[PD_RAWCAST64_MSB] = DSP_UNITBIT_MSB;
-    return z.z_d - DSP_UNITBIT;
+    t_pun64 z;
+    pun64_setDouble (&z, phase + DSP_UNITBIT);
+    pun64_setMostSignificantBytes (&z, DSP_UNITBIT_MSB);
+    return pun64_getDouble (&z) - DSP_UNITBIT;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -258,86 +258,17 @@ static inline t_float dsp_4PointsInterpolationWithWords (t_float f, t_word *data
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-/* Assumed IEEE 754 floating-point format. */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-/* Note that a float can be factorized into two floats. */
-/* For one keep the mantissa and set the exponent to zero (i.e. 0x7f with the bias). */
-/* For the other keep the exponent and set the mantissa to zero. */
-/* Thus the rsqrt is approximated by the product of two (with fast lookup) rsqrt. */
-
-/* < https://en.wikipedia.org/wiki/Fast_inverse_square_root#Newton.27s_method > */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define RSQRT_MANTISSA_SIZE         1024
-#define RSQRT_EXPONENTIAL_SIZE      256
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#if 0
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-extern t_sample rsqrt_tableMantissa[];
-extern t_sample rsqrt_tableExponential[];
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static inline t_sample rsqrt_fastLUT (t_sample f)
-{
-    t_rawcast32 z;
-
-    z.z_f = f;
-    
-    if (z.z_f <= 0.0) { return 0.0; }
-    else {
-    //
-    int e = (z.z_i >> 23) & (RSQRT_EXPONENTIAL_SIZE - 1);
-    int m = (z.z_i >> 13) & (RSQRT_MANTISSA_SIZE - 1);
-    t_sample g = rsqrt_tableExponential[e] * rsqrt_tableMantissa[m];
-    
-    return (t_sample)(1.5 * g - 0.5 * g * g * g * z.z_f);
-    //
-    }
-}
-
-static inline t_sample sqrt_fastLUT (t_sample f)
-{
-    return f * rsqrt_fastLUT (f);
-}
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static inline t_sample rsqrt_fastSTD (t_sample f)
+static inline t_sample rsqrt_fast (t_sample f)
 {
     return (f <= 0.0 ? 0.0 : ((t_sample)1.0 / sqrtf (f)));
 }
 
-static inline t_sample sqrt_fastSTD (t_sample f)
+static inline t_sample sqrt_fast (t_sample f)
 {
     return (f <= 0.0 ? 0.0 : sqrtf (f));
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#define rsqrt_fast  rsqrt_fastSTD
-#define sqrt_fast   sqrt_fastSTD
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

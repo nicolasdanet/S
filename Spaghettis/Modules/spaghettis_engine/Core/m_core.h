@@ -23,6 +23,8 @@ typedef t_float64Atomic t_word;
 
 #include "core/m_externals.h"
 #include "core/m_macros.h"
+#include "core/m_punning.h"
+#include "core/m_float.h"
 #include "core/m_symbols.h"
 #include "core/helpers/m_point.h"
 #include "core/helpers/m_rectangle.h"

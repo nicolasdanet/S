@@ -100,7 +100,7 @@ bool BaseWindow::isFullyInitialized() const
 
 void BaseWindow::timerCallback()
 {
-    const int timerAttempts = 10;
+    const int timerAttempts = 100;
     
     if (++timerCount_ > timerAttempts) { jassertfalse; stopTimer(); }
     else {

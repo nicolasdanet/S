@@ -154,9 +154,9 @@ static int oscformat_proceedFillFloat (t_oscformat *x, int argc, t_atom *argv, i
 {
     int n = *m;
     
-    t_rawcast32 z;
-    z.z_f = (float)atom_getFloat (argv + j);
-    OSC_4WRITE (a + n, z.z_i);
+    t_pun32 z;
+    pun32_setFloat (&z, (float)atom_getFloat (argv + j));
+    OSC_4WRITE (a + n, pun32_getInteger (&z));
     n += 4;
     
     *m = n; j++; return j;
@@ -237,11 +237,11 @@ static int oscformat_proceedFillDouble (t_oscformat *x, int argc, t_atom *argv, 
 {
     int n = *m;
     
-    t_rawcast64 z;
-    z.z_d = (double)atom_getFloat (argv + j);
-    OSC_4WRITE (a + n, z.z_i[PD_RAWCAST64_MSB]);
+    t_pun64 z;
+    pun64_setDouble (&z, (double)atom_getFloat (argv + j));
+    OSC_4WRITE (a + n, pun64_getMostSignificantBytes (&z));
     n += 4;
-    OSC_4WRITE (a + n, z.z_i[PD_RAWCAST64_LSB]);
+    OSC_4WRITE (a + n, pun64_getLeastSignificantBytes (&z));
     n += 4;
     
     *m = n; j++; return j;

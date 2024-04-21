@@ -85,26 +85,26 @@ static inline void soundfile_encodeLinear24LittleEndian (float f, float k, unsig
 
 static inline void soundfile_encodeFloat32BigEndian (float f, float k, unsigned char *p)
 {
-    t_rawcast32 z;
+    t_pun32 z; pun32_setFloat (&z, f * k);
     
-    z.z_f = f * k;
+    uint32_t i = pun32_getInteger (&z);
     
-    p[0] = 0xff & (z.z_i >> 24);
-    p[1] = 0xff & (z.z_i >> 16);
-    p[2] = 0xff & (z.z_i >> 8);
-    p[3] = 0xff & (z.z_i);
+    p[0] = 0xff & (i >> 24);
+    p[1] = 0xff & (i >> 16);
+    p[2] = 0xff & (i >> 8);
+    p[3] = 0xff & (i);
 }
 
 static inline void soundfile_encodeFloat32LittleEndian (float f, float k, unsigned char *p)
 {
-    t_rawcast32 z;
+    t_pun32 z; pun32_setFloat (&z, f * k);
     
-    z.z_f = f * k;
+    uint32_t i = pun32_getInteger (&z);
     
-    p[0] = 0xff & (z.z_i);
-    p[1] = 0xff & (z.z_i >> 8);
-    p[2] = 0xff & (z.z_i >> 16);
-    p[3] = 0xff & (z.z_i >> 24);
+    p[0] = 0xff & (i);
+    p[1] = 0xff & (i >> 8);
+    p[2] = 0xff & (i >> 16);
+    p[3] = 0xff & (i >> 24);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -478,20 +478,20 @@ static inline float soundfile_decodeLinear24LittleEndian (unsigned char *p)
 
 static inline float soundfile_decodeFloat32BigEndian (unsigned char *p)
 {
-    t_rawcast32 z;
+    t_pun32 z;
     
-    z.z_i = (p[0] << 24) | (p[1] << 16) | (p[2] << 8) | (p[3]);
+    pun32_setInteger (&z, (p[0] << 24) | (p[1] << 16) | (p[2] << 8) | (p[3]));
     
-    return z.z_f;
+    return pun32_getFloat (&z);
 }
 
 static inline float soundfile_decodeFloat32LittleEndian (unsigned char *p)
 {
-    t_rawcast32 z;
+    t_pun32 z;
     
-    z.z_i = (p[3] << 24) | (p[2] << 16) | (p[1] << 8) | (p[0]);
+    pun32_setInteger (&z, (p[3] << 24) | (p[2] << 16) | (p[1] << 8) | (p[0]));
     
-    return z.z_f;
+    return pun32_getFloat (&z);
 }
 
 // -----------------------------------------------------------------------------------------------------------

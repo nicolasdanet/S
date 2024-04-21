@@ -190,9 +190,9 @@ static t_error oscparse_proceedArgumentsFloat (t_oscparse *x,
     
     if (k > argc - 4) { err = PD_ERROR; }
     else {
-        t_rawcast32 z;
-        z.z_i = OSC_4READ (argv + k);
-        float f = z.z_f; if (PD_FLOAT32_IS_INVALID_OR_ZERO (f)) { f = 0.0; }
+        t_pun32 z;
+        pun32_setInteger (&z, OSC_4READ (argv + k));
+        float f = pun32_getFloat (&z); if (PD_FLOAT32_IS_INVALID_OR_ZERO (f)) { f = 0.0; }
         SET_FLOAT (a + n, (t_float)f);
         n++; k += 4;
     }
@@ -334,10 +334,10 @@ static t_error oscparse_proceedArgumentsDouble (t_oscparse *x,
     
     if (k > argc - 8) { err = PD_ERROR; }
     else {
-        t_rawcast64 z;
-        z.z_i[PD_RAWCAST64_MSB] = OSC_4READ (argv + k + 0);
-        z.z_i[PD_RAWCAST64_LSB] = OSC_4READ (argv + k + 4);
-        double f = z.z_d; if (PD_FLOAT64_IS_INVALID_OR_ZERO (f)) { f = 0.0; }
+        t_pun64 z;
+        pun64_setMostSignificantBytes (&z, OSC_4READ (argv + k + 0));
+        pun64_setLeastSignificantBytes (&z, OSC_4READ (argv + k + 4));
+        double f = pun64_getDouble (&z); if (PD_FLOAT64_IS_INVALID_OR_ZERO (f)) { f = 0.0; }
         SET_FLOAT (a + n, (t_float)f);
         n++; k += 8;
     }

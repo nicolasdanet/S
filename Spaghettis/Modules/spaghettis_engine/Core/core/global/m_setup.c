@@ -18,7 +18,6 @@ void fft_initialize            (void);
 void fn_initialize             (void);
 void instance_initialize       (void);
 void monitor_initialize        (void);
-void rsqrt_tilde_initialize    (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -990,7 +989,6 @@ void setup_initialize (void)
     fft_initialize();
     fn_initialize();
     monitor_initialize();
-    rsqrt_tilde_initialize();
     
     /* Then setup native classes. */
     
