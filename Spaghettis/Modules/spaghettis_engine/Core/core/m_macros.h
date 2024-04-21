@@ -130,10 +130,10 @@ void post_log (const char *, ...);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if 0
+#if defined ( PD_BUILDING_APPLICATION )
     
     #define PD_TRY          try {
-    #define PD_CATCH        } catch (...) { scheduler_needToExitWithError(); }
+    #define PD_CATCH        } catch (...) { core::scheduler_needToExitWithError(); throw; }
     
 #else
     

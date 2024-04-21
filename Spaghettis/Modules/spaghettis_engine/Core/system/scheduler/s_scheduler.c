@@ -109,14 +109,10 @@ void scheduler_needToExit (void)
     PD_ATOMIC_INT32_WRITE (SCHEDULER_QUIT, &scheduler_quit);
 }
 
-#if 0
-
 void scheduler_needToExitWithError (void)
 {
     PD_ATOMIC_INT32_WRITE (SCHEDULER_ERROR, &scheduler_quit);
 }
-
-#endif
 
 int scheduler_isExiting (void)
 {

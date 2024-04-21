@@ -13,19 +13,19 @@ namespace spaghettis {
 
 void Wrapper::run()
 {
-    JUCE_TRY
-    {
-        const bool error = core::main_threadLoop (this);
+    PD_TRY
 
-        if (error) {
-        //
-        juce::String s = juce::String (PD_NAME_LOWERCASE) + juce::String (": core error");
-        
-        post (core::UniquePath::invalid(), NEEDS_TRANS (s), LoggerType::error);
-        //
-        }
+    const bool error = core::main_threadLoop (this);
+
+    if (error) {
+    //
+    juce::String s = juce::String (PD_NAME_LOWERCASE) + juce::String (": core error");
+    
+    post (core::UniquePath::invalid(), NEEDS_TRANS (s), LoggerType::error);
+    //
     }
-    JUCE_CATCH_EXCEPTION
+
+    PD_CATCH
 }
 
 void Wrapper::setCommandLine (const juce::StringArray& commandLine)

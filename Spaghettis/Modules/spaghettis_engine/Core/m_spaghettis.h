@@ -789,7 +789,7 @@ def manifestParse(path):
     if sys.platform.startswith('linux'):
         manifest["plugin"]   = "-shared -fpic"
     elif sys.platform.startswith('darwin'):
-        manifest["plugin"]   = "-bundle -undefined dynamic_lookup -bind_at_load"
+        manifest["plugin"]   = "-bundle -undefined dynamic_lookup"
 
 def manifestParseJSON(path):
     if path.exists():

@@ -31,7 +31,7 @@ t_systime  scheduler_getLogicalTimeAfter       (double ms);
 double     scheduler_getMillisecondsSince      (t_systime systime);
 double     scheduler_getUnitsSince             (t_systime systime, double unit, int isSamples);
 void       scheduler_needToExit                (void);
-//void       scheduler_needToExitWithError     (void);
+void       scheduler_needToExitWithError       (void);
 int        scheduler_isExiting                 (void);
 
 // -----------------------------------------------------------------------------------------------------------
