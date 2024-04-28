@@ -334,7 +334,7 @@ static t_error oscparse_proceedArgumentsDouble (t_oscparse *x,
     
     if (k > argc - 8) { err = PD_ERROR; }
     else {
-        t_pun64 z;
+        t_pun64 z = pun64_initialize();
         pun64_setMostSignificantBytes (&z, OSC_4READ (argv + k + 0));
         pun64_setLeastSignificantBytes (&z, OSC_4READ (argv + k + 4));
         double f = pun64_getDouble (&z); if (PD_FLOAT64_IS_INVALID_OR_ZERO (f)) { f = 0.0; }

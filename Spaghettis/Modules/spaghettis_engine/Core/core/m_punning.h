@@ -70,6 +70,20 @@ raw_cast (const From& src) noexcept
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static inline t_pun32 pun32_initialize()
+{
+    t_pun32 t = { 0 }; return t;
+}
+
+static inline t_pun64 pun64_initialize()
+{
+    t_pun64 t = { 0 }; return t;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static inline void pun32_setBitwiseAnd (t_pun32* p, uint32_t i)
 {
     pun32_setInteger (p, pun32_getInteger (p) & i);

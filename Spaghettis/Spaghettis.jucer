@@ -64,9 +64,8 @@
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraCompilerFlags="-Wall&#10;-Wextra&#10;-Wshadow&#10;-Wno-unused-parameter&#10;-ffast-math&#10;-fvisibility=hidden"
                 extraLinkerFlags="-rdynamic&#10;">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" linuxArchitecture="-march=native" extraCompilerFlags="-Wno-maybe-uninitialized"/>
-        <CONFIGURATION isDebug="0" name="Release" linuxArchitecture="-march=native"
-                       extraCompilerFlags="-Wno-maybe-uninitialized"/>
+        <CONFIGURATION isDebug="1" name="Debug" linuxArchitecture="-march=native"/>
+        <CONFIGURATION isDebug="0" name="Release" linuxArchitecture="-march=native"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_gui_basics"/>
