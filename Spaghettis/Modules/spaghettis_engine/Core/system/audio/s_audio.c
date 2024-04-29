@@ -173,7 +173,7 @@ double audio_getNanosecondsToSleep (void)
 
 t_float audio_getSampleRate (void)
 {
-    t_float f = PD_ATOMIC_FLOAT64_READ (&audio_sampleRate); return (f <= 0.0 ? AUDIO_DEFAULT_SAMPLERATE : f);
+    t_float f = atomic_float64Read (&audio_sampleRate); return (f <= 0.0 ? AUDIO_DEFAULT_SAMPLERATE : f);
 }
 
 int audio_getTotalOfChannelsIn (void) 
@@ -207,7 +207,7 @@ void audio_vectorInitialize (t_float sampleRate, int totalOfChannelsIn, int tota
     audio_totalOfChannelsIn  = totalOfChannelsIn;
     audio_totalOfChannelsOut = totalOfChannelsOut;
     
-    PD_ATOMIC_FLOAT64_WRITE (sampleRate, &audio_sampleRate);
+    atomic_float64Write (&audio_sampleRate, sampleRate);
 }
 
 void audio_vectorShrinkIn (int totalOfChannelsIn)

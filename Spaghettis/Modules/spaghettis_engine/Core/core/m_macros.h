@@ -354,27 +354,6 @@ t_seed time_makeRandomSeed (void);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-double atomic_float64ReadRelaxed   (t_float64Atomic *);
-void   atomic_float64WriteRelaxed  (double, t_float64Atomic *);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static inline void w_setFloat (t_word *w, t_float f)
-{
-    atomic_float64WriteRelaxed (f, w);
-}
-
-static inline t_float w_getFloat (t_word *w)
-{
-    return atomic_float64ReadRelaxed (w);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 #define class_addLoadbang(c, m)             class_addMethod ((c), (t_method)(m), sym__loadbang, A_NULL)
 #define class_addClosebang(c, m)            class_addMethod ((c), (t_method)(m), sym__closebang, A_NULL)
 #define class_addPolling(c, m)              class_addMethod ((c), (t_method)(m), sym__polling, A_NULL)

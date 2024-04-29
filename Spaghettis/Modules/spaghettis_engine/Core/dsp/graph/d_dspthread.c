@@ -72,7 +72,7 @@ int dspthread_isChainSafeToDelete (t_dspthread *x, t_chain *chainToDelete)
 {
     if (x) {
     //
-    if ((t_chain *)PD_ATOMIC_POINTER_READ (&x->x_chain) == chainToDelete) { return 0; }
+    if ((t_chain *)atomic_pointerRead (&x->x_chain) == chainToDelete) { return 0; }
     //
     }
     
@@ -87,7 +87,7 @@ void dspthread_run (t_dspthread *x)
 {
     pthread_mutex_lock (&x->x_lock);
     
-    PD_ATOMIC_UINT32_SET (DSP_RUN, &x->x_flag); pthread_cond_signal (&x->x_condition);
+    atomic_uInt32Set (&x->x_flag, DSP_RUN); pthread_cond_signal (&x->x_condition);
     
     pthread_mutex_unlock (&x->x_lock);
 }
@@ -96,7 +96,7 @@ void dspthread_stop (t_dspthread *x)
 {
     pthread_mutex_lock (&x->x_lock);
     
-    PD_ATOMIC_UINT32_UNSET (DSP_RUN, &x->x_flag);
+    atomic_uInt32Unset (&x->x_flag, DSP_RUN);
     
     pthread_mutex_unlock (&x->x_lock);
 }
@@ -105,7 +105,7 @@ static void dspthread_exit (t_dspthread *x)
 {
     pthread_mutex_lock (&x->x_lock);
     
-    PD_ATOMIC_UINT32_SET (DSP_EXIT, &x->x_flag); pthread_cond_signal (&x->x_condition);
+    atomic_uInt32Set (&x->x_flag, DSP_EXIT); pthread_cond_signal (&x->x_condition);
     
     pthread_mutex_unlock (&x->x_lock);
 }
@@ -114,7 +114,7 @@ static void dspthread_wait (t_dspthread *x)
 {
     pthread_mutex_lock (&x->x_lock);
     
-    while (PD_ATOMIC_UINT32_READ (&x->x_flag) == DSP_NONE) {
+    while (atomic_uInt32Read (&x->x_flag) == DSP_NONE) {
         pthread_cond_wait (&x->x_condition, &x->x_lock);
     }
     
@@ -129,11 +129,11 @@ static int dspthread_proceed (t_dspthread *x)
 {
     int done = 1;
     
-    PD_ATOMIC_POINTER_WRITE (instance_chainGetCurrent(), &x->x_chain);
+    atomic_pointerWrite (&x->x_chain, instance_chainGetCurrent());
     
-    if (PD_ATOMIC_POINTER_READ (&x->x_chain) && PD_ATOMIC_UINT32_TRUE (DSP_RUN, &x->x_flag)) {
+    if (atomic_pointerRead (&x->x_chain) && atomic_uInt32True (&x->x_flag, DSP_RUN)) {
     //
-    t_chain *chain = (t_chain *)PD_ATOMIC_POINTER_READ (&x->x_chain);
+    t_chain *chain = (t_chain *)atomic_pointerRead (&x->x_chain);
     
     int stuck = 0;
     
@@ -158,13 +158,13 @@ static int dspthread_proceed (t_dspthread *x)
     if (work) { chain_tick (chain); stuck = 0; done = 1; } else { stuck++; }
     if (wait) { time_wait (&t); }
     
-    if (stuck > 10 || PD_ATOMIC_UINT32_TRUE (DSP_EXIT, &x->x_flag)) { break; }
+    if (stuck > 10 || atomic_uInt32True (&x->x_flag, DSP_EXIT)) { break; }
     //
     } while (chain_hasQuantumRemaining (chain));
     //
     }
     
-    PD_ATOMIC_POINTER_WRITE (NULL, &x->x_chain);
+    atomic_pointerWrite (&x->x_chain, NULL);
     
     return done;
 }
@@ -179,17 +179,17 @@ static void *dspthread_thread (void *z)
     
     denormal_setPolicy();   /* If inheritance is broken. */
     
-    while (PD_ATOMIC_UINT32_FALSE (DSP_EXIT, &x->x_flag)) {
+    while (atomic_uInt32False (&x->x_flag, DSP_EXIT)) {
     //
-    while (PD_ATOMIC_UINT32_FALSE (DSP_EXIT, &x->x_flag) && PD_ATOMIC_UINT32_TRUE (DSP_RUN, &x->x_flag)) {
+    while (atomic_uInt32False (&x->x_flag, DSP_EXIT) && atomic_uInt32True (&x->x_flag, DSP_RUN)) {
     //
-    PD_ATOMIC_FLOAT64_WRITE (0, &x->x_time);
+    atomic_float64Write (&x->x_time, 0);
     
     if (!dspthread_proceed (x)) { nano_sleep (audio_getNanosecondsToSleep()); }
     //
     }
     
-    PD_ATOMIC_FLOAT64_WRITE (scheduler_getLogicalTime(), &x->x_time);
+    atomic_float64Write (&x->x_time, scheduler_getLogicalTime());
     
     dspthread_wait (x);
     //
@@ -235,7 +235,7 @@ t_error dspthread_create (t_dspthread *x)
 
 t_systime dspthread_time (t_dspthread *x)
 {
-    return (t_systime)PD_ATOMIC_FLOAT64_READ (&x->x_time);
+    return (t_systime)atomic_float64Read (&x->x_time);
 }
 
 // -----------------------------------------------------------------------------------------------------------

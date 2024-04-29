@@ -121,7 +121,7 @@ static void inlet_float (t_inlet *x, t_float f)
     t_atom t; SET_FLOAT (&t, f);
     
     if (x->i_type == &s_float)              { pd_message (x->i_receiver, x->i_un.i_method, 1, &t); }
-    else if (x->i_type == &s_signal)        { PD_ATOMIC_FLOAT64_WRITE (f, &x->i_un.i_signal); }
+    else if (x->i_type == &s_signal)        { atomic_float64Write (&x->i_un.i_signal, f); }
     else if (x->i_type == NULL)             { pd_float (x->i_receiver, f); }
     else if (x->i_type == &s_list)          { inlet_list (x, &s_float, 1, &t); }
     else { 
@@ -258,7 +258,7 @@ t_inlet *inlet_newSignal (t_object *owner)
 {
     t_inlet *x = inlet_new (owner, NULL, &s_signal, NULL);
     
-    PD_ATOMIC_FLOAT64_WRITE (0.0, &x->i_un.i_signal);
+    atomic_float64Write (&x->i_un.i_signal, 0.0);
     
     return x;
 }
@@ -286,7 +286,7 @@ t_inlet *inlet_new (t_object *owner, t_pd *receiver, t_symbol *type, t_symbol *m
 
     if (type != &s_signal) { x->i_un.i_method = method; PD_ASSERT (method || !type); }
     else {
-        PD_ATOMIC_FLOAT64_WRITE (0.0, &x->i_un.i_signal);
+        atomic_float64Write (&x->i_un.i_signal, 0.0);
     }
     
     inlet_add (x, owner);

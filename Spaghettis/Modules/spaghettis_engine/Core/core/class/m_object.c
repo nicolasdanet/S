@@ -587,7 +587,7 @@ static t_float object_getSignalValueAtIndex (t_object *x, int m)
 {
     t_float64Atomic *t = object_getSignalAtIndex (x, m);
     
-    if (t) { return PD_ATOMIC_FLOAT64_READ (t); }
+    if (t) { return atomic_float64Read (t); }
     
     PD_BUG; return 0.0;
 }
@@ -605,7 +605,7 @@ static void object_setSignalValueAtIndex (t_object *x, int m, t_float f)
 {
     t_float64Atomic *t = object_getSignalAtIndex (x, m);
     
-    if (t) { PD_ATOMIC_FLOAT64_WRITE (f, t); } else { PD_BUG; }
+    if (t) { atomic_float64Write (t, f); } else { PD_BUG; }
 }
 
 void object_setSignalValues (t_object *x, int argc, t_atom *argv)

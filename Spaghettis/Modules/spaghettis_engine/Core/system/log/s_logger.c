@@ -43,7 +43,7 @@ static void *logger_task (void *dummy)
 {
     denormal_setPolicy();   /* If inheritance is broken. */
     
-    while (PD_ATOMIC_INT32_READ (&logger_quit) == 0) {
+    while (atomic_int32Read (&logger_quit) == 0) {
     //
     nano_sleep (PD_MILLISECONDS_TO_NANOSECONDS (LOGGER_SLEEP));
     
@@ -91,7 +91,7 @@ t_error logger_initialize (void)
 
 void logger_release (void)
 {
-    PD_ATOMIC_INT32_WRITE (1, &logger_quit);
+    atomic_int32Write (&logger_quit, 1);
     
     pthread_join (logger_thread, NULL);
     

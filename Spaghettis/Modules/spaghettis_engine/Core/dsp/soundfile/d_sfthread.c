@@ -65,10 +65,10 @@ static void *sfthread_readerThread (void *z)
     
     denormal_setPolicy();   /* If inheritance is broken. */
     
-    while (!PD_ATOMIC_INT32_READ (&x->sft_flag)) {
+    while (!atomic_int32Read (&x->sft_flag)) {
     //
     while (ringbuffer_getAvailableWrite (x->sft_buffer) > SFTHREAD_CHUNK) {
-        if (!PD_ATOMIC_INT32_READ (&x->sft_flag)) {
+        if (!atomic_int32Read (&x->sft_flag)) {
             char t[SFTHREAD_CHUNK] = { 0 };
             size_t required = PD_MIN (SFTHREAD_CHUNK, x->sft_remainsToRead);
             int bytes = (int)read (x->sft_fileDescriptor, t, required);
@@ -76,14 +76,14 @@ static void *sfthread_readerThread (void *z)
                 ringbuffer_write (x->sft_buffer, t, bytes);
                 x->sft_remainsToRead -= bytes;
             } else {
-                PD_ATOMIC_INT32_WRITE (SFTHREAD_QUIT, &x->sft_flag);
+                atomic_int32Write (&x->sft_flag, SFTHREAD_QUIT);
             }
         } else {
             break;
         }
     }
     
-    if (!PD_ATOMIC_INT32_READ (&x->sft_flag)) {
+    if (!atomic_int32Read (&x->sft_flag)) {
         nano_sleep (SFTHREAD_SLEEP);
     }
     //
@@ -114,15 +114,15 @@ static void *sfthread_writerThread (void *z)
         
         x->sft_alreadyWritten += written;
         
-        if (required == 0) { PD_ATOMIC_INT32_WRITE (SFTHREAD_QUIT, &x->sft_flag); break; }
+        if (required == 0) { atomic_int32Write (&x->sft_flag, SFTHREAD_QUIT); break; }
         if (written != loaded) {
-            PD_ATOMIC_INT32_WRITE (SFTHREAD_CORRUPTED, &x->sft_corrupted);
-            PD_ATOMIC_INT32_WRITE (SFTHREAD_QUIT, &x->sft_flag);
+            atomic_int32Write (&x->sft_corrupted, SFTHREAD_CORRUPTED);
+            atomic_int32Write (&x->sft_flag, SFTHREAD_QUIT);
             break;
         }
     }
     
-    if (!PD_ATOMIC_INT32_READ (&x->sft_flag)) {
+    if (!atomic_int32Read (&x->sft_flag)) {
         nano_sleep (SFTHREAD_SLEEP);
     } else {
         break;
@@ -136,7 +136,7 @@ static void *sfthread_writerThread (void *z)
     int framesWritten = x->sft_alreadyWritten / size;
     
     if (soundfile_writeFileClose (x->sft_fileDescriptor, framesWritten, &x->sft_properties)) {
-        PD_ATOMIC_INT32_WRITE (SFTHREAD_CORRUPTED, &x->sft_corrupted);
+        atomic_int32Write (&x->sft_corrupted, SFTHREAD_CORRUPTED);
     }
     //
     }
@@ -174,12 +174,12 @@ int sfthread_isBigEndian (t_sfthread *x)
 
 int sfthread_isEnd (t_sfthread *x)
 {
-    return (PD_ATOMIC_INT32_READ (&x->sft_flag) != 0);
+    return (atomic_int32Read (&x->sft_flag) != 0);
 }
 
 void sfthread_setCorrupted (t_sfthread *x)
 {
-    if (!sfthread_isEnd (x)) { PD_ATOMIC_INT32_WRITE (SFTHREAD_CORRUPTED, &x->sft_corrupted); }
+    if (!sfthread_isEnd (x)) { atomic_int32Write (&x->sft_corrupted, SFTHREAD_CORRUPTED); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -241,7 +241,7 @@ static void sfthread_free (t_sfthread *x)
     /* Notice that it is reported here since logging is NOT thread-safe. */
     /* However it should never happens. */
     
-    if (PD_ATOMIC_INT32_READ (&x->sft_corrupted) != 0) {
+    if (atomic_int32Read (&x->sft_corrupted) != 0) {
     //
     t_symbol *filename = symbol_addSuffix (x->sft_properties.ap_fileName, x->sft_properties.ap_fileExtension);
 
@@ -258,7 +258,7 @@ void sfthread_release (t_sfthread *x)
 {
     if (x) {
     //
-    PD_ATOMIC_INT32_WRITE (SFTHREAD_QUIT, &x->sft_flag);
+    atomic_int32Write (&x->sft_flag, SFTHREAD_QUIT);
     
     instance_autoreleaseRegister (cast_pd (x));
     //

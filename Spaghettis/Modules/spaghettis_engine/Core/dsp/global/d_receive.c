@@ -38,7 +38,7 @@ static void receive_tilde_setProceed (t_receive_tilde *x, t_symbol *s, int verbo
     t_send_tilde *sender = (t_send_tilde *)symbol_getThingByClass ((x->x_name = s), send_tilde_class);
     t_sample *t = sender ? sender->x_vector : NULL;
     
-    PD_ATOMIC_POINTER_WRITE (t, &x->x_p);
+    atomic_pointerWrite (&x->x_p, t);
     
     if (verbose && !t && x->x_name != &s_) {
         error_canNotFind (cast_object (x), sym_receive__tilde__, x->x_name);
@@ -65,7 +65,7 @@ static t_int *receive_tilde_perform (t_int *w)
 {
     t_receive_tilde *x = (t_receive_tilde *)(w[1]);
     PD_RESTRICTED out  = (t_sample *)(w[2]);
-    PD_RESTRICTED in   = (t_sample *)PD_ATOMIC_POINTER_READ (&x->x_p);
+    PD_RESTRICTED in   = (t_sample *)atomic_pointerRead (&x->x_p);
     
     if (in) { memcpy (out, in, INTERNAL_BLOCKSIZE * sizeof (t_sample)); }
     else {
@@ -92,7 +92,7 @@ static void receive_tilde_dsp (t_receive_tilde *x, t_signal **sp)
     
     receive_tilde_setProceed (x, x->x_name, 1);
     
-    PD_ASSERT ((t_sample *)PD_ATOMIC_POINTER_READ (&x->x_p) != sp[0]->s_vector);
+    PD_ASSERT ((t_sample *)atomic_pointerRead (&x->x_p) != sp[0]->s_vector);
     
     dsp_add2 (receive_tilde_perform, x, sp[0]->s_vector);
     //
@@ -131,7 +131,7 @@ static void *receive_tilde_new (t_symbol *s)
     x->x_name   = s;
     x->x_outlet = outlet_newSignal (cast_object (x));
     
-    PD_ATOMIC_POINTER_WRITE (NULL, &x->x_p);
+    atomic_pointerWrite (&x->x_p, NULL);
     
     return x;
 }

@@ -76,7 +76,7 @@ t_buffer *binopScalar_tilde_functionData (t_object *z, int flags)
     t_buffer *b = buffer_new();
     
     buffer_appendSymbol (b, sym__inlet2);
-    buffer_appendFloat (b,  PD_ATOMIC_FLOAT64_READ (&x->x_scalar));
+    buffer_appendFloat (b,  atomic_float64Read (&x->x_scalar));
     buffer_appendComma (b);
     object_getSignalValues (cast_object (x), b);
     
@@ -95,7 +95,7 @@ void binopScalar_tilde_restore (struct _binopscalar_tilde *x)
     
     if (old) {
     //
-    binopScalar_tilde_float (x, PD_ATOMIC_FLOAT64_READ (&old->x_scalar));
+    binopScalar_tilde_float (x, atomic_float64Read (&old->x_scalar));
     
     object_copySignalValues (cast_object (x), cast_object (old));
     //
@@ -106,7 +106,7 @@ void binopScalar_tilde_restore (struct _binopscalar_tilde *x)
 
 void binopScalar_tilde_float (struct _binopscalar_tilde *x, t_float f)
 {
-    PD_ATOMIC_FLOAT64_WRITE (f, &x->x_scalar);
+    atomic_float64Write (&x->x_scalar, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------

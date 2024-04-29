@@ -157,7 +157,7 @@ t_error core_buffersPull (UInt32 inNumberFrames, AudioBufferList *ioData, t_audi
     
     if (core_buffersReadable (channels, inNumberFrames)) {
     //
-    if (PD_ATOMIC_INT32_READ (&graph->g_blank)) { PD_ATOMIC_INT32_DECREMENT (&graph->g_blank); }
+    if (atomic_int32Read (&graph->g_blank)) { atomic_int32Decrement (&graph->g_blank); }
     else {
     //
     for (i = 0; i < channels; i++) {
@@ -181,7 +181,7 @@ t_error core_buffersPull (UInt32 inNumberFrames, AudioBufferList *ioData, t_audi
 
 void core_setVectorSize (UInt32 n)
 {
-    PD_ATOMIC_UINT32_WRITE (n, &core_vectorSize);
+    atomic_uInt32Write (&core_vectorSize, n);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -316,7 +316,7 @@ int audio_pollNative()
 
 int audio_getVectorSizeNative (void)
 {
-    return PD_ATOMIC_UINT32_READ (&core_vectorSize);
+    return atomic_uInt32Read (&core_vectorSize);
 }
 
 // -----------------------------------------------------------------------------------------------------------

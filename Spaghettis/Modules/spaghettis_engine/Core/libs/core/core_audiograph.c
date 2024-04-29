@@ -74,9 +74,9 @@ static void audiograph_reset (t_audiograph *graph)
     
     PD_ASSERT (graph->g_data == NULL);
 
-    PD_ATOMIC_INT32_WRITE (0, &graph->g_isRunning);
-    PD_ATOMIC_INT32_WRITE (0, &graph->g_flag);
-    PD_ATOMIC_INT32_WRITE (0, &graph->g_blank);
+    atomic_int32Write (&graph->g_isRunning, 0);
+    atomic_int32Write (&graph->g_flag, 0);
+    atomic_int32Write (&graph->g_blank, 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -88,7 +88,7 @@ t_error audiograph_check (t_audiograph *graph, int close)
 {
     /* Avoid to check while setting devices. */
     
-    if (close && !PD_ATOMIC_INT32_READ (&graph->g_isRunning)) { return PD_ERROR_NONE; }
+    if (close && !atomic_int32Read (&graph->g_isRunning)) { return PD_ERROR_NONE; }
     
     {
         t_error err = PD_ERROR_NONE;
@@ -189,12 +189,12 @@ static t_error audiograph_openSimple (t_audiograph *graph,
     if (!err) { err = audiograph_check (graph, 0); }
     if (!err) {
     //
-    PD_ATOMIC_INT32_INCREMENT (&graph->g_blank);                /* Add one extra vector of latency. */
+    atomic_int32Increment (&graph->g_blank);            /* Add one extra vector of latency. */
     
     err |= audiodevice_start (&graph->g_deviceIn);
     err |= audiodevice_start (&graph->g_deviceOut);
     
-    if (!err) { PD_ATOMIC_INT32_WRITE (1, &graph->g_isRunning); }
+    if (!err) { atomic_int32Write (&graph->g_isRunning, 1); }
     //
     }
     //
@@ -259,7 +259,7 @@ static t_error audiograph_openDuplex (t_audiograph *graph,
     //
     err |= audiodevice_start (&graph->g_deviceDuplex);
     
-    if (!err) { PD_ATOMIC_INT32_WRITE (1, &graph->g_isRunning); }
+    if (!err) { atomic_int32Write (&graph->g_isRunning, 1); }
     //
     }
     //
@@ -308,7 +308,7 @@ t_error audiograph_open (t_audiograph *graph,
 
 void audiograph_close (t_audiograph *graph)
 {
-    PD_ATOMIC_INT32_WRITE (0, &graph->g_isRunning);
+    atomic_int32Write (&graph->g_isRunning, 0);
     
     audiodevice_stop (&graph->g_deviceIn);
     audiodevice_stop (&graph->g_deviceOut);

@@ -43,7 +43,7 @@ typedef struct _env_tilde {
 static void env_tilde_task (t_env_tilde *x)
 {
     if (!x->x_dismissed) {
-        outlet_float (x->x_outlet, math_powerToDecibel (PD_ATOMIC_FLOAT64_READ (&x->x_result)));
+        outlet_float (x->x_outlet, math_powerToDecibel (atomic_float64Read (&x->x_result)));
     }
 }
 
@@ -89,7 +89,7 @@ static t_int *env_tilde_perform (t_int *w)
     
     if (x->x_phase < 0) {
     //
-    sum = x->x_sum; PD_ATOMIC_FLOAT64_WRITE (*sum, &x->x_result);
+    sum = x->x_sum; atomic_float64Write (&x->x_result, *sum);
     
     for (i = x->x_period; i < x->x_window; i += x->x_period) { *sum = *(sum + 1); sum++; } 
     

@@ -48,7 +48,7 @@ t_error clock_parseUnit (t_float f, t_symbol *s, t_float *n, int *isSamples)
 
 static void clock_setUnit (t_clock *x, double unit, int isSamples)
 {
-    double d = isSamples ? -unit : unit; PD_ATOMIC_FLOAT64_WRITE (d, &x->c_unit);
+    double d = isSamples ? -unit : unit; atomic_float64Write (&x->c_unit, d);
 }
 
 t_error clock_setUnitParsed (t_clock *x, t_float f, t_symbol *unitName)
@@ -73,7 +73,7 @@ t_error clock_setUnitParsed (t_clock *x, t_float f, t_symbol *unitName)
 
 t_systime clock_getLogicalTime (t_clock *x)
 {
-    return (t_systime)PD_ATOMIC_FLOAT64_READ (&x->c_systime);
+    return (t_systime)atomic_float64Read (&x->c_systime);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -119,28 +119,28 @@ For instance:
 
 void clock_increment (t_clock *x)
 {
-    int t = PD_ATOMIC_INT32_INCREMENT (&x->c_count);
+    int t = atomic_int32Increment (&x->c_count);
     
     PD_UNUSED (t); PD_ASSERT (t == 0 || t == 1 || t == 2);
 }
 
 void clock_decrement (t_clock *x)
 {
-    int t = PD_ATOMIC_INT32_DECREMENT (&x->c_count);
+    int t = atomic_int32Decrement (&x->c_count);
     
     PD_UNUSED (t); PD_ASSERT (t == 1 || t == 0 || t == -1);
 }
 
 int clock_isSet (t_clock *x)
 {
-    return (PD_ATOMIC_INT32_READ (&x->c_count) > 0);
+    return (atomic_int32Read (&x->c_count) > 0);
 }
 
 #if ( PD_WITH_DEBUG )
 
 int clock_isGood (t_clock *x)
 {
-    return (PD_ATOMIC_INT32_READ (&x->c_count) == 0);
+    return (atomic_int32Read (&x->c_count) == 0);
 }
 
 #endif
@@ -170,7 +170,7 @@ t_clock *clock_new (void *owner, t_method fn)
     x->c_fn    = (t_clockfn)fn;
     x->c_owner = owner;
 
-    PD_ATOMIC_FLOAT64_WRITE (1.0, &x->c_unit);
+    atomic_float64Write (&x->c_unit, 1.0);
     
     return x;
 }
@@ -195,7 +195,7 @@ void clock_set (t_clock *x, t_systime t)
     
     {
     //
-    PD_ATOMIC_FLOAT64_WRITE (t, &x->c_systime);
+    atomic_float64Write (&x->c_systime, t);
     
     instance_clocksAdd (x);
     //
@@ -205,7 +205,7 @@ void clock_set (t_clock *x, t_systime t)
 static double clock_quantum (t_clock *x, double t)
 {
     double d = 0.0;
-    double u = PD_ATOMIC_FLOAT64_READ (&x->c_unit);
+    double u = atomic_float64Read (&x->c_unit);
     
     if (u > 0.0) { d = u; }
     else {

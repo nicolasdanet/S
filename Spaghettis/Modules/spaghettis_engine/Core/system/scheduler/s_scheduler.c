@@ -62,12 +62,12 @@ double scheduler_getRealTimeInSeconds (void)
 
 void scheduler_setLogicalTime (t_systime t)
 {
-    PD_ATOMIC_FLOAT64_WRITE (t, &scheduler_systime);
+    atomic_float64Write (&scheduler_systime, t);
 }
 
 t_systime scheduler_getLogicalTime (void)
 {
-    return PD_ATOMIC_FLOAT64_READ (&scheduler_systime);
+    return atomic_float64Read (&scheduler_systime);
 }
 
 t_systime scheduler_getLogicalTimeAfter (double ms)
@@ -106,17 +106,17 @@ t_systime scheduler_addMillisecondsToLogicalTime (t_systime t, double ms)
 
 void scheduler_needToExit (void)
 {
-    PD_ATOMIC_INT32_WRITE (SCHEDULER_QUIT, &scheduler_quit);
+    atomic_int32Write (&scheduler_quit, SCHEDULER_QUIT);
 }
 
 void scheduler_needToExitWithError (void)
 {
-    PD_ATOMIC_INT32_WRITE (SCHEDULER_ERROR, &scheduler_quit);
+    atomic_int32Write (&scheduler_quit, SCHEDULER_ERROR);
 }
 
 int scheduler_isExiting (void)
 {
-    int n = PD_ATOMIC_INT32_READ (&scheduler_quit); return (n == SCHEDULER_QUIT || n == SCHEDULER_ERROR);
+    int n = atomic_int32Read (&scheduler_quit); return (n == SCHEDULER_QUIT || n == SCHEDULER_ERROR);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -125,7 +125,7 @@ int scheduler_isExiting (void)
 
 static void scheduler_tick (void)
 {
-    if (!PD_ATOMIC_INT32_READ (&scheduler_quit)) {
+    if (!atomic_int32Read (&scheduler_quit)) {
     //
     t_systime t = scheduler_getLogicalTime() + 1.0;
     
@@ -138,7 +138,7 @@ static void scheduler_tick (void)
 
 static void scheduler_clean (void)
 {
-    if (!PD_ATOMIC_INT32_READ (&scheduler_quit) && !audio_isOpened()) {
+    if (!atomic_int32Read (&scheduler_quit) && !audio_isOpened()) {
     //
     instance_dspClean();
     //
@@ -151,7 +151,7 @@ static void scheduler_clean (void)
 
 static int scheduler_mainLoopNeedToTick (double realStart, t_systime logicalStart, double *t)
 {
-    if (!PD_ATOMIC_INT32_READ (&scheduler_quit)) {
+    if (!atomic_int32Read (&scheduler_quit)) {
     //
     double now          = scheduler_getRealTimeInSeconds();
     double realLapse    = PD_SECONDS_TO_MILLISECONDS (now - realStart);
@@ -173,7 +173,7 @@ static void scheduler_mainLoop (void)
     
     int pollInputsCounter = 0;
     
-    while (!PD_ATOMIC_INT32_READ (&scheduler_quit)) {
+    while (!atomic_int32Read (&scheduler_quit)) {
     //
     double t = 0.0;
     
@@ -184,9 +184,9 @@ static void scheduler_mainLoop (void)
         if (++pollInputsCounter > SCHEDULER_INPUTS) { pollInputsCounter = 0; wrapper_poll(); }
     }
         
-    if (!PD_ATOMIC_INT32_READ (&scheduler_quit)) { scheduler_clean(); }
+    if (!atomic_int32Read (&scheduler_quit)) { scheduler_clean(); }
     
-    if (!PD_ATOMIC_INT32_READ (&scheduler_quit)) {
+    if (!atomic_int32Read (&scheduler_quit)) {
         double elapsed = PD_SECONDS_TO_MILLISECONDS (scheduler_getRealTimeInSeconds() - t);
         double monitor = (0.75 - elapsed);
         if (monitor > 0.0) { monitor_blocking (monitor); }
@@ -214,7 +214,7 @@ t_error scheduler_main (void)
     audio_close();
     midi_close();
     
-    return (PD_ATOMIC_INT32_READ (&scheduler_quit) == SCHEDULER_ERROR);
+    return (atomic_int32Read (&scheduler_quit) == SCHEDULER_ERROR);
 }
 
 // -----------------------------------------------------------------------------------------------------------

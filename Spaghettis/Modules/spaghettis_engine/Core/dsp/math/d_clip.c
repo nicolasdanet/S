@@ -30,12 +30,12 @@ typedef struct _clip_tilde {
 
 static void clip_tilde_low (t_clip_tilde *x, t_float f)
 {
-    PD_ATOMIC_FLOAT64_WRITE (f, &x->x_low);
+    atomic_float64Write (&x->x_low, f);
 }
 
 static void clip_tilde_high (t_clip_tilde *x, t_float f)
 {
-    PD_ATOMIC_FLOAT64_WRITE (f, &x->x_high);
+    atomic_float64Write (&x->x_high, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -51,8 +51,8 @@ static t_int *clip_tilde_perform (t_int *w)
     PD_RESTRICTED out = (t_sample *)(w[3]);
     int n = (int)(w[4]);
     
-    t_float t0  = PD_ATOMIC_FLOAT64_READ (&x->x_low);
-    t_float t1  = PD_ATOMIC_FLOAT64_READ (&x->x_high);
+    t_float t0  = atomic_float64Read (&x->x_low);
+    t_float t1  = atomic_float64Read (&x->x_high);
     t_sample f1 = PD_MIN (t0, t1);
     t_sample f2 = PD_MAX (t0, t1);
     
@@ -75,8 +75,8 @@ static void clip_tilde_dsp (t_clip_tilde *x, t_signal **sp)
     
     if (old) {
     //
-    clip_tilde_low (x, PD_ATOMIC_FLOAT64_READ (&old->x_low));
-    clip_tilde_high (x, PD_ATOMIC_FLOAT64_READ (&old->x_high));
+    clip_tilde_low (x, atomic_float64Read (&old->x_low));
+    clip_tilde_high (x, atomic_float64Read (&old->x_high));
     
     object_copySignalValues (cast_object (x), cast_object (old));
     //
@@ -101,10 +101,10 @@ static t_buffer *clip_tilde_functionData (t_object *z, int flags)
     t_buffer *b = buffer_new();
     
     buffer_appendSymbol (b, sym__inlet2);
-    buffer_appendFloat (b,  PD_ATOMIC_FLOAT64_READ (&x->x_low));
+    buffer_appendFloat (b,  atomic_float64Read (&x->x_low));
     buffer_appendComma (b);
     buffer_appendSymbol (b, sym__inlet3);
-    buffer_appendFloat (b,  PD_ATOMIC_FLOAT64_READ (&x->x_high));
+    buffer_appendFloat (b,  atomic_float64Read (&x->x_high));
     buffer_appendComma (b);
     object_getSignalValues (cast_object (x), b);
     

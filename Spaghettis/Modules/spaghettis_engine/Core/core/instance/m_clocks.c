@@ -36,12 +36,6 @@ struct _clocks {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int atomic_pointerCompareAndSwap       (void **, void *, t_pointerAtomic *);
-int atomic_int32CompareAndSwap         (int32_t *, int32_t, t_int32Atomic *);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 void       scheduler_setLogicalTime    (t_systime);
 t_systime  clock_getExecuteTime        (t_clock *);
 void       clock_setExecuteTime        (t_clock *, t_systime);
@@ -69,17 +63,17 @@ static void clocks_setMaximum (t_clocks *x, int i)
     
     do {
     //
-    t = PD_ATOMIC_INT32_READ (&x->x_maximum);
+    t = atomic_int32Read (&x->x_maximum);
     n = PD_MAX (t, i);
     //
-    } while (!atomic_int32CompareAndSwap (&t, n, &x->x_maximum));
+    } while (!atomic_int32CompareAndSwap (&x->x_maximum, &t, n));
 }
 
 static int clocks_fetchMaximum (t_clocks *x)
 {
-    int t = PD_ATOMIC_INT32_READ (&x->x_maximum);
+    int t = atomic_int32Read (&x->x_maximum);
     
-    while (!atomic_int32CompareAndSwap (&t, 0, &x->x_maximum)) { }
+    while (!atomic_int32CompareAndSwap (&x->x_maximum, &t, 0)) { }
     
     return t;
 }
@@ -96,10 +90,10 @@ void clocks_add (t_clocks *x, t_clock *c)
 
     for (i = 0; i < CLOCKS_SIZE; i++) {
     //
-    void *t = PD_ATOMIC_POINTER_READ (x->x_clocks + i);
+    void *t = atomic_pointerRead (x->x_clocks + i);
         
     if (t == NULL) {
-        if (atomic_pointerCompareAndSwap (&t, (void *)c, x->x_clocks + i)) {
+        if (atomic_pointerCompareAndSwap (x->x_clocks + i, &t, (void *)c)) {
             clock_increment (c); clocks_setMaximum (x, i); err = PD_ERROR_NONE; break;
         }
     }
@@ -120,10 +114,10 @@ void clocks_remove (t_clocks *x, t_clock *c)
 
     for (i = 0; i < CLOCKS_SIZE; i++) {
     //
-    void *t = PD_ATOMIC_POINTER_READ (x->x_clocks + i);
+    void *t = atomic_pointerRead (x->x_clocks + i);
         
     if (t == (void *)c) {
-        if (atomic_pointerCompareAndSwap (&t, (void *)NULL, x->x_clocks + i)) {
+        if (atomic_pointerCompareAndSwap (x->x_clocks + i, &t, (void *)NULL)) {
             clock_decrement (c);
         }
         break;
@@ -175,7 +169,7 @@ static void clocks_purge (t_clocks *x)
 
 static void clocks_tickCheck (t_clocks *x, t_systime systime, int i)
 {
-    void *t = PD_ATOMIC_POINTER_READ (x->x_clocks + i);
+    void *t = atomic_pointerRead (x->x_clocks + i);
     
     if (t) {
     //
@@ -183,7 +177,7 @@ static void clocks_tickCheck (t_clocks *x, t_systime systime, int i)
     t_systime time = clock_getLogicalTime (c);
     
     if (time <= systime) {
-        if (atomic_pointerCompareAndSwap (&t, (void *)NULL, x->x_clocks + i)) {
+        if (atomic_pointerCompareAndSwap (x->x_clocks + i, &t, (void *)NULL)) {
             clock_decrement (c);
             clock_setExecuteTime (c, time);
             x->x_cache[x->x_size++] = c;

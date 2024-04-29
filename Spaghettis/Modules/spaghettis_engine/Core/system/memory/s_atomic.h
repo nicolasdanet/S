@@ -14,99 +14,64 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define PD_MEMORY_BARRIER                       __sync_synchronize()
+#define     PD_MEMORY_BARRIER               __sync_synchronize()
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define PD_ATOMIC_INT32_INCREMENT(q)            atomic_int32Increment((q))
-#define PD_ATOMIC_INT32_DECREMENT(q)            atomic_int32Decrement((q))
+int32_t     atomic_int32Increment           (t_int32Atomic *q);
+int32_t     atomic_int32Decrement           (t_int32Atomic *q);
 
-#define PD_ATOMIC_INT32_READ(q)                 atomic_int32Read ((q))
-#define PD_ATOMIC_INT32_WRITE(value, q)         atomic_int32Write ((value), (q))
+int32_t     atomic_int32Read                (t_int32Atomic *q);
+void        atomic_int32Write               (t_int32Atomic *q, int32_t n);
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
+int32_t     atomic_int32ReadRelaxed         (t_int32Atomic *q);
+void        atomic_int32WriteRelaxed        (t_int32Atomic *q, int32_t n);
 
-#define PD_ATOMIC_UINT32_SET(mask, q)           atomic_uInt32Set ((mask), (q))
-#define PD_ATOMIC_UINT32_UNSET(mask, q)         atomic_uInt32Unset ((mask), (q))
-
-#define PD_ATOMIC_UINT32_READ(q)                atomic_uInt32Read ((q))
-#define PD_ATOMIC_UINT32_WRITE(value, q)        atomic_uInt32Write ((value), (q))
-
-#define PD_ATOMIC_UINT32_TRUE(mask, q)          atomic_uInt32True ((mask), (q))
-#define PD_ATOMIC_UINT32_FALSE(mask, q)         atomic_uInt32False ((mask), (q))
+int         atomic_int32CompareAndSwap      (t_int32Atomic *q, int32_t *expected, int32_t n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define PD_ATOMIC_UINT64_READ(q)                atomic_uInt64Read ((q))
-#define PD_ATOMIC_UINT64_WRITE(value, q)        atomic_uInt64Write ((value), (q))
+uint32_t    atomic_uInt32Set                (t_uint32Atomic *q, uint32_t mask);
+uint32_t    atomic_uInt32Unset              (t_uint32Atomic *q, uint32_t mask);
+
+int         atomic_uInt32True               (t_uint32Atomic *q, uint32_t mask);
+int         atomic_uInt32False              (t_uint32Atomic *q, uint32_t mask);
+
+uint32_t    atomic_uInt32Read               (t_uint32Atomic *q);
+void        atomic_uInt32Write              (t_uint32Atomic *q, uint32_t n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define PD_ATOMIC_FLOAT64_READ(q)               atomic_float64Read ((q))
-#define PD_ATOMIC_FLOAT64_WRITE(value, q)       atomic_float64Write ((value), (q))
+uint64_t    atomic_uInt64Read               (t_uint64Atomic *q);
+void        atomic_uInt64Write              (t_uint64Atomic *q, uint64_t n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define PD_ATOMIC_POINTER_READ(q)               atomic_pointerRead ((q))
-#define PD_ATOMIC_POINTER_WRITE(value, q)       atomic_pointerWrite (((void *)value), (q))
+double      atomic_float64Read              (t_float64Atomic *q);
+void        atomic_float64Write             (t_float64Atomic *q, double f);
+
+double      atomic_float64ReadRelaxed       (t_float64Atomic *q);
+void        atomic_float64WriteRelaxed      (t_float64Atomic *q, double f);
+
+int         atomic_float64CompareAndSwap    (t_float64Atomic *q, double *expected, double f);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int32_t    atomic_int32Increment       (t_int32Atomic *q);
-int32_t    atomic_int32Decrement       (t_int32Atomic *q);
+void        *atomic_pointerRead             (t_pointerAtomic *q);
+void        atomic_pointerWrite             (t_pointerAtomic *q, void *p);
 
-int32_t    atomic_int32Read            (t_int32Atomic *q);
-void       atomic_int32Write           (int32_t n, t_int32Atomic *q);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-uint32_t   atomic_uInt32Set            (uint32_t mask, t_uint32Atomic *q);
-uint32_t   atomic_uInt32Unset          (uint32_t mask, t_uint32Atomic *q);
-
-int        atomic_uInt32True           (uint32_t mask, t_uint32Atomic *q);
-int        atomic_uInt32False          (uint32_t mask, t_uint32Atomic *q);
-
-uint32_t   atomic_uInt32Read           (t_uint32Atomic *q);
-void       atomic_uInt32Write          (uint32_t n, t_uint32Atomic *q);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if 0
-
-uint64_t   atomic_uInt64Read           (t_uint64Atomic *q);
-void       atomic_uInt64Write          (uint64_t n, t_uint64Atomic *q);
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-double     atomic_float64Read          (t_float64Atomic *q);
-void       atomic_float64Write         (double f, t_float64Atomic *q);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void       *atomic_pointerRead         (t_pointerAtomic *q);
-void       atomic_pointerWrite         (void *p, t_pointerAtomic *q);
+void        *atomic_pointerSwap             (t_pointerAtomic *q, void *p);
+int         atomic_pointerCompareAndSwap    (t_pointerAtomic *q, void **expected, void *p);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

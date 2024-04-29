@@ -36,8 +36,6 @@ int    dspthread_isChainSafeToDelete   (t_dspthread *, t_chain *);
 void   glist_setNext                   (t_glist *, t_glist *);
 int    loader_load                     (t_glist *, t_symbol *);
 
-void   *atomic_pointerSwap             (void *, t_pointerAtomic *);
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -276,12 +274,12 @@ void instance_clocksTick (t_systime t)
 
 t_chain *instance_chainGetCurrent (void)
 {
-    return (t_chain *)PD_ATOMIC_POINTER_READ (&instance_get()->pd_chain);
+    return (t_chain *)atomic_pointerRead (&instance_get()->pd_chain);
 }
 
 static void instance_chainSetCurrent (t_chain *chain)
 {
-    t_chain *oldChain = (t_chain *)atomic_pointerSwap ((void *)chain, &instance_get()->pd_chain);
+    t_chain *oldChain = (t_chain *)atomic_pointerSwap (&instance_get()->pd_chain, (void *)chain);
     
     if (oldChain) { chain_release (oldChain); }
 }
@@ -293,7 +291,7 @@ t_chain *instance_chainGetTemporary (void)
 
 static void instance_chainStartTemporary (void)
 {
-    PD_ATOMIC_INT32_WRITE (1, &instance_get()->pd_chainRetain);
+    atomic_int32Write (&instance_get()->pd_chainRetain, 1);
 
     PD_ASSERT (instance_get()->pd_build == NULL); instance_get()->pd_build = chain_new();
 }
@@ -309,14 +307,14 @@ static void instance_chainPushTemporary (void)
 
 int instance_isChainSafeToDelete (t_chain *chain)
 {
-    if (PD_ATOMIC_INT32_READ (&instance_get()->pd_chainRetain)) { return 0; }
+    if (atomic_int32Read (&instance_get()->pd_chainRetain)) { return 0; }
     
     return dspthread_isChainSafeToDelete (instance_get()->pd_dsp, chain);
 }
 
 void instance_chainSetInitialized (void)
 {
-    PD_ATOMIC_INT32_WRITE (0, &instance_get()->pd_chainRetain);
+    atomic_int32Write (&instance_get()->pd_chainRetain, 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -358,7 +356,7 @@ void instance_dspClean (void)
     
     if (t && scheduler_getMillisecondsSince (t) > INSTANCE_TIME_CHAIN) {
     //
-    if (PD_ATOMIC_INT32_READ (&instance_get()->pd_chainRetain) == 0) {
+    if (atomic_int32Read (&instance_get()->pd_chainRetain) == 0) {
     //
     instance_chainSetCurrent (NULL);
     //

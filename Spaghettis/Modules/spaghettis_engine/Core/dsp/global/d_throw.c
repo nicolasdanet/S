@@ -37,7 +37,7 @@ static void throw_tilde_setProceed (t_throw_tilde *x, t_symbol *s, int verbose)
     t_catch_tilde *catcher = (t_catch_tilde *)symbol_getThingByClass ((x->x_name = s), catch_tilde_class);
     t_sample *t = catcher ? catcher->x_vector : NULL;
     
-    PD_ATOMIC_POINTER_WRITE (t, &x->x_p);
+    atomic_pointerWrite (&x->x_p, t);
     
     if (verbose && !t && x->x_name != &s_) {
         error_canNotFind (cast_object (x), sym_throw__tilde__, x->x_name);
@@ -64,7 +64,7 @@ static t_int *throw_tilde_perform (t_int *w)
 {
     t_throw_tilde *x  = (t_throw_tilde *)(w[1]);
     PD_RESTRICTED in  = (t_sample *)(w[2]);
-    PD_RESTRICTED out = (t_sample *)PD_ATOMIC_POINTER_READ (&x->x_p);
+    PD_RESTRICTED out = (t_sample *)atomic_pointerRead (&x->x_p);
     
     if (out) { int i; for (i = 0; i < INTERNAL_BLOCKSIZE; i++) { *out += *in; out++; in++; } }
     
@@ -88,7 +88,7 @@ static void throw_tilde_dsp (t_throw_tilde *x, t_signal **sp)
     
     throw_tilde_setProceed (x, x->x_name, 1);
     
-    PD_ASSERT (sp[0]->s_vector != (t_sample *)PD_ATOMIC_POINTER_READ (&x->x_p));
+    PD_ASSERT (sp[0]->s_vector != (t_sample *)atomic_pointerRead (&x->x_p));
     
     dsp_add2 (throw_tilde_perform, x, sp[0]->s_vector);
     //
@@ -126,7 +126,7 @@ static void *throw_tilde_new (t_symbol *s)
 {
     t_throw_tilde *x = (t_throw_tilde *)pd_new (throw_tilde_class);
     
-    PD_ATOMIC_POINTER_WRITE (NULL, &x->x_p);
+    atomic_pointerWrite (&x->x_p, NULL);
 
     x->x_name = s;
 

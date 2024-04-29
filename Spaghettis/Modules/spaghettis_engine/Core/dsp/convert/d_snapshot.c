@@ -36,7 +36,7 @@ static void snapshot_tilde_dismiss (t_snapshot_tilde *);
 
 static void snapshot_tilde_bang (t_snapshot_tilde *x)
 {
-    outlet_float (x->x_outlet, PD_ATOMIC_FLOAT64_READ (&x->x_value));
+    outlet_float (x->x_outlet, atomic_float64Read (&x->x_value));
 }
 
 static void snapshot_tilde_polling (t_snapshot_tilde *x)
@@ -46,7 +46,7 @@ static void snapshot_tilde_polling (t_snapshot_tilde *x)
 
 static void snapshot_tilde_set (t_snapshot_tilde *x, t_float f)
 {
-    PD_ATOMIC_FLOAT64_WRITE (f, &x->x_value);
+    atomic_float64Write (&x->x_value, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ static t_int *snapshot_tilde_perform (t_int *w)
     t_float64Atomic *v = (t_float64Atomic *)(w[2]);
     t_float f          = *in;
     
-    PD_ATOMIC_FLOAT64_WRITE (f, v);
+    atomic_float64Write (v, f);
     
     return (w + 3);
 }
@@ -85,7 +85,7 @@ static t_buffer *snapshot_tilde_functionData (t_object *z, int flags)
     t_buffer *b = buffer_new();
     
     buffer_appendSymbol (b, sym_set);
-    buffer_appendFloat (b, PD_ATOMIC_FLOAT64_READ (&x->x_value));
+    buffer_appendFloat (b, atomic_float64Read (&x->x_value));
     buffer_appendComma (b);
     object_getSignalValues (cast_object (x), b);
     

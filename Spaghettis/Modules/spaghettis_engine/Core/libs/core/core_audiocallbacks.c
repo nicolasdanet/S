@@ -93,7 +93,7 @@ OSStatus audiodevice_inputCallback (void *inRefCon,
     //
     core_setVectorSize (inNumberFrames);
 
-    if (PD_ATOMIC_INT32_READ (&graph->g_flag)) {            /* Output stream must always be started first. */
+    if (atomic_int32Read (&graph->g_flag)) {            /* Output stream must always be started first. */
     //
     t_error err = (AudioUnitRender (audiodevice_getAudioUnit (&graph->g_deviceIn),
                         ioActionFlags,
@@ -122,7 +122,7 @@ OSStatus audiodevice_outputCallback (void *inRefCon,
 {
     t_audiograph *graph = (t_audiograph *)inRefCon;
     
-    PD_ATOMIC_INT32_WRITE (1, &graph->g_flag);
+    atomic_int32Write (&graph->g_flag, 1);
     
     if (core_buffersPull (inNumberFrames, ioData, graph)) { audiodevice_bufferListZeroed (ioData); }
     

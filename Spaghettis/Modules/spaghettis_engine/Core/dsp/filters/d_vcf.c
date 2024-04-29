@@ -42,7 +42,7 @@ typedef struct _vcf_tilde {
 
 static void vcf_tilde_qFactor (t_vcf_tilde *x, t_float f)
 {
-    f = PD_MAX (0.0, f); PD_ATOMIC_FLOAT64_WRITE (f, &x->x_q);
+    f = PD_MAX (0.0, f); atomic_float64Write (&x->x_q, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ static t_int *vcf_tilde_perform (t_int *w)
     t_sample re = x->x_real;
     t_sample im = x->x_imaginary;
     
-    double q = PD_ATOMIC_FLOAT64_READ (&x->x_q);
+    double q = atomic_float64Read (&x->x_q);
     double qInverse = (q > 0.0 ? 1.0 / q : 0.0);
     double correction = 2.0 - (2.0 / (q + 2.0));
 
@@ -137,7 +137,7 @@ static void vcf_tilde_dsp (t_vcf_tilde *x, t_signal **sp)
     //
     initializer_new (vcf_tilde_initialize, x, old);
     
-    vcf_tilde_qFactor (x, PD_ATOMIC_FLOAT64_READ (&old->x_q));
+    vcf_tilde_qFactor (x, atomic_float64Read (&old->x_q));
     
     object_copySignalValues (cast_object (x), cast_object (old));
     //
@@ -166,7 +166,7 @@ static t_buffer *vcf_tilde_functionData (t_object *z, int flags)
     t_buffer *b = buffer_new();
     
     buffer_appendSymbol (b, sym__inlet2);
-    buffer_appendFloat (b,  PD_ATOMIC_FLOAT64_READ (&x->x_q));
+    buffer_appendFloat (b,  atomic_float64Read (&x->x_q));
     buffer_appendComma (b);
     object_getSignalValues (cast_object (x), b);
     

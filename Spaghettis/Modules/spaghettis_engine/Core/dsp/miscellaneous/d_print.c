@@ -43,7 +43,7 @@ static void print_tilde_dismiss (t_print_tilde *);
 
 static void print_tilde_count (t_print_tilde *x, t_float f)
 {
-    int n = PD_MAX (1, (int)f); PD_ATOMIC_INT32_WRITE (n, &x->x_count);
+    int n = PD_MAX (1, (int)f); atomic_int32Write (&x->x_count, n);
 }
 
 static void print_tilde_bang (t_print_tilde *x)
@@ -53,7 +53,7 @@ static void print_tilde_bang (t_print_tilde *x)
 
 static void print_tilde_polling (t_print_tilde *x)
 {
-    if (!PD_ATOMIC_INT32_READ (&x->x_count)) {
+    if (!atomic_int32Read (&x->x_count)) {
     //
     int32_t available = ringbuffer_getAvailableRead (x->x_buffer);
     
@@ -77,11 +77,11 @@ static t_int *print_tilde_perform (t_int *w)
     PD_RESTRICTED in = (t_sample *)(w[2]);
     int n = (int)(w[3]);
     
-    if (PD_ATOMIC_INT32_READ (&x->x_count)) {
+    if (atomic_int32Read (&x->x_count)) {
     //
     if (ringbuffer_getAvailableWrite (x->x_buffer) >= n) { ringbuffer_write (x->x_buffer, in, n); }
     
-    PD_ATOMIC_INT32_DECREMENT (&x->x_count);
+    atomic_int32Decrement (&x->x_count);
     //
     }
     

@@ -69,7 +69,7 @@ int32_t atomic_int32Read (t_int32Atomic *q)
     return __atomic_load_n (q, __ATOMIC_SEQ_CST);
 }
 
-void atomic_int32Write (int32_t n, t_int32Atomic *q)
+void atomic_int32Write (t_int32Atomic *q, int32_t n)
 {
     __atomic_store_n (q, n, __ATOMIC_SEQ_CST);
 }
@@ -79,12 +79,12 @@ int32_t atomic_int32ReadRelaxed (t_int32Atomic *q)
     return __atomic_load_n (q, __ATOMIC_RELAXED);
 }
 
-void atomic_int32WriteRelaxed (int32_t n, t_int32Atomic *q)
+void atomic_int32WriteRelaxed (t_int32Atomic *q, int32_t n)
 {
     __atomic_store_n (q, n, __ATOMIC_RELAXED);
 }
 
-int atomic_int32CompareAndSwap (int32_t *expected, int32_t n, t_int32Atomic *q)
+int atomic_int32CompareAndSwap (t_int32Atomic *q, int32_t *expected, int32_t n)
 {
     return __atomic_compare_exchange_n (q, expected, n, 0, __ATOMIC_SEQ_CST, __ATOMIC_SEQ_CST);
 }
@@ -93,24 +93,24 @@ int atomic_int32CompareAndSwap (int32_t *expected, int32_t n, t_int32Atomic *q)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-uint32_t atomic_uInt32Set (uint32_t mask, t_uint32Atomic *q)
+uint32_t atomic_uInt32Set (t_uint32Atomic *q, uint32_t mask)
 {
     return __atomic_or_fetch (q, mask, __ATOMIC_SEQ_CST);
 }
 
-uint32_t atomic_uInt32Unset (uint32_t mask, t_uint32Atomic *q)
+uint32_t atomic_uInt32Unset (t_uint32Atomic *q, uint32_t mask)
 {
     return __atomic_and_fetch (q, ~(mask), __ATOMIC_SEQ_CST);
 }
 
-int atomic_uInt32True (uint32_t mask, t_uint32Atomic *q)
+int atomic_uInt32True (t_uint32Atomic *q, uint32_t mask)
 {
     return ((mask) & atomic_uInt32Read (q));
 }
 
-int atomic_uInt32False (uint32_t mask, t_uint32Atomic *q)
+int atomic_uInt32False (t_uint32Atomic *q, uint32_t mask)
 {
-    return !atomic_uInt32True (mask, q);
+    return !atomic_uInt32True (q, mask);
 }
 
 uint32_t atomic_uInt32Read (t_uint32Atomic *q)
@@ -118,7 +118,7 @@ uint32_t atomic_uInt32Read (t_uint32Atomic *q)
     return __atomic_load_n (q, __ATOMIC_SEQ_CST);
 }
 
-void atomic_uInt32Write (uint32_t n, t_uint32Atomic *q)
+void atomic_uInt32Write (t_uint32Atomic *q, uint32_t n)
 {
     __atomic_store_n (q, n, __ATOMIC_SEQ_CST);
 }
@@ -127,19 +127,15 @@ void atomic_uInt32Write (uint32_t n, t_uint32Atomic *q)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if 0
-
 uint64_t atomic_uInt64Read (t_uint64Atomic *q)
 {
     return __atomic_load_n (q, __ATOMIC_SEQ_CST);
 }
 
-void atomic_uInt64Write (uint64_t n, t_uint64Atomic *q)
+void atomic_uInt64Write (t_uint64Atomic *q, uint64_t n)
 {
     __atomic_store_n (q, n, __ATOMIC_SEQ_CST);
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -153,7 +149,7 @@ double atomic_float64Read (t_float64Atomic *q)
     double t = 0.0; __atomic_load (q, &t, __ATOMIC_SEQ_CST); return t;
 }
 
-void atomic_float64Write (double f, t_float64Atomic *q)
+void atomic_float64Write (t_float64Atomic *q, double f)
 {
     double t = f; __atomic_store (q, &t, __ATOMIC_SEQ_CST);
 }
@@ -163,12 +159,12 @@ double atomic_float64ReadRelaxed (t_float64Atomic *q)
     double t = 0.0; __atomic_load (q, &t, __ATOMIC_RELAXED); return t;
 }
 
-void atomic_float64WriteRelaxed (double f, t_float64Atomic *q)
+void atomic_float64WriteRelaxed (t_float64Atomic *q, double f)
 {
     double t = f; __atomic_store (q, &t, __ATOMIC_RELAXED);
 }
 
-int atomic_float64CompareAndSwap (double *expected, double f, t_float64Atomic *q)
+int atomic_float64CompareAndSwap (t_float64Atomic *q, double *expected, double f)
 {
     double t = f; return __atomic_compare_exchange (q, expected, &t, 0, __ATOMIC_SEQ_CST, __ATOMIC_SEQ_CST);
 }
@@ -182,17 +178,17 @@ void *atomic_pointerRead (t_pointerAtomic *q)
     return __atomic_load_n (q, __ATOMIC_SEQ_CST);
 }
 
-void atomic_pointerWrite (void *p, t_pointerAtomic *q)
+void atomic_pointerWrite (t_pointerAtomic *q, void *p)
 {
     __atomic_store_n (q, p, __ATOMIC_SEQ_CST);
 }
 
-int atomic_pointerCompareAndSwap (void **expected, void *p, t_pointerAtomic *q)
+int atomic_pointerCompareAndSwap (t_pointerAtomic *q, void **expected, void *p)
 {
     return __atomic_compare_exchange_n (q, expected, p, 0, __ATOMIC_SEQ_CST, __ATOMIC_SEQ_CST);
 }
 
-void *atomic_pointerSwap (void *p, t_pointerAtomic *q)
+void *atomic_pointerSwap (t_pointerAtomic *q, void *p)
 {
     return __atomic_exchange_n (q, p, __ATOMIC_SEQ_CST);
 }

@@ -40,7 +40,7 @@ typedef struct _lop_tilde {
 
 static void lop_tilde_frequency (t_lop_tilde *x, t_float f)
 {
-    f = PD_MAX (0.0, f); PD_ATOMIC_FLOAT64_WRITE (f, &x->x_frequency);
+    f = PD_MAX (0.0, f); atomic_float64Write (&x->x_frequency, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ static t_int *lop_tilde_perform (t_int *w)
     t_space *t        = (t_space *)(w[4]);
     int n = (int)(w[5]);
     
-    t_sample k = (t_sample)(PD_ATOMIC_FLOAT64_READ (&x->x_frequency) * t->s_float0);
+    t_sample k = (t_sample)(atomic_float64Read (&x->x_frequency) * t->s_float0);
     t_sample b = (t_sample)(PD_CLAMP (k, 0.0, 1.0));
     t_sample a = (t_sample)(1.0 - b);
     
@@ -97,7 +97,7 @@ static void lop_tilde_dsp (t_lop_tilde *x, t_signal **sp)
     //
     initializer_new (lop_tilde_initialize, x, old);
     
-    lop_tilde_frequency (x, PD_ATOMIC_FLOAT64_READ (&old->x_frequency));
+    lop_tilde_frequency (x, atomic_float64Read (&old->x_frequency));
     
     object_copySignalValues (cast_object (x), cast_object (old));
     //
@@ -120,7 +120,7 @@ static t_buffer *lop_tilde_functionData (t_object *z, int flags)
     t_buffer *b = buffer_new();
     
     buffer_appendSymbol (b, sym__inlet2);
-    buffer_appendFloat (b,  PD_ATOMIC_FLOAT64_READ (&x->x_frequency));
+    buffer_appendFloat (b,  atomic_float64Read (&x->x_frequency));
     buffer_appendComma (b);
     object_getSignalValues (cast_object (x), b);
     

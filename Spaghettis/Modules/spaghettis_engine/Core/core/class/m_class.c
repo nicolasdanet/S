@@ -22,7 +22,7 @@ static void class_defaultAnything   (t_pd *, t_symbol *, int, t_atom *);
 
 static void class_floatForSignal (t_pd *x, t_float f)
 {
-    PD_ATOMIC_FLOAT64_WRITE (f, object_getFirstInletSignal (cast_object (x)));
+    atomic_float64Write (object_getFirstInletSignal (cast_object (x)), f);
 }
 
 static void class_setSignals (t_object *x, t_symbol *s, int argc, t_atom *argv)

@@ -62,7 +62,7 @@ static void tabread4_tilde_restore (t_tabread4_tilde *x, t_symbol *s)
 
 static void tabread4_tilde_onset (t_tabread4_tilde *x, t_float f)
 {
-    PD_ATOMIC_FLOAT64_WRITE (f, &x->x_onset);
+    atomic_float64Write (&x->x_onset, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ static t_int *tabread4_tilde_perform (t_int *w)
     //
     while (n--) {
     //
-    double position = (*in++) + (double)PD_ATOMIC_FLOAT64_READ (&x->x_onset);
+    double position = (*in++) + (double)atomic_float64Read (&x->x_onset);
     int i = (int)position;
     double fractional = position - i;
     
@@ -121,7 +121,7 @@ static void tabread4_tilde_dsp (t_tabread4_tilde *x, t_signal **sp)
     //
     if (x->x_name != old->x_name) { tabread4_tilde_setProceed (x, old->x_name, 1); }
     
-    tabread4_tilde_onset (x, PD_ATOMIC_FLOAT64_READ (&old->x_onset));
+    tabread4_tilde_onset (x, atomic_float64Read (&old->x_onset));
     
     object_copySignalValues (cast_object (x), cast_object (old));
     //
@@ -163,7 +163,7 @@ static t_buffer *tabread4_tilde_functionData (t_object *z, int flags)
     buffer_appendSymbol (b, x->x_name);
     buffer_appendComma (b);
     buffer_appendSymbol (b, sym__inlet2);
-    buffer_appendFloat (b,  PD_ATOMIC_FLOAT64_READ (&x->x_onset));
+    buffer_appendFloat (b,  atomic_float64Read (&x->x_onset));
     buffer_appendComma (b);
     object_getSignalValues (cast_object (x), b);
     

@@ -35,7 +35,7 @@ typedef struct _delread_tilde {
 
 static void delread_tilde_float (t_delread_tilde *x, t_float f)
 {
-    PD_ATOMIC_FLOAT64_WRITE (f, &x->x_delayInMilliseconds);
+    atomic_float64Write (&x->x_delayInMilliseconds, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ static t_int *delread_tilde_perform (t_int *w)
     
     /* Note that an offset of a vector size is added in non-recirculating cases. */
     
-    t_float delayInMilliseconds = PD_ATOMIC_FLOAT64_READ (&x->x_delayInMilliseconds);
+    t_float delayInMilliseconds = atomic_float64Read (&x->x_delayInMilliseconds);
     int delayInSample           = (int)((delayInMilliseconds * t->s_float0) + 0.5) + (int)(t->s_float1);
     int phase                   = c->dw_phase - PD_CLAMP (delayInSample, n, c->dw_size);
     
@@ -91,7 +91,7 @@ static void delread_tilde_dsp (t_delread_tilde *x, t_signal **sp)
     //
     t_delread_tilde *old = (t_delread_tilde *)garbage_fetch (cast_object (x));
     
-    if (old) { delread_tilde_float (x, PD_ATOMIC_FLOAT64_READ (&old->x_delayInMilliseconds)); }
+    if (old) { delread_tilde_float (x, atomic_float64Read (&old->x_delayInMilliseconds)); }
     //
     }
     
@@ -112,7 +112,7 @@ static t_buffer *delread_tilde_functionData (t_object *z, int flags)
     t_buffer *b = buffer_new();
     
     buffer_appendSymbol (b, &s_float);
-    buffer_appendFloat (b, PD_ATOMIC_FLOAT64_READ (&x->x_delayInMilliseconds));
+    buffer_appendFloat (b, atomic_float64Read (&x->x_delayInMilliseconds));
     
     return b;
     //
@@ -132,7 +132,7 @@ static void *delread_tilde_new (t_symbol *s, t_float f)
     x->x_name   = s;
     x->x_outlet = outlet_newSignal (cast_object (x));
     
-    PD_ATOMIC_FLOAT64_WRITE (f, &x->x_delayInMilliseconds);
+    atomic_float64Write (&x->x_delayInMilliseconds, f);
     
     return x;
 }

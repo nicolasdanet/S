@@ -29,7 +29,7 @@ typedef struct _sig_tilde {
 
 static void sig_tilde_float (t_sig_tilde *x, t_float f)
 {
-    PD_ATOMIC_FLOAT64_WRITE (f, &x->x_f);
+    atomic_float64Write (&x->x_f, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ static void sig_tilde_dsp (t_sig_tilde *x, t_signal **sp)
     //
     t_sig_tilde *old = (t_sig_tilde *)garbage_fetch (cast_object (x));
     
-    if (old) { sig_tilde_float (x, PD_ATOMIC_FLOAT64_READ (&old->x_f)); }
+    if (old) { sig_tilde_float (x, atomic_float64Read (&old->x_f)); }
     //
     }
     
@@ -61,7 +61,7 @@ static t_buffer *sig_tilde_functionData (t_object *z, int flags)
     t_buffer *b = buffer_new();
     
     buffer_appendSymbol (b, &s_float);
-    buffer_appendFloat (b, PD_ATOMIC_FLOAT64_READ (&x->x_f));
+    buffer_appendFloat (b, atomic_float64Read (&x->x_f));
     
     return b;
     //
@@ -80,7 +80,7 @@ static void *sig_tilde_new (t_float f)
     
     x->x_outlet = outlet_newSignal (cast_object (x));
     
-    PD_ATOMIC_FLOAT64_WRITE (f, &x->x_f);
+    atomic_float64Write (&x->x_f, f);
     
     return x;
 }

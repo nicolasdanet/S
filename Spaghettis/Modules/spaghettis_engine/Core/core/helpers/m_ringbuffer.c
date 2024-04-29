@@ -33,13 +33,6 @@ struct _ringbuffer {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int32_t atomic_int32ReadRelaxed    (t_int32Atomic *);
-void    atomic_int32WriteRelaxed   (int32_t, t_int32Atomic *);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 t_ringbuffer *ringbuffer_new (int32_t sizeOfElementInBytes, int32_t numberOfElements)
 {
     t_ringbuffer *x = (t_ringbuffer *)PD_MEMORY_GET (sizeof (t_ringbuffer));
@@ -139,7 +132,7 @@ int32_t ringbuffer_write (t_ringbuffer *x, const void *data, int32_t n)
     
     PD_MEMORY_BARRIER;
     
-    atomic_int32WriteRelaxed ((atomic_int32ReadRelaxed (&x->rb_write) + t) & x->rb_hiMask, &x->rb_write);
+    atomic_int32WriteRelaxed (&x->rb_write, (atomic_int32ReadRelaxed (&x->rb_write) + t) & x->rb_hiMask);
     
     return t;
 }
@@ -200,7 +193,7 @@ int32_t ringbuffer_read (t_ringbuffer *x, void *data, int32_t n)
     
     PD_MEMORY_BARRIER;
 
-    atomic_int32WriteRelaxed ((atomic_int32ReadRelaxed (&x->rb_read) + t) & x->rb_hiMask, &x->rb_read);
+    atomic_int32WriteRelaxed (&x->rb_read, (atomic_int32ReadRelaxed (&x->rb_read) + t) & x->rb_hiMask);
     
     return t;
 }

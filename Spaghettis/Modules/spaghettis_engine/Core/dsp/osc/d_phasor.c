@@ -27,12 +27,6 @@ typedef struct _phasor_tilde {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int atomic_float64CompareAndSwap (double *, double, t_float64Atomic *);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 /* No aliasing. */
 
 static t_int *phasor_tilde_perform (t_int *w)
@@ -43,7 +37,7 @@ static t_int *phasor_tilde_perform (t_int *w)
     t_space *t        = (t_space *)(w[4]);
     int n = (int)(w[5]);
     
-    double phase = PD_ATOMIC_FLOAT64_READ (&x->x_phase);
+    double phase = atomic_float64Read (&x->x_phase);
     
     double f = phase;
 
@@ -51,7 +45,7 @@ static t_int *phasor_tilde_perform (t_int *w)
     
     /* Don't overwrite if the phase have been explicitly changed. */
     
-    atomic_float64CompareAndSwap (&phase, f, &x->x_phase);
+    atomic_float64CompareAndSwap (&x->x_phase, &phase, f);
     
     return (w + 6);
 }
@@ -61,7 +55,7 @@ static void phasor_tilde_initialize (void *lhs, void *rhs)
     t_phasor_tilde *x   = (t_phasor_tilde *)lhs;
     t_phasor_tilde *old = (t_phasor_tilde *)rhs;
     
-    t_float f = PD_ATOMIC_FLOAT64_READ (&old->x_phase); PD_ATOMIC_FLOAT64_WRITE (f, &x->x_phase);
+    t_float f = atomic_float64Read (&old->x_phase); atomic_float64Write (&x->x_phase, f);
 }
 
 static void phasor_tilde_dsp (t_phasor_tilde *x, t_signal **sp)
@@ -99,7 +93,7 @@ static t_buffer *phasor_tilde_functionData (t_object *z, int flags)
     t_buffer *b = buffer_new();
     
     buffer_appendSymbol (b, sym__restore);
-    buffer_appendFloat (b, PD_ATOMIC_FLOAT64_READ (&x->x_phase));
+    buffer_appendFloat (b, atomic_float64Read (&x->x_phase));
     buffer_appendComma (b);
     object_getSignalValues (cast_object (x), b);
     
@@ -116,7 +110,7 @@ static t_buffer *phasor_tilde_functionData (t_object *z, int flags)
 
 static void phasor_tilde_restore (t_phasor_tilde *x, t_float f)
 {
-    PD_ATOMIC_FLOAT64_WRITE (f, &x->x_phase);
+    atomic_float64Write (&x->x_phase, f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -127,7 +121,7 @@ static void *phasor_tilde_new (t_float f)
 {
     t_phasor_tilde *x = (t_phasor_tilde *)pd_new (phasor_tilde_class);
     
-    PD_ATOMIC_FLOAT64_WRITE (f, object_getFirstInletSignal (cast_object (x)));
+    atomic_float64Write (object_getFirstInletSignal (cast_object (x)), f);
     
     x->x_outlet = outlet_newSignal (cast_object (x));
     

@@ -229,7 +229,7 @@ static int jack_pollCallback (jack_nframes_t framesCount, void *dummy)
 
 static int jack_bufferSizeCallback (jack_nframes_t n, void *dummy)
 {
-    PD_ATOMIC_UINT32_WRITE (n, &jack_bufferSize);
+    atomic_uInt32Write (&jack_bufferSize, n);
     
     return 0;
 }
@@ -447,7 +447,7 @@ int audio_pollNative (void)
 
 int audio_getVectorSizeNative (void)
 {
-    return PD_ATOMIC_UINT32_READ (&jack_bufferSize);
+    return atomic_uInt32Read (&jack_bufferSize);
 }
 
 // -----------------------------------------------------------------------------------------------------------

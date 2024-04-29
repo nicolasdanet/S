@@ -40,8 +40,8 @@ static t_int *samphold_tilde_perform (t_int *w)
     PD_RESTRICTED out = (t_sample *)(w[4]);
     int i, n = (int)(w[5]);
     
-    t_sample lastControl = (t_sample)PD_ATOMIC_FLOAT64_READ (&x->x_lastControl);
-    t_sample lastOut     = (t_sample)PD_ATOMIC_FLOAT64_READ (&x->x_lastOut);
+    t_sample lastControl = (t_sample)atomic_float64Read (&x->x_lastControl);
+    t_sample lastOut     = (t_sample)atomic_float64Read (&x->x_lastOut);
         
     for (i = 0; i < n; i++) {
     //
@@ -56,8 +56,8 @@ static t_int *samphold_tilde_perform (t_int *w)
     //
     }
     
-    PD_ATOMIC_FLOAT64_WRITE ((double)lastControl, &x->x_lastControl);
-    PD_ATOMIC_FLOAT64_WRITE ((double)lastOut, &x->x_lastOut);
+    atomic_float64Write (&x->x_lastControl, (double)lastControl);
+    atomic_float64Write (&x->x_lastOut, (double)lastOut);
     
     return (w + 6);
 }
@@ -67,8 +67,8 @@ static void samphold_tilde_initialize (void *lhs, void *rhs)
     t_samphold_tilde *x   = (t_samphold_tilde *)lhs;
     t_samphold_tilde *old = (t_samphold_tilde *)rhs;
     
-    PD_ATOMIC_FLOAT64_WRITE (PD_ATOMIC_FLOAT64_READ (&old->x_lastControl), &x->x_lastControl);
-    PD_ATOMIC_FLOAT64_WRITE (PD_ATOMIC_FLOAT64_READ (&old->x_lastOut), &x->x_lastOut);
+    atomic_float64Write (&x->x_lastControl, atomic_float64Read (&old->x_lastControl));
+    atomic_float64Write (&x->x_lastOut, atomic_float64Read (&old->x_lastOut));
 }
 
 static void samphold_tilde_dsp (t_samphold_tilde *x, t_signal **sp)
@@ -109,8 +109,8 @@ static t_buffer *samphold_tilde_functionData (t_object *z, int flags)
     t_buffer *b = buffer_new();
     
     buffer_appendSymbol (b, sym__restore);
-    buffer_appendFloat (b, PD_ATOMIC_FLOAT64_READ (&x->x_lastControl));
-    buffer_appendFloat (b, PD_ATOMIC_FLOAT64_READ (&x->x_lastOut));
+    buffer_appendFloat (b, atomic_float64Read (&x->x_lastControl));
+    buffer_appendFloat (b, atomic_float64Read (&x->x_lastOut));
     
     buffer_appendComma (b);
     object_getSignalValues (cast_object (x), b);
@@ -127,8 +127,8 @@ static void samphold_tilde_restore (t_samphold_tilde *x, t_symbol *s, int argc, 
     t_float f0 = atom_getFloatAtIndex (0, argc, argv);
     t_float f1 = atom_getFloatAtIndex (1, argc, argv);
     
-    PD_ATOMIC_FLOAT64_WRITE (f0, &x->x_lastControl);
-    PD_ATOMIC_FLOAT64_WRITE (f1, &x->x_lastOut);
+    atomic_float64Write (&x->x_lastControl, f0);
+    atomic_float64Write (&x->x_lastOut, f1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
