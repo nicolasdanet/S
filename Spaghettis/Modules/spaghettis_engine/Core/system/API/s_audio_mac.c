@@ -28,12 +28,6 @@ double audio_getNanosecondsToSleep (void);
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#define CORE_BUFFER     8192        /* Buffer size (per channel). */
-                                    /* MUST be a power of two. */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 extern t_sample *audio_soundIn;
 extern t_sample *audio_soundOut;
 
@@ -77,11 +71,11 @@ static void core_buffersAllocate (int numberOfChannelsIn, int numberOfChannelsOu
     core_buffersFree();
 
     for (i = 0; i < numberOfChannelsIn;  i++) {
-        core_ringIn[i]  = ringbuffer_new (sizeof (Float32), CORE_BUFFER);
+        core_ringIn[i]  = ringbuffer_new (sizeof (Float32), 8192);
     }
     
     for (i = 0; i < numberOfChannelsOut; i++) {
-        core_ringOut[i] = ringbuffer_new (sizeof (Float32), CORE_BUFFER);
+        core_ringOut[i] = ringbuffer_new (sizeof (Float32), 8192);
     }
     
     core_channelsIn  = numberOfChannelsIn;

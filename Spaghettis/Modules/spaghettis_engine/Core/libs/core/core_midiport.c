@@ -12,13 +12,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define MIDIPORT_BUFFER_SIZE            (4096)
-#define MIDIPORT_BUFFER_SYSEX_SIZE      (65536 * 2)
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void midiport_init (t_midiport *midiport)
 {
     midiport->mp_endpoint    = 0;
@@ -127,8 +120,8 @@ t_error midiport_openInput (t_midiport *midiport, t_symbol *name)
     
     if (!err) {
         midiport->mp_hasConnect  = 1;
-        midiport->mp_buffer      = ringbuffer_new (sizeof (uint32_t), MIDIPORT_BUFFER_SIZE);
-        midiport->mp_bufferSysex = ringbuffer_new (sizeof (Byte),     MIDIPORT_BUFFER_SYSEX_SIZE);
+        midiport->mp_buffer      = ringbuffer_new (sizeof (uint32_t), (4096));
+        midiport->mp_bufferSysex = ringbuffer_new (sizeof (Byte),     (65536 * 2));
     }
     //
     }

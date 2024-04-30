@@ -46,12 +46,6 @@ static t_uint32Atomic       jack_bufferSize;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-#define JACK_BUFFER         8192        /* Buffer size (per channel). */
-                                        /* MUST be a power of two. */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 #define METADATA_TYPE_TEXT              "text/plain"
@@ -156,11 +150,11 @@ static void jack_buffersAllocate (int numberOfChannelsIn, int numberOfChannelsOu
     jack_buffersFree();
 
     for (i = 0; i < numberOfChannelsIn;  i++) {
-        jack_ringIn[i]  = ringbuffer_new (sizeof (t_sample), JACK_BUFFER);
+        jack_ringIn[i]  = ringbuffer_new (sizeof (t_sample), 8192);
     }
     
     for (i = 0; i < numberOfChannelsOut; i++) {
-        jack_ringOut[i] = ringbuffer_new (sizeof (t_sample), JACK_BUFFER);
+        jack_ringOut[i] = ringbuffer_new (sizeof (t_sample), 8192);
     }
 }
 

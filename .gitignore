@@ -1,9 +1,10 @@
 .DS_Store
 bin/
 makefile.dependencies
-Spaghettis/Modules/T/tests
 Spaghettis/Modules/T/spaghettis
 Spaghettis/Modules/T/spaghettis.dSym
+Spaghettis/Modules/T/Tests/foo
+Spaghettis/Modules/T/Tests/bar
 *.pdobject
 *.sublime-workspace
 xcuserdata/

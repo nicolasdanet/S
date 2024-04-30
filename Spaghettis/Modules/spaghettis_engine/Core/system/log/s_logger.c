@@ -33,7 +33,6 @@ static t_int32Atomic            logger_quit;                    /* Static. */
 
 #define LOGGER_CHUNK            64
 #define LOGGER_SLEEP            57
-#define LOGGER_BUFFER_SIZE      65536                           /* Power of two. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -75,7 +74,7 @@ t_error logger_initialize (void)
     
     if (!err && (logger_file = mkstemp (t)) != -1) {
     //
-    logger_ring = ringbuffer_new (1, LOGGER_BUFFER_SIZE);
+    logger_ring = ringbuffer_new (1, 65536);
     
     if (!(err = (pthread_create (&logger_thread, NULL, logger_task, NULL) != 0))) { }
     else {

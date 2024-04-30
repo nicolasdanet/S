@@ -35,12 +35,6 @@ static void print_tilde_dismiss (t_print_tilde *);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define PRINT_BUFFER_SIZE   4096
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void print_tilde_count (t_print_tilde *x, t_float f)
 {
     int n = PD_MAX (1, (int)f); atomic_int32Write (&x->x_count, n);
@@ -128,7 +122,7 @@ static void *print_tilde_new (t_symbol *s)
 {
     t_print_tilde *x = (t_print_tilde *)pd_new (print_tilde_class);
     
-    x->x_buffer = ringbuffer_new (sizeof (t_sample), PRINT_BUFFER_SIZE);
+    x->x_buffer = ringbuffer_new (sizeof (t_sample), 4096);
     x->x_name   = (s != &s_ ? s : sym_print__tilde__);
     
     instance_pollingRegister (cast_pd (x));

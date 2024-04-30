@@ -68,12 +68,6 @@ static t_class *sigmund_tilde_class;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define SIGMUND_BUFFER          4096
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 enum {
     OUT_PITCH           = 0,
     OUT_ENVELOPE        = 1,
@@ -1196,7 +1190,7 @@ static void *sigmund_tilde_new (t_symbol *s, int argc, t_atom *argv)
     PD_ASSERT (PD_IS_POWER_2 (x->x_hop));
     PD_ASSERT (PD_IS_POWER_2 (x->x_points));
     
-    x->x_ringbuffer = ringbuffer_new (sizeof (t_sample), SIGMUND_BUFFER);
+    x->x_ringbuffer = ringbuffer_new (sizeof (t_sample), 4096);
     x->x_finder     = (t_notefinder *)PD_MEMORY_GET (sizeof (t_notefinder));
     x->x_peaks      = (t_peak *)PD_MEMORY_GET (x->x_numberOfPeaks * sizeof (t_peak));
     x->x_tracks     = (t_peak *)PD_MEMORY_GET (x->x_numberOfPeaks * sizeof (t_peak));
