@@ -205,6 +205,8 @@
 
 #if defined ( PD_BUILDING_APPLICATION ) || defined ( PD_BUILDING_TERMINAL )
 
+// PD_BUILDING_TESTS
+
 #else
 
 #define PD_BUILDING_PLUGIN          1

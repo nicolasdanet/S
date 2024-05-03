@@ -5,6 +5,7 @@ Spaghettis/Modules/T/spaghettis
 Spaghettis/Modules/T/spaghettis.dSym
 Spaghettis/Modules/T/Tests/foo
 Spaghettis/Modules/T/Tests/bar
+Spaghettis/Modules/T/Tests/Suite/tests
 *.pdobject
 *.sublime-workspace
 xcuserdata/

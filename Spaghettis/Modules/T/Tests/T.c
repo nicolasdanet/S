@@ -136,14 +136,20 @@ double ttt_timeTrigger (void)
     static int once = 0;
     static uint64_t start, now;
     
-    if (!once) { start = ttt_timeGet(); once = 1; return 0.0; }
+    double ms = 0.0;
+    
+    __sync_synchronize();
+    
+    if (!once) { start = ttt_timeGet(); once = 1; }
     else {
-        double ms;
         now = ttt_timeGet();
         ms  = ttt_timeElapsed (start, now);
         start = now;
-        return ms;
     }
+    
+    __sync_synchronize();
+    
+    return ms;
 }
 
 // -----------------------------------------------------------------------------------------------------------
