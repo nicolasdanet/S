@@ -64,6 +64,29 @@ typedef struct _TTTTest {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+struct _TTTThreadProperties {
+    int current_;
+    int threads_;
+    };
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int ttt_getCurrentThread (TTTThreadProperties *p)
+{
+    return p->current_;
+}
+
+int ttt_getNumberOfThreads (TTTThreadProperties *p)
+{
+    return p->threads_;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 TTTError    ttt_unitError;
 int         ttt_unitAllowed;
 
@@ -72,6 +95,11 @@ int         ttt_unitAllowed;
 
 static TTTTestElement       ttt_testElements[TTT_MAXIMUM_SIZE];
 static int                  ttt_testSize;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+static TTTThreadProperties  ttt_testProperties[TTT_MAXIMUM_THREADS];
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -271,7 +299,10 @@ TTTError ttt_testThreadsLaunch (TTTFnTestThread test)
     
     for (i = 0; i < n; i++) {
     //
-    err |= (isError[i] = (pthread_create (threads + i, &attr, test, (void *)(uintptr_t)i) != 0));
+    ttt_testProperties[i].current_ = i;
+    ttt_testProperties[i].threads_ = n;
+    
+    err |= (isError[i] = (pthread_create (threads + i, &attr, test, (void *)(ttt_testProperties + i)) != 0));
     
     /* Should place one thread per core. */
     
