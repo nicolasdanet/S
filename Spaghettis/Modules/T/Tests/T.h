@@ -107,6 +107,7 @@ struct _TTTThreadProperties;
 
 int ttt_getCurrentThread    (TTTThreadProperties *);
 int ttt_getNumberOfThreads  (TTTThreadProperties *);
+int ttt_waitOnLatch         (TTTThreadProperties *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

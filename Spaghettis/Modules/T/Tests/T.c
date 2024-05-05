@@ -57,32 +57,31 @@ typedef struct _TTTTest {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define TTT_MAXIMUM_THREADS         32          /* Power of two. */
+#define TTT_MAXIMUM_THREADS         32              /* Power of two. */
 #define TTT_MAXIMUM_SIZE            1024
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-struct _TTTThreadProperties {
-    int current_;
-    int threads_;
-    };
-    
+#if defined ( __cplusplus )
+    #include <atomic>
+    typedef std::atomic_flag        TTTLatch;
+#else
+    #include <stdatomic.h>
+    typedef atomic_flag             TTTLatch;
+#endif
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int ttt_getCurrentThread (TTTThreadProperties *p)
-{
-    return p->current_;
-}
-
-int ttt_getNumberOfThreads (TTTThreadProperties *p)
-{
-    return p->threads_;
-}
-
+struct _TTTThreadProperties {
+    int         current_;
+    int         threads_;
+    TTTLatch    *latch_;
+    };
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -99,12 +98,38 @@ static int                  ttt_testSize;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+static TTTLatch             ttt_latch;
 static TTTThreadProperties  ttt_testProperties[TTT_MAXIMUM_THREADS];
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 #define TTT_SYSTEM_ERROR    ttt_stderr (TTT_COLOR_RED, ">>> Error / %s / line %d", TTT_SHORT_FILE, __LINE__)
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ttt_initializeThreadProperties (TTTThreadProperties *p, int i, int n)
+{
+    p->current_ = i;
+    p->threads_ = n;
+}
+
+int ttt_getCurrentThread (TTTThreadProperties *p)
+{
+    return p->current_;
+}
+
+int ttt_getNumberOfThreads (TTTThreadProperties *p)
+{
+    return p->threads_;
+}
+
+int ttt_waitOnLatch (TTTThreadProperties *p)
+{
+    return 0;
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -305,8 +330,7 @@ TTTError ttt_testThreadsLaunch (TTTFnTestThread test)
     
     for (i = 0; i < n; i++) {
     //
-    ttt_testProperties[i].current_ = i;
-    ttt_testProperties[i].threads_ = n;
+    ttt_initializeThreadProperties (ttt_testProperties + i, i, n);
     
     err |= (isError[i] = (pthread_create (threads + i, &attr, test, (void *)(ttt_testProperties + i)) != 0));
     
