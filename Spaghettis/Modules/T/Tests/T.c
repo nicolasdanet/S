@@ -66,11 +66,33 @@ typedef struct _TTTTest {
 
 #if defined ( __cplusplus )
     #include <atomic>
-    typedef std::atomic_flag        TTTLatch;
 #else
     #include <stdatomic.h>
-    typedef atomic_flag             TTTLatch;
 #endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+typedef int32_t __attribute__ ((__aligned__ (4))) TTTLatch;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ttt_latchClear (TTTLatch *p)
+{
+    __atomic_store_n (p, 0, __ATOMIC_SEQ_CST);
+}
+
+void ttt_latchIncrement (TTTLatch *p)
+{
+    __atomic_add_fetch (p, 1, __ATOMIC_SEQ_CST);
+}
+
+int ttt_latchGetCount (TTTLatch *p)
+{
+    return __atomic_load_n (p, __ATOMIC_SEQ_CST);
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -110,9 +132,9 @@ static TTTThreadProperties  ttt_testProperties[TTT_MAXIMUM_THREADS];
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ttt_initializeThreadProperties (TTTThreadProperties *p, int i, int n)
+void ttt_setThreadProperties (TTTThreadProperties *p, int i, int n)
 {
-    atomic_flag_clear (&ttt_latch);
+    ttt_latchClear (&ttt_latch);
     
     p->current_ = i;
     p->threads_ = n;
@@ -331,7 +353,7 @@ TTTError ttt_testThreadsLaunch (TTTFnTestThread test)
     
     ttt_systemGetCPUsNumber (&cpus);
     
-    for (i = 0; i < n; i++) { ttt_initializeThreadProperties (ttt_testProperties + i, i, n); }
+    for (i = 0; i < n; i++) { ttt_setThreadProperties (ttt_testProperties + i, i, n); }
     
     for (i = 0; i < n; i++) {
     //
