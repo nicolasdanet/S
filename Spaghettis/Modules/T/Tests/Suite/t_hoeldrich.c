@@ -6,7 +6,7 @@ TTT_BEGIN (MemoryHoeldrich, "Memory - Hoeldrich")
 
     t_rand48 seed; PD_RAND48_INIT (seed);
     
-    for (int i = 0; i < 10000; ++i) {
+    for (int i = 0; i < TEST_LOOP; ++i) {
     //
     double t = (PD_RAND48_DOUBLE (seed) - 0.5) * 4096;
     double f = dsp_getCosineAtLUT (t * COSINE_TABLE_SIZE);

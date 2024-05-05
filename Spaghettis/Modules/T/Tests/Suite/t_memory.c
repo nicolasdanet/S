@@ -7,27 +7,22 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#define TEST_MEMORY_LOOP    10000
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 TTT_BEGIN (MemoryAligned, "Memory - Aligned")
     
     int i, k = 0;
     
-    t_sample *t[TEST_MEMORY_LOOP] = { 0 };
+    t_sample *t[TEST_LOOP] = { 0 };
     
-    for (i = 0; i < TEST_MEMORY_LOOP; i++) {
+    for (i = 0; i < TEST_LOOP; i++) {
         t[i] = (t_sample *)PD_MEMORY_GET (sizeof (t_sample) * (i % 11));
     }
     
-    for (i = 0; i < TEST_MEMORY_LOOP; i++) {
+    for (i = 0; i < TEST_LOOP; i++) {
         k += PD_IS_ALIGNED_16 (t[i]);           /* Aligned 16-bytes. */
         PD_MEMORY_FREE (t[i]);
     }
     
-    TTT_EXPECT (k == TEST_MEMORY_LOOP);
+    TTT_EXPECT (k == TEST_LOOP);
     
 TTT_END
 
