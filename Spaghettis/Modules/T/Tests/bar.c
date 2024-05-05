@@ -12,10 +12,10 @@ void *threadedTest (void *x)
 {
     TTTThreadProperties *p = (TTTThreadProperties *)x;
     
-    int i = ttt_getCurrentThread (p);
-    int n = ttt_getNumberOfThreads (p);
+    int i = ttt_threadGetCurrent (p);
+    int n = ttt_threadGetNumberOfThreads (p);
     
-    ttt_waitOnLatch (p);
+    ttt_threadWaitOnLatch (p);
     
     ttt_stdout (TTT_COLOR_NONE, "### Thread %d / %d", i, n);
     

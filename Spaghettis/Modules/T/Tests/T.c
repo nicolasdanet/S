@@ -132,7 +132,7 @@ static TTTThreadProperties  ttt_testProperties[TTT_MAXIMUM_THREADS];
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ttt_setThreadProperties (TTTThreadProperties *p, int i, int n)
+void ttt_threadSetProperties (TTTThreadProperties *p, int i, int n)
 {
     ttt_latchClear (&ttt_latch);
     
@@ -141,17 +141,17 @@ void ttt_setThreadProperties (TTTThreadProperties *p, int i, int n)
     p->latch_   = &ttt_latch;
 }
 
-int ttt_getCurrentThread (TTTThreadProperties *p)
+int ttt_threadGetCurrent (TTTThreadProperties *p)
 {
     return p->current_;
 }
 
-int ttt_getNumberOfThreads (TTTThreadProperties *p)
+int ttt_threadGetNumberOfThreads (TTTThreadProperties *p)
 {
     return p->threads_;
 }
 
-void ttt_waitOnLatch (TTTThreadProperties *p)
+void ttt_threadWaitOnLatch (TTTThreadProperties *p)
 {
     
 }
@@ -201,6 +201,29 @@ double ttt_timeTrigger (void)
     
     return ms;
 }
+
+/*
+void nano_sleep (t_nano ns)
+{
+    if (ns != 0ULL) {
+    //
+    struct timespec t0, t1;
+    struct timespec *ptrA = &t0;
+    struct timespec *ptrB = &t1;
+    struct timespec *temp = NULL;
+
+    t0.tv_sec  = (time_t)(ns / TIME_NSEC_PER_SEC);
+    t0.tv_nsec = (long)(ns % TIME_NSEC_PER_SEC);
+
+    while ((nanosleep (ptrA, ptrB) == -1) && (errno == EINTR)) {
+        temp = ptrA;
+        ptrA = ptrB;
+        ptrB = temp;
+    }
+    //
+    }
+}
+*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -353,7 +376,7 @@ TTTError ttt_testThreadsLaunch (TTTFnTestThread test)
     
     ttt_systemGetCPUsNumber (&cpus);
     
-    for (i = 0; i < n; i++) { ttt_setThreadProperties (ttt_testProperties + i, i, n); }
+    for (i = 0; i < n; i++) { ttt_threadSetProperties (ttt_testProperties + i, i, n); }
     
     for (i = 0; i < n; i++) {
     //
