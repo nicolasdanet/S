@@ -18,7 +18,7 @@ typedef struct _TTTWaste {
 // MARK: -
 
 void    ttt_wasteInit   (TTTWaste *q, int n);
-int     ttt_wasteTime   (TTTWaste *q);              /* Waste CPU cycles randomly. */
+void    ttt_wasteTime   (TTTWaste *q);              /* Waste CPU cycles randomly. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -58,10 +58,8 @@ void ttt_wasteInit (TTTWaste *q, int n)
     q->index_ = 0;
 }
 
-int ttt_wasteTime (TTTWaste *q)
+void ttt_wasteTime (TTTWaste *q)
 {
-    int j = 0;
-    
     uint32_t i = 0;
     
     do {
@@ -71,11 +69,8 @@ int ttt_wasteTime (TTTWaste *q)
     if (q->index_ >= TTT_WASTE_SIZE) {
         q->index_ -= TTT_WASTE_SIZE;
     }
-    j++;
     //
     } while (i & 7);
-    
-    return j;
 }
 
 // -----------------------------------------------------------------------------------------------------------
