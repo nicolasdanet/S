@@ -112,8 +112,11 @@ static TTTThreadProperties  ttt_testProperties[TTT_MAXIMUM_THREADS];
 
 void ttt_initializeThreadProperties (TTTThreadProperties *p, int i, int n)
 {
+    atomic_flag_clear (&ttt_latch);
+    
     p->current_ = i;
     p->threads_ = n;
+    p->latch_   = &ttt_latch;
 }
 
 int ttt_getCurrentThread (TTTThreadProperties *p)
@@ -126,9 +129,9 @@ int ttt_getNumberOfThreads (TTTThreadProperties *p)
     return p->threads_;
 }
 
-int ttt_waitOnLatch (TTTThreadProperties *p)
+void ttt_waitOnLatch (TTTThreadProperties *p)
 {
-    return 0;
+    
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -328,10 +331,10 @@ TTTError ttt_testThreadsLaunch (TTTFnTestThread test)
     
     ttt_systemGetCPUsNumber (&cpus);
     
+    for (i = 0; i < n; i++) { ttt_initializeThreadProperties (ttt_testProperties + i, i, n); }
+    
     for (i = 0; i < n; i++) {
     //
-    ttt_initializeThreadProperties (ttt_testProperties + i, i, n);
-    
     err |= (isError[i] = (pthread_create (threads + i, &attr, test, (void *)(ttt_testProperties + i)) != 0));
     
     /* Should place one thread per core. */

@@ -15,6 +15,8 @@ void *threadedTest (void *x)
     int i = ttt_getCurrentThread (p);
     int n = ttt_getNumberOfThreads (p);
     
+    ttt_waitOnLatch (p);
+    
     ttt_stdout (TTT_COLOR_NONE, "### Thread %d / %d", i, n);
     
     return NULL;
