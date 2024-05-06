@@ -79,14 +79,14 @@ typedef int32_t __attribute__ ((__aligned__ (4))) TTTLatch;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ttt_latchClear (TTTLatch *p)
+void ttt_latchSet (TTTLatch *p, int n)
 {
-    __atomic_store_n (p, 0, __ATOMIC_SEQ_CST);
+    __atomic_store_n (p, n, __ATOMIC_SEQ_CST);
 }
 
-void ttt_latchIncrement (TTTLatch *p)
+void ttt_latchDecrement (TTTLatch *p)
 {
-    __atomic_add_fetch (p, 1, __ATOMIC_SEQ_CST);
+    __atomic_sub_fetch (p, 1, __ATOMIC_SEQ_CST);
 }
 
 int ttt_latchGetCount (TTTLatch *p)
@@ -134,7 +134,7 @@ static TTTThreadProperties  ttt_testProperties[TTT_MAXIMUM_THREADS];
 
 void ttt_threadSetProperties (TTTThreadProperties *p, int i, int n)
 {
-    ttt_latchClear (&ttt_latch);
+    ttt_latchSet (&ttt_latch, n);
     
     p->current_ = i;
     p->threads_ = n;
@@ -153,7 +153,9 @@ int ttt_threadGetNumberOfThreads (TTTThreadProperties *p)
 
 void ttt_threadWaitOnLatch (TTTThreadProperties *p)
 {
+    ttt_latchDecrement (p->latch_);
     
+    while (ttt_latchGetCount (p->latch_) > 0) { ttt_timeSleep (0.01); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
