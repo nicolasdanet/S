@@ -202,9 +202,10 @@ double ttt_timeTrigger (void)
     return ms;
 }
 
-/*
-void nano_sleep (t_nano ns)
+void ttt_timeSleep (double ms)
 {
+    uint64_t ns = (uint64_t)(TTT_MAX (0.0, ms) * 1000000.0);
+        
     if (ns != 0ULL) {
     //
     struct timespec t0, t1;
@@ -212,8 +213,10 @@ void nano_sleep (t_nano ns)
     struct timespec *ptrB = &t1;
     struct timespec *temp = NULL;
 
-    t0.tv_sec  = (time_t)(ns / TIME_NSEC_PER_SEC);
-    t0.tv_nsec = (long)(ns % TIME_NSEC_PER_SEC);
+    uint64_t nsec_per_sec = 1000000000ULL;
+    
+    t0.tv_sec  = (time_t)(ns / nsec_per_sec);
+    t0.tv_nsec = (long)(ns % nsec_per_sec);
 
     while ((nanosleep (ptrA, ptrB) == -1) && (errno == EINTR)) {
         temp = ptrA;
@@ -223,7 +226,6 @@ void nano_sleep (t_nano ns)
     //
     }
 }
-*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

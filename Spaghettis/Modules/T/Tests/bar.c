@@ -40,7 +40,7 @@ TTT_END
 TTT_BEGIN (FooTime, "Time")
 
 ttt_timeTrigger();
-sleep (1);
+ttt_timeSleep (250);
 ttt_stdout (TTT_COLOR_BLUE, "%f", ttt_timeTrigger());       /* Measure time spent in milliseconds. */
 
 TTT_END
