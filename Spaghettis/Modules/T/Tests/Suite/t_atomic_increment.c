@@ -14,10 +14,12 @@ static t_int32Atomic test_increment;
 
 void *test_incrementThread (void *x)
 {
-    int i, n = ttt_getCurrentThread ((TTTThreadProperties *)x);
+    int i, n = ttt_threadGetCurrent ((TTTThreadProperties *)x);
     TTTWaste w;
     
     ttt_wasteInit (&w, n);
+    
+    ttt_threadWaitOnLatch ((TTTThreadProperties *)x);
     
     if ((n % 2) == 0) {
     //
