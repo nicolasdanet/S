@@ -24,16 +24,16 @@ void *test_incrementThread (void *x)
     if ((n % 2) == 0) {
     //
     for (i = 0; i < TEST_LOOP; i++) {
-        //atomic_int32Increment (&test_increment);
-        test_increment++;
+        atomic_int32Increment (&test_increment);
+        //test_increment++;
         ttt_wasteTime (&w);
     }
     //
     } else {
     //
     for (i = 0; i < TEST_LOOP; i++) {
-        //atomic_int32Decrement (&test_increment);
-        test_increment--;
+        atomic_int32Decrement (&test_increment);
+        //test_increment--;
         ttt_wasteTime (&w);
     }
     //
