@@ -48,9 +48,11 @@ void        atomic_uInt32Write              (t_uint32Atomic *q, uint32_t n);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+uint64_t    atomic_uInt64Read               (t_uint64Atomic *q);
 uint64_t    atomic_uInt64ReadRelaxed        (t_uint64Atomic *q);
 uint64_t    atomic_uInt64ReadAcquire        (t_uint64Atomic *q);
 
+void        atomic_uInt64Write              (t_uint64Atomic *q, uint64_t n);
 void        atomic_uInt64WriteRelaxed       (t_uint64Atomic *q, uint64_t n);
 void        atomic_uInt64WriteRelease       (t_uint64Atomic *q, uint64_t n);
 

@@ -127,6 +127,11 @@ void atomic_uInt32Write (t_uint32Atomic *q, uint32_t n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+uint64_t atomic_uInt64Read (t_uint64Atomic *q)
+{
+    return __atomic_load_n (q, __ATOMIC_SEQ_CST);
+}
+
 uint64_t atomic_uInt64ReadRelaxed (t_uint64Atomic *q)
 {
     return __atomic_load_n (q, __ATOMIC_RELAXED);
@@ -135,6 +140,11 @@ uint64_t atomic_uInt64ReadRelaxed (t_uint64Atomic *q)
 uint64_t atomic_uInt64ReadAcquire (t_uint64Atomic *q)
 {
     return __atomic_load_n (q, __ATOMIC_ACQUIRE);
+}
+
+void atomic_uInt64Write (t_uint64Atomic *q, uint64_t n)
+{
+    __atomic_store_n (q, n, __ATOMIC_SEQ_CST);
 }
 
 void atomic_uInt64WriteRelaxed (t_uint64Atomic *q, uint64_t n)

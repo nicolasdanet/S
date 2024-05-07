@@ -7,7 +7,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_int32Atomic test_increment;
+static int test_atomicFailed;
+
+static t_int32Atomic    test_int32Shared;
+static t_uint32Atomic   test_uInt32Shared;
+static t_uint64Atomic   test_uInt64Shared;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -23,17 +27,17 @@ void *test_incrementThread (void *x)
     
     if ((n % 2) == 0) {
     //
-    for (i = 0; i < TEST_LOOP; i++) {
-        atomic_int32Increment (&test_increment);
-        //test_increment++;
+    for (i = 0; i < TEST_LOOP_BIG; i++) {
+        atomic_int32Increment (&test_int32Shared);
+        //test_int32Shared++;
         ttt_wasteTime (&w);
     }
     //
     } else {
     //
-    for (i = 0; i < TEST_LOOP; i++) {
-        atomic_int32Decrement (&test_increment);
-        //test_increment--;
+    for (i = 0; i < TEST_LOOP_BIG; i++) {
+        atomic_int32Decrement (&test_int32Shared);
+        //test_int32Shared--;
         ttt_wasteTime (&w);
     }
     //
@@ -49,7 +53,7 @@ TTT_BEGIN (AtomicIncrement, "Atomic - Increment")
 
     if (ttt_testThreadsLaunch (test_incrementThread) != TTT_GOOD) { TTT_FAIL; }
     else {
-        int t = atomic_int32Read (&test_increment); TTT_EXPECT (t == 0);
+        int t = atomic_int32Read (&test_int32Shared); TTT_EXPECT (t == 0);
     }
 
 TTT_END
