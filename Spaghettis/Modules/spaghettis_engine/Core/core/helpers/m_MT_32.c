@@ -51,11 +51,6 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-#if PD_32BIT
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 #define PIZ_MT32_N      624L
@@ -77,8 +72,6 @@ static void init_genrand32 (MTState32 *x, uint32_t s)
     }
 }
 
-#if 0
-
 static void init_genrand32ByArray (MTState32 *x, long key_length, uint32_t *init_key)
 {
     int i, j, k;
@@ -86,7 +79,7 @@ static void init_genrand32ByArray (MTState32 *x, long key_length, uint32_t *init
     init_genrand32 (x, 19650218UL);
     
     i = 1; j = 0;
-    k = (PIZ_MT32_N > key_length ? PIZ_MT32_N : key_length);
+    k = (int)(PIZ_MT32_N > key_length ? PIZ_MT32_N : key_length);
     
     for (; k; k--) {
         x->mt_[i] = (x->mt_[i] ^ ((x->mt_[i - 1] ^ (x->mt_[i - 1] >> 30)) * 1664525UL)) + init_key[j] + j;
@@ -103,8 +96,6 @@ static void init_genrand32ByArray (MTState32 *x, long key_length, uint32_t *init
     x->mt_[0] = 0x80000000UL;
 }
 
-#endif
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -120,8 +111,6 @@ MTState32 *genrand32_new (void)
     return x;
 }
 
-#if 0
-
 MTState32 *genrand32_newByArray (long argc, uint32_t *argv)
 {
     MTState32 *x = NULL;
@@ -133,8 +122,6 @@ MTState32 *genrand32_newByArray (long argc, uint32_t *argv)
     return x;
 }
 
-#endif
-
 void genrand32_free (MTState32 *x)
 {
     if (x) {
@@ -142,14 +129,10 @@ void genrand32_free (MTState32 *x)
     }
 }
 
-#if 0
-
 double genrand32_real2 (MTState32 *x)
 {
     return genrand32_int32 (x) * (1.0 / 4294967296.0); 
 }
-
-#endif
 
 double genrand32_res53 (MTState32 *x)        /* Version due to Isaku Wada. */
 { 
@@ -197,11 +180,6 @@ uint32_t genrand32_int32 (MTState32 *x)
 
     return y;
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#endif // PD_32BIT
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
