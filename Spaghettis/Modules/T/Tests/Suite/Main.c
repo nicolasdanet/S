@@ -66,6 +66,9 @@ int test_areEquivalent (t_float a, t_float b, t_float f)
 #include "t_atomic_increment.c"
 #include "t_atomic_assignment.c"
 #include "t_atomic_bitwise.c"
+#include "t_time.c"
+#include "t_time_NTP.c"
+#include "t_time_seed.c"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
