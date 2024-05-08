@@ -12,6 +12,7 @@ static int test_atomicFailed;
 static t_int32Atomic    test_int32Shared;
 static t_uint32Atomic   test_uInt32Shared;
 static t_uint64Atomic   test_uInt64Shared;
+static t_pointerAtomic  test_pointerShared;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
