@@ -73,7 +73,9 @@ int test_areEquivalent (t_float a, t_float b, t_float f)
 // #include "t_time_seed.c"
 // #include "t_random32.c"
 // #include "t_random64.c"
-#include "t_benchmark_cosine.c"
+// #include "t_benchmark_cosine.c"
+#include "t_buffer.c"
+#include "t_buffer_random.c"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
