@@ -162,6 +162,17 @@ void ttt_threadWaitOnLatch (TTTThreadProperties *p)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static volatile void * ttt_pointer_;
+
+void ttt_doNotOptimize (void *p)
+{
+    ttt_pointer_ = p;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static uint64_t ttt_timeGet (void)
 {
     struct timespec time;
@@ -194,8 +205,8 @@ double ttt_timeTrigger (void)
     
     if (!once) { start = ttt_timeGet(); once = 1; }
     else {
-        now = ttt_timeGet();
-        ms  = ttt_timeElapsed (start, now);
+        now   = ttt_timeGet();
+        ms    = ttt_timeElapsed (start, now);
         start = now;
     }
     
