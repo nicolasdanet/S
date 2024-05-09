@@ -2,7 +2,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-TTT_BEGIN (Soundfile, "Soundfile")
+TTT_BEGIN (Soundfile, "Soundfile - Define")
 
     TTT_EXPECT (SOUNDFILE_HELPER_SIZE > 16);
     TTT_EXPECT (SOUNDFILE_HELPER_SIZE > SOUNDFILE_HEADER_WAVE);
