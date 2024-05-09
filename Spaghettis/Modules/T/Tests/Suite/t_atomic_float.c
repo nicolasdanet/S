@@ -2,12 +2,38 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* < https://github.com/mintomic/mintomic/tree/master/tests > */
+#include "t_randomMT64.h"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void *test_loadStoreThread (void *x)
+#define FIRST_FLOATS_IN_STATIC_ARRAY   10
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+double test_floatGet (void)
+{
+    static uint64_t i = 0; return test_genrand64_real2[(++i) % FIRST_FLOATS_IN_STATIC_ARRAY];
+}
+
+int test_floatIsValid (double f)
+{
+    int i;
+    
+    for (i = 0; i < FIRST_FLOATS_IN_STATIC_ARRAY; i++) {
+        if (f == test_genrand64_real2[i]) {
+            return 1;
+        }
+    }
+    
+    return 0;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void *test_floatThread (void *x)
 {
     int i, n = ttt_threadGetCurrent ((TTTThreadProperties *)x);
     TTTWaste w;
@@ -17,17 +43,13 @@ void *test_loadStoreThread (void *x)
     ttt_threadWaitOnLatch ((TTTThreadProperties *)x);
     
     if ((n % 2) == 0) {
-    
-        t_rand48 seed; PD_RAND48_INIT (seed);
         
         for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
         //
-        int k = (int)(PD_RAND48_DOUBLE (seed) * 8);
+        double f = test_floatGet();
         
-        atomic_uInt32Write        (&test_uInt32Shared, test_uInt32Values[k]);
-        atomic_int32WriteRelaxed  (&test_int32Shared,  test_uInt32Values[k]);
-        atomic_uInt64WriteRelaxed (&test_uInt64Shared, test_uInt64Values[k]);
-        //test_uInt64Shared = test_uInt64Values[k];
+        atomic_float64WriteRelaxed (&test_float64Shared, f);
+        // test_float64Shared = f;
         
         PD_MEMORY_BARRIER;      /* Prevent hoisting the store out of the loop. */
         
@@ -41,13 +63,10 @@ void *test_loadStoreThread (void *x)
         //
         PD_MEMORY_BARRIER;      /* Prevent hoisting the load out of the loop. */
         
-        uint32_t a = atomic_uInt32Read        (&test_uInt32Shared);
-        uint32_t b = atomic_int32ReadRelaxed  (&test_int32Shared);
-        uint64_t c = atomic_uInt64ReadRelaxed (&test_uInt64Shared);
+        double f = atomic_float64ReadRelaxed (&test_float64Shared);
+        // double f = test_float64Shared;
         
-        if ((a * a) < test_uInt32Limit) { test_atomicFailed = 1; }
-        if ((b * b) < test_uInt32Limit) { test_atomicFailed = 1; }
-        if ((c * c) < test_uInt64Limit) { test_atomicFailed = 1; }
+        if (!test_floatIsValid (f)) { test_atomicFailed = 1; }
         
         ttt_wasteTime (&w);
         //
@@ -60,13 +79,15 @@ void *test_loadStoreThread (void *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-TTT_BEGIN (AtomicAssignment, "Atomic - Assignment")
+TTT_BEGIN (AtomicFloat, "Atomic - Float")
 
-    test_int32Shared  = test_uInt32Values[0];
-    test_uInt32Shared = test_uInt32Values[0];
-    test_uInt64Shared = test_uInt64Values[0];
-
-    if (ttt_testThreadsLaunch (test_loadStoreThread) != TTT_GOOD) { TTT_FAIL; }
+    TTT_EXPECT (sizeof (t_float64Atomic) == 8);
+    TTT_EXPECT (sizeof (double) == sizeof (uint64_t));
+    TTT_EXPECT (sizeof (double) == sizeof (t_float64Atomic));
+    
+    atomic_float64WriteRelaxed (&test_float64Shared, test_floatGet());
+    
+    if (ttt_testThreadsLaunch (test_floatThread) != TTT_GOOD) { TTT_FAIL; }
     else {
         TTT_EXPECT (test_atomicFailed == 0);
     }
