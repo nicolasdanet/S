@@ -12,7 +12,7 @@ TTT_BEGIN (MemoryHoeldrich, "Memory - Hoeldrich")
     double f = dsp_getCosineAtLUT (t * COSINE_TABLE_SIZE);
     double g = cos (t * PD_TWO_PI);
     
-    int k = test_areEquivalent (f, g, 1E-4);
+    int k = test_areEquivalent (f, g);
     
     if (t > -1024.0 && t < 1024.0) {                // TOTALLY wrong outside that range.
         TTT_EXPECT (k);

@@ -44,9 +44,9 @@ int main()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int test_areEquivalent (t_float a, t_float b, t_float f)
+int test_areEquivalent (t_float a, t_float b)
 {
-    return ((PD_ABS (b - a)) < f);
+    return ((PD_ABS (b - a)) < 1E-4);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -61,21 +61,22 @@ int test_areEquivalent (t_float a, t_float b, t_float f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-// #include "t_memory.c"
-// #include "t_punning.c"
-// #include "t_hoeldrich.c"
-// #include "t_atomic_increment.c"
-// #include "t_atomic_assignment.c"
-// #include "t_atomic_bitwise.c"
-// #include "t_atomic_pointer.c"
-// #include "t_time.c"
-// #include "t_time_NTP.c"
-// #include "t_time_seed.c"
-// #include "t_random32.c"
-// #include "t_random64.c"
-// #include "t_benchmark_cosine.c"
+#include "t_memory.c"
+#include "t_punning.c"
+#include "t_hoeldrich.c"
+#include "t_atomic_increment.c"
+#include "t_atomic_assignment.c"
+#include "t_atomic_bitwise.c"
+#include "t_atomic_pointer.c"
+#include "t_time.c"
+#include "t_time_NTP.c"
+#include "t_time_seed.c"
+#include "t_random32.c"
+#include "t_random64.c"
+#include "t_benchmark_cosine.c"
 #include "t_buffer.c"
 #include "t_buffer_random.c"
+#include "t_expr.c"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
