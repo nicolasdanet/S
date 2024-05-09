@@ -34,6 +34,8 @@ t_error    heapstring_add                              (t_heapstring *x, const c
 t_error    heapstring_append                           (t_heapstring *x, const char *src, int n);
 void       heapstring_clear                            (t_heapstring *x);
 
+t_error    heapstring_addSprintf                       (t_heapstring *x, const char *format, ...);
+
 int        heapstring_containsCharacterAtEnd           (t_heapstring *x, char c);
 void       heapstring_removeCharacterIfContainsAtEnd   (t_heapstring *x, char c);
 

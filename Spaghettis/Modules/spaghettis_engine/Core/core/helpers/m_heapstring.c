@@ -128,8 +128,6 @@ t_error heapstring_append (t_heapstring *x, const char *src, int n)
     return PD_ERROR_NONE;
 }
 
-#if 0
-
 t_error heapstring_addSprintf (t_heapstring *x, const char *format, ...)
 {
     size_t required = x->hs_size + (x->hs_allocated / 4);
@@ -161,8 +159,6 @@ t_error heapstring_addSprintf (t_heapstring *x, const char *format, ...)
     
     return err;
 }
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
