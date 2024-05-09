@@ -21,7 +21,6 @@
 // MARK: -
 
 #if PD_32BIT
-#if 0
 
 static const int randMT_DeBruijn32[] =      /* Static. */
     {
@@ -73,7 +72,6 @@ long randMT_getInteger (t_randMT *x, long v)
     }
 }
 
-#endif
 #endif // PD_32BIT
 
 // -----------------------------------------------------------------------------------------------------------
@@ -81,7 +79,6 @@ long randMT_getInteger (t_randMT *x, long v)
 // MARK: -
 
 #if PD_64BIT
-#if 0
 
 static const int randMT_DeBruijn64[] =      /* Static. */
     {
@@ -136,7 +133,6 @@ long randMT_getInteger (t_randMT *x, long v)
     }
 }
 
-#endif
 #endif // PD_64BIT
 
 // -----------------------------------------------------------------------------------------------------------
