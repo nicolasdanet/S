@@ -2,8 +2,6 @@
 #ifndef __s_randomMT64_h_
 #define __s_randomMT64_h_
 
-// ====================================
-
 static uint64_t test_genrand64_int64[1000] = {
     7266447313870364031ULL,
     4946485549665804864ULL,
