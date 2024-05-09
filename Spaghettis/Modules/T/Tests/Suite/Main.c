@@ -80,6 +80,7 @@ int test_areEquivalent (t_float a, t_float b)
 #include "t_expr_variables.c"
 #include "t_expr_functions.c"
 #include "t_expr_optimize.c"
+#include "t_string.c"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

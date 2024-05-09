@@ -85,8 +85,6 @@ t_error string_sprintf (char *dest, size_t size, const char *format, ...)
     }
 }
 
-#if 0
-
 t_error string_addSprintf (char *dest, size_t size, const char *format, ...)
 {
     int t;
@@ -105,8 +103,6 @@ t_error string_addSprintf (char *dest, size_t size, const char *format, ...)
     }
 }
 
-#endif
-
 t_error string_addAtom (char *dest, size_t size, t_atom *a)
 {
     t_error err = PD_ERROR_NONE;
@@ -119,6 +115,11 @@ t_error string_addAtom (char *dest, size_t size, t_atom *a)
     PD_MEMORY_FREE (t);
     
     return err;
+}
+
+void string_clear (char *dest, size_t size)
+{
+    (void)size; dest[0] = 0;
 }
 
 // -----------------------------------------------------------------------------------------------------------

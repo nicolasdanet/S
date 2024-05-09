@@ -21,6 +21,9 @@ t_error    string_add                              (char *dest, size_t size, con
 t_error    string_append                           (char *dest, size_t size, const char *src, int n);
 t_error    string_sprintf                          (char *dest, size_t size, const char *fmt, ...);
 
+t_error    string_addSprintf                       (char *dest, size_t size, const char *fmt, ...);
+void       string_clear                            (char *dest, size_t size);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
