@@ -64,13 +64,14 @@ int test_areEquivalent (t_float a, t_float b)
 // #include "t_memory.c"
 // #include "t_punning.c"
 // #include "t_hoeldrich.c"
+// #include "t_benchmark_cosine.c"
 // #include "t_atomic.c"
 // #include "t_atomic_increment.c"
 // #include "t_atomic_assignment.c"
 // #include "t_atomic_bitwise.c"
 // #include "t_atomic_float.c"
 // #include "t_atomic_pointer.c"
-#include "t_ringbuffer.c"
+// #include "t_ringbuffer.c"
 // #include "t_time.c"
 // #include "t_time_NTP.c"
 // #include "t_time_seed.c"
@@ -84,8 +85,6 @@ int test_areEquivalent (t_float a, t_float b)
 // #include "t_expr_optimize.c"
 // #include "t_string.c"
 // #include "t_string_heap.c"
-// #include "t_soundfile.c"
-// #include "t_benchmark_cosine.c"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

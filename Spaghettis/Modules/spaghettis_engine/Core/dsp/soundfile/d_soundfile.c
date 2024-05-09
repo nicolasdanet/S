@@ -38,6 +38,19 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( __cplusplus )
+
+static_assert (SOUNDFILE_HELPER_SIZE > 16);
+static_assert (SOUNDFILE_HELPER_SIZE > SOUNDFILE_HEADER_WAVE);
+static_assert (SOUNDFILE_HELPER_SIZE > SOUNDFILE_HEADER_AIFF);
+static_assert (SOUNDFILE_HELPER_SIZE > SOUNDFILE_HEADER_NEXT);
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 t_error subchunk_readFileHeaderWAVE (int, t_headerhelper *, t_audioproperties *);
 t_error subchunk_readFileHeaderAIFF (int, t_headerhelper *, t_audioproperties *);
 
