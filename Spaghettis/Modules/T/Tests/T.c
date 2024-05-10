@@ -352,7 +352,7 @@ static TTTError ttt_systemGetCPUsNumber (int *cpus)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static int ttt_testGetNumberOfThreads (void)            /* The (power of 2) number of cpus or 2 if less. */
+int ttt_testGetNumberOfThreads (void)       /* The (power of 2) number of cpus or 2 if less. */
 {
     static int ttt_testThreads = 0;
     

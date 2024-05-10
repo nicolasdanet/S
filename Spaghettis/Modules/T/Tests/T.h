@@ -138,6 +138,7 @@ void     ttt_timeSleep                  (double ms);
 TTTError ttt_stdout                     (int color, const char *format, ...);
 TTTError ttt_stderr                     (int color, const char *format, ...);
 
+int      ttt_testGetNumberOfThreads     (void);
 TTTError ttt_testThreadsLaunch          (TTTFnTestThread test);
 
 TTTError ttt_testAll                    (void);
