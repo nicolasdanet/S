@@ -73,9 +73,9 @@ namespace spaghettis::core {
 #include "core/helpers/m_heapstring.c"
 #include "core/helpers/m_items.c"
 #include "core/helpers/m_MT.c"
-#include "core/helpers/m_MT_integer.c"
 #include "core/helpers/m_MT_32.c"
 #include "core/helpers/m_MT_64.c"
+#include "core/helpers/m_MT_i.c"
 #include "core/helpers/m_ringbuffer.c"
 
 #include "core/utils/m_utils.c"
