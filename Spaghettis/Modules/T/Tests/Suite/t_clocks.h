@@ -7,13 +7,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_int32Atomic        test_clocksStop;
 static t_float64Atomic      test_clocksSystime;
-static int                  test_clocksFails;
 
 static t_clock              test_clocksA[TEST_CLOCKS_SIZE];
 static t_clock              test_clocksB[TEST_CLOCKS_SIZE];
 static int                  test_clocksCounter;
+
+static t_int32Atomic        test_clocksStop;
+static int                  test_clocksFails;
 
 static t_clocks             *test_clocksManager;
 
@@ -21,38 +22,20 @@ static t_clocks             *test_clocksManager;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int test_clocksRandom (int n)
-{
-    static t_rand48 seed; static int once = 0; if (!once) { PD_RAND48_INIT (seed); once = 1; }
-    
-    int k = (int)(PD_RAND48_DOUBLE (seed) * n);
-    
-    return k;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 /* Mimic the behavior of application clocks. */
 
-void test_clocksUnset (t_clock *x)
+void clock_unset_ (t_clock *x)
 {
     clocks_remove (test_clocksManager, x);
 }
 
-void test_clocksDelay (t_clock *x, double delay)
+void clock_set_ (t_clock *x, double delay)
 {
-    test_clocksUnset (x);
+    clock_unset_ (x);
     
     atomic_float64Write (&x->c_systime, delay);
     
     clocks_add (test_clocksManager, x);
-}
-
-void test_clocksTick (t_systime t)
-{
-    clocks_tick (test_clocksManager, t);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -126,12 +109,12 @@ void test_clocksRelease (void)
 
 void test_clocksDoSomething (t_clock *x, double delay)
 {
-    if (test_clocksRandom (2)) { test_clocksDelay (x, delay); } else { test_clocksUnset (x); }
+    if (test_random (2)) { clock_set_ (x, delay); } else { clock_unset_ (x); }
 }
 
 t_clock *test_clocksGetRandomA (void)
 {
-    int i = test_clocksRandom (TEST_CLOCKS_SIZE); return &test_clocksA[i];
+    int i = test_random (TEST_CLOCKS_SIZE); return &test_clocksA[i];
 }
 
 t_clock *test_clocksGetB (int i)
