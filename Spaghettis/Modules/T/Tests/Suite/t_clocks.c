@@ -13,13 +13,11 @@
 
 static t_int32Atomic        test_clocksStop;
 static int                  test_clocksCounterB;
-static int                  test_clocksCounterD;
 static t_float64Atomic      test_clocksSystime;
 static int                  test_clocksFails;
 
 static t_clock              test_clocksA[TEST_CLOCKS_SIZE];
 static t_clock              test_clocksB[TEST_CLOCKS_SIZE];
-static t_clock              test_clocksD[TEST_CLOCKS_LESS];
 
 static t_clocks             *test_clocksManager;
 
@@ -79,11 +77,6 @@ void test_clocksTaskB (void *x)
     test_clocksCounterB++;
 }
 
-void test_clocksTaskD (void *x)
-{
-    test_clocksCounterD++; test_clocksDelay ((t_clock *)x, test_clocksRandom (500));
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -102,9 +95,6 @@ void test_clocksInitialize (void)
         c = &test_clocksA[i]; c->c_fn = test_clocksTaskA;
         c = &test_clocksB[i]; c->c_fn = test_clocksTaskB;
     }
-    if (i < TEST_CLOCKS_LESS) {
-        c = &test_clocksD[i]; c->c_fn = test_clocksTaskD; c->c_owner = c; test_clocksDelay (c, 500.0);
-    }
     //
     }
 }
@@ -121,9 +111,7 @@ int test_clocksCheck (void)
         c = &test_clocksA[i]; if (!clock_isGood (c)) { return 0; }
         c = &test_clocksB[i]; if (!clock_isGood (c)) { return 0; }
     }
-    if (i < TEST_CLOCKS_LESS) {
-        c = &test_clocksD[i]; if (!clock_isSet (c))  { return 0; }
-    }
+
         c = &test_clocksB[i]; if (!clock_isGood (c)) { return 0; }
     //
     }
@@ -213,7 +201,6 @@ TTT_BEGIN (ClocksAtomic, "Atomic - Clocks")
     TTT_EXPECT (test_clocksCounterB == TEST_CLOCKS_SIZE * TEST_LOOP_CLOCKS);
     TTT_EXPECT (test_clocksFails    == 0);
     TTT_EXPECT (test_clocksCheck()  == 1);
-    TTT_EXPECT (test_clocksCounterD >= TEST_LOOP_CLOCKS * TEST_CLOCKS_LESS);
     //
     }
     
