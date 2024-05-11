@@ -35,8 +35,8 @@ void *test_clocksAtomicTask (void *x)
                 ttt_wasteTime (&w);
             }
             
-            atomic_float64Write (&test_clocksSystime, 0); clocks_tick (test_clocksManager, 250.0);
-            atomic_float64Write (&test_clocksSystime, 0); clocks_tick (test_clocksManager, 750.0);
+            atomic_float64Write (&test_clocksSystime, 0); clocks_tick_ (250.0);
+            atomic_float64Write (&test_clocksSystime, 0); clocks_tick_ (750.0);
         }
         
         atomic_int32Write (&test_clocksStop, 1);
@@ -57,7 +57,7 @@ TTT_BEGIN (ClocksAtomic, "Atomic - Clocks")
     if (ttt_testThreadsLaunch (test_clocksAtomicTask) != TTT_GOOD) { TTT_FAIL; }
     else {
     //
-    atomic_float64Write (&test_clocksSystime, 0); clocks_tick (test_clocksManager, 1000.0);
+    atomic_float64Write (&test_clocksSystime, 0); clocks_tick_ (1000.0);
     
     TTT_EXPECT (test_clocksCounter == TEST_CLOCKS_SIZE * TEST_LOOP_CLOCKS);
     TTT_EXPECT (test_clocksFails   == 0);
