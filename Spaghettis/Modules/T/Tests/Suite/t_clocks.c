@@ -20,7 +20,7 @@ void *test_clocksAtomicTask (void *x)
         
         while (atomic_int32Read (&test_clocksStop) == 0) {
             for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
-                test_clocksDoSomethingConcurrently (j);
+                test_clocksDoSomethingRandomly (j);
                 ttt_wasteTime (&w);
             }
         }

@@ -52,6 +52,8 @@ void test_taskCheckTime (void *x)
     test_clocksFails |= (t < atomic_float64Read (&test_clocksTime));
     
     atomic_float64Write (&test_clocksTime, t);
+    
+    clock_set_ ((t_clock *)x, test_random (1000));      /* Reschedule the clock. */
 }
 
 void test_taskCheckCount (void *x)
@@ -71,8 +73,16 @@ void test_clocksInitialize (void)
 
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
     //
-    test_clocksA[i].c_fn = test_taskCheckTime;
-    test_clocksB[i].c_fn = test_taskCheckCount;
+    {
+        t_clock *c = &test_clocksA[i];
+        c->c_fn    = test_taskCheckTime;
+        c->c_owner = c;
+    }
+    {
+        t_clock *c = &test_clocksB[i];
+        c->c_fn    = test_taskCheckCount;
+        c->c_owner = c;
+    }
     //
     }
 }
@@ -83,7 +93,6 @@ int test_clocksCheck (void)
     
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
     //
-    if (!clock_isGood (&test_clocksA[i])) { return 0; }
     if (!clock_isGood (&test_clocksB[i])) { return 0; }
     //
     }
@@ -100,7 +109,7 @@ void test_clocksRelease (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void test_clocksDoSomethingConcurrently (int j)
+void test_clocksDoSomethingRandomly (int j)
 {
     int i = test_random (TEST_CLOCKS_SIZE);
     
