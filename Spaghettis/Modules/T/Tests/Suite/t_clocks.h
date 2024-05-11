@@ -7,9 +7,9 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_float64Atomic      test_clocksSystime;
-
 static t_clock              test_clocksA[TEST_CLOCKS_SIZE];
+static t_float64Atomic      test_clocksTime;
+
 static t_clock              test_clocksB[TEST_CLOCKS_SIZE];
 static int                  test_clocksCounter;
 
@@ -40,6 +40,8 @@ void clock_set_ (t_clock *x, double delay)
 
 void clocks_tick_ (double f)
 {
+    atomic_float64Write (&test_clocksTime, 0);
+    
     clocks_tick (test_clocksManager, f);
 }
 
@@ -47,16 +49,16 @@ void clocks_tick_ (double f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void test_clocksTaskA (void *x)
+void test_clocksTaskCheckTime (void *x)
 {
     t_systime t = scheduler_getLogicalTime();
     
-    test_clocksFails |= (t < atomic_float64Read (&test_clocksSystime));
+    test_clocksFails |= (t < atomic_float64Read (&test_clocksTime));
     
-    atomic_float64Write (&test_clocksSystime, t);
+    atomic_float64Write (&test_clocksTime, t);
 }
 
-void test_clocksTaskB (void *x)
+void test_clocksTaskCheckDone (void *x)
 {
     test_clocksCounter++;
 }
@@ -76,8 +78,8 @@ void test_clocksInitialize (void)
     t_clock *c = NULL;
     
     if (i < TEST_CLOCKS_SIZE) {
-        c = &test_clocksA[i]; c->c_fn = test_clocksTaskA;
-        c = &test_clocksB[i]; c->c_fn = test_clocksTaskB;
+        c = &test_clocksA[i]; c->c_fn = test_clocksTaskCheckTime;
+        c = &test_clocksB[i]; c->c_fn = test_clocksTaskCheckDone;
     }
     //
     }
