@@ -1,6 +1,7 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 #define TEST_CLOCKS_SIZE    32
 
@@ -29,14 +30,18 @@ void clock_unset_ (t_clock *x)
     clocks_remove (test_clocksManager, x);
 }
 
-void clock_set_ (t_clock *x, double delay)
+void clock_set_ (t_clock *x, double f)
 {
     clock_unset_ (x);
     
-    atomic_float64Write (&x->c_systime, delay);
+    atomic_float64Write (&x->c_systime, f);
     
     clocks_add (test_clocksManager, x);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void clocks_tick_ (double f)
 {
@@ -49,7 +54,7 @@ void clocks_tick_ (double f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void test_clocksTaskCheckTime (void *x)
+void test_taskCheckTime (void *x)
 {
     t_systime t = scheduler_getLogicalTime();
     
@@ -58,7 +63,7 @@ void test_clocksTaskCheckTime (void *x)
     atomic_float64Write (&test_clocksTime, t);
 }
 
-void test_clocksTaskCheckDone (void *x)
+void test_taskCheckDone (void *x)
 {
     test_clocksCounter++;
 }
@@ -75,12 +80,8 @@ void test_clocksInitialize (void)
 
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
     //
-    t_clock *c = NULL;
-    
-    if (i < TEST_CLOCKS_SIZE) {
-        c = &test_clocksA[i]; c->c_fn = test_clocksTaskCheckTime;
-        c = &test_clocksB[i]; c->c_fn = test_clocksTaskCheckDone;
-    }
+    test_clocksA[i].c_fn = test_taskCheckTime;
+    test_clocksB[i].c_fn = test_taskCheckDone;
     //
     }
 }
@@ -91,14 +92,8 @@ int test_clocksCheck (void)
     
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
     //
-    t_clock *c = NULL;
-    
-    if (i < TEST_CLOCKS_SIZE) {
-        c = &test_clocksA[i]; if (!clock_isGood (c)) { return 0; }
-        c = &test_clocksB[i]; if (!clock_isGood (c)) { return 0; }
-    }
-
-        c = &test_clocksB[i]; if (!clock_isGood (c)) { return 0; }
+    if (!clock_isGood (&test_clocksA[i])) { return 0; }
+    if (!clock_isGood (&test_clocksB[i])) { return 0; }
     //
     }
     
