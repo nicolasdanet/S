@@ -54,7 +54,6 @@ int test_areEquivalent (t_float a, t_float b)
 // MARK: -
 
 #define TEST_LOOP               10000
-#define TEST_LOOP_CLOCKS        100000
 #define TEST_LOOP_ATOMIC        1000000
 #define TEST_LOOP_BENCHMARK     1000000
 

@@ -8,12 +8,12 @@
 // -----------------------------------------------------------------------------------------------------------
 
 static t_int32Atomic        test_clocksStop;
-static int                  test_clocksCounterB;
 static t_float64Atomic      test_clocksSystime;
 static int                  test_clocksFails;
 
 static t_clock              test_clocksA[TEST_CLOCKS_SIZE];
 static t_clock              test_clocksB[TEST_CLOCKS_SIZE];
+static int                  test_clocksCounter;
 
 static t_clocks             *test_clocksManager;
 
@@ -70,7 +70,7 @@ void test_clocksTaskA (void *x)
 
 void test_clocksTaskB (void *x)
 {
-    test_clocksCounterB++;
+    test_clocksCounter++;
 }
 
 // -----------------------------------------------------------------------------------------------------------

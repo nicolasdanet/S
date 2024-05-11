@@ -29,7 +29,7 @@ void *test_clocksAtomicTask (void *x)
     
     if (n == 1) {
     
-        for (i = 0; i < TEST_LOOP_CLOCKS; i++) {
+        for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
             for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
                 test_clocksDelay (test_clocksGetB (j), test_clocksRandom (500));
                 ttt_wasteTime (&w);
@@ -59,9 +59,9 @@ TTT_BEGIN (ClocksAtomic, "Atomic - Clocks")
     //
     atomic_float64Write (&test_clocksSystime, 0); test_clocksTick (1000.0);
     
-    TTT_EXPECT (test_clocksCounterB == TEST_CLOCKS_SIZE * TEST_LOOP_CLOCKS);
-    TTT_EXPECT (test_clocksFails    == 0);
-    TTT_EXPECT (test_clocksCheck()  == 1);
+    TTT_EXPECT (test_clocksCounter == TEST_CLOCKS_SIZE * TEST_LOOP_ATOMIC);
+    TTT_EXPECT (test_clocksFails   == 0);
+    TTT_EXPECT (test_clocksCheck() == 1);
     //
     }
     
