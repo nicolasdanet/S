@@ -43,7 +43,7 @@ void clock_set_ (t_clock *x, double f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Clocks are triggered time-ordered. */
+/* Clocks are triggered time-ordered? */
 
 void test_taskCheckTime (void *x)
 {
@@ -54,7 +54,7 @@ void test_taskCheckTime (void *x)
     atomic_float64Write (&test_clocksTime, t);
 }
 
-void test_taskCheckDone (void *x)
+void test_taskCheckCount (void *x)
 {
     test_clocksCounter++;
 }
@@ -72,7 +72,7 @@ void test_clocksInitialize (void)
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
     //
     test_clocksA[i].c_fn = test_taskCheckTime;
-    test_clocksB[i].c_fn = test_taskCheckDone;
+    test_clocksB[i].c_fn = test_taskCheckCount;
     //
     }
 }
@@ -112,16 +112,12 @@ void test_clocksDoSomethingConcurrently (int j)
     }
 }
 
-void test_clocksDoSomething (int j)
+void test_clocksDoSomethingCounted (int j)
 {
     clock_set_ (&test_clocksB[j], test_random (500));
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void tests_clocksTick (double f)
+void test_clocksTick (double f)
 {
     atomic_float64Write (&test_clocksTime, 0); clocks_tick (test_clocksManager, f);
 }

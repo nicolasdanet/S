@@ -31,12 +31,12 @@ void *test_clocksAtomicTask (void *x)
     
         for (i = 0; i < TEST_LOOP_CLOCKS; i++) {
             for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
-                test_clocksDoSomething (j);
+                test_clocksDoSomethingCounted (j);
                 ttt_wasteTime (&w);
             }
             
-            tests_clocksTick (250.0);
-            tests_clocksTick (750.0);
+            test_clocksTick (250.0);
+            test_clocksTick (750.0);        /* All clocks are triggered. */
         }
         
         atomic_int32Write (&test_clocksStop, 1);
@@ -57,7 +57,7 @@ TTT_BEGIN (ClocksAtomic, "Atomic - Clocks")
     if (ttt_testThreadsLaunch (test_clocksAtomicTask) != TTT_GOOD) { TTT_FAIL; }
     else {
     //
-    tests_clocksTick (1000.0);
+    test_clocksTick (1000.0);
     
     TTT_EXPECT (test_clocksCounter == TEST_CLOCKS_SIZE * TEST_LOOP_CLOCKS);
     TTT_EXPECT (test_clocksFails   == 0);
