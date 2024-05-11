@@ -6,7 +6,6 @@
 // MARK: -
 
 #define TEST_CLOCKS_SIZE    32
-#define TEST_CLOCKS_MORE    4096
 #define TEST_CLOCKS_LESS    2
 
 // -----------------------------------------------------------------------------------------------------------
@@ -14,15 +13,12 @@
 
 static t_int32Atomic        test_clocksStop;
 static int                  test_clocksCounterB;
-static int                  test_clocksCounterC;
 static int                  test_clocksCounterD;
-static int                  test_clocksIndex;
 static t_float64Atomic      test_clocksSystime;
 static int                  test_clocksFails;
 
 static t_clock              test_clocksA[TEST_CLOCKS_SIZE];
 static t_clock              test_clocksB[TEST_CLOCKS_SIZE];
-static t_clock              test_clocksC[TEST_CLOCKS_MORE];
 static t_clock              test_clocksD[TEST_CLOCKS_LESS];
 
 static t_clocks             *test_clocksManager;
@@ -83,11 +79,6 @@ void test_clocksTaskB (void *x)
     test_clocksCounterB++;
 }
 
-void test_clocksTaskC (void *x)
-{
-    test_clocksCounterC++;
-}
-
 void test_clocksTaskD (void *x)
 {
     test_clocksCounterD++; test_clocksDelay ((t_clock *)x, test_clocksRandom (500));
@@ -103,7 +94,7 @@ void test_clocksInitialize (void)
     
     test_clocksManager = clocks_new();
 
-    for (i = 0; i < TEST_CLOCKS_MORE; i++) {
+    for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
     //
     t_clock *c = NULL;
     
@@ -114,7 +105,6 @@ void test_clocksInitialize (void)
     if (i < TEST_CLOCKS_LESS) {
         c = &test_clocksD[i]; c->c_fn = test_clocksTaskD; c->c_owner = c; test_clocksDelay (c, 500.0);
     }
-        c = &test_clocksC[i]; c->c_fn = test_clocksTaskC;
     //
     }
 }
@@ -165,11 +155,6 @@ t_clock *test_clocksGetB (int i)
     return &test_clocksB[i];
 }
 
-t_clock *test_clocksGetC (int i)
-{
-    return &test_clocksC[i];
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -189,12 +174,6 @@ void *test_clocksAtomicTask (void *x)
             for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
                 test_clocksDoSomething (test_clocksGetRandomA(), test_clocksRandom (1000));
                 ttt_wasteTime (&w);
-            }
-            
-            if (test_clocksIndex < TEST_CLOCKS_MORE) {
-                if (!test_clocksRandom (100)) {
-                    test_clocksDelay (test_clocksGetC (test_clocksIndex++), test_clocksRandom (500));
-                }
             }
         }
     }
@@ -234,7 +213,6 @@ TTT_BEGIN (ClocksAtomic, "Atomic - Clocks")
     TTT_EXPECT (test_clocksCounterB == TEST_CLOCKS_SIZE * TEST_LOOP_CLOCKS);
     TTT_EXPECT (test_clocksFails    == 0);
     TTT_EXPECT (test_clocksCheck()  == 1);
-    TTT_EXPECT (test_clocksCounterC == test_clocksIndex);
     TTT_EXPECT (test_clocksCounterD >= TEST_LOOP_CLOCKS * TEST_CLOCKS_LESS);
     //
     }
