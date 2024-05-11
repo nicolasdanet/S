@@ -8,7 +8,6 @@
 #define TEST_CLOCKS_SIZE    32
 #define TEST_CLOCKS_MORE    4096
 #define TEST_CLOCKS_LESS    2
-#define TEST_CLOCKS_LOOP    100000
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -20,6 +19,7 @@ static int                  test_clocksCounterD;
 static int                  test_clocksIndex;
 static t_float64Atomic      test_clocksSystime;
 static int                  test_clocksFails;
+
 static t_clock              test_clocksA[TEST_CLOCKS_SIZE];
 static t_clock              test_clocksB[TEST_CLOCKS_SIZE];
 static t_clock              test_clocksC[TEST_CLOCKS_MORE];
@@ -201,7 +201,7 @@ void *test_clocksAtomicTask (void *x)
     
     if (n == 1) {
     
-        for (i = 0; i < TEST_CLOCKS_LOOP; i++) {
+        for (i = 0; i < TEST_LOOP_CLOCKS; i++) {
             for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
                 test_clocksDelay (test_clocksGetB (j), test_clocksRandom (500));
                 ttt_wasteTime (&w);
@@ -231,11 +231,11 @@ TTT_BEGIN (ClocksAtomic, "Atomic - Clocks")
     //
     atomic_float64Write (&test_clocksSystime, 0); test_clocksTick (1000.0);
     
-    TTT_EXPECT (test_clocksCounterB == TEST_CLOCKS_SIZE * TEST_CLOCKS_LOOP);
+    TTT_EXPECT (test_clocksCounterB == TEST_CLOCKS_SIZE * TEST_LOOP_CLOCKS);
     TTT_EXPECT (test_clocksFails    == 0);
     TTT_EXPECT (test_clocksCheck()  == 1);
     TTT_EXPECT (test_clocksCounterC == test_clocksIndex);
-    TTT_EXPECT (test_clocksCounterD >= TEST_CLOCKS_LOOP * TEST_CLOCKS_LESS);
+    TTT_EXPECT (test_clocksCounterD >= TEST_LOOP_CLOCKS * TEST_CLOCKS_LESS);
     //
     }
     
