@@ -77,6 +77,7 @@ namespace spaghettis::core {
 #include "core/helpers/m_MT_64.c"
 #include "core/helpers/m_MT_i.c"
 #include "core/helpers/m_ringbuffer.c"
+#include "core/helpers/m_fifo32.c"
 
 #include "core/utils/m_utils.c"
 #include "core/utils/m_symbol.c"
