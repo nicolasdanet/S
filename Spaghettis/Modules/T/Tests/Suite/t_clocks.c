@@ -6,7 +6,6 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 void *test_clocksAtomicTask (void *x)
 {
@@ -59,7 +58,7 @@ TTT_BEGIN (ClocksAtomic, "Atomic - Clocks")
     //
     test_clocksTick (1000.0);
     
-    TTT_EXPECT (test_clocksCounter == TEST_CLOCKS_SIZE * TEST_LOOP_CLOCKS);
+    TTT_EXPECT (test_clocksCounter == TEST_LOOP_CLOCKS * TEST_CLOCKS_SIZE);
     TTT_EXPECT (test_clocksFails   == 0);
     TTT_EXPECT (test_clocksCheck() == 1);
     //
