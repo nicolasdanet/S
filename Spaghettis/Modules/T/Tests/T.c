@@ -170,16 +170,25 @@ int ttt_threadGetNumberOfThreads (TTTThreadProperties *p)
     return p->threads_;
 }
 
-double ttt_threadGetRandom (TTTThreadProperties *p)
-{
-    return TTT_RAND48_DOUBLE (p->seed_);
-}
-
 void ttt_threadWaitOnLatch (TTTThreadProperties *p)
 {
     ttt_latchDecrement (p->latch_);
     
     while (ttt_latchGetCount (p->latch_) > 0) { ttt_timeSleep (0.01); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int ttt_getRandomInteger (TTTThreadProperties *p, int n)
+{
+    return (int)(ttt_getRandom (p) * n);
+}
+
+double ttt_getRandom (TTTThreadProperties *p)
+{
+    return TTT_RAND48_DOUBLE (p->seed_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -49,15 +49,6 @@ int test_areEquivalent (t_float a, t_float b)
     return ((PD_ABS (b - a)) < 1E-4);
 }
 
-int test_random (int n)
-{
-    static t_rand48 seed; static int once = 0; if (!once) { PD_RAND48_INIT (seed); once = 1; }
-    
-    int k = (int)(PD_RAND48_DOUBLE (seed) * n);
-    
-    return k;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -119,8 +119,14 @@ struct _TTTThreadProperties;
 
 int     ttt_threadGetCurrent            (TTTThreadProperties *);
 int     ttt_threadGetNumberOfThreads    (TTTThreadProperties *);
-double  ttt_threadGetRandom             (TTTThreadProperties *);
 void    ttt_threadWaitOnLatch           (TTTThreadProperties *);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int     ttt_getRandomInteger            (TTTThreadProperties *, int);
+double  ttt_getRandom                   (TTTThreadProperties *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

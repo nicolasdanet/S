@@ -9,18 +9,19 @@
 
 void *test_clocksAtomicTask (void *x)
 {
-    int i, j, n = ttt_threadGetCurrent ((TTTThreadProperties *)x);
+    TTTThreadProperties *p = (TTTThreadProperties *)x;
+    int i, j, n = ttt_threadGetCurrent (p);
     TTTWaste w;
     
     ttt_wasteInit (&w, n);
     
-    ttt_threadWaitOnLatch ((TTTThreadProperties *)x);
+    ttt_threadWaitOnLatch (p);
     
     if (n == 0) {
         
         while (atomic_int32Read (&test_clocksStop) == 0) {
             for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
-                test_clocksDoSomethingRandomly (j);
+                test_clocksDoSomethingRandomly (p, j);
                 ttt_wasteTime (&w);
             }
         }
@@ -30,7 +31,7 @@ void *test_clocksAtomicTask (void *x)
     
         for (i = 0; i < TEST_LOOP_CLOCKS; i++) {
             for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
-                test_clocksDoSomethingCounted (j);
+                test_clocksDoSomethingCounted (p, j);
                 ttt_wasteTime (&w);
             }
             

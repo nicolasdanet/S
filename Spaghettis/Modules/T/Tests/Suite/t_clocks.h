@@ -53,7 +53,7 @@ void test_taskCheckTime (void *x)
     
     atomic_float64Write (&test_clocksTime, t);
     
-    clock_set_ ((t_clock *)x, test_random (1000));      /* Reschedule the clock. */
+    // clock_set_ ((t_clock *)x, test_random (1000));      /* Reschedule the clock. */
 }
 
 void test_taskCheckCount (void *x)
@@ -109,21 +109,22 @@ void test_clocksRelease (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void test_clocksDoSomethingRandomly (int j)
+void test_clocksDoSomethingRandomly (TTTThreadProperties *p, int j)
 {
-    int i = test_random (TEST_CLOCKS_SIZE);
+    int i = ttt_getRandomInteger (p, TEST_CLOCKS_SIZE);
     
     t_clock *c = &test_clocksA[i];
     
-    if (test_random (2)) { clock_set_ (c, test_random (1000)); }
-    else {
+    if (ttt_getRandomInteger (p, 2)) {
+        clock_set_ (c, ttt_getRandomInteger (p, 1000));
+    } else {
         clock_unset_ (c);
     }
 }
 
-void test_clocksDoSomethingCounted (int j)
+void test_clocksDoSomethingCounted (TTTThreadProperties *p, int j)
 {
-    clock_set_ (&test_clocksB[j], test_random (500));
+    clock_set_ (&test_clocksB[j], ttt_getRandomInteger (p, 500));
 }
 
 void test_clocksTick (double f)
