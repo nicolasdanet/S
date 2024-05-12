@@ -99,6 +99,7 @@ int ttt_latchGetCount (TTTLatch *p)
 // MARK: -
 
 struct _TTTThreadProperties {
+    uint64_t    seed_;
     int         current_;
     int         threads_;
     TTTLatch    *latch_;
@@ -132,10 +133,28 @@ static TTTThreadProperties  ttt_testProperties[TTT_MAXIMUM_THREADS];
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static uint64_t ttt_makeRandomSeed (void);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/* < http://en.wikipedia.org/wiki/Linear_congruential_generator > */
+
+#define TTT_RAND48_SEED         (ttt_makeRandomSeed() & 0xffffffffffffULL)
+#define TTT_RAND48_NEXT(s)      ((s) = (((s) * 0x5deece66dULL + 0xbULL) & 0xffffffffffffULL))
+#define TTT_RAND48_UINT32(s)    (TTT_RAND48_NEXT (s) >> 16)
+#define TTT_RAND48_DOUBLE(s)    (TTT_RAND48_UINT32 (s) * (1.0 / 4294967296.0))
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void ttt_threadSetProperties (TTTThreadProperties *p, int i, int n)
 {
     ttt_latchSet (&ttt_latch, n);
     
+    p->seed_    = TTT_RAND48_SEED;
     p->current_ = i;
     p->threads_ = n;
     p->latch_   = &ttt_latch;
@@ -149,6 +168,11 @@ int ttt_threadGetCurrent (TTTThreadProperties *p)
 int ttt_threadGetNumberOfThreads (TTTThreadProperties *p)
 {
     return p->threads_;
+}
+
+double ttt_threadGetRandom (TTTThreadProperties *p)
+{
+    return TTT_RAND48_DOUBLE (p->seed_);
 }
 
 void ttt_threadWaitOnLatch (TTTThreadProperties *p)
@@ -238,6 +262,26 @@ void ttt_timeSleep (double ms)
     }
     //
     }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static uint64_t ttt_makeRandomSeed (void)
+{
+    static int      once = 0;
+    static uint64_t seed = 0;
+    
+    if (!once) { seed = getpid(); once = 1; }
+    
+    TTT_RAND48_NEXT (seed);
+    
+    seed ^= ttt_timeGet();
+    
+    TTT_RAND48_NEXT (seed);
+    
+    return seed;
 }
 
 // -----------------------------------------------------------------------------------------------------------
