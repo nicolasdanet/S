@@ -52,8 +52,6 @@ void test_taskCheckTime (void *x)
     test_clocksFails |= (t < atomic_float64Read (&test_clocksTime));
     
     atomic_float64Write (&test_clocksTime, t);
-    
-    // clock_set_ ((t_clock *)x, test_random (1000));      /* Reschedule the clock. */
 }
 
 void test_taskCheckCount (void *x)
