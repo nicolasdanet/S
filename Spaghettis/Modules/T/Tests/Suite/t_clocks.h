@@ -10,6 +10,7 @@
 
 static t_clock              test_clocksA[TEST_CLOCKS_SIZE];
 static t_float64Atomic      test_clocksTime;
+static t_rand48             test_clocksSeed;
 
 static t_clock              test_clocksB[TEST_CLOCKS_SIZE];
 static int                  test_clocksCounter;
@@ -52,6 +53,8 @@ void test_taskCheckTime (void *x)
     test_clocksFails |= (t < atomic_float64Read (&test_clocksTime));
     
     atomic_float64Write (&test_clocksTime, t);
+    
+    clock_set_ ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed) * 1000);
 }
 
 void test_taskCheckCount (void *x)
@@ -83,6 +86,8 @@ void test_clocksInitialize (void)
     }
     //
     }
+    
+    test_clocksSeed = PD_RAND48_SEED;
 }
 
 int test_clocksCheck (void)
