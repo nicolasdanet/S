@@ -78,6 +78,8 @@ void        atomic_pointerWrite             (t_pointerAtomic *q, void *p);
 void        *atomic_pointerSwap             (t_pointerAtomic *q, void *p);
 int         atomic_pointerCompareAndSwap    (t_pointerAtomic *q, void **expected, void *p);
 
+void        *atomic_pointerReadRelaxed      (t_pointerAtomic *q);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 #endif // S_ATOMIC_H_

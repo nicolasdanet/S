@@ -198,6 +198,11 @@ void *atomic_pointerRead (t_pointerAtomic *q)
     return __atomic_load_n (q, __ATOMIC_SEQ_CST);
 }
 
+void *atomic_pointerReadRelaxed (t_pointerAtomic *q)
+{
+    return __atomic_load_n (q, __ATOMIC_RELAXED);
+}
+
 void atomic_pointerWrite (t_pointerAtomic *q, void *p)
 {
     __atomic_store_n (q, p, __ATOMIC_SEQ_CST);
