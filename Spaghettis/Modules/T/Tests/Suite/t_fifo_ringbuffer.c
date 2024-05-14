@@ -6,42 +6,17 @@ static t_ringbuffer *test_ringbuffer;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-static t_randMT *test_random0;
-static t_randMT *test_random1;
-
-static uint64_t test_value0;
-static uint64_t test_value1;
-
-static int test_counter0;
-static int test_counter1;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-static int test_ringFailed;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#define TEST_RINGBUFFER_CHANCE      11
-#define TEST_RINGBUFFER_CHUNK       17
-#define TEST_RINGBUFFER_MAXIMUM     21
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 static void test_ringWrite()
 {
-    if (ringbuffer_getAvailableWrite (test_ringbuffer) >= TEST_RINGBUFFER_CHUNK) {
+    if (ringbuffer_getAvailableWrite (test_ringbuffer) >= TEST_FIFO_CHUNK) {
     //
-    int i; uint64_t data[TEST_RINGBUFFER_CHUNK] = { 0 };
+    int i; uint64_t data[TEST_FIFO_CHUNK] = { 0 };
     
-    for (i = 0; i < TEST_RINGBUFFER_CHUNK; i++) { data[i] = PD_RAND48_NEXT (test_value0); }
+    for (i = 0; i < TEST_FIFO_CHUNK; i++) { data[i] = PD_RAND48_NEXT (test_value0); }
     
-    ringbuffer_write (test_ringbuffer, (const void *)data, TEST_RINGBUFFER_CHUNK);
+    ringbuffer_write (test_ringbuffer, (const void *)data, TEST_FIFO_CHUNK);
     
     test_counter0++;
     //
@@ -50,14 +25,14 @@ static void test_ringWrite()
 
 static void test_ringRead()
 {
-    if (ringbuffer_getAvailableRead (test_ringbuffer) >= TEST_RINGBUFFER_CHUNK) {
+    if (ringbuffer_getAvailableRead (test_ringbuffer) >= TEST_FIFO_CHUNK) {
     //
-    int i; uint64_t data[TEST_RINGBUFFER_CHUNK] = { 0 };
+    int i; uint64_t data[TEST_FIFO_CHUNK] = { 0 };
     
-    ringbuffer_read (test_ringbuffer, (void *)data, TEST_RINGBUFFER_CHUNK);
+    ringbuffer_read (test_ringbuffer, (void *)data, TEST_FIFO_CHUNK);
     
-    for (i = 0; i < TEST_RINGBUFFER_CHUNK; i++) {
-        test_ringFailed += (data[i] != PD_RAND48_NEXT (test_value1));
+    for (i = 0; i < TEST_FIFO_CHUNK; i++) {
+        test_fifoFailed += (data[i] != PD_RAND48_NEXT (test_value1));
     }
     
     test_counter1++;
@@ -81,7 +56,7 @@ void *test_ringThread (void *x)
     if (n == 0) {
     //
     for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
-        if (randMT_getInteger (test_random0, TEST_RINGBUFFER_CHANCE) == 0) { test_ringWrite(); }
+        if (randMT_getInteger (test_random0, TEST_FIFO_CHANCE) == 0) { test_ringWrite(); }
         ttt_wasteTime (&w);
     }
     //
@@ -90,7 +65,7 @@ void *test_ringThread (void *x)
     if (n == 1) {
     //
     for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
-        if (randMT_getInteger (test_random1, TEST_RINGBUFFER_CHANCE) == 0) { test_ringRead(); }
+        if (randMT_getInteger (test_random1, TEST_FIFO_CHANCE) == 0) { test_ringRead(); }
         ttt_wasteTime (&w);
     }
     //
@@ -109,9 +84,9 @@ TTT_BEGIN (AtomicRing, "Atomic - Ring")
     
     {
     //
-    int i;
+    int i, k = 21;
     
-    for (i = 0; i < TEST_RINGBUFFER_MAXIMUM; i++) {
+    for (i = 0; i < k; i++) {
     //
     test_ringbuffer = ringbuffer_new (sizeof (uint64_t), (1 << i));
     
@@ -124,7 +99,7 @@ TTT_BEGIN (AtomicRing, "Atomic - Ring")
     else {
         // ttt_stdout (TTT_COLOR_BLUE, "W: %d", test_counter0);
         // ttt_stdout (TTT_COLOR_BLUE, "R: %d", test_counter1);
-        TTT_EXPECT (test_ringFailed == 0);
+        TTT_EXPECT (test_fifoFailed == 0);
     }
     
     ringbuffer_free (test_ringbuffer);
