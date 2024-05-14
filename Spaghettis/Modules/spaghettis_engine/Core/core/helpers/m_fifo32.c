@@ -64,6 +64,7 @@ int fifo32_getAvailableWrite (t_fifo32 *x)
     return (FIFO32_SIZE - (int)(a - b));
 }
 
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -73,13 +74,9 @@ int fifo32_getAvailableWrite (t_fifo32 *x)
 static void fifo32_writeProceed (t_fifo32 *x, const void *data, uint64_t index, int writted)
 {
     #if defined ( __cplusplus )
-    
     const char *p = static_cast<const char*> (data);
-    
     #else
-    
     const char *p = data;
-    
     #endif
     
     while (writted--) {
@@ -115,13 +112,9 @@ int fifo32_write (t_fifo32 *x, const void *data, int n)
 static void fifo32_readProceed (t_fifo32 *x, void *data, uint64_t index, int readed)
 {
     #if defined ( __cplusplus )
-    
     char *p = static_cast<char*> (data);
-    
     #else
-    
     char *p = data;
-    
     #endif
     
     while (readed--) {
