@@ -18,7 +18,7 @@ static void test_ringWrite()
     
     ringbuffer_write (test_ringbuffer, (const void *)data, TEST_FIFO_CHUNK);
     
-    test_counter0++;
+    test_wCounterSucceed++;
     //
     }
 }
@@ -35,7 +35,7 @@ static void test_ringRead()
         test_fifoFailed += (data[i] != PD_RAND48_NEXT (test_value1));
     }
     
-    test_counter1++;
+    test_rCounterSucceed++;
     //
     }
 }
@@ -88,17 +88,17 @@ TTT_BEGIN (AtomicRing, "Atomic - Ring")
     
     for (i = 0; i < k; i++) {
     //
-    test_ringbuffer = ringbuffer_new (sizeof (uint64_t), (1 << i));
+    test_ringbuffer       = ringbuffer_new (sizeof (uint64_t), (1 << i));
     
-    test_value0     = PD_RAND48_SEED;
-    test_value1     = test_value0;
-    test_counter0   = 0;
-    test_counter1   = 0;
+    test_value0           = PD_RAND48_SEED;
+    test_value1           = test_value0;
+    test_wCounterSucceed  = 0;
+    test_rCounterSucceed  = 0;
     
     if (ttt_testThreadsLaunch (test_ringThread) != TTT_GOOD) { TTT_FAIL; }
     else {
-        // ttt_stdout (TTT_COLOR_BLUE, "W: %d", test_counter0);
-        // ttt_stdout (TTT_COLOR_BLUE, "R: %d", test_counter1);
+        // ttt_stdout (TTT_COLOR_BLUE, "W: %d", test_wCounterSucceed);
+        // ttt_stdout (TTT_COLOR_BLUE, "R: %d", test_rCounterSucceed);
         TTT_EXPECT (test_fifoFailed == 0);
     }
     

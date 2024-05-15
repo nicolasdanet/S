@@ -18,9 +18,9 @@ static void test_fifo32Write()
     
     fifo32_write (test_fifo32, (const void *)data, TEST_FIFO_CHUNK);
     
-    test_counter0++;
+    test_wCounterSucceed++;
     //
-    }
+    } else { test_wCounterFailed++; }
 }
 
 static void test_fifo32Read()
@@ -35,9 +35,9 @@ static void test_fifo32Read()
         test_fifoFailed += (data[i] != (uint32_t)PD_RAND48_NEXT (test_value1));
     }
     
-    test_counter1++;
+    test_rCounterSucceed++;
     //
-    }
+    } else { test_rCounterFailed++; }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -79,17 +79,19 @@ TTT_BEGIN (AtomicFifo32, "Atomic - Fifo32")
     
     {
     //
-    test_fifo32     = fifo32_new();
+    test_fifo32  = fifo32_new();
     
-    test_value0     = PD_RAND48_SEED;
-    test_value1     = test_value0;
-    test_counter0   = 0;
-    test_counter1   = 0;
+    test_value0           = PD_RAND48_SEED;
+    test_value1           = test_value0;
+    test_wCounterSucceed  = 0;
+    test_wCounterFailed   = 0;
+    test_rCounterSucceed  = 0;
+    test_rCounterFailed   = 0;
     
     if (ttt_testThreadsLaunch (test_fifo32Thread) != TTT_GOOD) { TTT_FAIL; }
     else {
-        // ttt_stdout (TTT_COLOR_BLUE, "W: %d", test_counter0);
-        // ttt_stdout (TTT_COLOR_BLUE, "R: %d", test_counter1);
+        // ttt_stdout (TTT_COLOR_BLUE, "W: %d / %d", test_wCounterSucceed, test_wCounterFailed);
+        // ttt_stdout (TTT_COLOR_BLUE, "R: %d / %d", test_rCounterSucceed, test_rCounterFailed);
         TTT_EXPECT (test_fifoFailed == 0);
     }
     

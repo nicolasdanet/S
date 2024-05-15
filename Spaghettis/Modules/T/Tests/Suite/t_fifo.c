@@ -8,8 +8,10 @@ static t_randMT *test_random1;
 static uint64_t test_value0;
 static uint64_t test_value1;
 
-static int test_counter0;
-static int test_counter1;
+static int test_wCounterSucceed;
+static int test_wCounterFailed;
+static int test_rCounterSucceed;
+static int test_rCounterFailed;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
