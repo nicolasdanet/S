@@ -47,17 +47,13 @@ static void test_fifo32Read()
 void *test_fifo32Thread (void *x)
 {
     int i, n = ttt_threadGetCurrent ((TTTThreadProperties *)x);
-    TTTWaste w;
-    
-    ttt_wasteInit (&w, n);
-    
+
     ttt_threadWaitOnLatch ((TTTThreadProperties *)x);
     
     if (n == 0) {
     //
     for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
         if (randMT_getInteger (test_random0, TEST_FIFO_CHANCE) == 0) { test_fifo32Write(); }
-        ttt_wasteTime (&w);
     }
     //
     }
@@ -66,7 +62,6 @@ void *test_fifo32Thread (void *x)
     //
     for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
         if (randMT_getInteger (test_random1, TEST_FIFO_CHANCE) == 0) { test_fifo32Read(); }
-        ttt_wasteTime (&w);
     }
     //
     }
