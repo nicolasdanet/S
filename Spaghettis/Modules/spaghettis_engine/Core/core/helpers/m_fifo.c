@@ -33,7 +33,6 @@ void fifo_shared_free (t_fifo *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
 int fifo_shared_getAvailableRead (t_fifo *x)
 {
     uint64_t a = atomic_uInt64ReadAcquire (&x->f_write);
@@ -47,9 +46,8 @@ int fifo_shared_getAvailableWrite (t_fifo *x, int size)
     uint64_t b = atomic_uInt64ReadAcquire (&x->f_read);
     uint64_t a = atomic_uInt64ReadRelaxed (&x->f_write);
     
-    return (FIFO8_SIZE - (int)(a - b));
+    return (size - (int)(a - b));
 }
-*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

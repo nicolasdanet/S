@@ -12,6 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#define FIFO32_SIZE     (8192)                  /* Must be a power of two. */
 #define FIFO32_MASK     (FIFO32_SIZE - 1)
 #define FIFO32_BYTES    (4)
 
@@ -35,18 +36,12 @@ void fifo32_free (t_fifo32 *x)
 
 int fifo32_getAvailableRead (t_fifo32 *x)
 {
-    uint64_t a = atomic_uInt64ReadAcquire (&x->f_write);
-    uint64_t b = atomic_uInt64ReadRelaxed (&x->f_read);
-    
-    return (int)(a - b);
+    return fifo_shared_getAvailableRead (x);
 }
 
 int fifo32_getAvailableWrite (t_fifo32 *x)
 {
-    uint64_t b = atomic_uInt64ReadAcquire (&x->f_read);
-    uint64_t a = atomic_uInt64ReadRelaxed (&x->f_write);
-    
-    return (FIFO32_SIZE - (int)(a - b));
+    return fifo_shared_getAvailableWrite (x, FIFO32_SIZE);
 }
 
 // -----------------------------------------------------------------------------------------------------------
