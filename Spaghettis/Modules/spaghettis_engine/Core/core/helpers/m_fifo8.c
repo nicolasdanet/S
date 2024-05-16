@@ -20,25 +20,24 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define FIFO32_MASK     (FIFO32_SIZE - 1)
-#define FIFO32_BYTES    (4)
+#define FIFO8_MASK  (FIFO8_SIZE - 1)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_fifo32 *fifo32_new (void)
+t_fifo8 *fifo8_new (void)
 {
-    t_fifo32 *x = (t_fifo32 *)PD_MEMORY_GET (sizeof (t_fifo32));
+    t_fifo8 *x  = (t_fifo8 *)PD_MEMORY_GET (sizeof (t_fifo8));
     
-    x->f_vector = (char*)PD_MEMORY_GET (FIFO32_SIZE * FIFO32_BYTES);
+    x->f_vector = (char*)PD_MEMORY_GET (FIFO8_SIZE);
     x->f_read   = 0;
     x->f_write  = 0;
     
     return x;
 }
 
-void fifo32_free (t_fifo32 *x)
+void fifo8_free (t_fifo8 *x)
 {
     PD_MEMORY_FREE (x->f_vector);
     PD_MEMORY_FREE (x);
@@ -48,7 +47,7 @@ void fifo32_free (t_fifo32 *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int fifo32_getAvailableRead (t_fifo32 *x)
+int fifo8_getAvailableRead (t_fifo8 *x)
 {
     uint64_t a = atomic_uInt64ReadAcquire (&x->f_write);
     uint64_t b = atomic_uInt64ReadRelaxed (&x->f_read);
@@ -56,12 +55,12 @@ int fifo32_getAvailableRead (t_fifo32 *x)
     return (int)(a - b);
 }
 
-int fifo32_getAvailableWrite (t_fifo32 *x)
+int fifo8_getAvailableWrite (t_fifo8 *x)
 {
     uint64_t b = atomic_uInt64ReadAcquire (&x->f_read);
     uint64_t a = atomic_uInt64ReadRelaxed (&x->f_write);
     
-    return (FIFO32_SIZE - (int)(a - b));
+    return (FIFO8_SIZE - (int)(a - b));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -70,7 +69,7 @@ int fifo32_getAvailableWrite (t_fifo32 *x)
 
 /* https://en.cppreference.com/w/cpp/language/reinterpret_cast#Type_aliasing */
 
-static void fifo32_writeProceed (t_fifo32 *x, const void *data, uint64_t index, int writted)
+static void fifo8_writeProceed (t_fifo8 *x, const void *data, uint64_t index, int writted)
 {
     #if defined ( __cplusplus )
     const char *p = static_cast<const char*> (data);
@@ -80,24 +79,24 @@ static void fifo32_writeProceed (t_fifo32 *x, const void *data, uint64_t index, 
     
     while (writted--) {
     //
-    int t = (index & FIFO32_MASK) * FIFO32_BYTES;
+    int t = (index & FIFO8_MASK);
     
-    memcpy (x->f_vector + t, p, FIFO32_BYTES);
+    memcpy (x->f_vector + t, p, 1);
     
-    p     += FIFO32_BYTES;
+    p     += 1;
     index += 1;
     //
     }
 }
 
-int fifo32_write (t_fifo32 *x, const void *data, int n)
+int fifo8_write (t_fifo8 *x, const void *data, int n)
 {
-    int available  = fifo32_getAvailableWrite (x);
+    int available  = fifo8_getAvailableWrite (x);
     int writted    = PD_CLAMP (n, 0, available);
     
     uint64_t index = atomic_uInt64ReadRelaxed (&x->f_write);
     
-    fifo32_writeProceed (x, data, index, writted);
+    fifo8_writeProceed (x, data, index, writted);
     
     atomic_uInt64WriteRelease (&x->f_write, index + writted);
     
@@ -108,7 +107,7 @@ int fifo32_write (t_fifo32 *x, const void *data, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void fifo32_readProceed (t_fifo32 *x, void *data, uint64_t index, int readed)
+static void fifo8_readProceed (t_fifo8 *x, void *data, uint64_t index, int readed)
 {
     #if defined ( __cplusplus )
     char *p = static_cast<char*> (data);
@@ -118,24 +117,24 @@ static void fifo32_readProceed (t_fifo32 *x, void *data, uint64_t index, int rea
     
     while (readed--) {
     //
-    int t = (index & FIFO32_MASK) * FIFO32_BYTES;
+    int t = (index & FIFO8_MASK);
     
-    memcpy (p, x->f_vector + t, FIFO32_BYTES);
+    memcpy (p, x->f_vector + t, 1);
     
-    p     += FIFO32_BYTES;
+    p     += 1;
     index += 1;
     //
     }
 }
 
-int fifo32_read (t_fifo32 *x, void *data, int n)
+int fifo8_read (t_fifo8 *x, void *data, int n)
 {
-    int available  = fifo32_getAvailableRead (x);
+    int available  = fifo8_getAvailableRead (x);
     int readed     = PD_CLAMP (n, 0, available);
     
     uint64_t index = atomic_uInt64ReadRelaxed (&x->f_read);
     
-    fifo32_readProceed (x, data, index, readed);
+    fifo8_readProceed (x, data, index, readed);
     
     atomic_uInt64WriteRelease (&x->f_read, index + readed);
     
