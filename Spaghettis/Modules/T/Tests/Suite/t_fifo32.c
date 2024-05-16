@@ -6,17 +6,21 @@ static t_fifo32 *test_fifo32;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
+
+#define TEST_FIFO32_CHUNK     17
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 static void test_fifo32Write()
 {
-    if (fifo32_getAvailableWrite (test_fifo32) >= TEST_FIFO_CHUNK) {
+    if (fifo32_getAvailableWrite (test_fifo32) >= TEST_FIFO32_CHUNK) {
     //
-    int i; uint32_t data[TEST_FIFO_CHUNK] = { 0 };
+    int i; uint32_t data[TEST_FIFO32_CHUNK] = { 0 };
     
-    for (i = 0; i < TEST_FIFO_CHUNK; i++) { data[i] = (uint32_t)PD_RAND48_NEXT (test_value0); }
+    for (i = 0; i < TEST_FIFO32_CHUNK; i++) { data[i] = (uint32_t)PD_RAND48_NEXT (test_value0); }
     
-    fifo32_write (test_fifo32, (const void *)data, TEST_FIFO_CHUNK);
+    fifo32_write (test_fifo32, (const void *)data, TEST_FIFO32_CHUNK);
     
     test_wCounterSucceed++;
     //
@@ -25,13 +29,13 @@ static void test_fifo32Write()
 
 static void test_fifo32Read()
 {
-    if (fifo32_getAvailableRead (test_fifo32) >= TEST_FIFO_CHUNK) {
+    if (fifo32_getAvailableRead (test_fifo32) >= TEST_FIFO32_CHUNK) {
     //
-    int i; uint32_t data[TEST_FIFO_CHUNK] = { 0 };
+    int i; uint32_t data[TEST_FIFO32_CHUNK] = { 0 };
     
-    fifo32_read (test_fifo32, (void *)data, TEST_FIFO_CHUNK);
+    fifo32_read (test_fifo32, (void *)data, TEST_FIFO32_CHUNK);
     
-    for (i = 0; i < TEST_FIFO_CHUNK; i++) {
+    for (i = 0; i < TEST_FIFO32_CHUNK; i++) {
         test_fifoFailed += (data[i] != (uint32_t)PD_RAND48_NEXT (test_value1));
     }
     
@@ -42,7 +46,6 @@ static void test_fifo32Read()
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 void *test_fifo32Thread (void *x)
 {

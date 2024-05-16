@@ -2,65 +2,61 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_ringbuffer *test_ringbuffer;
+static t_fifo8 *test_fifo8;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#define TEST_RING_CHUNK     17
+#define TEST_FIFO8_CHUNK    173
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static void test_ringWrite()
+static void test_fifo8Write()
 {
-    if (ringbuffer_getAvailableWrite (test_ringbuffer) >= TEST_RING_CHUNK) {
+    if (fifo8_getAvailableWrite (test_fifo8) >= TEST_FIFO8_CHUNK) {
     //
-    int i; uint64_t data[TEST_RING_CHUNK] = { 0 };
+    int i; uint8_t data[TEST_FIFO8_CHUNK] = { 0 };
     
-    for (i = 0; i < TEST_RING_CHUNK; i++) { data[i] = PD_RAND48_NEXT (test_value0); }
+    for (i = 0; i < TEST_FIFO8_CHUNK; i++) { data[i] = (uint8_t)PD_RAND48_NEXT (test_value0); }
     
-    ringbuffer_write (test_ringbuffer, (const void *)data, TEST_RING_CHUNK);
+    fifo8_write (test_fifo8, (const void *)data, TEST_FIFO8_CHUNK);
     
     test_wCounterSucceed++;
     //
-    }
+    } else { test_wCounterFailed++; }
 }
 
-static void test_ringRead()
+static void test_fifo8Read()
 {
-    if (ringbuffer_getAvailableRead (test_ringbuffer) >= TEST_RING_CHUNK) {
+    if (fifo8_getAvailableRead (test_fifo8) >= TEST_FIFO8_CHUNK) {
     //
-    int i; uint64_t data[TEST_RING_CHUNK] = { 0 };
+    int i; uint8_t data[TEST_FIFO8_CHUNK] = { 0 };
     
-    ringbuffer_read (test_ringbuffer, (void *)data, TEST_RING_CHUNK);
+    fifo8_read (test_fifo8, (void *)data, TEST_FIFO8_CHUNK);
     
-    for (i = 0; i < TEST_RING_CHUNK; i++) {
-        test_fifoFailed += (data[i] != PD_RAND48_NEXT (test_value1));
+    for (i = 0; i < TEST_FIFO8_CHUNK; i++) {
+        test_fifoFailed += (data[i] != (uint8_t)PD_RAND48_NEXT (test_value1));
     }
     
     test_rCounterSucceed++;
     //
-    }
+    } else { test_rCounterFailed++; }
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void *test_ringThread (void *x)
+void *test_fifo8Thread (void *x)
 {
     int i, n = ttt_threadGetCurrent ((TTTThreadProperties *)x);
-    TTTWaste w;
-    
-    ttt_wasteInit (&w, n);
-    
+
     ttt_threadWaitOnLatch ((TTTThreadProperties *)x);
     
     if (n == 0) {
     //
     for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
-        if (randMT_getInteger (test_random0, TEST_FIFO_CHANCE) == 0) { test_ringWrite(); }
-        ttt_wasteTime (&w);
+        if (randMT_getInteger (test_random0, TEST_FIFO_CHANCE) == 0) { test_fifo8Write(); }
     }
     //
     }
@@ -68,8 +64,7 @@ void *test_ringThread (void *x)
     if (n == 1) {
     //
     for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
-        if (randMT_getInteger (test_random1, TEST_FIFO_CHANCE) == 0) { test_ringRead(); }
-        ttt_wasteTime (&w);
+        if (randMT_getInteger (test_random1, TEST_FIFO_CHANCE) == 0) { test_fifo8Read(); }
     }
     //
     }
@@ -80,34 +75,30 @@ void *test_ringThread (void *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-TTT_BEGIN (AtomicRing, "Atomic - Ring")
+TTT_BEGIN (AtomicFifo8, "Atomic - Fifo8")
 
     test_random0 = randMT_new();
     test_random1 = randMT_new();
     
     {
     //
-    int i, k = 21;
-    
-    for (i = 0; i < k; i++) {
-    //
-    test_ringbuffer       = ringbuffer_new (sizeof (uint64_t), (1 << i));
+    test_fifo8   = fifo8_new();
     
     test_value0           = PD_RAND48_SEED;
     test_value1           = test_value0;
     test_wCounterSucceed  = 0;
+    test_wCounterFailed   = 0;
     test_rCounterSucceed  = 0;
+    test_rCounterFailed   = 0;
     
-    if (ttt_testThreadsLaunch (test_ringThread) != TTT_GOOD) { TTT_FAIL; }
+    if (ttt_testThreadsLaunch (test_fifo8Thread) != TTT_GOOD) { TTT_FAIL; }
     else {
-        // ttt_stdout (TTT_COLOR_BLUE, "W: %d", test_wCounterSucceed);
-        // ttt_stdout (TTT_COLOR_BLUE, "R: %d", test_rCounterSucceed);
+        // ttt_stdout (TTT_COLOR_BLUE, "W: %d / %d", test_wCounterSucceed, test_wCounterFailed);
+        // ttt_stdout (TTT_COLOR_BLUE, "R: %d / %d", test_rCounterSucceed, test_rCounterFailed);
         TTT_EXPECT (test_fifoFailed == 0);
     }
     
-    ringbuffer_free (test_ringbuffer);
-    //
-    }
+    fifo8_free (test_fifo8);
     //
     }
     
