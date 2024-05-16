@@ -96,6 +96,7 @@
 		17B168F822672256009EDB39 /* m_pending.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B168F722672256009EDB39 /* m_pending.c */; };
 		17B52BE52142B3DB0002F71A /* m_register.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B52BE42142B3DB0002F71A /* m_register.c */; };
 		17B7993D2BF4931300F41A6B /* m_fifo8.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B7993C2BF4931300F41A6B /* m_fifo8.c */; };
+		17B799402BF5CD9200F41A6B /* m_fifo.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B7993F2BF5CD9200F41A6B /* m_fifo.c */; };
 		17B7B838232F72B8005CC7CA /* core_midiclient.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B837232F72B8005CC7CA /* core_midiclient.c */; };
 		17B7C281213BD2ED0095D248 /* m_undoduplicate.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B7C280213BD2ED0095D248 /* m_undoduplicate.c */; };
 		17B7D13D2AD51D460067BBE9 /* g_gui.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B7D13C2AD51D460067BBE9 /* g_gui.c */; };
@@ -539,6 +540,8 @@
 		17B52BE42142B3DB0002F71A /* m_register.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_register.c; sourceTree = "<group>"; };
 		17B7993B2BF4931300F41A6B /* m_fifo8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_fifo8.h; sourceTree = "<group>"; };
 		17B7993C2BF4931300F41A6B /* m_fifo8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_fifo8.c; sourceTree = "<group>"; };
+		17B7993E2BF5CC4700F41A6B /* m_fifo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_fifo.h; sourceTree = "<group>"; };
+		17B7993F2BF5CD9200F41A6B /* m_fifo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_fifo.c; sourceTree = "<group>"; };
 		17B7B837232F72B8005CC7CA /* core_midiclient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = core_midiclient.c; sourceTree = "<group>"; };
 		17B7C280213BD2ED0095D248 /* m_undoduplicate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_undoduplicate.c; sourceTree = "<group>"; };
 		17B7D13B2AD3CE000067BBE9 /* g_gui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = g_gui.h; sourceTree = "<group>"; };
@@ -1251,6 +1254,7 @@
 				17C9FE261FE00B79007066EC /* m_MT_32.h */,
 				17C9FE201FE00B78007066EC /* m_MT_64.h */,
 				1739F7441FFCE902004656C4 /* m_ringbuffer.h */,
+				17B7993E2BF5CC4700F41A6B /* m_fifo.h */,
 				17CD936C2BEDF93800DEE884 /* m_fifo32.h */,
 				17B7993B2BF4931300F41A6B /* m_fifo8.h */,
 				374449391D66154D00E54A0D /* m_rectangle.c */,
@@ -1264,6 +1268,7 @@
 				17C9FE221FE00B78007066EC /* m_MT_64.c */,
 				1799FC252BEA06F5008CC680 /* m_MT_i.c */,
 				1739F7431FFCE902004656C4 /* m_ringbuffer.c */,
+				17B7993F2BF5CD9200F41A6B /* m_fifo.c */,
 				17CD936D2BEDF93800DEE884 /* m_fifo32.c */,
 				17B7993C2BF4931300F41A6B /* m_fifo8.c */,
 			);
@@ -2160,6 +2165,7 @@
 				1723FBCE2302F23600C0F975 /* core_audiodevice.c in Sources */,
 				374907A41D9A433A00377F1E /* x_select.c in Sources */,
 				17AC13952295768D00D5B1EA /* x_listscramble.c in Sources */,
+				17B799402BF5CD9200F41A6B /* m_fifo.c in Sources */,
 				37CD71031D9A99E500A61BD3 /* x_receive.c in Sources */,
 				37CD71191D9A9AAB00A61BD3 /* x_send.c in Sources */,
 				1702601E2476BB5F00A29222 /* g_line.c in Sources */,

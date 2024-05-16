@@ -12,14 +12,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-// TODO: Optimize?
-
-/* https://github.com/CharlesFrasch/cppcon2023 */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 #define FIFO32_MASK     (FIFO32_SIZE - 1)
 #define FIFO32_BYTES    (4)
 
@@ -29,19 +21,12 @@
 
 t_fifo32 *fifo32_new (void)
 {
-    t_fifo32 *x = (t_fifo32 *)PD_MEMORY_GET (sizeof (t_fifo32));
-    
-    x->f_vector = (char*)PD_MEMORY_GET (FIFO32_SIZE * FIFO32_BYTES);
-    x->f_read   = 0;
-    x->f_write  = 0;
-    
-    return x;
+    return fifo_shared_new (FIFO32_SIZE, FIFO32_BYTES);
 }
 
 void fifo32_free (t_fifo32 *x)
 {
-    PD_MEMORY_FREE (x->f_vector);
-    PD_MEMORY_FREE (x);
+    fifo_shared_free (x);
 }
 
 // -----------------------------------------------------------------------------------------------------------

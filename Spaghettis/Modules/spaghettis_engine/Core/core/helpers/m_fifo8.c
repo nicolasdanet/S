@@ -12,15 +12,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-// TODO: Optimize?
-
-/* https://github.com/CharlesFrasch/cppcon2023 */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 #define FIFO8_MASK  (FIFO8_SIZE - 1)
+#define FIFO8_BYTES (1)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -28,19 +21,12 @@
 
 t_fifo8 *fifo8_new (void)
 {
-    t_fifo8 *x  = (t_fifo8 *)PD_MEMORY_GET (sizeof (t_fifo8));
-    
-    x->f_vector = (char*)PD_MEMORY_GET (FIFO8_SIZE);
-    x->f_read   = 0;
-    x->f_write  = 0;
-    
-    return x;
+    return fifo_shared_new (FIFO8_SIZE, FIFO8_BYTES);
 }
 
 void fifo8_free (t_fifo8 *x)
 {
-    PD_MEMORY_FREE (x->f_vector);
-    PD_MEMORY_FREE (x);
+    fifo_shared_free (x);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -79,11 +65,11 @@ static void fifo8_writeProceed (t_fifo8 *x, const void *data, uint64_t index, in
     
     while (writted--) {
     //
-    int t = (index & FIFO8_MASK);
+    int t = (index & FIFO8_MASK) * FIFO8_BYTES;
     
-    memcpy (x->f_vector + t, p, 1);
+    memcpy (x->f_vector + t, p, FIFO8_BYTES);
     
-    p     += 1;
+    p     += FIFO8_BYTES;
     index += 1;
     //
     }
@@ -117,11 +103,11 @@ static void fifo8_readProceed (t_fifo8 *x, void *data, uint64_t index, int reade
     
     while (readed--) {
     //
-    int t = (index & FIFO8_MASK);
+    int t = (index & FIFO8_MASK) * FIFO8_BYTES;
     
-    memcpy (p, x->f_vector + t, 1);
+    memcpy (p, x->f_vector + t, FIFO8_BYTES);
     
-    p     += 1;
+    p     += FIFO8_BYTES;
     index += 1;
     //
     }
