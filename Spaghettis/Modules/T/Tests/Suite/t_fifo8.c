@@ -7,20 +7,15 @@ static t_fifo8 *test_fifo8;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#define TEST_FIFO8_CHUNK    173
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 static void test_fifo8Write()
 {
-    if (fifo8_getAvailableWrite (test_fifo8) >= TEST_FIFO8_CHUNK) {
+    if (fifo8_getAvailableWrite (test_fifo8) >= TEST_FIFO_CHUNK) {
     //
-    int i; uint8_t data[TEST_FIFO8_CHUNK] = { 0 };
+    int i; uint8_t data[TEST_FIFO_CHUNK] = { 0 };
     
-    for (i = 0; i < TEST_FIFO8_CHUNK; i++) { data[i] = (uint8_t)PD_RAND48_NEXT (test_value0); }
+    for (i = 0; i < TEST_FIFO_CHUNK; i++) { data[i] = (uint8_t)PD_RAND48_NEXT (test_fifoValue0); }
     
-    fifo8_write (test_fifo8, (const void *)data, TEST_FIFO8_CHUNK);
+    fifo8_write (test_fifo8, (const void *)data, TEST_FIFO_CHUNK);
     
     test_wCounterSucceed++;
     //
@@ -29,14 +24,14 @@ static void test_fifo8Write()
 
 static void test_fifo8Read()
 {
-    if (fifo8_getAvailableRead (test_fifo8) >= TEST_FIFO8_CHUNK) {
+    if (fifo8_getAvailableRead (test_fifo8) >= TEST_FIFO_CHUNK) {
     //
-    int i; uint8_t data[TEST_FIFO8_CHUNK] = { 0 };
+    int i; uint8_t data[TEST_FIFO_CHUNK] = { 0 };
     
-    fifo8_read (test_fifo8, (void *)data, TEST_FIFO8_CHUNK);
+    fifo8_read (test_fifo8, (void *)data, TEST_FIFO_CHUNK);
     
-    for (i = 0; i < TEST_FIFO8_CHUNK; i++) {
-        test_fifoFailed += (data[i] != (uint8_t)PD_RAND48_NEXT (test_value1));
+    for (i = 0; i < TEST_FIFO_CHUNK; i++) {
+        test_fifoFailed += (data[i] != (uint8_t)PD_RAND48_NEXT (test_fifoValue1));
     }
     
     test_rCounterSucceed++;
@@ -56,7 +51,7 @@ void *test_fifo8Thread (void *x)
     if (n == 0) {
     //
     for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
-        if (randMT_getInteger (test_random0, TEST_FIFO_CHANCE) == 0) { test_fifo8Write(); }
+        if (randMT_getInteger (test_fifoRandom0, TEST_FIFO_CHANCE) == 0) { test_fifo8Write(); }
     }
     //
     }
@@ -64,7 +59,7 @@ void *test_fifo8Thread (void *x)
     if (n == 1) {
     //
     for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
-        if (randMT_getInteger (test_random1, TEST_FIFO_CHANCE) == 0) { test_fifo8Read(); }
+        if (randMT_getInteger (test_fifoRandom1, TEST_FIFO_CHANCE) == 0) { test_fifo8Read(); }
     }
     //
     }
@@ -77,15 +72,15 @@ void *test_fifo8Thread (void *x)
 
 TTT_BEGIN (AtomicFifo8, "Atomic - Fifo8")
 
-    test_random0 = randMT_new();
-    test_random1 = randMT_new();
+    test_fifoRandom0 = randMT_new();
+    test_fifoRandom1 = randMT_new();
     
     {
     //
-    test_fifo8   = fifo8_new();
+    test_fifo8            = fifo8_new();
     
-    test_value0           = PD_RAND48_SEED;
-    test_value1           = test_value0;
+    test_fifoValue0       = PD_RAND48_SEED;
+    test_fifoValue1       = test_fifoValue0;
     test_wCounterSucceed  = 0;
     test_wCounterFailed   = 0;
     test_rCounterSucceed  = 0;
@@ -102,8 +97,8 @@ TTT_BEGIN (AtomicFifo8, "Atomic - Fifo8")
     //
     }
     
-    randMT_free (test_random1);
-    randMT_free (test_random0);
+    randMT_free (test_fifoRandom1);
+    randMT_free (test_fifoRandom0);
     
 TTT_END
 

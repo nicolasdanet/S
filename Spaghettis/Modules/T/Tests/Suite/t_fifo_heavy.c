@@ -2,66 +2,67 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_fifo32 *test_fifo32;
+static t_fifo32 *test_fifo;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static void test_fifo32Write()
+static void test_fifoWrite()
 {
-    if (fifo32_getAvailableWrite (test_fifo32) >= TEST_FIFO_CHUNK) {
+    int i, k = randMT_getInteger (test_fifoRandom0, TEST_FIFO_CHUNK);
+    
+    uint32_t data[TEST_FIFO_CHUNK] = { 0 };
+    
+    for (i = 0; i < k; i++) { data[i] = (uint32_t)PD_RAND48_NEXT (test_fifoValue0); }
+    
+    uint32_t *p = data;
+    
+    while (k > 0) {
     //
-    int i; uint32_t data[TEST_FIFO_CHUNK] = { 0 };
+    int writted = fifo32_write (test_fifo, (const void *)p, k);
     
-    for (i = 0; i < TEST_FIFO_CHUNK; i++) { data[i] = (uint32_t)PD_RAND48_NEXT (test_fifoValue0); }
+    k -= writted;
+    p += writted;
     
-    fifo32_write (test_fifo32, (const void *)data, TEST_FIFO_CHUNK);
-    
-    test_wCounterSucceed++;
+    test_wCounterSucceed += writted;
     //
-    } else { test_wCounterFailed++; }
+    }
 }
 
-static void test_fifo32Read()
+static void test_fifoRead()
 {
-    if (fifo32_getAvailableRead (test_fifo32) >= TEST_FIFO_CHUNK) {
-    //
-    int i; uint32_t data[TEST_FIFO_CHUNK] = { 0 };
+    int i, k = randMT_getInteger (test_fifoRandom1, TEST_FIFO_CHUNK);
     
-    fifo32_read (test_fifo32, (void *)data, TEST_FIFO_CHUNK);
+    uint32_t data[TEST_FIFO_CHUNK] = { 0 };
     
-    for (i = 0; i < TEST_FIFO_CHUNK; i++) {
+    int readed = fifo32_read (test_fifo, (void *)data, k);
+    
+    test_rCounterSucceed += readed;
+    
+    for (i = 0; i < readed; i++) {
         test_fifoFailed += (data[i] != (uint32_t)PD_RAND48_NEXT (test_fifoValue1));
     }
-    
-    test_rCounterSucceed++;
-    //
-    } else { test_rCounterFailed++; }
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void *test_fifo32Thread (void *x)
+void *test_fifoThread (void *x)
 {
     int i, n = ttt_threadGetCurrent ((TTTThreadProperties *)x);
 
     ttt_threadWaitOnLatch ((TTTThreadProperties *)x);
     
     if (n == 0) {
-    //
-    for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
-        if (randMT_getInteger (test_fifoRandom0, TEST_FIFO_CHANCE) == 0) { test_fifo32Write(); }
-    }
-    //
+        for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
+            test_fifoWrite();
+        }
+        
+        atomic_int32WriteRelaxed (&test_fifoStop, 1);
     }
     
     if (n == 1) {
-    //
-    for (i = 0; i < TEST_LOOP_ATOMIC; i++) {
-        if (randMT_getInteger (test_fifoRandom1, TEST_FIFO_CHANCE) == 0) { test_fifo32Read(); }
-    }
-    //
+        while (atomic_int32ReadRelaxed (&test_fifoStop) == 0) { test_fifoRead();  }
     }
     
     return NULL;
@@ -70,14 +71,14 @@ void *test_fifo32Thread (void *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-TTT_BEGIN (AtomicFifo32, "Atomic - Fifo32")
+TTT_BEGIN (AtomicFifoHeavy, "Atomic - Heavy")
 
     test_fifoRandom0 = randMT_new();
     test_fifoRandom1 = randMT_new();
     
     {
     //
-    test_fifo32  = fifo32_new();
+    test_fifo             = fifo32_new();
     
     test_fifoValue0       = PD_RAND48_SEED;
     test_fifoValue1       = test_fifoValue0;
@@ -86,14 +87,16 @@ TTT_BEGIN (AtomicFifo32, "Atomic - Fifo32")
     test_rCounterSucceed  = 0;
     test_rCounterFailed   = 0;
     
-    if (ttt_testThreadsLaunch (test_fifo32Thread) != TTT_GOOD) { TTT_FAIL; }
+    atomic_int32WriteRelaxed (&test_fifoStop, 0);
+    
+    if (ttt_testThreadsLaunch (test_fifoThread) != TTT_GOOD) { TTT_FAIL; }
     else {
-        // ttt_stdout (TTT_COLOR_BLUE, "W: %d / %d", test_wCounterSucceed, test_wCounterFailed);
-        // ttt_stdout (TTT_COLOR_BLUE, "R: %d / %d", test_rCounterSucceed, test_rCounterFailed);
+        // ttt_stdout (TTT_COLOR_BLUE, "W: %d", test_wCounterSucceed);
+        // ttt_stdout (TTT_COLOR_BLUE, "R: %d", test_rCounterSucceed);
         TTT_EXPECT (test_fifoFailed == 0);
     }
     
-    fifo32_free (test_fifo32);
+    fifo32_free (test_fifo);
     //
     }
     
