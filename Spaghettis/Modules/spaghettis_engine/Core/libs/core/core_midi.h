@@ -55,7 +55,7 @@ typedef struct _midiport {
     MIDIEndpointRef     mp_endpoint;
     MIDIPortRef         mp_port;
     int                 mp_hasConnect;
-    t_ringbuffer        *mp_buffer;
+    t_fifo32            *mp_buffer;
     t_ringbuffer        *mp_bufferSysex;
     } t_midiport;
 

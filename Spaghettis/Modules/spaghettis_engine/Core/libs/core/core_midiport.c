@@ -45,7 +45,7 @@ static void midiport_inputProceed (t_midiport *midiport, MIDIPacket *packet)
 {
     if (midiport->mp_buffer) {
     //
-    if (ringbuffer_getAvailableWrite (midiport->mp_buffer) > 0) {
+    if (fifo32_getAvailableWrite (midiport->mp_buffer) > 0) {
     //
     uint32_t status = packet->data[0];
     uint32_t a      = (packet->length > 1) ? packet->data[1] : 0;
@@ -53,7 +53,7 @@ static void midiport_inputProceed (t_midiport *midiport, MIDIPacket *packet)
     
     uint32_t data   = (status << 16) | (a << 8) | (b << 0);
     
-    ringbuffer_write (midiport->mp_buffer, &data, 1);
+    fifo32_write (midiport->mp_buffer, &data, 1);
     //
     } else {
         PD_ABORT (1);   /* Do something less disruptive? */
@@ -120,7 +120,7 @@ t_error midiport_openInput (t_midiport *midiport, t_symbol *name)
     
     if (!err) {
         midiport->mp_hasConnect  = 1;
-        midiport->mp_buffer      = ringbuffer_new (sizeof (uint32_t), (4096));
+        midiport->mp_buffer      = fifo32_new();
         midiport->mp_bufferSysex = ringbuffer_new (sizeof (Byte),     (65536 * 2));
     }
     //
@@ -166,7 +166,7 @@ t_error midiport_openOutput (t_midiport *midiport, t_symbol *name)
 void midiport_close (t_midiport *midiport)
 {
     if (midiport->mp_bufferSysex) { ringbuffer_free (midiport->mp_bufferSysex); }
-    if (midiport->mp_buffer)      { ringbuffer_free (midiport->mp_buffer); }
+    if (midiport->mp_buffer)      { fifo32_free (midiport->mp_buffer); }
     if (midiport->mp_hasConnect)  {
     //
     t_error err = coremidi_error (MIDIPortDisconnectSource (midiport->mp_port, midiport->mp_endpoint));
@@ -260,11 +260,11 @@ static void midiport_pollProceed (t_midiport *midiport, int port)
 {
     if (midiport->mp_buffer) {
     //
-    while (ringbuffer_getAvailableRead (midiport->mp_buffer) > 0) {
+    while (fifo32_getAvailableRead (midiport->mp_buffer) > 0) {
     //
     uint32_t status, a, b, data = 0;
     
-    ringbuffer_read (midiport->mp_buffer, &data, 1);
+    fifo32_read (midiport->mp_buffer, &data, 1);
     
     status = 0xff & (data >> 16);
     a      = 0xff & (data >> 8);
