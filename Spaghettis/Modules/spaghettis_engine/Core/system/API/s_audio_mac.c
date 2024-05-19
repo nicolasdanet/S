@@ -39,8 +39,8 @@ static t_audiograph     core_graph;                                         /* S
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_ringbuffer     *core_ringIn[DEVICES_MAXIMUM_CHANNELS];             /* Static. */
-static t_ringbuffer     *core_ringOut[DEVICES_MAXIMUM_CHANNELS];            /* Static. */
+static t_fifo32         *core_ringIn[DEVICES_MAXIMUM_CHANNELS];             /* Static. */
+static t_fifo32         *core_ringOut[DEVICES_MAXIMUM_CHANNELS];            /* Static. */
 
 static int              core_channelsIn;                                    /* Static. */
 static int              core_channelsOut;                                   /* Static. */
@@ -59,8 +59,8 @@ static void core_buffersFree (void)
     int i;
 
     for (i = 0; i < DEVICES_MAXIMUM_CHANNELS; i++) {
-        if (core_ringIn[i])  { ringbuffer_free (core_ringIn[i]);  core_ringIn[i]  = NULL; }
-        if (core_ringOut[i]) { ringbuffer_free (core_ringOut[i]); core_ringOut[i] = NULL; }
+        if (core_ringIn[i])  { fifo32_free (core_ringIn[i]);  core_ringIn[i]  = NULL; }
+        if (core_ringOut[i]) { fifo32_free (core_ringOut[i]); core_ringOut[i] = NULL; }
     }
 }
 
@@ -70,13 +70,8 @@ static void core_buffersAllocate (int numberOfChannelsIn, int numberOfChannelsOu
 
     core_buffersFree();
 
-    for (i = 0; i < numberOfChannelsIn;  i++) {
-        core_ringIn[i]  = ringbuffer_new (sizeof (Float32), 8192);
-    }
-    
-    for (i = 0; i < numberOfChannelsOut; i++) {
-        core_ringOut[i] = ringbuffer_new (sizeof (Float32), 8192);
-    }
+    for (i = 0; i < numberOfChannelsIn;  i++) { core_ringIn[i]  = fifo32_new(); }
+    for (i = 0; i < numberOfChannelsOut; i++) { core_ringOut[i] = fifo32_new(); }
     
     core_channelsIn  = numberOfChannelsIn;
     core_channelsOut = numberOfChannelsOut;
@@ -97,7 +92,7 @@ static int core_buffersWritable (int channels, UInt32 inNumberFrames)
     
     for (i = 0; i < channels; i++) {
     //
-    if (ringbuffer_getAvailableWrite (core_ringIn[i]) < (int32_t)inNumberFrames) { writable = 0; break; }
+    if (fifo32_getAvailableWrite (core_ringIn[i]) < (int)inNumberFrames) { writable = 0; break; }
     //
     }
     
@@ -114,7 +109,7 @@ t_error core_buffersPush (UInt32 inNumberFrames, AudioBufferList *ioData, t_audi
     //
     for (i = 0; i < channels; i++) {
     //
-    void *t = ioData->mBuffers[i].mData; ringbuffer_write (core_ringIn[i], t, inNumberFrames);
+    void *t = ioData->mBuffers[i].mData; fifo32_write (core_ringIn[i], t, inNumberFrames);
     //
     }
     
@@ -136,7 +131,7 @@ static int core_buffersReadable (int channels, UInt32 inNumberFrames)
     
     for (i = 0; i < channels; i++) {
     //
-    if (ringbuffer_getAvailableRead (core_ringOut[i]) < (int32_t)inNumberFrames) { readable = 0; break; }
+    if (fifo32_getAvailableRead (core_ringOut[i]) < (int32_t)inNumberFrames) { readable = 0; break; }
     //
     }
     
@@ -156,7 +151,7 @@ t_error core_buffersPull (UInt32 inNumberFrames, AudioBufferList *ioData, t_audi
     //
     for (i = 0; i < channels; i++) {
     //
-    void *t = ioData->mBuffers[i].mData; ringbuffer_read (core_ringOut[i], t, inNumberFrames);
+    void *t = ioData->mBuffers[i].mData; fifo32_read (core_ringOut[i], t, inNumberFrames);
     //
     }
     
@@ -252,7 +247,7 @@ int audio_pollNative()
     if (core_channelsIn) {
     //
     for (i = 0; i < core_channelsIn; i++) {
-        while (ringbuffer_getAvailableRead (core_ringIn[i]) < INTERNAL_BLOCKSIZE) {
+        while (fifo32_getAvailableRead (core_ringIn[i]) < INTERNAL_BLOCKSIZE) {
             status = DACS_SLEPT;
             if (needToWait < CORE_GRAIN * 2) {
                 PD_LOG (".");
@@ -267,7 +262,7 @@ int audio_pollNative()
     if (core_channelsOut) {
     //
     for (i = 0; i < core_channelsOut; i++) {
-        while (ringbuffer_getAvailableWrite (core_ringOut[i]) < INTERNAL_BLOCKSIZE) {
+        while (fifo32_getAvailableWrite (core_ringOut[i]) < INTERNAL_BLOCKSIZE) {
             status = DACS_SLEPT;
             if (needToWait < CORE_GRAIN * 2) {
                 PD_LOG (":");
@@ -284,7 +279,7 @@ int audio_pollNative()
     sound = audio_soundIn;
         
     for (i = 0; i < core_channelsIn; i++) {
-        ringbuffer_read (core_ringIn[i], (void *)sound, INTERNAL_BLOCKSIZE);
+        fifo32_read (core_ringIn[i], (void *)sound, INTERNAL_BLOCKSIZE);
         sound += INTERNAL_BLOCKSIZE;
     }
     //
@@ -296,7 +291,7 @@ int audio_pollNative()
         
     for (i = 0; i < core_channelsOut; i++) {
         audio_safe (sound, INTERNAL_BLOCKSIZE, 1);
-        ringbuffer_write (core_ringOut[i], (const void *)sound, INTERNAL_BLOCKSIZE);
+        fifo32_write (core_ringOut[i], (const void *)sound, INTERNAL_BLOCKSIZE);
         memset ((void *)sound, 0, INTERNAL_BLOCKSIZE * sizeof (t_sample));                  /* Zeroed. */
         sound += INTERNAL_BLOCKSIZE;
     }
