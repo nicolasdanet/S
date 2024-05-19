@@ -334,7 +334,6 @@ struct _garray;
 struct _gatom;
 struct _outconnect;
 struct _receiver;
-struct _ringbuffer;
 struct _sfthread;
 struct _vinlet;
 struct _voutlet;
@@ -355,7 +354,6 @@ struct _space;
 #define t_gatom                     struct _gatom
 #define t_outconnect                struct _outconnect
 #define t_receiver                  struct _receiver
-#define t_ringbuffer                struct _ringbuffer
 #define t_sfthread                  struct _sfthread
 #define t_vinlet                    struct _vinlet
 #define t_voutlet                   struct _voutlet
