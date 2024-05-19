@@ -21,7 +21,7 @@ typedef struct _print_tilde {
     t_object        x_obj;                      /* Must be the first. */
     t_int32Atomic   x_count;
     int             x_dismissed;
-    t_ringbuffer    *x_buffer;
+    t_fifo32        *x_fifo;
     t_symbol        *x_name;
     } t_print_tilde;
 
@@ -49,11 +49,11 @@ static void print_tilde_polling (t_print_tilde *x)
 {
     if (!atomic_int32Read (&x->x_count)) {
     //
-    int32_t available = ringbuffer_getAvailableRead (x->x_buffer);
+    int available = fifo32_getAvailableRead (x->x_fifo);
     
     while (available-- > 0) {
     //
-    t_sample t; ringbuffer_read (x->x_buffer, &t, 1);
+    t_sample t; fifo32_read (x->x_fifo, &t, 1);
     post (cast_object (x), "%s: %g", x->x_name->s_name, t);
     //
     }
@@ -73,7 +73,7 @@ static t_int *print_tilde_perform (t_int *w)
     
     if (atomic_int32Read (&x->x_count)) {
     //
-    if (ringbuffer_getAvailableWrite (x->x_buffer) >= n) { ringbuffer_write (x->x_buffer, in, n); }
+    if (fifo32_getAvailableWrite (x->x_fifo) >= n) { fifo32_write (x->x_fifo, in, n); }
     
     atomic_int32Decrement (&x->x_count);
     //
@@ -122,8 +122,8 @@ static void *print_tilde_new (t_symbol *s)
 {
     t_print_tilde *x = (t_print_tilde *)pd_new (print_tilde_class);
     
-    x->x_buffer = ringbuffer_new (sizeof (t_sample), 4096);
-    x->x_name   = (s != &s_ ? s : sym_print__tilde__);
+    x->x_fifo = fifo32_new();
+    x->x_name = (s != &s_ ? s : sym_print__tilde__);
     
     instance_pollingRegister (cast_pd (x));
     
@@ -145,7 +145,7 @@ static void print_tilde_free (t_print_tilde *x)
 {
     print_tilde_dismiss (x);
     
-    ringbuffer_free (x->x_buffer);
+    fifo32_free (x->x_fifo);
 }
 
 // -----------------------------------------------------------------------------------------------------------
