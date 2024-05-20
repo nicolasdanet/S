@@ -29,8 +29,8 @@ static jack_client_t        *jack_client;                                       
 static jack_port_t          *jack_portsIn[DEVICES_MAXIMUM_CHANNELS];            /* Static. */
 static jack_port_t          *jack_portsOut[DEVICES_MAXIMUM_CHANNELS];           /* Static. */
 
-static t_ringbuffer         *jack_ringIn[DEVICES_MAXIMUM_CHANNELS];             /* Static. */
-static t_ringbuffer         *jack_ringOut[DEVICES_MAXIMUM_CHANNELS];            /* Static. */
+static t_fifo32             *jack_ringIn[DEVICES_MAXIMUM_CHANNELS];             /* Static. */
+static t_fifo32             *jack_ringOut[DEVICES_MAXIMUM_CHANNELS];            /* Static. */
 
 static int                  jack_cvOut[DEVICES_MAXIMUM_CHANNELS];               /* Static. */
 
@@ -138,8 +138,8 @@ static void jack_buffersFree (void)
     int i;
 
     for (i = 0; i < DEVICES_MAXIMUM_CHANNELS; i++) {
-        if (jack_ringIn[i])  { ringbuffer_free (jack_ringIn[i]);  jack_ringIn[i]  = NULL; }
-        if (jack_ringOut[i]) { ringbuffer_free (jack_ringOut[i]); jack_ringOut[i] = NULL; }
+        if (jack_ringIn[i])  { fifo32_free (jack_ringIn[i]);  jack_ringIn[i]  = NULL; }
+        if (jack_ringOut[i]) { fifo32_free (jack_ringOut[i]); jack_ringOut[i] = NULL; }
     }
 }
 
@@ -149,13 +149,8 @@ static void jack_buffersAllocate (int numberOfChannelsIn, int numberOfChannelsOu
 
     jack_buffersFree();
 
-    for (i = 0; i < numberOfChannelsIn;  i++) {
-        jack_ringIn[i]  = ringbuffer_new (sizeof (t_sample), 8192);
-    }
-    
-    for (i = 0; i < numberOfChannelsOut; i++) {
-        jack_ringOut[i] = ringbuffer_new (sizeof (t_sample), 8192);
-    }
+    for (i = 0; i < numberOfChannelsIn;  i++) { jack_ringIn[i]  = fifo32_new(); }
+    for (i = 0; i < numberOfChannelsOut; i++) { jack_ringOut[i] = fifo32_new(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -174,7 +169,7 @@ static int jack_pollCallback (jack_nframes_t framesCount, void *dummy)
 
     for (i = 0; i < jack_numberOfPortsOut; i++) {
     //
-    if (ringbuffer_getAvailableRead (jack_ringOut[i]) < (int32_t)framesCount) { readable = 0; break; }
+    if (fifo32_getAvailableRead (jack_ringOut[i]) < (int)framesCount) { readable = 0; break; }
     //
     }
 
@@ -183,7 +178,7 @@ static int jack_pollCallback (jack_nframes_t framesCount, void *dummy)
     void *t = jack_port_get_buffer (jack_portsOut[i], framesCount);
 
     if (readable) {
-        ringbuffer_read (jack_ringOut[i], t, framesCount);
+        fifo32_read (jack_ringOut[i], t, framesCount);
         
     } else {
         PD_LOG ("*@*");
@@ -200,7 +195,7 @@ static int jack_pollCallback (jack_nframes_t framesCount, void *dummy)
 
     for (i = 0; i < jack_numberOfPortsIn; i++) {
     //
-    if (ringbuffer_getAvailableWrite (jack_ringIn[i]) < (int32_t)framesCount) { writable = 0; break; }
+    if (fifo32_getAvailableWrite (jack_ringIn[i]) < (int)framesCount) { writable = 0; break; }
     //
     }
 
@@ -208,7 +203,7 @@ static int jack_pollCallback (jack_nframes_t framesCount, void *dummy)
     //
     void *t = jack_port_get_buffer (jack_portsIn[i], framesCount);
 
-    if (writable) { ringbuffer_write (jack_ringIn[i], t, framesCount); }    /* Simply drop if full. */
+    if (writable) { fifo32_write (jack_ringIn[i], t, framesCount); }    /* Simply drop if full. */
     //
     }
     //
@@ -383,7 +378,7 @@ int audio_pollNative (void)
     if (jack_numberOfPortsIn) {
     //
     for (i = 0; i < jack_numberOfPortsIn; i++) {
-        while (ringbuffer_getAvailableRead (jack_ringIn[i]) < INTERNAL_BLOCKSIZE) {
+        while (fifo32_getAvailableRead (jack_ringIn[i]) < INTERNAL_BLOCKSIZE) {
             status = DACS_SLEPT;
             if (needToWait < JACK_GRAIN * 2) {
                 PD_LOG (".");
@@ -398,7 +393,7 @@ int audio_pollNative (void)
     if (jack_numberOfPortsOut) {
     //
     for (i = 0; i < jack_numberOfPortsOut; i++) {
-        while (ringbuffer_getAvailableWrite (jack_ringOut[i]) < INTERNAL_BLOCKSIZE) {
+        while (fifo32_getAvailableWrite (jack_ringOut[i]) < INTERNAL_BLOCKSIZE) {
             status = DACS_SLEPT;
             if (needToWait < JACK_GRAIN * 2) {
                 PD_LOG (":");
@@ -415,7 +410,7 @@ int audio_pollNative (void)
     sound = audio_soundIn;
         
     for (i = 0; i < jack_numberOfPortsIn; i++) {
-        ringbuffer_read (jack_ringIn[i], (void *)sound, INTERNAL_BLOCKSIZE);
+        fifo32_read (jack_ringIn[i], (void *)sound, INTERNAL_BLOCKSIZE);
         sound += INTERNAL_BLOCKSIZE;
     }
     //
@@ -427,7 +422,7 @@ int audio_pollNative (void)
         
     for (i = 0; i < jack_numberOfPortsOut; i++) {
         audio_safe (sound, INTERNAL_BLOCKSIZE, (jack_cvOut[i] == 0));
-        ringbuffer_write (jack_ringOut[i], (const void *)sound, INTERNAL_BLOCKSIZE);
+        fifo32_write (jack_ringOut[i], (const void *)sound, INTERNAL_BLOCKSIZE);
         memset ((void *)sound, 0, INTERNAL_BLOCKSIZE * sizeof (t_sample));                  /* Zeroed. */
         sound += INTERNAL_BLOCKSIZE;
     }
