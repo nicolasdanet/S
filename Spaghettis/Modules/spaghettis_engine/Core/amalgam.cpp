@@ -77,9 +77,6 @@ namespace spaghettis::core {
 #include "core/helpers/m_MT_64.c"
 #include "core/helpers/m_MT_i.c"
 #include "core/helpers/m_ringbuffer.c"
-#include "core/helpers/m_fifo.c"
-#include "core/helpers/m_fifo32.c"
-#include "core/helpers/m_fifo8.c"
 
 #include "core/utils/m_utils.c"
 #include "core/utils/m_symbol.c"
@@ -128,6 +125,9 @@ namespace spaghettis::core {
 #include "system/memory/s_leak.c"
 #include "system/memory/s_atomic.c"
 #include "system/memory/s_trylock.c"
+#include "system/memory/s_fifo.c"
+#include "system/memory/s_fifo8.c"
+#include "system/memory/s_fifo32.c"
 
 #include "system/scheduler/s_monitor.c"
 #include "system/scheduler/s_clock.c"

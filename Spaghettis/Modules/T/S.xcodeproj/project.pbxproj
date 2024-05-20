@@ -36,6 +36,9 @@
 		1737C01B260B46FE009BC28B /* spaghettis_externals.c in Sources */ = {isa = PBXBuildFile; fileRef = 172457E0260A314E008D5035 /* spaghettis_externals.c */; };
 		1737C01D260B4702009BC28B /* spaghettis_space.c in Sources */ = {isa = PBXBuildFile; fileRef = 172457E1260A314E008D5035 /* spaghettis_space.c */; };
 		1739F7451FFCE902004656C4 /* m_ringbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 1739F7431FFCE902004656C4 /* m_ringbuffer.c */; };
+		173C69E12BFB127D00F22518 /* s_fifo32.c in Sources */ = {isa = PBXBuildFile; fileRef = 173C69DB2BFB127D00F22518 /* s_fifo32.c */; };
+		173C69E22BFB127D00F22518 /* s_fifo.c in Sources */ = {isa = PBXBuildFile; fileRef = 173C69DC2BFB127D00F22518 /* s_fifo.c */; };
+		173C69E32BFB127D00F22518 /* s_fifo8.c in Sources */ = {isa = PBXBuildFile; fileRef = 173C69DD2BFB127D00F22518 /* s_fifo8.c */; };
 		174429AE26359F8500AD6E16 /* w_inputs.c in Sources */ = {isa = PBXBuildFile; fileRef = 174429AD26359F8500AD6E16 /* w_inputs.c */; };
 		174429B42635A35800AD6E16 /* w_outputs.c in Sources */ = {isa = PBXBuildFile; fileRef = 174429B32635A35800AD6E16 /* w_outputs.c */; };
 		1749719C23FEC7B400627D27 /* m_legacy.c in Sources */ = {isa = PBXBuildFile; fileRef = 1749719B23FEC7B400627D27 /* m_legacy.c */; };
@@ -95,8 +98,6 @@
 		17B0BDD222A6B3D6004C0C29 /* m_items.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B0BDD122A6B3D6004C0C29 /* m_items.c */; };
 		17B168F822672256009EDB39 /* m_pending.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B168F722672256009EDB39 /* m_pending.c */; };
 		17B52BE52142B3DB0002F71A /* m_register.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B52BE42142B3DB0002F71A /* m_register.c */; };
-		17B7993D2BF4931300F41A6B /* m_fifo8.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B7993C2BF4931300F41A6B /* m_fifo8.c */; };
-		17B799402BF5CD9200F41A6B /* m_fifo.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B7993F2BF5CD9200F41A6B /* m_fifo.c */; };
 		17B7B838232F72B8005CC7CA /* core_midiclient.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B837232F72B8005CC7CA /* core_midiclient.c */; };
 		17B7C281213BD2ED0095D248 /* m_undoduplicate.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B7C280213BD2ED0095D248 /* m_undoduplicate.c */; };
 		17B7D13D2AD51D460067BBE9 /* g_gui.c in Sources */ = {isa = PBXBuildFile; fileRef = 17B7D13C2AD51D460067BBE9 /* g_gui.c */; };
@@ -131,7 +132,6 @@
 		17C9FE321FE00B7A007066EC /* m_MT_32.c in Sources */ = {isa = PBXBuildFile; fileRef = 17C9FE291FE00B79007066EC /* m_MT_32.c */; };
 		17C9FE341FE00B7A007066EC /* s_time.c in Sources */ = {isa = PBXBuildFile; fileRef = 17C9FE2D1FE00B79007066EC /* s_time.c */; };
 		17CA4D7324604F5C00612FA6 /* x_receiver.c in Sources */ = {isa = PBXBuildFile; fileRef = 17CA4D7224604F5C00612FA6 /* x_receiver.c */; };
-		17CD936E2BEDF93800DEE884 /* m_fifo32.c in Sources */ = {isa = PBXBuildFile; fileRef = 17CD936D2BEDF93800DEE884 /* m_fifo32.c */; };
 		17CDFA0E244C8EC000080DD7 /* g_base.c in Sources */ = {isa = PBXBuildFile; fileRef = 17CDFA0D244C8EC000080DD7 /* g_base.c */; };
 		17D442A12294467200E1ACAF /* x_listreverse.c in Sources */ = {isa = PBXBuildFile; fileRef = 17D442A02294467200E1ACAF /* x_listreverse.c */; };
 		17D74F3A2132E01A00D12F8B /* m_undodeencapsulate.c in Sources */ = {isa = PBXBuildFile; fileRef = 17D74F382132E01A00D12F8B /* m_undodeencapsulate.c */; };
@@ -447,6 +447,12 @@
 		17398460243B136A009D822B /* m_register.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_register.h; sourceTree = "<group>"; };
 		1739F7431FFCE902004656C4 /* m_ringbuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_ringbuffer.c; sourceTree = "<group>"; };
 		1739F7441FFCE902004656C4 /* m_ringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_ringbuffer.h; sourceTree = "<group>"; };
+		173C69DB2BFB127D00F22518 /* s_fifo32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_fifo32.c; sourceTree = "<group>"; };
+		173C69DC2BFB127D00F22518 /* s_fifo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_fifo.c; sourceTree = "<group>"; };
+		173C69DD2BFB127D00F22518 /* s_fifo8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_fifo8.c; sourceTree = "<group>"; };
+		173C69DE2BFB127D00F22518 /* s_fifo32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_fifo32.h; sourceTree = "<group>"; };
+		173C69DF2BFB127D00F22518 /* s_fifo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_fifo.h; sourceTree = "<group>"; };
+		173C69E02BFB127D00F22518 /* s_fifo8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_fifo8.h; sourceTree = "<group>"; };
 		173C807121908E230008BE10 /* d_sigmund.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_sigmund.c; sourceTree = "<group>"; };
 		173F7A7D2607896300ED0B78 /* m_includes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_includes.h; sourceTree = "<group>"; };
 		174429AC26359F8500AD6E16 /* w_inputs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = w_inputs.h; sourceTree = "<group>"; };
@@ -538,10 +544,6 @@
 		17B0BDD122A6B3D6004C0C29 /* m_items.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_items.c; sourceTree = "<group>"; };
 		17B168F722672256009EDB39 /* m_pending.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_pending.c; sourceTree = "<group>"; };
 		17B52BE42142B3DB0002F71A /* m_register.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_register.c; sourceTree = "<group>"; };
-		17B7993B2BF4931300F41A6B /* m_fifo8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_fifo8.h; sourceTree = "<group>"; };
-		17B7993C2BF4931300F41A6B /* m_fifo8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_fifo8.c; sourceTree = "<group>"; };
-		17B7993E2BF5CC4700F41A6B /* m_fifo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_fifo.h; sourceTree = "<group>"; };
-		17B7993F2BF5CD9200F41A6B /* m_fifo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_fifo.c; sourceTree = "<group>"; };
 		17B7B837232F72B8005CC7CA /* core_midiclient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = core_midiclient.c; sourceTree = "<group>"; };
 		17B7C280213BD2ED0095D248 /* m_undoduplicate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_undoduplicate.c; sourceTree = "<group>"; };
 		17B7D13B2AD3CE000067BBE9 /* g_gui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = g_gui.h; sourceTree = "<group>"; };
@@ -591,8 +593,6 @@
 		17C9FE2D1FE00B79007066EC /* s_time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_time.c; sourceTree = "<group>"; };
 		17CA4D7124604F5400612FA6 /* x_receiver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = x_receiver.h; sourceTree = "<group>"; };
 		17CA4D7224604F5C00612FA6 /* x_receiver.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_receiver.c; sourceTree = "<group>"; };
-		17CD936C2BEDF93800DEE884 /* m_fifo32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_fifo32.h; sourceTree = "<group>"; };
-		17CD936D2BEDF93800DEE884 /* m_fifo32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_fifo32.c; sourceTree = "<group>"; };
 		17CDFA0D244C8EC000080DD7 /* g_base.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = g_base.c; sourceTree = "<group>"; };
 		17D223DB2260844600DDB6F0 /* x_unop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = x_unop.h; sourceTree = "<group>"; };
 		17D442A02294467200E1ACAF /* x_listreverse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_listreverse.c; sourceTree = "<group>"; };
@@ -1052,10 +1052,16 @@
 				1726300A2487DC0600803F0F /* s_memory.h */,
 				17C9FE1F1FE00B78007066EC /* s_atomic.h */,
 				17031D3225F6098400248AAB /* s_trylock.h */,
+				173C69DF2BFB127D00F22518 /* s_fifo.h */,
+				173C69E02BFB127D00F22518 /* s_fifo8.h */,
+				173C69DE2BFB127D00F22518 /* s_fifo32.h */,
 				378971DE1C4F716700263434 /* s_memory.c */,
 				37D4D9AB1E3C7B33002CE930 /* s_leak.c */,
 				17C9FE1C1FE00B78007066EC /* s_atomic.c */,
 				1757041D2754B2310061CAA9 /* s_trylock.c */,
+				173C69DC2BFB127D00F22518 /* s_fifo.c */,
+				173C69DD2BFB127D00F22518 /* s_fifo8.c */,
+				173C69DB2BFB127D00F22518 /* s_fifo32.c */,
 			);
 			path = memory;
 			sourceTree = "<group>";
@@ -1254,9 +1260,6 @@
 				17C9FE261FE00B79007066EC /* m_MT_32.h */,
 				17C9FE201FE00B78007066EC /* m_MT_64.h */,
 				1739F7441FFCE902004656C4 /* m_ringbuffer.h */,
-				17B7993E2BF5CC4700F41A6B /* m_fifo.h */,
-				17CD936C2BEDF93800DEE884 /* m_fifo32.h */,
-				17B7993B2BF4931300F41A6B /* m_fifo8.h */,
 				374449391D66154D00E54A0D /* m_rectangle.c */,
 				172ACDD92439D2B7008F56DE /* m_fileproperties.c */,
 				3716C79C1D6335C400022709 /* m_iterator.c */,
@@ -1268,9 +1271,6 @@
 				17C9FE221FE00B78007066EC /* m_MT_64.c */,
 				1799FC252BEA06F5008CC680 /* m_MT_i.c */,
 				1739F7431FFCE902004656C4 /* m_ringbuffer.c */,
-				17B7993F2BF5CD9200F41A6B /* m_fifo.c */,
-				17CD936D2BEDF93800DEE884 /* m_fifo32.c */,
-				17B7993C2BF4931300F41A6B /* m_fifo8.c */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -2120,7 +2120,6 @@
 				375149D71D86E243005679B0 /* x_arrayget.c in Sources */,
 				37514A0B1D86E38F005679B0 /* x_arraysum.c in Sources */,
 				179453A6233B509400050581 /* x_midisystemout.c in Sources */,
-				17B7993D2BF4931300F41A6B /* m_fifo8.c in Sources */,
 				37514A411D86E4DF005679B0 /* x_arraysize.c in Sources */,
 				17AE9226261C9791001B0FB6 /* m_snippet.c in Sources */,
 				179453A5233B509400050581 /* x_midisystemin.c in Sources */,
@@ -2165,7 +2164,6 @@
 				1723FBCE2302F23600C0F975 /* core_audiodevice.c in Sources */,
 				374907A41D9A433A00377F1E /* x_select.c in Sources */,
 				17AC13952295768D00D5B1EA /* x_listscramble.c in Sources */,
-				17B799402BF5CD9200F41A6B /* m_fifo.c in Sources */,
 				37CD71031D9A99E500A61BD3 /* x_receive.c in Sources */,
 				37CD71191D9A9AAB00A61BD3 /* x_send.c in Sources */,
 				1702601E2476BB5F00A29222 /* g_line.c in Sources */,
@@ -2187,6 +2185,7 @@
 				37C5230A1DBB4B58008753D1 /* x_polytouchout.c in Sources */,
 				37C523111DBB4C0D008753D1 /* x_touchout.c in Sources */,
 				37C523291DBB4CA7008753D1 /* x_bendout.c in Sources */,
+				173C69E22BFB127D00F22518 /* s_fifo.c in Sources */,
 				37C5234C1DBB4D44008753D1 /* x_pgmout.c in Sources */,
 				37C5236B1DBB4DFC008753D1 /* x_ctlout.c in Sources */,
 				17C9FE311FE00B7A007066EC /* m_MT.c in Sources */,
@@ -2228,6 +2227,7 @@
 				3741A8BF1DE8196E00B32300 /* d_noise.c in Sources */,
 				3741A8EB1DE845EA00B32300 /* d_vcf.c in Sources */,
 				17AB565F21A6B4D600861B31 /* d_sigmund.c in Sources */,
+				173C69E12BFB127D00F22518 /* s_fifo32.c in Sources */,
 				3741A94D1DE849A600B32300 /* d_phasor.c in Sources */,
 				17FE1AA522969BC10002CCA5 /* x_listchange.c in Sources */,
 				3741A97E1DE84AF700B32300 /* d_cos.c in Sources */,
@@ -2275,7 +2275,6 @@
 				3762D2BD1E051E2700385DB9 /* d_writesf.c in Sources */,
 				3762D2FD1E05308C00385DB9 /* d_readsf.c in Sources */,
 				1764393A1FCEEE0800D771E7 /* d_less.c in Sources */,
-				17CD936E2BEDF93800DEE884 /* m_fifo32.c in Sources */,
 				3762D32E1E0531D900385DB9 /* d_soundfiler.c in Sources */,
 				37C470581E0FC3B300E0F726 /* d_codec.c in Sources */,
 				17C02C082015EDDC00C7EDEE /* d_vperform.c in Sources */,
@@ -2300,6 +2299,7 @@
 				17AC139722958D8300D5B1EA /* x_listsort.c in Sources */,
 				17C9FE341FE00B7A007066EC /* s_time.c in Sources */,
 				375252F21E23CCD700863F79 /* d_biquad.c in Sources */,
+				173C69E32BFB127D00F22518 /* s_fifo8.c in Sources */,
 				17EED58E2B98403800EFB3F5 /* m_view.c in Sources */,
 				375252FC1E23CD8E00863F79 /* d_bp.c in Sources */,
 				17C9CEC81FCD57740089E9D2 /* d_rmag.c in Sources */,
