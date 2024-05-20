@@ -32,8 +32,8 @@ static void midiport_inputProceedSysex (t_midiport *midiport, MIDIPacket *packet
     int32_t size = packet->length;
     Byte *data   = packet->data;
     
-    if (size && ringbuffer_getAvailableWrite (midiport->mp_bufferSysex) >= size) {
-        ringbuffer_write (midiport->mp_bufferSysex, data, size);
+    if (size && fifo8_getAvailableWrite (midiport->mp_bufferSysex) >= size) {
+        fifo8_write (midiport->mp_bufferSysex, data, size);
     } else {
         PD_ABORT (1);   /* Do something less disruptive? */
     }
@@ -121,7 +121,7 @@ t_error midiport_openInput (t_midiport *midiport, t_symbol *name)
     if (!err) {
         midiport->mp_hasConnect  = 1;
         midiport->mp_buffer      = fifo32_new();
-        midiport->mp_bufferSysex = ringbuffer_new (sizeof (Byte),     (65536 * 2));
+        midiport->mp_bufferSysex = fifo8_new();
     }
     //
     }
@@ -165,7 +165,7 @@ t_error midiport_openOutput (t_midiport *midiport, t_symbol *name)
 
 void midiport_close (t_midiport *midiport)
 {
-    if (midiport->mp_bufferSysex) { ringbuffer_free (midiport->mp_bufferSysex); }
+    if (midiport->mp_bufferSysex) { fifo8_free  (midiport->mp_bufferSysex); }
     if (midiport->mp_buffer)      { fifo32_free (midiport->mp_buffer); }
     if (midiport->mp_hasConnect)  {
     //
@@ -245,9 +245,9 @@ static void midiport_pollProceedSysex (t_midiport *midiport, int port)
 {
     if (midiport->mp_bufferSysex) {
     //
-    while (ringbuffer_getAvailableRead (midiport->mp_bufferSysex) > 0) {
+    while (fifo8_getAvailableRead (midiport->mp_bufferSysex) > 0) {
     //
-    Byte byte = 0; ringbuffer_read (midiport->mp_bufferSysex, &byte, 1);
+    Byte byte = 0; fifo8_read (midiport->mp_bufferSysex, &byte, 1);
     
     midi_receiveSysex (port, byte);
     //
