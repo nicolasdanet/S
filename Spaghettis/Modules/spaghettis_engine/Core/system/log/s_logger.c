@@ -22,7 +22,7 @@ extern t_symbol *main_directorySupport;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-t_ringbuffer                    *logger_ring;                   /* Static. */
+t_fifo8                         *logger_ring;                   /* Static. */
 
 static int                      logger_file;                    /* Static. */
 static pthread_t                logger_thread;                  /* Static. */
@@ -48,11 +48,11 @@ static void *logger_task (void *dummy)
     
     {
         char t[LOGGER_CHUNK + 1] = { 0 };
-        int32_t size;
+        int size;
     
-        while ((size = ringbuffer_getAvailableRead (logger_ring)) > 0) {
-            int32_t k = PD_MIN (LOGGER_CHUNK, size);
-            ringbuffer_read (logger_ring, t, k);
+        while ((size = fifo8_getAvailableRead (logger_ring)) > 0) {
+            int k = PD_MIN (LOGGER_CHUNK, size);
+            fifo8_read (logger_ring, t, k);
             t[k] = '\n';
             { ssize_t w = write (logger_file, t, k + 1); (void)w; }     /* Avoid unused return warning. */
         }
@@ -74,11 +74,11 @@ t_error logger_initialize (void)
     
     if (!err && (logger_file = mkstemp (t)) != -1) {
     //
-    logger_ring = ringbuffer_new (1, 65536);
+    logger_ring = fifo8_new();
     
     if (!(err = (pthread_create (&logger_thread, NULL, logger_task, NULL) != 0))) { }
     else {
-        ringbuffer_free (logger_ring); close (logger_file);
+        fifo8_free (logger_ring); close (logger_file);
     }
 
     return err;
@@ -94,7 +94,7 @@ void logger_release (void)
     
     pthread_join (logger_thread, NULL);
     
-    ringbuffer_free (logger_ring); close (logger_file);
+    fifo8_free (logger_ring); close (logger_file);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ void logger_release (void)
 
 void logger_appendString (const char *s)
 {
-    ringbuffer_write (logger_ring, s, (int32_t)strlen (s));
+    fifo8_write (logger_ring, s, (int)strlen (s));
 }
 
 void logger_appendFloat (double f)
