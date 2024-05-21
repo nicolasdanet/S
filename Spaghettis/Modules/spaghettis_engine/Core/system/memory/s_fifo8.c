@@ -21,12 +21,12 @@
 
 t_fifo8 *fifo8_new (void)
 {
-    return fifo_shared_new (FIFO8_SIZE, FIFO8_BYTES);
+    return (t_fifo8 *)fifo_shared_new (FIFO8_SIZE, FIFO8_BYTES);
 }
 
 void fifo8_free (t_fifo8 *x)
 {
-    fifo_shared_free (x);
+    fifo_shared_free ((t_fifo *)x);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -35,12 +35,12 @@ void fifo8_free (t_fifo8 *x)
 
 int fifo8_getAvailableRead (t_fifo8 *x)
 {
-    return fifo_shared_getAvailableRead (x);
+    return fifo_shared_getAvailableRead ((t_fifo *)x);
 }
 
 int fifo8_getAvailableWrite (t_fifo8 *x)
 {
-    return fifo_shared_getAvailableWrite (x, FIFO8_SIZE);
+    return fifo_shared_getAvailableWrite ((t_fifo *)x, FIFO8_SIZE);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -49,12 +49,12 @@ int fifo8_getAvailableWrite (t_fifo8 *x)
 
 int fifo8_write (t_fifo8 *x, const void *data, int n)
 {
-    return fifo_shared_write (x, FIFO8_SIZE, FIFO8_BYTES, data, n);
+    return fifo_shared_write ((t_fifo *)x, FIFO8_SIZE, FIFO8_BYTES, data, n);
 }
 
 int fifo8_read (t_fifo8 *x, void *data, int n)
 {
-    return fifo_shared_read (x, FIFO8_SIZE, FIFO8_BYTES, data, n);
+    return fifo_shared_read ((t_fifo *)x, FIFO8_SIZE, FIFO8_BYTES, data, n);
 }
 
 // -----------------------------------------------------------------------------------------------------------
