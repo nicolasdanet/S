@@ -154,7 +154,7 @@ typedef struct _sigmund_tilde {
     int                 x_cache3Size;
     t_FFTState          x_state;
     t_variableout       x_outlets[SIGMUND_OUTLETS];
-    t_fifo32            *x_ringbuffer;
+    t_fifo32            *x_fifo;
     t_notefinder        *x_finder;
     t_peak              *x_peaks;
     t_peak              *x_tracks;
@@ -888,11 +888,11 @@ static void sigmund_tilde_task (t_sigmund_tilde *x)
 {
     if (!x->x_dismissed) {
     //
-    int available = fifo32_getAvailableRead (x->x_ringbuffer);
+    int available = fifo32_getAvailableRead (x->x_fifo);
     
     while (available-- > 0) {
     //
-    t_sample t; fifo32_read (x->x_ringbuffer, &t, 1);
+    t_sample t; fifo32_read (x->x_fifo, &t, 1);
     
     if (x->x_count > 0) { x->x_count--; }
     else {
@@ -918,7 +918,7 @@ static t_int *sigmund_tilde_perform (t_int *w)
     PD_RESTRICTED in   = (t_sample *)(w[2]);
     int n = (int)(w[3]);
 
-    if (fifo32_getAvailableWrite (x->x_ringbuffer) >= n) { fifo32_write (x->x_ringbuffer, in, n); }
+    if (fifo32_getAvailableWrite (x->x_fifo) >= n) { fifo32_write (x->x_fifo, in, n); }
 
     clock_delay (x->x_clock, 0.0);
     
@@ -1190,15 +1190,15 @@ static void *sigmund_tilde_new (t_symbol *s, int argc, t_atom *argv)
     PD_ASSERT (PD_IS_POWER_2 (x->x_hop));
     PD_ASSERT (PD_IS_POWER_2 (x->x_points));
     
-    x->x_ringbuffer = fifo32_new();
-    x->x_finder     = (t_notefinder *)PD_MEMORY_GET (sizeof (t_notefinder));
-    x->x_peaks      = (t_peak *)PD_MEMORY_GET (x->x_numberOfPeaks * sizeof (t_peak));
-    x->x_tracks     = (t_peak *)PD_MEMORY_GET (x->x_numberOfPeaks * sizeof (t_peak));
-    x->x_cache1     = (t_float *)PD_MEMORY_GET (0);
-    x->x_cache2     = (t_float *)PD_MEMORY_GET (0);
-    x->x_cache3     = (t_float *)PD_MEMORY_GET (0);
-    x->x_buffer     = (t_float *)PD_MEMORY_GET (x->x_points * sizeof (t_float));
-    x->x_clock      = clock_new ((void *)x, (t_method)sigmund_tilde_task);
+    x->x_fifo   = fifo32_new();
+    x->x_finder = (t_notefinder *)PD_MEMORY_GET (sizeof (t_notefinder));
+    x->x_peaks  = (t_peak *)PD_MEMORY_GET (x->x_numberOfPeaks * sizeof (t_peak));
+    x->x_tracks = (t_peak *)PD_MEMORY_GET (x->x_numberOfPeaks * sizeof (t_peak));
+    x->x_cache1 = (t_float *)PD_MEMORY_GET (0);
+    x->x_cache2 = (t_float *)PD_MEMORY_GET (0);
+    x->x_cache3 = (t_float *)PD_MEMORY_GET (0);
+    x->x_buffer = (t_float *)PD_MEMORY_GET (x->x_points * sizeof (t_float));
+    x->x_clock  = clock_new ((void *)x, (t_method)sigmund_tilde_task);
     
     return x;
 }
@@ -1217,7 +1217,7 @@ static void sigmund_tilde_free (t_sigmund_tilde *x)
     PD_MEMORY_FREE (x->x_peaks);
     PD_MEMORY_FREE (x->x_finder);
     
-    fifo32_free (x->x_ringbuffer);
+    fifo32_free (x->x_fifo);
 }
 
 // -----------------------------------------------------------------------------------------------------------

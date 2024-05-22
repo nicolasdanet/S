@@ -35,7 +35,6 @@
 		173493FC2254B2AF00F6A387 /* m_identifiers.c in Sources */ = {isa = PBXBuildFile; fileRef = 173493FB2254B2AF00F6A387 /* m_identifiers.c */; };
 		1737C01B260B46FE009BC28B /* spaghettis_externals.c in Sources */ = {isa = PBXBuildFile; fileRef = 172457E0260A314E008D5035 /* spaghettis_externals.c */; };
 		1737C01D260B4702009BC28B /* spaghettis_space.c in Sources */ = {isa = PBXBuildFile; fileRef = 172457E1260A314E008D5035 /* spaghettis_space.c */; };
-		1739F7451FFCE902004656C4 /* m_ringbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 1739F7431FFCE902004656C4 /* m_ringbuffer.c */; };
 		173C69E12BFB127D00F22518 /* s_fifo32.c in Sources */ = {isa = PBXBuildFile; fileRef = 173C69DB2BFB127D00F22518 /* s_fifo32.c */; };
 		173C69E22BFB127D00F22518 /* s_fifo.c in Sources */ = {isa = PBXBuildFile; fileRef = 173C69DC2BFB127D00F22518 /* s_fifo.c */; };
 		173C69E32BFB127D00F22518 /* s_fifo8.c in Sources */ = {isa = PBXBuildFile; fileRef = 173C69DD2BFB127D00F22518 /* s_fifo8.c */; };
@@ -446,8 +445,6 @@
 		17304EBC1F77DA3E00DCA7EC /* x_dspstatus.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_dspstatus.c; sourceTree = "<group>"; };
 		173493FB2254B2AF00F6A387 /* m_identifiers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_identifiers.c; sourceTree = "<group>"; };
 		17398460243B136A009D822B /* m_register.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_register.h; sourceTree = "<group>"; };
-		1739F7431FFCE902004656C4 /* m_ringbuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_ringbuffer.c; sourceTree = "<group>"; };
-		1739F7441FFCE902004656C4 /* m_ringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_ringbuffer.h; sourceTree = "<group>"; };
 		173C69DB2BFB127D00F22518 /* s_fifo32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_fifo32.c; sourceTree = "<group>"; };
 		173C69DC2BFB127D00F22518 /* s_fifo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_fifo.c; sourceTree = "<group>"; };
 		173C69DD2BFB127D00F22518 /* s_fifo8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_fifo8.c; sourceTree = "<group>"; };
@@ -1264,7 +1261,6 @@
 				17C9FE231FE00B78007066EC /* m_MT.h */,
 				17C9FE261FE00B79007066EC /* m_MT_32.h */,
 				17C9FE201FE00B78007066EC /* m_MT_64.h */,
-				1739F7441FFCE902004656C4 /* m_ringbuffer.h */,
 				374449391D66154D00E54A0D /* m_rectangle.c */,
 				172ACDD92439D2B7008F56DE /* m_fileproperties.c */,
 				3716C79C1D6335C400022709 /* m_iterator.c */,
@@ -1275,7 +1271,6 @@
 				17C9FE291FE00B79007066EC /* m_MT_32.c */,
 				17C9FE221FE00B78007066EC /* m_MT_64.c */,
 				1799FC252BEA06F5008CC680 /* m_MT_i.c */,
-				1739F7431FFCE902004656C4 /* m_ringbuffer.c */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -2092,7 +2087,6 @@
 				3716C79D1D6335C400022709 /* m_iterator.c in Sources */,
 				3744481A1D66000B00E54A0D /* m_math.c in Sources */,
 				3744493A1D66154D00E54A0D /* m_rectangle.c in Sources */,
-				1739F7451FFCE902004656C4 /* m_ringbuffer.c in Sources */,
 				1799FC262BEA06F5008CC680 /* m_MT_i.c in Sources */,
 				17B7F44B232E2F69009601CB /* core_midiname.c in Sources */,
 				1765EEDC23C4776D009D969C /* s_metadata.c in Sources */,
