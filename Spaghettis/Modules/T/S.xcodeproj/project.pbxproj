@@ -39,6 +39,7 @@
 		173C69E12BFB127D00F22518 /* s_fifo32.c in Sources */ = {isa = PBXBuildFile; fileRef = 173C69DB2BFB127D00F22518 /* s_fifo32.c */; };
 		173C69E22BFB127D00F22518 /* s_fifo.c in Sources */ = {isa = PBXBuildFile; fileRef = 173C69DC2BFB127D00F22518 /* s_fifo.c */; };
 		173C69E32BFB127D00F22518 /* s_fifo8.c in Sources */ = {isa = PBXBuildFile; fileRef = 173C69DD2BFB127D00F22518 /* s_fifo8.c */; };
+		173C69E62BFC71D500F22518 /* s_ring.c in Sources */ = {isa = PBXBuildFile; fileRef = 173C69E42BFC71D500F22518 /* s_ring.c */; };
 		174429AE26359F8500AD6E16 /* w_inputs.c in Sources */ = {isa = PBXBuildFile; fileRef = 174429AD26359F8500AD6E16 /* w_inputs.c */; };
 		174429B42635A35800AD6E16 /* w_outputs.c in Sources */ = {isa = PBXBuildFile; fileRef = 174429B32635A35800AD6E16 /* w_outputs.c */; };
 		1749719C23FEC7B400627D27 /* m_legacy.c in Sources */ = {isa = PBXBuildFile; fileRef = 1749719B23FEC7B400627D27 /* m_legacy.c */; };
@@ -453,6 +454,8 @@
 		173C69DE2BFB127D00F22518 /* s_fifo32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_fifo32.h; sourceTree = "<group>"; };
 		173C69DF2BFB127D00F22518 /* s_fifo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_fifo.h; sourceTree = "<group>"; };
 		173C69E02BFB127D00F22518 /* s_fifo8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_fifo8.h; sourceTree = "<group>"; };
+		173C69E42BFC71D500F22518 /* s_ring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_ring.c; sourceTree = "<group>"; };
+		173C69E52BFC71D500F22518 /* s_ring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_ring.h; sourceTree = "<group>"; };
 		173C807121908E230008BE10 /* d_sigmund.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_sigmund.c; sourceTree = "<group>"; };
 		173F7A7D2607896300ED0B78 /* m_includes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_includes.h; sourceTree = "<group>"; };
 		174429AC26359F8500AD6E16 /* w_inputs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = w_inputs.h; sourceTree = "<group>"; };
@@ -1053,6 +1056,7 @@
 				17C9FE1F1FE00B78007066EC /* s_atomic.h */,
 				17031D3225F6098400248AAB /* s_trylock.h */,
 				173C69DF2BFB127D00F22518 /* s_fifo.h */,
+				173C69E52BFC71D500F22518 /* s_ring.h */,
 				173C69E02BFB127D00F22518 /* s_fifo8.h */,
 				173C69DE2BFB127D00F22518 /* s_fifo32.h */,
 				378971DE1C4F716700263434 /* s_memory.c */,
@@ -1060,6 +1064,7 @@
 				17C9FE1C1FE00B78007066EC /* s_atomic.c */,
 				1757041D2754B2310061CAA9 /* s_trylock.c */,
 				173C69DC2BFB127D00F22518 /* s_fifo.c */,
+				173C69E42BFC71D500F22518 /* s_ring.c */,
 				173C69DD2BFB127D00F22518 /* s_fifo8.c */,
 				173C69DB2BFB127D00F22518 /* s_fifo32.c */,
 			);
@@ -2057,6 +2062,7 @@
 				17D74F3A2132E01A00D12F8B /* m_undodeencapsulate.c in Sources */,
 				172EF5A92477B3AA00166A96 /* g_undo.c in Sources */,
 				370939461CC92BF300827F75 /* g_glist.c in Sources */,
+				173C69E62BFC71D500F22518 /* s_ring.c in Sources */,
 				379920481CD2649B00750527 /* g_arrange.c in Sources */,
 				3791F2E21CDF064000F7481C /* m_symbols.c in Sources */,
 				17E9CE3F238A7CDA00751166 /* s_denormal.c in Sources */,

@@ -128,6 +128,7 @@ namespace spaghettis::core {
 #include "system/memory/s_fifo.c"
 #include "system/memory/s_fifo8.c"
 #include "system/memory/s_fifo32.c"
+#include "system/memory/s_ring.c"
 
 #include "system/scheduler/s_monitor.c"
 #include "system/scheduler/s_clock.c"

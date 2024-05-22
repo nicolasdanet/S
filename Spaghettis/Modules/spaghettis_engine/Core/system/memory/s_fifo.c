@@ -12,20 +12,35 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void fifo_shared_initialize (t_fifo *x, int size, int bytes)
+{
+    x->f_vector = (char*)PD_MEMORY_GET (size * bytes);
+    x->f_read   = 0;
+    x->f_write  = 0;
+}
+
+void fifo_shared_release (t_fifo *x)
+{
+    PD_MEMORY_FREE (x->f_vector);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 t_fifo *fifo_shared_new (int size, int bytes)
 {
     t_fifo *x  = (t_fifo *)PD_MEMORY_GET (sizeof (t_fifo));
     
-    x->f_vector = (char*)PD_MEMORY_GET (size * bytes);
-    x->f_read   = 0;
-    x->f_write  = 0;
+    fifo_shared_initialize (x, size, bytes);
     
     return x;
 }
 
 void fifo_shared_free (t_fifo *x)
 {
-    PD_MEMORY_FREE (x->f_vector);
+    fifo_shared_release (x);
+    
     PD_MEMORY_FREE (x);
 }
 

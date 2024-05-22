@@ -19,6 +19,7 @@
 #include "system/memory/s_fifo.h"
 #include "system/memory/s_fifo8.h"
 #include "system/memory/s_fifo32.h"
+#include "system/memory/s_ring.h"
 #include "system/scheduler/s_monitor.h"
 #include "system/scheduler/s_clock.h"
 #include "system/scheduler/s_time.h"

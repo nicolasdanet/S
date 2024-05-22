@@ -5,37 +5,62 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-#ifndef S_FIFO_8_H_
-#define S_FIFO_8_H_
+#include "../../m_headers.h"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* A fix-sized basic ring buffer (1 bytes) for a single writer and a single reader. */
+t_ring *ring_new (int size, int bytes)
+{
+    t_ring *x = (t_ring *)PD_MEMORY_GET (sizeof (t_ring));
+    
+    PD_ASSERT (PD_IS_POWER_2 (size));
+    PD_ASSERT (bytes == 1 || bytes == 4);
+    
+    fifo_shared_initialize ((t_fifo *)x, size, bytes);
+    
+    x->f_size  = size;
+    x->f_bytes = bytes;
+    
+    return x;
+}
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-t_fifo8 *fifo8_new (void);
-
-void    fifo8_free (t_fifo8 *x);
+void ring_free (t_ring *x)
+{
+    fifo_shared_release ((t_fifo *)x);
+    
+    PD_MEMORY_FREE (x);
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Functions below could be called concurrently. */
+int ring_getAvailableRead (t_ring *x)
+{
+    return fifo_shared_getAvailableRead ((t_fifo *)x);
+}
 
-/* Usable in DSP. */
-
-int fifo8_getAvailableWrite    (t_fifo8 *x);
-int fifo8_getAvailableRead     (t_fifo8 *x);
-int fifo8_write                (t_fifo8 *x, const void *v, int n);
-int fifo8_read                 (t_fifo8 *x, void *v,       int n);
+int ring_getAvailableWrite (t_ring *x)
+{
+    return fifo_shared_getAvailableWrite ((t_fifo *)x, x->f_size);
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-#endif // S_FIFO_8_H_
+// MARK: -
+
+int ring_write (t_ring *x, const void *data, int n)
+{
+    return fifo_shared_write ((t_fifo *)x, x->f_size, x->f_bytes, data, n);
+}
+
+int ring_read (t_ring *x, void *data, int n)
+{
+    return fifo_shared_read ((t_fifo *)x, x->f_size, x->f_bytes, data, n);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
