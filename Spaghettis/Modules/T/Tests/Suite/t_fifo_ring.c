@@ -95,8 +95,9 @@ TTT_BEGIN (AtomicRing, "Atomic - Ring")
     
     if (ttt_testThreadsLaunch (test_ringThread) != TTT_GOOD) { TTT_FAIL; }
     else {
-        ttt_stdout (TTT_COLOR_BLUE, "W: %d", test_wCounterSucceed);
-        ttt_stdout (TTT_COLOR_BLUE, "R: %d", test_rCounterSucceed);
+        // ttt_stdout (TTT_COLOR_BLUE, "?: %d", (1 << i));
+        // ttt_stdout (TTT_COLOR_BLUE, "W: %d", test_wCounterSucceed);
+        // ttt_stdout (TTT_COLOR_BLUE, "R: %d", test_rCounterSucceed);
         TTT_EXPECT (test_fifoFailed == 0);
     }
     

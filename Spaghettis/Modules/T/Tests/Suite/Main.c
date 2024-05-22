@@ -73,7 +73,7 @@ int test_areEquivalent (t_float a, t_float b)
 #include "t_atomic_float.c"
 #include "t_atomic_pointer.c"
 #include "t_fifo.c"
-#include "t_fifo_ringbuffer.c"
+#include "t_fifo_ring.c"
 #include "t_fifo8.c"
 #include "t_fifo32.c"
 #include "t_fifo_heavy.c"
