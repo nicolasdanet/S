@@ -161,7 +161,7 @@ static t_int *writesf_tilde_perform (t_int *w)
     int numberOfChannels = t->s_size;
     int bytesPerSample   = sfthread_getBytesPerSample (x->sf_thread);
     int bytesPerFrame    = numberOfChannels * bytesPerSample;
-    int32_t required     = bytesPerFrame * n;
+    int required         = bytesPerFrame * n;
     
     if (required < x->sf_bufferSize) {
     //
@@ -175,7 +175,7 @@ static t_int *writesf_tilde_perform (t_int *w)
         (float)1.0);
     
     {
-        int32_t written = ringbuffer_write (sfthread_getBuffer (x->sf_thread), x->sf_cached, required);
+        int written = ring_write (sfthread_getRingBuffer (x->sf_thread), x->sf_cached, required);
         if (written != required) {
             sfthread_setCorrupted (x->sf_thread);
         }

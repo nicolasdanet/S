@@ -181,8 +181,8 @@ static t_int *readsf_tilde_perform (t_int *w)
     int numberOfChannels = sfthread_getNumberOfChannels (x->sf_thread);
     int bytesPerSample   = sfthread_getBytesPerSample (x->sf_thread);
     int bytesPerFrame    = numberOfChannels * bytesPerSample;
-    int32_t required     = bytesPerFrame * n;
-    int32_t loaded       = ringbuffer_read (sfthread_getBuffer (x->sf_thread), x->sf_cached, required);
+    int required         = bytesPerFrame * n;
+    int loaded           = ring_read (sfthread_getRingBuffer (x->sf_thread), x->sf_cached, required);
     
     if (loaded == 0 && sfthread_isEnd (x->sf_thread)) { x->sf_run = 0; isEnd = 1; }
     else {

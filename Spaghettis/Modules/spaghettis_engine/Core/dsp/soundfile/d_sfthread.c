@@ -31,7 +31,7 @@ struct _sfthread {
     pthread_t           sft_thread;
     t_int32Atomic       sft_flag;
     t_int32Atomic       sft_corrupted;
-    t_ringbuffer        *sft_buffer;
+    t_ring              *sft_ring;
     };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -67,13 +67,13 @@ static void *sfthread_readerThread (void *z)
     
     while (!atomic_int32Read (&x->sft_flag)) {
     //
-    while (ringbuffer_getAvailableWrite (x->sft_buffer) > SFTHREAD_CHUNK) {
+    while (ring_getAvailableWrite (x->sft_ring) > SFTHREAD_CHUNK) {
         if (!atomic_int32Read (&x->sft_flag)) {
             char t[SFTHREAD_CHUNK] = { 0 };
             size_t required = PD_MIN (SFTHREAD_CHUNK, x->sft_remainsToRead);
             int bytes = (int)read (x->sft_fileDescriptor, t, required);
             if (bytes > 0) {
-                ringbuffer_write (x->sft_buffer, t, bytes);
+                ring_write (x->sft_ring, t, bytes);
                 x->sft_remainsToRead -= bytes;
             } else {
                 atomic_int32Write (&x->sft_flag, SFTHREAD_QUIT);
@@ -106,10 +106,10 @@ static void *sfthread_writerThread (void *z)
     
     while (1) {
     //
-    while (ringbuffer_getAvailableRead (x->sft_buffer) > 0) {
+    while (ring_getAvailableRead (x->sft_ring) > 0) {
         char t[SFTHREAD_CHUNK] = { 0 };
         int required = PD_MIN (SFTHREAD_CHUNK, x->sft_maximumToWrite - x->sft_alreadyWritten);
-        int loaded   = ringbuffer_read (x->sft_buffer, t, required);
+        int loaded   = ring_read (x->sft_ring, t, required);
         int written  = (int)write (x->sft_fileDescriptor, t, (size_t)loaded);
         
         x->sft_alreadyWritten += written;
@@ -152,9 +152,9 @@ static void *sfthread_writerThread (void *z)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_ringbuffer *sfthread_getBuffer (t_sfthread *x)
+t_ring *sfthread_getRingBuffer (t_sfthread *x)
 {
-    return x->sft_buffer;
+    return x->sft_ring;
 }
 
 int sfthread_getNumberOfChannels (t_sfthread *x)
@@ -197,7 +197,7 @@ t_sfthread *sfthread_new (t_object *owner, int type, int bufferSize, int fd, t_a
     x->sft_owner          = object_getUnique (owner);
     x->sft_type           = type;
     x->sft_fileDescriptor = fd;
-    x->sft_buffer         = ringbuffer_new (1, bufferSize);
+    x->sft_ring           = ring_new (bufferSize, 1);
     
     if (x->sft_type == SFTHREAD_READER) {
     //
@@ -251,7 +251,7 @@ static void sfthread_free (t_sfthread *x)
     //
     }
     
-    ringbuffer_free (x->sft_buffer);
+    ring_free (x->sft_ring);
 }
 
 void sfthread_release (t_sfthread *x)
