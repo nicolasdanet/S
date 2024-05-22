@@ -2,20 +2,20 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_ringbuffer *test_ringbuffer;
+static t_ring *test_ring;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
 static void test_ringWrite()
 {
-    if (ringbuffer_getAvailableWrite (test_ringbuffer) >= TEST_FIFO_CHUNK) {
+    if (ring_getAvailableWrite (test_ring) >= TEST_FIFO_CHUNK) {
     //
     int i; uint64_t data[TEST_FIFO_CHUNK] = { 0 };
     
     for (i = 0; i < TEST_FIFO_CHUNK; i++) { data[i] = PD_RAND48_NEXT (test_fifoValue0); }
     
-    ringbuffer_write (test_ringbuffer, (const void *)data, TEST_FIFO_CHUNK);
+    ring_write (test_ring, (const void *)data, TEST_FIFO_CHUNK);
     
     test_wCounterSucceed++;
     //
@@ -24,11 +24,11 @@ static void test_ringWrite()
 
 static void test_ringRead()
 {
-    if (ringbuffer_getAvailableRead (test_ringbuffer) >= TEST_FIFO_CHUNK) {
+    if (ring_getAvailableRead (test_ring) >= TEST_FIFO_CHUNK) {
     //
     int i; uint64_t data[TEST_FIFO_CHUNK] = { 0 };
     
-    ringbuffer_read (test_ringbuffer, (void *)data, TEST_FIFO_CHUNK);
+    ring_read (test_ring, (void *)data, TEST_FIFO_CHUNK);
     
     for (i = 0; i < TEST_FIFO_CHUNK; i++) {
         test_fifoFailed += (data[i] != PD_RAND48_NEXT (test_fifoValue1));
@@ -86,21 +86,21 @@ TTT_BEGIN (AtomicRing, "Atomic - Ring")
     
     for (i = 0; i < k; i++) {
     //
-    test_ringbuffer       = ringbuffer_new (sizeof (uint64_t), (1 << i));
+    test_ring               = ring_new ((1 << i), sizeof (uint64_t));
     
-    test_fifoValue0           = PD_RAND48_SEED;
-    test_fifoValue1           = test_fifoValue0;
-    test_wCounterSucceed  = 0;
-    test_rCounterSucceed  = 0;
+    test_fifoValue0         = PD_RAND48_SEED;
+    test_fifoValue1         = test_fifoValue0;
+    test_wCounterSucceed    = 0;
+    test_rCounterSucceed    = 0;
     
     if (ttt_testThreadsLaunch (test_ringThread) != TTT_GOOD) { TTT_FAIL; }
     else {
-        // ttt_stdout (TTT_COLOR_BLUE, "W: %d", test_wCounterSucceed);
-        // ttt_stdout (TTT_COLOR_BLUE, "R: %d", test_rCounterSucceed);
+        ttt_stdout (TTT_COLOR_BLUE, "W: %d", test_wCounterSucceed);
+        ttt_stdout (TTT_COLOR_BLUE, "R: %d", test_rCounterSucceed);
         TTT_EXPECT (test_fifoFailed == 0);
     }
     
-    ringbuffer_free (test_ringbuffer);
+    ring_free (test_ring);
     //
     }
     //

@@ -17,7 +17,7 @@ t_ring *ring_new (int size, int bytes)
     t_ring *x = (t_ring *)PD_MEMORY_GET (sizeof (t_ring));
     
     PD_ASSERT (PD_IS_POWER_2 (size));
-    PD_ASSERT (bytes == 1 || bytes == 4);
+    PD_ASSERT (bytes == 1 || bytes == 4 || bytes == 8);
     
     fifo_shared_initialize ((t_fifo *)x, size, bytes);
     
