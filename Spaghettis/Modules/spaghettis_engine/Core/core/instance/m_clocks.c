@@ -30,7 +30,7 @@ struct _clocks {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define CLOCKS_SIZE     65536                   /* Arbitrary. */
+#define CLOCKS_SIZE     65536           /* Arbitrary. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ void clocks_remove (t_clocks *x, t_clock *c)
 {
     if (clock_isSet (c)) {
     //
-    /* Possible there that a clock has just been removed while cached for executing. */
+    /* Possible there that a clock is concurrently removed (while/and cached for executing). */
     /* It doesn't really matter. */
     
     int i;
@@ -129,7 +129,7 @@ void clocks_remove (t_clocks *x, t_clock *c)
 // MARK: -
 
 /* Clocks are temporary stored before to be freed. */
-/* Unset a clock doesn't remove it from the clocks cached while executed. */
+/* Unset a clock doesn't remove it from the cached clocks (while executed). */
 /* Theoritically a clock could trigger deletion of another one already in cached. */
 /* Wait that all clocks have fired before to remove them. */
 
