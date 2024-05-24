@@ -19,7 +19,6 @@
 // MARK: -
 
 struct _clocks {
-    t_int32Atomic       x_maximum;
     int                 x_size;
     t_clock             **x_cache;
     t_pointerAtomic     *x_clocks;
@@ -30,7 +29,7 @@ struct _clocks {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define CLOCKS_SIZE     65536           /* Arbitrary. */
+#define CLOCKS_SIZE     256     /* Arbitrary. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -53,31 +52,6 @@ int clock_isGood (t_clock *);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void clocks_setMaximum (t_clocks *x, int i)
-{
-    int t, n;
-    
-    do {
-    //
-    t = atomic_int32Read (&x->x_maximum);
-    n = PD_MAX (t, i);
-    //
-    } while (!atomic_int32CompareAndSwap (&x->x_maximum, &t, n));
-}
-
-static int clocks_fetchMaximum (t_clocks *x)
-{
-    int t = atomic_int32Read (&x->x_maximum);
-    
-    while (!atomic_int32CompareAndSwap (&x->x_maximum, &t, 0)) { }
-    
-    return t;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void clocks_add (t_clocks *x, t_clock *c)
 {
     t_error err = PD_ERROR;
@@ -90,7 +64,9 @@ void clocks_add (t_clocks *x, t_clock *c)
         
     if (t == NULL) {
         if (atomic_pointerCompareAndSwap (x->x_clocks + i, &t, (void *)c)) {
-            clock_increment (c); clocks_setMaximum (x, i); err = PD_ERROR_NONE; break;
+            clock_increment (c);
+            err = PD_ERROR_NONE;
+            break;
         }
     }
     //
@@ -180,8 +156,6 @@ static void clocks_tickCheck (t_clocks *x, t_systime systime, int i)
             return;
         }
     }
-    
-    clocks_setMaximum (x, i);
     //
     }
 }
@@ -217,11 +191,11 @@ static void clocks_tickExecute (t_clocks *x)
 
 void clocks_tick (t_clocks *x, t_systime systime)
 {
-    int i = clocks_fetchMaximum (x);
+    int i;
     
     x->x_size = 0;
     
-    while (i >= 0) { clocks_tickCheck (x, systime, i); i--; }
+    for (i = 0; i < CLOCKS_SIZE; i++) { clocks_tickCheck (x, systime, i); }
     
     clocks_tickExecute (x); clocks_purge (x);
 }
