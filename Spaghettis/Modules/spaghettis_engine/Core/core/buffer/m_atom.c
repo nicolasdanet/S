@@ -326,9 +326,18 @@ static int atom_sortCompare (const void *p1, const void *p2)
     return 0;
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void atom_qsort (int argc, t_atom *argv, t_cmp f)
+{
+    if (argc) { qsort (argv, argc, sizeof (t_atom), f); }
+}
+
 void atom_sort (int argc, t_atom *argv)
 {
-    if (argc) { qsort (argv, argc, sizeof (t_atom), atom_sortCompare); }
+    atom_qsort (argc, argv, atom_sortCompare);
 }
 
 // -----------------------------------------------------------------------------------------------------------

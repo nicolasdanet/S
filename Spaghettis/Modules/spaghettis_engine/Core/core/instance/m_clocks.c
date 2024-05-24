@@ -19,9 +19,8 @@
 // MARK: -
 
 struct _clocks {
-    int                 x_size;
-    t_clock             **x_cache;
     t_pointerAtomic     *x_clocks;
+    t_buffer            *x_cache;
     t_buffer            *x_garbage;
     };
 
@@ -150,9 +149,11 @@ static void clocks_tickCheck (t_clocks *x, t_systime systime, int i)
     
     if (time <= systime) {
         if (atomic_pointerCompareAndSwap (x->x_clocks + i, &t, (void *)NULL)) {
+            t_atom a;
+            SET_CLOCK (&a, c);
             clock_decrement (c);
             clock_setExecuteTime (c, time);
-            x->x_cache[x->x_size++] = c;
+            buffer_appendAtom (x->x_cache, &a);
             return;
         }
     }
@@ -162,8 +163,10 @@ static void clocks_tickCheck (t_clocks *x, t_systime systime, int i)
 
 static int clocks_tickCompare (const void *p1, const void *p2)
 {
-    t_float t1 = clock_getExecuteTime (*(t_clock **)p1);
-    t_float t2 = clock_getExecuteTime (*(t_clock **)p2);
+    t_clock *c1 = GET_CLOCK ((t_atom *)p1);
+    t_clock *c2 = GET_CLOCK ((t_atom *)p2);
+    t_float t1  = clock_getExecuteTime (c1);
+    t_float t2  = clock_getExecuteTime (c2);
     
     if (t1 > t2) { return 1; } else if (t1 < t2) { return -1; }
     
@@ -172,30 +175,28 @@ static int clocks_tickCompare (const void *p1, const void *p2)
 
 static void clocks_tickExecute (t_clocks *x)
 {
-    if (x->x_size) {
-    //
-    int i;
+    int i, n = buffer_getSize (x->x_cache);
     
-    qsort (x->x_cache, x->x_size, sizeof (t_clock *), clocks_tickCompare);
-    
-    for (i = 0; i < x->x_size; i++) {
+    if (n) {
     //
-    t_clock *c = x->x_cache[i]; x->x_cache[i] = NULL;
+    buffer_qsort (x->x_cache, clocks_tickCompare);
+    
+    for (i = 0; i < n; i++) {
+    //
+    t_clock *c = buffer_getClockAt (x->x_cache, i);
     scheduler_setLogicalTime (clock_getExecuteTime (c));
     clock_execute (c);
     //
     }
+    
+    buffer_clear (x->x_cache);
     //
     }
 }
 
 void clocks_tick (t_clocks *x, t_systime systime)
 {
-    int i;
-    
-    x->x_size = 0;
-    
-    for (i = 0; i < CLOCKS_SIZE; i++) { clocks_tickCheck (x, systime, i); }
+    int i; for (i = 0; i < CLOCKS_SIZE; i++) { clocks_tickCheck (x, systime, i); }
     
     clocks_tickExecute (x); clocks_purge (x);
 }
@@ -208,8 +209,8 @@ t_clocks *clocks_new (void)
 {
     t_clocks *x  = (t_clocks *)PD_MEMORY_GET (sizeof (t_clocks));
     
-    x->x_cache   = (t_clock **)PD_MEMORY_GET (sizeof (t_clock *) * CLOCKS_SIZE);
     x->x_clocks  = (t_pointerAtomic *)PD_MEMORY_GET (sizeof (t_pointerAtomic) * CLOCKS_SIZE);
+    x->x_cache   = buffer_new();
     x->x_garbage = buffer_new();
     
     return x;
@@ -220,9 +221,9 @@ void clocks_free (t_clocks *x)
     clocks_purge (x);
     
     buffer_free (x->x_garbage);
+    buffer_free (x->x_cache);
     
     PD_MEMORY_FREE (x->x_clocks);
-    PD_MEMORY_FREE (x->x_cache);
     
     PD_MEMORY_FREE (x);
 }

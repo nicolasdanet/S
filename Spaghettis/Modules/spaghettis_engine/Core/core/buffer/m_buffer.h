@@ -14,6 +14,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+typedef int (*t_cmp)(const void*, const void*);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void       atom_copyAtom                       (t_atom *src, t_atom *dest);
 void       atom_copyAtoms                      (t_atom *src, int m, t_atom *dest, int n);
 int        atom_copyAtomsExpanded              (t_atom *src, int m, t_atom *dest, int n, t_glist *g);
@@ -25,12 +31,16 @@ int        atom_areEquals                      (t_atom *a, t_atom *b);
 t_error    atom_withStringUnzeroed             (t_atom *a, const char *s, int size);
 t_error    atom_toString                       (t_atom *a, char *dest, int size);
 
+void       atom_qsort                          (int argc, t_atom *argv, t_cmp f);
+
 void       atom_shuffle                        (int argc, t_atom *argv);
 void       atom_sort                           (int argc, t_atom *argv);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+void       buffer_qsort                        (t_buffer *x, t_cmp f);
 
 t_object   *buffer_getObjectAt                 (t_buffer *x, int n);           /* Not checked. */
 t_buffer   *buffer_getBufferAt                 (t_buffer *x, int n);           /* Not checked. */
