@@ -14,7 +14,7 @@
 
 PD_DLL t_clock *spaghettis_clockNew (void *x, t_method fn)
 {
-    return clock_new (x, fn);
+    return clock_newSafe (x, fn);
 }
 
 PD_DLL void spaghettis_clockFree (t_clock *x)

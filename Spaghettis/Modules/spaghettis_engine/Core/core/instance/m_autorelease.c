@@ -58,7 +58,7 @@ static void instance_autoreleaseTask (void *dummy)
 
 void instance_autoreleaseRun (void)
 {
-    instance_get()->pd_autorelease = clock_new ((void *)NULL, (t_method)instance_autoreleaseTask);
+    instance_get()->pd_autorelease = clock_newSingle ((void *)NULL, (t_method)instance_autoreleaseTask);
     clock_delay (instance_get()->pd_autorelease, AUTORELEASE_PERIOD);
 }
 

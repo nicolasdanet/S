@@ -460,7 +460,7 @@ static t_pdinstance *instance_new()
     x->pd_view        = buffer_new();
     x->pd_pool        = buffer_new();
     x->pd_dsp         = dspthread_new();
-    x->pd_stop        = clock_new ((void *)x, (t_method)instance_audioCloseTask);
+    x->pd_stop        = clock_newSafe ((void *)x, (t_method)instance_audioCloseTask);
     x->pd_hasGrid     = 1;
     x->pd_gridSize    = INSTANCE_GRID_DEFAULT;
     

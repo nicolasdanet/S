@@ -147,7 +147,7 @@ static void *bng_new (t_symbol *s, int argc, t_atom *argv)
     gui_updateWidth (cast_gui (x), width, 0);
     
     x->x_outlet = outlet_newBang (cast_object (x));
-    x->x_clock  = clock_new ((void *)x, (t_method)bng_taskFlash);
+    x->x_clock  = clock_newSingle ((void *)x, (t_method)bng_taskFlash);
     
     return x;
 }

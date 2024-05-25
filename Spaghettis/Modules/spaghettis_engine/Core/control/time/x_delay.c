@@ -155,7 +155,7 @@ static void *delay_new (t_symbol *s, int argc, t_atom *argv)
     t_delay *x = (t_delay *)pd_new (delay_class);
     
     x->x_outlet = outlet_newBang (cast_object (x));
-    x->x_clock  = clock_new ((void *)x, (t_method)delay_task);
+    x->x_clock  = clock_newSingle ((void *)x, (t_method)delay_task);
     
     inlet_new2 (x, &s_float);
     

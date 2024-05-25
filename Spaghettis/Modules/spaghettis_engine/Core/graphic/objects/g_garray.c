@@ -678,7 +678,7 @@ static void *garray_new (t_symbol *s, int argc, t_atom *argv)
     x->x_data           = (t_word *)PD_MEMORY_GET (x->x_size * sizeof (t_word));
     x->x_unexpandedName = NULL;
     x->x_name           = symbol_removeCopySuffix (name);
-    x->x_clock          = clock_new ((void *)x, (t_method)garray_task);
+    x->x_clock          = clock_newSingle ((void *)x, (t_method)garray_task);
     
     /* Copy-pasted case first. */
     

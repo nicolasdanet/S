@@ -454,7 +454,7 @@ void *textsequence_new (t_symbol *s, int argc, t_atom *argv)
         
         x->x_argc   = 0;
         x->x_argv   = (t_atom *)PD_MEMORY_GET (0);
-        x->x_clock  = clock_new ((void *)x, (t_method)textsequence_task);
+        x->x_clock  = clock_newSingle ((void *)x, (t_method)textsequence_task);
         
         if (useGlobal)  { x->x_waitNumberOfLeading = PD_INT_MAX; }
         if (!useGlobal) { x->x_outletMain = outlet_newList (cast_object (x)); }

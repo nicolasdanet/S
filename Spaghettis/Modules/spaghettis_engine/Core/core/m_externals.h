@@ -201,7 +201,11 @@ void        buffer_appendComma              (t_buffer *x);
 /* It can be inside the DSP perform. */
 /* The new and free functions must be called NON-CONCURRENTLY in the main thread. */
 
-t_clock     *clock_new                      (void *owner, t_method fn);
+t_clock     *clock_newSafe                  (void *owner, t_method fn);
+
+/* If the clock is used only in main thread. */
+
+t_clock     *clock_newSingle                (void *owner, t_method fn);
 
 void        clock_free                      (t_clock *x);
 void        clock_unset                     (t_clock *x);                   /* Usable in DSP. */

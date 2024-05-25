@@ -264,7 +264,7 @@ static void *tabplay_tilde_new (t_symbol *s)
     x->x_cachedPhase = -1;
     x->x_cachedEnd   = 0;
     x->x_name        = s;
-    x->x_clock       = clock_new ((void *)x, (t_method)tabplay_tilde_task);
+    x->x_clock       = clock_newSafe ((void *)x, (t_method)tabplay_tilde_task);
     x->x_outletLeft  = outlet_newSignal (cast_object (x));
     x->x_outletRight = outlet_newBang (cast_object (x));
     

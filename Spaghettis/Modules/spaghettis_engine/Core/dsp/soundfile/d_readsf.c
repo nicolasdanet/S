@@ -269,7 +269,7 @@ static void *readsf_tilde_new (t_float f1, t_float f2)
     x->sf_numberOfChannels  = n;
     x->sf_bufferSize        = size;
     x->sf_cached            = (unsigned char *)PD_MEMORY_GET (x->sf_bufferSize);
-    x->sf_clock             = clock_new ((void *)x, (t_method)readsf_tilde_task);
+    x->sf_clock             = clock_newSafe ((void *)x, (t_method)readsf_tilde_task);
     
     for (i = 0; i < n; i++) { x->sf_audioOutlets[i] = outlet_newSignal (cast_object (x)); }
     

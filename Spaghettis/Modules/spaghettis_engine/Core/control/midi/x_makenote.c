@@ -71,7 +71,7 @@ static void makenote_add (t_makenote *x, t_float pitch, t_float duration)
     t_hang *h = (t_hang *)PD_MEMORY_GET (sizeof (t_hang));
     
     h->h_pitch = pitch;
-    h->h_clock = clock_new ((void *)h, (t_method)makenote_task);
+    h->h_clock = clock_newSingle ((void *)h, (t_method)makenote_task);
     h->h_owner = x;
     h->h_next  = x->x_hangs;
     

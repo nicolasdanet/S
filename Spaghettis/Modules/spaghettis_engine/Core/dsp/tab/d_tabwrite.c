@@ -284,7 +284,7 @@ static void *tabwrite_tilde_new (t_symbol *s, t_float f)
     x->x_time   = PD_MAX (0.0, f);
     x->x_cached = -1;
     x->x_name   = s;
-    x->x_clock  = clock_new ((void *)x, (t_method)tabwrite_tilde_bang);
+    x->x_clock  = clock_newSingle ((void *)x, (t_method)tabwrite_tilde_bang);
     
     return x;
 }

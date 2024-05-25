@@ -194,7 +194,7 @@ static void *metro_new (t_symbol *s, int argc, t_atom *argv)
     x->x_reentrantStart = 0;
     x->x_reentrantStop  = 0;
     
-    x->x_clock  = clock_new ((void *)x, (t_method)metro_task);
+    x->x_clock  = clock_newSingle ((void *)x, (t_method)metro_task);
     x->x_outlet = outlet_newBang (cast_object (x));
     
     inlet_new2 (x, &s_float);

@@ -72,7 +72,7 @@ static void *bang_tilde_new (void)
     t_bang_tilde *x = (t_bang_tilde *)pd_new (bang_tilde_class);
     
     x->x_outlet = outlet_newBang (cast_object (x));
-    x->x_clock  = clock_new ((void *)x, (t_method)bang_tilde_task);
+    x->x_clock  = clock_newSafe ((void *)x, (t_method)bang_tilde_task);
         
     return x;
 }

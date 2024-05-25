@@ -319,7 +319,7 @@ static void *qlist_new (t_symbol *s, int argc, t_atom *argv)
     x->ql_waitCount      = 0;
     x->ql_outletLeft     = outlet_newList (cast_object (x));
     x->ql_outletRight    = outlet_newBang (cast_object (x));
-    x->ql_clock          = clock_new ((void *)x, (t_method)qlist_task);
+    x->ql_clock          = clock_newSingle ((void *)x, (t_method)qlist_task);
 
     if (argc && !IS_FLOAT (argv)) { qlist_read (x, symbol_withAtoms (argc, argv)); }
     

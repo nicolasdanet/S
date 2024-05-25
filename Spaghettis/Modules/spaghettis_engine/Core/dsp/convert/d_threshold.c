@@ -233,8 +233,8 @@ static void *threshold_tilde_new (t_symbol *s, int argc, t_atom *argv)
     
     trylock_init (&x->x_mutex);
     
-    x->x_clockLeft   = clock_new ((void *)x, (t_method)threshold_tilde_taskLeft);
-    x->x_clockRight  = clock_new ((void *)x, (t_method)threshold_tilde_taskRight);
+    x->x_clockLeft   = clock_newSafe ((void *)x, (t_method)threshold_tilde_taskLeft);
+    x->x_clockRight  = clock_newSafe ((void *)x, (t_method)threshold_tilde_taskRight);
     x->x_outletLeft  = outlet_newBang (cast_object (x));
     x->x_outletRight = outlet_newBang (cast_object (x));
     

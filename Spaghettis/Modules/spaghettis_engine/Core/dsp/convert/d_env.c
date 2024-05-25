@@ -193,7 +193,7 @@ static void *env_tilde_new (t_float f1, t_float f2)
     x->x_period = PD_MAX (period, (window / ENV_MAXIMUM_OVERLAP));
     x->x_window = window;
     x->x_vector = (t_sample *)PD_MEMORY_GET (x->x_window * sizeof (t_sample));
-    x->x_clock  = clock_new ((void *)x, (t_method)env_tilde_task);
+    x->x_clock  = clock_newSafe ((void *)x, (t_method)env_tilde_task);
     x->x_outlet = outlet_newFloat (cast_object (x));
 
     t_object *t = cast_object (x);

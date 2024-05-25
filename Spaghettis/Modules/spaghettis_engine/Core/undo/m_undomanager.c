@@ -285,7 +285,7 @@ t_undomanager *undomanager_new (t_glist *owner)
     t_undomanager *x = (t_undomanager *)PD_MEMORY_GET (sizeof (t_undomanager));
     
     x->um_owner = owner;
-    x->um_clock = clock_new ((void *)x, (t_method)undomanager_task);
+    x->um_clock = clock_newSingle ((void *)x, (t_method)undomanager_task);
 
     undomanager_appendProceed (x, undoseparator_new());
     

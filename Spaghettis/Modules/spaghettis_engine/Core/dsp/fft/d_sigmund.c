@@ -1198,7 +1198,7 @@ static void *sigmund_tilde_new (t_symbol *s, int argc, t_atom *argv)
     x->x_cache2 = (t_float *)PD_MEMORY_GET (0);
     x->x_cache3 = (t_float *)PD_MEMORY_GET (0);
     x->x_buffer = (t_float *)PD_MEMORY_GET (x->x_points * sizeof (t_float));
-    x->x_clock  = clock_new ((void *)x, (t_method)sigmund_tilde_task);
+    x->x_clock  = clock_newSafe ((void *)x, (t_method)sigmund_tilde_task);
     
     return x;
 }

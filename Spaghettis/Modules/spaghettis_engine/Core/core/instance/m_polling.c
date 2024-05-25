@@ -45,7 +45,7 @@ static void instance_pollingTask (void *dummy)
 
 void instance_pollingRun (void)
 {
-    instance_get()->pd_polling = clock_new ((void *)NULL, (t_method)instance_pollingTask);
+    instance_get()->pd_polling = clock_newSingle ((void *)NULL, (t_method)instance_pollingTask);
     clock_delay (instance_get()->pd_polling, POLLING_PERIOD);
 }
 

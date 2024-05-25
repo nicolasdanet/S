@@ -94,7 +94,7 @@ static void callback_new (t_pipe *x, int argc, t_atom *argv)
     int i;
        
     h->h_atoms = (t_atom *)PD_MEMORY_GET (x->x_size * sizeof (t_atom));
-    h->h_clock = clock_new ((void *)h, (t_method)callback_task);
+    h->h_clock = clock_newSingle ((void *)h, (t_method)callback_task);
     h->h_owner = x;
     h->h_next  = x->x_callbacks;
     

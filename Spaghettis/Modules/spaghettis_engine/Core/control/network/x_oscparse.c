@@ -95,7 +95,7 @@ static void oscpending_new (t_oscparse *server, t_nano ns, int argc, t_atom *arg
 {
     t_oscpending *x = (t_oscpending *)PD_MEMORY_GET (sizeof (t_oscpending));
     
-    x->x_clock  = clock_new ((void *)x, (t_method)oscpending_task);
+    x->x_clock  = clock_newSingle ((void *)x, (t_method)oscpending_task);
     x->x_buffer = buffer_new();
     x->x_owner  = server;
     x->x_next   = server->x_pending;
