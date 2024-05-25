@@ -19,7 +19,7 @@
 // MARK: -
 
 struct _clocks {
-    t_pointerAtomic     *x_clocks;
+    t_pointerAtomic     *x_safe;
     t_buffer            *x_cache;
     t_buffer            *x_garbage;
     };
@@ -47,7 +47,7 @@ int        clock_isGood                (t_clock *);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void clocks_add (t_clocks *x, t_clock *c)
+static void clocks_addSafe (t_clocks *x, t_clock *c)
 {
     t_error err = PD_ERROR;
     
@@ -55,10 +55,10 @@ void clocks_add (t_clocks *x, t_clock *c)
 
     for (i = 0; i < CLOCKS_SIZE; i++) {
     //
-    void *t = atomic_pointerRead (x->x_clocks + i);
+    void *t = atomic_pointerRead (x->x_safe + i);
         
     if (t == NULL) {
-        if (atomic_pointerCompareAndSwap (x->x_clocks + i, &t, (void *)c)) {
+        if (atomic_pointerCompareAndSwap (x->x_safe + i, &t, (void *)c)) {
             clock_increment (c);
             err = PD_ERROR_NONE;
             break;
@@ -70,7 +70,7 @@ void clocks_add (t_clocks *x, t_clock *c)
     if (err) { PD_BUG; PD_ABORT (1); }
 }
 
-void clocks_remove (t_clocks *x, t_clock *c)
+static void clocks_removeSafe (t_clocks *x, t_clock *c)
 {
     if (clock_isSet (c)) {
     //
@@ -81,10 +81,10 @@ void clocks_remove (t_clocks *x, t_clock *c)
 
     for (i = 0; i < CLOCKS_SIZE; i++) {
     //
-    void *t = atomic_pointerRead (x->x_clocks + i);
+    void *t = atomic_pointerRead (x->x_safe + i);
         
     if (t == (void *)c) {
-        if (atomic_pointerCompareAndSwap (x->x_clocks + i, &t, (void *)NULL)) {
+        if (atomic_pointerCompareAndSwap (x->x_safe + i, &t, (void *)NULL)) {
             clock_decrement (c);
         }
         break;
@@ -93,6 +93,20 @@ void clocks_remove (t_clocks *x, t_clock *c)
     }
     //
     }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void clocks_add (t_clocks *x, t_clock *c)
+{
+    clocks_addSafe (x, c);
+}
+
+void clocks_remove (t_clocks *x, t_clock *c)
+{
+    clocks_removeSafe (x, c);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -136,7 +150,7 @@ static void clocks_purge (t_clocks *x)
 
 static void clocks_tickCheck (t_clocks *x, t_systime systime, int i)
 {
-    void *t = atomic_pointerRead (x->x_clocks + i);
+    void *t = atomic_pointerRead (x->x_safe + i);
     
     if (t) {
     //
@@ -144,7 +158,7 @@ static void clocks_tickCheck (t_clocks *x, t_systime systime, int i)
     t_systime time = clock_getLogicalTime (c);
     
     if (time <= systime) {
-        if (atomic_pointerCompareAndSwap (x->x_clocks + i, &t, (void *)NULL)) {
+        if (atomic_pointerCompareAndSwap (x->x_safe + i, &t, (void *)NULL)) {
             t_atom a;
             SET_CLOCK (&a, c);
             clock_decrement (c);
@@ -205,7 +219,7 @@ t_clocks *clocks_new (void)
 {
     t_clocks *x  = (t_clocks *)PD_MEMORY_GET (sizeof (t_clocks));
     
-    x->x_clocks  = (t_pointerAtomic *)PD_MEMORY_GET (sizeof (t_pointerAtomic) * CLOCKS_SIZE);
+    x->x_safe    = (t_pointerAtomic *)PD_MEMORY_GET (sizeof (t_pointerAtomic) * CLOCKS_SIZE);
     x->x_cache   = buffer_new();
     x->x_garbage = buffer_new();
     
@@ -219,7 +233,7 @@ void clocks_free (t_clocks *x)
     buffer_free (x->x_garbage);
     buffer_free (x->x_cache);
     
-    PD_MEMORY_FREE (x->x_clocks);
+    PD_MEMORY_FREE (x->x_safe);
     
     PD_MEMORY_FREE (x);
 }
@@ -241,7 +255,7 @@ char *clocks_debug (t_clocks *x, int n)
     //
     char c = '.';
     
-    if (atomic_pointerReadRelaxed (x->x_clocks + i)) { c = '#'; }
+    if (atomic_pointerReadRelaxed (x->x_safe + i)) { c = '#'; }
     
     clocks_string[i] = c;
     //
