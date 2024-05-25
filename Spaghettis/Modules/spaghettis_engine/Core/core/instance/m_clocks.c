@@ -66,8 +66,8 @@ static void clocks_addSafe (t_clocks *x, t_clock *c)
     }
     //
     }
-        
-    if (err) { PD_BUG; PD_ABORT (1); }
+    
+    if (err) { PD_BUG; PD_ABORT (1); }  // TODO: What?
 }
 
 static void clocks_removeSafe (t_clocks *x, t_clock *c)
