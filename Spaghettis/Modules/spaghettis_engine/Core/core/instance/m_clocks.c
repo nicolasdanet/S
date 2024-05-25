@@ -120,24 +120,20 @@ void clocks_remove (t_clocks *x, t_clock *c)
 
 void clocks_destroy (t_clocks *x, t_clock *c)
 {
-    t_atom a; SET_CLOCK (&a, c);
-    
     clock_inhibit (c); clocks_remove (x, c);
     
     #if PD_WITH_DEBUG
         PD_ASSERT (clock_isGood (c));
     #endif
     
-    buffer_appendAtom (x->x_garbage, &a);
+    buffer_appendClock (x->x_garbage, c);
 }
 
 static void clocks_purge (t_clocks *x)
 {
     int i, n = buffer_getSize (x->x_garbage);
     
-    for (i = 0; i < n; i++) {
-        t_clock *c = buffer_getClockAt (x->x_garbage, i); PD_MEMORY_FREE (c);
-    }
+    for (i = 0; i < n; i++) { PD_MEMORY_FREE (buffer_getClockAt (x->x_garbage, i)); }
     
     buffer_clear (x->x_garbage);
 }
@@ -159,11 +155,9 @@ static void clocks_tickCheck (t_clocks *x, t_systime systime, int i)
     
     if (time <= systime) {
         if (atomic_pointerCompareAndSwap (x->x_safe + i, &t, (void *)NULL)) {
-            t_atom a;
-            SET_CLOCK (&a, c);
             clock_decrement (c);
             clock_setExecuteTime (c, time);
-            buffer_appendAtom (x->x_cache, &a);
+            buffer_appendClock (x->x_cache, c);
             return;
         }
     }

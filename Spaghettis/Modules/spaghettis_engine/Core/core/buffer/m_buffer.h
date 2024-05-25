@@ -41,6 +41,7 @@ void       atom_sort                           (int argc, t_atom *argv);
 // MARK: -
 
 void       buffer_qsort                        (t_buffer *x, t_cmpfn f);
+void       buffer_appendClock                  (t_buffer *x, t_clock *c);
 
 t_object   *buffer_getObjectAt                 (t_buffer *x, int n);           /* Not checked. */
 t_buffer   *buffer_getBufferAt                 (t_buffer *x, int n);           /* Not checked. */
