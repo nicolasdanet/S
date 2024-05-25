@@ -167,7 +167,7 @@ void buffer_resize (t_buffer *x, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void buffer_qsort (t_buffer *x, t_cmp f)
+void buffer_qsort (t_buffer *x, t_cmpfn f)
 {
     atom_qsort (buffer_getSize (x), buffer_getAtoms (x), f);
 }

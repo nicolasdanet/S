@@ -198,6 +198,10 @@ void clock_set (t_clock *x, t_systime t)
     }
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static double clock_quantum (t_clock *x, double t)
 {
     double d = 0.0;
@@ -217,6 +221,10 @@ void clock_delay (t_clock *x, double delay)       /* Could be in milliseconds or
 {
     clock_set (x, scheduler_getLogicalTimeAfter (clock_quantum (x, delay)));
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 t_error clock_reschedule (t_clock *x, double delay, double ms, t_systime t)
 {
