@@ -24,6 +24,7 @@ struct _clock {
     t_float64Atomic c_systime;
     t_float64Atomic c_unit;             /* A positive value in milliseconds (negative in samples). */
     t_int32Atomic   c_count;
+    int             c_safe;
     t_float         c_t;
     t_clockfn       c_fn;
     void            *c_owner;

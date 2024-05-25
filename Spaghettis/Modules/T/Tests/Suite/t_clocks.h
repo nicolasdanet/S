@@ -78,11 +78,13 @@ void test_clocksInitialize (void)
         t_clock *c = &test_clocksA[i];
         c->c_fn    = test_taskCheckTime;
         c->c_owner = c;
+        c->c_safe  = 1;
     }
     {
         t_clock *c = &test_clocksB[i];
         c->c_fn    = test_taskCheckCount;
         c->c_owner = c;
+        c->c_safe  = 1;
     }
     //
     }

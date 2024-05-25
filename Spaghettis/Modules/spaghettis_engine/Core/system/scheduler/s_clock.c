@@ -159,12 +159,13 @@ void clock_execute (t_clock *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_clock *clock_newSafe (void *owner, t_method fn)
+static t_clock *clock_new (void *owner, t_method fn, int safe)
 {
     t_clock *x = (t_clock *)PD_MEMORY_GET (sizeof (t_clock));
     
     x->c_fn    = (t_clockfn)fn;
     x->c_owner = owner;
+    x->c_safe  = safe;
 
     atomic_float64Write (&x->c_unit, 1.0);
     
@@ -173,9 +174,12 @@ t_clock *clock_newSafe (void *owner, t_method fn)
 
 t_clock *clock_newSingle (void *owner, t_method fn)
 {
-    t_clock *x = clock_newSafe (owner, fn);
-    
-    return x;
+    return clock_new (owner, fn, 0);
+}
+
+t_clock *clock_newSafe (void *owner, t_method fn)
+{
+    return clock_new (owner, fn, 1);
 }
 
 void clock_free (t_clock *x)
