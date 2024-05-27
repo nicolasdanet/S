@@ -2,7 +2,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "t_clocks.h"
+#include "t_clocks_time.h"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ void *test_clocksAtomicTask (void *x)
         
         while (atomic_int32Read (&test_clocksStop) == 0) {
             for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
-                test_clocksDoSomethingRandomly (p, j);
+                test_clocksDoSomethingTimed (p, j);
                 ttt_wasteTime (&w);
             }
         }
@@ -36,9 +36,11 @@ void *test_clocksAtomicTask (void *x)
             }
             
             test_clocksTick (250.0);
-            test_clocksTick (750.0);        /* All counted clocks are triggered. */
+            test_clocksTick (750.0);
             
-            test_clocksDebug();
+            /* All counted clocks are triggered. */
+            
+            test_clocksDebug (i);
         }
         
         atomic_int32Write (&test_clocksStop, 1);
@@ -50,11 +52,11 @@ void *test_clocksAtomicTask (void *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-TTT_BEGIN (ClocksAtomic, "Atomic - Clocks")
+TTT_BEGIN (ClocksTime, "Clocks - Time")
 
     if (ttt_testGetNumberOfThreads() >= 2) {
     //
-    test_clocksInitialize();
+    test_clocksInitialize ((t_method)test_taskTime, (t_method)test_taskCount);
     
     if (ttt_testThreadsLaunch (test_clocksAtomicTask) != TTT_GOOD) { TTT_FAIL; }
     else {

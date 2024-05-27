@@ -77,7 +77,7 @@ int test_areEquivalent (t_float a, t_float b)
 // #include "t_fifo8.c"
 // #include "t_fifo32.c"
 // #include "t_fifo_heavy.c"
-#include "t_clocks.c"
+#include "t_clocks_time.c"
 // #include "t_time.c"
 // #include "t_time_NTP.c"
 // #include "t_time_seed.c"
