@@ -17,6 +17,8 @@ void test_taskTime (void *x)
     test_clocksFails |= (t < atomic_float64Read (&test_clocksTime));
     
     atomic_float64Write (&test_clocksTime, t);
+    
+    clock_set ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed) * 1500);        /* Rescheduled. */
 }
 
 void test_taskCount (void *x)

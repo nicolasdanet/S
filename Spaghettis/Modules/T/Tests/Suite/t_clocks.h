@@ -20,6 +20,7 @@ static t_clock*             test_clocksB[TEST_CLOCKS_SIZE];
 
 static t_int32Atomic        test_clocksStop;
 static int                  test_clocksFails;
+static t_rand48             test_clocksSeed;
 
 static t_float64Atomic      test_clocksTime;
 static int                  test_clocksCounter;
@@ -36,6 +37,8 @@ void test_clocksInitialize (t_method taskA, t_method taskB)
         test_clocksA[i] = clock_newSafe ((void *)NULL, taskA);
         test_clocksB[i] = clock_newSafe ((void *)NULL, taskB);
     }
+    
+    test_clocksSeed = PD_RAND48_SEED;
 }
 
 void test_clocksRelease (void)
