@@ -33,7 +33,7 @@ void test_clocksDoSomethingTimed (TTTThreadProperties *p, int j)
     int i = ttt_getRandomInteger (p, TEST_CLOCKS_SIZE);
     
     if (ttt_getRandomInteger (p, 2)) {
-        clock_set (test_clocksA[i], ttt_getRandomInteger (p, 1000));
+        clock_set (test_clocksA[i], ttt_getRandomInteger (p, 1500));
     } else {
         clock_unset (test_clocksA[i]);
     }

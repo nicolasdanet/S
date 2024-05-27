@@ -61,7 +61,7 @@ TTT_BEGIN (ClocksTime, "Clocks - Time")
     if (ttt_testThreadsLaunch (test_clocksAtomicTask) != TTT_GOOD) { TTT_FAIL; }
     else {
     //
-    test_clocksTick (1000.0);
+    test_clocksTick (2000.0);   /* All remaining clocks fired. */
     
     TTT_EXPECT (test_clocksCounter == TEST_LOOP_CLOCKS * TEST_CLOCKS_SIZE);
     TTT_EXPECT (test_clocksFails   == 0);
