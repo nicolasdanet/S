@@ -151,8 +151,12 @@ static void clocks_tickAppend (t_clocks *x, t_clock *c, t_systime time)
 
 /* Fetching clock is immune from ABA problem as clocks deletion is garbage collected. */
 
-static void clocks_tickCheck (t_clocks *x, t_systime systime, int i)
+static void clocks_tickCheck (t_clocks *x, t_systime systime)
 {
+    int i;
+    
+    for (i = 0; i < CLOCKS_SIZE; i++) {
+    //
     void *t = atomic_pointerRead (x->x_safe + i);
     
     if (t) {
@@ -160,10 +164,15 @@ static void clocks_tickCheck (t_clocks *x, t_systime systime, int i)
     t_systime time = clock_getLogicalTime ((t_clock *)t);
     
     if (time <= systime) {
+    
+        /* The clock could have been rescheduled meantime. */
+        /* Too late, still triggered with old logical time. */
+        
         if (atomic_pointerCompareAndSwap (x->x_safe + i, &t, (void *)NULL)) {
             clocks_tickAppend (x, (t_clock *)t, time);
-            return;
         }
+    }
+    //
     }
     //
     }
@@ -204,9 +213,11 @@ static void clocks_tickExecute (t_clocks *x)
 
 void clocks_tick (t_clocks *x, t_systime systime)
 {
-    int i; for (i = 0; i < CLOCKS_SIZE; i++) { clocks_tickCheck (x, systime, i); }
+    clocks_tickCheck (x, systime);
     
-    clocks_tickExecute (x); clocks_purge (x);
+    clocks_tickExecute (x);
+    
+    clocks_purge (x);
 }
 
 // -----------------------------------------------------------------------------------------------------------
