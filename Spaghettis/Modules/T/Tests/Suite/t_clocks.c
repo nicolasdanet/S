@@ -38,11 +38,7 @@ void *test_clocksAtomicTask (void *x)
             test_clocksTick (250.0);
             test_clocksTick (750.0);        /* All counted clocks are triggered. */
             
-            /*
-            if (i % 1000 == 0) {
-                ttt_stdout (TTT_COLOR_BLUE, "%s", clocks_debug (test_clocksManager, 128));
-            }
-            */
+            test_clocksDebug();
         }
         
         atomic_int32Write (&test_clocksStop, 1);
