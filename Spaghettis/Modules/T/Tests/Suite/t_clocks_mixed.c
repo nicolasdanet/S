@@ -2,12 +2,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "t_clocks_time.h"
+#include "t_clocks_mixed.h"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void *test_clocksTimeTask (void *x)
+void *test_clocksMixedTask (void *x)
 {
     TTTThreadProperties *p = (TTTThreadProperties *)x;
     int i, j, n = ttt_threadGetCurrent (p);
@@ -40,7 +40,7 @@ void *test_clocksTimeTask (void *x)
             
             /* All counted clocks are triggered. */
             
-            // test_clocksDebug (i);
+            test_clocksDebug (i);
         }
         
         atomic_int32Write (&test_clocksStop, 1);
@@ -52,13 +52,13 @@ void *test_clocksTimeTask (void *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-TTT_BEGIN (ClocksTime, "Clocks - Time")
+TTT_BEGIN (ClocksMixed, "Clocks - Mixed")
 
     if (ttt_testGetNumberOfThreads() >= 2) {
     //
-    test_clocksInitialize ((t_method)test_taskTime, (t_method)test_taskCount, 1);
+    test_clocksInitialize ((t_method)test_taskReschedule, (t_method)test_taskCount, 0);
     
-    if (ttt_testThreadsLaunch (test_clocksTimeTask) != TTT_GOOD) { TTT_FAIL; }
+    if (ttt_testThreadsLaunch (test_clocksMixedTask) != TTT_GOOD) { TTT_FAIL; }
     else {
     //
     test_clocksTick (2000.0);   /* All remaining clocks fired. */

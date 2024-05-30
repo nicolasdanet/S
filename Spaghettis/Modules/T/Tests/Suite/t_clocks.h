@@ -29,13 +29,33 @@ static int                  test_clocksCounter;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void test_clocksInitialize (t_method taskA, t_method taskB)
+void test_clocksDoSomethingRandomly (TTTThreadProperties *p, int j)
+{
+    int i = ttt_getRandomInteger (p, TEST_CLOCKS_SIZE);
+    
+    if (ttt_getRandomInteger (p, 2)) {
+        clock_set (test_clocksA[i], ttt_getRandomInteger (p, 1500));
+    } else {
+        clock_unset (test_clocksA[i]);
+    }
+}
+
+void test_clocksDoSomething (TTTThreadProperties *p, int j)
+{
+    clock_set (test_clocksB[j], ttt_getRandomInteger (p, 500));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void test_clocksInitialize (t_method taskA, t_method taskB, int safe)
 {
     int i;
     
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
-        test_clocksA[i] = clock_newSafe ((void *)NULL, taskA);
-        test_clocksB[i] = clock_newSafe ((void *)NULL, taskB);
+        test_clocksA[i] = clock_new ((void *)NULL, taskA, 0);
+        test_clocksB[i] = clock_new ((void *)NULL, taskB, safe);
     }
     
     test_clocksSeed = PD_RAND48_SEED;

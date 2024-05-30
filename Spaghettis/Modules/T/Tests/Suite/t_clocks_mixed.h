@@ -8,20 +8,15 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Clocks are triggered time-ordered? */
-
-void test_taskTime (void *x)
+void test_taskReschedule (void *x)
 {
     t_systime t = scheduler_getLogicalTime();
     
     test_clocksFails |= (t < atomic_float64Read (&test_clocksTime));
     
     atomic_float64Write (&test_clocksTime, t);
-}
-
-void test_taskCount (void *x)
-{
-    test_clocksCounter++;
+    
+    clock_set ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed) * 1500);        /* Rescheduled. */
 }
 
 // -----------------------------------------------------------------------------------------------------------
