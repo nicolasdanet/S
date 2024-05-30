@@ -29,26 +29,6 @@ static int                  test_clocksCounter;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void test_clocksDoSomethingRandomly (TTTThreadProperties *p, int j)
-{
-    int i = ttt_getRandomInteger (p, TEST_CLOCKS_SIZE);
-    
-    if (ttt_getRandomInteger (p, 2)) {
-        clock_set (test_clocksA[i], ttt_getRandomInteger (p, 1500));
-    } else {
-        clock_unset (test_clocksA[i]);
-    }
-}
-
-void test_clocksDoSomething (TTTThreadProperties *p, int j)
-{
-    clock_set (test_clocksB[j], ttt_getRandomInteger (p, 500));
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void test_clocksInitialize (t_method taskA, t_method taskB, int safe)
 {
     int i;
@@ -98,6 +78,68 @@ void test_clocksTick (double f)
 void test_clocksDebug (int i)
 {
     if (i % 1000 == 0) { ttt_stdout (TTT_COLOR_BLUE, "%s", clocks_debug (instance_get()->pd_clocks, 80)); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void test_clocksDoSomethingConcurrently (TTTThreadProperties *p, int j)
+{
+    int i = ttt_getRandomInteger (p, TEST_CLOCKS_SIZE);
+    
+    if (ttt_getRandomInteger (p, 2)) {
+        clock_set (test_clocksA[i], ttt_getRandomInteger (p, 1500));
+    } else {
+        clock_unset (test_clocksA[i]);
+    }
+}
+
+void test_clocksDoSomethingInMainThread (TTTThreadProperties *p, int j)
+{
+    clock_set (test_clocksB[j], ttt_getRandomInteger (p, 500));
+}
+
+void *test_clocksTask (void *x)
+{
+    TTTThreadProperties *p = (TTTThreadProperties *)x;
+    int i, j, n = ttt_threadGetCurrent (p);
+    TTTWaste w;
+    
+    ttt_wasteInit (&w, n);
+    
+    ttt_threadWaitOnLatch (p);
+    
+    if (n == 0) {
+        
+        while (atomic_int32Read (&test_clocksStop) == 0) {
+            for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
+                test_clocksDoSomethingConcurrently (p, j);
+                ttt_wasteTime (&w);
+            }
+        }
+    }
+    
+    if (n == 1) {
+    
+        for (i = 0; i < TEST_LOOP_CLOCKS; i++) {
+            for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
+                test_clocksDoSomethingInMainThread (p, j);
+                ttt_wasteTime (&w);
+            }
+            
+            test_clocksTick (250.0);
+            test_clocksTick (750.0);
+            
+            /* All counted clocks are triggered. */
+            
+            // test_clocksDebug (i);
+        }
+        
+        atomic_int32Write (&test_clocksStop, 1);
+    }
+    
+    return NULL;
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -2,51 +2,25 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "t_clocks_time.h"
+#include "t_clocks.h"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void *test_clocksTimeTask (void *x)
+/* Clocks are triggered time-ordered? */
+
+void test_taskTime (void *x)
 {
-    TTTThreadProperties *p = (TTTThreadProperties *)x;
-    int i, j, n = ttt_threadGetCurrent (p);
-    TTTWaste w;
+    t_systime t = scheduler_getLogicalTime();
     
-    ttt_wasteInit (&w, n);
+    test_clocksFails |= (t < atomic_float64Read (&test_clocksTime));
     
-    ttt_threadWaitOnLatch (p);
-    
-    if (n == 0) {
-        
-        while (atomic_int32Read (&test_clocksStop) == 0) {
-            for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
-                test_clocksDoSomethingRandomly (p, j);
-                ttt_wasteTime (&w);
-            }
-        }
-    }
-    
-    if (n == 1) {
-    
-        for (i = 0; i < TEST_LOOP_CLOCKS; i++) {
-            for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
-                test_clocksDoSomething (p, j);
-                ttt_wasteTime (&w);
-            }
-            
-            test_clocksTick (250.0);
-            test_clocksTick (750.0);
-            
-            /* All counted clocks are triggered. */
-            
-            // test_clocksDebug (i);
-        }
-        
-        atomic_int32Write (&test_clocksStop, 1);
-    }
-    
-    return NULL;
+    atomic_float64Write (&test_clocksTime, t);
+}
+
+void test_taskCount (void *x)
+{
+    test_clocksCounter++;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -58,7 +32,7 @@ TTT_BEGIN (ClocksTime, "Clocks - Time")
     //
     test_clocksInitialize ((t_method)test_taskTime, (t_method)test_taskCount, 1);
     
-    if (ttt_testThreadsLaunch (test_clocksTimeTask) != TTT_GOOD) { TTT_FAIL; }
+    if (ttt_testThreadsLaunch (test_clocksTask) != TTT_GOOD) { TTT_FAIL; }
     else {
     //
     test_clocksTick (2000.0);   /* All remaining clocks fired. */
