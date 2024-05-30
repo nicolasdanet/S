@@ -2,9 +2,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void test_taskReschedule (void *x)
+void test_mixedA (void *x)
 {
-    clock_set ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed) * 1500);        /* Rescheduled. */
+    clock_set ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed) * 1500);    /* Rescheduled. */
+}
+
+void test_mixedB (void *x)
+{
+    test_clocksCounter++;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -12,7 +17,7 @@ void test_taskReschedule (void *x)
 
 TTT_BEGIN (ClocksMixed, "Clocks - Mixed")
 
-    if (test_clocksRun ((t_method)test_taskReschedule, (t_method)test_taskCount, 0)) { TTT_FAIL; }
+    if (test_clocksRun ((t_method)test_mixedA, (t_method)test_mixedB, 0)) { TTT_FAIL; }
     else {
         TTT_EXPECT (test_clocksCounter == TEST_LOOP_CLOCKS * TEST_CLOCKS_SIZE);
         TTT_EXPECT (test_clocksFails   == 0);
