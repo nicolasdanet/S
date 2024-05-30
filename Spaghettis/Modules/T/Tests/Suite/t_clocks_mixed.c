@@ -2,11 +2,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "t_clocks.h"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 void test_taskReschedule (void *x)
 {
     clock_set ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed) * 1500);        /* Rescheduled. */
@@ -17,23 +12,11 @@ void test_taskReschedule (void *x)
 
 TTT_BEGIN (ClocksMixed, "Clocks - Mixed")
 
-    if (ttt_testGetNumberOfThreads() >= 2) {
-    //
-    test_clocksInitialize ((t_method)test_taskReschedule, (t_method)test_taskCount, 0);
-    
-    if (ttt_testThreadsLaunch (test_clocksTask) != TTT_GOOD) { TTT_FAIL; }
+    if (test_clocksRun ((t_method)test_taskReschedule, (t_method)test_taskCount, 0)) { TTT_FAIL; }
     else {
-    //
-    test_clocksTick (2000.0);   /* All remaining clocks fired. */
-    
-    TTT_EXPECT (test_clocksCounter == TEST_LOOP_CLOCKS * TEST_CLOCKS_SIZE);
-    TTT_EXPECT (test_clocksFails   == 0);
-    TTT_EXPECT (test_clocksCheck() == 1);
-    //
-    }
-    
-    test_clocksRelease();
-    //
+        TTT_EXPECT (test_clocksCounter == TEST_LOOP_CLOCKS * TEST_CLOCKS_SIZE);
+        TTT_EXPECT (test_clocksFails   == 0);
+        TTT_EXPECT (test_clocksCheck() == 1);
     }
     
 TTT_END
