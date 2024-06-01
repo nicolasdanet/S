@@ -7,14 +7,9 @@ static t_rand48 test_clocksSeed;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void test_mixedA (void *x)
+void test_mixedTask (void *x)
 {
-    test_clocksCounter++;
-}
-
-void test_mixedB (void *x)
-{
-    test_clocksBigRange ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed));
+    test_clocksSetBigRange ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -24,7 +19,7 @@ TTT_BEGIN (ClocksMixed, "Clocks - Mixed")
 
     test_clocksSeed = PD_RAND48_SEED;
     
-    if (test_clocksRun ((t_method)test_mixedA, (t_method)test_mixedB, 0)) { TTT_FAIL; }
+    if (test_clocksRun ((t_method)test_mixedTask, 0)) { TTT_FAIL; }
     else {
         TTT_EXPECT (test_clocksCounter == TEST_LOOP_CLOCKS * TEST_CLOCKS_SIZE);
         TTT_EXPECT (test_clocksCheck() == 1);

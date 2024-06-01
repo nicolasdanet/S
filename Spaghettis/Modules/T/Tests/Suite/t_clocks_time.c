@@ -4,12 +4,7 @@
 
 /* Clocks are triggered time-ordered? */
 
-void test_timeA (void *x)
-{
-    test_clocksCounter++;
-}
-
-void test_timeB (void *x)
+void test_timeTask (void *x)
 {
     t_systime t = scheduler_getLogicalTime();
     
@@ -23,7 +18,7 @@ void test_timeB (void *x)
 
 TTT_BEGIN (ClocksTime, "Clocks - Time")
 
-    if (test_clocksRun ((t_method)test_timeA, (t_method)test_timeB, 1)) { TTT_FAIL; }
+    if (test_clocksRun ((t_method)test_timeTask, 1)) { TTT_FAIL; }
     else {
         TTT_EXPECT (test_clocksCounter == TEST_LOOP_CLOCKS * TEST_CLOCKS_SIZE);
         TTT_EXPECT (test_clocksFails   == 0);

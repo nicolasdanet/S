@@ -21,12 +21,21 @@ static int                  test_clocksCounter;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void test_clocksSmallRange (t_clock *x, double f)
+void test_clocksTaskCounter (void *x)
+{
+    test_clocksCounter++;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void test_clocksSetSmallRange (t_clock *x, double f)
 {
     clock_set (x, f * 500);
 }
 
-void test_clocksBigRange (t_clock *x, double f)
+void test_clocksSetBigRange (t_clock *x, double f)
 {
     clock_set (x, f * 1500);
 }
@@ -35,13 +44,13 @@ void test_clocksBigRange (t_clock *x, double f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void test_clocksInitialize (t_method taskA, t_method taskB, int safe)
+void test_clocksInitialize (t_method f, int safe)
 {
     int i;
     
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
-        test_clocksA[i] = clock_new ((void *)NULL, taskA, safe);
-        test_clocksB[i] = clock_new ((void *)NULL, taskB, 0);
+        test_clocksA[i] = clock_new ((void *)NULL, (t_method)test_clocksTaskCounter, safe);
+        test_clocksB[i] = clock_new ((void *)NULL, f, 0);
     }
 }
 
@@ -86,7 +95,7 @@ void test_clocksDebug (int i)
 
 void test_clocksDoSomethingInMainThread (TTTThreadProperties *p, int j)
 {
-    test_clocksSmallRange (test_clocksA[j], ttt_getRandom (p));
+    test_clocksSetSmallRange (test_clocksA[j], ttt_getRandom (p));
 }
 
 void test_clocksDoSomethingConcurrently (TTTThreadProperties *p, int j)
@@ -94,7 +103,7 @@ void test_clocksDoSomethingConcurrently (TTTThreadProperties *p, int j)
     int i = ttt_getRandomInteger (p, TEST_CLOCKS_SIZE);
     
     if (ttt_getRandomInteger (p, 2)) {
-        test_clocksBigRange (test_clocksB[i], ttt_getRandom (p));
+        test_clocksSetBigRange (test_clocksB[i], ttt_getRandom (p));
     } else {
         clock_unset (test_clocksB[i]);
     }
@@ -146,13 +155,13 @@ void *test_clocksTask (void *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int test_clocksRun (t_method taskA, t_method taskB, int safe)
+int test_clocksRun (t_method f, int safe)
 {
     int err = 0;
     
     if (ttt_testGetNumberOfThreads() >= 2) {
     //
-    test_clocksInitialize (taskA, taskB, safe);
+    test_clocksInitialize (f, safe);
     
     if (ttt_testThreadsLaunch (test_clocksTask) != TTT_GOOD) { err = 1; }
     else {
