@@ -14,7 +14,7 @@ void test_mixedA (void *x)
 
 void test_mixedB (void *x)
 {
-    clock_set ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed) * 1500);    /* Rescheduled. */
+    test_clocksBigRange ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed));
 }
 
 // -----------------------------------------------------------------------------------------------------------

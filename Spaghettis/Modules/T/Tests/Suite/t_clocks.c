@@ -21,6 +21,15 @@ static int                  test_clocksCounter;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void test_clocksSmallRange (t_clock *x, double f)
+{
+    clock_set (x, f * 500);
+}
+
+void test_clocksBigRange (t_clock *x, double f)
+{
+    clock_set (x, f * 1500);
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -77,7 +86,7 @@ void test_clocksDebug (int i)
 
 void test_clocksDoSomethingInMainThread (TTTThreadProperties *p, int j)
 {
-    clock_set (test_clocksA[j], ttt_getRandomInteger (p, 500));
+    test_clocksSmallRange (test_clocksA[j], ttt_getRandom (p));
 }
 
 void test_clocksDoSomethingConcurrently (TTTThreadProperties *p, int j)
@@ -85,7 +94,7 @@ void test_clocksDoSomethingConcurrently (TTTThreadProperties *p, int j)
     int i = ttt_getRandomInteger (p, TEST_CLOCKS_SIZE);
     
     if (ttt_getRandomInteger (p, 2)) {
-        clock_set (test_clocksB[i], ttt_getRandomInteger (p, 1500));
+        test_clocksBigRange (test_clocksB[i], ttt_getRandom (p));
     } else {
         clock_unset (test_clocksB[i]);
     }
