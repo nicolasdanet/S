@@ -8,15 +8,19 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_clock*             test_clocksA[TEST_CLOCKS_SIZE];
+static t_clock*             test_clocksA[TEST_CLOCKS_SIZE];     /* Main thread. */
 static t_clock*             test_clocksB[TEST_CLOCKS_SIZE];
 
 static t_int32Atomic        test_clocksStop;
 static int                  test_clocksFails;
-static t_rand48             test_clocksSeed;
 
 static t_float64Atomic      test_clocksTime;
 static int                  test_clocksCounter;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -27,11 +31,9 @@ void test_clocksInitialize (t_method taskA, t_method taskB, int safe)
     int i;
     
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
-        test_clocksA[i] = clock_new ((void *)NULL, taskA, 0);
-        test_clocksB[i] = clock_new ((void *)NULL, taskB, safe);
+        test_clocksA[i] = clock_new ((void *)NULL, taskA, safe);
+        test_clocksB[i] = clock_new ((void *)NULL, taskB, 0);
     }
-    
-    test_clocksSeed = PD_RAND48_SEED;
 }
 
 void test_clocksRelease (void)
@@ -50,11 +52,7 @@ void test_clocksRelease (void)
 
 int test_clocksCheck (void)
 {
-    int i;
-    
-    for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
-        if (!clock_isGood (test_clocksB[i])) { return 0; }
-    }
+    int i; for (i = 0; i < TEST_CLOCKS_SIZE; i++) { if (!clock_isGood (test_clocksA[i])) { return 0; } }
     
     return 1;
 }
@@ -77,20 +75,20 @@ void test_clocksDebug (int i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void test_clocksDoSomethingInMainThread (TTTThreadProperties *p, int j)
+{
+    clock_set (test_clocksA[j], ttt_getRandomInteger (p, 500));
+}
+
 void test_clocksDoSomethingConcurrently (TTTThreadProperties *p, int j)
 {
     int i = ttt_getRandomInteger (p, TEST_CLOCKS_SIZE);
     
     if (ttt_getRandomInteger (p, 2)) {
-        clock_set (test_clocksA[i], ttt_getRandomInteger (p, 1500));
+        clock_set (test_clocksB[i], ttt_getRandomInteger (p, 1500));
     } else {
-        clock_unset (test_clocksA[i]);
+        clock_unset (test_clocksB[i]);
     }
-}
-
-void test_clocksDoSomethingInMainThread (TTTThreadProperties *p, int j)
-{
-    clock_set (test_clocksB[j], ttt_getRandomInteger (p, 500));
 }
 
 void *test_clocksTask (void *x)
@@ -104,16 +102,6 @@ void *test_clocksTask (void *x)
     ttt_threadWaitOnLatch (p);
     
     if (n == 0) {
-        
-        while (atomic_int32Read (&test_clocksStop) == 0) {
-            for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
-                test_clocksDoSomethingConcurrently (p, j);
-                ttt_wasteTime (&w);
-            }
-        }
-    }
-    
-    if (n == 1) {
     
         for (i = 0; i < TEST_LOOP_CLOCKS; i++) {
             for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
@@ -130,6 +118,16 @@ void *test_clocksTask (void *x)
         }
         
         atomic_int32Write (&test_clocksStop, 1);
+    }
+    
+    if (n == 1) {
+        
+        while (atomic_int32Read (&test_clocksStop) == 0) {
+            for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
+                test_clocksDoSomethingConcurrently (p, j);
+                ttt_wasteTime (&w);
+            }
+        }
     }
     
     return NULL;

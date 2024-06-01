@@ -6,16 +6,16 @@
 
 void test_timeA (void *x)
 {
+    test_clocksCounter++;
+}
+
+void test_timeB (void *x)
+{
     t_systime t = scheduler_getLogicalTime();
     
     test_clocksFails |= (t < atomic_float64Read (&test_clocksTime));
     
     atomic_float64Write (&test_clocksTime, t);
-}
-
-void test_timeB (void *x)
-{
-    test_clocksCounter++;
 }
 
 // -----------------------------------------------------------------------------------------------------------
