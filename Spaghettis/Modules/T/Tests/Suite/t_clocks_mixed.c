@@ -7,6 +7,8 @@ static t_rand48 test_clocksSeed;
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+/* Reschedule clocks. */
+
 void test_mixedTask (void *x)
 {
     test_clocksSetBigRange ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed));

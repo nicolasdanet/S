@@ -98,21 +98,18 @@ void test_clocksDoSomethingInMainThread (TTTThreadProperties *p, int j)
     test_clocksSetSmallRange (test_clocksA[j], ttt_getRandom (p));
 }
 
-void test_clocksDoSomethingConcurrently (TTTThreadProperties *p, int j)
+void test_clocksDoSomethingConcurrently (TTTThreadProperties *p, int i, int j)
 {
-    int i = ttt_getRandomInteger (p, TEST_CLOCKS_SIZE);
-    
-    if (ttt_getRandomInteger (p, 2)) {
-        test_clocksSetBigRange (test_clocksB[i], ttt_getRandom (p));
-    } else {
-        clock_unset (test_clocksB[i]);
-    }
+    if (i % 4 == j % 4) { test_clocksSetBigRange (test_clocksB[j], ttt_getRandom (p)); }
 }
 
 void *test_clocksTask (void *x)
 {
     TTTThreadProperties *p = (TTTThreadProperties *)x;
-    int i, j, n = ttt_threadGetCurrent (p);
+    int n = ttt_threadGetCurrent (p);
+    int i = 0;
+    int j = 0;
+    
     TTTWaste w;
     
     ttt_wasteInit (&w, n);
@@ -126,7 +123,7 @@ void *test_clocksTask (void *x)
                 test_clocksDoSomethingInMainThread (p, j);
                 ttt_wasteTime (&w);
             }
-            
+                        
             test_clocksTick (250.0);
             test_clocksTick (750.0);
             
@@ -142,9 +139,10 @@ void *test_clocksTask (void *x)
         
         while (atomic_int32Read (&test_clocksStop) == 0) {
             for (j = 0; j < TEST_CLOCKS_SIZE; j++) {
-                test_clocksDoSomethingConcurrently (p, j);
+                test_clocksDoSomethingConcurrently (p, i, j);
                 ttt_wasteTime (&w);
             }
+            i++;
         }
     }
     
