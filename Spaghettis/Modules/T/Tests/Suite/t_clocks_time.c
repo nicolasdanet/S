@@ -4,13 +4,15 @@
 
 /* Clocks are triggered time-ordered? */
 
+/* All tasks are handled in the main thread. */
+
 void test_timeTask (void *x)
 {
     t_systime t = scheduler_getLogicalTime();
     
-    if (t < atomic_float64Read (&test_clocksTime)) { test_clocksFails = 1; }
+    if (t < test_clocksTime) { test_clocksFails = 1; }
     
-    atomic_float64Write (&test_clocksTime, t);
+    test_clocksTime = t;
 }
 
 // -----------------------------------------------------------------------------------------------------------
