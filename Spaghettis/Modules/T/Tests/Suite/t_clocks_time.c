@@ -24,7 +24,7 @@ TTT_BEGIN (ClocksTime, "Clocks - Time")
     else {
         TTT_EXPECT (test_clocksCounter == TEST_LOOP_CLOCKS * TEST_CLOCKS_SIZE);
         TTT_EXPECT (test_clocksFails   == 0);
-        TTT_EXPECT (test_clocksCheck() == 1);
+        TTT_EXPECT (test_clocksCheck   == 0);
     }
     
 TTT_END

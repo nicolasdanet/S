@@ -15,6 +15,7 @@ static t_clock*             test_clocks3[TEST_CLOCKS_SIZE];
 
 static t_int32Atomic        test_clocksStop;
 static int                  test_clocksFails;
+static int                  test_clocksCheck;
 
 static double               test_clocksTime;
 static int                  test_clocksCounter;
@@ -63,22 +64,20 @@ void test_clocksRelease (void)
     int i;
     
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
+    //
+    if (!clock_isGood (test_clocks0[i])) { test_clocksCheck = 1; }
+    if (!clock_isGood (test_clocks1[i])) { test_clocksCheck = 1; }
+    if (!clock_isGood (test_clocks2[i])) { test_clocksCheck = 1; }
+    if (!clock_isGood (test_clocks3[i])) { test_clocksCheck = 1; }
+    //
+    }
+    
+    for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
         clock_free (test_clocks0[i]);
         clock_free (test_clocks1[i]);
         clock_free (test_clocks2[i]);
         clock_free (test_clocks3[i]);
     }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int test_clocksCheck (void)
-{
-    int i; for (i = 0; i < TEST_CLOCKS_SIZE; i++) { if (!clock_isGood (test_clocks0[i])) { return 0; } }
-    
-    return 1;
 }
 
 // -----------------------------------------------------------------------------------------------------------
