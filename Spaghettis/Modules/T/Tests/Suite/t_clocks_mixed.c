@@ -9,7 +9,7 @@ static t_rand48 test_clocksSeed;
 
 /* Reschedule clocks. */
 
-void test_mixedTask (void *x)
+void test_rescheduleTask (void *x)
 {
     test_clocksSetBigRange ((t_clock *)x, PD_RAND48_DOUBLE (test_clocksSeed));
 }
@@ -21,7 +21,7 @@ TTT_BEGIN (ClocksMixed, "Clocks - Mixed")
 
     test_clocksSeed = PD_RAND48_SEED;
     
-    if (test_clocksRun ((t_method)test_mixedTask, 0)) { TTT_FAIL; }
+    if (test_clocksRun ((t_method)test_rescheduleTask, 0)) { TTT_FAIL; }
     else {
         TTT_EXPECT (test_clocksCounter == TEST_LOOP_CLOCKS * TEST_CLOCKS_SIZE);
         TTT_EXPECT (test_clocksCheck() == 1);

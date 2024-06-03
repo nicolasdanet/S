@@ -10,6 +10,8 @@
 
 static t_clock*             test_clocks0[TEST_CLOCKS_SIZE];     /* Main thread. */
 static t_clock*             test_clocks1[TEST_CLOCKS_SIZE];
+static t_clock*             test_clocks2[TEST_CLOCKS_SIZE];
+static t_clock*             test_clocks3[TEST_CLOCKS_SIZE];
 
 static t_int32Atomic        test_clocksStop;
 static int                  test_clocksFails;
@@ -51,6 +53,8 @@ void test_clocksInitialize (t_method f, int safe)
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
         test_clocks0[i] = clock_new ((void *)NULL, (t_method)test_clocksTaskCounter, safe);
         test_clocks1[i] = clock_new ((void *)NULL, f, 0);
+        test_clocks2[i] = clock_new ((void *)NULL, f, 0);
+        test_clocks3[i] = clock_new ((void *)NULL, f, 0);
     }
 }
 
@@ -61,6 +65,8 @@ void test_clocksRelease (void)
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
         clock_free (test_clocks0[i]);
         clock_free (test_clocks1[i]);
+        clock_free (test_clocks2[i]);
+        clock_free (test_clocks3[i]);
     }
 }
 
@@ -100,8 +106,16 @@ void test_clocksDoSomethingInMainThread (TTTThreadProperties *p, int j)
 
 void test_clocksDoSomethingConcurrently (TTTThreadProperties *p, int n, int i, int j)
 {
-    if (n == 1) {
-    if (i % 4 == j % 4) { test_clocksSetBigRange (test_clocks1[j], ttt_getRandom (p)); }
+    t_clock *c = NULL;
+    
+    if (i % 4 == j % 4) {
+    //
+    if (n == 1)         { c = test_clocks1[j]; }
+    else if (n == 2)    { c = test_clocks2[j]; }
+    else                { c = test_clocks3[j]; }
+    
+    test_clocksSetBigRange (c, ttt_getRandom (p));
+    //
     }
 }
 

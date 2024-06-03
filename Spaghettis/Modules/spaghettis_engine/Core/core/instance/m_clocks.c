@@ -74,7 +74,7 @@ static void clocks_removeSafe (t_clocks *x, t_clock *c)
 {
     if (clock_isSet (c)) {
     //
-    /* Possible there that a clock is concurrently removed (while/and cached for executing). */
+    /* Possible there that a clock is concurrently consummed (while/and cached for executing). */
     /* It doesn't really matter. */
     
     int i;
