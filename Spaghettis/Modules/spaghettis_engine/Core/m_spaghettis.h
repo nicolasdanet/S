@@ -494,6 +494,7 @@ extern "C" {
 
 /* Notice that unset and delay a clock MUST be done only in one (and always the same) thread. */
 /* It can be inside the DSP perform. */
+/* The associated task is executed in the main thread. */
 /* The new and free functions must be called NON-CONCURRENTLY in the main thread. */
 
 PD_DLL t_clock      *spaghettis_clockNew                (void *x, t_method fn);

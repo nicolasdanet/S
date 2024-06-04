@@ -199,6 +199,7 @@ void        buffer_appendComma              (t_buffer *x);
 
 /* Notice that unset and delay a clock MUST be done only in one (and always the same) thread. */
 /* It can be inside the DSP perform. */
+/* The associated task is executed in the main thread. */
 /* The new and free functions must be called NON-CONCURRENTLY in the main thread. */
 
 t_clock     *clock_newSafe                  (void *owner, t_method fn);
