@@ -36,7 +36,7 @@ struct _clock {
 
 t_error    clock_setUnitParsed         (t_clock *x, t_float f, t_symbol *unitName);
 
-int        clock_isSet                 (t_clock *);
+int        clock_count                 (t_clock *);
 t_systime  clock_getLogicalTime        (t_clock *);
 
 // -----------------------------------------------------------------------------------------------------------

@@ -65,10 +65,10 @@ void test_clocksRelease (void)
     
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
     //
-    if (!clock_isGood (test_clocks0[i])) { test_clocksCheck = 1; }
-    if (!clock_isGood (test_clocks1[i])) { test_clocksCheck = 1; }
-    if (!clock_isGood (test_clocks2[i])) { test_clocksCheck = 1; }
-    if (!clock_isGood (test_clocks3[i])) { test_clocksCheck = 1; }
+    if (clock_count (test_clocks0[i]) != 0) { test_clocksCheck = 1; }
+    if (clock_count (test_clocks1[i]) != 0) { test_clocksCheck = 1; }
+    if (clock_count (test_clocks2[i]) != 0) { test_clocksCheck = 1; }
+    if (clock_count (test_clocks3[i]) != 0) { test_clocksCheck = 1; }
     //
     }
     

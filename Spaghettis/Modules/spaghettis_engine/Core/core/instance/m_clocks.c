@@ -41,7 +41,6 @@ void       clock_increment             (t_clock *);
 void       clock_decrement             (t_clock *);
 void       clock_inhibit               (t_clock *);
 void       clock_execute               (t_clock *);
-int        clock_isGood                (t_clock *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -72,7 +71,7 @@ static void clocks_addSafe (t_clocks *x, t_clock *c)
 
 static void clocks_removeSafe (t_clocks *x, t_clock *c)
 {
-    if (clock_isSet (c)) {
+    if (clock_count (c) > 0) {
     //
     /* Possible there that a clock is concurrently consummed (while/and cached for executing). */
     /* It doesn't really matter. */
@@ -123,7 +122,7 @@ void clocks_destroy (t_clocks *x, t_clock *c)
     clock_inhibit (c); clocks_remove (x, c);
     
     #if PD_WITH_DEBUG
-        PD_ASSERT (clock_isGood (c));
+        PD_ASSERT (clock_count (c) == 0);
     #endif
     
     buffer_appendClock (x->x_garbage, c);

@@ -131,14 +131,9 @@ void clock_decrement (t_clock *x)
     PD_UNUSED (t); PD_ASSERT (t == 1 || t == 0 || t == -1);
 }
 
-int clock_isSet (t_clock *x)
+int clock_count (t_clock *x)
 {
-    return (atomic_int32Read (&x->c_count) > 0);
-}
-
-int clock_isGood (t_clock *x)
-{
-    return (atomic_int32Read (&x->c_count) == 0);
+    return atomic_int32Read (&x->c_count);
 }
 
 // -----------------------------------------------------------------------------------------------------------

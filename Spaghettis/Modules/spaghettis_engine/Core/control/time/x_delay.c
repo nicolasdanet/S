@@ -108,7 +108,7 @@ static t_buffer *delay_functionData (t_object *z, int flags)
     buffer_appendFloat (b,  x->x_delay);
     buffer_appendComma (b);
     buffer_appendSymbol (b, sym__restore);
-    buffer_appendFloat (b,  clock_isSet (x->x_clock) ? clock_getLogicalTime (x->x_clock) : 0.0);
+    buffer_appendFloat (b,  (clock_count (x->x_clock) > 0) ? clock_getLogicalTime (x->x_clock) : 0.0);
 
     return b;
     //
@@ -170,7 +170,7 @@ static void *delay_new (t_symbol *s, int argc, t_atom *argv)
 
 static void delay_dismiss (t_delay *x)
 {
-    if (clock_isSet (x->x_clock)) {
+    if (clock_count (x->x_clock) > 0) {
     //
     x->x_cache = clock_getLogicalTime (x->x_clock); clock_unset (x->x_clock);
     //
