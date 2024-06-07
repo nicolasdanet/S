@@ -78,6 +78,7 @@ int test_areEquivalent (t_float a, t_float b)
 // #include "t_fifo_heavy.c"
 #include "t_clocks.c"
 #include "t_clocks_time.c"
+#include "t_clocks_reschedule.c"
 #include "t_clocks_mixed.c"
 // #include "t_time.c"
 // #include "t_time_NTP.c"
