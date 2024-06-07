@@ -29,9 +29,17 @@ void test_counterTask (void *x)
     test_clocksCounter++;
 }
 
-void test_dummyTask (void *x)
-{
+/* Clocks are triggered time-ordered? */
 
+/* All tasks are handled in the main thread. */
+
+void test_timeTask (void *x)
+{
+    t_systime t = scheduler_getLogicalTime();
+    
+    if (t < test_clocksTime) { test_clocksFails = 1; }
+    
+    test_clocksTime = t;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -70,10 +78,10 @@ void test_clocksRelease (void)
     
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
     //
-    if (clock_count (test_clocks0[i]) != 0) { test_clocksCheck = 1; }
-    if (clock_count (test_clocks1[i]) != 0) { test_clocksCheck = 1; }
-    if (clock_count (test_clocks2[i]) != 0) { test_clocksCheck = 1; }
-    if (clock_count (test_clocks3[i]) != 0) { test_clocksCheck = 1; }
+    if (clock_count (test_clocks0[i]) != 0) { test_clocksCheck++; }
+    if (clock_count (test_clocks1[i]) != 0) { test_clocksCheck++; }
+    if (clock_count (test_clocks2[i]) != 0) { test_clocksCheck++; }
+    if (clock_count (test_clocks3[i]) != 0) { test_clocksCheck++; }
     //
     }
     

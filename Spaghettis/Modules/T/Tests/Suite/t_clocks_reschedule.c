@@ -21,9 +21,10 @@ TTT_BEGIN (ClocksReschedule, "Clocks - Reschedule")
 
     test_clocksSeed = PD_RAND48_SEED;
     
-    if (test_clocksRun ((t_method)test_rescheduleTask, (t_method)test_dummyTask, 1)) { TTT_FAIL; }
+    if (test_clocksRun ((t_method)test_rescheduleTask, (t_method)test_timeTask, 1)) { TTT_FAIL; }
     else {
         TTT_EXPECT (test_clocksFails == 0);
+        TTT_EXPECT (test_clocksCheck == TEST_CLOCKS_SIZE);
     }
     
 TTT_END
