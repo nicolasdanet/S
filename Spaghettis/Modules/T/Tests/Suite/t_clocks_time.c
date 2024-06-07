@@ -20,7 +20,7 @@ void test_timeTask (void *x)
 
 TTT_BEGIN (ClocksTime, "Clocks - Time")
 
-    if (test_clocksRun ((t_method)test_timeTask, 1)) { TTT_FAIL; }
+    if (test_clocksRun ((t_method)test_counterTask, (t_method)test_timeTask, 1)) { TTT_FAIL; }
     else {
         TTT_EXPECT (test_clocksCounter == TEST_LOOP_CLOCKS * TEST_CLOCKS_SIZE);
         TTT_EXPECT (test_clocksFails   == 0);

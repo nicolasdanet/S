@@ -12,7 +12,7 @@ void test_dummyTask (void *x)
 
 TTT_BEGIN (ClocksMixed, "Clocks - Mixed")
 
-    if (test_clocksRun ((t_method)test_dummyTask, 0)) { TTT_FAIL; }
+    if (test_clocksRun ((t_method)test_counterTask, (t_method)test_dummyTask, 0)) { TTT_FAIL; }
     else {
         TTT_EXPECT (test_clocksCounter == TEST_LOOP_CLOCKS * TEST_CLOCKS_SIZE);
         TTT_EXPECT (test_clocksCheck   == 0);

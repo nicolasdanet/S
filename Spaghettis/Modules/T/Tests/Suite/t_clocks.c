@@ -24,7 +24,7 @@ static int                  test_clocksCounter;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void test_clocksTaskCounter (void *x)
+void test_counterTask (void *x)
 {
     test_clocksCounter++;
 }
@@ -47,15 +47,15 @@ void test_clocksSetBigRange (t_clock *x, double f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void test_clocksInitialize (t_method f, int safe)
+void test_clocksInitialize (t_method f0, t_method f1, int safe)
 {
     int i;
     
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
-        test_clocks0[i] = clock_new ((void *)NULL, (t_method)test_clocksTaskCounter, safe);
-        test_clocks1[i] = clock_new ((void *)NULL, f, 0);
-        test_clocks2[i] = clock_new ((void *)NULL, f, 0);
-        test_clocks3[i] = clock_new ((void *)NULL, f, 0);
+        test_clocks0[i] = clock_new ((void *)NULL, f0, safe);
+        test_clocks1[i] = clock_new ((void *)NULL, f1, 0);
+        test_clocks2[i] = clock_new ((void *)NULL, f1, 0);
+        test_clocks3[i] = clock_new ((void *)NULL, f1, 0);
     }
 }
 
@@ -169,13 +169,13 @@ void *test_clocksTask (void *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int test_clocksRun (t_method f, int safe)
+int test_clocksRun (t_method f0, t_method f1, int safe)
 {
     int err = 0;
     
     if (ttt_testGetNumberOfThreads() >= 2) {
     //
-    test_clocksInitialize (f, safe);
+    test_clocksInitialize (f0, f1, safe);
     
     if (ttt_testThreadsLaunch (test_clocksTask) != TTT_GOOD) { err = 1; }
     else {
