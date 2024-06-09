@@ -81,6 +81,11 @@ t_error buffer_insertAtIndex (t_buffer *x, int n, t_atom *a)
     return PD_ERROR;
 }
 
+t_error buffer_removeAtIndex (t_buffer *x, int n)
+{
+    return buffer_extend (x, n, n + 1, 0);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -174,6 +174,7 @@ t_error     buffer_replace                  (t_buffer *x, int start, int end, in
 t_error     buffer_getAtIndex               (t_buffer *x, int n, t_atom *a);
 t_error     buffer_setAtIndex               (t_buffer *x, int n, t_atom *a);
 t_error     buffer_insertAtIndex            (t_buffer *x, int n, t_atom *a);
+t_error     buffer_removeAtIndex            (t_buffer *x, int n);
 t_error     buffer_pop                      (t_buffer *x, t_atom *a);
 
 //t_error   buffer_setFloatAtIndex          (t_buffer *x, int n, t_float f);

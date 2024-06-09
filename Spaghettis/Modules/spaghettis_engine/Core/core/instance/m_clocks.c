@@ -20,6 +20,7 @@
 
 struct _clocks {
     t_pointerAtomic     *x_safe;
+    t_buffer            *x_single;
     t_buffer            *x_cache;
     t_buffer            *x_garbage;
     };
@@ -71,8 +72,6 @@ static void clocks_addSafe (t_clocks *x, t_clock *c)
 
 static void clocks_removeSafe (t_clocks *x, t_clock *c)
 {
-    if (clock_count (c) > 0) {
-    //
     /* Possible there that a clock is concurrently consummed (while/and cached for executing). */
     /* It doesn't really matter. */
     
@@ -90,13 +89,36 @@ static void clocks_removeSafe (t_clocks *x, t_clock *c)
     }
     //
     }
-    //
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+static void clocks_addSingle (t_clocks *x, t_clock *c)
+{
+    PD_ASSERT (sys_isControlThread());
+    
+    clock_increment (c); buffer_appendClock (x->x_single, c);
+}
+
+static void clocks_removeClock (t_buffer *x, t_clock *c)
+{
+
+}
+
+static void clocks_removeSingle (t_clocks *x, t_clock *c)
+{
+    PD_ASSERT (sys_isControlThread());
+    
+    clocks_removeClock (x->x_single, c); clock_decrement (c);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+// clock_isSingleThreaded
 
 void clocks_add (t_clocks *x, t_clock *c)
 {
@@ -105,7 +127,7 @@ void clocks_add (t_clocks *x, t_clock *c)
 
 void clocks_remove (t_clocks *x, t_clock *c)
 {
-    clocks_removeSafe (x, c);
+    if (clock_count (c) > 0) { clocks_removeSafe (x, c); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -228,6 +250,7 @@ t_clocks *clocks_new (void)
     t_clocks *x  = (t_clocks *)PD_MEMORY_GET (sizeof (t_clocks));
     
     x->x_safe    = (t_pointerAtomic *)PD_MEMORY_GET (sizeof (t_pointerAtomic) * CLOCKS_SIZE);
+    x->x_single  = buffer_new();
     x->x_cache   = buffer_new();
     x->x_garbage = buffer_new();
     
@@ -240,6 +263,7 @@ void clocks_free (t_clocks *x)
     
     buffer_free (x->x_garbage);
     buffer_free (x->x_cache);
+    buffer_free (x->x_single);
     
     PD_MEMORY_FREE (x->x_safe);
     

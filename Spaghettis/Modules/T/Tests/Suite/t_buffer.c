@@ -168,6 +168,38 @@ t_buffer *t = buffer_new();
     TTT_EXPECT (buffer_pop (b, &a) == PD_ERROR);
 }
 
+{
+    char *s = NULL;
+    
+    t_atom oux[7];
+    
+    SET_SYMBOL (oux + 0, gensym ("bijou"));
+    SET_SYMBOL (oux + 1, gensym ("caillou"));
+    SET_SYMBOL (oux + 2, gensym ("chou"));
+    SET_SYMBOL (oux + 3, gensym ("genou"));
+    SET_SYMBOL (oux + 4, gensym ("hibou"));
+    SET_SYMBOL (oux + 5, gensym ("joujou"));
+    SET_SYMBOL (oux + 6, gensym ("pou"));
+    
+    buffer_clear (b); buffer_append (b, 7, oux);
+    
+    s = buffer_toString (b);
+    TTT_EXPECT (!strcmp (s, "bijou caillou chou genou hibou joujou pou"));
+    
+    buffer_removeAtIndex (b, 0);
+    buffer_removeAtIndex (b, 3);
+    
+    PD_MEMORY_FREE (s); s = buffer_toString (b);
+    TTT_EXPECT (!strcmp (s, "caillou chou genou joujou pou"));
+    
+    buffer_removeAtIndex (b, 4);
+
+    PD_MEMORY_FREE (s); s = buffer_toString (b);
+    TTT_EXPECT (!strcmp (s, "caillou chou genou joujou"));
+    
+    PD_MEMORY_FREE (s);
+}
+
 buffer_free (t);
 buffer_free (b);
     
