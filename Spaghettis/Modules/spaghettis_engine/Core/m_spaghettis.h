@@ -327,7 +327,6 @@ enum {
 // MARK: -
 
 struct _abstractions;
-struct _clocks;
 struct _dspcontext;
 struct _dspthread;
 struct _garray;
@@ -347,7 +346,6 @@ struct _outlet;
 struct _space;
 
 #define t_abstractions              struct _abstractions
-#define t_clocks                    struct _clocks
 #define t_dspcontext                struct _dspcontext
 #define t_dspthread                 struct _dspthread
 #define t_garray                    struct _garray

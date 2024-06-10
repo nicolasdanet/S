@@ -18,17 +18,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-struct _clocks {
-    t_pointerAtomic     *x_safe;
-    t_buffer            *x_single;
-    t_buffer            *x_cache;
-    t_buffer            *x_garbage;
-    };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 #define CLOCKS_SIZE     256     /* Arbitrary. */
 
 // -----------------------------------------------------------------------------------------------------------
@@ -74,6 +63,8 @@ static void clocks_addSafe (t_clocks *x, t_clock *c)
 
 static void clocks_removeSafe (t_clocks *x, t_clock *c)
 {
+    if (clock_count (c) > 0) {
+    //
     /* Possible there that a clock is concurrently consummed (while/and cached for executing). */
     /* It doesn't really matter. */
     
@@ -88,6 +79,8 @@ static void clocks_removeSafe (t_clocks *x, t_clock *c)
             clock_decrement (c);
         }
         break;
+    }
+    //
     }
     //
     }
@@ -106,9 +99,13 @@ static void clocks_addSingle (t_clocks *x, t_clock *c)
 
 static void clocks_removeSingle (t_clocks *x, t_clock *c)
 {
+    if (clock_count (c) > 0) {
+    //
     PD_ASSERT (sys_isControlThread());
     
     buffer_removeClock (x->x_single, c); clock_decrement (c);
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -124,7 +121,7 @@ void clocks_add (t_clocks *x, t_clock *c)
 
 void clocks_remove (t_clocks *x, t_clock *c)
 {
-    if (clock_count (c) > 0) { clocks_removeSafe (x, c); }
+    clocks_removeSafe (x, c);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -164,9 +161,14 @@ static void clocks_tickAppend (t_clocks *x, t_clock *c, t_systime time)
     buffer_appendClock (x->x_cache, c);
 }
 
+static void clocks_tickCheckSingle (t_clocks *x, t_systime systime)
+{
+
+}
+
 /* Fetching clock is immune from ABA problem as clocks deletion is garbage collected. */
 
-static void clocks_tickCheck (t_clocks *x, t_systime systime)
+static void clocks_tickCheckSafe (t_clocks *x, t_systime systime)
 {
     int i;
     
@@ -228,7 +230,7 @@ static void clocks_tickExecute (t_clocks *x)
 
 void clocks_tick (t_clocks *x, t_systime systime)
 {
-    clocks_tickCheck (x, systime);
+    clocks_tickCheckSafe (x, systime);
     
     clocks_tickExecute (x);
     
@@ -266,6 +268,7 @@ void clocks_free (t_clocks *x)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 #if defined ( PD_BUILDING_TESTS )
 
