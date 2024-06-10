@@ -25,7 +25,6 @@
 // MARK: -
 
 void       scheduler_setLogicalTime    (t_systime);
-void       buffer_removeClock          (t_buffer *, t_clock *);
 void       buffer_freeContent          (t_buffer *);
 t_systime  clock_getExecuteTime        (t_clock *);
 void       clock_setExecuteTime        (t_clock *, t_systime);
@@ -90,28 +89,6 @@ static void clocks_removeSafe (t_clocks *x, t_clock *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void clocks_addSingle (t_clocks *x, t_clock *c)
-{
-    PD_ASSERT (sys_isControlThread());
-    
-    clock_increment (c); buffer_appendClock (x->x_single, c);
-}
-
-static void clocks_removeSingle (t_clocks *x, t_clock *c)
-{
-    if (clock_count (c) > 0) {
-    //
-    PD_ASSERT (sys_isControlThread());
-    
-    buffer_removeClock (x->x_single, c); clock_decrement (c);
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 // clock_isSingleThreaded
 
 void clocks_add (t_clocks *x, t_clock *c)
@@ -159,11 +136,6 @@ static void clocks_tickAppend (t_clocks *x, t_clock *c, t_systime time)
     clock_decrement (c);
     clock_setExecuteTime (c, time);
     buffer_appendClock (x->x_cache, c);
-}
-
-static void clocks_tickCheckSingle (t_clocks *x, t_systime systime)
-{
-
 }
 
 /* Fetching clock is immune from ABA problem as clocks deletion is garbage collected. */
