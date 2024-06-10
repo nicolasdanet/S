@@ -36,6 +36,8 @@ struct _clocks {
 // MARK: -
 
 void       scheduler_setLogicalTime    (t_systime);
+void       buffer_removeClock          (t_buffer *, t_clock *);
+void       buffer_freeContent          (t_buffer *);
 t_systime  clock_getExecuteTime        (t_clock *);
 void       clock_setExecuteTime        (t_clock *, t_systime);
 void       clock_increment             (t_clock *);
@@ -102,16 +104,11 @@ static void clocks_addSingle (t_clocks *x, t_clock *c)
     clock_increment (c); buffer_appendClock (x->x_single, c);
 }
 
-static void clocks_removeClock (t_buffer *x, t_clock *c)
-{
-
-}
-
 static void clocks_removeSingle (t_clocks *x, t_clock *c)
 {
     PD_ASSERT (sys_isControlThread());
     
-    clocks_removeClock (x->x_single, c); clock_decrement (c);
+    buffer_removeClock (x->x_single, c); clock_decrement (c);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -152,10 +149,7 @@ void clocks_destroy (t_clocks *x, t_clock *c)
 
 static void clocks_purge (t_clocks *x)
 {
-    int i, n = buffer_getSize (x->x_garbage);
-    
-    for (i = 0; i < n; i++) { PD_MEMORY_FREE (buffer_getClockAt (x->x_garbage, i)); }
-    
+    buffer_freeContent (x->x_garbage);
     buffer_clear (x->x_garbage);
 }
 

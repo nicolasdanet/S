@@ -90,6 +90,25 @@ t_error buffer_removeAtIndex (t_buffer *x, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void buffer_removeClock (t_buffer *x, t_clock *c)
+{
+    int i, n = buffer_getSize (x);
+    
+    int k = -1;
+    
+    for (i = 0; i < n; i++) {
+        if (buffer_getClockAt (x, i) == c) { k = i; break; }
+    }
+    
+    if (k > 0) {
+        buffer_removeAtIndex (x, k);
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void buffer_shuffle (t_buffer *x)
 {
     atom_shuffle (buffer_getSize (x), buffer_getAtoms (x));

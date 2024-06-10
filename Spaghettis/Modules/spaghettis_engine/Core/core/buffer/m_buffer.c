@@ -38,6 +38,17 @@ void buffer_free (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void buffer_freeContent (t_buffer *x)
+{
+    int i, n = buffer_getSize (x);
+    
+    for (i = 0; i < n; i++) { PD_MEMORY_FREE (buffer_getVoidAt (x, i)); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 int buffer_getSize (t_buffer *x)
 {
     return x->b_size;
@@ -63,6 +74,11 @@ t_atom *buffer_getAtomAtIndexChecked (t_buffer *x, int n)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+void *buffer_getVoidAt (t_buffer *x, int n)
+{
+    t_atom *a = buffer_getAtomAtIndex (x, n); PD_ASSERT (IS_VOID (a));   return GET_VOID (a);
+}
 
 t_object *buffer_getObjectAt (t_buffer *x, int n)
 {
