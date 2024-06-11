@@ -22,6 +22,7 @@
 typedef struct _clocks {
     t_pointerAtomic     *x_safe;
     t_buffer            *x_single;
+    t_buffer            *x_cache;
     t_buffer            *x_executed;
     t_buffer            *x_garbage;
     } t_clocks;

@@ -25,7 +25,7 @@ void clocks_tickAppend (t_clocks *, t_clock *, t_systime);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void clocks_removeClockIfAlreadyThere (t_buffer *x, t_clock *c)
+static void clocks_removeClock (t_buffer *x, t_clock *c)
 {
     int i, n = buffer_getSize (x);
     
@@ -57,7 +57,7 @@ void clocks_removeSingle (t_clocks *x, t_clock *c)
     //
     PD_ASSERT (sys_isControlThread());
     
-    clocks_removeClockIfAlreadyThere (x->x_single, c); clock_decrement (c);
+    clocks_removeClock (x->x_single, c); clock_decrement (c);
     //
     }
 }
@@ -70,16 +70,21 @@ void clocks_tickCheckSingle (t_clocks *x, t_systime systime)
 {
     int i, n = buffer_getSize (x->x_single);
     
+    PD_ASSERT (buffer_getSize (x->x_cache) == 0);
+    
     for (i = 0; i < n; i++) {
     //
     t_clock *c     = buffer_getClockAt (x->x_single, i);
     t_systime time = clock_getLogicalTime (c);
     
-    if (time <= systime) {
-        // clocks_tickAppend (x, c, time);
+    if (time <= systime) { clocks_tickAppend (x, c, time); }
+    else {
+        buffer_appendClock (x->x_cache, c);
     }
     //
     }
+    
+    buffer_clear (x->x_single); buffer_swap (x->x_single, x->x_cache);
 }
 
 // -----------------------------------------------------------------------------------------------------------

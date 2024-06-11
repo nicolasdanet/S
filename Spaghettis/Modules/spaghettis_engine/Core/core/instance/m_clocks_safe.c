@@ -219,6 +219,7 @@ t_clocks *clocks_new (void)
     
     x->x_safe       = (t_pointerAtomic *)PD_MEMORY_GET (sizeof (t_pointerAtomic) * CLOCKS_SIZE);
     x->x_single     = buffer_new();
+    x->x_cache      = buffer_new();
     x->x_executed   = buffer_new();
     x->x_garbage    = buffer_new();
     
@@ -231,6 +232,7 @@ void clocks_free (t_clocks *x)
     
     buffer_free (x->x_garbage);
     buffer_free (x->x_executed);
+    buffer_free (x->x_cache);
     buffer_free (x->x_single);
     
     PD_MEMORY_FREE (x->x_safe);
