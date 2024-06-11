@@ -30,6 +30,7 @@ namespace spaghettis::core {
 #include "core/instance/m_register.c"
 #include "core/instance/m_clocks_safe.c"
 #include "core/instance/m_clocks_single.c"
+#include "core/instance/m_clocks.c"
 #include "core/instance/m_abstractions.c"
 #include "core/instance/m_eval.c"
 #include "core/instance/m_stack.c"
