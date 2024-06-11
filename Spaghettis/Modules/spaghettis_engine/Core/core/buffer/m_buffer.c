@@ -45,6 +45,21 @@ void buffer_freeContent (t_buffer *x)
     for (i = 0; i < n; i++) { PD_MEMORY_FREE (buffer_getVoidAt (x, i)); }
 }
 
+void buffer_swap (t_buffer *x, t_buffer *y)
+{
+    int allocated  = x->b_allocated;
+    int size       = x->b_size;
+    t_atom *vector = x->b_vector;
+    
+    x->b_allocated = y->b_allocated;
+    x->b_size      = y->b_size;
+    x->b_vector    = y->b_vector;
+    
+    y->b_allocated = allocated;
+    y->b_size      = size;
+    y->b_vector    = vector;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

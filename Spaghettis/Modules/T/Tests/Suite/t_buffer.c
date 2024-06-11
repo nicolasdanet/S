@@ -5,9 +5,10 @@
 TTT_BEGIN (BufferBasic, "Buffer - Basic")
 
 t_buffer *b = buffer_new();
-t_buffer *t = buffer_new();
 
 {
+    t_buffer *t = buffer_new();
+    
     buffer_appendSymbol (t, gensym ("Monsieur"));
     buffer_appendSymbol (t, gensym ("Jack"));
     buffer_appendComma (t);
@@ -32,6 +33,18 @@ t_buffer *t = buffer_new();
 
     TTT_EXPECT (strcmp (symbol_getName (atom_getSymbol (buffer_getAtomAtIndex (b, 1))),  "Jack") == 0);
     TTT_EXPECT (strcmp (symbol_getName (atom_getSymbol (buffer_getAtomAtIndex (b, 10))), "Wolf") == 0);
+    
+    buffer_clear (b);
+    
+    TTT_EXPECT (buffer_getSize (t) == 16);
+    TTT_EXPECT (buffer_getSize (b) == 0);
+    
+    buffer_swap (b, t);
+    
+    TTT_EXPECT (buffer_getSize (t) == 0);
+    TTT_EXPECT (buffer_getSize (b) == 16);
+    
+    buffer_free (t);
 }
 
 {
@@ -200,7 +213,6 @@ t_buffer *t = buffer_new();
     PD_MEMORY_FREE (s);
 }
 
-buffer_free (t);
 buffer_free (b);
     
 TTT_END
