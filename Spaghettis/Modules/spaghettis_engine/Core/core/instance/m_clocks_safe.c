@@ -131,11 +131,11 @@ static void clocks_purge (t_clocks *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void clocks_tickAppend (t_clocks *x, t_clock *c, t_systime time)
+void clocks_tickAppend (t_clocks *x, t_clock *c, t_systime time)
 {
     clock_decrement (c);
     clock_setExecuteTime (c, time);
-    buffer_appendClock (x->x_cache, c);
+    buffer_appendClock (x->x_executed, c);
 }
 
 /* Fetching clock is immune from ABA problem as clocks deletion is garbage collected. */
@@ -181,21 +181,21 @@ static int clocks_tickCompare (const void *p1, const void *p2)
 
 static void clocks_tickExecute (t_clocks *x)
 {
-    int i, n = buffer_getSize (x->x_cache);
+    int i, n = buffer_getSize (x->x_executed);
     
     if (n) {
     //
-    buffer_qsort (x->x_cache, clocks_tickCompare);
+    buffer_qsort (x->x_executed, clocks_tickCompare);
     
     for (i = 0; i < n; i++) {
     //
-    t_clock *c = buffer_getClockAt (x->x_cache, i);
+    t_clock *c = buffer_getClockAt (x->x_executed, i);
     scheduler_setLogicalTime (clock_getExecuteTime (c));
     clock_execute (c);
     //
     }
     
-    buffer_clear (x->x_cache);
+    buffer_clear (x->x_executed);
     //
     }
 }
@@ -217,10 +217,10 @@ t_clocks *clocks_new (void)
 {
     t_clocks *x  = (t_clocks *)PD_MEMORY_GET (sizeof (t_clocks));
     
-    x->x_safe    = (t_pointerAtomic *)PD_MEMORY_GET (sizeof (t_pointerAtomic) * CLOCKS_SIZE);
-    x->x_single  = buffer_new();
-    x->x_cache   = buffer_new();
-    x->x_garbage = buffer_new();
+    x->x_safe       = (t_pointerAtomic *)PD_MEMORY_GET (sizeof (t_pointerAtomic) * CLOCKS_SIZE);
+    x->x_single     = buffer_new();
+    x->x_executed   = buffer_new();
+    x->x_garbage    = buffer_new();
     
     return x;
 }
@@ -230,7 +230,7 @@ void clocks_free (t_clocks *x)
     clocks_purge (x);
     
     buffer_free (x->x_garbage);
-    buffer_free (x->x_cache);
+    buffer_free (x->x_executed);
     buffer_free (x->x_single);
     
     PD_MEMORY_FREE (x->x_safe);

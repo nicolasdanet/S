@@ -12,9 +12,33 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void    buffer_removeClock  (t_buffer *, t_clock *);
-void    clock_increment     (t_clock *);
-void    clock_decrement     (t_clock *);
+void clock_increment (t_clock *);
+void clock_decrement (t_clock *);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void clocks_tickAppend (t_clocks *, t_clock *, t_systime);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void clocks_removeClockIfAlreadyThere (t_buffer *x, t_clock *c)
+{
+    int i, n = buffer_getSize (x);
+    
+    int k = -1;
+    
+    for (i = 0; i < n; i++) {
+        if (buffer_getClockAt (x, i) == c) { k = i; break; }
+    }
+    
+    if (k > 0) {
+        buffer_removeAtIndex (x, k);
+    }
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -33,7 +57,7 @@ void clocks_removeSingle (t_clocks *x, t_clock *c)
     //
     PD_ASSERT (sys_isControlThread());
     
-    buffer_removeClock (x->x_single, c); clock_decrement (c);
+    clocks_removeClockIfAlreadyThere (x->x_single, c); clock_decrement (c);
     //
     }
 }
@@ -44,7 +68,18 @@ void clocks_removeSingle (t_clocks *x, t_clock *c)
 
 void clocks_tickCheckSingle (t_clocks *x, t_systime systime)
 {
-
+    int i, n = buffer_getSize (x->x_single);
+    
+    for (i = 0; i < n; i++) {
+    //
+    t_clock *c     = buffer_getClockAt (x->x_single, i);
+    t_systime time = clock_getLogicalTime (c);
+    
+    if (time <= systime) {
+        // clocks_tickAppend (x, c, time);
+    }
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
