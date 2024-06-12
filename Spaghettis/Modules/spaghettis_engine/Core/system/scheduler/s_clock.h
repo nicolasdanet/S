@@ -34,7 +34,7 @@ struct _clock {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static inline int clock_isSingleThreaded (t_clock *x)
+static inline int clock_isSingle (t_clock *x)
 {
     return (x->c_safe == 0);
 }

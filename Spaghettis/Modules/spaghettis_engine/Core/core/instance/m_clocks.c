@@ -34,7 +34,7 @@ void        clocks_tickCheckSingle      (t_clocks *x, t_systime systime);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-// clock_isSingleThreaded
+// clock_isSingle
 
 void clocks_add (t_clocks *x, t_clock *c)
 {

@@ -65,7 +65,7 @@ void clocks_tickCheckSingle (t_clocks *x, t_systime systime)
 {
     int i, n = buffer_getSize (x->x_single);
     
-    PD_ASSERT (buffer_getSize (x->x_cache) == 0);
+    buffer_clear (x->x_cache);
     
     for (i = 0; i < n; i++) {
     //
@@ -79,7 +79,7 @@ void clocks_tickCheckSingle (t_clocks *x, t_systime systime)
     //
     }
     
-    buffer_clear (x->x_single); buffer_swap (x->x_single, x->x_cache);
+    buffer_swap (x->x_single, x->x_cache);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -65,10 +65,10 @@ void test_clocksInitialize (t_method f0, t_method f1, int safe)
     int i;
     
     for (i = 0; i < TEST_CLOCKS_SIZE; i++) {
-        test_clocks0[i] = clock_new ((void *)NULL, f0, safe);
-        test_clocks1[i] = clock_new ((void *)NULL, f1, 0);
-        test_clocks2[i] = clock_new ((void *)NULL, f1, 0);
-        test_clocks3[i] = clock_new ((void *)NULL, f1, 0);
+        test_clocks0[i] = safe ? clock_newSafe (NULL, f0) : clock_newSingle (NULL, f0);
+        test_clocks1[i] = clock_newSafe (NULL, f1);
+        test_clocks2[i] = clock_newSafe (NULL, f1);
+        test_clocks3[i] = clock_newSafe (NULL, f1);
     }
 }
 

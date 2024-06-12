@@ -154,7 +154,7 @@ void clock_execute (t_clock *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_clock *clock_new (void *owner, t_method fn, int safe)
+static t_clock *clock_new (void *owner, t_method fn, int safe)
 {
     t_clock *x = (t_clock *)PD_MEMORY_GET (sizeof (t_clock));
     
