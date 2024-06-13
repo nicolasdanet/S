@@ -30,7 +30,7 @@ static void clocks_removeClock (t_buffer *x, t_clock *c)
         if (buffer_getClockAt (x, i) == c) { k = i; break; }
     }
     
-    if (k > 0) {
+    if (k >= 0) {
         buffer_removeAtIndex (x, k);
     }
 }
@@ -43,7 +43,9 @@ void clocks_addSingle (t_clocks *x, t_clock *c)
 {
     PD_ASSERT (sys_isControlThread());
     
-    clock_increment (c); buffer_appendClock (x->x_single, c);
+    clock_increment (c);
+    
+    buffer_appendClock (x->x_single, c);
 }
 
 void clocks_removeSingle (t_clocks *x, t_clock *c)
@@ -52,7 +54,9 @@ void clocks_removeSingle (t_clocks *x, t_clock *c)
     //
     PD_ASSERT (sys_isControlThread());
     
-    clocks_removeClock (x->x_single, c); clock_decrement (c);
+    clocks_removeClock (x->x_single, c);
+    
+    clock_decrement (c);
     //
     }
 }

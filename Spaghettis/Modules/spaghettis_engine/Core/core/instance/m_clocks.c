@@ -34,16 +34,14 @@ void        clocks_tickCheckSingle      (t_clocks *x, t_systime systime);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-// clock_isSingle
-
 void clocks_add (t_clocks *x, t_clock *c)
 {
-    clocks_addSafe (x, c);
+    if (clock_isSingle (c)) { clocks_addSingle (x, c); } else { clocks_addSafe (x, c); }
 }
 
 void clocks_remove (t_clocks *x, t_clock *c)
 {
-    clocks_removeSafe (x, c);
+    if (clock_isSingle (c)) { clocks_removeSingle (x, c); } else { clocks_removeSafe (x, c); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -119,9 +117,8 @@ static void clocks_tickExecute (t_clocks *x)
 void clocks_tick (t_clocks *x, t_systime systime)
 {
     clocks_tickCheckSafe (x, systime);
-    
+    clocks_tickCheckSingle (x, systime);
     clocks_tickExecute (x);
-    
     clocks_purge (x);
 }
 
