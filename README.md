@@ -9,7 +9,7 @@ Developed on Ubuntu 22.04, macOS Big Sur.
         
 ## Dependencies
 
-The latest JUCE is required at `~/JUCE`.
+JUCE ( 7.0.12 ) is required at `~/JUCE`.
 
 ## Build
 
