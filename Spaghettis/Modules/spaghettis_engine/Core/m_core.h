@@ -42,6 +42,7 @@ typedef t_float64Atomic t_word;
 #include "core/instance/m_clocks.h"
 #include "core/instance/m_abstractions.h"
 #include "core/instance/m_instance.h"
+#include "core/message/m_bindlist.h"
 #include "core/class/m_class.h"
 #include "core/class/m_object.h"
 #include "core/class/m_inlet.h"

@@ -44,6 +44,7 @@ namespace spaghettis::core {
 #include "core/instance/m_instance.c"
 
 #include "core/message/m_symbols.c"
+#include "core/message/m_bindlist.c"
 #include "core/message/m_bind.c"
 #include "core/message/m_message.c"
 #include "core/message/m_method.c"
