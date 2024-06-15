@@ -104,7 +104,7 @@ void message_initialize (void)
     
     int i;
     for (i = 0; i < MESSAGE_HASH_SIZE; i++)   { PD_ASSERT (message_hashTable[i] == NULL); }
-    for (i = 0; i < MESSAGE_STATIC_SIZE; i++) { generateSymbol (symbols[i]->s_name, symbols[i]); }
+    for (i = 0; i < MESSAGE_STATIC_SIZE; i++) { generateSymbol (symbol_getName (symbols[i]), symbols[i]); }
     
     symbols_initialize();
     
@@ -159,7 +159,7 @@ void message_release (void)
     if (sym2->s_thing) {
         if (pd_class (sym2->s_thing) == bindlist_class) { pd_free (sym2->s_thing); }
         else {
-            PD_BUG; post_log ("%s", sym2->s_name);
+            PD_BUG; post_log ("%s", symbol_getName (sym2));
         }
     }
     //
@@ -175,7 +175,10 @@ void message_release (void)
     //
     sym1 = sym2->s_next;
     
-    if (!message_isStaticSymbol (sym2)) { PD_MEMORY_FREE ((void *)sym2->s_name); PD_MEMORY_FREE (sym2); }
+    if (!message_isStaticSymbol (sym2)) {
+        PD_MEMORY_FREE ((void *)symbol_getName (sym2));
+        PD_MEMORY_FREE (sym2);
+    }
     //
     }
     //

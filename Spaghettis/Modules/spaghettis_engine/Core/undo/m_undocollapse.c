@@ -203,9 +203,9 @@ static void undomanager_collapsePost (t_undomanager *x)
     while (a) {
     //
     if (undoaction_getUnique (a)) {
-        post_log ("UNDO / %s / %ld", undoaction_getLabel (a)->s_name, undoaction_getUnique (a));
+        post_log ("UNDO / %s / %ld", symbol_getName (undoaction_getLabel (a)), undoaction_getUnique (a));
     } else {
-        post_log ("UNDO / %s", undoaction_getLabel (a)->s_name);
+        post_log ("UNDO / %s", symbol_getName (undoaction_getLabel (a)));
     }
     
     a = a->ua_next;

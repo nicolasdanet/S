@@ -191,7 +191,9 @@ static t_error main_setFileSettings (const char *settings)
     char filepath[PD_STRING] = { 0 };
     
     const char *name      = settings ? settings : "settings.txt";
-    const char *directory = settings ? main_directoryExecutable->s_name : main_directorySupport->s_name;
+    const char *directory = settings
+                                ? symbol_getName (main_directoryExecutable)
+                                : symbol_getName (main_directorySupport);
 
     if (!path_withDirectoryAndName (filepath, PD_STRING, directory, name)) {
         if (!settings || path_isFileExistAsRegularFile (filepath)) {
@@ -216,7 +218,7 @@ static t_error main_setPathHelp()
     char t[PD_STRING]        = { 0 };
     char filepath[PD_STRING] = { 0 };
     
-    t_error err = string_copy (t, PD_STRING, main_directoryExecutable->s_name);
+    t_error err = string_copy (t, PD_STRING, symbol_getName (main_directoryExecutable));
 
     if (!err) {
     //

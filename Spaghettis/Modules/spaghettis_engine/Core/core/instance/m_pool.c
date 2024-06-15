@@ -73,7 +73,7 @@ void pool_relinquish (t_symbol *s)
 
 int pool_check (t_symbol *s)
 {
-    const char *p = s->s_name; return ((*p == '@') && (strlen (p) == POOL_STRING));
+    const char *p = symbol_getName (s); return ((*p == '@') && (strlen (p) == POOL_STRING));
 }
 
 // -----------------------------------------------------------------------------------------------------------

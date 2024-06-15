@@ -95,7 +95,7 @@ static void instance_loadAbstractionFile (t_symbol *name, int argc, t_atom *argv
 {
     t_fileproperties p; fileproperties_initAbstraction (&p, name);
     
-    if (glist_fileExist (instance_contextGetCurrent(), name->s_name, PD_PATCH, &p)) {
+    if (glist_fileExist (instance_contextGetCurrent(), symbol_getName (name), PD_PATCH, &p)) {
     //
     t_symbol *filename  = gensym (fileproperties_getName (&p));
     t_symbol *directory = gensym (fileproperties_getDirectory (&p));

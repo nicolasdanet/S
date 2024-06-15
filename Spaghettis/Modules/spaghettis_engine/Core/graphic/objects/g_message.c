@@ -108,7 +108,7 @@ static t_buffer *message_getBuffer (t_message *x)
     
         for (i = 0; i < size; i++) {
             t_symbol *s = atom_getSymbolOrDollarSymbol (a + i);
-            if (s != &s_ && string_contains (s->s_name, "$$")) {
+            if (s != &s_ && string_contains (symbol_getName (s), "$$")) {
                 SET_SYMBOL (a + i, symbol_replaceDoubleDollar (s));
             }
         }
@@ -233,7 +233,7 @@ static void message_addDollarSymbol (t_message *x, t_symbol *s)
     t_atom a;
     
     char t[PD_STRING] = { 0 };
-    string_sprintf (t, PD_STRING, "$%s", s->s_name);
+    string_sprintf (t, PD_STRING, "$%s", symbol_getName (s));
     SET_DOLLARSYMBOL (&a, gensym (t));
 
     buffer_appendAtom (object_getBuffer (cast_object (x)), &a);

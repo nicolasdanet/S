@@ -59,7 +59,7 @@ static inline t_symbol *environment_getDirectory (t_environment *e)
 
 static inline const char *environment_getDirectoryAsString (t_environment *e)
 {
-    return e->env_directory->s_name;
+    return symbol_getName (e->env_directory);
 }
 
 static inline t_symbol *environment_getFileName (t_environment *e)
@@ -69,7 +69,7 @@ static inline t_symbol *environment_getFileName (t_environment *e)
 
 static inline const char *environment_getFileNameAsString (t_environment *e)
 {
-    return environment_getFileName (e)->s_name;
+    return symbol_getName (environment_getFileName (e));
 }
 
 // -----------------------------------------------------------------------------------------------------------

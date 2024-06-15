@@ -70,7 +70,7 @@ static void *logger_task (void *dummy)
 t_error logger_initialize (void)
 {
     char t[PD_STRING] = { 0 };
-    t_error err = string_sprintf (t, PD_STRING, "%s/log-XXXXXX", main_directorySupport->s_name);
+    t_error err = string_sprintf (t, PD_STRING, "%s/log-XXXXXX", symbol_getName (main_directorySupport));
     
     if (!err && (logger_file = mkstemp (t)) != -1) {
     //

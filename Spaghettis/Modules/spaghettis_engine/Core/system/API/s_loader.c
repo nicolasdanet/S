@@ -74,7 +74,7 @@ static void loader_addLoaded (t_symbol *name, t_handle handle)
 static t_error loader_makeStubName (char *dest, size_t size, t_symbol *name, const char *suffix)
 {
     t_error err = PD_ERROR_NONE;
-    const char *n = name->s_name;
+    const char *n = symbol_getName (name);
 
     while (*n && !err) {
     //
@@ -134,14 +134,14 @@ static int loader_externalOpen (t_glist *glist, t_symbol *name)
 {
     t_handle handle = NULL;
     
-    PD_ASSERT (strrchr (name->s_name, '/') == NULL); 
+    PD_ASSERT (strrchr (symbol_getName (name), '/') == NULL);
     
     if (loader_isAlreadyLoaded (name)) { return 1; }
     else {
     //
     t_fileproperties p; fileproperties_initExternal (&p, name);
 
-    if (glist_fileExist (glist, name->s_name, PD_PLUGIN, &p)) {
+    if (glist_fileExist (glist, symbol_getName (name), PD_PLUGIN, &p)) {
     //
     char filepath[PD_STRING] = { 0 };
     

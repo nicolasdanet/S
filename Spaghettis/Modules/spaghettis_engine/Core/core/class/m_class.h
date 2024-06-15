@@ -222,17 +222,17 @@ static inline t_symbol *class_getName (t_class *c)
 
 static inline const char *class_getNameAsString (t_class *c)
 {
-    return c->c_name->s_name;
+    return symbol_getName (c->c_name);
 }
 
 static inline const char *class_getHelpNameAsString (t_class *c)
 {
-    return c->c_helpName->s_name;
+    return symbol_getName (c->c_helpName);
 }
 
 static inline const char *class_getHelpDirectoryAsString (t_class *c)
 {
-    return c->c_helpDirectory->s_name;
+    return symbol_getName (c->c_helpDirectory);
 }
 
 // -----------------------------------------------------------------------------------------------------------

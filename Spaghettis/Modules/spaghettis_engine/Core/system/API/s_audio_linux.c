@@ -82,7 +82,7 @@ static void jack_setMetadataName (jack_client_t *client, jack_uuid_t uuid, int i
     t_symbol *s = metadata_getName (isOutput, n);
     
     if (s) {
-        jack_set_property (client, uuid, METADATA_PRETTY_NAME, s->s_name, METADATA_TYPE_TEXT);
+        jack_set_property (client, uuid, METADATA_PRETTY_NAME, symbol_getName (s), METADATA_TYPE_TEXT);
     }
 }
 

@@ -315,7 +315,7 @@ void buffer_deserialize (t_buffer *x, int argc, t_atom *argv)
     if (!IS_SYMBOL (argv + i)) { buffer_appendAtom (x, argv + i); }
     else {
         t_atom a;
-        const char *s = GET_SYMBOL (argv + i)->s_name;
+        const char *s = symbol_getName (GET_SYMBOL (argv + i));
         t_error err = atom_withStringUnzeroed (&a, s, (int)strlen (s));
         PD_UNUSED (err); PD_ASSERT (!err);
         buffer_appendAtom (x, &a);

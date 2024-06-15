@@ -29,13 +29,13 @@ static FILE *properties_saveFile;       /* Static. */
 
 t_error properties_loadBegin (void)
 {
-    t_error err = !path_isFileExist (main_filePreferences->s_name);
+    t_error err = !path_isFileExist (symbol_getName (main_filePreferences));
     
     if (!err) {
     //
     int f;
     
-    err |= ((f = file_openRead (main_filePreferences->s_name)) < 0);
+    err |= ((f = file_openRead (symbol_getName (main_filePreferences))) < 0);
     
     if (!err) {
     //
@@ -74,7 +74,7 @@ void properties_loadClose (void)
 
 t_error properties_saveBegin (void)
 {
-    int f = file_openWrite (main_filePreferences->s_name);
+    int f = file_openWrite (symbol_getName (main_filePreferences));
     t_error err = (f < 0);
     if (!err) { err |= ((properties_saveFile = fdopen (f, "w")) == NULL); }
     

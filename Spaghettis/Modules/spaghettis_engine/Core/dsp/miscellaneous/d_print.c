@@ -56,7 +56,7 @@ static void print_tilde_polling (t_print_tilde *x)
     t_sample t = 0.0f;
     
     if (fifo32_read (x->x_fifo, &t, 1)) {
-        post (cast_object (x), "%s: %g", x->x_name->s_name, t);
+        post (cast_object (x), "%s: %g", symbol_getName (x->x_name), t);
     }
     //
     }

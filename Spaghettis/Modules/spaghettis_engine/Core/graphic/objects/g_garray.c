@@ -256,7 +256,7 @@ static void garray_read (t_garray *x, t_symbol *name)
     
     t_fileproperties p; fileproperties_init (&p);
     
-    int f = glist_fileOpen (object_getOwner (cast_object (x)), name->s_name, "", &p);
+    int f = glist_fileOpen (object_getOwner (cast_object (x)), symbol_getName (name), "", &p);
     
     if (!(err |= (f < 0))) {
     //
@@ -293,7 +293,7 @@ static void garray_write (t_garray *x, t_symbol *name)
     char t[PD_STRING] = { 0 };
     t_glist *owner = object_getOwner (cast_object (x));
     const char *s = environment_getDirectoryAsString (glist_getEnvironment (owner));
-    t_error err = path_withDirectoryAndName (t, PD_STRING, s, name->s_name);
+    t_error err = path_withDirectoryAndName (t, PD_STRING, s, symbol_getName (name));
 
     if (!err) {
     //
@@ -556,7 +556,7 @@ static t_symbol *garray_getUnusedBindName (t_symbol *prefix)
     int i = 1; char t[PD_STRING] = { 0 };
     
     while (i > 0) {
-        t_error err = string_sprintf (t, PD_STRING, "%s-%d", prefix->s_name, i);
+        t_error err = string_sprintf (t, PD_STRING, "%s-%d", symbol_getName (prefix), i);
         if (err) { break; }
         else {
             t_symbol *name = gensym (t); if (!symbol_getThingByClass (name, garray_class)) { return name; }

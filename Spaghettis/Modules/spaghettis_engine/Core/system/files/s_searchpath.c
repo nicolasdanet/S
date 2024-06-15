@@ -134,7 +134,7 @@ static void searchpath_reportWrite (int f, const char *prefix, const char *s)
 static void searchpath_reportToLogFile (void)
 {
     char t[PD_STRING] = { 0 };
-    t_error err = string_sprintf (t, PD_STRING, "%s/scan-XXXXXX", main_directorySupport->s_name);
+    t_error err = string_sprintf (t, PD_STRING, "%s/scan-XXXXXX", symbol_getName (main_directorySupport));
     int f;
     
     if (!err && ((f = mkstemp (t)) != -1)) {
@@ -243,7 +243,7 @@ int searchpath_isExternalAvailable (t_symbol *s)
 {
     int available = 0; char t[PD_STRING] = { 0 };
     
-    if (!string_sprintf (t, PD_STRING, "%s%s", s->s_name, PD_PLUGIN)) {
+    if (!string_sprintf (t, PD_STRING, "%s%s", symbol_getName (s), PD_PLUGIN)) {
         available = pathlist_contains (searchpath_external, t);
     }
     
@@ -254,7 +254,7 @@ int searchpath_isAbstractionAvailable (t_symbol *s)
 {
     int available = 0; char t[PD_STRING] = { 0 };
     
-    if (!string_sprintf (t, PD_STRING, "%s%s", s->s_name, PD_PATCH)) {
+    if (!string_sprintf (t, PD_STRING, "%s%s", symbol_getName (s), PD_PATCH)) {
         available = pathlist_contains (searchpath_patch, t);
     }
     

@@ -63,7 +63,7 @@ static std::vector<AudioDevice> outputs_getAudioIn (t_deviceslist *l)
         t_symbol *t  = deviceslist_getInAtIndex (l, j);
         int channels = deviceslist_getInChannelsAtIndex (l, j);
         jassert (t);
-        d.emplace_back (t->s_name, channels);
+        d.emplace_back (symbol_getName (t), channels);
     }
     
     return d;
@@ -77,7 +77,7 @@ static std::vector<AudioDevice> outputs_getAudioOut (t_deviceslist *l)
         t_symbol *t  = deviceslist_getOutAtIndex (l, j);
         int channels = deviceslist_getOutChannelsAtIndex (l, j);
         jassert (t);
-        d.emplace_back (t->s_name, channels);
+        d.emplace_back (symbol_getName (t), channels);
     }
     
     return d;
@@ -90,7 +90,7 @@ static std::vector<MidiDevice> outputs_getMidiIn (t_deviceslist *l)
     for (int j = 0; j < deviceslist_getInSize (l); ++j) {
         t_symbol *t  = deviceslist_getInAtIndex (l, j);
         jassert (t);
-        d.emplace_back (t->s_name);
+        d.emplace_back (symbol_getName (t));
     }
     
     return d;
@@ -103,7 +103,7 @@ static std::vector<MidiDevice> outputs_getMidiOut (t_deviceslist *l)
     for (int j = 0; j < deviceslist_getOutSize (l); ++j) {
         t_symbol *t  = deviceslist_getOutAtIndex (l, j);
         jassert (t);
-        d.emplace_back (t->s_name);
+        d.emplace_back (symbol_getName (t));
     }
     
     return d;

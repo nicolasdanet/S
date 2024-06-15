@@ -43,7 +43,7 @@ static int path_containsHiddenDirectory (const char *filepath)
 
 static int path_isInsideSupport (const char *filepath)
 {
-    return string_startWith (filepath, main_directorySupport->s_name);
+    return string_startWith (filepath, symbol_getName (main_directorySupport));
 }
 
 int path_isValid (const char *filepath)

@@ -28,14 +28,16 @@ typedef struct _listfromsymbol {
 
 static void listfromsymbol_symbol (t_listfromsymbol *x, t_symbol *s)
 {
-    t_atom *t = NULL; int n, count = (int)(strlen (s->s_name));
+    const char *name = symbol_getName (s);
+    
+    t_atom *t = NULL; int n, count = (int)(strlen (name));
     
     if (!count) { outlet_list (x->x_outlet, 0, NULL); }
     else {
     //
     PD_ATOMS_ALLOCA (t, count);
     
-    for (n = 0; n < count; n++) { SET_FLOAT (t + n, (unsigned char)s->s_name[n]); }
+    for (n = 0; n < count; n++) { SET_FLOAT (t + n, (unsigned char)(*(name + n))); }
     
     outlet_list (x->x_outlet, count, t);
     

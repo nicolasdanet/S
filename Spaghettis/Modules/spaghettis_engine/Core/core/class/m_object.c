@@ -275,7 +275,7 @@ static void object_openHelp (const char *directory, const char *name)
     if (*directory != 0) { f = file_openReadWithDirectoryAndName (directory, name, PD_HELP, &p); }
     
     if (f < 0 && main_directoryHelp) {
-        f = file_openReadConsideringSearchPath (main_directoryHelp->s_name, name, PD_HELP, &p);
+        f = file_openReadConsideringSearchPath (symbol_getName (main_directoryHelp), name, PD_HELP, &p);
     }
     
     if (f < 0) { error_canNotFind (NULL, gensym (name), sym_help); }
@@ -443,13 +443,13 @@ juce::String object_getTypeOfInlets (t_object *x)
     t_inlet *i = NULL;
     
     if (class_hasFirstInlet (pd_class (x))) {
-        if (class_hasFirstInletAsSignal (pd_class (x))) { s.add (s_signal.s_name); }
+        if (class_hasFirstInletAsSignal (pd_class (x))) { s.add (symbol_getName (&s_signal)); }
         else {
-            s.add (s_anything.s_name);
+            s.add (symbol_getName (&s_anything));
         }
     }
     
-    for (i = x->g_inlets; i; i = inlet_getNext (i)) { s.add (inlet_getType (i)->s_name); }
+    for (i = x->g_inlets; i; i = inlet_getNext (i)) { s.add (symbol_getName (inlet_getType (i))); }
     
     return s.joinIntoString (" ");
 }
@@ -460,7 +460,7 @@ juce::String object_getTypeOfOutlets (t_object *x)
     
     t_outlet *o = NULL;
     
-    for (o = x->g_outlets; o; o = outlet_getNext (o)) { s.add (outlet_getType (o)->s_name); }
+    for (o = x->g_outlets; o; o = outlet_getNext (o)) { s.add (symbol_getName (outlet_getType (o))); }
     
     return s.joinIntoString (" ");
 }

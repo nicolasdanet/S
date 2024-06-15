@@ -168,7 +168,7 @@ void eval_file (t_symbol *name, t_symbol *directory)
 {
     t_buffer *t = buffer_new();
     
-    t_error err = buffer_fromFile (t, name->s_name, directory->s_name);
+    t_error err = buffer_fromFile (t, symbol_getName (name), symbol_getName (directory));
     
     if (err) { error_failsToRead (NULL, name); }
     else {

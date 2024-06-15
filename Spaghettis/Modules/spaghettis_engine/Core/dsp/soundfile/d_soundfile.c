@@ -368,7 +368,10 @@ int soundfile_readFileHeader (t_glist *glist, t_audioproperties *args)
     PD_ASSERT (args->ap_fileName);
     PD_ASSERT (args->ap_fileExtension);
     
-    int f = glist_fileOpen (glist, args->ap_fileName->s_name, args->ap_fileExtension->s_name, &p);
+    int f = glist_fileOpen (glist,
+                symbol_getName (args->ap_fileName),
+                symbol_getName (args->ap_fileExtension),
+                &p);
     
     if (f >= 0) { return soundfile_readFileHeaderProceed (f, args); }
     
@@ -472,16 +475,16 @@ t_error soundfile_writeFileParse (t_glist *glist,
     
     if (fileType == SOUNDFILE_UNDEFINED) {
 
-        if (string_endWith (fileName->s_name, ".wav"))          { fileType = SOUNDFILE_WAVE; }
-        else if (string_endWith (fileName->s_name, ".WAV"))     { fileType = SOUNDFILE_WAVE; }
-        else if (string_endWith (fileName->s_name, ".aif"))     { fileType = SOUNDFILE_AIFF; }
-        else if (string_endWith (fileName->s_name, ".AIF"))     { fileType = SOUNDFILE_AIFF; }
-        else if (string_endWith (fileName->s_name, ".aiff"))    { fileType = SOUNDFILE_AIFF; }
-        else if (string_endWith (fileName->s_name, ".AIFF"))    { fileType = SOUNDFILE_AIFF; }
-        else if (string_endWith (fileName->s_name, ".snd"))     { fileType = SOUNDFILE_NEXT; }
-        else if (string_endWith (fileName->s_name, ".SND"))     { fileType = SOUNDFILE_NEXT; }
-        else if (string_endWith (fileName->s_name, ".au"))      { fileType = SOUNDFILE_NEXT; }
-        else if (string_endWith (fileName->s_name, ".AU"))      { fileType = SOUNDFILE_NEXT; }
+        if (string_endWith (symbol_getName (fileName), ".wav"))         { fileType = SOUNDFILE_WAVE; }
+        else if (string_endWith (symbol_getName (fileName), ".WAV"))    { fileType = SOUNDFILE_WAVE; }
+        else if (string_endWith (symbol_getName (fileName), ".aif"))    { fileType = SOUNDFILE_AIFF; }
+        else if (string_endWith (symbol_getName (fileName), ".AIF"))    { fileType = SOUNDFILE_AIFF; }
+        else if (string_endWith (symbol_getName (fileName), ".aiff"))   { fileType = SOUNDFILE_AIFF; }
+        else if (string_endWith (symbol_getName (fileName), ".AIFF"))   { fileType = SOUNDFILE_AIFF; }
+        else if (string_endWith (symbol_getName (fileName), ".snd"))    { fileType = SOUNDFILE_NEXT; }
+        else if (string_endWith (symbol_getName (fileName), ".SND"))    { fileType = SOUNDFILE_NEXT; }
+        else if (string_endWith (symbol_getName (fileName), ".au"))     { fileType = SOUNDFILE_NEXT; }
+        else if (string_endWith (symbol_getName (fileName), ".AU"))     { fileType = SOUNDFILE_NEXT; }
         else {
             fileType = SOUNDFILE_WAVE; fileExtension = sym___point__wav;
         }
@@ -662,8 +665,8 @@ int soundfile_writeFileHeader (t_glist *glist, t_audioproperties *args, t_object
     PD_ASSERT (args->ap_headerSize == SOUNDFILE_UNDEFINED);
     PD_ASSERT (args->ap_dataSizeInBytes == SOUNDFILE_UNDEFINED);
 
-    err = string_copy (name, PD_STRING, args->ap_fileName->s_name);
-    err |= string_add (name, PD_STRING, args->ap_fileExtension->s_name);
+    err = string_copy (name, PD_STRING, symbol_getName (args->ap_fileName));
+    err |= string_add (name, PD_STRING, symbol_getName (args->ap_fileExtension));
     
     if (!err) {
         if (args->ap_fileType == SOUNDFILE_WAVE)      { err = soundfile_writeFileHeaderWAVE (&t, args); }

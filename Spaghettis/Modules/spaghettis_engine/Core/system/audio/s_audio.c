@@ -68,8 +68,8 @@ static void audio_report (t_error err, t_devices *p)
     
     void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
     
-    (f) (NULL, PD_TRANSLATE ("dsp: %s / %d channels"), i->s_name, m);
-    (f) (NULL, PD_TRANSLATE ("dsp: %s / %d channels"), o->s_name, n);
+    (f) (NULL, PD_TRANSLATE ("dsp: %s / %d channels"), symbol_getName (i), m);
+    (f) (NULL, PD_TRANSLATE ("dsp: %s / %d channels"), symbol_getName (o), n);
     
     #if PD_APPLE
     

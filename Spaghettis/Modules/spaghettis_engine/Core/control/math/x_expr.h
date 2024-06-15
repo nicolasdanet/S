@@ -26,7 +26,7 @@
 // MARK: -
 
 #define EXPR_TE_VARIABLE(i, s)          { \
-                                            x->x_variables[i].te_name    = (s)->s_name;  \
+                                            x->x_variables[i].te_name    = symbol_getName (s);  \
                                             x->x_variables[i].te_address = x->x_v + (i); \
                                             x->x_variables[i].te_type    = TE_VARIABLE;  \
                                         }

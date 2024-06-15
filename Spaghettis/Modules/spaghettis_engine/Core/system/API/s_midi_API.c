@@ -114,7 +114,7 @@ t_error midi_deviceAsString (int isOutput, int k, char *dest, size_t size)
     t_error err = PD_ERROR;
     t_symbol *t = midi_deviceAsSymbol (isOutput, k);
     
-    if (t) { err = string_copy (dest, size, t->s_name); }
+    if (t) { err = string_copy (dest, size, symbol_getName (t)); }
     
     if (err) { *dest = 0; }
     

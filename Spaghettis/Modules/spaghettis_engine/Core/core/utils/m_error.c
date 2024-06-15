@@ -30,7 +30,7 @@ static const char *error__empty (t_symbol *s)
 {
     if (s == &s_) { return "\" \""; }
     
-    return s->s_name;
+    return symbol_getName (s);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ int error__options (t_object *x, t_symbol *s, int argc, t_atom *argv)
     //
     t_symbol *t = GET_SYMBOL (argv + i);
     
-    if (t != sym___dash__ && string_startWith (t->s_name, sym___dash__->s_name)) {
+    if (t != sym___dash__ && string_startWith (symbol_getName (t), symbol_getName (sym___dash__))) {
         warning_unusedOption (x, s, t);
         k = 1;
     }
@@ -98,47 +98,47 @@ void error_searchPathOverflow (t_object *x)
 
 void error_recursiveInstantiation (t_glist *x, t_symbol *s)
 {
-    post_error (cast_object (x), PD_TRANSLATE ("%s: recursive instantiation"), s->s_name);
+    post_error (cast_object (x), PD_TRANSLATE ("%s: recursive instantiation"), symbol_getName (s));
 }
 
 void error_alreadyExists (t_object *x, t_symbol *s)
 {
-    post_error (x, PD_TRANSLATE ("%s: already exists"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: already exists"), symbol_getName (s));
 }
 
 void error_canNotOpen (t_object *x, t_symbol *s)
 {
-    post_error (x, PD_TRANSLATE ("%s: can't open"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: can't open"), symbol_getName (s));
 }
 
 void error_canNotCreate (t_object *x, t_symbol *s)
 {
-    post_error (x, PD_TRANSLATE ("%s: can't create"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: can't create"), symbol_getName (s));
 }
 
 void error_failsToRead (t_object *x, t_symbol *s)
 {
-    post_error (x, PD_TRANSLATE ("%s: fails to read"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: fails to read"), symbol_getName (s));
 }
 
 void error_failsToWrite (t_object *x, t_symbol *s)
 {
-    post_error (x, PD_TRANSLATE ("%s: fails to write"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: fails to write"), symbol_getName (s));
 }
 
 void error_fileIsProtected (t_object *x, t_symbol *s)
 {
-    post_error (x, PD_TRANSLATE ("%s: file is protected"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: file is protected"), symbol_getName (s));
 }
 
 void error_ignored (t_object *x, t_symbol *s)
 {
-    post_error (x, PD_TRANSLATE ("%s: ignored"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: ignored"), symbol_getName (s));
 }
 
 void error_failed (t_object *x, t_symbol *s)
 {   
-    post_error (x, PD_TRANSLATE ("%s: failed"), s->s_name);
+    post_error (x, PD_TRANSLATE ("%s: failed"), symbol_getName (s));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -147,42 +147,42 @@ void error_failed (t_object *x, t_symbol *s)
 
 void error_noSuch (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (x, PD_TRANSLATE ("%s: no such %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: no such %s"), symbol_getName (s1), error__empty (s2));
 }
 
 void error_canNotFind (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (x, PD_TRANSLATE ("%s: can't find %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: can't find %s"), symbol_getName (s1), error__empty (s2));
 }
 
 void error_unknownMethod (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (x, PD_TRANSLATE ("%s: unknown method %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: unknown method %s"), symbol_getName (s1), error__empty (s2));
 }
 
 void error_unexpected (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (x, PD_TRANSLATE ("%s: unexpected %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: unexpected %s"), symbol_getName (s1), error__empty (s2));
 }
 
 void error_invalid (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (x, PD_TRANSLATE ("%s: invalid %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: invalid %s"), symbol_getName (s1), error__empty (s2));
 }
 
 void error_mismatch (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (x, PD_TRANSLATE ("%s: mismatch %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: mismatch %s"), symbol_getName (s1), error__empty (s2));
 }
 
 void error_unspecified (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (x, PD_TRANSLATE ("%s: unspecified %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: unspecified %s"), symbol_getName (s1), error__empty (s2));
 }
 
 void error_undefined (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_error (x, PD_TRANSLATE ("%s: undefined %s"), s1->s_name, error__empty (s2));
+    post_error (x, PD_TRANSLATE ("%s: undefined %s"), symbol_getName (s1), error__empty (s2));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -206,7 +206,7 @@ void error_invalidArguments (t_object *x, t_symbol *s, int argc, t_atom *argv)
 {
     char *t = atom_atomsToString (argc, argv);
     
-    post_error (x, PD_TRANSLATE ("%s: [ %s ] invalid argument(s)"), s->s_name, t);
+    post_error (x, PD_TRANSLATE ("%s: [ %s ] invalid argument(s)"), symbol_getName (s), t);
     
     PD_MEMORY_FREE (t);
 }
@@ -231,22 +231,22 @@ void warning_missingInSearchPath (t_object *x)
 
 void warning_tooManyCharacters (t_object *x, t_symbol *s)
 {
-    post_warning (x, PD_TRANSLATE ("%s: too many characters"), s->s_name);
+    post_warning (x, PD_TRANSLATE ("%s: too many characters"), symbol_getName (s));
 }
 
 void warning_multipleBinding (t_object *x, t_symbol *s)
 {
-    post_warning (x, PD_TRANSLATE ("%s: multiple binding"), s->s_name);
+    post_warning (x, PD_TRANSLATE ("%s: multiple binding"), symbol_getName (s));
 }
 
 void warning_fileIsCorrupted (t_object *x, t_symbol *s)
 {
-    post_warning (x, PD_TRANSLATE ("%s: file is corrupted"), s->s_name);
+    post_warning (x, PD_TRANSLATE ("%s: file is corrupted"), symbol_getName (s));
 }
 
 void warning_deprecatedObject (t_object *x, t_symbol *s)
 {
-    post_warning (x, PD_TRANSLATE ("%s: deprecated object"), s->s_name);
+    post_warning (x, PD_TRANSLATE ("%s: deprecated object"), symbol_getName (s));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -255,22 +255,22 @@ void warning_deprecatedObject (t_object *x, t_symbol *s)
 
 void warning_invalid (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_warning (x, PD_TRANSLATE ("%s: invalid %s"), s1->s_name, error__empty (s2));
+    post_warning (x, PD_TRANSLATE ("%s: invalid %s"), symbol_getName (s1), error__empty (s2));
 }
 
 void warning_empty (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_warning (x, PD_TRANSLATE ("%s: empty %s"), s1->s_name, error__empty (s2));
+    post_warning (x, PD_TRANSLATE ("%s: empty %s"), symbol_getName (s1), error__empty (s2));
 }
 
 void warning_badType (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_warning (x, PD_TRANSLATE ("%s: bad type %s"), s1->s_name, error__empty (s2));
+    post_warning (x, PD_TRANSLATE ("%s: bad type %s"), symbol_getName (s1), error__empty (s2));
 }
 
 void warning_unusedOption (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_warning (x, PD_TRANSLATE ("%s: unused option %s"), s1->s_name, error__empty (s2));
+    post_warning (x, PD_TRANSLATE ("%s: unused option %s"), symbol_getName (s1), error__empty (s2));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -284,7 +284,7 @@ void warning_unusedArguments (t_object *x, t_symbol *s, int argc, t_atom *argv)
     //
     char *t = atom_atomsToString (argc, argv);
     
-    post_warning (x, PD_TRANSLATE ("%s: [ %s ] unused argument(s)"), s->s_name, t);
+    post_warning (x, PD_TRANSLATE ("%s: [ %s ] unused argument(s)"), symbol_getName (s), t);
     
     PD_MEMORY_FREE (t);
     //

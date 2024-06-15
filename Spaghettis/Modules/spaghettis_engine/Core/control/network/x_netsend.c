@@ -244,7 +244,7 @@ static void netsend_connect (t_netsend *x, t_symbol *hostName, t_float f)
     else {
     //
     int portNumber = (int)f;
-    struct hostent *h = gethostbyname (hostName->s_name);
+    struct hostent *h = gethostbyname (symbol_getName (hostName));
     
     netsend_socketOptions (x, fd);
 

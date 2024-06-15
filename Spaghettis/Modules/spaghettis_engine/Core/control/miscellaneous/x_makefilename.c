@@ -41,7 +41,7 @@ static t_error makefilename_scanFormat (t_makefilename *x)
     
     x->x_typeRequired = A_NULL; err = PD_ERROR_NONE;
     
-    for (s = x->x_format->s_name; *s; s++) {
+    for (s = symbol_getName (x->x_format); *s; s++) {
     
         if (string_containsOccurrenceAtStart (s, "%") && k == 0) {
             if (x->x_typeRequired == A_NULL) { k = 1; }
@@ -85,13 +85,13 @@ static void makefilename_float (t_makefilename *x, t_float f)
   
     char name[PD_STRING] = { 0 };
     
-    if (x->x_typeRequired == A_NULL)  { err = string_copy (name, PD_STRING, x->x_format->s_name); }
+    if (x->x_typeRequired == A_NULL)  { err = string_copy (name, PD_STRING, symbol_getName (x->x_format)); }
     
     if (x->x_typeRequired == A_FLOAT) {
         if (x->x_isIntegerCastRequired) { 
-            err = string_sprintf (name, PD_STRING, x->x_format->s_name, (int)f); 
+            err = string_sprintf (name, PD_STRING, symbol_getName (x->x_format), (int)f);
         } else {
-            err = string_sprintf (name, PD_STRING, x->x_format->s_name, f);
+            err = string_sprintf (name, PD_STRING, symbol_getName (x->x_format), f);
         }
     } 
     
@@ -107,9 +107,9 @@ static void makefilename_symbol (t_makefilename *x, t_symbol *s)
     
     char name[PD_STRING] = { 0 };
     
-    if (x->x_typeRequired == A_NULL)   { err = string_copy (name, PD_STRING, x->x_format->s_name); }
+    if (x->x_typeRequired == A_NULL)   { err = string_copy (name, PD_STRING, symbol_getName (x->x_format)); }
     if (x->x_typeRequired == A_SYMBOL) {
-        err = string_sprintf (name, PD_STRING, x->x_format->s_name, s->s_name);
+        err = string_sprintf (name, PD_STRING, symbol_getName (x->x_format), symbol_getName (s));
     }
         
     if (!err) { outlet_symbol (x->x_outlet, gensym (name)); }

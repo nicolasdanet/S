@@ -98,7 +98,7 @@ static void readsf_tilde_open (t_readsf_tilde *x, t_symbol *s, int argc, t_atom 
     //
     t_fileproperties t; fileproperties_init (&t);
     
-    err = !(glist_fileExist (owner, p.ap_fileName->s_name, p.ap_fileExtension->s_name, &t));
+    err = !(glist_fileExist (owner, symbol_getName (p.ap_fileName), symbol_getName (p.ap_fileExtension), &t));
     
     if (!err) {
     //

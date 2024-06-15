@@ -53,6 +53,7 @@
 		176BC0572C16BE5700DEED0E /* m_clocks_single.c in Sources */ = {isa = PBXBuildFile; fileRef = 176BC0562C16BE5700DEED0E /* m_clocks_single.c */; };
 		176BC0592C18110200DEED0E /* m_clocks.c in Sources */ = {isa = PBXBuildFile; fileRef = 176BC0582C18110200DEED0E /* m_clocks.c */; };
 		176BC05C2C1C068100DEED0E /* m_bindlist.c in Sources */ = {isa = PBXBuildFile; fileRef = 176BC05B2C1C068100DEED0E /* m_bindlist.c */; };
+		176BC05E2C1D56CE00DEED0E /* m_symbol.c in Sources */ = {isa = PBXBuildFile; fileRef = 176BC05D2C1D56CD00DEED0E /* m_symbol.c */; };
 		177169891EFD1212003CD374 /* m_autorelease.c in Sources */ = {isa = PBXBuildFile; fileRef = 177169881EFD1212003CD374 /* m_autorelease.c */; };
 		1772020A2621811C0075D798 /* w_wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 177202082621811C0075D798 /* w_wrapper.c */; };
 		177303D323361F0D00755F7C /* x_sysexin.c in Sources */ = {isa = PBXBuildFile; fileRef = 177303D123361F0D00755F7C /* x_sysexin.c */; };
@@ -488,6 +489,7 @@
 		176BC0582C18110200DEED0E /* m_clocks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_clocks.c; sourceTree = "<group>"; };
 		176BC05A2C1C068100DEED0E /* m_bindlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_bindlist.h; sourceTree = "<group>"; };
 		176BC05B2C1C068100DEED0E /* m_bindlist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_bindlist.c; sourceTree = "<group>"; };
+		176BC05D2C1D56CD00DEED0E /* m_symbol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_symbol.c; sourceTree = "<group>"; };
 		176D2C271F06A9860023E38E /* g_objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = g_objects.h; sourceTree = "<group>"; };
 		177169881EFD1212003CD374 /* m_autorelease.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_autorelease.c; sourceTree = "<group>"; };
 		177202082621811C0075D798 /* w_wrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = w_wrapper.c; sourceTree = "<group>"; };
@@ -937,6 +939,7 @@
 				3791F2E01CDF064000F7481C /* m_symbols.c */,
 				176BC05B2C1C068100DEED0E /* m_bindlist.c */,
 				373D6CC91C610AAF00106641 /* m_bind.c */,
+				176BC05D2C1D56CD00DEED0E /* m_symbol.c */,
 				378971DF1C4F716700263434 /* m_message.c */,
 				3710DC551E69C79C00B65CE9 /* m_method.c */,
 			);
@@ -2017,6 +2020,7 @@
 				3789723E1C4F716800263434 /* s_memory.c in Sources */,
 				3789723F1C4F716800263434 /* m_message.c in Sources */,
 				17BED6BC213127F60083E127 /* m_undoconnect.c in Sources */,
+				176BC05E2C1D56CE00DEED0E /* m_symbol.c in Sources */,
 				378972401C4F716800263434 /* m_object.c in Sources */,
 				17A800BE228410B900AD0E4E /* x_netreceive.c in Sources */,
 				378972411C4F716800263434 /* m_pd.c in Sources */,

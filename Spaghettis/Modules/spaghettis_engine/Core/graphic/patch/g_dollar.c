@@ -86,7 +86,7 @@ t_symbol *dollar_expandSymbolWithArguments (t_symbol *s, t_glist *glist, int arg
 {
     char t[PD_STRING] = { 0 };
     char result[PD_STRING] = { 0 };
-    const char *str = s->s_name;
+    const char *str = symbol_getName (s);
     const char *substr = NULL;
     int next = 0;
     t_error err = PD_ERROR_NONE;
@@ -121,7 +121,7 @@ t_symbol *dollar_expandSymbolWithArguments (t_symbol *s, t_glist *glist, int arg
 
 t_symbol *dollar_expandSymbol (t_symbol *s, t_glist *glist)
 {
-    if (strchr (s->s_name, '$') == NULL) { return s; }
+    if (strchr (symbol_getName (s), '$') == NULL) { return s; }
     else {
     //
     t_symbol *t = NULL;

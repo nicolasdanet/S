@@ -108,13 +108,13 @@ void environment_setFileName (t_environment *e, t_symbol *name)
 {
     int hasExtension = 0;
     
-    hasExtension |= string_endWith (name->s_name, PD_PATCH);
-    hasExtension |= string_endWith (name->s_name, PD_HELP);
+    hasExtension |= string_endWith (symbol_getName (name), PD_PATCH);
+    hasExtension |= string_endWith (symbol_getName (name), PD_HELP);
     
     if (hasExtension) { e->env_fileName = name; }
     else {
     //
-    const char *t = e->env_fileName->s_name;        /* Previous. */
+    const char *t = symbol_getName (e->env_fileName);   /* Previous. */
     
     if (string_endWith (t, PD_HELP)) { e->env_fileName = symbol_appendExtensionHelp (name); }
     else {

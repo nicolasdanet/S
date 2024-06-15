@@ -27,7 +27,7 @@ static t_error atom_symbolToBackslashedString (t_atom *a, char *s, int size)
     if (size < 2) { err = PD_ERROR; }
     else {
     //
-    for (p = GET_SYMBOL (a)->s_name; *p; p++) {
+    for (p = symbol_getName (GET_SYMBOL (a)); *p; p++) {
         if (char_isSemicolonOrComma (*p) || char_isBackslash (*p) || string_startWithDollarNumber (p)) {
             quote = 1; break; 
         }
@@ -38,7 +38,7 @@ static t_error atom_symbolToBackslashedString (t_atom *a, char *s, int size)
         char *base = s;
         char *last = s + (size - 2);
         
-        p = GET_SYMBOL (a)->s_name;
+        p = symbol_getName (GET_SYMBOL (a));
         
         while (base < last && *p) {
         //
@@ -54,7 +54,7 @@ static t_error atom_symbolToBackslashedString (t_atom *a, char *s, int size)
         *base = 0;
 
     } else {
-        err = string_copy (s, size, GET_SYMBOL (a)->s_name);
+        err = string_copy (s, size, symbol_getName (GET_SYMBOL (a)));
     }
     //
     }
@@ -240,13 +240,13 @@ t_error atom_toString (t_atom *a, char *dest, int size)
     PD_ASSERT (size > 0);
     
     switch (a->a_type) {
-        case A_SYMBOL       : err = atom_symbolToBackslashedString (a, dest, size);             break;
-        case A_FLOAT        : err = string_sprintf (dest, (size_t)size, "%.9g", GET_FLOAT (a)); break;
-        case A_DOLLAR       : err = string_sprintf (dest, (size_t)size, "$%d", GET_DOLLAR (a)); break;
-        case A_DOLLARSYMBOL : err = string_copy (dest,  (size_t)size, GET_SYMBOL (a)->s_name);  break;
-        case A_SEMICOLON    : err = string_copy (dest,  (size_t)size, ";");                     break;
-        case A_COMMA        : err = string_copy (dest,  (size_t)size, ",");                     break;
-        default             : err = string_copy (dest,  (size_t)size, "?"); PD_BUG;
+        case A_SYMBOL       : err = atom_symbolToBackslashedString (a, dest, size);                     break;
+        case A_FLOAT        : err = string_sprintf (dest, (size_t)size, "%.9g", GET_FLOAT (a));         break;
+        case A_DOLLAR       : err = string_sprintf (dest, (size_t)size, "$%d", GET_DOLLAR (a));         break;
+        case A_DOLLARSYMBOL : err = string_copy (dest, (size_t)size, symbol_getName (GET_SYMBOL (a)));  break;
+        case A_SEMICOLON    : err = string_copy (dest, (size_t)size, ";");                              break;
+        case A_COMMA        : err = string_copy (dest, (size_t)size, ",");                              break;
+        default             : err = string_copy (dest, (size_t)size, "?"); PD_BUG;
     }
     
     return err;
@@ -316,10 +316,18 @@ static int atom_sortCompare (const void *p1, const void *p2)
     if (!atom_typesAreEquals (a1, a2)) { return (t1 < t2 ? -1 : 1); }
     else {
     //
-    if (t1 == A_SYMBOL)             { return strcmp (GET_SYMBOL (a1)->s_name, GET_SYMBOL (a2)->s_name);  }
-    else if (t1 == A_FLOAT)         { return atom_sortCompareFloats (GET_FLOAT (a1), GET_FLOAT (a2));    }
-    else if (t1 == A_DOLLAR)        { return atom_sortCompareDollars (GET_DOLLAR (a1), GET_DOLLAR (a2)); }
-    else if (t1 == A_DOLLARSYMBOL)  { return strcmp (GET_SYMBOL (a1)->s_name, GET_SYMBOL (a2)->s_name);  }
+    if (t1 == A_SYMBOL) {
+        return strcmp (symbol_getName (GET_SYMBOL (a1)), symbol_getName (GET_SYMBOL (a2)));
+        
+    } else if (t1 == A_FLOAT) {
+        return atom_sortCompareFloats (GET_FLOAT (a1), GET_FLOAT (a2));
+        
+    } else if (t1 == A_DOLLAR) {
+        return atom_sortCompareDollars (GET_DOLLAR (a1), GET_DOLLAR (a2));
+        
+    } else if (t1 == A_DOLLARSYMBOL) {
+        return strcmp (symbol_getName (GET_SYMBOL (a1)), symbol_getName (GET_SYMBOL (a2)));
+    }
     //
     }
     

@@ -63,7 +63,7 @@ void metadata_report (t_error err)
         (f) (NULL, PD_TRANSLATE ("dsp: input %d / maximum %d"), i + 1, PD_MAX (t0, t1));
     }
     if (metadata_inputName[i]) {
-        (f) (NULL, PD_TRANSLATE ("dsp: input %d / name %s"), i + 1, metadata_inputName[i]->s_name);
+        (f) (NULL, PD_TRANSLATE ("dsp: input %d / name %s"), i + 1, symbol_getName (metadata_inputName[i]));
     }
     //
     }
@@ -80,7 +80,7 @@ void metadata_report (t_error err)
         (f) (NULL, PD_TRANSLATE ("dsp: output %d / maximum %d"), i + 1, PD_MAX (t0, t1));
     }
     if (metadata_outputName[i]) {
-        (f) (NULL, PD_TRANSLATE ("dsp: output %d / name %s"), i + 1, metadata_outputName[i]->s_name);
+        (f) (NULL, PD_TRANSLATE ("dsp: output %d / name %s"), i + 1, symbol_getName (metadata_outputName[i]));
     }
     //
     }

@@ -58,7 +58,7 @@ t_error buffer_fileRead (t_buffer *x, t_symbol *name, t_glist *glist, t_object *
     
     t_fileproperties p; fileproperties_init (&p);
     
-    if (glist_fileExist (glist, name->s_name, "", &p)) {
+    if (glist_fileExist (glist, symbol_getName (name), "", &p)) {
         err = buffer_fromFile (x, fileproperties_getName (&p), fileproperties_getDirectory (&p));
     }
     
@@ -69,11 +69,14 @@ t_error buffer_fileRead (t_buffer *x, t_symbol *name, t_glist *glist, t_object *
 
 t_error buffer_fileWrite (t_buffer *x, t_symbol *name, t_symbol *directory)
 {
-    t_error err = PD_ERROR;
-
     char filepath[PD_STRING] = { 0 };
 
-    if (!(err = path_withDirectoryAndName (filepath, PD_STRING, directory->s_name, name->s_name))) {
+    t_error err = path_withDirectoryAndName (filepath,
+                    PD_STRING,
+                    symbol_getName (directory),
+                    symbol_getName (name));
+    
+    if (!err) {
     //
     int f = file_openWrite (filepath);
     

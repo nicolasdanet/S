@@ -35,7 +35,7 @@ t_symbol *symbol_withAtoms (int argc, t_atom *argv)
 
 int symbol_containsWhitespace (t_symbol *s)
 {
-    return string_contains (s->s_name, " ");
+    return string_contains (symbol_getName (s), " ");
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -46,12 +46,12 @@ int symbol_containsWhitespace (t_symbol *s)
 
 t_symbol *symbol_replaceDoubleDollar (t_symbol *s)
 {
-    size_t size = strlen (s->s_name);
+    size_t size = strlen (symbol_getName (s));
     
     if (size >= PD_STRING) { PD_BUG; return s; }
     else {
         char t[PD_STRING + 1] = { 0 };
-        const char *p = s->s_name;
+        const char *p = symbol_getName (s);
         int i, j = 0;
         for (i = 0; i < (int)size; i++, j++) {
             t[j] = p[i];
@@ -72,8 +72,8 @@ t_symbol *symbol_removeExtension (t_symbol *s)
     if (s != &s_) {
     //
     char t[PD_STRING] = { 0 };
-    int n = string_indexOfFirstOccurrenceFromEnd (s->s_name, ".");
-    t_error err = string_copy (t, PD_STRING, s->s_name);
+    int n = string_indexOfFirstOccurrenceFromEnd (symbol_getName (s), ".");
+    t_error err = string_copy (t, PD_STRING, symbol_getName (s));
     PD_ASSERT (!err);
     if (!err && n >= 0) { t[n] = 0; return gensym (t); } 
     //
@@ -105,7 +105,7 @@ t_symbol *symbol_addPrefix (t_symbol *s, t_symbol *prefix)
         char t[PD_STRING] = { 0 };
         PD_ASSERT (s);
         PD_ASSERT (prefix);
-        err = string_sprintf (t, PD_STRING, "%s%s", prefix->s_name, s->s_name);
+        err = string_sprintf (t, PD_STRING, "%s%s", symbol_getName (prefix), symbol_getName (s));
         PD_UNUSED (err); PD_ASSERT (!err);
         return gensym (t);
     }
@@ -124,7 +124,7 @@ t_symbol *symbol_appendCopySuffix (t_symbol *s)
 {
     PD_ASSERT (s);
     
-    if (string_endWith (s->s_name, sym___dash____asterisk__->s_name)) { return s; }
+    if (string_endWith (symbol_getName (s), symbol_getName (sym___dash____asterisk__))) { return s; }
 
     return symbol_addSuffix (s, sym___dash____asterisk__);
 }
@@ -133,13 +133,13 @@ t_symbol *symbol_removeCopySuffix (t_symbol *s)
 {
     PD_ASSERT (s);
     
-    if (string_endWith (s->s_name, sym___dash____asterisk__->s_name)) {
+    if (string_endWith (symbol_getName (s), symbol_getName (sym___dash____asterisk__))) {
     //
     char t[PD_STRING] = { 0 };
-    t_error err = string_copy (t, PD_STRING, s->s_name);
+    t_error err = string_copy (t, PD_STRING, symbol_getName (s));
     PD_ASSERT (!err);
     if (!err) {
-        int n = string_indexOfFirstOccurrenceFromEnd (s->s_name, "-");
+        int n = string_indexOfFirstOccurrenceFromEnd (symbol_getName (s), "-");
         n = PD_CLAMP (n, 0, PD_STRING - 1);
         t[n] = 0;
         return gensym (t);

@@ -142,8 +142,8 @@ static void glist_saveProceed (t_glist *glist, t_symbol *name, t_symbol *directo
     else {
         post_system (cast_object (glist),
             PD_TRANSLATE ("file: saved to %s/%s"),
-            directory->s_name,
-            name->s_name);
+            symbol_getName (directory),
+            symbol_getName (name));
         environment_setDirectory (glist_getEnvironment (glist), directory);
         glist_setDirty (glist, 0);
     }

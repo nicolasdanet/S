@@ -31,7 +31,10 @@ static void startup_openPendedFilesProceed (const char *path)
 {
     char filepath[PD_STRING] = { 0 };
     
-    t_error err = path_withDirectoryAndName (filepath, PD_STRING, main_directoryExecutable->s_name, path);
+    t_error err = path_withDirectoryAndName (filepath,
+                        PD_STRING,
+                        symbol_getName (main_directoryExecutable),
+                        path);
     
     if (!err && path_isFileExistAsRegularFile (filepath)) {
     //

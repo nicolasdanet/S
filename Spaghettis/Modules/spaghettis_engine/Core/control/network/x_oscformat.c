@@ -98,7 +98,7 @@ static int oscformat_proceedGetArgumentsSize (t_oscformat *x, int argc, t_atom *
     int k = 0;
     int size = 0;
     
-    const char *t = x->x_format->s_name;
+    const char *t = symbol_getName (x->x_format);
     
     while (i < argc) {
     //
@@ -113,7 +113,7 @@ static int oscformat_proceedGetArgumentsSize (t_oscformat *x, int argc, t_atom *
     
     if (type == 's') {
         t_symbol *s = IS_SYMBOL (a) ? GET_SYMBOL (a) : sym___question__;
-        size += OSC_4ROUND ((int)strlen (s->s_name) + 1);
+        size += OSC_4ROUND ((int)strlen (symbol_getName (s)) + 1);
         i++;
         
     } else if (type == 'b') {
@@ -177,7 +177,7 @@ static int oscformat_proceedFillString (t_oscformat *x, int argc, t_atom *argv, 
 {
     t_symbol *s = IS_SYMBOL (argv + j) ? GET_SYMBOL (argv + j) : sym___question__;
     
-    oscformat_setString (a, m, s->s_name);
+    oscformat_setString (a, m, symbol_getName (s));
     
     j++; return j;
 }
@@ -199,7 +199,7 @@ static int oscformat_proceedFillBlob (t_oscformat *x, int argc, t_atom *argv, in
     
     if (IS_FLOAT (start + 1 + i)) { byte = (unsigned char)GET_FLOAT (start + 1 + i); }
     else if (IS_SYMBOL (start + 1 + i)) {
-        t_symbol *s = GET_SYMBOL (start + 1 + i); byte = (unsigned char)(*s->s_name);
+        t_symbol *s = GET_SYMBOL (start + 1 + i); byte = (unsigned char)(*(symbol_getName (s)));
     }
     
     OSC_SETCHAR (a + n + i, byte);
@@ -263,7 +263,7 @@ static t_error oscformat_proceedFill (t_oscformat *x,
     int j = 0;
     int n = argumentsStart;
 
-    const char *t = x->x_format->s_name;
+    const char *t = symbol_getName (x->x_format);
     
     oscformat_setString (a, &i, x->x_path);
     
@@ -394,7 +394,7 @@ static void oscformat_format (t_oscformat *x, t_symbol *s)
 {
     const char *t = NULL;
     
-    for (t = s->s_name; *t; t++) {
+    for (t = symbol_getName (s); *t; t++) {
         if (!osc_isValidTypetag (*t)) { error_invalid (cast_object (x), sym_oscformat, sym_format); return; }
     }
     
