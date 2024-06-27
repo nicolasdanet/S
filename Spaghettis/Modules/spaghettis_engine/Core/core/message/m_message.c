@@ -119,6 +119,16 @@ void message_initialize (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int message_isPrivateSymbol (t_symbol *s)
+{
+    if (s == &s__N)         { return 1; }
+    else if (s == &s__X)    { return 1; }
+    else if (s == &s__A)    { return 1; }
+    else if (s == &s_)      { return 1; }
+    
+    return 0;
+}
+
 static int message_isStaticSymbol (t_symbol *s)
 {
     static t_symbol *symbols[MESSAGE_STATIC_SIZE] =     /* Static. */

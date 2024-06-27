@@ -30,7 +30,12 @@ typedef struct _bindlist {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int bindlist_isEmpty (t_bindlist *x);
+void    bindlist_add                (t_symbol *s, t_pd *x);
+t_error bindlist_remove             (t_symbol *s, t_pd *x);
+
+int     bindlist_hasThing           (t_symbol *s);
+
+t_pd    *bindlist_getThingByClass   (t_symbol *s, t_class *c);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
