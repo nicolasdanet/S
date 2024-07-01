@@ -61,10 +61,18 @@ typedef struct _outlethelper {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define ENCAPSULATE_MARGIN  (instance_snapGetGrid() * 2)
-#define ENCAPSULATE_INLETS  (instance_snapGetGrid() * 4)
-#define ENCAPSULATE_OUTLETS (instance_snapGetGrid() * 2)
-#define ENCAPSULATE_PAD     (instance_snapGetGrid())
+#define ENCAPSULATE_MARGIN      (instance_snapGetGrid() * 2)
+#define ENCAPSULATE_INLETS      (instance_snapGetGrid() * 4)
+#define ENCAPSULATE_OUTLETS     (instance_snapGetGrid() * 2)
+#define ENCAPSULATE_PAD         (instance_snapGetGrid())
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+/* Arbitrary hardcoded size for inlet/outlet box width. */
+/* Query the GUI? */
+
+#define ENCAPSULATE_STEP        48
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -313,7 +321,7 @@ static void encapsulate_addInletsToSnippetCreate (t_glist *glist,
     
     int left = rectangle_getTopLeftX (r);
     int up   = rectangle_getTopLeftY (r);
-    int step = 12 * 4;                          /* ??? */
+    int step = ENCAPSULATE_STEP;
     
     up   -= ENCAPSULATE_INLETS;
     step += ENCAPSULATE_PAD;
@@ -432,7 +440,7 @@ static void encapsulate_addOutletsToSnippetCreate (t_glist *glist,
     
     int left = rectangle_getTopLeftX (r);
     int down = rectangle_getBottomRightY (r);
-    int step = 12 * 4;                          /* ??? */
+    int step = ENCAPSULATE_STEP;
     
     down += ENCAPSULATE_OUTLETS;
     step += ENCAPSULATE_PAD;

@@ -30,12 +30,12 @@ class SpaghettisApplication : public juce::JUCEApplication {
 public:
     SpaghettisApplication() : runningFromCommandLine_ (false)
     {
-        SPAGHETTIS_DEBUG ("Hello!");
+        DBG (juce::String ("Hello!"));
     }
     
     ~SpaghettisApplication()
     {
-        SPAGHETTIS_DEBUG ("Goodbye!");
+        DBG (juce::String ("Goodbye!"));
     }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -217,8 +217,6 @@ void        clock_delay                     (t_clock *x, double delay);     /* U
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* First parameter not used for now (but could in the future to reveal the caller). */
-
 void    post                                (t_object *x, const char *fmt, ...);
 void    post_system                         (t_object *x, const char *fmt, ...);
 void    post_warning                        (t_object *x, const char *fmt, ...);

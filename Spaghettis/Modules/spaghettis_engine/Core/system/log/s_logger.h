@@ -24,8 +24,8 @@
 // MARK: -
 
 #if PD_WITH_DEBUG 
-    #define PD_LOG(s)           logger_appendString (s)
-    #define PD_LOG_NUMBER(f)    logger_appendFloat ((double)(f))
+    #define PD_LOG(s)               logger_putString (s)
+    #define PD_LOG_NUMBER(f)        logger_putFloat ((double)(f))
 #else
     #define PD_LOG(s)
     #define PD_LOG_NUMBER(f)
@@ -35,8 +35,8 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error    logger_initialize                   (void);
-void       logger_release                      (void);
+t_error    logger_initialize        (void);
+void       logger_release           (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -44,8 +44,8 @@ void       logger_release                      (void);
 
 #if PD_WITH_DEBUG
 
-void       logger_appendString                 (const char *s);
-void       logger_appendFloat                  (double f);
+void       logger_putString         (const char *s);
+void       logger_putFloat          (double f);
 
 #endif
 

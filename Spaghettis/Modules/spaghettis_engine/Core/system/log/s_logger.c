@@ -101,14 +101,14 @@ void logger_release (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void logger_appendString (const char *s)
+void logger_putString (const char *s)
 {
     fifo8_write (logger_ring, s, (int)strlen (s));
 }
 
-void logger_appendFloat (double f)
+void logger_putFloat (double f)
 {
-    char t[LOGGER_FLOAT_STRING] = { 0 }; logger_appendString (logger_stringWithFloat (t, f));
+    char t[LOGGER_FLOAT_STRING] = { 0 }; logger_putString (logger_stringWithFloat (t, f));
 }
 
 // -----------------------------------------------------------------------------------------------------------

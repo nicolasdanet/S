@@ -147,6 +147,7 @@ namespace spaghettis::core {
 #include "system/files/s_file.c"
 #include "system/files/s_searchpath.c"
 
+#include "system/log/s_debug.c"
 #include "system/log/s_post.c"
 #include "system/log/s_logger.c"
 
