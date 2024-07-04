@@ -49,12 +49,12 @@ static void vu_bang (t_vu *x)
 
 static void vu_peak (t_vu *x, t_float f)
 {
-    if (gui_updatePeak (cast_gui (x), f, 1))  { vu_outPeak (x); }
+    if (gui_updatePeak (cast_gui (x), f, GUI_UPDATE_NOTIFY))  { vu_outPeak (x); }
 }
 
 static void vu_float (t_vu *x, t_float f)
 {
-    if (gui_updateValue (cast_gui (x), f, 1)) { vu_outValue (x); }
+    if (gui_updateValue (cast_gui (x), f, GUI_UPDATE_NOTIFY)) { vu_outValue (x); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -65,8 +65,8 @@ static void vu_size (t_vu *x, t_symbol *s, int argc, t_atom *argv)
 {
     if (argc > 1) {
     //
-    gui_updateWidth (cast_gui (x),  (int)atom_getFloatAtIndex (0, argc, argv), 1);
-    gui_updateHeight (cast_gui (x), (int)atom_getFloatAtIndex (1, argc, argv), 1);
+    gui_updateWidth (cast_gui (x),  (int)atom_getFloatAtIndex (0, argc, argv), GUI_UPDATE_NOTIFY);
+    gui_updateHeight (cast_gui (x), (int)atom_getFloatAtIndex (1, argc, argv), GUI_UPDATE_NOTIFY);
     //
     }
 }
@@ -142,10 +142,10 @@ static void *vu_new (t_symbol *s, int argc, t_atom *argv)
     float value         = -100.0f;
     float peak          = -100.0f;
 
-    gui_updateWidth (cast_gui (x), width, 0);
-    gui_updateHeight (cast_gui (x), height, 0);
-    gui_updateValue (cast_gui (x), value, 0);
-    gui_updatePeak (cast_gui (x), peak, 0);
+    gui_updateWidth (cast_gui (x), width, GUI_UPDATE_NONE);
+    gui_updateHeight (cast_gui (x), height, GUI_UPDATE_NONE);
+    gui_updateValue (cast_gui (x), value, GUI_UPDATE_NONE);
+    gui_updatePeak (cast_gui (x), peak, GUI_UPDATE_NONE);
     
     inlet_new2 (x, &s_float);
     
@@ -176,6 +176,7 @@ void vu_setup (void)
     
     class_addMethod (c, (t_method)vu_peak,      sym__inlet2,    A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)vu_size,      sym_size,       A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)vu_size,      sym__resize,    A_GIMME, A_NULL);
     class_addMethod (c, (t_method)vu_restore,   sym__restore,   A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )

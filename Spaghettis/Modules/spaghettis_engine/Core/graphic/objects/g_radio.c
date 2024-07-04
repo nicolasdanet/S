@@ -32,7 +32,9 @@ static void radio_bang (t_radio *x)
 
 static void radio_float (t_radio *x, t_float f)
 {
-    gui_updateValue (cast_gui (x), f, 1); radio_bang (x);
+    gui_updateValue (cast_gui (x), f, GUI_UPDATE_NOTIFY);
+    
+    radio_bang (x);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -41,22 +43,29 @@ static void radio_float (t_radio *x, t_float f)
 
 static void radio_set (t_radio *x, t_float f)
 {
-    gui_updateValue (cast_gui (x), f, 1);
+    gui_updateValue (cast_gui (x), f, GUI_UPDATE_NOTIFY);
 }
 
 static void radio_mode (t_radio *x, t_symbol *s)
 {
-    gui_updateMultiple (cast_gui (x), ((s == sym_multiple) ? 1 : 0), 1);
+    gui_updateMultiple (cast_gui (x), ((s == sym_multiple) ? 1 : 0), GUI_UPDATE_NOTIFY);
+}
+
+static void radio_orientation (t_radio *x, t_symbol *s)
+{
+    gui_updateOrientation (cast_gui (x), ((s == sym_vertical) ? 1 : 0), GUI_UPDATE_NOTIFY);
 }
 
 static void radio_buttonsNumber (t_radio *x, t_float f)
 {
-    gui_updateButtons (cast_gui (x), (int)f, 1);
+    gui_updateButtons (cast_gui (x), (int)f, GUI_UPDATE_NOTIFY);
 }
 
 static void radio_size (t_radio *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) { gui_updateWidth (cast_gui (x), (int)atom_getFloatAtIndex (0, argc, argv), 1); }
+    if (argc) {
+        gui_updateWidth (cast_gui (x), (int)atom_getFloatAtIndex (0, argc, argv), GUI_UPDATE_NOTIFY);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -132,11 +141,11 @@ static void *radio_new (t_symbol *s, int argc, t_atom *argv)
     int buttons     = (argc > 2) ? atom_getFloat (argv + 2) : GUI_BUTTONS_DEFAULT;
     t_float value   = (argc > 3) ? atom_getFloat (argv + 3) : 0.0;
     
-    gui_updateValue (cast_gui (x), value, 0);
-    gui_updateMultiple (cast_gui (x), (isMultiple != 0), 0);
-    gui_updateButtons (cast_gui (x), buttons, 0);
-    gui_updateWidth (cast_gui (x), width, 0);
-    gui_updateOrientation (cast_gui (x), isVertical, 0);
+    gui_updateValue (cast_gui (x), value, GUI_UPDATE_NONE);
+    gui_updateMultiple (cast_gui (x), (isMultiple != 0), GUI_UPDATE_NONE);
+    gui_updateButtons (cast_gui (x), buttons, GUI_UPDATE_NONE);
+    gui_updateWidth (cast_gui (x), width, GUI_UPDATE_NONE);
+    gui_updateOrientation (cast_gui (x), isVertical, GUI_UPDATE_NONE);
     
     x->x_outlet = outlet_newFloat (cast_object (x));
 
@@ -164,11 +173,13 @@ void radio_setup (void)
     class_addBang (c, (t_method)radio_bang);
     class_addFloat (c, (t_method)radio_float);
     
-    class_addMethod (c, (t_method)radio_set,            sym_set,        A_FLOAT, A_NULL);
-    class_addMethod (c, (t_method)radio_buttonsNumber,  sym_buttons,    A_FLOAT, A_NULL);
-    class_addMethod (c, (t_method)radio_mode,           sym_mode,       A_DEFSYMBOL, A_NULL);
-    class_addMethod (c, (t_method)radio_size,           sym_size,       A_GIMME, A_NULL);
-    class_addMethod (c, (t_method)radio_restore,        sym__restore,   A_NULL);
+    class_addMethod (c, (t_method)radio_set,            sym_set,            A_FLOAT, A_NULL);
+    class_addMethod (c, (t_method)radio_buttonsNumber,  sym_buttons,        A_FLOAT, A_NULL);
+    class_addMethod (c, (t_method)radio_mode,           sym_mode,           A_DEFSYMBOL, A_NULL);
+    class_addMethod (c, (t_method)radio_orientation,    sym_orientation,    A_DEFSYMBOL, A_NULL);
+    class_addMethod (c, (t_method)radio_size,           sym_size,           A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)radio_size,           sym__resize,        A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)radio_restore,        sym__restore,       A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )
     

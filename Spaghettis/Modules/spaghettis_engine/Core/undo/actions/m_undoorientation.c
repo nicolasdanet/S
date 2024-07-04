@@ -11,72 +11,50 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_class *undoresize_class;           /* Shared. */
+static t_class *undoorientation_class;      /* Shared. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-typedef struct _undoresize {
+typedef struct _undoorientation {
     t_undoaction    x_undo;                 /* Must be the first. */
-    int             x_oldWidth;
-    int             x_oldHeight;
-    int             x_newWidth;
-    int             x_newHeight;
-    } t_undoresize;
+    int             x_isVertical;
+    } t_undoorientation;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void undoresize_collapse (t_undoaction *kept, t_undoaction *deleted)
-{
-    t_undoresize *a = (t_undoresize *)kept;
-    t_undoresize *b = (t_undoresize *)deleted;              /* Previous action. */
-    
-    PD_ASSERT (pd_class (kept)    == undoresize_class);
-    PD_ASSERT (pd_class (deleted) == undoresize_class);
-    
-    a->x_oldWidth  = b->x_oldWidth;
-    a->x_oldHeight = b->x_oldHeight;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static void undoresize_undo (t_undoresize *z, t_symbol *s, int argc, t_atom *argv)
+static void undoorientation_undo (t_undoorientation *z, t_symbol *s, int argc, t_atom *argv)
 {
     t_undoaction *x = (t_undoaction *)z;
     
-    unique_objectResize (undoaction_getUnique (x), z->x_oldWidth, z->x_oldHeight);
+    unique_objectOrientation (undoaction_getUnique (x), z->x_isVertical ? 0 : 1);
 }
 
-static void undoresize_redo (t_undoresize *z, t_symbol *s, int argc, t_atom *argv)
+static void undoorientation_redo (t_undoorientation *z, t_symbol *s, int argc, t_atom *argv)
 {
     t_undoaction *x = (t_undoaction *)z;
     
-    unique_objectResize (undoaction_getUnique (x), z->x_newWidth, z->x_newHeight);
+    unique_objectOrientation (undoaction_getUnique (x), z->x_isVertical ? 1 : 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_undoaction *undoresize_new (t_object *o, int oldWidth, int oldHeight, int newWidth, int newHeight)
+t_undoaction *undoorientation_new (t_object *o, int isVertical)
 {
-    t_undoaction *x = (t_undoaction *)pd_new (undoresize_class);
-    t_undoresize *z = (t_undoresize *)x;
+    t_undoaction *x      = (t_undoaction *)pd_new (undoorientation_class);
+    t_undoorientation *z = (t_undoorientation *)x;
     
-    x->ua_id    = object_getUnique (o);
-    x->ua_type  = UNDO_RESIZE;
-    x->ua_safe  = 1;
-    x->ua_label = sym_resize;
+    x->ua_id        = object_getUnique (o);
+    x->ua_type      = UNDO_ORIENTATION;
+    x->ua_safe      = 1;
+    x->ua_label     = sym_orientation;
     
-    z->x_oldWidth  = oldWidth;
-    z->x_oldHeight = oldHeight;
-    z->x_newWidth  = newWidth;
-    z->x_newHeight = newHeight;
+    z->x_isVertical = isVertical;
     
     return x;
 }
@@ -85,26 +63,26 @@ t_undoaction *undoresize_new (t_object *o, int oldWidth, int oldHeight, int newW
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void undoresize_setup (void)
+void undoorientation_setup (void)
 {
     t_class *c = NULL;
     
-    c = class_new (sym_undoresize,
+    c = class_new (sym_undoorientation,
             NULL,
             NULL,
-            sizeof (t_undoresize),
+            sizeof (t_undoorientation),
             CLASS_INVISIBLE,
             A_NULL);
     
-    class_addMethod (c, (t_method)undoresize_undo, sym_undo, A_GIMME, A_NULL);
-    class_addMethod (c, (t_method)undoresize_redo, sym_redo, A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)undoorientation_undo, sym_undo, A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)undoorientation_redo, sym_redo, A_GIMME, A_NULL);
     
-    undoresize_class = c;
+    undoorientation_class = c;
 }
 
-void undoresize_destroy (void)
+void undoorientation_destroy (void)
 {
-    class_free (undoresize_class);
+    class_free (undoorientation_class);
 }
 
 // -----------------------------------------------------------------------------------------------------------

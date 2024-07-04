@@ -33,7 +33,9 @@ static void dial_bang (t_dial *x)
 
 static void dial_float (t_dial *x, t_float f)
 {
-    gui_updateValue (cast_gui (x), f, 1); dial_bang (x);
+    gui_updateValue (cast_gui (x), f, GUI_UPDATE_NOTIFY);
+    
+    dial_bang (x);
 }
 
 static void dial_list (t_dial *x, t_symbol *s, int argc, t_atom *argv)
@@ -52,8 +54,8 @@ static void dial_size (t_dial *x, t_symbol *s, int argc, t_atom *argv)
     int digits = (int)atom_getFloatAtIndex (0, argc, argv);
     int width  = (int)atom_getFloatAtIndex (1, argc, argv);
 
-    if (argc > 0) { gui_updateDigits (cast_gui (x), digits, 1); }
-    if (argc > 1) { gui_updateWidth (cast_gui (x), width, 1);   }
+    if (argc > 0) { gui_updateDigits (cast_gui (x), digits, GUI_UPDATE_NOTIFY); }
+    if (argc > 1) { gui_updateWidth (cast_gui (x), width, GUI_UPDATE_NOTIFY);   }
 }
 
 static void dial_range (t_dial *x, t_symbol *s, int argc, t_atom *argv)
@@ -61,22 +63,33 @@ static void dial_range (t_dial *x, t_symbol *s, int argc, t_atom *argv)
     t_float minimum = atom_getFloatAtIndex (0, argc, argv);
     t_float maximum = atom_getFloatAtIndex (1, argc, argv);
     
-    gui_updateRange (cast_gui (x), minimum, maximum, 1);
+    gui_updateRange (cast_gui (x), minimum, maximum, GUI_UPDATE_NOTIFY);
 }
 
 static void dial_set (t_dial *x, t_float f)
 {
-    gui_updateValue (cast_gui (x), f, 1);
+    gui_updateValue (cast_gui (x), f, GUI_UPDATE_NOTIFY);
 }
 
 static void dial_logarithmic (t_dial *x)
 {
-    gui_updateLogarithmic (cast_gui (x), 1, 1);
+    gui_updateLogarithmic (cast_gui (x), 1, GUI_UPDATE_NOTIFY);
 }
 
 static void dial_linear (t_dial *x)
 {
-    gui_updateLogarithmic (cast_gui (x), 0, 1);
+    gui_updateLogarithmic (cast_gui (x), 0, GUI_UPDATE_NOTIFY);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void dial_resize (t_dial *x, t_symbol *s, int argc, t_atom *argv)
+{
+    if (argc) {
+        gui_updateWidth (cast_gui (x), (int)atom_getFloatAtIndex (0, argc, argv), GUI_UPDATE_NOTIFY);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -160,12 +173,12 @@ static void *dial_new (t_symbol *s, int argc, t_atom *argv)
     int interval        = (argc > 5) ? atom_getFloat (argv + 5) : GUI_INTERVAL_DEFAULT;
     t_float value       = (argc > 6) ? atom_getFloat (argv + 6) : minimum;
     
-    gui_updateValue (cast_gui (x), value, 0);
-    gui_updateRange (cast_gui (x), minimum, maximum, 0);
-    gui_updateInterval (cast_gui (x), interval, 0);
-    gui_updateLogarithmic (cast_gui (x), (isLogarithmic != 0), 0);
-    gui_updateDigits (cast_gui (x), digits, 0);
-    gui_updateWidth (cast_gui (x), width ? width : defaultWidth, 0);
+    gui_updateValue (cast_gui (x), value, GUI_UPDATE_NONE);
+    gui_updateRange (cast_gui (x), minimum, maximum, GUI_UPDATE_NONE);
+    gui_updateInterval (cast_gui (x), interval, GUI_UPDATE_NONE);
+    gui_updateLogarithmic (cast_gui (x), (isLogarithmic != 0), GUI_UPDATE_NONE);
+    gui_updateDigits (cast_gui (x), digits, GUI_UPDATE_NONE);
+    gui_updateWidth (cast_gui (x), width ? width : defaultWidth, GUI_UPDATE_NONE);
     
     x->x_outlet = outlet_newFloat (cast_object (x));
 
@@ -197,6 +210,7 @@ void dial_setup (void)
     class_addMethod (c, (t_method)dial_set,         sym_set,            A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)dial_logarithmic, sym_logarithmic,    A_NULL);
     class_addMethod (c, (t_method)dial_linear,      sym_linear,         A_NULL);
+    class_addMethod (c, (t_method)dial_resize,      sym__resize,        A_GIMME, A_NULL);
     class_addMethod (c, (t_method)dial_restore,     sym__restore,       A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )

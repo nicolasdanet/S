@@ -15,13 +15,13 @@
 
 #if PD_WITH_DEBUG
 
-#define PD_DBG(s)               post_syslog (s)
-#define PD_DBG_NUMBER (f)       post_syslogFloat ((double)(f))
+#define PD_DBG(s)           post_syslog (s)
+#define PD_DBG_NUMBER(f)    post_syslogFloat ((double)(f))
 
 #else
 
 #define PD_DBG(s)
-#define PD_DBG_NUMBER (f)
+#define PD_DBG_NUMBER(f)
 
 #endif
 

@@ -33,14 +33,14 @@ static void toggle_output (t_toggle *x)
 
 static void toggle_bang (t_toggle *x)
 {
-    gui_updateState (cast_gui (x), (gui_getState (cast_gui (x)) == 0), 1);
+    gui_updateState (cast_gui (x), (gui_getState (cast_gui (x)) == 0), GUI_UPDATE_NOTIFY);
     
     toggle_output (x);
 }
 
 static void toggle_float (t_toggle *x, t_float f)
 {
-    gui_updateState (cast_gui (x), (int)f, 1);
+    gui_updateState (cast_gui (x), (int)f, GUI_UPDATE_NOTIFY);
     
     toggle_output (x);
 }
@@ -51,17 +51,19 @@ static void toggle_float (t_toggle *x, t_float f)
 
 static void toggle_set (t_toggle *x, t_float f)
 {
-    gui_updateState (cast_gui (x), (int)f, 1);
+    gui_updateState (cast_gui (x), (int)f, GUI_UPDATE_NOTIFY);
 }
 
 static void toggle_nonZero (t_toggle *x, t_float f)
 {
-    gui_updateNonZero (cast_gui (x), f, 1);
+    gui_updateNonZero (cast_gui (x), f, GUI_UPDATE_NOTIFY);
 }
 
 static void toggle_size (t_toggle *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) { gui_updateWidth (cast_gui (x), (int)atom_getFloatAtIndex (0, argc, argv), 1); }
+    if (argc) {
+        gui_updateWidth (cast_gui (x), (int)atom_getFloatAtIndex (0, argc, argv), GUI_UPDATE_NOTIFY);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -133,9 +135,9 @@ static void *toggle_new (t_symbol *s, int argc, t_atom *argv)
     t_float nonZero = (argc > 1) ? atom_getFloat (argv + 1) : GUI_NONZERO_DEFAULT;
     int state       = (argc > 2) ? atom_getFloat (argv + 2) : GUI_STATE_DEFAULT;
 
-    gui_updateState (cast_gui (x), state, 0);
-    gui_updateNonZero (cast_gui (x), nonZero, 0);
-    gui_updateWidth (cast_gui (x), width, 0);
+    gui_updateState (cast_gui (x), state, GUI_UPDATE_NONE);
+    gui_updateNonZero (cast_gui (x), nonZero, GUI_UPDATE_NONE);
+    gui_updateWidth (cast_gui (x), width, GUI_UPDATE_NONE);
     
     x->x_outlet = outlet_newFloat (cast_object (x));
     
@@ -168,6 +170,7 @@ void toggle_setup (void)
     class_addMethod (c, (t_method)toggle_set,       sym_set,        A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)toggle_nonZero,   sym_nonzero,    A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)toggle_size,      sym_size,       A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)toggle_size,      sym__resize,    A_GIMME, A_NULL);
     class_addMethod (c, (t_method)toggle_restore,   sym__restore,   A_NULL);
     
     #if defined ( PD_BUILDING_APPLICATION )

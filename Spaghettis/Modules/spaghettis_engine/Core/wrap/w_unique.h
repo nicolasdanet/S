@@ -20,6 +20,8 @@ t_error    unique_objectSnap           (t_id u);
 t_error    unique_objectMoveBack       (t_id u);
 t_error    unique_objectMoveFront      (t_id u);
 t_error    unique_objectRemove         (t_id u);
+t_error    unique_objectOrientation    (t_id u, int isVertical);
+t_error    unique_objectResize         (t_id u, int w, int h);
 t_error    unique_objectPosition       (t_id u, int x, int y);
 
 // -----------------------------------------------------------------------------------------------------------

@@ -33,12 +33,14 @@ static void gatom_bang (t_gatom *x)
 
 static void gatom_float (t_gatom *x, t_float f)
 {
-    gui_updateValue (cast_gui (x), f, 1); gatom_bang (x);
+    gui_updateValue (cast_gui (x), f, GUI_UPDATE_NOTIFY);
+    
+    gatom_bang (x);
 }
 
 static void gatom_set (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
 {
-    gui_updateValue (cast_gui (x), atom_getFloatAtIndex (0, argc, argv), 1);
+    gui_updateValue (cast_gui (x), atom_getFloatAtIndex (0, argc, argv), GUI_UPDATE_NOTIFY);
 }
 
 static void gatom_range (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
@@ -46,7 +48,7 @@ static void gatom_range (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
     t_float low  = atom_getFloatAtIndex (0, argc, argv);
     t_float high = atom_getFloatAtIndex (1, argc, argv);
     
-    gui_updateRange (cast_gui (x), low, high, 1);
+    gui_updateRange (cast_gui (x), low, high, GUI_UPDATE_NOTIFY);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -99,7 +101,7 @@ static void gatom_restore (t_gatom *x)
     t_float min = gui_getLow (cast_gui (old));
     t_float max = gui_getHigh (cast_gui (old));
     
-    gui_updateRange (cast_gui (x), min, max, 1);
+    gui_updateRange (cast_gui (x), min, max, GUI_UPDATE_NOTIFY);
     //
     }
 }
@@ -155,10 +157,10 @@ static void gatom_makeObjectProceed (t_glist *glist, t_gatom *x, int argc, t_ato
     object_setX (cast_object (x),      atom_getFloatAtIndex (0, argc, argv));
     object_setY (cast_object (x),      atom_getFloatAtIndex (1, argc, argv));
     
-    gui_updateDigits (cast_gui (x), digits, 0);
-    gui_updateRange (cast_gui (x), low, high, 0);
-    gui_updateInterval (cast_gui (x), interval, 0);
-    gui_updateValue (cast_gui (x), f, 0);
+    gui_updateDigits (cast_gui (x), digits, GUI_UPDATE_NONE);
+    gui_updateRange (cast_gui (x), low, high, GUI_UPDATE_NONE);
+    gui_updateInterval (cast_gui (x), interval, GUI_UPDATE_NONE);
+    gui_updateValue (cast_gui (x), f, GUI_UPDATE_NONE);
     
     glist_objectAdd (glist, cast_object (x));
 }

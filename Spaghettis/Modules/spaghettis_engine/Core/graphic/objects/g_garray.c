@@ -452,7 +452,7 @@ void garray_resize (t_garray *x, t_float f)
 
 static void garray_embed (t_garray *x, t_float f)
 {
-    gui_updateEmbedded (cast_gui (x), (int)f, 1);
+    gui_updateEmbedded (cast_gui (x), (int)f, GUI_UPDATE_NOTIFY);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -505,6 +505,20 @@ static t_buffer *garray_functionData (t_object *z, int flags)
 static void garray_functionDismiss (t_object *z)
 {
     garray_dismiss ((t_garray *)z);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void garray_size (t_garray *x, t_symbol *s, int argc, t_atom *argv)
+{
+    if (argc > 1) {
+    //
+    gui_updateWidth (cast_gui (x),  (int)atom_getFloatAtIndex (0, argc, argv), GUI_UPDATE_NOTIFY);
+    gui_updateHeight (cast_gui (x), (int)atom_getFloatAtIndex (1, argc, argv), GUI_UPDATE_NOTIFY);
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -658,8 +672,8 @@ static void garray_newParameters (t_garray *x, t_symbol *s, int argc, t_atom *ar
     if (!width)  { width  = GUI_SIZE_DEFAULT * 12; }
     if (!height) { height = GUI_SIZE_DEFAULT * 8;  }
     
-    gui_updateWidth (cast_gui (x), width, 0);
-    gui_updateHeight (cast_gui (x), height, 0);
+    gui_updateWidth (cast_gui (x), width, GUI_UPDATE_NONE);
+    gui_updateHeight (cast_gui (x), height, GUI_UPDATE_NONE);
         
     if (argc > 2) { warning_unusedArguments (cast_object (x), s, argc - 2, argv + 2); }
 }
@@ -672,7 +686,7 @@ static void *garray_new (t_symbol *s, int argc, t_atom *argv)
     int size            = atom_getFloatAtIndex (1, argc, argv);
     int embed           = atom_getFloatAtIndex (2, argc, argv);
     
-    gui_updateEmbedded (cast_gui (x), embed, 0);
+    gui_updateEmbedded (cast_gui (x), embed, GUI_UPDATE_NONE);
     
     x->x_size           = PD_MAX (0, size);
     x->x_data           = (t_word *)PD_MEMORY_GET (x->x_size * sizeof (t_word));
@@ -746,6 +760,7 @@ void garray_setup (void)
     class_addMethod (c, (t_method)garray_write,     sym_write,      A_SYMBOL, A_NULL);
     class_addMethod (c, (t_method)garray_resize,    sym_resize,     A_FLOAT,  A_NULL);
     class_addMethod (c, (t_method)garray_embed,     sym_embed,      A_FLOAT,  A_NULL);
+    class_addMethod (c, (t_method)garray_size,      sym__resize,    A_GIMME,  A_NULL);
     class_addMethod (c, (t_method)garray_restore,   sym__restore,   A_NULL);
     
     #if defined ( PD_BUILDING_APPLICATION )

@@ -33,15 +33,17 @@ static void slider_bang (t_slider *x)
 
 static void slider_float (t_slider *x, t_float f)
 {
-    gui_updateValue (cast_gui (x), f, 1); slider_bang (x);
+    gui_updateValue (cast_gui (x), f, GUI_UPDATE_NOTIFY);
+    
+    slider_bang (x);
 }
 
 static void slider_size (t_slider *x, t_symbol *s, int argc, t_atom *argv)
 {
     if (argc > 1) {
     //
-    gui_updateWidth (cast_gui (x),  (int)atom_getFloatAtIndex (0, argc, argv), 1);
-    gui_updateHeight (cast_gui (x), (int)atom_getFloatAtIndex (1, argc, argv), 1);
+    gui_updateWidth (cast_gui (x),  (int)atom_getFloatAtIndex (0, argc, argv), GUI_UPDATE_NOTIFY);
+    gui_updateHeight (cast_gui (x), (int)atom_getFloatAtIndex (1, argc, argv), GUI_UPDATE_NOTIFY);
     //
     }
 }
@@ -51,22 +53,27 @@ static void slider_range (t_slider *x, t_symbol *s, int argc, t_atom *argv)
     t_float minimum = atom_getFloatAtIndex (0, argc, argv);
     t_float maximum = atom_getFloatAtIndex (1, argc, argv);
     
-    gui_updateRange (cast_gui (x), minimum, maximum, 1);
+    gui_updateRange (cast_gui (x), minimum, maximum, GUI_UPDATE_NOTIFY);
 }
 
 static void slider_set (t_slider *x, t_float f)
 {
-    gui_updateValue (cast_gui (x), f, 1);
+    gui_updateValue (cast_gui (x), f, GUI_UPDATE_NOTIFY);
 }
 
 static void slider_logarithmic (t_slider *x)
 {
-    gui_updateLogarithmic (cast_gui (x), 1, 1);
+    gui_updateLogarithmic (cast_gui (x), 1, GUI_UPDATE_NOTIFY);
 }
 
 static void slider_linear (t_slider *x)
 {
-    gui_updateLogarithmic (cast_gui (x), 0, 1);
+    gui_updateLogarithmic (cast_gui (x), 0, GUI_UPDATE_NOTIFY);
+}
+
+static void slider_orientation (t_slider *x, t_symbol *s)
+{
+    gui_updateOrientationSwap (cast_gui (x), ((s == sym_vertical) ? 1 : 0), GUI_UPDATE_NOTIFY);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -154,13 +161,13 @@ static void *slider_new (t_symbol *s, int argc, t_atom *argv)
     t_float interval    = (argc > 5) ? atom_getFloat (argv + 5) : GUI_INTERVAL_DEFAULT;
     t_float value       = (argc > 6) ? atom_getFloat (argv + 6) : minimum;
 
-    gui_updateValue (cast_gui (x), value, 0);
-    gui_updateRange (cast_gui (x), minimum, maximum, 0);
-    gui_updateInterval (cast_gui (x), interval, 0);
-    gui_updateLogarithmic (cast_gui (x), (isLogarithmic != 0), 0);
-    gui_updateWidth (cast_gui (x), width, 0);
-    gui_updateHeight (cast_gui (x), height, 0);
-    gui_updateOrientation (cast_gui (x), isVertical, 0);
+    gui_updateValue (cast_gui (x), value, GUI_UPDATE_NONE);
+    gui_updateRange (cast_gui (x), minimum, maximum, GUI_UPDATE_NONE);
+    gui_updateInterval (cast_gui (x), interval, GUI_UPDATE_NONE);
+    gui_updateLogarithmic (cast_gui (x), (isLogarithmic != 0), GUI_UPDATE_NONE);
+    gui_updateWidth (cast_gui (x), width, GUI_UPDATE_NONE);
+    gui_updateHeight (cast_gui (x), height, GUI_UPDATE_NONE);
+    gui_updateOrientation (cast_gui (x), isVertical, GUI_UPDATE_NONE);
 
     x->x_outlet = outlet_newFloat (cast_object (x));
     
@@ -193,6 +200,8 @@ void slider_setup (void)
     class_addMethod (c, (t_method)slider_set,           sym_set,            A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)slider_logarithmic,   sym_logarithmic,    A_NULL);
     class_addMethod (c, (t_method)slider_linear,        sym_linear,         A_NULL);
+    class_addMethod (c, (t_method)slider_orientation,   sym_orientation,    A_DEFSYMBOL, A_NULL);
+    class_addMethod (c, (t_method)slider_size,          sym__resize,        A_GIMME, A_NULL);
     class_addMethod (c, (t_method)slider_restore,       sym__restore,       A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )

@@ -72,6 +72,45 @@ t_error unique_objectSnap (t_id u)
     return PD_ERROR;
 }
 
+t_error unique_objectOrientation (t_id u, int isVertical)
+{
+    t_object *object = instance_registerGetObject (u);
+
+    if (object && class_hasMethod (pd_class (object), sym_orientation)) {
+    //
+    t_atom a; t_symbol *t = isVertical ? sym_vertical : sym_horizontal;
+    
+    SET_SYMBOL (&a, t);
+    
+    pd_message (cast_pd (object), sym_orientation, 1, &a);
+
+    return PD_ERROR_NONE;
+    //
+    }
+    
+    return PD_ERROR;
+}
+
+t_error unique_objectResize (t_id u, int w, int h)
+{
+    t_object *object = instance_registerGetObject (u);
+
+    if (object && class_hasMethod (pd_class (object), sym__resize)) {
+    //
+    t_atom a[2];
+    
+    SET_FLOAT (a + 0, w);
+    SET_FLOAT (a + 1, h);
+    
+    pd_message (cast_pd (object), sym__resize, 2, a);
+
+    return PD_ERROR_NONE;
+    //
+    }
+    
+    return PD_ERROR;
+}
+
 t_error unique_objectPosition (t_id u, int x, int y)
 {
     t_object *object = instance_registerGetObject (u);

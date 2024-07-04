@@ -12,13 +12,13 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-int gui_updateValue (t_gui *x, t_float f, int notify)
+int gui_updateValue (t_gui *x, t_float f, int flag)
 {
     if (x->x_value != f) {
     //
     x->x_value = f;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Value));
         #endif
@@ -31,7 +31,7 @@ int gui_updateValue (t_gui *x, t_float f, int notify)
     return 0;
 }
 
-int gui_updateState (t_gui *x, int n, int notify)
+int gui_updateState (t_gui *x, int n, int flag)
 {
     int t = (n != 0);
     
@@ -39,7 +39,7 @@ int gui_updateState (t_gui *x, int n, int notify)
     //
     x->x_state = t;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectChanged (cast_object (x), Tags::parameters (Tag::State));
         #endif
@@ -52,7 +52,7 @@ int gui_updateState (t_gui *x, int n, int notify)
     return 0;
 }
 
-void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
+void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int flag)
 {
     t_float min = x->x_low;
     t_float max = x->x_high;
@@ -60,7 +60,7 @@ void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
     x->x_low  = minimum;
     x->x_high = maximum;
     
-    if (notify) {
+    if (flag) {
         if (min != x->x_low) {
             #if defined ( PD_BUILDING_APPLICATION )
             outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Low));
@@ -74,7 +74,7 @@ void gui_updateRange (t_gui *x, t_float minimum, t_float maximum, int notify)
     }
 }
 
-void gui_updateInterval (t_gui *x, t_float interval, int notify)
+void gui_updateInterval (t_gui *x, t_float interval, int flag)
 {
     t_float step = PD_MAX (0.0, interval);
     
@@ -82,7 +82,7 @@ void gui_updateInterval (t_gui *x, t_float interval, int notify)
     //
     x->x_interval = step;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Interval));
         #endif
@@ -91,13 +91,13 @@ void gui_updateInterval (t_gui *x, t_float interval, int notify)
     }
 }
 
-void gui_updateNonZero (t_gui *x, t_float f, int notify)
+void gui_updateNonZero (t_gui *x, t_float f, int flag)
 {
     if (x->x_nonZero != f) {
     //
     x->x_nonZero = f;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::NonZero));
         #endif
@@ -106,13 +106,13 @@ void gui_updateNonZero (t_gui *x, t_float f, int notify)
     }
 }
 
-int gui_updatePeak (t_gui *x, t_float f, int notify)
+int gui_updatePeak (t_gui *x, t_float f, int flag)
 {
     if (x->x_peak != f) {
     //
     x->x_peak = f;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Peak));
         #endif
@@ -125,13 +125,13 @@ int gui_updatePeak (t_gui *x, t_float f, int notify)
     return 0;
 }
 
-void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
+void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int flag)
 {
     if (x->x_isLogarithmic != isLogarithmic) {
     //
     x->x_isLogarithmic = isLogarithmic;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Logarithmic));
         #endif
@@ -140,13 +140,13 @@ void gui_updateLogarithmic (t_gui *x, int isLogarithmic, int notify)
     }
 }
 
-void gui_updateMultiple (t_gui *x, int isMultiple, int notify)
+void gui_updateMultiple (t_gui *x, int isMultiple, int flag)
 {
     if (x->x_isMultiple != isMultiple) {
     //
     x->x_isMultiple = isMultiple;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Multiple));
         #endif
@@ -155,24 +155,29 @@ void gui_updateMultiple (t_gui *x, int isMultiple, int notify)
     }
 }
 
-void gui_updateOrientation (t_gui *x, int isVertical, int notify)
+void gui_updateOrientation (t_gui *x, int isVertical, int flag)
 {
     if (x->x_isVertical != isVertical) {
     //
     x->x_isVertical = isVertical;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Vertical));
         #endif
+    }
+    
+    if (flag == GUI_UPDATE_NOTIFY_UNDO) {
+        t_glist *glist = object_getOwner (cast_object (x));
+        if (glist_undoIsOk (glist)) {
+            glist_undoAppend (glist, undoorientation_new (cast_object (x), isVertical));
+        }
     }
     //
     }
 }
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
+void gui_updateOrientationSwap (t_gui *x, int isVertical, int flag)
 {
     if (x->x_isVertical != isVertical) {
     //
@@ -183,18 +188,25 @@ void gui_updateOrientationSwap (t_gui *x, int isVertical, int notify)
     x->x_width      = h;
     x->x_height     = w;
     
-    if (notify) {
+    if (flag) {
     //
+    #if defined ( PD_BUILDING_APPLICATION )
     outputs_objectUpdated (cast_object (x), Tags::parameters ( { Tag::Vertical, Tag::Width, Tag::Height } ));
+    #endif
     //
+    }
+    
+    if (flag == GUI_UPDATE_NOTIFY_UNDO) {
+        t_glist *glist = object_getOwner (cast_object (x));
+        if (glist_undoIsOk (glist)) {
+            glist_undoAppend (glist, undoorientation_new (cast_object (x), isVertical));
+        }
     }
     //
     }
 }
 
-#endif
-
-void gui_updateFlashed (t_gui *x, int n, int notify)
+void gui_updateFlashed (t_gui *x, int n, int flag)
 {
     int t = (n != 0);
     
@@ -202,7 +214,7 @@ void gui_updateFlashed (t_gui *x, int n, int notify)
     //
     x->x_isFlashed = t;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Flashed));
         #endif
@@ -211,7 +223,7 @@ void gui_updateFlashed (t_gui *x, int n, int notify)
     }
 }
 
-void gui_updateEmbedded (t_gui *x, int n, int notify)
+void gui_updateEmbedded (t_gui *x, int n, int flag)
 {
     int t = (n != 0);
     
@@ -219,7 +231,7 @@ void gui_updateEmbedded (t_gui *x, int n, int notify)
     //
     x->x_isEmbedded = t;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Embedded));
         #endif
@@ -228,7 +240,7 @@ void gui_updateEmbedded (t_gui *x, int n, int notify)
     }
 }
 
-void gui_updateTime (t_gui *x, int n, int notify)
+void gui_updateTime (t_gui *x, int n, int flag)
 {
     int t = PD_CLAMP (n, GUI_TIME_MINIMUM, GUI_TIME_MAXIMUM);
     
@@ -236,7 +248,7 @@ void gui_updateTime (t_gui *x, int n, int notify)
     //
     x->x_time = t;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::FlashTime));
         #endif
@@ -245,7 +257,7 @@ void gui_updateTime (t_gui *x, int n, int notify)
     }
 }
 
-void gui_updateDigits (t_gui *x, int digits, int notify)
+void gui_updateDigits (t_gui *x, int digits, int flag)
 {
     int n = PD_CLAMP (digits, GUI_DIGITS_MINIMUM, GUI_DIGITS_MAXIMUM);
     
@@ -253,7 +265,7 @@ void gui_updateDigits (t_gui *x, int digits, int notify)
     //
     x->x_digits = n;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Digits));
         #endif
@@ -262,7 +274,7 @@ void gui_updateDigits (t_gui *x, int digits, int notify)
     }
 }
 
-void gui_updateButtons (t_gui *x, int buttons, int notify)
+void gui_updateButtons (t_gui *x, int buttons, int flag)
 {
     int n = PD_CLAMP (buttons, GUI_BUTTONS_MINIMUM, GUI_BUTTONS_MAXIMUM);
 
@@ -270,7 +282,7 @@ void gui_updateButtons (t_gui *x, int buttons, int notify)
     //
     x->x_buttons = n;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Buttons));
         #endif
@@ -279,35 +291,53 @@ void gui_updateButtons (t_gui *x, int buttons, int notify)
     }
 }
 
-void gui_updateWidth (t_gui *x, int width, int notify)
+void gui_updateWidth (t_gui *x, int width, int flag)
 {
-    int n = PD_CLAMP (width, GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM);
+    int newWidth = PD_CLAMP (width, GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM);
+    int oldWidth = x->x_width;
     
-    if (x->x_width != n) {
+    if (oldWidth != newWidth) {
     //
-    x->x_width = n;
+    x->x_width = newWidth;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Width));
         #endif
+    }
+    
+    if (flag == GUI_UPDATE_NOTIFY_UNDO) {
+        t_glist *glist = object_getOwner (cast_object (x));
+        if (glist_undoIsOk (glist)) {
+            glist_undoAppend (glist,
+                undoresize_new (cast_object (x), oldWidth, x->x_height, newWidth, x->x_height));
+        }
     }
     //
     }
 }
 
-void gui_updateHeight (t_gui *x, int height, int notify)
+void gui_updateHeight (t_gui *x, int height, int flag)
 {
-    int n = PD_CLAMP (height, GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM);
+    int newHeight = PD_CLAMP (height, GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM);
+    int oldHeight = x->x_height;
     
-    if (x->x_height != n) {
+    if (oldHeight != newHeight) {
     //
-    x->x_height = n;
+    x->x_height = newHeight;
     
-    if (notify) {
+    if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
         outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Height));
         #endif
+    }
+    
+    if (flag == GUI_UPDATE_NOTIFY_UNDO) {
+        t_glist *glist = object_getOwner (cast_object (x));
+        if (glist_undoIsOk (glist)) {
+            glist_undoAppend (glist,
+                undoresize_new (cast_object (x), x->x_width, oldHeight, x->x_width, newHeight));
+        }
     }
     //
     }
@@ -483,77 +513,79 @@ bool gui_setParameters (t_object *o, const data::Group& group, int flags)
         jassert (group.hasParameter (Tag::High));
         const t_float min  = group.getParameter (Tag::Low).getValueTyped<t_float>();
         const t_float max  = group.getParameter (Tag::High).getValueTyped<t_float>();
-        gui_updateRange (x, min, max, 1);
+        gui_updateRange (x, min, max, GUI_UPDATE_NOTIFY);
     }
     }
     
     if (flags & GUI_INTERVAL) {
         jassert (group.hasParameter (Tag::Interval));
         const t_float interval = group.getParameter (Tag::Interval).getValueTyped<t_float>();
-        gui_updateInterval (x, interval, 1);
+        gui_updateInterval (x, interval, GUI_UPDATE_NOTIFY);
     }
     
     if (flags & GUI_NONZERO) {
         jassert (group.hasParameter (Tag::NonZero));
         const t_float nonzero = group.getParameter (Tag::NonZero).getValueTyped<t_float>();
-        gui_updateNonZero (x, nonzero, 1);
+        gui_updateNonZero (x, nonzero, GUI_UPDATE_NOTIFY);
     }
     
     if (flags & GUI_LOGARITHMIC) {
         jassert (group.hasParameter (Tag::Logarithmic));
         const bool logarithmic = group.getParameter (Tag::Logarithmic).getValueTyped<bool>();
-        gui_updateLogarithmic (x, logarithmic, 1);
+        gui_updateLogarithmic (x, logarithmic, GUI_UPDATE_NOTIFY);
     }
     
     if (flags & GUI_MULTIPLE) {
         jassert (group.hasParameter (Tag::Multiple));
         const bool multiple = group.getParameter (Tag::Multiple).getValueTyped<bool>();
-        gui_updateMultiple (x, multiple, 1);
-    }
-    
-    if (flags & GUI_ORIENTATION) {
-        jassert (group.hasParameter (Tag::Vertical));
-        const bool vertical = group.getParameter (Tag::Vertical).getValueTyped<bool>();
-        if (flags & GUI_SWAP) { gui_updateOrientationSwap (x, vertical, 1); }
-        else {
-            gui_updateOrientation (x, vertical, 1);
-        }
+        gui_updateMultiple (x, multiple, GUI_UPDATE_NOTIFY);
     }
     
     if (flags & GUI_EMBEDDED) {
         jassert (group.hasParameter (Tag::Embedded));
         const bool embedded = group.getParameter (Tag::Embedded).getValueTyped<bool>();
-        gui_updateEmbedded (x, embedded, 1);
+        gui_updateEmbedded (x, embedded, GUI_UPDATE_NOTIFY);
     }
     
     if (flags & GUI_TIME) {
         jassert (group.hasParameter (Tag::FlashTime));
         const int time = group.getParameter (Tag::FlashTime).getValueTyped<int>();
-        gui_updateTime (x, time, 1);
+        gui_updateTime (x, time, GUI_UPDATE_NOTIFY);
     }
     
     if (flags & GUI_DIGITS) {
         jassert (group.hasParameter (Tag::Digits));
         const int digits = group.getParameter (Tag::Digits).getValueTyped<int>();
-        gui_updateDigits (x, digits, 1);
+        gui_updateDigits (x, digits, GUI_UPDATE_NOTIFY);
     }
     
     if (flags & GUI_BUTTONS) {
         jassert (group.hasParameter (Tag::Buttons));
         const int buttons = group.getParameter (Tag::Buttons).getValueTyped<int>();
-        gui_updateButtons (x, buttons, 1);
+        gui_updateButtons (x, buttons, GUI_UPDATE_NOTIFY);
     }
     
     if (flags & GUI_WIDTH) {
         jassert (group.hasParameter (Tag::Width));
         const int width = group.getParameter (Tag::Width).getValueTyped<int>();
-        gui_updateWidth (x, width, 1);
+        gui_updateWidth (x, width, GUI_UPDATE_NOTIFY_UNDO);
     }
     
     if (flags & GUI_HEIGHT) {
         jassert (group.hasParameter (Tag::Height));
         const int height = group.getParameter (Tag::Height).getValueTyped<int>();
-        gui_updateHeight (x, height, 1);
+        gui_updateHeight (x, height, GUI_UPDATE_NOTIFY_UNDO);
+    }
+    
+    /* Must be after width and height. */
+    
+    if (flags & GUI_ORIENTATION) {
+        jassert (group.hasParameter (Tag::Vertical));
+        const bool vertical = group.getParameter (Tag::Vertical).getValueTyped<bool>();
+        if (flags & GUI_SWAP) { gui_updateOrientationSwap (x, vertical, GUI_UPDATE_NOTIFY_UNDO); }
+        else {
+            gui_updateOrientation (x, vertical, GUI_UPDATE_NOTIFY_UNDO);
+        }
     }
     
     /* At last. */
@@ -563,19 +595,19 @@ bool gui_setParameters (t_object *o, const data::Group& group, int flags)
     if (flags & GUI_VALUE) {
         jassert (group.hasParameter (Tag::Value));
         const t_float f = group.getParameter (Tag::Value).getValueTyped<t_float>();
-        if (gui_updateValue (x, f, 1)) { trigger |= true; }
+        if (gui_updateValue (x, f, GUI_UPDATE_NOTIFY)) { trigger |= true; }
     }
     
     if (flags & GUI_PEAK) {
         jassert (group.hasParameter (Tag::Peak));
         const t_float f = group.getParameter (Tag::Peak).getValueTyped<t_float>();
-        if (gui_updatePeak (x, f, 1)) { trigger |= true; }
+        if (gui_updatePeak (x, f, GUI_UPDATE_NOTIFY)) { trigger |= true; }
     }
     
     if (flags & GUI_STATE) {
         jassert (group.hasParameter (Tag::State));
         const bool f = group.getParameter (Tag::State).getValueTyped<bool>();
-        if (gui_updateState (x, f, 1)) { trigger |= true; }
+        if (gui_updateState (x, f, GUI_UPDATE_NOTIFY)) { trigger |= true; }
     }
     
     if (flags & GUI_TEXT) {

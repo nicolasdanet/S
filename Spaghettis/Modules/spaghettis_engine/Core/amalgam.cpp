@@ -117,6 +117,7 @@ namespace spaghettis::core {
 #include "undo/actions/m_undodisconnect.c"
 #include "undo/actions/m_undomotion.c"
 #include "undo/actions/m_undoresize.c"
+#include "undo/actions/m_undoorientation.c"
 #include "undo/actions/m_undocreate.c"
 #include "undo/actions/m_undodelete.c"
 #include "undo/actions/m_undofront.c"

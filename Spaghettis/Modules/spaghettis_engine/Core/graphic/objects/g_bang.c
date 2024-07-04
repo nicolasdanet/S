@@ -29,7 +29,7 @@ typedef struct _bng {
 
 static void bng_taskFlash (t_bng *x)
 {
-    gui_updateFlashed (cast_gui (x), 0, 1);
+    gui_updateFlashed (cast_gui (x), 0, GUI_UPDATE_NOTIFY);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -38,7 +38,9 @@ static void bng_taskFlash (t_bng *x)
 
 static void bng_bang (t_bng *x)
 {
-    gui_updateFlashed (cast_gui (x), 1, 1); clock_delay (x->x_clock, gui_getTime (cast_gui (x)));
+    gui_updateFlashed (cast_gui (x), 1, GUI_UPDATE_NOTIFY);
+    
+    clock_delay (x->x_clock, gui_getTime (cast_gui (x)));
 
     outlet_bang (x->x_outlet);
 }
@@ -69,12 +71,14 @@ static void bng_anything (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 
 static void bng_flashtime (t_bng *x, t_float f)
 {
-    gui_updateTime (cast_gui (x), (int)f, 1);
+    gui_updateTime (cast_gui (x), (int)f, GUI_UPDATE_NOTIFY);
 }
 
 static void bng_size (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 {
-    if (argc) { gui_updateWidth (cast_gui (x), (int)atom_getFloatAtIndex (0, argc, argv), 1); }
+    if (argc) {
+        gui_updateWidth (cast_gui (x), (int)atom_getFloatAtIndex (0, argc, argv), GUI_UPDATE_NOTIFY);
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -143,8 +147,8 @@ static void *bng_new (t_symbol *s, int argc, t_atom *argv)
     int width = (argc > 1) ? (int)atom_getFloat (argv + 0) : GUI_SIZE_DEFAULT;
     int time  = (argc > 1) ? (int)atom_getFloat (argv + 1) : GUI_TIME_DEFAULT;
 
-    gui_updateTime (cast_gui (x), time, 0);
-    gui_updateWidth (cast_gui (x), width, 0);
+    gui_updateTime (cast_gui (x), time, GUI_UPDATE_NONE);
+    gui_updateWidth (cast_gui (x), width, GUI_UPDATE_NONE);
     
     x->x_outlet = outlet_newBang (cast_object (x));
     x->x_clock  = clock_newSingle ((void *)x, (t_method)bng_taskFlash);
@@ -181,6 +185,7 @@ void bng_setup (void)
     
     class_addMethod (c, (t_method)bng_flashtime,    sym_flashtime,  A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)bng_size,         sym_size,       A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)bng_size,         sym__resize,    A_GIMME, A_NULL);
     class_addMethod (c, (t_method)bng_restore,      sym__restore,   A_NULL);
     
     #if defined ( PD_BUILDING_APPLICATION )
