@@ -1,5 +1,2 @@
 
-# Spaghettis
-
-Work In Progress ; Use at your own risk.
-
+# Work In Progress... Use at your own risk!
