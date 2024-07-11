@@ -75,6 +75,33 @@ static void vu_size (t_vu *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static int vu_flags()
+{
+    return GUI_NONE
+            | GUI_VALUE
+            | GUI_PEAK
+            | GUI_WIDTH
+            | GUI_HEIGHT;
+}
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void vu_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
+{
+    gui_getParameters (o, group, t, vu_flags());
+}
+
+static void vu_functionSetParameters (t_object *o, const data::Group& group)
+{
+    gui_setParameters (o, group, vu_flags());
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void vu_functionSave (t_object *z, t_buffer *b, int flags)
 {
     t_vu *x = (t_vu *)z;
@@ -95,37 +122,8 @@ static void vu_functionSave (t_object *z, t_buffer *b, int flags)
 
 static void vu_restore (t_vu *x)
 {
-    t_vu *old = (t_vu *)instance_pendingFetch (cast_object (x));
-    
-    if (old) { }    /* ??? */
+    gui_restore (cast_gui (x), vu_flags());
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
-
-static constexpr int vu_flags()
-{
-    return GUI_NONE
-            | GUI_VALUE
-            | GUI_PEAK
-            | GUI_WIDTH
-            | GUI_HEIGHT;
-}
-
-static void vu_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
-{
-    gui_getParameters (o, group, t, vu_flags());
-}
-
-static void vu_functionSetParameters (t_object *o, const data::Group& group)
-{
-    gui_setParameters (o, group, vu_flags());
-}
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

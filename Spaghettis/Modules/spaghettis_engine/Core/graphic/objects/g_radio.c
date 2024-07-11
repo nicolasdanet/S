@@ -72,9 +72,7 @@ static void radio_size (t_radio *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-    
-static constexpr int radio_flags()
+static int radio_flags()
 {
     return GUI_NONE
             | GUI_VALUE
@@ -84,6 +82,8 @@ static constexpr int radio_flags()
             | GUI_ORIENTATION;
 }
 
+#if defined ( PD_BUILDING_APPLICATION )
+    
 static void radio_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
     gui_getParameters (o, group, t, radio_flags());
@@ -122,9 +122,7 @@ static void radio_functionSave (t_object *z, t_buffer *b, int flags)
 
 static void radio_restore (t_radio *x)
 {
-    t_radio *old = (t_radio *)instance_pendingFetch (cast_object (x));
-    
-    if (old) { } /* ??? */
+    gui_restore (cast_gui (x), radio_flags());
 }
 
 // -----------------------------------------------------------------------------------------------------------

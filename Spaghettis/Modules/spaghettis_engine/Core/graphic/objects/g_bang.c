@@ -85,15 +85,15 @@ static void bng_size (t_bng *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-static constexpr int bng_flags()
+static int bng_flags()
 {
     return GUI_NONE
             | GUI_FLASHED
             | GUI_TIME
             | GUI_WIDTH;
 }
+
+#if defined ( PD_BUILDING_APPLICATION )
 
 static void bng_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
@@ -131,9 +131,7 @@ static void bng_functionSave (t_object *z, t_buffer *b, int flags)
 
 static void bng_restore (t_bng *x)
 {
-    t_bng *old = (t_bng *)instance_pendingFetch (cast_object (x));
-    
-    if (old) { }    /* ??? */
+    gui_restore (cast_gui (x), bng_flags());
 }
 
 // -----------------------------------------------------------------------------------------------------------

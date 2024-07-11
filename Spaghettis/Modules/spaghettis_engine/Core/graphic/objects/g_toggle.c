@@ -70,9 +70,7 @@ static void toggle_size (t_toggle *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if defined ( PD_BUILDING_APPLICATION )
-
-static constexpr int toggle_flags()
+static int toggle_flags()
 {
     return GUI_NONE
             | GUI_STATE
@@ -80,6 +78,8 @@ static constexpr int toggle_flags()
             | GUI_BUTTONS
             | GUI_WIDTH;
 }
+
+#if defined ( PD_BUILDING_APPLICATION )
 
 static void toggle_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
@@ -118,9 +118,7 @@ static void toggle_functionSave (t_object *z, t_buffer *b, int flags)
 
 static void toggle_restore (t_toggle *x)
 {
-    t_toggle *old = (t_toggle *)instance_pendingFetch (cast_object (x));
-    
-    if (old) { }    /* ??? */
+    gui_restore (cast_gui (x), toggle_flags());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -96,6 +96,35 @@ static void dial_resize (t_dial *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static int dial_flags()
+{
+    return GUI_NONE
+            | GUI_VALUE
+            | GUI_RANGE
+            | GUI_INTERVAL
+            | GUI_LOGARITHMIC
+            | GUI_DIGITS
+            | GUI_WIDTH;
+}
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void dial_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
+{
+    gui_getParameters (o, group, t, dial_flags());
+}
+
+static void dial_functionSetParameters (t_object *o, const data::Group& group)
+{
+    if (gui_setParameters (o, group, dial_flags())) { dial_bang ((t_dial *)o); }
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void dial_functionSave (t_object *z, t_buffer *b, int flags)
 {
     t_gui *x = cast_gui (z);
@@ -121,40 +150,8 @@ static void dial_functionSave (t_object *z, t_buffer *b, int flags)
 
 static void dial_restore (t_dial *x)
 {
-    t_dial *old = (t_dial *)instance_pendingFetch (cast_object (x));
-    
-    if (old) { }    /* ??? */
+    gui_restore (cast_gui (x), dial_flags());
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
-
-static constexpr int dial_flags()
-{
-    return GUI_NONE
-            | GUI_VALUE
-            | GUI_LOW
-            | GUI_HIGH
-            | GUI_INTERVAL
-            | GUI_LOGARITHMIC
-            | GUI_DIGITS
-            | GUI_WIDTH;
-}
-
-static void dial_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
-{
-    gui_getParameters (o, group, t, dial_flags());
-}
-
-static void dial_functionSetParameters (t_object *o, const data::Group& group)
-{
-    if (gui_setParameters (o, group, dial_flags())) { dial_bang ((t_dial *)o); }
-}
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

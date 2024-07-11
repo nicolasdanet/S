@@ -80,6 +80,37 @@ static void slider_orientation (t_slider *x, t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static int slider_flags()
+{
+    return GUI_NONE
+            | GUI_VALUE
+            | GUI_RANGE
+            | GUI_INTERVAL
+            | GUI_LOGARITHMIC
+            | GUI_WIDTH
+            | GUI_HEIGHT
+            | GUI_ORIENTATION
+            | GUI_SWAP;
+}
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+static void slider_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
+{
+    gui_getParameters (o, group, t, slider_flags());
+}
+
+static void slider_functionSetParameters (t_object *o, const data::Group& group)
+{
+    if (gui_setParameters (o, group, slider_flags())) { slider_bang ((t_slider *)o); }
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void slider_functionSave (t_object *z, t_buffer *b, int flags)
 {
     t_slider *x = (t_slider *)z;
@@ -105,42 +136,8 @@ static void slider_functionSave (t_object *z, t_buffer *b, int flags)
 
 static void slider_restore (t_slider *x)
 {
-    t_slider *old = (t_slider *)instance_pendingFetch (cast_object (x));
-    
-    if (old) { }    /* ??? */
+    gui_restore (cast_gui (x), slider_flags());
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
-
-static constexpr int slider_flags()
-{
-    return GUI_NONE
-            | GUI_VALUE
-            | GUI_LOW
-            | GUI_HIGH
-            | GUI_INTERVAL
-            | GUI_LOGARITHMIC
-            | GUI_WIDTH
-            | GUI_HEIGHT
-            | GUI_ORIENTATION
-            | GUI_SWAP;
-}
-
-static void slider_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
-{
-    gui_getParameters (o, group, t, slider_flags());
-}
-
-static void slider_functionSetParameters (t_object *o, const data::Group& group)
-{
-    if (gui_setParameters (o, group, slider_flags())) { slider_bang ((t_slider *)o); }
-}
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

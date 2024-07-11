@@ -55,6 +55,33 @@ static void gatom_range (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static int gatom_flags()
+{
+    return GUI_NONE
+            | GUI_VALUE
+            | GUI_RANGE
+            | GUI_INTERVAL
+            | GUI_DIGITS;
+}
+
+#if defined ( PD_BUILDING_APPLICATION )
+    
+static void gatom_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
+{
+    gui_getParameters (o, group, t, gatom_flags());
+}
+
+static void gatom_functionSetParameters (t_object *o, const data::Group& group)
+{
+    if (gui_setParameters (o, group, gatom_flags())) { gatom_bang ((t_gatom *)o); }
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static void gatom_functionSave (t_object *z, t_buffer *b, int flags)
 {
     t_gatom *x = (t_gatom *)z;
@@ -75,64 +102,10 @@ static void gatom_functionSave (t_object *z, t_buffer *b, int flags)
     object_saveIdentifiers (z, b, flags);
 }
 
-static t_buffer *gatom_functionData (t_object *z, int flags)
-{
-    if (SAVED_DEEP (flags)) {
-    //
-    t_buffer *b = buffer_new();
-    
-    buffer_appendSymbol (b, sym__restore);
-
-    return b;
-    //
-    }
-    
-    return NULL;
-}
-
-/* Encapsulation. */
-
 static void gatom_restore (t_gatom *x)
 {
-    t_gatom *old = (t_gatom *)instance_pendingFetch (cast_object (x));
-    
-    if (old) {      /* ??? */
-    //
-    t_float min = gui_getLow (cast_gui (old));
-    t_float max = gui_getHigh (cast_gui (old));
-    
-    gui_updateRange (cast_gui (x), min, max, GUI_UPDATE_NOTIFY);
-    //
-    }
+    gui_restore (cast_gui (x), gatom_flags());
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
-    
-static constexpr int gatom_flags()
-{
-    return GUI_NONE
-            | GUI_VALUE
-            | GUI_LOW
-            | GUI_HIGH
-            | GUI_INTERVAL
-            | GUI_DIGITS;
-}
-
-static void gatom_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
-{
-    gui_getParameters (o, group, t, gatom_flags());
-}
-
-static void gatom_functionSetParameters (t_object *o, const data::Group& group)
-{
-    if (gui_setParameters (o, group, gatom_flags())) { gatom_bang ((t_gatom *)o); }
-}
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -205,7 +178,7 @@ void gatom_setup (void)
     #endif
     
     class_setSaveFunction (c, gatom_functionSave);
-    class_setDataFunction (c, gatom_functionData);
+    class_setDataFunction (c, object_functionData);
     class_requirePending (c);
     
     gatom_class = c;

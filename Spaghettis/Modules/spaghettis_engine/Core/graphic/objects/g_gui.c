@@ -374,7 +374,7 @@ void gui_getParameters (t_object *o, data::Group& group, const Tags& t, int flag
             delegate);
     }
     
-    if ((flags & GUI_LOW) && t.contains (Tag::Low)) {
+    if ((flags & GUI_RANGE) && t.contains (Tag::Low)) {
         group.addParameter (Tag::Low,
             NEEDS_TRANS ("Low Range"),
             NEEDS_TRANS ("Minimum settable value"),
@@ -382,7 +382,7 @@ void gui_getParameters (t_object *o, data::Group& group, const Tags& t, int flag
             delegate);
     }
     
-    if ((flags & GUI_HIGH) && t.contains (Tag::High)) {
+    if ((flags & GUI_RANGE) && t.contains (Tag::High)) {
         group.addParameter (Tag::High,
             NEEDS_TRANS ("High Range"),
             NEEDS_TRANS ("Maximum settable value"),
@@ -507,14 +507,12 @@ bool gui_setParameters (t_object *o, const data::Group& group, int flags)
 {
     t_gui *x = (t_gui *)o;
     
-    if (flags & GUI_LOW)  {
-    if (flags & GUI_HIGH) {
+    if (flags & GUI_RANGE) {
         jassert (group.hasParameter (Tag::Low));
         jassert (group.hasParameter (Tag::High));
         const t_float min  = group.getParameter (Tag::Low).getValueTyped<t_float>();
         const t_float max  = group.getParameter (Tag::High).getValueTyped<t_float>();
         gui_updateRange (x, min, max, GUI_UPDATE_NOTIFY);
-    }
     }
     
     if (flags & GUI_INTERVAL) {
@@ -626,6 +624,37 @@ bool gui_setParameters (t_object *o, const data::Group& group, int flags)
 // -----------------------------------------------------------------------------------------------------------
 
 #endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void gui_restore (t_gui *x, int flags)
+{
+    t_gui *y = (t_gui *)instance_pendingFetch (cast_object (x));
+    
+    if (y) {
+    //
+    int n = GUI_UPDATE_NOTIFY;
+    
+    if (flags & GUI_RANGE)          { gui_updateRange (x, gui_getLow (y), gui_getHigh (y), n);  }
+    if (flags & GUI_INTERVAL)       { gui_updateInterval (x, gui_getInterval (y), n);           }
+    if (flags & GUI_NONZERO)        { gui_updateNonZero (x, gui_getNonZero (y), n);             }
+    if (flags & GUI_LOGARITHMIC)    { gui_updateLogarithmic (x, gui_isLogarithmic (y), n);      }
+    if (flags & GUI_MULTIPLE)       { gui_updateMultiple (x, gui_isMultiple (y), n);            }
+    if (flags & GUI_EMBEDDED)       { gui_updateEmbedded (x, gui_isEmbedded (y), n);            }
+    if (flags & GUI_TIME)           { gui_updateTime (x, gui_getTime (y), n);                   }
+    if (flags & GUI_DIGITS)         { gui_updateDigits (x, gui_getDigits (y), n);               }
+    if (flags & GUI_BUTTONS)        { gui_updateButtons (x, gui_getButtons (y), n);             }
+    if (flags & GUI_WIDTH)          { gui_updateWidth (x, gui_getWidth (y), n);                 }
+    if (flags & GUI_HEIGHT)         { gui_updateHeight (x, gui_getHeight (y), n);               }
+    if (flags & GUI_ORIENTATION)    { gui_updateOrientation (x, gui_isVertical (y), n);         }
+    if (flags & GUI_VALUE)          { gui_updateValue (x, gui_getValue (y), n);                 }
+    if (flags & GUI_PEAK)           { gui_updatePeak (x, gui_getPeak (y), n);                   }
+    if (flags & GUI_STATE)          { gui_updateState (x, gui_getState (y), n);                 }
+    //
+    }
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
