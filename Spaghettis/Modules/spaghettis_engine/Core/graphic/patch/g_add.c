@@ -12,28 +12,11 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void   glist_undoDisable   (t_glist *);
+void glist_undoDisable (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void glist_objectAddRaw (t_glist *glist, t_object *y, t_object *first, int prepend)
-{
-    y->g_next = NULL;
-    
-    if (first != NULL) { y->g_next = first->g_next; first->g_next = y; }
-    else {
-    //
-    if (prepend || !glist->gl_graphics) {
-        y->g_next = glist->gl_graphics; glist->gl_graphics = y;
-    } else {
-        t_object *t = NULL; for (t = glist->gl_graphics; t->g_next; t = t->g_next) { }
-        t->g_next = y;
-    }
-    //
-    }
-}
 
 static void glist_objectAddUndoProceed (t_glist *glist, t_object *y)
 {
@@ -56,7 +39,7 @@ void glist_objectAdd (t_glist *glist, t_object *y)
 {
     PD_ASSERT (object_getOwner (y) == glist);
     
-    glist_objectAddRaw (glist, y, NULL, 0);
+    glist_graphicsAppend (glist, y);
     
     instance_registerAdd (y);
     
@@ -104,22 +87,11 @@ void glist_objectRemovePurgeCacheForInlets (t_glist *glist)
     buffer_clear (glist->gl_sorterObjects);
 }
 
-void glist_objectRemoveRaw (t_glist *glist, t_object *y)
-{
-    if (glist->gl_graphics == y) { glist->gl_graphics = y->g_next; }
-    else {
-        t_object *t = NULL;
-        for (t = glist->gl_graphics; t; t = t->g_next) {
-            if (t->g_next == y) { t->g_next = y->g_next; break; }
-        }
-    }
-}
-
 static void glist_objectRemoveProceed (t_glist *glist, t_object *y)
 {
     instance_registerRemove (y);
     
-    glist_objectRemoveRaw (glist, y);
+    glist_graphicsRemove (glist, y);
 }
 
 static void glist_objectRemoveFree (t_glist *glist, t_object *y)
@@ -248,47 +220,23 @@ void glist_objectRemoveSelected (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int glist_objectGetNumberOf (t_glist *glist)
+void glist_removeInletsAndOutlets (t_glist *glist)
 {
-    return glist_objectGetIndexOf (glist, NULL);
-}
+    t_object *t1 = NULL;
+    t_object *t2 = NULL;
 
-int glist_objectGetNumberOfSelected (t_glist *glist)
-{
-    int n = 0; t_object *y = NULL;
+    for (t1 = glist->gl_graphics; t1; t1 = t2) {
+    //
+    t_class *c = pd_class (t1);
     
-    for (y = glist->gl_graphics; y; y = y->g_next) { n += glist_objectIsSelected (glist, y); }
+    t2 = t1->g_next;
     
-    return n;
-}
-
-void glist_objectDeselectAll (t_glist *glist)
-{
-    t_object *y = NULL;
-    
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (glist_objectIsSelected (glist, y)) { glist_objectDeselect (glist, y); }
+    if (c == vinlet_class || c == voutlet_class) { glist_objectRemoveWithCacheForInlets (glist, t1); }
+    //
     }
+    
+    glist_objectRemovePurgeCacheForInlets (glist);
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
-
-std::vector<UniqueId> glist_objectGetAll (t_glist *glist)
-{
-    std::vector<UniqueId> v;
-    
-    t_object *y = NULL;
-    
-    for (y = glist->gl_graphics; y; y = y->g_next) { v.push_back (object_getUnique (y)); }
-    
-    return v;
-}
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

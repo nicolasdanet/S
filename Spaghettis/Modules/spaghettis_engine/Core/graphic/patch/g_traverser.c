@@ -86,9 +86,9 @@ t_outconnect *traverser_next (t_traverser *t)
     //
     t_object *y = NULL;
     
-    if (!t->tr_srcObject) { y = t->tr_owner->gl_graphics; }
+    if (!t->tr_srcObject) { y = glist_graphicsGetFirst (t->tr_owner); }
     else {
-        y = t->tr_srcObject->g_next;
+        y = glist_graphicsGetNext (t->tr_owner, t->tr_srcObject);
     }
     
     if (!y) { return NULL; }

@@ -176,6 +176,7 @@ namespace spaghettis::core {
 
 #include "graphic/patch/g_base.c"
 #include "graphic/patch/g_glist.c"
+#include "graphic/patch/g_graphics.c"
 #include "graphic/patch/g_others.c"
 #include "graphic/patch/g_undo.c"
 #include "graphic/patch/g_add.c"

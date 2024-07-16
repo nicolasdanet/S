@@ -12,35 +12,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void   glist_objectRemoveWithCacheForInlets    (t_glist *, t_object *);
-void   glist_objectRemovePurgeCacheForInlets   (t_glist *);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void glist_removeInletsAndOutlets (t_glist *glist)
-{
-    t_object *t1 = NULL;
-    t_object *t2 = NULL;
-
-    for (t1 = glist->gl_graphics; t1; t1 = t2) {
-    //
-    t_class *c = pd_class (t1);
-    
-    t2 = t1->g_next;
-    
-    if (c == vinlet_class || c == voutlet_class) { glist_objectRemoveWithCacheForInlets (glist, t1); }
-    //
-    }
-    
-    glist_objectRemovePurgeCacheForInlets (glist);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void glist_updateInlets (t_glist *glist)
 {
     #if defined ( PD_BUILDING_APPLICATION )
@@ -93,25 +64,13 @@ void glist_inletRemove (t_glist *glist, t_inlet *inlet)
     glist_updateInlets (glist);
 }
 
-static int glist_inletGetNumberOf (t_glist *glist)
-{
-    int n = 0;
-    
-    t_object *y = NULL;
-    
-    for (y = glist->gl_graphics; y; y = y->g_next) { if (pd_class (y) == vinlet_class) { n++; } }
-    
-    return n;
-}
-
 void glist_inletSort (t_glist *glist)
 {
-    int numberOfInlets = glist_inletGetNumberOf (glist);
+    int numberOfInlets = glist_graphicsGetCountByClass (glist, vinlet_class);
 
     if (numberOfInlets > 1) {
     //
-    int i;
-    t_object *y = NULL;
+    int i, n = glist_graphicsGetSize (glist);
     
     /* Fetch all inlets into a list. */
     
@@ -120,8 +79,10 @@ void glist_inletSort (t_glist *glist)
     t_object **t       = inlets;
     t_point  *b        = boxes;
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
+    for (i = 0; i < n; i++) {
     //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
     if (pd_class (y) == vinlet_class) { *t = y; *b = object_getPoint (y); t++; b++; }
     //
     }
@@ -190,25 +151,13 @@ void glist_outletRemove (t_glist *glist, t_outlet *outlet)
     glist_updateOutlets (glist);
 }
 
-static int glist_outletGetNumberOf (t_glist *glist)
-{
-    int n = 0;
-    
-    t_object *y = NULL;
-    
-    for (y = glist->gl_graphics; y; y = y->g_next) { if (pd_class (y) == voutlet_class) { n++; } }
-    
-    return n;
-}
-
 void glist_outletSort (t_glist *glist)
 {
-    int numberOfOutlets = glist_outletGetNumberOf (glist);
+    int numberOfOutlets = glist_graphicsGetCountByClass (glist, voutlet_class);
     
     if (numberOfOutlets > 1) {
     //
-    int i;
-    t_object *y = NULL;
+    int i, n = glist_graphicsGetSize (glist);
     
     /* Fetch all outlets into a list. */
     
@@ -217,8 +166,10 @@ void glist_outletSort (t_glist *glist)
     t_object **t       = outlets;
     t_point  *b        = boxes;
         
-    for (y = glist->gl_graphics; y; y = y->g_next) {
+    for (i = 0; i < n; i++) {
     //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+
     if (pd_class (y) == voutlet_class) { *t = y; *b = object_getPoint (y); t++; b++; }
     //
     }

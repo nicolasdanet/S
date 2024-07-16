@@ -41,7 +41,7 @@ int glist_fileOpen (t_glist *glist, const char *name, const char *extension, t_f
 
 void glist_setUniqueAndSourceOfLast (t_glist *glist, int argc, t_atom *argv)
 {
-    t_object *o = glist_objectGetLast (glist);
+    t_object *o = glist_graphicsGetLast (glist);
     
     if (o) {
     //
@@ -57,7 +57,7 @@ void glist_setUniqueAndSourceOfLast (t_glist *glist, int argc, t_atom *argv)
 
 void glist_setSourceOfLast (t_glist *glist, int argc, t_atom *argv)
 {
-    t_object *o = glist_objectGetLast (glist);
+    t_object *o = glist_graphicsGetLast (glist);
     
     if (o) {
     //
@@ -72,7 +72,7 @@ void glist_setSourceOfLast (t_glist *glist, int argc, t_atom *argv)
 
 void glist_setInclusionOfLast (t_glist *glist, int argc, t_atom *argv)
 {
-    t_object *o = glist_objectGetLast (glist);
+    t_object *o = glist_graphicsGetLast (glist);
     
     if (o) {
     //
@@ -88,12 +88,16 @@ void glist_setInclusionOfLast (t_glist *glist, int argc, t_atom *argv)
 
 t_rectangle glist_getBoundingBoxOfAll (t_glist *glist)
 {
-    t_rectangle r; rectangle_setNothing (&r);
+    int i, n = glist_graphicsGetSize (glist);
+
+    t_rectangle r;
     
-    t_object *y = NULL;
+    rectangle_setNothing (&r);
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
+    for (i = 0; i < n; i++) {
     //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
     rectangle_add (&r, object_getX (y), object_getY (y));
     //
     }
@@ -103,12 +107,16 @@ t_rectangle glist_getBoundingBoxOfAll (t_glist *glist)
 
 t_rectangle glist_getBoundingBoxOfSelected (t_glist *glist)
 {
-    t_rectangle r; rectangle_setNothing (&r);
+    int i, n = glist_graphicsGetSize (glist);
+        
+    t_rectangle r;
     
-    t_object *y = NULL;
+    rectangle_setNothing (&r);
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
+    for (i = 0; i < n; i++) {
     //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
     if (glist_objectIsSelected (glist, y)) { rectangle_add (&r, object_getX (y), object_getY (y)); }
     //
     }

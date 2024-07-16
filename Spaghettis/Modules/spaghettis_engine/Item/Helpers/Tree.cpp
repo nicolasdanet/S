@@ -79,7 +79,7 @@ juce::ValueTree Tree::getItemIfChangedPropertyEquals (const juce::ValueTree& t, 
     //
     const juce::ValueTree root (t.getParent().getParent().getParent());
     
-    jassert (Item (root).isObject());
+    jassert (Item (root).isObject() || Item (root).isLine());
     
     return root;
     //

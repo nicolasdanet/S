@@ -47,7 +47,9 @@ static void glist_serializeHeader (t_glist *glist, t_buffer *b)
 
 static void glist_serializeObjects (t_glist *glist, t_buffer *b, int flags)
 {
-    t_object *y = NULL; for (y = glist->gl_graphics; y; y = y->g_next) { object_save (y, b, flags); }
+    int i, n = glist_graphicsGetSize (glist);
+    
+    for (i = 0; i < n; i++) { object_save (glist_graphicsGetObjectAt (glist, i), b, flags); }
 }
 
 static void glist_serializeLines (t_glist *glist, t_buffer *b)
@@ -58,9 +60,9 @@ static void glist_serializeLines (t_glist *glist, t_buffer *b)
     //
     buffer_appendSymbol (b, sym___hash__X);
     buffer_appendSymbol (b, sym_connect);
-    buffer_appendFloat (b,  glist_objectGetIndexOf (glist, traverser_getSource (&t)));
+    buffer_appendFloat (b,  glist_graphicsGetIndexOf (glist, traverser_getSource (&t)));
     buffer_appendFloat (b,  traverser_getIndexOfOutlet (&t));
-    buffer_appendFloat (b,  glist_objectGetIndexOf (glist, traverser_getDestination (&t)));
+    buffer_appendFloat (b,  glist_graphicsGetIndexOf (glist, traverser_getDestination (&t)));
     buffer_appendFloat (b,  traverser_getIndexOfInlet (&t));
     buffer_appendSemicolon (b);
     //

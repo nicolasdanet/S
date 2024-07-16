@@ -280,7 +280,7 @@ static t_inlethelper *encapsulate_addInletsToSnippetFetch (t_glist *glist)
                 traverser_getIndexOfOutlet (&t),
                 d,
                 traverser_getIndexOfInlet (&t),
-                glist_objectGetIndexOfAmongSelected (glist, d),
+                glist_graphicsGetIndexOfSelected (glist, d),
                 object_isSignalOutlet (o, traverser_getIndexOfOutlet (&t)));
     //
     }
@@ -397,7 +397,7 @@ static t_outlethelper *encapsulate_addOutletsToSnippetFetch (t_glist *glist)
     outlets = outlethelper_addSorted (outlets, glist,
                 o,
                 traverser_getIndexOfOutlet (&t),
-                glist_objectGetIndexOfAmongSelected (glist, o),
+                glist_graphicsGetIndexOfSelected (glist, o),
                 d,
                 traverser_getIndexOfInlet (&t),
                 object_isSignalOutlet (o, traverser_getIndexOfOutlet (&t)));

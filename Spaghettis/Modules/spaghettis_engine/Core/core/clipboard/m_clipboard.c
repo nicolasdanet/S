@@ -37,19 +37,24 @@ void snippet_substractOffsetToLines  (t_buffer *x, int i);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_buffer *clipboard_copyProceed (t_glist *glist, int copyAll, int isEncapsulate)
+static void clipboard_copyProceedObjects (t_glist *glist, t_buffer *b, int copyAll, int isEncapsulate)
 {
-    t_buffer *b = buffer_new();
-
-    t_object *y = NULL;
-    t_traverser t;
-    int flags = isEncapsulate ? SAVE_ENCAPSULATE : SAVE_COPY;
+    int i, n = glist_graphicsGetSize (glist);
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
+    for (i = 0; i < n; i++) {
     //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
+    int flags = isEncapsulate ? SAVE_ENCAPSULATE : SAVE_COPY;
+
     if (copyAll || glist_objectIsSelected (glist, y)) { object_save (y, b, flags); }
     //
     }
+}
+
+static void clipboard_copyProceedLines (t_glist *glist, t_buffer *b, int copyAll, int isEncapsulate)
+{
+    t_traverser t;
     
     traverser_start (&t, glist);
     
@@ -62,8 +67,8 @@ t_buffer *clipboard_copyProceed (t_glist *glist, int copyAll, int isEncapsulate)
     
     if (m && n) {
     //
-    int i = copyAll ? glist_objectGetIndexOf (glist, o) : glist_objectGetIndexOfAmongSelected (glist, o);
-    int j = copyAll ? glist_objectGetIndexOf (glist, d) : glist_objectGetIndexOfAmongSelected (glist, d);
+    int i = copyAll ? glist_graphicsGetIndexOf (glist, o) : glist_graphicsGetIndexOfSelected (glist, o);
+    int j = copyAll ? glist_graphicsGetIndexOf (glist, d) : glist_graphicsGetIndexOfSelected (glist, d);
     
     buffer_appendSymbol (b, sym___hash__X);
     buffer_appendSymbol (b, sym_connect);
@@ -76,9 +81,21 @@ t_buffer *clipboard_copyProceed (t_glist *glist, int copyAll, int isEncapsulate)
     }
     //
     }
+}
+
+t_buffer *clipboard_copyProceed (t_glist *glist, int copyAll, int isEncapsulate)
+{
+    t_buffer *b = buffer_new();
+
+    clipboard_copyProceedObjects (glist, b, copyAll, isEncapsulate);
+    clipboard_copyProceedLines (glist, b, copyAll, isEncapsulate);
     
     return b;
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 static void clipboard_copyRaw (t_glist *glist, int isDuplicate)
 {
@@ -108,21 +125,17 @@ void clipboard_copy (t_glist *glist)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* While pasting object are invisibles at creation. */
+/* While pasting, objects are invisibles at creation. */
 /* Make them visible once moved at the right place. */
 
 static void clipboard_pasteProceedShow (t_glist *glist, int alreadyThere)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
-    t_object *y = NULL;
-    int i = 0;
+    int i, n = glist_graphicsGetSize (glist);
 
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (i >= alreadyThere) {
-            outputs_objectChanged (y, Tags::attributes (Tag::Visible));
-        }
-        i++;
+    for (i = alreadyThere; i < n; i++) {
+        outputs_objectChanged (glist_graphicsGetObjectAt (glist, i), Tags::attributes (Tag::Visible));
     }
     
     #endif
@@ -130,34 +143,25 @@ static void clipboard_pasteProceedShow (t_glist *glist, int alreadyThere)
 
 static void clipboard_pasteProceedDisplace (t_glist *glist, t_point *pt, int alreadyThere)
 {
-    t_object *y = NULL;
-    int i = 0;
+    int i, n = glist_graphicsGetSize (glist);
 
     t_rectangle r; rectangle_setNothing (&r);
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (i >= alreadyThere) {
-            t_point t = object_getPoint (y); rectangle_addPoint (&r, &t);
-        }
-        i++;
+    for (i = alreadyThere; i < n; i++) {
+        t_point t = object_getPoint (glist_graphicsGetObjectAt (glist, i)); rectangle_addPoint (&r, &t);
     }
     
     if (!rectangle_isNothing (&r)) {
     //
     int a = point_getX (pt);
     int b = point_getY (pt);
-    int m = rectangle_getTopLeftX (&r);
-    int n = rectangle_getTopLeftY (&r);
-    int deltaX = a - m;
-    int deltaY = b - n;
+    int c = rectangle_getTopLeftX (&r);
+    int d = rectangle_getTopLeftY (&r);
+    int deltaX = a - c;
+    int deltaY = b - d;
 
-    i = 0;
-    
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (i >= alreadyThere) {
-            unique_objectDisplace (object_getUnique (y), deltaX, deltaY);
-        }
-        i++;
+    for (i = alreadyThere; i < n; i++) {
+        unique_objectDisplace (object_getUnique (glist_graphicsGetObjectAt (glist, i)), deltaX, deltaY);
     }
     //
     }
@@ -165,28 +169,25 @@ static void clipboard_pasteProceedDisplace (t_glist *glist, t_point *pt, int alr
 
 static void clipboard_pasteProceedLoadbang (t_glist *glist, int alreadyThere)
 {
-    t_object *y = NULL;
-    int i = 0;
+    int i, n = glist_graphicsGetSize (glist);
 
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (i >= alreadyThere) {
-            if (object_isCanvas (y)) { glist_loadbang (cast_glist (y)); }
-        }
-        i++;
+    for (i = alreadyThere; i < n; i++) {
+    //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
+    if (object_isCanvas (y)) { glist_loadbang (cast_glist (y)); }
+    //
     }
 }
 
 int clipboard_pasteProceedSelect (t_glist *glist, int alreadyThere)
 {
-    t_object *y = NULL;
-    int i = 0;
+    int i, n = glist_graphicsGetSize (glist);
+        
     int isDirty = 0;
 
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (i >= alreadyThere) {
-            glist_objectSelect (glist, y); isDirty = 1;
-        }
-        i++;
+    for (i = alreadyThere; i < n; i++) {
+        glist_objectSelect (glist, glist_graphicsGetObjectAt (glist, i)); isDirty = 1;
     }
     
     return isDirty;
@@ -216,6 +217,10 @@ int clipboard_pasteProceed (t_glist *glist, t_buffer *b, t_point *pt, int rename
     
     return clipboard_pasteProceedSelect (glist, alreadyThere);
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 static t_point clipboard_pasteRawGetPointNearSelection (t_glist *glist)
 {

@@ -32,8 +32,8 @@ t_error glist_lineConnectByIndex (t_glist *glist,
     int indexOfObjectIn,
     int indexOfInlet)
 {
-    t_object *src  = glist_objectGetAt (glist, indexOfObjectOut);
-    t_object *dest = glist_objectGetAt (glist, indexOfObjectIn);
+    t_object *src  = glist_graphicsGetObjectAt (glist, indexOfObjectOut);
+    t_object *dest = glist_graphicsGetObjectAt (glist, indexOfObjectIn);
     
     PD_ASSERT (src);
     PD_ASSERT (dest);
@@ -84,8 +84,8 @@ t_error glist_lineDisconnectByIndex (t_glist *glist,
     if ((traverser_getIndexOfOutlet (&t) == indexOfOutlet)) {
         if ((traverser_getIndexOfInlet (&t) == indexOfInlet)) {
 
-            int m = glist_objectGetIndexOf (glist, traverser_getSource (&t));
-            int n = glist_objectGetIndexOf (glist, traverser_getDestination (&t));
+            int m = glist_graphicsGetIndexOf (glist, traverser_getSource (&t));
+            int n = glist_graphicsGetIndexOf (glist, traverser_getDestination (&t));
 
             if (m == indexOfObjectOut && n == indexOfObjectIn) {
                 traverser_disconnect (&t, glist);

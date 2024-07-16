@@ -14,17 +14,20 @@
 
 void canvas_dspProceed (t_glist *glist, int isTopLevel, t_signal **sp)
 {
-    t_object     *y = NULL;
     t_dspcontext *context = NULL;
     t_traverser  t;
+    
+    int i, size = glist_graphicsGetSize (glist);
     
     int m = object_getNumberOfSignalInlets (cast_object (glist));
     int n = object_getNumberOfSignalOutlets (cast_object (glist));
     
     context = ugen_graphStart (isTopLevel, sp, m, n);
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
+    for (i = 0; i < size; i++) {
     //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
     if (class_hasDsp (pd_class (y))) { ugen_graphAdd (context, y); }
     //
     }
@@ -58,9 +61,12 @@ static t_block *canvas_getBlockIfContainsAny (t_glist **p)
     t_block *block = NULL;
     t_glist *glist = *p;
     
-    t_object *y    = NULL;
+    int i, n = glist_graphicsGetSize (glist);
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
+    for (i = 0; i < n; i++) {
+        
+        t_object *y = glist_graphicsGetObjectAt (glist, i);
+        
         if (pd_class (y) == block_class) {
             if (block) { error_ignored (y, sym_block__tilde__); }
             else {

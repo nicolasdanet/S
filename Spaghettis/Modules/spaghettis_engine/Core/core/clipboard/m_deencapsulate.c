@@ -92,7 +92,7 @@ static void connecthelper_fetchUniques (t_connecthelper *h, t_glist *glist, int 
     
     while (t) {
     //
-    t->x_index += n; t->x_id = object_getUnique (glist_objectGetAt (glist, t->x_index));
+    t->x_index += n; t->x_id = object_getUnique (glist_graphicsGetObjectAt (glist, t->x_index));
     
     t = t->x_next;
     //

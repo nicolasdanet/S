@@ -174,7 +174,6 @@ void   glist_objectPosition                    (t_glist *g, t_object *o, int x, 
 void   glist_objectSnap                        (t_glist *g, t_object *o, int notify);
 
 int    glist_objectIsSelected                  (t_glist *g, t_object *o);
-int    glist_objectGetIndexOfAmongSelected     (t_glist *g, t_object *o);
 
 void   glist_objectMoveAtFirst                 (t_glist *g, t_object *o);
 void   glist_objectMoveAtLast                  (t_glist *g, t_object *o);
@@ -184,11 +183,6 @@ void   glist_objectDisplace                    (t_glist *g, t_object *o, int dX,
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-int    glist_objectGetIndexOf                  (t_glist *g, t_object *o);
-
-t_object   *glist_objectGetAt                  (t_glist *g, int n);
-t_object   *glist_objectGetLast                (t_glist *g);
 
 void   glist_objectDeleteLinesByOutlet         (t_glist *g, t_object *o, t_outlet *outlet);
 void   glist_objectDeleteLinesByInlet          (t_glist *g, t_object *o, t_inlet  *inlet);

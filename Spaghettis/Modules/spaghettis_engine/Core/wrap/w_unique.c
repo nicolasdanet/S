@@ -355,7 +355,7 @@ t_error unique_objectGetIndexOf (t_id u, int *n)
 
     if (object && glist) {
     //
-    (*n) = glist_objectGetIndexOf (glist, object); return PD_ERROR_NONE;
+    (*n) = glist_graphicsGetIndexOf (glist, object); return PD_ERROR_NONE;
     //
     }
     

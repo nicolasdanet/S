@@ -20,7 +20,7 @@ t_undosnippet *undosnippet_new (t_object *y)
     
     x->us_object = object_getUnique (y);
     x->us_owner  = owner ? object_getUnique (cast_object (owner)) : 0;
-    x->us_z      = owner ? glist_objectGetIndexOf (owner, y) : 0;
+    x->us_z      = owner ? glist_graphicsGetIndexOf (owner, y) : 0;
     x->us_buffer = buffer_new();
     
     object_save (y, x->us_buffer, SAVE_UNDO);

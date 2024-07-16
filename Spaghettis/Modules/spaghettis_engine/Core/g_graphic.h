@@ -15,6 +15,7 @@
 // MARK: -
 
 #include "graphic/patch/g_glist.h"
+#include "graphic/patch/g_graphics.h"
 #include "graphic/patch/g_traverser.h"
 #include "graphic/patch/g_dollar.h"
 #include "graphic/objects/g_objects.h"

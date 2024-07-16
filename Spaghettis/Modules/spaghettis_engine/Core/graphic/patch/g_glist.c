@@ -216,32 +216,44 @@ void glist_close (t_glist *glist)
 
 static void glist_loadbangAbstractions (t_glist *glist)
 {
-    t_object *y = NULL;
+    int i, n = glist_graphicsGetSize (glist);
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (object_isCanvas (y)) {
-            if (glist_isAbstraction (cast_glist (y))) { glist_loadbang (cast_glist (y)); }
-            else {
-                glist_loadbangAbstractions (cast_glist (y));
-            }
+    for (i = 0; i < n; i++) {
+    //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
+    if (object_isCanvas (y)) {
+        if (glist_isAbstraction (cast_glist (y))) { glist_loadbang (cast_glist (y)); }
+        else {
+            glist_loadbangAbstractions (cast_glist (y));
         }
+    }
+    //
     }
 }
 
 static void glist_loadbangSubpatches (t_glist *glist)
 {
-    t_object *y = NULL;
+    int i, n = glist_graphicsGetSize (glist);
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (object_isCanvas (y)) {
-            if (!glist_isAbstraction (cast_glist (y))) { glist_loadbangSubpatches (cast_glist (y)); }
-        }
+    for (i = 0; i < n; i++) {
+    //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
+    if (object_isCanvas (y)) {
+        if (!glist_isAbstraction (cast_glist (y))) { glist_loadbangSubpatches (cast_glist (y)); }
+    }
+    //
     }
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (!object_isCanvas (y) && class_hasMethod (pd_class (y), sym__loadbang)) {
-            pd_message (cast_pd (y), sym__loadbang, 0, NULL);
-        }
+    for (i = 0; i < n; i++) {
+    //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
+    if (!object_isCanvas (y) && class_hasMethod (pd_class (y), sym__loadbang)) {
+        pd_message (cast_pd (y), sym__loadbang, 0, NULL);
+    }
+    //
     }
 }
 
@@ -257,32 +269,44 @@ void glist_loadbang (t_glist *glist)
 
 static void glist_closebangAbstractions (t_glist *glist)
 {
-    t_object *y = NULL;
+    int i, n = glist_graphicsGetSize (glist);
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (object_isCanvas (y)) {
-            if (glist_isAbstraction (cast_glist (y))) { glist_closebang (cast_glist (y)); }
-            else {
-                glist_closebangAbstractions (cast_glist (y));
-            }
+    for (i = 0; i < n; i++) {
+    //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
+    if (object_isCanvas (y)) {
+        if (glist_isAbstraction (cast_glist (y))) { glist_closebang (cast_glist (y)); }
+        else {
+            glist_closebangAbstractions (cast_glist (y));
         }
+    }
+    //
     }
 }
 
 static void glist_closebangSubpatches (t_glist *glist)
 {
-    t_object *y = NULL;
+    int i, n = glist_graphicsGetSize (glist);
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (object_isCanvas (y)) {
-            if (!glist_isAbstraction (cast_glist (y))) { glist_closebangSubpatches (cast_glist (y)); }
-        }
+    for (i = 0; i < n; i++) {
+    //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
+    if (object_isCanvas (y)) {
+        if (!glist_isAbstraction (cast_glist (y))) { glist_closebangSubpatches (cast_glist (y)); }
+    }
+    //
     }
     
-    for (y = glist->gl_graphics; y; y = y->g_next) {
-        if (!object_isCanvas (y) && class_hasMethod (pd_class (y), sym__closebang)) {
-            pd_message (cast_pd (y), sym__closebang, 0, NULL);
-        }
+    for (i = 0; i < n; i++) {
+    //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
+    if (!object_isCanvas (y) && class_hasMethod (pd_class (y), sym__closebang)) {
+        pd_message (cast_pd (y), sym__closebang, 0, NULL);
+    }
+    //
     }
     
     glist->gl_isCloseBanged = 1;
