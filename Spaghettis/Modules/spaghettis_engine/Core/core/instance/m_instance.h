@@ -61,8 +61,8 @@ typedef struct _pdinstance {
     t_pd            *pd_newest;
     t_class         *pd_objectMaker;
     t_class         *pd_canvasMaker;
-    t_object        *pd_pending;
     t_register      *pd_register;
+    t_buffer        *pd_pending;
     t_buffer        *pd_view;
     t_buffer        *pd_pool;
     t_dspthread     *pd_dsp;

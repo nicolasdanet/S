@@ -42,6 +42,7 @@ void        atom_sort                           (int argc, t_atom *argv);
 
 void        buffer_qsort                        (t_buffer *x, t_cmpfn f);
 void        buffer_appendClock                  (t_buffer *x, t_clock *c);
+void        buffer_appendObject                 (t_buffer *x, t_object *y);
 
 void        buffer_swap                         (t_buffer *x, t_buffer *y);
 

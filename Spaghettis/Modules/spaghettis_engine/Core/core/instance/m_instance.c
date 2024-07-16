@@ -119,9 +119,13 @@ void instance_pendingEnd (void)
 
 void instance_pendingRelease (void)
 {
-    t_object *y = instance_get()->pd_pending; instance_get()->pd_pending = NULL;
+    t_buffer *b = instance_get()->pd_pending;
     
-    while (y) { t_object *t = y; y = y->g_next; pd_free (cast_pd (t)); }
+    int i, n = buffer_getSize (b);
+    
+    for (i = 0; i < n; i++) { t_object *t = buffer_getObjectAt (b, i); pd_free (cast_pd (t)); }
+    
+    buffer_clear (b);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -455,8 +459,8 @@ static t_pdinstance *instance_new()
     x->pd_objectMaker = class_new (sym_objectmaker, NULL, NULL, 0, CLASS_ABSTRACT, A_NULL);
     x->pd_canvasMaker = class_new (sym_canvasmaker, NULL, NULL, 0, CLASS_ABSTRACT, A_NULL);
     x->pd_clocks      = clocks_new();
-    x->pd_pending     = NULL;
     x->pd_register    = register_new();
+    x->pd_pending     = buffer_new();
     x->pd_view        = buffer_new();
     x->pd_pool        = buffer_new();
     x->pd_dsp         = dspthread_new();
@@ -478,13 +482,15 @@ static void instance_free (t_pdinstance *x)
     PD_ASSERT (x->pd_roots       == NULL);
     PD_ASSERT (x->pd_polling     == NULL);
     PD_ASSERT (x->pd_autorelease == NULL);
-    PD_ASSERT (x->pd_pending     == NULL);
+    
+    PD_ASSERT (buffer_getSize (x->pd_pending) == 0);
     
     PD_ASSERT (buffer_getSize (x->pd_pool) == x->pd_poolCount);
     
     clock_free (x->pd_stop);
     buffer_free (x->pd_pool);
     buffer_free (x->pd_view);
+    buffer_free (x->pd_pending);
     register_free (x->pd_register);
     clocks_free (x->pd_clocks);
     class_free (x->pd_canvasMaker);

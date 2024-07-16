@@ -31,14 +31,18 @@ t_object *instance_pendingFetch (t_object *y)
     t_id u1 = object_getUnique (y);
     t_id s1 = object_getSource (y);
     
-    t_object *t = instance_get()->pd_pending;
+    t_buffer *b = instance_get()->pd_pending;
     
-    while (t) {
+    int i, n = buffer_getSize (b);
+    
+    for (i = 0; i < n; i++) {
     //
+    t_object *t = buffer_getObjectAt (b, i);
+    
     t_id u2 = object_getUnique (t);
     t_id s2 = object_getSource (t);
         
-    if (u1 == u2 || u1 == s2 || s1 == u2 || s1 == s2) { return t; } else { t = t->g_next; }
+    if (u1 == u2 || u1 == s2 || s1 == u2 || s1 == s2) { return t; }
     //
     }
     //
@@ -51,7 +55,7 @@ void instance_pendingAdd (t_object *y)
 {
     if (class_hasDismissFunction (pd_class (y))) { (*class_getDismissFunction (pd_class (y))) (y); }
 
-    y->g_next = instance_get()->pd_pending; instance_get()->pd_pending = y;
+    buffer_appendObject (instance_get()->pd_pending, y);
 }
 
 // -----------------------------------------------------------------------------------------------------------
