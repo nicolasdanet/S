@@ -40,8 +40,9 @@ static t_glist *glist_new (t_symbol *name, t_rectangle *window)
     x->gl_abstractions  = NULL;
     x->gl_undomanager   = undomanager_new (x);
     x->gl_name          = (name != &s_ ? name : environment_getFileName (x->gl_environment));
-    x->gl_sorterObjects = buffer_new();
-    x->gl_sorterIndexes = buffer_new();
+    x->gl_tempObjects   = buffer_new();
+    x->gl_tempOutlets   = buffer_new();
+    x->gl_tempIndexes   = buffer_new();
     x->gl_zoom          = 100;
     
     if (window) { glist_setEditView (x, window, 0); }
@@ -57,10 +58,11 @@ void glist_free (t_glist *glist)
     
     if (glist_isRoot (glist)) { instance_rootsRemove (glist); }
     
-    buffer_free (glist->gl_sorterIndexes);
-    buffer_free (glist->gl_sorterObjects);
-    environment_free (glist->gl_environment);
+    buffer_free (glist->gl_tempIndexes);
+    buffer_free (glist->gl_tempOutlets);
+    buffer_free (glist->gl_tempObjects);
     
+    environment_free (glist->gl_environment);
     undomanager_free (glist->gl_undomanager);
     abstractions_free (glist->gl_abstractions);
 }

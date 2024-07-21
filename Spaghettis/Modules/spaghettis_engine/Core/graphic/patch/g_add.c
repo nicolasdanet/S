@@ -50,43 +50,6 @@ void glist_objectAdd (t_glist *glist, t_object *y)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Inlets and outlets must be deleted from right to left to handle Undo/Redo properly. */
-
-static void glist_objectRemoveWithCacheForInletsProceed (t_glist *glist, t_object *y, int isVinlet)
-{
-    int i, n = isVinlet ? vinlet_getIndex ((t_vinlet *)y) : voutlet_getIndex ((t_voutlet *)y);
-    
-    t_atom a;
-    
-    for (i = 0; i < buffer_getSize (glist->gl_sorterIndexes); i++) {
-        if (buffer_getFloatAtIndex (glist->gl_sorterIndexes, i) < n) { break; }
-    }
-    
-    SET_FLOAT (&a, n);  buffer_insertAtIndex (glist->gl_sorterIndexes, i, &a);
-    SET_OBJECT (&a, y); buffer_insertAtIndex (glist->gl_sorterObjects, i, &a);
-}
-
-void glist_objectRemoveWithCacheForInlets (t_glist *glist, t_object *y)
-{
-    if (pd_class (y) == vinlet_class)       { glist_objectRemoveWithCacheForInletsProceed (glist, y, 1); }
-    else if (pd_class (y) == voutlet_class) { glist_objectRemoveWithCacheForInletsProceed (glist, y, 0); }
-    else {
-        glist_objectRemove (glist, y);
-    }
-}
-
-void glist_objectRemovePurgeCacheForInlets (t_glist *glist)
-{
-    int i;
-    
-    for (i = 0; i < buffer_getSize (glist->gl_sorterObjects); i++) {
-        glist_objectRemove (glist, buffer_getObjectAt (glist->gl_sorterObjects, i));
-    }
-    
-    buffer_clear (glist->gl_sorterIndexes);
-    buffer_clear (glist->gl_sorterObjects);
-}
-
 static void glist_objectRemoveProceed (t_glist *glist, t_object *y)
 {
     instance_registerRemove (y);
@@ -149,6 +112,56 @@ void glist_objectRemove (t_glist *glist, t_object *y)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* Inlets and outlets must be deleted from right to left to handle Undo/Redo properly. */
+
+static void glist_objectRemoveCachedOutlets (t_glist *glist, t_object *y, int n)
+{
+    t_atom a;
+    
+    int i;
+    
+    for (i = 0; i < buffer_getSize (glist->gl_tempIndexes); i++) {
+        if (buffer_getFloatAtIndex (glist->gl_tempIndexes, i) < n) { break; }
+    }
+    
+    SET_FLOAT (&a, n);  buffer_insertAtIndex (glist->gl_tempIndexes, i, &a);
+    SET_OBJECT (&a, y); buffer_insertAtIndex (glist->gl_tempOutlets, i, &a);
+}
+
+static void glist_objectRemoveCached (t_glist *glist, t_object *y)
+{
+    if (pd_class (y) == vinlet_class) {
+        glist_objectRemoveCachedOutlets (glist, y, vinlet_getIndex ((t_vinlet *)y));
+    } else if (pd_class (y) == voutlet_class) {
+        glist_objectRemoveCachedOutlets (glist, y, voutlet_getIndex ((t_voutlet *)y));
+    } else {
+        buffer_appendObject (glist->gl_tempObjects, y);
+    }
+}
+
+/* Cache objects to  */
+
+static void glist_objectRemoveRelease (t_glist *glist)
+{
+    int i;
+    
+    for (i = 0; i < buffer_getSize (glist->gl_tempObjects); i++) {
+        glist_objectRemove (glist, buffer_getObjectAt (glist->gl_tempObjects, i));
+    }
+    
+    for (i = 0; i < buffer_getSize (glist->gl_tempOutlets); i++) {
+        glist_objectRemove (glist, buffer_getObjectAt (glist->gl_tempOutlets, i));
+    }
+    
+    buffer_clear (glist->gl_tempIndexes);
+    buffer_clear (glist->gl_tempOutlets);
+    buffer_clear (glist->gl_tempObjects);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 /* If needed the DSP is suspended to avoid multiple rebuilds of DSP graph. */
 
 void glist_objectRemoveAll (t_glist *glist)
@@ -167,11 +180,11 @@ void glist_objectRemoveAll (t_glist *glist)
         if (object_hasDsp (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
     }
 
-    glist_objectRemoveWithCacheForInlets (glist, t1);
+    glist_objectRemoveCached (glist, t1);
     //
     }
     
-    glist_objectRemovePurgeCacheForInlets (glist);
+    glist_objectRemoveRelease (glist);
     
     if (dspSuspended) { dsp_resume (dspState); }
 }
@@ -197,12 +210,12 @@ void glist_objectRemoveSelectedProceed (t_glist *glist)
             if (object_hasDsp (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
         }
 
-        glist_objectRemoveWithCacheForInlets (glist, t1);
+        glist_objectRemoveCached (glist, t1);
     }
     //
     }
 
-    glist_objectRemovePurgeCacheForInlets (glist);
+    glist_objectRemoveRelease (glist);
     
     glist_setDirty (glist, 1);
     
@@ -231,11 +244,11 @@ void glist_removeInletsAndOutlets (t_glist *glist)
     
     t2 = t1->g_next;
     
-    if (c == vinlet_class || c == voutlet_class) { glist_objectRemoveWithCacheForInlets (glist, t1); }
+    if (c == vinlet_class || c == voutlet_class) { glist_objectRemoveCached (glist, t1); }
     //
     }
     
-    glist_objectRemovePurgeCacheForInlets (glist);
+    glist_objectRemoveRelease (glist);
 }
 
 // -----------------------------------------------------------------------------------------------------------

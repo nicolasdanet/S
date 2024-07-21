@@ -22,8 +22,9 @@ struct _glist {
     t_environment   *gl_environment;            /* Top.  */
     t_undomanager   *gl_undomanager;
     t_symbol        *gl_name;
-    t_buffer        *gl_sorterObjects;
-    t_buffer        *gl_sorterIndexes;
+    t_buffer        *gl_tempObjects;
+    t_buffer        *gl_tempOutlets;
+    t_buffer        *gl_tempIndexes;
     t_rectangle     gl_editView;
     int             gl_offsetX;
     int             gl_offsetY;
