@@ -128,6 +128,8 @@ static void glist_objectRemoveCachedOutlets (t_glist *glist, t_object *y, int n)
     SET_OBJECT (&a, y); buffer_insertAtIndex (glist->gl_tempOutlets, i, &a);
 }
 
+/* Cache objects to avoid the container corruption during the traversal. */
+
 static void glist_objectRemoveCached (t_glist *glist, t_object *y)
 {
     if (pd_class (y) == vinlet_class) {
@@ -138,8 +140,6 @@ static void glist_objectRemoveCached (t_glist *glist, t_object *y)
         buffer_appendObject (glist->gl_tempObjects, y);
     }
 }
-
-/* Cache objects to  */
 
 static void glist_objectRemoveRelease (t_glist *glist)
 {
@@ -166,21 +166,20 @@ static void glist_objectRemoveRelease (t_glist *glist)
 
 void glist_objectRemoveAll (t_glist *glist)
 {
-    t_object *t1 = NULL;
-    t_object *t2 = NULL;
-    
     int dspState = 0;
     int dspSuspended = 0;
 
-    for (t1 = glist->gl_graphics; t1; t1 = t2) {
+    int i, n = glist_graphicsGetSize (glist);
+    
+    for (i = 0; i < n; i++) {
     //
-    t2 = t1->g_next;
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
     
     if (!dspSuspended) {
-        if (object_hasDsp (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
+        if (object_hasDsp (y)) { dspState = dsp_suspend(); dspSuspended = 1; }
     }
 
-    glist_objectRemoveCached (glist, t1);
+    glist_objectRemoveCached (glist, y);
     //
     }
     
@@ -195,22 +194,21 @@ void glist_objectRemoveAll (t_glist *glist)
 
 void glist_objectRemoveSelectedProceed (t_glist *glist)
 {
-    t_object *t1 = NULL;
-    t_object *t2 = NULL;
-    
     int dspState     = 0;
     int dspSuspended = 0;
     
-    for (t1 = glist->gl_graphics; t1; t1 = t2) {
-    //
-    t2 = t1->g_next;
+    int i, n = glist_graphicsGetSize (glist);
     
-    if (glist_objectIsSelected (glist, t1)) {
+    for (i = 0; i < n; i++) {
+    //
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    
+    if (glist_objectIsSelected (glist, y)) {
         if (!dspSuspended) {
-            if (object_hasDsp (t1)) { dspState = dsp_suspend(); dspSuspended = 1; }
+            if (object_hasDsp (y)) { dspState = dsp_suspend(); dspSuspended = 1; }
         }
 
-        glist_objectRemoveCached (glist, t1);
+        glist_objectRemoveCached (glist, y);
     }
     //
     }
@@ -235,16 +233,16 @@ void glist_objectRemoveSelected (t_glist *glist)
 
 void glist_removeInletsAndOutlets (t_glist *glist)
 {
-    t_object *t1 = NULL;
-    t_object *t2 = NULL;
+    /* Note that DSP is (should be) already suspended. */
+    
+    int i, n = glist_graphicsGetSize (glist);
 
-    for (t1 = glist->gl_graphics; t1; t1 = t2) {
+    for (i = 0; i < n; i++) {
     //
-    t_class *c = pd_class (t1);
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
+    t_class *c  = pd_class (y);
     
-    t2 = t1->g_next;
-    
-    if (c == vinlet_class || c == voutlet_class) { glist_objectRemoveCached (glist, t1); }
+    if (c == vinlet_class || c == voutlet_class) { glist_objectRemoveCached (glist, y); }
     //
     }
     
