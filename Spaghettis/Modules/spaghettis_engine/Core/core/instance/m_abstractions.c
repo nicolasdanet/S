@@ -57,13 +57,11 @@ t_symbol *abstractions_cache (t_abstractions *x, t_glist *glist, t_symbol *name,
     
     t_symbol *key = pool_get();
     
-    t_atom a; SET_BUFFER (&a, b);
-    
     buffer_appendSymbol (x->x_keys,        key);
     buffer_appendSymbol (x->x_names,       name);
     buffer_appendSymbol (x->x_filenames,   environment_getFileName (e));
     buffer_appendSymbol (x->x_directories, environment_getDirectory (e));
-    buffer_appendAtom (x->x_snippets,      &a);
+    buffer_appendAsBuffer (x->x_snippets,  b);
     
     return key;
 }

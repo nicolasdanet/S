@@ -55,7 +55,7 @@ void instance_pendingAdd (t_object *y)
 {
     if (class_hasDismissFunction (pd_class (y))) { (*class_getDismissFunction (pd_class (y))) (y); }
 
-    buffer_appendObject (instance_get()->pd_pending, y);
+    buffer_appendAsObject (instance_get()->pd_pending, y);
 }
 
 // -----------------------------------------------------------------------------------------------------------

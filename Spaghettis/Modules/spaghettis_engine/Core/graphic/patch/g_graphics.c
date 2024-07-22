@@ -23,7 +23,7 @@ int glist_graphicsGetSize (t_glist *g)
     
     int n = 0;
     
-    for (y = g->gl_graphics; y; y = y->g_next) { n++; }
+    for (y = g->gl_objects; y; y = y->g_next) { n++; }
     
     return n;
 }
@@ -33,7 +33,7 @@ int glist_graphicsGetIndexOf (t_glist *g, t_object *y)
     t_object *t = NULL;
     int n = 0;
     
-    for (t = g->gl_graphics; t && t != y; t = t->g_next) {
+    for (t = g->gl_objects; t && t != y; t = t->g_next) {
         n++;
     }
     
@@ -46,7 +46,7 @@ int glist_graphicsGetIndexOfSelected (t_glist *g, t_object *y)
     
     int n = 0;
 
-    for (t = g->gl_graphics; t && t != y; t = t->g_next) {
+    for (t = g->gl_objects; t && t != y; t = t->g_next) {
         if (glist_objectIsSelected (g, t)) {
             n++;
         }
@@ -76,7 +76,7 @@ t_object *glist_graphicsGetObjectAt (t_glist *g, int i)
     
     int n = 0;
     
-    for (y = g->gl_graphics; y; y = y->g_next) {
+    for (y = g->gl_objects; y; y = y->g_next) {
         if (n == i) { return y; }
         else {
             n++;
@@ -92,17 +92,17 @@ t_object *glist_graphicsGetObjectAt (t_glist *g, int i)
 
 t_object *glist_graphicsGetFirst (t_glist *g)
 {
-    return g->gl_graphics;
+    return g->gl_objects;
 }
 
 t_object *glist_graphicsGetLast (t_glist *g)
 {
-    if (g->gl_graphics) {
+    if (g->gl_objects) {
     //
     t_object *t1 = NULL;
     t_object *t2 = NULL;
     
-    for ((t1 = g->gl_graphics); (t2 = t1->g_next); (t1 = t2)) { }
+    for ((t1 = g->gl_objects); (t2 = t1->g_next); (t1 = t2)) { }
     
     return t1;
     //
@@ -127,10 +127,10 @@ static void glist_graphicsAdd (t_glist *g, t_object *y, t_object *first, int pre
     if (first != NULL) { y->g_next = first->g_next; first->g_next = y; }
     else {
     //
-    if (prepend || !g->gl_graphics) {
-        y->g_next = g->gl_graphics; g->gl_graphics = y;
+    if (prepend || !g->gl_objects) {
+        y->g_next = g->gl_objects; g->gl_objects = y;
     } else {
-        t_object *t = NULL; for (t = g->gl_graphics; t->g_next; t = t->g_next) { }
+        t_object *t = NULL; for (t = g->gl_objects; t->g_next; t = t->g_next) { }
         t->g_next = y;
     }
     //
@@ -162,10 +162,10 @@ void glist_graphicsInsert (t_glist *g, t_object *y, int i)
 
 void glist_graphicsRemove (t_glist *g, t_object *y)
 {
-    if (g->gl_graphics == y) { g->gl_graphics = y->g_next; }
+    if (g->gl_objects == y) { g->gl_objects = y->g_next; }
     else {
         t_object *t = NULL;
-        for (t = g->gl_graphics; t; t = t->g_next) {
+        for (t = g->gl_objects; t; t = t->g_next) {
             if (t->g_next == y) { t->g_next = y->g_next; break; }
         }
     }

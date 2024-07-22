@@ -41,10 +41,14 @@ void        atom_sort                           (int argc, t_atom *argv);
 // MARK: -
 
 void        buffer_qsort                        (t_buffer *x, t_cmpfn f);
-void        buffer_appendClock                  (t_buffer *x, t_clock *c);
-void        buffer_appendObject                 (t_buffer *x, t_object *y);
-
 void        buffer_swap                         (t_buffer *x, t_buffer *y);
+
+void        buffer_appendAsClock                (t_buffer *x, t_clock *c);
+void        buffer_appendAsObject               (t_buffer *x, t_object *y);
+void        buffer_appendAsBuffer               (t_buffer *x, t_buffer *b);
+
+void        buffer_insertFloatAtIndex           (t_buffer *x, int i, t_float f);
+void        buffer_insertObjectAtIndex          (t_buffer *x, int i, t_object *y);
 
 void        *buffer_getVoidAt                   (t_buffer *x, int n);
 t_object    *buffer_getObjectAt                 (t_buffer *x, int n);           /* Not checked. */

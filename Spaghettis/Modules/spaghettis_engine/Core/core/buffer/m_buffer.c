@@ -90,30 +90,6 @@ t_atom *buffer_getAtomAtIndexChecked (t_buffer *x, int n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void *buffer_getVoidAt (t_buffer *x, int n)
-{
-    t_atom *a = buffer_getAtomAtIndex (x, n); PD_ASSERT (IS_VOID (a));   return GET_VOID (a);
-}
-
-t_object *buffer_getObjectAt (t_buffer *x, int n)
-{
-    t_atom *a = buffer_getAtomAtIndex (x, n); PD_ASSERT (IS_VOID (a));   return GET_OBJECT (a);
-}
-
-t_buffer *buffer_getBufferAt (t_buffer *x, int n)
-{
-    t_atom *a = buffer_getAtomAtIndex (x, n); PD_ASSERT (IS_VOID (a));   return GET_BUFFER (a);
-}
-
-t_clock *buffer_getClockAt (t_buffer *x, int n)
-{
-    t_atom *a = buffer_getAtomAtIndex (x, n); PD_ASSERT (IS_VOID (a));   return GET_CLOCK (a);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 t_error buffer_getAtIndex (t_buffer *x, int n, t_atom *a)
 {
     t_atom *t = buffer_getAtomAtIndexChecked (x, n); if (t && a) { *a = *t; return PD_ERROR_NONE; }

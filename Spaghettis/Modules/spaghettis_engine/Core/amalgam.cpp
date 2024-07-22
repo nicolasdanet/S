@@ -64,6 +64,7 @@ namespace spaghettis::core {
 #include "core/buffer/m_slot.c"
 #include "core/buffer/m_parse.c"
 #include "core/buffer/m_file.c"
+#include "core/buffer/m_void.c"
 
 #include "core/clipboard/m_clipboard.c"
 #include "core/clipboard/m_encapsulate.c"

@@ -45,7 +45,7 @@ void clocks_addSingle (t_clocks *x, t_clock *c)
     
     clock_increment (c);
     
-    buffer_appendClock (x->x_single, c);
+    buffer_appendAsClock (x->x_single, c);
 }
 
 void clocks_removeSingle (t_clocks *x, t_clock *c)
@@ -78,7 +78,7 @@ void clocks_tickCheckSingle (t_clocks *x, t_systime systime)
     
     if (time <= systime) { clocks_tickAppend (x, c, time); }
     else {
-        buffer_appendClock (x->x_cache, c);
+        buffer_appendAsClock (x->x_cache, c);
     }
     //
     }

@@ -40,6 +40,7 @@ static t_glist *glist_new (t_symbol *name, t_rectangle *window)
     x->gl_abstractions  = NULL;
     x->gl_undomanager   = undomanager_new (x);
     x->gl_name          = (name != &s_ ? name : environment_getFileName (x->gl_environment));
+    x->gl_graphics      = buffer_new();
     x->gl_tempObjects   = buffer_new();
     x->gl_tempOutlets   = buffer_new();
     x->gl_tempIndexes   = buffer_new();
@@ -61,6 +62,7 @@ void glist_free (t_glist *glist)
     buffer_free (glist->gl_tempIndexes);
     buffer_free (glist->gl_tempOutlets);
     buffer_free (glist->gl_tempObjects);
+    buffer_free (glist->gl_graphics);
     
     environment_free (glist->gl_environment);
     undomanager_free (glist->gl_undomanager);

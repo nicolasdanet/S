@@ -96,19 +96,5 @@ void buffer_appendComma (t_buffer *x)
     buffer_append (x, 1, &a);
 }
 
-void buffer_appendClock (t_buffer *x, t_clock *c)
-{
-    t_atom a;
-    SET_CLOCK (&a, c);
-    buffer_append (x, 1, &a);
-}
-
-void buffer_appendObject (t_buffer *x, t_object *y)
-{
-    t_atom a;
-    SET_OBJECT (&a, y);
-    buffer_append (x, 1, &a);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

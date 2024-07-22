@@ -116,19 +116,19 @@ void glist_objectRemove (t_glist *glist, t_object *y)
 
 static void glist_objectRemoveCachedOutlets (t_glist *glist, t_object *y, int n)
 {
-    t_atom a;
+    int i, size = buffer_getSize (glist->gl_tempIndexes);
     
-    int i;
-    
-    for (i = 0; i < buffer_getSize (glist->gl_tempIndexes); i++) {
-        if (buffer_getFloatAtIndex (glist->gl_tempIndexes, i) < n) { break; }
+    for (i = 0; i < size; i++) {
+        if (buffer_getFloatAtIndex (glist->gl_tempIndexes, i) < n) {
+            break;
+        }
     }
     
-    SET_FLOAT (&a, n);  buffer_insertAtIndex (glist->gl_tempIndexes, i, &a);
-    SET_OBJECT (&a, y); buffer_insertAtIndex (glist->gl_tempOutlets, i, &a);
+    buffer_insertFloatAtIndex (glist->gl_tempIndexes, i, n);
+    buffer_insertObjectAtIndex (glist->gl_tempOutlets, i, y);
 }
 
-/* Cache objects to avoid the container corruption during the traversal. */
+/* Cache objects to avoid container corruption during the traversal. */
 
 static void glist_objectRemoveCached (t_glist *glist, t_object *y)
 {
@@ -137,7 +137,7 @@ static void glist_objectRemoveCached (t_glist *glist, t_object *y)
     } else if (pd_class (y) == voutlet_class) {
         glist_objectRemoveCachedOutlets (glist, y, voutlet_getIndex ((t_voutlet *)y));
     } else {
-        buffer_appendObject (glist->gl_tempObjects, y);
+        buffer_appendAsObject (glist->gl_tempObjects, y);
     }
 }
 

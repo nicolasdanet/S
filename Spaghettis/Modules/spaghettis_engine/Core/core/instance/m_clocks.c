@@ -61,7 +61,7 @@ void clocks_destroy (t_clocks *x, t_clock *c)
         PD_ASSERT (clock_count (c) == 0);
     #endif
     
-    buffer_appendClock (x->x_garbage, c);
+    buffer_appendAsClock (x->x_garbage, c);
 }
 
 static void clocks_purge (t_clocks *x)
@@ -78,7 +78,7 @@ void clocks_tickAppend (t_clocks *x, t_clock *c, t_systime time)
 {
     clock_decrement (c);
     clock_setExecuteTime (c, time);
-    buffer_appendClock (x->x_executed, c);
+    buffer_appendAsClock (x->x_executed, c);
 }
 
 static int clocks_tickCompare (const void *p1, const void *p2)

@@ -16,12 +16,13 @@
 
 struct _glist {  
     t_object        gl_obj;                     /* MUST be the first. */
-    t_object        *gl_graphics;
+    t_object        *gl_objects;
     t_glist         *gl_next;
     t_abstractions  *gl_abstractions;           /* Root. */
     t_environment   *gl_environment;            /* Top.  */
     t_undomanager   *gl_undomanager;
     t_symbol        *gl_name;
+    t_buffer        *gl_graphics;
     t_buffer        *gl_tempObjects;
     t_buffer        *gl_tempOutlets;
     t_buffer        *gl_tempIndexes;
