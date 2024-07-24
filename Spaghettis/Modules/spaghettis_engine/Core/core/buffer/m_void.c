@@ -37,14 +37,25 @@ void buffer_appendAsBuffer (t_buffer *x, t_buffer *b)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void buffer_insertFloatAtIndex (t_buffer *b, int i, t_float f)
+void buffer_prependAsObject (t_buffer *x, t_object *y)
+{
+    t_atom a;
+    SET_OBJECT (&a, y);
+    buffer_prepend (x, 1, &a);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void buffer_insertAsFloatAtIndex (t_buffer *b, int i, t_float f)
 {
     t_atom a;
     SET_FLOAT (&a, f);
     buffer_insertAtIndex (b, i, &a);
 }
 
-void buffer_insertObjectAtIndex (t_buffer *b, int i, t_object *y)
+void buffer_insertAsObjectAtIndex (t_buffer *b, int i, t_object *y)
 {
     t_atom a;
     SET_OBJECT (&a, y);

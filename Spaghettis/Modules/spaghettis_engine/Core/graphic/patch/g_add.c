@@ -124,8 +124,8 @@ static void glist_objectRemoveCachedOutlets (t_glist *glist, t_object *y, int n)
         }
     }
     
-    buffer_insertFloatAtIndex (glist->gl_tempIndexes, i, n);
-    buffer_insertObjectAtIndex (glist->gl_tempOutlets, i, y);
+    buffer_insertAsFloatAtIndex (glist->gl_tempIndexes, i, n);
+    buffer_insertAsObjectAtIndex (glist->gl_tempOutlets, i, y);
 }
 
 /* Cache objects to avoid container corruption during the traversal. */

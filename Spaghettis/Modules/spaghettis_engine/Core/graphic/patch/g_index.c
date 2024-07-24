@@ -36,15 +36,13 @@ static void glist_objectMoveNotify (t_glist *g)
 
 void glist_objectMoveAtFirst (t_glist *glist, t_object *y)
 {
-    glist_graphicsRemove (glist, y);
-    glist_graphicsPrepend (glist, y);
+    glist_graphicsMoveAtFirst (glist, y);
     glist_objectMoveNotify (glist);
 }
 
 void glist_objectMoveAtLast (t_glist *glist, t_object *y)
 {
-    glist_graphicsRemove (glist, y);
-    glist_graphicsAppend (glist, y);
+    glist_graphicsMoveAtLast (glist, y);
     glist_objectMoveNotify (glist);
 }
 
@@ -53,8 +51,7 @@ void glist_objectMoveAt (t_glist *glist, t_object *y, int n)
     if (n < 1) { glist_objectMoveAtFirst (glist, y); }
     else {
     //
-    glist_graphicsRemove (glist, y);
-    glist_graphicsInsert (glist, y, n);
+    glist_graphicsMoveAt (glist, y, n);
     glist_objectMoveNotify (glist);
     //
     }

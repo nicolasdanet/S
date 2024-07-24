@@ -12,56 +12,64 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* Encapsulate container interface (mainly used while switching from linked-list to vector). */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 int glist_graphicsGetSize (t_glist *g)
 {
-    t_object *y = NULL;
-    
-    int n = 0;
-    
-    for (y = g->gl_objects; y; y = y->g_next) { n++; }
-    
-    return n;
+    return buffer_getSize (g->gl_graphics);
 }
+
+t_object *glist_graphicsGetObjectAt (t_glist *g, int i)
+{
+    PD_ASSERT (i >= 0);
+    
+    if (i < buffer_getSize (g->gl_graphics)) { return buffer_getObjectAt (g->gl_graphics, i); }
+    else {
+        return NULL;
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 int glist_graphicsGetIndexOf (t_glist *g, t_object *y)
 {
-    t_object *t = NULL;
-    int n = 0;
+    int i, n = buffer_getSize (g->gl_graphics);
     
-    for (t = g->gl_objects; t && t != y; t = t->g_next) {
-        n++;
+    for (i = 0; i < n; i++) {
+        if (buffer_getObjectAt (g->gl_graphics, i) == y) { return i; }
     }
-    
-    return n;
+
+    return -1;
 }
 
-int glist_graphicsGetIndexOfSelected (t_glist *g, t_object *y)
+int glist_graphicsGetIndexAmongSelected (t_glist *g, t_object *y)
 {
-    t_object *t = NULL;
+    int k = 0;
+        
+    int i, n = buffer_getSize (g->gl_graphics);
     
-    int n = 0;
-
-    for (t = g->gl_objects; t && t != y; t = t->g_next) {
+    for (i = 0; i < n; i++) {
+        t_object *t = buffer_getObjectAt (g->gl_graphics, i);
         if (glist_objectIsSelected (g, t)) {
-            n++;
+            if (t == y) { return k; }
+            else {
+                k++;
+            }
         }
     }
     
-    return n;
+    return -1;
 }
 
 int glist_graphicsGetCountByClass (t_glist *g, t_class *c)
 {
-    int i, n = glist_graphicsGetSize (g);
-    
     int k = 0;
     
-    for (i = 0; i < n; i++) { if (pd_class (glist_graphicsGetObjectAt (g, i)) == c) { k++; } }
+    int i, n = buffer_getSize (g->gl_graphics);
+    
+    for (i = 0; i < n; i++) {
+        if (pd_class (buffer_getObjectAt (g->gl_graphics, i)) == c) { k++; }
+    }
     
     return k;
 }
@@ -70,20 +78,36 @@ int glist_graphicsGetCountByClass (t_glist *g, t_class *c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_object *glist_graphicsGetObjectAt (t_glist *g, int i)
+static void glist_graphicsInsert (t_glist *g, t_object *y, int i)
 {
-    t_object *y = NULL;
+    buffer_insertAsObjectAtIndex (g->gl_graphics, i, y);
+}
+
+void glist_graphicsAppend (t_glist *g, t_object *y)
+{
+    buffer_appendAsObject (g->gl_graphics, y);
+}
+
+static void glist_graphicsPrepend (t_glist *g, t_object *y)
+{
+    buffer_prependAsObject (g->gl_graphics, y);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+// TODO: Consider a better approach for multiple objects removed at once?
+
+void glist_graphicsRemove (t_glist *g, t_object *y)
+{
+    int i = glist_graphicsGetIndexOf (g, y);
     
-    int n = 0;
+    PD_ASSERT (i >= 0);
     
-    for (y = g->gl_objects; y; y = y->g_next) {
-        if (n == i) { return y; }
-        else {
-            n++;
-        }
-    }
+    t_error err = buffer_removeAtIndex (g->gl_graphics, i);
     
-    return NULL;
+    PD_ASSERT (!err); PD_UNUSED (err);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -92,48 +116,21 @@ t_object *glist_graphicsGetObjectAt (t_glist *g, int i)
 
 t_object *glist_graphicsGetFirst (t_glist *g)
 {
-    return g->gl_objects;
+    return glist_graphicsGetObjectAt (g, 0);
 }
 
 t_object *glist_graphicsGetLast (t_glist *g)
 {
-    if (g->gl_objects) {
-    //
-    t_object *t1 = NULL;
-    t_object *t2 = NULL;
-    
-    for ((t1 = g->gl_objects); (t2 = t1->g_next); (t1 = t2)) { }
-    
-    return t1;
-    //
-    }
-    
-    return NULL;
+    return glist_graphicsGetObjectAt (g, glist_graphicsGetSize (g) - 1);
 }
 
 t_object *glist_graphicsGetNext (t_glist *g, t_object *y)
 {
-    PD_ASSERT (y); return y->g_next;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static void glist_graphicsAdd (t_glist *g, t_object *y, t_object *first, int prepend)
-{
-    y->g_next = NULL;
+    int i = glist_graphicsGetIndexOf (g, y);
     
-    if (first != NULL) { y->g_next = first->g_next; first->g_next = y; }
+    if (i >= 0) { return glist_graphicsGetObjectAt (g, i + 1); }
     else {
-    //
-    if (prepend || !g->gl_objects) {
-        y->g_next = g->gl_objects; g->gl_objects = y;
-    } else {
-        t_object *t = NULL; for (t = g->gl_objects; t->g_next; t = t->g_next) { }
-        t->g_next = y;
-    }
-    //
+        return NULL;
     }
 }
 
@@ -141,34 +138,22 @@ static void glist_graphicsAdd (t_glist *g, t_object *y, t_object *first, int pre
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void glist_graphicsAppend (t_glist *g, t_object *y)
+void glist_graphicsMoveAtFirst (t_glist *g, t_object *y)
 {
-    glist_graphicsAdd (g, y, NULL, 0);
+    glist_graphicsRemove (g, y);
+    glist_graphicsPrepend (g, y);
 }
 
-void glist_graphicsPrepend (t_glist *g, t_object *y)
+void glist_graphicsMoveAtLast (t_glist *g, t_object *y)
 {
-    glist_graphicsAdd (g, y, NULL, 1);
+    glist_graphicsRemove (g, y);
+    glist_graphicsAppend (g, y);
 }
 
-void glist_graphicsInsert (t_glist *g, t_object *y, int i)
+void glist_graphicsMoveAt (t_glist *g, t_object *y, int n)
 {
-    glist_graphicsAdd (g, y, glist_graphicsGetObjectAt (g, (i - 1)), 0);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void glist_graphicsRemove (t_glist *g, t_object *y)
-{
-    if (g->gl_objects == y) { g->gl_objects = y->g_next; }
-    else {
-        t_object *t = NULL;
-        for (t = g->gl_objects; t; t = t->g_next) {
-            if (t->g_next == y) { t->g_next = y->g_next; break; }
-        }
-    }
+    glist_graphicsRemove (g, y);
+    glist_graphicsInsert (g, y, n);
 }
 
 // -----------------------------------------------------------------------------------------------------------

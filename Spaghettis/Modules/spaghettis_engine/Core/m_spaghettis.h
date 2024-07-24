@@ -425,7 +425,6 @@ typedef struct _object {
     t_inlet         *g_inlets;
     t_outlet        *g_outlets;
     t_glist         *g_owner;
-    struct _object  *g_next;
     } t_object;
 
 // -----------------------------------------------------------------------------------------------------------

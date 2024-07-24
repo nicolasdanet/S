@@ -16,7 +16,6 @@
 
 struct _glist {  
     t_object        gl_obj;                     /* MUST be the first. */
-    t_object        *gl_objects;
     t_glist         *gl_next;
     t_abstractions  *gl_abstractions;           /* Root. */
     t_environment   *gl_environment;            /* Top.  */

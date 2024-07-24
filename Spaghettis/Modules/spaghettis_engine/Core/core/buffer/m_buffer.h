@@ -47,8 +47,10 @@ void        buffer_appendAsClock                (t_buffer *x, t_clock *c);
 void        buffer_appendAsObject               (t_buffer *x, t_object *y);
 void        buffer_appendAsBuffer               (t_buffer *x, t_buffer *b);
 
-void        buffer_insertFloatAtIndex           (t_buffer *x, int i, t_float f);
-void        buffer_insertObjectAtIndex          (t_buffer *x, int i, t_object *y);
+void        buffer_prependAsObject              (t_buffer *x, t_object *y);
+
+void        buffer_insertAsFloatAtIndex         (t_buffer *x, int i, t_float f);
+void        buffer_insertAsObjectAtIndex        (t_buffer *x, int i, t_object *y);
 
 void        *buffer_getVoidAt                   (t_buffer *x, int n);
 t_object    *buffer_getObjectAt                 (t_buffer *x, int n);           /* Not checked. */
