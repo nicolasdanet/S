@@ -42,7 +42,7 @@ int glist_graphicsGetIndexOf (t_glist *g, t_object *y)
     return -1;
 }
 
-int glist_graphicsGetIndexAmongSelected (t_glist *g, t_object *y)
+int glist_graphicsGetIndexOfAmongSelected (t_glist *g, t_object *y)
 {
     int k = 0;
         
@@ -114,24 +114,9 @@ void glist_graphicsRemove (t_glist *g, t_object *y)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_object *glist_graphicsGetFirst (t_glist *g)
-{
-    return glist_graphicsGetObjectAt (g, 0);
-}
-
 t_object *glist_graphicsGetLast (t_glist *g)
 {
     return glist_graphicsGetObjectAt (g, glist_graphicsGetSize (g) - 1);
-}
-
-t_object *glist_graphicsGetNext (t_glist *g, t_object *y)
-{
-    int i = glist_graphicsGetIndexOf (g, y);
-    
-    if (i >= 0) { return glist_graphicsGetObjectAt (g, i + 1); }
-    else {
-        return NULL;
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

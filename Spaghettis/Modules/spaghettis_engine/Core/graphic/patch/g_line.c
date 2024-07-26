@@ -84,8 +84,8 @@ t_error glist_lineDisconnectByIndex (t_glist *glist,
     if ((traverser_getIndexOfOutlet (&t) == indexOfOutlet)) {
         if ((traverser_getIndexOfInlet (&t) == indexOfInlet)) {
 
-            int m = glist_graphicsGetIndexOf (glist, traverser_getSource (&t));
-            int n = glist_graphicsGetIndexOf (glist, traverser_getDestination (&t));
+            int m = traverser_getIndexOfSource (&t);
+            int n = traverser_getIndexOfDestination (&t);
 
             if (m == indexOfObjectOut && n == indexOfObjectIn) {
                 traverser_disconnect (&t, glist);

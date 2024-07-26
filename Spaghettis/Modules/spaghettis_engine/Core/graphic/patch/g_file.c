@@ -60,9 +60,9 @@ static void glist_serializeLines (t_glist *glist, t_buffer *b)
     //
     buffer_appendSymbol (b, sym___hash__X);
     buffer_appendSymbol (b, sym_connect);
-    buffer_appendFloat (b,  glist_graphicsGetIndexOf (glist, traverser_getSource (&t)));
+    buffer_appendFloat (b,  traverser_getIndexOfSource (&t));
     buffer_appendFloat (b,  traverser_getIndexOfOutlet (&t));
-    buffer_appendFloat (b,  glist_graphicsGetIndexOf (glist, traverser_getDestination (&t)));
+    buffer_appendFloat (b,  traverser_getIndexOfDestination (&t));
     buffer_appendFloat (b,  traverser_getIndexOfInlet (&t));
     buffer_appendSemicolon (b);
     //

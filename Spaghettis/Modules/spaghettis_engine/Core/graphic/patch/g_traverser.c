@@ -67,6 +67,7 @@ void traverser_start (t_traverser *t, t_glist *glist)
     t->tr_owner                 = glist;
     t->tr_connectionCached      = NULL;
     t->tr_srcObject             = NULL;
+    t->tr_srcIndexOfObject      = 0;
     t->tr_srcIndexOfNextOutlet  = 0;
     t->tr_srcNumberOfOutlets    = 0;
 }
@@ -84,16 +85,14 @@ t_outconnect *traverser_next (t_traverser *t)
     
     while (n == t->tr_srcNumberOfOutlets) {
     //
-    t_object *y = NULL;
+    int i = t->tr_srcObject ? t->tr_srcIndexOfObject + 1 : 0;
     
-    if (!t->tr_srcObject) { y = glist_graphicsGetFirst (t->tr_owner); }
-    else {
-        y = glist_graphicsGetNext (t->tr_owner, t->tr_srcObject);
-    }
+    t_object *y = glist_graphicsGetObjectAt (t->tr_owner, i);
     
     if (!y) { return NULL; }
     
     t->tr_srcObject          = y;
+    t->tr_srcIndexOfObject   = i;
     t->tr_srcNumberOfOutlets = object_getNumberOfOutlets (y);
     n = 0;
     //
@@ -107,7 +106,7 @@ t_outconnect *traverser_next (t_traverser *t)
     
     t->tr_connectionCached = traverser_outletNext (connection,
         &t->tr_destObject,
-        &t->tr_destInlet,
+        &t->tr_destInlet,                   /* Can be NULL (first inlet). */
         &t->tr_destIndexOfInlet);
                                                             
     t->tr_destNumberOfInlets = object_getNumberOfInlets (t->tr_destObject);
@@ -115,6 +114,22 @@ t_outconnect *traverser_next (t_traverser *t)
     PD_ASSERT (t->tr_destNumberOfInlets);
     
     return connection;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int traverser_getIndexOfSource (t_traverser *t)
+{
+    return t->tr_srcIndexOfObject;
+}
+
+int traverser_getIndexOfDestination (t_traverser *t)
+{
+    // TODO: Avoid the lookup each time?
+    
+    return glist_graphicsGetIndexOf (t->tr_owner, traverser_getDestination (t));
 }
 
 // -----------------------------------------------------------------------------------------------------------

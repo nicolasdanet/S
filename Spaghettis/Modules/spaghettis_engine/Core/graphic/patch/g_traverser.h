@@ -21,22 +21,35 @@ typedef struct _traverser {
     t_outlet            *tr_srcOutlet;
     t_object            *tr_destObject;
     t_inlet             *tr_destInlet;
+    int                 tr_srcIndexOfObject;
     int                 tr_srcIndexOfOutlet;
     int                 tr_srcNumberOfOutlets;
+    int                 tr_srcIndexOfNextOutlet;
     int                 tr_destIndexOfInlet;
     int                 tr_destNumberOfInlets;
-    int                 tr_srcIndexOfNextOutlet;
     } t_traverser;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_outconnect   *traverser_next         (t_traverser *t);
+/* Notice that objects MUST NOT be deleted during the traversal. */
 
-void           traverser_start         (t_traverser *t, t_glist *glist);
-t_error        traverser_disconnect    (t_traverser *t, t_glist *glist);
-                                                            
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+t_outconnect   *traverser_next          (t_traverser *t);
+
+void           traverser_start          (t_traverser *t, t_glist *glist);
+t_error        traverser_disconnect     (t_traverser *t, t_glist *glist);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int traverser_getIndexOfSource          (t_traverser *t);
+int traverser_getIndexOfDestination     (t_traverser *t);
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

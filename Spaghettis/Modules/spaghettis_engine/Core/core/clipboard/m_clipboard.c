@@ -67,8 +67,8 @@ static void clipboard_copyProceedLines (t_glist *glist, t_buffer *b, int copyAll
     
     if (m && n) {
     //
-    int i = copyAll ? glist_graphicsGetIndexOf (glist, o) : glist_graphicsGetIndexAmongSelected (glist, o);
-    int j = copyAll ? glist_graphicsGetIndexOf (glist, d) : glist_graphicsGetIndexAmongSelected (glist, d);
+    int i = copyAll ? traverser_getIndexOfSource (&t)      : glist_graphicsGetIndexOfAmongSelected (glist, o);
+    int j = copyAll ? traverser_getIndexOfDestination (&t) : glist_graphicsGetIndexOfAmongSelected (glist, d);
     
     buffer_appendSymbol (b, sym___hash__X);
     buffer_appendSymbol (b, sym_connect);
