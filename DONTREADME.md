@@ -20,6 +20,15 @@ JUCE ( 7.0.12 ) is required at `~/JUCE`.
 
 - Spaghettis uses new filename extensions ***pdpatch*** and ***pdhelp***.
 
+## Roadmap
+
+Next features wished in the future:
+
+- Improve compatibility with Pd vanilla (e.g. the clone object).
+- Make the application embeddable (ala [libpd](https://github.com/libpd/libpd) and [plugdata](https://github.com/plugdata-team/plugdata)).
+- Support plainly dynamic patching with scripts (Lua / Python).
+- Add something like [Gem](https://gem.iem.at/) based on a portable framework (OF, Cinder...).
+
 ## Residuals
 
 **macOS**
@@ -30,16 +39,7 @@ JUCE ( 7.0.12 ) is required at `~/JUCE`.
 **Linux**
 
     ~/.config/spaghettis/
-
-## Roadmap
-
-Next features wished in the future:
-
-- Improve compatibility with Pd vanilla (e.g. the clone object).
-- Make the application embeddable (ala [libpd](https://github.com/libpd/libpd) and [plugdata](https://github.com/plugdata-team/plugdata)).
-- Support plainly dynamic patching with scripts (Lua / Python).
-- Add something like [Gem](https://gem.iem.at/) based on a portable framework (OF, Cinder...).
-
+    
 ## Credits
 
 - Pure Data by [Miller Puckette & others](http://msp.ucsd.edu/Software/pd-README.txt).
