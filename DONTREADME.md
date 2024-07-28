@@ -26,8 +26,8 @@ Next features wished in the future:
 
 - Improve compatibility with [Pure Data](http://msp.ucsd.edu/) (e.g. the clone object).
 - Make the application embeddable (ala [libpd](https://github.com/libpd/libpd) and [plugdata](https://github.com/plugdata-team/plugdata)).
-- Support plainly dynamic patching with scripts (Lua / Python).
-- Add something like [Gem](https://gem.iem.at/) based on a portable framework (OF, Cinder...).
+- Support plainly dynamic patching with scripts (Lua / Python...).
+- Add something like [Gem](https://gem.iem.at/) based on a portable framework (OF / Cinder...).
 
 ## Residuals
 
