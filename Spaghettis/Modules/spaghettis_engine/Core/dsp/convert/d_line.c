@@ -31,11 +31,6 @@ typedef struct _line_tilde {
     t_float             x_dspCurrent;
     t_float             x_dspStep;
     t_float             x_dspTarget;
-    int                 x_tmpInitialize;
-    int                 x_tmpCount;
-    t_float             x_tmpCurrent;
-    t_float             x_tmpStep;
-    t_float             x_tmpTarget;
     t_outlet            *x_outlet;
     } t_line_tilde;
 
@@ -124,16 +119,6 @@ static t_int *line_tilde_perform (t_int *w)
     //
     }
     
-    if (x->x_tmpInitialize) {
-    //
-    x->x_tmpInitialize  = 0;
-    x->x_dspCount       = x->x_tmpCount;
-    x->x_dspCurrent     = x->x_tmpCurrent;
-    x->x_dspStep        = x->x_tmpStep;
-    x->x_dspTarget      = x->x_tmpTarget;
-    //
-    }
-    
     if (x->x_dspCount) {
         *out++ = (t_sample)x->x_dspCurrent; x->x_dspCurrent += x->x_dspStep; x->x_dspCount--;
     } else {
@@ -150,11 +135,10 @@ static void line_tilde_initialize (void *lhs, void *rhs)
     t_line_tilde *x     = (t_line_tilde *)lhs;
     t_line_tilde *old   = (t_line_tilde *)rhs;
     
-    x->x_tmpCount       = old->x_dspCount;
-    x->x_tmpCurrent     = old->x_dspCurrent;
-    x->x_tmpStep        = old->x_dspStep;
-    x->x_tmpTarget      = old->x_dspTarget;
-    x->x_tmpInitialize  = 1;
+    x->x_dspCount       = old->x_dspCount;
+    x->x_dspCurrent     = old->x_dspCurrent;
+    x->x_dspStep        = old->x_dspStep;
+    x->x_dspTarget      = old->x_dspTarget;
 }
 
 static void line_tilde_dsp (t_line_tilde *x, t_signal **sp)
