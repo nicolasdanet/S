@@ -22,7 +22,7 @@ JUCE ( 7.0.12 ) is required at `~/JUCE`.
 
 ## Roadmap
 
-Next features wished in the future:
+Next features planed:
 
 - Improve compatibility with [Pure Data](http://msp.ucsd.edu/) (e.g. the clone object).
 - Make the application embeddable (ala [libpd](https://github.com/libpd/libpd) and [plugdata](https://github.com/plugdata-team/plugdata)).
