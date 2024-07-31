@@ -119,9 +119,11 @@ static t_rectangle snippet_getBoundingBoxOfObjects (t_buffer *x)
     if (s == sym_restore) { k--; }
     
     if (!k && snippet_isObject (s)) {
-        int a = atom_getFloatAtIndex (2, count, atoms);
-        int b = atom_getFloatAtIndex (3, count, atoms);
-        rectangle_add (&r, a, b);
+        int a      = atom_getFloatAtIndex (2, count, atoms);
+        int b      = atom_getFloatAtIndex (3, count, atoms);
+        t_point pt = point_make (a, b);
+        
+        rectangle_addPoint (&r, &pt);
     }
     //
     }

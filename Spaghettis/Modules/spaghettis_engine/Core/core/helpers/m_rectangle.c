@@ -78,7 +78,7 @@ int rectangle_isNothing (t_rectangle *r)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void rectangle_addRectangle (t_rectangle *r, t_rectangle *toAdd)
+void rectangle_addRectangle (t_rectangle *r, t_rectangle *toAdd)
 {
     if (!rectangle_isNothing (toAdd)) { 
 
@@ -94,11 +94,9 @@ static void rectangle_addRectangle (t_rectangle *r, t_rectangle *toAdd)
 
 void rectangle_addPoint (t_rectangle *r, t_point *pt)
 {
-    rectangle_add (r, point_getX (pt), point_getY (pt));
-}
-
-void rectangle_add (t_rectangle *r, int x, int y)
-{
+    int x = point_getX (pt);
+    int y = point_getY (pt);
+    
     t_rectangle t; rectangle_set (&t, x, y, x, y);
     
     rectangle_addRectangle (r, &t);

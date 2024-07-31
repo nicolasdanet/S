@@ -97,8 +97,9 @@ t_rectangle glist_getBoundingBoxOfAll (t_glist *glist)
     for (i = 0; i < n; i++) {
     //
     t_object *y = glist_graphicsGetObjectAt (glist, i);
+    t_point t   = object_getPoint (y);
     
-    rectangle_add (&r, object_getX (y), object_getY (y));
+    rectangle_addPoint (&r, &t);
     //
     }
 
@@ -116,8 +117,9 @@ t_rectangle glist_getBoundingBoxOfSelected (t_glist *glist)
     for (i = 0; i < n; i++) {
     //
     t_object *y = glist_graphicsGetObjectAt (glist, i);
+    t_point t   = object_getPoint (y);
     
-    if (glist_objectIsSelected (glist, y)) { rectangle_add (&r, object_getX (y), object_getY (y)); }
+    if (glist_objectIsSelected (glist, y)) { rectangle_addPoint (&r, &t); }
     //
     }
 
