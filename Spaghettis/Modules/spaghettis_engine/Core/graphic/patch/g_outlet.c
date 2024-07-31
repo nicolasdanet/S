@@ -83,7 +83,7 @@ void glist_inletSort (t_glist *glist)
     //
     t_object *y = glist_graphicsGetObjectAt (glist, i);
     
-    if (pd_class (y) == vinlet_class) { *t = y; *b = object_getPoint (y); t++; b++; }
+    if (pd_class (y) == vinlet_class) { *t = y; *b = object_getPosition (y); t++; b++; }
     //
     }
     
@@ -170,7 +170,7 @@ void glist_outletSort (t_glist *glist)
     //
     t_object *y = glist_graphicsGetObjectAt (glist, i);
 
-    if (pd_class (y) == voutlet_class) { *t = y; *b = object_getPoint (y); t++; b++; }
+    if (pd_class (y) == voutlet_class) { *t = y; *b = object_getPosition (y); t++; b++; }
     //
     }
     

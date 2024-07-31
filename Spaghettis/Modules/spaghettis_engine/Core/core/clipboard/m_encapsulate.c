@@ -134,7 +134,7 @@ static t_inlethelper *inlethelper_addSorted (t_inlethelper *inlets, t_glist *gli
     toAdd->x_destId         = object_getUnique (dest);
     toAdd->x_destInlet      = destInlet;
     toAdd->x_destIndex      = destIndex;
-    toAdd->x_destPoint      = object_getPoint (dest);
+    toAdd->x_destPoint      = object_getPosition (dest);
     toAdd->x_isDsp          = isSignal;
     toAdd->x_assigned       = -1;
     toAdd->x_assignedIndex  = -1;
@@ -222,7 +222,7 @@ static t_outlethelper *outlethelper_addSorted (t_outlethelper *outlets, t_glist 
     toAdd->x_srcId          = object_getUnique (src);
     toAdd->x_srcOutlet      = srcOutlet;
     toAdd->x_srcIndex       = srcIndex;
-    toAdd->x_srcPoint       = object_getPoint (src);
+    toAdd->x_srcPoint       = object_getPosition (src);
     toAdd->x_destId         = object_getUnique (dest);
     toAdd->x_destInlet      = destInlet;
     toAdd->x_isDsp          = isSignal;

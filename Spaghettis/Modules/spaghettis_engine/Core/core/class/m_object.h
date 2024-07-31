@@ -158,7 +158,7 @@ static inline int object_getY (t_object *x)
     return x->g_y;
 }
 
-static inline t_point object_getPoint (t_object *x)
+static inline t_point object_getPosition (t_object *x)
 {
     return point_make (object_getX (x), object_getY (x));
 }

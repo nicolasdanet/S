@@ -299,7 +299,7 @@ void encapsulate_deencapsulate (t_glist *glist)
         connecthelper_fetchIndexes (outChild);
         r = glist_getBoundingBox (glist);
         b = clipboard_copyProceed (glist, 1, 1);
-        p = object_getPoint (cast_object (glist));
+        p = object_getPosition (cast_object (glist));
         glist_objectRemove (parent, cast_object (glist));
         n = glist_objectGetNumberOf (parent);
         encapsulate_deencapsulatePaste (parent, b, &r, &p);

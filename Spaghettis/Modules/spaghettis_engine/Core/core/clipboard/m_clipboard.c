@@ -148,7 +148,7 @@ static void clipboard_pasteProceedDisplace (t_glist *glist, t_point *pt, int alr
     t_rectangle r; rectangle_setNothing (&r);
     
     for (i = alreadyThere; i < n; i++) {
-        t_point t = object_getPoint (glist_graphicsGetObjectAt (glist, i));
+        t_point t = object_getPosition (glist_graphicsGetObjectAt (glist, i));
         rectangle_addPoint (&r, &t);
     }
     
