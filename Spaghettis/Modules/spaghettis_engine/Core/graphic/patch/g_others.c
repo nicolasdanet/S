@@ -86,27 +86,7 @@ void glist_setInclusionOfLast (t_glist *glist, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_rectangle glist_getBoundingBoxOfAll (t_glist *glist)
-{
-    int i, n = glist_graphicsGetSize (glist);
-
-    t_rectangle r;
-    
-    rectangle_setNothing (&r);
-    
-    for (i = 0; i < n; i++) {
-    //
-    t_object *y = glist_graphicsGetObjectAt (glist, i);
-    t_point t   = object_getPoint (y);
-    
-    rectangle_addPoint (&r, &t);
-    //
-    }
-
-    return r;
-}
-
-t_rectangle glist_getBoundingBoxOfSelected (t_glist *glist)
+static t_rectangle glist_getBoundingBoxProceed (t_glist *glist, int onlySelected)
 {
     int i, n = glist_graphicsGetSize (glist);
         
@@ -119,11 +99,25 @@ t_rectangle glist_getBoundingBoxOfSelected (t_glist *glist)
     t_object *y = glist_graphicsGetObjectAt (glist, i);
     t_point t   = object_getPoint (y);
     
-    if (glist_objectIsSelected (glist, y)) { rectangle_addPoint (&r, &t); }
+    if (!onlySelected || glist_objectIsSelected (glist, y)) { rectangle_addPoint (&r, &t); }
     //
     }
 
     return r;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+t_rectangle glist_getBoundingBox (t_glist *glist)
+{
+    return glist_getBoundingBoxProceed (glist, 0);
+}
+
+t_rectangle glist_getBoundingBoxOfSelected (t_glist *glist)
+{
+    return glist_getBoundingBoxProceed (glist, 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------

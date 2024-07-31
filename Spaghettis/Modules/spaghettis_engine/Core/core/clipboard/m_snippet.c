@@ -99,7 +99,7 @@ static int snippet_isObject (t_symbol *s)
     return 0;
 }
 
-static t_rectangle snippet_getBoundingBoxOfObjects (t_buffer *x)
+static t_rectangle snippet_getRawBoundingBoxOfObjects (t_buffer *x)
 {
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
     t_atom *atoms = NULL;
@@ -168,7 +168,7 @@ static void snippet_displaceObjects (t_buffer *x, int deltaX, int deltaY)
 
 void snippet_disposeObjects (t_buffer *x, int offset)
 {
-    t_rectangle r = snippet_getBoundingBoxOfObjects (x);
+    t_rectangle r = snippet_getRawBoundingBoxOfObjects (x);
     
     if (!rectangle_isNothing (&r)) {
     //

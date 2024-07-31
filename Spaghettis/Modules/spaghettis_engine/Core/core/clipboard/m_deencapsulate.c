@@ -12,17 +12,17 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-t_undomanager  *glist_undoReplaceManager       (t_glist *, t_undomanager *);
+t_undomanager  *glist_undoReplaceManager        (t_glist *, t_undomanager *);
 
-t_rectangle    glist_getBoundingBoxOfAll       (t_glist *);
-void           glist_removeInletsAndOutlets    (t_glist *);
+t_rectangle    glist_getBoundingBox             (t_glist *);
+void           glist_removeInletsAndOutlets     (t_glist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-t_buffer       *clipboard_copyProceed          (t_glist *, int, int);
+t_buffer       *clipboard_copyProceed           (t_glist *, int, int);
 
-int            clipboard_pasteProceed          (t_glist *, t_buffer *, t_point *, int);
+int            clipboard_pasteProceed           (t_glist *, t_buffer *, t_point *, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -297,7 +297,7 @@ void encapsulate_deencapsulate (t_glist *glist)
         encapsulate_deencapsulateRemoveInletsAndOutlets (glist, parent);
         connecthelper_fetchIndexes (inChild);
         connecthelper_fetchIndexes (outChild);
-        r = glist_getBoundingBoxOfAll (glist);
+        r = glist_getBoundingBox (glist);
         b = clipboard_copyProceed (glist, 1, 1);
         p = object_getPoint (cast_object (glist));
         glist_objectRemove (parent, cast_object (glist));
