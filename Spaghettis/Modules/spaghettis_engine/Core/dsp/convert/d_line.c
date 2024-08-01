@@ -99,18 +99,23 @@ static t_int *line_tilde_perform (t_int *w)
     
     while (n--) {
     //
-    if (atomic_int32ReadRelaxed (&x->x_retarget)) {
+    // TODO: check validity and efficiency of following trick.
+    //
+    if (atomic_int32ReadRelaxed (&x->x_retarget)) {     /* Double check to avoid to poll on RMW operation. */
     //
     if (trylock_trylock (&x->x_mutex)) {
     //
-    x->x_dspCurrent = x->x_rebase ? x->x_base : x->x_dspCurrent;
-    x->x_target     = x->x_stop   ? x->x_dspCurrent : x->x_target;
-    x->x_dspCount   = x->x_stop   ? 0 : (int)(x->x_time * millisecondsToSamples);
-    x->x_dspStep    = x->x_dspCount ? ((x->x_target - x->x_dspCurrent) / x->x_dspCount) : 0.0;
-    x->x_dspTarget  = x->x_target;
-    x->x_stop       = 0;
-    x->x_rebase     = 0;
-        
+    if (atomic_int32ReadRelaxed (&x->x_retarget)) {
+    
+        x->x_dspCurrent = x->x_rebase ? x->x_base : x->x_dspCurrent;
+        x->x_target     = x->x_stop   ? x->x_dspCurrent : x->x_target;
+        x->x_dspCount   = x->x_stop   ? 0 : (int)(x->x_time * millisecondsToSamples);
+        x->x_dspStep    = x->x_dspCount ? ((x->x_target - x->x_dspCurrent) / x->x_dspCount) : 0.0;
+        x->x_dspTarget  = x->x_target;
+        x->x_stop       = 0;
+        x->x_rebase     = 0;
+    }
+    
     atomic_int32WriteRelaxed (&x->x_retarget, 0);
     
     trylock_unlock (&x->x_mutex);
