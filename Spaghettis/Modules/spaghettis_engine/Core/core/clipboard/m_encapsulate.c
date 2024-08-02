@@ -63,7 +63,7 @@ typedef struct _outlethelper {
 
 #define ENCAPSULATE_MARGIN      (instance_snapGetGrid() * 2)
 #define ENCAPSULATE_INLETS      (instance_snapGetGrid() * 4)
-#define ENCAPSULATE_OUTLETS     (instance_snapGetGrid() * 2)
+#define ENCAPSULATE_OUTLETS     (instance_snapGetGrid() * 4)
 #define ENCAPSULATE_PAD         (instance_snapGetGrid())
 
 // -----------------------------------------------------------------------------------------------------------
