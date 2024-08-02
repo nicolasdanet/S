@@ -550,7 +550,7 @@ std::optional<core::Point::Real> getPositionNextSelectedObjects (Table<ObjectCom
     
     auto f = [&pt, n](const auto& p)
     {
-        pt = getMinimum (pt, p->getPosition()) + core::Vector::Real (n * 2, n * 2);
+        pt = getMinimum (pt, p->getPosition()) + core::Vector::Real (n, n);
     };
 
     objects.doForEachSelected (f);
