@@ -96,10 +96,10 @@ static t_rectangle glist_getBoundingBoxProceed (t_glist *glist, int onlySelected
     
     for (i = 0; i < n; i++) {
     //
-    t_object *y = glist_graphicsGetObjectAt (glist, i);
-    t_point t   = object_getPosition (y);
+    t_object *y   = glist_graphicsGetObjectAt (glist, i);
+    t_rectangle t = object_getBoundingBox (y);
     
-    if (!onlySelected || glist_objectIsSelected (glist, y)) { rectangle_addPoint (&r, &t); }
+    if (!onlySelected || glist_objectIsSelected (glist, y)) { rectangle_addRectangle (&r, &t); }
     //
     }
 

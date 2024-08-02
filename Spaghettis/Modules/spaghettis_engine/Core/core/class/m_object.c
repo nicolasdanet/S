@@ -55,6 +55,20 @@ int object_isAtom (t_object *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+t_rectangle object_getBoundingBox (t_object *x)
+{
+    int a = object_getX (x);
+    int b = object_getY (x);
+    
+    t_rectangle t; rectangle_set (&t, a, b, a, b);
+
+    return t;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static int object_hasDspProceed (t_object *x, int k)
 {
     if (pd_class (x) == garray_class)       { return k ? 1 : garray_isUsedInDsp ((t_garray *)x); }
