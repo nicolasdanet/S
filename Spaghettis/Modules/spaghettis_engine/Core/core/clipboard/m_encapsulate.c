@@ -61,9 +61,6 @@ typedef struct _outlethelper {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define ENCAPSULATE_MARGIN      (instance_snapGetGrid() * 2)
-#define ENCAPSULATE_INLETS      (instance_snapGetGrid() * 4)
-#define ENCAPSULATE_OUTLETS     (instance_snapGetGrid() * 4)
 #define ENCAPSULATE_PAD         (instance_snapGetGrid())
 
 // -----------------------------------------------------------------------------------------------------------
@@ -323,7 +320,7 @@ static void encapsulate_addInletsToSnippetCreate (t_glist *glist,
     int up   = rectangle_getTopLeftY (r);
     int step = ENCAPSULATE_STEP;
     
-    up   -= ENCAPSULATE_INLETS;
+    up   -= ENCAPSULATE_PAD * 4;
     step += ENCAPSULATE_PAD;
     
     while (t) {
@@ -442,7 +439,7 @@ static void encapsulate_addOutletsToSnippetCreate (t_glist *glist,
     int down = rectangle_getBottomRightY (r);
     int step = ENCAPSULATE_STEP;
     
-    down += ENCAPSULATE_OUTLETS;
+    down += ENCAPSULATE_PAD * 4;
     step += ENCAPSULATE_PAD;
     
     if (instance_snapIsSet()) { down = instance_snapGetSnapped (down); }
@@ -553,7 +550,7 @@ static void encapsulate_encapsulatePaste (t_glist *parent, t_glist *subpatch, t_
     
     t_undomanager *t = glist_undoReplaceManager (subpatch, glist_getUndoManager (parent));
     
-        snippet_disposeObjects (b, ENCAPSULATE_MARGIN); instance_loadSnippet (subpatch, b);
+        snippet_disposeObjects (b, ENCAPSULATE_PAD * 2); instance_loadSnippet (subpatch, b);
     
         glist_loadbang (subpatch);
     
