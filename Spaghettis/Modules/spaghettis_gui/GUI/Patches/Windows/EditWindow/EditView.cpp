@@ -546,11 +546,11 @@ std::optional<core::Point::Real> getPositionNextSelectedObjects (Table<ObjectCom
 {
     std::optional<core::Point::Real> pt;
     
-    const int n = Spaghettis()->getPreferences().get<int> (Tag::Editing, Tag::GridSize);
+    const int n = Spaghettis()->getPreferences().get<int> (Tag::Editing, Tag::GridSize) * 2;
     
     auto f = [&pt, n](const auto& p)
     {
-        pt = getMinimum (pt, p->getPosition()) + core::Vector::Real (n, n);
+        pt = getMinimum (pt, p->getPosition() + core::Vector::Real (n, n));
     };
 
     objects.doForEachSelected (f);
