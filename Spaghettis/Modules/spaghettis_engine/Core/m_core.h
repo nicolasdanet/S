@@ -81,6 +81,7 @@ extern t_class *send_tilde_class;
 extern t_class *symbolinlet_class;
 extern t_class *comment_class;
 extern t_class *textdefine_class;
+extern t_class *toggle_class;
 extern t_class *vinlet_class;
 extern t_class *voutlet_class;
 

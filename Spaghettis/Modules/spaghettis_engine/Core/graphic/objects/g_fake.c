@@ -13,9 +13,10 @@
 // -----------------------------------------------------------------------------------------------------------
 
 /* Hard coded values and workarounds. */
-/* The core engine as no clue about graphic rendering. */
+/* The core engine is agnostic about graphic rendering. */
 /* Sometimes it is required (e.g. encapsulation). */
 /* Roughly make an estimation here. */
+/* Not the best design by the way! */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -44,6 +45,7 @@ static int gui_getBoundingBoxWidth (t_object *x)
     if (c == gatom_class)   { return gui_getDigits (cast_gui (x)) * FAKE_FONT; }
     if (c == garray_class)  { return gui_getWidth (cast_gui (x)); }
     if (c == bng_class)     { return gui_getWidth (cast_gui (x)); }
+    if (c == toggle_class)  { return gui_getWidth (cast_gui (x)); }
     
     return FAKE_FONT * buffer_getSize (object_getBuffer (x));
 }
@@ -54,6 +56,7 @@ static int gui_getBoundingBoxHeight (t_object *x)
     
     if (c == garray_class) { return gui_getHeight (cast_gui (x)); }
     if (c == bng_class)    { return gui_getWidth (cast_gui (x)); }
+    if (c == toggle_class) { return gui_getWidth (cast_gui (x)); }
     
     return FAKE_FONT;
 }
