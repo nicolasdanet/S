@@ -68,6 +68,7 @@ typedef t_float64Atomic t_word;
 /* Avoid typing. */
 
 extern t_class *bindlist_class;
+extern t_class *bng_class;
 extern t_class *block_class;
 extern t_class *canvas_class;
 extern t_class *catch_tilde_class;

@@ -43,6 +43,7 @@ static int gui_getBoundingBoxWidth (t_object *x)
     if (c == voutlet_class) { return gui_getInletWidth(); }
     if (c == gatom_class)   { return gui_getDigits (cast_gui (x)) * FAKE_FONT; }
     if (c == garray_class)  { return gui_getWidth (cast_gui (x)); }
+    if (c == bng_class)     { return gui_getWidth (cast_gui (x)); }
     
     return FAKE_FONT * buffer_getSize (object_getBuffer (x));
 }
@@ -51,8 +52,8 @@ static int gui_getBoundingBoxHeight (t_object *x)
 {
     t_class *c = pd_class (x);
     
-    if (c == gatom_class)  { }
     if (c == garray_class) { return gui_getHeight (cast_gui (x)); }
+    if (c == bng_class)    { return gui_getWidth (cast_gui (x)); }
     
     return FAKE_FONT;
 }
