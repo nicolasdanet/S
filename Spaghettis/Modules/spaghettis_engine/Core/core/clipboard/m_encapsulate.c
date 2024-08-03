@@ -12,14 +12,15 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void           *canvas_newSubpatch                 (t_symbol *);
-t_buffer       *clipboard_copyProceed              (t_glist *, int, int);
-t_undomanager  *glist_undoReplaceManager           (t_glist *, t_undomanager *);
+void           *canvas_newSubpatch                  (t_symbol *);
+t_buffer       *clipboard_copyProceed               (t_glist *, int, int);
+t_undomanager  *glist_undoReplaceManager            (t_glist *, t_undomanager *);
 
-void           glist_objectRemoveSelectedProceed   (t_glist *);
-t_rectangle    glist_getBoundingBoxOfSelected      (t_glist *);
+int            gui_getInletWidth                    (void);
+void           glist_objectRemoveSelectedProceed    (t_glist *);
+t_rectangle    glist_getBoundingBoxOfSelected       (t_glist *);
 
-void           snippet_disposeObjects              (t_buffer *x, int offset);
+void           snippet_disposeObjects               (t_buffer *x, int offset);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -62,14 +63,6 @@ typedef struct _outlethelper {
 // MARK: -
 
 #define ENCAPSULATE_PAD         (instance_snapGetGrid())
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-/* Arbitrary hardcoded size for inlet/outlet box width. */
-/* Query the GUI? */
-
-#define ENCAPSULATE_STEP        48
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -318,7 +311,7 @@ static void encapsulate_addInletsToSnippetCreate (t_glist *glist,
     
     int left = rectangle_getTopLeftX (r);
     int up   = rectangle_getTopLeftY (r);
-    int step = ENCAPSULATE_STEP;
+    int step = gui_getInletWidth();
     
     up   -= ENCAPSULATE_PAD * 4;
     step += ENCAPSULATE_PAD;
@@ -437,7 +430,7 @@ static void encapsulate_addOutletsToSnippetCreate (t_glist *glist,
     
     int left = rectangle_getTopLeftX (r);
     int down = rectangle_getBottomRightY (r);
-    int step = ENCAPSULATE_STEP;
+    int step = gui_getInletWidth();
     
     down += ENCAPSULATE_PAD * 4;
     step += ENCAPSULATE_PAD;

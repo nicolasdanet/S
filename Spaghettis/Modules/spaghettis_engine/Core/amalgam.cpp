@@ -192,6 +192,7 @@ namespace spaghettis::core {
 #include "graphic/patch/g_dollar.c"
 
 #include "graphic/objects/g_gui.c"
+#include "graphic/objects/g_fake.c"
 #include "graphic/objects/g_canvas.c"
 #include "graphic/objects/g_vinlet.c"
 #include "graphic/objects/g_voutlet.c"
