@@ -12,6 +12,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+t_rectangle gui_getBoundingBox (t_object *x);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 /* Files are searching in the directory of the patch first. */
 /* Without success it tries to find it using the search path. */
 
@@ -97,7 +103,7 @@ static t_rectangle glist_getBoundingBoxProceed (t_glist *glist, int onlySelected
     for (i = 0; i < n; i++) {
     //
     t_object *y   = glist_graphicsGetObjectAt (glist, i);
-    t_rectangle t = object_getBoundingBox (y);
+    t_rectangle t = gui_getBoundingBox (y);
     
     if (!onlySelected || glist_objectIsSelected (glist, y)) { rectangle_addRectangle (&r, &t); }
     //
