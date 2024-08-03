@@ -31,22 +31,36 @@ int gui_getInletWidth()
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+static int gui_getBoundingBoxWidth (t_object *x)
+{
+    t_class *c = pd_class (x);
+    
+    if (c == garray_class) { return gui_getWidth (cast_gui (x)); }
+    
+    return FAKE_FONT * buffer_getSize (object_getBuffer (x));
+}
+
+static int gui_getBoundingBoxHeight (t_object *x)
+{
+    t_class *c = pd_class (x);
+    
+    if (c == garray_class) { return gui_getHeight (cast_gui (x)); }
+    
+    return FAKE_FONT;
+}
+
 t_rectangle gui_getBoundingBox (t_object *x)
 {
-    t_rectangle t;
-    
-    int n = buffer_getSize (object_getBuffer (x));
     int a = object_getX (x);
     int b = object_getY (x);
-    int c = a;
-    int d = b;
+    int c = a + gui_getBoundingBoxWidth (x);
+    int d = b + gui_getBoundingBoxHeight (x);
+        
+    t_rectangle r;
     
-    c += FAKE_FONT * n;
-    d += FAKE_FONT;
-    
-    rectangle_set (&t, a, b, c, d);
+    rectangle_set (&r, a, b, c, d);
 
-    return t;
+    return r;
 }
 
 // -----------------------------------------------------------------------------------------------------------
