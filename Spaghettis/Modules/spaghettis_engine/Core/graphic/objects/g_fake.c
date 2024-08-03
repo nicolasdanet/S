@@ -30,12 +30,16 @@ int gui_getInletWidth()
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 static int gui_getBoundingBoxWidth (t_object *x)
 {
     t_class *c = pd_class (x);
     
-    if (c == garray_class) { return gui_getWidth (cast_gui (x)); }
+    if (c == vinlet_class)  { return gui_getInletWidth(); }
+    if (c == voutlet_class) { return gui_getInletWidth(); }
+    if (c == gatom_class)   { }
+    if (c == garray_class)  { return gui_getWidth (cast_gui (x)); }
     
     return FAKE_FONT * buffer_getSize (object_getBuffer (x));
 }
@@ -44,6 +48,7 @@ static int gui_getBoundingBoxHeight (t_object *x)
 {
     t_class *c = pd_class (x);
     
+    if (c == gatom_class)  { }
     if (c == garray_class) { return gui_getHeight (cast_gui (x)); }
     
     return FAKE_FONT;
