@@ -26,7 +26,7 @@ typedef struct _line_tilde {
     t_float             x_time;
     int                 x_stop;
     int                 x_rebase;
-    t_int32Atomic       x_retarget;
+    int                 x_retarget;
     int                 x_dspCount;
     t_float             x_dspCurrent;
     t_float             x_dspStep;
@@ -59,14 +59,13 @@ static void line_tilde_float (t_line_tilde *x, t_float f)
 {
     trylock_lock (&x->x_mutex);
 
-        x->x_target = f;
-        x->x_time   = PD_MAX (0.0, x->x_f);
-        x->x_f      = 0.0;
-        x->x_stop   = 0;
-    
-        if (x->x_time == 0.0) { x->x_base = f; x->x_rebase = 1; }
+        x->x_target     = f;
+        x->x_time       = PD_MAX (0.0, x->x_f);
+        x->x_f          = 0.0;
+        x->x_stop       = 0;
+        x->x_retarget   = 1;
         
-        atomic_int32WriteRelaxed (&x->x_retarget, 1);
+        if (x->x_time == 0.0) { x->x_base = f; x->x_rebase = 1; }
     
     trylock_unlock (&x->x_mutex);
 }
@@ -75,9 +74,8 @@ static void line_tilde_stop (t_line_tilde *x)
 {
     trylock_lock (&x->x_mutex);
     
-        x->x_stop   = 1;
-        
-        atomic_int32WriteRelaxed (&x->x_retarget, 1);
+        x->x_stop       = 1;
+        x->x_retarget   = 1;
     
     trylock_unlock (&x->x_mutex);
 }
@@ -97,15 +95,9 @@ static t_int *line_tilde_perform (t_int *w)
     
     t_float millisecondsToSamples = t->s_float0;
     
-    while (n--) {
-    //
-    // TODO: check validity and efficiency of following trick.
-    //
-    if (atomic_int32ReadRelaxed (&x->x_retarget)) {     /* Double check to avoid to poll on RMW operation. */
-    //
     if (trylock_trylock (&x->x_mutex)) {
     //
-    if (atomic_int32ReadRelaxed (&x->x_retarget)) {
+    if (x->x_retarget) {
     
         x->x_dspCurrent = x->x_rebase ? x->x_base : x->x_dspCurrent;
         x->x_target     = x->x_stop   ? x->x_dspCurrent : x->x_target;
@@ -114,16 +106,15 @@ static t_int *line_tilde_perform (t_int *w)
         x->x_dspTarget  = x->x_target;
         x->x_stop       = 0;
         x->x_rebase     = 0;
+        x->x_retarget   = 0;
     }
-    
-    atomic_int32WriteRelaxed (&x->x_retarget, 0);
     
     trylock_unlock (&x->x_mutex);
     //
     }
-    //
-    }
     
+    while (n--) {
+    //
     if (x->x_dspCount) {
         *out++ = (t_sample)x->x_dspCurrent; x->x_dspCurrent += x->x_dspStep; x->x_dspCount--;
     } else {
