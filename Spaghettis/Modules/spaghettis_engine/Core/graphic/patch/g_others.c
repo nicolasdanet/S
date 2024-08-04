@@ -102,10 +102,11 @@ static t_rectangle glist_getBoundingBoxProceed (t_glist *glist, int onlySelected
     
     for (i = 0; i < n; i++) {
     //
-    t_object *y   = glist_graphicsGetObjectAt (glist, i);
-    t_rectangle t = gui_getBoundingBox (y);
+    t_object *y = glist_graphicsGetObjectAt (glist, i);
     
-    if (!onlySelected || glist_objectIsSelected (glist, y)) { rectangle_addRectangle (&r, &t); }
+    if (!onlySelected || glist_objectIsSelected (glist, y)) {
+        t_rectangle t = gui_getBoundingBox (y); rectangle_addRectangle (&r, &t);
+    }
     //
     }
 

@@ -68,22 +68,26 @@ typedef t_float64Atomic t_word;
 /* Avoid typing. */
 
 extern t_class *bindlist_class;
-extern t_class *bng_class;
 extern t_class *block_class;
+extern t_class *bng_class;
 extern t_class *canvas_class;
 extern t_class *catch_tilde_class;
+extern t_class *comment_class;
 extern t_class *delwrite_tilde_class;
+extern t_class *dial_class;
 extern t_class *floatinlet_class;
 extern t_class *garray_class;
 extern t_class *gatom_class;
 extern t_class *inlet_class;
+extern t_class *radio_class;
 extern t_class *send_tilde_class;
+extern t_class *slider_class;
 extern t_class *symbolinlet_class;
-extern t_class *comment_class;
 extern t_class *textdefine_class;
 extern t_class *toggle_class;
 extern t_class *vinlet_class;
 extern t_class *voutlet_class;
+extern t_class *vu_class;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
