@@ -37,6 +37,7 @@ namespace spaghettis::core {
 #include "core/instance/m_load.c"
 #include "core/instance/m_view.c"
 #include "core/instance/m_environment.c"
+#include "core/instance/m_arguments.c"
 #include "core/instance/m_autorelease.c"
 #include "core/instance/m_polling.c"
 #include "core/instance/m_pending.c"
