@@ -121,147 +121,147 @@ static inline t_pd *instance_getBoundX (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_rootsAdd               (t_glist *glist);
-void       instance_rootsRemove            (t_glist *glist);
-void       instance_rootsFreeAll           (void);
+void        instance_rootsAdd               (t_glist *glist);
+void        instance_rootsRemove            (t_glist *glist);
+void        instance_rootsFreeAll           (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_registerAdd            (t_object *o);
-t_error    instance_registerRemove         (t_object *o);
-void       instance_registerRename         (t_object *o, t_id newUnique);
+void        instance_registerAdd            (t_object *o);
+t_error     instance_registerRemove         (t_object *o);
+void        instance_registerRename         (t_object *o, t_id newUnique);
 
-int        instance_registerContains       (t_id u);
+int         instance_registerContains       (t_id u);
 
-t_object   *instance_registerGetObject     (t_id u);
-t_glist    *instance_registerGetOwner      (t_id u);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-t_error    instance_dspCreate              (void);
-void       instance_dspStart               (void);
-void       instance_dspStop                (void);
-void       instance_dspClean               (void);
-void       instance_dspFree                (void);
+t_object    *instance_registerGetObject     (t_id u);
+t_glist     *instance_registerGetOwner      (t_id u);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_audioCloseWithError    (void);
+t_error     instance_dspCreate              (void);
+void        instance_dspStart               (void);
+void        instance_dspStop                (void);
+void        instance_dspClean               (void);
+void        instance_dspFree                (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_chain    *instance_chainGetCurrent       (void);
+void        instance_audioCloseWithError    (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_clocksAdd              (t_clock *c);
-void       instance_clocksRemove           (t_clock *c);
-void       instance_clocksDestroy          (t_clock *c);
-void       instance_clocksTick             (t_systime systime);
+t_chain     *instance_chainGetCurrent       (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_pollingRun             (void);
-void       instance_pollingStop            (void);
-void       instance_pollingRegister        (t_pd *x);
-void       instance_pollingUnregister      (t_pd *x);
+void        instance_clocksAdd              (t_clock *c);
+void        instance_clocksRemove           (t_clock *c);
+void        instance_clocksDestroy          (t_clock *c);
+void        instance_clocksTick             (t_systime systime);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_autoreleaseRun         (void);
-void       instance_autoreleaseStop        (void);
-void       instance_autoreleaseRegister    (t_pd *x);
-void       instance_autoreleaseProceed     (t_pd *x);
+void        instance_pollingRun             (void);
+void        instance_pollingStop            (void);
+void        instance_pollingRegister        (t_pd *x);
+void        instance_pollingUnregister      (t_pd *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_viewSet                (int argc, t_atom *argv);
-void       instance_viewConsume            (t_glist *glist);
+void        instance_autoreleaseRun         (void);
+void        instance_autoreleaseStop        (void);
+void        instance_autoreleaseRegister    (t_pd *x);
+void        instance_autoreleaseProceed     (t_pd *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_patchNew               (t_symbol *name, t_symbol *directory);
-t_error    instance_patchOpen              (t_symbol *name, t_symbol *directory);
+void        instance_viewSet                (int argc, t_atom *argv);
+void        instance_viewConsume            (t_glist *glist);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_loadAbstraction        (t_symbol *name, int argc, t_atom *argv);
-void       instance_loadSnippet            (t_glist *glist, t_buffer *b);
+void        instance_patchNew               (t_symbol *name, t_symbol *directory);
+void        instance_patchOpen              (t_symbol *name, t_symbol *directory);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_stackPush              (t_glist *glist);
-void       instance_stackPop               (t_glist *glist);
-void       instance_stackPopPatch          (t_glist *glist);
+void        instance_loadAbstraction        (t_symbol *name, int argc, t_atom *argv);
+void        instance_loadSnippet            (t_glist *glist, t_buffer *b);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_environment  *instance_environmentFetchIfAny     (void);
-
-void       instance_environmentSetFile             (t_symbol *name, t_symbol *directory);
-void       instance_environmentSetArguments        (int argc, t_atom *argv);
-void       instance_environmentResetFile           (void);
-void       instance_environmentResetArguments      (void);
+void        instance_stackPush              (t_glist *glist);
+void        instance_stackPop               (t_glist *glist);
+void        instance_stackPopPatch          (t_glist *glist);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error    instance_overflowPush           (t_object *y);
-void       instance_overflowPop            (void);
+t_environment   *instance_environmentFetchIfAny     (void);
+
+void        instance_environmentSetFile             (t_symbol *name, t_symbol *directory);
+void        instance_environmentSetArguments        (int argc, t_atom *argv);
+void        instance_environmentResetFile           (void);
+void        instance_environmentResetArguments      (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_object   *instance_pendingFetch          (t_object *y);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-int        instance_hasPending             (void);
-
-int        instance_pendingRequired        (t_object *y);
-void       instance_pendingAdd             (t_object *y);
-
-void       instance_pendingBegin           (void);
-void       instance_pendingEnd             (void);
-void       instance_pendingRelease         (void);
+t_error     instance_overflowPush           (t_object *y);
+void        instance_overflowPop            (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_snapSet                (int n);
-void       instance_snapSetGrid            (int n);
+t_object    *instance_pendingFetch          (t_object *y);
 
-int        instance_snapIsSet              (void);
-int        instance_snapGetGrid            (void);
-int        instance_snapGetSnapped         (int n);
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+int         instance_hasPending             (void);
+
+int         instance_pendingRequired        (t_object *y);
+void        instance_pendingAdd             (t_object *y);
+
+void        instance_pendingBegin           (void);
+void        instance_pendingEnd             (void);
+void        instance_pendingRelease         (void);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void        instance_snapSet                (int n);
+void        instance_snapSetGrid            (int n);
+
+int         instance_snapIsSet              (void);
+int         instance_snapGetGrid            (void);
+int         instance_snapGetSnapped         (int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -277,35 +277,35 @@ Point::Real    instance_snapped            (Point::Real pt);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       instance_contextSetCurrent      (t_glist *glist);
-void       instance_contextSetUgen         (t_dspcontext *context);
+void        instance_contextSetCurrent      (t_glist *glist);
+void        instance_contextSetUgen         (t_dspcontext *context);
 
-t_dspcontext   *instance_contextGetUgen    (void);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-t_pd       *instance_getMakerObject        (void);
-t_class    *instance_getMakerObjectClass   (void);
-
-int        instance_isMakerObject          (t_pd *x);
+t_dspcontext    *instance_contextGetUgen    (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_pd       *instance_objectGetNewest       (void);
+t_pd        *instance_getMakerObject        (void);
+t_class     *instance_getMakerObjectClass   (void);
 
-void       instance_objectSetNewest        (t_pd *x);
+int         instance_isMakerObject          (t_pd *x);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int        instance_undoIsRecursive        (void);
-void       instance_undoSetRecursive       (void);
-void       instance_undoUnsetRecursive     (void);
+t_pd        *instance_objectGetNewest       (void);
+
+void        instance_objectSetNewest        (t_pd *x);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int         instance_undoIsRecursive        (void);
+void        instance_undoSetRecursive       (void);
+void        instance_undoUnsetRecursive     (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

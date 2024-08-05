@@ -206,7 +206,7 @@ void instance_patchNew (t_symbol *name, t_symbol *directory)
     instance_environmentResetFile();
 }
 
-t_error instance_patchOpen (t_symbol *name, t_symbol *directory)
+void instance_patchOpen (t_symbol *name, t_symbol *directory)
 {
     int state = dsp_suspend();
     int done  = instance_loadPatch (name, directory);
@@ -214,8 +214,6 @@ t_error instance_patchOpen (t_symbol *name, t_symbol *directory)
     dsp_resume (state);
     
     if (done) { outputs_patchOpened (name, directory); }
-    
-    return (done != 1);
 }
 
 // -----------------------------------------------------------------------------------------------------------
