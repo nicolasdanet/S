@@ -65,6 +65,13 @@ t_symbol *symbol_replaceDoubleDollar (t_symbol *s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int symbol_hasExtension (t_symbol *s, const char *e)
+{
+    PD_ASSERT (e && *e == '.');
+    
+    return string_endWith (symbol_getName (s), e);
+}
+
 t_symbol *symbol_removeExtension (t_symbol *s)
 {
     PD_ASSERT (s);

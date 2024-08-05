@@ -206,14 +206,31 @@ void instance_patchNew (t_symbol *name, t_symbol *directory)
     instance_environmentResetFile();
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static int instance_patchOpenExtensionIsValid (t_symbol *name)
+{
+    if (symbol_hasExtension (name, PD_PATCH))       { return 1; }
+    else if (symbol_hasExtension (name, PD_HELP))   { return 1; }
+    else if (symbol_hasExtension (name, PD_LEGACY)) { return 1; }
+    
+    return 0;
+}
+
 void instance_patchOpen (t_symbol *name, t_symbol *directory)
 {
+    if (instance_patchOpenExtensionIsValid (name)) {
+    //
     int state = dsp_suspend();
     int done  = instance_loadPatch (name, directory);
     
     dsp_resume (state);
     
     if (done) { outputs_patchOpened (name, directory); }
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
