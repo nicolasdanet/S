@@ -108,6 +108,8 @@ void environment_setFileName (t_environment *e, t_symbol *name)
 {
     int hasExtension = 0;
     
+    if (string_endWith (symbol_getName (name), PD_LEGACY)) { name = symbol_removeExtension (name); }
+    
     hasExtension |= string_endWith (symbol_getName (name), PD_PATCH);
     hasExtension |= string_endWith (symbol_getName (name), PD_HELP);
     
