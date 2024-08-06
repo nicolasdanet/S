@@ -49,3 +49,4 @@ Next features planed:
 - Icons by [Google](https://github.com/google/material-design-icons).
 
 #### Licensed  under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
+
