@@ -134,8 +134,8 @@ t_symbol *dollar_expandSymbol (t_symbol *s, t_glist *glist)
     //
     t = dollar_expandSymbolWithArguments (s,
             glist,
-            environment_getNumberOfArguments (e),
-            environment_getArguments (e));
+            environment_argc (e),
+            environment_argv (e));
     //
     }
     

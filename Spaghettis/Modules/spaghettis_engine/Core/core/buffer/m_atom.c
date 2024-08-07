@@ -208,8 +208,8 @@ int atom_copyAtomsExpanded (t_atom *src, int m, t_atom *dest, int n, t_glist *gl
             dest,
             n,
             glist,
-            environment_getNumberOfArguments (e),
-            environment_getArguments (e));
+            environment_argc (e),
+            environment_argv (e));
     }
 }
 

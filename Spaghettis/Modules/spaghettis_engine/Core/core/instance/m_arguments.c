@@ -11,15 +11,6 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-static void instance_environmentSetFileProceed (t_symbol *name, t_symbol *directory)
-{
-    instance_get()->pd_environment.env_directory = directory;
-    instance_get()->pd_environment.env_fileName  = name;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void instance_environmentSetFile (t_symbol *name, t_symbol *directory)
@@ -27,29 +18,24 @@ void instance_environmentSetFile (t_symbol *name, t_symbol *directory)
     PD_ASSERT (name && name != &s_);
     PD_ASSERT (directory && directory != &s_);
     
-    instance_environmentSetFileProceed (name, directory);
+    environment_setFileName (instance_get()->pd_environment, name);
+    environment_setDirectory (instance_get()->pd_environment, directory);
 }
 
 void instance_environmentSetArguments (int argc, t_atom *argv)
 {
-    if (instance_get()->pd_environment.env_argv) { PD_MEMORY_FREE (instance_get()->pd_environment.env_argv); }
-    
-    PD_ASSERT (argc >= 0);
-
-    instance_get()->pd_environment.env_argc = argc;
-    instance_get()->pd_environment.env_argv = argc ? (t_atom *)PD_MEMORY_GET (argc * sizeof (t_atom)) : NULL;
-    
-    if (argc) { atom_copyAtoms (argv, argc, instance_get()->pd_environment.env_argv, argc); }
+    environment_setArguments (instance_get()->pd_environment, argc, argv);
 }
 
 void instance_environmentResetFile (void)
 {
-    instance_environmentSetFileProceed (&s_, &s_);
+    environment_setFileName (instance_get()->pd_environment, &s_);
+    environment_setDirectory (instance_get()->pd_environment, &s_);
 }
 
 void instance_environmentResetArguments (void)
 {
-    instance_environmentSetArguments (0, NULL);
+    environment_setArguments (instance_get()->pd_environment, 0, NULL);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -60,30 +46,7 @@ void instance_environmentResetArguments (void)
 
 t_environment *instance_environmentFetchIfAny (void)
 {
-    static int dollarZero = 1000;   /* Static. */
-    
-    if (instance_get()->pd_environment.env_directory != &s_) {
-    //
-    t_environment *e = (t_environment *)PD_MEMORY_GET (sizeof (t_environment));
-    
-    t_atom *argv = instance_get()->pd_environment.env_argv;
-    
-    e->env_dollarZero   = dollarZero++;
-    e->env_argc         = instance_get()->pd_environment.env_argc;
-    e->env_argv         = argv ? argv : (t_atom *)PD_MEMORY_GET (0);
-    e->env_directory    = instance_get()->pd_environment.env_directory;
-    e->env_fileName     = instance_get()->pd_environment.env_fileName;
-
-    instance_get()->pd_environment.env_argc      = 0;
-    instance_get()->pd_environment.env_argv      = NULL;
-    instance_get()->pd_environment.env_fileName  = &s_;
-    instance_get()->pd_environment.env_directory = &s_;
-    
-    return e;
-    //
-    }
-    
-    return NULL;
+    return environment_newConsume (instance_get()->pd_environment);
 }
 
 // -----------------------------------------------------------------------------------------------------------

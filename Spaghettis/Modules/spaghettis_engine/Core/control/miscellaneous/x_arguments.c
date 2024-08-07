@@ -34,7 +34,7 @@ static void arguments_bang (t_arguments *x)
     PD_ASSERT (e);
     
     outlet_symbol (x->x_outletRight, symbol_removeExtension (environment_getFileName (e)));
-    outlet_list (x->x_outletLeft, environment_getNumberOfArguments (e), environment_getArguments (e));
+    outlet_list (x->x_outletLeft, environment_argc (e), environment_argv (e));
 }
 
 // -----------------------------------------------------------------------------------------------------------

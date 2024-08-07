@@ -453,9 +453,7 @@ static t_pdinstance *instance_new()
     
     x->pd_stack.s_stack = (t_stackelement *)PD_MEMORY_GET (INSTANCE_STACK * sizeof (t_stackelement));
     
-    x->pd_environment.env_directory = &s_;
-    x->pd_environment.env_fileName  = &s_;
-    
+    x->pd_environment = environment_new();
     x->pd_objectMaker = class_new (sym_objectmaker, NULL, NULL, 0, CLASS_ABSTRACT, A_NULL);
     x->pd_canvasMaker = class_new (sym_canvasmaker, NULL, NULL, 0, CLASS_ABSTRACT, A_NULL);
     x->pd_clocks      = clocks_new();
@@ -495,10 +493,9 @@ static void instance_free (t_pdinstance *x)
     clocks_free (x->pd_clocks);
     class_free (x->pd_canvasMaker);
     class_free (x->pd_objectMaker);
+    environment_free (x->pd_environment);
     
     PD_ASSERT (x->pd_stack.s_stackIndex == 0);
-    
-    if (x->pd_environment.env_argv) { PD_MEMORY_FREE (x->pd_environment.env_argv); }
     
     PD_MEMORY_FREE (x->pd_stack.s_stack);
     PD_MEMORY_FREE (x);

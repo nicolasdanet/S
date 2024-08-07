@@ -37,7 +37,6 @@ typedef struct _stack {
 
 typedef struct _pdinstance {
     t_stack         pd_stack;
-    t_environment   pd_environment;
     uint64_t        pd_pollingCount;
     uint64_t        pd_autoreleaseCount;
     int             pd_poolCount;
@@ -55,6 +54,7 @@ typedef struct _pdinstance {
     t_dspcontext    *pd_ugenContext;
     t_clocks        *pd_clocks;
     t_glist         *pd_roots;
+    t_environment   *pd_environment;
     t_clock         *pd_polling;
     t_clock         *pd_autorelease;
     t_clock         *pd_stop;

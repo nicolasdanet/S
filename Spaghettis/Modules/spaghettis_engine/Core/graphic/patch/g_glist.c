@@ -30,7 +30,15 @@ void eval_buffer       (t_buffer *, t_pd *, int, t_atom *);
 // MARK: -
 
 /* Note that an expanded name is expected (with or without the file extension). */
-/* At load it can be temporarly set with the unexpanded form. */
+/* At load it could be temporarly set with the unexpanded form. */
+
+static t_symbol *glist_newGetName (t_symbol *name, t_environment *e)
+{
+    if (name && name != &s_) { return name; }
+    else {
+        return (e ? environment_getFileName (e) : sym_Untitled);
+    }
+}
 
 static t_glist *glist_new (t_symbol *name, t_rectangle *window)
 {
@@ -39,7 +47,7 @@ static t_glist *glist_new (t_symbol *name, t_rectangle *window)
     x->gl_environment   = instance_environmentFetchIfAny();
     x->gl_abstractions  = NULL;
     x->gl_undomanager   = undomanager_new (x);
-    x->gl_name          = (name != &s_ ? name : environment_getFileName (x->gl_environment));
+    x->gl_name          = glist_newGetName (name, x->gl_environment);
     x->gl_graphics      = buffer_new();
     x->gl_tempObjects   = buffer_new();
     x->gl_tempOutlets   = buffer_new();
@@ -138,8 +146,8 @@ void glist_makeObjectProceed (t_glist *glist, int a, int b, t_buffer *t)
     
     eval_buffer (t,
         instance_getMakerObject(),
-        environment_getNumberOfArguments (e),
-        environment_getArguments (e));
+        environment_argc (e),
+        environment_argv (e));
 
     if (instance_objectGetNewest()) { x = cast_object (instance_objectGetNewest()); }
 
