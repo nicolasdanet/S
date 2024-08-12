@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void searchpath_extendedMatchedAtIndex (int);
+void searchpath_directoryMatchedAtIndex (int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -100,12 +100,12 @@ int file_openReadConsideringSearchPath (const char *directory,
     /* At last look for in trees. */
     
     if (f < 0) {
-        t_pathlist *l = searchpath_getExtended();
+        t_pathlist *l = searchpath_getDirectories();
         while (l) {
             const char *path = pathlist_getPath (l);
             l = pathlist_getNext (l);
             f = file_openReadWithDirectoryAndName (path, name, extension, p);
-            if (f >= 0) { searchpath_extendedMatchedAtIndex (n); break; }
+            if (f >= 0) { searchpath_directoryMatchedAtIndex (n); break; }
             n++;
         }
         

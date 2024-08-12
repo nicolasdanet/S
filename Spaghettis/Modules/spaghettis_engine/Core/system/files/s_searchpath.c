@@ -20,7 +20,7 @@
 // -----------------------------------------------------------------------------------------------------------
 
 static t_pathlist *searchpath_roots;            /* Static. */
-static t_pathlist *searchpath_extended;         /* Static. */
+static t_pathlist *searchpath_directories;      /* Static. */
 static t_pathlist *searchpath_external;         /* Static. */
 static t_pathlist *searchpath_patch;            /* Static. */
 static t_pathlist *searchpath_help;             /* Static. */
@@ -48,7 +48,7 @@ static int searchpath_scanProceed (const char *path, const struct stat *b, int f
     
     if (!abort) {
         searchpath_countDirectories++;
-        searchpath_extended = pathlist_newAppend (searchpath_extended, NULL, path);
+        searchpath_directories = pathlist_newAppend (searchpath_directories, NULL, path);
     }
     //
     }
@@ -86,11 +86,11 @@ t_error searchpath_scan (void)
     t_error err = PD_ERROR_NONE;
     t_pathlist *l = searchpath_roots;
     
-    pathlist_free (searchpath_extended);   searchpath_extended   = NULL;
-    pathlist_free (searchpath_external);   searchpath_external   = NULL;
-    pathlist_free (searchpath_patch);      searchpath_patch      = NULL;
-    pathlist_free (searchpath_help);       searchpath_help       = NULL;
-    pathlist_free (searchpath_duplicates); searchpath_duplicates = NULL;
+    pathlist_free (searchpath_directories); searchpath_directories   = NULL;
+    pathlist_free (searchpath_external);    searchpath_external   = NULL;
+    pathlist_free (searchpath_patch);       searchpath_patch      = NULL;
+    pathlist_free (searchpath_help);        searchpath_help       = NULL;
+    pathlist_free (searchpath_duplicates);  searchpath_duplicates = NULL;
     searchpath_countDirectories = 0;
     
     while (!err && l) {
@@ -105,7 +105,7 @@ t_error searchpath_scan (void)
     //
     }
     
-    PD_ASSERT (!pathlist_check (searchpath_extended));
+    PD_ASSERT (!pathlist_check (searchpath_directories));
     PD_ASSERT (!pathlist_check (searchpath_external));
     PD_ASSERT (!pathlist_check (searchpath_patch));
     PD_ASSERT (!pathlist_check (searchpath_help));
@@ -142,7 +142,7 @@ static void searchpath_reportToLogFile (void)
     
     if (!err && ((f = mkstemp (t)) != -1)) {
     //
-    t_pathlist *l = searchpath_extended;
+    t_pathlist *l = searchpath_directories;
 
     post_system (NULL, "rescan: dump %s", t);
     
@@ -197,7 +197,7 @@ static void searchpath_reportToLogFile (void)
 
 static void searchpath_report (void)
 {
-    t_pathlist *l = searchpath_extended;
+    t_pathlist *l = searchpath_directories;
     
     while (l) {
         const char *path = pathlist_getPath (l);
@@ -276,13 +276,13 @@ int searchpath_hasDuplicates (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void searchpath_extendedMatchedAtIndex (int n)
+void searchpath_directoryMatchedAtIndex (int n)
 {
-    PD_ASSERT (searchpath_extended);
+    PD_ASSERT (searchpath_directories);
     
     /* Matching folders are moved to front. */
     
-    if (n > 0) { searchpath_extended = pathlist_moveFront (searchpath_extended, n); }
+    if (n > 0) { searchpath_directories = pathlist_moveFront (searchpath_directories, n); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -302,9 +302,9 @@ void searchpath_appendRoot (const char *filepath)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-t_pathlist *searchpath_getExtended (void)
+t_pathlist *searchpath_getDirectories (void)
 {
-    return searchpath_extended;
+    return searchpath_directories;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -330,14 +330,14 @@ void searchpath_rescan (int logged)
 void searchpath_release (void)
 {
     PD_ASSERT (!pathlist_check (searchpath_roots));
-    PD_ASSERT (!pathlist_check (searchpath_extended));
+    PD_ASSERT (!pathlist_check (searchpath_directories));
     PD_ASSERT (!pathlist_check (searchpath_external));
     PD_ASSERT (!pathlist_check (searchpath_patch));
     PD_ASSERT (!pathlist_check (searchpath_help));
     PD_ASSERT (!pathlist_check (searchpath_duplicates));
     
     pathlist_free (searchpath_roots);
-    pathlist_free (searchpath_extended);
+    pathlist_free (searchpath_directories);
     pathlist_free (searchpath_external);
     pathlist_free (searchpath_patch);
     pathlist_free (searchpath_help);
