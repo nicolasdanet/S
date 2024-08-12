@@ -91,18 +91,22 @@ static void instance_loadAbstractionProceed (t_symbol *filename,
     }
 }
 
-static void instance_loadAbstractionFile (t_symbol *name, int argc, t_atom *argv)
+static int instance_loadAbstractionFile (t_symbol *name, int argc, t_atom *argv, const char *extension)
 {
     t_fileproperties p; fileproperties_initAbstraction (&p, name);
     
-    if (glist_fileExist (instance_contextGetCurrent(), symbol_getName (name), PD_PATCH, &p)) {
+    if (glist_fileExist (instance_contextGetCurrent(), symbol_getName (name), extension, &p)) {
     //
     t_symbol *filename  = gensym (fileproperties_getName (&p));
     t_symbol *directory = gensym (fileproperties_getDirectory (&p));
     
     instance_loadAbstractionProceed (filename, directory, argc, argv, NULL);
+    
+    return 1;
     //
     }
+    
+    return 0;
 }
 
 static t_error instance_loadAbstractionSnippet (t_symbol *key, int argc, t_atom *argv)
@@ -131,7 +135,10 @@ void instance_loadAbstraction (t_symbol *name, int argc, t_atom *argv)
     //
     }
     
-    instance_loadAbstractionFile (name, argc, argv);
+    /* Try abstraction with legacy extansion at last. */
+    
+    if (instance_loadAbstractionFile (name, argc, argv, PD_PATCH))  { return; }
+    if (instance_loadAbstractionFile (name, argc, argv, PD_LEGACY)) { return; }
 }
 
 // -----------------------------------------------------------------------------------------------------------

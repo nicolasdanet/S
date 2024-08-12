@@ -270,8 +270,9 @@ static t_error main_parseArguments (int argc, char **argv)
     char *settings = NULL;
     
     while (!err && (argc > 0)) {
-        if (string_endWith (*argv, PD_PATCH)) { startup_appendPendedFiles (*argv); }
-        if (string_endWith (*argv, ".txt"))   { settings = *argv; }
+        if (string_endWith (*argv, PD_PATCH))       { startup_appendPendedFiles (*argv); }
+        else if (string_endWith (*argv, PD_LEGACY)) { startup_appendPendedFiles (*argv); }
+        else if (string_endWith (*argv, ".txt"))    { settings = *argv; }
         argc--; argv++;
     }
 

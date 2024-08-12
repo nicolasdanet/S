@@ -66,7 +66,10 @@ static int searchpath_scanProceed (const char *path, const struct stat *b, int f
         
     } else if (string_endWith (path, PD_PATCH)) {
         searchpath_patch = pathlist_newAppend (searchpath_patch,       &searchpath_duplicates, filename);
-        
+    
+    } else if (string_endWith (path, PD_LEGACY)) {
+        searchpath_patch = pathlist_newAppend (searchpath_patch,       &searchpath_duplicates, filename);
+    
     } else if (string_endWith (path, PD_HELP)) {
         searchpath_help = pathlist_newAppend (searchpath_help,         &searchpath_duplicates, filename);
     }
@@ -239,26 +242,29 @@ static void searchpath_report (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int searchpath_isExternalAvailable (t_symbol *s)
+static int searchpath_isAvailable (t_symbol *s, const char *extension)
 {
-    int available = 0; char t[PD_STRING] = { 0 };
+    char t[PD_STRING] = { 0 };
     
-    if (!string_sprintf (t, PD_STRING, "%s%s", symbol_getName (s), PD_PLUGIN)) {
-        available = pathlist_contains (searchpath_external, t);
+    if (!string_sprintf (t, PD_STRING, "%s%s", symbol_getName (s), extension)) {
+        if (pathlist_contains (searchpath_external, t)) { return 1; }
     }
     
-    return available;
+    return 0;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int searchpath_isExternalAvailable (t_symbol *s)
+{
+    return searchpath_isAvailable (s, PD_PLUGIN);
 }
 
 int searchpath_isAbstractionAvailable (t_symbol *s)
 {
-    int available = 0; char t[PD_STRING] = { 0 };
-    
-    if (!string_sprintf (t, PD_STRING, "%s%s", symbol_getName (s), PD_PATCH)) {
-        available = pathlist_contains (searchpath_patch, t);
-    }
-    
-    return available;
+    return searchpath_isAvailable (s, PD_PATCH) || searchpath_isAvailable (s, PD_LEGACY);
 }
 
 int searchpath_hasDuplicates (void)
