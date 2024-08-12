@@ -183,6 +183,9 @@ static int legacy_replaceObjects (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+/* Note that index of real objects are used to connect them. */
+/* Only abstract ones can be removed. */
+
 static int legacy_removeUnnecessary (t_buffer *x)
 {
     int found = 0;
