@@ -331,6 +331,7 @@ t_symbol *sym_list__space__stream;
 t_symbol *sym_list__space__sum;
 t_symbol *sym_list__space__tosymbol;
 t_symbol *sym_list__space__trim;
+t_symbol *sym_listbox;
 t_symbol *sym_listen;
 t_symbol *sym_listinlet;
 t_symbol *sym_little;
@@ -912,6 +913,7 @@ void symbols_initialize (void)
     sym_list__space__sum                        = gensym ("list sum");
     sym_list__space__tosymbol                   = gensym ("list tosymbol");
     sym_list__space__trim                       = gensym ("list trim");
+    sym_listbox                                 = gensym ("listbox");
     sym_listen                                  = gensym ("listen");
     sym_listinlet                               = gensym ("listinlet");
     sym_little                                  = gensym ("little");

@@ -332,6 +332,7 @@ extern t_symbol *sym_list__space__stream;
 extern t_symbol *sym_list__space__sum;
 extern t_symbol *sym_list__space__tosymbol;
 extern t_symbol *sym_list__space__trim;
+extern t_symbol *sym_listbox;
 extern t_symbol *sym_listen;
 extern t_symbol *sym_listinlet;
 extern t_symbol *sym_little;

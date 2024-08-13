@@ -220,6 +220,7 @@ static int legacy_removeUnnecessary (t_buffer *x)
     return found;
 }
 
+/*
 static int legacy_convertGraphicAtoms (t_buffer *x)
 {
     int found = 0;
@@ -232,21 +233,60 @@ static int legacy_convertGraphicAtoms (t_buffer *x)
     
     while ((count = iterator_next (iter, &atoms))) {
     //
-    if (count == 12) {
+    if (count == 12 || count == 13) {
+    //
+    int sliced = count - 7;
     
     t_symbol *s1 = atom_getSymbolAtIndex (0, count, atoms);
     t_symbol *s2 = atom_getSymbolAtIndex (1, count, atoms);
     
     found |= (s1 == sym___hash__X) && (s2 == sym_floatatom);
     found |= (s1 == sym___hash__X) && (s2 == sym_symbolatom);
+    found |= (s1 == sym___hash__X) && (s2 == sym_listbox);
     
-    /* For now replace unsupported symbolatom by a floatatom. */
-    /* Could be another GUI object later. */
-    
-    if (found && s2 == sym_symbolatom) { SET_SYMBOL (atoms + 1, sym_floatatom); }
+    if (found && (s2 == sym_symbolatom || s2 == sym_listbox)) {
+        SET_SYMBOL (atoms + 1, sym_floatatom);
+    }
     
     if (found) {
-        start = iterator_get (iter) - 5;
+        start = iterator_get (iter) - sliced;
+        end   = iterator_get (iter) - 1;
+        break;
+    }
+    //
+    }
+    //
+    }
+    
+    iterator_free (iter);
+    
+    if (found) { buffer_extend (x, start, end, 0); }
+    
+    return found;
+}
+*/
+
+static int legacy_convertGraphicAtoms (t_buffer *x)
+{
+    int found = 0;
+    int start = 0;
+    int end   = 0;
+
+    t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
+    t_atom *atoms    = NULL;
+    int count;
+    
+    while ((count = iterator_next (iter, &atoms))) {
+    //
+    if (count == 12 || count == 13) {
+    //
+    t_symbol *s1 = atom_getSymbolAtIndex (0, count, atoms);
+    t_symbol *s2 = atom_getSymbolAtIndex (1, count, atoms);
+    
+    found = (s1 == sym___hash__X) && (s2 == sym_floatatom);
+    
+    if (found) {
+        start = iterator_get (iter) - (count - 7);
         end   = iterator_get (iter) - 1;
         break;
     }
