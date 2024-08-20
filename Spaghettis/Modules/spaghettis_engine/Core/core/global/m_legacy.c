@@ -224,13 +224,8 @@ static int legacy_convertRemove (t_buffer *x)
     return found;
 }
 
-// #X symbolatom 188 341 10 0 0  0 - - - 0;
-// #X listbox    644 353 15 0 0  0 - - - 0;
-
-// #X obj        192 108 bng;
-
 /* Ensure that unsupported objects are instantiated (with an error message). */
-/*
+
 static int legacy_convertReify (t_buffer *x)
 {
     int found = 0;
@@ -245,20 +240,16 @@ static int legacy_convertReify (t_buffer *x)
     //
     if (count == 12 || count == 13) {
     //
-    int sliced = count - 6;
-    
     t_symbol *s1 = atom_getSymbolAtIndex (0, count, atoms);
     t_symbol *s2 = atom_getSymbolAtIndex (1, count, atoms);
     
     found |= (s1 == sym___hash__X) && (s2 == sym_symbolatom);
     found |= (s1 == sym___hash__X) && (s2 == sym_listbox);
     
-    if (found && (s2 == sym_symbolatom || s2 == sym_listbox)) {
-        SET_SYMBOL (atoms + 1, sym_floatatom);
-    }
-    
     if (found) {
-        start = iterator_get (iter) - sliced;
+        SET_SYMBOL (atoms + 1, sym_obj);
+        SET_SYMBOL (atoms + 4, s2);
+        start = iterator_get (iter) - (count - 5);
         end   = iterator_get (iter) - 1;
         break;
     }
@@ -273,7 +264,7 @@ static int legacy_convertReify (t_buffer *x)
     
     return found;
 }
-*/
+
 static int legacy_convertAtoms (t_buffer *x)
 {
     int found = 0;
@@ -367,6 +358,8 @@ static int legacy_convertGUI (t_buffer *x, t_symbol *key, int length, int m, int
 
 static int legacy_convertDummy (t_buffer *x)
 {
+    #if 0
+    
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
     t_atom *atoms    = NULL;
     
@@ -394,6 +387,8 @@ static int legacy_convertDummy (t_buffer *x)
 
     iterator_free (iter);
     
+    #endif
+    
     return 0;
 }
 
@@ -409,7 +404,7 @@ static void legacy_convertProceed (t_buffer *x)
     
     while (legacy_convertRename (x)) { }
     while (legacy_convertRemove (x)) { }
-    // while (legacy_convertReify (x))  { }
+    while (legacy_convertReify (x))  { }
     
     while (legacy_convertGUI (x, sym_bng, 20, 0, 12))       { }
     while (legacy_convertGUI (x, sym_tgl, 20, 1, 12))       { }
