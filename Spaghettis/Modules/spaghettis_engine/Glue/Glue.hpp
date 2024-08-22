@@ -29,7 +29,6 @@ juce::String getFileExtensions();
 juce::String getApplicationName();
 juce::String getUntitled();
 juce::String getPatchExtension();
-juce::String getSettingsExtension();
 juce::String getPresetsExtension();
 juce::String getDocumentationExtension();
 
