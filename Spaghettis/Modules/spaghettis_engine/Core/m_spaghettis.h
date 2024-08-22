@@ -157,6 +157,10 @@
 #define PD_PLUGIN                   ".pdobject"
 #define PD_LEGACY                   ".pd"
 
+#define PD_SETTINGS                 ".pdsettings"
+#define PD_PRESETS                  ".pdpresets"
+#define PD_DOCUMENTATION            ".pdinfo"
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
