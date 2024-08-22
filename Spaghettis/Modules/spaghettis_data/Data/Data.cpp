@@ -144,7 +144,7 @@ void Data::apply (const juce::ValueTree& tree)
 
 bool Data::readValuesFromFile (const juce::File& file)
 {
-    if (file.existsAsFile() && file.hasFileExtension (".xml")) {
+    if (file.existsAsFile()) {
         std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (file));
         if (xml) {
             changeValuesFrom (*this, juce::ValueTree::fromXml (*xml));
