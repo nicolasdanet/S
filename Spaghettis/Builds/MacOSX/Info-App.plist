@@ -35,6 +35,36 @@
         <key>CFBundleTypeRole</key>
         <string>None</string>
       </dict>
+      <dict>
+        <key>CFBundleTypeExtensions</key>
+        <array>
+          <string>pdsettings</string>
+        </array>
+        <key>CFBundleTypeName</key>
+        <string>Spaghettis Settings</string>
+        <key>CFBundleTypeRole</key>
+        <string>None</string>
+      </dict>
+      <dict>
+        <key>CFBundleTypeExtensions</key>
+        <array>
+          <string>pdpresets</string>
+        </array>
+        <key>CFBundleTypeName</key>
+        <string>Spaghettis Presets</string>
+        <key>CFBundleTypeRole</key>
+        <string>None</string>
+      </dict>
+      <dict>
+        <key>CFBundleTypeExtensions</key>
+        <array>
+          <string>pdinfo</string>
+        </array>
+        <key>CFBundleTypeName</key>
+        <string>Spaghettis Documentation</string>
+        <key>CFBundleTypeRole</key>
+        <string>None</string>
+      </dict>
     </array>
     <key>NSMicrophoneUsageDescription</key>
     <string>Spaghettis requires access to the Microphone.</string>
