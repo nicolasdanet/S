@@ -9,7 +9,7 @@
     <GROUP id="{2CB25DBA-D987-3F32-EEE6-6B67653E37F3}" name="Source">
       <FILE id="LekPt7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <GROUP id="{97821FCF-D921-B07E-10E9-2F772798D050}" name="XML">
-        <FILE id="fMMyPf" name="info_bng.xml" compile="0" resource="1" file="Resources/XML/info_bng.xml"/>
+        <FILE id="VnuKGl" name="bng.pdinfo" compile="0" resource="1" file="Resources/XML/bng.pdinfo"/>
       </GROUP>
       <GROUP id="{5D995D32-88D8-F3E6-9FA3-2BFFDA508EC0}" name="Icons">
         <FILE id="W4KSZp" name="icon_construction.svg" compile="0" resource="1"

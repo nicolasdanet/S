@@ -25,7 +25,7 @@ namespace {
 
 auto findResource (const juce::String& c)
 {
-    const juce::String name  = juce::String ("info_") + c + juce::String ("_xml");
+    const juce::String name  = c + juce::String ("_pdinfo");
     int n = 0; const char* p = BinaryData::getNamedResource (name.toRawUTF8(), n);
     
     return std::tuple<int, const char*> (n, p);

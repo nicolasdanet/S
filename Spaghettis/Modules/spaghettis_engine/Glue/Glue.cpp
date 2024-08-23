@@ -103,16 +103,6 @@ juce::String getPatchExtension()
     return juce::String (PD_PATCH);
 }
 
-juce::String getPresetsExtension()
-{
-    return juce::String (PD_PRESETS);
-}
-
-juce::String getDocumentationExtension()
-{
-    return juce::String (PD_DOCUMENTATION);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

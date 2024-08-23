@@ -9,7 +9,7 @@
 namespace BinaryData
 {
 
-//================== info_bng.xml ==================
+//================== bng.pdinfo ==================
 static const unsigned char temp_binary_data_0[] =
 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"
 "\r\n"
@@ -29,7 +29,7 @@ static const unsigned char temp_binary_data_0[] =
 "  </GROUP>\r\n"
 "</DOCUMENTATION>\r\n";
 
-const char* info_bng_xml = (const char*) temp_binary_data_0;
+const char* bng_pdinfo = (const char*) temp_binary_data_0;
 
 //================== icon_construction.svg ==================
 static const unsigned char temp_binary_data_1[] =
@@ -148,7 +148,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x4f50b4e2:  numBytes = 492; return info_bng_xml;
+        case 0x6b5f63c6:  numBytes = 492; return bng_pdinfo;
         case 0x0319b4fc:  numBytes = 441; return icon_construction_svg;
         case 0x4531ad6f:  numBytes = 333; return icon_create_new_folder_svg;
         case 0x96f96956:  numBytes = 489; return icon_delete_svg;
@@ -173,7 +173,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
 const char* namedResourceList[] =
 {
-    "info_bng_xml",
+    "bng_pdinfo",
     "icon_construction_svg",
     "icon_create_new_folder_svg",
     "icon_delete_svg",
@@ -193,7 +193,7 @@ const char* namedResourceList[] =
 
 const char* originalFilenames[] =
 {
-    "info_bng.xml",
+    "bng.pdinfo",
     "icon_construction.svg",
     "icon_create_new_folder.svg",
     "icon_delete.svg",
