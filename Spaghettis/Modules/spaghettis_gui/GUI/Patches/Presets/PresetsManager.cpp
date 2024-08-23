@@ -19,7 +19,7 @@ namespace {
 
 juce::File getPresetFile (const juce::File& file)
 {
-    return file.withFileExtension ("xml");
+    return file.withFileExtension ("pdpresets");
 }
 
 juce::PropertiesFile::Options getPresetOptions()
