@@ -59,10 +59,10 @@ public:
         
         const juce::PropertiesFile::Options options;
         
-        const juce::File settings    = file.getChildFile ("settings.xml");
-        const juce::File preferences = file.getChildFile ("preferences.xml");
+        const juce::File properties  = file.getChildFile ("Configuration.settings");
+        const juce::File preferences = file.getChildFile ("Preferences.settings");
         
-        settings_    = std::make_unique<juce::PropertiesFile> (settings, options);
+        properties_  = std::make_unique<juce::PropertiesFile> (properties, options);
         preferences_ = std::make_unique<Preferences> (preferences);
         
         loadRecentFiles();  /* MUST be at end. */
@@ -324,7 +324,7 @@ private:
     std::unique_ptr<DevicesWindow> devicesWindow_;
     std::unique_ptr<PreferencesWindow> preferencesWindow_;
     std::unique_ptr<SearchPathsWindow> searchPathsWindow_;
-    std::unique_ptr<juce::PropertiesFile> settings_;
+    std::unique_ptr<juce::PropertiesFile> properties_;
     std::unique_ptr<Preferences> preferences_;
     std::unique_ptr<juce::FileChooser> fileChooser_;
 
