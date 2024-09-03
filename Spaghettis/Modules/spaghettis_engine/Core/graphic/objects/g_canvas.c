@@ -26,7 +26,6 @@ void canvas_dsp    (t_glist *, t_signal **);
 void       glist_setUniqueAndSource            (t_glist *, int, t_atom *);
 void       glist_setUniqueAndSourceOfLast      (t_glist *, int, t_atom *);
 void       glist_setSourceOfLast               (t_glist *, int, t_atom *);
-void       glist_setInclusionOfLast            (t_glist *, int argc, t_atom *argv);
 t_error    glist_lineConnectByIndex            (t_glist *, int, int, int, int);
 t_error    glist_lineDisconnectByIndex         (t_glist *, int, int, int, int);
 
@@ -65,15 +64,6 @@ static void canvas_tagobject (t_glist *glist, t_symbol *s, int argc, t_atom *arg
 static void canvas_tagobjectsource (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 {
     glist_setSourceOfLast (glist, argc, argv);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static void canvas_include (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
-{
-    glist_setInclusionOfLast (glist, argc, argv);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -282,10 +272,6 @@ void canvas_setup (void)
     class_addMethod (c, (t_method)canvas_tagdollarzero,         sym__tagdollarzero,     A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_tagobject,             sym__tagobject,         A_GIMME, A_NULL);
     class_addMethod (c, (t_method)canvas_tagobjectsource,       sym__tagobjectsource,   A_GIMME, A_NULL);
-    
-    /* Used for run view. */
-    
-    class_addMethod (c, (t_method)canvas_include,               sym__include,           A_GIMME, A_NULL);
     
     /* Ensure compatibility with Pure Data file format. */
     

@@ -476,24 +476,6 @@ template <class F> void forObjectOrAllSelected (ObjectComponent* c, Table<Object
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void EditView::include (ObjectComponent* c)
-{
-    if (!isAbstractionOrInside()) {
-    //
-    forObjectOrAllSelected (c, objects_, [](const auto& p) { p->include(); });
-    //
-    }
-}
-
-void EditView::exclude (ObjectComponent* c)
-{
-    if (!isAbstractionOrInside()) {
-    //
-    forObjectOrAllSelected (c, objects_, [](const auto& p) { p->exclude(); });
-    //
-    }
-}
-
 void EditView::moveBack (ObjectComponent* c)
 {
     if (!isAbstractionOrInside()) {

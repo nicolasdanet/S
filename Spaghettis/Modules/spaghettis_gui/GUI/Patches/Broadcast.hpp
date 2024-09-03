@@ -123,20 +123,6 @@ static void position (core::UniqueId i, core::Point::Real pt)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void include (core::UniqueId i)
-{
-    Spaghettis()->handle (Inputs::includeObject (i));
-}
-
-static void exclude (core::UniqueId i)
-{
-    Spaghettis()->handle (Inputs::excludeObject (i));
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 static void parameters (core::UniqueId i, const data::Group& copy)
 {
     jassert (copy.hasUniqueOwnership());    /* Parameters MUST be a deep copy. */

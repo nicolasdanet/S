@@ -33,9 +33,7 @@ enum Contextual {
     back,
     front,
     snap,
-    add,
-    include,
-    exclude
+    add
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -83,9 +81,6 @@ juce::PopupMenu getContextMenuForObject (ObjectComponent* c)
     m.addSeparator();
     m.addItem (Contextual::open,        NEEDS_TRANS ("Open"),       c->isPatch());
     m.addSeparator();
-    m.addItem (Contextual::include,     NEEDS_TRANS ("Include"),    !c->isLocked() && c->isGraphic());
-    m.addItem (Contextual::exclude,     NEEDS_TRANS ("Exclude"),    !c->isLocked() && c->isGraphic());
-    m.addSeparator();
     m.addItem (Contextual::back,        NEEDS_TRANS ("Move Back"),  !c->isLocked());
     m.addItem (Contextual::front,       NEEDS_TRANS ("Move Front"), !c->isLocked());
     m.addItem (Contextual::snap,        NEEDS_TRANS ("Snap"),       !c->isLocked());
@@ -102,8 +97,6 @@ auto getContextMenuCallbackForObject (EditView* view, const juce::MouseEvent&, O
         switch (result) {
             case Contextual::help       : Broadcast::openHelp (o->getIdentifier());                 break;
             case Contextual::open       : v->getPatchRoot().showEditWindow (o->getIdentifier());    break;
-            case Contextual::include    : v->include (o.getComponent());                            break;
-            case Contextual::exclude    : v->exclude (o.getComponent());                            break;
             case Contextual::back       : v->moveBack (o.getComponent());                           break;
             case Contextual::front      : v->moveFront (o.getComponent());                          break;
             case Contextual::snap       : v->snapToGrid (o.getComponent());                         break;

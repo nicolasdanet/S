@@ -21,12 +21,14 @@ void addIfIncluded (const juce::ValueTree& child, juce::StringPairArray& paths, 
 {
     if (Tree::isObject (child)) {
         const core::Object object (child);
-        if (object.isGraphic() && object.get<bool> (Tag::Parameters, Tag::Included)) {
-            juce::String item (data::Cast::toVar<core::UniqueId> (object.getIdentifier()).toString());
-            juce::String path (Tree::computePath (child));
-            if (absoluteAsKey) { paths.set (path, item); }
-            else {
-                paths.set (item, path);
+        if (object.isGraphic() && object.hasParameter (Tag::Parameters, Tag::Included)) {
+            if (object.get<bool> (Tag::Parameters, Tag::Included)) {
+                juce::String item (data::Cast::toVar<core::UniqueId> (object.getIdentifier()).toString());
+                juce::String path (Tree::computePath (child));
+                if (absoluteAsKey) { paths.set (path, item); }
+                else {
+                    paths.set (item, path);
+                }
             }
         }
     }

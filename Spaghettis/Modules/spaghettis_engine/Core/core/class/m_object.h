@@ -82,16 +82,12 @@ bool           object_setBufferWithString  (t_object* x, const juce::String&);
 
 void   object_save                         (t_object *x, t_buffer *b, int flags);
 void   object_saveIdentifiers              (t_object *x, t_buffer *b, int flags);
-void   object_serializeInclusion           (t_object *x, t_buffer *b);
 void   object_distributeAtomsOnInlets      (t_object *x, int argc, t_atom *argv);
 void   object_setSignalValues              (t_object *x, int argc, t_atom *argv);
 
 t_buffer        *object_functionData       (t_object *z, int flags);
 
 t_float64Atomic *object_getSignalAtIndex   (t_object *x, int m);
-
-int    object_setIncludedUpdate            (t_object *x, int n);
-int    object_setLabelUpdate               (t_object *x, t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -168,19 +164,9 @@ static inline int object_isSelected (t_object *x)
     return x->g_selected;
 }
 
-static inline int object_isIncluded (t_object *x)
-{
-    return x->g_included;
-}
-
 static inline t_objecttype object_getType (t_object *x)
 {
     return x->g_type;
-}
-
-static inline t_symbol *object_getLabel (t_object *x)
-{
-    return x->g_label ? x->g_label : &s_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -202,11 +188,6 @@ static inline void object_setY (t_object *x, int n)
     x->g_y = n;
 }
 
-static inline void object_setIncluded (t_object *x, int n)
-{
-    x->g_included = (n != 0);
-}
-
 static inline void object_setSelected (t_object *x, int n)
 {
     x->g_selected = (n != 0);
@@ -215,11 +196,6 @@ static inline void object_setSelected (t_object *x, int n)
 static inline void object_setType (t_object *x, t_objecttype n)
 {
     x->g_type = n;
-}
-
-static inline void object_setLabel (t_object *x, t_symbol *s)
-{
-    x->g_label = s;
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -338,16 +338,6 @@ void ObjectComponent::snap()
     if (!isLocked()) { Broadcast::snap (object_.getIdentifier()); }
 }
 
-void ObjectComponent::include()
-{
-    if (!isLocked() && isGraphic()) { Broadcast::include (object_.getIdentifier()); }
-}
-
-void ObjectComponent::exclude()
-{
-    if (!isLocked() && isGraphic()) { Broadcast::exclude (object_.getIdentifier()); }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

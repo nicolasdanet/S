@@ -76,18 +76,6 @@ void glist_setSourceOfLast (t_glist *glist, int argc, t_atom *argv)
     }
 }
 
-void glist_setInclusionOfLast (t_glist *glist, int argc, t_atom *argv)
-{
-    t_object *o = glist_graphicsGetLast (glist);
-    
-    if (o) {
-    //
-    object_setLabelUpdate (o, atom_getSymbolAtIndex (0, argc, argv));
-    object_setIncludedUpdate (o, 1);
-    //
-    }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -543,18 +543,6 @@ void object_saveIdentifiers (t_object *x, t_buffer *b, int flags)
     if (flags & SAVE_UPDATE)      { object_serializeSource (x, sym__tagobjectsource, b); }
 }
 
-void object_serializeInclusion (t_object *x, t_buffer *b)
-{
-    if (object_isIncluded (x)) {
-    //
-    buffer_appendSymbol (b, sym___hash__X);
-    buffer_appendSymbol (b, sym__include);
-    buffer_appendSymbol (b, object_getLabel (x));
-    buffer_appendSemicolon (b);
-    //
-    }
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -639,36 +627,6 @@ void object_fetchAndCopySignalValuesIfRequired (t_object *x)
     }
     //
     }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int object_setIncludedUpdate (t_object *x, int n)
-{
-    if (object_isIncluded (x) != n) {
-        object_setIncluded (x, n);
-        #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectChanged (x, Tags::parameters (Tag::Included));
-        #endif
-        return 1;
-    }
-    
-    return 0;
-}
-
-int object_setLabelUpdate (t_object *x, t_symbol *s)
-{
-    if (object_getLabel (x) != s) {
-        object_setLabel (x, s);
-        #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectChanged (x, Tags::parameters (Tag::Label));
-        #endif
-        return 1;
-    }
-    
-    return 0;
 }
 
 // -----------------------------------------------------------------------------------------------------------
