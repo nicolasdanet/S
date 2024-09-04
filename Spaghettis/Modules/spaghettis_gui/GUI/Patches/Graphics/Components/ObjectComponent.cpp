@@ -87,7 +87,11 @@ bool ObjectComponent::isSelected() const
 
 bool ObjectComponent::isIncluded() const
 {
-    return included_.get();
+    bool b (included_.get());
+    
+    jassert (!b || isGraphic());
+    
+    return b;
 }
 
 // -----------------------------------------------------------------------------------------------------------
