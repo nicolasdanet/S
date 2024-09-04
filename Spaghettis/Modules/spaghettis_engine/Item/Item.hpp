@@ -139,6 +139,7 @@ public:
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 public:
     template <class T>
@@ -147,6 +148,14 @@ public:
         bool synchronous = false) const
     {
         return data::Cached<T>::make (data_, group, key, synchronous);
+    }
+    
+    template <class T>
+    T getChecked (const juce::String& group, const juce::String& key) const
+    {
+        if (hasParameter (group, key)) { return get<T> (group, key); }
+        
+        return T();
     }
     
     template <class T>

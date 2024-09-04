@@ -16,7 +16,7 @@ std::optional<PresetElement> Object::getPresetElement() const
 {
     auto f = [this] (const juce::String& key)
     {
-        const juce::String s = get<juce::String> (Tag::Parameters, Tag::Label);
+        const juce::String s = getChecked<juce::String> (Tag::Parameters, Tag::Label);
         
         return PresetElement (s, getParameter (Tag::Parameters, key), data::Cast::toVar (getIdentifier()));
     };
