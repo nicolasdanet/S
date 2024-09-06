@@ -185,7 +185,7 @@ void radio_setup (void)
     
     class_setHelpName (c, sym_radio);
     class_setSaveFunction (c, radio_functionSave);
-    class_setDataFunction (c, object_functionData);
+    class_setDataFunction (c, gui_functionData);
     class_requirePending (c);
     
     radio_class = c;

@@ -182,7 +182,7 @@ void vu_setup (void)
     #endif
     
     class_setSaveFunction (c, vu_functionSave);
-    class_setDataFunction (c, object_functionData);
+    class_setDataFunction (c, gui_functionData);
     class_requirePending (c);
 
     vu_class = c;

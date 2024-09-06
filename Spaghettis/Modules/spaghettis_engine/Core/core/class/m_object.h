@@ -85,8 +85,6 @@ void   object_saveIdentifiers              (t_object *x, t_buffer *b, int flags)
 void   object_distributeAtomsOnInlets      (t_object *x, int argc, t_atom *argv);
 void   object_setSignalValues              (t_object *x, int argc, t_atom *argv);
 
-t_buffer        *object_functionData       (t_object *z, int flags);
-
 t_float64Atomic *object_getSignalAtIndex   (t_object *x, int m);
 
 // -----------------------------------------------------------------------------------------------------------

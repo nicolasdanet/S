@@ -689,6 +689,21 @@ bool gui_setParameters (t_object *o, const data::Group& group, int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+t_buffer *gui_functionData (t_object *z, int flags)
+{
+    if (SAVED_DEEP (flags)) {
+    //
+    t_buffer *b = buffer_new();
+
+    buffer_appendSymbol (b, sym__restore);
+    
+    return b;
+    //
+    }
+    
+    return NULL;
+}
+
 void gui_restore (t_gui *x, int flags)
 {
     t_gui *y = (t_gui *)instance_pendingFetch (cast_object (x));

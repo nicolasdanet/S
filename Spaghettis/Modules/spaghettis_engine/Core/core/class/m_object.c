@@ -503,21 +503,6 @@ bool object_setBufferWithString (t_object *x, const juce::String& s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_buffer *object_functionData (t_object *z, int flags)
-{
-    if (SAVED_DEEP (flags)) {
-    //
-    t_buffer *b = buffer_new();
-
-    buffer_appendSymbol (b, sym__restore);
-    
-    return b;
-    //
-    }
-    
-    return NULL;
-}
-
 void object_save (t_object *x, t_buffer *b, int flags)
 {
     if (class_hasSaveFunction (pd_class (x))) { (*(class_getSaveFunction (pd_class (x)))) (x, b, flags); }

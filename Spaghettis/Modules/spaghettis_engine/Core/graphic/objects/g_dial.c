@@ -215,7 +215,7 @@ void dial_setup (void)
     #endif
     
     class_setSaveFunction (c, dial_functionSave);
-    class_setDataFunction (c, object_functionData);
+    class_setDataFunction (c, gui_functionData);
     class_requirePending (c);
     
     dial_class = c;
