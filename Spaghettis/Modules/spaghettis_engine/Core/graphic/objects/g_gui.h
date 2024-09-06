@@ -25,6 +25,7 @@ typedef struct _gui {
     int         x_isMultiple;
     int         x_isFlashed;
     int         x_isEmbedded;
+    int         x_isIncluded;
     int         x_state;
     int         x_time;
     t_float     x_peak;
@@ -33,6 +34,7 @@ typedef struct _gui {
     t_float     x_low;
     t_float     x_high;
     t_float     x_value;
+    t_symbol    *x_label;
     } t_gui;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -90,6 +92,11 @@ inline int gui_isEmbedded (t_gui *x)
     return x->x_isEmbedded;
 }
 
+inline int gui_isIncluded (t_gui *x)
+{
+    return x->x_isIncluded;
+}
+
 inline int gui_getState (t_gui *x)
 {
     return x->x_state;
@@ -128,6 +135,11 @@ inline t_float gui_getHigh (t_gui *x)
 inline t_float gui_getValue (t_gui *x)
 {
     return x->x_value;
+}
+
+inline t_symbol *gui_getLabel (t_gui *x)
+{
+    return x->x_label ? x->x_label : &s_;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -199,11 +211,13 @@ void gui_updateOrientation          (t_gui *x, int isVertical, int flag);
 void gui_updateOrientationSwap      (t_gui *x, int isVertical, int flag);
 void gui_updateFlashed              (t_gui *x, int n, int flag);
 void gui_updateEmbedded             (t_gui *x, int n, int flag);
+void gui_updateIncluded             (t_gui *x, int n, int flag);
 void gui_updateTime                 (t_gui *x, int n, int flag);
 void gui_updateDigits               (t_gui *x, int digits, int flag);
 void gui_updateButtons              (t_gui *x, int buttons, int flag);
 void gui_updateWidth                (t_gui *x, int width, int flag);
 void gui_updateHeight               (t_gui *x, int height, int flag);
+void gui_updateLabel                (t_gui *x, t_symbol *s, int flag);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -240,6 +240,23 @@ void gui_updateEmbedded (t_gui *x, int n, int flag)
     }
 }
 
+void gui_updateIncluded (t_gui *x, int n, int flag)
+{
+    int t = (n != 0);
+    
+    if (x->x_isIncluded != t) {
+    //
+    x->x_isIncluded = t;
+    
+    if (flag) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Included));
+        #endif
+    }
+    //
+    }
+}
+
 void gui_updateTime (t_gui *x, int n, int flag)
 {
     int t = PD_CLAMP (n, GUI_TIME_MINIMUM, GUI_TIME_MAXIMUM);
@@ -338,6 +355,21 @@ void gui_updateHeight (t_gui *x, int height, int flag)
             glist_undoAppend (glist,
                 undoresize_new (cast_object (x), x->x_width, oldHeight, x->x_width, newHeight));
         }
+    }
+    //
+    }
+}
+
+void gui_updateLabel (t_gui *x, t_symbol *s, int flag)
+{
+    if (x->x_label != s) {
+    //
+    x->x_label = s;
+        
+    if (flag) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Label));
+        #endif
     }
     //
     }
@@ -501,11 +533,39 @@ void gui_getParameters (t_object *o, data::Group& group, const Tags& t, int flag
             gui_getHeight (x),
             delegate).setRange (juce::Range<int> (GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM));
     }
+    
+    if (t.contains (Tag::Included)) {
+        group.addParameter (Tag::Included,
+            NEEDS_TRANS ("Included"),
+            NEEDS_TRANS ("Is widget included in run view"),
+            static_cast<bool> (gui_isIncluded (x)),
+            delegate);
+    }
+    
+    if (t.contains (Tag::Label)) {
+        group.addParameter (Tag::Label,
+            NEEDS_TRANS ("Label"),
+            NEEDS_TRANS ("Widget label in run view"),
+            makeString (symbol_getName (gui_getLabel (x))),
+            delegate);
+    }
 }
 
 bool gui_setParameters (t_object *o, const data::Group& group, int flags)
 {
     t_gui *x = (t_gui *)o;
+    
+    {
+        jassert (group.hasParameter (Tag::Included));
+        const int n = group.getParameter (Tag::Included).getValueTyped<bool>();
+        gui_updateIncluded (x, n, GUI_UPDATE_NOTIFY);
+    }
+    
+    {
+        jassert (group.hasParameter (Tag::Label));
+        t_symbol *s = gensym (group.getParameter (Tag::Label).getValueTyped<juce::String>().toRawUTF8());
+        gui_updateLabel (x, s, GUI_UPDATE_NOTIFY);
+    }
     
     if (flags & GUI_RANGE) {
         jassert (group.hasParameter (Tag::Low));
