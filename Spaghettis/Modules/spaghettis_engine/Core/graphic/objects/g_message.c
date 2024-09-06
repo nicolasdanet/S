@@ -348,6 +348,8 @@ void message_setup (void)
     
     #endif
     
+    class_setDataFunction (c, gui_functionData);
+    
     message_class = c;
     
     c = class_new (sym_messageresponder,

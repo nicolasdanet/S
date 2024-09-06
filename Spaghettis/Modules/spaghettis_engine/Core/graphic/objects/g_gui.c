@@ -689,7 +689,7 @@ bool gui_setParameters (t_object *o, const data::Group& group, int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_buffer *gui_functionData (t_object *z, int flags)
+t_buffer *gui_functionDataRestore (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
     //
@@ -703,6 +703,15 @@ t_buffer *gui_functionData (t_object *z, int flags)
     
     return NULL;
 }
+
+t_buffer *gui_functionData (t_object *z, int flags)
+{
+    return NULL;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void gui_restore (t_gui *x, int flags)
 {

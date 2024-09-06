@@ -91,6 +91,8 @@ void comment_setup (void)
     
     #endif
     
+    class_setDataFunction (c, gui_functionData);
+    
     comment_class = c;
 }
 
