@@ -128,9 +128,7 @@ static void slider_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  gui_getInterval (cast_gui (x)));
     if (SAVED_DEEP (flags)) { buffer_appendFloat (b, gui_getValue (cast_gui (x))); }
     buffer_appendSemicolon (b);
-    
-    // object_serializeInclusion (z, b);
-    
+        
     object_saveIdentifiers (z, b, flags);
 }
 

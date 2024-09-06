@@ -474,9 +474,7 @@ static void garray_functionSave (t_object *z, t_buffer *b, int flags)
     buffer_appendFloat (b,  gui_getWidth (cast_gui (x)));
     buffer_appendFloat (b,  gui_getHeight (cast_gui (x)));
     buffer_appendSemicolon (b);
-    
-    // object_serializeInclusion (z, b);
-    
+        
     object_saveIdentifiers (z, b, flags);
 }
 
