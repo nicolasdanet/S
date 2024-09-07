@@ -689,6 +689,25 @@ bool gui_setParameters (t_object *o, const data::Group& group, int flags)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+t_buffer *gui_functionData (t_object *z, int flags)
+{
+    t_gui *x = cast_gui (z);
+    
+    if (gui_isIncluded (x) || gui_hasLabel (x)) {
+    //
+    t_buffer *b = buffer_new();
+    
+    buffer_appendSymbol (b, sym__include);
+    buffer_appendFloat (b, gui_isIncluded (x));
+    buffer_appendSymbol (b, gui_getLabel (x));
+    
+    return b;
+    //
+    }
+    
+    return NULL;
+}
+
 t_buffer *gui_functionDataRestore (t_object *z, int flags)
 {
     if (SAVED_DEEP (flags)) {
@@ -701,11 +720,6 @@ t_buffer *gui_functionDataRestore (t_object *z, int flags)
     //
     }
     
-    return NULL;
-}
-
-t_buffer *gui_functionData (t_object *z, int flags)
-{
     return NULL;
 }
 

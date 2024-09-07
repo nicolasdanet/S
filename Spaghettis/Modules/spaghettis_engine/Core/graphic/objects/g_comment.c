@@ -17,7 +17,13 @@ t_class *comment_class;     /* Shared. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static void comment_anything (t_object *x, t_symbol *s, int argc, t_atom *argv)
+typedef struct _comment { t_gui m_obj; } t_comment;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static void comment_anything (t_comment *x, t_symbol *s, int argc, t_atom *argv)
 {
 }
 
@@ -72,6 +78,15 @@ static void comment_functionSetParameters (t_object *o, const data::Group& group
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void comment_include (t_comment *x, t_symbol *s, int argc, t_atom *argv)
+{
+    PD_DBG ("?");
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void comment_setup (void)
 {
     t_class *c = NULL;
@@ -79,12 +94,14 @@ void comment_setup (void)
     c = class_new (sym_comment,
             NULL,
             NULL, 
-            sizeof (t_object),
+            sizeof (t_comment),
             CLASS_DEFAULT | CLASS_NOINLET,
             A_NULL);
         
     class_addAnything (c, (t_method)comment_anything);
     
+    class_addMethod (c, (t_method)comment_include, sym__include, A_GIMME, A_NULL);
+
     #if defined ( PD_BUILDING_APPLICATION )
     
     class_setParametersFunctions (c, comment_functionGetParameters, comment_functionSetParameters);

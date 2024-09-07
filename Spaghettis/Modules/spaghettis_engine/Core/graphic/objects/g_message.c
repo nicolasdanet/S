@@ -28,7 +28,7 @@ typedef struct _messageresponder {
 // MARK: -
 
 typedef struct _message {
-    t_object            m_obj;                  /* MUST be the first. */
+    t_gui               m_obj;                  /* MUST be the first. */
     t_messageresponder  m_responder;
     int                 m_dirty;
     t_buffer            *m_eval;
@@ -316,6 +316,15 @@ static void message_functionSetParameters (t_object *o, const data::Group& group
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void message_include (t_message *x, t_symbol *s, int argc, t_atom *argv)
+{
+    PD_DBG ("?");
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void message_setup (void)
 {
     t_class *c = NULL;
@@ -341,6 +350,8 @@ void message_setup (void)
     class_addMethod (c, (t_method)message_addSemicolon,     sym_addsemicolon,       A_NULL);
     class_addMethod (c, (t_method)message_addDollar,        sym_adddollar,          A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)message_addDollarSymbol,  sym_adddollarsymbol,    A_SYMBOL, A_NULL);
+
+    class_addMethod (c, (t_method)message_include,          sym__include,           A_GIMME, A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )
     
